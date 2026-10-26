@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 住院费用分析_抬头数据
+        /// Phân tích chi phí nội trú_Dữ liệu tiêu đề
         /// </summary>
         public ActionResult GetTitleData(string ksrq, string jsrq, string rtype)
         {
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
             return Content(dto.ToJson());
         }
         /// <summary>
-        /// 院长查询-住院费用分析_科室费用分析部分
+        /// Tra cứu của viện trưởng-Phân tích chi phí nội trú_Phần phân tích chi phí khoa
         /// </summary>
         public ActionResult ZYFYFX_KSFYFXDTO(string ksrq, string jsrq, string rtype)
         {
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
             return Content(dto.ToJson());
         }
         /// <summary>
-        /// 院长查询-住院费用分析_出院患者费用分析
+        /// Tra cứu của viện trưởng-Phân tích chi phí nội trú_Phân tích chi phí bệnh nhân xuất viện
         /// </summary>
         public ActionResult GetCYHZFYFData(string ksrq, string jsrq, string rtype)
         {
@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
             return Content(dto.ToJson());
         }
         /// <summary>
-        /// 院长查询-住院费用分析_统计图
+        /// Tra cứu của viện trưởng-Phân tích chi phí nội trú_Biểu đồ thống kê
         /// </summary>
         /// <param name="ksrq"></param>
         /// <param name="jsrq"></param>

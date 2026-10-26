@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>雷达图</title>
+    <title>Biểu đồ radar</title>
     <link href="~/Content/css/framework-theme.css" rel="stylesheet" />
     <script src="~/Content/js/jquery/jquery-2.1.1.min.js"></script>
     <script src="~/Content/js/highcharts/highcharts.js"></script>
@@ -16,7 +16,7 @@
                 },
 
                 title: {
-                    text: '雷达图'
+                    text: 'Biểu đồ radar'
                 },
 
                 pane: {
@@ -52,16 +52,16 @@
 
                 series: [{
                     type: 'column',
-                    name: '条',
+                    name: 'Thanh',
                     data: [8, 7, 6, 5, 4, 3, 2, 1],
                     pointPlacement: 'between'
                 }, {
                     type: 'line',
-                    name: '线',
+                    name: 'Đường',
                     data: [1, 2, 3, 4, 5, 6, 7, 8]
                 }, {
                     type: 'area',
-                    name: '面',
+                    name: 'Diện tích',
                     data: [1, 8, 2, 7, 3, 6, 4, 5]
                 }]
             });

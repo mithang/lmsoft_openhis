@@ -9,15 +9,15 @@
 	<div class="panel panel-default">
 		<table class="form">
 			<tr>
-				<th class="formTitle" id="thCZRQ">对账日期：</th>
+				<th class="formTitle" id="thCZRQ">Ngày đối soát：</th>
                 <td class="formValue" colspan="2">
                     <input id="txtCreateTime" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :20%;float:left;margin-left:2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
-                    <input type="button" id="btn_search_csfy" class="btn btn-primary btn-md" style="margin-left:10px;width:50px;" onclick="clickcssj()" value="产生" />
-                    <input type="button" id="btn_search_dzz" class="btn btn-primary btn-md" style="margin-left:10px;width:50px;" onclick="dzqq()" value="对帐" />
+                    <input type="button" id="btn_search_csfy" class="btn btn-primary btn-md" style="margin-left:10px;width:50px;" onclick="clickcssj()" value="Phát sinh" />
+                    <input type="button" id="btn_search_dzz" class="btn btn-primary btn-md" style="margin-left:10px;width:50px;" onclick="dzqq()" value="Đối soát" />
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="button" id="btn_search_ls" class="btn btn-primary btn-md" style="margin-left:10px;width:50px;" value="历史" />
-                    <input type="button" id="btn_search_lsmx" class="btn btn-primary btn-md" style="margin-left:10px;width:50px;" value="明细" />
-                    <input type="button" id="btn_search_mxhd" class="btn btn-primary btn-md" style="margin-left:10px;width:50px;" value="核对" />
+                    <input type="button" id="btn_search_ls" class="btn btn-primary btn-md" style="margin-left:10px;width:50px;" value="Lịch sử" />
+                    <input type="button" id="btn_search_lsmx" class="btn btn-primary btn-md" style="margin-left:10px;width:50px;" value="Chi tiết" />
+                    <input type="button" id="btn_search_mxhd" class="btn btn-primary btn-md" style="margin-left:10px;width:50px;" value="Đối chiếu" />
 
                 </td>
 				<td class="formValue"><input type="hidden" id="daycollate" /></td>
@@ -27,39 +27,39 @@
 	<div>
 		<div class="panel panel-default" style="margin-left:10px; width:300px; float:left;">
 			<div class="panel-heading navb-bg">
-				本地数据
+				Dữ liệu tại chỗ
 			</div>
 			<table class="form">
 				<tr>
-					<th class="formTitle">当年帐户支付总额：</th>
+					<th class="formTitle">Tổng số tiền tài khoản thanh toán trong năm：</th>
 					<td class="formValue"><input type="text" id="totalcuraccpay" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">历年帐户支付总额：</th>
+					<th class="formTitle">Tổng số tiền tài khoản thanh toán các năm trước：</th>
 					<td class="formValue"><input type="text" id="totalhisaccpay" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">现金自负总额：</th>
+					<th class="formTitle">Tổng số tiền mặt tự trả：</th>
 					<td class="formValue"><input type="text" id="totalcashpay" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">统筹支付总额：</th>
+					<th class="formTitle">Tổng số tiền thanh toán từ quỹ chung：</th>
 					<td class="formValue"><input type="text" id="totaltcpay" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">附加支付总额：</th>
+					<th class="formTitle">Tổng số tiền thanh toán bổ sung：</th>
 					<td class="formValue"><input type="text" id="totaldffjpay" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">分类自负总额：</th>
+					<th class="formTitle">Tổng số tiền tự trả phân loại：</th>
 					<td class="formValue"><input type="text" id="totalflzf" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">全自负费用总额：</th>
+					<th class="formTitle">Tổng chi phí hoàn toàn tự trả：</th>
 					<td class="formValue"><input type="text" id="totalfybjsfw" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">中心流水号数量：</th>
+					<th class="formTitle">Số lượng mã giao dịch trung tâm：</th>
 					<td class="formValue"><input type="number" id="daycount" /></td>
 				</tr>
 			</table>
@@ -73,39 +73,39 @@
 		</div>
 		<div class="panel panel-default" style="margin-left:5px; width:300px; float:left;">
 			<div class="panel-heading navb-bg">
-				门诊数据
+				Dữ liệu ngoại trú
 			</div>
 			<table class="form">
 				<tr>
-					<th class="formTitle">当年帐户支付总额：</th>
+					<th class="formTitle">Tổng số tiền tài khoản thanh toán trong năm：</th>
 					<td class="formValue"><input type="text" id="mztotalcuraccpay" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">历年帐户支付总额：</th>
+					<th class="formTitle">Tổng số tiền tài khoản thanh toán các năm trước：</th>
 					<td class="formValue"><input type="text" id="mztotalhisaccpay" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">现金自负总额：</th>
+					<th class="formTitle">Tổng số tiền mặt tự trả：</th>
 					<td class="formValue"><input type="text" id="mztotalcashpay" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">统筹支付总额：</th>
+					<th class="formTitle">Tổng số tiền thanh toán từ quỹ chung：</th>
 					<td class="formValue"><input type="text" id="mztotaltcpay" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">附加支付总额：</th>
+					<th class="formTitle">Tổng số tiền thanh toán bổ sung：</th>
 					<td class="formValue"><input type="text" id="mztotaldffjpay" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">分类自负总额：</th>
+					<th class="formTitle">Tổng số tiền tự trả phân loại：</th>
 					<td class="formValue"><input type="text" id="mztotalflzf" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">全自负费用总额：</th>
+					<th class="formTitle">Tổng chi phí hoàn toàn tự trả：</th>
 					<td class="formValue"><input type="text" id="mztotalfybjsfw" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">中心流水号数量：</th>
+					<th class="formTitle">Số lượng mã giao dịch trung tâm：</th>
 					<td class="formValue"><input type="number" id="mzdaycount" /></td>
 				</tr>
 			</table>
@@ -119,39 +119,39 @@
 		</div>
 		<div class="panel panel-default" style="margin-left:5px; width:300px; float:left;">
 			<div class="panel-heading navb-bg">
-				住院数据
+				Dữ liệu nội trú
 			</div>
 			<table class="form">
 				<tr>
-					<th class="formTitle">当年帐户支付总额：</th>
+					<th class="formTitle">Tổng số tiền tài khoản thanh toán trong năm：</th>
 					<td class="formValue"><input type="text" id="zytotalcuraccpay" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">历年帐户支付总额：</th>
+					<th class="formTitle">Tổng số tiền tài khoản thanh toán các năm trước：</th>
 					<td class="formValue"><input type="text" id="zytotalhisaccpay" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">现金自负总额：</th>
+					<th class="formTitle">Tổng số tiền mặt tự trả：</th>
 					<td class="formValue"><input type="text" id="zytotalcashpay" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">统筹支付总额：</th>
+					<th class="formTitle">Tổng số tiền thanh toán từ quỹ chung：</th>
 					<td class="formValue"><input type="text" id="zytotaltcpay" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">附加支付总额：</th>
+					<th class="formTitle">Tổng số tiền thanh toán bổ sung：</th>
 					<td class="formValue"><input type="text" id="zytotaldffjpay" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">分类自负总额：</th>
+					<th class="formTitle">Tổng số tiền tự trả phân loại：</th>
 					<td class="formValue"><input type="text" id="zytotalflzf" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">全自负费用总额：</th>
+					<th class="formTitle">Tổng chi phí hoàn toàn tự trả：</th>
 					<td class="formValue"><input type="text" id="zytotalfybjsfw" onkeyup="checkMoney(this)" /></td>
 				</tr>
 				<tr>
-					<th class="formTitle">中心流水号数量：</th>
+					<th class="formTitle">Số lượng mã giao dịch trung tâm：</th>
 					<td class="formValue"><input type="number" id="zydaycount" /></td>
 				</tr>
 			</table>
@@ -160,11 +160,11 @@
     <div>
         <div class="panel panel-default">
             <div class="panel-heading navb-bg">
-                对账结果
+                Kết quả đối soát
             </div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">对账结果：</th>
+                    <th class="formTitle">Kết quả đối soát：</th>
                     <td class="formValue"><input type="tel" id="dzjg" style="width:800px; height:60px;" /></td>
                 </tr>
             </table>
@@ -176,11 +176,11 @@
 <script>
 
 	function checkMoney(obj) {
-		obj.value = obj.value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
-		obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的
+		obj.value = obj.value.replace(/[^\d.]/g, "");  //Xóa“Số”và“.”ký tự khác
+		obj.value = obj.value.replace(/\.{2,}/g, "."); //chỉ giữ lại ký tự đầu tiên. xóa các ký tự thừa
 		obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
-		obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3');//只能输入两个小数
-		if (obj.value.indexOf(".") < 0 && obj.value != "") {//以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的金额
+		obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3');//chỉ được nhập hai chữ số thập phân
+		if (obj.value.indexOf(".") < 0 && obj.value != "") {//đã lọc ở trên，Ở đây kiểm soát nếu không có dấu thập phân，ký tự đầu tiên không thể giống như 01、02 số tiền
 			obj.value = parseFloat(obj.value);
 		}
 	}
@@ -219,7 +219,7 @@
 						}
 					}
 				} else {
-					$.modalAlert($("#txtCreateTime").val()+"未产生任何结算费用！", 'warning');
+					$.modalAlert($("#txtCreateTime").val()+"Chưa phát sinh bất kỳ chi phí quyết toán nào！", 'warning');
 				}
 				
 			}
@@ -227,21 +227,21 @@
 	}
     function dzqq() {
         if ($("#daycollate").val() == null || $("#daycollate").val()=="") {
-            $.modalAlert("请选择产生按钮生成数据进行对账！", 'warning');
+            $.modalAlert("Vui lòng chọn nút tạo để tạo dữ liệu đối soát！", 'warning');
             return;
         }
-		$.loading(true, "对账请求开始 请稍等！！");
+		$.loading(true, "Bắt đầu yêu cầu đối soát Vui lòng đợi một chút！！");
 
 		var dzsjinput = {
-			daycollate: $("#daycollate").val(), //对帐日 日期格式 8 非空
-			daycount: $("#daycount").val(),//对帐日中心流水号数量 数字格式 B 非空
-			totalcuraccpay: $("#totalcuraccpay").val(), //当年帐户支付总额 数字格式 A 非空
-			totalhisaccpay: $("#totalhisaccpay").val(), //历年帐户支付总额 数字格式 A 非空
-			totalcashpay: $("#totalcashpay").val(), //现金自负总额 数字格式 A 非空
-			totaltcpay: $("#totaltcpay").val(), //统筹支付总额 数字格式 A 非空
-			totaldffjpay: $("#totaldffjpay").val(), //附加支付总额 数字格式 A 非空
-			totalflzf: $("#totalflzf").val(), //分类自负总额 数字格式 A 非空
-			totalfybjsfw: $("#totalfybjsfw").val(), //非医保结算范围费用总额总额
+			daycollate: $("#daycollate").val(), //Ngày đối soát Định dạng ngày 8 Không được để trống
+			daycount: $("#daycount").val(),//Số lượng mã giao dịch trung tâm ngày đối soát Định dạng số B Không được để trống
+			totalcuraccpay: $("#totalcuraccpay").val(), //Tổng số tiền tài khoản thanh toán trong năm Định dạng số A Không được để trống
+			totalhisaccpay: $("#totalhisaccpay").val(), //Tổng số tiền tài khoản thanh toán các năm trước Định dạng số A Không được để trống
+			totalcashpay: $("#totalcashpay").val(), //Tổng số tiền mặt tự trả Định dạng số A Không được để trống
+			totaltcpay: $("#totaltcpay").val(), //Tổng số tiền thanh toán từ quỹ chung Định dạng số A Không được để trống
+			totaldffjpay: $("#totaldffjpay").val(), //Tổng số tiền thanh toán bổ sung Định dạng số A Không được để trống
+			totalflzf: $("#totalflzf").val(), //Tổng số tiền tự trả phân loại Định dạng số A Không được để trống
+			totalfybjsfw: $("#totalfybjsfw").val(), //Tổng chi phí ngoài phạm vi quyết toán bảo hiểm y tế
 			operatorId: '@(opr.rygh)',
 			operatorName: '@(opr.UserName)',
 			hisId: "0",
@@ -255,16 +255,16 @@
 			async: false,
 			success: function (data) {
                 var refinfo = eval('(' + data + ')');;
-                console.log("对账返回：", refinfo);
+                console.log("Đối soát trả về：", refinfo);
                 $("#dzjg").val(data);
                 if (refinfo.xxfhm == "P900") {
                     $.modalAlert(refinfo.fhxx, 'warning');
                 } else {
-                    $.modalAlert("对账成功", 'success');
+                    $.modalAlert("Đối soát thành công", 'success');
                 }
 			},
 			error: function (ex) {
-				console.log("对账请求报错返回：", ex);
+				console.log("Yêu cầu đối soát báo lỗi trả về：", ex);
 				$("#dzjg").val(ex);
 			}
 		});
@@ -275,13 +275,13 @@
     $("#btn_search_ls").click(function () {
         $.modalOpen({
             id: "DzrHistory",
-            title: "对账历史",
+            title: "Lịch sử đối soát",
             url: "/DaySettleManage/DaySettle/DzrHistory",
             width: "1200px",
             height: "650px",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function (feeRelated) {
-                    console.log("对账入参信息：", feeRelated);
+                    console.log("Thông tin tham số đầu vào đối soát：", feeRelated);
                 });
             },
             cancelCallBack: function (iframeId) {
@@ -295,13 +295,13 @@
     $("#btn_search_lsmx").click(function () {
         $.modalOpen({
             id: "DzrIndex",
-            title: "对账明细",
+            title: "Chi tiết đối soát",
             url: "/DaySettleManage/DaySettle/DzrIndex",
             width: "1000px",
             height: "650px",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function (feeRelated) {
-                    console.log("对账入参信息：", feeRelated);
+                    console.log("Thông tin tham số đầu vào đối soát：", feeRelated);
                 });
             },
             cancelCallBack: function (iframeId) {
@@ -313,13 +313,13 @@
     $("#btn_search_mxhd").click(function () {
         $.modalOpen({
             id: "DzrCheck",
-            title: "对账明细",
+            title: "Chi tiết đối soát",
             url: "/DaySettleManage/DaySettle/DzrCheck",
             width: "1200px",
             height: "650px",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function (feeRelated) {
-                    console.log("对账入参信息：", feeRelated);
+                    console.log("Thông tin tham số đầu vào đối soát：", feeRelated);
                 });
             },
             cancelCallBack: function (iframeId) {
@@ -330,15 +330,15 @@
     });
 	function AcceptClick(callBack) {
 		var dzsjinput = {
-			daycollate: $("#daycollate").val(), //对帐日 日期格式 8 非空
-			daycount: $("#daycount").val(),//对帐日中心流水号数量 数字格式 B 非空
-			totalcuraccpay: $("#totalcuraccpay").val(), //当年帐户支付总额 数字格式 A 非空
-			totalhisaccpay: $("#totalhisaccpay").val(), //历年帐户支付总额 数字格式 A 非空
-			totalcashpay: $("#totalcashpay").val(), //现金自负总额 数字格式 A 非空
-			totaltcpay: $("#totaltcpay").val(), //统筹支付总额 数字格式 A 非空
-			totaldffjpay: $("#totaldffjpay").val(), //附加支付总额 数字格式 A 非空
-			totalflzf: $("#totalflzf").val(), //分类自负总额 数字格式 A 非空
-			totalfybjsfw: $("#totalfybjsfw").val(), //非医保结算范围费用总额总额
+			daycollate: $("#daycollate").val(), //Ngày đối soát Định dạng ngày 8 Không được để trống
+			daycount: $("#daycount").val(),//Số lượng mã giao dịch trung tâm ngày đối soát Định dạng số B Không được để trống
+			totalcuraccpay: $("#totalcuraccpay").val(), //Tổng số tiền tài khoản thanh toán trong năm Định dạng số A Không được để trống
+			totalhisaccpay: $("#totalhisaccpay").val(), //Tổng số tiền tài khoản thanh toán các năm trước Định dạng số A Không được để trống
+			totalcashpay: $("#totalcashpay").val(), //Tổng số tiền mặt tự trả Định dạng số A Không được để trống
+			totaltcpay: $("#totaltcpay").val(), //Tổng số tiền thanh toán từ quỹ chung Định dạng số A Không được để trống
+			totaldffjpay: $("#totaldffjpay").val(), //Tổng số tiền thanh toán bổ sung Định dạng số A Không được để trống
+			totalflzf: $("#totalflzf").val(), //Tổng số tiền tự trả phân loại Định dạng số A Không được để trống
+			totalfybjsfw: $("#totalfybjsfw").val(), //Tổng chi phí ngoài phạm vi quyết toán bảo hiểm y tế
 		};
 		callBack(dzsjinput);
 		$.modalClose();

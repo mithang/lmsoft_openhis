@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
         }
 
         /// <summary>
-        /// 挂号收费查询
+        /// Tra cứu thu phí đăng ký khám
         /// </summary>
         /// <returns></returns>
         public ActionResult OutPatientChargeQuery()
@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
             return View();
         }
         /// <summary>
-        /// 挂号收费条件查询
+        /// Tra cứu thu phí đăng ký khám theo điều kiện
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="fph"></param>
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
             return Content(chargeQueryList.ToJson());
         }
         /// <summary>
-        /// 挂号收费查询明细
+        /// Chi tiết tra cứu thu phí đăng ký khám
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>

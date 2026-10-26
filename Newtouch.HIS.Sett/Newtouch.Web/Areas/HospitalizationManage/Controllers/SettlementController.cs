@@ -10,21 +10,21 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
 {
     /// <summary>
-    /// 住院结算
+    /// Quyết toán nội trú
     /// </summary>
     public class SettlementController : ControllerBase
     {
-        //住院结算
+        //Quyết toán nội trú
         private readonly IHospSettApp _outHospSettApp;
-        //取消住院结算
+        //Hủy quyết toán nội trú
         private readonly IHospSettCancelApp _hospSettCancelApp;
-        //住院结算查询
+        //Tra cứu quyết toán nội trú
         private readonly IHospSettDmnService _hospSettDmnService;
 
         #region 住院结算（有医保算法）
 
         /// <summary>
-        /// 获取住院病人结算状态
+        /// Lấy trạng thái quyết toán của bệnh nhân nội trú
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="kh"></param>
@@ -38,10 +38,10 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 结算分类计费预览
+        /// Xem trước tính phí phân loại quyết toán
         /// </summary>
         /// <param name="zyh"></param>
-        /// <param name="expectedjsje">结算金额 防止过程中的费用变更</param>
+        /// <param name="expectedjsje">Số tiền quyết toán Ngăn thay đổi chi phí trong quá trình</param>
         /// <returns></returns>
         [HttpGet]
         public ActionResult SettPreview(string zyh, DateTime expectedcyrq, decimal expectedjsje)
@@ -51,12 +51,12 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 提交保存结算
+        /// Gửi và lưu quyết toán
         /// </summary>
         /// <param name="zyh"></param>
-        /// <param name="expectedyjjzhye">预交金账户当前余额（尚未结算） 防止过程中的费用变更</param>
-        /// <param name="expectedjsje">结算金额 防止过程中的费用变更</param>
-        /// <param name="expectedzhaoling">找零 防止过程中的费用变更</param>
+        /// <param name="expectedyjjzhye">Số dư hiện tại của tài khoản tạm ứng（Chưa quyết toán） Ngăn thay đổi chi phí trong quá trình</param>
+        /// <param name="expectedjsje">Số tiền quyết toán Ngăn thay đổi chi phí trong quá trình</param>
+        /// <param name="expectedzhaoling">Tiền thừa Ngăn thay đổi chi phí trong quá trình</param>
         /// <param name="xjzfListStr"></param>
         /// <returns></returns>
         [HttpPost]
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 结算成功的Dialog提示
+        /// Quyết toán thành công Dialog Thông báo
         /// </summary>
         /// <param name="yingshoukuan"></param>
         /// <param name="ssk"></param>
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         #region 取消住院结算（有医保算法）
 
         /// <summary>
-        /// 取消结算 视图
+        /// Hủy quyết toán View
         /// </summary>
         /// <returns></returns>
         public ActionResult CancelIndex()
@@ -98,7 +98,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 取消结算 获取住院病人结算状态
+        /// Hủy quyết toán Lấy trạng thái quyết toán của bệnh nhân nội trú
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="kh"></param>
@@ -112,7 +112,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 取消结算 提交
+        /// Hủy quyết toán Gửi
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="cancelReason"></param>
@@ -183,7 +183,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 待上传的自费结算病人信息
+        /// Thông tin bệnh nhân quyết toán tự trả chưa tải lên
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -218,7 +218,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             return View();
         }
         /// <summary>
-        /// 出院结算查询费用明细
+        /// Tra cứu chi tiết chi phí quyết toán xuất viện
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
@@ -240,7 +240,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         #endregion
 
         /// <summary>
-        /// 更新结算记录的发票号
+        /// Cập nhật số hóa đơn của bản ghi quyết toán
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="fph"></param>

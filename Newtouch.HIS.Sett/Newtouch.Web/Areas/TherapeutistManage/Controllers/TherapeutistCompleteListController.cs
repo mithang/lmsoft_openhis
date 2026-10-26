@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Web.Areas.TherapeutistManage.Controllers
 
         #region 治疗师工作列表
         /// <summary>
-        /// 查询治疗师工作列表
+        /// Tra cứu danh sách công việc kỹ thuật viên trị liệu
         /// </summary>
         /// <returns></returns>
         public ActionResult GetGridJson(Pagination pagination, string BeginDate, string EndDate, string hzxm, string zls, string dl)
@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        /// 新增排班时，提交到数据库
+        /// Khi thêm mới lịch trực，Gửi vào cơ sở dữ liệu
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="orgId"></param>
@@ -101,7 +101,7 @@ namespace Newtouch.HIS.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        ///获取单个治疗师单个月份排班
+        ///Lấy lịch trực một tháng của một kỹ thuật viên trị liệu
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="orgId"></param>
@@ -112,7 +112,7 @@ namespace Newtouch.HIS.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        /// 编辑单个治疗师排班
+        /// Chỉnh sửa lịch trực của một kỹ thuật viên trị liệu
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="orgId"></param>
@@ -123,7 +123,7 @@ namespace Newtouch.HIS.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        /// 删除排班
+        /// Xóa lịch trực
         /// </summary>
         /// <param name="keyvalue"></param>
         /// <returns></returns>
@@ -143,7 +143,7 @@ namespace Newtouch.HIS.Web.Areas.TherapeutistManage.Controllers
         #endregion
 
         /// <summary>
-        /// 治疗师工作效率柱状图
+        /// Biểu đồ cột hiệu suất công việc kỹ thuật viên trị liệu
         /// </summary>
         public ActionResult GetVisitSC()
         {
@@ -163,7 +163,7 @@ namespace Newtouch.HIS.Web.Areas.TherapeutistManage.Controllers
             if (string.IsNullOrWhiteSpace(time) || string.IsNullOrWhiteSpace(type))
             {
                 return Content("");
-                //throw FailedException("类型或时间为空！");
+                //throw FailedException("Loại hoặc thời gian trống！");
             }
             time = (int.Parse(time) + 1).ToString();
             var data = _therapeutistCompleteDmnService.GetVisitDetailSC(pagination, OrganizeId, type, time);

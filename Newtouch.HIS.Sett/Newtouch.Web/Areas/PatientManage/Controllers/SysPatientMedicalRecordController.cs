@@ -15,7 +15,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
 {
     /// <summary>
-    /// 病历
+    /// Bệnh án
     /// </summary>
     public class SysPatientMedicalRecordController : ControllerBase
     {
@@ -117,7 +117,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 提交保存
+        /// Gửi và lưu
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -197,7 +197,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
                 {
                     willupdateDetailEntityList.Add(mEntity);
                 }
-                //附件
+                //Tệp đính kèm
                 if (sfile != null)
                 {
                     var fileName = sfile.FileName;
@@ -220,7 +220,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             return null;
         }
         /// <summary>
-        /// 卫健上传日志
+        /// Nhật ký tải lên của Ủy ban Y tế
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ksrq"></param>

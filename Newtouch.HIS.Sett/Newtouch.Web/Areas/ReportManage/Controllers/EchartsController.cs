@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- * Copyright © 2016 Newtouch 版权所有
+ * Copyright © 2016 Newtouch Bản quyền thuộc về
  * Author: Newtouch
  * Description: 
 
@@ -17,14 +17,14 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
     {
         private readonly IEchartsDmnService _echartsDmnService;
 
-        //绩效指标
+        //Chỉ số hiệu quả
         public ActionResult PerformanceIndicator()
         {
             return View();
         }
 
         /// <summary>
-        /// 总人次 平均人次
+        /// Tổng số lượt người Số lượt người bình quân
         /// </summary>
         /// <returns></returns>
         public ActionResult SelectPerformanceIndicator(string orgId, string year)
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// 总人次 平均人次
+        /// Tổng số lượt người Số lượt người bình quân
         /// </summary>
         /// <returns></returns>
         public ActionResult PerformanceMonthIndicator(string orgId, string year,int month)

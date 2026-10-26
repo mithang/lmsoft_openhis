@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Web.Areas.PayManage.Controllers
         private readonly IPayApp _PayApp;
 
         /// <summary>
-        /// 付款码支付
+        /// Thanh toán bằng mã thanh toán
         /// </summary>
         /// <returns></returns>
         public ActionResult MicroPay()
@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Web.Areas.PayManage.Controllers
         }
 
         /// <summary>
-        /// 条码支付（扫码付）
+        /// Thanh toán bằng mã vạch（Thanh toán quét mã）
         /// </summary>
         /// <param name="out_trade_no"></param>
         /// <param name="subject"></param>
@@ -120,9 +120,9 @@ namespace Newtouch.HIS.Web.Areas.PayManage.Controllers
 
                                 var data = new
                                 {
-                                    outTradeNo = out_trade_no,    //商户订单号
-                                    tradeNo = payresult.TradeNo,   //第三方交易号
-                                    payType = payresult.PayType,    //支付方式
+                                    outTradeNo = out_trade_no,    //Mã đơn hàng của merchant
+                                    tradeNo = payresult.TradeNo,   //Mã giao dịch bên thứ ba
+                                    payType = payresult.PayType,    //Phương thức thanh toán
                                 };
 
                                 return Success(null, data);
@@ -164,9 +164,9 @@ namespace Newtouch.HIS.Web.Areas.PayManage.Controllers
 
                         var data = new
                         {
-                            outTradeNo = out_trade_no,    //商户订单号
-                            tradeNo = DateTime.Now.Ticks,   //第三方交易号
-                            payType = payresult.PayType,    //支付方式
+                            outTradeNo = out_trade_no,    //Mã đơn hàng của merchant
+                            tradeNo = DateTime.Now.Ticks,   //Mã giao dịch bên thứ ba
+                            payType = payresult.PayType,    //Phương thức thanh toán
                         };
 
                         return Success(null, data);
@@ -214,11 +214,11 @@ namespace Newtouch.HIS.Web.Areas.PayManage.Controllers
         public ActionResult Opr_TradeRefund(string outTradeNo, decimal refundAmount,string Reason,string OutRequestNo=null)
         {
             bool? isTradeRefundError = null;
-            if (!string.IsNullOrWhiteSpace(outTradeNo) && refundAmount > 0)   //需要原路退回
+            if (!string.IsNullOrWhiteSpace(outTradeNo) && refundAmount > 0)   //Cần hoàn trả theo đường cũ
             {
                 string errorMsg;
                 var refundReuslt = _PayApp.TradeRefund(outTradeNo, refundAmount, Reason, OutRequestNo, out errorMsg);
-                isTradeRefundError = refundReuslt == (int)EnumRefundStatus.Failed || refundReuslt == (int)EnumRefundStatus.UnKnown;    //失败 或 未知
+                isTradeRefundError = refundReuslt == (int)EnumRefundStatus.Failed || refundReuslt == (int)EnumRefundStatus.UnKnown;    //Thất bại hoặc Không xác định
                 if (isTradeRefundError==true)
                 {
                     return Error("退款失败，请重试");

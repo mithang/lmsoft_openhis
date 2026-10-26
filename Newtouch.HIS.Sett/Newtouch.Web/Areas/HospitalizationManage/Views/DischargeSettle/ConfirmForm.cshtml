@@ -2,72 +2,72 @@
 @{
     ViewBag.Title = "ConfirmForm";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //住院结算可以用预交金
+    //Quyết toán nội trú có thể dùng tạm ứng
     var withYjj = SysConfigReader.Bool("InpatientSettWithAdvanceAccount");
     //
     var relatedFPH = SysConfigReader.Bool("Inpatient_SettPage_RelatedFPH");
-    //有与CPOE互通接口
+    //có và CPOE Giao diện liên thông
     var interfaceWithCPOE = SysConfigReader.Bool("HOSP_INTERFACE_WITH_CPOE", false).Value;
-    //是否移动支付
+    //Có phải thanh toán di động hay không
     var needPay = SysConfigReader.Bool("Inpatient_Sett_NeedPay") ?? false;
-    //默认支付方式
+    //Phương thức thanh toán mặc định
     var defaultPayMethod = SysConfigReader.String("Sett_PayMethod_Inp_Default");
-    //是否允许多种支付
+    //Có cho phép nhiều loại thanh toán hay không
     var sfyxdzzf = SysConfigReader.Bool("Intpatient_Sett_Open_Dzzf", false);
-    //医保所属地，区分系统将执行何处医保逻辑
+    //Nơi thuộc bảo hiểm y tế，Phân biệt hệ thống sẽ thực thi logic bảo hiểm y tế ở đâu
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
-    //默认是否退余额
+    //Mặc định có trả lại số dư hay không
     var refundyjj= SysConfigReader.String("Sett_Inpatient_RefundAccount"); 
     var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
 }
 
-<!-- 重庆医保展示 -->
+<!-- Hiển thị bảo hiểm y tế Trùng Khánh -->
 <div id="divCQYbFee" class="panel panel-default" style="display:none;margin-top:10px;margin-left:10px;margin-right: 10px;">
 	<div class="panel-heading navb-bg" style="height:13px;">
-		费用信息
+		Thông tin chi phí
 	</div>
 	<div style="height:auto;">
 		<table class="form">
             <tr>
-                <th class="formTitle">费用总额：</th>
+                <th class="formTitle">Tổng số tiền chi phí：</th>
                 <td class="formValue">￥<label id="cq_fyze">0.00</label></td>
-                <th class="formTitle">现金支付合计：</th>
+                <th class="formTitle">Tổng cộng thanh toán tiền mặt：</th>
                 <td class="formValue">￥<label id="cq_xjzf">0.00</label></td>
-                <th class="formTitle">非医保现金计费：</th>
+                <th class="formTitle">Tính phí tiền mặt ngoài bảo hiểm y tế：</th>
                 <td class="formValue">￥<label id="zf_xjzf">0.00</label></td>
                
             </tr>
             <tr>
-                <th class="formTitle">医保现金计费：</th>
+                <th class="formTitle">Tính phí tiền mặt bảo hiểm y tế：</th>
                 <td class="formValue">￥<label id="yb_xjzf">0.00</label></td>
-                <th class="formTitle">统筹支付：</th>
+                <th class="formTitle">Thanh toán từ quỹ chung：</th>
                 <td class="formValue">￥<label id="cq_tczf">0.00</label></td>
-                <th class="formTitle">公务员补助：</th>
+                <th class="formTitle">Trợ cấp công chức：</th>
                 <td class="formValue">￥<label id="cq_gwybz">0.00</label></td>
 
                
             </tr>  
             <tr>
-                <th class="formTitle">账户支付：</th>
+                <th class="formTitle">Thanh toán tài khoản：</th>
                 <td class="formValue">￥<label id="cq_zhzf">0.00</label></td>
-                <th class="formTitle">医院负担金额：</th>
+                <th class="formTitle">Số tiền bệnh viện chịu：</th>
                 <td class="formValue">￥<label id="dbzddyljgdz">0.00</label></td>
 
-                <th class="formTitle">大额理赔支付：</th>
+                <th class="formTitle">Thanh toán bồi thường lớn：</th>
                 <td class="formValue">￥<label id="cq_delp">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">企业医疗保险支出：</th>
+                <th class="formTitle">Chi tiêu bảo hiểm y tế doanh nghiệp：</th>
                 <td class="formValue">￥<label id="cq_qybxzc">0.00</label></td>
-                <th class="formTitle">居民大病支出：</th>
+                <th class="formTitle">Chi tiêu bệnh nặng cư dân：</th>
                 <td class="formValue">￥<label id="cq_jmdbzc">0.00</label></td>
-                <th class="formTitle">医疗救助基金支出：</th>
+                <th class="formTitle">Chi tiêu quỹ cứu trợ y tế：</th>
                 <td class="formValue">￥<label id="cq_mzbz">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">账户共济支付：</th>
+                <th class="formTitle">Thanh toán chung tài khoản：</th>
                 <td class="formValue">￥<label id="cq_zhgjzf">0.00</label></td>
-                <th class="formTitle">其他：</th>
+                <th class="formTitle">Khác：</th>
                 <td class="formValue">￥<label id="cq_qt">0.00</label></td>
             </tr>
 		</table>
@@ -75,22 +75,22 @@
 </div>
 <div class="panel panel-default" style="margin-top:10px;margin-left:10px;margin-right: 10px;">
     <div class="panel-heading navb-bg" style="height:13px;">
-        支付信息
+        Thông tin thanh toán
     </div>
     <div style="height:auto;">
         <table class="form">
             <tr>
-                <th class="formTitle">住院号：</th>
+                <th class="formTitle">Số nhập viện：</th>
                 <td class="formValue">
                     <label id="lblZyh"></label>
                 </td>
                 @if (relatedFPH == true)
                 {
-                    <th class="formTitle"><span style="color:red">*</span>发票号：</th>
+                    <th class="formTitle"><span style="color:red">*</span>Số hóa đơn：</th>
                     <td class="formValue">
                         <label id="txtfph"></label>
                         <div style="position:absolute;top:5px;right:20px;">
-                            <input type="button" class="btn btn-default btn-md" style="margin-left:6px;" value="选发票号" onclick="ShowInvoicePanel()" />
+                            <input type="button" class="btn btn-default btn-md" style="margin-left:6px;" value="Chọn số hóa đơn" onclick="ShowInvoicePanel()" />
                         </div>
                     </td>
                 }
@@ -101,65 +101,65 @@
                 }
             </tr>
             <tr>
-                <th class="formTitle">入院日期：</th>
+                <th class="formTitle">Ngày nhập viện：</th>
                 <td class="formValue" colspan="2">
                     <label id="lblRyrq"></label>
                 </td>
-                <th class="formTitle"><p class="ztjsyc"><span style="color:red">*</span>出院日期：</p></th>
+                <th class="formTitle"><p class="ztjsyc"><span style="color:red">*</span>Ngày xuất viện：</p></th>
                 <td class="formValue" colspan="2">
                     <input id="cyrq" type="text" class="form-control  form-an input-wdatepicker ztjsyc" style="float: left; margin-left: 5px; width:90%" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">应收款：</th>
+                <th class="formTitle">Khoản phải thu：</th>
                 <td class="formValue">
                     ￥<label id="yingshoukuan"></label>
                 </td>
             </tr>
             <tr id="trYjjzf" style="display:none;">
-                <th class="formTitle">预交金余额：</th>
+                <th class="formTitle">Số dư tạm ứng：</th>
                 <td class="formValue">
                     ￥<label id="yjjye"></label>
                 </td>
                 <td class="formValue">
                     <div class="ckbox ztjsyc">
-                        <input id="ckyjjzfyeqt" type="checkbox"><label for="ckyjjzfyeqt">余额全退</label>
+                        <input id="ckyjjzfyeqt" type="checkbox"><label for="ckyjjzfyeqt">Hoàn toàn bộ số dư</label>
                     </div>
                 </td>
                 <td class="formValue" id="td_accountcharge">
-                    <input type="button" class="btn btn-default" id="btn_czyjj" style="color: red;" value="余额不足，前往充值" onclick="InpAccountDeposit();"  />
+                    <input type="button" class="btn btn-default" id="btn_czyjj" style="color: red;" value="Số dư không đủ，Đi nạp tiền" onclick="InpAccountDeposit();"  />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">支付方式：</th>
+                <th class="formTitle">Phương thức thanh toán：</th>
                 <td class="formValue" colspan="2">
                     <select id="zffs1" class="form-control  form-an" style="width:90%">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
-                <th class="formTitle" style="color:red;">收款：</th>
+                <th class="formTitle" style="color:red;">Thu tiền：</th>
                 <td class="formValue" style="font-size:large" colspan="2">
                     <input type="text" id="zfje1" class="form-control form-an" style="width:90%" />
                 </td>
             </tr>
             <tr class="isShowZFFS" style="display:none;">
-                <th class="formTitle">第二支付方式：</th>
+                <th class="formTitle">Phương thức thanh toán thứ hai：</th>
                 <td class="formValue">
                     <select id="zffs2" class="form-control form-an" style="width:90%">
-                        <option value="">==可选择==</option>
+                        <option value="">==Có thể chọn==</option>
                     </select>
                 </td>
-                <th class="formTitle">收款：</th>
+                <th class="formTitle">Thu tiền：</th>
                 <td class="formValue" colspan="2">
                     <input type="text" id="zfje2" class="form-control form-an" style="width:90%" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle" style="color:red;">合计实收款：</th>
+                <th class="formTitle" style="color:red;">Tổng số tiền thực thu：</th>
                 <td class="formValue" style="font-size:large" colspan="2">￥<label id="hjssk">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle ztjsyc" style="color:red;">找零：</th>
+                <th class="formTitle ztjsyc" style="color:red;">Tiền thừa：</th>
                 <td class="formValue ztjsyc" style="font-size:large" colspan="2">￥<label id="zhaoling">0.00</label></td>
             </tr>
            
@@ -168,33 +168,33 @@
     @*<div id="divzhdy">
         <table class="form">
             <tr style="border-top: groove;">
-                <th class="formTitle">手动输入<input type="checkbox" id="cardType"></th>
-                <th class="formTitle">卡号：</th>
+                <th class="formTitle">Nhập tay<input type="checkbox" id="cardType"></th>
+                <th class="formTitle">Số thẻ：</th>
                 <td class="formValue" colspan="2">
                     <input type="text" id="zhdy" class="form-control form-an" style="width: 90%;" disabled="disabled" />
                 </td>
                 <td class="formValue">
                     <div id="readCard" style="color:orangered;">
-                        <i class="fa fa-id-card" style="font-size: 27px; float: left;vertical-align:central;" title="读卡"></i>
+                        <i class="fa fa-id-card" style="font-size: 27px; float: left;vertical-align:central;" title="Đọc thẻ"></i>
                     </div>
                 </td>
                 <td class="formValue">
-                    <a class="btn btn-primary" style="margin-left:4px;" id="btn_zhdy" onclick="CQzydy()">账户抵用</a>
+                    <a class="btn btn-primary" style="margin-left:4px;" id="btn_zhdy" onclick="CQzydy()">Khấu trừ tài khoản</a>
                 </td>
                 <td></td>
             </tr>
             <tr style="border-top:">
-                <th class="formTitle">抵用人：</th>
+                <th class="formTitle">Người khấu trừ：</th>
                 <td class="formValue" style="font-size:large"><label id="dyzhxm"></label></td>
-                <th class="formTitle" colspan="2">抵用前账户余额：</th>
+                <th class="formTitle" colspan="2">Số dư tài khoản trước khi khấu trừ：</th>
                 <td class="formValue" style="font-size:large">￥<label id="dyzhye">0.00</label></td>
             </tr>
             <tr style="border-top:" class="cqyb">
-                <th class="formTitle">抵用金额：</th>
+                <th class="formTitle">Số tiền khấu trừ：</th>
                 <td class="formValue" style="font-size:large">￥<label id="dyje">0.00</label></td>
-                <th class="formTitle" colspan="2">抵用后账户余额：</th>
+                <th class="formTitle" colspan="2">Số dư tài khoản sau khi khấu trừ：</th>
                 <td class="formValue" style="font-size: large">￥<label id="dyhzhye">0.00</label></td>
-                <th class="formTitle">累计抵用金额：</th>
+                <th class="formTitle">Số tiền khấu trừ tích lũy：</th>
                 <td class="formValue" style="font-size:large">￥<label id="ljdyje">0.00</label></td>
             </tr>
         </table>
@@ -211,10 +211,10 @@
     var ztjs = $.request("ztjs");
     var patid = $.request("patid");
     if (!!cyrq) {
-        cyrq = $.getDate({ date: cyrq });   //格式化
+        cyrq = $.getDate({ date: cyrq });   //Định dạng
     }
 
-    ///中途结算
+    ///Quyết toán giữa chừng
     if (ztjs) {
         //$('.ztjsyc').hide();
         
@@ -222,22 +222,22 @@
 
 
     var interfaceWithCPOE = '@(interfaceWithCPOE)';
-    //预交金余额
+    //Số dư tạm ứng
     var yjjye = 0;
     var withYjj = '@(withYjj)';
-    //结算总金额
+    //Tổng số tiền quyết toán
     var zje = ovpraseFloat($.request("zje"));
-    //支付应收 结算时应收（zje = 可报 + 结算时应收 + 等等）
+    //Thanh toán khoản phải thu Khoản phải thu khi quyết toán（zje = Có thể thanh toán + Khoản phải thu khi quyết toán + v.v.）
     var orglxjzfys = ovpraseFloat($.request("xjzfys"));
-    //有折扣时不等 original
-    var xjzfys = orglxjzfys;    //有折扣时会不等
+    //Khi có chiết khấu thì không bằng original
+    var xjzfys = orglxjzfys;    //Khi có chiết khấu sẽ không bằng
 
-    //医保相关
+    //Liên quan đến bảo hiểm y tế
     var ybjyFeeReturn;
     var isYbjy = $.request("isYbjy");
     var brxz = $.request("brxz");
     var brxzmc = $.request("brxzmc");
-    var strdyjylsh = "";//抵用账户流水号，重庆医保，为了更新抵用落地表的jsnm
+    var strdyjylsh = "";//Mã giao dịch tài khoản khấu trừ，Bảo hiểm y tế Trùng Khánh，Để cập nhật bảng lưu xuống khấu trừ jsnm
     var xnhjyFeeReturn;
     var isXnhjy = $.request("isXnhjy");
     var cqPatInfo = JSON.parse(sessionStorage.getItem('cqPatInfo'));
@@ -246,7 +246,7 @@
         ybjyFeeReturn = JSON.parse(sessionStorage.getItem('ybjyFeeReturn'));
         if (!!ybjyFeeReturn) {
             if (!medicalInsurance) {
-                $.modalAlert("程序未动态配置医保地，请配置后重试", 'warning');
+                $.modalAlert("Chương trình chưa cấu hình động nơi bảo hiểm y tế，Vui lòng cấu hình rồi thử lại", 'warning');
                 $.modalClose();
             }
 
@@ -255,16 +255,16 @@
 		        $('#divCQYbFee').show();
                 $('#divGuiAnXnhFee').remove();
                 $('#divzhdy').show();
-                var mzjzje = 0.000;//民政救助金额
-                var xjzfje = 0.000;//医保的现金支付金额
-                var zfxjzf = 0.000;//非医保现金支付金额
+                var mzjzje = 0.000;//Số tiền cứu trợ dân chính
+                var xjzfje = 0.000;//Số tiền mặt thanh toán của bảo hiểm y tế
+                var zfxjzf = 0.000;//Số tiền mặt thanh toán ngoài bảo hiểm y tế
 
-                //医保的现金支付金额
+                //Số tiền mặt thanh toán của bảo hiểm y tế
                 xjzfje = ovpraseFloat(ybjyFeeReturn.psn_cash_pay) ;
-	            //非医保现金金额
+	            //Số tiền mặt ngoài bảo hiểm y tế
                 zfxjzf = ovpraseFloat(ybjyFeeReturn.his_hisfyze) -
 			        ovpraseFloat(ybjyFeeReturn.ybzje);
-	        	//计算现金支付
+	        	//Tính thanh toán tiền mặt
                 var calc_xjzf = ovpraseFloat(ybjyFeeReturn.psn_cash_pay) +
 			        ovpraseFloat(ybjyFeeReturn.his_hisfyze) -
 			        ovpraseFloat(ybjyFeeReturn.ybzje);
@@ -272,13 +272,13 @@
 		        //
 		        zje = ovpraseFloat(ybjyFeeReturn.his_hisfyze);
 		        orglxjzfys = ovpraseFloat(ybjyFeeReturn.calc_xjzf);
-		        xjzfys = orglxjzfys;    //有折扣时会不等
+		        xjzfys = orglxjzfys;    //Khi có chiết khấu sẽ không bằng
 
 		        mzjzje = ovpraseFloat(ybjyFeeReturn.maf_pay);
 		        !!ybjyFeeReturn.his_hisfyze && $('#cq_fyze').html(ovpraseFloat(ybjyFeeReturn.his_hisfyze).toFixed(2));
-	            !!ybjyFeeReturn.calc_xjzf && $('#cq_xjzf').html(ovpraseFloat(ybjyFeeReturn.calc_xjzf).toFixed(2));//总现金支付
-	            !!zfxjzf && $('#zf_xjzf').html(zfxjzf.toFixed(2));//非医保现金支付
-	            !!xjzfje && $('#yb_xjzf').html(xjzfje.toFixed(2));//医保现金支付
+	            !!ybjyFeeReturn.calc_xjzf && $('#cq_xjzf').html(ovpraseFloat(ybjyFeeReturn.calc_xjzf).toFixed(2));//Tổng thanh toán tiền mặt
+	            !!zfxjzf && $('#zf_xjzf').html(zfxjzf.toFixed(2));//Thanh toán tiền mặt ngoài bảo hiểm y tế
+	            !!xjzfje && $('#yb_xjzf').html(xjzfje.toFixed(2));//Thanh toán tiền mặt bảo hiểm y tế
 	            !!ybjyFeeReturn.acct_pay && $('#cq_zhzf').html(ovpraseFloat(ybjyFeeReturn.acct_pay).toFixed(2));
 	            !!ybjyFeeReturn.hifp_pay && $('#cq_tczf').html((ovpraseFloat(ybjyFeeReturn.hifp_pay)));
 	            !!ybjyFeeReturn.hifob_pay && $('#cq_delp').html(ovpraseFloat(ybjyFeeReturn.hifob_pay).toFixed(2));
@@ -295,9 +295,9 @@
 	        }
         }
         else {
-            //异常
+            //Bất thường
             orglxjzfys = xjzfys = zje = 0;
-            $.modalAlert("医保支付异常，请重试", "error");
+            $.modalAlert("Thanh toán bảo hiểm y tế bất thường，Vui lòng thử lại", "error");
             $.modalClose();
         }
     }
@@ -309,17 +309,17 @@
         xnhjyFeeReturn = JSON.parse(sessionStorage.getItem('xnhjyFeeReturn'));
         if (!!xnhjyFeeReturn) {
             if (!medicalInsurance) {
-                $.modalAlert("程序未动态配置医保地，请配置后重试", 'warning');
+                $.modalAlert("Chương trình chưa cấu hình động nơi bảo hiểm y tế，Vui lòng cấu hình rồi thử lại", 'warning');
                 $.modalClose();
             }
-            //如果走贵安医保逻辑
+            //Nếu đi theo logic bảo hiểm y tế Quý An
             if (medicalInsurance === "guian") {
                 $('#divGuiAnXnhFee').show();
                 $('#divGuiAnYbFee').remove();
                 $('#divzhdy').remove();
                 //zje = ovpraseFloat(xnhjyFeeReturn.his_hisfyze);
                 orglxjzfys = xnhjyFeeReturn.nhxjzf + ovpraseFloat(zje) - xnhjyFeeReturn.totalCost;
-                xjzfys = orglxjzfys;    //有折扣时会不等
+                xjzfys = orglxjzfys;    //Khi có chiết khấu sẽ không bằng
                 //
                 //!!xnhjyFeeReturn.totalCost && $('#totalCost').html(ovpraseFloat(xnhjyFeeReturn.totalCost).toFixed(2));
                 !!xnhjyFeeReturn.undulatingLine && $('#undulatingLine').html(ovpraseFloat(xnhjyFeeReturn.undulatingLine).toFixed(2));
@@ -338,9 +338,9 @@
             }
         }
         else {
-            //异常
+            //Bất thường
             orglxjzfys = xjzfys = zje = 0;
-            $.modalAlert("医保支付异常，请重试", "error");
+            $.modalAlert("Thanh toán bảo hiểm y tế bất thường，Vui lòng thử lại", "error");
             $.modalClose();
         }
     }
@@ -359,11 +359,11 @@
             }
         }
         else {
-            //否则默认赋值当天
+            //Ngược lại mặc định gán ngày hiện tại
             $('#cyrq').val($.getDate());
         }
 
-        //应收款
+        //Khoản phải thu
         if (!!xjzfys || xjzfys == 0) {
             $('#yingshoukuan').html(xjzfys.toFixed(2));
             $('#zfje1').val(xjzfys.toFixed(2));
@@ -396,13 +396,13 @@
             $('#yjjye').html(ovpraseFloat(yjjye).toFixed(2));
         }
 
-        //现金支付方式1
+        //Phương thức thanh toán tiền mặt 1
         $("#zffs1").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
                 $.each(top.clients.SysForCashPayList, function (key, value) {
                     if (!yjjye && value.xjzffs == '3') {
-                        return; //当前账户无预交金余额，则不显示该支付方式
+                        return; //Tài khoản hiện tại không có số dư tạm ứng，thì không hiển thị phương thức thanh toán này
                     }
                     var sele = false;
                     if (!!yjjye && yjjye >= xjzfys.toFixed(2)) {
@@ -429,17 +429,17 @@
 
         $("#zffs1").change(function () {
             if (ztjs) {
-                //预交账户
-                //其他
+                //Tài khoản tạm ứng
+                //Khác
             }
         });
-        //现金支付方式2
+        //Phương thức thanh toán tiền mặt 2
         $("#zffs2").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
                 $.each(top.clients.SysForCashPayList, function (key, value) {
                     if (value.xjzffs == '3') {
-                        return; //不显示该支付方式
+                        return; //Không hiển thị phương thức thanh toán này
                     }
                     $('#zffs2').append('<option value="' + value.xjzffs + '">' + value.xjzffsmc + '</option>');
                 });
@@ -449,7 +449,7 @@
 
         $("#ckyjjzfyeqt").click(function () {
             if ($('#ckyjjzfyeqt').is(':checked')) {
-                //预交金支付方式，‘余额全退’
+                //Phương thức thanh toán tạm ứng，‘Hoàn toàn bộ số dư’
                 if (!!yjjye && yjjye >= xjzfys) {
                     //
                     $("#zffs1").val('3').trigger('change');
@@ -496,9 +496,9 @@
              });
              if (cqyibaoCardInfo) {
                  if (cqyibaoCardInfo.Code === "1") {
-                     var cqcardInfo = cqyibaoCardInfo.Data; //医保反馈对象
+                     var cqcardInfo = cqyibaoCardInfo.Data; //Đối tượng phản hồi bảo hiểm y tế
                      if (!cqcardInfo.sbkh) {
-                         $.modalAlert("读卡失败：未获取到社保卡卡号", 'error');
+                         $.modalAlert("Đọc thẻ thất bại：Chưa lấy được số thẻ bảo hiểm xã hội", 'error');
                          return;
                      }
                      sbkh = cqcardInfo.sbkh;
@@ -506,7 +506,7 @@
                  }
              }
          }
-         var payoptype = { "sbkh": sbkh, "xzlb": "1" };//险种类别默认，1、医疗保险；2、工伤保险；3、生育保险；
+         var payoptype = { "sbkh": sbkh, "xzlb": "1" };//Loại hình bảo hiểm mặc định，1、Bảo hiểm y tế；2、Bảo hiểm tai nạn lao động；3、Bảo hiểm sinh đẻ；
          $.ajax({
              type: "POST",
              url: "http://127.0.0.1:22222/api/CQYiBao/PatAccountInfo",
@@ -520,35 +520,35 @@
          if (yibaoCardInfo) {
              if (yibaoCardInfo.Code === "1") {
                  if (!yibaoCardInfo.Data || !yibaoCardInfo.Data.patInfo || !yibaoCardInfo.Data.accountInfo) {
-                     $.modalAlert("调用医保接口01和13，获取获取人员和账户信息失败！", 'error');
+                     $.modalAlert("Gọi giao diện bảo hiểm y tế 01 và 13，Lấy thông tin nhân sự và tài khoản thất bại！", 'error');
                      return;
                  }
-                 var accountInfo = yibaoCardInfo.Data.accountInfo; //医保反馈对象
-                 var patInfo = yibaoCardInfo.Data.patInfo; //医保反馈对象
+                 var accountInfo = yibaoCardInfo.Data.accountInfo; //Đối tượng phản hồi bảo hiểm y tế
+                 var patInfo = yibaoCardInfo.Data.patInfo; //Đối tượng phản hồi bảo hiểm y tế
                  $("#dyzhxm").html(patInfo.xm);
                  $("#dyzhye").html(accountInfo.zhye);
              } else {
-                 $.modalAlert("刷卡失败:" + yibaoCardInfo.ErrorMsg, 'error');
+                 $.modalAlert("Quẹt thẻ thất bại:" + yibaoCardInfo.ErrorMsg, 'error');
              }
          } else {
-             $.modalAlert("刷卡获取医保信息失败！失败原因：医保中心无信息返回，请重试！", 'error');
+             $.modalAlert("Quẹt thẻ lấy thông tin bảo hiểm y tế thất bại！Nguyên nhân thất bại：Trung tâm bảo hiểm y tế không trả về thông tin，Vui lòng thử lại！", 'error');
          }
     }
     function CQzydy() {
         if (!$("#zhdy").val()) {
-            $.modalAlert("请输入账户抵用卡号！", 'error');
+            $.modalAlert("Vui lòng nhập số thẻ khấu trừ tài khoản！", 'error');
             return;
         }
         if (zhdyList.length>0) {
-            $.modalAlert("该患者已经抵用！", 'error');
+            $.modalAlert("Bệnh nhân này đã khấu trừ！", 'error');
             return;
         }
         if (cqPatInfo.zymzh != zyh) {
-            $.modalAlert("住院号信息异常，请关闭弹窗后，退出浏览器清空缓存重试！", 'error');
+            $.modalAlert("Thông tin số nhập viện bất thường，Vui lòng đóng cửa sổ bật lên rồi，Thoát trình duyệt, xóa bộ nhớ đệm rồi thử lại！", 'error');
             return;
         }
         var yibaoZhdy;
-        var payoptype = { "zymzh": cqPatInfo.zymzh, "jyrbh": cqPatInfo.sbkh, "jyrxm": cqPatInfo.xm, "jyrsfz": cqPatInfo.sfzh, "jyrxzqh": cqPatInfo.xzqh, "dyrsbh": $("#zhdy").val(), "ddyje": (ybjyFeeReturn.cqxjzf - ybjyFeeReturn.lsqfxgwyff), "jbr": '@(opr.rygh)', "jsjylsh": ybjyFeeReturn.jylsh, "jyrcblb": cqPatInfo.cblb };//险种类别默认，1、医疗保险；2、工伤保险；3、生育保险；
+        var payoptype = { "zymzh": cqPatInfo.zymzh, "jyrbh": cqPatInfo.sbkh, "jyrxm": cqPatInfo.xm, "jyrsfz": cqPatInfo.sfzh, "jyrxzqh": cqPatInfo.xzqh, "dyrsbh": $("#zhdy").val(), "ddyje": (ybjyFeeReturn.cqxjzf - ybjyFeeReturn.lsqfxgwyff), "jbr": '@(opr.rygh)', "jsjylsh": ybjyFeeReturn.jylsh, "jyrcblb": cqPatInfo.cblb };//Loại hình bảo hiểm mặc định，1、Bảo hiểm y tế；2、Bảo hiểm tai nạn lao động；3、Bảo hiểm sinh đẻ；
         $.ajax({
             type: "POST",
             url: "http://127.0.0.1:22222/api/CQYiBao/MedicalAccountToUse",
@@ -583,10 +583,10 @@
                     }
                 });
             } else {
-                $.modalAlert("不可使用账户抵用："+yibaoZhdy.ErrorMsg, 'error');
+                $.modalAlert("Không thể sử dụng khấu trừ tài khoản："+yibaoZhdy.ErrorMsg, 'error');
             }
         } else {
-            $.modalAlert("医保无数据返回，此时无法得知医保是否已经抵用成功，请关闭窗口重新结算！", 'error');
+            $.modalAlert("Bảo hiểm y tế không trả về dữ liệu，Lúc này không thể biết bảo hiểm y tế đã khấu trừ thành công hay chưa，Vui lòng đóng cửa sổ và quyết toán lại！", 'error');
         }
     }
     function initPage() {
@@ -599,17 +599,17 @@
     function AcceptClick(callBack) {
         theAcceptClickCallBack = callBack;
 
-        //填写的收费日期 等
+        //Ngày thu phí đã điền v.v.
         var obj = getPostData();
         if (obj) {
-            //190328add移动支付
+            //190328add Thanh toán di động
             if (!CheckPayOK(obj)) {
                 return;
             }
             callBack(obj, outTradeNo);
         } else {
         	if (isXnhjy == 'true' && medicalInsurance == "guian")
-            { //先取消出院办理，再取消结算
+            { //Trước tiên hủy làm thủ tục xuất viện，rồi hủy quyết toán
                 var parameter = { "astr_jylsh": ybjyFeeReturn.astr_jylsh };
                 $.ajax({
                     url: "http://127.0.0.1:12345/api/YiBao/YibaoCancle",
@@ -636,20 +636,20 @@
     function getPostData() {
         var isSuccsee = true;
         if (ryrq == "" || !ryrq) {
-            $.modalAlert('缺少入院日期', 'warning');
+            $.modalAlert('Thiếu ngày nhập viện', 'warning');
             return false;
         }
         var cyrq = $('#cyrq').val();
         if (cyrq == "" || !cyrq) {
-            $.modalAlert('缺少出院日期', 'warning');
+            $.modalAlert('Thiếu ngày xuất viện', 'warning');
             return false;
         }
         if (cyrq < ryrq) {
-            $.modalAlert("出院日期小于入院日期,请确认。", 'warning');
+            $.modalAlert("Ngày xuất viện nhỏ hơn ngày nhập viện,Vui lòng xác nhận。", 'warning');
             return;
         }
         if ($.getDate() < cyrq) {
-            $.modalAlert('出院日期错误', 'warning');
+            $.modalAlert('Ngày xuất viện sai', 'warning');
             return false;
         }
         var fph = $('#txtfph').html();
@@ -659,7 +659,7 @@
         zfje1 = (!!zffs1 || zffs1 == '0') && !!ovpraseFloat(zfje1) ? ovpraseFloat(zfje1) : 0;
         if (zffs1 == '3' && yjjye) {
             if (!(zfje1 == yjjye || zfje1 <= xjzfys)) {
-                $.modalAlert("预交账户支付金额异常", "error");
+                $.modalAlert("Số tiền thanh toán tài khoản tạm ứng bất thường", "error");
                 return false;
             }
         }
@@ -670,12 +670,12 @@
         zfje2 = (!!zffs2 || zffs2 == '0') && !!ovpraseFloat(zfje2) ? ovpraseFloat(zfje2) : 0;
         //
         if (zffs1 === zffs2 && !!zffs2) {
-            $.modalAlert('支付方式选择错误', 'error');
-            return false;    //支付方式选择错误
+            $.modalAlert('Chọn phương thức thanh toán sai', 'error');
+            return false;    //Chọn phương thức thanh toán sai
         }
         if (!!!zffs1 && !!zffs2) {
-            $.modalAlert('支付方式选择错误', 'error');
-            return false;    //支付方式选择错误
+            $.modalAlert('Chọn phương thức thanh toán sai', 'error');
+            return false;    //Chọn phương thức thanh toán sai
         }
         //
         var hjssk = $('#hjssk').html();
@@ -688,17 +688,17 @@
         }
         else {
             if (!fph) {
-                $.modalAlert('请选择发票号', 'warning');
+                $.modalAlert('Vui lòng chọn số hóa đơn', 'warning');
                 return false;
             }
         }
         //
         if (ovpraseFloat(hjssk).toFixed(2) != ovpraseFloat(ovpraseFloat(zfje1) + ovpraseFloat(zfje2)).toFixed(2)) {
-            $.modalAlert("收款金额异常", "error");
+            $.modalAlert("Số tiền thu bất thường", "error");
             return false;
         }
         if (ovpraseFloat(hjssk).toFixed(2) != $.addNum(xjzfys, zhaoling).toFixed(2) || zhaoling < 0) {
-            $.modalAlert("找零金额异常", "error");
+            $.modalAlert("Số tiền thừa bất thường", "error");
             return false;
         }
         return {
@@ -716,7 +716,7 @@
         }
         return parseFloat(val);
     }
-    //页面进来，加载发票号
+    //Trang vào，Tải số hóa đơn
     function initFPH() {
         if (!($("#txtfph").length == 1)) {
             return;
@@ -731,16 +731,16 @@
         });
     }
 
-    //弹出发票号的窗口
+    //Bật cửa sổ số hóa đơn
     function ShowInvoicePanel() {
         $.modalOpen({
             id: "InvoiceNoPanel",
-            title: "选发票号",
+            title: "Chọn số hóa đơn",
             url: "/OutpatientManage/OutpatientReg/ChooseInvoice?from=ConfirmFeeForm",
             width: "300px",
             height: "200px",
             callBack: function (iframeId) {
-                top.frames[iframeId].checkFPH();//窗口点确定的回调函数
+                top.frames[iframeId].checkFPH();//Hàm callback khi nhấn xác định tại cửa sổ
             }
         });
     }
@@ -759,10 +759,10 @@
         }
     });
 
-    //计算 根据 支付应收、支付方式 计算合计实收款、找零
+    //Tính toán Theo Thanh toán khoản phải thu、Phương thức thanh toán Tính tổng số tiền thực thu、Tiền thừa
     function hjsskZhaolingCal() {
         if (!$('#zffs1').val() && $('#zfje1').val() != 0) {
-            //未选择支付方式，对应金额要置为0.00
+            //Chưa chọn phương thức thanh toán，Số tiền tương ứng phải đặt thành 0.00
             $('#zfje1').val('0.00');
         }
         var zfje1 = $('#zfje1').val();
@@ -770,14 +770,14 @@
             zfje1 = '0.00';
         }
         if (!$('#zffs2').val() && $('#zfje2').val() != 0) {
-            //未选择支付方式，对应金额要置为0.00
+            //Chưa chọn phương thức thanh toán，Số tiền tương ứng phải đặt thành 0.00
             $('#zfje2').val('0.00');
         }
         var zfje2 = $('#zfje2').val();
         if (!zfje2) {
             zfje2 = '0.00';
         }
-        var hjssk = ovpraseFloat(zfje1) + ovpraseFloat(zfje2);  //多种支付方式合计实收
+        var hjssk = ovpraseFloat(zfje1) + ovpraseFloat(zfje2);  //Tổng thực thu của nhiều phương thức thanh toán
         $('#hjssk').html(hjssk.toFixed(2));
         $('#zhaoling').html(ovpraseFloat(hjssk - xjzfys).toFixed(2));
     }
@@ -785,10 +785,10 @@
     //common end
 </script>
 <script type="text/javascript">
-    //移动支付
-    var payingOrFailed = null;  //true支付中或支付失败
+    //Thanh toán di động
+    var payingOrFailed = null;  //true Đang thanh toán hoặc thanh toán thất bại
     function CheckPayOK(settInfo) {
-        //&&需要支付
+        //&&Cần thanh toán
         var needPay = '@(needPay)' == 'True';
         if (!needPay) {
             return true;
@@ -813,34 +813,34 @@
             }
         }
         if (alipayMoney > 0 && wechatMoney > 0) {
-            $.modalAlert('支付方式选择错误', 'error');
-            return false;    //支付方式选择错误
+            $.modalAlert('Chọn phương thức thanh toán sai', 'error');
+            return false;    //Chọn phương thức thanh toán sai
         }
         payMoney = alipayMoney + wechatMoney;
         if (payMoney <= 0) {
-            //不需要移动支付
+            //Không cần thanh toán di động
             payingOrFailed = null;
             return true;
         }
         if (payMoney > 0 && !!settInfo.zffs1 && !!settInfo.zffs2) {
-            $.modalAlert('移动支付<br/>不支持选择多种支付方式', 'error');
-            return false;    //支付方式选择错误
+            $.modalAlert('Thanh toán di động<br/>Không hỗ trợ chọn nhiều phương thức thanh toán', 'error');
+            return false;    //Chọn phương thức thanh toán sai
         }
         if (payMoney > 0 && settInfo.zhaoling != 0) {
-            $.modalAlert('移动支付不能有找零', 'error');
+            $.modalAlert('Thanh toán di động không thể có tiền thừa', 'error');
             return false;
         }
         if ((payingOrFailed === null || payingOrFailed === true) && needPay && payMoney > 0) {
             payMoney = ovpraseFloat(payMoney).toFixed(2);
-            var out_trade_no = (new Date()).getTime().toString();   //是否有问题？
-            ToPay(out_trade_no, '出院结算', payMoney);
+            var out_trade_no = (new Date()).getTime().toString();   //Có vấn đề hay không？
+            ToPay(out_trade_no, 'Quyết toán xuất viện', payMoney);
             payingOrFailed = true;
         }
-        return !(payingOrFailed === true); //支付中 返回true，否则返回false
+        return !(payingOrFailed === true); //Đang thanh toán Trả về true，Ngược lại trả về false
     }
-    //发起支付
+    //Khởi tạo thanh toán
     function ToPay(out_trade_no, subject, total_amount) {
-        var title = '付款码支付-' + (subject.length <= 15 ? subject : subject.substring(0, 12) + "...");
+        var title = 'Thanh toán bằng mã thanh toán-' + (subject.length <= 15 ? subject : subject.substring(0, 12) + "...");
         var url = "/PayManage/MicroPay/MicroPay";
         url += '?out_trade_no=' + out_trade_no;
         url += '&subject=' + subject;
@@ -859,13 +859,13 @@
             }
         });
     }
-    //支付成功-继续提交结算
+    //Thanh toán thành công-Tiếp tục gửi quyết toán
     var outTradeNo;
     function PaySuccessHandle(data) {
         payingOrFailed = false;
 
         outTradeNo = data.outTradeNo;
-        //移动支付方式纠正
+        //Sửa phương thức thanh toán di động
         if (data.payType == 1 && $('#zffs1').val() == '11') {
             $('#zffs1').val("10").trigger('change');
         }
@@ -875,25 +875,25 @@
         AcceptClick(theAcceptClickCallBack);
     }
 
-    //预交金充值通道
+    //Kênh nạp tạm ứng
     function InpAccountDeposit() {
         var czje = ovpraseFloat(xjzfys.toFixed(2) - yjjye.toFixed(2)).toFixed(2);
         $.modalOpen({
             id: "YjjDeposit",
-            title: "预交金补充值",
+            title: "Giá trị bổ sung tạm ứng",
             url: "/HospitalizationManage/DischargeSettle/HosAccountDeposit?je="+czje,
             width: "350px",
             height: "240px",
             callBack: function (iframeId) {
                 var xz = '@((int)EnumXTZHXZ.ZYYJKZH)';
-                top.frames[iframeId].SubmitAccountDeposit(patid, xz); //在弹出窗口事件
+                top.frames[iframeId].SubmitAccountDeposit(patid, xz); //Trong sự kiện cửa sổ bật lên
                 $.reload();
             }
         });
     }
 
     function yjjRefresh() {
-        //预交金处理
+        //Xử lý tạm ứng
         if (!!yjjye && yjjye >= xjzfys.toFixed(2) && $("#zffs1 option:selected").val() == "3") {
             $("#td_accountcharge").hide();
             if ($('#ckyjjzfyeqt').is(':checked')) {

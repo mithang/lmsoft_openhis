@@ -8,32 +8,32 @@
 <div class="rows" style="margin-bottom: 1%;">
     <div class="panel panel-default" style="margin-bottom:0;">
         <div class="panel-heading navb-bg">
-            住院病人信息
+            Thông tin bệnh nhân nội trú
         </div>
         <table class="form" style="width:96%;">
             <tbody>
                 <tr>
-                    <th class="formTitle">住院号：</th>
+                    <th class="formTitle">Số nhập viện：</th>
                     <td class="formValue" colspan="2">
                         <input class="form-control form-control-focus" type="text" id="zyh" value="" style="width:49%;float:left;" />
-                        &nbsp;&nbsp;<input type="button" class="btn btn-default btn-md btn-default-color" title="选择住院病人" style="width: 17%;" id="btnsyy" value="查询" onclick="GetPatSerarchView($('#zyh').val());">
+                        &nbsp;&nbsp;<input type="button" class="btn btn-default btn-md btn-default-color" title="Chọn bệnh nhân nội trú" style="width: 17%;" id="btnsyy" value="Tra cứu" onclick="GetPatSerarchView($('#zyh').val());">
                     </td>
                     <td class="formValue">
-                        <input type="button" id="btn_search" class="btn btn-primary btn-md" value="&nbsp;&nbsp;查&nbsp;&nbsp;询&nbsp;&nbsp;">
+                        <input type="button" id="btn_search" class="btn btn-primary btn-md" value="&nbsp;&nbsp;Tra&nbsp;&nbsp;cứu&nbsp;&nbsp;">
                     </td>
-                    <th class="formTitle">姓名：</th>
+                    <th class="formTitle">Họ tên：</th>
                     <td class="formValue">
                         <label id="xm"></label>
                     </td>
-                    <th class="formTitle">性别：</th>
+                    <th class="formTitle">Giới tính：</th>
                     <td class="formValue">
                         <label id="xb"></label>
                     </td>
-                    <th class="formTitle">年龄：</th>
+                    <th class="formTitle">Tuổi：</th>
                     <td class="formValue">
                         <label id="nlshow"></label>
                     </td>
-                    <th class="formTitle">证件号：</th>
+                    <th class="formTitle">Số giấy tờ：</th>
                     <td class="formValue">
                         <label id="zjh"></label>
                     </td>
@@ -41,19 +41,19 @@
             </tbody>
             <tbody class="dispTbody" style="display:none;">
                 <tr>
-                    <th class="formTitle">入院诊断：</th>
+                    <th class="formTitle">Chẩn đoán nhập viện：</th>
                     <td class="formValue" colspan="2">
                         <label id="ryzd"></label>
                     </td>
-                    <th class="formTitle">手机号：</th>
+                    <th class="formTitle">Số điện thoại：</th>
                     <td class="formValue">
                         <label id="phone"></label>
                     </td>
-                    <th class="formTitle">出生日期：</th>
+                    <th class="formTitle">Ngày sinh：</th>
                     <td class="formValue">
                         <label id="csny"></label>
                     </td>
-                    <th class="formTitle">入院日期：</th>
+                    <th class="formTitle">Ngày nhập viện：</th>
                     <td class="formValue">
                         <label id="ryrq"></label>
                     </td>
@@ -66,30 +66,30 @@
 <div class="rows" style="margin-bottom: 1%;">
     <div class="panel panel-default" style="margin-bottom:0;">
         <div class="panel-heading navb-bg">
-            记账项目
+            Khoản mục ghi sổ
         </div>
         <div id="divSLMX" style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>收费项目：</th>
+                    <th class="formTitle"><span class="required">*</span>Khoản mục thu phí：</th>
                     <td class="formValue">
                         <input id="sfxmmc" type="text" class="form-control  form-an" />
                         <input id="sfxmCode" type="text" style="display:none;" class="form-control" />
-                        <!-- 医嘱类型 1药品 2收费项目 -->
+                        <!-- Loại y lệnh 1 Thuốc 2 Khoản mục thu phí -->
                         <input id="yzlx" type="text" style="display:none;" class="form-control" />
 
                         <input id="sfdlCode" type="text" style="display:none;" class="form-control" />
                         <input id="sfdlmc" type="text" style="display:none;" class="form-control" />
                     </td>
-                    <th class="formTitle">单位时长：</th>
+                    <th class="formTitle">Thời lượng đơn vị：</th>
                     <td class="formValue">
                         <input id="duration" type="text" class="form-control  form-an" value="" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>单位：</th>
+                    <th class="formTitle"><span class="required">*</span>Đơn vị：</th>
                     <td class="formValue">
                         <label id="dw"></label>
                     </td>
-                    <th class="formTitle"><span class="required">*</span>单价(元)：</th>
+                    <th class="formTitle"><span class="required">*</span>Đơn giá( đồng)：</th>
                     <td class="formValue">
                         @if (zyjzDjEditable)
                         {
@@ -103,30 +103,30 @@
                     <th class="formTitle"></th>
                     <td class="formValue" style="padding-top: 1px;">
                         <div class="ckbox">
-                            <input id="ttbz" name="ttbz" type="checkbox"><label for="ttbz">团体治疗</label>
+                            <input id="ttbz" name="ttbz" type="checkbox"><label for="ttbz">Điều trị nhóm</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>数量：</th>
+                    <th class="formTitle"><span class="required">*</span>Số lượng：</th>
                     <td class="formValue">
                         <input id="sl" type="text" class="form-control  form-an" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>治疗师：</th>
+                    <th class="formTitle"><span class="required">*</span>Kỹ thuật viên trị liệu：</th>
                     <td class="formValue">
                         <input id="zlsList" readonly="readonly" type="text" class="form-control form-an" value="" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>康复类别：</th>
+                    <th class="formTitle"><span class="required">*</span>Loại phục hồi：</th>
                     <td class="formValue">
                         <select id="kflb" name="kflb" class="form-control">
-                            <option value="">==请选择==</option>
+                            <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <th class="formTitle"><span class="required">*</span>记账日期：</th>
+                    <th class="formTitle"><span class="required">*</span>Ngày ghi sổ：</th>
                     <td class="formValue">
                         <input id="tdrq" type="text" class="form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@(System.DateTime.Now.ToString("yyyy-MM-dd"))" />
                     </td>
-                    <th class="formTitle">备注：</th>
+                    <th class="formTitle">Ghi chú：</th>
                     <td class="formValue">
                         <input id="bz" type="text" class="form-control form-an form-an-end" value="" />
                     </td>
@@ -139,10 +139,10 @@
 @Html.Partial("_MiddleButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 2, 3, 6, 9 },
-    F2Text = "添加",
-    F3Text = "修改",
-    F6Text = "删除",
-    F9Text = "取消修改",
+    F2Text = "Thêm",
+    F3Text = "Sửa",
+    F6Text = "Xóa",
+    F9Text = "Hủy sửa",
     F9Hidden = true
 })
 
@@ -154,13 +154,13 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 4, 7, 8 },
-    F7Text = "模板",
-    F8Text = "提交"
+    F7Text = "Mẫu",
+    F8Text = "Gửi"
 })
 
 <script type="text/javascript">
 
-    //加载康复类别
+    //Tải loại phục hồi
     $("#kflb").bindSelect({
         url: "/Com/GetSelectItemsDetailListByItemCode?code=RehabTreatmentMethod",
     });
@@ -169,7 +169,7 @@
     $('#btn_bottombutton_f3').attr('disabled', 'disabled');
     $('#btn_bottombutton_f6').attr('disabled', 'disabled');
 
-    //声明 项目明细 grid
+    //Khai báo Chi tiết khoản mục grid
     $("#gridMX").newtouchLocalDataGrid({
         height: $(window).height() - 350,
         unwritten: false,
@@ -177,35 +177,35 @@
             { label: "newid", name: "newid", width: 80, align: "left", hidden: true },
             { label: "outerId", name: "outerId", width: 80, align: "left", hidden: true },
             {
-                label: "记账日期", name: "tdrq", width: 80, align: "left",
+                label: "Ngày ghi sổ", name: "tdrq", width: 80, align: "left",
                 formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
             },
-            { label: "收费项目", name: "sfxmCode", width: 150, align: "left", hidden: true },
-            { label: "收费项目", name: "sfxmmc", width: 200, align: "left" },
-            { label: "医嘱类型", name: "yzlx", width: 150, align: "left", hidden: true },
-            { label: "类别", name: "sfdlCode", width: 50, align: "left", hidden: true },
-            { label: "类别", name: "sfdlmc", width: 50, align: "left" },
-            { label: "单位", name: "dw", width: 40, align: "left" },
-            { label: "单位时长", name: "duration", width: 60, align: "left" },
+            { label: "Khoản mục thu phí", name: "sfxmCode", width: 150, align: "left", hidden: true },
+            { label: "Khoản mục thu phí", name: "sfxmmc", width: 200, align: "left" },
+            { label: "Loại y lệnh", name: "yzlx", width: 150, align: "left", hidden: true },
+            { label: "Loại", name: "sfdlCode", width: 50, align: "left", hidden: true },
+            { label: "Loại", name: "sfdlmc", width: 50, align: "left" },
+            { label: "Đơn vị", name: "dw", width: 40, align: "left" },
+            { label: "Thời lượng đơn vị", name: "duration", width: 60, align: "left" },
             {
-                label: "单价(元)", name: "dj", width: 60, align: "left", formatter: "number", hidden: true
+                label: "Đơn giá( đồng)", name: "dj", width: 60, align: "left", formatter: "number", hidden: true
                     , formatoptions: { decimalPlaces: 4, defaultValue: '0.0000' }
             },
-            { label: "数量", name: "sl", width: 40, align: "left" },
+            { label: "Số lượng", name: "sl", width: 40, align: "left" },
             {
-                label: "治疗师", name: "ysList", width: 180, align: "left", formatter: function (cellvalue) {
+                label: "Kỹ thuật viên trị liệu", name: "ysList", width: 180, align: "left", formatter: function (cellvalue) {
                     return getYsNamesByList(cellvalue);
                 }
             },
             {
-                label: "确认状态", name: "qrzt", width: 65, align: "left", formatter: function (cellvalue) {
-                    return cellvalue === true ? "已确认"
-                        : "未确认";
+                label: "Trạng thái xác nhận", name: "qrzt", width: 65, align: "left", formatter: function (cellvalue) {
+                    return cellvalue === true ? "Đã xác nhận"
+                        : "Chưa xác nhận";
                 }
             },
-            { label: "备注", name: "bz", width: 160, align: "left" },
-            { label: "团体标志", name: "ttbz", width: 50, align: "left", hidden: true },
-            { label: "康复类别", name: "kflb", width: 50, align: "left", hidden: true },
+            { label: "Ghi chú", name: "bz", width: 160, align: "left" },
+            { label: "Cờ nhóm", name: "ttbz", width: 50, align: "left", hidden: true },
+            { label: "Loại phục hồi", name: "kflb", width: 50, align: "left", hidden: true },
         ],
         ondblClickRow: function (rowid) {
             gridEditRow(rowid);
@@ -219,7 +219,7 @@
             for (var i = 0; i < ids.length; i++) {
                 var rowData = $("#gridMX").jqGrid('getRowData', ids[i]);
                 if (rowData && rowData.qrzt) {
-                    if (rowData.qrzt === '已确认') {
+                    if (rowData.qrzt === 'Đã xác nhận') {
                         $('#gridMX tr[id="' + ids[i] + '"]').addClass('complete');
                     }
                 }
@@ -227,7 +227,7 @@
         }
     });
 
-    //绑定 治疗师选择 树
+    //Liên kết Chọn kỹ thuật viên trị liệu Cây
     $('#zlsList').focus(function () {
         var initIdSelected = "";
         $.each(Editing_ysList, function () {
@@ -235,7 +235,7 @@
         })
         $.modalOpen({
             id: "StaffCorrelation",
-            title: "选择治疗师",
+            title: "Chọn kỹ thuật viên trị liệu",
             url: "/SystemManage/SysStaff/Selector?isContansChildOrg=false&callbackType=json&dutyCode=RehabDoctor&initIdSelected=" + initIdSelected,
             showleftlalbel: false,
             width: "650px",
@@ -248,7 +248,7 @@
         });
     });
 
-    //治疗师树 选择 回调
+    //Cây kỹ thuật viên trị liệu Chọn Callback
     function staffTreeCallback(treeSeleData) {
         var zlsNames = "";
         Editing_ysList = [];
@@ -258,7 +258,7 @@
         })
         if (zlsNames.length > 0) {
             zlsNames = zlsNames.substring(0, zlsNames.length - 1);
-            //给下一个 焦点
+            //Cho cái tiếp theo Tiêu điểm
             //$(this).trigger('keydown');
             $('#kflb').trigger('focus');
         }
@@ -270,18 +270,18 @@
     });
 
     $('#bz').keyupEnterEvent(function (event) {
-        if ($('#bz').hasClass('form-an-cur')) { //缺陷-由上一个enter过来的
+        if ($('#bz').hasClass('form-an-cur')) { //Khuyết điểm-Từ cái trước enter chuyển sang
             $('#bz').removeClass('form-an-cur')
             return;
         }
         $('#btn_bottombutton_f2').trigger('click');
     });
 
-    //治疗项目选择浮层绑定
+    //Liên kết lớp nổi chọn khoản mục điều trị
     $('#sfxmmc').newtouchBatchFloatingSelector({
         width: 800,
         height: 280,
-        caption: "选择项目",
+        caption: "Chọn khoản mục",
         clickautotrigger: true,
         url: '/SystemManage/BaseData/SelectSfxmYp',
         ajaxparameters: function ($thisinput) {
@@ -305,32 +305,32 @@
             }
         },
         colModel: [
-            { label: '代码', name: 'sfxmCode', widthratio: 8 },
-            { label: '名称', name: 'sfxmmc', widthratio: 12 },
-            { label: '医嘱类型', name: 'yzlx', widthratio: 8, hidden: true },
-            { label: '拼音', name: 'py', widthratio: 8 },
-            { label: '收费大类', name: 'sfdlCode', widthratio: 8, hidden: true },
-            { label: '收费大类', name: 'sfdlmc', widthratio: 8 },
-            { label: '单位', name: 'dw', widthratio: 6 },
+            { label: 'Mã', name: 'sfxmCode', widthratio: 8 },
+            { label: 'Tên', name: 'sfxmmc', widthratio: 12 },
+            { label: 'Loại y lệnh', name: 'yzlx', widthratio: 8, hidden: true },
+            { label: 'Pinyin', name: 'py', widthratio: 8 },
+            { label: 'Loại lớn thu phí', name: 'sfdlCode', widthratio: 8, hidden: true },
+            { label: 'Loại lớn thu phí', name: 'sfdlmc', widthratio: 8 },
+            { label: 'Đơn vị', name: 'dw', widthratio: 6 },
             {
-                label: '单价', name: 'dj', widthratio: 12, formatter: function (cellvalue) {
+                label: 'Đơn giá', name: 'dj', widthratio: 12, formatter: function (cellvalue) {
                     return !!cellvalue ? parseFloat(cellvalue).toFixed(4) : '';
                 }
             },
             {
-                label: '时长', name: 'duration', widthratio: 6, formatter: function (cellvalue) {
+                label: 'Thời lượng', name: 'duration', widthratio: 6, formatter: function (cellvalue) {
                     return !!cellvalue ? cellvalue : '';
                 }
             },
-            { label: '备注', name: 'bz', widthratio: 36 }
+            { label: 'Ghi chú', name: 'bz', widthratio: 36 }
         ]
     });
 
-    //按创建时间 倒叙 排列， 最新创建的 在最前
-    var oldxmList = [];   //历史已提交项目List
-    var newxmList = [];   //新项目List
+    //Theo thời gian tạo Thứ tự ngược Sắp xếp， Mới tạo nhất Ở phía trước nhất
+    var oldxmList = [];   //Khoản mục lịch sử đã gửi List
+    var newxmList = [];   //Khoản mục mới List
 
-    //向gridMX grid里填充数据
+    //Tới gridMX grid điền dữ liệu vào trong
     function fillDataToGrid() {
         $("#gridMX").resetSelection();
         $("#gridMX").clearGridData();
@@ -342,10 +342,10 @@
 
     fillDataToGrid();
 
-    //解析医生数组，获取医生名称串
+    //Phân tích mảng bác sĩ，Lấy chuỗi tên bác sĩ
     function getYsNamesByList(ysList) {
         if (ysList) {
-            //解析治疗师[{},{}]获取字符串
+            //Phân tích kỹ thuật viên trị liệu[{},{}]Lấy chuỗi
             var str = "";
             $.each(ysList, function () {
                 str += this.Name + ',';
@@ -358,32 +358,32 @@
         return "";
     }
 
-    //检查正在编辑的数据（待提交）的完整性
+    //Kiểm tra dữ liệu đang chỉnh sửa（Chờ gửi）tính đầy đủ của
     function checkEditingRowData(rowData) {
         if (!rowData.ysList || rowData.ysList.length == 0) {
-            $.modalAlert("请选择治疗师", 'warning');
+            $.modalAlert("Vui lòng chọn kỹ thuật viên trị liệu", 'warning');
         }
         if (!rowData.tdrq) {
-            $.modalAlert("请选择记账日期", 'warning');
+            $.modalAlert("Vui lòng chọn ngày ghi sổ", 'warning');
         }
         else if (!rowData.sfxmCode || !rowData.sfxmmc || !rowData.yzlx || !rowData.sfdlCode || !rowData.sfdlmc) {
-            $.modalAlert("请选择收费项目", 'warning');
+            $.modalAlert("Vui lòng chọn khoản mục thu phí", 'warning');
         }
         else if (rowData.dw == "") {
-            $.modalAlert("缺少项目单位信息", 'warning');
+            $.modalAlert("Thiếu thông tin đơn vị khoản mục", 'warning');
         }
         else if (rowData.yzlx == '2' && (rowData.duration == "" || isNaN(rowData.duration))) {
-            //治疗项目 才需要 时长
-            $.modalAlert("请填写项目单位时长", 'warning');
+            //Khoản mục điều trị mới cần Thời lượng
+            $.modalAlert("Vui lòng điền thời lượng đơn vị khoản mục", 'warning');
         }
         else if (rowData.dj == "" || isNaN(rowData.dj)) {
-            $.modalAlert("缺少项目单价信息", 'warning');
+            $.modalAlert("Thiếu thông tin đơn giá khoản mục", 'warning');
         }
         else if (rowData.sl == "" || isNaN(rowData.sl)) {
-            $.modalAlert("请填写数量", 'warning');
+            $.modalAlert("Vui lòng điền số lượng", 'warning');
         }
         else if (rowData.kflb == "") {
-            $.modalAlert("请选择康复类别", 'warning');
+            $.modalAlert("Vui lòng chọn loại phục hồi", 'warning');
         }
         else {
             return true;
@@ -391,9 +391,9 @@
         return false;
     }
 
-    //按钮 事件 start
+    //Nút Sự kiện start
 
-    //键入住院号 搜索
+    //Nhập số nhập viện Tìm kiếm
     $('#btn_search').click(function () {
         var zyh = $('#zyh').val();
         newtouch_globalevent_f4();
@@ -429,7 +429,7 @@
 
                     $('#sfxmmc').trigger('focus');
 
-                    if (true) {     //开关
+                    if (true) {     //Công tắc
                         setTimeout('loadSyncedTreatmentRecord(' + ajaxresp.data.patInfo.zyh + ');', 50);
                     }
                 },
@@ -446,33 +446,33 @@
         }
     }
 
-    //选择的病人 callback
+    //Bệnh nhân đã chọn callback
     function getPatInfoAjax(selePatInfo) {
         $('#zyh').val(selePatInfo.zyh);
         ajaxLoadDataResult();
     }
 
-    //住院病人查询
+    //Tra cứu bệnh nhân nội trú
     function GetPatSerarchView(zyh) {
         if (!!!zyh) {
             zyh = '';
         }
         $.modalOpen({
             id: "patSearch",
-            title: "患者查询",
+            title: "Tra cứu bệnh nhân",
             url: "/PatientManage/AccountManage/PatSearchView?t=" + Math.random() + "&zyh=" + zyh,
             width: "700px",
             height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //在弹出窗口事件
-                //调用查询卡号和住院号
-            }//窗口点确定的回调函数
+                top.frames[iframeId].PatDbGrid(); //Trong sự kiện cửa sổ bật lên
+                //Gọi tra cứu số thẻ và số nhập viện
+            }//Hàm callback khi nhấn xác định tại cửa sổ
         });
     }
 
-    //默认为当前
-    var default_Editing_ysList = [{ id: '@(ViewBag.CurYsStaffId)', gh: '@(ViewBag.CurYs)', Name: '@(ViewBag.CurYsmc)', ks: '@(ViewBag.CurKs)', ksmc: '@(ViewBag.CurKsmc)' }]; //编辑域中的治疗师
-    var Editing_ysList = []; //编辑域中的治疗师
+    //Mặc định là hiện tại
+    var default_Editing_ysList = [{ id: '@(ViewBag.CurYsStaffId)', gh: '@(ViewBag.CurYs)', Name: '@(ViewBag.CurYsmc)', ks: '@(ViewBag.CurKs)', ksmc: '@(ViewBag.CurKsmc)' }]; //Kỹ thuật viên trị liệu trong vùng chỉnh sửa
+    var Editing_ysList = []; //Kỹ thuật viên trị liệu trong vùng chỉnh sửa
 
     function setDefaultYsList() {
         if (default_Editing_ysList && default_Editing_ysList.length > 0 && default_Editing_ysList[0].id) {
@@ -483,7 +483,7 @@
 
     setDefaultYsList();
 
-    //获取编辑域的对象数据
+    //Lấy dữ liệu đối tượng của vùng chỉnh sửa
     function getEditRowData() {
         var data = {
             tdrq: $('#tdrq').val(),
@@ -502,47 +502,47 @@
             ttbz: $('#ttbz').is(':checked') ? "1" : "0",
             kflb: $('#kflb').val(),
         };
-        //治疗师
+        //Kỹ thuật viên trị liệu
         data.ysList = Editing_ysList;
 
         return data;
     }
 
-    var editingNewid = null;    //正在修改的行
-    var editingOuterId = null;    //正在修改的行
+    var editingNewid = null;    //Dòng đang sửa
+    var editingOuterId = null;    //Dòng đang sửa
 
-    //请求 编辑 行
+    //Yêu cầu Chỉnh sửa Dòng
     function gridEditRow(rowid) {
         if (rowid) {
             var rowData = $("#gridMX").jqGrid('getRowData', rowid);
             if (rowData) {
                 if (rowData.newid) {
-                    //应该是属于newxmList start
+                    //hẳn là thuộc về newxmList start
                     rowDataArr = $.jsonWhere(newxmList, function (v) {
                         return v && v.newid == rowData.newid;
                     });
                     if (!rowDataArr || rowDataArr.length == 0) {
-                        return; //为什么没找到
+                        return; //Tại sao không tìm thấy
                     }
-                    rowData = rowDataArr[0];  //通过rowData.newid从对象数组中取出该行数据
-                    if (true) { //&&可编辑
-                        editingNewid = rowData.newid;    //正在修改的行
-                        editingOuterId = rowData.outerId;   //正在修改的行
+                    rowData = rowDataArr[0];  //Thông qua rowData.newid Lấy dòng dữ liệu này từ mảng đối tượng
+                    if (true) { //&&Có thể chỉnh sửa
+                        editingNewid = rowData.newid;    //Dòng đang sửa
+                        editingOuterId = rowData.outerId;   //Dòng đang sửa
                     }
                     else {
                         return;
                     }
-                    //应该是属于newxmList end
+                    //hẳn là thuộc về newxmList end
                 }
                 else {
-                    //不可以编辑
+                    //Không thể chỉnh sửa
 
                 }
-                //序列化至编辑域中
+                //Tuần tự hóa vào vùng chỉnh sửa
                 $('#tdrq').val($.getDate({ date: new Date(rowData.tdrq) }));
-                //治疗师
+                //Kỹ thuật viên trị liệu
                 Editing_ysList = rowData.ysList;
-                $('#zlsList').val(getYsNamesByList(rowData.ysList)); //治疗师
+                $('#zlsList').val(getYsNamesByList(rowData.ysList)); //Kỹ thuật viên trị liệu
                 $('#sfxmmc').val(rowData.sfxmmc);
                 $('#sfxmCode').val(rowData.sfxmCode);
                 $('#yzlx').val(rowData.yzlx);
@@ -566,24 +566,24 @@
         }
     }
 
-    //添加按钮
+    //Nút thêm
     function newtouch_event_f2() {
         if (editingNewid) {
-            return; //正在处于修改状态，是不能点击添加按钮的   要disable处理
+            return; //Đang ở trạng thái sửa，là không thể nhấn nút thêm   Cần disable Xử lý
         }
 
         var data = getEditRowData();
-        if (!(checkEditingRowData(data))) {    //数据是否完善，检查必填项
+        if (!(checkEditingRowData(data))) {    //Dữ liệu có đầy đủ hay không，Kiểm tra mục bắt buộc
             return;
         }
 
-        //检查重复项
+        //Kiểm tra mục trùng lặp
 
         data.newid = Math.random().toString() + new Date().getMilliseconds();   //newid()
 
-        newxmList.unshift(data);   //作为新项添加 //”数组最前端“
+        newxmList.unshift(data);   //Thêm dưới dạng mục mới //”Đầu trước nhất của mảng“
 
-        //重新将xm数组呈现至grid
+        //chuyển lại xm mảng hiển thị tới grid
         fillDataToGrid();
 
         $('#sfxmmc').val('');
@@ -603,12 +603,12 @@
         $('#sfxmmc').trigger('focus');
     }
 
-    //修改按钮
+    //Nút sửa
     function newtouch_event_f3() {
         if (editingNewid) {
-            //提交修改
+            //Gửi sửa đổi
             var data = getEditRowData();
-            if (!(checkEditingRowData(data))) {    //数据是否完善，检查必填项
+            if (!(checkEditingRowData(data))) {    //Dữ liệu có đầy đủ hay không，Kiểm tra mục bắt buộc
                 return;
             }
             if (data.yzxz == '1') {
@@ -618,9 +618,9 @@
             data.newid = editingNewid;
             data.outerId = editingOuterId;
 
-            //检查重复项
+            //Kiểm tra mục trùng lặp
 
-            //先在xm数组中找到之
+            //Trước tiên tại xm tìm trong mảng
             var matchedIndex = -1;
             for (var ii = 0; ii < newxmList.length; ii++) {
                 if (newxmList[ii].newid == data.newid) {
@@ -629,12 +629,12 @@
                 }
             }
             if (matchedIndex == -1) {
-                return; //应该是异常
+                return; //hẳn là bất thường
             }
-            newxmList.remove(matchedIndex);   //移除该项
-            newxmList.unshift(data);   //作为新项添加    //”数组最前端“
+            newxmList.remove(matchedIndex);   //Loại bỏ mục này
+            newxmList.unshift(data);   //Thêm dưới dạng mục mới    //”Đầu trước nhất của mảng“
 
-            //重新将xm数组呈现至grid
+            //chuyển lại xm mảng hiển thị tới grid
             fillDataToGrid();
 
             $('#sfxmmc').val('');
@@ -651,39 +651,39 @@
             //$('#kflb').val('').trigger('change');
             $('#sl').val('');
 
-            editingNewid = null;    //正在修改的行
-            editingOuterId = null;    //正在修改的行
+            editingNewid = null;    //Dòng đang sửa
+            editingOuterId = null;    //Dòng đang sửa
 
             bottomButtonsReset();
 
             $('#sfxmmc').trigger('focus');
         }
         else {
-            //获取grid当前选中的那一行
+            //Lấy grid Dòng đang được chọn hiện tại
             var seleId = $('#gridMX').jqGrid('getGridParam', 'selrow');
             if (seleId) {
-                //请求修改该行
+                //Yêu cầu sửa dòng này
                 gridEditRow(seleId);
             }
         }
     }
 
-    //F4清除
+    //F4 Xóa
     function newtouch_event_f4() {
         $("#gridMX").clearGridData();
 
-        oldxmList = [];   //历史已提交项目List
-        newxmList = [];   //新项目List
+        oldxmList = [];   //Khoản mục lịch sử đã gửi List
+        newxmList = [];   //Khoản mục mới List
         Editing_ysList = [];
-        editingNewid = null;    //正在修改的行
-        editingOuterId = null;  //正在修改的行
+        editingNewid = null;    //Dòng đang sửa
+        editingOuterId = null;  //Dòng đang sửa
 
         bottomButtonsReset();
 
         setDefaultYsList();
     };
 
-    //F7使用模板
+    //F7 Sử dụng mẫu
     function newtouch_event_f7() {
         var ksList = "";
         $.each(Editing_ysList, function (idx, val) {
@@ -693,7 +693,7 @@
             ksList = ksList.substring(0, ksList.length - 1);
             $.modalOpen({
                 id: "Form",
-                title: "收费项目模板窗口",
+                title: "Cửa sổ mẫu khoản mục thu phí",
                 url: "/HospitalizationManage/BookkeepInHos/ChargeItemTemplate?keyValue=" + ksList,
                 width: "700px",
                 height: "530px",
@@ -704,7 +704,7 @@
                             tdrq: $.getDate(),
                             sfxmCode: this.sfxm,
                             sfxmmc: this.sfxmmc,               //    ？？？？
-                            yzlx: "2",  //项目
+                            yzlx: "2",  //Khoản mục
                             duration: this.duration,
                             dj: this.dj,
                             dw: this.dw,
@@ -721,7 +721,7 @@
                         if (newRowData.sfxmCode && newRowData.sfdlCode && newRowData.dj && newRowData.dw && newRowData.sl) {
                             newRowData.dj = parseFloat(newRowData.dj);
                             newRowData.sl = parseInt(newRowData.sl);
-                            newxmList.unshift(newRowData);   //作为新项添加 //”数组最前端“
+                            newxmList.unshift(newRowData);   //Thêm dưới dạng mục mới //”Đầu trước nhất của mảng“
                         }
                     });
 
@@ -732,26 +732,26 @@
             });
         }
         else {
-            $.modalAlert("请选择治疗师！", 'error');
+            $.modalAlert("Vui lòng chọn kỹ thuật viên trị liệu！", 'error');
         }
     }
 
-    //F8提交至服务器
+    //F8 Gửi tới máy chủ
     function newtouch_event_f8() {
         var paramData = {};
         paramData.zyh = $('#zyh').val();
 
         paramData.xmList = newxmList;
         if (!paramData.zyh) {
-            $.modalAlert("缺少住院号", 'warning');
+            $.modalAlert("Thiếu số nhập viện", 'warning');
             return;
         }
         if (paramData.zyh != respZyh) {
-            $.modalAlert("错误：录入过程中，住院号变换", 'warning');
+            $.modalAlert("Lỗi：Trong quá trình nhập，Số nhập viện thay đổi", 'warning');
             return;
         }
         if (!paramData.xmList || paramData.xmList.length == 0) {
-            $.modalAlert("缺少记账项目", 'warning');
+            $.modalAlert("Thiếu khoản mục ghi sổ", 'warning');
             return;
         }
 
@@ -774,22 +774,22 @@
     };
 
 
-    //F6从列表中删除
+    //F6 Xóa khỏi danh sách
     function newtouch_event_f6() {
-        //获取grid当前选中的那一行
+        //Lấy grid Dòng đang được chọn hiện tại
         var rowid = $('#gridMX').jqGrid('getGridParam', 'selrow');
         if (rowid) {
-            //请求删除该行
+            //Yêu cầu xóa dòng này
             if (rowid) {
                 var rowData = $("#gridMX").jqGrid('getRowData', rowid);
                 if (rowData) {
-                    if (!rowData.newid) {   //该行不能删除
-                        $.modalAlert("已确认的记账，不能删除", 'warning');
+                    if (!rowData.newid) {   //Dòng này không thể xóa
+                        $.modalAlert("Ghi sổ đã xác nhận，Không thể xóa", 'warning');
                         return;
                     }
                     if (rowData.newid == editingNewid) {
-                        $.modalAlert("该行正在处于编辑状态，不能删除", 'warning');
-                        return; //该行正在处于编辑状态，不能删除
+                        $.modalAlert("Dòng này đang ở trạng thái chỉnh sửa，Không thể xóa", 'warning');
+                        return; //Dòng này đang ở trạng thái chỉnh sửa，Không thể xóa
                     }
 
                     var matchedIndex = -1;
@@ -801,21 +801,21 @@
                     }
 
                     if (matchedIndex == -1) {
-                        return; //应该是异常
+                        return; //hẳn là bất thường
                     }
 
-                    newxmList.remove(matchedIndex);   //移除该项
+                    newxmList.remove(matchedIndex);   //Loại bỏ mục này
 
-                    //重新将xm数组呈现至grid
+                    //chuyển lại xm mảng hiển thị tới grid
                     fillDataToGrid();
 
-                    //对其他都不产生影响
+                    //Không ảnh hưởng tới các mục khác
                 }
             }
         }
     }
 
-    //F9取消修改
+    //F9 Hủy sửa
     function newtouch_event_f9() {
         $('#tdrq').val($.getDate());
         $('#sfxmmc').val('');
@@ -833,8 +833,8 @@
         $('#sl').val('');
         //$('#bz').val('');
 
-        editingNewid = null;    //正在修改的行
-        editingOuterId = null;    //正在修改的行
+        editingNewid = null;    //Dòng đang sửa
+        editingOuterId = null;    //Dòng đang sửa
 
         $("#gridMX").resetSelection();
 
@@ -851,16 +851,16 @@
         $('#btn_bottombutton_f9').hide();
     }
 
-    //按钮 事件 end
+    //Nút Sự kiện end
 
-    //加载同步治疗记录
+    //Tải bản ghi điều trị đồng bộ
     function loadSyncedTreatmentRecord(zyh) {
         if (zyh) {
             $.najax({
                 type: "GET",
                 url: "/HospitalizationManage/BookkeepInHos/GetUnConfirmedSyncedTreatmentRecord?zyh=" + zyh,
                 loading: true,
-                loadingtext: "正在请求同步治疗记录",
+                loadingtext: "Đang yêu cầu bản ghi điều trị đồng bộ",
                 success: function (ajaxresp) {
                     if (ajaxresp && ajaxresp.data && ajaxresp.data && ajaxresp.data.length > 0) {
                         $.each(ajaxresp.data, function () {
@@ -883,12 +883,12 @@
                             };
 
                             newRowData.newid = Math.random().toString() + new Date().getMilliseconds();   //newid()
-                            newxmList.unshift(newRowData);   //作为新项添加 //”数组最前端“
+                            newxmList.unshift(newRowData);   //Thêm dưới dạng mục mới //”Đầu trước nhất của mảng“
                         });
 
                         fillDataToGrid();
 
-                        //$.modalMsg("成功请求到 <b>" + ajaxresp.data.length + '</b> 条未确认记录', 'ok', 1200);
+                        //$.modalMsg("Yêu cầu thành công được <b>" + ajaxresp.data.length + '</b> bản ghi chưa xác nhận', 'ok', 1200);
                     }
                 }
             });

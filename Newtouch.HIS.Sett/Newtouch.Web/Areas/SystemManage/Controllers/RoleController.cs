@@ -14,7 +14,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
-    /// 角色Controller
+    /// Vai trò Controller
     /// </summary>
     public class RoleController : ControllerBase
     {
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         private readonly ISysUserRoleRepo _sysUserRoleRepo;
 
         /// <summary>
-        /// 构造函数
+        /// Hàm tạo
         /// </summary>
         /// <param name="roleApp"></param>
         /// <param name="moduleApp"></param>
@@ -50,7 +50,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             this._sysUserRoleRepo = sysUserRoleRepo;
         }
 
-        //角色列表 gridjson
+        //Danh sách vai trò gridjson
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetGridJson(Pagination pagination, string keyword, string OrganizeId)
@@ -100,7 +100,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存角色用户关联关系
+        /// Lưu quan hệ liên kết vai trò-người dùng
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -111,7 +111,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 角色（树）   （用户主动关联角色）
+        /// Vai trò（Cây）   （Người dùng chủ động liên kết vai trò）
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="organizeId"></param>

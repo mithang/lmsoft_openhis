@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "门诊综合分析";
+    ViewBag.Title = "Phân tích tổng hợp ngoại trú";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <head>
@@ -7,11 +7,11 @@
     <script src="~/Content/js/echarts.min.js"></script>
 
     <style>
-        /*边框*/
+        /*Viền*/
         .bk {
             background-color: #ffffff;
         }
-        /*字体*/
+        /*Phông chữ*/
         .font {
             font-weight: bold;
             text-align: center;
@@ -27,20 +27,20 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle" id="xzsjtext">类型：</th>
+                <th class="formTitle" id="xzsjtext">Loại：</th>
                 <td class="formValue" style="width:150px">
                     <select id="dateType" class="form-control" onchange="updateSjType()">
-                        <option value="1">年</option>
-                        <option value="2">月</option>
-                        <option value="3">日</option>
+                        <option value="1">Năm</option>
+                        <option value="2">Tháng</option>
+                        <option value="3">Ngày</option>
                     </select>
                 </td>
-                <th class="formTitle" id="xzsjtext">时间：</th>
+                <th class="formTitle" id="xzsjtext">Thời gian：</th>
                 <td class="formValue" style="width:150px">
                     <input id="rSJ" type="text" class="form-control input-wdatepicker" @*onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"*@>
                 </td>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
             </tr>
         </table>
@@ -48,7 +48,7 @@
     <div id="main_div">
         <div style="display:flex;justify-content:space-between;margin-top:20px;color:#ffffff;">
             <div style="width:19.8%;height:25%;text-align:center;background-color:#fc8675;">
-                <h4>门诊人次(次)</h4>
+                <h4>Lượt khám ngoại trú(lần)</h4>
                 <div style="width:50%;height:62.5%;float:left;line-height:50px;" >
                     <text id="mzrc" style="font-size:20px;" class="font"></text>
                 </div>
@@ -63,21 +63,21 @@
             </div>
 
             <div style="width:19.6%;height:25%;text-align:center;background-color:#65cea7;">
-                <h4>门诊人数(人)</h4>
+                <h4>Số người ngoại trú( người)</h4>
                 <div style="width:50%;height:62.5%;float:left;line-height:50px;">
                     <text id="mzrs" style="font-size:20px;" class="font"></text>
                 </div>
             </div>
 
             <div style="width:19.6%;height:25%;text-align:center;background-color:#f3ce85;">
-                <h4>复诊率(%)</h4>
+                <h4>Tỷ lệ tái khám(%)</h4>
                 <div style="width:50%;height:62.5%;float:left;line-height:50px;">
                     <text id="fzl" style="font-size:20px;" class="font"></text>
                 </div>
             </div>
 
             <div style="width:19.6%;height:25%;text-align:center;background-color:#00c0ef;">
-                <h4>诊次费用(元/次)</h4>
+                <h4>Chi phí mỗi lần khám( đồng/lần)</h4>
                 <div style="width:50%;height:62.5%;float:left;line-height:50px;">
                     <text id="zcfy" style="font-size:20px;" class="font"></text>
                 </div>
@@ -92,7 +92,7 @@
             </div>
 
             <div style="width:19.6%;height:25%;text-align:center;background-color:#fc8675;">
-                <h4>平均诊疗时长(分钟)</h4>
+                <h4>Thời lượng khám chữa bệnh bình quân( phút)</h4>
                 <div style="width:50%;height:62.5%;float:left;line-height:50px;">
                     <text id="pjzlsc" style="font-size:20px;" class="font"></text>
                 </div>
@@ -111,10 +111,10 @@
         <div style="margin-top:20px;background-color:#ffffff;height:75%">
             @*<div style="text-align:left;" class="font">
                 <span><img src="~/Content/img/report.png" style="width:30px;height:30px;"></span>
-                <span style="margin-top: 20px;">门诊患者分析</span>
+                <span style="margin-top: 20px;">Phân tích bệnh nhân ngoại trú</span>
             </div>*@
             <div class="panel-heading down_border" style="font-size: 15px;">
-                <i class="fa fa-area-chart fa-lg" style="padding-right:5px;"></i>门诊患者分析
+                <i class="fa fa-area-chart fa-lg" style="padding-right:5px;"></i>Phân tích bệnh nhân ngoại trú
             </div>
             <div style="display:flex;width:100%;justify-content:space-between;background-color: #f1f4f6;height:100%">
                 <div id="main1" style="width:33%;height:100%;display:flex;justify-content:center;margin-bottom:2px;padding-top:30px;" class="bk"></div>
@@ -133,7 +133,7 @@
     var myDate = new Date();
     $(function () {
         $('#main_div').height($(window).height() - 60);
-        //默认设置时间类型为月
+        //Mặc định đặt loại thời gian là tháng
         $("#dateType").val("2");
         $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM' })");
         $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1));
@@ -145,28 +145,28 @@
         getData();
         initEcharts();
     }
-    //改变时间类型
+    //Thay đổi loại thời gian
     function updateSjType() {
         $('#rSJ').val("");
         let dateType = $("#dateType").val();
-        if (dateType == "1") {//年
+        if (dateType == "1") {//Năm
             $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy' })");
             $('#rSJ').val(myDate.getFullYear());
         }
-        if (dateType == "2") {//月
+        if (dateType == "2") {//Tháng
             $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM' })");
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth())+1));
         }
-        if (dateType == "3") {//日
+        if (dateType == "3") {//Ngày
             $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM-dd' })");
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1) + "-" + myDate.getDate());
         }
     }
-    //根据年月获取月天数
+    //Lấy số ngày trong tháng theo năm tháng
     function getDaysInMonth(year, month) {
         return new Date(year, month, 0).getDate();
     }
-    //抬头
+    //Tiêu đề
     function getData()
     {
         $.ajax({
@@ -177,16 +177,16 @@
             success: function (ajaxresp) {
                 if ($("#dateType").val() == "2") {
                     document.getElementById('mzrc').innerText = ajaxresp.mzrc;
-                    document.getElementById('mzrc_hb').innerText = "环比" + ajaxresp.mzrc_hb + "%";
-                    document.getElementById('mzrc_tb').innerText = "同比" + ajaxresp.mzrc_tb + "%";
+                    document.getElementById('mzrc_hb').innerText = "So với tháng trước" + ajaxresp.mzrc_hb + "%";
+                    document.getElementById('mzrc_tb').innerText = "So với cùng kỳ năm trước" + ajaxresp.mzrc_tb + "%";
                     document.getElementById('mzrs').innerText = ajaxresp.mzrs;
                     document.getElementById('fzl').innerText = ajaxresp.fzl;
                     document.getElementById('zcfy').innerText = ajaxresp.zcfy;
-                    document.getElementById('zcfy_hb').innerText = "环比" + ajaxresp.zcfy_hb + "%";
-                    document.getElementById('zcfy_tb').innerText = "同比" + ajaxresp.zcfy_tb + "%";
+                    document.getElementById('zcfy_hb').innerText = "So với tháng trước" + ajaxresp.zcfy_hb + "%";
+                    document.getElementById('zcfy_tb').innerText = "So với cùng kỳ năm trước" + ajaxresp.zcfy_tb + "%";
                     document.getElementById('pjzlsc').innerText = ajaxresp.pjzlsc;
-                    document.getElementById('pjzlsc_hb').innerText = "环比" + ajaxresp.pjzlsc_hb + "%";
-                    document.getElementById('pjzlsc_tb').innerText = "同比" + ajaxresp.pjzlsc_tb + "%";
+                    document.getElementById('pjzlsc_hb').innerText = "So với tháng trước" + ajaxresp.pjzlsc_hb + "%";
+                    document.getElementById('pjzlsc_tb').innerText = "So với cùng kỳ năm trước" + ajaxresp.pjzlsc_tb + "%";
                 }
                 else {
                     document.getElementById('mzrc').innerText = ajaxresp.mzrc;
@@ -204,23 +204,23 @@
             }
         });
     }
-    //组装请求参数
+    //Lắp ráp tham số yêu cầu
     function getSearchData() {
         let ksrq = '';
         let jsrq = '';
         let dateType = $("#dateType").val();
         let nowDate = $("#rSJ").val();
-        if (dateType == "1") {//年
+        if (dateType == "1") {//Năm
             ksrq = nowDate + "-" + "01-01 00:00:00";
             jsrq = nowDate + "-" + "12-31 23:59:59";
         }
-        if (dateType == "2") {//月
+        if (dateType == "2") {//Tháng
             let array = nowDate.split("-");
             ksrq = array[0] + "-" + array[1] + "-01 00:00:00";
             let days = getDaysInMonth(array[0], array[1]);
             jsrq = array[0] + "-" + array[1] + "-" + days + " 23:59:59";
         }
-        if (dateType == "3") {//日
+        if (dateType == "3") {//Ngày
             ksrq = nowDate + " 00:00:00";
             jsrq = nowDate + " 23:59:59";
         }
@@ -240,26 +240,26 @@
 
                 var option1 = {
                     title: {
-                        text: '门诊患者分析',
+                        text: 'Phân tích bệnh nhân ngoại trú',
                         left: 'center'
                     },
-                    tooltip: {//tooltip 鼠标移动到图上显示的标签
+                    tooltip: {//tooltip Nhãn hiển thị khi di chuột lên biểu đồ
                         trigger: 'item'
                     },
-                    legend: {//左边数据（图例）
+                    legend: {//Dữ liệu bên trái（Chú giải）
                         orient: 'vertical',
                         bottom: 'bottom'
                     },
                     series: [
                         {
-                            name: '患者性质占比',
+                            name: 'Tỷ lệ tính chất bệnh nhân',
                             type: 'pie',
                             radius: '50%',
                             data: [
-                                { value: ajaxresp.hzxzb_yb, name: '医保' },
-                                { value: ajaxresp.hzxzb_zf, name: '自费' }
+                                { value: ajaxresp.hzxzb_yb, name: 'Bảo hiểm y tế' },
+                                { value: ajaxresp.hzxzb_zf, name: 'Tự trả' }
                             ],
-                            emphasis: {// 高亮样式
+                            emphasis: {// Kiểu làm nổi bật
                                 itemStyle: {
                                     shadowBlur: 10,
                                     shadowOffsetX: 0,
@@ -272,25 +272,25 @@
 
                 var option2 = {
                     title: {
-                        text: '门诊患者性别占比',
+                        text: 'Tỷ lệ giới tính bệnh nhân ngoại trú',
                         subtext: '',
                         left: 'center'
                     },
-                    tooltip: {//tooltip 鼠标移动到图上显示的标签
+                    tooltip: {//tooltip Nhãn hiển thị khi di chuột lên biểu đồ
                         trigger: 'item'
                     },
-                    legend: {//左边数据（图例）
+                    legend: {//Dữ liệu bên trái（Chú giải）
                         orient: 'vertical',
                         bottom: 'bottom'
                     },
                     series: [
                         {
-                            name: '门诊患者性别占比',
+                            name: 'Tỷ lệ giới tính bệnh nhân ngoại trú',
                             type: 'pie',
                             radius: '50%',
                             data: [
-                                { value: ajaxresp.mzhzxbzb_m, name: '男性' },
-                                { value: ajaxresp.mzhzxbzb_w, name: '女性' }
+                                { value: ajaxresp.mzhzxbzb_m, name: 'Nam' },
+                                { value: ajaxresp.mzhzxbzb_w, name: 'Nữ' }
                             ],
                             emphasis: {
                                 itemStyle: {
@@ -305,19 +305,19 @@
 
                 var option3 = {
                     title: {
-                        text: '不同年龄段患者分布',
+                        text: 'Phân bố bệnh nhân theo độ tuổi khác nhau',
                         left: 'center'
                     },
                     tooltip: {
 
                     },
                     xAxis: {
-                        data: ["3岁以下", "3-16岁", "17-65岁", "65-75岁", "75岁以上"]
+                        data: ["3 dưới tuổi", "3-16 tuổi", "17-65 tuổi", "65-75 tuổi", "75 trên tuổi"]
                     },
                     yAxis: {},
                     series: [{
                         barWidth: '25%',
-                        name: '患者',
+                        name: 'Bệnh nhân',
                         type: 'bar',
                         data: [ajaxresp.age_3, ajaxresp.age_3_16, ajaxresp.age_17_65, ajaxresp.age_65_75, ajaxresp.age_75]
                     }]

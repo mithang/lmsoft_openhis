@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取grid的值
+        /// Lấy grid giá trị của
         /// </summary>
         /// <returns></returns>
         public ActionResult GetdlGridJson(string keyword)
@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 大类下拉框
+        /// Hộp thả xuống loại lớn
         /// </summary>
         /// <returns></returns>
         public ActionResult GetdlSelect()
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 修改信息时，把信息带到新页面
+        /// Khi sửa thông tin，Mang thông tin sang trang mới
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -82,7 +82,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取grid的值
+        /// Lấy grid giá trị của
         /// </summary>
         /// <returns></returns>
         public ActionResult GetfsGridJson(string keyword)

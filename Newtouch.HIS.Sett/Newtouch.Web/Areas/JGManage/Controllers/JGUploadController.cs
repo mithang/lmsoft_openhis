@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Web.Areas.JGManage.Controllers
         }
 
 
-        //JG上传
+        //JG Tải lên
         public ActionResult JGUpload(List<JGUploadDto> list)
         {
             var data = _JGUploadDmnService.JGUpload(this.OrganizeId,list);

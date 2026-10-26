@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
     {
         private readonly ISysDepartmentRepo _sysDepartmentRepo;
 
-        //组织机构（医院） 科室 下拉 数据源
+        //Tổ chức（Bệnh viện） Khoa Thả xuống Nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetTreeSelectJson(string organizeId)

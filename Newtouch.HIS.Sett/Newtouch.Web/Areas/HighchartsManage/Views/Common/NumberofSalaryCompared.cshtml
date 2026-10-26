@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "收入统计对比";
+    ViewBag.Title = "So sánh thống kê thu nhập";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/highcharts/highcharts.js")"></script>
@@ -35,33 +35,33 @@
                 type: 'column'
             },
             title: {
-                text: '收入统计对比'
+                text: 'So sánh thống kê thu nhập'
             },
             xAxis: {
                 categories: [
-                    '一月',
-                    '二月',
-                    '三月',
-                    '四月',
-                    '五月',
-                    '六月',
-                    '七月',
-                    '八月',
-                    '九月',
-                    '十月',
-                    '十一月',
-                    '十二月'
+                    'Tháng 1',
+                    'Tháng 2',
+                    'Tháng 3',
+                    'Tháng 4',
+                    'Tháng 5',
+                    'Tháng 6',
+                    'Tháng 7',
+                    'Tháng 8',
+                    'Tháng 9',
+                    'Tháng 10',
+                    'Tháng 11',
+                    'Tháng 12'
                 ]
             },
             yAxis: {
                 title: {
-                    text: '单位 (元)'
+                    text: 'Đơn vị ( đồng)'
                 }
             },
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.2f} 元</b></td></tr>',
+                '<td style="padding:0"><b>{point.y:.2f}  đồng</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
@@ -73,12 +73,12 @@
                 }
             },
             series: [{
-                name: "门诊",
+                name: "Ngoại trú",
                 data: [
                         OutpatientList[0].num, OutpatientList[1].num, OutpatientList[2].num, OutpatientList[3].num, OutpatientList[4].num, OutpatientList[5].num, OutpatientList[6].num, OutpatientList[7].num, OutpatientList[8].num, OutpatientList[9].num, OutpatientList[10].num, OutpatientList[11].num
                 ]
             }, {
-                name: "住院",
+                name: "Nội trú",
                 data: [
                            InpatientList[0].num, InpatientList[1].num, InpatientList[2].num, InpatientList[3].num, InpatientList[4].num, InpatientList[5].num, InpatientList[6].num, InpatientList[7].num, InpatientList[8].num, InpatientList[9].num, InpatientList[10].num, InpatientList[11].num
                 ]

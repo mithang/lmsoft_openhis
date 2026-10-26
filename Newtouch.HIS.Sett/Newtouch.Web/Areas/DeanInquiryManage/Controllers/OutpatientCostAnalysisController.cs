@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 门诊费用分类分析
+        /// Phân tích phân loại chi phí ngoại trú
         /// </summary>
         public ActionResult GetMzfyflfx(string ksrq, string jsrq, string rtype)
         {
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 门诊费用分类分析_图表
+        /// Phân tích phân loại chi phí ngoại trú_Biểu đồ
         /// </summary>
         public ActionResult GetMzfyflfx_tb(string ksrq, string jsrq, string rtype)
         {
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 患者人均费用分析
+        /// Phân tích chi phí bình quân đầu bệnh nhân
         /// </summary>
         public ActionResult GetHzrjfyfx(string ksrq, string jsrq, string rtype)
         {
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 患者人均费用分析_图标
+        /// Phân tích chi phí bình quân đầu bệnh nhân_Biểu tượng
         /// </summary>
         public ActionResult GetHzrjfyfx_tb(string ksrq, string jsrq, string rtype)
         {

@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Web.Areas.KPI.Controllers
         }
 
         /// <summary>
-        /// 配置
+        /// Cấu hình
         /// </summary>
         /// <returns></returns>
         public ActionResult ConfigIndex()
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Web.Areas.KPI.Controllers
         }
 
         /// <summary>
-        /// 获取配置列表 list json
+        /// Lấy danh sách cấu hình list json
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Web.Areas.KPI.Controllers
         }
 
         /// <summary>
-        /// 配置表单
+        /// Biểu mẫu cấu hình
         /// </summary>
         /// <returns></returns>
         public ActionResult ConfigForm()
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Web.Areas.KPI.Controllers
         }
 
         /// <summary>
-        /// 修改信息时，把信息带到新页面
+        /// Khi sửa thông tin，Mang thông tin sang trang mới
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -75,7 +75,7 @@ namespace Newtouch.HIS.Web.Areas.KPI.Controllers
         }
 
         /// <summary>
-        /// 提交治疗师提成配置
+        /// Gửi cấu hình hoa hồng của kỹ thuật viên trị liệu
         /// </summary>
         /// <param name="entity"></param>
         public ActionResult SubmitTherapeutistPSConfig(TherapeutistMonthProfitShareConfigEntity entity, string keyValue)
@@ -88,7 +88,7 @@ namespace Newtouch.HIS.Web.Areas.KPI.Controllers
         }
 
         /// <summary>
-        /// Check报表是否已经生成过
+        /// Check Báo cáo đã được tạo hay chưa
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>
@@ -102,7 +102,7 @@ namespace Newtouch.HIS.Web.Areas.KPI.Controllers
         }
 
         /// <summary>
-        /// 生成报表
+        /// Tạo báo cáo
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>

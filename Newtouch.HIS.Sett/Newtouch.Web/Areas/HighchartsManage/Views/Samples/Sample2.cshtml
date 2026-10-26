@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>曲线图</title>
+    <title>Biểu đồ đường cong</title>
     <link href="~/Content/css/framework-theme.css" rel="stylesheet" />
     <script src="~/Content/js/jquery/jquery-2.1.1.min.js"></script>
     <script src="~/Content/js/highcharts/highcharts.js"></script>
@@ -14,19 +14,19 @@
                     type: 'spline'
                 },
                 title: {
-                    text: '月平均温度',
+                    text: 'Nhiệt độ trung bình tháng',
                     x: -20 //center
                 },
                 subtitle: {
-                    text: '来源：气象局官方数据',
+                    text: 'Nguồn：Dữ liệu chính thức của Cục Khí tượng',
                     x: -20
                 },
                 xAxis: {
-                    categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+                    categories: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12']
                 },
                 yAxis: {
                     title: {
-                        text: '温度 (°C)'
+                        text: 'Nhiệt độ (°C)'
                     },
                     labels: {
                         formatter: function () {
@@ -48,7 +48,7 @@
                     }
                 },
                 series: [{
-                    name: '北京',
+                    name: 'Bắc Kinh',
                     marker: {
                         symbol: 'square'
                     },
@@ -60,7 +60,7 @@
                     }, 23.3, 18.3, 13.9, 9.6]
 
                 }, {
-                    name: '广州',
+                    name: 'Quảng Châu',
                     marker: {
                         symbol: 'diamond'
                     },

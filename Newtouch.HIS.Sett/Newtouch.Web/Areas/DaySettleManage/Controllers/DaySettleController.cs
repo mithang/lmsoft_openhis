@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Web.Areas.DaySettleManage.Controllers
         #region 获取数据
 
         /// <summary>
-        /// 获取门诊（住院）日结算列表
+        /// Lấy ngoại trú（Nội trú）Danh sách quyết toán ngày
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kssj"></param>
@@ -50,7 +50,7 @@ namespace Newtouch.HIS.Web.Areas.DaySettleManage.Controllers
         }
 
         /// <summary>
-        /// 获取上次日结算时间
+        /// Lấy thời gian quyết toán ngày lần trước
         /// </summary>
         /// <returns></returns>
         public ActionResult GetLastDaySettTime(string mzzybz)
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Web.Areas.DaySettleManage.Controllers
 
         #region 数据保存
         /// <summary>
-        /// 门诊日结算
+        /// Quyết toán ngày ngoại trú
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Web.Areas.DaySettleManage.Controllers
         }
 
         /// <summary>
-        /// 住院日结算
+        /// Quyết toán ngày nội trú
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -107,7 +107,7 @@ namespace Newtouch.HIS.Web.Areas.DaySettleManage.Controllers
         }
 
         /// <summary>
-        /// 取消门诊日结算
+        /// Hủy quyết toán ngày ngoại trú
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -122,7 +122,7 @@ namespace Newtouch.HIS.Web.Areas.DaySettleManage.Controllers
 
 
 		/// <summary>
-		/// 清算对总帐
+		/// Đối soát thanh toán với sổ tổng
 		/// </summary>
 		public ActionResult ApplicationIndex()
 		{
@@ -130,7 +130,7 @@ namespace Newtouch.HIS.Web.Areas.DaySettleManage.Controllers
 		}
 
 		/// <summary>
-		/// 清算明细
+		/// Chi tiết thanh toán
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult ApplicationDetailed()
@@ -140,7 +140,7 @@ namespace Newtouch.HIS.Web.Areas.DaySettleManage.Controllers
 
 
 		/// <summary>
-		/// 清算申请
+		/// Đơn đề nghị thanh toán
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult ApplicationApply()
@@ -149,7 +149,7 @@ namespace Newtouch.HIS.Web.Areas.DaySettleManage.Controllers
 		}
 
 		/// <summary>
-		/// 清算回退
+		/// Hoàn trả thanh toán
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult ApplicationFallbackIndex()
@@ -170,10 +170,10 @@ namespace Newtouch.HIS.Web.Areas.DaySettleManage.Controllers
 		}
 
 		/// <summary>
-		/// 获取清算对总帐
+		/// Lấy đối soát thanh toán với sổ tổng
 		/// </summary>
-		/// <param name="ksrq">开始日期</param>
-		/// <param name="jsrq">结束日期</param>
+		/// <param name="ksrq">Ngày bắt đầu</param>
+		/// <param name="jsrq">Ngày kết thúc</param>
 		/// <returns></returns>
 		public ActionResult GetQszdd(string ksrq, string jsrq,string qslx,string xz)
 		{
@@ -190,11 +190,11 @@ namespace Newtouch.HIS.Web.Areas.DaySettleManage.Controllers
 		}
 
 		/// <summary>
-		/// 获取清算明细（上半部分）
+		/// Lấy chi tiết thanh toán（Phần trên）
 		/// </summary>
-		/// <param name="ksrq">开始日期</param>
-		/// <param name="jsrq">结束日期</param>
-		/// <param name="jslx">结算类型</param>
+		/// <param name="ksrq">Ngày bắt đầu</param>
+		/// <param name="jsrq">Ngày kết thúc</param>
+		/// <param name="jslx">Loại quyết toán</param>
 		/// <returns></returns>
 		public ActionResult GetQsmx(string ksrq, string jsrq, string jslx, string xzlx)
 		{
@@ -203,11 +203,11 @@ namespace Newtouch.HIS.Web.Areas.DaySettleManage.Controllers
 		}
 
 		/// <summary>
-		/// 获取清算明细（下半部分）
+		/// Lấy chi tiết thanh toán（Phần dưới）
 		/// </summary>
-		/// <param name="ksrq">开始日期</param>
-		/// <param name="jsrq">结束日期</param>
-		/// <param name="jslx">结算类型</param>
+		/// <param name="ksrq">Ngày bắt đầu</param>
+		/// <param name="jsrq">Ngày kết thúc</param>
+		/// <param name="jslx">Loại quyết toán</param>
 		/// <returns></returns>
 		public ActionResult GetQsmx_1(string ksrq, string jsrq, string jslx, string xzlx)
 		{
@@ -216,11 +216,11 @@ namespace Newtouch.HIS.Web.Areas.DaySettleManage.Controllers
 		}
 
 		/// <summary>
-		/// 清算申请
+		/// Đơn đề nghị thanh toán
 		/// </summary>
-		/// <param name="ksrq">开始日期</param>
-		/// <param name="jsrq">结束日期</param>
-		/// <param name="sfyd">是否异地</param>
+		/// <param name="ksrq">Ngày bắt đầu</param>
+		/// <param name="jsrq">Ngày kết thúc</param>
+		/// <param name="sfyd">Có phải ngoại tỉnh hay không</param>
 		/// <returns></returns>
 		public ActionResult GetQssq(string ksrq, string jsrq, string sfyd)
 		{
@@ -228,10 +228,10 @@ namespace Newtouch.HIS.Web.Areas.DaySettleManage.Controllers
 			return Content(list.ToJson());
 		}
 		/// <summary>
-		/// 清算回退
+		/// Hoàn trả thanh toán
 		/// </summary>
-		/// <param name="ksrq">开始日期</param>
-		/// <param name="jsrq">结束日期</param>
+		/// <param name="ksrq">Ngày bắt đầu</param>
+		/// <param name="jsrq">Ngày kết thúc</param>
 		/// <returns></returns>
 		public ActionResult GetQsht(string ksrq, string jsrq)
 		{
@@ -252,7 +252,7 @@ namespace Newtouch.HIS.Web.Areas.DaySettleManage.Controllers
             return View();
         }
         /// <summary>
-        /// 历史对账记录
+        /// Bản ghi đối soát lịch sử
         /// </summary>
         /// <returns></returns>
         public ActionResult DzrHistory()
@@ -271,7 +271,7 @@ namespace Newtouch.HIS.Web.Areas.DaySettleManage.Controllers
 			return Content(list.ToJson());
 		}
         /// <summary>
-        /// 获取本地对账数据明细
+        /// Lấy chi tiết dữ liệu đối soát tại chỗ
         /// </summary>
         /// <param name="ksrq"></param>
         /// <param name="jsrq"></param>

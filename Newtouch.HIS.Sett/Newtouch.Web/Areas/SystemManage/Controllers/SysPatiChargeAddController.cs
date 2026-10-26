@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         private readonly ISysPatiChargeAddDmnService _sysPatiChargeAddDmnService;
 
         /// <summary>
-        /// 视图
+        /// View
         /// </summary>
         /// <returns></returns>
         public ActionResult SysPatiChargeAdd()
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             return View();
         }
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách hợp lệ
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 附加显示大类
+        /// Hiển thị thêm loại lớn
         /// </summary>
         /// <returns></returns>
         public ActionResult GetfjsfdlList(string keyValue)
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             return Json(data);
         }
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửa Form
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             return Content(entity.ToJson());
         }
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             return Success("操作成功。");
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="SysPatiChargeAddEntity"></param>
         /// <param name="keyValue"></param>

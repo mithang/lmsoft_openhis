@@ -32,11 +32,11 @@
 <div class="rows" style="float:left;width:25%;">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form" style="width:95%">
             <tr>
-                <th class="formTitle">&nbsp;&nbsp; <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>&nbsp;&nbsp;姓名/病历号：</th>
+                <th class="formTitle">&nbsp;&nbsp; <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>&nbsp;&nbsp;Họ tên/Số bệnh án：</th>
                 <td class="formValue">
                     <input id="keyword" type="text" class="form-control" />
                 </td>
@@ -54,19 +54,19 @@
     @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
     {
         ShowKeyList = new[] { 8 },
-        F8Text = "执行",
+        F8Text = "Thực hiện",
         WapperInlineStyle = "float:right;width:100px;margin:10px 30px 12px;text-align:right;"
     })
     <ul class="ul-hj">
-        <li><span class="sp-bottom-title">治疗项目合计：</span><span class="sp-bottom-value" id="sp_zlxmhj">___</span></li>
-        <li><span class="sp-bottom-title">治疗金额合计：</span><span class="sp-bottom-value" id="sp_zljehj">___</span></li>
-        <li><span class="sp-bottom-title">患者人数：</span><span class="sp-bottom-value" id="sp_hzrs">___</span></li>
+        <li><span class="sp-bottom-title">Tổng cộng khoản mục điều trị：</span><span class="sp-bottom-value" id="sp_zlxmhj">___</span></li>
+        <li><span class="sp-bottom-title">Tổng cộng số tiền điều trị：</span><span class="sp-bottom-value" id="sp_zljehj">___</span></li>
+        <li><span class="sp-bottom-title">Số lượng bệnh nhân：</span><span class="sp-bottom-value" id="sp_hzrs">___</span></li>
     </ul>
 </div>
 <script type="text/javascript">
-    var leftdata = [];//初始化的病人信息这不是可以吗小垃圾
-    var redata = [];//筛选后的病人信息
-    var selectpat = [];//选中的病人信息
+    var leftdata = [];//Thông tin bệnh nhân đã khởi tạo, thế này không được à, đồ bỏ đi
+    var redata = [];//Thông tin bệnh nhân sau khi lọc
+    var selectpat = [];//Thông tin bệnh nhân đã chọn
     var from = $.request("from");
     var item_selected = [];
     $(function () {
@@ -82,24 +82,24 @@
             rownumbers: false,
             height: $(window).height() - 83,
             colModel: [
-                { label: "主键", name: "jzjhmxId", hidden: true, key: true },
+                { label: "Khóa chính", name: "jzjhmxId", hidden: true, key: true },
                 { label: "jzjhId", name: "jzjhId", hidden: true },
                 {
-                    label: "长临", name: "yzxz", width: 30, align: "left", formatter: function (cellvalue, a, b) {
-                        return cellvalue == "2" ? "长" : (cellvalue == "1" ? "临" : "");
+                    label: "Dài hạn/Tạm thời", name: "yzxz", width: 30, align: "left", formatter: function (cellvalue, a, b) {
+                        return cellvalue == "2" ? "Dài hạn" : (cellvalue == "1" ? "Tạm thời" : "");
                     }, hidden: from == "mz" ? true : undefined
                 },
-                { label: "康复类别", name: "kflb", width: 100, align: "center", editable: true, edittype: 'select' },
-                { label: "治疗师", name: "zlsgh", width: 115, align: "center", editable: true, edittype: 'select'},
-                { label: "患者姓名", name: "patientName", width: 65, align: "left" },
-                { label: "收费项目", name: "sfxmmc", width: 150, align: "left" },
-                { label: (from == "mz" ? "总次数" : "次数"), name: "zcs", width: 45, align: "left" },
-                { label: "已执行", name: "yzxcs", width: 40, align: "left" },
-                { label: "今天已执行", name: "dtzxcs", width: 65, align: "left" },
+                { label: "Loại phục hồi", name: "kflb", width: 100, align: "center", editable: true, edittype: 'select' },
+                { label: "Kỹ thuật viên trị liệu", name: "zlsgh", width: 115, align: "center", editable: true, edittype: 'select'},
+                { label: "Tên bệnh nhân", name: "patientName", width: 65, align: "left" },
+                { label: "Khoản mục thu phí", name: "sfxmmc", width: 150, align: "left" },
+                { label: (from == "mz" ? "Tổng số lần" : "Số lần"), name: "zcs", width: 45, align: "left" },
+                { label: "Đã thực hiện", name: "yzxcs", width: 40, align: "left" },
+                { label: "Hôm nay đã thực hiện", name: "dtzxcs", width: 65, align: "left" },
                 {
-                    label: "剩余次数", name: "sycs", width: 55, align: "left", formatter: function (cellvalue, a, b) {
+                    label: "Số lần còn lại", name: "sycs", width: 55, align: "left", formatter: function (cellvalue, a, b) {
                         if (!(from == "mz") && b.yzxz == "2") {
-                            return "";  //长不显示剩余次数
+                            return "";  //Dài hạn không hiển thị số lần còn lại
                         }
                         else {
                             return parseFloat(b.zcs == undefined ? 0 : b.zcs) - parseFloat(b.yzxcs == undefined ? 0 : b.yzxcs);
@@ -107,28 +107,28 @@
                     }
                 },
                 {
-                    label: "录入时间", name: "entryTime", width: 80, align: "left"
+                    label: "Thời gian nhập", name: "entryTime", width: 80, align: "left"
                     , formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                 },
                 {
-                    label: "单价", name: "dj", width: 40, align: "left", formatter: "number"
+                    label: "Đơn giá", name: "dj", width: 40, align: "left", formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
-                { label: "单次治疗量", name: "zll", width: 65, align: "left" },
-                { label: "单次计费数量", name: "sl", width: 80, align: "left" },
+                { label: "Liều điều trị mỗi lần", name: "zll", width: 65, align: "left" },
+                { label: "Số lượng tính phí mỗi lần", name: "sl", width: 80, align: "left" },
                 {
-                    label: "单次金额", name: "zje", width: 70, align: "left", formatter: "number"
+                    label: "Số tiền mỗi lần", name: "zje", width: 70, align: "left", formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
                 {
-                    label: "最后执行时间", name: "LastEexcutionTime", width: 120, align: "left"
+                    label: "Thời gian thực hiện cuối cùng", name: "LastEexcutionTime", width: 120, align: "left"
                 , formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: "备注", name: "bz", width: 160, align: "left" }
+                { label: "Ghi chú", name: "bz", width: 160, align: "left" }
             ],
             unwritten: false,
             viewrecords: true,
-            multiselect: true,//复选框
+            multiselect: true,//Hộp kiểm
             onSelectRow: function (rowid, status) {
                 statisticalImplementFrequencyAndZje();
                 if (status) {
@@ -175,7 +175,7 @@
                         if (i != length - 1) {
                             str += jsonobj[i].StaffGh + ":" + jsonobj[i].StaffName + ";";
                         } else {
-                            str += jsonobj[i].StaffGh + ":" + jsonobj[i].StaffName;// 这里是option里面的 value:label
+                            str += jsonobj[i].StaffGh + ":" + jsonobj[i].StaffName;// Ở đây là option bên trong value:label
                         }
                     }
 
@@ -196,9 +196,9 @@
         return obj;
     }
 
-    //启用行内编辑框
+    //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox() {
-        //Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        //Grid Sau khi tải xong bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trước Id  2.Gọi theo vòng lặp editRow Phương thức
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
@@ -224,19 +224,19 @@
     }
 
     function gridListSearch() {
-        var a = from == "mz" ? "门诊号" : "住院号";
+        var a = from == "mz" ? "Mã ngoại trú" : "Số nhập viện";
         var $gridList = $("#gridListsearch");
         $gridList.newtouchLocalDataGrid({
             height: $(window).height() - 120,
             colModel: [
-                { label: '姓名', name: 'xm', width: 60, align: 'left' },
-                { label: '病历号', name: 'blh', width: 85, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 60, align: 'left' },
+                { label: 'Số bệnh án', name: 'blh', width: 85, align: 'left' },
                 { label: a, name: 'zyh', width: 85, align: 'left', key: true },
                 { label: "py", name: 'py', align: 'left', hidden: true }
             ],
             rowNum: '10',
             viewrecords: true,
-            multiselect: true,//复选框
+            multiselect: true,//Hộp kiểm
             unwritten: false,
             rownumbers: false,
             onSelectRow: function (rowid, status) {
@@ -257,7 +257,7 @@
             }, afterInsertRow: function (rowid, rowdata, rowelem) {
                 $.each(selectpat, function (idx) {
                     if (rowdata.zyh.indexOfIgnoreCase(this.zyh) > -1) {
-                        $("#gridListsearch").jqGrid('setSelection', rowid, false); //设置jqGrid选中
+                        $("#gridListsearch").jqGrid('setSelection', rowid, false); //Cài đặt jqGrid Đã chọn
                     }
                 });
             },
@@ -288,7 +288,7 @@
         }).trigger('reloadGrid');
     }
 
-    //统计执行人数
+    //Thống kê số người thực hiện
     function statisticalNumber() {
         var t = 0;
         $("#gridListsearch input:checkbox[role=checkbox]:checked").each(function() {
@@ -297,7 +297,7 @@
         $("#sp_hzrs").html(t);
     }
 
-    //统计执行次数和总金额
+    //Thống kê số lần thực hiện và tổng số tiền
     function statisticalImplementFrequencyAndZje() {
         var tt = 0;
         var zje = 0.00;
@@ -313,11 +313,11 @@
         $("#sp_zljehj").html(zje);
     }
 
-    //F8提交至服务器
+    //F8 Gửi tới máy chủ
     function newtouch_event_f8() {
         var jzjhmxIdStr = "";
         var zxItem = [];
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấy tất cả các dòng Id，Duyệt để hộp chỉnh sửa ở trạng thái đã lưu
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) {
@@ -326,24 +326,24 @@
         }
 
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
-        //判断
+        //Xác định
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
             if (!rowData) {
                 break;
             }
             if (!rowData.kflb) {
-                $.modalAlert("康复类别必选", 'warning');
+                $.modalAlert("Loại phục hồi bắt buộc chọn", 'warning');
                 break;
             }
             if (!rowData.zlsgh) {
-                $.modalAlert("治疗师必选", 'warning');
+                $.modalAlert("Kỹ thuật viên trị liệu bắt buộc chọn", 'warning');
                 break;
             }
             zxItem.push({ jzjhmxId: rowData.jzjhmxId, kflb: rowData.kflb, zlsgh: rowData.zlsgh });
         }
         if (zxItem == [] || zxItem.length < 1) {
-            $.modalAlert("未选择记账计划项目", 'warning');
+            $.modalAlert("Chưa chọn khoản mục kế hoạch ghi sổ", 'warning');
             return;
         }
         var paramData = {};
@@ -352,17 +352,17 @@
         paramData.zxItem = zxItem;
         $.modalOpen({
             id: "ExecutionDateComfirm",
-            title: "确认执行",
+            title: "Xác nhận thực hiện",
             url: "@Url.Action("ExecutionDateComfirm")",
             width: "370px",
             height: "290px",
             callBack: function (iframeId) {
-                //填写的收费日期
+                //Ngày thu phí đã điền
                 var obj = top.frames[iframeId].checkEditingRowData();
                 if (obj) {
                     paramData.zxrq = obj.zxrq + " " + new Date().toLocaleTimeString('chinese', { hour12: false });
                     var sfxmmc = "";
-                    //判断
+                    //Xác định
                     for (var i = 0; i < selRowIds.length; i++) {
                         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
                         if (!rowData) {
@@ -377,7 +377,7 @@
                     if (sfxmmc == "") {
                         submitform(paramData);
                     } else {
-                        $.modalConfirm(sfxmmc + "  当天已执行,是否重复操作", function (flag) {
+                        $.modalConfirm(sfxmmc + "  Trong ngày đã thực hiện,Có thao tác trùng lặp hay không", function (flag) {
                             if (flag) {
                                 submitform(paramData);
                                 return;
@@ -401,14 +401,14 @@
         });
     }
 
-    //搜索待执行的病人信息
+    //Tìm kiếm thông tin bệnh nhân chờ thực hiện
     $('#keyword').keyup(function () {
         if (leftdata != null && leftdata.length > 0) {
             selectpat = $("#gridListsearch").jqGrid('getRowData_AllLine', true, true);
             $("#gridListsearch").resetSelection();
             $("#gridListsearch").clearGridData();
             redata = [];
-            redatazyh = [];//搜索后的病人rowid
+            redatazyh = [];//Bệnh nhân sau khi tìm kiếm rowid
             var $this = $(this).val();
             for (var i = 0; i < leftdata.length; i++) {
                 if (leftdata[i].blh.indexOfIgnoreCase($this) > -1 ||
@@ -420,7 +420,7 @@
                 }
             }
             if (selectpat != [] && selectpat.length > 0) {
-                    for (var j = 0; j < selectpat.length; j++) {//选中的病人
+                    for (var j = 0; j < selectpat.length; j++) {//Bệnh nhân đã chọn
                         if ($.inArray(selectpat[j].zyh, redatazyh) < 0) {
                             redata.unshift(selectpat[j]);
                         };

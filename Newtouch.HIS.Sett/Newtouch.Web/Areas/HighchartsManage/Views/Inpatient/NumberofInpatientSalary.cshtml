@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "住院收入统计";
+    ViewBag.Title = "Thống kê thu nhập nội trú";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/highcharts/highcharts.js")"></script>
@@ -31,32 +31,32 @@
                 type: 'column'
             },
             title: {
-                text: '住院收入统计'
+                text: 'Thống kê thu nhập nội trú'
             },
             xAxis: {
                 categories: [
-                    '一月',
-                    '二月',
-                    '三月',
-                    '四月',
-                    '五月',
-                    '六月',
-                    '七月',
-                    '八月',
-                    '九月',
-                    '十月',
-                    '十一月',
-                    '十二月'
+                    'Tháng 1',
+                    'Tháng 2',
+                    'Tháng 3',
+                    'Tháng 4',
+                    'Tháng 5',
+                    'Tháng 6',
+                    'Tháng 7',
+                    'Tháng 8',
+                    'Tháng 9',
+                    'Tháng 10',
+                    'Tháng 11',
+                    'Tháng 12'
                 ]
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: '单位 (元)'
+                    text: 'Đơn vị ( đồng)'
                 }
             },
             tooltip: {
-                valueSuffix: '元',
+                valueSuffix: ' đồng',
                 headerFormat: "{point.key}:",
                 pointFormat: '<tr><td>{point.y}<td></tr>',
                 footerFormat: '</table>',

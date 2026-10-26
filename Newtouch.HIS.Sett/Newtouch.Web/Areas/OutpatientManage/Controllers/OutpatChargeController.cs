@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
         #region  view
         /// <summary>
-        /// 门诊收费主界面
+        /// Giao diện chính thu phí ngoại trú
         /// </summary>
         /// <returns></returns>
         public ActionResult ChargeIndex()
@@ -88,7 +88,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             return View();
         }
         /// <summary>
-        /// 收费
+        /// Thu phí
         /// </summary>
         /// <returns></returns>
         public ActionResult ChargeAddPay()
@@ -97,7 +97,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 支付结算确认弹出框
+        /// Hộp bật xác nhận thanh toán quyết toán
         /// </summary>
         /// <returns></returns>
         public ActionResult ChargePayDialog()
@@ -105,7 +105,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             return View();
         }
         /// <summary>
-        /// 模板窗口
+        /// Cửa sổ mẫu
         /// </summary>
         /// <returns></returns>
         public ActionResult ItemTemplate()
@@ -114,7 +114,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 病人性质窗口
+        /// Cửa sổ tính chất bệnh nhân
         /// </summary>
         /// <returns></returns>
         public ActionResult ChargeBrxzDialog()
@@ -122,7 +122,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             return View();
         }
         /// <summary>
-        /// 门诊自费转医保
+        /// Chuyển tự trả ngoại trú sang bảo hiểm y tế
         /// </summary>
         /// <returns></returns>
         public ActionResult dkfsxz_mz()
@@ -133,9 +133,9 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
         #region 门诊收费
         /// <summary>
-        /// 门诊收费查询个人信息
+        /// Tra cứu thông tin cá nhân thu phí ngoại trú
         /// </summary>
-        /// <param name="kh">卡号</param>
+        /// <param name="kh">Số thẻ</param>
         /// <param name="brxz"></param>
         /// <returns></returns>
         [HttpPost]
@@ -149,7 +149,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             {
                 return Success("", patChargeDto);
             }
-            //判断是否有多个病人性质
+            //Xác định có nhiều tính chất bệnh nhân hay không
             if (patChargeInfo.brxzList != null && patChargeInfo.brxzList.Count >= 0)
             {
                 return Success("", patChargeDto);
@@ -163,10 +163,10 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 获取挂号信息
+        /// Lấy thông tin đăng ký khám
         /// </summary>
-        /// <param name="patid">病人patid</param>
-        /// <param name="brxzbh">病人性质编号</param>
+        /// <param name="patid">Bệnh nhân patid</param>
+        /// <param name="brxzbh">Mã tính chất bệnh nhân</param>
         /// <returns></returns>
         [HttpPost]
         public ActionResult getGHSource(int patid, string brxz)
@@ -177,9 +177,9 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 获取药品和收费项目
+        /// Lấy thuốc và khoản mục thu phí
         /// </summary>
-        /// <param name="keyword">关键字查询条件</param>
+        /// <param name="keyword">Điều kiện tra cứu theo từ khóa</param>
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -189,15 +189,15 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 获取服务费信息
+        /// Lấy thông tin phí dịch vụ
         /// </summary>
-        /// <param name="sfxmtype">项目类别 判断是药品还是项目</param>
-        /// <param name="lscfh">临时处方号</param>
-        /// <param name="brxz">病人性质</param>
-        /// <param name="dl">大类</param>
-        /// <param name="sfxm">收费项目</param>
-        /// <param name="dj">单价</param>
-        /// <param name="sl">数量</param>
+        /// <param name="sfxmtype">Loại khoản mục Xác định là thuốc hay khoản mục</param>
+        /// <param name="lscfh">Mã đơn thuốc tạm thời</param>
+        /// <param name="brxz">Tính chất bệnh nhân</param>
+        /// <param name="dl">Loại lớn</param>
+        /// <param name="sfxm">Khoản mục thu phí</param>
+        /// <param name="dj">Đơn giá</param>
+        /// <param name="sl">Số lượng</param>
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -208,9 +208,9 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
 
         /// <summary>
-        /// 获取处方号
+        /// Lấy mã đơn thuốc
         /// </summary>
-        /// <param name="sfxmtype">项目类别 判断是药品还是项目</param> 
+        /// <param name="sfxmtype">Loại khoản mục Xác định là thuốc hay khoản mục</param> 
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -221,9 +221,9 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 获取收费项目模板
+        /// Lấy mẫu khoản mục thu phí
         /// </summary>
-        /// <param name="ks">科室</param>
+        /// <param name="ks">Khoa</param>
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -235,16 +235,16 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
 
         /// <summary>
-        /// 添加处方信息，结算
+        /// Thêm thông tin đơn thuốc，Quyết toán
         /// </summary>
-        /// <param name="chargeDto">处方列表信息</param>
-        /// <param name="kh">卡号</param>
-        /// <param name="fph">发票号</param>
-        /// <param name="xjzffs">现金支付方式</param>
+        /// <param name="chargeDto">Thông tin danh sách đơn thuốc</param>
+        /// <param name="kh">Số thẻ</param>
+        /// <param name="fph">Số hóa đơn</param>
+        /// <param name="xjzffs">Phương thức thanh toán tiền mặt</param>
         /// <param name="xjzffsbh"></param>
-        /// <param name="zfje">支付金额-患者总付款金额</param>
-        /// <param name="ysk">应收款-应该支付金额</param>
-        /// <param name="zl">找零</param>
+        /// <param name="zfje">Số tiền thanh toán-Tổng số tiền bệnh nhân thanh toán</param>
+        /// <param name="ysk">Khoản phải thu-Số tiền phải thanh toán</param>
+        /// <param name="zl">Tiền thừa</param>
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -275,7 +275,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 就诊记录选择
+        /// Chọn bản ghi khám bệnh
         /// </summary>
         /// <returns></returns>
         public ActionResult OutpatAccListView()
@@ -284,7 +284,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 获取记账历史记录
+        /// Lấy lịch sử ghi sổ
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -297,12 +297,12 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 获取记账历史记录
+        /// Lấy lịch sử ghi sổ
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="kh"></param>
         /// <param name="cardType"></param>
-        /// <param name="isTF">是否是来自退费</param>
+        /// <param name="isTF">Có phải đến từ hoàn phí hay không</param>
         /// <returns></returns>
         public ActionResult GetpatientAccountInfo(string mzh, string kh,string zjh, string cardType, bool? isTF)
         {
@@ -328,18 +328,18 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             }
 
             if ((string.IsNullOrWhiteSpace(kh) || string.IsNullOrWhiteSpace(cardType)) && string.IsNullOrWhiteSpace(zjh)) return Error("查询失败");
-            //用卡查，查就诊中或待就诊的记录
+            //Tra bằng thẻ，Tra bản ghi đang khám hoặc chờ khám
             var theInfo = resultDto.OutpatAccListDto.OrderByDescending(p => p.ghrq).FirstOrDefault();
             //if (!(isTF == true) && theInfo.ghzt == "0")
-            if (isTF != true)  //如果不是退费，则返回最后一次的就诊信息
+            if (isTF != true)  //Nếu không phải hoàn phí，thì trả về thông tin khám bệnh lần cuối cùng
             {
-                //未结状态
+                //Trạng thái chưa kết
                 resultDto.OutpatAccInfoDto = theInfo;
                 return Success(null, resultDto);
             }
 
             if (theInfo.ghzt != "1") return Error("查询异常，无法定位唯一待收费就诊记录");
-            //已结状态
+            //Trạng thái đã kết
             resultDto.OutpatAccInfoDto = theInfo;
             return Success(null, resultDto);
         }
@@ -350,7 +350,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
                 throw new FailedException("缺少查询参数：门诊号或卡号");
             }
             var OutpatAccListDtoList = _outChargeDmnService.GetOutpatChargePatInfoInAcc(mzh, kh, zjh, cardType, this.OrganizeId);
-            var datadsf = _outChargeDmnService.GetPatientGridJson(OrganizeId);//获取待收费门诊号来筛选病人信息
+            var datadsf = _outChargeDmnService.GetPatientGridJson(OrganizeId);//Lấy mã ngoại trú chờ thu phí để lọc thông tin bệnh nhân
             var data = datadsf.Serialize().ToObject<List<OutPatientRegVO>>() ?? new List<OutPatientRegVO>();
             List<OutpatAccInfoDto> patlist = new List<OutpatAccInfoDto>();
             foreach (var item in data)
@@ -389,9 +389,9 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 根据新农合个人编码获取最后一次待结算
+        /// Lấy lần chờ quyết toán cuối cùng theo mã cá nhân bảo hiểm y tế nông thôn mới
         /// </summary>
-        /// <param name="xnhgrbm">新农合个人编码</param>
+        /// <param name="xnhgrbm">Mã cá nhân bảo hiểm y tế nông thôn mới</param>
         /// <returns></returns>
         public ActionResult GetLastSettleRecord(string xnhgrbm)
         {
@@ -415,7 +415,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 获取患者挂号卡号
+        /// Lấy số thẻ đăng ký khám của bệnh nhân
         /// </summary>
         /// <param name="xnhgrbm"></param>
         /// <returns></returns>
@@ -460,7 +460,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 加载待收费（处方明细）
+        /// Tải chờ thu phí（Chi tiết đơn thuốc）
         /// </summary>
         /// <param name="cfnmList"></param>
         /// <returns></returns>
@@ -471,7 +471,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 加载待收费（处方明细 + 非处方项目明细）
+        /// Tải chờ thu phí（Chi tiết đơn thuốc + Chi tiết khoản mục không theo đơn）
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -482,7 +482,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 未结明细上传
+        /// Tải lên chi tiết chưa kết
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -492,7 +492,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             return Success();
         }
         /// <summary>
-        /// 贵安医保结算上传明细提取
+        /// Trích xuất chi tiết tải lên quyết toán bảo hiểm y tế Quý An
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -502,7 +502,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             return Content(guianMainOfMzjsModel.ToJson());
         }
         /// <summary>
-        /// 获取退费后，贵安医保上传所需数据
+        /// Lấy sau khi hoàn phí，Dữ liệu cần thiết để tải lên bảo hiểm y tế Quý An
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -514,7 +514,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
 		#region 重庆医保
 		/// <summary>
-		/// 门诊就诊登记修改获取
+		/// Lấy sửa đăng ký khám bệnh ngoại trú
 		/// </summary>
 		/// <param name="mzh"></param>
 		/// <returns></returns>
@@ -524,7 +524,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 			return Content(model.ToJson());
 		}
 	    /// <summary>
-	    /// 获取患者就诊登记的交易流水号
+	    /// Lấy mã giao dịch đăng ký khám bệnh của bệnh nhân
 	    /// </summary>
 	    /// <param name="mzh"></param>
 	    /// <returns></returns>
@@ -536,7 +536,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 			return Content(entity.ToJson());
 		}
 		/// <summary>
-		/// 获取门诊结算时明细上传明细（ybzje总金额，zfzje为所有自费金额）
+		/// Lấy chi tiết tải lên khi quyết toán ngoại trú（ybzje Tổng số tiền，zfzje là tất cả số tiền tự trả）
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="mzh"></param>
@@ -563,7 +563,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 		public ActionResult SaveChongQingUploadPrescriptions(List<CqybUploadPresList04Entity> entityList, List<UploadPrescriptionsListInPut> cflist,string zymzh,string jytype)
 	    {
 		    _iCqybUploadPresList04Repo.SaveCqybUploadPresList(entityList, jytype, zymzh,this.OrganizeId);
-			//上传的处方也落地，保存处方号，为了退方
+			//Đơn thuốc đã tải lên cũng được lưu xuống，Lưu mã đơn thuốc，Để trả đơn thuốc
 		    _outPatChargeApp.SaveCqybUploadInPres(cflist, zymzh, jytype);
             return Success();
 	    }
@@ -585,7 +585,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 作废处方后，作废04上传落地
+        /// Sau khi hủy đơn thuốc，Hủy 04 Tải lên và lưu xuống
         /// </summary>
         /// <param name="entityList"></param>
         /// <param name="cflist"></param>
@@ -600,7 +600,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             return Success();
         }
         /// <summary>
-        /// 根据批次号作废
+        /// Hủy theo số lô
         /// </summary>
         /// <param name="zymzh"></param>
         /// <param name="pch"></param>
@@ -617,7 +617,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 保存重庆结算红冲99返回数据
+        /// Lưu đảo ngược quyết toán Trùng Khánh 99 Trả về dữ liệu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="jslb"></param>
@@ -661,7 +661,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
         
         /// <summary>
-        /// 获取退费后，重庆医保上传所需数据
+        /// Lấy sau khi hoàn phí，Dữ liệu cần thiết để tải lên bảo hiểm y tế Trùng Khánh
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -712,7 +712,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 	    /// <param name="zyh"></param>
 	    /// <param name="patid"></param>
 	    /// <param name="cardInfo"></param>
-	    /// <param name="ryblInfo">医保卡信息</param>
+	    /// <param name="ryblInfo">Thông tin thẻ bảo hiểm y tế</param>
 	    /// <returns></returns>
 	    public ActionResult ZFToYB_Step_6(string mzh, int patid, ZYToYBDto patCardInfo)
 	    {
@@ -746,16 +746,16 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         #endregion
 
         /// <summary>
-        /// 门诊收费结算
+        /// Quyết toán thu phí ngoại trú
         /// </summary>
         /// <param name="bacDto"></param>
-        /// <param name="feeRelated">金额及支付信息</param>
-        /// <param name="ybfeeRelated">医保相关费用信息</param>
-        /// <param name="isXnhjyjz">"1"-新农合结算 其他-非新农合结算</param>
-        /// <param name="xmList">库中尚无</param>
+        /// <param name="feeRelated">Số tiền và thông tin thanh toán</param>
+        /// <param name="ybfeeRelated">Thông tin chi phí liên quan đến bảo hiểm y tế</param>
+        /// <param name="isXnhjyjz">"1"-Quyết toán bảo hiểm y tế nông thôn mới Khác-Quyết toán không phải bảo hiểm y tế nông thôn mới</param>
+        /// <param name="xmList">Trong kho chưa có</param>
         /// <param name="cfnmList"></param>
-        /// <param name="extxmnmList">历史已提交（库中已有）</param>
-        /// <param name="outTradeNo">支付交易号</param>
+        /// <param name="extxmnmList">Lịch sử đã gửi（Trong kho đã có）</param>
+        /// <param name="outTradeNo">Mã giao dịch thanh toán</param>
         /// <returns></returns>
         public ActionResult SubmitForm(BasicInfoDto2018 bacDto
             , OutpatientSettFeeRelatedDTO feeRelated
@@ -809,8 +809,8 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
                 int isOpenBill = -1; string openMsg = "";
                 var resultnewjs = _outPatChargeApp.submitOutpatCharge(bacDto, feeRelated, ybfeeRelated, xnhybfeeRelated, accDto, OrganizeId, cfnmList, out jsnmList, extxmnmList, outTradeNo);
                 if (!resultnewjs) return Success(bacDto.isQfyj ? "欠费预结操作成功" : "成功收费");
-                //门诊收费的处方收费成功之后是否同步收费状态至CIS
-                //就算是欠费预结也要同步过去，CIS的处方不能再修改
+                //Sau khi đơn thuốc thu phí ngoại trú thu phí thành công có đồng bộ trạng thái thu phí sang hay không CIS
+                //Ngay cả khi dự quyết toán nợ phí cũng phải đồng bộ sang，CIS của đơn thuốc không thể sửa được nữa
                 if (cfnmList != null && cfnmList.Count > 0)
                 {
                     var toCIS = _sysConfigRepo.GetBoolValueByCode("Outpatient_ChargeFee_AutoSyncPrescriptionStatus", this.OrganizeId) ?? false;
@@ -848,13 +848,13 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
                     }
                 }
 
-                // ||false ||其他支付（医保可报、记账等）>0
+                // ||false ||Thanh toán khác（Bảo hiểm y tế có thể thanh toán、Ghi sổ v.v.）>0
                 if (bacDto.isQfyj || ((feeRelated == null || !(feeRelated.zje > 0))) || jsnmList.Count != 1) return Success(bacDto.isQfyj ? "欠费预结操作成功" : "成功收费");
                 var res = new
                 {
                     jsnm = jsnmList[0]
                 }; 
-                //异步推送处方收费成功的通知给药房药库
+                //Đẩy bất đồng bộ thông báo đơn thuốc thu phí thành công tới nhà thuốc/kho thuốc
                 notifyPDS(jsnmList[0], bacDto.sfrq ?? DateTime.Now, cfnmList, bacDto.fph);
                 _outpatientRegistRepo.RecordOutpId(bacDto.mzh, "", UserIdentity.UserCode, OrganizeId);
                 
@@ -869,7 +869,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
          
         ///// <summary>
-        ///// 新农合门诊结算
+        ///// Quyết toán ngoại trú bảo hiểm y tế nông thôn mới
         ///// </summary>
         ///// <param name="mzh"></param>
         ///// <param name="s25ResponseDto"></param>
@@ -880,7 +880,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         //}
 
         /// <summary>
-        /// 欠费预结 回改 的 视图
+        /// Dự quyết toán nợ phí Sửa lại của View
         /// </summary>
         /// <returns></returns>
         public ActionResult ArrearageSettedUpdate()
@@ -909,7 +909,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 根据jsnm 获取结算的明细列表
+        /// Theo jsnm Lấy danh sách chi tiết quyết toán
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
@@ -920,10 +920,10 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 修改欠费预结记录 的 收费日期、现金支付方式 等
+        /// Sửa bản ghi dự quyết toán nợ phí của Ngày thu phí、Phương thức thanh toán tiền mặt v.v.
         /// </summary>
         /// <param name="updateDto"></param>
-        /// <param name="feeRelated">金额及支付信息</param>
+        /// <param name="feeRelated">Số tiền và thông tin thanh toán</param>
         /// <returns></returns>
         public ActionResult SubmitArrearageSettedUpdate(OutPatArrearageSettedUpdateDTO updateDto, OutpatientSettFeeRelatedDTO feeRelated)
         {
@@ -931,18 +931,18 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             return Success("操作成功");
         }
         /// <summary>
-        /// 医保结算转自费，更新患者性质
+        /// Chuyển quyết toán bảo hiểm y tế sang tự trả，Cập nhật tính chất bệnh nhân
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
         public ActionResult UpdatePatBrxzInfo(string mzh)
         {
-            //病人性质，暂默认取0
+            //Tính chất bệnh nhân，Tạm thời lấy mặc định 0
             _outpatientRegistRepo.updatePatBrxzInfo(this.OrganizeId, mzh, "0");
             return Success("操作成功");
         }
         /// <summary>
-        /// 门诊挂号不进行医保登记 收费时进行登记跟新自费卡为医保卡
+        /// Đăng ký khám ngoại trú không thực hiện đăng ký bảo hiểm y tế Khi thu phí thực hiện đăng ký và cập nhật thẻ tự trả thành thẻ bảo hiểm y tế
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="kh"></param>
@@ -955,7 +955,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             return Success("操作成功");
         }
         /// <summary>
-        /// 更新挂号医保就诊id流水号
+        /// Cập nhật khám bệnh bảo hiểm y tế đã đăng ký id Mã giao dịch
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="jzid"></param>
@@ -971,9 +971,9 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
         #region 生成处方号
         /// <summary>
-        /// 生成新处方号
+        /// Tạo mã đơn thuốc mới
         /// </summary>
-        /// <param name="type">处方类型1药品 2非药品</param>
+        /// <param name="type">Loại đơn thuốc 1 Thuốc 2 Không phải thuốc</param>
         /// <returns></returns>
         public ActionResult GeneratePresNo(int type = 0)
         {
@@ -997,7 +997,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 异步推送处方收费成功的通知给药房药库
+        /// Đẩy bất đồng bộ thông báo đơn thuốc thu phí thành công tới nhà thuốc/kho thuốc
         /// </summary>
         /// <param name="cfnmList"></param>
         private void notifyPDS(int jsnm, DateTime sfrq, IList<int> cfnmList, string Fph)
@@ -1052,7 +1052,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         #endregion
 
         /// <summary>
-        /// 获取门诊结算/退费 患者出院信息（医保结算号、社保编号、就诊原因、科室、医生、诊断）
+        /// Lấy quyết toán ngoại trú/Hoàn phí Thông tin xuất viện của bệnh nhân（Mã quyết toán bảo hiểm y tế、Mã bảo hiểm xã hội、Lý do khám bệnh、Khoa、Bác sĩ、Chẩn đoán）
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -1063,21 +1063,21 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             object tempData = data;
             //object tempData = new
             //{
-            //    ybjsh = data.ybjsh,    //医保结算号
-            //    sbbh = "8222212",    //社保编号
-            //    jzyy = "00", //就诊原因
-            //    ys = "000001",   //出院医生编码 后面做对照
-            //    ysmc = "张荣",   //出院医生姓名 后面做对照
-            //    zdicd10 = "A09.901", //第一诊断ICD10
-            //    zdmc = "胃肠炎", //第一诊断名称
-            //    ks = "00000008", //就诊科室编码 后面做对照
-            //    ksmc = "中医科",//就诊科室名称 后面做对照
+            //    ybjsh = data.ybjsh,    //Mã quyết toán bảo hiểm y tế
+            //    sbbh = "8222212",    //Mã bảo hiểm xã hội
+            //    jzyy = "00", //Lý do khám bệnh
+            //    ys = "000001",   //Mã bác sĩ xuất viện Đối chiếu sau
+            //    ysmc = "Trương Vinh",   //Tên bác sĩ xuất viện Đối chiếu sau
+            //    zdicd10 = "A09.901", //Chẩn đoán thứ nhất ICD10
+            //    zdmc = "Viêm dạ dày ruột", //Tên chẩn đoán thứ nhất
+            //    ks = "00000008", //Mã khoa khám bệnh Đối chiếu sau
+            //    ksmc = "Khoa Y học cổ truyền",//Tên khoa khám bệnh Đối chiếu sau
             //};
             return Success(null, tempData);
         }
 
         /// <summary>
-        /// 更新结算发票号
+        /// Cập nhật số hóa đơn quyết toán
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="fph"></param>
@@ -1089,7 +1089,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 医保连通性测试
+        /// Kiểm tra kết nối bảo hiểm y tế
         /// </summary>
         /// <returns></returns>
         public ActionResult YibaoConnectedTest()
@@ -1101,7 +1101,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         #region 门诊补计费（补至未收费状态）
 
         /// <summary>
-        /// 门诊补计费
+        /// Tính phí bổ sung ngoại trú
         /// </summary>
         /// <returns></returns>
         public ActionResult AdditionalIndex2018()
@@ -1116,10 +1116,10 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 门诊补计费 提交
+        /// Tính phí bổ sung ngoại trú Gửi
         /// </summary>
         /// <param name="bacDto"></param>
-        /// <param name="xmList">库中尚无</param>
+        /// <param name="xmList">Trong kho chưa có</param>
         /// <returns></returns>
         public ActionResult AdditionalSubmit(BasicInfoDto2018 bacDto
             , List<OutGridInfoDto2018> xmList)
@@ -1138,7 +1138,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         #endregion
 
         /// <summary>
-        /// 贵安新农合医保结算
+        /// Quyết toán bảo hiểm y tế nông thôn mới Quý An
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -1157,7 +1157,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 提交体检疫苗Form
+        /// Gửi vắc-xin khám sức khỏe Form
         /// </summary>
         /// <returns></returns>
         public ActionResult SubmitPhysicalexamForm(AddPhysicalexamDto dto)
@@ -1170,7 +1170,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         #region PACS
         private static bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
         {
-            return true; //总是接受
+            return true; //Luôn chấp nhận
         }
 
         public ActionResult pushApplicationform(BasicInfoDto2018 bacDto, IList<int> cfnmList)
@@ -1217,9 +1217,9 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 					request.ProtocolVersion = System.Net.HttpVersion.Version10;
 					request.Method = "POST";
 					request.ContentType = "application/json";
-					request.CookieContainer = null;//获取验证码时候获取到的cookie会附加在这个容器里面
+					request.CookieContainer = null;//Lấy được khi lấy mã xác minh cookie Sẽ được gắn thêm vào container này
 					request.AllowAutoRedirect = true;
-					request.KeepAlive = true;//建立持久性连接
+					request.KeepAlive = true;//Thiết lập kết nối bền vững
 											 //request.ContentLength = cs.Length;
 					request.Host = "192.168.0.101";
 					//request.UserAgent = "PostmanRuntime/7.29.2";
@@ -1248,7 +1248,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 					}
 					else if (apiresp != null && apiresp.status == "Success")
 					{
-						//pacs申请单成功后改变mz_cf表sqdzt为0
+						//pacs Sau khi đơn đăng ký thành công thì thay đổi mz_cf bảng sqdzt là 0
 						_outPatientUniversalDmnService.pushApplicationformRef(data.Patient.Request.Reqno, this.OrganizeId, 0);
 					}
 					var refdatalist = new
@@ -1270,7 +1270,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 		#endregion
 
 		/// <summary>
-		/// 开立物资项目扣减库存数量 扣减冻结数量
+		/// Kê khoản mục vật tư trừ số lượng tồn kho Trừ số lượng đóng băng
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult Sumwzdj(string[] cfh)
@@ -1284,7 +1284,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 		}
 
 		/// <summary>
-		/// 开立物资项目冻结库存数量
+		/// Kê khoản mục vật tư đóng băng số lượng tồn kho
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult TuiHuiwzdj(string[] cfh)
@@ -1299,7 +1299,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
 
         /// <summary>
-        /// 获取患者就诊登记的交易流水号秦皇岛
+        /// Lấy mã giao dịch đăng ký khám bệnh của bệnh nhân tại Tần Hoàng Đảo
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>

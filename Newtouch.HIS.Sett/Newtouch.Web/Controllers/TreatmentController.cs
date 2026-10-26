@@ -50,7 +50,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 
         /// <summary>
-        /// 页面加载时的数据
+        /// Dữ liệu khi trang tải
         /// </summary>
         /// <returns></returns>
         public ActionResult Login(string keyword)
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 查询收费项目组合
+        /// Tra cứu tổ hợp khoản mục thu phí
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 删除收费项目组合
+        /// Xóa tổ hợp khoản mục thu phí
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 删除收费组合中明细
+        /// Xóa chi tiết trong tổ hợp thu phí
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="zhcodemc"></param>
@@ -107,7 +107,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 保存收费项目组合
+        /// Lưu tổ hợp khoản mục thu phí
         /// </summary>
         /// <param name="dataset"></param>
         /// <returns></returns>
@@ -148,7 +148,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Success("添加成功");
         }
         /// <summary>
-        /// 是否已存在收费项目组合
+        /// Đã tồn tại tổ hợp khoản mục thu phí hay chưa
         /// </summary>
         /// <param name="zhcodetj"></param>
         /// <param name="sfxmmc123"></param>
@@ -170,7 +170,7 @@ namespace Newtouch.HIS.Web.Controllers
 
         }
         /// <summary>
-        /// 获取修改收费项目组合
+        /// Lấy tổ hợp khoản mục thu phí để sửa
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="zhcode"></param>

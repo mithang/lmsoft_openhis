@@ -14,7 +14,7 @@
             text: "StaffName"
         });
 
-        //加载康复类别
+        //Tải loại phục hồi
         $("#kflb").bindSelect({
             url: "/Com/GetSelectItemsDetailListByItemCode?code=RehabTreatmentMethod",
         });
@@ -66,46 +66,46 @@
 <form id="form1">
     <table class="form" style="margin-top: 10px; width: 95%">
         <tr>
-            <td class="formTitle">治疗日期：</td>
+            <td class="formTitle">Ngày điều trị：</td>
             <td class="formValue">
                 <input id="zxrq" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
             </td>
-            <th class="formTitle">治疗师：</th>
+            <th class="formTitle">Kỹ thuật viên trị liệu：</th>
             <td class="formValue formDdlSelectorTd">
                 <select id="zlsgh" name="zlsgh" class="form-control">
-                    <option value="">==请选择==</option>
+                    <option value="">==Vui lòng chọn==</option>
                 </select>
         </tr>
         <tr>
-            <th class="formTitle">康复类别：</th>
+            <th class="formTitle">Loại phục hồi：</th>
             <td class="formValue">
                 <select id="kflb" name="kflb" class="form-control">
-                    <option value="">==请选择==</option>
+                    <option value="">==Vui lòng chọn==</option>
                 </select>
             </td>
-            <th class="formTitle">收费项目：</th>
+            <th class="formTitle">Khoản mục thu phí：</th>
             <td class="formValue">
                 <input type="text" class="form-control newtouch_Readonly" id="sfxmmc" />
             </td>
 
         </tr>
         <tr>
-            <th class="formTitle">患者姓名：</th>
+            <th class="formTitle">Tên bệnh nhân：</th>
             <td class="formValue">
                 <input type="text" class="form-control newtouch_Readonly" id="xm" />
             </td>
-            <th class="formTitle">治疗量：</th>
+            <th class="formTitle">Liều điều trị：</th>
             <td class="formValue">
                 <input type="text" class="form-control newtouch_Readonly" id="zll" />
             </td>
         </tr>
         <tr>
 
-            <th class="formTitle">数量：</th>
+            <th class="formTitle">Số lượng：</th>
             <td class="formValue">
                 <input type="text" class="form-control newtouch_Readonly" id="sl" />
             </td>
-            <th class="formTitle">单位：</th>
+            <th class="formTitle">Đơn vị：</th>
             <td class="formValue">
                 <input type="text" class="form-control newtouch_Readonly" id="dw" />
             </td>

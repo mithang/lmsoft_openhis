@@ -3,23 +3,23 @@
     ViewBag.Title = "CancelPartialConfirmForm";
     Layout = "~/Views/Shared/_Form.cshtml";
 
-    //默认支付方式
+    //Phương thức thanh toán mặc định
     var defaultPayMethod = SysConfigReader.String("Sett_PayMethod_Inp_Default");
-    //住院结算可以用预交金
+    //Quyết toán nội trú có thể dùng tạm ứng
     var withYjj = SysConfigReader.Bool("InpatientSettWithAdvanceAccount");
 }
 <div id="divCQYbFee" class="panel panel-default" style="margin-top:10px;margin-left:10px;margin-right: 10px;">
     <div style="height:auto;">
         <table class="form">
             <tr>
-                <th class="formTitle">退还支付差额：</th>
+                <th class="formTitle">Trả lại chênh lệch thanh toán：</th>
                 <td class="formValue">￥<label id="th_zfce" style="color:red">0.00</label></td>
                 </tr>
             <tr>
-                <th class="formTitle">支付方式：</th>
+                <th class="formTitle">Phương thức thanh toán：</th>
                 <td class="formValue">
                     <select id="zffs1" class="form-control  form-an" style="width:90%">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
             </tr>
@@ -34,7 +34,7 @@
     var yjjye = 0;
     $(function () {
         init();
-        //现金支付方式1
+        //Phương thức thanh toán tiền mặt 1
         $("#zffs1").newtouchBindSelect({
             datasource: function () {
                 //var resultObjArr = new Array();
@@ -42,7 +42,7 @@
                     var sele = false;
 
                     //if (!yjjye && value.xjzffs == '3') {
-                    //    return; //当前账户无预交金余额，则不显示该支付方式
+                    //    return; //Tài khoản hiện tại không có số dư tạm ứng，thì không hiển thị phương thức thanh toán này
                     //}
                     if (value.xjzffs == defaultPayMethod) {
                         sele = true;
@@ -91,7 +91,7 @@
 
     function submitform() {
         if ($('#zffs1').val()=="") {
-            $.modalAlert("缺少现金支付方式", "warning");
+            $.modalAlert("Thiếu phương thức thanh toán tiền mặt", "warning");
             return;
         }
         

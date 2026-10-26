@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "住院费用分析";
+    ViewBag.Title = "Phân tích chi phí nội trú";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <head>
@@ -29,11 +29,11 @@
             justify-content: space-around;
             font-size: 15px;
         }
-        /*边框*/
+        /*Viền*/
         .bk {
             background-color: #ffffff;
         }
-        /*字体*/
+        /*Phông chữ*/
         .font {
             font-weight: bold;
             text-align: center;
@@ -52,20 +52,20 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle" id="xzsjtext">类型：</th>
+                <th class="formTitle" id="xzsjtext">Loại：</th>
                 <td class="formValue" style="width:150px">
                     <select id="dateType" class="form-control" onchange="updateSjType()">
-                        <option value="1">年</option>
-                        <option value="2">月</option>
-                        <option value="3">日</option>
+                        <option value="1">Năm</option>
+                        <option value="2">Tháng</option>
+                        <option value="3">Ngày</option>
                     </select>
                 </td>
-                <th class="formTitle" id="xzsjtext">时间：</th>
+                <th class="formTitle" id="xzsjtext">Thời gian：</th>
                 <td class="formValue" style="width:150px">
                     <input id="rSJ" type="text" class="form-control input-wdatepicker" @*onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"*@>
                 </td>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
             </tr>
         </table>
@@ -74,11 +74,11 @@
     <div id="main_div" style="display:flex;flex-direction:column;justify-content:space-between;flex-wrap:wrap;">
         <div>
             <div class="panel-heading down_border" style="background-color:#ffffff;">
-                <i class="fa fa-line-chart fa-lg" style="margin-right:5px;"></i>全部住院费用分析
+                <i class="fa fa-line-chart fa-lg" style="margin-right:5px;"></i>Phân tích tất cả chi phí nội trú
             </div>
             <div style="display:flex;justify-content:space-between;color:#ffffff;">
                 <div class="banner" style="background-color: #fc8675;">
-                    <div class="banner_title">住院总费用(元)</div>
+                    <div class="banner_title">Tổng chi phí nội trú( đồng)</div>
                     <div class="banner_data" id="zfy">
                     </div>
                     <div class="banner_down">
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="banner" style="background-color: #65cea7;">
-                    <div class="banner_title">药品费(元)</div>
+                    <div class="banner_title">Phí thuốc( đồng)</div>
                     <div class="banner_data" id="ypf">
                         
                     </div>
@@ -98,27 +98,27 @@
                 </div>
 
                 <div class="banner" style="background-color: #f3ce85;">
-                    <div class="banner_title" >耗材费(元)</div>
+                    <div class="banner_title" >Phí vật tư tiêu hao( đồng)</div>
                     <div class="banner_data" id="hcf">
                     </div>
                     @*<div  class="banner_down">
-                        <p >+2.35%环比</p>
-                        <p >+1.22%同比</p>
+                        <p >+2.35%So với tháng trước</p>
+                        <p >+1.22%So với cùng kỳ năm trước</p>
                     </div>*@
                 </div>
 
                 <div class="banner" style="background-color: #00c0ef">
-                    <div class="banner_title">诊疗费用(元)</div>
+                    <div class="banner_title">Chi phí khám chữa bệnh( đồng)</div>
                     <div class="banner_data" id="zlf">
                     </div>
                     @*<div  class="banner_down">
-                        <p >+2.35%环比</p>
-                        <p >+1.22%同比</p>
+                        <p >+2.35%So với tháng trước</p>
+                        <p >+1.22%So với cùng kỳ năm trước</p>
                     </div>*@
                 </div>
 
                 <div class="banner" style="background-color: #60A7D0;">
-                    <div class="banner_title">出院人数</div>
+                    <div class="banner_title">Số người xuất viện</div>
                     <div class="banner_data" id="cyrs">
                     </div>
                     <div  class="banner_down">
@@ -128,7 +128,7 @@
                 </div>
 
                 <div class="banner" style="background-color:#72B63F">
-                    <div class="banner_title">次均住院费用</div>
+                    <div class="banner_title">Chi phí nội trú bình quân mỗi lượt</div>
                     <div class="banner_data" id="jczyfy">
                     </div>
                     <div  class="banner_down">
@@ -143,14 +143,14 @@
         <div style="width:100%;height:30%" class="bk">
             <div style="text-align:left;">
                 <div class="panel-heading down_border">
-                    <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>科室费用分析
+                    <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>Phân tích chi phí khoa
                 </div>
                 <table id="gridJSListksfyfx"></table>
             </div>
 
         </div>
         <div class="panel-heading down_border" style="background-color:#ffffff;">
-            <i class="fa fa-pie-chart fa-lg" style="margin-right:5px;"></i>出院患者费用分析
+            <i class="fa fa-pie-chart fa-lg" style="margin-right:5px;"></i>Phân tích chi phí bệnh nhân xuất viện
         </div>
         <div style="display:flex;flex-direction:row;justify-content: space-between;width:100%;height:50%">
             <div style="width:49.8%;height:100%;margin-bottom:2px" class="bk">
@@ -166,7 +166,7 @@
     $(function () {
 
         $('#main_div').height($(window).height() - 60);
-        //默认设置时间类型为月
+        //Mặc định đặt loại thời gian là tháng
         $("#dateType").val("2");
         $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM' })");
         $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1));
@@ -186,50 +186,50 @@
         
         initEcharts();
     }
-    //改变时间类型
+    //Thay đổi loại thời gian
     function updateSjType() {
         $('#rSJ').val("");
         let dateType = $("#dateType").val();
-        if (dateType == "1") {//年
+        if (dateType == "1") {//Năm
             $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy' })");
             $('#rSJ').val(myDate.getFullYear());
         }
-        if (dateType == "2") {//月
+        if (dateType == "2") {//Tháng
             $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM' })");
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1));
         }
-        if (dateType == "3") {//日
+        if (dateType == "3") {//Ngày
             $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM-dd' })");
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1) + "-" + myDate.getDate());
         }
     }
-    //根据年月获取月天数
+    //Lấy số ngày trong tháng theo năm tháng
     function getDaysInMonth(year, month) {
         return new Date(year, month, 0).getDate();
     }
-    //组装请求参数
+    //Lắp ráp tham số yêu cầu
     function getSearchData() {
         let ksrq = '';
         let jsrq = '';
         let dateType = $("#dateType").val();
         let nowDate = $("#rSJ").val();
-        if (dateType == "1") {//年
+        if (dateType == "1") {//Năm
             ksrq = nowDate + "-" + "01-01 00:00:00";
             jsrq = nowDate + "-" + "12-31 23:59:59";
         }
-        if (dateType == "2") {//月
+        if (dateType == "2") {//Tháng
             let array = nowDate.split("-");
             ksrq = array[0] + "-" + array[1] + "-01 00:00:00";
             let days = getDaysInMonth(array[0], array[1]);
             jsrq = array[0] + "-" + array[1] + "-" + days + " 23:59:59";
         }
-        if (dateType == "3") {//日
+        if (dateType == "3") {//Ngày
             ksrq = nowDate + " 00:00:00";
             jsrq = nowDate + " 23:59:59";
         }
         return { ksrq: ksrq, jsrq: jsrq, rtype: dateType };
     }
-    //抬头
+    //Tiêu đề
     function getData() {
         $.ajax({
             type: "Post",
@@ -239,17 +239,17 @@
             success: function (ajaxresp) {
                 if ($("#dateType").val() == "2") {
                     document.getElementById('zfy').innerText = ajaxresp.zfy;
-                    document.getElementById('zfy_hb').innerText = "环比" + ajaxresp.zfy_hb;
-                    document.getElementById('zfy_tb').innerText = "同比" + ajaxresp.zfy_tb;
+                    document.getElementById('zfy_hb').innerText = "So với tháng trước" + ajaxresp.zfy_hb;
+                    document.getElementById('zfy_tb').innerText = "So với cùng kỳ năm trước" + ajaxresp.zfy_tb;
                     document.getElementById('ypf').innerText = ajaxresp.ypf;
                     document.getElementById('hcf').innerText = ajaxresp.hcf;
                     document.getElementById('zlf').innerText = ajaxresp.zlf;
                     document.getElementById('cyrs').innerText = ajaxresp.cyrs;
-                    document.getElementById('cyrs_hb').innerText = "环比" + ajaxresp.cyrs_hb;
-                    document.getElementById('cyrs_tb').innerText = "同比" + ajaxresp.cyrs_tb;
+                    document.getElementById('cyrs_hb').innerText = "So với tháng trước" + ajaxresp.cyrs_hb;
+                    document.getElementById('cyrs_tb').innerText = "So với cùng kỳ năm trước" + ajaxresp.cyrs_tb;
                     document.getElementById('jczyfy').innerText = ajaxresp.jczyfy;
-                    document.getElementById('jczyfy_hb').innerText = "环比" + ajaxresp.jczyfy_hb;
-                    document.getElementById('jczyfy_tb').innerText = "同比" + ajaxresp.jczyfy_tb;
+                    document.getElementById('jczyfy_hb').innerText = "So với tháng trước" + ajaxresp.jczyfy_hb;
+                    document.getElementById('jczyfy_tb').innerText = "So với cùng kỳ năm trước" + ajaxresp.jczyfy_tb;
                 }
                 else {
                     document.getElementById('zfy').innerText = ajaxresp.zfy;
@@ -275,20 +275,20 @@
         var $gridJsList = $("#gridJSListksfyfx");
         $gridJsList.dataGrid({
             height: 150,
-            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
-            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            autowidth: true,//Nếu shrinkToFit là true và đã đặt width Giá trị，thì chiều rộng mỗi cột sẽ dựa theo width tỷ lệ để thu phóng；
+            shrinkToFit: true, //Nếu đặt thành true，thì Grid chiều rộng sẽ tự động tính lại dựa theo chiều rộng của container cha。**
             url: "/DeanInquiryManage/InpatientCostAnalysis/ZYFYFX_KSFYFXDTO",
             postData: getSearchData(),
             colModel: [
-                { label: '住院科室', name: 'zyks',align: 'left' },
-                { label: '总住院费用（元）', name: 'zfy',align: 'left' },
-                { label: '药品费（元）', name: 'ypf',align: 'left' },
-                { label: '药品占比（%）', name: 'ypf_zb',align: 'left' },
-                { label: '耗材费（元）', name: 'hcf',align: 'left' },
-                { label: '耗材占比（%）', name: 'hcf_zb',align: 'left' },
-                { label: '检验检查费（元）', name: 'jyjcf',align: 'left' },
-                { label: '治疗费（元）', name: 'zlf',align: 'left' },
-                { label: '其他（元）', name: 'qt',align: 'left' }
+                { label: 'Khoa nội trú', name: 'zyks',align: 'left' },
+                { label: 'Tổng chi phí nội trú（ đồng）', name: 'zfy',align: 'left' },
+                { label: 'Phí thuốc（ đồng）', name: 'ypf',align: 'left' },
+                { label: 'Tỷ lệ thuốc（%）', name: 'ypf_zb',align: 'left' },
+                { label: 'Phí vật tư tiêu hao（ đồng）', name: 'hcf',align: 'left' },
+                { label: 'Tỷ lệ vật tư tiêu hao（%）', name: 'hcf_zb',align: 'left' },
+                { label: 'Phí xét nghiệm/kiểm tra（ đồng）', name: 'jyjcf',align: 'left' },
+                { label: 'Phí điều trị（ đồng）', name: 'zlf',align: 'left' },
+                { label: 'Khác（ đồng）', name: 'qt',align: 'left' }
             ],
             sortname: gridSort,
             viewrecords: true
@@ -298,14 +298,14 @@
         var $gridJsList = $("#gridJSListcyhzfyfx");
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 100,
-            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
-            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            autowidth: true,//Nếu shrinkToFit là true và đã đặt width Giá trị，thì chiều rộng mỗi cột sẽ dựa theo width tỷ lệ để thu phóng；
+            shrinkToFit: true, //Nếu đặt thành true，thì Grid chiều rộng sẽ tự động tính lại dựa theo chiều rộng của container cha。**
             url: "/DeanInquiryManage/InpatientCostAnalysis/GetCYHZFYFData",
             postData: getSearchData(),
             colModel: [
-                { label: '次均费用分类', name: 'cjfyfl', align: 'left' },
-                { label: '金额（元）', name: 'je', align: 'left' },
-                { label: '占比(%)', name: 'zb', align: 'left' }
+                { label: 'Phân loại chi phí bình quân mỗi lượt', name: 'cjfyfl', align: 'left' },
+                { label: 'Số tiền（ đồng）', name: 'je', align: 'left' },
+                { label: 'Tỷ lệ(%)', name: 'zb', align: 'left' }
             ],
             sortname: gridSort,
             viewrecords: true,
@@ -333,16 +333,16 @@
                 for (var i = 0; i < ajaxresp.length; i++) {
                     arr.push(ajaxresp[i].nf);
                 }
-                //重新组装数据，处理不能映射饼图的问题
+                //Lắp ráp lại dữ liệu，Xử lý vấn đề không thể ánh xạ biểu đồ tròn
                 let stat1 = [];
                 stat1.push(arr)
                 if (ajaxresp.length > 0) {
-                    stat1.push(['次均总费用', ajaxresp[0].次均总费用, ajaxresp[1].次均总费用, ajaxresp[2].次均总费用, ajaxresp[3].次均总费用, ajaxresp[4].次均总费用, ajaxresp[5].次均总费用, ajaxresp[6].次均总费用]);
-                    stat1.push(['次均药费', ajaxresp[0].次均药费, ajaxresp[1].次均药费, ajaxresp[2].次均药费, ajaxresp[3].次均药费, ajaxresp[4].次均药费, ajaxresp[5].次均药费, ajaxresp[6].次均药费]);
-                    stat1.push(['次均耗材费', ajaxresp[0].次均耗材费, ajaxresp[1].次均耗材费, ajaxresp[2].次均耗材费, ajaxresp[3].次均耗材费, ajaxresp[4].次均耗材费, ajaxresp[5].次均耗材费, ajaxresp[6].次均耗材费]);
-                    stat1.push(['次均检验检查费', ajaxresp[0].次均检验检查费, ajaxresp[1].次均检验检查费, ajaxresp[2].次均检验检查费, ajaxresp[3].次均检验检查费, ajaxresp[4].次均检验检查费, ajaxresp[5].次均检验检查费, ajaxresp[6].次均检验检查费]);
-                    stat1.push(['次均治疗费', ajaxresp[0].次均治疗费, ajaxresp[1].次均治疗费, ajaxresp[2].次均治疗费, ajaxresp[3].次均治疗费, ajaxresp[4].次均治疗费, ajaxresp[5].次均治疗费, ajaxresp[6].次均治疗费]);
-                    stat1.push(['次均其他费', ajaxresp[0].次均其他费, ajaxresp[1].次均其他费, ajaxresp[2].次均其他费, ajaxresp[3].次均其他费, ajaxresp[4].次均其他费, ajaxresp[5].次均其他费, ajaxresp[6].次均其他费]);
+                    stat1.push(['Tổng chi phí bình quân mỗi lượt', ajaxresp[0].次均总费用, ajaxresp[1].次均总费用, ajaxresp[2].次均总费用, ajaxresp[3].次均总费用, ajaxresp[4].次均总费用, ajaxresp[5].次均总费用, ajaxresp[6].次均总费用]);
+                    stat1.push(['Phí thuốc bình quân mỗi lượt', ajaxresp[0].次均药费, ajaxresp[1].次均药费, ajaxresp[2].次均药费, ajaxresp[3].次均药费, ajaxresp[4].次均药费, ajaxresp[5].次均药费, ajaxresp[6].次均药费]);
+                    stat1.push(['Phí vật tư tiêu hao bình quân mỗi lượt', ajaxresp[0].次均耗材费, ajaxresp[1].次均耗材费, ajaxresp[2].次均耗材费, ajaxresp[3].次均耗材费, ajaxresp[4].次均耗材费, ajaxresp[5].次均耗材费, ajaxresp[6].次均耗材费]);
+                    stat1.push(['Phí xét nghiệm/kiểm tra bình quân mỗi lượt', ajaxresp[0].次均检验检查费, ajaxresp[1].次均检验检查费, ajaxresp[2].次均检验检查费, ajaxresp[3].次均检验检查费, ajaxresp[4].次均检验检查费, ajaxresp[5].次均检验检查费, ajaxresp[6].次均检验检查费]);
+                    stat1.push(['Phí điều trị bình quân mỗi lượt', ajaxresp[0].次均治疗费, ajaxresp[1].次均治疗费, ajaxresp[2].次均治疗费, ajaxresp[3].次均治疗费, ajaxresp[4].次均治疗费, ajaxresp[5].次均治疗费, ajaxresp[6].次均治疗费]);
+                    stat1.push(['Phí khác bình quân mỗi lượt', ajaxresp[0].次均其他费, ajaxresp[1].次均其他费, ajaxresp[2].次均其他费, ajaxresp[3].次均其他费, ajaxresp[4].次均其他费, ajaxresp[5].次均其他费, ajaxresp[6].次均其他费]);
                 }
                 var myChart = echarts.init(document.getElementById('main'));
                 window.addEventListener('resize', function () {

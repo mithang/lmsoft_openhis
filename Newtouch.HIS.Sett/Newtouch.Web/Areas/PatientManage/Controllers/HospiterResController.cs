@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         {
 
             ViewBag.zyhpz = _sysConfigRepo.GetBoolValueByCode("xt_zyh", OrganizeId, true).Value ? "ON" : "OFF";
-            //是否用卡号搜索，默认OFF，即默认要用病历号搜索
+            //Có tìm kiếm bằng số thẻ hay không，Mặc định OFF，tức là mặc định phải tìm kiếm bằng số bệnh án
             ViewBag.searchpz = _sysConfigRepo.GetBoolValueByCode("register_search", OrganizeId, false).Value ? "ON" : "OFF";
             ViewBag.isDiagnosisRequired = _sysConfigRepo.GetBoolValueByCode("Inpatient_Registe_Diagnosis_Required", this.OrganizeId);
             ViewBag.CurUserCode = UserIdentity.UserCode;
@@ -110,13 +110,13 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             ViewBag.IsDefaultDepart = _sysConfigRepo.GetByCode("IsDefaultDepart", OrganizeId) == null ? "OFF" : _sysConfigRepo.GetByCode("IsDefaultDepart", OrganizeId).Value;
             ViewBag.IsDefaultDoc = _sysConfigRepo.GetByCode("IsDefaultDoc", OrganizeId) == null ? "OFF" : _sysConfigRepo.GetByCode("IsDefaultDoc", OrganizeId).Value;
             ViewBag.IsOpenSfqr = _sysConfigRepo.GetValueByCode("xt_isopen_sfqr", OrganizeId) == "ON";
-            //门诊登记完成后，跳转页面配置
+            //Sau khi hoàn thành đăng ký ngoại trú，Cấu hình trang chuyển hướng
             ViewBag.TZPZ_OutpatientRegister = _sysConfigRepo.GetByCode("TZPZ_OutpatientRegister", OrganizeId) == null ? "" : _sysConfigRepo.GetByCode("TZPZ_OutpatientRegister", OrganizeId).Value;
             return View();
         }
 
         /// <summary>
-        /// 取消挂号
+        /// Hủy đăng ký khám
         /// </summary>
         /// <returns></returns>
         public ActionResult CancelRegister()
@@ -124,7 +124,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             return View();
         }
         /// <summary>
-        /// 医保病人基本信息、账户信息
+        /// Thông tin cơ bản của bệnh nhân bảo hiểm y tế、Thông tin tài khoản
         /// </summary>
         /// <returns></returns>
         public ActionResult YbPatientBasicInfo()
@@ -133,7 +133,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
         
         /// <summary>
-        /// 医保目录下载 查询 字典
+        /// Tải xuống danh mục bảo hiểm y tế Tra cứu Từ điển
         /// </summary>
         /// <returns></returns>
         public ActionResult MedicalInsuranceCatalogue()
@@ -141,7 +141,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             return View();
         }
 
-        //加载数据
+        //Tải dữ liệu
         public ActionResult CatalogueData(Pagination pagination, string tbname, string key)
         {
             var datapan = new
@@ -219,7 +219,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
 
         #region 病人管理
         /// <summary>
-        /// 病人管理查询
+        /// Tra cứu quản lý bệnh nhân
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
@@ -262,7 +262,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             return View();
         }
         /// <summary>
-        /// 一卡通日志
+        /// Nhật ký thẻ đa năng
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="xm"></param>
@@ -302,7 +302,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 卡管理加载数据
+        /// Quản lý thẻ tải dữ liệu
         /// </summary>
         /// <param name="patId">patId</param>
         /// <returns></returns>
@@ -322,7 +322,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             {
                 return Success("相同类型不能添加多张卡");
             }
-            //验卡号重复使用
+            //Kiểm tra số thẻ dùng trùng lặp
             if (newCardEntity != null)
             {
                 throw new FailedException("卡号已存在");
@@ -352,7 +352,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         //}
 
         /// <summary>
-        /// 新建登记 保存卡号和病人基本信息
+        /// Tạo mới đăng ký Lưu số thẻ và thông tin cơ bản của bệnh nhân
         /// </summary>
         /// <param name="PatientBasicAndCardInfoVO"></param>
         /// <returns></returns>
@@ -408,7 +408,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 检验自费卡是否正常
+        /// Kiểm tra thẻ tự trả có bình thường hay không
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="zyh"></param>
@@ -421,7 +421,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         public ActionResult CheckCardState(string kh, string zyh)
         {
             var blh = "";
-            //是否用卡号搜索，默认OFF，即默认要用病历号搜索
+            //Có tìm kiếm bằng số thẻ hay không，Mặc định OFF，tức là mặc định phải tìm kiếm bằng số bệnh án
             var searchpz = _sysConfigRepo.GetBoolValueByCode("register_search", OrganizeId, false).Value ? "ON" : "OFF";
             if (searchpz == "ON" && !string.IsNullOrWhiteSpace(kh))
             {
@@ -445,7 +445,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 获取最新卡号
+        /// Lấy số thẻ mới nhất
         /// </summary>
         /// <returns></returns>
         public ActionResult GetNewCardNoAndBLH(bool khsc, bool blhsc)
@@ -465,7 +465,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 住院登记点击保存时操作
+        /// Thao tác khi nhấn lưu đăng ký nội trú
         /// </summary>
         /// <param name="vo"></param>
         /// <returns></returns>
@@ -478,7 +478,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             {
                 yssfz = _outPatientSettleDmnService.GetDepartmentDoctorIdC(OrganizeId, vo.ks, vo.doctor);
             }
-            //更新报警额
+            //Cập nhật mức cảnh báo
             if (!string.IsNullOrWhiteSpace(vo.bje.ToString())) {
                 _PatientBasicInfoDmnService.updateZybrxxkExpandBje(zyh, OrganizeId,  vo.bje);
             }
@@ -491,7 +491,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 取消入院
+        /// Hủy nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -507,7 +507,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             }
             //if (_PatientBasicInfoDmnService.BoolRuQu(zyh, this.OrganizeId))
             //{
-            //    throw new FailedException("该病人已在病区中，不能取消入院！");
+            //    throw new FailedException("Bệnh nhân này đã ở trong khu bệnh，Không thể hủy nhập viện！");
             //}
             _PatientBasicInfoDmnService.CancelAdmission(zyh, this.OrganizeId);
             return Success("取消入院成功！");
@@ -524,12 +524,12 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
 		    }
             //if (_PatientBasicInfoDmnService.BoolRuQu(zyh, this.OrganizeId))
             //{
-            //    throw new FailedException("该病人已在病区中，不能取消入院！");
+            //    throw new FailedException("Bệnh nhân này đã ở trong khu bệnh，Không thể hủy nhập viện！");
             //}
             return Success("取消入院成功！");
 	    }
 		/// <summary>
-		/// 根据patid获取住院信息
+		/// Theo patid Lấy thông tin nội trú
 		/// </summary>
 		/// <param name="patid"></param>
 		/// <returns></returns>
@@ -553,7 +553,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         #region 打印
 
         /// <summary>
-        /// 住院基本信息打印
+        /// In thông tin cơ bản nội trú
         /// </summary>
         /// <param name="print"></param>
         /// <returns></returns>
@@ -647,7 +647,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 打印腕带
+        /// In vòng đeo tay
         /// </summary>
         /// <param name="print"></param>
         /// <returns></returns>
@@ -696,7 +696,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 病人查询浮层
+        /// Lớp nổi tra cứu bệnh nhân
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -711,7 +711,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             return Content(list.ToJson());
         }
         /// <summary>
-        /// 门诊住院预交金患者浮层
+        /// Lớp nổi bệnh nhân tạm ứng ngoại trú/nội trú
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -727,7 +727,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 判断是否重复挂号
+        /// Xác định có đăng ký khám trùng lặp hay không
         /// </summary>
         /// <param name="patid"></param>
         /// <returns></returns>
@@ -744,12 +744,12 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
 
         }
         /// <summary>
-        /// 根据病历号 或 卡号 查询病人基本信息
+        /// Theo số bệnh án hoặc Số thẻ Tra cứu thông tin cơ bản của bệnh nhân
         /// </summary>
-        /// <param name="blh">病历号</param>
-        /// <param name="kh">卡号</param>
+        /// <param name="blh">Số bệnh án</param>
+        /// <param name="kh">Số thẻ</param>
         /// <param name="zjh"></param>
-        /// <param name="cardType">卡类型</param>
+        /// <param name="cardType">Loại thẻ</param>
         /// <returns></returns>
         public ActionResult GetOutpatientBasicInfo(string blh, string kh, string zjh, string cardType, string CardId, string ly=null)
         {
@@ -760,7 +760,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         public ActionResult valiPatZjh(string zjh)
         {
             //var patChargeInfo = _outPatChargeApp.GetOutPatBasicInfoInRegister(blh, kh, zjh, cardType, ly, CardId);
-            //return Success("提交成功", patChargeInfo);
+            //return Success("Gửi thành công", patChargeInfo);
             return null;
         }
 
@@ -804,7 +804,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 根据身份证号判断是否初诊
+        /// Xác định có phải khám lần đầu hay không theo số CMND
         /// </summary>
         /// <param name="sfzh"></param>
         /// <returns></returns>
@@ -819,9 +819,9 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 根据个人编码获取患者基本信息
+        /// Lấy thông tin cơ bản của bệnh nhân theo mã cá nhân
         /// </summary>
-        /// <param name="xnhgrbm">新农合个人编码</param>
+        /// <param name="xnhgrbm">Mã cá nhân bảo hiểm y tế nông thôn mới</param>
         /// <returns></returns>
         //public ActionResult GetPatientBasicInfo(string xnhgrbm)
         //{
@@ -832,7 +832,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         //}
 
         /// <summary>
-        /// 获取卡号信息
+        /// Lấy thông tin số thẻ
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="brxz"></param>
@@ -850,11 +850,11 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             }
             switch (brxz)
             {
-                //医保
+                //Bảo hiểm y tế
                 case "1":
                     cardtype = ((int)EnumCardType.YBJYK).ToString();
                     break;
-                //新农合
+                //Bảo hiểm y tế nông thôn mới
                 case "8":
                     cardtype = ((int)EnumCardType.XNHJYK).ToString();
                     break;
@@ -868,7 +868,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             return Success("", khentity);
         }
         /// <summary>
-        /// 新农合S04 入院办理
+        /// Bảo hiểm y tế nông thôn mới S04 Làm thủ tục nhập viện
         /// </summary>
         /// <param name="VO"></param>
         /// <returns></returns>
@@ -966,7 +966,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             {
                 if (_sysConfigRepo.GetBoolValueByCode("HOSP_INTERFACE_WITH_CPOE",this.OrganizeId) == true)
                 {
-                    //仅新入院可以取消入院登记
+                    //Chỉ nhập viện mới có thể hủy đăng ký nhập viện
                     if (!(patinfo.zybz == ((int)EnumZYBZ.Xry).ToString()))
                     {
                         if (patinfo.zybz == ((int)EnumZYBZ.Bqz).ToString())
@@ -1009,7 +1009,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 新农合S06 入院办理信息修改
+        /// Bảo hiểm y tế nông thôn mới S06 Sửa thông tin làm thủ tục nhập viện
         /// </summary>
         /// <param name="VO"></param>
         /// <returns></returns>
@@ -1043,7 +1043,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 验证新农合接口对照
+        /// Kiểm tra đối chiếu giao diện bảo hiểm y tế nông thôn mới
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
@@ -1081,7 +1081,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
 
         #region 病人性质
         /// <summary>
-        /// 根据险种类型获取病人性质
+        /// Lấy tính chất bệnh nhân theo loại hình bảo hiểm
         /// </summary>
         /// <param name="xzlx"></param>
         /// <returns></returns>

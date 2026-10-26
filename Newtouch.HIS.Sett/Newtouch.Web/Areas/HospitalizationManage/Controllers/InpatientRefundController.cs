@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 查询
+        /// Tra cứu
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             }
             var dto = _inpatientRefundApp.InpatientRefundQuery(zyh, kssj, jssj, ks, xmlb, xmmc);
             var ztlist = dto.InpatientSettleItemBO.TreatmentItemList.Where(p => p.ztbh != null).ToList();
-            //收费组套数据处理
+            //Xử lý dữ liệu gói thu phí
             if (ztlist.Count()>0)
             {
                 ztlist = ztlist.GroupBy(m => new { m.isYP, m.sfmbmc, m.tdrq, m.ztbh, m.ztsl,m.ztylsl, m.dcztbs }).Select(p =>
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             return Success("", dto);
         }
         /// <summary>
-        ///保存退费
+        ///Lưu hoàn phí
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -110,9 +110,9 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                 throw new FailedException("缺少退费明细");
             }
             var list = Tools.Json.ToList<InpatientRefundJsonVO>(data);
-            //项目计费表
+            //Bảng tính phí khoản mục
             List<HospItemBillingEntity> xmjfbEntitylist = new List<HospItemBillingEntity>();
-            //药品计费表
+            //Bảng tính phí thuốc
             List<HospDrugBillingEntity> ypjfbEntitylist = new List<HospDrugBillingEntity>();
             foreach (var item in list)
             {
@@ -120,7 +120,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                 {
                     throw new FailedCodeException("HOSP_BILLING ITEMS_BILLING DRUGS_DISTINGUISH_BETWEEN_FAILURE");
                 }
-                //是否是非治疗项目 0：非 1：是
+                //Có phải là khoản mục không điều trị hay không 0：Không 1：Có
                 if (item.isYp == "1")
                 {
                     if (string.IsNullOrEmpty(item.jfbbh))
@@ -166,14 +166,14 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                     
                 }
             }
-            //保存
+            //Lưu
             string result =_inpatientRefundDmnService.SaveRefund(xmjfbEntitylist, ypjfbEntitylist, zyh, orgId);
             if (string.IsNullOrWhiteSpace(result))
             {
                 if (_hospdrugbillingRepo.getHckcWith(this.OrganizeId) > 0) {
-                    //退还扣减耗材库存
-                    var hclist = xmjfbEntitylist.Where(m => m.yzwym == null && m.sfxm.Contains("wz")).ToList();//住院记账所开耗材
-                    var yszhclist = xmjfbEntitylist.Where(m => m.yzwym != null && m.sfxm.Contains("wz")).ToList();//医生站开立耗材
+                    //Trả lại và trừ tồn kho vật tư tiêu hao
+                    var hclist = xmjfbEntitylist.Where(m => m.yzwym == null && m.sfxm.Contains("wz")).ToList();//Vật tư tiêu hao kê trong ghi sổ nội trú
+                    var yszhclist = xmjfbEntitylist.Where(m => m.yzwym != null && m.sfxm.Contains("wz")).ToList();//Vật tư tiêu hao kê tại trạm bác sĩ
                     if (hclist.Count > 0)
                     {
                         string jfbhString = string.Join(",", xmjfbEntitylist.Where(m => m.sfxm.Contains("wz")).Select(p => p.cxzyjfbbh));
@@ -182,7 +182,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                     if (yszhclist.Count > 0)
                         _hospdrugbillingRepo.Updatezyyz_wzkcReturn(yszhclist, this.OrganizeId, this.UserIdentity.UserCode);
                 }
-                //更新cis住院患者预览右侧费用卡片信息
+                //Cập nhật cis Thông tin thẻ chi phí phía phải xem trước bệnh nhân nội trú
                 _hospdrugbillingRepo.Updatezy_brxxexpand(this.OrganizeId, zyh);
             }else
                 throw new FailedException(result);

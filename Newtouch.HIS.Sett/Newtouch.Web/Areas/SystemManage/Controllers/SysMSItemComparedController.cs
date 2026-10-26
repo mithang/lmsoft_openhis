@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取grid的值
+        /// Lấy grid giá trị của
         /// </summary>
         /// <returns></returns>
         public ActionResult GetdzGridJson(string keyword)
@@ -51,7 +51,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 收费项目下拉框
+        /// Hộp thả xuống khoản mục thu phí
         /// </summary>
         /// <returns></returns>
         [Obsolete("please use SysChargeItemController.GetChargeItemSelectData(string keyword)")]
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 科室下拉框
+        /// Hộp thả xuống khoa
         /// </summary>
         /// <returns></returns>
         public ActionResult GetksSelect()
@@ -80,7 +80,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 修改信息时，把信息带到新页面
+        /// Khi sửa thông tin，Mang thông tin sang trang mới
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

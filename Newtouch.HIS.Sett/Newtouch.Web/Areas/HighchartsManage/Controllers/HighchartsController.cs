@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
         #region Samples
         #region 折线图
         /// <summary>
-        /// 折线图
+        /// Biểu đồ đường gấp khúc
         /// </summary>
         /// <returns></returns>
         public ActionResult Sample1()
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
         #region 曲线图
         /// <summary>
-        /// 曲线图
+        /// Biểu đồ đường cong
         /// </summary>
         /// <returns></returns>
         public ActionResult Sample2()
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
         #region 面积图
         /// <summary>
-        /// 面积图
+        /// Biểu đồ diện tích
         /// </summary>
         /// <returns></returns>
         public ActionResult Sample3()
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
         #region 条形图
         /// <summary>
-        /// 条形图
+        /// Biểu đồ thanh ngang
         /// </summary>
         /// <returns></returns>
         public ActionResult Sample4()
@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
         #region 柱状图
         /// <summary>
-        /// 柱状图
+        /// Biểu đồ cột
         /// </summary>
         /// <returns></returns>
         public ActionResult Sample5()
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
         #region 饼图
         /// <summary>
-        /// 饼图
+        /// Biểu đồ tròn
         /// </summary>
         /// <returns></returns>
         public ActionResult Sample6()
@@ -80,7 +80,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
         #region 散点图
         /// <summary>
-        /// 散点图
+        /// Biểu đồ phân tán
         /// </summary>
         /// <returns></returns>
         public ActionResult Sample7()
@@ -91,7 +91,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
         #region 气泡图
         /// <summary>
-        /// 气泡图
+        /// Biểu đồ bong bóng
         /// </summary>
         /// <returns></returns>
         public ActionResult Sample8()
@@ -102,7 +102,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
         #region 模拟时钟
         /// <summary>
-        /// 模拟时钟
+        /// Đồng hồ mô phỏng
         /// </summary>
         /// <returns></returns>
         public ActionResult Sample9()
@@ -113,7 +113,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
         #region 仪表盘1
         /// <summary>
-        /// 仪表盘1
+        /// Bảng đồng hồ 1
         /// </summary>
         /// <returns></returns>
         public ActionResult Sample10()
@@ -124,7 +124,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
         #region 雷达图
         /// <summary>
-        /// 雷达图
+        /// Biểu đồ radar
         /// </summary>
         /// <returns></returns>
         public ActionResult Sample11()
@@ -135,7 +135,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
         #region 蛛网图
         /// <summary>
-        /// 蛛网图
+        /// Biểu đồ mạng nhện
         /// </summary>
         /// <returns></returns>
         public ActionResult Sample12()
@@ -146,7 +146,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
         #region 玫瑰图
         /// <summary>
-        /// 玫瑰图
+        /// Biểu đồ hoa hồng
         /// </summary>
         /// <returns></returns>
         public ActionResult Sample13()
@@ -157,7 +157,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
         #region 漏斗图
         /// <summary>
-        /// 漏斗图
+        /// Biểu đồ phễu
         /// </summary>
         /// <returns></returns>
         public ActionResult Sample14()
@@ -168,7 +168,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
         #region 蜡烛图
         /// <summary>
-        /// 蜡烛图
+        /// Biểu đồ nến
         /// </summary>
         /// <returns></returns>
         public ActionResult Sample15()
@@ -179,7 +179,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
         #region 流程图
         /// <summary>
-        /// 流程图
+        /// Sơ đồ quy trình
         /// </summary>
         /// <returns></returns>
         public ActionResult Sample16()

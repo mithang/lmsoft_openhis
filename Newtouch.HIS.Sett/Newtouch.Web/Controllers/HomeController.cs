@@ -49,17 +49,17 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="opr"></param>
         public override void SwithOrgSuccessOprBeforeSave(OperatorModel opr)
         {
-            //更新用户药房部分
+            //Cập nhật phần nhà thuốc của người dùng
             if (ConfigurationHelper.GetAppConfigBoolValue("Is_UserYfbmRelated") == true && opr.OrganizeId != null)
             {
-                //当前要操作的药房部门
+                //Khoa dược cần thao tác hiện tại
                 if (!string.IsNullOrWhiteSpace(opr.UserId) && !string.IsNullOrWhiteSpace(opr.OrganizeId))
                 {
                     opr.yfbmCodeList = _sysUserDmnService.GetYfbmCodeListByUserId(opr.UserId, opr.OrganizeId);
                 }
                 if (opr.yfbmCodeList != null && opr.yfbmCodeList.Count > 0)
                 {
-                    //当前要操作的药房部门    //在OrgId关联了多个yfbm怎么办
+                    //Khoa dược cần thao tác hiện tại    //Tại OrgId Đã liên kết nhiều yfbm Phải làm sao
                     var curYfbmCode = opr.yfbmCodeList.FirstOrDefault();
                     Constants.SetCurrentYfbm(opr.UserId, new LoginUserCurrentYfbmModel()
                     {
@@ -70,11 +70,11 @@ namespace Newtouch.HIS.Web.Controllers
                 }
                 else
                 {
-                    Constants.SetCurrentYfbm(opr.UserId, null);  //移除
+                    Constants.SetCurrentYfbm(opr.UserId, null);  //Loại bỏ
                 }
             }
 
-            //切换药房部门
+            //Chuyển khoa dược
             WebHelper.WriteCookie(Constants.AppId + "_" + "CookieKey_IsHospAdministrator", opr.IsHospAdministrator.ToString().ToLower());
 
             LoginController.UALoginPre(opr);
@@ -102,7 +102,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取就诊人数（门诊记账、住院记账）
+        /// Lấy số người khám bệnh（Ghi sổ ngoại trú、Ghi sổ nội trú）
         /// </summary>
         public ActionResult GetVisitNum()
         {
@@ -155,15 +155,15 @@ namespace Newtouch.HIS.Web.Controllers
         }
         
         /**
-         * 同步系统参数配置
+         * Đồng bộ cấu hình tham số hệ thống
          */ 
         public ActionResult SyncSysConfigParams(string orgId)
         {
-            //基础数据
+            //Dữ liệu cơ bản
             var sysConfigBaseEntities = _sysConfigRepo.GetList("", "*").ToList();
-            //组织机构自带数据
+            //Dữ liệu sẵn có của tổ chức
             var sysConfigEntities = _sysConfigRepo.GetList("", orgId).ToList();
-            //根据code 去重
+            //Theo code Loại bỏ trùng lặp
             var sysConfigCodes = new HashSet<string>(sysConfigEntities.Select(entity => entity.Code));
             var filteredEntities = sysConfigBaseEntities
                 .Where(baseEntity => !sysConfigCodes.Contains(baseEntity.Code))

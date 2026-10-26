@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 退费查询时预览病人信息
+        /// Xem trước thông tin bệnh nhân khi tra cứu hoàn phí
         /// </summary>
         /// <returns></returns>
         public ActionResult SysPatEntitiesReView(string from = "")
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         #endregion
 
         /// <summary>
-        /// 分页数据加载
+        /// Tải dữ liệu phân trang
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
@@ -87,7 +87,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 查询结算信息
+        /// Tra cứu thông tin quyết toán
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="startTime"></param>
@@ -100,9 +100,9 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 按结算内码查门诊项目
+        /// Tra cứu khoản mục ngoại trú theo mã nội bộ quyết toán
         /// </summary>
-        /// <param name="jsnm">结算内码</param>
+        /// <param name="jsnm">Mã nội bộ quyết toán</param>
         /// <returns></returns>
         public ActionResult GetGridViewMxByJsnm(int jsnm)
         {
@@ -111,7 +111,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 退费
+        /// Hoàn phí
         /// </summary>
         public ActionResult btnReturn(string blh, int jsnm, string refundData)
         {
@@ -137,7 +137,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 门诊退费 主记录 Query
+        /// Hoàn phí ngoại trú Bản ghi chính Query
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>
@@ -165,7 +165,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 门诊退费 Query
+        /// Hoàn phí ngoại trú Query
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>
@@ -188,7 +188,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             }
             if (flag)
             {
-                //收费项目组套合并
+                //Gộp gói khoản mục thu phí
                 if (ztlist.Count() > 0)
                 {
                     ztlist = list.Where(p => p.ztId != null && p.ztId != "").ToList()
@@ -239,7 +239,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 门诊退费确认页
+        /// Trang xác nhận hoàn phí ngoại trú
         /// </summary>
         /// <returns></returns>
         public ActionResult DetailConfirmForm()
@@ -251,12 +251,12 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 退费提交 持久化操作
+        /// Gửi hoàn phí Thao tác lưu trữ bền vững
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="tjsxmDict"></param>
         /// <param name="expectedTmxZje"></param>
-        /// <param name="newfph">新结算发票号</param>
+        /// <param name="newfph">Số hóa đơn quyết toán mới</param>
         /// <returns></returns>
         public ActionResult RefundSettlement(string mzh, int jsnm
             , Dictionary<string, decimal> tjsxmDict, decimal expectedTmxZje
@@ -270,7 +270,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 20181120 计划退费全停
+        /// 20181120 Hoàn phí theo kế hoạch dừng toàn bộ
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
@@ -281,7 +281,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 视图-选择结算
+        /// View-Chọn quyết toán
         /// </summary>
         /// <returns></returns>
         public ActionResult QueJsList2018()
@@ -294,11 +294,11 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         #region
 
         /// <summary>
-        /// 退费流程.新的未结明细上传
+        /// Quy trình hoàn phí.Tải lên chi tiết chưa quyết toán mới
         /// </summary>
         /// <param name="oldjsnm"></param>
         /// <param name="tjsxmDict"></param>
-        /// <param name="newwjybjsh">新的未结医保结算号</param>
+        /// <param name="newwjybjsh">Mã quyết toán bảo hiểm y tế chưa kết mới</param>
         /// <returns></returns>
         public ActionResult DetailsUploadYb(int oldjsnm
             , Dictionary<string, decimal> tjsxmDict, string newwjybjsh)
@@ -316,15 +316,15 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 医保 退费提交 持久化操作
+        /// Bảo hiểm y tế Gửi hoàn phí Thao tác lưu trữ bền vững
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="tjsxmDict"></param>
         /// <param name="expectedTmxZje"></param>
         /// <param name="hcybjsh"></param>
         /// <param name="newwjybjsh"></param>
-        /// <param name="hcybfeeRelated">红冲结算 的 结算医保金额相关</param>
-        /// <param name="newybfeeRelated">新的结算（非全退） 的 结算医保金额相关</param>
+        /// <param name="hcybfeeRelated">Quyết toán đảo ngược của Liên quan đến số tiền quyết toán bảo hiểm y tế</param>
+        /// <param name="newybfeeRelated">Quyết toán mới（Không hoàn toàn bộ） của Liên quan đến số tiền quyết toán bảo hiểm y tế</param>
         /// <returns></returns>
         public ActionResult YbRefundSettlement(string mzh, int jsnm
             , Dictionary<string, decimal> tjsxmDict, decimal expectedTmxZje, string hcybjsh, string newwjybjsh
@@ -345,12 +345,12 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         #region 新农合退费
 
         /// <summary>
-        /// 新农合退费
+        /// Hoàn phí bảo hiểm y tế nông thôn mới
         /// </summary>
         /// <param name="jsnm"></param>
-        /// <param name="tjsxmDict">退结算明细</param>
+        /// <param name="tjsxmDict">Chi tiết hoàn quyết toán</param>
         /// <param name="mzh"></param>
-        /// <param name="outpId">门诊补偿序号</param>
+        /// <param name="outpId">Số thứ tự bồi thường ngoại trú</param>
         /// <returns></returns>
         public ActionResult XnhTuiFei(string jsnm, Dictionary<string, decimal> tjsxmDict, string mzh, string outpId)
         {
@@ -364,7 +364,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         #region private methods
 
         /// <summary>
-        /// （已收费未发药）已收费未发药状态 处方变更告知事件
+        /// （Đã thu phí chưa phát thuốc）Trạng thái đã thu phí chưa phát thuốc Sự kiện thông báo thay đổi đơn thuốc
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="refundDict">jsmx tsl</param>
@@ -376,7 +376,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
                 if (ypCfhList.Count <= 0) return;
                 var orgId = this.OrganizeId;
                 var operatorCode = this.UserIdentity.UserCode;
-                //获取token
+                //Lấy token
                 var token = SitePDSAPIHelper.GetToken();
                 var obj = ypCfhList.Select(p => new
                 {
@@ -396,7 +396,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// （已收费未发药）药品处方变更通知PDS
+        /// （Đã thu phí chưa phát thuốc）Thông báo thay đổi đơn thuốc PDS
         /// </summary>
         /// <param name="tmxList"></param>
         /// <param name="orgId"></param>
@@ -421,7 +421,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// HIS退费（医保、非医保公用）
+        /// HIS Hoàn phí（Bảo hiểm y tế、Dùng chung ngoài bảo hiểm y tế）
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="jsnm"></param>
@@ -457,7 +457,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
                 {
                     foreach (var m in tmzxmlist)
                     {
-                        if (items.Key == m.ztId) //还需加cfnm 多个处方可能有相同组套
+                        if (items.Key == m.ztId) //Còn cần thêm cfnm Nhiều đơn thuốc có thể có cùng gói
                         {
                             newDict.Add(m.jsmxnm, Math.Round(items.Value * m.sl, 2, MidpointRounding.AwayFromZero));
                         }
@@ -477,11 +477,11 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             }
 
             bool? isTradeRefundError = null;
-            if (!string.IsNullOrWhiteSpace(outTradeNo) && refundAmount > 0)   //需要原路退回
+            if (!string.IsNullOrWhiteSpace(outTradeNo) && refundAmount > 0)   //Cần hoàn trả theo đường cũ
             {
                 string errorMsg;
                 var refundReuslt = _payApp.TradeRefund(outTradeNo, refundAmount, "门诊退费", "", out errorMsg);
-                isTradeRefundError = refundReuslt == (int)EnumRefundStatus.Failed || refundReuslt == (int)EnumRefundStatus.UnKnown;    //失败 或 未知
+                isTradeRefundError = refundReuslt == (int)EnumRefundStatus.Failed || refundReuslt == (int)EnumRefundStatus.UnKnown;    //Thất bại hoặc Không xác định
             }
 
             var msg = "退费成功"; 
@@ -493,7 +493,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
 
         /// <summary>
-        /// 更新CIS退标志和退还药房冻结库存
+        /// Cập nhật CIS Cờ trả lại và trả lại tồn kho đóng băng của nhà thuốc
         /// </summary>
         /// <param name="tcfh"></param>
         public void UpdateChargeTbz(List<string> tcfh, List<string> typcfh)
@@ -502,7 +502,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             {
                 foreach (var cfh in typcfh)
                 {
-                    //接口内容
+                    //Nội dung giao diện
                     var cancalreqObj = new
                     {
                         cfh = cfh,
@@ -542,7 +542,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 退费（贵安）
+        /// Hoàn phí（Quý An）
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="jsnm"></param>
@@ -593,11 +593,11 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             }
 
             bool? isTradeRefundError = null;
-            if (!string.IsNullOrWhiteSpace(outTradeNo) && refundAmount > 0)   //需要原路退回
+            if (!string.IsNullOrWhiteSpace(outTradeNo) && refundAmount > 0)   //Cần hoàn trả theo đường cũ
             {
                 string errorMsg;
                 var refundReuslt = _payApp.TradeRefund(outTradeNo, refundAmount, "门诊退费", "", out errorMsg);
-                isTradeRefundError = refundReuslt == (int)EnumRefundStatus.Failed || refundReuslt == (int)EnumRefundStatus.UnKnown;    //失败 或 未知
+                isTradeRefundError = refundReuslt == (int)EnumRefundStatus.Failed || refundReuslt == (int)EnumRefundStatus.UnKnown;    //Thất bại hoặc Không xác định
             }
 
             var msg = "退费成功";
@@ -659,9 +659,9 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
                     request.Method = "POST";
 
                     request.ContentType = "application/json";
-                    request.CookieContainer = null;//获取验证码时候获取到的cookie会附加在这个容器里面
+                    request.CookieContainer = null;//Lấy được khi lấy mã xác minh cookie Sẽ được gắn thêm vào container này
                     request.AllowAutoRedirect = true;
-                    request.KeepAlive = true;//建立持久性连接
+                    request.KeepAlive = true;//Thiết lập kết nối bền vững
                     request.Host = "192.168.0.101";
                     request.UserAgent = "PostmanRuntime/7.29.2";
                     request.Accept = "*/*";
@@ -685,7 +685,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
                     }
                     else if (apiresp != null && apiresp.status == "Success")
                     {
-                        //pacs申请单退成功后改变mz_cf表sqdzt为4 取消
+                        //pacs Sau khi đơn đăng ký trả thành công thì thay đổi mz_cf bảng sqdzt là 4 Hủy
                         _outPatientUniversalDmnService.pushApplicationformRef(data.Patient.CardID, this.OrganizeId, 4);
                     }
 

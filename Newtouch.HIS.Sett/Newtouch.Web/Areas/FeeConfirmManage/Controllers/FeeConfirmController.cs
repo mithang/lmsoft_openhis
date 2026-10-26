@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Web.Areas.FeeConfirmManage.Controllers
     {
         // GET: FeeConfirmManage/FeeConfirm
         /// <summary>
-        /// 收费确认
+        /// Xác nhận thu phí
         /// </summary>
         /// <returns></returns>
         public ActionResult Index()
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Web.Areas.FeeConfirmManage.Controllers
         }
 
         /// <summary>
-        /// 处方退费
+        /// Hoàn phí đơn thuốc
         /// </summary>
         /// <returns></returns>
         public ActionResult Refund()
@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Web.Areas.FeeConfirmManage.Controllers
         }
 
         /// <summary>
-        /// 处方列表页面
+        /// Trang danh sách đơn thuốc
         /// </summary>
         /// <returns></returns>
         public ActionResult PrescriptionForm()

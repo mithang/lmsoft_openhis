@@ -1,32 +1,32 @@
 ﻿@{
     ViewBag.Title = "ConfirmForm";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //住院结算可以用预交金
+    //Quyết toán nội trú có thể dùng tạm ứng
     var withYjj = SysConfigReader.Bool("InpatientSettWithAdvanceAccount");
     //
     var relatedFPH = SysConfigReader.Bool("Inpatient_SettPage_RelatedFPH");
-    //有与CPOE互通接口
+    //có và CPOE Giao diện liên thông
     var interfaceWithCPOE = SysConfigReader.Bool("HOSP_INTERFACE_WITH_CPOE", false).Value;
 }
 
 <div class="panel panel-default" style="margin-top:10px;width:560px;margin-left:10px">
     <div class="panel-heading navb-bg" style="height:13px;">
-        收费信息
+        Thông tin thu phí
     </div>
     <div style="height:auto;">
         <table class="form">
             <tr>
-                <th class="formTitle">住院号：</th>
+                <th class="formTitle">Số nhập viện：</th>
                 <td class="formValue">
                     <label id="lblZyh"></label>
                 </td>
                 @if (relatedFPH == true)
                 {
-                    <th class="formTitle"><span style="color:red">*</span>发票号：</th>
+                    <th class="formTitle"><span style="color:red">*</span>Số hóa đơn：</th>
                     <td class="formValue">
                         <label id="txtfph"></label>
                         <div style="position:absolute;top:5px;right:20px;">
-                            <input type="button" class="btn btn-default btn-md" style="margin-left:6px;" value="选发票号" onclick="ShowInvoicePanel()" />
+                            <input type="button" class="btn btn-default btn-md" style="margin-left:6px;" value="Chọn số hóa đơn" onclick="ShowInvoicePanel()" />
                         </div>
                     </td>
                 }
@@ -37,62 +37,62 @@
                 }
             </tr>
             <tr>
-                <th class="formTitle">入院日期：</th>
+                <th class="formTitle">Ngày nhập viện：</th>
                 <td class="formValue">
                     <label id="lblRyrq"></label>
                 </td>
-                <th class="formTitle"><span style="color:red">*</span>出院日期：</th>
+                <th class="formTitle"><span style="color:red">*</span>Ngày xuất viện：</th>
                 <td class="formValue">
                     <input id="cyrq" type="text" class="form-control  form-an input-wdatepicker" style="float: left; margin-left: 5px; width:90%" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">应收款：</th>
+                <th class="formTitle">Khoản phải thu：</th>
                 <td class="formValue">
                     ￥<label id="yingshoukuan"></label>
                 </td>
             </tr>
             <tr id="trYjjzf" style="display:none;">
-                <th class="formTitle">预交金余额：</th>
+                <th class="formTitle">Số dư tạm ứng：</th>
                 <td class="formValue">
                     ￥<label id="yjjye"></label>
                 </td>
                 <td class="formValue">
                     <div class="ckbox">
-                        <input id="ckyjjzfyeqt" type="checkbox"><label for="ckyjjzfyeqt">余额全退</label>
+                        <input id="ckyjjzfyeqt" type="checkbox"><label for="ckyjjzfyeqt">Hoàn toàn bộ số dư</label>
                     </div>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">支付方式：</th>
+                <th class="formTitle">Phương thức thanh toán：</th>
                 <td class="formValue">
                     <select id="zffs1" class="form-control  form-an" style="width:90%">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
-                <th class="formTitle">收款：</th>
+                <th class="formTitle">Thu tiền：</th>
                 <td class="formValue">
                     <input type="text" id="zfje1" class="form-control form-an" style="width:90%" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">支付方式：</th>
+                <th class="formTitle">Phương thức thanh toán：</th>
                 <td class="formValue">
                     <select id="zffs2" class="form-control form-an" style="width:90%">
-                        <option value="">==可选择==</option>
+                        <option value="">==Có thể chọn==</option>
                     </select>
                 </td>
-                <th class="formTitle">收款：</th>
+                <th class="formTitle">Thu tiền：</th>
                 <td class="formValue">
                     <input type="text" id="zfje2" class="form-control form-an" style="width:90%" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">合计实收款：</th>
+                <th class="formTitle">Tổng số tiền thực thu：</th>
                 <td class="formValue">￥<label id="hjssk">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">找零：</th>
+                <th class="formTitle">Tiền thừa：</th>
                 <td class="formValue">￥<label id="zhaoling">0.00</label></td>
             </tr>
         </table>
@@ -104,18 +104,18 @@
     var ryrq = $.request("ryrq");
     var cyrq = $.request("cyrq");
     if (!!cyrq) {
-        cyrq = $.getDate({ date: cyrq });   //格式化
+        cyrq = $.getDate({ date: cyrq });   //Định dạng
     }
     var interfaceWithCPOE = '@(interfaceWithCPOE)';
-    //预交金余额
+    //Số dư tạm ứng
     var yjjye = 0;
     var withYjj = '@(withYjj)';
-    //结算总金额
+    //Tổng số tiền quyết toán
     var zje = parseFloat($.request("zje"));
-    //支付应收 结算时应收（zje = 可报 + 结算时应收 + 等等）
+    //Thanh toán khoản phải thu Khoản phải thu khi quyết toán（zje = Có thể thanh toán + Khoản phải thu khi quyết toán + v.v.）
     var orglxjzfys = parseFloat($.request("xjzfys"));
-    //有折扣时不等 original
-    var xjzfys = orglxjzfys;    //有折扣时会不等
+    //Khi có chiết khấu thì không bằng original
+    var xjzfys = orglxjzfys;    //Khi có chiết khấu sẽ không bằng
 
     $(function () {
         if (!!zyh) {
@@ -131,7 +131,7 @@
             }
         }
         else {
-            //否则默认赋值当天
+            //Ngược lại mặc định gán ngày hiện tại
             $('#cyrq').val($.getDate());
         }
 
@@ -161,13 +161,13 @@
             $('#yjjye').html(parseFloat(yjjye).toFixed(2));
         }
 
-        //现金支付方式1
+        //Phương thức thanh toán tiền mặt 1
         $("#zffs1").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
                 $.each(top.clients.SysForCashPayList, function (key, value) {
                     if (!yjjye && value.xjzffs == '3') {
-                        return; //当前账户无预交金余额，则不显示该支付方式
+                        return; //Tài khoản hiện tại không có số dư tạm ứng，thì không hiển thị phương thức thanh toán này
                     }
                     var sele = false;
                     if (!!yjjye && yjjye >= xjzfys) {
@@ -189,13 +189,13 @@
             }
         });
 
-        //现金支付方式2
+        //Phương thức thanh toán tiền mặt 2
         $("#zffs2").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
                 $.each(top.clients.SysForCashPayList, function (key, value) {
                     if (value.xjzffs == '3') {
-                        return; //不显示该支付方式
+                        return; //Không hiển thị phương thức thanh toán này
                     }
                     $('#zffs2').append('<option value="' + value.xjzffs + '">' + value.xjzffsmc + '</option>');
                 });
@@ -205,7 +205,7 @@
 
         $("#ckyjjzfyeqt").click(function () {
             if ($('#ckyjjzfyeqt').is(':checked')) {
-                //预交金支付方式，‘余额全退’
+                //Phương thức thanh toán tạm ứng，‘Hoàn toàn bộ số dư’
                 if (!!yjjye && yjjye >= xjzfys) {
                     //
                     $("#zffs1").val('3').trigger('change');
@@ -222,7 +222,7 @@
     });
 
     function AcceptClick(callBack) {
-        //填写的收费日期 等
+        //Ngày thu phí đã điền v.v.
         var obj = getPostData();
         if (obj) {
             $.najax({
@@ -232,7 +232,7 @@
                 type: "POST",
                 success: function (data) {
                     callBack();
-                    $.modalAlert("保存成功", 'success');
+                    $.modalAlert("Lưu thành công", 'success');
                     $.modalClose();
                 }
             });
@@ -241,20 +241,20 @@
 
     function getPostData() {
         if (ryrq == "" || !ryrq) {
-            $.modalAlert('缺少入院日期', 'warning');
+            $.modalAlert('Thiếu ngày nhập viện', 'warning');
             return false;
         }
         var cyrq = $('#cyrq').val();
         if (cyrq == "" || !cyrq) {
-            $.modalAlert('缺少出院日期', 'warning');
+            $.modalAlert('Thiếu ngày xuất viện', 'warning');
             return false;
         }
         if (cyrq < ryrq) {
-            $.modalAlert("出院日期小于入院日期,请确认。", 'warning');
+            $.modalAlert("Ngày xuất viện nhỏ hơn ngày nhập viện,Vui lòng xác nhận。", 'warning');
             return;
         }
         if ($.getDate() < cyrq) {
-            $.modalAlert('出院日期错误', 'warning');
+            $.modalAlert('Ngày xuất viện sai', 'warning');
             return false;
         }
         var fph = $('#txtfph').html();
@@ -264,7 +264,7 @@
         zfje1 = (!!zffs1 || zffs1 == '0') && !!parseFloat(zfje1) ? parseFloat(zfje1) : 0;
         if (zffs1 == '3' && yjjye) {
             if (!(zfje1 == yjjye || zfje1 <= xjzfys)) {
-                $.modalAlert("预交账户支付金额异常", "error");
+                $.modalAlert("Số tiền thanh toán tài khoản tạm ứng bất thường", "error");
                 return false;
             }
         }
@@ -284,17 +284,17 @@
         }
         else {
             if (!fph) {
-                $.modalAlert('请选择发票号', 'warning');
+                $.modalAlert('Vui lòng chọn số hóa đơn', 'warning');
                 return false;
             }
         }
         //
         if (hjssk != zfje1 + zfje2) {
-            $.modalAlert("收款金额异常", "error");
+            $.modalAlert("Số tiền thu bất thường", "error");
             return false;
         }
         if (hjssk != xjzfys + zhaoling || zhaoling < 0) {
-            $.modalAlert("找零金额异常", "error");
+            $.modalAlert("Số tiền thừa bất thường", "error");
             return false;
         }
         return {
@@ -307,7 +307,7 @@
 
     //common start
 
-    //页面进来，加载发票号
+    //Trang vào，Tải số hóa đơn
     function initFPH() {
         if (!($("#txtfph").length == 1)) {
             return;
@@ -322,16 +322,16 @@
         });
     }
 
-    //弹出发票号的窗口
+    //Bật cửa sổ số hóa đơn
     function ShowInvoicePanel() {
         $.modalOpen({
             id: "InvoiceNoPanel",
-            title: "选发票号",
+            title: "Chọn số hóa đơn",
             url: "/OutpatientManage/OutpatientReg/ChooseInvoice?from=ConfirmFeeForm",
             width: "300px",
             height: "200px",
             callBack: function (iframeId) {
-                top.frames[iframeId].checkFPH();//窗口点确定的回调函数
+                top.frames[iframeId].checkFPH();//Hàm callback khi nhấn xác định tại cửa sổ
             }
         });
     }
@@ -350,10 +350,10 @@
         }
     });
 
-    //计算 根据 支付应收、支付方式 计算合计实收款、找零
+    //Tính toán Theo Thanh toán khoản phải thu、Phương thức thanh toán Tính tổng số tiền thực thu、Tiền thừa
     function hjsskZhaolingCal() {
         if (!$('#zffs1').val() && $('#zfje1').val() != 0) {
-            //未选择支付方式，对应金额要置为0.00
+            //Chưa chọn phương thức thanh toán，Số tiền tương ứng phải đặt thành 0.00
             $('#zfje1').val('0.00');
         }
         var zfje1 = $('#zfje1').val();
@@ -361,14 +361,14 @@
             zfje1 = '0.00';
         }
         if (!$('#zffs2').val() && $('#zfje2').val() != 0) {
-            //未选择支付方式，对应金额要置为0.00
+            //Chưa chọn phương thức thanh toán，Số tiền tương ứng phải đặt thành 0.00
             $('#zfje2').val('0.00');
         }
         var zfje2 = $('#zfje2').val();
         if (!zfje2) {
             zfje2 = '0.00';
         }
-        var hjssk = parseFloat(zfje1) + parseFloat(zfje2);  //多种支付方式合计实收
+        var hjssk = parseFloat(zfje1) + parseFloat(zfje2);  //Tổng thực thu của nhiều phương thức thanh toán
         $('#hjssk').html(hjssk.toFixed(2));
         $('#zhaoling').html(parseFloat(hjssk - xjzfys).toFixed(2));
     }

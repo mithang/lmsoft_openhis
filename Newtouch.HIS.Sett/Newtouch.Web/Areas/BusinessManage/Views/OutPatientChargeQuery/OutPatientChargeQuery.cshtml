@@ -7,44 +7,44 @@
 <form name="form1">
     <div class="panel panel-default" style="margin-top:10px;">
         <div class="panel-heading">
-            挂号收费查询
+            Tra cứu thu phí đăng ký khám
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">卡号:</th>
+                    <th class="formTitle">Số thẻ:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtkh" name="txtkh" />
                     </td>
                     <td class="formValue">
                         <input type="button" class="btn btn-default btn-md" value=". . ." onclick="" />
                     </td>
-                    <th class="formTitle">发票号：</th>
+                    <th class="formTitle">Số hóa đơn：</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtfph" name="txtfph" />
                     </td>
-                    <th class="formTitle">姓名：</th>
+                    <th class="formTitle">Họ tên：</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtxm" name="txtxm" />
                     </td>
                     <th></th>
                     <td class="formValue" rowspan="2">
-                        <input type="button" id="btn_search" class="btn btn-default btn-md" style="width:50px; height:45px;" value="查询" />
+                        <input type="button" id="btn_search" class="btn btn-default btn-md" style="width:50px; height:45px;" value="Tra cứu" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">收银员:</th>
+                    <th class="formTitle">Thu ngân:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtsyy" name="txtsyy" value=@Newtouch.Infrastructure.Operator.NewOperatorProvider.Provider.GetCurrent().UserCode />
                     </td>
                     <td class="formValue">
                         <input type="button" class="btn btn-default btn-md" value=". . ." onclick="" />
                     </td>
-                    <th class="formTitle">收费日期：起</th>
+                    <th class="formTitle">Ngày thu phí：Từ</th>
                     <td class="formValue">
                         <input size="16" type="text" readonly class="form_datetime form-control" id="txtCreateTimestart">
                     </td>
-                    <th class="formTitle">止：</th>
+                    <th class="formTitle">Đến：</th>
                     <td class="formValue">
                         <input size="16" type="text" readonly class="form_datetime form-control" id="txtCreateTimeEnd">
                     </td>
@@ -54,7 +54,7 @@
     </div>
         <div>
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#">门诊结算</a></li>
+                <li class="active"><a href="#">Quyết toán ngoại trú</a></li>
             </ul>
             <div style="background-color: #fff;width:99%;">
                 <table id="gridJSList" ></table>
@@ -62,7 +62,7 @@
         </div>
         <div style="margin-top: 10px;">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#">门诊结算明细</a></li>
+                <li class="active"><a href="#">Chi tiết quyết toán ngoại trú</a></li>
             </ul>
             <div style="background-color: #fff;">
                 <table id="gridJSMXList"></table>
@@ -70,7 +70,7 @@
         </div>
         <div class="panel panel-default" style="margin-top:10px;">
             <div class="panel-heading">
-                合计
+                Tổng cộng
             </div>
             <div id="HjDiv" style="padding: 2px;padding-right:20px;"></div>
         </div>
@@ -84,7 +84,7 @@
 <script>
     $(function () {
         gridJSListData();
-        //回车
+        //Phím Enter
         enterEvent();
     })
     $(".form_datetime").datetimepicker({
@@ -93,35 +93,35 @@
         minView: 2,
         autoclose: true
     });
-    //门诊挂号结算查询
+    //Tra cứu quyết toán đăng ký khám ngoại trú
     function gridJSListData() {
         var $gridJSList = $("#gridJSList");
         $gridJSList.dataGrid({
             height: 150,
             url: "/BusinessManage/OutPatientChargeQuery/SelectRegChargeQuery",
             colModel: [
-                { label: '卡号', name: 'kh', width: 80, align: 'left' },
-                { label: '姓名', name: 'xm', width: 80, align: 'left' },
-                { label: '挂号内码', name: 'ghnm', hidden:true, align: 'left' },
-                { label: '发票号', name: 'fph', width: 100, align: 'left' },
-                { label: '收费员', name: 'CreatorCode', width: 100, align: 'left' },
-                { label: '收费日期', name: 'CreateTime', width: 150, align: 'left' },
-                { label: '挂号科目', name: 'sfxmmc', width: 150, align: 'left' },
-                { label: '医生', name: 'ys', width: 80, align: 'left' },
+                { label: 'Số thẻ', name: 'kh', width: 80, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 80, align: 'left' },
+                { label: 'Mã nội bộ đăng ký khám', name: 'ghnm', hidden:true, align: 'left' },
+                { label: 'Số hóa đơn', name: 'fph', width: 100, align: 'left' },
+                { label: 'Nhân viên thu phí', name: 'CreatorCode', width: 100, align: 'left' },
+                { label: 'Ngày thu phí', name: 'CreateTime', width: 150, align: 'left' },
+                { label: 'Môn đăng ký khám', name: 'sfxmmc', width: 150, align: 'left' },
+                { label: 'Bác sĩ', name: 'ys', width: 80, align: 'left' },
                 { label: 'JSNM', name: 'jsnm', hidden: true, align: 'left' },
                 {
-                    label: '退', name: 'isreturned', width: 60, align: 'left', formatter: function (cellvalue)
+                    label: 'Trả lại', name: 'isreturned', width: 60, align: 'left', formatter: function (cellvalue)
                     {
-                        return cellvalue == "1" ? "是" : "否";
+                        return cellvalue == "1" ? "Có" : "Không";
                     }
                 },
                 {
-                    label: '重打', name: 'isxfph', width: 60, align: 'left', formatter: function (cellvalue)
+                    label: 'In lại', name: 'isxfph', width: 60, align: 'left', formatter: function (cellvalue)
                     {
-                        return cellvalue == "1" ? "是" : "否";
+                        return cellvalue == "1" ? "Có" : "Không";
                     }
                 },
-                { label: '退费员', name: 'tCreatorCode', width: 80, align: 'left' },
+                { label: 'Nhân viên hoàn phí', name: 'tCreatorCode', width: 80, align: 'left' },
                 { label: 'color', name: 'isRed', hidden: true, align: 'left' }
 
             ],
@@ -129,11 +129,11 @@
             sortname: 'CreateTime desc',
             viewrecords: true,
 
-            ////单击事件
+            ////Sự kiện nhấp chuột
             //onSelectRow: function ()
             //{
             //    debugger;
-            //    //每次双击，先清空上一条明细 和合计
+            //    //Mỗi lần nhấp đúp，Xóa chi tiết dòng trước trước và tổng cộng
             //    $('#gridJSMXList').jqGrid("clearGridData");
             //    $("#table_HJ").remove();
             //    $.ajax({
@@ -144,10 +144,10 @@
             //        success: function (ajaxresp) {
             //            if (ajaxresp.state == 'success') {
             //                $('#gridJSMXList').newtouchLocalDataGrid(null, ajaxresp.data.ghRecordsDetails);
-            //                //动态加载合计信息
+            //                //Tải động thông tin tổng cộng
             //                $("#HjDiv").append("<table class='form' id='table_HJ'>")
             //                $("#table_HJ").append(" <tr>");
-            //                //加载页面下方的费用大类合计
+            //                //Tải tổng cộng loại lớn chi phí phía dưới trang
             //                for (i = 0; i < ajaxresp.data.dlhj.length; i++) {
             //                    $("#table_HJ").append("<th class='formTitle'>" + ajaxresp.data.dlhj[i].dlmc + "</th>");
             //                    $("#table_HJ").append("<td class='formValue'><label>" + ajaxresp.data.dlhj[i].jehj + "</label></td>");
@@ -158,7 +158,7 @@
             //        }
             //    });
             //},
-            //Grid 加载完成后调用
+            //Grid Gọi sau khi tải xong
             gridComplete: function () {
                  afterCompleteFunction();
             },
@@ -171,7 +171,7 @@
 
     }
 
-    //已退/重打 背景色为红色 
+    //Đã trả lại/In lại Màu nền là màu đỏ 
     function afterCompleteFunction()
     {
         var ids = $("#gridJSList").getDataIDs();
@@ -184,10 +184,10 @@
         }
     }
 
-    //双击事件
+    //Sự kiện nhấp đúp
     function btn_edit()
     {
-        ////每次双击，先清空上一条明细 和合计
+        ////Mỗi lần nhấp đúp，Xóa chi tiết dòng trước trước và tổng cộng
         $('#gridJSMXList').jqGrid("clearGridData");
         $("#table_HJ").remove();
         $.ajax({
@@ -198,10 +198,10 @@
             success: function (ajaxresp) {
                 if (ajaxresp.state == 'success') {
                     $('#gridJSMXList').newtouchLocalDataGrid(null, ajaxresp.data.ghRecordsDetails);
-                    //动态加载合计信息
+                    //Tải động thông tin tổng cộng
                     $("#HjDiv").append("<table class='form' id='table_HJ'>")
                     $("#table_HJ").append(" <tr>");
-                    //加载页面下方的费用大类合计
+                    //Tải tổng cộng loại lớn chi phí phía dưới trang
                     for (i = 0; i < ajaxresp.data.dlhj.length; i++) {
                         $("#table_HJ").append("<th class='formTitle'>" + ajaxresp.data.dlhj[i].dlmc + "</th>");
                         $("#table_HJ").append("<td class='formValue'><label>" + ajaxresp.data.dlhj[i].jehj + "</label></td>");
@@ -213,28 +213,28 @@
         });
     }
 
-    //门诊结算明细 jGrid声明
+    //Chi tiết quyết toán ngoại trú jGrid Khai báo
     $('#gridJSMXList').newtouchLocalDataGrid({
         height: 100,
         unwritten: false,
         sortable: false,
         colModel: [
-            { label: '处方号', name: 'chufanghao',width:150, key: true },
-            { label: '项目代码', name: 'sfxm', width: 150, align: 'left' },
-            { label: '项目名称', name: 'ypmc', width: 150, align: 'left' },
-            { label: '单位', name: 'danwei', width: 150, align: 'left' },
-            { label: '项目大类', name: 'dlmc', width: 150, align: 'left' },
-            { label: '单价', name: 'dj', width: 150, align: 'left' },
-            { label: '数量', name: 'sl', width: 150, align: 'left' },
-            { label: '金额', name: 'je', width: 150, align: 'left' }
+            { label: 'Mã đơn thuốc', name: 'chufanghao',width:150, key: true },
+            { label: 'Mã khoản mục', name: 'sfxm', width: 150, align: 'left' },
+            { label: 'Tên khoản mục', name: 'ypmc', width: 150, align: 'left' },
+            { label: 'Đơn vị', name: 'danwei', width: 150, align: 'left' },
+            { label: 'Loại lớn khoản mục', name: 'dlmc', width: 150, align: 'left' },
+            { label: 'Đơn giá', name: 'dj', width: 150, align: 'left' },
+            { label: 'Số lượng', name: 'sl', width: 150, align: 'left' },
+            { label: 'Số tiền', name: 'je', width: 150, align: 'left' }
 
         ]
     });
 
-    //回车 跳到下一个控件
+    //Phím Enter Chuyển tới điều khiển tiếp theo
     function enterEvent()
     {
-        //回车键
+        //Phím Enter
         $("#txtkh").keypress(function (e) {
             if (e.keyCode == 13) {
                 if ($("#txtkh").val().trim().length == 28) {

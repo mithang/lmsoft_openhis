@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Web
     public class MvcApplication : System.Web.HttpApplication
     {
         /// <summary>
-        /// 启动应用程序
+        /// Khởi động ứng dụng
         /// </summary>
         protected void Application_Start()
         {
@@ -23,16 +23,16 @@ namespace Newtouch.HIS.Web
 
             App_Start.DependencyResolver.RegisteWebApiComponent();
 
-            //向上下文注册表
+            //Đăng ký vào bảng ngữ cảnh
             DefaultDbContext.PartialTBRegister(DefaultDbContextTBRegister.Registe);
 
-            //数据库链接释放
+            //Giải phóng kết nối cơ sở dữ liệu
             AspNetObjectContextDisposalModule.Register(() =>
             {
                 Newtouch.Infrastructure.EF.DatabaseFactoryDisposeHelper.TryDisposeDBContext<IDefaultDatabaseFactory, DefaultDbContext>();
             });
 
-            //权限验证向下层注册
+            //Đăng ký xác minh quyền hạn xuống tầng dưới
             HandlerAuthorizeAttribute.Register((IList<string> roleIdList, string moduleId, string action) =>
             {
                 return DependencyDefaultInstanceResolver.GetInstance<IRoleAuthorizeApp>().ActionValidate(roleIdList, action);

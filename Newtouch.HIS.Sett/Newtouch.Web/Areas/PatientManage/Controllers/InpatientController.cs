@@ -25,7 +25,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
 {
     /// <summary>
-    /// 住院病人
+    /// Bệnh nhân nội trú
     /// </summary>
     public class InpatientController : ControllerBase
     {
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         private readonly ISysPatientBasicInfoRepo _sysPatientBasicInfoRepo;
 
         /// <summary>
-        /// 获取住院病人 三级（机构+病区+病人）
+        /// Lấy bệnh nhân nội trú Ba cấp（Cơ sở+Khu bệnh+Bệnh nhân）
         /// </summary>
         /// <returns></returns>
         [HandlerAjaxOnly]
@@ -48,22 +48,22 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         {
             //if (string.IsNullOrWhiteSpace(organizeId))
             //{
-            //    organizeId = base.GetAuthOrganizeId();  //默认 权限OrganizeId
+            //    organizeId = base.GetAuthOrganizeId();  //Mặc định Quyền hạn OrganizeId
             //}
             ////
             //var organizedata = _sysOrganizeDmnService.GetValidListByParentOrg(organizeId);
             var treeList = new List<TreeViewModel>();
             //foreach (var orgItem in organizedata)
             //{
-            //    //机构病区集合
+            //    //Tập hợp khu bệnh của cơ sở
             //    var orgBqData = _sysWardRepo.GetbqList(orgItem.Id);
-            //    //机构病人集合
+            //    //Tập hợp bệnh nhân của cơ sở
             //    var orgPatientData =_bookkeepInHosDmnService.GetPendingExecutionPatientVOList(orgItem.Id);
-            //    #region 机构下所有病区
+            //    #region Tất cả khu bệnh thuộc cơ sở
             //    foreach (var bqItem in orgBqData)
             //    {
             //        var bqPatientData = orgPatientData.Where(p => p.bqCode == bqItem.bqCode).ToList();
-            //        #region 机构下所有病人
+            //        #region Tất cả bệnh nhân thuộc cơ sở
             //        foreach (var patientItem in bqPatientData)
             //        {
             //            TreeViewModel subsubTree = new TreeViewModel();
@@ -71,15 +71,15 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             //            subsubTree.text = patientItem.xm + "(zyh:" + patientItem.zyh + ")";
             //            if (patientItem.ybsycs.HasValue && patientItem.ybsycs.Value > 0)
             //            {
-            //                subsubTree.text += "(医保剩余:" + patientItem.ybsycs + "次)";
+            //                subsubTree.text += "(Bảo hiểm y tế còn lại:" + patientItem.ybsycs + "lần)";
             //            }
             //            subsubTree.value = "br_" + patientItem.zyh;
             //            subsubTree.parentId = "bq_" + bqItem.bqCode;
             //            subsubTree.hasChildren = false;
             //            subsubTree.showcheck = true;
-            //            subsubTree.checkstate = 0;   //外面赋值，方便缓存
+            //            subsubTree.checkstate = 0;   //Gán giá trị từ bên ngoài，Thuận tiện cho bộ nhớ đệm
 
-            //            subsubTree.Ex1 = "1";    //标示是病人，用于区分 病人、病区的复选框
+            //            subsubTree.Ex1 = "1";    //Đánh dấu là bệnh nhân，Dùng để phân biệt Bệnh nhân、Hộp kiểm của khu bệnh
 
             //            treeList.Add(subsubTree);
             //        }
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             //        subTree.text = bqItem.bqmc;
             //        subTree.value = "bq_" + bqItem.bqCode;
             //        subTree.parentId = orgItem.Id;
-            //        subTree.isexpand = isExpand;  //默认不展开，人太多
+            //        subTree.isexpand = isExpand;  //Mặc định không mở rộng，Quá nhiều người
             //        subTree.complete = true;
             //        subTree.showcheck = true;
             //        subTree.hasChildren = bqPatientData.Count > 0;
@@ -100,7 +100,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             //    tree.id = orgItem.Id;
             //    tree.text = orgItem.Name;
             //    tree.value = orgItem.Code;
-            //    tree.parentId = orgItem.Id == organizeId ? null : orgItem.ParentId; //特殊
+            //    tree.parentId = orgItem.Id == organizeId ? null : orgItem.ParentId; //Đặc biệt
             //    tree.isexpand = true;
             //    tree.complete = true;
             //    tree.showcheck = false;
@@ -109,14 +109,14 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             //}
             ////
 
-            ////if (from == "selecttherapist")   //选择系统治疗师
+            ////if (from == "selecttherapist")   //Chọn kỹ thuật viên trị liệu của hệ thống
             ////{
-            ////    var whereList = _sysUserDmnService.GetStaffIdListByParentOrg(organizeId, "RehabDoctor");   //治疗师
-            ////    treeList = treeList.Where(p => !p.showcheck || whereList.Contains(p.id)).ToList();  //只显示治疗师
+            ////    var whereList = _sysUserDmnService.GetStaffIdListByParentOrg(organizeId, "RehabDoctor");   //Kỹ thuật viên trị liệu
+            ////    treeList = treeList.Where(p => !p.showcheck || whereList.Contains(p.id)).ToList();  //Chỉ hiển thị kỹ thuật viên trị liệu
             ////}
 
             //IList<string> checkedStaffIdList = null;
-            ////if (from == "selecttherapist")   //选择系统治疗师
+            ////if (from == "selecttherapist")   //Chọn kỹ thuật viên trị liệu của hệ thống
             ////{
 
             ////}
@@ -128,22 +128,22 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             //        if (treeItem.showcheck && checkedStaffIdList.Contains(treeItem.id))
             //        {
             //            treeItem.checkstate = 1;
-            //            //同时让上级展开
+            //            //Đồng thời mở rộng cấp trên
             //            var thisParentNode = treeList.Where(p => p.id == treeItem.parentId).FirstOrDefault();
             //            if (thisParentNode != null)
             //            {
-            //                thisParentNode.isexpand = true;  //下级有选中的，这里一定展开之
+            //                thisParentNode.isexpand = true;  //Cấp dưới có mục được chọn，Ở đây nhất định mở rộng
             //            }
             //        }
             //    }
             //}
-            //if (!isShowEmpty)   //不显示多余的
+            //if (!isShowEmpty)   //Không hiển thị thừa
             //{
-            //    var count = 1;  //移除的行数
+            //    var count = 1;  //Số dòng đã loại bỏ
             //    while (count > 0)
             //    {
             //        count = treeList.RemoveAll(p => !p.showcheck && !p.hasChildren);
-            //        //重新调整下树 移除 没有下级（下级刚被移了） 又 不显示showcheck的
+            //        //Điều chỉnh lại cây Loại bỏ Không có cấp dưới（Cấp dưới vừa bị di chuyển） và Không hiển thị showcheck của
             //        treeList.RemoveAll(p => !p.showcheck && !treeList.Any(sub => sub.parentId == p.id));
             //    }
             //}
@@ -155,13 +155,13 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             List<PendingExecutionPatientVO> data = new List<PendingExecutionPatientVO> { };
             if (string.IsNullOrWhiteSpace(organizeId))
             {
-                organizeId = base.GetAuthOrganizeId();  //默认 权限OrganizeId
+                organizeId = base.GetAuthOrganizeId();  //Mặc định Quyền hạn OrganizeId
             }
             //
             var organizedata = _sysOrganizeDmnService.GetValidListByParentOrg(organizeId);
             foreach (var orgItem in organizedata)
             {
-                //机构病区集合
+                //Tập hợp khu bệnh của cơ sở
                 var orgBqData = _sysWardRepo.GetbqList(orgItem.Id);
                 IList<PendingExecutionPatientVO> orgPatientData = new List<PendingExecutionPatientVO>();
                 if (from == "mz")
@@ -177,7 +177,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 浮层，数据源 获取住院病人
+        /// Lớp nổi，Nguồn dữ liệu Lấy bệnh nhân nội trú
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="brlx"></param>
@@ -190,7 +190,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 住院患者查询 View
+        /// Tra cứu bệnh nhân nội trú View
         /// </summary>
         /// <returns></returns>
         public ActionResult InPatientQueryIndex()
@@ -198,20 +198,20 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             return View();
         }
         /// <summary>
-        /// 结算清单上传整合页面
+        /// Trang tích hợp tải lên bảng kê quyết toán
         /// </summary>
         /// <returns></returns>
         public ActionResult SettlementListUpload()
         {
             return View();
         }
-        //结算清单质控查询
+        //Tra cứu kiểm soát chất lượng bảng kê quyết toán
         public ActionResult SettlementListResultFrom()
         {
             ViewBag.OrgId = this.OrganizeId;
             return View();
         }
-        //结算清单数量统计结果查询
+        //Tra cứu kết quả thống kê số lượng bảng kê quyết toán
         public ActionResult QuerySettlementResultFrom()
         {
             ViewBag.OrgId = this.OrganizeId;
@@ -224,7 +224,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             return View();
         }
         /// <summary>
-        /// 住院患者查询 数据
+        /// Tra cứu bệnh nhân nội trú Dữ liệu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zybz"></param>
@@ -250,7 +250,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 自费转医保 视图
+        /// Chuyển tự trả sang bảo hiểm y tế View
         /// </summary>
         /// <returns></returns>
         public ActionResult ZFToYBForm()
@@ -259,7 +259,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 医保转自费 视图
+        /// Chuyển bảo hiểm y tế sang tự trả View
         /// </summary>
         /// <returns></returns>
         public ActionResult YBToZFForm()
@@ -277,7 +277,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
 
         #region ZFToYB steps
         /// <summary>
-        /// 是否首次医保就诊
+        /// Có phải lần đầu khám bệnh bảo hiểm y tế hay không
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -318,7 +318,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         /// <param name="zyh"></param>
         /// <param name="patid"></param>
         /// <param name="cardInfo"></param>
-        /// <param name="ryblInfo">医保卡信息</param>
+        /// <param name="ryblInfo">Thông tin thẻ bảo hiểm y tế</param>
         /// <returns></returns>
         public ActionResult ZFToYB_Step_6(string zyh, int patid, GACardReadInfoDTO cardInfo, GuianRybl21OutInfoEntity ryblInfo)
         {
@@ -326,7 +326,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             return Success(null, data);
         }
 		/// <summary>
-		/// 重庆自费转医保--住院
+		/// Chuyển tự trả sang bảo hiểm y tế Trùng Khánh--Nội trú
 		/// </summary>
 		/// <param name="zyh"></param>
 		/// <param name="patid"></param>
@@ -387,7 +387,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             return Success(null, data);
         }
 		/// <summary>
-		/// 重庆医保获取患者就诊登记落地数据
+		/// Bảo hiểm y tế Trùng Khánh lấy dữ liệu lưu xuống đăng ký khám bệnh của bệnh nhân
 		/// </summary>
 		/// <param name="zyh"></param>
 		/// <returns></returns>
@@ -481,7 +481,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
                         }
                         else
                         {
-                            //1.his医保转自费   2.同步cpoe
+                            //1.his Chuyển bảo hiểm y tế sang tự trả   2.Đồng bộ cpoe
                             _inpatientApp.YBToZF_Step_5(zyh, patinfo.patid);
                             YBToZF_Step_7(zyh);
                         }
@@ -616,7 +616,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         #endregion
 
         /// <summary>
-        /// 结算清单上传内容查询
+        /// Tra cứu nội dung tải lên bảng kê quyết toán
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="sczt"></param>

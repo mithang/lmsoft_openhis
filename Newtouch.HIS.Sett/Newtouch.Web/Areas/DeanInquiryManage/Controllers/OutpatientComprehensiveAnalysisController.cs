@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 门诊综合分析_抬头数据
+        /// Phân tích tổng hợp ngoại trú_Dữ liệu tiêu đề
         /// </summary>
         public ActionResult GetTitleData(string ksrq,string jsrq,string rtype)
         { 
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 门诊综合分析_门诊患者分析
+        /// Phân tích tổng hợp ngoại trú_Phân tích bệnh nhân ngoại trú
         /// </summary>
         public ActionResult GetMzhzfx(string ksrq, string jsrq,string rtype)
         {

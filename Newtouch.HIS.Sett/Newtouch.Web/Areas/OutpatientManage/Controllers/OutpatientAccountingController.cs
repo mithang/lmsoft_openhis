@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
     {
         private readonly IOutPatientDmnService _outPatientDmnService;
         private readonly IOutPatChargeApp _outPatChargeApp;
-        private readonly IOutPatChargeDmnService _outPatChargeDmSer; // 挂号收费Service 
+        private readonly IOutPatChargeDmnService _outPatChargeDmSer; // Thu phí đăng ký khám Service 
         private readonly IRefundDmnService _refundService;
         private readonly ISysConfigRepo _sysConfigRepo;
         private readonly ISysUserDmnService _sysUserDmnService;
@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         #region 页面初始化
 
         /// <summary>
-        /// 新增登记
+        /// Thêm mới đăng ký
         /// </summary>
         /// <returns></returns>
 
@@ -67,7 +67,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 记账项目详情页面
+        /// Trang chi tiết khoản mục ghi sổ
         /// </summary>
         /// <returns></returns>
         public ActionResult OutpatientAccountingDetail()
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 门诊收费
+        /// Thu phí ngoại trú
         /// </summary>
         /// <returns></returns>
         public ActionResult OutpatCharge()
@@ -115,9 +115,9 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
         #region 门诊记账 Vision-1.1 门诊记账的第一个版本
         /// <summary>
-        /// 加载病人基本信息
+        /// Tải thông tin cơ bản của bệnh nhân
         /// </summary>
-        /// <param name="blh">病历号</param>
+        /// <param name="blh">Số bệnh án</param>
         /// <returns></returns>
         public ActionResult GetOutpatientBasicInfo(string IsBlh, string mzh)
         {
@@ -135,7 +135,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 保存门诊记账
+        /// Lưu ghi sổ ngoại trú
         /// </summary>
         /// <param name="bacDto"></param>
         /// <param name="xmList"></param>
@@ -162,7 +162,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
         #region Optima记账 Vision-1.2 门诊记账的第二个版本（包括门诊记账和住院记账）
         /// <summary>
-        /// 获取所有病人治疗记录
+        /// Lấy tất cả bản ghi điều trị của bệnh nhân
         /// </summary>
         /// <param name="begindate"></param>
         /// <param name="enddate"></param>
@@ -180,9 +180,9 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 加载病人基本信息
+        /// Tải thông tin cơ bản của bệnh nhân
         /// </summary>
-        /// <param name="mzh">门诊号</param>
+        /// <param name="mzh">Mã ngoại trú</param>
         /// <returns></returns>
         public ActionResult GetpatientInfoInOptima(string admsnum, string type, string kssj, string jssj)
         {
@@ -206,7 +206,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 查询同步治疗记录
+        /// Tra cứu bản ghi điều trị đồng bộ
         /// </summary>
         /// <returns></returns>
         public ActionResult GetUnConfirmedSyncedTreatmentRecord(string zyh, string mzh)
@@ -238,7 +238,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
         #region 门诊收费 Vision-1.3 门诊记账的第三个版本
         /// <summary>
-        /// 获取所有病人挂号信息
+        /// Lấy tất cả thông tin đăng ký khám của bệnh nhân
         /// </summary>
         /// <param name="begindate"></param>
         /// <param name="enddate"></param>
@@ -251,7 +251,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 获取记账历史记录
+        /// Lấy lịch sử ghi sổ
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -282,7 +282,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
 
         /// <summary>
-        /// 保存门诊记账
+        /// Lưu ghi sổ ngoại trú
         /// </summary>
         /// <param name="bacDto"></param>
         /// <param name="xmList"></param>
@@ -296,7 +296,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
         #region 门诊记账，第四个版本
         /// <summary>
-        /// 获取记账历史记录
+        /// Lấy lịch sử ghi sổ
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>

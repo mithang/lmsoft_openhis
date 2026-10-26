@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         private readonly IRefundApp _IRefundApp;
 
         /// <summary>
-        /// 发票列表
+        /// Danh sách hóa đơn
         /// </summary>
         /// <returns></returns>
         public ActionResult QueFpList()
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
 
         /// <summary>
-        /// 查发票号
+        /// Tra số hóa đơn
         /// </summary>
         /// <param name="kh"></param>
         /// <returns></returns>
@@ -37,9 +37,9 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
    
         }
         /// <summary>
-        /// 根据发票的结算内码查询门诊挂号项目
+        /// Tra cứu khoản mục đăng ký khám ngoại trú theo mã nội bộ quyết toán của hóa đơn
         /// </summary>
-        /// <param name="jsnm">结算内码</param>
+        /// <param name="jsnm">Mã nội bộ quyết toán</param>
         /// <returns></returns>
         public ActionResult GetMZJSByJsnm(int jsnm)
         {
@@ -48,9 +48,9 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             return Success("", data);
         }
         /// <summary>
-        /// 按结算内码查门诊项目
+        /// Tra cứu khoản mục ngoại trú theo mã nội bộ quyết toán
         /// </summary>
-        /// <param name="jsnm">结算内码</param>
+        /// <param name="jsnm">Mã nội bộ quyết toán</param>
         /// <returns></returns>
         public ActionResult GetGridViewMxByJsnm(int jsnm)
         {
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 退费
+        /// Hoàn phí
         /// </summary>
         public ActionResult btnReturn(string kh, int jsnm, string refundData)
         { 
@@ -76,7 +76,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
             //    da.IS_RETURN = sArray[0];
 
-            //    //方便挂号项目一起选中一起取消而设置的特殊成组号
+            //    //Mã nhóm đặc biệt được đặt để các khoản mục đăng ký khám có thể được chọn và hủy cùng nhau
             //    if (sArray[1]== "gh0209")
             //    {
             //        da.czh = "0";

@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 查询
+        /// Tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 取消挂号
+        /// Hủy đăng ký khám
         /// </summary>
         /// <param name="ghnm"></param>
         /// <returns></returns>

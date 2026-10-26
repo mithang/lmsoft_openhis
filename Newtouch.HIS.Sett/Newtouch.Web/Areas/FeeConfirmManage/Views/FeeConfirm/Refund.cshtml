@@ -6,21 +6,21 @@
 
 <div class="panel panel-default" style="margin-bottom: 4px;">
     <div class="panel-heading navb-bg">
-        筛选条件
+        Điều kiện lọc
     </div>
     <div style="padding-right:20px;">
         <table class="form">
             <tr>
-                <th class="formTitle">病历号：</th>
+                <th class="formTitle">Số bệnh án：</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="blh" placeholder="" style="width: 48%; float: left;" />
-                    <input type="button" class="btn btn-default btn-md btn-default-color" style="width: 15%;margin-left: 2%;" title="选择病人" value="查询" onclick="GetPatSerarchView($('#blh').val());">
+                    <input type="button" class="btn btn-default btn-md btn-default-color" style="width: 15%;margin-left: 2%;" title="Chọn bệnh nhân" value="Tra cứu" onclick="GetPatSerarchView($('#blh').val());">
                 </td>
-                <th class="formTitle">姓名：</th>
+                <th class="formTitle">Họ tên：</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="xm" placeholder="" />
                 </td>
-                <th class="formTitle">计费时间：</th>
+                <th class="formTitle">Thời gian tính phí：</th>
                 <td class="formValue" colspan="2">
                     <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:2%;float:left;">—</span>
@@ -28,7 +28,7 @@
                 </td>
                 <td></td>
                 <td>
-                    <input type="button" id="btn_search" class="btn btn-primary form-an" style="width:40%;margin-left:10%;" value="查询" onclick="SerarchPresList()" />
+                    <input type="button" id="btn_search" class="btn btn-primary form-an" style="width:40%;margin-left:10%;" value="Tra cứu" onclick="SerarchPresList()" />
                 </td>
             </tr>
         </table>
@@ -36,44 +36,44 @@
 </div>
 <div class="panel panel-default" style="margin-bottom: 4px;">
     <div class="panel-heading navb-bg">
-        患者信息
+        Thông tin bệnh nhân
     </div>
     <div style="padding-right:20px;">
         <table class="form">
             <tr>
-                <th class="formTitle">病历号：</th>
+                <th class="formTitle">Số bệnh án：</th>
                 <td class="formValue">
                     <label id="type">R25639</label>
                 </td>
-                <th class="formTitle">姓名：</th>
+                <th class="formTitle">Họ tên：</th>
                 <td class="formValue">
-                    <label id="xm">大白</label>
+                    <label id="xm">Đại Bạch</label>
                 </td>
-                <th class="formTitle">性别：</th>
+                <th class="formTitle">Giới tính：</th>
                 <td class="formValue">
-                    <label id="xb">女</label>
+                    <label id="xb">Nữ</label>
                 </td>
-                <th class="formTitle">年龄：</th>
+                <th class="formTitle">Tuổi：</th>
                 <td class="formValue">
                     <label id="nl">26</label>
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">保险号：</td>
+                <td class="formTitle">Số bảo hiểm：</td>
                 <td class="formValue">
                     <label id="bxh">35010343123456743</label>
                 </td>
-                <td class="formTitle">费别：</td>
+                <td class="formTitle">Loại phí：</td>
                 <td class="formValue">
-                    <label id="fb">自费</label>
+                    <label id="fb">Tự trả</label>
                 </td>
-                <td class="formTitle">临床诊断：</td>
+                <td class="formTitle">Chẩn đoán lâm sàng：</td>
                 <td class="formValue">
-                    <label id="lczd">腰痛</label>
+                    <label id="lczd">Đau lưng</label>
                 </td>
-                <th class="formTitle">施术部位：</th>
+                <th class="formTitle">Vị trí thực hiện thủ thuật：</th>
                 <td class="formValue">
-                    <label id="ssbw">腰背部 膈腧 心腧 督腧</label>
+                    <label id="ssbw">Vùng thắt lưng Cách du Tâm du Đốc du</label>
                 </td>
             </tr>
         </table>
@@ -86,71 +86,71 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 4, 6 },
-    F6Text = "退费"
+    F6Text = "Hoàn phí"
 })
 
 <script>
     $(function () {
         var mydata = [,
        {
-           cfh: 'R20170503140000321', kflb: 'PT', xmmc: '电针', sl: '1', dj: 30.00, tsl: '1', dw: '二个部位', sc: '', je: 30.00, sfrq: '2017-10-01 11:23:55'
+           cfh: 'R20170503140000321', kflb: 'PT', xmmc: 'Điện châm', sl: '1', dj: 30.00, tsl: '1', dw: 'Hai vị trí', sc: '', je: 30.00, sfrq: '2017-10-01 11:23:55'
        },
        {
-           cfh: 'R20170417170000323', kflb: 'PT', xmmc: '红外线治疗', sl: '3', dj: 30.00, tsl: '3', dw: '分', sc: '30', je: 90.00, sfrq: '2017-10-01 11:23:55'
+           cfh: 'R20170417170000323', kflb: 'PT', xmmc: 'Điều trị bằng tia hồng ngoại', sl: '3', dj: 30.00, tsl: '3', dw: 'phút', sc: '30', je: 90.00, sfrq: '2017-10-01 11:23:55'
        },
        {
-           cfh: 'R20170417180000324', kflb: 'PT', xmmc: '神经肌肉再训练', sl: '4', dj: 30.00, tsl: '3', dw: '分', sc: '30', je: 120.00, sfrq: '2017-10-01 11:23:55'
+           cfh: 'R20170417180000324', kflb: 'PT', xmmc: 'Tái huấn luyện thần kinh cơ', sl: '4', dj: 30.00, tsl: '3', dw: 'phút', sc: '30', je: 120.00, sfrq: '2017-10-01 11:23:55'
        },
        {
-           cfh: 'R20170503140000325', kflb: 'PT', xmmc: '关节松动术', sl: '3', dj: 30.00, tsl: '3', dw: '分', sc: '30', je: 90.00, sfrq: '2017-10-01 11:23:55'
+           cfh: 'R20170503140000325', kflb: 'PT', xmmc: 'Kỹ thuật nới lỏng khớp', sl: '3', dj: 30.00, tsl: '3', dw: 'phút', sc: '30', je: 90.00, sfrq: '2017-10-01 11:23:55'
        }
         ];
         gridList(mydata);
     })
 
-    //病人查询
+    //Tra cứu bệnh nhân
     function GetPatSerarchView(blh) {
         if (!!!blh) {
             blh = '';
         };
         $.modalOpen({
             id: "patSearch",
-            title: "患者查询",
+            title: "Tra cứu bệnh nhân",
             url: "/PatientManage/AccountManage/PatOnlyBlhSearchView?t=" + Math.random() + "&blh=" + blh,
             width: "700px",
             height: "600px",
             callBack: function (iframeId) {
                 top.frames[iframeId].PatDbGrid();
-            }//窗口点确定的回调函数
+            }//Hàm callback khi nhấn xác định tại cửa sổ
         });
     }
 
-    //选择的病人 callback
+    //Bệnh nhân đã chọn callback
     function getPatInfoAjax(selePatInfo) {
         $('#blh').val(selePatInfo.blh)
         $('#blh').attr('data-patId', selePatInfo.patId);
         $('#xm').val(selePatInfo.xm);
     }
 
-    //处方查询
+    //Tra cứu đơn thuốc
     function SerarchPresList() {
         if ($("#blh").val() == "") {
-            $.modalAlert("请先填写病历号", 'warning');
+            $.modalAlert("Vui lòng điền số bệnh án trước", 'warning');
             return false;
         }
         $.modalOpen({
             id: "patSearch",
-            title: "处方列表",
+            title: "Danh sách đơn thuốc",
             url: "/FeeConfirmManage/FeeConfirm/PrescriptionForm?t=" + Math.random() + "&blh=" + $("#blh").val() + "&kssj=" + $('#kssj').val() + "&jssj=" + $('#kssj').val(),
             width: "600px",
             height: "600px",
             callBack: function (iframeId) {
                 top.frames[iframeId].DbClickGrid();
-            }//窗口点确定的回调函数
+            }//Hàm callback khi nhấn xác định tại cửa sổ
         });
     }
 
-    //处方明细
+    //Chi tiết đơn thuốc
     function gridList(mydata) {
         var $gridList = $("#gridList");
         $gridList.newtouchLocalDataGrid({
@@ -158,14 +158,14 @@
             //postData: getSearchPostData(),
             height: $(window).height() - 310,
             unwritten: false,
-            caption: "处方明细 实收款：￥2000 总次数：8",
+            caption: "Chi tiết đơn thuốc Số tiền thực thu：￥2000 Tổng số lần：8",
             colModel: [
-            { label: "处方号", name: "cfh", width: 150, align: "left" },
-            { label: "康复类别", name: "kflb", width: 80, align: "left" },
-            { label: "项目名称", name: "xmmc", width: 100, align: "left" },
-            { label: "数量", name: "sl", width: 80, align: "left" },
+            { label: "Mã đơn thuốc", name: "cfh", width: 150, align: "left" },
+            { label: "Loại phục hồi", name: "kflb", width: 80, align: "left" },
+            { label: "Tên khoản mục", name: "xmmc", width: 100, align: "left" },
+            { label: "Số lượng", name: "sl", width: 80, align: "left" },
             {
-                label: "单价", name: "dj", width: 80, align: "left",
+                label: "Đơn giá", name: "dj", width: 80, align: "left",
                 formatter: function (val) {
                     if (val) {
                         return val.toFixed(4);
@@ -174,11 +174,11 @@
                     }
                 }
             },
-            { label: "退数量", name: "tsl", width: 100, editable: true, editrules: { integer: true, minValue: 1 }, align: "left" },
-            { label: "时长", name: "sc", width: 60, align: "left" },
-            { label: "单位", name: "dw", width: 80, align: "left" },
+            { label: "Số lượng trả lại", name: "tsl", width: 100, editable: true, editrules: { integer: true, minValue: 1 }, align: "left" },
+            { label: "Thời lượng", name: "sc", width: 60, align: "left" },
+            { label: "Đơn vị", name: "dw", width: 80, align: "left" },
             {
-                label: "金额", name: "je", width: 80, align: "left",
+                label: "Số tiền", name: "je", width: 80, align: "left",
                 formatter: function (val) {
                     if (val) {
                         return val.toFixed(2);
@@ -188,7 +188,7 @@
                 }
             },
             {
-                label: "收费日期", name: "sfrq", width: 100, align: "left",
+                label: "Ngày thu phí", name: "sfrq", width: 100, align: "left",
                 formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
             }
             ],
@@ -200,13 +200,13 @@
                 $("#" + $.jgrid.jqID(rowid) + "_tsl").focus();
             },
             gridComplete: function () {
-                //启用行内编辑框
+                //Bật hộp chỉnh sửa trong dòng
                 EnableInlineEditBox();
             }
         },mydata);
         $("#btn_search").click(function () {
             if ($('#kssj').val() && $('#jssj').val() && ($('#kssj').val() > $('#jssj').val())) {
-                $.modalAlert("开始记账日期不能大于结束记账时间", 'warning');
+                $.modalAlert("Ngày bắt đầu ghi sổ không thể lớn hơn thời gian kết thúc ghi sổ", 'warning');
                 return;
             }
             $gridList.jqGrid('setGridParam', {
@@ -215,7 +215,7 @@
         })
     }
 
-    //启用行内编辑框
+    //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox() {
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
@@ -225,7 +225,7 @@
         }
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var keyword = $("#keyword").val();
         var blh = $("#blh").val();

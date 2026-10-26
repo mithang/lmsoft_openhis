@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 收费项目 选择 Search
+        /// Khoản mục thu phí Chọn Search
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取机构人员树 三级（机构+科室+人员）
+        /// Lấy cây nhân sự của cơ sở Ba cấp（Cơ sở+Khoa+Nhân sự）
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -69,20 +69,20 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         {
             if (string.IsNullOrWhiteSpace(organizeId))
             {
-                organizeId = base.GetAuthOrganizeId();  //默认 权限OrganizeId
+                organizeId = base.GetAuthOrganizeId();  //Mặc định Quyền hạn OrganizeId
             }
 
             IList<string> checkedStaffIdList = new List<string>();
             var initIdSelectedArr = (initIdSelected ?? "").Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
             checkedStaffIdList = checkedStaffIdList.Union(initIdSelectedArr).Distinct().ToList();
-            //缓存start
+            //Bộ nhớ đệm start
             var treeList = _cache.Get(string.Format(CacheKey.OrganizeStaffTreeSetKey, organizeId), () =>
             {
                 var organizedata = _sysOrganizeDmnService.GetValidListByParentOrg(organizeId);
                 var iitreeList = new List<TreeViewModel>();
                 foreach (var orgItem in organizedata)
                 {
-                    //所有收费项目
+                    //Tất cả khoản mục thu phí
                     var orgsfxmData = _sysChargeItemDmnService.GetSFDLList(organizeId);
                     foreach (var Item in orgsfxmData)
                     {
@@ -91,7 +91,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
                         deptTree.text = Item.dlmc;
                         deptTree.value = Item.dlCode;
                         deptTree.parentId = null;
-                        deptTree.isexpand = isExpand;  //默认不展开，人太多
+                        deptTree.isexpand = isExpand;  //Mặc định không mở rộng，Quá nhiều người
                         deptTree.complete = true;
                         deptTree.showcheck = true;
                         deptTree.hasChildren = false;

@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 全院收入
+        /// Thu nhập toàn viện
         /// </summary>
         public ActionResult GetQysr()
         {
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
             return Content(list.ToJson());
         }
         /// <summary>
-        /// 院长查询-今日动态-banner 
+        /// Tra cứu của viện trưởng-Diễn biến hôm nay-banner 
         /// </summary>
         /// <returns></returns>
         public ActionResult GetJRDTBanner()
@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
             return Content(dto.ToJson());
         }
         /// <summary>
-        /// 今日门诊动态
+        /// Diễn biến ngoại trú hôm nay
         /// </summary>
         public ActionResult GetJrdt()
         {
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 门诊处方
+        /// Đơn thuốc ngoại trú
         /// </summary>
         public ActionResult GetMzcf()
         {
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
          
         /// <summary>
-        /// 门诊费用
+        /// Chi phí ngoại trú
         /// </summary>
         public ActionResult GetMzfy()
         {
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 住院占床率
+        /// Tỷ lệ sử dụng giường nội trú
         /// </summary>
         public ActionResult GetZyzcl()
         {
@@ -73,7 +73,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 门诊挂号统计
+        /// Thống kê đăng ký khám ngoại trú
         /// </summary>
         public ActionResult GetMzghtj()
         {
@@ -82,7 +82,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 住院患者统计
+        /// Thống kê bệnh nhân nội trú
         /// </summary>
         public ActionResult GetZyhztj()
         {

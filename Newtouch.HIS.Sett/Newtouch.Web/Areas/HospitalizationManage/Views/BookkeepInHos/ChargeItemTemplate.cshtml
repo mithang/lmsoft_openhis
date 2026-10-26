@@ -14,10 +14,10 @@
             url: "/HospitalizationManage/BookkeepInHos/GetChargeItemData?ks=" + keyValue,
             height: 150,
             colModel: [
-                { label: "主键", name: "sfmbbh", hidden: true, key: true },
-                { label: "模板代码", name: "sfmb", width: 80, align: 'left' },
-                { label: '模板名称', name: 'sfmbmc', width: 100, align: 'left' },
-                { label: '科室', name: 'ksmc', width: 50, align: 'left' },
+                { label: "Khóa chính", name: "sfmbbh", hidden: true, key: true },
+                { label: "Mã mẫu", name: "sfmb", width: 80, align: 'left' },
+                { label: 'Tên mẫu', name: 'sfmbmc', width: 100, align: 'left' },
+                { label: 'Khoa', name: 'ksmc', width: 50, align: 'left' },
             ]
         });
     }
@@ -33,24 +33,24 @@
             url: "/HospitalizationManage/BookkeepInHos/loadSfxmDataBySfmbbh?sfmbbh=" + sfmbbh,
             height: 200,
             colModel: [
-                { label: "主键", name: "sfmbxmId", hidden: true, key: true },
-                { label: '项目代码', name: 'sfxm', width: 70, align: 'left' },
-                { label: '名称', name: 'sfxmmc', width: 130, align: 'left' },
-                { label: '执行次数', name: 'zxcs', width: 50, align: 'left' },
-                { label: '单次治疗量', name: 'zll', width: 80, align: 'left' },
-                { label: '数量', name: 'sl', width: 40, align: 'left' },
-                { label: '单位时长', name: 'duration', width: 50, align: 'left' },
-                { label: '康复类别', name: 'kflbmc', width: 50, align: 'left' },
+                { label: "Khóa chính", name: "sfmbxmId", hidden: true, key: true },
+                { label: 'Mã khoản mục', name: 'sfxm', width: 70, align: 'left' },
+                { label: 'Tên', name: 'sfxmmc', width: 130, align: 'left' },
+                { label: 'Số lần thực hiện', name: 'zxcs', width: 50, align: 'left' },
+                { label: 'Liều điều trị mỗi lần', name: 'zll', width: 80, align: 'left' },
+                { label: 'Số lượng', name: 'sl', width: 40, align: 'left' },
+                { label: 'Thời lượng đơn vị', name: 'duration', width: 50, align: 'left' },
+                { label: 'Loại phục hồi', name: 'kflbmc', width: 50, align: 'left' },
                 { label: 'kflb', name: 'kflb', hidden: true, width: 50, align: 'left' },
-                { label: '单位', name: 'dw', width: 50, align: 'left', hidden: true },
-                { label: '单价', name: 'dj', width: 50, align: 'left', hidden: true },
-                { label: '医保代码', name: 'ybdm', width: 100, align: 'left', hidden: true },
-                { label: '费用类别', name: 'dlmc', width: 50, align: 'left' },
-                { label: '规格', name: 'gg', width: 50, align: 'left', hidden: true },
-                { label: '剂量', name: 'jl', width: 50, align: 'left', hidden: true },
-                { label: '用法', name: 'yf', hidden: true, align: 'left' },
-                { label: '频率', name: 'pl', hidden: true, align: 'left' },
-                { label: '剂型', name: 'jx', hidden: true, align: 'left' },
+                { label: 'Đơn vị', name: 'dw', width: 50, align: 'left', hidden: true },
+                { label: 'Đơn giá', name: 'dj', width: 50, align: 'left', hidden: true },
+                { label: 'Mã bảo hiểm y tế', name: 'ybdm', width: 100, align: 'left', hidden: true },
+                { label: 'Loại chi phí', name: 'dlmc', width: 50, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 50, align: 'left', hidden: true },
+                { label: 'Liều lượng', name: 'jl', width: 50, align: 'left', hidden: true },
+                { label: 'Cách dùng', name: 'yf', hidden: true, align: 'left' },
+                { label: 'Tần suất', name: 'pl', hidden: true, align: 'left' },
+                { label: 'Dạng bào chế', name: 'jx', hidden: true, align: 'left' },
                 { label: 'dlmc', name: 'dlmc', hidden: true },
                 { label: 'dl', name: 'dl', hidden: true },
                 { label: 'zfxz', name: 'zfxz', hidden: true },
@@ -96,7 +96,7 @@
 <div class="gridPanel">
     <table id="parentgridList"></table>
     @*<strong style="text-decoration:none;padding-left:10px;">
-        已选总金额：<span style='color:red;' id="yxzje">0.00</span>元
+        Tổng số tiền đã chọn：<span style='color:red;' id="yxzje">0.00</span> đồng
     </strong>*@
     <table id="ChildgridList"></table>
 </div>

@@ -4,7 +4,7 @@
 }
 <table class="form" style="width:95%;margin-top:15px;">
     <tr>
-        <th class="formTitle"><span style="color:red">*</span>治疗日期：</th>
+        <th class="formTitle"><span style="color:red">*</span>Ngày điều trị：</th>
         <td class="formValue">
             <input id="zxrq" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" type="text" class="form-control input-wdatepicker"
                    onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd',maxDate:'%y-%M-%d', minDate: '%y-%M-#{%d-@(((ViewBag.DefaultPrevDate as int?)??0).ToString())}' })" />
@@ -16,7 +16,7 @@
     function checkEditingRowData() {
         var zxrq = $('#zxrq').val();
         if (!zxrq) {
-            $.modalAlert('执行日期不能为空', 'warning');
+            $.modalAlert('Ngày thực hiện không được để trống', 'warning');
             return;
         }
         return { zxrq: zxrq }

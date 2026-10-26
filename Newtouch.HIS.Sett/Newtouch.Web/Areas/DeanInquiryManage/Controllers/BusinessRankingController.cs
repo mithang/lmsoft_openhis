@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 门诊医生工作量
+        /// Khối lượng công việc của bác sĩ ngoại trú
         /// </summary>
         public ActionResult GetMzysgzl(string kssj, string jssj)
         {
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 门诊科室收入
+        /// Thu nhập khoa ngoại trú
         /// </summary>
         public ActionResult GetMzkssr(string kssj, string jssj)
         {
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 住院业务科室收入
+        /// Thu nhập khoa nghiệp vụ nội trú
         /// </summary>
         public ActionResult GetZyywks(string kssj, string jssj)
         {
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 医生业务收入
+        /// Thu nhập nghiệp vụ của bác sĩ
         /// </summary>
         public ActionResult GetYsyw(string kssj, string jssj, string bqCode)
         {

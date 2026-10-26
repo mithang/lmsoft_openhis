@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region 单点登录start
 
         /// <summary>
-        /// 1.单点登录的回调，接收token，访问单点登录的API以获得UserId
+        /// 1.Callback đăng nhập một lần，Nhận token，Truy cập đăng nhập một lần API để lấy được UserId
         /// </summary>
         /// <returns></returns>
         public ActionResult SSOCallback(string access_token, string returnUrl)
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Web.Controllers
             };
             var apiResp = Tools.Net.HttpClientHelper.HttpPostStringAndRead<APIRequestHelper.DefaultResponse>(
                 SiteUrl.GetSSOAPIUrl("api/Auth/GetOpenId"), Tools.Json.ToJson(reqObj), contentType: Newtouch.Core.Common.Utils.HttpClientHelper.EnumContentType.json);
-            var openId = "";    //这是Account
+            var openId = "";    //Đây là Account
             var jObj = Tools.Json.ToJObject(apiResp.data.ToString());
             foreach (JProperty prop in jObj.Properties())
             {
@@ -57,20 +57,20 @@ namespace Newtouch.HIS.Web.Controllers
 
             Action acBeforeRedirect = () =>
             {
-                //用来标志用户的登录来源
+                //Dùng để đánh dấu nguồn đăng nhập của người dùng
                 WebHelper.WriteCookie(Constants.AppId + "_LoginFromFlag", EnumLoginFlag.SSO.ToString());
             };
             return QuickLoginSuccess(openId, returnUrl: returnUrl, acBeforeRedirect: acBeforeRedirect);
         }
 
         /// <summary>
-        /// 返回单点登录首页
+        /// Trả về trang chủ đăng nhập một lần
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         public ActionResult ReturnSSOHome()
         {
-            //相当于先做退出操作
+            //Tương đương với việc thực hiện thoát trước
             var opr = OperatorProvider.GetCurrent();
             if (opr != null)
             {
@@ -83,7 +83,7 @@ namespace Newtouch.HIS.Web.Controllers
 
             WebHelper.RemoveCookie(Constants.AppId + "_LoginFromFlag");
 
-            //跳转回单点登录页面
+            //Chuyển về trang đăng nhập một lần
             var url = ConfigurationHelper.GetAppConfigValue("SSOHomeHost");
 
             return Redirect(url);
@@ -94,7 +94,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region 统一授权登录
 
         /// <summary>
-        /// 统一授权登录
+        /// Đăng nhập ủy quyền thống nhất
         /// </summary>
         /// <param name="access_token"></param>
         /// <param name="returnUrl"></param>
@@ -103,7 +103,7 @@ namespace Newtouch.HIS.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(access_token))
             {
-                return RedirectToAction("Index", "Login");  //缺少令牌
+                return RedirectToAction("Index", "Login");  //Thiếu token
             }
             
             var eOpr = OperatorProvider.GetCurrent();
@@ -121,9 +121,9 @@ namespace Newtouch.HIS.Web.Controllers
             var aaa = ConfigurationHelper.GetAppConfigValue("UAUserInfoGetAPI");
             if (string.IsNullOrWhiteSpace(aaa))
             {
-                return RedirectToAction("Index", "Login");  //未配置身份换取的API地址
+                return RedirectToAction("Index", "Login");  //Chưa cấu hình đổi danh tính API Địa chỉ
             }
-            //向API请求换取身份
+            //Tới API Yêu cầu đổi danh tính
             var sw = new Stopwatch();
             sw.Start();
             var reqObj = new
@@ -138,7 +138,7 @@ namespace Newtouch.HIS.Web.Controllers
             sw.Reset();
             if (apiResp.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                return RedirectToAction("Index", "Login");  //身份换取失败
+                return RedirectToAction("Index", "Login");  //Đổi danh tính thất bại
             }
             sw.Start();
             string account = "", organizeId = "";
@@ -165,7 +165,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 统一授权获取跳转地址
+        /// Ủy quyền thống nhất lấy địa chỉ chuyển hướng
         /// </summary>
         /// <param name="appId"></param>
         /// <returns></returns>
@@ -193,14 +193,14 @@ namespace Newtouch.HIS.Web.Controllers
                 }
                 else
                 {
-                    addr = null;    //视为null
+                    addr = null;    //Được xem là null
                 }
             }
             return Content(new AjaxResult { state = ResultType.success.ToString(), data = addr }.ToJson());
         }
 
         /// <summary>
-        /// 统一授权预热（预热打开CIS页面）
+        /// Khởi động trước ủy quyền thống nhất（Mở khởi động trước CIS Trang）
         /// </summary>
         /// <param name="opr"></param>
         public static void UALoginPre(OperatorModel opr)
@@ -268,14 +268,14 @@ namespace Newtouch.HIS.Web.Controllers
         [HttpGet]
         public override ActionResult Index()
         {
-            //移除SSO登录来源标记
+            //Loại bỏ SSO Dấu nguồn đăng nhập
             WebHelper.RemoveCookie(Constants.AppId + "_LoginFromFlag");
 
             return base.Index();
         }
 
         /// <summary>
-        /// 退出登录
+        /// Đăng xuất
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -295,7 +295,7 @@ namespace Newtouch.HIS.Web.Controllers
             if (!string.IsNullOrWhiteSpace(loginFromFlag))
             {
                 WebHelper.RemoveCookie(Constants.AppId + "_LoginFromFlag");
-                //退出SSO登录
+                //Thoát SSO Đăng nhập
                 var url = ConfigurationHelper.GetAppConfigValue("SSOOutLogin");
                 return Redirect(url);
             }
@@ -311,17 +311,17 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="opr"></param>
         public override void OprBeforeSave(OperatorModel opr)
         {
-            //更新用户药房部分
+            //Cập nhật phần nhà thuốc của người dùng
             if (ConfigurationHelper.GetAppConfigBoolValue("Is_UserYfbmRelated") == true && opr.OrganizeId != null)
             {
-                //当前要操作的药房部门
+                //Khoa dược cần thao tác hiện tại
                 if (!string.IsNullOrWhiteSpace(opr.UserId) && !string.IsNullOrWhiteSpace(opr.OrganizeId))
                 {
                     opr.yfbmCodeList = _sysUserDmnService.GetYfbmCodeListByUserId(opr.UserId, opr.OrganizeId);
                 }
                 if (opr.yfbmCodeList != null && opr.yfbmCodeList.Count > 0)
                 {
-                    //当前要操作的药房部门    //在OrgId关联了多个yfbm怎么办
+                    //Khoa dược cần thao tác hiện tại    //Tại OrgId Đã liên kết nhiều yfbm Phải làm sao
                     var curYfbmCode = opr.yfbmCodeList.FirstOrDefault();
                     Constants.SetCurrentYfbm(opr.UserId, new LoginUserCurrentYfbmModel()
                     {
@@ -332,7 +332,7 @@ namespace Newtouch.HIS.Web.Controllers
                 }
                 else
                 {
-                    Constants.SetCurrentYfbm(opr.UserId, null);  //移除
+                    Constants.SetCurrentYfbm(opr.UserId, null);  //Loại bỏ
                 }
             }
 

@@ -5,12 +5,12 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Web.Controllers
 {
     /// <summary>
-    /// 本地文件系统
+    /// Hệ thống tệp cục bộ
     /// </summary>
     public class LocalFileController : ControllerBase
     {
         /// <summary>
-        /// 本地文件下载
+        /// Tải xuống tệp cục bộ
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Web.Controllers
                 string downloadName = null;
                 if (string.IsNullOrWhiteSpace(fileDownloadName))
                 {
-                    //未指定
+                    //Chưa chỉ định
                     downloadName = fi.Name;
                 }
                 else

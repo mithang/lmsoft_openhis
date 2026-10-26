@@ -1,17 +1,17 @@
-﻿@*2020版 中途结算*@
+﻿@*2020 bản Quyết toán giữa chừng*@
 @using Newtouch.Infrastructure;
 @{
     ViewBag.Title = "PartialSettleIndex";
     Layout = "~/Views/Shared/_Form.cshtml";
 
-    //是否和医保交易
+    //Có giao dịch với bảo hiểm y tế hay không
     var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
-    //医保所属地，区分系统将执行何处医保逻辑
+    //Nơi thuộc bảo hiểm y tế，Phân biệt hệ thống sẽ thực thi logic bảo hiểm y tế ở đâu
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
 
-    //收费成功之后是否直接打印收据
+    //Sau khi thu phí thành công có in biên lai trực tiếp hay không
     var autoPrintFP = SysConfigReader.Bool("Inpatient_Sett_AutoPrint");
-    //收据报表链接
+    //Liên kết báo cáo biên lai
     var invoiceReportUrl = SysConfigReader.OrgReportLink("NewInpatientSett");
 
     var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
@@ -22,49 +22,49 @@
 <div class="rows" style="margin-bottom: 1%;">
     <div class="panel panel-default" style="margin-bottom:0;">
         <div class="panel-heading navb-bg">
-            住院患者信息
+            Thông tin bệnh nhân nội trú
         </div>
         <table class="form" style="width:96%;">
             <tbody>
                 <tr>
-                    <th class="formTitle">住院号：</th>
+                    <th class="formTitle">Số nhập viện：</th>
                     <td class="formValue">
                         <input class="form-control" type="text" id="zyh" value="" />
                     </td>
                     <td class="formValue">
-                        <input type="button" class="btn btn-default btn-md btn-default-color" title="选择住院患者" style="" id="zy_btnsyy" value="查询" onclick="GetPatSerarchView();">
+                        <input type="button" class="btn btn-default btn-md btn-default-color" title="Chọn bệnh nhân nội trú" style="" id="zy_btnsyy" value="Tra cứu" onclick="GetPatSerarchView();">
                     </td>
                     <td class="formValue" style="width: 130px">
                         @if (openYbSett == true)
                         {
                             <div id="readCard" style="color: orangered;">
-                                <input type="button"  id="btkhsr" value="证件号输入" class="form-control" style="border-color:#00a0e9; margin-left: 0px;margin-top: 2px; height: 22px;width:44px;padding-left:0px; float: left;vertical-align:central;" onclick="GetPatSbkh()" />
-                                <i class="fa fa-id-card" style="font-size: 27px; float: left; vertical-align: central;" title="读卡"></i>
+                                <input type="button"  id="btkhsr" value="Nhập số giấy tờ" class="form-control" style="border-color:#00a0e9; margin-left: 0px;margin-top: 2px; height: 22px;width:44px;padding-left:0px; float: left;vertical-align:central;" onclick="GetPatSbkh()" />
+                                <i class="fa fa-id-card" style="font-size: 27px; float: left; vertical-align: central;" title="Đọc thẻ"></i>
                                 <select id="readCardCardType" class="form-control" style="width: 36px; height: 26px; padding: 0px; float: left; vertical-align: central;">
                                     @if (openYbSett == true)
                                     {
-                                        <option value="03">社</option>
+                                        <option value="03">BHXH</option>
                                     }
-                                    <option value="01">社(电)</option>
-                                    <option value="02">身</option>
+                                    <option value="01">BHXH(Điện)</option>
+                                    <option value="02">CMND</option>
                                 </select>
                             </div>
                         }
                     </td>
-                    <th class="formTitle" style="width: 50px">开始时间：</th>
+                    <th class="formTitle" style="width: 50px">Thời gian bắt đầu：</th>
                     <td class="formValue" style="width:143px;">
                         <label id="startTime"></label>
                     </td>
-                    <th class="formTitle">结束时间：</th>
+                    <th class="formTitle">Thời gian kết thúc：</th>
                     <td class="formValue" style="width:143px;">
                         <input id="endTime" type="text" class="form-control input-wdatepicker form-an formClearIgnore"
                                onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { thenreload(); } })" value="@(System.DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd 23:59:59"))" />
                     </td>
-                    <th class="formTitle">姓名：</th>
+                    <th class="formTitle">Họ tên：</th>
                     <td class="formValue">
                         <label id="zy_xm" style="min-width:100px"></label>
                     </td>
-                    <th class="formTitle">性别：</th>
+                    <th class="formTitle">Giới tính：</th>
                     <td class="formValue">
                         <label id="zy_xb"></label>
                     </td>
@@ -77,19 +77,19 @@
                         <label></label>
                     </td>
                     
-                    <th class="formTitle">年龄：</th>
+                    <th class="formTitle">Tuổi：</th>
                     <td class="formValue">
                         <label id="zy_nl"></label>
                     </td>
-                    <th class="formTitle">入院诊断：</th>
+                    <th class="formTitle">Chẩn đoán nhập viện：</th>
                     <td class="formValue">
                         <label id="zy_ryzd"></label>
                     </td>
-                    <th class="formTitle">出生日期：</th>
+                    <th class="formTitle">Ngày sinh：</th>
                     <td class="formValue" >
                         <label id="zy_csny" style="min-width:100px"></label>
                     </td>
-                    <th class="formTitle">入院日期：</th>
+                    <th class="formTitle">Ngày nhập viện：</th>
                     <td class="formValue">
                         <label id="zy_ryrq" style="min-width:100px"></label>
                     </td>
@@ -100,8 +100,8 @@
     </div>
 </div>
 <ul id="myTab" class="nav nav-tabs">
-    <li class="active"><a href="#wj" data-toggle="tab">未结费用</a></li>
-    <li><a href="#yj" data-toggle="tab">历史已结</a></li>
+    <li class="active"><a href="#wj" data-toggle="tab">Chi phí chưa kết</a></li>
+    <li><a href="#yj" data-toggle="tab">Lịch sử đã kết</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade in active" id="wj">
@@ -114,7 +114,7 @@
             <table id="gridList2"></table>
         </div>
         <div style="margin:3px 0;">
-            <span style="color:red;font-weight:bold;">*.撤销功能限制为撤销列表中最后一次结算</span>
+            <span style="color:red;font-weight:bold;">*.Chức năng hủy giới hạn ở lần quyết toán cuối cùng trong danh sách hủy</span>
         </div>
     </div>
 </div>
@@ -124,11 +124,11 @@
         <table class="form" style="width:96%;">
             <tbody>
                 <tr>
-                    <th class="formTitle">未结费用：</th>
+                    <th class="formTitle">Chi phí chưa kết：</th>
                     <td class="formValue" style="width:100px;">
                         <label id="lblSumje" style="color:red;font-weight: bold;font-size: large;"></label>
                     </td>
-                    <th class="formTitle" style="width:105px;">上次结算结束时间：</th>
+                    <th class="formTitle" style="width:105px;">Thời gian kết thúc quyết toán lần trước：</th>
                     <td class="formValue">
                         <label id="lastValidMidwaySettTime"></label>
                     </td>
@@ -140,9 +140,9 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 6,7, 8 },
-    F8Text = "确认收费",
-    F6Text = "撤销结算",
-    F7Text = "转出院结算",
+    F8Text = "Xác nhận thu phí",
+    F6Text = "Hủy quyết toán",
+    F7Text = "Chuyển sang quyết toán xuất viện",
     F6Hidden = true,
     F7Hidden = true,
     F8Hidden = true,
@@ -150,19 +150,19 @@
 <script type="text/javascript">
 
 
-    var openYbSett = '@openYbSett' === 'True'; //开关配置：医保患者是否使用医保交易流程
-    var isYbjyjz; //当前是否走医保交易的就诊
+    var openYbSett = '@openYbSett' === 'True'; //Cấu hình công tắc：Bệnh nhân bảo hiểm y tế có sử dụng quy trình giao dịch bảo hiểm y tế hay không
+    var isYbjyjz; //Lần khám hiện tại có đi theo giao dịch bảo hiểm y tế hay không
     var medicalInsurance = '@medicalInsurance';
     var curTime = $.getDate() + " 23:59:59";
 
-    var ybkCardType = "@((int)EnumCardType.YBJYK)";//医保卡类型
-    var xnkCardType = "@((int)EnumCardType.XNK)";//虚拟卡类型
-    var ybCommonBackReturnData;//医保撤销最后一次结算结果
+    var ybkCardType = "@((int)EnumCardType.YBJYK)";//Loại thẻ bảo hiểm y tế
+    var xnkCardType = "@((int)EnumCardType.XNK)";//Loại thẻ ảo
+    var ybCommonBackReturnData;//Kết quả hủy lần quyết toán cuối cùng của bảo hiểm y tế
     var ybIsReadCard = false;
     var zyh;
     var cqPatInfo = {};
 
-    //通过ls把住院号传过去
+    //Thông qua ls Truyền số nhập viện sang
     var fromzyh = sessionStorage.getItem('zyh');
     var defaultShow = sessionStorage.getItem('defaultShow');
     if (fromzyh) {
@@ -177,16 +177,16 @@
     $(function () {
         initgridList1();
         initgridList2();
-        $('#myTab li:eq(1) a').tab('show'); //会触发grid2加载样式
+        $('#myTab li:eq(1) a').tab('show'); //sẽ kích hoạt grid2 Tải kiểu
 
         if (!(defaultShow === 'yj')) {
-            setTimeout("$('#myTab li:eq(0) a').tab('show');", 200); //显示未结
+            setTimeout("$('#myTab li:eq(0) a').tab('show');", 200); //Hiển thị chưa kết
         }
     });
 
     function initgridList1() {
         if ($('#startTime').val() > $('#endTime').val()) {
-            $.modalAlert("开始时间不能大于结束时间", "warning");
+            $.modalAlert("Thời gian bắt đầu không thể lớn hơn thời gian kết thúc", "warning");
             return;
         }
         $('#gridList').dataGrid({
@@ -196,13 +196,13 @@
             height: $(window).height() - 290,
             sortable: false,
             colModel: [
-                { label: "收费项目名称", name: "sfxmmc", width: 180, align: "left" },
+                { label: "Tên khoản mục thu phí", name: "sfxmmc", width: 180, align: "left" },
                 {
-                    label: "数量", name: "sl", width: 80, align: "left", formatter: "number"
+                    label: "Số lượng", name: "sl", width: 80, align: "left", formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
                 {
-                    label: "总金额", name: "zje", width: 80, align: "left", formatter: "number"
+                    label: "Tổng số tiền", name: "zje", width: 80, align: "left", formatter: "number"
                         , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
             ],
@@ -247,22 +247,22 @@
             sortable: false,
             colModel: [
                 { label: "jsnm", name: "jsnm", align: "left", hidden: true },
-                { label: "住院号", name: "zyh", align: "left", hidden: true },
+                { label: "Số nhập viện", name: "zyh", align: "left", hidden: true },
                 {
-                    label: "结算金额", name: "zje", width: 180, align: "left", formatter: "number"
+                    label: "Số tiền quyết toán", name: "zje", width: 180, align: "left", formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
                 {
-                    label: "结算开始时间", name: "jsksrq", width: 240, align: "left",
+                    label: "Thời gian bắt đầu quyết toán", name: "jsksrq", width: 240, align: "left",
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
                 {
-                    label: "结算结束时间", name: "jsjsrq", width: 240, align: "left",
+                    label: "Thời gian kết thúc quyết toán", name: "jsjsrq", width: 240, align: "left",
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: "结算人员", name: "CreatorCode", width: 140, align: "left" },
+                { label: "Nhân viên quyết toán", name: "CreatorCode", width: 140, align: "left" },
                 {
-                    label: "结算时间", name: "CreateTime", width: 240, align: "left",
+                    label: "Thời gian quyết toán", name: "CreateTime", width: 240, align: "left",
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 }
             ],
@@ -270,19 +270,19 @@
     }
 
     function thenreload() {
-        //加载未结
+        //Tải chưa kết
         reloadGrid();
         reloadLastValidMidwaySettTime();
 
         var targetHref = $('#myTab li.active a').attr('href');
         if (targetHref && targetHref.indexOf('yj') != -1) {
-            reloadGrid2();  //当前已是已结
+            reloadGrid2();  //Hiện tại đã là đã kết
         }
     }
 
     function reloadGrid() {
         if ($("#startTime").val() > $("#endTime").val()) {
-            $.modalAlert("开始时间不能大于结束时间", "warning");
+            $.modalAlert("Thời gian bắt đầu không thể lớn hơn thời gian kết thúc", "warning");
             return;
         }
         $("#gridList").jqGrid('setGridParam', {
@@ -300,7 +300,7 @@
     }
 
     function reloadLastValidMidwaySettTime() {
-        //更新‘最后结算结束时间’
+        //Cập nhật‘Thời gian kết thúc quyết toán cuối cùng’
         $('#lastValidMidwaySettTime').html('');
         if (!!zyh) {
             $.najax({
@@ -315,27 +315,27 @@
         }
     }
 
-    //病人查询
+    //Tra cứu bệnh nhân
     function GetPatSerarchView() {
         $.modalOpen({
             id: "patSearch",
-            title: "患者查询",
+            title: "Tra cứu bệnh nhân",
             url: "/PatientManage/AccountManage/PatSearchView?brzybzType=" + '@((int)EnumZYBZ.Bqz + "," + (int)EnumZYBZ.Djz)' + "&t=" + Math.random() + "&zyh=" + zyh,
             width: "700px",
             height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //在弹出窗口事件
-                //调用查询卡号和住院号
-            }//窗口点确定的回调函数
+                top.frames[iframeId].PatDbGrid(); //Trong sự kiện cửa sổ bật lên
+                //Gọi tra cứu số thẻ và số nhập viện
+            }//Hàm callback khi nhấn xác định tại cửa sổ
         });
 
     }
 
-    //手输社保卡号
+    //Nhập tay số thẻ bảo hiểm xã hội
     function GetPatSbkh() {
         $.modalOpen({
             id: "sbkhInput",
-            title: "卡号输入",
+            title: "Nhập số thẻ",
             url: "/OutpatientManage/OutpatientReg/OutPatientSbkhInput?t=" + Math.random(),
             width: "300px",
             height: "150px",
@@ -344,7 +344,7 @@
             }
         });
     }
-    //选择的病人 callback
+    //Bệnh nhân đã chọn callback
     function getPatInfoAjax(selePatInfo) {
         $('#endTime').val('@(yesterday)'); //update endTime
         $('#zyh').val(selePatInfo.zyh);
@@ -354,9 +354,9 @@
 
     var patModel = null;
     var jszje = 0.00;
-    //加载住院基本信息
+    //Tải thông tin cơ bản nội trú
     function ajaxLoadDataResult(obj, funcSuccCallback) {
-        $('#startTime').html('');   //只有切换住院号的时候，才切换开始日期
+        $('#startTime').html('');   //Chỉ khi chuyển đổi số nhập viện，mới chuyển đổi ngày bắt đầu
             $.najax({
                 type: "POST",
                 data: obj,
@@ -365,7 +365,7 @@
                 success: function (ajaxresp) {
                     $('#lblSumje').text('0.00');
                     patModel = ajaxresp.data.InpatientSettPatInfo
-                    cqPatInfo.zymzh = patModel.zyh;//住院号
+                    cqPatInfo.zymzh = patModel.zyh;//Số nhập viện
                     setPatInfoModel();
 
                     thenreload();
@@ -380,7 +380,7 @@
             });
     }
 
-    //初始化病人信息
+    //Khởi tạo thông tin bệnh nhân
     function setPatInfoModel() {
         zyh = patModel.zyh;
         $('#zyh').val(patModel.zyh);
@@ -403,7 +403,7 @@
         //
         var widthpx = "600px";
         var heightpx = "400px";
-        var hzjslx = "0";//0自费  1医保  8农保
+        var hzjslx = "0";//0 Tự trả  1 Bảo hiểm y tế  8 Bảo hiểm nông thôn
         if (isYbjyjz && ybjyFeeReturn) {
             sessionStorage.setItem('ybjyFeeReturn', JSON.stringify(ybjyFeeReturn));
             sessionStorage.setItem('cqPatInfo', JSON.stringify(cqPatInfo));
@@ -430,7 +430,7 @@
         openUrl += "&isYbjy=" + (!!isYbjyjz) + "&brxz=" + patModel.brxz + "&brxzmc=" + patModel.brxzmc+ "&ztjs=" + true,
             $.modalOpen({
                 id: "ConfirmFeeForm",
-                title: "中途结算",
+                title: "Quyết toán giữa chừng",
                 url: openUrl,
                 width: widthpx,
                 height: heightpx,
@@ -438,31 +438,31 @@
                     top.frames[iframeId].AcceptClick(function (feeRelated, outTradeNo) {
                         var startTime = $('#startTime').html();
                         if (!!!startTime) {
-                            $.modalAlert("未指定结算开始时间", 'error');
+                            $.modalAlert("Chưa chỉ định thời gian bắt đầu quyết toán", 'error');
                             return;
                         }
                         if (!!!zyh) {
-                            $.modalAlert("请选择住院病人", 'error');
+                            $.modalAlert("Vui lòng chọn bệnh nhân nội trú", 'error');
                             return;
                         }
                         var thisSettEndTime = $('#endTime').val();
                         if (!!!thisSettEndTime) {
-                            $.modalAlert("未指定结算结束时间", 'error');
+                            $.modalAlert("Chưa chỉ định thời gian kết thúc quyết toán", 'error');
                             return;
                         }
 
                         if ($("#startTime").val() > $("#endTime").val()) {
-                            $.modalAlert("开始时间不能大于结束时间", "warning");
+                            $.modalAlert("Thời gian bắt đầu không thể lớn hơn thời gian kết thúc", "warning");
                             return;
                         }
 
                         var allLine = $("#gridList").jqGrid('getRowData_AllLine', null, true);
                         if (!!!allLine || allLine.length == 0) {
-                            $.modalAlert("无未结费用", 'error');
+                            $.modalAlert("Không có chi phí chưa kết", 'error');
                             return;
                         }
                        
-                        //提交
+                        //Gửi
                         var postData = { zyh: zyh, startTime: startTime, endTime: thisSettEndTime, fph: feeRelated.fph, feeRelated: feeRelated, ybfeeRelated: ybjyFeeReturn, jslx: hzjslx, outTradeNo: outTradeNo };
                         $.submitForm({
                             type: "POST",
@@ -472,13 +472,13 @@
                                 var message = "";
                                 sessionStorage.setItem('zyh', zyh);
 
-                                $.modalMsg("结算成功" + message, 'success');
+                                $.modalMsg("Quyết toán thành công" + message, 'success');
                                 $.modalClose("ConfirmFeeForm");
                                 newtouch_event_f4();
-                                //打印发票
+                                //In hóa đơn
                                 if (ajaxresp.data && ajaxresp.data.jsnm) {
                                     if ('@(autoPrintFP)' == 'True') {
-                                        //报表打印
+                                        //In báo cáo
                                         var uri = '@Html.Raw(invoiceReportUrl)' + "&jsnm=" + ajaxresp.data.jsnm;
                                         window.open(uri, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
 
@@ -489,7 +489,7 @@
                     });
                 },
                 cancelCallBack: function (iframeId) {
-                    //取消出院结算，出院办理回退
+                    //Hủy quyết toán xuất viện，Hoàn trả làm thủ tục xuất viện
                     if (isYbjyjz) {
                         //if (medicalInsurance == "chongqing") {
                             var cqybjyDenySettleReturn;
@@ -505,7 +505,7 @@
                                 }
                             });
                             if (cqybjyDenySettleReturn.infcode !== "0") {
-                                $.modalAlert('住院结算冲正失败：' + cqybjyDenySettleReturn.ErrorMsg + '【此时医保已经结算成功，请联系his开发商处理】', 'error');
+                                $.modalAlert('Đảo ngược quyết toán nội trú thất bại：' + cqybjyDenySettleReturn.ErrorMsg + '【Lúc này bảo hiểm y tế đã quyết toán thành công，Vui lòng liên hệ his Nhà phát triển xử lý】', 'error');
                             }
 
                             $.loading(false);
@@ -530,7 +530,7 @@
         patModel = null;
         jszje = 0.00;
         flagIsFirstInitGrid2 = true;
-        $('#myTab li:eq(1) a').tab('show'); //会触发grid2加载样式
+        $('#myTab li:eq(1) a').tab('show'); //sẽ kích hoạt grid2 Tải kiểu
         $('#lblSumje').text('0.00');
         $('#gridList').jqGrid("clearGridData");
         $('#gridList2').jqGrid("clearGridData");
@@ -538,10 +538,10 @@
     }
 
 
-    //撤销结算
+    //Hủy quyết toán
     function newtouch_event_f6() {
         if (!zyh) {
-            $.modalAlert("住院号为空，请确认", 'warning');
+            $.modalAlert("Số nhập viện trống，Vui lòng xác nhận", 'warning');
             return;
         }
         $.ajax({
@@ -552,7 +552,7 @@
             success: function (jsnm) {
                 if (isYbjyjz) {
                     if (!ybIsReadCard) {
-                        $.modalAlert("医保患者取消结算，请先读卡！", 'warning');
+                        $.modalAlert("Bệnh nhân bảo hiểm y tế hủy quyết toán，Vui lòng đọc thẻ trước！", 'warning');
                         return;
                     }
                         var cqybjyDenySettleReturn;
@@ -576,11 +576,11 @@
                                     if (cqybjyDenySettleReturn.infcode == "0") {
                                         Docancelhissubmit(jsnm, cqybjyDenySettleReturn.output.setlinfo);
                                     } else {
-                                        $.modalAlert('住院结算冲正失败：' + cqybjyDenySettleReturn.err_msg + '【此时医保已经结算成功，请联系his开发商处理】', 'warning');
+                                        $.modalAlert('Đảo ngược quyết toán nội trú thất bại：' + cqybjyDenySettleReturn.err_msg + '【Lúc này bảo hiểm y tế đã quyết toán thành công，Vui lòng liên hệ his Nhà phát triển xử lý】', 'warning');
                                         return;
                                     }
                                 } else {
-                                    $.modalAlert('取消结算失败，结算表cqyb_OutPut05中无该次结算医保落地数据：结算内码' + jsnm, 'warning');
+                                    $.modalAlert('Hủy quyết toán thất bại，Bảng quyết toán cqyb_OutPut05 trong không có dữ liệu lưu xuống bảo hiểm y tế của lần quyết toán này：Mã nội bộ quyết toán' + jsnm, 'warning');
                                     return;
                                 }
                                 $.loading(false);
@@ -593,7 +593,7 @@
         });
     }
 
-    //转出院结算
+    //Chuyển sang quyết toán xuất viện
     function newtouch_event_f7() {
         $.najax({
             url: "/HospitalizationManage/DischargeSettle/TransfertoCYsettle?zyh=" + zyh,
@@ -610,12 +610,12 @@
                         if (medicalReg) {
                             if (medicalReg.Code === "1") {
                                 $.loading(false);
-                                $.modalMsg("结算成功", 'success');
+                                $.modalMsg("Quyết toán thành công", 'success');
                                 newtouch_event_f4();
                             }
                             else {
                                 $.loading(false);
-                                $.modalAlert("医保住院修改就诊登记失败：" + medicalReg.ErrorMsg, 'error');
+                                $.modalAlert("Sửa đăng ký khám bệnh nội trú bảo hiểm y tế thất bại：" + medicalReg.ErrorMsg, 'error');
                                 return;
                             }
                         }
@@ -625,56 +625,56 @@
         });
     }
 
-    //结算
+    //Quyết toán
     function newtouch_event_f8() {
         if (!!!zyh || !!!$('#zyh').val()) {
-            $.modalAlert("请选择住院病人", 'error');
+            $.modalAlert("Vui lòng chọn bệnh nhân nội trú", 'error');
             return;
         }
 
         var startTime = $('#startTime').html();
         if (!!!startTime) {
-            $.modalAlert("未指定结算开始时间", 'error');
+            $.modalAlert("Chưa chỉ định thời gian bắt đầu quyết toán", 'error');
             return;
         }
         if (!!!zyh) {
-            $.modalAlert("请选择住院病人", 'error');
+            $.modalAlert("Vui lòng chọn bệnh nhân nội trú", 'error');
             return;
         }
         var thisSettEndTime = $('#endTime').val();
         if (!!!thisSettEndTime) {
-            $.modalAlert("未指定结算结束时间", 'error');
+            $.modalAlert("Chưa chỉ định thời gian kết thúc quyết toán", 'error');
             return;
         }
 
         if (startTime > thisSettEndTime) {
-            $.modalAlert("开始时间不能大于结束时间", "warning");
+            $.modalAlert("Thời gian bắt đầu không thể lớn hơn thời gian kết thúc", "warning");
             return;
         }
         var allLine = $("#gridList").jqGrid('getRowData_AllLine', null, true);
         if (!!!allLine || allLine.length == 0) {
-            $.modalAlert("无未结费用", 'error');
+            $.modalAlert("Không có chi phí chưa kết", 'error');
             return;
         }
 
 
-        if (isYbjyjz) {//医保
+        if (isYbjyjz) {//Bảo hiểm y tế
             if (!medicalInsurance) {
-                $.modalAlert("程序未动态配置医保地，请配置后重试", 'warning');
+                $.modalAlert("Chương trình chưa cấu hình động nơi bảo hiểm y tế，Vui lòng cấu hình rồi thử lại", 'warning');
                 return;
             }
                 if (!ybIsReadCard) {
-                    $.modalAlert("医保患者结算，请先读卡！", 'warning');
+                    $.modalAlert("Quyết toán bệnh nhân bảo hiểm y tế，Vui lòng đọc thẻ trước！", 'warning');
                     return;
                 }
-                $.loading(true, '正在进行就诊登记修改，请稍后...');
+                $.loading(true, 'Đang thực hiện sửa đăng ký khám bệnh，Vui lòng chờ trong giây lát...');
                 setTimeout(function() {
                     CQjzdj(function (jzxx) {
-                            $.loading(true, '正在进行明细上传，请稍后...');
+                            $.loading(true, 'Đang thực hiện tải lên chi tiết，Vui lòng chờ trong giây lát...');
                             setTimeout(function() {
                                 CQmxsc(jzxx,
                                         function (mxxx) {
-                                            $.loading(true, '正在进行医保结算，请稍后...');
+                                            $.loading(true, 'Đang thực hiện quyết toán bảo hiểm y tế，Vui lòng chờ trong giây lát...');
                                             setTimeout(function() {
                                                 CQybjs(jzxx, mxxx);
                                                 });
@@ -691,23 +691,23 @@
         }
     }
 
-    //本地操作取消结算
+    //Thao tác tại chỗ hủy quyết toán
     function Docancelhissubmit(jsnm,ybBackReturnData)
     {
         var allLine = $("#gridList2").jqGrid('getRowData_AllLine', null, true);
         if (!!!allLine || allLine.length == 0) {
-            $.modalAlert("无历史已结", 'error');
+            $.modalAlert("Không có lịch sử đã kết", 'error');
             return;
         }
         ybCommonBackReturnData = ybBackReturnData;
         $.modalOpen({
             id: "refundForm",
-            title: "退费详情",
+            title: "Chi tiết hoàn phí",
             url: "/HospitalizationManage/DischargeSettle/CancelPartialConfirmForm?jsnm=" + jsnm + "&patid=" + patModel.patId,
             width: "300px",
             height: "350px",
             callBack: function (iframeId) {
-                top.frames[iframeId].submitform(); //在弹出窗口事件
+                top.frames[iframeId].submitform(); //Trong sự kiện cửa sổ bật lên
             }
         });
     }
@@ -745,7 +745,7 @@
 </script>
 <script type="text/javascript">
 
-    //重庆医保
+    //Bảo hiểm y tế Trùng Khánh
     function CQjzdj(funcSuccCallback) {
 	     $.ajax({
 		    type: "POST",
@@ -757,7 +757,7 @@
 		    success: function (payoptype) {
 		    	if (!payoptype) {
 				    $.loading(false);
-				    $.modalAlert("获取住院就诊登记失败", 'error');
+				    $.modalAlert("Lấy đăng ký khám bệnh nội trú thất bại", 'error');
 				    return;
 		    	}
 		    	payoptype.mdtrt_cert_type = cqPatInfo.ybklx;
@@ -777,7 +777,7 @@
 		                    }
 		                    else {
 		                        $.loading(false);
-		                        $.modalAlert("住院信息变更失败：" + medicalReg.err_msg, 'error');
+		                        $.modalAlert("Thay đổi thông tin nội trú thất bại：" + medicalReg.err_msg, 'error');
 		                        return;
 		                    }
 		                }
@@ -786,7 +786,7 @@
 		    }
 	    });
     }
-    //审批判定，调用22接口查看是否有未审批数据
+    //Phán định phê duyệt，Gọi 22 Giao diện xem có dữ liệu chưa phê duyệt hay không
     function CQsppd(mxxx, funcSuccCallback) {
         var parameter1 = { "zyh": patModel.zyh, "splx": "1", "rq": $.getDate({ date: patModel.ryrq }), "xzlb": "1" };
         var parameter2 = { "zyh": patModel.zyh, "splx": "2", "rq": $.getDate({ date: patModel.ryrq }), "xzlb": "1" };
@@ -815,17 +815,17 @@
         if (!!spGsfReturn && !!spBdbReturn && spGsfReturn.Code === "1" && spBdbReturn.Code === "1") {
             if (!!spGsfReturn.Data && spGsfReturn.Data.cfmxlshList.length > 0) {
                 $.loading(false);
-                $.modalAlert("患者有高收费项目还未审批，请联系医保办审批后再次结算！", 'error');
+                $.modalAlert("Bệnh nhân có khoản mục thu phí cao chưa phê duyệt，Vui lòng liên hệ phòng bảo hiểm y tế để phê duyệt rồi quyết toán lại！", 'error');
                 return;
             }
             if (!!spBdbReturn.Data && spBdbReturn.Data.cfmxlshList.length > 0) {
                 $.loading(false);
-                $.modalAlert("患者有白蛋白项目还未审批，请联系医保办审批后再次结算！", 'error');
+                $.modalAlert("Bệnh nhân có khoản mục albumin chưa phê duyệt，Vui lòng liên hệ phòng bảo hiểm y tế để phê duyệt rồi quyết toán lại！", 'error');
                 return;
             }
         } else {
             $.loading(false);
-            $.modalAlert("调用医保22接口失败", 'error');
+            $.modalAlert("Gọi bảo hiểm y tế 22 Giao diện thất bại", 'error');
             return;
         }
         if (funcSuccCallback) {
@@ -837,10 +837,10 @@
         var ybzje = 0.00;
         var succTimes = 0;
         var mxnum = 0;
-        var isuccer = true;//明细上传是否成功
+        var isuccer = true;//Tải lên chi tiết có thành công hay không
         //var zfzje = 0.00;
 
-        //每次重新上传，先把以前上传的，但未结算的处方退掉
+        //Mỗi lần tải lên lại，Trước tiên, các đơn thuốc đã tải lên trước đây，nhưng chưa quyết toán thì trả lại
         var mxscobj = { hisId: patModel.zyh, mdtrt_id: jzxx.mdtrt_id, feedetl_sn: "0000", psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
 	    $.ajax({
             type: "POST",
@@ -865,7 +865,7 @@
 	            if (xmmc) {
 	                $.loading(false);
 	                isuccer = false;
-	                $.modalAlert(xmmc + "未对照国家医保编码!请核实", 'error');
+	                $.modalAlert(xmmc + "Chưa đối chiếu mã bảo hiểm y tế quốc gia!Vui lòng kiểm tra", 'error');
 	                return;
 	            }
 	            else {
@@ -897,7 +897,7 @@
 	                        else {
 	                            $.loading(false);
 	                            isuccer = false;
-	                            $.modalAlert("明细上传失败：" + upDataReturn.err_msg, 'error');
+	                            $.modalAlert("Tải lên chi tiết thất bại：" + upDataReturn.err_msg, 'error');
 	                            return;
 	                        }
 
@@ -968,9 +968,9 @@
 							    $.loading(false);
 							    if (ybjsSettReturn.infcode == "0") {
 							        var ybjyCqFeeReturn = ybjsSettReturn.output.setlinfo;
-								    //his结算确认（包括医保结算确认）
-								    //根据后台查询出的结果，如果该患者有开立自立的项目（没有医保代码），则结算时的总金额，填写总的汇总金额
-								    //如果只有医保项目，则以医保结算的医保返回结果为准进行结算
+								    //his Xác nhận quyết toán（Bao gồm xác nhận quyết toán bảo hiểm y tế）
+								    //Dựa theo kết quả tra cứu từ backend，Nếu bệnh nhân này có khoản mục tự lập đã kê（Không có mã bảo hiểm y tế），thì tổng số tiền khi quyết toán，Điền tổng số tiền tổng hợp
+								    //Nếu chỉ có khoản mục bảo hiểm y tế，thì căn cứ vào kết quả trả về của bảo hiểm y tế khi quyết toán bảo hiểm y tế để quyết toán
 								    ybjyCqFeeReturn.his_hisfyze = jszje;
 								    ybjyCqFeeReturn.ybzje = mxxx.ybzje;
 								    ybjyCqFeeReturn.jzid = jzxx.mdtrt_id;
@@ -982,7 +982,7 @@
 							    }
 						    } else {
 							    $.loading(false);
-							    $.modalAlert("调用医保接口失败", 'error');
+							    $.modalAlert("Gọi giao diện bảo hiểm y tế thất bại", 'error');
 							    return;
 						    }
 					    } else {
@@ -992,12 +992,12 @@
 					    }
 				    } else {
 					    $.loading(false);
-					    $.modalAlert("调用医保接口失败", 'error');
+					    $.modalAlert("Gọi giao diện bảo hiểm y tế thất bại", 'error');
 					    return;
 				    }
 
 			    } else {
-				    $.modalAlert('获取结算患者信息失败，请重试', 'warning');
+				    $.modalAlert('Lấy thông tin bệnh nhân quyết toán thất bại，Vui lòng thử lại', 'warning');
 				    return;
 			    }
 			    $.loading(false);
@@ -1015,7 +1015,7 @@
             }
         });
     }
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData(n) {
         var zyh = patModel.zyh;
         var pagination = {
@@ -1026,7 +1026,7 @@
         return { pagination: pagination, zyh: zyh };
 
     }
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchCQPostData(n) {
 	    var zyh = patModel.zyh;
 	    var pagination = {
@@ -1044,11 +1044,11 @@
         }
         return parseFloat(val);
     }
-    //获取结算患者 患者信息
+    //Lấy bệnh nhân quyết toán Thông tin bệnh nhân
     function funcGetSettPatientInfo(funcSuccCallback) {
         $.najax({
             url: '/HospitalizationManage/DischargeSettle/GetInpatientSettYbPatInfo?zyh=' + patModel.zyh,
-            loadingtext: "正在请求患者出院信息，请稍后...",
+            loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân，Vui lòng chờ trong giây lát...",
             type: 'POST',
             success: function (ajaxResp) {
                 //
@@ -1066,7 +1066,7 @@
     function readCard() {
               GetReadCardInfo(null);
     }
-    //读卡
+    //Đọc thẻ
     function GetReadCardInfo(sbkobj) {
         var cardInfo1;
         var cardInfo2;
@@ -1075,7 +1075,7 @@
         var patsbkh = null;
 
         var url = "http://127.0.0.1:33333/api/YiBao/CardecInfo_1161";
-        var payoptype = { "mdtrt_cert_type": $('#readCardCardType').val(), "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', "businessType": "01101", "officeId": "0201", "officeName": "内科" };
+        var payoptype = { "mdtrt_cert_type": $('#readCardCardType').val(), "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', "businessType": "01101", "officeId": "0201", "officeName": "Khoa Nội" };
         if ($('#readCardCardType').val() === "02") {
             payoptype.mdtrt_cert_no = sbkobj.sbkh;
             url = "http://127.0.0.1:33333/api/YiBao/CardecInfo_1101";
@@ -1097,11 +1097,11 @@
         if (yibaoCardInfo) {
             if (yibaoCardInfo.infcode == "0") {
                 if (!yibaoCardInfo || !yibaoCardInfo.output.baseinfo || !yibaoCardInfo.output.insuinfo[0]) {
-                    $.modalAlert("读卡失败:" + yibaoCardInfo.err_msg, 'error');
+                    $.modalAlert("Đọc thẻ thất bại:" + yibaoCardInfo.err_msg, 'error');
                     return;
                 }
                 var ybklx = $('#readCardCardType').val();
-                cardInfo1 = yibaoCardInfo.output.baseinfo; //医保基本信息
+                cardInfo1 = yibaoCardInfo.output.baseinfo; //Thông tin cơ bản bảo hiểm y tế
                 if (yibaoCardInfo.output.insuinfo.length > 1) {
                     for (var i = 0; i < yibaoCardInfo.output.insuinfo.length; i++) {
                         if (yibaoCardInfo.output.insuinfo[i].paus_insu_date)
@@ -1112,10 +1112,10 @@
                         }
                     }
                 } else
-                    cardInfo2 = yibaoCardInfo.output.insuinfo[0];//参保信息
-                //cardInfo2 = yibaoCardInfo.output.insuinfo[0];//参保信息
+                    cardInfo2 = yibaoCardInfo.output.insuinfo[0];//Thông tin tham gia bảo hiểm
+                //cardInfo2 = yibaoCardInfo.output.insuinfo[0];//Thông tin tham gia bảo hiểm
                 if (ybklx !== "02") {
-                    cardInfo3 = yibaoCardInfo.output.cardecinfo;//卡信息
+                    cardInfo3 = yibaoCardInfo.output.cardecinfo;//Thông tin thẻ
                     cqPatInfo.ecToken = cardInfo3.ecToken;
                     cqPatInfo.sbkh = cardInfo3.cardno;
                 }
@@ -1132,28 +1132,28 @@
                 yibaoCardInfo.kh = ybklx == "03" ? cardInfo3.cardno : null;
                 yibaoCardInfo.qtjz = ybklx != "03" ? cardInfo1.certno : null;
                 //yibaoCardInfo.kh = ybklx =="01"?cardInfo1.certno:(ybklx=="02" ? cardInfo1.certno:cardInfo3.cardno) ;
-                //社保编号 暂作为系统卡号
+                //Mã bảo hiểm xã hội Tạm thời làm số thẻ hệ thống
                 ybIsReadCard = true;
                 ajaxLoadDataResult({ kh: yibaoCardInfo.kh, sfz: yibaoCardInfo.qtjz, cardType: ybkCardType });
             } else {
-                $.modalAlert("刷卡失败:" + yibaoCardInfo.err_msg, 'error');
+                $.modalAlert("Quẹt thẻ thất bại:" + yibaoCardInfo.err_msg, 'error');
             }
         } else {
-            $.modalAlert("刷卡获取医保信息失败！失败原因：医保中心无信息返回，请重试！", 'error');
+            $.modalAlert("Quẹt thẻ lấy thông tin bảo hiểm y tế thất bại！Nguyên nhân thất bại：Trung tâm bảo hiểm y tế không trả về thông tin，Vui lòng thử lại！", 'error');
         }
 
     }
 
     $('#readCard i').click(function () {
         if (false) {
-            $.modalAlert("等等情况不可以触发读卡", 'warning');
+            $.modalAlert("Các trường hợp v.v. không thể kích hoạt đọc thẻ", 'warning');
             return;
         }
         setTimeoutReadCard();
     })
-    //触发读卡
+    //Kích hoạt đọc thẻ
     function setTimeoutReadCard() {
-        $.loading(true, '正在读卡，请稍后…');
+        $.loading(true, 'Đang đọc thẻ，Vui lòng chờ trong giây lát…');
         setTimeout("readCard();", 50);
     }
 </script>

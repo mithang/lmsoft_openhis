@@ -7,32 +7,32 @@
 <div class="rows" style="margin-bottom: 1%;">
     <div class="panel panel-default" style="margin-bottom:0;">
         <div class="panel-heading navb-bg">
-            住院患者信息
+            Thông tin bệnh nhân nội trú
         </div>
         <table class="form" style="width:96%;">
             <tbody>
                 <tr>
-                    <th class="formTitle">住院号：</th>
+                    <th class="formTitle">Số nhập viện：</th>
                     <td class="formValue">
                         <input class="form-control" type="text" id="zyh" value="" />
                     </td>
                     <td class="formValue">
-                        <input type="button" class="btn btn-default btn-md btn-default-color" title="选择住院患者" id="zy_btnsyy" value="查询" onclick="GetPatSerarchView($('#zyh').val());">
+                        <input type="button" class="btn btn-default btn-md btn-default-color" title="Chọn bệnh nhân nội trú" id="zy_btnsyy" value="Tra cứu" onclick="GetPatSerarchView($('#zyh').val());">
                     </td>
-                    <th class="formTitle">出院日期：</th>
+                    <th class="formTitle">Ngày xuất viện：</th>
                     <td class="formValue" style="width:143px;">
                         <input id="cyrq" type="text" class="form-control input-wdatepicker form-an formClearIgnore"
                                onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@(System.DateTime.Now.ToString("yyyy-MM-dd"))" />
                     </td>
-                    <th class="formTitle">姓名：</th>
+                    <th class="formTitle">Họ tên：</th>
                     <td class="formValue">
                         <label id="zy_xm"></label>
                     </td>
-                    <th class="formTitle">性别：</th>
+                    <th class="formTitle">Giới tính：</th>
                     <td class="formValue">
                         <label id="zy_xb"></label>
                     </td>
-                    <th class="formTitle">年龄：</th>
+                    <th class="formTitle">Tuổi：</th>
                     <td class="formValue">
                         <label id="zy_nl"></label>
                     </td>
@@ -40,23 +40,23 @@
             </tbody>
             <tbody class="dispTbody" style="display:none;">
                 <tr>
-                    <th class="formTitle">证件号：</th>
+                    <th class="formTitle">Số giấy tờ：</th>
                     <td class="formValue" colspan="2">
                         <label id="zy_zjh"></label>
                     </td>
-                    <th class="formTitle">入院诊断：</th>
+                    <th class="formTitle">Chẩn đoán nhập viện：</th>
                     <td class="formValue">
                         <label id="zy_ryzd"></label>
                     </td>
-                    <th class="formTitle">手机号：</th>
+                    <th class="formTitle">Số điện thoại：</th>
                     <td class="formValue">
                         <label id="zy_phone"></label>
                     </td>
-                    <th class="formTitle">出生日期：</th>
+                    <th class="formTitle">Ngày sinh：</th>
                     <td class="formValue">
                         <label id="zy_csny"></label>
                     </td>
-                    <th class="formTitle">入院日期：</th>
+                    <th class="formTitle">Ngày nhập viện：</th>
                     <td class="formValue">
                         <label id="zy_ryrq"></label>
                     </td>
@@ -74,11 +74,11 @@
         <table class="form" style="width:96%;">
             <tbody>
                 <tr>
-                    <th class="formTitle">已结费用：</th>
+                    <th class="formTitle">Chi phí đã kết：</th>
                     <td class="formValue" style="width:100px;">
                         <label id="lblSumje" style="color:red;font-weight: bold;font-size: large;"></label>
                     </td>
-                    <th class="formTitle" style="width:125px;">是否存在未结费用记录：</th>
+                    <th class="formTitle" style="width:125px;">Có tồn tại bản ghi chi phí chưa kết hay không：</th>
                     <td class="formValue">
                         <label id="isExistUnSetted"></label>
                     </td>
@@ -90,25 +90,25 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 8 },
-    F8Text = "确认出院"
+    F8Text = "Xác nhận xuất viện"
 })
 <script type="text/javascript">
 
     $(function () {
         gridList();
 
-        //去结算
+        //Đi quyết toán
         $('#isExistUnSetted').parent('td').on('click', 'a', function () {
-            //通过ls把住院号传过去
+            //Thông qua ls Truyền số nhập viện sang
             sessionStorage.setItem('zyh', $('#zyh').val());
-            top.top.$.Newtouchtab.triggerMenuItemClick({ m1: "住院管理", m2: "费用结算" });
+            top.top.$.Newtouchtab.triggerMenuItemClick({ m1: "Quản lý nội trú", m2: "Quyết toán chi phí" });
         });
 
     });
 
     function gridList() {
         $('#gridList').dataGrid({
-            caption: "已结费用列表",
+            caption: "Danh sách chi phí đã kết",
             unwritten: false,
             url: "/HospitalizationManage/BookkeepInHos/GetMidwaySettedListJson",
             postData: {},
@@ -116,22 +116,22 @@
             sortable: false,
             colModel: [
                 { label: "jsnm", name: "jsnm", width: 140, align: "left", hidden: true },
-                { label: "住院号", name: "zyh", width: 140, align: "left", hidden: true },
+                { label: "Số nhập viện", name: "zyh", width: 140, align: "left", hidden: true },
                 {
-                    label: "结算金额", name: "zje", width: 80, align: "left", formatter: "number"
+                    label: "Số tiền quyết toán", name: "zje", width: 80, align: "left", formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
                 {
-                    label: "结算开始时间", name: "jsksrq", width: 140, align: "left",
+                    label: "Thời gian bắt đầu quyết toán", name: "jsksrq", width: 140, align: "left",
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
                 {
-                    label: "结算结束时间", name: "jsjsrq", width: 140, align: "left",
+                    label: "Thời gian kết thúc quyết toán", name: "jsjsrq", width: 140, align: "left",
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: "结算人员", name: "CreatorCode", width: 100, align: "left" },
+                { label: "Nhân viên quyết toán", name: "CreatorCode", width: 100, align: "left" },
                 {
-                    label: "结算时间", name: "CreateTime", width: 140, align: "left",
+                    label: "Thời gian quyết toán", name: "CreateTime", width: 140, align: "left",
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 }
             ],
@@ -156,23 +156,23 @@
             postData: { zyh: $("#zyh").val() },
         }).trigger('reloadGrid');
 
-        //是否存在未结记录
+        //Có tồn tại bản ghi chưa quyết toán hay không
         $('#isExistUnSetted').html('');
         $.najax({
             url: "/HospitalizationManage/BookkeepInHos/CheckIsExistUnSetted?zyh=" + $("#zyh").val(),
             success: function (ajaxresp) {
                 if (ajaxresp.data === true) {
-                    $('#isExistUnSetted').html('<a title="点我去结算" style="color:red;cursor:pointer;">是</a>');
+                    $('#isExistUnSetted').html('<a title="Nhấn vào tôi để đi quyết toán" style="color:red;cursor:pointer;">Có</a>');
                 }
                 else if (ajaxresp.data === false) {
-                    $('#isExistUnSetted').html('否');
+                    $('#isExistUnSetted').html('Không');
                 }
             },
         });
 
     }
 
-    //病人查询
+    //Tra cứu bệnh nhân
     function GetPatSerarchView(keyword) {
         var zyh = keyword;
         if (!!!keyword) {
@@ -180,25 +180,25 @@
         }
         $.modalOpen({
             id: "patSearch",
-            title: "患者查询",
+            title: "Tra cứu bệnh nhân",
             url: "/PatientManage/AccountManage/PatSearchView?brzybzType=" + '@((int)EnumZYBZ.Bqz + "," + (int)EnumZYBZ.Djz)' + "&t=" + Math.random() + "&zyh=" + zyh,
             width: "700px",
             height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //在弹出窗口事件
-                //调用查询卡号和住院号
-            }//窗口点确定的回调函数
+                top.frames[iframeId].PatDbGrid(); //Trong sự kiện cửa sổ bật lên
+                //Gọi tra cứu số thẻ và số nhập viện
+            }//Hàm callback khi nhấn xác định tại cửa sổ
         });
 
     }
 
-    //选择的病人 callback
+    //Bệnh nhân đã chọn callback
     function getPatInfoAjax(selePatInfo) {
         $('#zyh').val(selePatInfo.zyh);
         ajaxLoadDataResult();
     }
 
-    //加载住院基本信息
+    //Tải thông tin cơ bản nội trú
     function ajaxLoadDataResult() {
         var zyh = $('#zyh').val();
         if (zyh) {
@@ -222,7 +222,7 @@
         }
     }
 
-    //初始化病人信息
+    //Khởi tạo thông tin bệnh nhân
     function setPatInfoModel(patModel) {
         $('#zy_xm').html(patModel.xm);
         $('#zy_xb').html($.getGender(patModel.xb));
@@ -238,12 +238,12 @@
     function newtouch_event_f8() {
         var zyh = $('#zyh').val();
         if (!!!zyh) {
-            $.modalAlert("请选择住院病人", 'error');
+            $.modalAlert("Vui lòng chọn bệnh nhân nội trú", 'error');
             return;
         }
         var isExistUnSetted = $('#isExistUnSetted').html();
-        if (isExistUnSetted.indexOf('是') != -1) {
-            $.modalConfirm("存在未结费用，前去结算", function (flag) {
+        if (isExistUnSetted.indexOf('Có') != -1) {
+            $.modalConfirm("Tồn tại chi phí chưa kết，Đi quyết toán", function (flag) {
                 if (flag) {
                     $('#isExistUnSetted a').trigger('click');
                 }
@@ -252,10 +252,10 @@
         }
         var allLine = $("#gridList").jqGrid('getRowData_AllLine', null, true);
         if (!!!allLine || allLine.length == 0) {
-            $.modalAlert("未产生过费用，不能进行出院", 'error');
+            $.modalAlert("Chưa từng phát sinh chi phí，Không thể xuất viện", 'error');
             return;
         }
-        //提交
+        //Gửi
         var postData = { zyh: zyh, cyrq: $('#cyrq').val() };
         $.submitForm({
             type: "POST",

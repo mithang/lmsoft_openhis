@@ -38,13 +38,13 @@
     <div class="search">
         <table>
             <tr>
-                <th class="newformTitle">结算日期：</th>
+                <th class="newformTitle">Ngày quyết toán：</th>
                 <td>
-                    <input readonly id="kssj" type="text" class="newform-control form-control" placeholder="上次结算日期" style="width: 88%;">
+                    <input readonly id="kssj" type="text" class="newform-control form-control" placeholder="Ngày quyết toán lần trước" style="width: 88%;">
                 </td>
                 <th class="newformTitle">—</th>
                 <td>
-                    <input readonly id="jssj" type="text" class="newform-control form-control" placeholder="本次结算日期" style="width: 88%;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")">
+                    <input readonly id="jssj" type="text" class="newform-control form-control" placeholder="Ngày quyết toán lần này" style="width: 88%;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")">
                 </td>
             </tr>
         </table>
@@ -59,8 +59,8 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 6, 7 },
-    F6Text = "结算确认",
-    F7Text = "取消结算"
+    F6Text = "Xác nhận quyết toán",
+    F7Text = "Hủy quyết toán"
 })
 <script>
     $(function () {
@@ -68,7 +68,7 @@
         gridList();
     })
 
-    //获取上次日结算时间
+    //Lấy thời gian quyết toán ngày lần trước
     function getLastDaySettTime() {
         $.najax({
             url: "/DaySettleManage/DaySettle/GetLastDaySettTime",
@@ -81,7 +81,7 @@
         });
     }
 
-    //日结算明细
+    //Chi tiết quyết toán ngày
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -89,9 +89,9 @@
             postData: getSearchPostData(),
             height: $(window).height() - 175,
             colModel: [
-             { label: "主键", name: "Id", hidden: true, key: true },
+             { label: "Khóa chính", name: "Id", hidden: true, key: true },
              {
-                 label: "本次结算金额", name: "bcje", width: 100, align: "left",
+                 label: "Số tiền quyết toán lần này", name: "bcje", width: 100, align: "left",
                  formatter: function (val) {
                      if (val) {
                          return val.toFixed(2);
@@ -100,10 +100,10 @@
                      }
                  }
              },
-             { label: "发票号", name: "fphs", width: 400, align: "center" },
-             { label: "结算人", name: "CreatorName", width: 150, align: "center" },
-             { label: "结算开始时间", name: "LastJsTime", width: 150, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-             { label: "结算结束时间", name: "CreateTime", width: 150, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
+             { label: "Số hóa đơn", name: "fphs", width: 400, align: "center" },
+             { label: "Người quyết toán", name: "CreatorName", width: 150, align: "center" },
+             { label: "Thời gian bắt đầu quyết toán", name: "LastJsTime", width: 150, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+             { label: "Thời gian kết thúc quyết toán", name: "CreateTime", width: 150, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
             ],
             pager: "#gridPager",
             sortname: 'CreateTime desc',
@@ -111,14 +111,14 @@
         });
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         return { mzzybz: "1" };
     };
 
-    //日结算确认
+    //Xác nhận quyết toán ngày
     function newtouch_event_f6() {
-        $.modalConfirm("确认是否进行取消结算？", function (flag) {
+        $.modalConfirm("Xác nhận có thực hiện hủy quyết toán hay không？", function (flag) {
             if (!flag) {
                 return;
             }
@@ -128,9 +128,9 @@
                     url: "/DaySettleManage/DaySettle/SaveInpatientDaySettle",
                     dataType: "json",
                     success: function (data) {
-                        $.modalAlert("操作成功", 'success');
+                        $.modalAlert("Thao tác thành công", 'success');
                         $.modalClose();
-                        $("#gridList").jqGrid('clearGridData');  //清空表格
+                        $("#gridList").jqGrid('clearGridData');  //Xóa bảng
                         $("#gridList").jqGrid('setGridParam').trigger("reloadGrid");
                     },
                     errorCallback: function (err) {
@@ -142,16 +142,16 @@
         });
     }
 
-    //退费确认
+    //Xác nhận hoàn phí
     function newtouch_event_f7() {
-        //获取选中行Id
+        //Lấy dòng đã chọn Id
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请先选中需取消结算的信息", 'warning');
+            $.modalAlert("Vui lòng chọn thông tin cần hủy quyết toán trước", 'warning');
             return;
         }
-        //弹出确认窗口
-        $.modalConfirm("确认是否进行结算？", function (flag) {
+        //Bật cửa sổ xác nhận
+        $.modalConfirm("Xác nhận có thực hiện quyết toán hay không？", function (flag) {
             if (!flag) {
                 return;
             }
@@ -162,9 +162,9 @@
                     data: { Id: seleRowid },
                     dataType: "json",
                     success: function (data) {
-                        $.modalAlert("操作成功", 'success');
+                        $.modalAlert("Thao tác thành công", 'success');
                         $.modalClose();
-                        $("#gridList").jqGrid('clearGridData');  //清空表格
+                        $("#gridList").jqGrid('clearGridData');  //Xóa bảng
                         $("#gridList").jqGrid('setGridParam').trigger("reloadGrid");
                     },
                     errorCallback: function (err) {

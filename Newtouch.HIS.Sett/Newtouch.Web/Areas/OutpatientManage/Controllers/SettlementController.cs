@@ -75,12 +75,12 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
                 throw new FailedException("未指定导出列");
             }
             var pagination = new Pagination();
-            pagination.sidx = "jsrq desc"; //时间升序
-            pagination.rows = 65536 - 1;    //Excel最大行数
-            pagination.page = 1;    //第一页把所有都查出来
+            pagination.sidx = "jsrq desc"; //Thời gian tăng dần
+            pagination.rows = 65536 - 1;    //Excel Số dòng tối đa
+            pagination.page = 1;    //Trang đầu tiên tra cứu tất cả
             var list = _outChargeDmnService.GetSettlementList(pagination, orgId, keyword, kssj, jssj, containsTF.Value);
             
-            //长度限制？
+            //Giới hạn độ dài？
             var jsnms = string.Join(",", list.Select(p => p.jsnm).Distinct());
             if (!string.IsNullOrWhiteSpace(jsnms))
             {
@@ -137,7 +137,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             sheet.columns.ToList().ForEach(p =>
             {
                 p.WidthTimes = (double)p.Width / colStanWidth;
-                p.Width = 0;    //Width都置为0
+                p.Width = 0;    //Width đều đặt thành 0
             });
 
             var path = DateTime.Now.ToString("\\\\yyyyMMdd\\\\HHmmssfff") + ".xls";

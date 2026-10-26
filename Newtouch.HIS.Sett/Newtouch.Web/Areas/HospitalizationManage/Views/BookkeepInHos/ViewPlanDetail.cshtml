@@ -12,7 +12,7 @@
             gridList();
         }
     });
-    //明细
+    //Chi tiết
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -22,39 +22,39 @@
             colModel: [
             { label: "zxId", name: "zxId", align: "left", hidden: true, key: true },
             { label: "jzjhmxId", name: "jzjhmxId", width: 100, align: "left", hidden: true },
-            { label: "患者姓名", name: "xm", width: 70, align: "left" },
-            { label: "病历号", name: "blh", hidden: true, align: "left" },
-            { label: (f == "mz" ? "门诊号" : "住院号"), name: "mzzyh", width: (f == "mz" ? 100 : 70), align: "left", hidden: true },
+            { label: "Tên bệnh nhân", name: "xm", width: 70, align: "left" },
+            { label: "Số bệnh án", name: "blh", hidden: true, align: "left" },
+            { label: (f == "mz" ? "Mã ngoại trú" : "Số nhập viện"), name: "mzzyh", width: (f == "mz" ? 100 : 70), align: "left", hidden: true },
 
-            { label: "康复类别", name: "kflb", width: 80, align: "left" },
-            { label: "治疗师", name: "zls", width: 80, align: "left" },
-            { label: "收费项目", name: "sfxmmc", width: 120, align: "left" },
-            { label: "治疗量", name: "zll", width: 80, align: "left" },
-            { label: "单位", name: "dw", width: 40, align: "left" },
-            { label: "数量", name: "sl", width: 40, align: "left" },
+            { label: "Loại phục hồi", name: "kflb", width: 80, align: "left" },
+            { label: "Kỹ thuật viên trị liệu", name: "zls", width: 80, align: "left" },
+            { label: "Khoản mục thu phí", name: "sfxmmc", width: 120, align: "left" },
+            { label: "Liều điều trị", name: "zll", width: 80, align: "left" },
+            { label: "Đơn vị", name: "dw", width: 40, align: "left" },
+            { label: "Số lượng", name: "sl", width: 40, align: "left" },
             {
-                label: "报销政策", name: "zfxz", width: 60, align: "left",
+                label: "Chính sách thanh toán bảo hiểm", name: "zfxz", width: 60, align: "left",
                 formatter: function (cellvalue) {
                     return $.enum.getDescByValue("EnumZiFuXingZhi", cellvalue);
                 }
             },
-            { label: "金额", name: "je", width: 55, align: "left", formatter: "number", formatoptions: { decimalPlaces: 2, defaultValue: '0.00' } },
+            { label: "Số tiền", name: "je", width: 55, align: "left", formatter: "number", formatoptions: { decimalPlaces: 2, defaultValue: '0.00' } },
             {
-                label: "治疗日期", name: "zlrq", width: 80, align: "left",
+                label: "Ngày điều trị", name: "zlrq", width: 80, align: "left",
                 formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
             },
             {
-                label: "操作时间", name: "CreateTime", width: 140, align: "left",
+                label: "Thời gian thao tác", name: "CreateTime", width: 140, align: "left",
                 formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
             },
 			{
-			    label: "状态", name: "zt", width: 50, align: "left",
+			    label: "Trạng thái", name: "zt", width: 50, align: "left",
 			    formatter: function (cellvalue, a, b) {
 			        if (cellvalue == '1') {
-			            return "正常"
+			            return "Bình thường"
 			        }
 			        else {
-			            return "已撤销";
+			            return "Đã hủy";
 			        }
 			    }
 			}],
@@ -80,20 +80,20 @@
     }
 
     function cancelExc() {
-        //181015已完成可以撤
+        //181015 Đã hoàn thành có thể hủy
         //if (zt == "已完成") {
-        //    $.modalAlert("已完成计划无法撤销", 'warning');
+        //    $.modalAlert("Kế hoạch đã hoàn thành không thể hủy", 'warning');
         //    return;
         //}
 
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         var data = $("#gridList").jqGridRowValue();
         if (data.zt == "无效") {
-            $.modalAlert("请选中一条有效信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin hợp lệ", 'warning');
             return;
         }
         if (data) {
@@ -113,18 +113,18 @@
     function updateExc() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         var data = $("#gridList").jqGridRowValue();
         if (data.zt == "无效") {
-            $.modalAlert("请选中一条有效信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin hợp lệ", 'warning');
             return;
         }
 
         $.modalOpen({
             id: "UpdateExecForm",
-            title: "更改执行详情",
+            title: "Thay đổi chi tiết thực hiện",
             url: "/HospitalizationManage/BookkeepInHos/UpdateExecForm?keyValue=" + data.zxId + "&from=" + f,
             width: "500px",
             height: "300px",
@@ -148,6 +148,6 @@
         <table id="gridList"></table>
         <div id="gridPager"></div>
     </div>
-    <input type="button" onclick="updateExc()" class="btn btn-primary btn-md" value="修改" style="float: right;margin-top: 10px;margin-right: 20px;" />
-    <input type="button" id="cancelExce" onclick="cancelExc()" class="btn btn-primary btn-md" value="撤销执行" style="float: right;margin-top: 10px;margin-right: 20px;" />
+    <input type="button" onclick="updateExc()" class="btn btn-primary btn-md" value="Sửa" style="float: right;margin-top: 10px;margin-right: 20px;" />
+    <input type="button" id="cancelExce" onclick="cancelExc()" class="btn btn-primary btn-md" value="Hủy thực hiện" style="float: right;margin-top: 10px;margin-right: 20px;" />
 </form>

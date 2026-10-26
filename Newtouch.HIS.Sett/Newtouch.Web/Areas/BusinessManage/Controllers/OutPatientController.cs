@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
         }
 
         /// <summary>
-        /// 门诊挂号
+        /// Đăng ký khám ngoại trú
         /// </summary>
         /// <returns></returns>
         public ActionResult OutpatientReg()
@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
 
         #region 加载挂号信息
         /// <summary>
-        /// 根据卡号加载病人挂号信息
+        /// Tải thông tin đăng ký khám của bệnh nhân theo số thẻ
         /// </summary>
         /// <param name="kh"></param>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
             }
         }
         /// <summary>
-        /// 系统诊断
+        /// Chẩn đoán hệ thống
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
 
         #region 挂号排班
         /// <summary>
-        /// 挂号排班List
+        /// Lịch trực đăng ký khám List
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -76,7 +76,7 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
 
         #region 发票号
         /// <summary>
-        /// 选发票
+        /// Chọn hóa đơn
         /// </summary>
         /// <returns></returns>
         public ActionResult ChooseInvoice(string from = "")
@@ -85,7 +85,7 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
             return View();
         }
         /// <summary>
-        /// 根据工号获取发票号
+        /// Lấy số hóa đơn theo mã nhân viên
         /// </summary>
         /// <param name="employeeNo"></param>
         /// <returns></returns>
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
             return Content(data);
         }
         /// <summary>
-        /// 验证输入发票号是否可用
+        /// Kiểm tra số hóa đơn đã nhập có dùng được hay không
         /// by caishanshan
         /// </summary>
         /// <param name="inputFPH"></param>
@@ -109,7 +109,7 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
 
         #region 正在挂号列表
         /// <summary>
-        /// 正在挂号列表
+        /// Danh sách đang đăng ký khám
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
@@ -118,12 +118,12 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
             return null;
         }
         /// <summary>
-        /// 获取挂号费 诊疗费 磁卡费 工本费
+        /// Lấy phí đăng ký khám Phí khám chữa bệnh Phí thẻ từ Phí làm thẻ
         /// </summary>
-        /// <param name="ghlx">挂号类型</param>
-        /// <param name="isZzjm">转诊减免</param>
-        /// <param name="isCkf">磁卡费</param>
-        /// <param name="isGbf">工本费</param>
+        /// <param name="ghlx">Loại đăng ký khám</param>
+        /// <param name="isZzjm">Miễn giảm chuyển viện</param>
+        /// <param name="isCkf">Phí thẻ từ</param>
+        /// <param name="isGbf">Phí làm thẻ</param>
         /// <returns></returns>
         public ActionResult GetOutpatientFees(string ghlx, bool isZzjm, bool isCkf, bool isGbf)
         {
@@ -134,7 +134,7 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
 
         #region 未结算/已结算列表  需求变更：去掉已结算内容 update by caishanshan 20161229
         /// <summary>
-        /// 获取结算列表(结算/未结算)
+        /// Lấy danh sách quyết toán(Quyết toán/Chưa quyết toán)
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="isJz"></param>
@@ -154,13 +154,13 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
 
         #region 上一次结算
         /// <summary>
-        /// 加载上一次结算信息
+        /// Tải thông tin quyết toán lần trước
         /// </summary>
         /// <param name="userLogin"></param>
         /// <returns></returns>
         public ActionResult GetLastSettleInfo(string userLogin)
         {
-            //注意  改成对象
+            //Lưu ý  Đổi thành đối tượng
             List<LastSettleInfoVO> info = _outpatientRegApp.GetLastSettleInfo(NewOperatorProvider.Provider.GetCurrent().UserCode);
             return Content(info.ToJson());
         }
@@ -168,7 +168,7 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
 
         #region 作废
         /// <summary>
-        /// 保存门诊挂号作废记录
+        /// Lưu bản ghi hủy đăng ký khám ngoại trú
         /// </summary>
         /// <param name="outPatientRegAbandEntity"></param>
         /// <returns></returns>
@@ -191,7 +191,7 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
 
         #region 退号
         /// <summary>
-        /// 退号
+        /// Trả số khám
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="ghnm"></param>
@@ -205,7 +205,7 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
 
         #region 保存
         /// <summary>
-        /// 获取就诊序号
+        /// Lấy số thứ tự khám bệnh
         /// </summary>
         /// <param name="ghlx"></param>
         /// <param name="ks"></param>
@@ -219,7 +219,7 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="brxz"></param>
@@ -249,7 +249,7 @@ namespace Newtouch.HIS.Web.Areas.BusinessManage.Controllers
         /// <param name="gbf"></param>
         /// <param name="zzjm"></param>
         /// <param name="kh"></param>
-        /// <param name="isJS">需求变更 去掉未结算内容 所以此字段不用了</param>
+        /// <param name="isJS">Thay đổi yêu cầu Loại bỏ nội dung chưa quyết toán Vì vậy trường này không dùng nữa</param>
         /// <param name="ysk"></param>
         /// <param name="ssk"></param>
         /// <param name="fph"></param>

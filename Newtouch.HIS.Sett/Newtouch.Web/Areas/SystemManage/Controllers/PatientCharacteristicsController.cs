@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 病人性质下拉树
+        /// Cây thả xuống tính chất bệnh nhân
         /// </summary>
         /// <returns></returns>
         public ActionResult GetTreeSelectJson()
@@ -54,7 +54,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             foreach (SysPatientNatureEntity item in data)
             {
                 TreeSelectModel treeModel = new TreeSelectModel();
-                treeModel.id = item.brxzbh.ToString();  //选的是Id
+                treeModel.id = item.brxzbh.ToString();  //Mục đã chọn là Id
                 treeModel.text = item.brxzmc;
                 treeModel.parentId = item.ParentId == null ? null : item.ParentId.ToString();
                 treeList.Add(treeModel);
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>

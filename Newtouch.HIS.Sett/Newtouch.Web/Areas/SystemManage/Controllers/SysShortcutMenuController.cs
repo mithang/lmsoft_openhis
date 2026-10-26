@@ -11,9 +11,9 @@ using FrameworkBase.MultiOrg.Domain.IRepository;
 namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2017-10-16 11:07
-    /// 描 述：快捷菜单
+    /// Người tạo：Trương Đông Lâm
+    /// Ngày ghi：2017-10-16 11:07
+    /// Mô tả：Menu phím tắt
     /// </summary>
     public class SysShortcutMenuController : ControllerBase
     {
@@ -22,9 +22,9 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         private readonly ISysRoleShortcutMenuDmnService _sysRoleShortcutMenuDmnService;
 
         /// <summary>
-        /// 获取实体列表
+        /// Lấy danh sách thực thể
         /// </summary>
-        /// <param name="keyword">筛选关键字</param>
+        /// <param name="keyword">Từ khóa lọc</param>
         /// <returns></returns>
         public ActionResult GetGridJson(string keyword)
         {
@@ -33,9 +33,9 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取实体
+        /// Lấy thực thể
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult GetFormJson(string keyValue)
         {
@@ -44,10 +44,10 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult SubmitForm(SysShortcutMenuEntity entity, string keyValue)
         {
@@ -57,9 +57,9 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult DeleteForm(string keyValue)
         {
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 角色授权
+        /// Ủy quyền vai trò
         /// </summary>
         /// <returns></returns>
         public ActionResult Roles()

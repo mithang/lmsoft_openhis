@@ -33,56 +33,56 @@
 <form>
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">开始时间：</th>
+                <th class="formTitle">Thời gian bắt đầu：</th>
                 <td class="formValue" style="width:150px;">
                     <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left">—</span>
                     <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
-                <th class="formTitle" style="width:70px;padding-right:12px;">上传情况：</th>
+                <th class="formTitle" style="width:70px;padding-right:12px;">Tình hình tải lên：</th>
                 <td class="formValue">
                     <select id="scqk" name="scqk" class="form-control">
-                        <option value="">==请选择==</option>
-                        <option value="0" selected="selected">已上传</option>
-                        <option value="1">上传失败</option>
-                        <option value="2">未上传</option>
+                        <option value="">==Vui lòng chọn==</option>
+                        <option value="0" selected="selected">Đã tải lên</option>
+                        <option value="1">Tải lên thất bại</option>
+                        <option value="2">Chưa tải lên</option>
                     </select>
                 </td>
-                <th class="formTitle" style="width:70px;padding-right:12px;">交易类型：</th>
+                <th class="formTitle" style="width:70px;padding-right:12px;">Loại giao dịch：</th>
                 <td class="formValue" style="width:140px">
                     <select id="trad" name="trad" class="form-control">
-                        <option value="">==请选择==</option>
-                        @*<option value="4101A" selected="selected">【4101A】医疗保障基金结算清单信息上传</option>
-                        <option value="4401">【4401】病案首页上传</option>
-                        <option value="4402">【4402】住院医嘱上传</option>
-                        <option value="4501">【4501】临床检查上传</option>
-                        <option value="4502">【4502】临床检验上传</option>
-                        <option value="4505">【4505】病理检查报告上传</option>
-                        <option value="4701">【4701】电子病历上传</option>*@
-                        <option value="3501">【3501】商品盘存上传</option>
-                        <option value="3502">【3502】商品库存变更上传</option>
-                        <option value="3503">【3503】商品采购上传</option>
-                        <option value="3504">【3504】商品采购退货上传</option>
-                        <option value="3505">【3505】商品销售上传</option>
-                        <option value="3506">【3506】商品销售退货上传</option>
-                        @*<option value="3101">【3101】事前审核</option>
-                        <option value="3102">【3102】事中审核</option>*@
+                        <option value="">==Vui lòng chọn==</option>
+                        @*<option value="4101A" selected="selected">【4101A】Tải lên thông tin bảng kê quyết toán quỹ bảo đảm y tế</option>
+                        <option value="4401">【4401】Tải lên trang đầu bệnh án</option>
+                        <option value="4402">【4402】Tải lên y lệnh nội trú</option>
+                        <option value="4501">【4501】Tải lên kiểm tra lâm sàng</option>
+                        <option value="4502">【4502】Tải lên xét nghiệm lâm sàng</option>
+                        <option value="4505">【4505】Tải lên báo cáo kiểm tra bệnh lý</option>
+                        <option value="4701">【4701】Tải lên bệnh án điện tử</option>*@
+                        <option value="3501">【3501】Tải lên kiểm kê hàng hóa</option>
+                        <option value="3502">【3502】Tải lên thay đổi tồn kho hàng hóa</option>
+                        <option value="3503">【3503】Tải lên mua hàng hóa</option>
+                        <option value="3504">【3504】Tải lên trả lại hàng mua</option>
+                        <option value="3505">【3505】Tải lên bán hàng hóa</option>
+                        <option value="3506">【3506】Tải lên trả lại hàng bán</option>
+                        @*<option value="3101">【3101】Xét duyệt trước</option>
+                        <option value="3102">【3102】Xét duyệt trong quá trình</option>*@
                     </select>
                 </td>
-                @*<th class="formTitle">住院号：</th>
+                @*<th class="formTitle">Số nhập viện：</th>
                 <td class="formValue">
                     <input id="zyh" name="zyh" type="text" autocomplete="off" class="form-control" />
                 </td>*@
                 <td class="formValue">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="Tra cứu" />
 
                 </td>
                 <th class="formTitle" colspan="2">
-                        <input type="button" id="btn_upload" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="上传" />
+                        <input type="button" id="btn_upload" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="Tải lên" />
 
                     </th>
 
@@ -157,21 +157,21 @@
             height: $(window).height() - 128,
             colModel: [
                 { label: 'patId', name: 'patId', width: 100, align: 'left', hidden: true },
-                //{ label: '选择', name: 'patId', width: 160, align: 'left' },
-                { label: '上传情况', name: 'scqk', width: 160, align: 'left' },
-                { label: '上传日期', name: 'scrq', width: 160, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
-                { label: '错误信息', name: 'errorMsg', width: 160, align: 'left' },
-                { label: '住院号', name: 'zyh', width: 160, align: 'left' },
-                { label: '姓名', name: 'xm', width: 160, align: 'left' },
-                { label: '身份证号', name: 'sfzh', width: 160, align: 'left' },
-                { label: '医保就诊ID', name: 'mdtrt_id', width: 160, align: 'left' },
-                { label: '医保结算ID', name: 'setl_id', width: 160, align: 'left' },
-                { label: '入院日期', name: 'ryrq', width: 160, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
-                { label: '出院日期', name: 'cyrq', width: 160, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
-                { label: '病案首页日期', name: 'basyrq', width: 160, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
-                { label: '结算日期', name: 'jsrq', width: 160, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '科室', name: 'ksmc', width: 160, align: 'left' },
-                { label: '医生姓名', name: 'ysmc', width: 160, align: 'left' },
+                //{ label: 'Chọn', name: 'patId', width: 160, align: 'left' },
+                { label: 'Tình hình tải lên', name: 'scqk', width: 160, align: 'left' },
+                { label: 'Ngày tải lên', name: 'scrq', width: 160, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
+                { label: 'Thông tin lỗi', name: 'errorMsg', width: 160, align: 'left' },
+                { label: 'Số nhập viện', name: 'zyh', width: 160, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 160, align: 'left' },
+                { label: 'Số CMND', name: 'sfzh', width: 160, align: 'left' },
+                { label: 'Khám bệnh bảo hiểm y tế ID', name: 'mdtrt_id', width: 160, align: 'left' },
+                { label: 'Quyết toán bảo hiểm y tế ID', name: 'setl_id', width: 160, align: 'left' },
+                { label: 'Ngày nhập viện', name: 'ryrq', width: 160, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
+                { label: 'Ngày xuất viện', name: 'cyrq', width: 160, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
+                { label: 'Ngày trang đầu bệnh án', name: 'basyrq', width: 160, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
+                { label: 'Ngày quyết toán', name: 'jsrq', width: 160, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Khoa', name: 'ksmc', width: 160, align: 'left' },
+                { label: 'Tên bác sĩ', name: 'ysmc', width: 160, align: 'left' },
 
             ],
             viewrecords: true,
@@ -189,12 +189,12 @@
             postData: getSearchPostData(),
             height: $(window).height() - 128,
             colModel: [
-                { label: '医保交易', name: 'mlbm_id', hidden:true},
-                { label: '药品名称', name: 'ypmc', width: 160, align: 'left' },
-                { label: '批次号', name: 'pch', width: 160, align: 'left' },
-                { label: '上传情况', name: 'scqk', width: 60, align: 'left' },
-                { label: '上传日期', name: 'scrq', width: 160, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '错误信息', name: 'errorMsg', width: 160, align: 'left' },
+                { label: 'Giao dịch bảo hiểm y tế', name: 'mlbm_id', hidden:true},
+                { label: 'Tên thuốc', name: 'ypmc', width: 160, align: 'left' },
+                { label: 'Số lô', name: 'pch', width: 160, align: 'left' },
+                { label: 'Tình hình tải lên', name: 'scqk', width: 60, align: 'left' },
+                { label: 'Ngày tải lên', name: 'scrq', width: 160, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Thông tin lỗi', name: 'errorMsg', width: 160, align: 'left' },
             ],
             viewrecords: true,
             multiselect: true,
@@ -210,16 +210,16 @@
             postData: getSearchPostData(),
             height: $(window).height() - 128,
             colModel: [
-                { label: '住院号', name: 'zyh', width: 50, align: 'left' },
-                { label: '病人姓名', name: 'xm', width: 50, align: 'left' },
-                { label: '医嘱类型', name: 'yzlx', width: 50, align: 'left' },
-                { label: '医嘱号', name: 'yzh', width: 160, align: 'left' },
-                { label: '项目名称', name: 'xmmc', width: 200, align: 'left' },
-                { label: '数量', name: 'sl', width: 60, align: 'left' },
-                { label: '诊断信息', name: 'zdmc', width: 100, align: 'left' },
-                { label: '科室', name: 'ks', width: 60, align: 'left' },
-                { label: '上传日期', name: 'scrq', width: 160, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '错误信息', name: 'errorMsg', width: 160, align: 'left' },
+                { label: 'Số nhập viện', name: 'zyh', width: 50, align: 'left' },
+                { label: 'Tên bệnh nhân', name: 'xm', width: 50, align: 'left' },
+                { label: 'Loại y lệnh', name: 'yzlx', width: 50, align: 'left' },
+                { label: 'Mã y lệnh', name: 'yzh', width: 160, align: 'left' },
+                { label: 'Tên khoản mục', name: 'xmmc', width: 200, align: 'left' },
+                { label: 'Số lượng', name: 'sl', width: 60, align: 'left' },
+                { label: 'Thông tin chẩn đoán', name: 'zdmc', width: 100, align: 'left' },
+                { label: 'Khoa', name: 'ks', width: 60, align: 'left' },
+                { label: 'Ngày tải lên', name: 'scrq', width: 160, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Thông tin lỗi', name: 'errorMsg', width: 160, align: 'left' },
             ],
             viewrecords: true,
             multiselect: true,
@@ -228,7 +228,7 @@
             //},
         });
     }
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var kssj = $("#kssj").val();
         var jssj = $("#jssj").val()+" 23:59:59";
@@ -238,7 +238,7 @@
         return { kssj: kssj, jssj: jssj, scqk: scqk, zyh: zyh, tradiNumber: tradiNumber };
 
     }
-    //查询条件 3501-3506
+    //Điều kiện tra cứu 3501-3506
     function getSearchPostDataYp() {
         var kssj = $("#kssj").val();
         var jssj = $("#jssj").val() + " 23:59:59";
@@ -247,7 +247,7 @@
         return { kssj: kssj, jssj: jssj, scqk: scqk, tradiNumber: tradiNumber };
 
     }
-    //查询条件 3101 3102
+    //Điều kiện tra cứu 3101 3102
     function getSearchPostDatasqsz() {
         var kssj = $("#kssj").val();
         var jssj = $("#jssj").val() + " 23:59:59";
@@ -257,37 +257,37 @@
         return { kssj: kssj, jssj: jssj, scqk: scqk, zyh: zyh, tradiNumber: tradiNumber };
 
     }
-    //上传
+    //Tải lên
     $('#btn_upload').click(function () {
         var seleRow = check();
         if ($("#scqk").val() === '0' ) {
-            $.modalAlert("请勿选择已上传数据", 'error')
+            $.modalAlert("Vui lòng không chọn dữ liệu đã tải lên", 'error')
             return;
         }
         if (!!!seleRow ) {
             return;
         }
-        // 获取上传需要的数据
+        // Lấy dữ liệu cần thiết để tải lên
         var orgId = '@(opr.OrganizeId)';
         var operatorId = '@(opr.rygh)';
         var operatorName = '@(opr.UserName)';
         var crkId = seleRow.length > 1 ? "" : seleRow[0].mlbm_id;
         if (seleRow.length > 1) {
-            // 弹出确认框，确认上传
-            $.modalConfirm("选择非单条数据将全部上传！", function(flag) {
+            // Bật hộp xác nhận，Xác nhận tải lên
+            $.modalConfirm("Chọn dữ liệu không phải một dòng sẽ tải lên toàn bộ！", function(flag) {
                 if (flag){
                     uploadData(orgId, operatorId, operatorName, crkId);
                 }
             });
         } else {
-            // 选择一条数据，直接上传
+            // Chọn một dòng dữ liệu，Tải lên trực tiếp
             uploadData(orgId, operatorId, operatorName, crkId);
         }
         function uploadData(orgId, operatorId, operatorName, crkId) {
             var tradiNumber = $("#trad").val();
             var data;
             var upUrl;
-            // 根据tradiNumber来选择不同的接口
+            // Theo tradiNumber để chọn giao diện khác nhau
             switch (tradiNumber) {
                 case '3501':
                     upUrl = "http://127.0.0.1:33333/api/YiBao/InventoryUpload_3501";
@@ -343,58 +343,58 @@
                     break;
             }
 
-            // 发起上传请求
+            // Khởi tạo yêu cầu tải lên
             $.najax({
                 url: upUrl,
                 dataType: "json",
                 data: data,
                 type: "POST",
                 success: function (response) {
-                    $.modalAlert("上传成功", 'success');
+                    $.modalAlert("Tải lên thành công", 'success');
                     $.modalClose();
                 },
                 error: function (error) {
-                    $.modalAlert("上传失败，请重试", 'error');
+                    $.modalAlert("Tải lên thất bại，Vui lòng thử lại", 'error');
                 }
             });
         }
     });
 
     function check() {
-        //获取所选行
+        //Lấy dòng đã chọn
         var seleRow = $("#gridListYp").jqGridRowValue();
         var setl_id = seleRow.setl_id;
         if (seleRow.length==0) {
-            $.modalAlert("尚未选择一条记录", "error");
+            $.modalAlert("Chưa chọn một bản ghi nào", "error");
             return;
         }
         return seleRow;
 
         //var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         //if (selRowIds.length == 0) {
-        //    $.modalAlert("请先选中需上传的信息", 'warning');
+        //    $.modalAlert("Vui lòng chọn thông tin cần tải lên trước", 'warning');
         //    return;
         //}
 
-        ////获取所有行Id，遍历使编辑框处于保存状态
+        ////Lấy tất cả các dòng Id，Duyệt để hộp chỉnh sửa ở trạng thái đã lưu
         //var rowIds = $("#gridList").jqGrid('getDataIDs');
         //return selRowIds;
     }
 
 	function SelGetrow(rowid) {
-		//获取所选行
+		//Lấy dòng đã chọn
 		var rowData = $("#gridList").jqGrid('getRowData', rowid);
-		console.log("选中行", rowData)
+		console.log("Dòng đã chọn", rowData)
 		//var setl_id = rowData.setl_id;
 		if (rowData.patId == null) {
-			$.modalAlert("尚未选择一条记录", "error");
+			$.modalAlert("Chưa chọn một bản ghi nào", "error");
 			return;
 		}
 		if ($('#trad').val() == "4402" || $('#trad').val() == "4501" || $('#trad').val() == "4502") {
 			$.modalOpen({
 				id: "Deliitem",
 				async: false,
-				title: "明细页面",
+				title: "Trang chi tiết",
 				url: "/DRGManage/DRGTradUpload/From?zyh=" + rowData.zyh + "&types=" + $('#trad').val(),
 				width: "1000px",
 				height: "550px",
@@ -406,11 +406,11 @@
 
 	}
 
-    //住院号选择浮层绑定
+    //Liên kết lớp nổi chọn số nhập viện
     $('#zyh').newtouchBatchFloatingSelector({
         width: 500,
         height: 200,
-        caption: "选择患者",
+        caption: "Chọn bệnh nhân",
         clickautotrigger: true,
         url: "/ReportManage/Report/GetInpatientcryrq",
         ajaxparameters: function ($thisinput) {
@@ -433,19 +433,19 @@
             }
         },
         colModel: [
-            { label: '住院号', name: 'zyh', width: 100 },
+            { label: 'Số nhập viện', name: 'zyh', width: 100 },
             { label: 'cyrq', name: 'cyrq', hidden: true },
             { label: 'ryrq', name: 'ryrq', hidden: true },
-            { label: '在院标志', name: 'zybz', width: 100, align: 'left' },
-            { label: '姓名', name: 'xm', width: 120, align: 'left' },
-            { label: '出生年月', name: 'csny', hidden: true, width: 100, align: 'left' },
+            { label: 'Cờ đang ở viện', name: 'zybz', width: 100, align: 'left' },
+            { label: 'Họ tên', name: 'xm', width: 120, align: 'left' },
+            { label: 'Năm tháng sinh', name: 'csny', hidden: true, width: 100, align: 'left' },
             {
-                label: '性别', name: 'xb', width: 50, align: 'left', formatter: function (cellvalue) {
+                label: 'Giới tính', name: 'xb', width: 50, align: 'left', formatter: function (cellvalue) {
                     return $.getGender(cellvalue);
                 }
             },
             {
-                label: '年龄', name: 'nlshow', width: 50, align: 'left', formatter: function (cellvalue, a, b) {
+                label: 'Tuổi', name: 'nlshow', width: 50, align: 'left', formatter: function (cellvalue, a, b) {
                     return getAgeFromBirthTime({ begin: b.csny }).text;
                 }
             }

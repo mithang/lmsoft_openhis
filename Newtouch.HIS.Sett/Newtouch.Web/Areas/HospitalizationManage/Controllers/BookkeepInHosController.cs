@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
         
         /// <summary>
-        /// 根据卡号或者住院号查询住院病人基本信息
+        /// Tra cứu thông tin cơ bản của bệnh nhân nội trú theo số thẻ hoặc số nhập viện
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -121,9 +121,9 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 获取药品和收费项目
+        /// Lấy thuốc và khoản mục thu phí
         /// </summary>
-        /// <param name="keyword">关键字查询条件</param>
+        /// <param name="keyword">Điều kiện tra cứu theo từ khóa</param>
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -135,7 +135,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 保存数据时的操作
+        /// Thao tác khi lưu dữ liệu
         /// </summary>
         /// <param name="xmjf"></param>
         /// <returns></returns>
@@ -153,9 +153,9 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                     throw new FailedException("病人不在院");
                 }
                 DateTime? cqrq = _PatientBasicInfoDmnService.IFCQRQISJZSJ(zyh,this.OrganizeId);
-                //项目计费表
+                //Bảng tính phí khoản mục
                 List<HospItemBillingEntity> xmjfbEntitylist = new List<HospItemBillingEntity>();
-                //药品计费表
+                //Bảng tính phí thuốc
                 List<HospDrugBillingEntity> ypjfbEntitylist = new List<HospDrugBillingEntity>();
                 for (int i = 0; i < ItemFeeVO.Count; i++)
                 {
@@ -277,7 +277,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                         zyYpjfb.yfdm = ItemFeeVO[i].yfdm;
                         zyYpjfb.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;
                         zyYpjfb.cls = (short?)ItemFeeVO[i].cls;
-                        zyYpjfb.zxks = ItemFeeVO[i].yfdm; //药品补记账  默认执行科室为
+                        zyYpjfb.zxks = ItemFeeVO[i].yfdm; //Ghi sổ bổ sung thuốc  Khoa thực hiện mặc định là
                         zyYpjfb.Create(true, EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt("zy_ypjfb"));
                         //_HospMedicinFeeApp.SubmitForm(zyYpjfb, null);
                         ypjfbEntitylist.Add(zyYpjfb);
@@ -285,7 +285,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                         #endregion
                     }
                 }
-                //存在物资耗材做库存验证
+                //Có vật tư tiêu hao thì thực hiện kiểm tra tồn kho
                 var wzList = xmjfbEntitylist.Where(p => p.sfxm.Contains("wz")).ToList();
                 if (wzList.Count>0)
                 {
@@ -296,13 +296,13 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                             throw new FailedException("编码为："+item.sfxm +" 库存不足！");
                     }
                 }
-                //保存
+                //Lưu
                 string result=_BookkeepInHosDmnService.SaveFee(xmjfbEntitylist, ypjfbEntitylist);
                 if (string.IsNullOrWhiteSpace(result))
                 {
                     string jfbhs = string.Join(",", wzList.Where(m => m.sfxm.Contains("wz")).Select(p => p.jfbbh));
                     _hospItemBillingRepo.Updatezyaddfee(OrganizeId, jfbhs,ItemFeeVO[0].yfdm,this.UserIdentity.UserCode);
-                    //更新cis住院患者预览右侧费用卡片信息
+                    //Cập nhật cis Thông tin thẻ chi phí phía phải xem trước bệnh nhân nội trú
                     _hospdrugbillingRepo.Updatezy_brxxexpand(OrganizeId, zyh);
                 }
                 else
@@ -321,7 +321,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 根据科室 获取收费项目模板
+        /// Theo khoa Lấy mẫu khoản mục thu phí
         /// </summary>
         /// <returns></returns>
         public ActionResult GetChargeItemData(string ks)
@@ -335,7 +335,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 根据收费模板编号 获取模板内容 （项目列表）
+        /// Theo mã mẫu thu phí Lấy nội dung mẫu （Danh sách khoản mục）
         /// </summary>
         /// <param name="sfxmbh"></param>
         /// <returns></returns>
@@ -356,13 +356,13 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         #region
 
         /// <summary>
-        /// 住院记账
-        /// 记账方式：长期 or 临时
+        /// Ghi sổ nội trú
+        /// Phương thức ghi sổ：Dài hạn or Tạm thời
         /// </summary>
         /// <returns></returns>
         public ActionResult Accounting()
         {
-            //治疗师记账金额上限开关
+            //Công tắc giới hạn số tiền ghi sổ của kỹ thuật viên trị liệu
             var IsUpperLimitReminder = _sysConfigRepo.GetValueByCode("xt_UpperLimitReminder", this.OrganizeId);
             ViewBag.IsUpperLimitReminder = IsUpperLimitReminder;
             ViewBag.IsBlh = _sysConfigRepo.GetByCode("IsBlh", OrganizeId) == null ? "OFF" : _sysConfigRepo.GetByCode("IsBlh", OrganizeId).Value;
@@ -376,14 +376,14 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                 ViewBag.CurKsmc = this.UserIdentity.DepartmentName;
             }
 
-            //计划记账 单价 可编辑 开关配置
+            //Ghi sổ theo kế hoạch Đơn giá Có thể chỉnh sửa Cấu hình công tắc
             ViewBag.jhjz_dj_editable = _sysConfigRepo.GetBoolValueByCode("jhjz.dj.editable", OrganizeId);
 
             return View();
         }
 
         /// <summary>
-        /// 执行记账 计划 执行页
+        /// Ghi sổ thực hiện Kế hoạch Trang thực hiện
         /// </summary>
         /// <returns></returns>
         public ActionResult AccountingExecution()
@@ -408,7 +408,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 执行查询
+        /// Thực hiện tra cứu
         /// </summary>
         /// <returns></returns>
         public ActionResult AccountingExecutionQuery()
@@ -417,7 +417,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 记账计划 查询
+        /// Kế hoạch ghi sổ Tra cứu
         /// </summary>
         /// <returns></returns>
         public ActionResult AccountingPlan()
@@ -426,7 +426,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Pop层 停止记账计划 选择 预（停止）日期
+        /// Pop lớp Dừng kế hoạch ghi sổ Chọn Dự kiến（Dừng）Ngày
         /// </summary>
         /// <returns></returns>
         public ActionResult StopPlan()
@@ -435,9 +435,9 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 根据住院号 获取 病人 记账 信息
+        /// Theo số nhập viện Lấy Bệnh nhân Ghi sổ Thông tin
         /// </summary>
-        /// <param name="zyh">住院号</param>
+        /// <param name="zyh">Số nhập viện</param>
         /// <returns></returns>
         [HandlerAjaxOnly]
         public ActionResult GetAccountingStatusDetail(string zyh)
@@ -448,10 +448,10 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 提交记账计划
+        /// Gửi kế hoạch ghi sổ
         /// </summary>
-        /// <param name="zyh">住院号</param>
-        /// <param name="xmList">记账项目列表</param>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <param name="xmList">Danh sách khoản mục ghi sổ</param>
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -462,7 +462,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 取消预停止
+        /// Hủy dừng trước
         /// </summary>
         /// <param name="jzjhmxIdStr"></param>
         /// <returns></returns>
@@ -475,7 +475,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 查询 待执行 记账计划 列表
+        /// Tra cứu Chờ thực hiện Kế hoạch ghi sổ Danh sách
         /// </summary>
         /// <param name="zyhList"></param>
         /// <param name="zxrq"></param>
@@ -489,7 +489,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 执行记账计划
+        /// Thực hiện kế hoạch ghi sổ
         /// </summary>
         /// <param name="jzjhmxIdStr"></param>
         /// <returns></returns>
@@ -502,7 +502,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 终止 记账计划
+        /// Chấm dứt Kế hoạch ghi sổ
         /// </summary>
         /// <param name="jzjhmxIdStr"></param>
         /// <returns></returns>
@@ -535,7 +535,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
 
 
         /// <summary>
-        /// 执行查询
+        /// Thực hiện tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -568,7 +568,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 记账计划执行 导出Excel
+        /// Thực hiện kế hoạch ghi sổ Xuất Excel
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="kssj"></param>
@@ -606,9 +606,9 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                 throw new FailedException("未指定导出列");
             }
             var pagination = new Pagination();
-            pagination.sidx = "CreateTime"; //时间升序
-            pagination.rows = 65536 - 1;    //Excel最大行数
-            pagination.page = 1;    //第一页把所有都查出来
+            pagination.sidx = "CreateTime"; //Thời gian tăng dần
+            pagination.rows = 65536 - 1;    //Excel Số dòng tối đa
+            pagination.page = 1;    //Trang đầu tiên tra cứu tất cả
             var list =
                    from == "mz"
                 ? _BookkeepInHosDmnService.SelectOutAccountingExecuteList(pagination, keyword, kssj, jssj, zxzt, orgId, zls, cxzt, jzjhmxId, sfzt)
@@ -648,7 +648,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             sheet.columns.ToList().ForEach(p =>
             {
                 p.WidthTimes = (double)p.Width / colStanWidth;
-                p.Width = 0;    //Width都置为0
+                p.Width = 0;    //Width đều đặt thành 0
             });
 
             var path = DateTime.Now.ToString("\\\\yyyyMMdd\\\\HHmmssfff") + ".xls";
@@ -657,7 +657,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
 
             if (isContainFilter == true)
             {
-                //筛选条件
+                //Điều kiện lọc
                 var filterDict = new Dictionary<string, string>();
                 if (kssj.HasValue)
                 {
@@ -702,7 +702,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 记账计划查询
+        /// Tra cứu kế hoạch ghi sổ
         /// </summary>
         /// <returns></returns>
         [HandlerAjaxOnly]
@@ -730,7 +730,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 导出Excel 选择列视图
+        /// Xuất Excel View chọn cột
         /// </summary>
         /// <returns></returns>
         public ActionResult ExcelExportChooseColumns()
@@ -739,7 +739,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 记账计划导出Excel
+        /// Xuất kế hoạch ghi sổ Excel
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="kssj"></param>
@@ -775,9 +775,9 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                 throw new FailedException("未指定导出列");
             }
             var pagination = new Pagination();
-            pagination.sidx = "CreateTime"; //时间升序
-            pagination.rows = 65536 - 1;    //Excel最大行数
-            pagination.page = 1;    //第一页把所有都查出来
+            pagination.sidx = "CreateTime"; //Thời gian tăng dần
+            pagination.rows = 65536 - 1;    //Excel Số dòng tối đa
+            pagination.page = 1;    //Trang đầu tiên tra cứu tất cả
             var list =
                    from == "mz"
                    ? _outPatientDmnService.SelectAccountingPlanList(pagination, keyword, kssj, jssj, zxzt, orgId, zsftx, sycstx, sfzt)
@@ -819,7 +819,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             sheet.columns.ToList().ForEach(p =>
             {
                 p.WidthTimes = (double)p.Width / colStanWidth;
-                p.Width = 0;    //Width都置为0
+                p.Width = 0;    //Width đều đặt thành 0
             });
 
             var path = DateTime.Now.ToString("\\\\yyyyMMdd\\\\HHmmssfff") + ".xls";
@@ -828,7 +828,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
 
             if (isContainFilter == true)
             {
-                //筛选条件
+                //Điều kiện lọc
                 var filterDict = new Dictionary<string, string>();
                 if (kssj.HasValue)
                 {
@@ -865,7 +865,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 查询 治疗师 本月 已 记账金额（jfb、mzxm、mzcfmx）、记账上限金额
+        /// Tra cứu Kỹ thuật viên trị liệu Tháng này Đã Số tiền ghi sổ（jfb、mzxm、mzcfmx）、Số tiền giới hạn ghi sổ
         /// </summary>
         /// <param name="gh"></param>
         /// <returns></returns>
@@ -882,7 +882,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
 
         #region 门诊记账第四版，单次治疗量
         /// <summary>
-        /// 保存门诊记账内容
+        /// Lưu nội dung ghi sổ ngoại trú
         /// </summary>
         /// <param name="bacDto"></param>
         /// <param name="xmList"></param>
@@ -898,7 +898,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
 
 
         /// <summary>
-        /// 搜索病人基本信息
+        /// Tìm kiếm thông tin cơ bản của bệnh nhân
         /// </summary>
         /// <returns></returns>
         public ActionResult PatSearchInfo(string keyword)
@@ -928,7 +928,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 获取记账计划详情
+        /// Lấy chi tiết kế hoạch ghi sổ
         /// </summary>
         /// <param name="jzjhmxId"></param>
         /// <returns></returns>
@@ -947,7 +947,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        ///  撤销执行
+        ///  Hủy thực hiện
         /// </summary>
         /// <param name="zxbh"></param>
         /// <param name="jzjhmxId"></param>
@@ -973,7 +973,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         #region 住院记账 与Optima同步数据，Optima给我们推送治疗记录，确认之，往zy_xmjfb zy_ypjfb中写计费数据
 
         /// <summary>
-        /// 住院记账 Index
+        /// Ghi sổ nội trú Index
         /// </summary>
         /// <returns></returns>
         public ActionResult InpatientAccountingIndex()
@@ -987,16 +987,16 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                 ViewBag.CurKs = this.UserIdentity.DepartmentCode;
                 ViewBag.CurKsmc = this.UserIdentity.DepartmentName;
             }
-            //住院记账 单价 可编辑 开关配置
+            //Ghi sổ nội trú Đơn giá Có thể chỉnh sửa Cấu hình công tắc
             ViewBag.zyjz_dj_editable = _sysConfigRepo.GetBoolValueByCode("zyjz.dj.editable", OrganizeId);
 
             return View();
         }
 
         /// <summary>
-        /// 根据住院号 获取 病人 记账 信息
+        /// Theo số nhập viện Lấy Bệnh nhân Ghi sổ Thông tin
         /// </summary>
-        /// <param name="zyh">住院号</param>
+        /// <param name="zyh">Số nhập viện</param>
         /// <returns></returns>
         public ActionResult GetInpatientAccountingStatusDetail(string zyh)
         {
@@ -1005,7 +1005,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 住院记账 提交计费
+        /// Ghi sổ nội trú Gửi tính phí
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="xmList"></param>
@@ -1018,7 +1018,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 查询未确认的同步治疗记录
+        /// Tra cứu bản ghi trị liệu đồng bộ chưa xác nhận
         /// </summary>
         /// <returns></returns>
         public ActionResult GetUnConfirmedSyncedTreatmentRecord(string zyh, string mzh)
@@ -1033,7 +1033,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         #region 费用结算 出院结算（其实是配合住院计划记账加上的，但感觉比较通用）
 
         /// <summary>
-        /// 未结费用结算Index
+        /// Quyết toán chi phí chưa kết Index
         /// </summary>
         /// <returns></returns>
         public ActionResult UnSettedFeeSettIndex()
@@ -1042,7 +1042,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 获取最后一次中途结算 结束结算日期
+        /// Lấy lần quyết toán giữa chừng cuối cùng Ngày kết thúc quyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -1057,7 +1057,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 未结费用结算 Items Query
+        /// Quyết toán chi phí chưa kết Items Query
         /// </summary>
         /// <returns></returns>
         [HandlerAjaxOnly]
@@ -1067,14 +1067,14 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             {
                 return null;
             }
-            //开始日期
+            //Ngày bắt đầu
             var startTime = _BookkeepInHosDmnService.GetLastValidMidwaySettTime(zyh, this.OrganizeId);
             if (!startTime.HasValue)
             {
-                //取入院日期
+                //Lấy ngày nhập viện
                 startTime = new DateTime(1970, 01, 01);
             }
-            //让其查不到
+            //Để không tra cứu được
             endTime = endTime ?? new DateTime(1970, 01, 01);
 
             var list = _BookkeepInHosDmnService.GetChargeItemPaginationList(new Pagination()
@@ -1085,7 +1085,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             }, zyh, this.OrganizeId, startTime.Value, endTime.Value);
             if (ver=="2")
             {
-                //结果
+                //Kết quả
                 var dataV2 = list.GroupBy(p => p.sfxmmc).Select(p => new
                 {
                     sfxmmc = p.First().sfxmmc,
@@ -1094,7 +1094,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                 });
                 return Content(dataV2.ToJson());
             }
-            //结果
+            //Kết quả
             var data = list.GroupBy(p => p.sfxmmc).Select(p => new
             {
                 sfxmmc = p.First().sfxmmc,
@@ -1133,7 +1133,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 出院结算
+        /// Quyết toán xuất viện
         /// </summary>
         /// <returns></returns>
         public ActionResult DischargeSettlementIndex()
@@ -1142,7 +1142,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 获取已结 中途结算ListJson
+        /// Lấy đã quyết toán Quyết toán giữa chừng ListJson
         /// </summary>
         /// <returns></returns>
         [HandlerAjaxOnly]
@@ -1159,8 +1159,8 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 是否存在未结记录
-        /// 通过中途结算的时间
+        /// Có tồn tại bản ghi chưa quyết toán hay không
+        /// Thông qua thời gian quyết toán giữa chừng
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -1174,7 +1174,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             startTime = _BookkeepInHosDmnService.GetLastValidMidwaySettTime(zyh, this.OrganizeId);
             if (!startTime.HasValue)
             {
-                startTime = new DateTime(1970, 01, 01);  //未结算过的话 从入院开始算所有项目
+                startTime = new DateTime(1970, 01, 01);  //Nếu chưa từng quyết toán tính tất cả các khoản mục từ khi nhập viện
             }
             var jsItemList = _hospItemBillingRepo.GetItemFeeEntityListByTime(zyh, this.OrganizeId, startTime.Value, DateTime.Now);
 
@@ -1182,7 +1182,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 出院结算
+        /// Quyết toán xuất viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="cyrq"></param>
@@ -1228,7 +1228,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 撤销最后一次中途结算
+        /// Hủy lần quyết toán giữa chừng cuối cùng
         /// </summary>
         /// <param name="zyh"></param>
         public ActionResult CancelTheLastMidwaySett(string zyh,string zffs1,string zffsmc1)
@@ -1238,9 +1238,9 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             _BookkeepInHosDmnService.CancelTheLastMidwaySett(zyh,zffs1, this.OrganizeId,out refoundmoney);
             if (zffs1=="3"&& refoundmoney>0)
             {
-                var zhxx = _accountmanageApp.GetHosPatInfo(zyh);//账户信息
+                var zhxx = _accountmanageApp.GetHosPatInfo(zyh);//Thông tin tài khoản
                 string sjpzh = _accountmanageApp.GetFinRepSJPZH();
-                //充值
+                //Nạp tiền
                 if (!_accountmanageApp.PayDepositPost(new DeposDto
                 {
                     patid = zhxx.patid,
@@ -1266,7 +1266,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         #region private methods
 
         /// <summary>
-        /// 验证是否可以出院结算
+        /// Kiểm tra có thể quyết toán xuất viện hay không
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -1309,13 +1309,13 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
 
                 AppLogger.Info(string.Format("请求参数：{0}", reqParams));
 
-                //发请求 获取返回内容
+                //Gửi yêu cầu Lấy nội dung trả về
                 var respStr = HttpClientHelper.HttpPostString(url, reqParams
                     , contentType: HttpClientHelper.EnumContentType.xml);
 
                 AppLogger.Info(string.Format("响应：{0}", respStr));
 
-                //提取
+                //Trích xuất
                 var flag = resp_GetResultAttr(respStr, "flag");
 
                 if (string.IsNullOrWhiteSpace(flag))
@@ -1328,7 +1328,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                 }
                 else if (flag == "1")
                 {
-                    //提起具体内容
+                    //Trích xuất nội dung cụ thể
                     var list = XmlToDtUntility.XmlToIList<InpatientDischargeStatus>(respStr, "row");
                     if (list == null || list.Count != 1)
                     {
@@ -1348,7 +1348,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 获取返回内容中的flag值
+        /// Lấy trong nội dung trả về flag Giá trị
         /// </summary>
         /// <param name="xml"></param>
         /// <returns></returns>
@@ -1367,7 +1367,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 从xml中提取tableName的DataTable
+        /// Từ xml trích xuất tableName của DataTable
         /// </summary>
         /// <param name="xml"></param>
         /// <returns></returns>
@@ -1396,7 +1396,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
 
 
         /// <summary>
-        /// 门诊/住院计划录入 检索患者浮层
+        /// Ngoại trú/Nhập kế hoạch nội trú Lớp nổi tra cứu bệnh nhân
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

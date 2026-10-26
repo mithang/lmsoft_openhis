@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Web.Areas.KnowledgeBaseManage.Controllers
         }
 
         /// <summary>
-        /// 获取医保备案列表
+        /// Lấy danh sách hồ sơ bảo hiểm y tế
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="ksrq"></param>
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Web.Areas.KnowledgeBaseManage.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="ybbabId"></param>
@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Web.Areas.KnowledgeBaseManage.Controllers
         }
 
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửa Form
         /// </summary>
         /// <param name="ybbabId"></param>
         /// <returns></returns>
@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Web.Areas.KnowledgeBaseManage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="ybbabId"></param>
         /// <returns></returns>

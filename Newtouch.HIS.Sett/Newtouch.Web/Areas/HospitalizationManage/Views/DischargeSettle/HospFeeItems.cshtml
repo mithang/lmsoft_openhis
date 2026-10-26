@@ -13,13 +13,13 @@
                         </div>
                     </div>
                 </td>
-                <th class="formTitle">项目搜索：</th>
+                <th class="formTitle">Tìm kiếm khoản mục：</th>
                 <td class="formValue">
-                    <input id="dlCode" name="dlCode" type="text" class="form-control" placeholder="按照项目编码项目名称或简拼" />
+                    <input id="dlCode" name="dlCode" type="text" class="form-control" placeholder="Theo mã khoản mục, tên khoản mục hoặc viết tắt" />
                 </td>
               
                 <td style="padding-left:20px;" class="formValue">
-                    <input type="button" id="btn_search" style="margin-left:3%; width:35%; margin-top:-2%;" class="btn btn-primary" value="查询" />
+                    <input type="button" id="btn_search" style="margin-left:3%; width:35%; margin-top:-2%;" class="btn btn-primary" value="Tra cứu" />
                 </td>
             </tr>
         </table>
@@ -50,24 +50,24 @@
             url: "/HospitalizationManage/DischargeSettle/GetInpatientSettleStatusDetailbySfdlData",
             height: $(window).height() - 120,
             colModel: [
-                { label: '收费大类', name: 'dlmc', align: 'center', width: 100 },
-                { label: '属性', name: 'zfxz', align: 'center', width: 40 },
-                { label: '药品名称', name: 'sfxmmc', align: 'left', width: 150 },
-                { label: '规格', name: 'gg', align: 'center', width: 60 },
-                { label: '单位', name: 'jfdw', align: 'center', width: 60 },
+                { label: 'Loại lớn thu phí', name: 'dlmc', align: 'center', width: 100 },
+                { label: 'Thuộc tính', name: 'zfxz', align: 'center', width: 40 },
+                { label: 'Tên thuốc', name: 'sfxmmc', align: 'left', width: 150 },
+                { label: 'Quy cách', name: 'gg', align: 'center', width: 60 },
+                { label: 'Đơn vị', name: 'jfdw', align: 'center', width: 60 },
                 {
-                    label: '单价', name: 'dj', align: 'center', width: 60, formatter: "number"
+                    label: 'Đơn giá', name: 'dj', align: 'center', width: 60, formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
                 },
-                { label: '数量', name: 'sl', align: 'center', width: 30 },
+                { label: 'Số lượng', name: 'sl', align: 'center', width: 30 },
                 { label: 'zyh', name: 'zyh', align: 'center', hidden: true, },
                 {
-                    label: '费用', name: 'je', align: 'center', width: 60, formatter: "number"
+                    label: 'Chi phí', name: 'je', align: 'center', width: 60, formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
                 },
-                { label: '是否自费', name: 'zzfbz', align: 'center', width: 80 },
+                { label: 'Có tự trả hay không', name: 'zzfbz', align: 'center', width: 80 },
                 { label: 'sfxm', name: 'sfxm', align: 'center', hidden: true, },
-                //{ label: '计价日期', name: 'tdrq', align: 'center', width: 100 },
+                //{ label: 'Ngày định giá', name: 'tdrq', align: 'center', width: 100 },
 
             ],
             pager: "#gridPager",
@@ -86,7 +86,7 @@
         if (!!rowData) {
             $.modalOpen({
                 id: "mxcx",
-                title: "项目明细",
+                title: "Chi tiết khoản mục",
                 url: "/HospitalizationManage/DischargeSettle/HospZyFeeDetailedQuery?sfxmCode=" + smxmCode + "&zyh=" + zyh,
                 width: "800px",
                 height: "600px",

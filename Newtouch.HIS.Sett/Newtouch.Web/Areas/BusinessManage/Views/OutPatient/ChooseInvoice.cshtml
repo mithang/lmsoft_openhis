@@ -10,7 +10,7 @@
     <div style="margin-top:40px;margin-right:40px;">
         <table class="form">
             <tr>
-                <th class="formTitle dialogText">发票号:</th>
+                <th class="formTitle dialogText">Số hóa đơn:</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="txtfph" name="txtfph" required value="">
                 </td>
@@ -20,7 +20,7 @@
 </form>
 
 <script>
-    //上一个window对象
+    //Trước đó window Đối tượng
     var prevWindow;
     if ('@(from)' != '') {
         prevWindow = top.top.frames['@(from)'];
@@ -31,7 +31,7 @@
     }
 
     $.ajax({
-        url: "/BusinessManage/OutPatient/GetInvoice",  //获取
+        url: "/BusinessManage/OutPatient/GetInvoice",  //Lấy
         dataType: "json",
         async: false,
         success: function (data) {
@@ -40,9 +40,9 @@
         }
     });
 
-    //确认验证发票号
+    //Xác nhận kiểm tra số hóa đơn
     function checkFPH() {
-        $.loading(true, '发票验证中...');
+        $.loading(true, 'Đang kiểm tra hóa đơn...');
         $.ajax({
             url: "/BusinessManage/OutPatient/CheckInvoice",
             data: { inputFPH: $("#txtfph").val() },

@@ -28,21 +28,21 @@ namespace Newtouch.HIS.Web.Areas.NonTreatmentItemManage.Controllers
         // GET: NonTreatmentItemManage/NonTreatmentItemDmnServices
         public ActionResult Bookkeeping()
         {
-            //是否显示住院号
+            //Có hiển thị số nhập viện hay không
             var IsShowZyh = _sysConfigRepo.GetValueByCode("NonTreatItem_ShowZyh", this.OrganizeId);
             ViewBag.IsShowZyh = IsShowZyh;
             return View();
         }
         public ActionResult BookkeepingQuery()
         {           
-            //是否显示住院号
+            //Có hiển thị số nhập viện hay không
             var IsShowZyh = _sysConfigRepo.GetValueByCode("NonTreatItem_ShowZyh", this.OrganizeId);
             ViewBag.IsShowZyh = IsShowZyh;
             return View();
         }
         public ActionResult BookkeepingRefund()
         {
-            //是否显示住院号
+            //Có hiển thị số nhập viện hay không
             var IsShowZyh = _sysConfigRepo.GetValueByCode("NonTreatItem_ShowZyh", this.OrganizeId);
             ViewBag.IsShowZyh = IsShowZyh;
             return View();
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Web.Areas.NonTreatmentItemManage.Controllers
 
         #region 项目记账
         /// <summary>
-        /// 根据病历号获取patId和姓名
+        /// Lấy theo số bệnh án patId và họ tên
         /// </summary>
         /// <param name="cardNo"></param>
         /// <returns></returns>
@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Web.Areas.NonTreatmentItemManage.Controllers
         }
 
         /// <summary>
-        /// 保存记账
+        /// Lưu ghi sổ
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -107,7 +107,7 @@ namespace Newtouch.HIS.Web.Areas.NonTreatmentItemManage.Controllers
         #endregion
 
         #region 记账查询
-        //收费分类数据源
+        //Nguồn dữ liệu phân loại thu phí
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetTreeSelectChargeCategoryJson()
@@ -133,7 +133,7 @@ namespace Newtouch.HIS.Web.Areas.NonTreatmentItemManage.Controllers
         }
 
         /// <summary>
-        /// 查询
+        /// Tra cứu
         /// </summary>
         /// <returns></returns>
         public ActionResult SelectNonTreatmentItemList(Pagination pagination, string sfdl, string keyword, string smry, string smks, DateTime? kssj, DateTime? jssj,string kehu, string zyh, string blh)
@@ -161,7 +161,7 @@ namespace Newtouch.HIS.Web.Areas.NonTreatmentItemManage.Controllers
 
         #region 记账退费
         /// <summary>
-        /// 查询
+        /// Tra cứu
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="smry"></param>
@@ -186,7 +186,7 @@ namespace Newtouch.HIS.Web.Areas.NonTreatmentItemManage.Controllers
         }
 
         /// <summary>
-        /// 保存退费
+        /// Lưu hoàn phí
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -207,12 +207,12 @@ namespace Newtouch.HIS.Web.Areas.NonTreatmentItemManage.Controllers
                 entity.zyh = item.zyh;
                 entity.sfxmCode = item.sfxmCode;
                 entity.dlCode = item.dlCode;
-                entity.sl = 0-item.tsl.Value;    //退的数量
-                entity.dj = item.dj.Value;    //退的数量
-                entity.je = 0-item.tje.Value;    //退的金额
-                entity.cxry = OperatorProvider.GetCurrent().UserCode;   //撤销人员
-                entity.cxrq = DateTime.Now;    //撤销日期
-                entity.cxjfbId = item.jfbId;    //撤销对应的jfbId
+                entity.sl = 0-item.tsl.Value;    //Số lượng trả lại
+                entity.dj = item.dj.Value;    //Số lượng trả lại
+                entity.je = 0-item.tje.Value;    //Số tiền trả lại
+                entity.cxry = OperatorProvider.GetCurrent().UserCode;   //Người hủy
+                entity.cxrq = DateTime.Now;    //Ngày hủy
+                entity.cxjfbId = item.jfbId;    //Hủy tương ứng jfbId
                 entity.blh = item.blh;
                 entity.patId = item.patId;
                 entity.xm = item.xm;

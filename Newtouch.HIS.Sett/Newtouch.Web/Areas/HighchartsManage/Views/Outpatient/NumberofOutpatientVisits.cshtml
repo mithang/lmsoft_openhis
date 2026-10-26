@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "门诊就诊人次人数分析";
+    ViewBag.Title = "Phân tích số lượt khám ngoại trú";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/highcharts/highcharts.js")"></script>
@@ -13,7 +13,7 @@
 
     function GetOutpatientVisitNum() {
         var OutpatientList = [];
-        //折线图 获取就诊人数
+        //Biểu đồ đường gấp khúc Lấy số người khám bệnh
         $.ajax({
             url: "/HighchartsManage/Outpatient/GetOutpatientVisitNum?r=" + Math.random(),
             dataType: "json",
@@ -33,15 +33,15 @@
                 zoomType: 'x'
             },
             title: {
-                text: '就诊人数',
+                text: 'Số người khám bệnh',
             },
             xAxis: {
-                categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+                categories: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12']
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: '单位：人'
+                    text: 'Đơn vị： người'
                 },
                 plotLines: [{
                     value: 0,
@@ -50,7 +50,7 @@
                 }]
             },
             tooltip: {
-                valueSuffix: '人',
+                valueSuffix: ' người',
                 headerFormat: "{point.key}:",
                 pointFormat: '<tr><td>{point.y}<td></tr>',
                 footerFormat: '</table>',
@@ -67,7 +67,7 @@
 
     function GetOutpatientVisitPerNum() {
         var OutpatientList = [];
-        //折线图 获取就诊人次
+        //Biểu đồ đường gấp khúc Lấy số lượt khám bệnh
         $.ajax({
             url: "/HighchartsManage/Outpatient/GetOutpatientVisitPerNum?r=" + Math.random(),
             dataType: "json",
@@ -87,15 +87,15 @@
                 zoomType: 'x'
             },
             title: {
-                text: '就诊人次',
+                text: 'Số lượt khám bệnh',
             },
             xAxis: {
-                categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+                categories: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12']
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: '单位：人次'
+                    text: 'Đơn vị：Lượt người'
                 },
                 plotLines: [{
                     value: 0,
@@ -104,7 +104,7 @@
                 }]
             },
             tooltip: {
-                valueSuffix: '人次',
+                valueSuffix: 'Lượt người',
                 headerFormat: "{point.key}:",
                 pointFormat: '<tr><td>{point.y}<td></tr>',
                 footerFormat: '</table>',

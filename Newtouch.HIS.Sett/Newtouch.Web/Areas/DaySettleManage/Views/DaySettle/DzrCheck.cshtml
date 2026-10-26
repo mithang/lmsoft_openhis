@@ -9,14 +9,14 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle" id="thCZRQ">日期：</th>
+                <th class="formTitle" id="thCZRQ">Ngày：</th>
                 <td class="formValue" colspan="2">
                     <input id="txtCreateTimestart" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:20%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:2%;float:left;">—</span>
                     <input id="txtCreateTimeEnd" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :20%;float:left;margin-left:2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
 
-                    <input type="button" id="btn_search_tj" class="btn btn-primary btn-md" style="margin-left:10px;width:70px;" onclick="search()" value="本地明细查询" />
-                    @*<input type="button" id="btn_search_dzz" class="btn btn-primary btn-md" style="margin-left:10px;width:50px;" value="对帐" />*@
+                    <input type="button" id="btn_search_tj" class="btn btn-primary btn-md" style="margin-left:10px;width:70px;" onclick="search()" value="Tra cứu chi tiết tại chỗ" />
+                    @*<input type="button" id="btn_search_dzz" class="btn btn-primary btn-md" style="margin-left:10px;width:50px;" value="Đối soát" />*@
                 </td>
                 <td class="formValue"></td>
             </tr>
@@ -39,25 +39,25 @@
         $gridJsList.dataGrid({
             postData: { ksrq: $("#txtCreateTimestart").val(), jsrq: $("#txtCreateTimeEnd").val() },
             height: 400,
-            caption: '本地明细数据',
+            caption: 'Dữ liệu chi tiết tại chỗ',
             url: "/DaySettleManage/DaySettle/GetHistoryCheckList",
             colModel: [
-                { label: '中心流水号', name: 'lsh', width: 50, align: 'left' },
-                { label: '卡号', name: 'cardid', width: 100, align: 'left' },
-                { label: '交易时间', name: 'jysj', width: 120, align: 'left' },
-                { label: '类型', name: 'lx', width: 50, align: 'left' },
-                { label: '当年', name: 'dn', width: 50, align: 'left' },
-                { label: '历年', name: 'ln', width: 50, align: 'left' },
-                { label: '现金', name: 'xj', width: 50, align: 'left' },
-                { label: '统筹', name: 'tc', width: 50, align: 'left' },
-                { label: '地方', name: 'df', width: 50, align: 'left' },
-                { label: '分类自负', name: 'flzf', width: 50, align: 'left' },
-                { label: '个人自费', name: 'grzf', width: 50, align: 'left' },
-                { label: '姓名', name: 'xm', width: 100, align: 'left' },
-                { label: '门诊编号', name: 'mzbh', width: 50, align: 'left' },
-                { label: '号码', name: 'hm', width: 50, align: 'left' },
-                { label: '终端', name: 'zd', width: 50, align: 'left' },
-                { label: '标志', name: 'bz', width: 50, align: 'left' }
+                { label: 'Mã giao dịch trung tâm', name: 'lsh', width: 50, align: 'left' },
+                { label: 'Số thẻ', name: 'cardid', width: 100, align: 'left' },
+                { label: 'Thời gian giao dịch', name: 'jysj', width: 120, align: 'left' },
+                { label: 'Loại', name: 'lx', width: 50, align: 'left' },
+                { label: 'Năm nay', name: 'dn', width: 50, align: 'left' },
+                { label: 'Các năm trước', name: 'ln', width: 50, align: 'left' },
+                { label: 'Tiền mặt', name: 'xj', width: 50, align: 'left' },
+                { label: 'Quỹ chung', name: 'tc', width: 50, align: 'left' },
+                { label: 'Địa phương', name: 'df', width: 50, align: 'left' },
+                { label: 'Tự trả phân loại', name: 'flzf', width: 50, align: 'left' },
+                { label: 'Cá nhân tự trả', name: 'grzf', width: 50, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 100, align: 'left' },
+                { label: 'Mã ngoại trú', name: 'mzbh', width: 50, align: 'left' },
+                { label: 'Số', name: 'hm', width: 50, align: 'left' },
+                { label: 'Thiết bị đầu cuối', name: 'zd', width: 50, align: 'left' },
+                { label: 'Cờ', name: 'bz', width: 50, align: 'left' }
 
             ],
             pager: "#gridPager",
@@ -75,7 +75,7 @@
             }
         });
 
-        //查询事件
+        //Sự kiện tra cứu
         $("#btn_search_tj").click(function () {
             $gridJsList.jqGrid('setGridParam', {
                 postData: { ksrq: $("#txtCreateTimestart").val(), jsrq: $("#txtCreateTimeEnd").val() },
@@ -86,15 +86,15 @@
     }
     @*function search() {
         if ($('#txtCreateTimestart').val().length == 0) {
-            $.modalAlert("缺少开始时间", "error");
+            $.modalAlert("Thiếu thời gian bắt đầu", "error");
             return;
         }
         if ($('#txtCreateTimeEnd').val().length == 0) {
-            $.modalAlert("缺少结束时间", "error");
+            $.modalAlert("Thiếu thời gian kết thúc", "error");
             return;
         }
         if ($('#txtCreateTimestart').val() > $('#txtCreateTimeEnd').val()) {
-            $.modalAlert("开始时间不能大于结束时间", "error");
+            $.modalAlert("Thời gian bắt đầu không thể lớn hơn thời gian kết thúc", "error");
             return;
         }
 
@@ -103,7 +103,7 @@
         url += "&orgId=" + orgId;
         url += "&kssj=" + $('#txtCreateTimestart').val();
         url += "&jssj=" + $('#txtCreateTimeEnd').val();
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'Đang yêu cầu trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
     }
      function getUrl() {

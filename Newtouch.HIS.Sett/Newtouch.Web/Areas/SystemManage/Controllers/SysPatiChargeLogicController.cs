@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         #region 病人收费算法
 
         /// <summary>
-        /// 获取病人收费算法grid值
+        /// Lấy thuật toán thu phí bệnh nhân grid Giá trị
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 修改信息时，把选中行对象带到新页面
+        /// Khi sửa thông tin，Mang đối tượng dòng đã chọn sang trang mới
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -79,9 +79,9 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
 
 
         /// <summary>
-        /// 病人性质下拉框 
-        /// 病人收费算法病人性质下拉框已不再使用，
-        /// 该方法在收费减免处也使用到，如果减免修改了病人性质展现方式，不再使用该方法，请记得清除
+        /// Hộp thả xuống tính chất bệnh nhân 
+        /// Hộp thả xuống tính chất bệnh nhân của thuật toán thu phí bệnh nhân đã không còn sử dụng，
+        /// Phương thức này cũng được sử dụng tại nơi miễn giảm thu phí，Nếu miễn giảm sửa đổi cách hiển thị tính chất bệnh nhân，Không sử dụng phương thức này nữa，Vui lòng nhớ xóa
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -93,7 +93,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 大类下拉框
+        /// Hộp thả xuống loại lớn
         /// </summary>
         /// <returns></returns>
         public ActionResult GetdlSelect()
@@ -112,7 +112,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 根据大类获取项目code
+        /// Lấy khoản mục theo loại lớn code
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="dlCode"></param>

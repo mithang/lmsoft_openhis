@@ -14,31 +14,31 @@
     <div style="border-bottom:1px solid rgb(221, 221, 221);">
         <table class="form">
             <tr>
-                <th class="formTitle">病历号：</th>
+                <th class="formTitle">Số bệnh án：</th>
                 <td class="formValue">
-                    <input id="blh" name="blh" type="text" class="form-control" placeholder="请输入病历号" />
+                    <input id="blh" name="blh" type="text" class="form-control" placeholder="Vui lòng nhập số bệnh án" />
                 </td>
-                <th class="formTitle">姓名：</th>
+                <th class="formTitle">Họ tên：</th>
                 <td class="formValue">
-                    <input id="xm" name="xm" type="text" class="form-control" placeholder="请输入姓名" />
+                    <input id="xm" name="xm" type="text" class="form-control" placeholder="Vui lòng nhập họ tên" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">开始时间：</th>
+                <th class="formTitle">Thời gian bắt đầu：</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
-                <th class="formTitle">结束时间：</th>
+                <th class="formTitle">Thời gian kết thúc：</th>
                 <td  class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
                 <td class="formValue">
-                    <input type="button" id="btn_search" class="btn btn-primary" style="margin-left: 60px;" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-primary" style="margin-left: 60px;" value="Tra cứu" />
                 </td>
             </tr>
         </table>
     </div>
-    <!--处方信息 包括卡号 病历号 姓名 -->
+    <!--Thông tin đơn thuốc Bao gồm số thẻ Số bệnh án Họ tên -->
     <div id="prediv" class="gridPanel" style="margin-top:1%; margin-left:1%">
         <table id="gridList"></table>
         <div id="gridPager"></div>
@@ -47,7 +47,7 @@
 
 <script>
 
-    //上一个window对象
+    //Trước đó window Đối tượng
     var prevWindow;
 
     var from = $.request("from");
@@ -64,10 +64,10 @@
         obj.kssj = $.request("kssj");
         obj.jssj = $.request("jssj");
         var searInfo = new preSearchInfo();
-        //加载数据
+        //Tải dữ liệu
         searInfo.init(obj);
 
-        //查询
+        //Tra cứu
         $("#btn_search").click(function () {
             $("#gridList").jqGrid('setGridParam', {
                 postData: { blh: $("#blh").val(), xm: $("#xm").val(), kssj: $("#kssj").val(), jssj: $("#jssj").val(), r: Math.random() },
@@ -76,7 +76,7 @@
     });
 
     var preSearchInfo = (function () {
-        //加载列表
+        //Tải danh sách
         var loadGrid = function (data) {
             var $gridList = $("#gridList");
             $gridList.newtouchLocalDataGrid({
@@ -85,13 +85,13 @@
                 //width: $("#prediv").width() - 2,
                 //url: "///?"+ Math.random(),
                 //postData: { blh: $("#blh").val(), xm: $("#xm").val() },
-                caption: '处方列表',
+                caption: 'Danh sách đơn thuốc',
                 unwritten: false,
                 colModel: [
-                    { label: '处方号', name: 'cfh', width: 150, align: 'left' },
-                    { label: '金额', name: 'je', width: 120, align: 'left' },
-                    { label: '医生', name: 'ys', width: 100, align: 'left' },
-                    { label: '开立时间', name: 'CreateTime', width: 120, align: 'left' }
+                    { label: 'Mã đơn thuốc', name: 'cfh', width: 150, align: 'left' },
+                    { label: 'Số tiền', name: 'je', width: 120, align: 'left' },
+                    { label: 'Bác sĩ', name: 'ys', width: 100, align: 'left' },
+                    { label: 'Thời gian kê đơn', name: 'CreateTime', width: 120, align: 'left' }
                 ],
                 pager: "#gridPager",
                 sortname: 'CreateTime desc',
@@ -103,20 +103,20 @@
 
         var mydata = [
                {
-                   cfh: 'R20170417170000323', je: '90.00', ys: '吴翩', CreateTime: '2017-10-01 11:23:55'
+                   cfh: 'R20170417170000323', je: '90.00', ys: 'Ngô Phiên', CreateTime: '2017-10-01 11:23:55'
                },
                {
-                   cfh: 'R20170417180000324', je: '90.00', ys: '蒋朝凤', CreateTime: '2017-10-10 11:23:55'
+                   cfh: 'R20170417180000324', je: '90.00', ys: 'Tưởng Triều Phượng', CreateTime: '2017-10-10 11:23:55'
                },
                {
-                   cfh: 'R20170503140000325', je: '90.00', ys: '宁萍芳', CreateTime: '2017-10-21 11:23:55'
+                   cfh: 'R20170503140000325', je: '90.00', ys: 'Ninh Bình Phương', CreateTime: '2017-10-21 11:23:55'
                }
         ];
      
         var myPreSearchInfo = function (data) {
 
         }
-        //加载事件
+        //Sự kiện tải
         myPreSearchInfo.prototype.init = function (data) {
             if (!!!data.blh) {
                 $("#blh").val("");
@@ -140,17 +140,17 @@
         return myPreSearchInfo;
     }());
 
-    //jqGrid 双击选中某行
+    //jqGrid Nhấp đúp chọn một dòng
     function btn_edit() {
         PreSearchConfirm();
     }
 
-    //确定 主页面调用
+    //Xác định Trang chính gọi
     function PreSearchConfirm() {
         DbClickGrid();
     }
 
-    //双击
+    //Nhấp đúp
     function DbClickGrid() {
         var $gridList = $("#gridList");
         var patId = $gridList.jqGridRowValue().patId;
@@ -159,16 +159,16 @@
         obj.patId = patId;
         obj.cfh = cfh;
         if (!!!obj.cfh) {
-            $.modalMsg("请选择一个处方号", "warning");
+            $.modalMsg("Vui lòng chọn một mã đơn thuốc", "warning");
             return;
         }
         prevWindow.getPatInfoAjax(obj);
 
-        //关闭窗口
+        //Đóng cửa sổ
         ReceiptCancle();
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() {
         $.modalClose();
     }
