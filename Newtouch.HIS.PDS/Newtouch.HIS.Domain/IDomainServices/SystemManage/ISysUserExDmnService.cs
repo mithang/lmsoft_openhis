@@ -62,14 +62,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<string> GetYfbmCodeListByUserId(string userId);
 
         /// <summary>
-        /// 获取用户的语言类型
+        /// Lấy loại ngôn ngữ của người dùng
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         string GetLanguageTypeByUserId(string userId);
 
         /// <summary>
-        /// theo cấp cha OrgId (递归树)lấy tất cả 指定 职位 của StaffId
+        /// theo cấp cha OrgId (cây đệ quy) lấy tất cả chức vụ được chỉ định của StaffId
         /// </summary>
         /// <param name="parentOrgId"></param>
         /// <param name="dutyCode"></param>
@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<string> GetStaffIdListByParentOrg(string parentOrgId, string dutyCode);
 
         /// <summary>
-        /// theo viên công Id获取所有岗位
+        /// theo viên công Id lấy tất cả các vị trí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="StaffId"></param>

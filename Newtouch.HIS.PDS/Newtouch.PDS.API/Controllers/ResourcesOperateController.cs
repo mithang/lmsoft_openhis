@@ -10,7 +10,7 @@ using Newtouch.PDS.Requset.ResourcesOperate;
 namespace Newtouch.PDS.API.Controllers
 {
     /// <summary>
-    /// 资源操作
+    /// Thao tác tài nguyên
     /// </summary>
     [RoutePrefix("api/ResourcesOperate")]
     public class ResourcesOperateController : ApiControllerBase<ResourcesOperateController>
@@ -22,7 +22,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// 资源预定（冻结库存）
+        /// Đặt trước tài nguyên (đóng băng tồn kho)
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// 资源预定修改
+        /// Sửa đặt trước tài nguyên
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -58,7 +58,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// 取消部分预定
+        /// Hủy một phần đặt trước
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -76,7 +76,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// 取消指定处方全部预定
+        /// Hủy toàn bộ đặt trước của đơn thuốc được chỉ định
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -94,7 +94,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// HIS门诊退费后 冻结库存返还
+        /// Sau khi HIS trả phí ngoại trú, hoàn trả tồn kho bị đóng băng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -112,7 +112,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// 门诊确认资源（Commit）
+        /// Xác nhận tài nguyên ngoại trú (Commit)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -130,7 +130,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// (未发药前)部分退药
+        /// (Trước khi phát thuốc) trả thuốc một phần
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -149,7 +149,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// 门诊取消排药
+        /// Hủy xếp thuốc ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -167,7 +167,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// 住院退药
+        /// Trả thuốc nội trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

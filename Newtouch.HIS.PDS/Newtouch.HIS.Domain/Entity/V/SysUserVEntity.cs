@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string UserSecretkey { get; set; }
 
         /// <summary>
-        /// 是否被锁定.true khóa, không thì chưa khóa
+        /// Có bị khóa không. true: khóa, không thì chưa khóa
         /// </summary>
         public bool? Locked { get; set; }
 

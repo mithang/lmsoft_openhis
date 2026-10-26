@@ -26,12 +26,12 @@ namespace Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage
         List<OutputStructYY003> Purchase_YY003(string orgId, string yqbm, string psmxbh);
         //phân phối nghiệm thu chi tiết
         string Purchase_YY018(PurchaseMainYY018 main, string orgId);
-        //退货单填报 (YY011)
+        //Khai báo đơn trả hàng (YY011)
         string Purchase_YY011(string orgId, string cgId);
-        //退货单填报确认 (YY012)
+        //Xác nhận khai báo đơn trả hàng (YY012)
         string Purchase_YY012(string orgId, string cgId);
 
-        //医院配送点基础信息传报(YY001)
+        //Truyền báo thông tin cơ bản điểm phân phối của bệnh viện (YY001)
         string Purchase_YY001(string orgId, string Id, string czlx);
     }
 }

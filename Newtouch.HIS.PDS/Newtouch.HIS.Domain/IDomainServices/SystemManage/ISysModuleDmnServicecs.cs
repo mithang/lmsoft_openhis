@@ -65,13 +65,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<SysOrganizeVEntity> GetAuthedOrgListByModuleId(string moduleId, int itemType);
 
         /// <summary>
-        ///  (menu, nút menu)将菜单授权给指定机构
+        /// (menu, nút menu) ủy quyền menu cho tổ chức được chỉ định
         /// </summary>
         /// <param name="moduleId"></param>
         void UpdateAuthOrganizeList(string moduleId, string orgList, int itemType);
 
         /// <summary>
-        ///  (menu, nút menu)将菜单授权给所有机构
+        /// (menu, nút menu) ủy quyền menu cho tất cả các tổ chức
         /// </summary>
         /// <param name="moduleId"></param>
         void AuthAllOrganize(string moduleId, int itemType);

@@ -54,7 +54,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<HandOutMedicineQueryVO> GetHandOutMedicineInfoList(Pagination pagination, QueryMedicineInfoReqVO vo);
 
         /// <summary>
-        /// 本部门同步药品候选信息 tra cứu
+        /// Thông tin ứng viên thuốc đồng bộ của bộ phận này để tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>

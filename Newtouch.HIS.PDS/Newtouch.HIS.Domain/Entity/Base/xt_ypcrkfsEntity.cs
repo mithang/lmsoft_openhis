@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Domain
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 修改着
+        /// Người sửa
         /// </summary>
         public string LastModifierCode { get; set; }
 

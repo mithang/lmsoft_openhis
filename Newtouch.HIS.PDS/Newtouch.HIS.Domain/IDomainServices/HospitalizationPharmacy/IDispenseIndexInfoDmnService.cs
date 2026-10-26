@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
     {
         #region 发药
         /// <summary>
-        /// 配药完成, sửa thực hiện y lệnh trạng thái
+        /// Xếp thuốc hoàn thành, sửa trạng thái thực hiện y lệnh
         /// </summary>
         /// <param name="tdrq"></param>
         /// <param name="zxId"></param>
@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region 配药
         string GetBQPYXXList(DispenseBQInfoVO model);
 
-        //执行配药操作
+        //Thực hiện thao tác xếp thuốc
         string GetBQTYXXList(DispenseBQInfoVO model);
         #endregion
 
@@ -199,7 +199,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region 科室备药
 
         /// <summary>
-        /// 获取科室申请单待发药/备药库存退回
+        /// Lấy đơn đề nghị của khoa chờ phát thuốc / hoàn trả tồn kho thuốc dự phòng
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
@@ -226,7 +226,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string ApplyNoSendDrugs(string SqdArr, string userCode, string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 科室备药库存退回列表
+        /// Danh sách hoàn trả tồn kho thuốc dự phòng của khoa
         /// </summary>
         /// <param name="SqdArr"></param>
         /// <param name="OrgId"></param>

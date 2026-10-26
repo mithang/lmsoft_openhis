@@ -23,12 +23,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// thực hiện y lệnh ID, 由药房药库库自己生成, 每次调医嘱执行时生成
+        /// thực hiện y lệnh ID, do nhà thuốc/kho thuốc tự sinh, mỗi lần gọi thực hiện y lệnh thì sinh
         /// </summary>
         public string zxId { get; set; }
 
         /// <summary>
-        /// y lệnh Id, 对应医护协同工作站医嘱Id
+        /// y lệnh Id, tương ứng với Id y lệnh của trạm làm việc phối hợp y hộ
         /// </summary>
         public string yzId { get; set; }
 

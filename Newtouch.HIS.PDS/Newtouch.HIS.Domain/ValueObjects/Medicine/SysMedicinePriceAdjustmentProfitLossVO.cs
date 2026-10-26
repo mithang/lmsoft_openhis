@@ -171,7 +171,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public string djdw { get; set; }
         /// <summary>
-        /// đơn vị 把门诊和住院都考虑进来
+        /// đơn vị, tính cả ngoại trú và nội trú vào
         /// </summary>
 
         public string dw { get; set; }

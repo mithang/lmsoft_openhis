@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// lấy trả thuốc chi tiết thuốc
         /// </summary>
         /// <param name="ckbm">bộ phận xuất kho đề nghị trả thuốc của bộ phận</param>
-        /// <param name="rkbm">bộ phận nhập kho 药品即将退回到的部门</param>
+        /// <param name="rkbm">bộ phận nhập kho, bộ phận mà thuốc sắp được trả về</param>
         /// <param name="srm">mã nhập từ khóa</param>
         /// <returns></returns>
         List<HandOutMedicinesrmVO> GetTyypBySrm(string ckbm, string rkbm, string srm);

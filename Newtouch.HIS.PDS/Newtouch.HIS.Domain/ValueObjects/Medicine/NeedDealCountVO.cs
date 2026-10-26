@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 待处理事件汇总
+    /// Tổng hợp sự kiện chờ xử lý
     /// </summary>
     public class NeedDealCountVO
     {
@@ -16,32 +16,32 @@
         public long? tjypCount { get; set; }
 
         /// <summary>
-        /// 门诊待排
+        /// Ngoại trú chờ xếp
         /// </summary>
         public long? mzdpCount { get; set; }
 
         /// <summary>
-        /// 门诊待发药
+        /// Ngoại trú chờ phát thuốc
         /// </summary>
         public long? mzdfCount { get; set; }
 
         /// <summary>
-        /// 住院待排
+        /// Nội trú chờ xếp
         /// </summary>
         public long? zydpCount { get; set; }
 
         /// <summary>
-        /// 住院待发药
+        /// Nội trú chờ phát thuốc
         /// </summary>
         public long? zydfCount { get; set; }
 
         /// <summary>
-        /// 住院待退药
+        /// Nội trú chờ trả thuốc
         /// </summary>
         public long? zydtCount { get; set; }
 
         /// <summary>
-        /// 申领待审核
+        /// Lĩnh chờ duyệt
         /// </summary>
         public long? sldshCount { get; set; }
 

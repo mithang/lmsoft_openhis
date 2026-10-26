@@ -27,7 +27,7 @@
     }
 
     /// <summary>
-    /// theo nhóm lớn thống kê phát thuốc số  trang chủ thống kê highcharts专用
+    /// theo nhóm lớn thống kê số phát thuốc, trang chủ thống kê dùng riêng cho highcharts
     /// </summary>
     public class FyClassificationStatistics
     {

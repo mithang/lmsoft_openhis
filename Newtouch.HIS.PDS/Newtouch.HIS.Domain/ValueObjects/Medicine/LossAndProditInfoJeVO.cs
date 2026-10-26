@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 报损报益总金额查询
+    /// Truy vấn tổng số tiền báo hỏng/báo lãi
     /// </summary>
     public class LossAndProditInfoJeVo
     {

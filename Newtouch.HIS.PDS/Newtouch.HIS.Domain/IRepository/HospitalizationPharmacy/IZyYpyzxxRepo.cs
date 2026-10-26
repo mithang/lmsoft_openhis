@@ -60,7 +60,7 @@ namespace Newtouch.HIS.Domain.IRepository
         int UpdateFybzTy(string yzId, string zxId, string userCode, string organizeId, EFDbTransaction db);
 
         /// <summary>
-        /// theo thực hiện ID, 物理删除此次执行的所有明细
+        /// theo thực hiện ID, xóa vật lý tất cả chi tiết của lần thực hiện này
         /// </summary>
         /// <param name="zxId"></param>
         /// <returns></returns>

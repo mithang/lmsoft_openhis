@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage
 
 
         /// <summary>
-        /// 系统材料信息
+        /// Thông tin vật tư hệ thống
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="pagination"></param>
@@ -99,7 +99,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage
         IList<SysChargeItemVO> GetclxxList(string organizeId, Pagination pagination, string type, string keyword = null);
 
         /// <summary>
-        /// 查询医保材料信息 根据系统材料信息
+        /// Truy vấn thông tin vật tư BHYT theo thông tin vật tư hệ thống
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="ypmc"></param>
@@ -110,7 +110,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage
         IList<G_yb_clxxVO> GetYbclxxlist(string organizeId, string ypmc, string py, string gjybdm, string pzwh);
 
         /// <summary>
-        /// 保存材料对码
+        /// Lưu mã đối chiếu vật tư
         /// </summary>
         /// <param name="ybxx"></param>
         /// <param name="ypid"></param>

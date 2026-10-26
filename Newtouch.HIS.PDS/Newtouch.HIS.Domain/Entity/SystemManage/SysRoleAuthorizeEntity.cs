@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string ItemId { get; set; }
 
         /// <summary>
-        /// hạng mục loại 1-模块2-nút 3-danh sách
+        /// hạng mục loại 1 - mô-đun, 2 - nút, 3 - danh sách
         /// </summary>
         public int ItemType { get; set; }
 

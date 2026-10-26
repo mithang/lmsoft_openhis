@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface IRequisitionDmnService
     {
         /// <summary>
-        /// 新申领 gửi lưu
+        /// Lĩnh mới gửi lưu
         /// </summary>
         /// <param name="sldh"></param>
         /// <param name="fybmCode"></param>

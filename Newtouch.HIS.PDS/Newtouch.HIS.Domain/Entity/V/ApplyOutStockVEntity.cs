@@ -96,12 +96,12 @@
         public string sccj { get; set; }
 
         /// <summary>
-        /// 批发单位单价
+        /// Đơn giá theo đơn vị bán buôn
         /// </summary>
         public string pfjdwdj { get; set; }
 
         /// <summary>
-        /// 零售单位单价
+        /// Đơn giá theo đơn vị bán lẻ
         /// </summary>
         public string lsjdwdj { get; set; }
 

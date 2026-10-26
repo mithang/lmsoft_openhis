@@ -16,7 +16,7 @@
         public string yplb { get; set; }
 
         /// <summary>
-        /// 药品熟悉
+        /// Thuộc tính thuốc
         /// </summary>
         public string ypsx { get; set; }
 

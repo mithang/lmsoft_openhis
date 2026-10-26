@@ -122,7 +122,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<PsiStatisticsVo> GetPsiStatisticsVo(Pagination pagination, PsiStatisticsParam searchParam, string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 获取品, không phần lô số lô, 含有效期
+        /// Lấy phẩm, không phân lô số lô, bao gồm hạn sử dụng
         /// </summary>
         /// <param name="srm">từ khóa</param>
         /// <param name="yfbmCode">bộ phận hiện tại</param>
@@ -216,9 +216,9 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="keyWord"></param>
-        /// <param name="tybz">cờ ngừng sử dụng 1-展示有效的本部门信息 0-không hiệu lực của này bộ phận thông tin 0-tất cả</param>
+        /// <param name="tybz">cờ ngừng sử dụng 1 - hiển thị thông tin hiệu lực của bộ phận này, 0 - thông tin không hiệu lực của bộ phận này, 0 - tất cả</param>
         /// <param name="kczt">trạng thái tồn kho 1-hiển thị tồn kho còn hiệu lực  0-hiển thị tồn kho không hiệu lực  trống-hiển thị tất cả</param>
-        /// <param name="show0kc">có hiển thị tồn kho bằng 0 không  0-不展示 1-展示</param>
+        /// <param name="show0kc">có hiển thị tồn kho bằng 0 không, 0 - không hiển thị, 1 - hiển thị</param>
         /// <param name="organizeid"></param>
         /// <returns></returns>
         IList<DrugStockInfoVEntity> GetDrugAndStock(Pagination pagination, string yfbmCode, string keyWord, string tybz, string kczt, string show0kc, string organizeid,string kcyjcode,string iskcyjz=null);
@@ -237,7 +237,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
-        /// <param name="gpyf">距离过期还剩x tháng</param>
+        /// <param name="gpyf">Còn x tháng nữa là hết hạn</param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
         /// <returns></returns>

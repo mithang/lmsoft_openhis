@@ -34,12 +34,12 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// ngoại trú in báo cáo thuộc về chi phí (比饮食费归'khác')
+        /// ngoại trú in báo cáo thuộc về chi phí (so với phí ăn uống thì xếp vào 'khác')
         /// </summary>
         public string mzprintreportcode { get; set; }
 
         /// <summary>
-        /// ngoại trú quyết toán thuộc về chi phí (比饮食费归'khác')
+        /// ngoại trú quyết toán thuộc về chi phí (so với phí ăn uống thì xếp vào 'khác')
         /// </summary>
         public string mzprintbillcode { get; set; }
 

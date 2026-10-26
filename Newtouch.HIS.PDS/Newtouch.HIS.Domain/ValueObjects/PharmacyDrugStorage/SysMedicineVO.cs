@@ -251,7 +251,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public int? px { get; set; }
 
         /// <summary>
-        /// 药品随ID
+        /// ID thuộc tính thuốc
         /// </summary>
         public int ypsxId { get; set; }
 

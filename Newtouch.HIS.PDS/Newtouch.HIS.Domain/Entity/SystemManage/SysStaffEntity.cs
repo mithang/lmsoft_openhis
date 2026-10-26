@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string zc { get; set; }
 
         /// <summary>
-        /// 头像
+        /// Ảnh đại diện
         /// </summary>
         public string HeadIcon { get; set; }
 
@@ -68,12 +68,12 @@ namespace Newtouch.HIS.Domain.Entity
         public bool? Gender { get; set; }
 
         /// <summary>
-        /// 生日
+        /// Ngày sinh
         /// </summary>
         public DateTime? Birthday { get; set; }
 
         /// <summary>
-        /// 手机
+        /// Điện thoại di động
         /// </summary>
         public string MobilePhone { get; set; }
 
@@ -88,7 +88,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string WeChat { get; set; }
 
         /// <summary>
-        /// 主管主键
+        /// Khóa chính của cấp quản lý
         /// </summary>
         public string ManagerCode { get; set; }
 

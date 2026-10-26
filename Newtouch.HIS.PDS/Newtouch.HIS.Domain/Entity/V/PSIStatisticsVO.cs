@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.Entity.V
 {
     /// <summary>
-    /// 进销存统计容器
+    /// Bộ chứa thống kê nhập - xuất - tồn
     /// </summary>
     public class PsiStatisticsVo
     {
@@ -98,11 +98,11 @@
         /// </summary>
         public int pksl { get; set; }
         /// <summary>
-        /// 盘盈总额
+        /// Tổng số tiền kiểm kê thừa
         /// </summary>
         public decimal pyze { get; set; }
         /// <summary>
-        /// 盘亏总额
+        /// Tổng số tiền kiểm kê thiếu
         /// </summary>
         public decimal pkze { get; set; }
     }

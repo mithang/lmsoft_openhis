@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects.OutPatientPharmacy
 {
     /// <summary>
-    /// 门诊发药查询界面查询条件
+    /// Điều kiện truy vấn giao diện truy vấn phát thuốc ngoại trú
     /// </summary>
     public class searchFyInfoReqVO
     {

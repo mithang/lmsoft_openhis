@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Domain.DO
         public string Ypmc { get; set; }
 
         /// <summary>
-        /// 需要冻结药品总数量 (đơn vị nhỏ nhất)
+        /// Tổng số lượng thuốc cần đóng băng (đơn vị nhỏ nhất)
         /// </summary>
         public int Kcsl { get; set; }
 
@@ -135,7 +135,7 @@ namespace Newtouch.HIS.Domain.DO
         public string NeedSubtractInventoryYfbmCode { get; set; }
 
         /// <summary>
-        /// 需要还的库存明细
+        /// Chi tiết tồn kho cần hoàn trả
         /// </summary>
         public List<InventoryDetailDO> Detail { get; set; }
 

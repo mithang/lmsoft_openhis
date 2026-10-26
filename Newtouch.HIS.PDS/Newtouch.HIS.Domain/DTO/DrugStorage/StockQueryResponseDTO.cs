@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.DTO.DrugStorage
 {
     /// <summary>
-    /// 查询药品库存返回报文
+    /// Bản tin trả về khi truy vấn tồn kho thuốc
     /// </summary>
     public class StockQueryResponseDTO
     {
@@ -40,17 +40,17 @@ namespace Newtouch.HIS.Domain.DTO.DrugStorage
         public string lyyfmc { get; set; }
 
         /// <summary>
-        /// 做小单位库存数量
+        /// Số lượng tồn kho theo đơn vị nhỏ
         /// </summary>
         public int kscl { get; set; }
 
         /// <summary>
-        /// 做小单位冻结数量
+        /// Số lượng đóng băng theo đơn vị nhỏ
         /// </summary>
         public int djsl { get; set; }
 
         /// <summary>
-        /// 做小单位可用数量
+        /// Số lượng khả dụng theo đơn vị nhỏ
         /// </summary>
         public int kysl { get; set; }
     }

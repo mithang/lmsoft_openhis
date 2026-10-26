@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.Entity.HospitalizationPharmacy
 {
     /// <summary>
-    /// 科室备药退回
+    /// Trả lại thuốc dự phòng của khoa
     /// </summary>
     [Table("xt_ksbyth")]
     public class XtksbythEntity : IEntity<XtksbythEntity>

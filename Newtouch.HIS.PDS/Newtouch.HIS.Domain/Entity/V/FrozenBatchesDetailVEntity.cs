@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.Entity.V
 {
     /// <summary>
-    /// 被冻结批次信息
+    /// Thông tin lô bị đóng băng
     /// </summary>
     public class FrozenBatchesDetailVEntity
     {
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Domain.Entity.V
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 被冻结库存
+        /// Tồn kho bị đóng băng
         /// </summary>
         public int djsl { get; set; }
 

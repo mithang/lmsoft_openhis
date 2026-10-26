@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string CategoryCode { get; set; }
 
         /// <summary>
-        /// 负责人
+        /// Người phụ trách
         /// </summary>
         public string ManagerCode { get; set; }
 
@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string WeChat { get; set; }
 
         /// <summary>
-        /// 传真
+        /// Fax
         /// </summary>
         public string Fax { get; set; }
 

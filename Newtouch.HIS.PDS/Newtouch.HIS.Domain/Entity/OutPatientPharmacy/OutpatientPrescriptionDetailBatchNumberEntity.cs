@@ -87,7 +87,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 归家状态: 1-đã xếp lên kệ; 0-chưa xếp lên kệ
+        /// Trạng thái xếp lên kệ: 1 - đã xếp lên kệ; 0 - chưa xếp lên kệ
         /// </summary>
         public string gjzt { get; set; }
 

@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.VO
 {
     /// <summary>
-    /// 台账查询返回结果
+    /// Kết quả trả về khi truy vấn sổ cái
     /// </summary>
     public class StandingBookInventoryDetail
     {

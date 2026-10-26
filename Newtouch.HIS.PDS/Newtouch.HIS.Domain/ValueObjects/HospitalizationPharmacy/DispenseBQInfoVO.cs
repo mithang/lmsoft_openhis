@@ -2,7 +2,7 @@
 
 namespace Newtouch.HIS.Domain.ValueObjects
 {
-    //病区病人配药操作
+    //Thao tác xếp thuốc cho bệnh nhân khu bệnh
     public class DispenseBQInfoVO
     {
         public int zxId { get; set; }//thực hiện y lệnh Id

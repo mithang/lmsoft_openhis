@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 申领但明细ID
+        /// ID chi tiết đơn lĩnh
         /// </summary>
         public string sldmxId { get; set; }
 

@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void SelectKcslAndJj(string ypCode, string ph, string pc, DateTime? yxq, out int kcsl, out decimal jj);
 
         ///// <summary>
-        ///// 表更库存数量
+        ///// Thay đổi số lượng tồn kho
         ///// </summary>
         ///// <param name="ypCode"></param>
         ///// <param name="ph"></param>

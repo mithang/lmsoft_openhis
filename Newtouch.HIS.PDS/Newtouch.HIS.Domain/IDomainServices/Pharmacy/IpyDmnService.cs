@@ -21,19 +21,19 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string CancelArrangedDrug(MzCfmxEntity mzCfmxEntity);
 
         /// <summary>
-        /// 获取待处理事件总数
+        /// Lấy tổng số sự kiện chờ xử lý
         /// </summary>
         /// <returns></returns>
         NeedDealCountVO GetNeedDealCount();
 
         /// <summary>
-        /// 获取药库待处理事件总数
+        /// Lấy tổng số sự kiện chờ xử lý của kho thuốc
         /// </summary>
         /// <returns></returns>
         NeedDealCountVO GetNeedDealCountByYk();
 
         /// <summary>
-        /// 获取药房待处理事件总数
+        /// Lấy tổng số sự kiện chờ xử lý của nhà thuốc
         /// </summary>
         /// <returns></returns>
         NeedDealCountVO GetNeedDealCountByYf();
@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
 
         /// <summary>
-        /// 物理删除处方主表和明细表   thận trọng khi dùng
+        /// Xóa vật lý bảng chính và bảng chi tiết đơn thuốc, thận trọng khi dùng
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -190,7 +190,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string OutPatientCancelArrangement(RpCancelVo cfInfo, string userCode);
 
         /// <summary>
-        /// xếp thuốc xếp lên kệ, 解冻库存
+        /// xếp thuốc xếp lên kệ, giải đông tồn kho
         /// </summary>
         /// <param name="mxphs"></param>
         /// <param name="userCode"></param>

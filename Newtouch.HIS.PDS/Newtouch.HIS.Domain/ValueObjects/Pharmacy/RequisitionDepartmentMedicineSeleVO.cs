@@ -21,7 +21,7 @@
         public string ypdlmc { get; set; }
 
         /// <summary>
-        /// số lượng có thể lĩnh and đơn vị 5 hộp 6支, 仅显示用
+        /// số lượng có thể lĩnh và đơn vị 5 hộp 6 ống, chỉ dùng để hiển thị
         /// </summary>
         public string Klslanddw { get; set; }
         

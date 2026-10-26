@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Domain.IRepository
         List<KeyValueVEntity> GetlsjzDateTime(string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 获取最近一次结转信息
+        /// Lấy thông tin kết chuyển gần nhất
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>

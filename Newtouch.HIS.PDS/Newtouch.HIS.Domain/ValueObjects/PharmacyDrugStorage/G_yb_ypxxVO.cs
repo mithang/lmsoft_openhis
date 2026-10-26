@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
 {
     /// <summary>
-    /// 医保药品目录表
+    /// Bảng danh mục thuốc BHYT
     /// </summary>
     public class G_yb_ypxxVO
     {
@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         /// </summary>
         public string zcjx { get; set; }
         /// <summary>
-        /// 实际剂型
+        /// Dạng bào chế thực tế
         /// </summary>
         public string sjjx { get; set; }
         /// <summary>
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         /// </summary>
         public string zcgg { get; set; }
         /// <summary>
-        /// 实际规格
+        /// Quy cách thực tế
         /// </summary>
         public string sjgg { get; set; }
         /// <summary>
@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         /// </summary>
         public string zxbzsl { get; set; }
         /// <summary>
-        /// 最小制剂单位
+        /// Đơn vị chế phẩm nhỏ nhất
         /// </summary>
         public string zxzjdw { get; set; }
         /// <summary>
@@ -60,11 +60,11 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         /// </summary>
         public string zxbzdw { get; set; }
         /// <summary>
-        /// 药品企业
+        /// Doanh nghiệp thuốc
         /// </summary>
         public string ypqy { get; set; }
         /// <summary>
-        /// 上市药品持有人
+        /// Người nắm giữ thuốc đã lưu hành
         /// </summary>
         public string shypcyr { get; set; }
         /// <summary>
@@ -72,7 +72,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         /// </summary>
         public string pzwh { get; set; }
         /// <summary>
-        /// 原批准文号
+        /// Số văn bản phê duyệt gốc
         /// </summary>
         public string ypzwh { get; set; }
         /// <summary>
@@ -80,15 +80,15 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         /// </summary>
         public string ypbwm { get; set; }
         /// <summary>
-        /// 分包装企业名称
+        /// Tên doanh nghiệp đóng gói phân đoạn
         /// </summary>
         public string fbzqymc { get; set; }
         /// <summary>
-        /// 生产企业
+        /// Doanh nghiệp sản xuất
         /// </summary>
         public string scqy { get; set; }
         /// <summary>
-        /// 市场状态
+        /// Trạng thái thị trường
         /// </summary>
         public string sczt { get; set; }
         /// <summary>
@@ -96,7 +96,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         /// </summary>
         public string ybypmc { get; set; }
         /// <summary>
-        /// 2021版甲乙类
+        /// Loại giáp/ất bản 2021
         /// </summary>
         public string ybjyl { get; set; }
         /// <summary>
@@ -124,7 +124,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         /// </summary>
         public string bztssxbs { get; set; }
         /// <summary>
-        /// 医保支付标准
+        /// Tiêu chuẩn thanh toán BHYT
         /// </summary>
         public string ybzfbz { get; set; }
 

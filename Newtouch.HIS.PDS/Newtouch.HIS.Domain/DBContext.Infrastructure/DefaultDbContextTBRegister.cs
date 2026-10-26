@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Domain.DBContext.Infrastructure
     public class DefaultDbContextTBRegister
     {
         /// <summary>
-        /// đăng ký bảng (底层已经注册了一部分)
+        /// đăng ký bảng (tầng dưới đã đăng ký một phần)
         /// </summary>
         /// <param name="modelBuilder"></param>
         public static void Registe(DbModelBuilder modelBuilder)

@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// 转换成部门单位的总可用数量
+        /// Tổng số lượng khả dụng quy đổi sang đơn vị bộ phận
         /// </summary>
         public int? bmdwsl { get; set; }
 

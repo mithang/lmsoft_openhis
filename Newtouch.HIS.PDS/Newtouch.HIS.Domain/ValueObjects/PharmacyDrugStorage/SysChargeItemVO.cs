@@ -64,12 +64,12 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string flCode { get; set; }
 
         /// <summary>
-        /// 确定自负现金比例, 无关这部分的性质 (tự chi trả theo loại, tự lo)   见字段zfxz      chú ý: khi tỷ lệ tự chi trả là số âm giờ, 表示定额自负   (ví dụ: 某材料12300, được báo 10000,那么自负比例＝-2300)
+        /// Xác định tỷ lệ tiền mặt tự chịu, không liên quan đến tính chất của phần này (tự chi trả theo loại, tự lo). Xem trường zfxz. Chú ý: khi tỷ lệ tự chi trả là số âm, biểu thị tự chịu theo định mức (ví dụ: một vật tư 12300, được báo 10000, vậy tỷ lệ tự chịu = -2300)
         /// </summary>
         public decimal zfbl { get; set; }
 
         /// <summary>
-        /// 确定自负部分 (chi phí×tỷ lệ tự chi trả)的性质   0  được báo 1 tự lo 2 tự chi trả theo loại 3 hoàn toàn tự lo (处理离休专家, 特需挂号费)       (chi phí× (1－tỷ lệ tự chi trả) 为可记帐部分)
+        /// Xác định tính chất của phần tự chịu (chi phí × tỷ lệ tự chi trả): 0 được báo, 1 tự lo, 2 tự chi trả theo loại, 3 hoàn toàn tự lo (xử lý chuyên gia nghỉ hưu, phí đăng ký khám đặc biệt). (chi phí × (1 - tỷ lệ tự chi trả) là phần có thể ghi sổ)
         /// </summary>
         public string zfxz { get; set; }
 
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 0 无需实施, (住院直接入帐)    1 需要实施, (住院实施后方可入帐)   from xt_yjxmdz
+        /// 0 không cần thực hiện, (nội trú ghi sổ trực tiếp); 1 cần thực hiện, (nội trú sau khi thực hiện mới được ghi sổ) from xt_yjxmdz
         /// </summary>
         public string ssbz { get; set; }
 
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string tsbz { get; set; }
 
         /// <summary>
-        /// 0 không thu phí hạng mục (ví dụ: 挂号费..) 1 thu phí hạng mục
+        /// 0 không thu phí hạng mục (ví dụ: phí đăng ký khám..), 1 thu phí hạng mục
         /// </summary>
         public string sfbz { get; set; }
 
@@ -144,12 +144,12 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string bz { get; set; }
 
         /// <summary>
-        /// 单位计量数
+        /// Số lượng đo đơn vị
         /// </summary>
         public int? dwjls { get; set; }
 
         /// <summary>
-        /// 计价策略
+        /// Chiến lược định giá
         /// </summary>
         public int? jjcl { get; set; }
 
@@ -168,7 +168,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public DateTime? LastYBUploadTime { get; set; }
 
         /// <summary>
-        /// 手术等级
+        /// Cấp độ phẫu thuật
         /// </summary>
         public string ssdj { get; set; }
 

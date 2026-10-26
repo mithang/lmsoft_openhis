@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class cfInfoVo
     {
         /// <summary>
-        /// thời gian thu phí (展示用)
+        /// thời gian thu phí (dùng để hiển thị)
         /// </summary>
         public string ShowSfsj { get; set; }
 
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string cfh { get; set; }
 
         /// <summary>
-        /// 完整处方号
+        /// Số đơn thuốc đầy đủ
         /// </summary>
         public string cfhComplete { get; set; }
 
@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string Fph { get; set; }
 
         /// <summary>
-        /// 完整发票号
+        /// Số hóa đơn đầy đủ
         /// </summary>
         public string FphComplete { get; set; }
 

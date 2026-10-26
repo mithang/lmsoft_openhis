@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<RefundedDrugVo> SelectRefundedDrugs(string cfh, string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 查询全退可退药品信息
+        /// Truy vấn thông tin thuốc có thể trả toàn bộ / có thể trả
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>

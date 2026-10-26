@@ -65,13 +65,13 @@ namespace Newtouch.HIS.Domain.Entity
         public decimal Ylsj { get; set; }
 
         /// <summary>
-        /// 原药库批发价
+        /// Giá bán buôn gốc của kho thuốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Yykpfj { get; set; }
 
         /// <summary>
-        /// 原药库零售价
+        /// Giá bán lẻ gốc của kho thuốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Yyklsj { get; set; }
@@ -106,13 +106,13 @@ namespace Newtouch.HIS.Domain.Entity
         public int Zhyz { get; set; }
 
         /// <summary>
-        /// 批发价调价利润
+        /// Lợi nhuận điều chỉnh giá bán buôn
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Pfjtjlr { get; set; }
 
         /// <summary>
-        /// 零售价调价利润
+        /// Lợi nhuận điều chỉnh giá bán lẻ
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Lsjtjlr { get; set; }

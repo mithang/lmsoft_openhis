@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// dùng chung model 测试
+    /// dùng chung model kiểm thử
     /// </summary>
     public class ModelInfoVO
     {
@@ -83,23 +83,23 @@ namespace Newtouch.HIS.Domain.ValueObjects
     }
 
     /// <summary>
-    /// trả thuốc nội trú, 医生站医嘱ID
+    /// trả thuốc nội trú, ID y lệnh trạm bác sĩ
     /// </summary>
     public class ModelZyTyYszyzIdInfoVO
     {
-        public int yszyzId { get; set; } //y lệnh ID  yszyzid 医生站 y lệnh ID
+        public int yszyzId { get; set; } //y lệnh ID  yszyzid trạm bác sĩ y lệnh ID
         public int zxId { get; set; } //thực hiện y lệnh ID 
         public string yzdm { get; set; }// y lệnh mã
     }
 
     /// <summary>
-    /// 存储退药明细表, lô
+    /// Lưu bảng chi tiết trả thuốc, lô
     /// </summary>
     public class ModelBQBRYZZXTYInfoVO
     {
         public int Id { get; set; }//khóa chính
         public string zxId { get; set; } //thực hiện y lệnh ID
-        public DateTime? tdrq { get; set; } //退档日期
+        public DateTime? tdrq { get; set; } //Ngày rút hồ sơ
         public string ypCode { get; set; } //thuốc Code
         public decimal tysl { get; set; }//số lượng trả thuốc
         public int tymxId { get; set; }//trả thuốc chi tiết ID

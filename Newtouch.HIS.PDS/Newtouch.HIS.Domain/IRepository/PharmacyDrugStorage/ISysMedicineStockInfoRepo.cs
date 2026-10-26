@@ -82,7 +82,7 @@ namespace Newtouch.HIS.Domain.IRepository
            string userCode);
 
         /// <summary>
-        /// 减少djsl và kcsl
+        /// Giảm djsl và kcsl
         /// </summary>
         /// <param name="sl">số lượng đơn vị nhỏ nhất cần trừ đi của tồn kho số</param>
         /// <param name="pc"></param>

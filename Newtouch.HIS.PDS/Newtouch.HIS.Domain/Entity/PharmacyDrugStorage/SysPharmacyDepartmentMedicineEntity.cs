@@ -52,22 +52,22 @@ namespace Newtouch.HIS.Domain.Entity
         public string Pxfs2 { get; set; }
 
         /// <summary>
-        /// 库存上限
+        /// Giới hạn trên tồn kho
         /// </summary>
         public int? Kcsx { get; set; }
 
         /// <summary>
-        /// 库存下限
+        /// Giới hạn dưới tồn kho
         /// </summary>
         public int? Kcxx { get; set; }
 
         /// <summary>
-        /// điểm nhập hàng 低于进货点则自动生成内部申领单
+        /// điểm nhập hàng, thấp hơn điểm nhập hàng thì tự động sinh đơn lĩnh nội bộ
         /// </summary>
         public int? Jhd { get; set; }
 
         /// <summary>
-        /// lượng kế hoạch tương ứng điểm nhập hàng, 指定内部申领的数量
+        /// lượng kế hoạch tương ứng điểm nhập hàng, chỉ định số lượng lĩnh nội bộ
         /// </summary>
         public int? Jhl { get; set; }
 
@@ -102,7 +102,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建试驾
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 

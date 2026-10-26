@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 接口返回处方明细初步信息
+    /// Giao diện trả về thông tin sơ bộ chi tiết đơn thuốc
     /// </summary>
     public class fyDetailListRequest
     {

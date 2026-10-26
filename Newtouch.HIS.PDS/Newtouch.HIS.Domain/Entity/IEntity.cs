@@ -28,8 +28,8 @@ namespace Newtouch.HIS.Domain
         /// khi tạo thực thể giờ, cập nhật thực thể của khóa chính trường, người tạo, thời gian tạo
         /// ví dụ gọi
         /// Guid/string khóa chính  Create() hoặc Create(true) hoặc Create(true, '73FD1267-79BA-4E23-A152-744AF73117E9')
-        /// 自增主键  Create()
-        /// int/long非自增主键  Create() hoặc Create(true, 9999)
+        /// Khóa chính tự tăng Create()
+        /// Khóa chính int/long không tự tăng Create() hoặc Create(true, 9999)
         /// </summary>
         public void Create(bool isSetPrimaryKeyValue = false, object keyValue = null, bool isSetOrgId = false, bool isSetTopOrgId = false)
         {

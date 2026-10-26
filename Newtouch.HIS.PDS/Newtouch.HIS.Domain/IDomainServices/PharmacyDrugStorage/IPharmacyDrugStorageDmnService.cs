@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<MedicineCategoryVO> GetMedicineCategoryList();
 
         /// <summary>
-        /// 生成盘点信息
+        /// Sinh thông tin kiểm kê
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
@@ -112,7 +112,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<InventoryInfoVO> SelectInventoryInfoList(Pagination pagination, string pdId, string pdsj, string srm, string ypzt, string yplb, int kcxs);
         IList<DrupreparationVO> SelectDrupreparationInfo(SelectDrupreParam pagination);
         /// <summary>
-        /// tra cứu kiểm kê thông tin thuốc 单位独立
+        /// tra cứu kiểm kê thông tin thuốc, đơn vị độc lập
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="pdId"></param>
@@ -233,7 +233,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region 资源预定
 
         /// <summary>
-        /// đặt trước tài nguyên  (tồn kho bị đóng băng, 写mz_cfmxph bảng)
+        /// đặt trước tài nguyên (tồn kho bị đóng băng, ghi bảng mz_cfmxph)
         /// </summary>
         /// <param name="bookItemDo"></param>
         void BookItem(BookItemDo bookItemDo);

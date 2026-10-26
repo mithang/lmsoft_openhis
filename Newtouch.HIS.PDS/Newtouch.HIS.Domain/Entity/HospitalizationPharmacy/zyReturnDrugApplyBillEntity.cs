@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string bqCode { get; set; }
 
         /// <summary>
-        /// xử lý trạng thái: 0-待处理; 1-xử lý trong; 2-xử lý hoàn thành 
+        /// xử lý trạng thái: 0 - chờ xử lý; 1 - đang xử lý; 2 - xử lý hoàn thành
         /// </summary>
         public int ProcessState { get; set; }
 

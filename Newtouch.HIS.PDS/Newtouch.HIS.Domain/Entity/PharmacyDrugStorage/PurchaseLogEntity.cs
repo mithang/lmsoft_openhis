@@ -18,20 +18,20 @@ namespace Newtouch.HIS.Domain.Entity.PharmacyDrugStorage
         public string Id { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 交易代码
+        /// Mã giao dịch
         /// </summary>
         public string jydm { get; set; }
         /// <summary>
-        /// 交易名称
+        /// Tên giao dịch
         /// </summary>
         public string jymc { get; set; }
         public string param { get; set; }
         /// <summary>
-        /// 入参xml
+        /// Tham số đầu vào xml
         /// </summary>
         public string XmlRequest { get; set; }
         /// <summary>
-        /// 出参xml
+        /// Tham số đầu ra xml
         /// </summary>
         public string XmlResponse { get; set; }
         public string zt { get; set; }

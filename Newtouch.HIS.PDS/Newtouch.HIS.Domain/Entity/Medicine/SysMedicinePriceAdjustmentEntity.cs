@@ -87,7 +87,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string tzczy { get; set; }
 
         /// <summary>
-        /// 审操作人
+        /// Người thao tác duyệt
         /// </summary>
         public string shczy { get; set; }
 

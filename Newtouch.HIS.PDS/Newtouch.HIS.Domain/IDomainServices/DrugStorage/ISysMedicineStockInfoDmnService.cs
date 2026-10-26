@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.DrugStorage
         string WbrkKkc(int sl, string pc, string ph, string ypdm, string organizeId, string yfbmCode, string userCode);
 
         /// <summary>
-        /// tồn kho bị đóng băng, 并返回被冻结的批次信息
+        /// tồn kho bị đóng băng, và trả về thông tin lô bị đóng băng
         /// </summary>
         /// <param name="kcsl"></param>
         /// <param name="ypdm"></param>

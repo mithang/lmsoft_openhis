@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.DTO.OutOrInStoredOperate
 {
     /// <summary>
-    /// 冻结库存并生成单据信息处理过程参数
+    /// Tham số quy trình xử lý đóng băng tồn kho và sinh thông tin chứng từ
     /// </summary>
     public class FrozenStockAndGenerateCrkdjDTO
     {
@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Domain.DTO.OutOrInStoredOperate
     {
 
         /// <summary>
-        /// 总共需要冻结的数量  đơn vị nhỏ nhất
+        /// Tổng số lượng cần đóng băng, đơn vị nhỏ nhất
         /// </summary>
         public int djsl { get; set; }
 
@@ -88,7 +88,7 @@ namespace Newtouch.HIS.Domain.DTO.OutOrInStoredOperate
         public decimal zxdwlsj { get; set; }
 
         /// <summary>
-        /// 冻结药品批次信息
+        /// Thông tin lô thuốc bị đóng băng
         /// </summary>
         public List<FrozenBatchesDetailVEntity> frozenedMedicineBatchs { get; set; }
     }

@@ -28,7 +28,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 取消预定
+    /// Hủy đặt trước
     /// </summary>
     public class ResourcesOperateApp : AppBase, IResourcesOperateApp
     {
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Application.Implementation
         #region 门诊
 
         /// <summary>
-        /// 门诊预定
+        /// Đặt trước ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 门诊预定修改
+        /// Sửa đặt trước ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -124,7 +124,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 新增处方 （修改是发现没有该处方）
+        /// Thêm mới đơn thuốc (sửa khi phát hiện chưa có đơn thuốc này)
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cfh"></param>
@@ -170,7 +170,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// (未发药前)部分退药
+        /// (Trước khi phát thuốc) trả thuốc một phần
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -188,7 +188,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 门诊取消预定
+        /// Hủy đặt trước ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -216,7 +216,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 门诊取消预定 适用于非结算处方
+        /// Hủy đặt trước ngoại trú, áp dụng cho đơn thuốc chưa quyết toán
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -296,7 +296,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 门诊取消结算冻结库存返还
+        /// Hủy quyết toán ngoại trú, hoàn trả tồn kho bị đóng băng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -321,7 +321,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 修改处方状态
+        /// Sửa trạng thái đơn thuốc
         /// </summary>
         /// <param name="rpList"></param>
         /// <param name="request"></param>
@@ -348,7 +348,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 修改处方状态
+        /// Sửa trạng thái đơn thuốc
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -372,7 +372,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 门诊确定资源（commit）
+        /// Xác nhận tài nguyên ngoại trú (commit)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -401,7 +401,7 @@ namespace Newtouch.HIS.Application.Implementation
 
             if (rpInfo[0].fybz == ((int)EnumFybz.Wp).ToString())
             {
-                //重新排药
+                //Xếp thuốc lại
 
                 throw new NotImplementedException();
             }
@@ -431,7 +431,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 门诊退药
+        /// Trả thuốc ngoại trú
         /// </summary>
         /// <param name="tyInfo"></param>
         /// <param name="returnDrugBillNoList"></param>
@@ -481,7 +481,7 @@ namespace Newtouch.HIS.Application.Implementation
         #region 住院
 
         /// <summary>
-        /// 住院保存医嘱  落地医嘱信息、排药、冻结库存
+        /// Lưu y lệnh nội trú: ghi nhận thông tin y lệnh, xếp thuốc, đóng băng tồn kho
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -493,7 +493,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 住院退药，插入退药申请单
+        /// Trả thuốc nội trú, chèn đơn đề nghị trả thuốc
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -508,13 +508,13 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 住院退药
+        /// Trả thuốc nội trú
         /// </summary>
         /// <param name="tyDetail"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
-        /// <param name="returnDrugBillNo">退药单号</param>
+        /// <param name="returnDrugBillNo">Số đơn trả thuốc</param>
         /// <returns></returns>
         public string HospitalizatiionReturnMedicine(List<tyParam> tyDetail, string yfbmCode, string organizeId, string userCode, out string returnDrugBillNo)
         {
@@ -542,13 +542,13 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 住院退药
+        /// Trả thuốc nội trú
         /// </summary>
         /// <param name="tyDetail"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
-        /// <param name="returnDrugBillNo">退药单号</param>
+        /// <param name="returnDrugBillNo">Số đơn trả thuốc</param>
         /// <returns></returns>
         public string HospitalizatiionReturnMedicineV2(List<tyParam> tyDetail, string yfbmCode, string organizeId, string userCode, out string returnDrugBillNo)
         {
@@ -556,16 +556,16 @@ namespace Newtouch.HIS.Application.Implementation
             var locker = new object();
             Parallel.ForEach(tyDetail, p =>
             {
-                // 检查 sl 和 zhyz，如果条件不满足，直接返回
+                // Kiểm tra sl và zhyz, nếu điều kiện không thỏa mãn thì trả về trực tiếp
                 if (p.sl <= 0 || p.zhyz <= 0) return;
 
-                // 检查 p.zsm 是否为空，如果为空则赋默认值
+                // Kiểm tra p.zsm có rỗng không, nếu rỗng thì gán giá trị mặc định
                 if (string.IsNullOrEmpty(p.zsm))
                 {
-                    p.zsm = "";  // 你可以根据需求替换为具体的值
+                    p.zsm = "";  // Bạn có thể thay bằng giá trị cụ thể theo nhu cầu
                 }
 
-                // 使用锁来保护对共享资源 effectiveLs 的访问
+                // Dùng khóa để bảo vệ quyền truy cập tài nguyên dùng chung effectiveLs
                 lock (locker)
                 {
                     effectiveLs.Add(p);
@@ -598,7 +598,7 @@ namespace Newtouch.HIS.Application.Implementation
         #region 取消排药
 
         /// <summary>
-        /// 门诊取消排药
+        /// Hủy xếp thuốc ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -606,7 +606,7 @@ namespace Newtouch.HIS.Application.Implementation
         {
             OutpatientCancelArrangementValidate(request);
 
-            //取消满足默认要求的处方——已保存，未支付且已过最晚支付时间
+            //Hủy đơn thuốc thỏa mãn yêu cầu mặc định — đã lưu, chưa thanh toán và đã quá thời gian thanh toán muộn nhất
             var settExpiredTime = _sysConfigRepo.GetValueByCode("settExpiredTime", request.OrganizeId);
             int tmpHour;
             int.TryParse(settExpiredTime, out tmpHour);
@@ -630,7 +630,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 报文效验
+        /// Kiểm tra bản tin
         /// </summary>
         /// <param name="request"></param>
         private void OutpatientCancelArrangementValidate(OutpatientCancelArrangementRequestDTO request)

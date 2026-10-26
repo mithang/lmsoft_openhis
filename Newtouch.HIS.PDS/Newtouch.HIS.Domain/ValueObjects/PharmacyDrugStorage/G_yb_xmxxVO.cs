@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
 {
     /// <summary>
-    /// 医保材料目录表
+    /// Bảng danh mục vật tư BHYT
     /// </summary>
     public class G_yb_xmxxVO
     {

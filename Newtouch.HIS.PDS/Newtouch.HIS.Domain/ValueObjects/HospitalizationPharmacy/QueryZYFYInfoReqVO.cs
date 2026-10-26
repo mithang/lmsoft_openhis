@@ -88,7 +88,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string cw { get; set; }
 
         /// <summary>
-        /// 时间戳
+        /// Dấu thời gian
         /// </summary>
         public DateTime TimeStamp { get; set; }
     }

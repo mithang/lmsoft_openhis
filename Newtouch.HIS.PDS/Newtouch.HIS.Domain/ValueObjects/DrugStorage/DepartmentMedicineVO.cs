@@ -60,7 +60,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public string xykcstr { get; set; }
         /// <summary>
-        /// 可用库存大小单位
+        /// Đơn vị lớn và nhỏ của tồn kho khả dụng
         /// </summary>
         public string kykcstr { get; set; }
         /// <summary>

@@ -117,7 +117,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutPatientPharmacy
     }
 
     /// <summary>
-    /// 退药医嘱细腻
+    /// Chi tiết y lệnh trả thuốc
     /// </summary>
     public class TyRpInfo
     {

@@ -31,22 +31,22 @@ namespace Newtouch.HIS.Domain.Entity
         public string tsbz { get; set; }
 
         /// <summary>
-        /// 贵重药
+        /// Thuốc quý
         /// </summary>
         public string gzy { get; set; }
 
         /// <summary>
-        /// 麻醉药
+        /// Thuốc gây mê
         /// </summary>
         public string mzy { get; set; }
 
         /// <summary>
-        /// 精神药
+        /// Thuốc hướng thần
         /// </summary>
         public string yljsy { get; set; }
 
         /// <summary>
-        /// điều trị phương thức (同样 liên kết cách dùng thuốc)
+        /// điều trị phương thức (cũng liên kết cách dùng thuốc)
         /// </summary>
         public string zlff { get; set; }
 
@@ -81,22 +81,22 @@ namespace Newtouch.HIS.Domain.Entity
         public int? syts { get; set; }
 
         /// <summary>
-        /// 单次最大剂量 (trường cài đặt khống chế số lượng BHYT)
+        /// Liều tối đa một lần (trường cài đặt khống chế số lượng BHYT)
         /// </summary>
         public decimal? dczdjl { get; set; }
 
         /// <summary>
-        /// 单次最大数量 (trường cài đặt khống chế số lượng BHYT)
+        /// Số lượng tối đa một lần (trường cài đặt khống chế số lượng BHYT)
         /// </summary>
         public decimal? dczdsl { get; set; }
 
         /// <summary>
-        /// 累计最大剂量 (trường cài đặt khống chế số lượng BHYT)
+        /// Liều tối đa lũy kế (trường cài đặt khống chế số lượng BHYT)
         /// </summary>
         public decimal? ljzdjl { get; set; }
 
         /// <summary>
-        /// 累计最大数量 (trường cài đặt khống chế số lượng BHYT)
+        /// Số lượng tối đa lũy kế (trường cài đặt khống chế số lượng BHYT)
         /// </summary>
         public decimal? ljzdsl { get; set; }
 
@@ -126,7 +126,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int? mrbzq { get; set; }
 
         /// <summary>
-        /// 供货单位
+        /// Đơn vị cung ứng
         /// </summary>
         public string ghdw { get; set; }
 

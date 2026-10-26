@@ -80,7 +80,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public string zycldw { get; set; }
         /// <summary>
-        /// 页面显示为儿科拆零数
+        /// Trang hiển thị số lẻ nhi khoa
         /// </summary>
         public string zxdw { get; set; }
         /// <summary>

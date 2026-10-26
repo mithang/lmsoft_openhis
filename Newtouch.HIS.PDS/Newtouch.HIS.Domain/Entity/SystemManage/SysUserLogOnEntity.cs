@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string UserPassword { get; set; }
 
         /// <summary>
-        /// 用户秘钥
+        /// Khóa bí mật của người dùng
         /// </summary>
         public string UserSecretkey { get; set; }
 

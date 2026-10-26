@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface IItemDmnService
     {
         /// <summary>
-        /// lấy còn hiệu lực mục từ điển danh sách 指定组织机构
+        /// lấy danh sách mục từ điển còn hiệu lực của tổ chức được chỉ định
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>

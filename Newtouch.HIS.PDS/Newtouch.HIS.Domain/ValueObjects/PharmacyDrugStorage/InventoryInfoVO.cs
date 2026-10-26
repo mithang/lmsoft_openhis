@@ -108,12 +108,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// bộ phận số thực tế  (与最小单位实际数组合使用)
+        /// bộ phận số thực tế (sử dụng kết hợp với số thực tế đơn vị nhỏ nhất)
         /// </summary>
         public int deptSjsl { get; set; }
 
         /// <summary>
-        /// đơn vị nhỏ nhất số thực tế  (与部门实际数组合使用)
+        /// đơn vị nhỏ nhất số thực tế (sử dụng kết hợp với số thực tế của bộ phận)
         /// </summary>
         public int minSjsl { get; set; }
 
@@ -163,12 +163,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string zt { get; set; }
 
         /// <summary>
-        /// 理论最小包装数量
+        /// Số lượng đóng gói tối thiểu lý thuyết
         /// </summary>
         public string llsl_zxbz { get; set; }
 
         /// <summary>
-        /// 实际包装数量
+        /// Số lượng đóng gói thực tế
         /// </summary>
         public string sjslstr { get; set; }
 
@@ -177,15 +177,15 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public DateTime CreateTime { get; set; }
         /// <summary>
-        /// 零售差异金额
+        /// Số tiền chênh lệch bán lẻ
         /// </summary>
         public decimal? pdlsjcy { get; set; }
         /// <summary>
-        /// 批发差异金额
+        /// Số tiền chênh lệch bán buôn
         /// </summary>
         public decimal? pdpfjcy { get; set; }
         /// <summary>
-        /// 盘点数差异 = số thực tế-số lượng lý thuyết
+        /// Chênh lệch số kiểm kê = Số thực tế - số lượng lý thuyết
         /// </summary>
         public string pdscy { get; set; }
 

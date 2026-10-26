@@ -328,7 +328,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string ycmc { get; set; }
 
         /// <summary>
-        /// 治理方法
+        /// Phương pháp điều trị
         /// </summary>
         public string zlff { get; set; }
 

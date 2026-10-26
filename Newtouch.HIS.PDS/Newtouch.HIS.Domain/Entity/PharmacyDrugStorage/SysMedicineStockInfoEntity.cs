@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Domain.Entity
         public short kzbz { get; set; }
 
         /// <summary>
-        /// 已配药未发 (领)thuốc của số lượng
+        /// Số lượng thuốc đã xếp thuốc nhưng chưa phát (lĩnh)
         /// </summary>
         public int djsl { get; set; }
 
@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int? zhyz { get; set; }
 
         /// <summary>
-        /// 产地目录
+        /// Danh mục nơi sản xuất
         /// </summary>
         public int? cd { get; set; }
 
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string pc { get; set; }
 
         /// <summary>
-        /// 是否已锁  0: 未锁; 1/null: 已锁
+        /// Đã khóa chưa 0: chưa khóa; 1/null: đã khóa
         /// </summary>
         public string locked { get; set; }
 

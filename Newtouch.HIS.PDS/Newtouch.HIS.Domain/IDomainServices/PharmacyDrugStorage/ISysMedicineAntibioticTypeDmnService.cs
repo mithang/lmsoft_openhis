@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage
     {
         SysMedicineAntibioticTypeVO GetById(string orgId, string Id);
         /// <summary>
-        /// theo tổ chức,级别,lấy danh sách phân loại kháng sinh
+        /// theo tổ chức, cấp bậc, lấy danh sách phân loại kháng sinh
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="Level"></param>

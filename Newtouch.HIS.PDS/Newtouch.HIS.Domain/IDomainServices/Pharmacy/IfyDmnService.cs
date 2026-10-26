@@ -59,7 +59,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<DrugSpecialPropertiesVO> GetMeidicineSHBMList();
 
         /// <summary>
-        /// 归还冻结库存
+        /// Hoàn trả tồn kho bị đóng băng
         /// </summary>
         /// <param name="list"></param>
         void ReleaseFrozenStock(List<OutpatientPrescriptionDetailBatchNumberEntity> list);
@@ -72,7 +72,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<fydisplayDetailInfo> GetMzHandOutDetail(List<fyDetailListRequest> reqdata);
 
         /// <summary>
-        /// 获取发药药品详细
+        /// Lấy chi tiết thuốc phát
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="operateType"></param>

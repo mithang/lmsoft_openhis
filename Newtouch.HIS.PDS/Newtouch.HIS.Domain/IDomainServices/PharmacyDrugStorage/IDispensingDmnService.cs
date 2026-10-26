@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string OutPatientBookCancel(List<OutpatientPrescriptionDetailBatchNumberEntity> mxphlist, string organizeId, string creatorCode);
 
         /// <summary>
-        /// HIS hủy quyết toán  冻结返还
+        /// HIS hủy quyết toán, hoàn trả đóng băng
         /// </summary>
         /// <param name="mxphlist"></param>
         /// <param name="organizeId"></param>
@@ -80,7 +80,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string OutpatientDispensingReduceStock(string ypCode, string yfbmCode, string cfh, string organizeId, string userCode);
 
         /// <summary>
-        /// phát thuốc ngoại trú(trừ tồn kho, sửa đơn thuốc cờ phát thuốc, 生成发药记录)
+        /// phát thuốc ngoại trú (trừ tồn kho, sửa cờ phát thuốc của đơn thuốc, sinh bản ghi phát thuốc)
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="sl">số lượng đơn vị nhỏ nhất</param>
@@ -93,7 +93,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string OutpatientDispensingDrug(string ypCode, long cfmxId, int sl, string yfbmCode, string cfh, string organizeId, string userCode);
 
         /// <summary>
-        /// 门诊退药还库存
+        /// Trả thuốc ngoại trú, hoàn trả tồn kho
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="zxdwsl"></param>
@@ -125,13 +125,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <param name="organizeId">tổ chức ID</param>
         /// <param name="yfbmCode">bộ phận nhà thuốc mã</param>
         /// <param name="creatorCode">người tạo</param>
-        /// <param name="patientName">医嘱所属患者</param>
+        /// <param name="patientName">Bệnh nhân thuộc y lệnh</param>
         /// <returns></returns>
         string HospitalizationBook(string yzId, string zxId, string organizeId, string yfbmCode, string creatorCode,
             string patientName);
 
         /// <summary>
-        /// 取消冻结, 并物理删除医嘱信息 thận trọng khi dùng
+        /// Hủy đóng băng, và xóa vật lý thông tin y lệnh, thận trọng khi dùng
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="zxId"></param>
@@ -163,7 +163,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string HospitalizationCancelArrangement(CancelArrangement cancelArrangement);
 
         /// <summary>
-        /// hủy xếp thuốc 事务
+        /// hủy xếp thuốc, giao dịch
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>

@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string typeName { get; set; }
 
         /// <summary>
-        /// 类别等级
+        /// Cấp bậc loại
         /// </summary>
         public string typelevel { get; set; }
 

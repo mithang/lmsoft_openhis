@@ -104,7 +104,7 @@ namespace Newtouch.HIS.Domain.IRepository
         /// <returns></returns>
         List<GetMzCfZt> GetZhInOutpatient(string cfh,string type);
         /// <summary>
-        /// hàng loạt chèn thông tin đơn thuốc 返回受影响行
+        /// hàng loạt chèn thông tin đơn thuốc, trả về số dòng bị ảnh hưởng
         /// </summary>
         /// <param name="mzCfs"></param>
         /// <returns></returns>
@@ -119,7 +119,7 @@ namespace Newtouch.HIS.Domain.IRepository
         int DeleteCf(string cfh, long cfnm);
 
         /// <summary>
-        /// hủy bỏ đơn thuốc, 退费用
+        /// hủy bỏ đơn thuốc, hoàn trả chi phí
         /// </summary>
         /// <param name="cfh">số đơn thuốc</param>
         /// <param name="OrganizeId"></param>
@@ -175,7 +175,7 @@ namespace Newtouch.HIS.Domain.IRepository
         /// <returns></returns>
         IList<patientInfoVO> GetElectronicPrescription(Pagination pagination, string organizeId, string isysh, string keyword = "");
         /// <summary>
-        /// 根绝处方号和姓名获取处方明细信息
+        /// Căn cứ vào số đơn thuốc và họ tên để lấy thông tin chi tiết đơn thuốc
         /// </summary>
         /// <returns></returns>
         List<DzcfmxVO> QueryElectronicPrescriptionCfmx(string cfh, string xm, string organizeId);

@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string UpgradeStatus(string sldId, int ffzt, string organizeid);
 
         /// <summary>
-        /// 提交申领发药 以申领单为原子, 结果只有两种 1.tất cả thành công 2.tất cả thất bại   没有成功一半的情况 
+        /// Gửi lĩnh và phát thuốc, lấy đơn lĩnh làm đơn vị nguyên tử, kết quả chỉ có hai loại: 1. tất cả thành công, 2. tất cả thất bại, không có trường hợp thành công một nửa
         /// </summary>
         /// <param name="group">cùng một phiếu lĩnh thông tin phát thuốc</param>
         /// <param name="source">phát thuốc toàn bộ thông tin</param>
