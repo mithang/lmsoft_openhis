@@ -12,59 +12,59 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
     public class G_yb_xmxxVO
     {
         /// <summary>
-        /// 耗材代码
+        /// mã vật tư tiêu hao
         /// </summary>
         public string hcdm { get; set; }
         /// <summary>
-        /// 一级分类
+        /// phân loại cấp 1
         /// </summary>
         public string yjfl { get; set; }
         /// <summary>
-        /// 二级分类
+        /// phân loại cấp 2
         /// </summary>
         public string ejfl { get; set; }
         /// <summary>
-        /// 三级分类
+        /// phân loại cấp 3
         /// </summary>
         public string sjfl { get; set; }
         /// <summary>
-        /// 医保通用名
+        /// BHYT chung tên
         /// </summary>
         public string ybtym { get; set; }
         /// <summary>
-        /// 材质
+        /// chất liệu
         /// </summary>
         public string cz { get; set; }
         /// <summary>
-        /// 特征
+        /// đặc điểm
         /// </summary>
         public string tz { get; set; }
         /// <summary>
-        /// 注册备案号
+        /// số đăng ký lưu hồ sơ
         /// </summary>
         public string zcbah { get; set; }
         /// <summary>
-        /// 单件产品名称
+        /// tên sản phẩm đơn chiếc
         /// </summary>
         public string djcpmc { get; set; }
         /// <summary>
-        /// 耗材企业
+        /// doanh nghiệp vật tư tiêu hao
         /// </summary>
         public string hcqy { get; set; }
         /// <summary>
-        /// 规格型号数
+        /// số mẫu quy cách
         /// </summary>
         public double ggxhs { get; set; }
         /// <summary>
-        /// 注册备案人
+        /// người đăng ký lưu hồ sơ
         /// </summary>
         public string zcbar { get; set; }
         /// <summary>
-        /// 拼音码
+        /// phiên âm mã
         /// </summary>
         public string pym { get; set; }
         /// <summary>
-        /// 医保性质
+        /// tính chất BHYT
         /// </summary>
         public string ybxz { get; set; }
 

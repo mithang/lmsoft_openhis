@@ -10,7 +10,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
 {
     /// <summary>
-    /// 出入库单据管理
+    /// chứng từ nhập/xuất kho quản lý
     /// </summary>
     public class OutOrInStorageBillController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         #region 审核
 
         /// <summary>
-        /// 单据审核 视图
+        /// đơn chứng duyệt khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult Approval()
@@ -73,7 +73,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         #region 查询
 
         /// <summary>
-        /// 单据查询 视图
+        /// tra cứu chứng từ khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult Query()
@@ -83,7 +83,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 出入库单据明细查询
+        /// chứng từ nhập/xuất kho chi tiết tra cứu
         /// </summary>
         /// <param name="crkId"></param>
         /// <returns></returns>

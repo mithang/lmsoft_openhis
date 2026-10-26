@@ -8,23 +8,23 @@
 <form id="form1">
 	<div class="panel panel-default" style="margin-top:10px;">
 		<div class="panel-heading">
-			损益信息
+			thông tin lãi/lỗ
 		</div>
 		<div style="padding: 2px;padding-right:20px;">
 			<table class="form">
 				<tr>
-					<th class="formTitle">单据号：</th>
+					<th class="formTitle">số chứng từ: </th>
 					<td class="formValue">
 						<input type="text" id="txtSYDH" class="form-control newtouch_Readonly" />
 					</td>
-					<th class="formTitle">损溢情况：</th>
+					<th class="formTitle">tình hình lãi/lỗ: </th>
 					<td style="padding-left:12px;">
 						<div class="btn-group" id="btnLossAndProfitTypeGourp" style="margin-top:0;">
-							<button type="button" id="btnLoss" data-keywordtype="Loss" class="btn active btn-restore">报损</button>
-							<button type="button" id="btnProfit" data-keywordtype="Profit" class="btn btn-default">报溢</button>
+							<button type="button" id="btnLoss" data-keywordtype="Loss" class="btn active btn-restore">báo hỏng</button>
+							<button type="button" id="btnProfit" data-keywordtype="Profit" class="btn btn-default">báo thừa</button>
 						</div>
 					</td>
-					<th class="formTitle">损溢总额(元)：</th>
+					<th class="formTitle">lãi/lỗ tổng mức(đồng): </th>
 					<td class="formValue">
 						<input type="text" id="txtSYZE" class="form-control newtouch_Readonly" />
 					</td>
@@ -34,62 +34,62 @@
 			</table>
 		</div>
 		<div class="panel-heading">
-			药品信息
+			thông tin thuốc
 		</div>
 		<div id="divYPXX" style="padding: 2px;padding-right:20px;">
 			<table class="form">
 				<tr>
-					<th class="formTitle"><span class="required">*</span>药品代码：</th>
+					<th class="formTitle"><span class="required">*</span>mã thuốc: </th>
 					<td class="formValue">
 						<input id="editRowId" value="" style="display:none;" />
 						<input type="text" id="txtYPCODE" class="form-control" />
 					</td>
-					<th class="formTitle">药品名称：</th>
+					<th class="formTitle">tên thuốc: </th>
 					<td class="formValue">
 						<input type="text" id="txtYPMC" class="form-control newtouch_Readonly" />
 					</td>
-					<th class="formTitle">批号：</th>
+					<th class="formTitle">số lô: </th>
 					<td class="formValue">
 						<input type="text" id="txtPH" class="form-control newtouch_Readonly" />
 					</td>
-					<th class="formTitle">批次：</th>
+					<th class="formTitle">lô: </th>
 					<td class="formValue">
 						<input type="text" id="txtPC" class="form-control newtouch_Readonly" />
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">有效期：</th>
+					<th class="formTitle">hạn sử dụng: </th>
 					<td class="formValue">
 						<input id="txtYXQ" type="text" class="form-control input-wdatepicker newtouch_Readonly" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
 					</td>
-					<th class="formTitle">规格：</th>
+					<th class="formTitle">quy cách: </th>
 					<td class="formValue">
 						<input type="text" id="txtYPGG" class="form-control newtouch_Readonly" />
 					</td>
-					<th class="formTitle" id="thXYKCDW">现有库存：</th>
+					<th class="formTitle" id="thXYKCDW">tồn kho hiện có: </th>
 					<td class="formValue">
 						<input type="text" id="txtXYKC" class="form-control newtouch_Readonly" />
 						<input id="hidden_kcsl" type="text" hidden="hidden" />
 					</td>
-					<th class="formTitle">生产厂家：</th>
+					<th class="formTitle">nhà sản xuất: </th>
 					<td class="formValue">
 						<input type="text" id="txtSCCJ" class="form-control newtouch_Readonly" />
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle" id="thPFJDW">批发价：</th>
+					<th class="formTitle" id="thPFJDW">giá bán buôn: </th>
 					<td class="formValue">
 						<input type="text" id="txtPFJ" class="form-control newtouch_Readonly" />
 					</td>
-					<th class="formTitle" id="thPFZEDW">批发总额(元)：</th>
+					<th class="formTitle" id="thPFZEDW">tổng tiền bán buôn(đồng): </th>
 					<td class="formValue">
 						<input type="text" id="txtPFZE" class="form-control newtouch_Readonly" />
 					</td>
-					<th class="formTitle" id="thLSJDW">零售价：</th>
+					<th class="formTitle" id="thLSJDW">giá bán lẻ: </th>
 					<td class="formValue">
 						<input type="text" id="txtLSJ" class="form-control newtouch_Readonly" />
 					</td>
-					<th class="formTitle" id="thLSZEDW">零售总额(元)：</th>
+					<th class="formTitle" id="thLSZEDW">tổng tiền bán lẻ(đồng): </th>
 					<td class="formValue">
 						<input type="text" id="txtLSZE" class="form-control newtouch_Readonly" />
 					</td>
@@ -97,12 +97,12 @@
 			</table>
 		</div>
 		<div class="panel-heading">
-			单个损益信息
+			đơn cái thông tin lãi/lỗ
 		</div>
 		<div id="divDGSYXX" style="padding: 2px;padding-right:20px;">
 			<table class="form">
 				<tr>
-					<th class="formTitle" id="thSYSLDW" style="width: 80px;"><span class="required">*</span>损溢数量：</th>
+					<th class="formTitle" id="thSYSLDW" style="width: 80px;"><span class="required">*</span>số lượng lãi/lỗ: </th>
 					<td class="formValue">
 						<div class="row">
 							<div hidden id="div_sy" class="col-md-4">
@@ -119,15 +119,15 @@
 							</div>
 						</div>
 					</td>
-					<th class="formTitle">损溢原因：</th>
+					<th class="formTitle">lãi/lỗ nguyên nhân: </th>
 					<td class="formValue">
 						<select id="ddlSYYY" class="form-control"></select>
 					</td>
-					<th class="formTitle" style="width: 60px;">备注：</th>
+					<th class="formTitle" style="width: 60px;">ghi chú: </th>
 					<td class="formValue">
 						<input type="text" id="txtRemark" class="form-control" />
 					</td>
-					<th class="formTitle"><span class="required">*</span>责任人工号：</th>
+					<th class="formTitle"><span class="required">*</span>người chịu trách nhiệm công số: </th>
 					<td class="formValue">
 						<input type="text" id="txtZRRGH" class="form-control" />
 						<input type="text" id="txtZRRMC" hidden />
@@ -140,8 +140,8 @@
 @Html.Partial("_MiddleButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
 	ShowKeyList = new int[] { 3, 6 },
-	F3Text = "添加",
-	F6Text = "删除",
+	F3Text = "thêm",
+	F6Text = "xóa",
 })
 <div style="background-color: #fff;width:99%;">
 	<table id="gridSYXX"></table>
@@ -149,8 +149,8 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
 	ShowKeyList = new int[] { 7, 8 },
-	F7Text = "新损溢",
-	F8Text = "提交"
+	F7Text = "lãi/lỗ mới",
+	F8Text = "gửi"
 })
 <script>
     window.newtouch_globalconfig.f4opions = {
@@ -159,9 +159,9 @@
     var Sysl = 0;
 
     $(function () {
-        gridSYXX();//损益信息
-        initialSYDH();//加载损益单号
-        initialSYYY();//加载损益原因
+        gridSYXX();//thông tin lãi/lỗ
+        initialSYDH();//tải lãi/lỗ số phiếu
+        initialSYYY();//tải nguyên nhân lãi/lỗ
     });
 
     $('#btnLossAndProfitTypeGourp').on('click', '.btn', function () {
@@ -172,7 +172,7 @@
         initialSYYY();
     });
 
-    //加载损益单号
+    //tải lãi/lỗ số phiếu
     function initialSYDH() {
         $.najax({
             url: "/Medicine/initialSYDH?r=" + Math.random(),
@@ -184,12 +184,12 @@
         });
     }
 
-    //加载损益原因
+    //tải nguyên nhân lãi/lỗ
     function initialSYYY() {
         $("#ddlSYYY").empty();
         var sylx = "";
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
-            sylx = "0";//0 报损，1 报溢
+            sylx = "0";//0 báo hỏng, 1 báo thừa
         } else {
             sylx = "1";
         }
@@ -200,7 +200,7 @@
         });
     }
 
-    //责任人
+    //người chịu trách nhiệm
     $("#txtZRRGH").newtouchBatchFloatingSelector({
         clickautotrigger: true,
         height: 200,
@@ -213,11 +213,11 @@
             reqData.keyword = $("#txtZRRGH").val();
             return reqData;
         },
-        caption: "责任人",
+        caption: "người chịu trách nhiệm",
         colModel: [
-            { label: '工号', name: 'gh', widthratio: 25 },
-            { label: '名称', name: 'Name', widthratio: 25 },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: 'công số', name: 'gh', widthratio: 25 },
+            { label: 'tên', name: 'Name', widthratio: 25 },
+            { label: 'phiên âm', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#txtZRRGH").val($thistr.attr('data-gh'));
@@ -226,7 +226,7 @@
         }
     });
 
-    //药品代码
+    //mã thuốc
     $("#txtYPCODE").newtouchBatchFloatingSelector({
         clickautotrigger: true,
         height: 200,
@@ -239,27 +239,27 @@
             reqData.inputCode = $("#txtYPCODE").val();
             return reqData;
         },
-        caption: "药品信息",
+        caption: "thông tin thuốc",
         colModel: [
-            { label: '类别', name: 'yplb', width: 50 },
-            { label: '名称', name: 'ypmc', width: 200, align: 'left' },
-            { label: '库存', name: 'xykcstr', width: 70, align: 'right' },
-            { label: '规格', name: 'ypgg', width: 150, align: 'center' },
-            { label: '有效期', name: 'yxq', width: 80 },
-            { label: '批号', name: 'ph', width: 110, align: 'center' },
-            { label: '批次', name: 'pc', width: 140, align: 'center' },
-            { label: '生产厂家', name: 'sccj', width: 220, align: 'center' },
-            { label: '状态', name: 'ypzt', width: 50 },
-            { label: '进价', name: 'jj', hidden: true },
-            { label: '零售价', name: 'lsj', hidden: true },
-            { label: '批发价', name: 'pfj', hidden: true },
-            { label: '药库零售价', name: 'Yklsj', hidden: true },
-            { label: '药库批发价', name: 'Ykpfj', hidden: true },
-            { label: '代码', name: 'ypCode', hidden: true },
-            { label: '转换因子', name: 'zhyz', hidden: true },
+            { label: 'loại', name: 'yplb', width: 50 },
+            { label: 'tên', name: 'ypmc', width: 200, align: 'left' },
+            { label: 'tồn kho', name: 'xykcstr', width: 70, align: 'right' },
+            { label: 'quy cách', name: 'ypgg', width: 150, align: 'center' },
+            { label: 'hạn sử dụng', name: 'yxq', width: 80 },
+            { label: 'số lô', name: 'ph', width: 110, align: 'center' },
+            { label: 'lô', name: 'pc', width: 140, align: 'center' },
+            { label: 'nhà sản xuất', name: 'sccj', width: 220, align: 'center' },
+            { label: 'trạng thái', name: 'ypzt', width: 50 },
+            { label: 'giá nhập', name: 'jj', hidden: true },
+            { label: 'giá bán lẻ', name: 'lsj', hidden: true },
+            { label: 'giá bán buôn', name: 'pfj', hidden: true },
+            { label: 'giá bán lẻ kho thuốc', name: 'Yklsj', hidden: true },
+            { label: 'giá bán buôn kho thuốc', name: 'Ykpfj', hidden: true },
+            { label: 'mã', name: 'ypCode', hidden: true },
+            { label: 'hệ số chuyển đổi', name: 'zhyz', hidden: true },
             { label: 'kcsl', name: 'kcsl', hidden: true },
             { label: 'zxdw', name: 'zxdw', hidden: true },
-            { label: '单位', name: 'djdw', hidden: true }
+            { label: 'đơn vị', name: 'djdw', hidden: true }
         ],
         itemdbclickhandler: function ($thistr) {
             var djdw = $thistr.attr('data-djdw');
@@ -274,12 +274,12 @@
             $("#txtSCCJ").val($thistr.attr('data-sccj'));
             $("#txtXYKC").attr('data-kcsl', $thistr.attr('data-kcsl')).val($thistr.attr('data-xykcstr'));
             $("#hidden_kcsl").val($thistr.attr('data-kcsl'));
-            $("#thXYKCDW").text('现有库存：');
+            $("#thXYKCDW").text('tồn kho hiện có: ');
             $("#txtPFJ").val(parseFloat($thistr.attr('data-pfj')).toFixed(4)).attr("data-Ykpfj", $thistr.attr('data-Ykpfj'));
-            $("#thPFJDW").text('批发价(元/' + zxdw + ')：');
+            $("#thPFJDW").text('giá bán buôn(đồng/' + zxdw + ')：');
             $("#txtLSJ").val(parseFloat($thistr.attr('data-lsj')).toFixed(4)).attr("data-Yklsj", $thistr.attr('data-Yklsj'));;
-            $("#thLSJDW").text('零售价(元/' + zxdw + ')：');
-            $("#thSYSLDW").text('损溢数量：');
+            $("#thLSJDW").text('giá bán lẻ(đồng/' + zxdw + ')：');
+            $("#thSYSLDW").text('số lượng lãi/lỗ: ');
             $("#txtBMSL").val('');
             $("#txtZXSL").val('');
             if (djdw === zxdw) {
@@ -296,41 +296,41 @@
         }
     });
 
-    //损益信息
+    //thông tin lãi/lỗ
     function gridSYXX() {
         var $gridSyxx = $("#gridSYXX");
         $gridSyxx.dataGrid({
             unwritten: false,
             height: $(window).height() - document.getElementById('gridSYXX').offsetTop - 85,
             colModel: [
-                { label: '损溢情况', name: 'syqk', width: 70, align: 'left' },
-                { label: '药品代码', name: 'ypdm', width: 70, align: 'left' },
-                { label: '药品名称', name: 'ypmc', width: 100, align: 'left' },
-                { label: '规格', name: 'ypgg', width: 100, align: 'left' },
-                { label: '损益数量', name: 'sl', width: 100, align: 'left' },
-                { label: '单位', name: 'dw', width: 100, align: 'left' },
-                { label: '现有库存', name: 'xykc', width: 100, align: 'left' },
-                { label: '批号', name: 'ph', width: 100, align: 'left' },
-                { label: '批次', name: 'pc', width: 100, align: 'left' },
-                { label: '转换因子', name: 'zhyz', width: 100, align: 'left' },
-                { label: '有效期', name: 'yxq', width: 100, align: 'left' },
-                { label: '生产厂家', name: 'sccj', width: 100, align: 'left' },
-                { label: '批发价', name: 'pfj', width: 100, align: 'left' },
-                { label: '零售价', name: 'lsj', width: 100, align: 'left' },
-                { label: '损益原因', name: 'syyymc', width: 100, align: 'left' },
-                { label: '备注', name: 'remark', width: 100, align: 'left' },
-                { label: '责任人', name: 'zrr', width: 100, align: 'left' },
-                { label: '单据号', name: 'djh', width: 100, align: 'left' },
+                { label: 'tình hình lãi/lỗ', name: 'syqk', width: 70, align: 'left' },
+                { label: 'mã thuốc', name: 'ypdm', width: 70, align: 'left' },
+                { label: 'tên thuốc', name: 'ypmc', width: 100, align: 'left' },
+                { label: 'quy cách', name: 'ypgg', width: 100, align: 'left' },
+                { label: 'số lượng lãi/lỗ', name: 'sl', width: 100, align: 'left' },
+                { label: 'đơn vị', name: 'dw', width: 100, align: 'left' },
+                { label: 'tồn kho hiện có', name: 'xykc', width: 100, align: 'left' },
+                { label: 'số lô', name: 'ph', width: 100, align: 'left' },
+                { label: 'lô', name: 'pc', width: 100, align: 'left' },
+                { label: 'hệ số chuyển đổi', name: 'zhyz', width: 100, align: 'left' },
+                { label: 'hạn sử dụng', name: 'yxq', width: 100, align: 'left' },
+                { label: 'nhà sản xuất', name: 'sccj', width: 100, align: 'left' },
+                { label: 'giá bán buôn', name: 'pfj', width: 100, align: 'left' },
+                { label: 'giá bán lẻ', name: 'lsj', width: 100, align: 'left' },
+                { label: 'nguyên nhân lãi/lỗ', name: 'syyymc', width: 100, align: 'left' },
+                { label: 'ghi chú', name: 'remark', width: 100, align: 'left' },
+                { label: 'người chịu trách nhiệm', name: 'zrr', width: 100, align: 'left' },
+                { label: 'số chứng từ', name: 'djh', width: 100, align: 'left' },
                 { label: 'Jj', name: 'Jj', hidden: true },
                 { label: 'Yklsj', name: 'Yklsj', hidden: true },
                 { label: 'Ykpfj', name: 'Ykpfj', hidden: true },
-                { label: '损益原因', name: 'syyy', hidden: true },
-                { label: '库存数量', name: 'kcsl', hidden: true },
-                { label: '损益数量', name: 'sysl', hidden: true },
-                { label: '批发价单位', name: 'pfjdw', hidden: true },
-                { label: '零售价单位', name: 'lsjdw', hidden: true },
+                { label: 'nguyên nhân lãi/lỗ', name: 'syyy', hidden: true },
+                { label: 'số lượng tồn kho', name: 'kcsl', hidden: true },
+                { label: 'số lượng lãi/lỗ', name: 'sysl', hidden: true },
+                { label: 'giá bán buôn đơn vị', name: 'pfjdw', hidden: true },
+                { label: 'giá bán lẻ đơn vị', name: 'lsjdw', hidden: true },
                 { label: 'lsze', name: 'lsze', hidden: true },
-                { label: '责任人', name: 'zrrmc', hidden: true },
+                { label: 'người chịu trách nhiệm', name: 'zrrmc', hidden: true },
                 { label: 'pfze', name: 'pfze', hidden: true }
 
             ],
@@ -338,12 +338,12 @@
                 //if (rowid) {
                 //    var getRowData = $("#gridSYXX").jqGrid('getRowData', rowid);
                 //    if (getRowData) {
-                //        if (getRowData.syqk === "报损") {  //报损
+                //        if (getRowData.syqk === "báo hỏng") {  //báo hỏng
                 //            if (!$("#btnLoss").hasClass('active')) {
                 //                $("#btnProfit").removeClass('btn-restore').removeClass('active');
                 //                $("#btnLoss").addClass('btn-restore active');
                 //            }
-                //        } else {   //报溢
+                //        } else {   //báo thừa
                 //            if (!$("#btnProfit").hasClass('active')) {
                 //                $("#btnLoss").removeClass('btn-restore').removeClass('active');
                 //                $("#btnProfit").addClass('btn-restore active');
@@ -375,21 +375,21 @@
         });
     }
 
-    //确定button
+    //xác định button
     function newtouch_event_f3() {
-        //检查明细
+        //kiểm tra chi tiết
         if (!CheckDetailData()) {
             return false;
         }
         var syqkstr = "";
-        var sysl = Sysl;//最后保存到损益表
+        var sysl = Sysl;//cuối cùng lưu đến lãi/lỗ bảng
 
-        //判断报损报溢
+        //đánh giá báo hỏng báo thừa
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
-            syqkstr = "报损",
+            syqkstr = "báo hỏng",
                 sysl = sysl * (-1);
         } else {
-            syqkstr = "报溢";
+            syqkstr = "báo thừa";
         }
 
         var data = [{
@@ -401,8 +401,8 @@
             ph: $("#txtPH").val(),
             pc: $("#txtPC").val(),
             yxq: $("#txtYXQ").val(),
-            sysl: sysl,//最后保存到损益表
-            sl: Sysl,//页面上显示损益数量
+            sysl: sysl,//cuối cùng lưu đến lãi/lỗ bảng
+            sl: Sysl,//trang trên hiển thị số lượng lãi/lỗ
             dw: $("#zxdw").text(),
             xykc: $("#txtXYKC").val(),
             pfj: $("#txtPFJ").val(),
@@ -424,11 +424,11 @@
             remark: $("#txtRemark").val()
         }];
 
-        if ($('#editRowId').val()) {            //是修改
-            $('#gridSYXX').jqGrid("delRowData", $('#editRowId').val()); //先remove掉那一行
+        if ($('#editRowId').val()) {            //là sửa đổi
+            $('#gridSYXX').jqGrid("delRowData", $('#editRowId').val()); //trước tiên remove xóa dòng đó
         }
 
-        //检查重复项
+        //kiểm tra mục trùng lặp
         var isRepeatedAdd = false;
         $.each($("#gridSYXX").getDataIDs(), function () {
             var rowData = $("#gridSYXX").jqGrid('getRowData', this);
@@ -438,33 +438,33 @@
         });
 
         if (isRepeatedAdd) {
-            $.modalAlert("不可重复添加", 'warning');
+            $.modalAlert("không được thêm trùng lặp", 'warning');
             return false;
         }
 
         $("#gridSYXX").newtouchLocalDataGrid(null, data);
-        //计算损益总额
+        //tính lãi/lỗ tổng mức
         ComputeRKZE();
         $("#btnLoss").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
         $("#btnProfit").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
         ClearYPXX();
     }
 
-    //删除
+    //xóa
     function newtouch_event_f6() {
         var delRowid = $("#gridSYXX").jqGrid('getGridParam', 'selrow');
         if (!delRowid) {
-            $.modalAlert("未选中行", 'warning');
+            $.modalAlert("chưa chọn dòng", 'warning');
             return;
         }
         $('#gridSYXX').jqGrid('delRowData', delRowid);
     }
 
-    //保存
+    //lưu
     function newtouch_event_f8() {
         var syxx = $("#gridSYXX").jqGrid('getRowData_AllLine');
         if (syxx == null || syxx.length <= 0) {
-            $.modalAlert("请先添加报损报溢信息", 'warning');
+            $.modalAlert("vui lòng trước tiên thêm báo hỏng báo thừa thông tin", 'warning');
             return;
         }
         $.najax({
@@ -473,23 +473,23 @@
             data: { syxx: syxx },
             dataType: "json",
             success: function (data) {
-                $.modalMsg("保存成功", 'success', 1000);
-                newtouch_event_f7();//新损溢：新单据号 主数据清空 明细清空
-                $('#gridSYXX').jqGrid("clearGridData");//清空Grid
-				$("#txtSYZE").val("");//清空损益总额
-				window.open("/Report/PrintReport?type=报损报溢打印表&param=syIds=" + data.message +"|OrganizeId=" + $("#OrganizeId").val(),"height=500, width=1195, top=100, left=50, toolbar=no, menubar=no, scrollbar=yes, resizeble=no, location=no, status=no");
+                $.modalMsg("lưu thành công", 'success', 1000);
+                newtouch_event_f7();//lãi/lỗ mới: mới số chứng từ chính dữ liệu xóa sạch chi tiết xóa sạch
+                $('#gridSYXX').jqGrid("clearGridData");//xóa sạch Grid
+				$("#txtSYZE").val("");//xóa sạch lãi/lỗ tổng mức
+				window.open("/Report/PrintReport?type=báo hỏng báo thừa in bảng&param=syIds=" + data.message +"|OrganizeId=" + $("#OrganizeId").val(),"height=500, width=1195, top=100, left=50, toolbar=no, menubar=no, scrollbar=yes, resizeble=no, location=no, status=no");
             }
         });
     }
 
-    //新损益
+    //mới lãi/lỗ
     function newtouch_event_f7() {
-        initialSYDH();//换单号
+        initialSYDH();//đổi số phiếu
         $("#btnLoss").removeAttr("disabled").removeAttr("style");
         $("#btnProfit").removeAttr("disabled").removeAttr("style");
     }
 
-    //损益数量keyup事件
+    //số lượng lãi/lỗ keyup sự kiện
     function SYSL_change(obj) {
         if ($("#txtYPCODE").val() === "") {
             return false;
@@ -502,7 +502,7 @@
         }
         bmsl = bmsl === '' ? 0 : bmsl;
         zxsl = zxsl === '' ? 0 : zxsl;
-        if ($("#div_sy").is(":hidden")) {   //单价单位(当前部门的单位) sl/zhyz
+        if ($("#div_sy").is(":hidden")) {   //đơn giá đơn vị(bộ phận hiện tại của đơn vị) sl/zhyz
             Sysl = parseFloat(zxsl);
         } else {
             Sysl = parseFloat(bmsl) * parseFloat($("#txtYPCODE").attr('data-zhyz')) + parseFloat(zxsl);
@@ -514,7 +514,7 @@
         $("#txtLSZE").val((lsj * Sysl).toFixed(4));
     }
 
-    //计算损益总额
+    //tính lãi/lỗ tổng mức
     function ComputeRKZE() {
         var syze = 0;
         var count = $("#gridSYXX").getGridParam('records');
@@ -524,16 +524,16 @@
                 var getRow_lsze = $("#gridSYXX").getRowData(rowIDS[i]).lsze;
                 syze = parseFloat(syze) + parseFloat(getRow_lsze);
             }
-            //损益金额
+            //lãi/lỗ số tiền
             $("#txtSYZE").val(syze.toFixed(4));
         } else {
             $("#txtSYZE").val('');
         }
     }
 
-    //清空药品信息
+    //xóa thông tin thuốc
     function ClearYPXX() {
-        //清空
+        //xóa sạch
         newtouch_globalevent_f4();
         $("#ddlSKDW").empty();
         $("#txtSYSL").val("");
@@ -542,44 +542,44 @@
         $("#txtYXQ").val($.getDate());
     }
 
-    //校验明细
+    //kiểm tra chi tiết
     function CheckDetailData() {
         if ($("#txtYPCODE").val() == "") {
-            $.modalAlert("药品代码为空", 'warning');
+            $.modalAlert("mã thuốc là trống", 'warning');
             return false;
         }
         if ($("#txtYPMC").val() == "") {
-            $.modalAlert("药品名称为空", 'warning');
+            $.modalAlert("tên thuốc là trống", 'warning');
             return false;
         }
         if ($("#txtPC").val() === "") {
-            $.modalAlert("批次为空", 'warning');
+            $.modalAlert("lô là trống", 'warning');
             return false;
         }
         if ($("#txtBMSL").val() == "" && $("#txtZXSL").val() == "") {
-            $.modalAlert("损溢数量为空", 'warning');
+            $.modalAlert("số lượng lãi/lỗ trống", 'warning');
             return false;
         }
         if (Sysl <= 0) {
-            $.modalAlert("损溢数量应大于0", 'warning');
+            $.modalAlert("số lượng lãi/lỗ nên lớn hơn 0", 'warning');
             return false;
         }
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') == 'Loss') {
-            if (Sysl > parseFloat($("#txtXYKC").attr('data-kcsl'))) {   //反之，直接比较数量（最小单位数量）
-                $.modalAlert("报损数量应小于现有库存", 'warning');
+            if (Sysl > parseFloat($("#txtXYKC").attr('data-kcsl'))) {   //ngược lại, trực tiếp so sánh số lượng (số lượng đơn vị nhỏ nhất)
+                $.modalAlert("báo hỏng số lượng nên nhỏ hơn tồn kho hiện có", 'warning');
                 return false;
             }
         }
         if ($("#ddlSYYY").val() == "") {
-            $.modalAlert("损溢原因为空", 'warning');
+            $.modalAlert("lãi/lỗ nguyên nhân trống", 'warning');
             return false;
         }
         if ($("#txtZRRGH").val() == "") {
-            $.modalAlert("责任人工号为空", 'warning');
+            $.modalAlert("người chịu trách nhiệm công số là trống", 'warning');
             return false;
         }
         if ($("#txtZRRMC").val() == "") {
-            $.modalAlert("责任人名称为空", 'warning');
+            $.modalAlert("người chịu trách nhiệm tên là trống", 'warning');
             return false;
         }
         return true;

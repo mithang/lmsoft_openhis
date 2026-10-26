@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.Entity.PharmacyDrugStorage
 {
     /// <summary>
-    /// 药品采购接口返回日志表
+    /// thuốc mua hàng giao diện quay lại nhật ký bảng
     /// </summary>
     [Table("xt_yp_cg_log")]
     public class PurchaseLogEntity : IEntity<PurchaseLogEntity>

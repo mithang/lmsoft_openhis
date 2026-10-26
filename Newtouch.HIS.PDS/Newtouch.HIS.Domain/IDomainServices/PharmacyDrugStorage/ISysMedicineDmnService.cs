@@ -19,14 +19,14 @@ namespace Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage
         void SubmitMedicine(SysMedicineVO model, int? ypId);
 
         /// <summary>
-        /// 修改医保同步时间
+        /// sửa BHYT đồng bộ thời gian
         /// </summary>
         /// <param name="ypId"></param>
         /// <returns></returns>
         //bool YibaoUpload(int ypId, out string error);
 
         /// <summary>
-        /// 绑定药品list集合
+        /// gắn thuốc list tập hợp
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="pagination"></param>
@@ -37,14 +37,14 @@ namespace Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage
 
 
         /// <summary>
-        /// 修改信息时,绑定修改值
+        /// sửa thông tin giờ,gắn sửa giá trị
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         SysMedicineVO GetFormJson(int keyValue);
 
         /// <summary>
-        /// 获取系统人员信息
+        /// lấy hệ thống nhân viên thông tin
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="organizeId"></param>
@@ -52,14 +52,14 @@ namespace Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage
         SysMedicineVO SelectMedicineInfo(string ypCode, string organizeId);
 
         /// <summary>
-        /// 获取药品系数
+        /// lấy thuốc hệ số
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
         string GetTradePricePlus(string name);
 
         /// <summary>
-        /// 获取当前组织下的系统药品信息
+        /// lấy hiện tại tổ chức dưới của hệ thống thông tin thuốc
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="pagination"></param>
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage
         IList<SysMedicineVO> GetPaginationListdm(string organizeId, Pagination pagination, string type, string keyword = null);
         IList<SysMedicineMldzxxVO> GetPaginationListMldzxx(string organizeId, Pagination pagination, string type, string keyword = null);
         /// <summary>
-        /// 查询医保药品信息
+        /// tra cứu BHYT thông tin thuốc
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="ypmc"></param>
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage
         IList<G_yb_ypxxVO> GetYpypxxlist(string organizeId, string ypmc, string py, string gjybdm, string pzwh);
 
         /// <summary>
-        /// 保存医保对码信息
+        /// lưu BHYT đối với mã thông tin
         /// </summary>
         /// <param name="ybxx"></param>
         /// <param name="ypid"></param>
@@ -121,7 +121,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage
 
 
         /// <summary>
-        /// 系统项目信息
+        /// hệ thống hạng mục thông tin
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="pagination"></param>
@@ -132,7 +132,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage
 
 
         /// <summary>
-        /// 查询医保项目信息 根据系统项目信息
+        /// tra cứu BHYT hạng mục thông tin theo hệ thống hạng mục thông tin
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="ypmc"></param>
@@ -145,7 +145,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage
         //int SaveYpxm(G_yb_xmxxVO ybxx, int? ypid, string organizeId);
 
         /// <summary>
-        /// 药品用法
+        /// cách dùng thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

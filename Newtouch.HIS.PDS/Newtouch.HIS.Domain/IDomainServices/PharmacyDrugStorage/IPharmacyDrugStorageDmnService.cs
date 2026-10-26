@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface IPharmacyDrugStorageDmnService
     {
         /// <summary>
-        /// 库存量查询
+        /// tra cứu lượng tồn kho
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inputCode"></param>
@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<MedicineStockQueryVO> SelectStockTotal(Pagination pagination, string inputCode, string tybz, string zt, bool noShow0Kc);
 
         /// <summary>
-        /// 库存量查询明细
+        /// tra cứu lượng tồn kho chi tiết
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="yfbmCode"></param>
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<MedicineStockQueryDetailVO> SelectStockDetail(string ypCode, string yfbmCode);
 
         /// <summary>
-        /// 单据查询 主信息
+        /// tra cứu chứng từ chính thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="qsrj"></param>
@@ -50,14 +50,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<ReceiptQueryVO> SelectReceiptMainInfo(Pagination pagination, DateTime? qsrj, DateTime? jsrj, string pdh, string fph, int? djlx, string shzt, string allUseableDjlx, string orgId, string curYfbmCode);
 
         /// <summary>
-        /// 单据查询 主信息
+        /// tra cứu chứng từ chính thông tin
         /// </summary>
         /// <param name="para"></param>
         /// <returns></returns>
         IList<ReceiptQueryVO> SelectReceiptMainInfo(ReceiptQueryParam para);
 
         /// <summary>
-        /// 单据查询明细
+        /// tra cứu chứng từ chi tiết
         /// </summary>
         /// <param name="crkId"></param>
         /// <param name="djlx"></param>
@@ -66,19 +66,19 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<ReceiptQueryDetailVO> SelectReceipDetailInfo(string crkId, int djlx, string orgId);
 
         /// <summary>
-        /// 获取盘点日期
+        /// lấy ngày kiểm kê
         /// </summary>
         /// <returns></returns>
         List<InventoryDateDropDownVO> GetPdDateDropdownList();
 
         /// <summary>
-        /// 获取未完成的盘点时间
+        /// lấy chưa hoàn thành của thời gian kiểm kê
         /// </summary>
         /// <returns></returns>
         List<InventoryDateDropDownVO> GetHangUpPdDates();
 
         /// <summary>
-        /// 获取药品类别 
+        /// lấy loại thuốc 
         /// </summary>
         /// <returns></returns>
         List<MedicineCategoryVO> GetMedicineCategoryList();
@@ -93,13 +93,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string GenerateInventoryInfo(string yfbmCode, string organizeId, string userCode);
 
         /// <summary>
-        /// 转化页面显示数量  XX盒XX片
+        /// số lượng hiển thị trang chuyển đổi  XX hộp XX viên
         /// </summary>
         /// <returns></returns>
         string GetYfbmYpComplexYpSlandDw(int sl, string ypCode);
 
         /// <summary>
-        /// 查询结转药品信息
+        /// tra cứu kết chuyển thông tin thuốc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="pdId"></param>
@@ -112,7 +112,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<InventoryInfoVO> SelectInventoryInfoList(Pagination pagination, string pdId, string pdsj, string srm, string ypzt, string yplb, int kcxs);
         IList<DrupreparationVO> SelectDrupreparationInfo(SelectDrupreParam pagination);
         /// <summary>
-        /// 查询盘点药品信息 单位独立
+        /// tra cứu kiểm kê thông tin thuốc 单位独立
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="pdId"></param>
@@ -125,31 +125,31 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<InventoryInfoVO> SelectInventoryDetailIndependentUnit(Pagination pagination, string pdId,
            string pdsj, string srm, string ypzt, string yplb, int kcxs);
         /// <summary>
-        /// 结束盘点
+        /// kết thúc kiểm kê
         /// </summary>
         /// <returns></returns>
         string EndInventoryInfo(string pdId);
 
         /// <summary>
-        /// 取消盘点
+        /// hủy kiểm kê
         /// </summary>
         /// <param name="pdId"></param>
         void CancelInventory(string pdId);
 
         /// <summary>
-        /// 获取药品特殊属性
+        /// lấy thuộc tính đặc biệt của thuốc
         /// </summary>
         /// <returns></returns>
         List<DrugSpecialPropertiesVO> GetDrugSpecialPropertiesList();
 
         /// <summary>
-        /// 查询需要结转的药品信息
+        /// tra cứu cần kết chuyển của thông tin thuốc
         /// </summary>
         /// <returns></returns>
         List<NeedCarryOverMedicineVO> SelectNeedCarryOverMedicineList();
 
         /// <summary>
-        /// 结转
+        /// kết chuyển
         /// </summary>
         /// <param name="list"></param>
         /// <param name="zq"></param>
@@ -158,7 +158,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void CarryOverMedicine(List<NeedCarryOverMedicineVO> list, string zq, DateTime kssj, DateTime jssj);
 
         /// <summary>
-        /// 查询已结转药品
+        /// tra cứu đã kết chuyển thuốc
         /// </summary>
         /// <param name="zq"></param>
         /// <param name="inputCode"></param>
@@ -167,13 +167,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<CarryOverMedicineVO> SelectCarryOverMedicineList(Pagination pagination, string zq, string inputCode);
 
         /// <summary>
-        /// 药品类别 （进销存）
+        /// loại thuốc  (nhập-xuất-tồn)
         /// </summary>
         /// <returns></returns>
         List<MedicineCategoryVO> GetMedicineCategoryList2();
 
         /// <summary>
-        /// 进销存统计
+        /// thống kê nhập-xuất-tồn
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kszq"></param>
@@ -190,7 +190,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<PSIStatisticsVO> PsiStatisticsInfoList(Pagination pagination, string kszq, string jszq, DateTime ksjzsj, DateTime jsjzsj, string inputCode, string deptCode, string drugType, string dosage, string drugState, string rate);
 
         /// <summary>
-        /// 得到结转账期和账期对应的开始结束时间
+        /// lấy thời gian bắt đầu/kết thúc tương ứng với kỳ kết chuyển và kỳ sổ sách
         /// </summary>
         /// <returns></returns>
         List<AccountPeriodDropDownVO> GetAccountPeriodDropDownList();
@@ -198,7 +198,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region 通过药房代码获取药库
 
         /// <summary>
-        /// 通过药房代码获取药库
+        /// đạt nhà thuốc mã lấy kho thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="yfbmCode"></param>
@@ -210,7 +210,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region  通过药库代码获取药房
 
         /// <summary>
-        /// 通过药库代码获取发药药房
+        /// đạt kho thuốc mã lấy nhà thuốc phát thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="ykbmCode"></param>
@@ -221,7 +221,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
         #region 通过药房代码获取科室
         /// <summary>
-        /// 通过药房代码获取科室
+        /// đạt nhà thuốc mã lấy khoa
         /// </summary>
         /// <param name="ykbmCode"></param>
         /// <param name="orgId"></param>
@@ -233,13 +233,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region 资源预定
 
         /// <summary>
-        /// 资源预定 （冻结库存，写mz_cfmxph表）
+        /// đặt trước tài nguyên  (tồn kho bị đóng băng, 写mz_cfmxph bảng)
         /// </summary>
         /// <param name="bookItemDo"></param>
         void BookItem(BookItemDo bookItemDo);
 
         /// <summary>
-        /// 门诊处方预定（冻结库存）
+        /// ngoại trú đơn thuốc đặt trước (tồn kho bị đóng băng)
         /// </summary>
         /// <param name="apiResp"></param>
         /// <param name="cfnm"></param>
@@ -248,21 +248,21 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string OutPatientBookItem(object apiResp, string cfnm, cdInfoVO vo);
 
         /// <summary>
-        /// 门诊处方预定（冻结库存）
+        /// ngoại trú đơn thuốc đặt trước (tồn kho bị đóng băng)
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
         void OutPatientBookItem(BookItemDo bookItemDo);
 
         /// <summary>
-        /// 住院医嘱执行（冻结库存）
+        /// nội trú thực hiện y lệnh (tồn kho bị đóng băng)
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
         void HospitalizationBookItem(BookItemDo bookItemDo);
 
         /// <summary>
-        /// 医嘱执行 获取药品单价
+        /// thực hiện y lệnh lấy thuốc đơn giá
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="yfbmCode"></param>

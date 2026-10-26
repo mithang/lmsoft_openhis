@@ -20,21 +20,21 @@
 </style>
 <div id="colsWarp" style="padding:20px 20px 0;">
     <label id="lbl1">
-        选择导出Excel包含的列
+        chọn xuất Excel bao gồm của cột
         <span style="font-size:8px;cursor:pointer;">
             （
             <label>
-                <input id="ckChooseAll" type="checkbox">全选
+                <input id="ckChooseAll" type="checkbox">chọn tất cả
             </label>
             ）
         </span>
     </label>
 </div>
 <div style="padding:20px 20px 0;">
-    <label>选择导出Excel是否包含筛选条件</label>
+    <label>chọn xuất Excel có hay không bao gồm điều kiện lọc</label>
     <div class="checkbox">
         <label>
-            <input id="ckContainFilter" type="checkbox">包含筛选条件
+            <input id="ckContainFilter" type="checkbox">bao gồm điều kiện lọc
         </label>
     </div>
 </div>
@@ -57,7 +57,7 @@
         }
     })
 
-    //获取选中的列
+    //lấy chọn trong của cột
     function GetChoosedCols() {
         var restArr = new Array();
         $.each($('#colsWarp input:checked').not('#ckChooseAll'), function () {
@@ -68,7 +68,7 @@
         return restArr;
     }
 
-    //是否导出筛选条件
+    //có hay không xuất điều kiện lọc
     function GetIsContainFilter() {
         return $('#ckContainFilter').is(':checked');
     }

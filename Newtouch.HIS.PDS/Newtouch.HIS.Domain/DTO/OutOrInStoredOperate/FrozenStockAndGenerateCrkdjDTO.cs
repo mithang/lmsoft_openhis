@@ -11,79 +11,79 @@ namespace Newtouch.HIS.Domain.DTO.OutOrInStoredOperate
     {
 
         /// <summary>
-        /// 当前药房部门 出库部门
+        /// hiện tại bộ phận nhà thuốc bộ phận xuất kho
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 组织机构
+        /// tổ chức
         /// </summary>
         public string organizeId { get; set; }
 
         /// <summary>
-        /// 操作员
+        /// người thao tác
         /// </summary>
         public string userCode { get; set; }
 
         /// <summary>
-        /// 入库部门
+        /// bộ phận nhập kho
         /// </summary>
         public string rkbm { get; set; }
 
         /// <summary>
-        /// 需冻结的药品信息
+        /// thông tin thuốc cần đóng băng
         /// </summary>
         public List<FrozenedMedicineInfoDTO> frozenseMedicines { get; set; }
     }
 
     /// <summary>
-    /// 需冻结的药品信息
+    /// thông tin thuốc cần đóng băng
     /// </summary>
     public class FrozenedMedicineInfoDTO
     {
 
         /// <summary>
-        /// 总共需要冻结的数量  最小单位
+        /// 总共需要冻结的数量  đơn vị nhỏ nhất
         /// </summary>
         public int djsl { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypdm { get; set; }
 
         /// <summary>
-        /// 申领单明细ID
+        /// chi tiết phiếu lĩnh ID
         /// </summary>
         public string sldmxId { get; set; }
 
         /// <summary>
-        /// 转化因子 目前为最小单位转化因子
+        /// hệ số chuyển đổi hiện là hệ số chuyển đổi đơn vị nhỏ nhất
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 包装数
+        /// số lượng đóng gói
         /// </summary>
         public int bzs { get; set; }
 
         /// <summary>
-        /// 可用库存 最小单位
+        /// tồn kho khả dụng đơn vị nhỏ nhất
         /// </summary>
         public int kykc { get; set; }
 
         /// <summary>
-        /// 最小单位进价
+        /// giá nhập đơn vị nhỏ nhất
         /// </summary>
         public decimal zxdwjj { get; set; }
 
         /// <summary>
-        /// 最小单位批发价
+        /// đơn vị nhỏ nhất giá bán buôn
         /// </summary>
         public decimal zxdwpfj { get; set; }
 
         /// <summary>
-        /// 最小单位零售价
+        /// giá bán lẻ đơn vị nhỏ nhất
         /// </summary>
         public decimal zxdwlsj { get; set; }
 

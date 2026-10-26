@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 出入库方式
+    /// phương thức nhập/xuất kho
     /// </summary>
     public interface IXtypcrkfsRepo : IRepositoryBase<XtypcrkfsEntity>
     {

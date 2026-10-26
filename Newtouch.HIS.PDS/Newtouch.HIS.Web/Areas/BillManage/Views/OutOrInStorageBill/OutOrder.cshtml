@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-	ViewBag.Title = "外部出库";
+	ViewBag.Title = "xuất kho ra bên ngoài";
 	Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -40,28 +40,28 @@
 </style>
 <form id="form1">
 	<div class="panel panel-default" style="margin-bottom:10px;">
-		<div class="panel-heading">发药信息</div>
+		<div class="panel-heading">thông tin phát thuốc</div>
 		<table class="form">
 			<tr>
-				<th class="formTitle">出库单：</th>
+				<th class="formTitle">xuất kho đơn: </th>
 				<td class="formValue">
 					<input type="text" id="djh" name="djh" class="form-control newtouch_Readonly" />
 				</td>
-				<th class="formTitle"><span class="required">*</span>供应商：</th>
+				<th class="formTitle"><span class="required">*</span>nhà cung cấp: </th>
 				<td class="formValue">
-					<input type="text" id="gysmc" name="gysmc" class="form-control" placeholder="请选择供应商" autocomplete="off" />
+					<input type="text" id="gysmc" name="gysmc" class="form-control" placeholder="vui lòng chọn nhà cung cấp" autocomplete="off" />
 					<input type="hidden" id="gysCode" value="" />
 				</td>
-				<th class="formTitle"><span class="required">*</span>出库方式：</th>
+				<th class="formTitle"><span class="required">*</span>xuất kho phương thức: </th>
 				<td class="formValue">
 					<select class="form-control" id="fyfs" name="fyfs"></select>
 				</td>
-				<th class="formTitle">发票号：</th>
+				<th class="formTitle">số hóa đơn: </th>
 				<td class="formValue">
-					<input type="text" id="fph" name="fph" class="form-control" placeholder="请选择发票" />
+					<input type="text" id="fph" name="fph" class="form-control" placeholder="vui lòng chọn hóa đơn" />
 				</td>
 				<th class="formTitle">
-					<input type="button" id="btn_add" class="btn btn-md btn-primary" value="添加" />
+					<input type="button" id="btn_add" class="btn btn-md btn-primary" value="thêm" />
 				</th>
 			</tr>
 		</table>
@@ -92,7 +92,7 @@
         InitGys();
     });
 
-    //按backspace键清楚所有
+    //theo backspace phím xóa tất cả
     function InitBackspaceKey(id) {
         $("#" + id).keydown(function (e) {
             var e = window.event ? window.event : e;
@@ -103,7 +103,7 @@
         });
     }
 
-    //按backspace键清楚所有
+    //theo backspace phím xóa tất cả
     function InitBackspaceKeyForGys() {
         $("#gysmc").keydown(function (e) {
             var e = window.event ? window.event : e;
@@ -115,7 +115,7 @@
         });
     }
 
-    //发票处再按tab键
+    //tại chỗ hóa đơn nhấn tiếp tab phím
     function InitTabKey(id, rowid) {
         $("#" + id).keydown(function (e) {
             var e = window.event ? window.event : e;
@@ -126,7 +126,7 @@
         });
     }
 
-    //初始化
+    //khởi tạo
     function init() {
         $("#fph").val("");
         $("#gysCode").val("");
@@ -137,7 +137,7 @@
         $("#gridList").jqGrid("addRowData", undefined, { operate: GetOperatehtml() }, "last");
     }
 
-    //初始化供应商
+    //khởi tạo nhà cung cấp
     function InitGys() {
         $("#gysmc").newtouchBatchFloatingSelector({
             clickautotrigger: true,
@@ -151,8 +151,8 @@
                 return reqData;
             },
             colModel: [
-                { label: '供应商代码', name: 'gysCode', widthratio: 30 },
-                { label: '供应商名称', name: 'gysmc', widthratio: 70 }
+                { label: 'mã nhà cung cấp', name: 'gysCode', widthratio: 30 },
+                { label: 'tên nhà cung cấp', name: 'gysmc', widthratio: 70 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#gysCode").val($thistr.attr('data-gysCode'));
@@ -162,7 +162,7 @@
         });
     }
 
-    //添加发药明细
+    //thêm chi tiết phát thuốc
     function addItem(obj) {
         var ids = $("#gridList").getDataIDs();
         var lastRowoid = ids[ids.length - 1];
@@ -172,7 +172,7 @@
         $("#gridList").jqGrid("addRowData", undefined, dataRow, "after", lastRowoid);
     }
 
-    //删除发药明细
+    //xóa chi tiết phát thuốc
     function deleteItem(obj) {
         var selRowId = $(obj).parent().parent().attr("id");
         if (!!selRowId) {
@@ -180,44 +180,44 @@
         }
     }
 
-    //获取操作按钮html
+    //lấy nút thao tác html
     function GetOperatehtml() {
         return "<i class='fa fa-plus-square-o' style='font-size: large; color: #09a3ea;vertical-align: middle;' onclick='addItem(this);'></i>&nbsp;&nbsp;&nbsp;<i class='fa fa-minus-square-o' style='font-size: large; color: #09a3ea;vertical-align: middle;' onclick='deleteItem(this);'></i>";
     }
 
-    //初始化出库明细
+    //khởi tạo chi tiết xuất kho
     function InitJqGrid() {
 		$gridList.dataGrid({
 			postData: { crkId: crkId },
 			url: "/StorageManage/DrugStockSearch/GetCrkMxAll",
             height: $(window).height() - document.getElementById('gridList').offsetTop - 85,
-            rownumbers: true,  //是否显示序号
+            rownumbers: true,  //có hiển thị số thứ tự không
             multiselect: true,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
 				{
-					label: '操作', name: 'operate', width: 50, align: 'center',
+					label: 'thao tác', name: 'operate', width: 50, align: 'center',
 					 formatter: function () {
 						 return "<i class='fa fa-plus-square-o' style='font-size: large; color: #09a3ea;vertical-align: middle;' onclick='addItem(this);'></i>&nbsp;&nbsp;&nbsp;<i class='fa fa-minus-square-o' style='font-size: large; color: #09a3ea;vertical-align: middle;' onclick='deleteItem(this);'></i>";
 					}
 				},
-                { label: '<span class="required">*</span>药品名称', name: 'ypmc', width: 105, align: 'center', editable: true, editwidth: "100%"},
-                { label: "药品类别", name: "dlmc", width: 75, align: 'center', editable: true, editwidth: "100%" },
-                { label: '<span class="required">*</span>批次', name: 'pc', width: 95, align: 'center', editable: true, editwidth: "100%" },
-                { label: '库存', name: 'slStr', width: 70, align: 'center', editable: true, editwidth: "100%" },
-                { label: '数量', name: 'sl', width: 45, align: 'center', editable: true, editwidth: "100%", },
-                { label: '单位', name: 'dw', width: 50, align: 'center', formatter: function (cellvalue, options) { return "<select name=\"dw\" id=\"sel_dw_" + options.rowId + "\" rowid=" + options.rowId + " class=\"editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ></select>"; } },
-                { label: '退货原因', name: 'thyy', width: 100, align: 'center', editable: true, editwidth: "100%", },
-				{ label: '规格', name: 'ypgg', width: 80, align: 'center', editable: true, editwidth: "100%" },
-                { label: '批号', name: 'ph', width: 95, align: 'center', editable: true, editwidth: "100%" },
-                { label: '有效期', name: 'yxq', width: 70, align: 'center', editable: true, editwidth: "100%" },
-				{ label: '生产厂家', name: 'ycmc', width: 105, align: 'center', editable: true, editwidth: "100%" },
-                { label: '批发价', name: 'pfj', width: 75, align: 'center', editable: true, editwidth: "100%" },
-                { label: '批发价总额', name: 'pfjze', width: 80, align: 'center', editable: true, editwidth: "100%" },
-                { label: '零售单价', name: 'lsjdjdw', width: 75, align: 'center', editable: true, editwidth: "100%" },
-                { label: '零售总额', name: 'lsze', width: 80, align: 'center', editable: true, editwidth: "100%" },
-                { label: '进价', name: 'jj', width: 70, align: 'center', editable: true, editwidth: "100%" },
+                { label: '<span class="required">*</span>tên thuốc', name: 'ypmc', width: 105, align: 'center', editable: true, editwidth: "100%"},
+                { label: "loại thuốc", name: "dlmc", width: 75, align: 'center', editable: true, editwidth: "100%" },
+                { label: '<span class="required">*</span>lô', name: 'pc', width: 95, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'tồn kho', name: 'slStr', width: 70, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'số lượng', name: 'sl', width: 45, align: 'center', editable: true, editwidth: "100%", },
+                { label: 'đơn vị', name: 'dw', width: 50, align: 'center', formatter: function (cellvalue, options) { return "<select name=\"dw\" id=\"sel_dw_" + options.rowId + "\" rowid=" + options.rowId + " class=\"editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ></select>"; } },
+                { label: 'lý do trả hàng', name: 'thyy', width: 100, align: 'center', editable: true, editwidth: "100%", },
+				{ label: 'quy cách', name: 'ypgg', width: 80, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'số lô', name: 'ph', width: 95, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'hạn sử dụng', name: 'yxq', width: 70, align: 'center', editable: true, editwidth: "100%" },
+				{ label: 'nhà sản xuất', name: 'ycmc', width: 105, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'giá bán buôn', name: 'pfj', width: 75, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'tổng tiền giá bán buôn', name: 'pfjze', width: 80, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'đơn giá bán lẻ', name: 'lsjdjdw', width: 75, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'tổng tiền bán lẻ', name: 'lsze', width: 80, align: 'center', editable: true, editwidth: "100%" },
+                { label: 'giá nhập', name: 'jj', width: 70, align: 'center', editable: true, editwidth: "100%" },
                 { label: 'bzs', name: 'bzs', hidden: true, editable: true },
                 { label: 'kykc', name: 'kykc', hidden: true, editable: true },
                 { label: 'ypdm', name: 'ypdm', hidden: true, editable: true },
@@ -236,8 +236,8 @@
 
 
             ],
-            editinputwidthborder: false,    //是否需要边框 默认为true
-            editinputborderradius: false,   //是否需要边框圆角 默认true（有圆角）
+            editinputwidthborder: false,    //có cần viền không mặc định là true
+            editinputborderradius: false,   //có cần bo tròn viền không mặc định true (có bo tròn)
             gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
                 var lastRowoid = ids[ids.length - 1];
@@ -246,18 +246,18 @@
         });
     }
 
-    //启用行内编辑
+    //bật chỉnh sửa trong dòng
 	function EnableInlineEditBox(rowid) {
 		for (var i = 0; i < rowid.length; i++) {
-			$("#gridList").jqGrid('editRow', rowid[i], false, initInlineFunc);//打开编辑模式
+			$("#gridList").jqGrid('editRow', rowid[i], false, initInlineFunc);//mở chế độ chỉnh sửa
 			$("#jqg_gridList_" + rowid[i]).trigger("click");
 		}
      
     }
 
-    //初始化 浮层
+    //khởi tạo lớp nổi
     function initInlineFunc(rowid) {
-        //部分列只读
+        //một số cột chỉ đọc
         $("#" + rowid + "_ypmc").attr('autocomplete', 'off');
         $("#" + rowid + "_pc").attr('autocomplete', 'off');
         $("#" + rowid + "_dlmc").css('background-color', '#f6f7fb').attr('readonly', 'true');
@@ -272,12 +272,12 @@
         $("#" + rowid + "_pfj").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_pfjze").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_jj").css('background-color', '#f6f7fb').attr('readonly', 'true');
-        InitSrm(rowid + "_ypmc", rowid);//药品浮层
-		InitTabKey(rowid + "_thyy", rowid);//开票日期输入处tab跳转
+        InitSrm(rowid + "_ypmc", rowid);//lớp nổi thuốc
+		InitTabKey(rowid + "_thyy", rowid);//chỗ nhập ngày lập hóa đơn tab chuyển trang
 		hzjs(rowid + "_sl", rowid);
 		tt(rowid);
     }
-    //初始化输入码
+    //khởi tạo mã nhập
     function InitSrm(id, rowid) {
         $("#" + id).newtouchBatchFloatingSelector({
             clickautotrigger: true,
@@ -287,7 +287,7 @@
             ajaxmethod: 'Get',
             inputtextcheck: function () {
                 if ($("#gysCode").val() === "" || $("#gysmc").val() === "") {
-                    $.modalMsg("请在浮层中选择供应商", "error", 1000);
+                    $.modalMsg("vui lòng chọn nhà cung cấp trong lớp nổi", "error", 1000);
                     return false;
                 }
                 return true;
@@ -300,21 +300,21 @@
                 return reqData;
             },
             colModel: [
-                { label: '类别', name: 'dlmc', width: 60 },
-                { label: '代码', name: 'ypdm', width: 100 },
-                { label: '名称', name: 'ypmc', width: 200, align: 'center' },
-                { label: '规格', name: 'gg', width: 110, align: 'center' },
-                { label: '库存', name: 'slStr', width: 90, align: 'center' },
-                { label: '零售单价', name: 'lsjdjdw', width: 120, align: 'center' },//部门单位零售价
-                { label: '批准文号', name: 'pzwh', width: 150, align: 'center' },
-				{ label: '厂家', name: 'ycmc', width: 200, align: 'center' },
-                { label: 'pfj', name: 'pfj', hidden: true },//部门单位批发价
-                { label: 'lsj', name: 'lsj', hidden: true },//部门单位零售价
+                { label: 'loại', name: 'dlmc', width: 60 },
+                { label: 'mã', name: 'ypdm', width: 100 },
+                { label: 'tên', name: 'ypmc', width: 200, align: 'center' },
+                { label: 'quy cách', name: 'gg', width: 110, align: 'center' },
+                { label: 'tồn kho', name: 'slStr', width: 90, align: 'center' },
+                { label: 'đơn giá bán lẻ', name: 'lsjdjdw', width: 120, align: 'center' },//giá bán lẻ theo đơn vị bộ phận
+                { label: 'số giấy phép', name: 'pzwh', width: 150, align: 'center' },
+				{ label: 'nhà sản xuất', name: 'ycmc', width: 200, align: 'center' },
+                { label: 'pfj', name: 'pfj', hidden: true },//giá bán buôn theo đơn vị bộ phận
+                { label: 'lsj', name: 'lsj', hidden: true },//giá bán lẻ theo đơn vị bộ phận
                 { label: 'ykpfj', name: 'ykpfj', hidden: true },
                 { label: 'yklsj', name: 'yklsj', hidden: true },
                 { label: 'bzs', name: 'bzs', hidden: true },
                 { label: 'bzdw', name: 'bzdw', hidden: true },
-                { label: 'dw', name: 'dw', hidden: true },//部门单位
+                { label: 'dw', name: 'dw', hidden: true },//đơn vị bộ phận
                 { label: 'zhyz', name: 'zhyz', hidden: true },
                 { label: 'zxdw', name: 'zxdw', hidden: true },
                 { label: 'zxdwlsj', name: 'zxdwlsj', hidden: true }
@@ -345,14 +345,14 @@
         });
     }
 
-    //单位切换
+    //chuyển đổi đơn vị
     function ChangeDw(rowid) {
         $("#sel_dw_" + rowid).change(function () {
             if (CheckKc(rowid)) CalculationLsze(rowid);
             PfjZe(rowid);
         });
     }
-    //计算批发价总额
+    //tính tổng tiền giá bán buôn
     function PfjZe(rowid) {
         var sl = Number($("#" + rowid + "_sl").val());
         var ykpfj = parseFloat($("#" + rowid + "_ykpfj").val());
@@ -363,7 +363,7 @@
         $("#" + rowid + "_pfjze").val((pfj * sl).toFixed(2));
 
     }
-    //初始化输入库存检查事件
+    //khởi tạo sự kiện kiểm tra tồn kho khi nhập
     function InitKcCheck(rowid) {
         $("#" + rowid + "_sl").blur(function () {
             if (CheckKc(rowid)) CalculationLsze(rowid);
@@ -371,20 +371,20 @@
         });
     }
 
-    //库存检查事件
+    //sự kiện kiểm tra tồn kho
     function CheckKc(rowid) {
         var zhyz = Number($("#sel_dw_" + rowid).find("option:selected").attr("data-zhyz"));
         var sl = Number($("#" + rowid + "_sl").val());
         var maxsl = Number($("#" + rowid + "_kykc").val());
         if (zhyz * sl > maxsl) {
-            $.modalMsg("发药数不得超过库存总量", "error", 1000);
+            $.modalMsg("số lượng phát thuốc không được vượt quá tổng tồn kho", "error", 1000);
             $("#" + rowid + "_sl").val("");
             return false;
         }
         return true;
     }
 
-    //计算零售总额
+    //tính tổng tiền bán lẻ
     function CalculationLsze(rowid) {
         var zhyz = Number($("#sel_dw_" + rowid).find("option:selected").attr("data-zhyz"));
         var sl = Number($("#" + rowid + "_sl").val());
@@ -448,7 +448,7 @@
 		}
 	}
 
-    //初始化药品批次
+    //khởi tạo lô thuốc
     function InitPc(id, rowid) {
         $("#" + id).newtouchBatchFloatingSelector({
             height: 300,
@@ -464,12 +464,12 @@
                 return reqData;
             },
             colModel: [
-                { label: '批次', name: 'pc', width: 150, align: 'center' },
-                { label: '批号', name: 'ph', width: 150, align: 'center' },
-                { label: '库存', name: 'slStr', width: 100, align: 'center' },
-                { label: '进价', name: 'jjdjdw', width: 100, align: 'center' },
-                { label: '系数', name: 'zhyz', width: 60 },
-                { label: '有效期', name: 'yxq', width: 150, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'lô', name: 'pc', width: 150, align: 'center' },
+                { label: 'số lô', name: 'ph', width: 150, align: 'center' },
+                { label: 'tồn kho', name: 'slStr', width: 100, align: 'center' },
+                { label: 'giá nhập', name: 'jjdjdw', width: 100, align: 'center' },
+                { label: 'hệ số', name: 'zhyz', width: 60 },
+                { label: 'hạn sử dụng', name: 'yxq', width: 150, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
                 { label: 'kykc', name: 'kykc', hidden: true },
                 { label: 'zxdwjj', name: 'zxdwjj', hidden: true },
                 { label: 'bzdwjj', name: 'bzdwjj', hidden: true }
@@ -489,7 +489,7 @@
         });
     }
 
-    //初始化单位
+    //khởi tạo đơn vị
     function initDw($thistr, rowid) {
         $("#sel_dw_" + rowid).empty();
         $("#sel_dw_" + rowid).append('<option value="bzdw" data-zhyz="' + $thistr.attr('data-bzs') + '" selected>' + $thistr.attr('data-bzdw') + '</option>');
@@ -501,13 +501,13 @@
         }
     }
 
-    //新发药单
+    //phiếu phát thuốc mới
     function newtouch_event_f7() {
         $("#gridList").clearGridData();
         init();
     }
 
-    //提交
+    //gửi
 	function newtouch_event_f8() {
 		$("#cb_gridList").click();
         var list = [];
@@ -528,12 +528,12 @@
         });
         if (validationFailedArr.length > 0) {
             for (var i = 0; i < validationFailedArr.length; i++) {
-                $("#gridList").jqGrid('editRow', validationFailedArr[i], false, initInlineFunc);//打开编辑模式
+                $("#gridList").jqGrid('editRow', validationFailedArr[i], false, initInlineFunc);//mở chế độ chỉnh sửa
             }
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("请勾选编辑数据！", 'warning', 1000);
+            $.modalMsg("vui lòng chọn dữ liệu cần sửa!", 'warning', 1000);
             return;
 		}
 		$.ajax({
@@ -544,7 +544,7 @@
 			cache: false,
 			success: function (res) {
 				if (res < 0) {
-					$.modalAlert("程序错误", 'warning');
+					$.modalAlert("chương trình lỗi", 'warning');
 				}
 			}
 		});
@@ -565,7 +565,7 @@
             success: function (res) {
                 if (res.state === "success") {
                     newtouch_event_f7();
-                    $.modalMsg('修改成功', 'success', 1000);
+                    $.modalMsg('sửa thành công', 'success', 1000);
                 } else {
                     $.modalAlert(res.message, 'error');
                 }
@@ -573,7 +573,7 @@
         });
     }
 
-    //组装提交数据
+    //tập hợp dữ liệu gửi đi
 	function AssembleData(rowData, rowid) {
 			var zxdwjj = Number(rowData.zxdwjj);
 			var ykpfj = Number(rowData.ykpfj);
@@ -632,36 +632,36 @@
 		};
 	}
 
-    //数值验证
+    //kiểm tra giá trị số
     function Validately(rowData, rowid) {
         if ($("#gysCode").val() === "" || $("#gysmc").val() === "") {
-            $.modalMsg("供应商必选", "error", 1000);
+            $.modalMsg("bắt buộc chọn nhà cung cấp", "error", 1000);
             return false;
         }
         if (rowData.ypmc === "") {
-            $.modalMsg('药品必选', 'error', 1000);
+            $.modalMsg('bắt buộc chọn thuốc', 'error', 1000);
             return false;
         }
         if (rowData.pc === "") {
-            $.modalMsg('批次必选', 'error', 1000);
+            $.modalMsg('bắt buộc chọn lô', 'error', 1000);
             return false;
         }
         var zhyz = Number($("#sel_dw_" + rowid).find("option:selected").attr("data-zhyz"));
         var sl = Number(rowData.sl);
         var maxsl = Number(rowData.kykc);
         if (zhyz * sl > maxsl) {
-            $.modalMsg("发药数不得超过库存总量", "error", 1000);
+            $.modalMsg("số lượng phát thuốc không được vượt quá tổng tồn kho", "error", 1000);
             $("#" + rowid + "_sl").val("");
             return false;
         }
         return true;
     }
 
-    ////生成单据号
+    ////tạo số chứng từ
     //function GetDjh() {
     //    $.ajax({
     //        url: "/DrugStorage/InitDjh",
-    //        data: { djmc: '外部出库单', r: Math.random() },
+    //        data: { djmc: 'xuất kho ra bên ngoài đơn', r: Math.random() },
     //        dataType: "json",
     //        async: false,
     //        cache: false,
@@ -676,7 +676,7 @@
     //    });
     //}
 
-	//生成单据号
+	//tạo số chứng từ
 	function GetDjh() {
 		$.ajax({
 			url: "/StorageManage/DrugStockSearch/GetCrkDjh",
@@ -698,7 +698,7 @@
 	}
 
 
-    //发票号
+    //số hóa đơn
     $("#fph").newtouchBatchFloatingSelector({
         clickautotrigger: true,
         height: 300,
@@ -710,11 +710,11 @@
             reqData.fph = $("#fph").val();
             return reqData;
         },
-        caption: "发票信息",
+        caption: "hóa đơn thông tin",
         colModel: [
-            { label: '发票号', name: 'fph', width: 110 },
-            { label: '供应商代码', name: 'gysCode', width: 100 },
-            { label: '供应商名称', name: 'gysmc', width: 180, align: 'left' }
+            { label: 'số hóa đơn', name: 'fph', width: 110 },
+            { label: 'mã nhà cung cấp', name: 'gysCode', width: 100 },
+            { label: 'tên nhà cung cấp', name: 'gysmc', width: 180, align: 'left' }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#fph").val($thistr.attr('data-fph'));

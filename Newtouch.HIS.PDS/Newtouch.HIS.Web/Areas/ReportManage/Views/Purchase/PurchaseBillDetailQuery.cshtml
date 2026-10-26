@@ -4,7 +4,7 @@
     /**/
     ViewBag.Title = "PurchaseBillDetailQuery";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //报表链接
+    //liên kết báo cáo
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
 }
 
@@ -12,24 +12,24 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle "><span class="required">*</span>药企：</th>
+                <th class="formTitle "><span class="required">*</span>doanh nghiệp dược: </th>
                 <td class="formValue">
-                    <input type="text" id="yq" name="yq" class="form-control" placeholder="请选择药企" autocomplete="off" style="width:60%" />
+                    <input type="text" id="yq" name="yq" class="form-control" placeholder="vui lòng chọn doanh nghiệp dược" autocomplete="off" style="width:60%" />
                     <input type="hidden" id="yqbm" />
                 </td>
-                <th class="formTitle">开始日期：</th>
+                <th class="formTitle">ngày bắt đầu: </th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an" style="width: 130px;"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})" value="@(DateTime.Now.ToString("yyyy-MM-01 00:00:00"))" />
                 </td>
-                <th class="formTitle" style="padding-right:5px;">结束日期：</th>
+                <th class="formTitle" style="padding-right:5px;">ngày kết thúc: </th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an" style="width:130px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@(DateTime.Now.ToString("yyyy-MM-dd 23:59:59"))" />
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="tra cứu" style="width:55px" />
                 </td>
             </tr>
         </table>
@@ -50,9 +50,9 @@
     });
 
 
-    //初始化浮层
+    //khởi tạo lớp nổi
     function InitFloat() {
-        //药企
+        //doanh nghiệp dược
         $("#yq").newtouchBatchFloatingSelector({
             clickautotrigger: true,
             height: 200,
@@ -65,8 +65,8 @@
                 return reqData;
             },
             colModel: [
-                { label: '药企编码', name: 'gysCode', widthratio: 30 },
-                { label: '药企', name: 'gysmc', widthratio: 70 }
+                { label: 'mã doanh nghiệp dược', name: 'gysCode', widthratio: 30 },
+                { label: 'doanh nghiệp dược', name: 'gysmc', widthratio: 70 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#yqbm").val($thistr.attr('data-gysCode'));
@@ -78,21 +78,21 @@
 
     function submit() {
         if ($('#kssj').val().length == 0) {
-            $.modalAlert("缺少开始时间", "error");
+            $.modalAlert("thiếu thời gian bắt đầu", "error");
             return;
         }
         if ($('#jssj').val().length == 0) {
-            $.modalAlert("缺少结束时间", "error");
+            $.modalAlert("thiếu thời gian kết thúc", "error");
             return;
         }
         if ($('#kssj').val() > $('#jssj').val()) {
-            $.modalAlert("开始时间不能大于结束时间", "error");
+            $.modalAlert("thời gian bắt đầu không được lớn hơn thời gian kết thúc", "error");
             return;
         }
         var yfcode = "@Newtouch.Infrastructure.Constants.CurrentYfbm.yfbmCode";
         var uri = '@reportUrl' + "?tempCode=1254&systemCode=PDS" + "&hospitalCode=" + '@ViewBag.OrganizeId';
         uri += "&kssj=" + $('#kssj').val() + "&jssj=" + $('#jssj').val() + "&yqbm=" + $("#yqbm").val();
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'đang yêu cầu trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', uri);
     }
 
@@ -105,7 +105,7 @@
         $('#layout iframe').css('height', h);
     });
 
-    //刷新列表
+    //làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }

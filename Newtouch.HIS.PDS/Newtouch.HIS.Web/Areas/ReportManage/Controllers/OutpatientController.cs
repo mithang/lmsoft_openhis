@@ -9,13 +9,13 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
 {
     /// <summary>
-    /// 门诊报表管理
+    /// ngoại trú báo cáo quản lý
     /// </summary>
     public class OutpatientController : ControllerBase
     {
         private readonly IfyDmnService _ifyDmnService;
         /// <summary>
-        /// 发药统计
+        /// phát thuốc thống kê
         /// </summary>
         /// <returns></returns>
         public ActionResult DrugDeliveryStatistics()
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// 获取发药信息
+        /// lấy thông tin phát thuốc
         /// </summary>
         /// <param name="startTime"></param>
         /// <param name="endTime"></param>

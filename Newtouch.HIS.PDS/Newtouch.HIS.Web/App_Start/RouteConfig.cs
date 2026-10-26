@@ -4,7 +4,7 @@ using System.Web.Routing;
 namespace Newtouch.HIS.Web
 {
     /// <summary>
-    /// 路由注册
+    /// định tuyến đăng ký
     /// </summary>
     public class RouteRegistration
     {

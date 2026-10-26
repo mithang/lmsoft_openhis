@@ -4,12 +4,12 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 外部入库
+    /// nhập kho từ bên ngoài
     /// </summary>
     public interface IInStorageDmnService
     {
         /// <summary>
-        /// 提交外部入库
+        /// gửi nhập kho từ bên ngoài
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="mx"></param>
@@ -17,16 +17,16 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string SubmitInStorage(SysMedicineStorageIOReceiptEntity dj, List<SysMedicineStorageIOReceiptDetailEntity> mx);
 
         /// <summary>
-        /// 外部入库审核通过
+        /// nhập kho từ bên ngoài duyệt
         /// </summary>
         /// <param name="dj"></param>
-        /// <param name="kcxx">库存信息</param>
-        /// <param name="auditor">审核员</param>
+        /// <param name="kcxx">thông tin tồn kho</param>
+        /// <param name="auditor">duyệt viên</param>
         /// <returns></returns>
         string InStorageAdopt(SysMedicineStorageIOReceiptEntity dj, List<SysMedicineStockInfoEntity> kcxx, string auditor);
 
         /// <summary>
-        /// 外部入库 撤销审核
+        /// nhập kho từ bên ngoài thu hồi duyệt
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="mx"></param>

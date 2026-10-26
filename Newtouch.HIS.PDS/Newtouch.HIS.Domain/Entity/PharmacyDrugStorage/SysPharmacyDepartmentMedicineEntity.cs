@@ -5,49 +5,49 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品本部门药品信息
+    /// hệ thống thuốc này bộ phận thông tin thuốc
     /// </summary>
     [Table("xt_yp_bmypxx")]
     public class SysPharmacyDepartmentMedicineEntity : IEntity<SysPharmacyDepartmentMedicineEntity>
     {
         /// <summary>
-        /// 部门药品Id
+        /// bộ phận thuốc Id
         /// </summary>
         [Key]
         public string bmypId { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 药房部门
+        /// bộ phận nhà thuốc
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string Ypdm { get; set; }
 
         /// <summary>
-        /// 药品库位
+        /// thuốc vị trí kho
         /// </summary>
         public string Ypkw { get; set; }
 
         /// <summary>
-        /// 账册序号
+        /// số thứ tự sổ sách
         /// </summary>
         public string Zcxh { get; set; }
 
         /// <summary>
-        /// 排序方式1
+        /// sắp xếp phương thức 1
         /// </summary>
         public string Pxfs1 { get; set; }
 
         /// <summary>
-        /// 排序方式2
+        /// sắp xếp phương thức 2
         /// </summary>
         public string Pxfs2 { get; set; }
 
@@ -62,17 +62,17 @@ namespace Newtouch.HIS.Domain.Entity
         public int? Kcxx { get; set; }
 
         /// <summary>
-        /// 进货点 低于进货点则自动生成内部申领单
+        /// điểm nhập hàng 低于进货点则自动生成内部申领单
         /// </summary>
         public int? Jhd { get; set; }
 
         /// <summary>
-        /// 计划量 对应进货点，指定内部申领的数量
+        /// lượng kế hoạch tương ứng điểm nhập hàng, 指定内部申领的数量
         /// </summary>
         public int? Jhl { get; set; }
 
         /// <summary>
-        /// 药品属性 来自 表 xt_yptssx
+        /// thuộc tính thuốc từ bảng xt_yptssx
         /// </summary>
         public string Ypsxdm { get; set; }
 
@@ -87,17 +87,17 @@ namespace Newtouch.HIS.Domain.Entity
         public int? Sysx { get; set; }
 
         /// <summary>
-        /// 排序
+        /// sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 状态  1：正常 0：控制
+        /// trạng thái  1: bình thường 0: kiểm soát
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
@@ -107,12 +107,12 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// thời gian sửa đổi
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改人
+        /// sửa người
         /// </summary>
         public string LastModifierCode { get; set; }
 

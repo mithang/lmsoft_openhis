@@ -16,7 +16,7 @@ using Newtouch.HIS.Domain.DTO;
 namespace Newtouch.HIS.Web.Controllers
 {
     /// <summary>
-    /// 药房药库
+    /// nhà thuốc kho thuốc
     /// </summary>
     public class PharmacyDrugStorageController : ControllerBase
     {
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region 单据查询
 
         /// <summary>
-        /// 单据查询 视图 v2
+        /// tra cứu chứng từ khung nhìn v2
         /// </summary>
         /// <returns></returns>
         public ActionResult ReceiptQueryV2()
@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 单据查询 主信息
+        /// tra cứu chứng từ chính thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="qsrj"></param>
@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Web.Controllers
             switch (from)
             {
                 case "query":
-                    if (curYfbmjb == "2")//药房
+                    if (curYfbmjb == "2")//nhà thuốc
                     {
                         allUseableDjlx = "3,4,5,6";
                     }
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 单据查询 主信息
+        /// tra cứu chứng từ chính thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="qsrj"></param>
@@ -115,7 +115,7 @@ namespace Newtouch.HIS.Web.Controllers
             switch (from)
             {
                 case "query":
-                    if (curYfbmjb != "1")//药房
+                    if (curYfbmjb != "1")//nhà thuốc
                     {
                         allUseableDjlx = new[]
                         {
@@ -214,7 +214,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(receiptMaininfoList.ToJson());
         }
         /// <summary>
-        /// 单据查询明细
+        /// tra cứu chứng từ chi tiết
         /// </summary>
         /// <param name="crkId"></param>
         /// <param name="djlx"></param>
@@ -230,7 +230,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region 单据审核
 
         /// <summary>
-        /// 单据审核
+        /// đơn chứng duyệt
         /// </summary>
         /// <returns></returns>
         public ActionResult ReceiptApproval()
@@ -239,7 +239,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 出入库单据 审核
+        /// chứng từ nhập/xuất kho duyệt
         /// </summary>
         /// <param name="crkId"></param>
         /// <param name="djlx"></param>
@@ -250,7 +250,7 @@ namespace Newtouch.HIS.Web.Controllers
             return _sysMedicineReceiptDmnService.ApprovalStorageIoReceipt(crkId, djlx, shzt) ? Success("操作成功") : Error("操作失败");
         }
         /// <summary>
-        /// 出入库单据 审核
+        /// chứng từ nhập/xuất kho duyệt
         /// </summary>
         /// <param name="crkId"></param>
         /// <param name="djlx"></param>
@@ -264,11 +264,11 @@ namespace Newtouch.HIS.Web.Controllers
         #endregion
 
         /// <summary>
-        ///  库存量查询
+        ///  tra cứu lượng tồn kho
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inputCode"></param>
-        /// <param name="tybz">停用标志</param>
+        /// <param name="tybz">cờ ngừng sử dụng</param>
         /// <param name="zt"></param>
         /// <param name="noShow0Kc"></param>
         /// <returns></returns>
@@ -285,7 +285,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 库存量查询明细
+        /// tra cứu lượng tồn kho chi tiết
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="yfbmCode"></param>
@@ -301,63 +301,63 @@ namespace Newtouch.HIS.Web.Controllers
 
 
         /// <summary>
-        /// 库存盘点
+        /// tồn kho kiểm kê
         /// </summary>
         /// <returns></returns>
         public ActionResult StockInventoryV2()
         {
-            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//药房部门code
-            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//组织id
+            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//bộ phận nhà thuốc code
+            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//tổ chức id
             return View("StockInventoryIndex");
         }
 
         public ActionResult StockInventoryV3()
         {
-            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//药房部门code
-            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//组织id
+            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//bộ phận nhà thuốc code
+            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//tổ chức id
             return View("StockInventoryIndexV2");
         }
 
 
         /// <summary>
-        /// 盘点查询
+        /// kiểm kê tra cứu
         /// </summary>
         /// <returns></returns>
         public ActionResult InventoryQuery()
         {
-            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//药房部门code
-            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//组织id
+            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//bộ phận nhà thuốc code
+            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//tổ chức id
             return View();
         }
 
         public ActionResult InventoryQueryV2()
         {
-            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//药房部门code
-            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//组织id
+            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//bộ phận nhà thuốc code
+            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//tổ chức id
             return View();
         }
 
         /// <summary>
-        /// 开始盘点
+        /// bắt đầu kiểm kê
         /// </summary>
         /// <returns></returns>
         public ActionResult InventoryAction()
         {
-            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//药房部门code
-            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//组织id
+            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//bộ phận nhà thuốc code
+            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//tổ chức id
             return View();
         }
 
         public ActionResult InventoryActionV2()
         {
-            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//药房部门code
-            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//组织id
+            ViewBag.bmCode = Constants.CurrentYfbm.yfbmCode;//bộ phận nhà thuốc code
+            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//tổ chức id
             return View();
         }
 
 
         /// <summary>
-        /// 获取盘点开始时间
+        /// lấy thời gian kiểm kê bắt đầu
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -368,7 +368,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取药品类别 （盘点）
+        /// lấy loại thuốc  (kiểm kê)
         /// </summary>
         /// <returns></returns>
         public ActionResult GetMedicineCategoryList()
@@ -384,7 +384,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 开始盘点
+        /// bắt đầu kiểm kê
         /// </summary>
         /// <returns></returns>
         public ActionResult StartInventory()
@@ -393,7 +393,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 查询需盘点的药品信息
+        /// tra cứu cần kiểm kê của thông tin thuốc
         /// </summary>
         /// <returns></returns>
         public ActionResult SelectInventoryInfoList(Pagination pagination, string pdId, string pdsj, string srm, string ypzt, string yplb, int kcxs = -1)
@@ -409,7 +409,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 查询需盘点明细 返回部门单位数量和最小单位数量相互独立
+        /// tra cứu cần chi tiết kiểm kê 返回部门单位数量和最小单位数量相互独立
         /// </summary>
         /// <returns></returns>
         public ActionResult InventoryInfoQuery(Pagination pagination, string pdId, string pdsj, string srm, string ypzt, string yplb, int kcxs = -1)
@@ -425,7 +425,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 转化页面显示数量  XX盒XX片
+        /// số lượng hiển thị trang chuyển đổi  XX hộp XX viên
         /// </summary>
         /// <param name="sl"></param>
         /// <param name="ypCode"></param>
@@ -437,7 +437,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// lưu
         /// </summary>
         /// <returns></returns>
         public ActionResult SaveInventoryInfo(string resultObjArr, string pdId)
@@ -447,7 +447,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 保存库存追溯码信息
+        /// lưu tồn kho mã truy xuất thông tin
         /// </summary>
         /// <returns></returns>
         public ActionResult SaveInventoryZsmInfo(string resultObjArr, string pdId)
@@ -457,10 +457,10 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 结束盘点
+        /// kết thúc kiểm kê
         /// </summary>
-        /// <param name="pdId">盘点单ID</param>
-        /// <param name="autoCarryDown">null/0：不自动结转  1：自动结转</param>
+        /// <param name="pdId">phiếu kiểm kê ID</param>
+        /// <param name="autoCarryDown">null/0: không tự động kết chuyển  1: tự động kết chuyển</param>
         /// <returns></returns>
         public ActionResult EndInventory(string pdId, string autoCarryDown)
         {
@@ -470,7 +470,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 取消盘点
+        /// hủy kiểm kê
         /// </summary>
         /// <returns></returns>
         public ActionResult CancelInventory(string pdId)
@@ -484,7 +484,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region 库存结转
 
         /// <summary>
-        /// 账期下拉框
+        /// kỳ sổ sách hộp thả xuống
         /// </summary>
         /// <returns></returns>
         public ActionResult GetAccountList()
@@ -502,7 +502,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 查询上一次结转的时间
+        /// tra cứu trên một lần kết chuyển của thời gian
         /// </summary>
         /// <returns></returns>
         public ActionResult GetLastCarryTime()
@@ -512,7 +512,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 查询上一次结转的账期
+        /// tra cứu trên một lần kết chuyển của kỳ sổ sách
         /// </summary>
         /// <returns></returns>
         public ActionResult GetLastAccountPeriod()
@@ -522,7 +522,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 结转
+        /// kết chuyển
         /// </summary>
         /// <param name="zq"></param>
         /// <param name="kssj"></param>
@@ -535,7 +535,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 查询已结转药品信息
+        /// tra cứu đã kết chuyển thông tin thuốc
         /// </summary>
         /// <returns></returns>
         public ActionResult SelectCarryOverMedicineList(Pagination pagination, string zq, string inputCode)
@@ -554,7 +554,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region 进销存
 
         /// <summary>
-        /// 得到结转账期和账期对应的开始结束时间
+        /// lấy thời gian bắt đầu/kết thúc tương ứng với kỳ kết chuyển và kỳ sổ sách
         /// </summary>
         /// <returns></returns>
         public ActionResult GetAccountPeriodDropDownList()
@@ -563,7 +563,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(list.ToJson());
         }
         /// <summary>
-        /// 获取药品剂型
+        /// lấy dạng bào chế thuốc
         /// </summary>
         /// <returns></returns>
         public ActionResult GetMedicineFormulationList()
@@ -573,7 +573,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取药品类别 （进销存）
+        /// lấy loại thuốc  (nhập-xuất-tồn)
         /// </summary>
         /// <returns></returns>
         public ActionResult GetMedicineCategoryList2()
@@ -583,7 +583,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 进销存统计
+        /// thống kê nhập-xuất-tồn
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kszq"></param>
@@ -613,7 +613,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region 其他
 
         /// <summary>
-        /// 当前登录用户 可操作的药房（药库）列表 数据源
+        /// hiện tại người dùng đăng nhập có thể thao tác của nhà thuốc (kho thuốc)danh sách nguồn dữ liệu
         /// </summary>
         /// <returns></returns>
         public ActionResult PharmacyDepartmentList()
@@ -626,7 +626,7 @@ namespace Newtouch.HIS.Web.Controllers
         #endregion
 
         /// <summary>
-        /// 修改发票号
+        /// sửa số hóa đơn
         /// </summary>
         /// <param name="crkmxId"></param>
         /// <param name="fph"></param>

@@ -12,13 +12,13 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysUserEntity : IEntity<SysUserEntity>
     {
         /// <summary>
-        /// 用户主键
+        /// người dùng khóa chính
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string StaffId { get; set; }
 
         /// <summary>
-        /// 账户
+        /// tài khoản
         /// </summary>
         public string Account { get; set; }
 
@@ -43,22 +43,22 @@ namespace Newtouch.HIS.Domain.Entity
         public bool AllowEdit { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 

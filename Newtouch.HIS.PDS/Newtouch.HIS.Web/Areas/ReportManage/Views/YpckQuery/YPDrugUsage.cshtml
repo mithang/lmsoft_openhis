@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "YPDrugUsage";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //报表链接
+    //liên kết báo cáo
     //var reportUrl = SysConfigReader.OrgReportLink();
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
 }
@@ -10,39 +10,39 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">来源：</th>
+                <th class="formTitle">nguồn: </th>
                 <td class="formValue">
                     <select id="yply" class="form-control">
-                        <option value="1">门诊</option>
-                        <option value="2">住院</option>
+                        <option value="1">ngoại trú</option>
+                        <option value="2">nội trú</option>
                     </select>
                 </td>
-                <th class="formTitle">药品类型：</th>
+                <th class="formTitle">loại thuốc: </th>
                 <td class="formValue">
                     <select id="sfdl" class="form-control">
-                        <option value="">全部</option>
-                        <option value="01">西药</option>
-                        <option value="02">中成药</option>
-                        <option value="03">中草药</option>
+                        <option value="">tất cả</option>
+                        <option value="01">thuốc Tây</option>
+                        <option value="02">trong thành thuốc</option>
+                        <option value="03">thuốc thảo dược</option>
                     </select>
                 </td>
-                <th class="formTitle">药品名称：</th>
+                <th class="formTitle">tên thuốc: </th>
                 <td class="formValue">
                     <input id="ypmc" type="text" class="form-control" />
                 </td>
-                <th class="formTitle">开始日期：</th>
+                <th class="formTitle">ngày bắt đầu: </th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an" style="width: 130px;"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})" value="@(DateTime.Now.ToString("yyyy-MM-01 00:00:00"))" />
                 </td>
-                <th class="formTitle" style="padding-right:5px;">结束日期：</th>
+                <th class="formTitle" style="padding-right:5px;">ngày kết thúc: </th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an" style="width:130px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@(DateTime.Now.ToString("yyyy-MM-dd 23:59:59"))" />
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="tra cứu" style="width:55px" />
                 </td>
             </tr>
         </table>
@@ -58,21 +58,21 @@
 <script type="text/javascript">
     function submit() {
         if ($('#kssj').val().length == 0) {
-            $.modalAlert("缺少开始时间", "error");
+            $.modalAlert("thiếu thời gian bắt đầu", "error");
             return;
         }
         if ($('#jssj').val().length == 0) {
-            $.modalAlert("缺少结束时间", "error");
+            $.modalAlert("thiếu thời gian kết thúc", "error");
             return;
         }
         if ($('#kssj').val() > $('#jssj').val()) {
-            $.modalAlert("开始时间不能大于结束时间", "error");
+            $.modalAlert("thời gian bắt đầu không được lớn hơn thời gian kết thúc", "error");
             return;
         }
         var yfcode = "@Newtouch.Infrastructure.Constants.CurrentYfbm.yfbmCode";
         var uri = '@reportUrl' + "?tempCode=1017&systemCode=PDS" + "&orgId=" + '@ViewBag.OrganizeId';
         uri += "&kssj=" + $('#kssj').val() + "&jssj=" + $('#jssj').val() + "&yply=" + $("#yply").val() + "&sfdl=" + $("#sfdl").val() + "&ypmc=" + $("#ypmc").val();
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'đang yêu cầu trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', uri);
     }
 
@@ -86,7 +86,7 @@
         init();
     });
 
-    //刷新列表
+    //làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }

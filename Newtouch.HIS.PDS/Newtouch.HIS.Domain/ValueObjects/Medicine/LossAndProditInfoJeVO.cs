@@ -6,17 +6,17 @@
     public class LossAndProditInfoJeVo
     {
         /// <summary>
-        /// 零售价总金额
+        /// giá bán lẻ tổng số tiền
         /// </summary>
         public decimal? Ljze { get; set; }
 
         /// <summary>
-        /// 批发价总金额
+        /// giá bán buôn tổng số tiền
         /// </summary>
         public decimal? Pjze { get; set; }
 
         /// <summary>
-        /// 进价总金额
+        /// tổng tiền giá nhập
         /// </summary>
         public decimal? Jjze { get; set; }
     }

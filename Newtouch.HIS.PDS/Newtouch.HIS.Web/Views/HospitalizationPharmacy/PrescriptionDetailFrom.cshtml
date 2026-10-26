@@ -22,24 +22,24 @@
             url: '/HospitalizationPharmacy/GetZycfGridDetailJson',
             height: $(window).height() - 100,
             colModel: [
-                { label: '住院号', name: 'zyh', align: 'center', width: 60 },
-                { label: '姓名', name: 'hzxm', align: 'center', width: 60 },
-                { label: '处方性质', name: 'yzxzmc', align: 'left', width: 50 },
-                { label: '病区', name: 'bqmc', align: 'center', width: 90 },
-                { label: '项目代码', name: 'xmdm', align: 'center', width: 70 },
-                { label: '项目名称', name: 'xmmc', align: 'center', width: 120 },
-                { label: '单位', name: 'dw', align: 'center', width: 60 },
-                 { label: '数量', name: 'sl', align: 'center', width: 50 },
+                { label: 'số nội trú', name: 'zyh', align: 'center', width: 60 },
+                { label: 'họ tên', name: 'hzxm', align: 'center', width: 60 },
+                { label: 'tính chất đơn thuốc', name: 'yzxzmc', align: 'left', width: 50 },
+                { label: 'khu bệnh', name: 'bqmc', align: 'center', width: 90 },
+                { label: 'hạng mục mã', name: 'xmdm', align: 'center', width: 70 },
+                { label: 'hạng mục tên', name: 'xmmc', align: 'center', width: 120 },
+                { label: 'đơn vị', name: 'dw', align: 'center', width: 60 },
+                 { label: 'số lượng', name: 'sl', align: 'center', width: 50 },
                 {
-                    label: '单价', name: 'dj', align: 'center', width: 50, formatter: "number"
+                    label: 'đơn giá', name: 'dj', align: 'center', width: 50, formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
                 },
                 {
-                    label: '费用', name: 'je', align: 'center', width: 60, formatter: "number"
+                    label: 'chi phí', name: 'je', align: 'center', width: 60, formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
                 },
-                { label: '剂量', name: 'ypjl', align: 'center', width: 60 },
-                { label: '规格', name: 'ypgg', align: 'center', width: 60 },
+                { label: 'liều dùng', name: 'ypjl', align: 'center', width: 60 },
+                { label: 'quy cách', name: 'ypgg', align: 'center', width: 60 },
                 
             ],
             pager: "#gridPager",

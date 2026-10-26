@@ -7,12 +7,12 @@ using Newtouch.PDS.Requset.ResourcesOperate;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 退药
+    /// trả thuốc
     /// </summary>
     public interface ItyDmnService
     {
         /// <summary>
-        /// 查询可退药品信息
+        /// tra cứu có thể trả thông tin thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
@@ -30,18 +30,18 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<RefundedDrugVo> SelectCompleteRefundedDrugs(string cfh, string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 查询药品可退数量
+        /// tra cứu thuốc số lượng có thể trả
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
-        /// <returns>最小单位可退数量</returns>
+        /// <returns>đơn vị nhỏ nhất số lượng có thể trả</returns>
         int SelectRefundedSl(string ypCode, string pc, string ph, string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 门诊退药
+        /// trả thuốc ngoại trú
         /// </summary>
         /// <param name="tyInfo"></param>
         /// <param name="returnDrugBillNo"></param>
@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string ReturnDrug(tyInfo tyInfo, out string returnDrugBillNo);
 
         /// <summary>
-        /// 门诊退药
+        /// trả thuốc ngoại trú
         /// </summary>
         /// <param name="tyInfo"></param>
         /// <param name="returnDrugBillNo"></param>
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string ReturnDrugSingleThread(tyInfo tyInfo, out string returnDrugBillNo);
 
         /// <summary>
-        /// 根据处方号获取有效的处方
+        /// theo số đơn thuốc lấy còn hiệu lực của đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<MzCfEntity> SelectRpList(string cfh, string organizeId);
 
         /// <summary>
-        /// 门诊部分退药
+        /// ngoại trú một phần trả thuốc
         /// </summary>
         /// <param name="item"></param>
         /// <param name="organizeId"></param>

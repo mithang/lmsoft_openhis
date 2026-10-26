@@ -23,18 +23,18 @@ namespace Newtouch.HIS.Web.App_Start
         {
             var builder = new ContainerBuilder();
 
-            ////注册默认EF上下文
+            ////đăng ký mặc định EF ngữ cảnh
             builder.RegisterType<DefaultDatabaseFactory>().As<IDefaultDatabaseFactory>().InstancePerLifetimeScope();
 
             //注册控制器
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             builder.RegisterControllers(Assembly.Load("FrameworkBase.MultiOrg.Web"));
 
-            //日志注册
+            //nhật ký đăng ký
             //LoggerHelper.InitLog4net("/Configs/log4net.config");
             builder.RegisterType<NLogger>().As<ILogger>().InstancePerLifetimeScope();
 
-            ////缓存
+            ////bộ nhớ đệm
             builder.RegisterType<SERedisCache>().As<ICache>().InstancePerLifetimeScope();
 
             #region IOC注册底层

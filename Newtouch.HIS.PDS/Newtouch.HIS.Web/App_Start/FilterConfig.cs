@@ -4,7 +4,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Web
 {
     /// <summary>
-    /// 全局过滤器注册
+    /// toàn cục bộ lọc đăng ký
     /// </summary>
     public class FilterConfig
     {
@@ -14,10 +14,10 @@ namespace Newtouch.HIS.Web
         /// <param name="filters"></param>
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            //系统访问统计跟踪日志
+            //nhật ký theo dõi thống kê truy cập hệ thống
             filters.Add(new StatisticsTrackerAttribute());
 
-            //全局异常捕获
+            //bắt ngoại lệ toàn cục
             filters.Add(new HandlerErrorAttribute());
 
 

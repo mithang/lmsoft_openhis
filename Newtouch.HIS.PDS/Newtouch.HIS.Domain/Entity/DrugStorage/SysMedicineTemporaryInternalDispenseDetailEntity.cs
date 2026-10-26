@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品临时内部发药明细
+    /// hệ thống thuốc tạm thời trong bộ phát thuốc chi tiết
     /// </summary>
     [Table("xt_yp_ls_nbfymx")]
     public class SysMedicineTemporaryInternalDispenseDetailEntity : IEntity<SysMedicineTemporaryInternalDispenseDetailEntity>
@@ -38,24 +38,24 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime? Yxrq { get; set; }
 
         /// <summary>
-        /// 批发价
+        /// giá bán buôn
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal? Pfj { get; set; }
 
         /// <summary>
-        /// 零售价
+        /// giá bán lẻ
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal? Lsj { get; set; }
 
         /// <summary>
-        /// 批发总额
+        /// tổng tiền bán buôn
         /// </summary>
         public decimal? Pfze { get; set; }
 
         /// <summary>
-        /// 零售总额
+        /// tổng tiền bán lẻ
         /// </summary>
         public decimal? Ljze { get; set; }
 
@@ -75,17 +75,17 @@ namespace Newtouch.HIS.Domain.Entity
         public string Dw { get; set; }
 
         /// <summary>
-        /// 现有库存
+        /// tồn kho hiện có
         /// </summary>
         public int? Xykz { get; set; }
 
         /// <summary>
-        /// 拆零数
+        /// tách lẻ số
         /// </summary>
         public int? Fyzhyz { get; set; }
 
         /// <summary>
-        /// 拆零数
+        /// tách lẻ số
         /// </summary>
         public int? Lyzhyz { get; set; }
 
@@ -100,7 +100,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int? Sldxh { get; set; }
 
         /// <summary>
-        /// 现有总库存
+        /// hiện tại có tổng tồn kho
         /// </summary>
         public int? Xyzkz { get; set; }
 

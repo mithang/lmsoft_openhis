@@ -16,17 +16,17 @@ namespace Newtouch.HIS.Domain.Entity
         public int ypsxId { get; set; }
 
         /// <summary>
-        /// 关联药品Id
+        /// liên kết thuốc Id
         /// </summary>
         public int ypId { get; set; }
 
         /// <summary>
-        /// 药品Code
+        /// thuốc Code
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 0 普通项目 1 特殊项目特殊药品说明是特定的病人性质才可使用的。
+        /// 0 hạng mục thường 1 đặc biệt hạng mục đặc biệt thuốc mô tả có đặc thù của tính chất bệnh nhân mới có thể sử dụng của.
         /// </summary>
         public string tsbz { get; set; }
 
@@ -46,82 +46,82 @@ namespace Newtouch.HIS.Domain.Entity
         public string yljsy { get; set; }
 
         /// <summary>
-        /// 治疗方法（同样 关联 药品用法）
+        /// điều trị phương thức (同样 liên kết cách dùng thuốc)
         /// </summary>
         public string zlff { get; set; }
 
         /// <summary>
-        /// 时间安排
+        /// sắp xếp thời gian
         /// </summary>
         public string sjap { get; set; }
 
         /// <summary>
-        /// 用量
+        /// liều lượng
         /// </summary>
         public decimal? yl { get; set; }
 
         /// <summary>
-        /// 用量单位
+        /// đơn vị liều lượng
         /// </summary>
         public string yldw { get; set; }
 
         /// <summary>
-        /// 药品规格
+        /// quy cách thuốc
         /// </summary>
         public string ypgg { get; set; }
 
         /// <summary>
-        /// 医保代码
+        /// mã BHYT
         /// </summary>
         public string ybdm { get; set; }
 
         /// <summary>
-        /// 使用天数（医保控量设置字段）
+        /// khiến dùng ngày số (trường cài đặt khống chế số lượng BHYT)
         /// </summary>
         public int? syts { get; set; }
 
         /// <summary>
-        /// 单次最大剂量（医保控量设置字段）
+        /// 单次最大剂量 (trường cài đặt khống chế số lượng BHYT)
         /// </summary>
         public decimal? dczdjl { get; set; }
 
         /// <summary>
-        /// 单次最大数量（医保控量设置字段）
+        /// 单次最大数量 (trường cài đặt khống chế số lượng BHYT)
         /// </summary>
         public decimal? dczdsl { get; set; }
 
         /// <summary>
-        /// 累计最大剂量（医保控量设置字段）
+        /// 累计最大剂量 (trường cài đặt khống chế số lượng BHYT)
         /// </summary>
         public decimal? ljzdjl { get; set; }
 
         /// <summary>
-        /// 累计最大数量（医保控量设置字段）
+        /// 累计最大数量 (trường cài đặt khống chế số lượng BHYT)
         /// </summary>
         public decimal? ljzdsl { get; set; }
 
         /// <summary>
-        /// 批准文号
+        /// số giấy phép
         /// </summary>
         public string pzwh { get; set; }
 
         /// <summary>
-        /// 药品特殊属性
+        /// thuốc đặc biệt thuộc tính
         /// </summary>
         public string yptssx { get; set; }
 
         /// <summary>
-        /// 药品分类Code
+        /// phân loại thuốc Code
         /// </summary>
         public string ypflCode { get; set; }
 
         /// <summary>
-        /// 记账类型    0：每顿取整收费1：每次取整收费
+        /// ghi sổ loại    0: mỗi lần làm tròn thu phí 1: mỗi lần làm tròn thu phí
         /// </summary>
         public string jzlx { get; set; }
 
         /// <summary>
-        /// 默认保质期
+        /// mặc định hạn bảo quản
         /// </summary>
         public int? mrbzq { get; set; }
 
@@ -131,7 +131,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string ghdw { get; set; }
 
         /// <summary>
-        /// 药品产地
+        /// thuốc nơi sản xuất
         /// </summary>
         public int? ypcd { get; set; }
 

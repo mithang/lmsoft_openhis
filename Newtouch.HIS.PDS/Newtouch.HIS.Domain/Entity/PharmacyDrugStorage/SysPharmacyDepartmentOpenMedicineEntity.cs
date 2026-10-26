@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统 药房部门 药品（配置药房/药库开放的收费大类）
+    /// hệ thống bộ phận nhà thuốc thuốc (cấu hình nhà thuốc/药库开放的收费大类)
     /// </summary>
     [Table("xt_yfbm_yp")]
     [Obsolete("please use the view")]

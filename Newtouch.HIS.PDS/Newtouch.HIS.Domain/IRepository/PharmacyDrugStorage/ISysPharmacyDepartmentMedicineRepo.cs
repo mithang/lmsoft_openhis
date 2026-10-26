@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysPharmacyDepartmentMedicineRepo : IRepositoryBase<SysPharmacyDepartmentMedicineEntity>
     {
         /// <summary>
-        /// 获取药品库位
+        /// lấy thuốc vị trí kho
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="yfbmCode"></param>
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.IRepository
         string GetYpkw(string ypCode, string yfbmCode, string orgId);
 
         /// <summary>
-        /// 入库部门是否有权限使用该药
+        /// bộ phận nhập kho có hay không có quyền khiến dùng nên thuốc
         /// </summary>
         /// <param name="yp"></param>
         /// <param name="rkbm"></param>
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Domain.IRepository
         bool CheckRkbmOwnMedicine(string yp, string rkbm, string organizeId);
 
         /// <summary>
-        /// 根据药编码和药房部门编码获取本部门药品信息
+        /// theo thuốc mã và bộ phận nhà thuốc mã lấy này bộ phận thông tin thuốc
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="organizeId"></param>
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<SysPharmacyDepartmentMedicineEntity> SelectData(string ypCode, string organizeId, string yfbmCode);
 
         /// <summary>
-        /// 修改状态
+        /// sửa trạng thái
         /// </summary>
         /// <param name="bmypId"></param>
         /// <param name="zt"></param>
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Domain.IRepository
         int UpdateZt(string bmypId, string zt, string lastModifierCode, DateTime lastModifyTime);
 
         /// <summary>
-        /// 修改状态
+        /// sửa trạng thái
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="zt"></param>
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Domain.IRepository
         int UpdateZt(string ypCode, string zt, string organizeId, string lastModifierCode, DateTime lastModifyTime);
 
         /// <summary>
-        /// 修改状态
+        /// sửa trạng thái
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="organizeId"></param>
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.Domain.IRepository
         int DeleteItem(string ypCode, string organizeId);
 
         /// <summary>
-        /// 修改状态
+        /// sửa trạng thái
         /// </summary>
         /// <param name="bmypId"></param>
         /// <returns></returns>

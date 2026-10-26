@@ -5,39 +5,39 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity.PharmacyDrugStorage
 {
     /// <summary>
-    /// 药房药品调拨
+    /// nhà thuốc thuốc điều chuyển
     /// </summary>
     [Table("yf_ypdbsq")]
     public class PharmacyMedicineTransferEntity : IEntity<PharmacyMedicineTransferEntity>
     {
         /// <summary>
-        /// 申领单ID
+        /// phiếu lĩnh ID
         /// </summary>
         [Key]
         public long dbId { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 申领单号
+        /// số phiếu lĩnh
         /// </summary>
         public string Dbdh { get; set; }
 
         /// <summary>
-        /// 申请药房
+        /// nhà thuốc đề nghị
         /// </summary>
         public string SqyfCode { get; set; }
 
         /// <summary>
-        /// 出库药房
+        /// xuất kho nhà thuốc
         /// </summary>
         public string CkyfCode { get; set; }
 
         /// <summary>
-        /// 发放状态 0:未发 1:已发部分 2:已全发 3:已终止
+        /// trạng thái cấp phát 0:chưa phát 1:đã phát một phần 2:đã toàn phát 3:đã chấm dứt
         /// </summary>
         public int ffzt { get; set; }
 

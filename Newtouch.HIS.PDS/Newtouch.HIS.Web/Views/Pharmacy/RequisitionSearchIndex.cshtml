@@ -12,29 +12,29 @@
 <form id="form1">
     <div class="panel panel-default" style="margin-bottom:5px;">
         <div class="panel-heading">
-            查询条件
+            điều kiện tra cứu
         </div>
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">日期：</th>
+                    <th class="formTitle">ngày: </th>
                     <td class="formValue">
                         <input id="txtStartDate" type="text" class="form-control input-wdatepicker " style="width:149px;" value="@DateTime.Now.ToString("yyyy-MM-dd 00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
                     </td>
-                    <th class="formTitle">到：</th>
+                    <th class="formTitle">đến: </th>
                     <td class="formValue">
                         <input id="txtEndDate" type="text" class="form-control input-wdatepicker " style="width:149px;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
                     </td>
-                    <th class="formTitle">申领单号：</th>
+                    <th class="formTitle">số phiếu lĩnh: </th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtSLDH" />
                     </td>
-                    <th class="formTitle">发放状态：</th>
+                    <th class="formTitle">trạng thái cấp phát: </th>
                     <td class="formValue">
-                        @Html.DropDownList("ddlFfzt", EnumSLDDeliveryStatus.None.ToDescSelectList(), "全部", new { @class = "form-control" })
+                        @Html.DropDownList("ddlFfzt", EnumSLDDeliveryStatus.None.ToDescSelectList(), "tất cả", new { @class = "form-control" })
                     </td>
                     <td class="formValue">
-                        <input type="button" id="btn_search" class="btn btn-md btn-primary" style="width:50px; margin-left:40px; " value="查询" />
+                        <input type="button" id="btn_search" class="btn btn-md btn-primary" style="width:50px; margin-left:40px; " value="tra cứu" />
                     </td>
                 </tr>
             </table>
@@ -51,7 +51,7 @@
 
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //tải lại khi thay đổi kích thước cửa sổ trình duyệt jqGrid chiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
@@ -59,7 +59,7 @@
         gridDJMainRecords();
     });
 
-    //申领单主记录
+    //phiếu lĩnh chính bản ghi
     function gridDJMainRecords() {
         var $gridDjMainRecords = $("#gridDJMainRecords");
         $gridDjMainRecords.dataGrid({
@@ -68,18 +68,18 @@
             url: "/Pharmacy/RequisitionGridJson",
             colModel: [
                 { label: 'sldId', name: 'sldId', hidden: true, align: 'left' },
-                { label: '申领单号', name: 'Sldh', width: 150, align: 'left' },
-                //{ label: '申领部门', name: 'slbmmc', width: 80, align: 'left' },
-                { label: '发药部门', name: 'ckbmmc', width: 80, align: 'left' },
-                { label: '申领时间', name: 'CreateTime', width: 150, align: 'left', formatter: 'date', formatoptions: { srcformat: 'y-m-d H:i', newformat: 'y-m-d H:i' }},
+                { label: 'số phiếu lĩnh', name: 'Sldh', width: 150, align: 'left' },
+                //{ label: 'bộ phận lĩnh', name: 'slbmmc', width: 80, align: 'left' },
+                { label: 'bộ phận phát thuốc', name: 'ckbmmc', width: 80, align: 'left' },
+                { label: 'thời gian lĩnh', name: 'CreateTime', width: 150, align: 'left', formatter: 'date', formatoptions: { srcformat: 'y-m-d H:i', newformat: 'y-m-d H:i' }},
                 {
-                    label: '发药状态', name: 'ffzt', width: 50, align: 'left',
+                    label: 'trạng thái phát thuốc', name: 'ffzt', width: 50, align: 'left',
                     formatter: function (cellvalue) {
                         switch (cellvalue) {
-                            case 0: return "未发放";
-                            case 1: return "已发放部分";
-                            case 2: return "已发放全部";
-                            case 3: return "已终止";
+                            case 0: return "chưa cấp phát";
+                            case 1: return "đã cấp phát một phần";
+                            case 2: return "đã cấp phát tất cả";
+                            case 3: return "đã chấm dứt";
                         }
                     }
                 },
@@ -129,9 +129,9 @@
         return { startDate: startDate, endDate: endDate, sldh: sldh, ffzt: ffzt, from: "query" };
     };
 
-    //单击事件
+    //sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        //每次单击，先清空明细 再重新加载所有选中行明细
+        //mỗi lần nhấp, trước tiên xóa chi tiết sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $('#gridDJMXInfo').jqGrid("clearGridData");
         $.najax({
             type: "POST",
@@ -150,21 +150,21 @@
         });
     }
 
-    //申领单明细
+    //chi tiết phiếu lĩnh
     $('#gridDJMXInfo').newtouchLocalDataGrid({
         height: $(window).height() - 380,
-        caption: "申领单明细",
+        caption: "chi tiết phiếu lĩnh",
         unwritten: false,
         sortable: false,
         colModel: [
-            { label: '药品名称', name: 'ypmc', width: 150, align: 'left' },
-            { label: '批号', name: 'ph', width: 100, align: 'left' },
-            { label: '批次', name: 'pc', hidden: true, width: 50, align: 'left' },
-            { label: '有效日期', name: 'Yxrq', width: 120, align: 'left', formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-            { label: '申领数量', name: 'slsl', width: 120, align: 'left' },
-            { label: '申领数量单位', name: 'slsldw', width: 120, align: 'left' },
-            { label: '已发数量', name: 'yfsl', width: 120, align: 'left' },
-            { label: '已发数量单位', name: 'yfsldw', width: 120, align: 'left' }
+            { label: 'tên thuốc', name: 'ypmc', width: 150, align: 'left' },
+            { label: 'số lô', name: 'ph', width: 100, align: 'left' },
+            { label: 'lô', name: 'pc', hidden: true, width: 50, align: 'left' },
+            { label: 'ngày hiệu lực', name: 'Yxrq', width: 120, align: 'left', formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+            { label: 'số lượng lĩnh', name: 'slsl', width: 120, align: 'left' },
+            { label: 'đơn vị số lượng lĩnh', name: 'slsldw', width: 120, align: 'left' },
+            { label: 'số lượng đã phát', name: 'yfsl', width: 120, align: 'left' },
+            { label: 'số lượng đã phát đơn vị', name: 'yfsldw', width: 120, align: 'left' }
         ]
     });
 

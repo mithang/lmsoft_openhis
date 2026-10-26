@@ -5,7 +5,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class AccountPeriodDropDownVO
     {
         /// <summary>
-        /// 账期
+        /// kỳ sổ sách
         /// </summary>
         public string zq { get; set; }
         /// <summary>

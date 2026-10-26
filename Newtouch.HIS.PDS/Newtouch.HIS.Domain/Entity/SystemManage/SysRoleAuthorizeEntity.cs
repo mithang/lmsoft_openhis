@@ -11,38 +11,38 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysRoleAuthorizeEntity : IEntity<SysRoleAuthorizeEntity>
     {
         /// <summary>
-        /// 角色授权主键
+        /// khóa chính ủy quyền vai trò
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 对象主键
+        /// đối tượng khóa chính
         /// </summary>
         public string RoleId { get; set; }
 
         /// <summary>
-        /// 项目主键
+        /// hạng mục khóa chính
         /// </summary>
         public string ItemId { get; set; }
 
         /// <summary>
-        /// 项目类型1-模块2-按钮3-列表
+        /// hạng mục loại 1-模块2-nút 3-danh sách
         /// </summary>
         public int ItemType { get; set; }
 
         /// <summary>
-        /// 排序码
+        /// mã sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 

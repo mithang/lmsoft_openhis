@@ -1,43 +1,43 @@
 ﻿namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 发药处方药品信息
+    /// phát thuốc đơn thuốc thông tin thuốc
     /// </summary>
     public class GetfyDetailCFList
     {
         /// <summary>
-        /// 处方内码
+        /// mã nội bộ đơn thuốc
         /// </summary>
         public string cfnm { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 处方明细ID
+        /// chi tiết đơn thuốc ID
         /// </summary>
         public int cfmxId { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string yp { get; set; }
     }
 
     /// <summary>
-    /// 发药处方明细
+    /// phát thuốc chi tiết đơn thuốc
     /// </summary>
     public class FyCfmxRequest
     {
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
     }

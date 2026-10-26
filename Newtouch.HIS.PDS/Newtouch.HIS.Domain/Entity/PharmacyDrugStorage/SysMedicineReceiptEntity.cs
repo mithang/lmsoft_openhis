@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品单据
+    /// hệ thống thuốc đơn chứng
     /// </summary>
     [Table("xt_yp_dj")]
     public class SysMedicineReceiptEntity : IEntity<SysMedicineReceiptEntity>
@@ -42,7 +42,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int djh { get; set; }
 
         /// <summary>
-        /// 0:允许 1:不允许 -1:未选择
+        /// 0:cho phép 1:không cho phép -1:chưa chọn
         /// </summary>
         public int xgdjh { get; set; }
 

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品盘点信息
+    /// hệ thống thuốc kiểm kê thông tin
     /// </summary>
     [Table("xt_yp_pdxx")]
     public class SysMedicineInventoryEntity : IEntity<SysMedicineInventoryEntity>

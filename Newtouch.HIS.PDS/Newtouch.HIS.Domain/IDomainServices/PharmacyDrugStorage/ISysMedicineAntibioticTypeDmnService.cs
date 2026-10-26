@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage
     {
         SysMedicineAntibioticTypeVO GetById(string orgId, string Id);
         /// <summary>
-        /// 根据组织机构,级别,获取抗生素分类列表
+        /// theo tổ chức,级别,lấy danh sách phân loại kháng sinh
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="Level"></param>
@@ -19,14 +19,14 @@ namespace Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage
         /// <returns></returns>
         IList<SysMedicineAntibioticTypeVO> GetValidListByOrg(string OrganizeId, string Level, string parentId);
         /// <summary>
-        /// 根据组织机构,上级Id,获取抗生素分类列表
+        /// theo tổ chức,cấp trên Id,lấy danh sách phân loại kháng sinh
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="parentId"></param>
         /// <returns></returns>
         IList<SysMedicineAntibioticTypeVO> GetListByParentId(string OrganizeId, string parentId);
         /// <summary>
-        /// 提交抗生素分类信息
+        /// gửi kháng sinh phần loại thông tin
         /// </summary>
         /// <param name="entity"></param>
         void SubmitForm(SysMedicineAntibioticTypeVO entity);

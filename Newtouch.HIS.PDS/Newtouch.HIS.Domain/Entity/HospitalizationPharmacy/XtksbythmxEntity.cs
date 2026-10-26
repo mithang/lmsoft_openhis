@@ -26,27 +26,27 @@ namespace Newtouch.HIS.Domain.Entity.HospitalizationPharmacy
         public string sccj { get; set; }
         //public string thyy { get; set; }
         /// <summary>
-        /// 状态
+        /// trạng thái
         /// </summary>
         public string zt { get; set; }
 
 
         /// <summary>
-        /// 修改用户
+        /// người sửa đổi
         /// </summary>
         public string CreatorCode { get; set; }
         /// <summary>
-        /// 修改时间
+        /// thời gian sửa đổi
         /// </summary>
         public DateTime CreateTime { get; set; }
 
 
         /// <summary>
-        /// 最后修改用户
+        /// người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 最后修改时间
+        /// thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
         public string ph { get; set; }

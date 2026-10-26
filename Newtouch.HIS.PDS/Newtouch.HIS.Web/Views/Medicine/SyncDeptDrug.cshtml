@@ -7,24 +7,24 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <td class="formTitle">关键字：</td>
+                <td class="formTitle">từ khóa: </td>
                 <td class="formValue">
-                    <input type="text" id="srm" class="form-control" placeholder="请输入药品代码 拼音 名称" />
+                    <input type="text" id="srm" class="form-control" placeholder="vui lòng nhập mã thuốc phiên âm tên" />
                 </td>
-                <td class="formTitle">药品类别：</td>
+                <td class="formTitle">loại thuốc: </td>
                 <td class="formValue formDdlSelectorTd">
                     <select class="form-control" id="yplb">
-                        <option value="">全部</option>
+                        <option value="">tất cả</option>
                     </select>
                 </td>
-                <td class="formTitle">药品剂型：</td>
+                <td class="formTitle">dạng bào chế thuốc: </td>
                 <td class="formValue formDdlSelectorTd">
                     <select class="form-control" id="ypjx" name="ypjx">
-                        <option value="">全部</option>
+                        <option value="">tất cả</option>
                     </select>
                 </td>
                 <td class="formTitle" rowspan="2">
-                    <input type="button" class="btn btn-primary btn-md" id="btn_search" value="查询" />
+                    <input type="button" class="btn btn-primary btn-md" id="btn_search" value="tra cứu" />
                 </td>
             </tr>
         </table>
@@ -42,14 +42,14 @@
         tbypGridList();
     });
 
-    //药品类别
+    //loại thuốc
     function initialddlYPLBList() {
         $("#yplb").bindSelect({
             url: "/PharmacyDrugStorage/GetMedicineCategoryList"
         });
     }
 
-    //药品剂型
+    //dạng bào chế thuốc
     function initialddlJXList() {
         $("#ypjx").bindSelect({
             url: "/PharmacyDrugStorage/GetMedicineFormulationList",
@@ -65,16 +65,16 @@
             postData: $("#form1").formSerialize(),
             height: 400,
             colModel: [
-                { label: "主键", name: "ypId", hidden: true, key: true },
-                { label: "类别", name: "yplb", width: 70, align: 'left' },
-                { label: "药品代码", name: "ypCode", width: 70, align: 'left' },
-                { label: '药品名称', name: 'ypmc', width: 180, align: 'left' },
-                { label: '剂型', name: 'jxmc', width: 50, align: 'left' },
-                { label: '规格', name: 'ypgg', width: 100, align: 'left' },
-                { label: '零售价', name: 'lsj', width: 50, align: 'left' },
-                { label: '批发价', name: 'pfj', width: 50, align: 'left' },
-                { label: '单位', name: 'deptdw', width: 50, align: 'left' },
-                { label: '生产厂家', name: 'ycmc', width: 150, align: 'left' },
+                { label: "khóa chính", name: "ypId", hidden: true, key: true },
+                { label: "loại", name: "yplb", width: 70, align: 'left' },
+                { label: "mã thuốc", name: "ypCode", width: 70, align: 'left' },
+                { label: 'tên thuốc', name: 'ypmc', width: 180, align: 'left' },
+                { label: 'dạng bào chế', name: 'jxmc', width: 50, align: 'left' },
+                { label: 'quy cách', name: 'ypgg', width: 100, align: 'left' },
+                { label: 'giá bán lẻ', name: 'lsj', width: 50, align: 'left' },
+                { label: 'giá bán buôn', name: 'pfj', width: 50, align: 'left' },
+                { label: 'đơn vị', name: 'deptdw', width: 50, align: 'left' },
+                { label: 'nhà sản xuất', name: 'ycmc', width: 150, align: 'left' },
                 { label: 'bmypId', name: 'bmypId', hidden: true }
             ],
             multiselect: true,
@@ -94,10 +94,10 @@
             },
             onSelectAll: function (rowids, statue) {
                 if (rowids != null && rowids.length > 0) {
-                    if (statue) {//全选
+                    if (statue) {//chọn tất cả
                         Save(rowids, 0);
-                    } else { //全部取消
-                        $.modalConfirm("确定要全部删除吗？", function (flag) {
+                    } else { //tất cả hủy
+                        $.modalConfirm("xác định cần tất cả xóa không?", function (flag) {
                             if (flag) {
                                 Save(rowids, 1);
                             }
@@ -106,9 +106,9 @@
                 }
             },
             onSelectRow: function (rowids, statue) {
-                if (statue) {//选中
+                if (statue) {//chọn trong
                     Save(rowids, 0);
-                } else { //取消
+                } else { //hủy
                     Save(rowids, 1);
                 }
             }
@@ -121,7 +121,7 @@
         });
     }
 
-    //提交 operateType=0:添加  1：删除
+    //gửi operateType=0:thêm  1: xóa
     function Save(items, opereateType) {
         $.najax({
             type: "POST",
@@ -131,7 +131,7 @@
             success: function (ajaxresp) {
                 if (ajaxresp.state === 'success') {
                     $.currentWindow().$("#gridList").trigger("reloadGrid");
-                    $.modalMsg("同步成功", 'success', 1500);
+                    $.modalMsg("đồng bộ thành công", 'success', 1500);
                 }
             }
         });

@@ -9,112 +9,112 @@ namespace Newtouch.HIS.Domain.Entity.V
 	public class CrkMxAll
 	{
 		/// <summary>
-		/// 出入库明细ID
+		/// chi tiết nhập/xuất kho ID
 		/// </summary>
 		public string crkmxId { get; set; }
 
 		/// <summary>
-		/// 来自表 XT_YP_CRKDJK的主键
+		/// từ bảng XT_YP_CRKDJK của khóa chính
 		/// </summary>
 		public string crkId { get; set; }
 
 		/// <summary>
-		/// 申领单明细ID
+		/// chi tiết phiếu lĩnh ID
 		/// </summary>
 		public string sldmxId { get; set; }
 
 		/// <summary>
-		/// 药品代码
+		/// mã thuốc
 		/// </summary>
 		public string ypdm { get; set; }
 
 		/// <summary>
-		/// 发票号
+		/// số hóa đơn
 		/// </summary>
 		public string fph { get; set; }
 
 		/// <summary>
-		/// 开票日期
+		/// ngày lập hóa đơn
 		/// </summary>
 		public DateTime? Kprq { get; set; }
 
 		/// <summary>
-		/// 到票日期
+		/// ngày nhận hóa đơn
 		/// </summary>
 		public DateTime? Dprq { get; set; }
 
 		/// <summary>
-		/// 批号
+		/// số lô
 		/// </summary>
 		public string ph { get; set; }
 		
 		/// <summary>
-		/// 有效期
+		/// hạn sử dụng
 		/// </summary>
 		public DateTime? yxq { get; set; }
 
 		/// <summary>
-		/// 批发价 与zhyz和sl对应
+		/// giá bán buôn và zhyz và sl tương ứng
 		/// </summary>
 		public decimal pfj { get; set; }
 
 		/// <summary>
-		/// 零售价 与zhyz和sl对应
+		/// giá bán lẻ và zhyz và sl tương ứng
 		/// </summary>
 		public decimal lsj { get; set; }
 
 		/// <summary>
-		/// 药库批发价
+		/// giá bán buôn kho thuốc
 		/// </summary>
 		public decimal ykpfj { get; set; }
 
 		/// <summary>
-		/// 药库零售价
+		/// giá bán lẻ kho thuốc
 		/// </summary>
 		public decimal yklsj { get; set; }
 
 		/// <summary>
-		/// 总金额
+		/// tổng số tiền
 		/// </summary>
 		public decimal Zje { get; set; }
 
 		/// <summary>
-		/// 数量 部门单位数量
+		/// số lượng số lượng đơn vị bộ phận
 		/// </summary>
 		public int sl { get; set; }
 
 		/// <summary>
-		/// 入库转换因子
+		/// nhập kho hệ số chuyển đổi
 		/// </summary>
 		public int Rkzhyz { get; set; }
 
 		/// <summary>
-		/// 入库部门库存
+		/// bộ phận nhập kho tồn kho
 		/// </summary>
 		public int Rkbmkc { get; set; }
 
 		/// <summary>
-		/// 入库单位（单位名称）
+		/// nhập kho đơn vị (tên đơn vị)
 		/// </summary>
 		public string rkdw { get; set; }
 
 		/// <summary>
-		/// 出库转换因子
+		/// xuất kho hệ số chuyển đổi
 		/// </summary>
 		public int Ckzhyz { get; set; }
 
 		/// <summary>
-		/// 出库部门库存
+		/// bộ phận xuất kho tồn kho
 		/// </summary>
 		public int Ckbmkc { get; set; }
 
 		/// <summary>
-		/// 出库单位（单位名称）
+		/// đơn vị xuất kho (tên đơn vị)
 		/// </summary>
 		public string ckdw { get; set; }
 
 		/// <summary>
-		/// 外观
+		/// giao diện
 		/// </summary>
 		public string Wg { get; set; }
 
@@ -124,62 +124,62 @@ namespace Newtouch.HIS.Domain.Entity.V
 		public int? zbbz { get; set; }
 
 		/// <summary>
-		/// 进库注册证
+		/// giấy chứng nhận đăng ký nhập kho
 		/// </summary>
 		public string jkzcz { get; set; }
 
 		/// <summary>
-		/// 合格证明
+		/// giấy chứng nhận đạt chuẩn
 		/// </summary>
 		public string hgzm { get; set; }
 
 		/// <summary>
-		/// 验收结果
+		/// nghiệm thu kết quả
 		/// </summary>
 		public string ysjg { get; set; }
 
 		/// <summary>
-		/// 退货原因
+		/// lý do trả hàng
 		/// </summary>
 		public string thyy { get; set; }
 
 		/// <summary>
-		/// 处理结果
+		/// xử lý kết quả
 		/// </summary>
 		public string Cljg { get; set; }
 
 		/// <summary>
-		/// 生产日期
+		/// ngày sản xuất
 		/// </summary>
 		public DateTime? scrq { get; set; }
 
 		/// <summary>
-		/// 扣率
+		/// tỷ lệ chiết khấu
 		/// </summary>
 		public decimal? kl { get; set; }
 
 		/// <summary>
-		/// 进价 药库单位进价
+		/// giá nhập giá nhập theo đơn vị kho thuốc
 		/// </summary>
 		public decimal? jj { get; set; }
 
 		/// <summary>
-		/// 产地
+		/// nơi sản xuất
 		/// </summary>
 		public int? cd { get; set; }
 
 		/// <summary>
-		/// 批次
+		/// lô
 		/// </summary>
 		public string pc { get; set; }
 
 		/// <summary>
-		/// 状态
+		/// trạng thái
 		/// </summary>
 		public string zt { get; set; }
 
 		/// <summary>
-		/// 排序
+		/// sắp xếp
 		/// </summary>
 		public int? px { get; set; }
 
@@ -203,28 +203,28 @@ namespace Newtouch.HIS.Domain.Entity.V
 		/// </summary>
 		public string LastModifierCode { get; set; }
 		/// <summary>
-		/// 进价总金额 药库单位进价
+		/// tổng tiền giá nhập giá nhập theo đơn vị kho thuốc
 		/// </summary>
 		public decimal? pfjze { get; set; }
 		
 
 		/// <summary>
-		/// 药品名称
+		/// tên thuốc
 		/// </summary>
 		public string ypmc { get; set; }
 
 		/// <summary>
-		/// 大类名称
+		/// tên nhóm lớn
 		/// </summary>
 		public string dlmc { get; set; }
 
 		/// <summary>
-		/// 药品规格
+		/// quy cách thuốc
 		/// </summary>
 		public string ypgg { get; set; }
 
 		/// <summary>
-		/// 生产厂家
+		/// nhà sản xuất
 		/// </summary>
 		public string ycmc { get; set; }
 	}

@@ -31,14 +31,14 @@
         if (callbackType == 'json') {
             treeSeleData = $("#userStaffTree").getCheckedNodeObjArray();
             if (single == 'true' && treeSeleData.length != 1) {
-                $.modalAlert('最多选中一条', 'warning');
+                $.modalAlert('chọn tối đa một dòng', 'warning');
                 return;
             }
         }
         else {
-            treeSeleData = $("#userStaffTree").getCheckedValues();  //Values对应的UserId
+            treeSeleData = $("#userStaffTree").getCheckedValues();  //Values tương ứng của UserId
             if (single == 'true' && treeSeleData.length != 1) {
-                $.modalAlert('最多选中一条', 'warning');
+                $.modalAlert('chọn tối đa một dòng', 'warning');
                 return;
             }
             treeSeleData = String(treeSeleData);
@@ -47,11 +47,11 @@
 
         }
         else if (fromDialog) {
-            //默认行为，callback上一Dialog的方法
+            //mặc định dòng là, callback trên một Dialog của phương thức
             top.top.window.frames[fromDialog].userStaffTreeCallback(treeSeleData);
         }
         else {
-            //默认行为，callback上一页面的方法
+            //mặc định dòng là, callback trên một trang của phương thức
             $.currentWindow().window.userStaffTreeCallback(treeSeleData);
         }
     }

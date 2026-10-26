@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysMedicineProfitLossReasonRepo : IRepositoryBase<SysMedicineProfitLossReasonEntity>
     {
         /// <summary>
-        /// 根据损益类型查询损益原因list
+        /// theo lãi/lỗ loại tra cứu nguyên nhân lãi/lỗ list
         /// </summary>
         /// <param name="sylx"></param>
         /// <returns></returns>

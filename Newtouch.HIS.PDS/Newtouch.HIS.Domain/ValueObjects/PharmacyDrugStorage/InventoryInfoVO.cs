@@ -3,82 +3,82 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 盘点信息
+    /// kiểm kê thông tin
     /// </summary>
     public class InventoryInfoVO
     {
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 药品规格
+        /// quy cách thuốc
         /// </summary>
         public string ypgg { get; set; }
 
         /// <summary>
-        /// 药厂名称=cd
+        /// tên nhà máy dược=cd
         /// </summary>
         public string ycmc { get; set; }
 
         /// <summary>
-        /// 拼音
+        /// phiên âm
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 大类代码
+        /// nhóm lớn mã
         /// </summary>
         public string dlCode { get; set; }
 
         /// <summary>
-        /// 盘点明细ID
+        /// chi tiết kiểm kê ID
         /// </summary>
         public string pdmxId { get; set; }
 
         /// <summary>
-        /// 批号
+        /// số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 频次
+        /// tần suất
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// hạn sử dụng
         /// </summary>
         public string yxq { get; set; }
 
         /// <summary>
-        /// 理论数量
+        /// số lượng lý thuyết lượng
         /// </summary>
         public string llsl { get; set; }
 
         /// <summary>
-        /// 实际数量
+        /// số lượng thực tế
         /// </summary>
         public int sjsl { get; set; }
 
         /// <summary>
-        /// 部门单位
+        /// đơn vị bộ phận
         /// </summary>
         public string deptdw { get; set; }
 
         /// <summary>
-        /// 药库数量
+        /// kho thuốc số lượng
         /// </summary>
         public int yksl { get; set; }
 
         /// <summary>
-        /// 批发价
+        /// giá bán buôn
         /// </summary>
         public decimal? pfj { get; set; }
 
@@ -88,77 +88,77 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public decimal? lsj { get; set; }
 
         /// <summary>
-        /// 药库批发价
+        /// giá bán buôn kho thuốc
         /// </summary>
         public decimal? ykpfj { get; set; }
 
         /// <summary>
-        /// 药库零售价
+        /// giá bán lẻ kho thuốc
         /// </summary>
         public decimal? yklsj { get; set; }
 
         /// <summary>
-        /// 转换因子
+        /// hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 门诊住院标志
+        /// cờ ngoại trú/nội trú
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 部门实际数 （与最小单位实际数组合使用）
+        /// bộ phận số thực tế  (与最小单位实际数组合使用)
         /// </summary>
         public int deptSjsl { get; set; }
 
         /// <summary>
-        /// 最小单位实际数 （与部门实际数组合使用）
+        /// đơn vị nhỏ nhất số thực tế  (与部门实际数组合使用)
         /// </summary>
         public int minSjsl { get; set; }
 
         /// <summary>
-        /// 包装单位
+        /// đơn vị đóng gói
         /// </summary>
         public string bzdw { get; set; }
 
         /// <summary>
-        /// 最小单位
+        /// đơn vị nhỏ nhất
         /// </summary>
         public string zxdw { get; set; }
 
         /// <summary>
-        /// 理论批发金额
+        /// tiền bán buôn lý thuyết
         /// </summary>
         public decimal? llpfje { get; set; }
 
         /// <summary>
-        /// 理论零售金额
+        /// tiền bán lẻ lý thuyết
         /// </summary>
         public decimal? lllsje { get; set; }
 
         /// <summary>
-        /// 实际批发金额
+        /// tiền bán buôn thực tế
         /// </summary>
         public decimal? sjpfje { get; set; }
 
         /// <summary>
-        /// 实际零售金额
+        /// tiền bán lẻ thực tế
         /// </summary>
         public decimal? sjlsje { get; set; }
 
         /// <summary>
-        /// 盘点时间
+        /// thời gian kiểm kê
         /// </summary>
         public string pdsj { get; set; }
 
         /// <summary>
-        /// 账册序号
+        /// số thứ tự sổ sách
         /// </summary>
         public string zcxh { get; set; }
 
         /// <summary>
-        /// 状态
+        /// trạng thái
         /// </summary>
         public string zt { get; set; }
 
@@ -173,7 +173,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string sjslstr { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
         /// <summary>
@@ -185,41 +185,41 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public decimal? pdpfjcy { get; set; }
         /// <summary>
-        /// 盘点数差异 = 实际数-理论数
+        /// 盘点数差异 = số thực tế-số lượng lý thuyết
         /// </summary>
         public string pdscy { get; set; }
 
         /// <summary>
-        /// 进价
+        /// giá nhập
         /// </summary>
         public decimal? jj { get; set; }
 
         /// <summary>
-        /// 数量盈亏 = 实际数 - 理论数
+        /// số lượng lãi/lỗ = số thực tế - số lượng lý thuyết
         /// </summary>
         //public int? slyk { get; set; }
         /// <summary>
-        /// 实盘金额 = 实际数 * 零售金额(实)
+        /// kiểm kê thực tế số tiền = số thực tế * tiền bán lẻ(thực)
         /// </summary>
         public decimal? spje { get; set; }
         /// <summary>
-        /// 盘前金额 = 理论数 * 零售金额(理)
+        /// trước kiểm kê số tiền = số lượng lý thuyết * tiền bán lẻ(lý thuyết)
         /// </summary>
         public decimal? pqje { get; set; }
         /// <summary>
-        /// 盈亏金额 = 实盘金额 - 盘前金额
+        /// lãi/lỗ số tiền = kiểm kê thực tế số tiền - trước kiểm kê số tiền
         /// </summary>
         public decimal? ykje { get; set; }
 
         /// <summary>
-        /// 追溯码
+        /// mã truy xuất
         /// </summary>
         public string zsm { get; set; }
 
         /// <summary>
-        /// 是否拆零
-        /// 1： 是
-        /// 2： 否
+        /// có tách lẻ không
+        /// 1: có
+        /// 2: không
         /// </summary>
         public int? sfcl { get; set; }
 

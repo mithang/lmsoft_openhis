@@ -5,28 +5,28 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 处方明细（可在排药使用）
+    /// chi tiết đơn thuốc (có thể tại xếp thuốc khiến dùng)
     /// </summary>
     [NotMapped]
     public class CfmxVo : MzCfmxEntity
     {
         /// <summary>
-        /// 发票号
+        /// số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 医生嘱托
+        /// lời dặn của bác sĩ
         /// </summary>
         public string yszt { get; set; }
 
         /// <summary>
-        /// 收费时间
+        /// thời gian thu phí
         /// </summary>
         public DateTime? sfsj { get; set; }
 
         /// <summary>
-        /// 单位数量
+        /// đơn vị số lượng
         /// </summary>
         public string slStr { get; set; }
 

@@ -12,18 +12,18 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysUserLogOnEntity : IEntity<SysUserLogOnEntity>
     {
         /// <summary>
-        /// 用户登录主键
+        /// người dùng đăng nhập khóa chính
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 用户主键
+        /// người dùng khóa chính
         /// </summary>
         public string UserId { get; set; }
 
         /// <summary>
-        /// 用户密码
+        /// người dùng mật khẩu
         /// </summary>
         public string UserPassword { get; set; }
 
@@ -33,17 +33,17 @@ namespace Newtouch.HIS.Domain.Entity
         public string UserSecretkey { get; set; }
 
         /// <summary>
-        /// 上一次访问时间
+        /// trên một lần truy cập thời gian
         /// </summary>
         public DateTime? PreviousVisitTime { get; set; }
 
         /// <summary>
-        /// 最后访问时间
+        /// cuối cùng truy cập thời gian
         /// </summary>
         public DateTime? LastVisitTime { get; set; }
 
         /// <summary>
-        /// 登录次数
+        /// đăng nhập lần số
         /// </summary>
         public int? LogOnCount { get; set; }
 

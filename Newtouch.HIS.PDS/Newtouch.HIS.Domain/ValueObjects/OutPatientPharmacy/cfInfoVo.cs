@@ -3,27 +3,27 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 处方信息
+    /// thông tin đơn thuốc
     /// </summary>
     public class cfInfoVo
     {
         /// <summary>
-        /// 收费时间（展示用）
+        /// thời gian thu phí (展示用)
         /// </summary>
         public string ShowSfsj { get; set; }
 
         /// <summary>
-        /// 主键ID
+        /// khóa chính ID
         /// </summary>
         public long Id { get; set; }
 
         /// <summary>
-        /// 处方内码
+        /// mã nội bộ đơn thuốc
         /// </summary>
         public long cfnm { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
@@ -33,27 +33,27 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string cfhComplete { get; set; }
 
         /// <summary>
-        /// 总金额
+        /// tổng số tiền
         /// </summary>
         public decimal? Zje { get; set; }
 
         /// <summary>
-        /// 结算内码
+        /// quyết toán trong mã
         /// </summary>
         public long jsnm { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// số thẻ
         /// </summary>
         public string CardNo { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// họ tên
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// số hóa đơn
         /// </summary>
         public string Fph { get; set; }
 
@@ -63,47 +63,47 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string FphComplete { get; set; }
 
         /// <summary>
-        /// 年龄
+        /// tuổi
         /// </summary>
         public int? nl { get; set; }
 
         /// <summary>
-        /// 病人性质
+        /// tính chất bệnh nhân
         /// </summary>
         public string brxzmc { get; set; }
 
         /// <summary>
-        /// 医生
+        /// bác sĩ
         /// </summary>
         public string ysmc { get; set; }
 
         /// <summary>
-        /// 科室
+        /// khoa
         /// </summary>
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 处方金额
+        /// đơn thuốc số tiền
         /// </summary>
         public decimal je { get; set; }
 
         /// <summary>
-        /// 领药药房
+        /// nhà thuốc lĩnh thuốc
         /// </summary>
         public string lyyf { get; set; }
 
         /// <summary>
-        /// 0：未排；1：已排；2：已发；3：已退
+        /// 0: chưa xếp; 1: đã xếp; 2: đã phát; 3: đã trả
         /// </summary>
         public string fybz { get; set; }
 
         /// <summary>
-        /// 组织机构Id
+        /// tổ chức Id
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 发药时间
+        /// thời gian phát thuốc
         /// </summary>
         public DateTime? fysj { get; set; }
 

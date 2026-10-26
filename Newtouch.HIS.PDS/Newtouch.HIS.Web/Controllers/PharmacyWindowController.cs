@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 查询药房窗口信息
+        /// tra cứu nhà thuốc cửa sổ thông tin
         /// </summary>
         /// <param name="pagintion"></param>
         /// <param name="yfckCode"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 修改窗口信息
+        /// sửa cửa sổ thông tin
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -87,7 +87,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 根据organizeId获取药房部门
+        /// theo organizeId lấy bộ phận nhà thuốc
         /// </summary>
         /// <returns></returns>
         public ActionResult PharmacyDepartmentList(string organizeId, byte? yjbmjb)

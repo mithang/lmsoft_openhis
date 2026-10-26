@@ -7,18 +7,18 @@
 <form id="form1">
     <div class="panel panel-default">
         <div class="panel-heading">
-            筛选条件
+            điều kiện lọc
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">关键字</th>
+                    <th class="formTitle">từ khóa</th>
                     <td class="formValue">
-                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="药品代码 拼音 名称" />
+                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="mã thuốc phiên âm tên" />
                     </td>
                     <td class="formValue" colspan="3">
-                        <input type="button" id="btn_search" class="btn btn-primary btn-md" value="查询" style="width:55px" />
-                        <span style="color: red; margin-left:10px;">注：无法查询已申请调价但未执行的药品</span>
+                        <input type="button" id="btn_search" class="btn btn-primary btn-md" value="tra cứu" style="width:55px" />
+                        <span style="color: red; margin-left:10px;">chú: không có pháp tra cứu đã đề nghị điều chỉnh giá nhưng chưa thực hiện của thuốc</span>
                     </td>
                 </tr>
             </table>
@@ -32,34 +32,34 @@
     </div>
     <div class="gridPanel" style="margin-top:10px">
         <div class="panel-heading">
-            调价明细
+            điều chỉnh giá chi tiết
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>批发价</th>
+                    <th class="formTitle"><span class="required">*</span>giá bán buôn</th>
                     <td class="formValue">
                         <input type="text" id="txtPFJ" class="form-control" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>零售价</th>
+                    <th class="formTitle"><span class="required">*</span>giá bán lẻ</th>
                     <td class="formValue">
                         <input type="text" id="txtLSJ" class="form-control" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>执行文件</th>
+                    <th class="formTitle"><span class="required">*</span>thực hiện tệp</th>
                     <td class="formValue">
                         <input type="text" id="txtZXWJ" class="form-control" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>执行时间</th>
+                    <th class="formTitle"><span class="required">*</span>thời gian thực hiện</th>
                     <td class="formValue">
                         <input id="txtZXSJ" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ minDate: '%y-%M-#{%d+1}' })" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">原批发价</th>
+                    <th class="formTitle">giá bán buôn gốc</th>
                     <td class="formValue">
                         <input type="text" id="txtYPFJ" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">原零售价</th>
+                    <th class="formTitle">giá bán lẻ gốc</th>
                     <td class="formValue">
                         <input type="text" id="txtYLSJ" class="form-control newtouch_Readonly" />
                         <input type="text" id="hidden_ypCode" hidden />
@@ -73,7 +73,7 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 6 },
-    F6Text = "申请"
+    F6Text = "đề nghị"
 })
 
 <script>
@@ -97,39 +97,39 @@
             url: "/DrugStorage/SelectAdjustPriceMedicineInfoList",
             height: $(window).height() - 310,
             colModel: [
-                { label: "药品代码", name: "ypCode", width: 80, align: 'left' },
-                { label: '药品名称', name: 'ypmc', width: 120, align: 'left' },
-                { label: '药品规格', name: 'ypgg', width: 120, align: 'left' },
-                { label: '定价单位', name: 'djdw', width: 80, align: 'left' },
+                { label: "mã thuốc", name: "ypCode", width: 80, align: 'left' },
+                { label: 'tên thuốc', name: 'ypmc', width: 120, align: 'left' },
+                { label: 'quy cách thuốc', name: 'ypgg', width: 120, align: 'left' },
+                { label: 'đơn vị định giá', name: 'djdw', width: 80, align: 'left' },
                 {
-                    label: '批发价', name: 'pfj', width: 100, align: 'left',
+                    label: 'giá bán buôn', name: 'pfj', width: 100, align: 'left',
                     formatter: function (val) {
                         return val.toFixed(4);
                     }
                 },
                 {
-                    label: '零售价', name: 'lsj', width: 100, align: 'left',
+                    label: 'giá bán lẻ', name: 'lsj', width: 100, align: 'left',
                     formatter: function (val) {
                         return val.toFixed(4);
                     }
                 },
-                { label: '药品属性', name: 'yptssxmc', width: 80, align: 'left' },
-                { label: '药品类别', name: 'yplb', width: 80, align: 'left' },
-                { label: '剂量', name: 'jl', width: 80, align: 'left' },
-                { label: '剂量单位', name: 'jldw', width: 80, align: 'left' },
-                { label: '药库包装数', name: 'bzs', width: 80, align: 'left' },
-                { label: '药库包装单位', name: 'bzdw', width: 80, align: 'left' },
-                { label: '门诊拆零数', name: 'mzcls', width: 80, align: 'left' },
-                { label: '门诊拆零单位', name: 'mzcldw', width: 80, align: 'left' },
-                { label: '住院拆零数', name: 'zycls', width: 80, align: 'left' },
-                { label: '住院拆零单位', name: 'zycldw', width: 80, align: 'left' },
-                { label: '自负比例', name: 'zfbl', width: 80, align: 'left' },
-                { label: '自负性质', name: 'zfxz', width: 80, align: 'left' },
-                { label: '剂型', name: 'jxmc', width: 100, align: 'left' },
-                { label: '生产厂家', name: 'ycmc', width: 150, align: 'left' },
-                { label: '状态', name: 'zt', width: 80, align: 'left' },
-                { label: '记账类型', name: 'jzlx', width: 100, align: 'left' },
-                { label: '默认保质期', name: 'mrbzq', width: 80, align: 'left' }
+                { label: 'thuộc tính thuốc', name: 'yptssxmc', width: 80, align: 'left' },
+                { label: 'loại thuốc', name: 'yplb', width: 80, align: 'left' },
+                { label: 'liều dùng', name: 'jl', width: 80, align: 'left' },
+                { label: 'đơn vị liều dùng', name: 'jldw', width: 80, align: 'left' },
+                { label: 'kho thuốc số lượng đóng gói', name: 'bzs', width: 80, align: 'left' },
+                { label: 'kho thuốc đơn vị đóng gói', name: 'bzdw', width: 80, align: 'left' },
+                { label: 'số tách lẻ ngoại trú', name: 'mzcls', width: 80, align: 'left' },
+                { label: 'đơn vị tách lẻ ngoại trú', name: 'mzcldw', width: 80, align: 'left' },
+                { label: 'số tách lẻ nội trú', name: 'zycls', width: 80, align: 'left' },
+                { label: 'đơn vị tách lẻ nội trú', name: 'zycldw', width: 80, align: 'left' },
+                { label: 'tỷ lệ tự chi trả', name: 'zfbl', width: 80, align: 'left' },
+                { label: 'tính chất tự chi trả', name: 'zfxz', width: 80, align: 'left' },
+                { label: 'dạng bào chế', name: 'jxmc', width: 100, align: 'left' },
+                { label: 'nhà sản xuất', name: 'ycmc', width: 150, align: 'left' },
+                { label: 'trạng thái', name: 'zt', width: 80, align: 'left' },
+                { label: 'ghi sổ loại', name: 'jzlx', width: 100, align: 'left' },
+                { label: 'mặc định hạn bảo quản', name: 'mrbzq', width: 80, align: 'left' }
             ],
             multiselect: false,
             pager: "#gridPager",
@@ -156,15 +156,15 @@
         }).trigger("reloadGrid");
     }
 
-    //查询条件
+    //điều kiện tra cứu
     function getSearchPostData() {
         var inputCode = $("#txtINPUTCODE").val();
         return { inputCode: inputCode };
     };
 
-    //提交申请
+    //gửi đề nghị
     function newtouch_event_f6() {
-        //校验数据
+        //kiểm tra dữ liệu
         if (!CheckData()) {
             return false;
         }
@@ -175,7 +175,7 @@
             type: "POST",
             async: "false",
             success: function (data) {
-                $.modalAlert("申请提交成功", 'success');
+                $.modalAlert("đề nghị gửi thành công", 'success');
                 $("#txtPFJ").val('');
                 $("#txtLSJ").val('');
                 $("#txtZXWJ").val('');
@@ -191,35 +191,35 @@
     }
 
 
-    //校验数据
+    //kiểm tra dữ liệu
     function CheckData() {
         //校验格式
         if ($("#txtYPFJ").val() === "") {
-            $.modalAlert("请选择药品进行调价！", 'warning');
+            $.modalAlert("vui lòng chọn thuốc tiến hành điều chỉnh giá!", 'warning');
             return false;
         }
         if ($("#txtPFJ").val() === "") {
-            $.modalAlert("批发价不能为空！", 'warning');
+            $.modalAlert("giá bán buôn không thể trống!", 'warning');
             return false;
         }
         if ($("#txtLSJ").val() === "") {
-            $.modalAlert("零售价不能为空！", 'warning');
+            $.modalAlert("giá bán lẻ không thể trống!", 'warning');
             return false;
         }
         if (isNaN($("#txtPFJ").val()) || isNaN($("#txtLSJ").val())) {
-            $.modalAlert("批发价或零售价格式错误,请填写数字！", 'warning');
+            $.modalAlert("批发价或零售价格式错误,请填写数字!", 'warning');
             return false;
         }        
         if ($("#txtZXWJ").val() === "") {
-            $.modalAlert("执行文件不能为空！", 'warning');
+            $.modalAlert("thực hiện tệp không thể trống!", 'warning');
             return false;
         }
         if ($("#txtZXSJ").val() === "") {
-            $.modalAlert("执行时间不能为空！", 'warning');
+            $.modalAlert("thời gian thực hiện không thể trống!", 'warning');
             return false;
         }
         if ($("#txtPFJ").val() === $("#txtYPFJ").val() && $("#txtLSJ").val() === $("#txtYLSJ").val()) {
-            $.modalAlert("批发价和零售价不能与原价相同！", "warning");
+            $.modalAlert("批发价和零售价不能与原价相同!", "warning");
             return false;
         }
         return true;

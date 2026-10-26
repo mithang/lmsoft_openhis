@@ -1,33 +1,33 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "药品价格分析表";
+    ViewBag.Title = "bảng phân tích giá thuốc";
     Layout = "~/Views/Shared/_Index.cshtml";
-    //报表链接
+    //liên kết báo cáo
     var reportUrl = SysConfigReader.OrgReportLink();
     var reportUrlNew = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
 }
 
 <form id="form1">
     <div class="panel panel-default">
-        <div class="panel-heading">搜索</div>
+        <div class="panel-heading">tìm kiếm</div>
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle ">统计日期:</th>
+                    <th class="formTitle ">ngày thống kê:</th>
                     <td class="formValue">
                         <input id="kssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">到：</th>
+                    <th class="formTitle">đến: </th>
                     <td class="formValue">
                         <input id="jssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm:ss")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">药品定位：</th>
+                    <th class="formTitle">thuốc định vị: </th>
                     <td class="formValue">
                         <input id="keyword" type="text" class="form-control" />
                         <input id="ypcode" type="hidden" />
                     </td>
                     <td class="formTitle">
-                        <input type="button" id="btn_search" class="btn btn-primary" value="查询" style="margin-left:10px;"  />
+                        <input type="button" id="btn_search" class="btn btn-primary" value="tra cứu" style="margin-left:10px;"  />
                     </td>
                 </tr>
             </table>
@@ -44,7 +44,7 @@
 
     $(function () {
 
-        //药品代码
+        //mã thuốc
         $("#keyword").newtouchBatchFloatingSelector({
             clickautotrigger: true,
             height: 200,
@@ -56,27 +56,27 @@
                 reqData.inputCode = $("#keyword").val();
                 return reqData;
             },
-            caption: "药品信息",
+            caption: "thông tin thuốc",
             colModel: [
-                { label: '类别', name: 'yplb', width: 50 },
-                { label: '名称', name: 'ypmc', width: 200, align: 'left' },
-                { label: '库存', name: 'xykcstr', width: 70, align: 'right' },
-                { label: '规格', name: 'ypgg', width: 150, align: 'center' },
-                { label: '有效期', name: 'yxq', width: 80 },
-                { label: '批号', name: 'ph', width: 110, align: 'center' },
-                { label: '批次', name: 'pc', width: 140, align: 'center' },
-                { label: '生产厂家', name: 'sccj', width: 220, align: 'center' },
-                { label: '状态', name: 'ypzt', width: 50 },
-                { label: '进价', name: 'jj', hidden: true },
-                { label: '零售价', name: 'lsj', hidden: true },
-                { label: '批发价', name: 'pfj', hidden: true },
-                { label: '药库零售价', name: 'Yklsj', hidden: true },
-                { label: '药库批发价', name: 'Ykpfj', hidden: true },
-                { label: '代码', name: 'ypCode', hidden: true },
-                { label: '转换因子', name: 'zhyz', hidden: true },
+                { label: 'loại', name: 'yplb', width: 50 },
+                { label: 'tên', name: 'ypmc', width: 200, align: 'left' },
+                { label: 'tồn kho', name: 'xykcstr', width: 70, align: 'right' },
+                { label: 'quy cách', name: 'ypgg', width: 150, align: 'center' },
+                { label: 'hạn sử dụng', name: 'yxq', width: 80 },
+                { label: 'số lô', name: 'ph', width: 110, align: 'center' },
+                { label: 'lô', name: 'pc', width: 140, align: 'center' },
+                { label: 'nhà sản xuất', name: 'sccj', width: 220, align: 'center' },
+                { label: 'trạng thái', name: 'ypzt', width: 50 },
+                { label: 'giá nhập', name: 'jj', hidden: true },
+                { label: 'giá bán lẻ', name: 'lsj', hidden: true },
+                { label: 'giá bán buôn', name: 'pfj', hidden: true },
+                { label: 'giá bán lẻ kho thuốc', name: 'Yklsj', hidden: true },
+                { label: 'giá bán buôn kho thuốc', name: 'Ykpfj', hidden: true },
+                { label: 'mã', name: 'ypCode', hidden: true },
+                { label: 'hệ số chuyển đổi', name: 'zhyz', hidden: true },
                 { label: 'kcsl', name: 'kcsl', hidden: true },
                 { label: 'zxdw', name: 'zxdw', hidden: true },
-                { label: '单位', name: 'djdw', hidden: true }
+                { label: 'đơn vị', name: 'djdw', hidden: true }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#ypcode").val($thistr.attr('data-ypCode'));
@@ -91,7 +91,7 @@
     $("#btn_search").click(function () {
         debugger
         if ($('#kssj').val() > $('#jssj').val()) {
-            $.modalAlert("开始时间不能大于结束时间", "error");
+            $.modalAlert("thời gian bắt đầu không được lớn hơn thời gian kết thúc", "error");
             return;
         }
         var orgId = '@ViewBag.OrgId';
@@ -100,21 +100,21 @@
         url += "&orgId=" + orgId + "&kssj=" + $('#kssj').val() + "&jssj=" + $('#jssj').val() + "&ypcode=" + $("#ypcode").val();
 
 
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'đang yêu cầu trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
     });
 
     @*function submit() {
         debugger
         if ($('#kssj').val() > $('#jssj').val()) {
-            $.modalAlert("开始时间不能大于结束时间", "error");
+            $.modalAlert("thời gian bắt đầu không được lớn hơn thời gian kết thúc", "error");
             return;
         }
         var orgId = '@ViewBag.OrgId';
 
         var url = getUrl();
         url += "&orgId=" + orgId + "&kssj=" + $('#kssj').val() + "&jssj=" + $('#jssj').val() + "&ypcode=" + $("#ypcode").val();
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'đang yêu cầu trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
     }*@
     $("#iframerightiframerightiframerightttt").load(function () {
@@ -125,7 +125,7 @@
         $('#layout iframe').css('height', h);
     });
 
-    //刷新列表
+    //làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }
@@ -134,7 +134,7 @@
         debugger
         var reportServerHOST = '@(ViewBag.ReportServerHOST)';
         reportServerHOST += "/Pages/ReportViewer.aspx?%2fNewtouch.HIS.Bill%2fYPDrugComparison";
-        //获取自定义样式
+        //lấy kiểu tùy chỉnh
         if (true) {
             if (reportServerHOST.indexOf('&rc:Stylesheet') == -1) {
                 reportServerHOST += "&rc:Stylesheet=MyStyleSheet";

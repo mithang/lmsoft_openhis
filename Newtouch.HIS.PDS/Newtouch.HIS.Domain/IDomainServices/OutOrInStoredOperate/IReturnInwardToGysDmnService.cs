@@ -4,12 +4,12 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 外部出库
+    /// xuất kho ra bên ngoài
     /// </summary>
     public interface IReturnInwardToGysDmnService
     {
         /// <summary>
-        /// 提交外部出库
+        /// gửi xuất kho ra bên ngoài
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="mx"></param>

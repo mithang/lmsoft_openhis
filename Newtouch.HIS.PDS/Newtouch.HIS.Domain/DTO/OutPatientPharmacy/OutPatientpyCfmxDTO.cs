@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.DTO.OutPatientPharmacy
 {
     /// <summary>
-    /// 处方明细
+    /// chi tiết đơn thuốc
     /// </summary>
     public class OutPatientpyCfmxDTO
     {
@@ -25,7 +25,7 @@
         public string czh { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
     }

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "库存盘点";
+    ViewBag.Title = "tồn kho kiểm kê";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -33,21 +33,21 @@
 </style>
 <div class="dv-panel">
     <div class="dv-index">
-        <div id="dv_index_startPd">开始盘点</div>
-        <div id="dv_search">查询</div>
+        <div id="dv_index_startPd">bắt đầu kiểm kê</div>
+        <div id="dv_search">tra cứu</div>
     </div>
 </div>
 <script>
     $(function() {
-        $(window).resize(function () {//浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {//tải lại khi thay đổi kích thước cửa sổ trình duyệt jqGrid chiều rộng
             window.initLayout("MyTabGrid");
         });
         $("#dv_index_startPd").click(function () {
-            $.loading("数据加载中");
+            $.loading("đang tải dữ liệu");
             window.location.href = "InventoryAction";
         });
         $("#dv_search").click(function () {
-            $.loading("数据加载中");
+            $.loading("đang tải dữ liệu");
             window.location.href = "InventoryQuery";
         });
     });

@@ -1,22 +1,22 @@
 ﻿namespace Newtouch.HIS.Domain.Entity.V
 {
     /// <summary>
-    /// 医嘱信息
+    /// y lệnh thông tin
     /// </summary>
     public class YzxxVEntity
     {
         /// <summary>
-        /// 发药标志
+        /// cờ phát thuốc
         /// </summary>
         public string fybz { get; set; }
 
         /// <summary>
-        /// 申请退药标志 0：否  1：是
+        /// đề nghị trả thuốc cờ 0: không  1: có
         /// </summary>
         public int? sqtybz { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// tên thuốc
         /// </summary>
         public string ypmc { get; set; }
     }

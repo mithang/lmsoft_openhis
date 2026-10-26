@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 类别名称
+        /// loại tên
         /// </summary>
         public string typeName { get; set; }
 
@@ -29,17 +29,17 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string typelevel { get; set; }
 
         /// <summary>
-        /// 权限级别(0 非限制使用药物,1 限制使用药物,2 特殊使用药物)
+        /// cấp quyền(0 không hạn chế sử dụng thuốc,1 hạn chế sử dụng thuốc,2 đặc biệt sử dụng thuốc)
         /// </summary>
         public string qxjb { get; set; }
 
         /// <summary>
-        /// 权限级别名称
+        /// cấp quyền tên
         /// </summary>
         public string qxjbmc { get; set; }
 
         /// <summary>
-        /// 上级类别Id
+        /// cấp trên loại Id
         /// </summary>
         public string parentId { get; set; }
 
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 1：有效 0：无效
+        /// 1: còn hiệu lực 0: không hiệu lực
         /// </summary>
         public string zt { get; set; }
     }

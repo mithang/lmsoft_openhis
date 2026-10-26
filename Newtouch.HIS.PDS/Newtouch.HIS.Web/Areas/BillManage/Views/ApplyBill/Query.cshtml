@@ -3,7 +3,7 @@
 @using Newtouch.HIS.Web.Core.Extensions;
 @using Newtouch.Common.Operator;
 @{
-    ViewBag.Title = "出入库单查询";
+    ViewBag.Title = "ra nhập kho đơn tra cứu";
     Layout = "~/Views/Shared/_Index.cshtml";
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
 
@@ -59,29 +59,29 @@
 <input hidden id="OrganizeId" value="@OperatorProvider.GetCurrent().OrganizeId">
 <form id="form1">
     <div class="panel panel-default" id="dv_search">
-        <div class="panel-heading">查询条件</div>
+        <div class="panel-heading">điều kiện tra cứu</div>
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">发放状态：</th>
+                    <th class="formTitle">trạng thái cấp phát: </th>
                     <td class="formValue" style="width: 100px;">
-                        @Html.DropDownList("ffzt", EnumSLDDeliveryStatus.None.ToDescSelectList(), "全部", new { @class = "form-control" })
+                        @Html.DropDownList("ffzt", EnumSLDDeliveryStatus.None.ToDescSelectList(), "tất cả", new { @class = "form-control" })
                     </td>
-                    <th class="formTitle">单据号：</th>
+                    <th class="formTitle">số chứng từ: </th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="djh" />
                     </td>
-                    <th class="formTitle">申请日期：</th>
+                    <th class="formTitle">ngày đề nghị: </th>
                     <td class="formValue">
                         <input id="startTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle" style="width:45px;">至：</th>
+                    <th class="formTitle" style="width:45px;">đến: </th>
                     <td class="formValue">
                         <input id="endTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
                     <td class="formTitle" style="width:150px;">
-                        <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" />
-                        <input type="button" id="btn_print" class="btn btn-md btn-primary" value="打印" />
+                        <input type="button" id="btn_search" class="btn btn-md btn-primary" value="tra cứu" />
+                        <input type="button" id="btn_print" class="btn btn-md btn-primary" value="in" />
                     </td>
                 </tr>
             </table>
@@ -95,7 +95,7 @@
 <div id="TabGrid">
     <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
         <li role="presentation" class="active">
-            <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">单据明细</a>
+            <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">chi tiết chứng từ</a>
         </li>
         <li style="float:right">
             <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
@@ -113,12 +113,12 @@
 <script>
     var $gridDjMainRecords = $("#gridDJMainRecords");
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //tải lại khi thay đổi kích thước cửa sổ trình duyệt jqGrid chiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
         $('#ddlSHZT').val('0');
-        //搜索框隐藏显示控制
+        //điều khiển ẩn/hiện hộp tìm kiếm
         $(".hiding,.rows,#dv_search,.toolbar").click(function () {
             TabGridHide();
         });
@@ -131,14 +131,14 @@
         gridDJMainRecords();
     });
 
-    //回车事件绑定
+    //gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode == 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //隐藏搜索框并显示箭头
+    //ẩn hộp tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -148,7 +148,7 @@
         }
     }
 
-    //单据主记录
+    //bản ghi chính của chứng từ
     function gridDJMainRecords() {
         $gridDjMainRecords.dataGrid({
             height: $(window).height() - 155,
@@ -156,9 +156,9 @@
             url: "/BillManage/ApplyBill/ApplyMainInfoSearch",
             colModel: [
                 { label: 'sldId', name: 'sldId', hidden: true, align: 'left' },
-                { label: '申领单号', name: 'Sldh', width: 150, align: 'center' },
+                { label: 'số phiếu lĩnh', name: 'Sldh', width: 150, align: 'center' },
                 {
-                    label: '发药状态', name: 'ffzt', width: 80, align: 'center', formatter: function (val) {
+                    label: 'trạng thái phát thuốc', name: 'ffzt', width: 80, align: 'center', formatter: function (val) {
                         switch (val) {
                         case @((int)EnumSLDDeliveryStatus.None):
                             return "@EnumSLDDeliveryStatus.None.GetDescription()";
@@ -173,10 +173,10 @@
                         }
                     }
                 },
-                { label: '申领部门', name: 'slbmmc', width: 100, align: 'left' },
-                { label: '发药部门', name: 'ckbmmc', width: 100, align: 'left' },
-                { label: '申领时间', name: 'CreateTime', width: 150, align: 'center', formatter: 'date', formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '最近发药时间', name: 'LastModifyTime', width: 150, align: 'center', formatter: 'date', formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'bộ phận lĩnh', name: 'slbmmc', width: 100, align: 'left' },
+                { label: 'bộ phận phát thuốc', name: 'ckbmmc', width: 100, align: 'left' },
+                { label: 'thời gian lĩnh', name: 'CreateTime', width: 150, align: 'center', formatter: 'date', formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'thời gian phát thuốc gần nhất', name: 'LastModifyTime', width: 150, align: 'center', formatter: 'date', formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
 
             ],
             unwritten: false,
@@ -196,7 +196,7 @@
         });
     }
 
-    //组装查询条件
+    //tập hợp điều kiện tra cứu
     function getSearchPostData() {
         var ffzt = $("#ffzt").val() === "" ? -1 : $("#ffzt").val();
         var djh = $("#djh").val();
@@ -205,9 +205,9 @@
         return { ffzt: ffzt, djh: djh, startTime: startTime, endTime: endTime };
     };
 
-    //单击事件
+    //sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+        $('#gridDJMXInfo').jqGrid("clearGridData");//mỗi lần nhấp, trước tiên xóa chi tiết sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $('#gridDJMXInfo').jqGrid('setGridParam', {
             postData: { sldId: $("#gridDJMainRecords").jqGrid('getRowData', rowId).sldId },
             url: "/BillManage/ApplyBill/ApplyDetailSearch"
@@ -215,18 +215,18 @@
         $(".showbotton").click().trigger("click");
     }
 
-    //单据明细
+    //chi tiết chứng từ
     $('#gridDJMXInfo').dataGrid({
         height: $(window).height() - 200,
         colModel: [
-            { label: '类别', name: 'dlmc', width: 80, align: 'center' },
-            { label: '名称', name: 'ypmc', width: 110, align: 'center' },
+            { label: 'loại', name: 'dlmc', width: 80, align: 'center' },
+            { label: 'tên', name: 'ypmc', width: 110, align: 'center' },
             { label: '申领数', name: 'slslStr', width: 70, align: 'center' },
-            { label: '已发数', name: 'yfslStr', width: 70, align: 'center' },
-            { label: '批号', name: 'ph', width: 100, align: 'center' },
-            { label: '批次', name: 'pc', width: 100, align: 'center' },
-            { label: '有效期', name: 'yxq', width: 150, align: 'center', formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-            { label: '最近发药时间', name: 'LastModifyTime', width: 150, align: 'center', formatter: 'date', formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+            { label: 'đã phát số', name: 'yfslStr', width: 70, align: 'center' },
+            { label: 'số lô', name: 'ph', width: 100, align: 'center' },
+            { label: 'lô', name: 'pc', width: 100, align: 'center' },
+            { label: 'hạn sử dụng', name: 'yxq', width: 150, align: 'center', formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+            { label: 'thời gian phát thuốc gần nhất', name: 'LastModifyTime', width: 150, align: 'center', formatter: 'date', formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
             { label: '最近发药人', name: 'LastModifierCode', width: 80, align: 'center' },
             { label: 'sldmxId', name: 'sldmxId', hidden: true },
             { label: 'slsl', name: 'slsl', hidden: true },

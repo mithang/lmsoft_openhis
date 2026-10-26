@@ -4,13 +4,13 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 药房部门
+    /// bộ phận nhà thuốc
     /// </summary>
     public interface ISysPharmacyDepartmentDmnService
     {
 
         /// <summary>
-        /// 根据药品代码获取已授权的药房药库
+        /// theo mã thuốc lấy đã ủy quyền của nhà thuốc kho thuốc
         /// </summary>
         /// <param name="ypId"></param>
         /// <param name="organizeId"></param>

@@ -6,7 +6,7 @@ using Newtouch.Infrastructure.EF.Attributes;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品调价
+    /// hệ thống thuốc điều chỉnh giá
     /// </summary>
     [Table("xt_yptj")]
     public class SysMedicinePriceAdjustmentEntity : IEntity<SysMedicinePriceAdjustmentEntity>
@@ -33,56 +33,56 @@ namespace Newtouch.HIS.Domain.Entity
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 批发价
+        /// giá bán buôn
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal pfj { get; set; }
 
         /// <summary>
-        /// 零售价
+        /// giá bán lẻ
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 原批发价
+        /// giá bán buôn gốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal ypfj { get; set; }
 
         /// <summary>
-        /// 原零售价
+        /// giá bán lẻ gốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal ylsj { get; set; }
 
         /// <summary>
-        /// 审核标志 0:未审核 1:已审核 2:已拒绝 3.已撤销
+        /// duyệt cờ 0:chưa duyệt 1:đã duyệt 2:đã từ chối 3.đã thu hồi
         /// </summary>
         public string shzt { get; set; }
 
         /// <summary>
-        /// 修改类型
+        /// sửa loại
         /// </summary>
         public string xglx { get; set; }
 
         /// <summary>
-        /// 调整时间
+        /// điều chỉnh thời gian
         /// </summary>
         public DateTime tzsj { get; set; }
 
         /// <summary>
-        /// 调整文件
+        /// điều chỉnh tệp
         /// </summary>
         public string tzwj { get; set; }
 
         /// <summary>
-        /// 执行时间
+        /// thời gian thực hiện
         /// </summary>
         public DateTime zxsj { get; set; }
 
         /// <summary>
-        /// 调整操作人
+        /// điều chỉnh người thao tác
         /// </summary>
         public string tzczy { get; set; }
 
@@ -92,12 +92,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string shczy { get; set; }
 
         /// <summary>
-        /// 执行操作人
+        /// thực hiện người thao tác
         /// </summary>
         public string zxczy { get; set; }
 
         /// <summary>
-        /// 执行标志    0:未执行 1:已执行
+        /// cờ thực hiện    0:chưa thực hiện 1:đã thực hiện
         /// </summary>
         public string zxbz { get; set; }
 

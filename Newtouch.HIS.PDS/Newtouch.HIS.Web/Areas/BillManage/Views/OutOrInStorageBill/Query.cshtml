@@ -4,7 +4,7 @@
 @{
     /**/
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
-    ViewBag.Title = "出入库单查询";
+    ViewBag.Title = "ra nhập kho đơn tra cứu";
     Layout = "~/Views/Shared/_Index.cshtml";
 
     var djlxItemStrs = Constants.CurrentYfbm.yfbmjb != "1" ?
@@ -78,50 +78,50 @@
 <form id="form1">
     <div class="panel panel-default" id="dv_search">
         <div class="panel-heading">
-            查询条件
+            điều kiện tra cứu
         </div>
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">审核状态：</th>
+                    <th class="formTitle">trạng thái duyệt: </th>
                     <td class="formValue" style="width: 100px;">
-                        @Html.DropDownList("ddlSHZT", EnumDjShzt.WaitingApprove.ToDescSelectList(), "全部", new { @class = "form-control" })
+                        @Html.DropDownList("ddlSHZT", EnumDjShzt.WaitingApprove.ToDescSelectList(), "tất cả", new { @class = "form-control" })
                     </td>
-                    <th class="formTitle">日期：</th>
+                    <th class="formTitle">ngày: </th>
                     <td class="formValue">
                         <input id="txtStartDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">至：</th>
+                    <th class="formTitle">đến: </th>
                     <td class="formValue">
                         <input id="txtEndDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd 23:59:59")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">发票号：</th>
+                    <th class="formTitle">số hóa đơn: </th>
                     <td class="formValue">
                         <input id="txtFPH" type="text" class="form-control " />
                     </td>
                     <td class="formTitle">
-                        <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" />
+                        <input type="button" id="btn_search" class="btn btn-md btn-primary" value="tra cứu" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">单据号：</th>
+                    <th class="formTitle">số chứng từ: </th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtPDH" />
                     </td>
-                    <th class="formTitle">单据类型：</th>
+                    <th class="formTitle">loại chứng từ: </th>
                     <td class="formValue">
-                        @Html.DropDownList("ddlDJLX", EnumDanJuLX.yaopinruku.ToSomeDescSelectList(String.Join(",", djlxItemStrs)), "全部", new { @class = "form-control" })
+                        @Html.DropDownList("ddlDJLX", EnumDanJuLX.yaopinruku.ToSomeDescSelectList(String.Join(",", djlxItemStrs)), "tất cả", new { @class = "form-control" })
                     </td>
-                    <th class="formTitle">供应商：</th>
+                    <th class="formTitle">nhà cung cấp: </th>
                     <td class="formValue">
                         <select id="selgys" name="selgys" class="form-control" multiple="multiple"></select>
                     </td>
-                    <th class="formTitle">进价总额：</th>
+                    <th class="formTitle">tổng tiền giá nhập: </th>
                     <td class="formValue">
                         <input type="text" id="jjze" name="jjze" class="form-control newtouch_Readonly" />
                     </td>
                     <td class="formTitle">
-                        <input type="button" id="btn_print" class="btn btn-md btn-primary" value="打印" />
+                        <input type="button" id="btn_print" class="btn btn-md btn-primary" value="in" />
                     </td>
                 </tr>
             </table>
@@ -135,7 +135,7 @@
 <div id="TabGrid">
     <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
         <li role="presentation" class="active">
-            <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">单据明细</a>
+            <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">chi tiết chứng từ</a>
         </li>
         <li style="float:right">
             <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
@@ -152,12 +152,12 @@
 <script>
     var $gridDjMainRecords = $("#gridDJMainRecords");
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //tải lại khi thay đổi kích thước cửa sổ trình duyệt jqGrid chiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
         $('#ddlSHZT').val('0');
-        //搜索框隐藏显示控制
+        //điều khiển ẩn/hiện hộp tìm kiếm
         $(".hiding,.rows,#dv_search,.toolbar").click(function () {
             TabGridHide();
         });
@@ -267,7 +267,7 @@
         BindGys();
     });
 
-    //绑定供应商
+    //gắn nhà cung cấp
     function BindGys() {
         $.najax({
             type: "Get",
@@ -284,16 +284,16 @@
                         includeSelectAllOption: true,
                         enableClickableOptGroups: true,
                         enableCollapsibleOptGroups: true,
-                        selectAllText: "全选",
-                        nonSelectedText: "未选中",
-                        allSelectedText: "全选"
+                        selectAllText: "chọn tất cả",
+                        nonSelectedText: "chưa chọn",
+                        allSelectedText: "chọn tất cả"
                     });
                 }
             }
         });
     }
 
-    //隐藏搜索框并显示箭头
+    //ẩn hộp tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -303,7 +303,7 @@
         }
     }
 
-    //单据主记录
+    //bản ghi chính của chứng từ
     function gridDJMainRecords() {
         $gridDjMainRecords.dataGrid({
             height: $(window).height() - 185,
@@ -311,7 +311,7 @@
             url: "/PharmacyDrugStorage/SelectReceiptMainInfoV2?from=query",
             colModel: [
                 {
-                    label: '审核状态', name: 'shzt', width: 55, align: 'left', formatter: function (val) {
+                    label: 'trạng thái duyệt', name: 'shzt', width: 55, align: 'left', formatter: function (val) {
                         switch (val) {
                         case '@((int)EnumDjShzt.WaitingApprove)':
                             return "@EnumDjShzt.WaitingApprove.GetDescription()";
@@ -327,27 +327,27 @@
                     }
                 },
                 {
-                    label: '单据类型', name: 'djlxmc', width: 80, align: 'left'
+                    label: 'loại chứng từ', name: 'djlxmc', width: 80, align: 'left'
                 },
-                { label: '单据号', name: 'pdh', width: 130, align: 'left' },
-                { label: '出库库房', name: 'ckbmmc', width: 100, align: 'left' },
-                { label: '供应商', name: 'gysmc', width: 100, align: 'left' },
-                { label: '入库库房', name: 'rkbmmc', width: 100, align: 'left' },
-                { label: '出入库方式', name: 'crkfsmc', width: 70, align: 'left' },
-                { label: '批发价金额', name: 'pjze', width: 80, align: 'right', formatter: function (val) { return val.toFixed(2); }, hidden: true},
-                { label: '零售总额', name: 'ljze', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); }, hidden: true },
-                { label: '进价总额', name: 'zje', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); } },
-                { label: '进销差价', name: 'jxcj', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); }, hidden: true },
-                { label: '提交时间', name: 'czsj', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:s', newformat: 'Y-m-d H:s' } },
-                { label: '入库时间', name: 'Rksj', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:s', newformat: 'Y-m-d H:s' } },
-				{ label: '出库时间', name: 'Cksj', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:s', newformat: 'Y-m-d H:s' } },
+                { label: 'số chứng từ', name: 'pdh', width: 130, align: 'left' },
+                { label: 'xuất kho kho', name: 'ckbmmc', width: 100, align: 'left' },
+                { label: 'nhà cung cấp', name: 'gysmc', width: 100, align: 'left' },
+                { label: 'nhập kho kho', name: 'rkbmmc', width: 100, align: 'left' },
+                { label: 'phương thức nhập/xuất kho', name: 'crkfsmc', width: 70, align: 'left' },
+                { label: 'giá bán buôn số tiền', name: 'pjze', width: 80, align: 'right', formatter: function (val) { return val.toFixed(2); }, hidden: true},
+                { label: 'tổng tiền bán lẻ', name: 'ljze', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); }, hidden: true },
+                { label: 'tổng tiền giá nhập', name: 'zje', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); } },
+                { label: 'chênh lệch giá mua bán', name: 'jxcj', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); }, hidden: true },
+                { label: 'gửi thời gian', name: 'czsj', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:s', newformat: 'Y-m-d H:s' } },
+                { label: 'thời gian nhập kho', name: 'Rksj', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:s', newformat: 'Y-m-d H:s' } },
+				{ label: 'thời gian xuất kho', name: 'Cksj', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:s', newformat: 'Y-m-d H:s' } },
 				{ label: 'crkId', name: 'crkId', hidden: true },
                {
-                    label: "操作", name: "", align: "center", width: 100,
+                    label: "thao tác", name: "", align: "center", width: 100,
 					formatter: function (cellvalue, options, rowobject) {
 						if (rowobject.djlx == 1 || rowobject.djlx == 2) {
 							if (rowobject.shzt == 2) {
-								return "<a href=\#\" onclick='btn_edit(\"" + rowobject.crkId + "\",\"" + rowobject.djlx + "\")'' title='修改' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>修改</a>|<a href=\#\" onclick='btn_push(\"" + rowobject.crkId + "\")'' title='提交' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>提交</a>"
+								return "<a href=\#\" onclick='btn_edit(\"" + rowobject.crkId + "\",\"" + rowobject.djlx + "\")'' title='sửa' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>sửa</a>|<a href=\#\" onclick='btn_push(\"" + rowobject.crkId + "\")'' title='gửi' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>gửi</a>"
 							}
 							else {
 								return "";
@@ -383,7 +383,7 @@
         });
     }
 
-    //组装查询条件
+    //tập hợp điều kiện tra cứu
     function getSearchPostData() {
         var shzt = $("#ddlSHZT").val();
         var qsrj = $("#txtStartDate").val();
@@ -395,9 +395,9 @@
         return { qsrj: qsrj, jsrj: jsrj, pdh: pdh, djlx: djlx, shzt: shzt, gys: gys, fph: fph};
     };
 
-    //单击事件
+    //sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+        $('#gridDJMXInfo').jqGrid("clearGridData");//mỗi lần nhấp, trước tiên xóa chi tiết sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $.najax({
             type: "Get",
             url: "/BillManage/OutOrInStorageBill/QueryOutOrInStorageBillDetail",
@@ -412,34 +412,34 @@
         });
     }
 
-    //单据明细
+    //chi tiết chứng từ
     $('#gridDJMXInfo').newtouchLocalDataGrid({
         height: $(window).height() - 200,
         unwritten: false,
         sortable: false,
         colModel: [
-            { label: '出入库明细序号', name: 'crkmxId', hidden: true, width: 100, align: 'left' },
-            { label: '发票', name: 'fph', width: 100, align: 'center' },
-            { label: '药品类别', name: 'yplbmc', width: 60, align: 'left' },
-            { label: '药品名称', name: 'ypmc', width: 110, align: 'left' },
-            { label: '数量', name: 'slanddw', width: 60, align: 'right' },
-            { label: '规格', name: 'gg', width: 80, align: 'left' },
-            { label: '追溯码', name: 'zsm', width: 60, align: 'right' },
-            { label: '是否拆零', name: 'sfcl', width: 60, align: 'right' },
-            { label: '批号', name: 'ph', width: 90, align: 'center' },
-            { label: '批次', name: 'pc', width: 100, align: 'center' },
-            { label: '有效期', name: 'yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-            { label: '进价单价', name: 'jjdwdj', width: 90, align: 'right' },
-            { label: '批发总额', name: 'pjze', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); }, hidden: true },
-            { label: '零售总额', name: 'ljze', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); }, hidden: true },
-            { label: '进价总额', name: 'zje', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); } },
-            { label: '进销差价', name: 'jxcj', width: 60, align: 'right', formatter: function (val) { return val.toFixed(2); }, hidden: true },
-            { label: '生产厂家', name: 'sccj', width: 150, align: 'left' },
-            { label: '退货原因', name: 'thyy', width: 80, align: 'left' }
+            { label: 'số thứ tự chi tiết nhập/xuất kho', name: 'crkmxId', hidden: true, width: 100, align: 'left' },
+            { label: 'hóa đơn', name: 'fph', width: 100, align: 'center' },
+            { label: 'loại thuốc', name: 'yplbmc', width: 60, align: 'left' },
+            { label: 'tên thuốc', name: 'ypmc', width: 110, align: 'left' },
+            { label: 'số lượng', name: 'slanddw', width: 60, align: 'right' },
+            { label: 'quy cách', name: 'gg', width: 80, align: 'left' },
+            { label: 'mã truy xuất', name: 'zsm', width: 60, align: 'right' },
+            { label: 'có tách lẻ không', name: 'sfcl', width: 60, align: 'right' },
+            { label: 'số lô', name: 'ph', width: 90, align: 'center' },
+            { label: 'lô', name: 'pc', width: 100, align: 'center' },
+            { label: 'hạn sử dụng', name: 'yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+            { label: 'giá nhập đơn giá', name: 'jjdwdj', width: 90, align: 'right' },
+            { label: 'tổng tiền bán buôn', name: 'pjze', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); }, hidden: true },
+            { label: 'tổng tiền bán lẻ', name: 'ljze', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); }, hidden: true },
+            { label: 'tổng tiền giá nhập', name: 'zje', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); } },
+            { label: 'chênh lệch giá mua bán', name: 'jxcj', width: 60, align: 'right', formatter: function (val) { return val.toFixed(2); }, hidden: true },
+            { label: 'nhà sản xuất', name: 'sccj', width: 150, align: 'left' },
+            { label: 'lý do trả hàng', name: 'thyy', width: 80, align: 'left' }
         ]
     });
 
-    //计算进价总额
+    //tính tổng tiền giá nhập
     function ComputeJJze() {
         var t = 0;
         var count = $("#gridDJMainRecords").getGridParam('records');
@@ -455,18 +455,18 @@
         }
     }
 
-    //修改弹出页面
+    //sửa bật lên trang
 	function btn_edit(crkId, djlx) {
 		var keyValue = crkId;
 		var djlx = djlx;
         if (!(keyValue)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("vui lòng chọn một bản ghi", 'warning');
             return;
 		}
 		if (djlx == 1) {
 			$.modalOpen({
 				id: "Form",
-				title: "修改",
+				title: "sửa",
 				url: "/BillManage/OutOrInStorageBill/Form?keyValue=" + keyValue,
 				width: "1500px",
 				height: "700px",
@@ -477,7 +477,7 @@
 		} else if (djlx==2) {
 			$.modalOpen({
 				id: "Form",
-				title: "修改",
+				title: "sửa",
 				url: "/BillManage/OutOrInStorageBill/OutOrder?keyValue=" + keyValue,
 				width: "1500px",
 				height: "700px",
@@ -492,7 +492,7 @@
 		var keyValue = crkId;
 		var djlx = djlx;
 		if (!(keyValue)) {
-			$.modalAlert("请选中一条信息", 'warning');
+			$.modalAlert("vui lòng chọn một bản ghi", 'warning');
 			return;
 		}
 		$.ajax({
@@ -503,9 +503,9 @@
 			cache: false,
 			success: function (res) {
 				if (res < 0) {
-					$.modalAlert("程序错误", 'warning');
+					$.modalAlert("chương trình lỗi", 'warning');
 				} else {
-				    $.modalMsg("操作成功", 'success', 1500);
+				    $.modalMsg("thao tác thành công", 'success', 1500);
 				    $gridDjMainRecords.jqGrid('setGridParam', {
 				        postData: getSearchPostData(),
 				        url: "/PharmacyDrugStorage/SelectReceiptMainInfoV2?from=query"

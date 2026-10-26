@@ -1,27 +1,27 @@
 ﻿
 @{
-    ViewBag.Title = "库存结转";
+    ViewBag.Title = "tồn kho kết chuyển";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
 <form id="form1">
     <div class="panel panel-default">
         <div class="panel-heading">
-            结转
+            kết chuyển
         </div>
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">历史结转：</th>
+                    <th class="formTitle">lịch sử kết chuyển: </th>
                     <td class="formValue">
                         <select id="lsjz" class="form-control"></select>
                     </td>
-                    <th class="formTitle">输入码：</th>
+                    <th class="formTitle">mã nhập: </th>
                     <td class="formValue">
-                        <input id="txtSRM" type="text" class="form-control" placeholder="拼音/药品名/药品代码" />
+                        <input id="txtSRM" type="text" class="form-control" placeholder="phiên âm/thuốc tên/mã thuốc" />
                     </td>
                     <td class="formValue" colspan="3">
-                        <input type="button" id="btn_search" class="btn btn-primary" value="查询" style="margin-left:10px;" />
+                        <input type="button" id="btn_search" class="btn btn-primary" value="tra cứu" style="margin-left:10px;" />
                     </td>
                 </tr>
             </table>
@@ -34,27 +34,27 @@
     @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new[] { 8 },
-    F8Text = "结转当前"
+    F8Text = "kết chuyển hiện tại"
 })
 </form>
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //tải lại khi thay đổi kích thước cửa sổ trình duyệt jqGrid chiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
-        GetlsjzSel();//获取历史结转时间
-        gridDrugsList();//药品信息
+        GetlsjzSel();//lấy lịch sử thời gian kết chuyển
+        gridDrugsList();//thông tin thuốc
     });
 
-    //回车事件绑定
+    //gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //获取历史结转时间
+    //lấy lịch sử thời gian kết chuyển
     function GetlsjzSel() {
         $("#lsjz").html("");
         $("#lsjz").bindSelect({
@@ -64,9 +64,9 @@
         });
     }
 
-    //执行结转当前
+    //thực hiện kết chuyển hiện tại
     function newtouch_event_f8() {
-        //获取最后一次结转时间
+        //lấy cuối cùng một lần thời gian kết chuyển
         var lastCarryTime;
         $.najax({
             type: "Get",
@@ -76,7 +76,7 @@
                 if (ajaxresp != null) {
                     if (ajaxresp.state === "success") {
                         lastCarryTime = ajaxresp.data;
-                        var msg = ajaxresp.data === "" ? "您确定结转吗？" : ("最近一次结转时间为：" + lastCarryTime + " ,您确定结转吗？")
+                        var msg = ajaxresp.data === "" ? "bạn có chắc kết chuyển không?" : ("最近一次结转时间为: " + lastCarryTime + ",bạn có chắc kết chuyển không?")
                         $.modalConfirm(msg,
                             function (flag) {
                                 if (flag) {
@@ -86,8 +86,8 @@
                                         dataType: "json",
                                         success: function (ajaxresp) {
                                             if (ajaxresp.state === 'success') {
-                                                $.modalAlert("结转成功", 'success');
-                                                GetlsjzSel();//刷新结转日期
+                                                $.modalAlert("kết chuyển thành công", 'success');
+                                                GetlsjzSel();//làm mới kết chuyển ngày
                                                 $("#btn_search").trigger('click');
                                             }
                                             else {
@@ -104,15 +104,15 @@
                         $.modalAlert(ajaxresp.message, "error");
                     }
                 } else {
-                    $.modalAlert("取上一次结转时间失败", "error");
+                    $.modalAlert("lấy thời gian kết chuyển lần trước thất bại", "error");
                 }
             }
         });
     }
 
-    //药品信息
+    //thông tin thuốc
     function gridDrugsList() {
-        var captionCon = "合计&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>当前页 批价总额：" + "" + "元&nbsp;&nbsp;&nbsp;&nbsp;零售总额：" + "" + "元</span>";
+        var captionCon = "tổng cộng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>trang hiện tại tổng tiền giá bán buôn: " + "" + "đồng&nbsp;&nbsp;&nbsp;&nbsp;tổng tiền bán lẻ: " + "" + "đồng</span>";
         var $gridDrugsList = $("#gridDrugsList");
         $gridDrugsList.dataGrid({
             postData: getSearchPostData(),
@@ -120,45 +120,45 @@
             url: "/DrugStorage/SelectCarryDownMedicineList",
             caption: captionCon,
             colModel: [
-                { label: '药品名称', name: 'ypmc', width: 180, align: 'left' },
-                { label: '药品代码', name: 'ypdm', width: 65, align: 'left' },
-                { label: '规格', name: 'gg', width: 70, align: 'left' },
-                { label: '结转数量', name: 'jzslstr', width: 60, align: 'right' },
-                { label: '单位', name: 'dw', width: 50, align: 'center' },
-                { label: '批次', name: 'pc', width: 110, align: 'left' },
-                { label: '生产厂家', name: 'sccj', width: 150, align: 'left' },
+                { label: 'tên thuốc', name: 'ypmc', width: 180, align: 'left' },
+                { label: 'mã thuốc', name: 'ypdm', width: 65, align: 'left' },
+                { label: 'quy cách', name: 'gg', width: 70, align: 'left' },
+                { label: 'số lượng kết chuyển', name: 'jzslstr', width: 60, align: 'right' },
+                { label: 'đơn vị', name: 'dw', width: 50, align: 'center' },
+                { label: 'lô', name: 'pc', width: 110, align: 'left' },
+                { label: 'nhà sản xuất', name: 'sccj', width: 150, align: 'left' },
                 {
-                    label: '批发价', name: 'pfj', width: 70, align: 'right', formatter: function (cellvalue) {
+                    label: 'giá bán buôn', name: 'pfj', width: 70, align: 'right', formatter: function (cellvalue) {
                         return cellvalue ? parseFloat(cellvalue).toFixed(4) : "0";
                     }
                 },
                 {
-                    label: '零售价', name: 'lsj', width: 70, align: 'right', formatter: function (cellvalue) {
+                    label: 'giá bán lẻ', name: 'lsj', width: 70, align: 'right', formatter: function (cellvalue) {
                         return cellvalue ? parseFloat(cellvalue).toFixed(4) : "0";
                     }
                 },
                 {
-                    label: '批发总额', name: 'pfze', width: 90, align: 'right', formatter: function (cellvalue) {
+                    label: 'tổng tiền bán buôn', name: 'pfze', width: 90, align: 'right', formatter: function (cellvalue) {
                         return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0";
                     }
                 },
                 {
-                    label: '零售总额', name: 'lsze', width: 90, align: 'right', formatter: function (cellvalue) {
+                    label: 'tổng tiền bán lẻ', name: 'lsze', width: 90, align: 'right', formatter: function (cellvalue) {
                         return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0";
                     }
                 },
-                { label: '结转数量', name: 'jzsl', hidden: true }
+                { label: 'số lượng kết chuyển', name: 'jzsl', hidden: true }
             ],
             multiselect: false,
             pager: "#gridPager",
             sortname: 'CreateTime desc',
             viewrecords: true,
             loadComplete: function (data) {
-                ComputePjzeAndLsze();//计算标题栏中的批价总额和零售总额
+                ComputePjzeAndLsze();//tính thanh tiêu đề trong của tổng tiền giá bán buôn và tổng tiền bán lẻ
             }
         });
 
-        //查询
+        //tra cứu
         $("#btn_search").click(function () {
             $gridDrugsList.jqGrid('setGridParam', {
                 postData: getSearchPostData()
@@ -166,14 +166,14 @@
         });
     }
 
-    //查询条件
+    //điều kiện tra cứu
     function getSearchPostData() {
         var jzsj = $("#lsjz").find("option:selected").text();
         var keyWork = $("#txtSRM").val();
         return { jzsj: jzsj, keyWork: keyWork };
     };
 
-    //计算标题栏中的批价总额和零售总额
+    //tính thanh tiêu đề trong của tổng tiền giá bán buôn và tổng tiền bán lẻ
     function ComputePjzeAndLsze() {
         var titlePjze = 0;
         var titleLsze = 0;
@@ -188,7 +188,7 @@
             }
             titlePjze = window.roundingBy4she6ru5chengshuang(titlePjze, 2);
             titleLsze = window.roundingBy4she6ru5chengshuang(titleLsze, 2);
-            $("#yeCon").text("批价总额：" + titlePjze + "元;零价总额：" + titleLsze + "元");
+            $("#yeCon").text("tổng tiền giá bán buôn: " + titlePjze + "đồng;tổng tiền giá lẻ: " + titleLsze + "đồng");
             $.loading(false);
         }
     }

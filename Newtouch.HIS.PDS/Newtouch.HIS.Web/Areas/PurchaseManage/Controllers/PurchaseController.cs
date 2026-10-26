@@ -25,13 +25,13 @@ namespace Newtouch.HIS.Web.Areas.PurchaseManage.Controllers
             return View();
         }
 
-        //配送点
+        //điểm phân phối
         public ActionResult LocationIndex()
         {
             return View();
         }
 
-        //配送点新增
+        //điểm phân phối thêm mới
         public ActionResult LocationForm()
         {
             return View();
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Web.Areas.PurchaseManage.Controllers
 
         #region 配送点
 
-        //查询配送点
+        //tra cứu điểm phân phối
         public ActionResult QueryLocation()
         {
             var result = _purchaseLocationRepo.IQueryable().Where(p => p.OrganizeId == this.OrganizeId && p.zt == "1" && p.psdzt != 3).OrderByDescending(p => p.CreateTime).ToList();
@@ -50,7 +50,7 @@ namespace Newtouch.HIS.Web.Areas.PurchaseManage.Controllers
             return Content(result.ToJson());
         }
 
-        //分页查询配送点
+        //phần trang tra cứu điểm phân phối
         public ActionResult GetLocationGridJson(Pagination pagination)
         {
             var tt = _purchaseLocationRepo.IQueryable().Where(p => p.OrganizeId == this.OrganizeId && p.zt == "1").OrderByDescending(p => p.CreateTime).ToList();
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.Web.Areas.PurchaseManage.Controllers
             return Content(data.ToJson()); ;
         }
 
-        //配送点详情 (浮层)
+        //điểm phân phối chi tiết (lớp nổi)
         public ActionResult QueryLocationbyId(string Id)
         {
             var result = _purchaseLocationRepo.IQueryable().Where(p => p.Id == Id && p.OrganizeId == this.OrganizeId && p.zt == "1" && p.psdzt != 3).OrderByDescending(p => p.CreateTime).FirstOrDefault();
@@ -78,12 +78,12 @@ namespace Newtouch.HIS.Web.Areas.PurchaseManage.Controllers
             return Success();
         }
 
-        //配送点传报
+        //điểm phân phối gửi báo cáo
         public ActionResult LocationUpload(string Id, int psdzt, string czlx)
         {
-            //1.上传至阳光采购平台 YY001
+            //1.tải lên đến nền tảng mua sắm Sunshine YY001
             var result = _sunPurchaseDmnService.Purchase_YY001(this.OrganizeId, Id, czlx);
-            //2.更新传报状态 (2 已传报)
+            //2.cập nhật gửi báo cáo trạng thái (2 đã gửi báo cáo)
             if (result == "Success")
             {
                 _purchaseLocationRepo.LocationStateUpdate(Id, this.OrganizeId, psdzt);
@@ -91,12 +91,12 @@ namespace Newtouch.HIS.Web.Areas.PurchaseManage.Controllers
             return Success();
         }
 
-        //配送点作废
+        //điểm phân phối hủy bỏ
         public ActionResult LocationDelete(string Id, int psdzt, string czlx)
         {
-            //1.阳光采购平台作废
+            //1.nền tảng mua sắm Sunshine hủy bỏ
             var result = _sunPurchaseDmnService.Purchase_YY001(this.OrganizeId, Id, czlx);
-            //2.HIS作废配送点 ( 更新配送点状态 psdzt 3已作废 )
+            //2.HIS hủy bỏ điểm phân phối (cập nhật điểm phân phối trạng thái psdzt 3 đã hủy)
             if (result == "Success")
             {
                 _purchaseLocationRepo.LocationStateUpdate(Id, this.OrganizeId, psdzt);

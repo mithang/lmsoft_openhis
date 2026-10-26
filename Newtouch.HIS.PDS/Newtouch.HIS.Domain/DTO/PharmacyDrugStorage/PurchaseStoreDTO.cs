@@ -9,127 +9,127 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.DTO.PharmacyDrugStorage
 {
     /// <summary>
-    /// 采购入库 
+    /// mua hàng nhập kho 
     /// </summary>
     public class PurchaseStoreDTO
     {
         public string cgmxId { get; set; }
         
         /// <summary>
-        /// 药品编号
+        /// số hiệu thuốc
         /// </summary>
         public string ypCode { get; set; }
         /// <summary>
-        /// 顺序号
+        /// số thứ tự
         /// </summary>
         public int sxh { get; set; }
         /// <summary>
-        /// 采购模式
+        /// mua hàng mô hình
         /// </summary>
         public string cglx { get; set; }
         /// <summary>
-        /// 商品类型
+        /// loại hàng hóa
         /// </summary>
         public string splx { get; set; }
         /// <summary>
-        /// 统编代码
+        /// thống nhất mã
         /// </summary>
         public string zxspbm { get; set; }
         /// <summary>
-        /// 采购计量单位
+        /// đơn vị tính mua hàng
         /// </summary>
         public string cgjldw { get; set; }
         /// <summary>
-        /// 规格包装
+        /// quy cách đóng gói
         /// </summary>
         public string ggbz { get; set; }
         /// <summary>
-        /// 采购数量
+        /// số lượng mua
         /// </summary>
         public decimal cgsl { get; set; }
         /// <summary>
-        /// 采购单价
+        /// đơn giá mua hàng
         /// </summary>
         public decimal cgdj { get; set; }
         /// <summary>
-        /// 药企编码
+        /// mã doanh nghiệp dược
         /// </summary>
         public string yqbm { get; set; }
         /// <summary>
-        /// 单位
+        /// đơn vị
         /// </summary>
         public string dw { get; set; }
         /// <summary>
-        /// 药企名称
+        /// doanh nghiệp dược tên
         /// </summary>
 
         public string yqmc { get; set; }
 
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypdm { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// tên thuốc
         /// </summary>
         public string ypmc { get; set; }
     
         /// <summary>
-        /// 大类名称
+        /// tên nhóm lớn
         /// </summary>
         public string dlmc { get; set; }
         
         public int kykc { get; set; }
         /// <summary>
-        /// 带单位部门数量
+        /// kèm đơn vị số bộ phận lượng
         /// </summary>
         public string slStr { get; set; }
         
 
         /// <summary>
-        /// 包装数单位
+        /// đơn vị số lượng đóng gói
         /// </summary>
         public string bzdw { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// hệ số chuyển đổi
         /// </summary>
         public string zhyz { get; set; }
 
         /// <summary>
-        /// 包装数
+        /// số lượng đóng gói
         /// </summary>
         public decimal bzs { get; set; }
         public string zxdw { get; set; }
         public string pzwh { get; set; }
         /// <summary>
-        /// 生产厂商
+        /// nhà sản xuất
         /// </summary>
         public string sccj { get; set; }
 
         /// <summary>
-        /// 最小单位零售价
+        /// giá bán lẻ đơn vị nhỏ nhất
         /// </summary>
         public decimal? zxdwlsj { get; set; }
         /// <summary>
-        /// 最小单位零售价
+        /// giá bán lẻ đơn vị nhỏ nhất
         /// </summary>
         public decimal? zxdwpfj { get; set; }
         /// <summary>
-        /// 药库批发价
+        /// giá bán buôn kho thuốc
         /// </summary>
         public decimal? ykpfj { get; set; }
 
         /// <summary>
-        /// 药库零售价
+        /// giá bán lẻ kho thuốc
         /// </summary>
         public decimal? yklsj { get; set; }
 
        
         /// <summary>
-        /// 零售价单价单位
+        /// giá bán lẻ đơn giá đơn vị
         /// </summary>
         public string lsjdjdw { get; set; }
         public decimal? zje { get; set; }

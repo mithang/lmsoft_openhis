@@ -3,18 +3,18 @@
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 全局配置
+    /// toàn cục cấu hình
     /// </summary>
     [Table("V_S_Sys_GlobalConfig")]
     public class SysGlobalConfigVEntity
     {
         /// <summary>
-        /// 编码
+        /// mã
         /// </summary>
         public string Code { get; set; }
 
         /// <summary>
-        /// 值
+        /// giá trị
         /// </summary>
         public string Value { get; set; }
 

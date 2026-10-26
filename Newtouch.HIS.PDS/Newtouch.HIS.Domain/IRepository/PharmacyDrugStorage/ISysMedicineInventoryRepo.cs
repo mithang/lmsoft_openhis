@@ -10,19 +10,19 @@ namespace Newtouch.HIS.Domain.IRepository
     {
 
         /// <summary>
-        /// 判断是否有未完成的盘点  （开始）
+        /// đánh giá có kiểm kê chưa hoàn thành không   (bắt đầu)
         /// </summary>
         /// <returns></returns>
         int SelectUnfinishedInventory();
 
         /// <summary>
-        /// 判断是否有未完成的盘点  （结束）
+        /// đánh giá có kiểm kê chưa hoàn thành không   (kết thúc)
         /// </summary>
         /// <returns></returns>
         int SelectUnfinishedInventoryByPdId(string pdId);
 
         /// <summary>
-        /// 根据盘点ID获取盘点信息
+        /// theo kiểm kê ID lấy kiểm kê thông tin
         /// </summary>
         /// <param name="pdId"></param>
         /// <param name="organizeId"></param>

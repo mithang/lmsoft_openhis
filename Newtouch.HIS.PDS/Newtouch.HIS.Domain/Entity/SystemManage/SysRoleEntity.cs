@@ -11,13 +11,13 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysRoleEntity : IEntity<SysRoleEntity>
     {
         /// <summary>
-        /// 角色主键
+        /// vai trò khóa chính
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -27,42 +27,42 @@ namespace Newtouch.HIS.Domain.Entity
         public string TopOrganizeId { get; set; }
 
         /// <summary>
-        /// 名称
+        /// tên
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 编号
+        /// số hiệu
         /// </summary>
         public string Code { get; set; }
 
         /// <summary>
-        /// 描述
+        /// mô tả
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// 排序码
+        /// mã sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 

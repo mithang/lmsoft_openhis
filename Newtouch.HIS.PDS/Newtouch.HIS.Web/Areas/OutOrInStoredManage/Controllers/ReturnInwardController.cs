@@ -6,12 +6,12 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 {
     /// <summary>
-    /// 内部发药退回
+    /// trả lại thuốc phát nội bộ
     /// </summary>
     public class ReturnInwardController : ControllerBase
     {
         /// <summary>
-        /// 提交内部发药退回请求
+        /// gửi trả lại thuốc phát nội bộ yêu cầu
         /// </summary>
         /// <returns></returns>
         [HttpPost]

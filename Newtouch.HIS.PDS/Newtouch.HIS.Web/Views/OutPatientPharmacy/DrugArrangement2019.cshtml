@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "门诊排药";
+    ViewBag.Title = "xếp thuốc ngoại trú";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -30,46 +30,46 @@
     <div id="dv_right" style="float: left; width: 72.5%; margin-left:0.5%;">
         <div class="panel" id="dv_rightTop">
             <div class="panel-default panel-heading">
-                <span style="font-weight: bold;">处方信息</span>
+                <span style="font-weight: bold;">thông tin đơn thuốc</span>
                 <span class="glyphicon glyphicon-menu-up" aria-hidden="true" style="float: right;"></span>
             </div>
             <div id="dv_cfInfo">
                 <ul>
                     <li>
-                        <span class="formTitle">姓名：</span>
+                        <span class="formTitle">họ tên: </span>
                         <label id="lab_name" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">年龄：</span>
+                        <span class="formTitle">tuổi: </span>
                         <label id="lab_nl" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">医生：</span>
+                        <span class="formTitle">bác sĩ: </span>
                         <label id="lab_ysmc" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle ">卡号：</span>
+                        <span class="formTitle ">số thẻ: </span>
                         <label id="lab_cardNo" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">总金额：</span>
+                        <span class="formTitle">tổng số tiền: </span>
                         <label id="lab_zje" type="text" value=""></label>
                         <label id="lab_je" type="text" value="" style="display:none;"></label>
                     </li>
                     <li>
-                        <span class="formTitle">病人性质：</span>
+                        <span class="formTitle">tính chất bệnh nhân: </span>
                         <label id="lab_brxzmc" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">科室：</span>
+                        <span class="formTitle">khoa: </span>
                         <label id="lab_ksmc" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">发票号：</span>
+                        <span class="formTitle">số hóa đơn: </span>
                         <label id="lab_fph" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">处方号：</span>
+                        <span class="formTitle">số đơn thuốc: </span>
                         <label id="lab_cfh" type="text" value=""></label>
                     </li>
                 </ul>
@@ -81,8 +81,8 @@
         @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
        {
            ShowKeyList = new[] { 7, 8 },
-           F8Text = "全部排药",
-           F7Text = "排药"
+           F8Text = "tất cả xếp thuốc",
+           F7Text = "xếp thuốc"
        })
     </div>
 </form>
@@ -105,7 +105,7 @@
         ShowOrClose();
     });
 
-    //自适应
+    //tự thích ứng
     function initLayout() {
         $("#dv_cfmx").height($(window).height() - $("#dv_cfInfo").height() - 90);
         $("#gridCfmx").setGridHeight($(window).height() - $("#dv_cfInfo").height() - 160);
@@ -127,15 +127,15 @@
         });
     }
 
-    //获取处方信息
+    //lấy thông tin đơn thuốc
     function gridPatients() {
         $gridPatients.dataGrid({
             height: cfsheight - 50,
             url: "/OutPatientPharmacy/GetXmAndSfsj?r=" + Math.random(),
-            caption: "患者列表",
+            caption: "danh sách bệnh nhân",
             colModel: [
-                { label: '姓名', name: 'xm', width: 60, align: 'left' },
-                { label: '卡号', name: 'CardNo', width: 80, align: 'center' }
+                { label: 'họ tên', name: 'xm', width: 60, align: 'left' },
+                { label: 'số thẻ', name: 'CardNo', width: 80, align: 'center' }
             ],
             beforeRequest: function () {
                 $("#gridPatientsPager_left").hide();
@@ -153,10 +153,10 @@
             gridComplete: function () {
                 $gridCfmx.jqGrid("clearGridData");
                 var ids = new Array();
-                //getDataIDs()返回当前grid里所有数据的id
+                //getDataIDs()trả về hiện tại grid trong tất cả dữ liệu id
                 ids = $gridPatients.getDataIDs();
                 if (ids == null || ids.length <= 0) return;
-                //选择或反选指定行。如果onselectrow为ture则会触发事件onSelectRow，onselectrow默认为ture
+                //chọn hoặc bỏ chọn dòng chỉ định.nếu onselectrow là ture thì sẽ kích hoạt sự kiện onSelectRow, onselectrow mặc định là ture
                 $gridPatients.setSelection(ids[0], true);
                 var pdata = $gridPatients.jqGrid('getRowData', ids[0]);
                 if (pdata == null) return;
@@ -168,41 +168,41 @@
         });
     }
 
-    //获取处方明细
+    //lấy chi tiết đơn thuốc
     function gridCfmx() {
         $gridCfmx.dataGrid({
             url: "",
-            caption: "处方明细",
+            caption: "chi tiết đơn thuốc",
             height: $(window).height() - $("#dv_cfInfo").height() - 160,
             colModel: [
-                { label: '发票号', name: 'fph', align: 'left', width: 80 },
-                { label: '处方号', name: 'cfh', align: 'left', width: 120 },
-                { label: '药品名称', name: 'ypmc', align: 'left', width: 110 },
-                { label: '规格', name: 'gg', align: 'left', width: 50 },
-                { label: '数量', name: 'sl', align: 'right', width: 40 },
-                { label: '单位', name: 'dw', align: 'left', width: 55 },
+                { label: 'số hóa đơn', name: 'fph', align: 'left', width: 80 },
+                { label: 'số đơn thuốc', name: 'cfh', align: 'left', width: 120 },
+                { label: 'tên thuốc', name: 'ypmc', align: 'left', width: 110 },
+                { label: 'quy cách', name: 'gg', align: 'left', width: 50 },
+                { label: 'số lượng', name: 'sl', align: 'right', width: 40 },
+                { label: 'đơn vị', name: 'dw', align: 'left', width: 55 },
                 {
-                    label: '单价', name: 'dj', align: 'right', width: 50,
+                    label: 'đơn giá', name: 'dj', align: 'right', width: 50,
                     formatter: function (cellvalue) {
                         return cellvalue ? parseFloat(cellvalue).toFixed(4) : "0.0000";
                     }
                 },
                 {
-                    label: '金额', name: 'je', align: 'right', width: 50,
+                    label: 'số tiền', name: 'je', align: 'right', width: 50,
                     formatter: function (cellvalue) {
                         return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
                     }
                 },
-                { label: '生产厂家', name: 'ycmc', align: 'left', width: 110 },
-                { label: '剂量', name: 'jl', align: 'right', width: 60 },
-                { label: '剂量单位', name: 'jldw', align: 'left', width: 55 },
-                { label: '用法', name: 'yfmc', align: 'left', width: 60 },
-                { label: '医生嘱托', name: 'yszt', align: 'left', width: 100 },
-                { label: '执行医生', name: 'CreatorCode', align: 'center', width: 60 },
+                { label: 'nhà sản xuất', name: 'ycmc', align: 'left', width: 110 },
+                { label: 'liều dùng', name: 'jl', align: 'right', width: 60 },
+                { label: 'đơn vị liều dùng', name: 'jldw', align: 'left', width: 55 },
+                { label: 'cách dùng', name: 'yfmc', align: 'left', width: 60 },
+                { label: 'lời dặn của bác sĩ', name: 'yszt', align: 'left', width: 100 },
+                { label: 'thực hiện bác sĩ', name: 'CreatorCode', align: 'center', width: 60 },
                 {
-                    label: '收费时间', name: 'sfsj', align: 'left', width: 100, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' }
+                    label: 'thời gian thu phí', name: 'sfsj', align: 'left', width: 100, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' }
                 },
-                { label: '药品分组', name: 'czh', align: 'left', width: 50 }
+                { label: 'nhóm thuốc', name: 'czh', align: 'left', width: 50 }
             ],
             loadComplete: function (e) {
                 var id = $gridPatients.jqGrid('getGridParam', 'selrow');
@@ -234,10 +234,10 @@
         });
     }
 
-    //全部排药
+    //tất cả xếp thuốc
     function newtouch_globalevent_f8() {
         var pats = new Array();
-        var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true); //param2:默认所有行；param3：true返回object
+        var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true); //param2:mặc định tất cả các dòng; param3: true quay lại object
         $(gridPatients).each(function () {
             pats.push({
                 "CardNo": this.CardNo,
@@ -245,7 +245,7 @@
             });
         });
         if (pats.length <= 0) return;
-        $.modalConfirm("确定全部配药吗？", function (flag) {
+        $.modalConfirm("确定全部配药吗?", function (flag) {
             if (!flag) return;
             $.najax({
                 url: "/OutPatientPharmacy/DrugArrangementV2",
@@ -255,7 +255,7 @@
                 cache: false,
                 success: function (res) {
                     if (res.state === "success") {
-                        $.modalMsg('配药成功！', 'success', 2000);
+                        $.modalMsg('bốc thuốc thành công!', 'success', 2000);
                         $gridPatients.jqGrid("clearGridData");
                         $gridPatients.trigger('reloadGrid');
                         $("#gridCfmx").jqGrid("clearGridData");
@@ -268,11 +268,11 @@
         });
     }
 
-    //单个人号排药
+    //đơn cái người số xếp thuốc
     function newtouch_globalevent_f7() {
         var id = $("#gridPatients").jqGrid("getGridParam", "selrow");
         if (!id) {
-            $.modalAlert("请先选中药排药的患者", 'warning');
+            $.modalAlert("vui lòng trước tiên chọn trong thuốc xếp thuốc của bệnh nhân", 'warning');
             return;
         }
         var patient = new Array();
@@ -288,7 +288,7 @@
             cache: false,
             success: function (res) {
                 if (res.state === "success") {
-                    $.modalMsg('配药成功！', 'success', 2000);
+                    $.modalMsg('bốc thuốc thành công!', 'success', 2000);
                     $gridPatients.jqGrid("clearGridData");
                     $gridPatients.trigger('reloadGrid');
                     $("#gridCfmx").jqGrid("clearGridData");
@@ -300,7 +300,7 @@
         });
     }
 
-    //清理处方信息
+    //dọn dẹp thông tin đơn thuốc
     function cleanCfInfo() {
         $("#lab_name").html("");
         $("#lab_cfh").html("");

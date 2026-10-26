@@ -1,67 +1,67 @@
 ﻿namespace Newtouch.HIS.Domain.DO
 {
     /// <summary>
-    /// 按月汇总
+    /// theo tháng tổng hợp
     /// </summary>
     public class MonthlySummaryDO
     {
         /// <summary>
-        /// 一月
+        /// một tháng
         /// </summary>
         public long January { get; set; }
 
         /// <summary>
-        /// 二月
+        /// hai tháng
         /// </summary>
         public long February { get; set; }
 
         /// <summary>
-        /// 三月
+        /// ba tháng
         /// </summary>
         public long March { get; set; }
 
         /// <summary>
-        /// 四月
+        /// bốn tháng
         /// </summary>
         public long April { get; set; }
 
         /// <summary>
-        /// 五月
+        /// năm tháng
         /// </summary>
         public long May { get; set; }
 
         /// <summary>
-        /// 六月
+        /// sáu tháng
         /// </summary>
         public long June { get; set; }
 
         /// <summary>
-        /// 七月
+        /// bảy tháng
         /// </summary>
         public long July { get; set; }
 
         /// <summary>
-        /// 八月
+        /// tám tháng
         /// </summary>
         public long August { get; set; }
 
         /// <summary>
-        /// 九月
+        /// chín tháng
         /// </summary>
         public long September { get; set; }
 
         /// <summary>
-        /// 十月
+        /// mười tháng
         /// </summary>
         public long October { get; set; }
 
         /// <summary>
-        /// 十一月
+        /// mười một tháng
         /// </summary>
         public long November { get; set; }
 
         /// <summary>
-        /// 十二月
+        /// mười hai tháng
         /// </summary>
         public long December { get; set; }
     }

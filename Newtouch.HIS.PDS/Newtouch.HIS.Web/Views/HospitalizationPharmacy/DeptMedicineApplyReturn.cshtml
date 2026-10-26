@@ -4,7 +4,7 @@
 
     ViewBag.Title = "DeptMedicineApplyReturn";
     Layout = "~/Views/Shared/_Index.cshtml";
-    //是否开启标签打印
+    //có bật in nhãn không
     var Inpatient_IsLablePrint = SysConfigReader.Bool("Inpatient_IsLablePrint");
 
 }
@@ -31,15 +31,15 @@
 <div style="float:left;width:20%; display: block;">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            điều kiện lọc
         </div>
         <table class="form" style="width:95%">
             <tbody>
                 <tr>
-                    <th class="formTitle" style="width:50px">科室：</th>
+                    <th class="formTitle" style="width:50px">khoa: </th>
                     <td class="formValue">
                         <select id="sel_inpatientArea" class="form-control">
-                            <option value="">==请选择==</option>
+                            <option value="">==vui lòng chọn==</option>
                         </select>
                     </td>
                 </tr>
@@ -53,16 +53,16 @@
     <form id="form1">
         <div class="panel panel-default">
             <div class="panel-heading">
-                信息
+                thông tin
             </div>
             <div style="padding: 2px;padding-right:20px;">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">退回单据号：</th>
+                        <th class="formTitle">trả lại số chứng từ: </th>
                         <td class="formValue">
                             <input type="text" id="thdjh" name="thdjh" class="form-control" readonly="readonly" />
                         </td>
-                        <th class="formTitle">退回原因：</th>
+                        <th class="formTitle">trả lại nguyên nhân: </th>
                         <td class="formValue">
                             <input type="text" id="thyy" name="thyy" class="form-control" readonly="readonly"/>
                         </td>
@@ -80,23 +80,23 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new int[] {3,6},
-    F3Text = "确认",
-    F6Text = "退回"
+    F3Text = "xác nhận",
+    F6Text = "trả lại"
 })
 
 <script type="text/javascript">
     var IsLablePrint = '@Inpatient_IsLablePrint';
-    var ThisbrCode = "";//初始化病人Code
+    var ThisbrCode = "";//khởi tạo bệnh nhân Code
     $(".toolbar").css("width", 500);
     var $gridBRXXDrugsList = $("#dispenseMedicinGridList");
     $(function () {
-        //绑定申请单树
+        //gắn phiếu đề nghị cây
         bqGridList();
-        //绑定病人发药详细信息
+        //gắn thông tin chi tiết phát thuốc của bệnh nhân
         dispenseMedicinGridList(null);
         $("#autoRefresh").click(function() {
             if ($("#autoRefresh").is(":checked")) {
-                //启动
+                //khởi động
                 startRefresh();
             }
         });
@@ -112,7 +112,7 @@
         });
     });
 
-    // 开启定时任务，时间间隔为3000 ms。
+    // bật tác vụ định kỳ, khoảng thời gian là 3000 ms.
     function startRefresh() {
         var sp =@ViewBag.refreshInterval;
         if (sp > 0) {
@@ -122,16 +122,16 @@
         }
     }
 
-    //停止刷新
+    //dừng làm mới
     function stopRefresh(t) {
         clearInterval(t);
     }
 
-    //绑定申请单树
+    //gắn phiếu đề nghị cây
     function bqGridList(t) {
 
         if (!$("#autoRefresh").is(":checked")) {
-            //停止
+            //dừng
             stopRefresh(t);
         }
         $("#BqTreeList").treeview({
@@ -155,22 +155,22 @@
         });
     }
 
-    //备药申请单详细信息
+    //thông tin chi tiết phiếu đề nghị chuẩn bị thuốc
     function dispenseMedicinGridList(Sqd) {
         $gridBRXXDrugsList.dataGrid({
             url: '/HospitalizationPharmacy/GetDeptApplyReturnList',
             height: $(window).height() - document.getElementById('dispenseMedicinGridList').offsetTop - 120,
             postData: { SqdArr: Sqd, },
             colModel: [
-                { label: '科室', name: 'ksName', width: 80, align: 'center' },
-                { label: '病区', name: 'bqmc', width: 100, align: 'center' },
-                { label: '药品代码', name: 'ypdm', width: 80, align: 'center' },
-                { label: '药品名称', name: 'ypmc', width: 100, align: 'center' },
-                { label: '药品规格', name: 'ypgg', width: 100, align: 'center' },
+                { label: 'khoa', name: 'ksName', width: 80, align: 'center' },
+                { label: 'khu bệnh', name: 'bqmc', width: 100, align: 'center' },
+                { label: 'mã thuốc', name: 'ypdm', width: 80, align: 'center' },
+                { label: 'tên thuốc', name: 'ypmc', width: 100, align: 'center' },
+                { label: 'quy cách thuốc', name: 'ypgg', width: 100, align: 'center' },
                 { label: 'sl', name: 'sl', hidden: true },
-                { label: '退药数量', name: 'sqslStr', width: 80, align: 'center' },
-                { label: '有效期', name: 'yxq', width: 90, align: 'center',  formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '生成厂家', name: 'ycmc', width: 120, align: 'center' },
+                { label: 'số lượng trả thuốc', name: 'sqslStr', width: 80, align: 'center' },
+                { label: 'hạn sử dụng', name: 'yxq', width: 90, align: 'center',  formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'tạo nhà sản xuất', name: 'ycmc', width: 120, align: 'center' },
                 { label: "ksbm", name: 'ksbm', hidden: true },
                 { label: "bqbm", name: 'bqbm', hidden: true },
                 { label: "yfbmCode", name: 'yfbmCode', hidden: true },
@@ -181,19 +181,19 @@
                 { label: "pfj", name: 'pfj', hidden: true },
                 { label: "lsj", name: 'lsj', hidden: true },
             ],
-            caption: "申请退药列表",
+            caption: "đề nghị trả thuốc danh sách",
             viewrecords: true
         });
 
     }
 
-    //确认 库存退还
+    //xác nhận trả lại tồn kho
     function newtouch_event_f3() {
-        $.modalConfirm("确定发送申请列表全部药品吗？", function (flag) {
+        $.modalConfirm("bạn có chắc gửi tất cả thuốc trong danh sách đề nghị không?", function (flag) {
             if (flag) {
                 var rowIds = $gridBRXXDrugsList.getDataIDs();
                 if (rowIds == null || rowIds.length === 0) {
-                    $.modalMsg('请选择需退药申请单', 'warning', 1500);
+                    $.modalMsg('vui lòng chọn cần trả thuốc phiếu đề nghị', 'warning', 1500);
                     return false;
                 }
                 $.najax({
@@ -204,7 +204,7 @@
                     success: function (res) {
                         if (res.state === "success") {
                             ThisbrCode="";
-                            $.modalMsg('退药成功', 'success', 1000);
+                            $.modalMsg('trả thuốc thành công', 'success', 1000);
                             bqGridList();
                             $gridBRXXDrugsList.jqGrid("clearGridData");
                         } else {
@@ -216,14 +216,14 @@
                 return false;
         }, false);
     }
-    //申请单退回
+    //phiếu đề nghị trả lại
     function newtouch_event_f6() {
         var rowIds = $gridBRXXDrugsList.getDataIDs();
         if (rowIds == null || rowIds.length === 0) {
-            $.modalMsg('请勾选申请单', 'warning', 1500);
+            $.modalMsg('vui lòng chọn phiếu đề nghị', 'warning', 1500);
             return false;
         }
-        $.modalConfirm("确定退回选中申请单？", function (flag) {
+        $.modalConfirm("xác định trả lại chọn trong phiếu đề nghị?", function (flag) {
             if(flag)
             {
                 $.najax({
@@ -235,7 +235,7 @@
                         debugger;
                         if (res.state === "success") {
                             ThisbrCode="";
-                            $.modalMsg('退回成功', 'success', 1000);
+                            $.modalMsg('trả lại thành công', 'success', 1000);
                             bqGridList();
                             $gridBRXXDrugsList.jqGrid("clearGridData");
                         } else {

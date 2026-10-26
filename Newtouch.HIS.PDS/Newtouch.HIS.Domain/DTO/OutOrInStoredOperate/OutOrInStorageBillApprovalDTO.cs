@@ -4,37 +4,37 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.DTO.OutOrInStoredOperate
 {
     /// <summary>
-    /// 提交单据审核参数
+    /// gửi đơn chứng duyệt tham số
     /// </summary>
     public class OutOrInStorageBillApprovalDTO
     {
         /// <summary>
-        /// 出入库ID
+        /// ra nhập kho ID
         /// </summary>
         public string crkId { get; set; }
 
         /// <summary>
-        /// 单据类型
+        /// loại chứng từ
         /// </summary>
         public int djlx { get; set; }
 
         /// <summary>
-        /// 审核状态
+        /// trạng thái duyệt
         /// </summary>
         public string shzt { get; set; }
 
         /// <summary>
-        /// 审核员
+        /// duyệt viên
         /// </summary>
         public string auditor { get; set; }
 
         /// <summary>
-        /// 出入库单据明细
+        /// chứng từ nhập/xuất kho chi tiết
         /// </summary>
         public List<SysMedicineStorageIOReceiptDetailEntity> djmx { get; set; }
 
         /// <summary>
-        /// 出入库单据主表信息
+        /// chứng từ nhập/xuất kho chính bảng thông tin
         /// </summary>
         public SysMedicineStorageIOReceiptEntity dj { get; set; }
     }

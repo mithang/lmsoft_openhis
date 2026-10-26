@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "发票查询";
+    ViewBag.Title = "tra cứu hóa đơn";
     Layout = "~/Views/Shared/_Form.cshtml";
     var from = (ViewBag.from as string) ?? "";
 }
@@ -19,26 +19,26 @@
         <table class="form">
             <tr>
 
-                <th class="formTitle">发票号：</th>
+                <th class="formTitle">số hóa đơn: </th>
                 <td class="formValue">
-                    <input id="txt_fph" name="txt_fph" type="text" class="form-control form-an" placeholder="请输入发票号" />
+                    <input id="txt_fph" name="txt_fph" type="text" class="form-control form-an" placeholder="vui lòng nhập số hóa đơn" />
                 </td>
-                <th class="formTitle">订单时间：</th>
+                <th class="formTitle">thời gian đơn hàng: </th>
                 <td class="formValue" colspan="3">
                     <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; margin-top:10px;float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left">—</span>
                     <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; margin-top:10px;float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
-                @*<th class="formTitle">入库状态：</th>
+                @*<th class="formTitle">nhập kho trạng thái: </th>
                 <td class="formValue formDdlSelectorTd">
                     <select id="fpzt" name="fpzt" class="form-control required">
-                        <option value="9" selected="selected">全部</option>
-                        <option value="0">未入库</option>
-                        <option value="1">已入库</option>
+                        <option value="9" selected="selected">tất cả</option>
+                        <option value="0">chưa nhập kho</option>
+                        <option value="1">đã nhập kho</option>
                     </select>
                 </td>*@
                 <td style="padding-left: 20px;">
-                    <button type="button" id="btn_search" class="btn btn-primary btn-md">&nbsp;查询&nbsp;</button>
+                    <button type="button" id="btn_search" class="btn btn-primary btn-md">&nbsp;tra cứu&nbsp;</button>
                 </td>
             </tr>
         </table>
@@ -53,7 +53,7 @@
 </form>
 
 <script>
-    //上一个window对象
+    //trước đó window đối tượng
     var prevWindow;
     if ('@(from)' !== '') {
         prevWindow = top.top.frames['@(from)'];
@@ -67,10 +67,10 @@
         var obj = new Object;
         //obj.ddbh = $.request("ddbh");
         var searInfo = new gridList();
-        //加载数据
+        //tải dữ liệu
         //searInfo.init(obj);
 
-        //查询
+        //tra cứu
         $("#btn_search").click(function () {
             $("#GridList").jqGrid('setGridParam', {
                 postData: {
@@ -91,13 +91,13 @@
             colModel: [
 
                 { label: 'Id', name: 'Id', hidden: true },
-                { label: '发票号', name: 'fph', width: 100, align: 'left' },
-                { label: '药企编码', name: 'yqbm', width: 100, align: 'left' },
-                { label: '发票含税总金额', name: 'fphszje', width: 100, align: 'left' },
+                { label: 'số hóa đơn', name: 'fph', width: 100, align: 'left' },
+                { label: 'mã doanh nghiệp dược', name: 'yqbm', width: 100, align: 'left' },
+                { label: 'hóa đơn bao gồm thuế tổng số tiền', name: 'fphszje', width: 100, align: 'left' },
                 //{
-                //    label: '发票状态', name: 'fpzt', width: 100, align: 'left', formatter: function (cellvalue) {
-                //        if (cellvalue == 0) return '未入库';
-                //        else if (cellvalue == 1) return '已入库';
+                //    label: 'hóa đơn trạng thái', name: 'fpzt', width: 100, align: 'left', formatter: function (cellvalue) {
+                //        if (cellvalue == 0) return 'chưa nhập kho';
+                //        else if (cellvalue == 1) return 'đã nhập kho';
                 //        else return '';
                 //    }
                 //},
@@ -122,7 +122,7 @@
 
 
 
-        //加载事件
+        //tải sự kiện
         //myPatSearchInfo.prototype.init = function (data) {
         //    if (data.blh === "null") {
         //        $("#txt_blh").val("");
@@ -134,7 +134,7 @@
         //return myPatSearchInfo;
     //}());
 
-    //jqGrid 双击选中某行
+    //jqGrid nhấp đúp được chọn một dòng
     function btn_edit() {
         SearchConfirm();
     }
@@ -149,15 +149,15 @@
         obj.fphszje = $gridList.jqGridRowValue().fphszje;
         obj.fpzt = $gridList.jqGridRowValue().fpzt;
         prevWindow.GetQueryAjax(obj);
-        //关闭窗口
+        //đóng cửa sổ
         ReceiptCancle();
     }
-    //确定 主页面调用
+    //xác định chính trang gọi
     function SearchConfirm() {
         BillDbGrid();
     }
 
-    //取消
+    //hủy
     function ReceiptCancle() {
         $.modalClose();
     }

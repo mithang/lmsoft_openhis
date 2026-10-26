@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "住院退药";
+    ViewBag.Title = "trả thuốc nội trú";
     Layout = "~/Views/Shared/_Index.cshtml";
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
 }
@@ -33,7 +33,7 @@
     }
 </style>
 <div style="float:left;width:20%;">
-    <div class="dv-left-title">患者列表</div>
+    <div class="dv-left-title">danh sách bệnh nhân</div>
     <div class="dv-left-tree" id="BqTreeList"></div>
 </div>
 
@@ -41,33 +41,33 @@
     <form id="form1">
         <div class="panel panel-default">
             <div class="panel-heading">
-                查询条件
+                điều kiện tra cứu
             </div>
             <div style="padding: 2px;">
                 <input type="hidden" id="Fyzt" value="2" />
                 <table class="form">
                     <tr>
-                        <th class="formTitle" style="width: 80px;">药品名称：</th>
+                        <th class="formTitle" style="width: 80px;">tên thuốc: </th>
                         <td class="formValue">
-                            <input id="ypmc" type="text" class="form-control" placeholder="药品名称" />
+                            <input id="ypmc" type="text" class="form-control" placeholder="tên thuốc" />
                         </td>
-                        <th class="formTitle" style="width: 80px;">发药状态：</th>
+                        <th class="formTitle" style="width: 80px;">trạng thái phát thuốc: </th>
                         <td class="formValue formDdlSelectorTd" style="width: 90px;">
                             <select id="sel_fybz" class="form-control">
-                                <option value="2">未退药</option>
-                                <option value="3">已退药</option>
+                                <option value="2">chưa trả thuốc</option>
+                                <option value="3">đã trả thuốc</option>
                             </select>
                         </td>
-                        <th class="formTitle" style="width: 75px; padding-right: 0px;"><span class="required">*</span>开始时间：</th>
+                        <th class="formTitle" style="width: 75px; padding-right: 0px;"><span class="required">*</span>thời gian bắt đầu: </th>
                         <td class="formValue">
                             <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
                         </td>
-                        <th class="formTitle" style="width: 40px;padding-right: 0;"><span class="required">*</span>至：</th>
+                        <th class="formTitle" style="width: 40px;padding-right: 0;"><span class="required">*</span>đến: </th>
                         <td class="formValue">
                             <input id="Jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddHours(2).ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
                         </td>
                         <td class="formTitle" style="width: 45px;">
-                            <input type="button" id="btn_search" class="btn btn-primary btn-md" value="查询" />
+                            <input type="button" id="btn_search" class="btn btn-primary btn-md" value="tra cứu" />
                         </td>
                     </tr>
                 </table>
@@ -83,35 +83,35 @@
     @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
     {
         ShowKeyList = new[] { 6 },
-        F6Text = "退药"
+        F6Text = "trả thuốc"
     })
     <div class="ckbox" style="margin-left: 0.5%;margin-top: 10px;">
-        <input id="autoPrint" name="autoPrint" type="checkbox"><label for="autoPrint">自动打印明细</label>
+        <input id="autoPrint" name="autoPrint" type="checkbox"><label for="autoPrint">tự động in chi tiết</label>
     </div>
     <div class="ckbox" style="margin-left: 0.5%;margin-top: 10px;">
-        <input id="dispenseByBatch" name="dispenseByBatch" type="checkbox"><label for="dispenseByBatch">按批次退药</label>
+        <input id="dispenseByBatch" name="dispenseByBatch" type="checkbox"><label for="dispenseByBatch">theo lô trả thuốc</label>
     </div>
     <div class="ckbox" style="margin-top: 10px;">
-        <input id="autoPrintSum" name="autoPrintSum" type="checkbox"  @ViewBag.returnDrugAutoPrint><label for="autoPrintSum">打印汇总</label>
+        <input id="autoPrintSum" name="autoPrintSum" type="checkbox"  @ViewBag.returnDrugAutoPrint><label for="autoPrintSum">in tổng hợp</label>
     </div>
 </div>
 <script type="text/javascript">
-    var ThisbqCode = "";//初始化病区Code
-    var ThisbrCode = "";//初始化病人Code
+    var ThisbqCode = "";//khởi tạo khu bệnh Code
+    var ThisbrCode = "";//khởi tạo bệnh nhân Code
     var globalData = [];
     $(".toolbar").css("width", 250);
     var $dispenseMedicinGridListByBatch = $("#dispenseMedicinGridListByBatch");
     var $dispenseMedicinGridListNoBatch = $("#dispenseMedicinGridListNoBatch");
     var tyzyh = [];
     $(function () {
-        //绑定病区
+        //gắn khu bệnh
         bqGridList();
-        //绑定病人发药详细信息
+        //gắn thông tin chi tiết phát thuốc của bệnh nhân
         dispenseMedicinGridList(null);
-        //查询
+        //tra cứu
         $("#btn_search").click(function () {
             if ($("#dispenseByBatch").is(":checked")) {
-                //按批次
+                //theo lô
                 $dispenseMedicinGridListByBatch.jqGrid("clearGridData");
                 $dispenseMedicinGridListByBatch.jqGrid('setGridParam', {
                     postData: {
@@ -123,7 +123,7 @@
                     }
                 }).trigger('reloadGrid');
             } else {
-                //不按批次
+                //không theo lô
                 $dispenseMedicinGridListNoBatch.jqGrid("clearGridData");
                 $dispenseMedicinGridListNoBatch.jqGrid('setGridParam', {
                     postData: {
@@ -139,12 +139,12 @@
 
         $("#dispenseByBatch").click(function() {
             if ($("#dispenseByBatch").is(":checked")) {
-                //按批次
+                //theo lô
                 $("#dv_bybtach").show();
                 $("#dv_nobtach").hide();
 
             } else {
-                //不按批次
+                //không theo lô
                 $("#dv_bybtach").hide();
                 $("#dv_nobtach").show();
             }
@@ -162,7 +162,7 @@
             }
         });
 
-        // 药品追溯码扫码
+        // quét mã truy xuất thuốc
         $dispenseMedicinGridListByBatch.on('keydown', '.scan-input', function (event) {
             if (event.key === 'Enter') {
                 event.preventDefault();
@@ -170,7 +170,7 @@
                 const inputField = $(this);
                 const row = inputField.closest('tr');
 
-                // 是否拆零
+                // có tách lẻ không
                 const sfcl = parseInt(row.find('.sfcl').val(), 10);
                 var maxEntries = 1;
                 if (sfcl === 1) {
@@ -186,7 +186,7 @@
                 }
 
                 if (entries >= maxEntries) {
-                    $.modalMsg("已达到该行的最大扫码条目数量！", "warning", 1500);
+                    $.modalMsg("đã đạt số lượng mục quét mã tối đa của dòng này!", "warning", 1500);
                     inputField.val(inputField.val().split(',').filter(entry => entry.trim() != "").slice(0, maxEntries).join(',') + ",");
                 }
             }
@@ -199,7 +199,7 @@
                 const inputField = $(this);
                 const row = inputField.closest('tr');
 
-                // 是否拆零
+                // có tách lẻ không
                 const sfcl = parseInt(row.find('.sfcl').val(), 10);
                 var maxEntries = 1;
                 if (sfcl === 1) {
@@ -215,7 +215,7 @@
                 }
 
                 if (entries >= maxEntries) {
-                    $.modalMsg("已达到该行的最大扫码条目数量！", "warning", 1500);
+                    $.modalMsg("đã đạt số lượng mục quét mã tối đa của dòng này!", "warning", 1500);
                     inputField.val(inputField.val().split(',').filter(entry => entry.trim() != "").slice(0, maxEntries).join(',') + ",");
                 }
             }
@@ -228,14 +228,14 @@
         return uniqueArr.join(',')+','
     }
 
-    //回车事件绑定
+    //gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             //$("#btn_search").trigger("click");
         }
     });
 
-    //绑定病区和病人
+    //gắn khu bệnh và bệnh nhân
     function bqGridList() {
         $("#BqTreeList").treeview({
             height: $(window).height() - 35,
@@ -254,9 +254,9 @@
         var patlistFath = "";
         var patzyh = "";
 
-        //当前选中父节点
+        //nút cha hiện đang được chọn
         var len = 0;
-        var single = 0; //是否单个子节点
+        var single = 0; //có phải là một nút con duy nhất không
 
         if (item != null && item.Ex1 === "p") {
             patlistFath = item.ChildNodes;
@@ -267,7 +267,7 @@
             len = 1;
             single = 1;
         }
-        //选中节点
+        //nút được chọn
         for (var i = 0; i < patlist.length; i++) {
             if (patlist[i].Ex1 == "c") {
                 patzyh += patlist[i].value + ",";
@@ -298,12 +298,12 @@
             }
         }
 
-        ThisbrCode = patzyh;//存储点击的病人code
-        //重新加载病人发药详细信息
+        ThisbrCode = patzyh;//lưu bệnh nhân được nhấp code
+        //tải lại thông tin chi tiết phát thuốc của bệnh nhân
         $("#btn_search").click();
     }
 
-    //级联选中所有子节点
+    //chọn liên đới tất cả nút con
     function checkAllSon(node) {
         $('#BqTreeList').treeview('checkNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -312,7 +312,7 @@
             }
         }
     }
-    //级联取消所有子节点
+    //bỏ chọn liên đới tất cả nút con
     function uncheckAllSon(node) {
         $('#BqTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -324,11 +324,11 @@
 
     //init jqrid
     function dispenseMedicinGridList() {
-        dispenseMedicinGridListByBatch();//按批次
-        dispenseMedicinGridListNoBatch();//不按批次
+        dispenseMedicinGridListByBatch();//theo lô
+        dispenseMedicinGridListNoBatch();//không theo lô
     }
 
-    //用户发药详细信息 按执行批次
+    //thông tin chi tiết phát thuốc của người dùng theo thực hiện lô
     function dispenseMedicinGridListByBatch() {
         $dispenseMedicinGridListByBatch.dataGrid({
             url: '/HospitalizationPharmacy/GetReturnDrugDetail',
@@ -341,46 +341,46 @@
                 ypmc: $("#ypmc").val()
             },
             colModel: [
-                { label: '姓名', name: 'patientName', width: 70, align: 'left' },
-                { label: '床位号', name: 'cw', width: 60, align: 'left' },
-                { label: '药品', name: 'ypmc', width: 100, align: 'left' },
-                { label: '退数量', name: 'tysl', width: 60, align: 'left', editable: true, editwidth: "85%", classes: "quantity" },
-                { label: '单位', name: 'bmdw', width: 45, align: 'center' },
-                { label: '可退数', name: 'slStr', width: 80, align: 'left' },
+                { label: 'họ tên', name: 'patientName', width: 70, align: 'left' },
+                { label: 'số giường', name: 'cw', width: 60, align: 'left' },
+                { label: 'thuốc', name: 'ypmc', width: 100, align: 'left' },
+                { label: 'số lượng trả', name: 'tysl', width: 60, align: 'left', editable: true, editwidth: "85%", classes: "quantity" },
+                { label: 'đơn vị', name: 'bmdw', width: 45, align: 'center' },
+                { label: 'có thể trả số', name: 'slStr', width: 80, align: 'left' },
                 {
-                    label: '<span class="required">*</span>追溯码', name: 'zsm', width: 80, align: 'center',
+                    label: '<span class="required">*</span>mã truy xuất', name: 'zsm', width: 80, align: 'center',
                     formatter: function (cellvalue, options) {
                         return "<input name=\"zsm\" id=\"sel_zsm_" + options.rowId + "\" rowid=" + options.rowId + " class=\"scan-input editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" />";
                     }
                 },
                 {
-                    label: '<span class="required">*</span>是否拆零', name: 'sfcl', width: 80, align: 'center',
+                    label: '<span class="required">*</span>có tách lẻ không', name: 'sfcl', width: 80, align: 'center',
                     formatter: function (cellvalue, options) {
-                        return "<select name=\"sfcl\" id=\"sel_sfcl_" + options.rowId + "\" rowid=" + options.rowId + " class=\"sfcl editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ><option value=\"1\">是</option><option value=\"2\">否</option></select>";
+                        return "<select name=\"sfcl\" id=\"sel_sfcl_" + options.rowId + "\" rowid=" + options.rowId + " class=\"sfcl editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ><option value=\"1\">có</option><option value=\"2\">không</option></select>";
                     }
                 },
-                { label: "批次", name: 'pc', width: 100, align: 'center' },
-                { label: "批号", name: 'ph', width: 100, align: 'center' },
-                { label: '规格', name: 'ypgg', width: 100, align: 'left' },
-                { label: '用量', name: 'ylStr', width: 60, align: 'left' },
-                { label: '组号', name: 'zh', width: 50, align: 'left' },
-                { label: '医嘱性质', name: 'yzxzmc', width: 80, align: 'left' },
-                { label: '生成厂家', name: 'ycmc', width: 100, align: 'left' },
-                { label: "申请退药单号", name: 'applyNo', width: 100, align: 'center' },
-                { label: '单价', name: 'djStr', hidden: true },
-                { label: '金额', name: 'je', hidden: true },
-                { label: '可退数量', name: 'sl', hidden: true },
-                { label: "药品编码", name: 'ypCode', hidden: true },
+                { label: "lô", name: 'pc', width: 100, align: 'center' },
+                { label: "số lô", name: 'ph', width: 100, align: 'center' },
+                { label: 'quy cách', name: 'ypgg', width: 100, align: 'left' },
+                { label: 'liều lượng', name: 'ylStr', width: 60, align: 'left' },
+                { label: 'số nhóm', name: 'zh', width: 50, align: 'left' },
+                { label: 'tính chất y lệnh', name: 'yzxzmc', width: 80, align: 'left' },
+                { label: 'tạo nhà sản xuất', name: 'ycmc', width: 100, align: 'left' },
+                { label: "số phiếu đề nghị trả thuốc", name: 'applyNo', width: 100, align: 'center' },
+                { label: 'đơn giá', name: 'djStr', hidden: true },
+                { label: 'số tiền', name: 'je', hidden: true },
+                { label: 'số lượng có thể trả', name: 'sl', hidden: true },
+                { label: "mã thuốc", name: 'ypCode', hidden: true },
                 { label: "yzId", name: 'yzId', hidden: true },
                 { label: "zxId", name: 'zxId', hidden: true },
-                { label: "转化因子", name: 'zhyz', hidden: true },
-                { label: "申请退药明细ID", name: 'rdbdId', hidden: true },
-                { label: "住院号", name: 'zyh', hidden: true }
+                { label: "hệ số chuyển đổi", name: 'zhyz', hidden: true },
+                { label: "chi tiết đề nghị trả thuốc ID", name: 'rdbdId', hidden: true },
+                { label: "số nội trú", name: 'zyh', hidden: true }
             ],
             gridComplete: function () {
                 EnableInlineEditBox($dispenseMedicinGridListByBatch);
             },
-            caption: "需退药列表",
+            caption: "cần trả thuốc danh sách",
             viewrecords: true
         });
     }
@@ -397,54 +397,54 @@
                 ypmc: $("#ypmc").val()
             },
             colModel: [
-                { label: '姓名', name: 'patientName', width: 70, align: 'left' },
-                { label: '床位号', name: 'cw', width: 60, align: 'center' },
-                { label: '药品', name: 'ypmc', width: 100, align: 'left' },
-                { label: '退数量', name: 'tyslStr', width: 70, align: 'right' },
-                { label: '最多可退', name: 'slStr', width: 70, align: 'right' },
+                { label: 'họ tên', name: 'patientName', width: 70, align: 'left' },
+                { label: 'số giường', name: 'cw', width: 60, align: 'center' },
+                { label: 'thuốc', name: 'ypmc', width: 100, align: 'left' },
+                { label: 'số lượng trả', name: 'tyslStr', width: 70, align: 'right' },
+                { label: 'tối đa có thể trả', name: 'slStr', width: 70, align: 'right' },
                 {
-                    label: '<span class="required">*</span>追溯码', name: 'zsm', width: 80, align: 'center',
+                    label: '<span class="required">*</span>mã truy xuất', name: 'zsm', width: 80, align: 'center',
                     formatter: function (cellvalue, options) {
                         return "<input name=\"zsm\" id=\"sel_zsm_" + options.rowId + "\" rowid=" + options.rowId + " class=\"scan-input editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" />";
                     }
                 },
                 {
-                    label: '<span class="required">*</span>是否拆零', name: 'sfcl', width: 80, align: 'center',
+                    label: '<span class="required">*</span>có tách lẻ không', name: 'sfcl', width: 80, align: 'center',
                     formatter: function (cellvalue, options) {
-                        return "<select name=\"sfcl\" id=\"sel_sfcl_" + options.rowId + "\" rowid=" + options.rowId + " class=\"sfcl editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ><option value=\"1\">是</option><option value=\"2\">否</option></select>";
+                        return "<select name=\"sfcl\" id=\"sel_sfcl_" + options.rowId + "\" rowid=" + options.rowId + " class=\"sfcl editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ><option value=\"1\">có</option><option value=\"2\">không</option></select>";
                     }
                 },
-                { label: '规格', name: 'ypgg', width: 100, align: 'center' },
-                { label: '用量', name: 'ylStr', width: 60, align: 'right' },
-                { label: '组号', name: 'zh', width: 50, align: 'center' },
-                { label: '医嘱性质', name: 'yzxzmc', width: 80, align: 'center' },
-                { label: '生成厂家', name: 'ycmc', width: 100, align: 'left' },
-                { label: "申请退药单号", name: 'applyNo', width: 120, align: 'center' },
-                { label: "批次", name: 'pc', hidden: true },
-                { label: "批号", name: 'ph', hidden: true },
-                { label: '单位', name: 'bmdw', width: 45, hidden: true },
-                { label: '单价', name: 'djStr', hidden: true },
-                { label: '金额', name: 'je', hidden: true },
-                { label: '可退数量', name: 'sl', hidden: true, classes: "quantity" },
-                { label: '申请退药数（最小单位）', name: 'tysl', hidden: true },
-                { label: "药品编码", name: 'ypCode', hidden: true },
+                { label: 'quy cách', name: 'ypgg', width: 100, align: 'center' },
+                { label: 'liều lượng', name: 'ylStr', width: 60, align: 'right' },
+                { label: 'số nhóm', name: 'zh', width: 50, align: 'center' },
+                { label: 'tính chất y lệnh', name: 'yzxzmc', width: 80, align: 'center' },
+                { label: 'tạo nhà sản xuất', name: 'ycmc', width: 100, align: 'left' },
+                { label: "số phiếu đề nghị trả thuốc", name: 'applyNo', width: 120, align: 'center' },
+                { label: "lô", name: 'pc', hidden: true },
+                { label: "số lô", name: 'ph', hidden: true },
+                { label: 'đơn vị', name: 'bmdw', width: 45, hidden: true },
+                { label: 'đơn giá', name: 'djStr', hidden: true },
+                { label: 'số tiền', name: 'je', hidden: true },
+                { label: 'số lượng có thể trả', name: 'sl', hidden: true, classes: "quantity" },
+                { label: 'đề nghị trả thuốc số (đơn vị nhỏ nhất)', name: 'tysl', hidden: true },
+                { label: "mã thuốc", name: 'ypCode', hidden: true },
                 { label: "yzId", name: 'yzId', hidden: true },
                 { label: "zxId", name: 'zxId', hidden: true },
-                { label: "转化因子", name: 'zhyz', hidden: true },
-                { label: "申请退药明细ID", name: 'rdbdId', hidden: true },
-                { label: "住院号", name: 'zyh', hidden: true }
+                { label: "hệ số chuyển đổi", name: 'zhyz', hidden: true },
+                { label: "chi tiết đề nghị trả thuốc ID", name: 'rdbdId', hidden: true },
+                { label: "số nội trú", name: 'zyh', hidden: true }
             ],
             gridComplete: function () {
                 EnableInlineEditBox($dispenseMedicinGridListNoBatch);
             },
-            caption: "需退药列表",
+            caption: "cần trả thuốc danh sách",
             viewrecords: true
         });
     }
 
-    //启用行内编辑框
+    //bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox(jgr) {
-        var rowIds = jgr.jqGrid('getDataIDs'); //Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        var rowIds = jgr.jqGrid('getDataIDs'); //Grid sau khi tải xong thì bật chỉnh sửa trong dòng   1.trước tiên lấy tất cả các dòng Id  2.duyệt và gọi editRow phương thức
         for (var i = 0; i < rowIds.length; i++) {
             jgr.jqGrid('editRow',
                 rowIds[i],
@@ -458,19 +458,19 @@
         }
     }
 
-    // 退药
+    // trả thuốc
     function newtouch_event_f6() {
         var jqr = null;
         if ($("#dispenseByBatch").is(":checked")) {
-            //按批次
+            //theo lô
             jqr = $dispenseMedicinGridListByBatch;
         } else {
-            //不按批次
+            //không theo lô
             jqr = $dispenseMedicinGridListNoBatch;
         }
-        var ids = jqr.jqGrid('getDataIDs'); //获取所有行Id，遍历使编辑框处于保存状态
+        var ids = jqr.jqGrid('getDataIDs'); //lấy tất cả các dòng Id, duyệt để hộp chỉnh sửa ở trạng thái đã lưu
         if (ids == null || ids.length === 0) {
-            $.modalMsg('请查询退药明细', 'warning', 2000);
+            $.modalMsg('vui lòng tra cứu trả thuốc chi tiết', 'warning', 2000);
             return false;
         }
         var tymx = [];
@@ -485,23 +485,23 @@
                 rowData.tysl === "" ||
                 isNaN(rowData.tysl) ||
                 rowData.tysl < 0) {
-                $.modalAlert("【" + rowData.ypmc + "】退药数量应为自然数，请确认。", "warning");
-                EnableInlineEditBox(jqr); //启用行内编辑框
+                $.modalAlert("【" + rowData.ypmc + "】số lượng trả thuốc phải là số tự nhiên, vui lòng xác nhận.", "warning");
+                EnableInlineEditBox(jqr); //bật hộp chỉnh sửa trong dòng
                 return false;
             }
             if (parseInt(rowData.tysl) > parseInt(rowData.sl)) {
-                $.modalAlert("【" + rowData.ypmc + "】退药数量不得超过" + rowData.slStr + "。", "warning");
-                EnableInlineEditBox(jqr); //启用行内编辑框
+                $.modalAlert("【" + rowData.ypmc + "】số lượng trả thuốc không được vượt quá" + rowData.slStr + "。", "warning");
+                EnableInlineEditBox(jqr); //bật hộp chỉnh sửa trong dòng
                 return false;
             }
             if (parseInt(rowData.sl) > 0) {
                 const rowid = ids[i]
-                //追溯码
+                //mã truy xuất
                 var zsm = $("#sel_zsm_" + rowid).val()
-                //是否拆零
+                //có tách lẻ không
                 var sfclValue = Number($("#sel_sfcl_" + rowid).val());
 
-                // 验证追溯码数量。 是否拆零选是，只需要扫一个，否的话需要扫对应入库数量的码
+                // kiểm tra số lượng mã truy xuất. nếu tách lẻ thì chọn có, chỉ cần quét một cái, nếu không thì cần quét mã tương ứng với số lượng nhập kho
                 const zsmLength = $("#sel_zsm_" + rowid).val().split(',').filter(entry => entry.trim() !== '').length
                 var maxZsmLength = 1
                 if (sfclValue === 1) {
@@ -510,7 +510,7 @@
                     maxZsmLength = parseInt(rowData.sl)
                 }
                 if (zsmLength != 0 && zsmLength != maxZsmLength) {
-                    $.modalMsg("条目" + rowData.ypmc + "数量与追溯码数量不一致！", "warning", 1500);
+                    $.modalMsg("mục" + rowData.ypmc + "số lượng không khớp với số lượng mã truy xuất!", "warning", 1500);
                     return false;
                 }
 
@@ -538,7 +538,7 @@
             }
         }
 
-        $.modalConfirm("确定进行退药吗？", function (flag) {
+        $.modalConfirm("xác định tiến hành trả thuốc không?", function (flag) {
             if (!flag) return false;
             $.najax({
                 type: "POST",
@@ -553,21 +553,21 @@
                         else if ($("#autoPrintSum").is(":checked")) {
                             printRpSummary(res.data);
                         }
-                        $.modalMsg('退药成功', 'success', 2000);
-                        bqGridList(); //绑定病区
+                        $.modalMsg('trả thuốc thành công', 'success', 2000);
+                        bqGridList(); //gắn khu bệnh
                         jqr.trigger("reloadGrid");
                     } else {
                         $.modalAlert(res.message, 'error');
-                        EnableInlineEditBox(jqr); //启用行内编辑框
+                        EnableInlineEditBox(jqr); //bật hộp chỉnh sửa trong dòng
                     }
                 }
             });
         }, false);
     }
 
-    //打印明细
+    //in chi tiết
     function printRpDetail(rdNo) {
-        var systemCode = "PDS";//报表所属系统编码
+        var systemCode = "PDS";//mã hệ thống của báo cáo
         for (var i = 0; i < tyzyh.length; i++) {
             var uri = '@reportUrl' + "?tempCode=64" + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=" + '@ViewBag.OrganizeId' + "&systemCode=" + systemCode + "&yfbmCode=" + '@ViewBag.yfbmCode' + "&yzIds=" + "&zxIds=" + "&czIds=" + "&zyh=" + tyzyh[0].zyh + "&operateType=2" + "&rdNo=" + rdNo;
             window.open(uri);
@@ -575,7 +575,7 @@
     }
 
     function printRpSummary(rdNo) {
-        var systemCode = "PDS";//报表所属系统编码
+        var systemCode = "PDS";//mã hệ thống của báo cáo
         var uri = '@reportUrl' + "?tempCode=66" + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&systemCode=" + systemCode + "&yfbmCode=" + '@ViewBag.yfbmCode' + "&yzIds= &zxIds=&operateType=2&kssj=&jssj=" + "&rdNo=" + rdNo + "&czIds=";
         window.open(uri);
     }

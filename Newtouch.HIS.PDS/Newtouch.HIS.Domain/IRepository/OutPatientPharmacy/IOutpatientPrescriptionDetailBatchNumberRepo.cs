@@ -4,37 +4,37 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 门诊处方明细批号信息 mz_cfmxph
+    /// ngoại trú chi tiết đơn thuốc số lô thông tin mz_cfmxph
     /// </summary>
     public interface IOutpatientPrescriptionDetailBatchNumberRepo : IRepositoryBase<OutpatientPrescriptionDetailBatchNumberEntity>
     {
         /// <summary>
-        /// 获取所有门诊处方明细批号信息
+        /// lấy tất cả ngoại trú chi tiết đơn thuốc số lô thông tin
         /// </summary>
         /// <returns></returns>
         List<OutpatientPrescriptionDetailBatchNumberEntity> GetList();
 
         /// <summary>
-        /// 根据处方号和组织机构获取未归架的门诊处方明细批号信息
+        /// theo số đơn thuốc và tổ chức lấy chưa xếp lên kệ của ngoại trú chi tiết đơn thuốc số lô thông tin
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
-        /// <param name="gjzt">归架状态：0-未归架  1-已归架</param>
+        /// <param name="gjzt">xếp lên kệ trạng thái: 0-chưa xếp lên kệ  1-đã xếp lên kệ</param>
         /// <returns></returns>
         List<OutpatientPrescriptionDetailBatchNumberEntity> GetList(string cfh, string organizeId, string gjzt = "0");
 
         /// <summary>
-        /// 根据处方号和组织机构获取门诊处方明细批号信息
+        /// theo số đơn thuốc và tổ chức lấy ngoại trú chi tiết đơn thuốc số lô thông tin
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
-        /// <param name="gjzt">归架状态：0-未归架  1-已归架</param>
+        /// <param name="gjzt">xếp lên kệ trạng thái: 0-chưa xếp lên kệ  1-đã xếp lên kệ</param>
         /// <returns></returns>
         List<OutpatientPrescriptionDetailBatchNumberEntity> GetList(string cfh, string yfbmCode, string organizeId, string gjzt = "0");
 
         /// <summary>
-        /// 归架药品
+        /// xếp lên kệ thuốc
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="pc"></param>

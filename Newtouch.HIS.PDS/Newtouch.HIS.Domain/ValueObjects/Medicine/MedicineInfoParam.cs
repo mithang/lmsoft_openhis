@@ -1,17 +1,17 @@
 ﻿namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 药品查询条件
+    /// thuốc điều kiện tra cứu
     /// </summary>
     public class MedicineInfoParam
     {
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypdm { get; set; }
 
         /// <summary>
-        /// 药品类别
+        /// loại thuốc
         /// </summary>
         public string yplb { get; set; }
 
@@ -21,22 +21,22 @@
         public string ypsx { get; set; }
 
         /// <summary>
-        /// 药品剂型
+        /// dạng bào chế thuốc
         /// </summary>
         public string ypjx { get; set; }
 
         /// <summary>
-        /// 使用状态 控制、正常
+        /// trạng thái sử dụng kiểm soát, bình thường
         /// </summary>
         public string syzt { get; set; }
 
         /// <summary>
-        /// 药品状态 停用、启用
+        /// trạng thái thuốc ngừng sử dụng, kích hoạt
         /// </summary>
         public string ypzt { get; set; }
 
         /// <summary>
-        /// 输入码
+        /// mã nhập
         /// </summary>
         public string srm { get; set; }
     }

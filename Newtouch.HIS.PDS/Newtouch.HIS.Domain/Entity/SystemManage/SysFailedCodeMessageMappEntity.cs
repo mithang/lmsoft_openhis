@@ -17,12 +17,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// tổ chức Id (有具体业务的医院)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 顶级组织机构（当前登录人员有Org时Org，否则TopOrg）
+        /// tổ chức cấp cao nhất (hiện tại đăng nhập nhân viên có Org giờ Org, không thì TopOrg)
         /// </summary>
         public string TopOrganizeId { get; set; }
 

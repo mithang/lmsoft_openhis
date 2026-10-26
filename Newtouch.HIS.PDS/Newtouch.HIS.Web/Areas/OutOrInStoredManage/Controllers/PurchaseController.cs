@@ -47,30 +47,30 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             return View();
         }
 
-        //采购导入列表
+        //mua hàng nhập danh sách
         public ActionResult PurchaseView()
         {
             return View();
         }
 
-        //发票导入列表
+        //hóa đơn nhập danh sách
         public ActionResult BillView() {
             return View();
         }
 
-        //发票查询与验收
+        //tra cứu hóa đơn và nghiệm thu
         public ActionResult Bill()
         {
             return View();
         }
 
-        //发票验收
+        //hóa đơn nghiệm thu
         public ActionResult BillForm()
         {
             return View();
         }
 
-        //配送单获取验收
+        //phân phối đơn lấy nghiệm thu
         public ActionResult Delivery()
         {
             return View();
@@ -105,7 +105,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         #region 采购管理
 
         /// <summary>
-        /// 分页查询采购单列表
+        /// phần trang tra cứu mua hàng đơn danh sách
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kssj"></param>
@@ -141,7 +141,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             return Success();
         }
         /// <summary>
-        /// 采购单状态变更 1：未审核 2：审核通过 3：作废
+        /// mua hàng đơn trạng thái thay đổi 1: chưa duyệt 2: duyệt 3: hủy bỏ
         /// </summary>
         /// <param name="cgId"></param>
         /// <param name="ddzt"></param>
@@ -152,20 +152,20 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             return Success();
         }
         /// <summary>
-        /// 采购订单传报
+        /// mua hàng đơn hàng gửi báo cáo
         /// </summary>
         /// <param name="cgId"></param>
         /// <param name="ddzt"></param>
         /// <returns></returns>
         public ActionResult PurchaseUpload(string cgId, int ddzt)
         {
-            //1.上传至阳光采购平台 YY009
+            //1.tải lên đến nền tảng mua sắm Sunshine YY009
             var ddbh = _sunPurchaseDmnService.Purchase_YY009(this.OrganizeId, cgId);
-            //2.更新ddbh
+            //2.cập nhật ddbh
             _purchaseRepo.PurchaseDdbhUpdate(cgId, ddbh, this.OrganizeId);
-            //4.订单填报确认 YY010
+            //4.đơn hàng khai báo xác nhận YY010
             _sunPurchaseDmnService.Purchase_YY010(this.OrganizeId, cgId);
-            //5.更新传报状态
+            //5.cập nhật gửi báo cáo trạng thái
             _purchaseRepo.PurchaseStateUpdate(cgId, ddzt, this.OrganizeId);
             return Success();
         }
@@ -174,17 +174,17 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         #region 采购订单测试
         public ActionResult PurchaseUploadWriteTest(string cgId, int ddzt)
         {
-            //1.上传至阳光采购平台 YY009
+            //1.tải lên đến nền tảng mua sắm Sunshine YY009
             var ddbh = _sunPurchaseDmnService.Purchase_YY009(this.OrganizeId, cgId);
-            //2.更新ddbh
+            //2.cập nhật ddbh
             _purchaseRepo.PurchaseDdbhUpdate(cgId, ddbh, this.OrganizeId);
             return Success();
         }
         public ActionResult PurchaseUploadSureTest(string cgId, int ddzt)
         {
-            //3.订单填报确认 YY010
+            //3.đơn hàng khai báo xác nhận YY010
             _sunPurchaseDmnService.Purchase_YY010(this.OrganizeId, cgId);
-            //4.更新传报状态
+            //4.cập nhật gửi báo cáo trạng thái
             _purchaseRepo.PurchaseStateUpdate(cgId, ddzt, this.OrganizeId);
             return Success();
         }
@@ -193,7 +193,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 
         #region 采购详情表单
         /// <summary>
-        /// 保存
+        /// lưu
         /// </summary>
         /// <param name="cgEntity"></param>
         /// <param name="cgmxList"></param>
@@ -205,14 +205,14 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 
             cgEntity.OrganizeId = this.OrganizeId;
             cgEntity.yyjhdh = "YPCGD"+DateTime.Now.ToString("yyyyMMddHHmm");
-            // 1.新增或更新采购列表
+            // 1.thêm mới hoặc cập nhật mua hàng danh sách
             var cgId = _purchaseRepo.SubmitForm(cgEntity, keyValue);
-            //2.删除采购明细
+            //2.xóa mua hàng chi tiết
             if (!string.IsNullOrWhiteSpace(keyValue))
             {
                 _purchaseDetailRepo.DeleteItem(cgId, this.OrganizeId);
             }
-            //3.添加采购明细
+            //3.thêm mua hàng chi tiết
             foreach (var cgmx in cgmxList)
             {
                 cgmx.OrganizeId = this.OrganizeId;
@@ -222,7 +222,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         }
 
         /// <summary>
-        /// 保存 + 传报
+        /// lưu + gửi báo cáo
         /// </summary>
         /// <param name="cgEntity"></param>
         /// <param name="cgmxList"></param>
@@ -234,20 +234,20 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 
             cgEntity.OrganizeId = this.OrganizeId;
             cgEntity.jls = cgmxList.Count;
-            // 1.新增或更新采购列表
+            // 1.thêm mới hoặc cập nhật mua hàng danh sách
             var cgId = _purchaseRepo.SubmitForm(cgEntity, keyValue);
-            //2.删除采购明细
+            //2.xóa mua hàng chi tiết
             if (keyValue != null)
             {
                 _purchaseDetailRepo.DeleteItem(cgId, this.OrganizeId);
             }
-            //3.添加采购明细
+            //3.thêm mua hàng chi tiết
             foreach (var cgmx in cgmxList)
             {
                 cgmx.OrganizeId = this.OrganizeId;
                 _purchaseDetailRepo.InsertItem(cgmx, cgId);
             }
-            //4.采购订单填报与传报
+            //4.mua hàng đơn hàng khai báo và gửi báo cáo
             PurchaseUpload(cgId, 2);
             return Success();
         }
@@ -255,7 +255,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 
         #region 出入库
         /// <summary>
-        /// 获取采购入库单明细
+        /// lấy mua hàng nhập kho đơn chi tiết
         /// </summary>
         /// <param name="cgId"></param>
         /// <param name="keyword"></param>
@@ -376,7 +376,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             //obj2.HSJE = 780;
             //obj2.PFJ = decimal.Parse("7.8");
             //obj2.LSJ = decimal.Parse("8.97");
-            //obj2.PZWH = "国药准字H10950207";
+            //obj2.PZWH = "số chuẩn thuốc quốc gia H10950207";
             //list.Add(obj2);
             //return Content(list.ToJson());
 
@@ -408,18 +408,18 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             //obj3.HSJE = decimal.Parse("61.1");
             //obj3.PFJ = decimal.Parse("10.8142");
             //obj3.LSJ = decimal.Parse("61.1");
-            //obj3.PZWH = "国药准字H32024827";
+            //obj3.PZWH = "số chuẩn thuốc quốc gia H32024827";
             //list.Add(obj3);
             //return Content(list.ToJson());
 
 
-            //阳光采购平台查询发票
+            //nền tảng mua sắm Sunshine tra cứu hóa đơn
             var result = _sunPurchaseDmnService.Purchase_YY004(OrganizeId, yqbm, fpmxbh);
             return Content(result.ToJson());
 
         }
 
-        //发票明细落地
+        //chi tiết hóa đơn được ghi nhận
         public ActionResult BillDetailInsert(OutputStructYY004 entity)
         {
             _purchaseBillDetailRepo.InsertItem(entity, this.OrganizeId);
@@ -428,7 +428,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 
         public ActionResult BillAccept(PurchaseMainYY019 main)
         {
-            //1.阳光采购平台验收
+            //1.nền tảng mua sắm Sunshine nghiệm thu
             var result = _sunPurchaseDmnService.Purchase_YY019(main, this.OrganizeId);
             //2.发票数据落地
             _purchaseBillRepo.InsertItem(main, this.OrganizeId);
@@ -439,14 +439,14 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 
         #region 配送单获取验收
 
-        //配送单查询
+        //phân phối đơn tra cứu
         public ActionResult GetDeliveryGridJson(string qybm, string psmxbh)
         {
             var result = _sunPurchaseDmnService.Purchase_YY003(OrganizeId, qybm, psmxbh);
             return Content(result.ToJson());
         }
 
-        //配送单验收
+        //phân phối đơn nghiệm thu
         public ActionResult DeliveryAccept(PurchaseMainYY018 main)
         {
             var result = _sunPurchaseDmnService.Purchase_YY018(main, this.OrganizeId);
@@ -458,15 +458,15 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         #region
         public ActionResult PurchaseReturnUpload(string thId, int ddzt)
         {
-            //1.上传至阳光采购平台 YY011
+            //1.tải lên đến nền tảng mua sắm Sunshine YY011
             var ddbh = _sunPurchaseDmnService.Purchase_YY011(this.OrganizeId, thId);
-            //2.获取YY011的订单编号  (YY011落地表)
+            //2.lấy YY011 của số đơn hàng  (YY011落地表)
             //var ddbh = "00001";
-            //3.更新ddbh
+            //3.cập nhật ddbh
             //_returnedRepo.PurchaseDdbhUpdate(thId, ddbh, this.OrganizeId);
-            //4.订单填报确认 YY012
+            //4.đơn hàng khai báo xác nhận YY012
             _sunPurchaseDmnService.Purchase_YY012(this.OrganizeId, thId);
-            //更新传报状态
+            //cập nhật gửi báo cáo trạng thái
             //_returnedRepo.PurchaseReturnStateUpdate(thId, ddzt, this.OrganizeId);
             return Success();
         }

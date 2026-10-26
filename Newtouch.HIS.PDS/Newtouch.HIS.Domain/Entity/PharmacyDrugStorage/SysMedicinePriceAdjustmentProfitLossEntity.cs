@@ -6,7 +6,7 @@ using Newtouch.Infrastructure.EF.Attributes;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品调价损益
+    /// hệ thống thuốc điều chỉnh giá lãi/lỗ
     /// </summary>
     [Table("xt_yp_tjsy")]
     public class SysMedicinePriceAdjustmentProfitLossEntity : IEntity<SysMedicinePriceAdjustmentProfitLossEntity>
@@ -18,48 +18,48 @@ namespace Newtouch.HIS.Domain.Entity
         public string TjsyId { get; set; }
 
         /// <summary>
-        /// 组织ID
+        /// tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 药房部门
+        /// bộ phận nhà thuốc
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 药品code
+        /// thuốc code
         /// </summary>
         public string ypCode{ get; set; }
 
         /// <summary>
-        /// 批号
+        /// số lô
         /// </summary>
         public string Ph { get; set; }
 
         /// <summary>
-        /// 调价时间
+        /// điều chỉnh giá thời gian
         /// </summary>
         public DateTime Tjsj { get; set; }
 
         /// <summary>
-        /// 调价文件
+        /// điều chỉnh giá tệp
         /// </summary>
         public string Tjwj { get; set; }
 
         /// <summary>
-        /// 当时库存数量
+        /// khi giờ số lượng tồn kho
         /// </summary>
         public int Dssl { get; set; }
 
         /// <summary>
-        /// 原批发价
+        /// giá bán buôn gốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Ypfj { get; set; }
 
         /// <summary>
-        /// 原零售价
+        /// giá bán lẻ gốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Ylsj { get; set; }
@@ -77,31 +77,31 @@ namespace Newtouch.HIS.Domain.Entity
         public decimal Yyklsj { get; set; }
 
         /// <summary>
-        /// 现批发价
+        /// giá bán buôn hiện tại
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Xpfj { get; set; }
 
         /// <summary>
-        /// 现零售价
+        /// giá bán lẻ hiện tại
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Xlsj { get; set; }
 
         /// <summary>
-        /// 现药库批发价
+        /// hiện tại giá bán buôn kho thuốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Xykpfj { get; set; }
 
         /// <summary>
-        /// 现药库零售价
+        /// hiện tại giá bán lẻ kho thuốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Xyklsj { get; set; }
 
         /// <summary>
-        /// 转换因子
+        /// hệ số chuyển đổi
         /// </summary>
         public int Zhyz { get; set; }
 
@@ -118,17 +118,17 @@ namespace Newtouch.HIS.Domain.Entity
         public decimal Lsjtjlr { get; set; }
 
         /// <summary>
-        /// 批次
+        /// lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 操作人
+        /// người thao tác
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 操作时间
+        /// thời gian thao tác
         /// </summary>
         public DateTime CreateTime { get; set; }
 

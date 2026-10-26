@@ -24,7 +24,7 @@ using static Newtouch.Common.Web.APIRequestHelper;
 namespace Newtouch.HIS.Web.Controllers
 {
     /// <summary>
-    /// 住院药房Controller
+    /// nội trú nhà thuốc Controller
     /// </summary>
     public class HospitalizationPharmacyController : ControllerBase
     {
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Web.Controllers
         private readonly IDispensingDmnService _dispensingDmnService;
         private readonly IHospitalizationPharmacyApp _hospitalizationPharmacyApp;
         private readonly IResourcesOperateApp _resourcesOperateApp;
-        private readonly string _OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//组织id
+        private readonly string _OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//tổ chức id
 
         #region 关联
         public ActionResult DispenseIndex()
@@ -54,7 +54,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 发药
+        /// phát thuốc
         /// </summary>
         /// <returns></returns>
         public ActionResult QueryIndex()
@@ -100,7 +100,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region 住院发药
 
         /// <summary>
-        /// 住院发药病区
+        /// phát thuốc nội trú khu bệnh
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -158,7 +158,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 住院发药医嘱信息集合
+        /// phát thuốc nội trú y lệnh thông tin tập hợp
         /// </summary>
         /// <param name="queryParam"></param>
         /// <returns></returns>
@@ -196,8 +196,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// <summary>
         /// 删除指定医嘱
         /// </summary>
-        /// <param name="yzId">医嘱ID</param>
-        /// <param name="zxId">医嘱执行ID</param>
+        /// <param name="yzId">y lệnh ID</param>
+        /// <param name="zxId">thực hiện y lệnh ID</param>
         /// <returns></returns>
         public ActionResult DeleteYzxx(string yzId, string zxId)
         {
@@ -206,7 +206,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 取消排药
+        /// hủy xếp thuốc
         /// </summary>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
@@ -232,9 +232,9 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 点击执行发药
+        /// nhấp thực hiện phát thuốc
         /// </summary>
-        /// <param name="fyls">发药列表</param>
+        /// <param name="fyls">phát thuốc danh sách</param>
         [HandlerAjaxOnly]
         public ActionResult DispensingDrugs(List<DispensingDrugsParam> fyls)
         {
@@ -246,7 +246,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region  科室备药
 
         /// <summary>
-        /// 申请单树
+        /// phiếu đề nghị cây
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="bylx"></param>
@@ -324,9 +324,9 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-        /// 点击发药
+        /// nhấp phát thuốc
         /// </summary>
-        /// <param name="SqdArr">申请单</param>
+        /// <param name="SqdArr">phiếu đề nghị</param>
         [HandlerAjaxOnly]
         public ActionResult ApplyNoSendDrugs(string SqdArr)
         {
@@ -334,7 +334,7 @@ namespace Newtouch.HIS.Web.Controllers
             return string.IsNullOrWhiteSpace(result) ? Success("发药成功") : Error(result);
         }
         /// <summary>
-        /// 申请单退回
+        /// phiếu đề nghị trả lại
         /// </summary>
         /// <param name="SqdArr"></param>
         /// <returns></returns>
@@ -371,7 +371,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-        /// 退药确认
+        /// trả thuốc xác nhận
         /// </summary>
         /// <param name="Sqd"></param>
         /// <returns></returns>
@@ -381,7 +381,7 @@ namespace Newtouch.HIS.Web.Controllers
             return string.IsNullOrWhiteSpace(result) ? Success("退药成功") : Error(result);
         }
         /// <summary>
-        /// 科室库存申请单退回
+        /// khoa tồn kho phiếu đề nghị trả lại
         /// </summary>
         /// <param name="SqdArr"></param>
         /// <returns></returns>
@@ -410,7 +410,7 @@ namespace Newtouch.HIS.Web.Controllers
 
         #region 住院发药查询
 
-        //药品 下拉 数据源
+        //thuốc thả xuống nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetYPSelectJson()
@@ -430,7 +430,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(treeList.TreeSelectJson(null));
         }
 
-        //病区 下拉 数据源
+        //khu bệnh thả xuống nguồn dữ liệu
         //[HttpGet]
         //[HandlerAjaxOnly]
         public ActionResult GetBQSelectJson()
@@ -440,7 +440,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 住院发药查询
+        /// tra cứu phát thuốc nội trú
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Bq"></param>
@@ -472,13 +472,13 @@ namespace Newtouch.HIS.Web.Controllers
             var drugDetail = new List<HospitalizationDispenseDetail>();
             //switch (operateType)
             //{
-            //    case "1"://发药
+            //    case "1"://phát thuốc
             //        drugDetail = _idispenseIndexInfoDmnService.GetZyfyQueryList(pagination, reqObj).ToList();
             //        break;
-            //    case "2"://退药
+            //    case "2"://trả thuốc
             //        drugDetail = _idispenseIndexInfoDmnService.GetZytyQueryList(pagination, reqObj).ToList();
             //        break;
-            //    case ""://全部
+            //    case ""://tất cả
             //        drugDetail = _idispenseIndexInfoDmnService.GetZyDrugQueryList(pagination, reqObj).ToList();
             //        break;
             //}
@@ -496,7 +496,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 住院发药查询
+        /// tra cứu phát thuốc nội trú
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Bq"></param>
@@ -543,7 +543,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region 住院退药
 
         /// <summary>
-        /// 退药
+        /// trả thuốc
         /// </summary>
         /// <returns></returns>
         public ActionResult RepercussionIndex()
@@ -556,7 +556,7 @@ namespace Newtouch.HIS.Web.Controllers
             return View("RepercussionIndex2019");
         }
         /// <summary>
-        /// 退药 -- 按照退药申请单退药
+        /// trả thuốc -- 按照退药申请单退药
         /// </summary>
         /// <returns></returns>
         public ActionResult RepercussionIndex2021()
@@ -570,7 +570,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 住院退药用户信息数据
+        /// trả thuốc nội trú người dùng thông tin dữ liệu
         /// </summary>
         /// <param name="zybrbq"></param>
         /// <returns></returns>
@@ -586,7 +586,7 @@ namespace Newtouch.HIS.Web.Controllers
             var treeList = new List<TreeViewModel>();
             foreach (var item in rows)
             {
-                //退药病人信息
+                //trả thuốc bệnh nhân thông tin
                 var patInfo = _idispenseIndexInfoDmnService.GetTyPatient(item.bqCode, OrganizeId);
 
                 treeList.AddRange(patInfo.Select(itempat => new TreeViewModel
@@ -622,7 +622,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 住院退药用户信息数据
+        /// trả thuốc nội trú người dùng thông tin dữ liệu
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -678,7 +678,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 点击执行退药操作
+        /// nhấp thực hiện trả thuốc thao tác
         /// </summary>
         /// <param name="ModelBQBRYZZXTYInfoVO"></param>
         /// <param name="type"></param>
@@ -688,7 +688,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 住院退药医嘱集合
+        /// trả thuốc nội trú y lệnh tập hợp
         /// </summary>
         /// <param name="queryParam"></param>
         /// <returns></returns>
@@ -720,7 +720,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 住院退药医嘱集合
+        /// trả thuốc nội trú y lệnh tập hợp
         /// </summary>
         /// <param name="queryParam"></param>
         /// <returns></returns>
@@ -752,7 +752,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 住院退药医嘱集合V2
+        /// trả thuốc nội trú y lệnh tập hợp V2
         /// </summary>
         /// <param name="queryParam"></param>
         /// <returns></returns>
@@ -784,7 +784,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 住院退药医嘱集合V2
+        /// trả thuốc nội trú y lệnh tập hợp V2
         /// </summary>
         /// <param name="queryParam"></param>
         /// <returns></returns>
@@ -816,7 +816,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取住院退药申请单号
+        /// lấy trả thuốc nội trú phiếu đề nghị số
         /// </summary>
         /// <param name="queryParam"></param>
         /// <returns></returns>
@@ -848,7 +848,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 执行住院退药
+        /// thực hiện trả thuốc nội trú
         /// </summary>
         /// <param name="tyParams"></param>
         /// <returns></returns>
@@ -870,7 +870,7 @@ namespace Newtouch.HIS.Web.Controllers
         
 
         /// <summary>
-        /// 执行住院退药V2
+        /// thực hiện trả thuốc nội trú V2
         /// </summary>
         /// <param name="tyParams"></param>
         /// <returns></returns>
@@ -883,7 +883,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
         
         /// <summary>
-        /// 发药查询V2
+        /// phát thuốc tra cứu V2
         /// </summary>
         /// <returns></returns>
         public ActionResult QueryIndexV2()
@@ -903,7 +903,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 住院发药病区
+        /// phát thuốc nội trú khu bệnh
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -961,7 +961,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 住院发药查询
+        /// tra cứu phát thuốc nội trú
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Bq"></param>

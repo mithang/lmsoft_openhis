@@ -12,23 +12,23 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
     public class G_yb_ypxxVO
     {
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypdm { get; set; }
         /// <summary>
-        /// 数据来源
+        /// dữ liệu nguồn
         /// </summary>
         public string sjly { get; set; }
         /// <summary>
-        /// 注册名称
+        /// đăng ký tên
         /// </summary>
         public string zcmc { get; set; }
         /// <summary>
-        /// 商品名称
+        /// hàng hóa tên
         /// </summary>
         public string spmc { get; set; }
         /// <summary>
-        /// 注册剂型
+        /// đăng ký dạng bào chế
         /// </summary>
         public string zcjx { get; set; }
         /// <summary>
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         /// </summary>
         public string sjjx { get; set; }
         /// <summary>
-        /// 注册规格
+        /// đăng ký quy cách
         /// </summary>
         public string zcgg { get; set; }
         /// <summary>
@@ -44,11 +44,11 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         /// </summary>
         public string sjgg { get; set; }
         /// <summary>
-        /// 包装材质
+        /// chất liệu đóng gói
         /// </summary>
         public string bzcz { get; set; }
         /// <summary>
-        /// 最小包装数量
+        /// nhỏ nhất số lượng đóng gói lượng
         /// </summary>
         public string zxbzsl { get; set; }
         /// <summary>
@@ -56,7 +56,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         /// </summary>
         public string zxzjdw { get; set; }
         /// <summary>
-        /// 最小包装单位
+        /// nhỏ nhất đơn vị đóng gói
         /// </summary>
         public string zxbzdw { get; set; }
         /// <summary>
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         /// </summary>
         public string shypcyr { get; set; }
         /// <summary>
-        /// 批准文号
+        /// số giấy phép
         /// </summary>
         public string pzwh { get; set; }
         /// <summary>
@@ -76,7 +76,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         /// </summary>
         public string ypzwh { get; set; }
         /// <summary>
-        /// 药品本位码
+        /// thuốc này vị mã
         /// </summary>
         public string ypbwm { get; set; }
         /// <summary>
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         /// </summary>
         public string sczt { get; set; }
         /// <summary>
-        /// 医保药品名称
+        /// BHYT tên thuốc
         /// </summary>
         public string ybypmc { get; set; }
         /// <summary>
@@ -100,27 +100,27 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         /// </summary>
         public string ybjyl { get; set; }
         /// <summary>
-        /// 医保剂型
+        /// BHYT dạng bào chế
         /// </summary>
         public string ybjx { get; set; }
         /// <summary>
-        /// 编号
+        /// số hiệu
         /// </summary>
         public string bh { get; set; }
         /// <summary>
-        /// 备注
+        /// ghi chú
         /// </summary>
         public string bz { get; set; }
         /// <summary>
-        /// 甲乙类
+        /// A B loại
         /// </summary>
         public string jyl { get; set; }
         /// <summary>
-        /// 备注1
+        /// ghi chú 1
         /// </summary>
         public string bz1 { get; set; }
         /// <summary>
-        /// 备注（特殊属性标识）
+        /// ghi chú (đặc biệt thuộc tính dấu hiệu)
         /// </summary>
         public string bztssxbs { get; set; }
         /// <summary>
@@ -129,7 +129,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string ybzfbz { get; set; }
 
         /// <summary>
-        /// 拼音码
+        /// phiên âm mã
         /// </summary>
         public string pym { get; set; }
     }

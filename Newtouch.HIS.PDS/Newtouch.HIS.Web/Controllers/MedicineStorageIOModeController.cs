@@ -7,14 +7,14 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.Web.Controllers
 {
     /// <summary>
-    /// 药品出入库方式
+    /// thuốc phương thức nhập/xuất kho
     /// </summary>
     public class MedicineStorageIOModeController : ControllerBase
     {
         private readonly IXtypcrkfsRepo iXtypcrkfsRepo;
 
         /// <summary>
-        /// 获取出入库方式（下拉数据源）
+        /// lấy phương thức nhập/xuất kho (thả xuống nguồn dữ liệu)
         /// </summary>
         /// <param name="crkbz"></param>
         /// <returns></returns>

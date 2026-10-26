@@ -3,102 +3,102 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 药品损益信息
+    /// thuốc thông tin lãi/lỗ
     /// </summary>
     public class YpSyxxVo
     {
         /// <summary>
-        /// 组织机构
+        /// tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 药房代码编号
+        /// nhà thuốc mã số hiệu
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string Ypdm { get; set; }
 
         /// <summary>
-        /// 备注
+        /// ghi chú
         /// </summary>
         public string Ph { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// hạn sử dụng
         /// </summary>
         public DateTime? Yxq { get; set; }
 
         /// <summary>
-        /// 默认值Getdate()
+        /// giá trị mặc định Getdate()
         /// </summary>
         public DateTime Bgsj { get; set; }
 
         /// <summary>
-        /// 正数：报溢，负数：报损  最小单位数量
+        /// đang số: báo thừa, số âm: báo hỏng  số lượng đơn vị nhỏ nhất
         /// </summary>
         public int Sysl { get; set; }
 
         /// <summary>
-        /// 批发价
+        /// giá bán buôn
         /// </summary>
         public decimal Pfj { get; set; }
 
         /// <summary>
-        /// 零售价
+        /// giá bán lẻ
         /// </summary>
         public decimal Lsj { get; set; }
 
         /// <summary>
-        /// 药库批发价
+        /// giá bán buôn kho thuốc
         /// </summary>
         public decimal Ykpfj { get; set; }
 
         /// <summary>
-        /// 药库零售价
+        /// giá bán lẻ kho thuốc
         /// </summary>
         public decimal Yklsj { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// hệ số chuyển đổi
         /// </summary>
         public int Zhyz { get; set; }
 
         /// <summary>
-        /// 损益原因
+        /// nguyên nhân lãi/lỗ
         /// </summary>
         public string Syyy { get; set; }
 
         /// <summary>
-        /// 责任人
+        /// người chịu trách nhiệm
         /// </summary>
         public string Zrr { get; set; }
 
         /// <summary>
-        /// 单据号
+        /// số chứng từ
         /// </summary>
         public string Djh { get; set; }
 
         /// <summary>
-        /// 剩余库存
+        /// tồn kho còn lại
         /// </summary>
         public int Sykc { get; set; }
 
         /// <summary>
-        /// 进价
+        /// giá nhập
         /// </summary>
         public decimal Jj { get; set; }
 
         /// <summary>
-        /// 批次
+        /// lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 备注
+        /// ghi chú
         /// </summary>
         public string remark { get; set; }
     }

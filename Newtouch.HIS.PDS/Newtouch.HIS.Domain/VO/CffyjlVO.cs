@@ -3,57 +3,57 @@
 namespace Newtouch.HIS.Domain.VO
 {
     /// <summary>
-    /// 处方发药记录
+    /// đơn thuốc phát thuốc bản ghi
     /// </summary>
     public class CffyjlVO
     {
         /// <summary>
-        /// 处方号
+        /// số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 处方内码
+        /// mã nội bộ đơn thuốc
         /// </summary>
         public long cfnm { get; set; }
 
         /// <summary>
-        /// 发药标志 0：未排；1：已排；2：已发；3：已退
+        /// cờ phát thuốc 0: chưa xếp; 1: đã xếp; 2: đã phát; 3: đã trả
         /// </summary>
         public string fybz { get; set; }
 
         /// <summary>
-        /// 发药时间
+        /// thời gian phát thuốc
         /// </summary>
         public DateTime? fysj { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// số hóa đơn
         /// </summary>
         public string Fph { get; set; }
 
         /// <summary>
-        /// 患者姓名
+        /// họ tên bệnh nhân
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// số thẻ
         /// </summary>
         public string CardNo { get; set; }
 
         /// <summary>
-        /// 年龄
+        /// tuổi
         /// </summary>
         public int? nl { get; set; }
 
         /// <summary>
-        /// 病人性质描述
+        /// tính chất bệnh nhân mô tả
         /// </summary>
         public string brxzmc { get; set; }
 
         /// <summary>
-        /// 发药人员
+        /// phát thuốc nhân viên
         /// </summary>
         public string fyry { get; set; }
     }

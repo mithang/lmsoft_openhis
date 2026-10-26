@@ -7,16 +7,16 @@
 <form id="form1">
     <div class="panel panel-default" style="margin-top:10px;">
         <div class="panel-heading">
-            门诊排药
+            xếp thuốc ngoại trú
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">排药员工:</th>
+                    <th class="formTitle">xếp thuốc viên công:</th>
                     <td class="formValue">
                         <input id="txtid" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">姓名：</th>
+                    <th class="formTitle">họ tên: </th>
                     <td class="formValue">
                         <input id="txtname" type="text" class="form-control newtouch_Readonly" />
                     </td>
@@ -26,7 +26,7 @@
                     </td>
                     <th class="formTitle"></th>
                     <td class="formValue">
-                        <input type="button" class="btn btn-primary btn-md" id="BtnQuery" value="查询" />
+                        <input type="button" class="btn btn-primary btn-md" id="BtnQuery" value="tra cứu" />
                     </td>
                 </tr>
             </table>
@@ -40,21 +40,21 @@
     </div>
     <div class="panel panel-default" style="margin-bottom:10px;">
         <div class="panel-heading">
-            设置
+            cài đặt
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form" style="padding-left:20px">
                 <tr>
-                    <th class="formTitle ">查询间隔时间:(秒)</th>
+                    <th class="formTitle ">查询间隔时间:(giây)</th>
                     <td class="formValue">
                         <input id="pycxjgsj" type="number" name="pycxjgsj" class="form-control" />
                     </td>
                     <th class="formTitle">
                     </th>
                     <td class="formValue">
-                        <input type="checkbox" id="IsAutoPy" /><span>自动排药</span>
+                        <input type="checkbox" id="IsAutoPy" /><span>tự động xếp thuốc</span>
                     </td>
-                    <th class="formTitle ">配药时间:<label name="dw">(秒)</label></th>
+                    <th class="formTitle ">配药时间:<label name="dw">(giây)</label></th>
                     <td class="formValue">
                         <input id="pysj" type="number" class="form-control" value="5" />
                     </td>
@@ -69,13 +69,13 @@
     @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new[] { 7, 8 },
-    F7Text = "排药",
-    F8Text = "保存设置"
+    F7Text = "xếp thuốc",
+    F8Text = "lưu cài đặt"
 })
 </form>
 
 <script>
-    var timer1;//自动排药
+    var timer1;//tự động xếp thuốc
     $(function () {
         gridCF();
         init();
@@ -100,7 +100,7 @@
     }
 
 
-    //加载排药员
+    //tải xếp thuốc viên
     function loadpyy() {
         $.najax({
             url: "/OutPatientPharmacy/initPYY?r=" + Math.random(),
@@ -116,7 +116,7 @@
         });
     }
 
-    //加载处方信息
+    //tải thông tin đơn thuốc
     function loadpyhj() {
         $.najax({
             url: "/OutPatientPharmacy/loadpyhj?r=" + Math.random(),
@@ -131,7 +131,7 @@
         });
     }
 
-    //加载配置
+    //tải cấu hình
     function Loadconfig() {
         $.najax({
             url: "/OutPatientPharmacy/Loadconfig?r=" + Math.random(),
@@ -156,19 +156,19 @@
         $gridCf.dataGrid({
             height: 150,
             url: "/OutPatientPharmacy/PyInfoSearch?r=" + Math.random(),
-            caption: "处方列表",
+            caption: "danh sách đơn thuốc",
             colModel: [
-                { label: '卡号', name: 'kh', width: 80, align: 'center' },
-                { label: '姓名', name: 'xm', width: 80, align: 'left' },
-                { label: '发票号', name: 'Fph', width: 100, align: 'center' },
-                { label: '处方号', name: 'cfh', width: 120, align: 'center' },
-                { label: '年龄', name: 'nl', width: 50, align: 'center' },
-                { label: '病人类型', name: 'brlxmc', width: 80, align: 'center' },
-                { label: '收费窗口', name: 'sfck', width: 80, align: 'center' },
-                { label: '医生', name: 'ys', width: 80, align: 'left' },
-                { label: '科室', name: 'ksmc', width: 80, align: 'center' },
-                { label: '收费时间', name: 'sfsj', width: 110, align: 'center' },
-                { label: '处方内码', name: 'pcfnm', hidden: true }
+                { label: 'số thẻ', name: 'kh', width: 80, align: 'center' },
+                { label: 'họ tên', name: 'xm', width: 80, align: 'left' },
+                { label: 'số hóa đơn', name: 'Fph', width: 100, align: 'center' },
+                { label: 'số đơn thuốc', name: 'cfh', width: 120, align: 'center' },
+                { label: 'tuổi', name: 'nl', width: 50, align: 'center' },
+                { label: 'bệnh nhân loại', name: 'brlxmc', width: 80, align: 'center' },
+                { label: 'thu phí cửa sổ', name: 'sfck', width: 80, align: 'center' },
+                { label: 'bác sĩ', name: 'ys', width: 80, align: 'left' },
+                { label: 'khoa', name: 'ksmc', width: 80, align: 'center' },
+                { label: 'thời gian thu phí', name: 'sfsj', width: 110, align: 'center' },
+                { label: 'mã nội bộ đơn thuốc', name: 'pcfnm', hidden: true }
 
             ]
         });
@@ -184,23 +184,23 @@
         $gridCfInfo.dataGrid({
             height: 150,
             url: "/OutPatientPharmacy/pyDeailInfoSearch?pCfh=" + cfh,
-            caption: "处方明细",
+            caption: "chi tiết đơn thuốc",
             colModel: [
-                { label: '药品名称', name: 'ypmc', width: 100, align: 'left' },
-                { label: '规格', name: 'ypgg', width: 150, align: 'left' },
-                { label: '数量', name: 'sl', width: 100, align: 'left' },
-                { label: '单位', name: 'dw', width: 100, align: 'left' },
-                { label: '单价', name: 'dj', width: 100, align: 'left' },
-                { label: '生产厂家', name: 'ycmc', width: 150, align: 'left' },
-                { label: '金额', name: 'je', width: 100, align: 'left' },
-                { label: '剂量', name: 'jl', width: 100, align: 'left' },
-                { label: '剂量单位', name: 'jldw', width: 100, align: 'left' },
-                { label: '用法', name: 'yfmc', width: 100, align: 'left' },
-                //{ label: '频次', name: 'pcmc', width: 100, align: 'left' },
-                { label: '用量', name: 'yl', width: 100, align: 'left' },
-                { label: '用量单位', name: 'yldw', width: 100, align: 'left' },
-                { label: '医生嘱托', name: 'yszt', width: 100, align: 'left' },
-                { label: '药品分组', name: 'czh', width: 100, align: 'left' }
+                { label: 'tên thuốc', name: 'ypmc', width: 100, align: 'left' },
+                { label: 'quy cách', name: 'ypgg', width: 150, align: 'left' },
+                { label: 'số lượng', name: 'sl', width: 100, align: 'left' },
+                { label: 'đơn vị', name: 'dw', width: 100, align: 'left' },
+                { label: 'đơn giá', name: 'dj', width: 100, align: 'left' },
+                { label: 'nhà sản xuất', name: 'ycmc', width: 150, align: 'left' },
+                { label: 'số tiền', name: 'je', width: 100, align: 'left' },
+                { label: 'liều dùng', name: 'jl', width: 100, align: 'left' },
+                { label: 'đơn vị liều dùng', name: 'jldw', width: 100, align: 'left' },
+                { label: 'cách dùng', name: 'yfmc', width: 100, align: 'left' },
+                //{ label: 'tần suất', name: 'pcmc', width: 100, align: 'left' },
+                { label: 'liều lượng', name: 'yl', width: 100, align: 'left' },
+                { label: 'đơn vị liều lượng', name: 'yldw', width: 100, align: 'left' },
+                { label: 'lời dặn của bác sĩ', name: 'yszt', width: 100, align: 'left' },
+                { label: 'nhóm thuốc', name: 'czh', width: 100, align: 'left' }
             ]
         });
         var grid = $gridCfInfo.jqGrid()[0].grid;
@@ -208,7 +208,7 @@
         grid.populate();
     }
 
-    //排药
+    //xếp thuốc
     function newtouch_globalevent_f7() {
         var id = $("#gridCF").jqGrid("getGridParam", "selrow");
         if (id) {
@@ -221,7 +221,7 @@
                     cache: false,
                     success: function (res) {
                         if (res.state === "success") {
-                            $.modalMsg('配药成功！', 'success', 1000);
+                            $.modalMsg('bốc thuốc thành công!', 'success', 1000);
                             $("#gridCF").jqGrid("clearGridData");
                             $("#gridCF").jqGrid('resetSelection');
                             $("#gridCF").trigger("reloadGrid");
@@ -234,10 +234,10 @@
                 });
             }
         } else {
-            $.modalAlert("请先选中处方信息", 'warning');
+            $.modalAlert("vui lòng trước tiên chọn trong thông tin đơn thuốc", 'warning');
         }
     }
-    //保存设置
+    //lưu cài đặt
     function newtouch_globalevent_f8() {
         //var data = $("#form1").formSerialize();
         //$.ajax({
@@ -248,13 +248,13 @@
         //    cache: false,
         //    success: function (res) {
         //        if (res.state === "success") {
-        //            $.modalMsg('修改成功！', 'success', 1000);
+        //            $.modalMsg('sửa thành công!', 'success', 1000);
         //        }
         //    }
         //});
     }
 
-    //自动排药定时器 1表示开始 2表示结束
+    //自动排药定时器 1 bảng thị bắt đầu 2 bảng thị kết thúc
     function pyInterval(type) {
         if (type === 1) {
             timer1 = self.setInterval("gridCF()", 50);

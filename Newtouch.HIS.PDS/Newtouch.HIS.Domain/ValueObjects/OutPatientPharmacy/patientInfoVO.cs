@@ -4,69 +4,69 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 门诊发药信息
+    /// phát thuốc ngoại trú thông tin
     /// </summary>
     public class OutpatienDrugDeliveryInfo
     {
         /// <summary>
-        /// 药房部门编码
+        /// bộ phận nhà thuốc mã
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 操作员账号
+        /// người thao tác tài khoản
         /// </summary>
         public string userCode { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// tổ chức ID
         /// </summary>
         public string organizeId { get; set; }
 
         /// <summary>
-        /// 发药患者信息
+        /// phát thuốc bệnh nhân thông tin
         /// </summary>
         public List<patientInfoVO> PatientInfo { get; set; }
     }
 
 
     /// <summary>
-    /// 患者信息 
+    /// bệnh nhân thông tin 
     /// </summary>
     [Serializable]
     public class patientInfoVO
     {
         /// <summary>
-        /// 卡号
+        /// số thẻ
         /// </summary>
         public string CardNo { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// họ tên
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 收费时间
+        /// thời gian thu phí
         /// </summary>
         public string ShowSfsj { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         public string cfnm { get; set; }
 
         /// <summary>
-        /// 追溯码
+        /// mã truy xuất
         /// </summary>
         public string zsm { get; set; }
 
         /// <summary>
-        /// 是否拆零
-        /// 1： 是
-        /// 2： 否
+        /// có tách lẻ không
+        /// 1: có
+        /// 2: không
         /// </summary>
         public int? sfcl { get; set; }
 

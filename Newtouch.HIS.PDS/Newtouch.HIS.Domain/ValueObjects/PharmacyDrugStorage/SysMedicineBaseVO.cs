@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 通用名
+        /// chung tên
         /// </summary>
         public string ypmc { get; set; }
 
@@ -31,12 +31,12 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 前最例如：(甲) (乙10%)……
+        /// ví dụ trước nhất: (A) (B 10%)......
         /// </summary>
         public string ypqz { get; set; }
 
         /// <summary>
-        /// 后最例如：……
+        /// ví dụ sau nhất:......
         /// </summary>
         public string yphz { get; set; }
 
@@ -61,12 +61,12 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string cfdw { get; set; }
 
         /// <summary>
-        /// 2018.04.18 意 剂量转换系数
+        /// 2018.04.18 ý hệ số chuyển đổi liều dùng
         /// </summary>
         public decimal? jl { get; set; }
 
         /// <summary>
-        /// 剂量单位
+        /// đơn vị liều dùng
         /// </summary>
         public string jldw { get; set; }
 
@@ -81,27 +81,27 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string bzdw { get; set; }
 
         /// <summary>
-        /// 准备废止
+        /// chuẩn bị hủy bỏ
         /// </summary>
         public decimal? mzcls { get; set; }
 
         /// <summary>
-        /// 准备废止，以“拆零单位”代替
+        /// chuẩn bị hủy bỏ, bằng"đơn vị tách lẻ"thay thế
         /// </summary>
         public string mzcldw { get; set; }
 
         /// <summary>
-        /// 准备废止
+        /// chuẩn bị hủy bỏ
         /// </summary>
         public decimal? zycls { get; set; }
 
         /// <summary>
-        /// 准备废止
+        /// chuẩn bị hủy bỏ
         /// </summary>
         public string zycldw { get; set; }
 
         /// <summary>
-        /// 最小单位
+        /// đơn vị nhỏ nhất
         /// </summary>
         public string zxdw { get; set; }
 
@@ -117,18 +117,18 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 默认进价
+        /// mặc định giá nhập
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal? pfj { get; set; }
 
         /// <summary>
-        /// 详见系统项目表“自负比例”说明
+        /// xem chi tiết hệ thống hạng mục bảng"tỷ lệ tự chi trả"mô tả
         /// </summary>
         public decimal zfbl { get; set; }
 
         /// <summary>
-        /// 1 自理 2 分类自负   详见系统项目表“自负性质”说明      门诊可用，急诊不可用，或反之，以不同药剂部门有无药来控制
+        /// 1 tự lo 2 tự chi trả theo loại   xem chi tiết hệ thống hạng mục bảng"tính chất tự chi trả"mô tả      ngoại trú khả dụng, cấp cứu không khả dụng, hoặc ngược lại, điều khiển theo việc các bộ phận dược khác nhau có thuốc hay không
         /// </summary>
         public string zfxz { get; set; }
 
@@ -143,7 +143,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string jx { get; set; }
 
         /// <summary>
-        /// xt_yc  修改直接保存名称
+        /// xt_yc  sửa trực tiếp lưu tên
         /// </summary>
         public string ycmc { get; set; }
 
@@ -158,7 +158,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public int? medextid { get; set; }
 
         /// <summary>
-        /// 药品在各药房消耗时的“包装级别”或“拆零数信息”
+        /// khi thuốc được tiêu thụ tại các nhà thuốc"cấp đóng gói"hoặc"thông tin số tách lẻ"
         /// </summary>
         public string ypbzdm { get; set; }
 
@@ -168,7 +168,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string nbdl { get; set; }
 
         /// <summary>
-        /// ----0：停用  1：启用   ---0：通用，1：门诊，2：住院  （作废）      
+        /// ----0: ngừng sử dụng  1: kích hoạt   ---0: chung, 1: ngoại trú, 2: nội trú   (hủy bỏ)      
         /// </summary>
         public string mzzybz { get; set; }
 
@@ -193,7 +193,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 1：有效 0：无效
+        /// 1: còn hiệu lực 0: không hiệu lực
         /// </summary>
         public string zt { get; set; }
 
@@ -213,37 +213,37 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public int? mjzbz { get; set; }
 
         /// <summary>
-        /// 药品用法
+        /// cách dùng thuốc
         /// </summary>
         public string yfCode { get; set; }
 
         /// <summary>
-        /// 是否抗生素
+        /// có phải kháng sinh không
         /// </summary>
         public string isKss { get; set; }
 
         /// <summary>
-        /// 药品抗生素信息Id
+        /// thuốc kháng sinh thông tin Id
         /// </summary>
         public string kssId { get; set; }
 
         /// <summary>
-        /// 基药标识
+        /// thuốc cơ bản dấu hiệu
         /// </summary>
         public string jybz { get; set; }
 
 
         /// <summary>
-        /// 备注
+        /// ghi chú
         /// </summary>
         public string bz { get; set; }
         /// <summary>
-        /// 超限价金额
+        /// vượt giá giới hạn số tiền
         /// </summary>
         public decimal? cxjje { get; set; }
 
         /// <summary>
-        /// 药品种类
+        /// chủng loại thuốc
         /// </summary>
         public string tsypbz { get; set; }
     }

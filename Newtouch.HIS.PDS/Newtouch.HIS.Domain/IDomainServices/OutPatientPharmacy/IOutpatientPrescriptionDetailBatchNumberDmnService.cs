@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface IOutpatientPrescriptionDetailBatchNumberDmnService
     {
         /// <summary>
-        /// 修改归架标志
+        /// sửa xếp lên kệ cờ
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -17,12 +17,12 @@ namespace Newtouch.HIS.Domain.IDomainServices
         int UpdateGjztbyCfh(string cfh, string organizeId);
 
         /// <summary>
-        /// 根据处方号和组织机构获取未归架的门诊处方明细批号信息
+        /// theo số đơn thuốc và tổ chức lấy chưa xếp lên kệ của ngoại trú chi tiết đơn thuốc số lô thông tin
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
         /// <param name="ypCode"></param>
-        /// <param name="gjzt">归架状态：0-未归架  1-已归架</param>
+        /// <param name="gjzt">xếp lên kệ trạng thái: 0-chưa xếp lên kệ  1-đã xếp lên kệ</param>
         /// <returns></returns>
         List<OutpatientPrescriptionDetailBatchNumberEntity> GetList(string cfh, string organizeId, string ypCode = "", string gjzt = "0");
     }

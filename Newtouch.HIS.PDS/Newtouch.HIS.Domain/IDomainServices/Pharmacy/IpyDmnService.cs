@@ -8,13 +8,13 @@ using Newtouch.HIS.Domain.VO;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 排药
+    /// xếp thuốc
     /// </summary>
     public interface IPyDmnService
     {
 
         /// <summary>
-        /// 取消排药
+        /// hủy xếp thuốc
         /// </summary>
         /// <param name="mzCfmxEntity"></param>
         /// <returns></returns>
@@ -39,25 +39,25 @@ namespace Newtouch.HIS.Domain.IDomainServices
         NeedDealCountVO GetNeedDealCountByYf();
 
         /// <summary>
-        /// 获取门诊月处方发药次
+        /// lấy ngoại trú tháng đơn thuốc phát thuốc lần
         /// </summary>
         /// <returns></returns>
         List<FyCountVoByYfbm> GetMzFyCountVoByYfbm();
 
         /// <summary>
-        /// 获取住院月医嘱发药次
+        /// lấy nội trú tháng y lệnh phát thuốc lần
         /// </summary>
         /// <returns></returns>
         List<FyCountVoByYfbm> GetZyFyCountVoByYfbm();
 
         /// <summary>
-        /// 获取医嘱次|处方药品次
+        /// lấy y lệnh lần|đơn thuốc thuốc lần
         /// </summary>
         /// <returns></returns>
         List<FyCountBydlVO> GetFyCountBydl();
 
         /// <summary>
-        /// 插入门诊处方信息
+        /// chèn ngoại trú thông tin đơn thuốc
         /// </summary>
         /// <param name="mzCfEntities"></param>
         /// <param name="mzCfmxEntities"></param>
@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
 
         /// <summary>
-        /// 物理删除处方主表和明细表   慎用
+        /// 物理删除处方主表和明细表   thận trọng khi dùng
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -75,40 +75,40 @@ namespace Newtouch.HIS.Domain.IDomainServices
         int DeleteRpInfo(string cfh, string organizeId, string yfbmCode);
 
         /// <summary>
-        /// 查询处方信息
+        /// tra cứu thông tin đơn thuốc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="xm"></param>
         /// <param name="cardNo"></param>
         /// <param name="invoiceNo"></param>
-        /// <param name="ksmc">科室名称</param>
-        /// <param name="kssj">排药时间</param>
-        /// <param name="jssj">排药时间</param>
+        /// <param name="ksmc">tên khoa</param>
+        /// <param name="kssj">thời gian xếp thuốc</param>
+        /// <param name="jssj">thời gian xếp thuốc</param>
         /// <param name="organizeId"></param>
         /// <param name="yfbmCode"></param>
-        /// <param name="jszt">结算状态 0-未结算 1-已结算</param>
-        /// <param name="settExpired">结算已过期 1-是 0-否</param>
+        /// <param name="jszt">quyết toán trạng thái 0-chưa quyết toán 1-đã quyết toán</param>
+        /// <param name="settExpired">quyết toán đã hết hạn 1-có 0-không</param>
         /// <returns></returns>
         IList<CfxxVO> SelectRpList(Pagination pagination, string xm, string cardNo, string invoiceNo, string ksmc
             , DateTime kssj, DateTime jssj, string organizeId, string yfbmCode, int jszt, string settExpired);
 
         /// <summary>
-        /// 查询处方信息
+        /// tra cứu thông tin đơn thuốc
         /// </summary>
         /// <param name="xm"></param>
         /// <param name="cardNo"></param>
         /// <param name="invoiceNo"></param>
-        /// <param name="ksmc">科室名称</param>
-        /// <param name="kssj">排药时间</param>
-        /// <param name="jssj">排药时间</param>
+        /// <param name="ksmc">tên khoa</param>
+        /// <param name="kssj">thời gian xếp thuốc</param>
+        /// <param name="jssj">thời gian xếp thuốc</param>
         /// <param name="organizeId"></param>
         /// <param name="yfbmCode"></param>
-        /// <param name="jszt">结算状态 0-未结算 1-已结算</param>
+        /// <param name="jszt">quyết toán trạng thái 0-chưa quyết toán 1-đã quyết toán</param>
         /// <returns></returns>
         List<CfxxVO> SelectRpList(string xm, string cardNo, string invoiceNo, string ksmc, DateTime kssj, DateTime jssj, string organizeId, string yfbmCode, int jszt);
 
         /// <summary>
-        /// 查询处方明细
+        /// tra cứu chi tiết đơn thuốc
         /// </summary>
         /// <param name="cardNo"></param>
         /// <param name="cfh"></param>
@@ -118,7 +118,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<CfmxVO> SelectRpDetail(string cardNo, string cfh, string organizeId, string yfbmCode);
 
         /// <summary>
-        /// 查询处方排药明细
+        /// tra cứu đơn thuốc xếp thuốc chi tiết
         /// </summary>
         /// <param name="cardNo"></param>
         /// <param name="cfh"></param>
@@ -128,7 +128,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<CfmxVO> SelectRpArrangementDetail(string cardNo, string cfh, string organizeId, string yfbmCode);
 
         /// <summary>
-        /// 取消排药
+        /// hủy xếp thuốc
         /// </summary>
         /// <param name="cardNo"></param>
         /// <param name="cfh"></param>
@@ -139,7 +139,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string CancelArrangedDrug(string cardNo, string cfh, string yfbmCode, string organizeId, string userCode);
 
         /// <summary>
-        /// 门诊排药
+        /// xếp thuốc ngoại trú
         /// </summary>
         /// <param name="patientInfo"></param>
         /// <param name="yfbmCode"></param>
@@ -150,7 +150,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
            string creatorCode);
 
         /// <summary>
-        /// 获取已排未发未结算的排药信息
+        /// lấy đã xếp chưa phát chưa quyết toán của xếp thuốc thông tin
         /// </summary>
         /// <param name="expirationDate"></param>
         /// <param name="yfbmCode"></param>
@@ -160,7 +160,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<OutpatientPrescriptionDetailBatchNumberEntity> SelectMxph(DateTime expirationDate, string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 获取要取消的处方
+        /// lấy cần hủy của đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="processesMaxNum"></param>
@@ -171,7 +171,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<RpCancelVo> SelectCancelRps(string cfh, int processesMaxNum, DateTime expirationDate, string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 取消排药
+        /// hủy xếp thuốc
         /// </summary>
         /// <param name="mxphs"></param>
         /// <param name="cfh"></param>
@@ -182,7 +182,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string OutPatientCancelArrangementDrug(List<OutpatientPrescriptionDetailBatchNumberEntity> mxphs, string yfbmCode, string userCode, string organizeId);
 
         /// <summary>
-        /// 门诊取消排药
+        /// ngoại trú hủy xếp thuốc
         /// </summary>
         /// <param name="cfInfo"></param>
         /// <param name="userCode"></param>
@@ -190,7 +190,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string OutPatientCancelArrangement(RpCancelVo cfInfo, string userCode);
 
         /// <summary>
-        /// 排药归架，解冻库存
+        /// xếp thuốc xếp lên kệ, 解冻库存
         /// </summary>
         /// <param name="mxphs"></param>
         /// <param name="userCode"></param>

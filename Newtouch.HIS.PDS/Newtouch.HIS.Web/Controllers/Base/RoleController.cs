@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Web.Controllers
         private readonly ISysUserExDmnService _sysUserDmnService;
         private readonly IUserRoleAuthDmnService _userRoleAuthDmnService;
 
-        //角色列表 gridjson
+        //vai trò danh sách gridjson
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetGridJson(Pagination pagination, string keyword)
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SubmitForm(SysRoleEntity roleEntity, string permissionIds, string keyValue)
         {
-            roleEntity.OrganizeId = "*";    //该版本角色跟TopOrganizeId，不到具体的医院
+            roleEntity.OrganizeId = "*";    //该版本角色跟TopOrganizeId, 不到具体的医院
             roleEntity.TopOrganizeId = Constants.TopOrganizeId;
             roleEntity.zt = roleEntity.zt == "true" ? "1" : "0";
             _roleApp.SubmitForm(roleEntity, permissionIds.Split(','), keyValue);
@@ -66,13 +66,13 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 保存Sys_UserRole
+        /// lưu Sys_UserRole
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         public ActionResult submitRoleUser(string roleId, string userIds)
         {
-            var organizeId = base.GetAuthOrganizeId();  //默认 权限OrganizeId
+            var organizeId = base.GetAuthOrganizeId();  //mặc định quyền OrganizeId
 
             _userRoleAuthDmnService.submitRoleUser(roleId, userIds, organizeId);
             return Success("操作成功");

@@ -6,12 +6,12 @@
     public class NeedDealCountVO
     {
         /// <summary>
-        /// 调价待审核
+        /// điều chỉnh giá chờ duyệt
         /// </summary>
         public long? tjshCount { get; set; }
 
         /// <summary>
-        /// 调价药品
+        /// thuốc điều chỉnh giá
         /// </summary>
         public long? tjypCount { get; set; }
 
@@ -46,22 +46,22 @@
         public long? sldshCount { get; set; }
 
         /// <summary>
-        /// 出库待审核
+        /// xuất kho chờ duyệt
         /// </summary>
         public long? ckdshCount { get; set; }
 
         /// <summary>
-        /// 入库待审核
+        /// nhập kho chờ duyệt
         /// </summary>
         public long? rkdshCount { get; set; }
 
         /// <summary>
-        /// 过期药品数量
+        /// hết hạn thuốc số lượng
         /// </summary>
         public long? expiryDrugCount { get; set; }
 
         /// <summary>
-        /// 当日过期药品数量
+        /// khi ngày hết hạn thuốc số lượng
         /// </summary>
         public long? todayDrugCount { get; set; }
 

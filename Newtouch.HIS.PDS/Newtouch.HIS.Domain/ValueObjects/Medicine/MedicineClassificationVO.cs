@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.ValueObjects.Medicine
 {
     /// <summary>
-    /// 药品分类
+    /// phân loại thuốc
     /// </summary>
     public class MedicineClassificationVO
     {
@@ -54,7 +54,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.Medicine
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 1：有效 0：无效
+        /// 1: còn hiệu lực 0: không hiệu lực
         /// </summary>
         public string zt { get; set; }
 

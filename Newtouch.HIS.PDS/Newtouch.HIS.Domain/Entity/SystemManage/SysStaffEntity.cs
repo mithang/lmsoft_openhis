@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string gh { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// họ tên
         /// </summary>
         public string Name { get; set; }
 
@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string py { get; set; }
 
         /// <summary>
-        /// 部门Code
+        /// bộ phận Code
         /// </summary>
         public string DepartmentCode { get; set; }
 
@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string HeadIcon { get; set; }
 
         /// <summary>
-        /// 性别
+        /// giới tính
         /// </summary>
         public bool? Gender { get; set; }
 
@@ -78,12 +78,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string MobilePhone { get; set; }
 
         /// <summary>
-        /// 邮箱
+        /// email
         /// </summary>
         public string Email { get; set; }
 
         /// <summary>
-        /// 微信
+        /// WeChat
         /// </summary>
         public string WeChat { get; set; }
 
@@ -93,32 +93,32 @@ namespace Newtouch.HIS.Domain.Entity
         public string ManagerCode { get; set; }
 
         /// <summary>
-        /// 排序码
+        /// mã sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 描述
+        /// mô tả
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 

@@ -1,42 +1,42 @@
 ﻿namespace Newtouch.HIS.Domain.VO
 {
     /// <summary>
-    /// 门诊处方排药信息
+    /// ngoại trú đơn thuốc xếp thuốc thông tin
     /// </summary>
     public class MzcfphxxVO
     {
         /// <summary>
-        /// 最小单位数量
+        /// số lượng đơn vị nhỏ nhất
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 批次
+        /// lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 批号
+        /// số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 药房部门编码
+        /// bộ phận nhà thuốc mã
         /// </summary>
         public string yfbmCode { get; set; }
     }

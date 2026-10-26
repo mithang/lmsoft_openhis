@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysMedicineSupplierRepo : IRepositoryBase<SysMedicineSupplierEntity>
     {
         /// <summary>
-        /// 根据关键字返回供应商实体
+        /// theo từ khóa quay lại nhà cung cấp thực thể
         /// </summary>
         /// <param name="keyword">Gysdm、Gysmc、Mcsx、</param>
         /// <returns></returns>

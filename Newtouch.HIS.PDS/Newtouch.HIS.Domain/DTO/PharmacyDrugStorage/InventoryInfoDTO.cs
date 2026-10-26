@@ -6,11 +6,11 @@ namespace Newtouch.HIS.Domain.DTO.PharmacyDrugStorage
     public class InventoryInfoDTO
     {
         /// <summary>
-        /// 盘点时间下拉框
+        /// thời gian kiểm kê hộp thả xuống
         /// </summary>
          public InventoryDateDropDownVO DateDropDownVO { get; set; }
         /// <summary>
-        /// 返回的盘点信息
+        /// quay lại của kiểm kê thông tin
         /// </summary>
          public IList<InventoryInfoVO> InventoryInfoList { get; set; }
     }

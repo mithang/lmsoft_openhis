@@ -6,28 +6,28 @@
 <form id="form1">
     <div class="panel panel-default">
         <div class="panel-heading">
-            筛选条件
+            điều kiện lọc
         </div>
         <table class="form" >
             <tr>
-                <td class="formTitle">开始日期：</td>
+                <td class="formTitle">ngày bắt đầu: </td>
                 <td class="formValue"><input type="text" id="startTime" style="width: 140px;" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd 00:00:00' })" /></td>
-                <td class="formTitle">结束日期： </td>
+                <td class="formTitle">ngày kết thúc: </td>
                 <td class="formValue"><input type="text" id="endTime" style="width: 140px;" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd HH:mm")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" /></td>
-                <td class="formTitle">关键字：</td>
+                <td class="formTitle">từ khóa: </td>
                 <td class="formValue">
-                    <input type="text" id="Srm" class="form-control" placeholder="药品代码 拼音 名称" />
+                    <input type="text" id="Srm" class="form-control" placeholder="mã thuốc phiên âm tên" />
                 </td>
-                <th class="formTitle">药房药库：</th>
+                <th class="formTitle">nhà thuốc kho thuốc: </th>
                 <td class="formValue formDdlSelectorTd">
                     <select id="ddlyfbm" class="form-control required">
-                        <option>全部</option>
+                        <option>tất cả</option>
                     </select>
                 </td>
-                <td><input type="checkbox" value="显示零库存记录" id="checkLkc" style="margin-left:10px;" />显示零库存记录</td>
+                <td><input type="checkbox" value="显示零库存记录" id="checkLkc" style="margin-left:10px;" />hiển thị tồn kho bằng 0 bản ghi</td>
                 <td class="formValue">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary" style="width:50px; margin-left:40px;" value="查询" />
-                    <input type="button" id="btn_Excle" class="btn btn-md btn-primary" onclick="Excelbuttion()" style="width:50px; margin-left:40px;" value="导出" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" style="width:50px; margin-left:40px;" value="tra cứu" />
+                    <input type="button" id="btn_Excle" class="btn btn-md btn-primary" onclick="Excelbuttion()" style="width:50px; margin-left:40px;" value="xuất" />
                 </td>
             </tr>
         </table>
@@ -41,8 +41,8 @@
 
 <script>
     $(function () {
-        initYfbmDdl(); //加载药房部门ddl
-        gridList(); //加载Grid
+        initYfbmDdl(); //tải bộ phận nhà thuốc ddl
+        gridList(); //tải Grid
     });
     var gridop = null;
     function gridList() {
@@ -52,49 +52,49 @@
             height: $(window).height() - 160,
             postData: getSearchPostData(),
             colModel: [
-                { label: "主键", name: "TjsyId", hidden: true, key: true },
-                { label: "药品代码", name: "ypCode", width: 60, align: 'left' },
-                { label: '药品名称', name: 'ypmc', width: 120, align: 'left' },
-                { label: '商品名', name: 'spm', width: 120, align: 'left' },
-                { label: '拼音', name: 'py', width: 50, align: 'left' },
-                { label: '规格', name: 'ypgg', width: 50, align: 'left' },
-                { label: '产地', name: 'ycmc', width: 50, align: 'left' },
-                { label: '当时数量', name: 'Dssl', width: 50, align: 'left' },
-                { label: '单位', name: 'dw', width: 50, align: 'left' },
-                { label: '调价文件', name: 'Tjwj', width: 70, align: 'left' },
-                { label: '原批发价', name: 'Ypfj', width: 60, align: 'left' },
-                { label: '新批发价', name: 'Xpfj', width: 70, align: 'left' },
-                { label: '批价利润', name: 'Pfjtjlr', width: 50, align: 'left' },
-                { label: '原零售价', name: 'Ylsj', width: 60, align: 'left' },
-                { label: '新零售价', name: 'Xlsj', width: 70, align: 'left' },
-                { label: '零价利润', name: 'Lsjtjlr', width: 50, align: 'left' },
+                { label: "khóa chính", name: "TjsyId", hidden: true, key: true },
+                { label: "mã thuốc", name: "ypCode", width: 60, align: 'left' },
+                { label: 'tên thuốc', name: 'ypmc', width: 120, align: 'left' },
+                { label: 'tên hàng hóa', name: 'spm', width: 120, align: 'left' },
+                { label: 'phiên âm', name: 'py', width: 50, align: 'left' },
+                { label: 'quy cách', name: 'ypgg', width: 50, align: 'left' },
+                { label: 'nơi sản xuất', name: 'ycmc', width: 50, align: 'left' },
+                { label: 'khi giờ số lượng', name: 'Dssl', width: 50, align: 'left' },
+                { label: 'đơn vị', name: 'dw', width: 50, align: 'left' },
+                { label: 'điều chỉnh giá tệp', name: 'Tjwj', width: 70, align: 'left' },
+                { label: 'giá bán buôn gốc', name: 'Ypfj', width: 60, align: 'left' },
+                { label: 'mới giá bán buôn', name: 'Xpfj', width: 70, align: 'left' },
+                { label: 'lợi nhuận giá bán buôn', name: 'Pfjtjlr', width: 50, align: 'left' },
+                { label: 'giá bán lẻ gốc', name: 'Ylsj', width: 60, align: 'left' },
+                { label: 'mới giá bán lẻ', name: 'Xlsj', width: 70, align: 'left' },
+                { label: 'lợi nhuận giá lẻ', name: 'Lsjtjlr', width: 50, align: 'left' },
                 {
-                    label: '范围', name: 'mzzybz', width: 80, align: 'left',
+                    label: 'phạm vi', name: 'mzzybz', width: 80, align: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue === "0") {
-                            return "通用";
+                            return "chung";
                         } else if (cellvalue === "1") {
-                            return "门诊";
+                            return "ngoại trú";
                         } else if (cellvalue === "2") {
-                            return "住院";
+                            return "nội trú";
                         } else {
                             return "";
                         }
                     }
                 },
                 {
-                    label: '有效', name: 'zt', width: 50, align: 'left',
+                    label: 'còn hiệu lực', name: 'zt', width: 50, align: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue === "0") {
-                            return "无效";
+                            return "không hiệu lực";
                         } else {
-                            return "有效";
+                            return "còn hiệu lực";
                         }
                     }
                 },
-                { label: '操作人员', name: 'CreatorCode', width: 50, align: 'left' },
+                { label: 'người thao tác viên', name: 'CreatorCode', width: 50, align: 'left' },
                 {
-                    label: '调整时间', name: 'Tjsj', width: 50, align: 'left',
+                    label: 'điều chỉnh thời gian', name: 'Tjsj', width: 50, align: 'left',
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                 }
             ],
@@ -144,19 +144,19 @@
         url += "?cols=" + cols;
         $.modalOpen({
             id: "ExcelExportChooseColumns",
-            title: "导出Excel",
+            title: "xuất Excel",
             url: url,
             width: "600px",
             height: "350px",
             callBack: function (iframeId) {
-                //结果
+                //kết quả
                 var restArr = top.frames[iframeId].GetChoosedCols();
                 if (!!!restArr || !!!restArr.length || restArr.length == 0) {
-                    $.modalAlert("请选择导出列", 'error');
+                    $.modalAlert("vui lòng chọn xuất cột", 'error');
                     return false;
                 }
                 var isContainFilter = top.frames[iframeId].GetIsContainFilter();
-                //关闭选择窗口
+                //đóng chọn cửa sổ
                 $.modalClose("ExcelExportChooseColumns");
                 //
                 exportCols = $.jsonWhere(exportCols, function (v) {
@@ -168,7 +168,7 @@
                     }
                     return matched;
                 });
-                //导出
+                //xuất
                 Export(isContainFilter);
             }
         });
@@ -186,7 +186,7 @@
         //$.najax({
         //    type: "POST",
         //    url: "/Medicine/ExcelGet",
-        //    loading: $.loading("正在导出Excle文件"),
+        //    loading: $.loading("đang xuất Excle tệp"),
         //    data: { startTime: startTime, endTime: endTime, Srm: srm, ddlyfbm: ddlyfbm, Lkc: lkc, isContainFilter: isContainFilter, yfykmc: yfykmc, colStanWidth: "70", cols: cols },
         //    alerterror: false,
         //    success: function (res) {
@@ -201,7 +201,7 @@
         url += "&Lkc=" + lkc;
         url += "&isContainFilter=" + isContainFilter;
         url += "&yfykmc=" + yfykmc;
-        url += "&colStanWidth=" + "70";  //列宽度标准列
+        url += "&colStanWidth=" + "70";  //cột tiêu chuẩn chiều rộng cột
         //var cols = JSON.stringify(exportCols);
         //top.$.cookie('ExportExcelCols', cols, { path: "/" });
         //url += "&cols=" + cols;

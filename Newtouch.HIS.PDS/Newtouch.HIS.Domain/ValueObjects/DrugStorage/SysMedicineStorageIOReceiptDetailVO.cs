@@ -7,7 +7,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class SysMedicineStorageIOReceiptDetailVO: SysMedicineStorageIOReceiptDetailEntity
     {
         /// <summary>
-        /// 库存Id
+        /// tồn kho Id
         /// </summary>
         public string kcId { get; set; }
     }

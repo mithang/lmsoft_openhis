@@ -10,10 +10,10 @@ namespace Newtouch.HIS.Web.Controllers
     public class ReportController : Controller
     {
         /// <summary>
-        /// 打印单页面
+        /// in đơn trang
         /// </summary>
-        /// <param name="type">1:住院发药（明细）,2:住院发药（汇总）
-        /// 3：住院退药（明细），4：住院退药（汇总）</param>
+        /// <param name="type">1:phát thuốc nội trú (chi tiết),2:phát thuốc nội trú (tổng hợp)
+        /// 3: trả thuốc nội trú (chi tiết), 4: trả thuốc nội trú (tổng hợp)</param>
         /// <param name="param"></param>
         /// <returns></returns>
         public ActionResult PrintReport(string type, string param)

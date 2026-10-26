@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysMedicineStockCarryOverRepo : IRepositoryBase<SysMedicineStockCarryOverEntity>
     {
         /// <summary>
-        /// 查询上一次结转的时间
+        /// tra cứu trên một lần kết chuyển của thời gian
         /// </summary>
         /// <returns></returns>
         CarryOverLastAccountPeriodAndCarrayTimeVO GetLastAccountPeriodAndCarrayTime();

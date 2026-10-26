@@ -3,43 +3,43 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 单据查询主记录
+    /// tra cứu chứng từ chính bản ghi
     /// </summary>
     public class DrupreparationVO
     {
         public string Id { get; set; }
         /// <summary>
-        /// 审核状态
+        /// trạng thái duyệt
         /// </summary>
         public string shzt { get; set; }
 
         /// <summary>
-        /// 申请病区
+        /// đề nghị khu bệnh
         /// </summary>
         public string bqmc { get; set; }
 
         /// <summary>
-        /// 出库部门名称
+        /// bộ phận xuất kho tên
         /// </summary>
         public string yfbmmc { get; set; }
 
         /// <summary>
-        /// 入库部门名称
+        /// bộ phận nhập kho tên
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 供应商名称
+        /// tên nhà cung cấp
         /// </summary>
         public decimal? pfj { get; set; }
 
         /// <summary>
-        /// 出入库单据主表ID
+        /// chứng từ nhập/xuất kho chính bảng ID
         /// </summary>
         public decimal? lsj { get; set; }
 
         /// <summary>
-        /// 单据号
+        /// số chứng từ
         /// </summary>
         public string CreateTime { get; set; }
     }

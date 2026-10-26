@@ -12,7 +12,7 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysItemsDetailEntity : IEntity<SysItemsDetailEntity>
     {
         /// <summary>
-        /// 明细主键
+        /// khóa chính chi tiết
         /// </summary>
         [Key]
         public string Id { get; set; }
@@ -28,27 +28,27 @@ namespace Newtouch.HIS.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 主表主键
+        /// chính bảng khóa chính
         /// </summary>
         public string ItemId { get; set; }
 
         /// <summary>
-        /// 父级
+        /// cấp cha
         /// </summary>
         public string ParentId { get; set; }
 
         /// <summary>
-        /// 名称
+        /// tên
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 编码
+        /// mã
         /// </summary>
         public string Code { get; set; }
 
         /// <summary>
-        /// 描述
+        /// mô tả
         /// </summary>
         public string Description { get; set; }
 
@@ -58,27 +58,27 @@ namespace Newtouch.HIS.Domain.Entity
         public bool AllowEdit { get; set; }
 
         /// <summary>
-        /// 创建日期
+        /// ngày tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户主键
+        /// khóa chính người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 排序码
+        /// mã sắp xếp
         /// </summary>
         public int? px { get; set; }
 

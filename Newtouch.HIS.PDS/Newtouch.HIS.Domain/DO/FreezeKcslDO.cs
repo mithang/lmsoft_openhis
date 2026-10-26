@@ -4,120 +4,120 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.DO
 {
     /// <summary>
-    /// 冻结库存信息
+    /// tồn kho bị đóng băng thông tin
     /// </summary>
     public class FreezeKcslDO
     {
 
         /// <summary>
-        /// 被冻结的药房/库编码
+        /// nhà thuốc bị đóng băng/mã kho
         /// </summary>
         public string YfbmCode { get; set; }
 
         /// <summary>
-        /// 被冻结药品信息
+        /// thông tin thuốc bị đóng băng
         /// </summary>
         public List<FreezeKcslDetailDO> Detail { get; set; }
 
         /// <summary>
-        /// 操作人编码
+        /// người thao tác mã
         /// </summary>
         public string Operator { get; set; }
 
         /// <summary>
-        /// 组织机构编码
+        /// tổ chức mã
         /// </summary>
         public string OrganizeId { get; set; }
     }
 
     /// <summary>
-    /// 被冻结药品信息
+    /// thông tin thuốc bị đóng băng
     /// </summary>
     public class FreezeKcslDetailDO
     {
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string YpCode { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// tên thuốc
         /// </summary>
         public string Ypmc { get; set; }
 
         /// <summary>
-        /// 需要冻结药品总数量（最小单位）
+        /// 需要冻结药品总数量 (đơn vị nhỏ nhất)
         /// </summary>
         public int Kcsl { get; set; }
 
         /// <summary>
-        /// 批次
+        /// lô
         /// </summary>
         public string Pc { get; set; }
 
         /// <summary>
-        /// 批号
+        /// số lô
         /// </summary>
         public string Ph { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// hạn sử dụng
         /// </summary>
         public DateTime? Yxq { get; set; }
     }
 
 
     /// <summary>
-    /// 冻结库存信息
+    /// tồn kho bị đóng băng thông tin
     /// </summary>
     public class UnFreezeKcslDO
     {
 
         /// <summary>
-        /// 被冻结的药房/库编码
+        /// nhà thuốc bị đóng băng/mã kho
         /// </summary>
         public string YfbmCode { get; set; }
 
         /// <summary>
-        /// 取消冻结药品信息
+        /// hủy đóng băng thông tin thuốc
         /// </summary>
         public List<UnFreezeKcslDetailDO> Detail { get; set; }
 
         /// <summary>
-        /// 操作人编码
+        /// người thao tác mã
         /// </summary>
         public string Operator { get; set; }
 
         /// <summary>
-        /// 组织机构编码
+        /// tổ chức mã
         /// </summary>
         public string OrganizeId { get; set; }
     }
 
     /// <summary>
-    /// 取消冻结药品信息
+    /// hủy đóng băng thông tin thuốc
     /// </summary>
     public class UnFreezeKcslDetailDO
     {
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string YpCode { get; set; }
 
         /// <summary>
-        /// 需要取消冻结药品总数量（最小单位）
+        /// tổng số lượng thuốc cần hủy đóng băng (đơn vị nhỏ nhất)
         /// </summary>
         public int Kcsl { get; set; }
 
         /// <summary>
-        /// 批次
+        /// lô
         /// </summary>
         public string Pc { get; set; }
 
         /// <summary>
-        /// 批号
+        /// số lô
         /// </summary>
         public string Ph { get; set; }
     }
@@ -125,12 +125,12 @@ namespace Newtouch.HIS.Domain.DO
     public class ReturningInventoryDO
     {
         /// <summary>
-        /// 需要加库存的药房部门编码
+        /// cần tăng tồn kho của bộ phận nhà thuốc mã
         /// </summary>
         public string NeedAddInventoryYfbmCode { get; set; }
 
         /// <summary>
-        /// 需要减库存的药房部门编码
+        /// cần giảm tồn kho của bộ phận nhà thuốc mã
         /// </summary>
         public string NeedSubtractInventoryYfbmCode { get; set; }
 
@@ -140,39 +140,39 @@ namespace Newtouch.HIS.Domain.DO
         public List<InventoryDetailDO> Detail { get; set; }
 
         /// <summary>
-        /// 操作人编码
+        /// người thao tác mã
         /// </summary>
         public string Operator { get; set; }
 
         /// <summary>
-        /// 组织机构编码
+        /// tổ chức mã
         /// </summary>
         public string OrganizeId { get; set; }
     }
 
     /// <summary>
-    /// 库存明细
+    /// tồn kho chi tiết
     /// </summary>
     public class InventoryDetailDO
     {
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string YpCode { get; set; }
 
         /// <summary>
-        /// 需要取消冻结药品总数量（最小单位）
+        /// tổng số lượng thuốc cần hủy đóng băng (đơn vị nhỏ nhất)
         /// </summary>
         public int Kcsl { get; set; }
 
         /// <summary>
-        /// 批次
+        /// lô
         /// </summary>
         public string Pc { get; set; }
 
         /// <summary>
-        /// 批号
+        /// số lô
         /// </summary>
         public string Ph { get; set; }
 

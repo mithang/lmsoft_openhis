@@ -7,11 +7,11 @@
         /// </summary>
         public int pycxjgsj { get; set; }
         /// <summary>
-        /// 自动排药
+        /// tự động xếp thuốc
         /// </summary>
         public string IsAutoPy { get; set; }
         /// <summary>
-        /// 自动发药
+        /// tự động phát thuốc
         /// </summary>
         public string IsAutoFy { get; set; }
     }

@@ -3,12 +3,12 @@
 namespace Newtouch.HIS.Domain.DTO.OutPatientPharmacy
 {
     /// <summary>
-    /// 门诊处方
+    /// ngoại trú đơn thuốc
     /// </summary>
     public class OutPatientpyCfListDTO
     {
         /// <summary>
-        /// 结算内码 通jsnm
+        /// quyết toán trong mã 通jsnm
         /// </summary>
         public long sfxh { get; set; }
         public string sffyxh { get; set; }
@@ -44,22 +44,22 @@ namespace Newtouch.HIS.Domain.DTO.OutPatientPharmacy
         public string Fph { get; set; }
 
         /// <summary>
-        /// 处方内码
+        /// mã nội bộ đơn thuốc
         /// </summary>
         public long pcfnm { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 领药药房
+        /// nhà thuốc lĩnh thuốc
         /// </summary>
         public string lyyf { get; set; }
 
         /// <summary>
-        /// 处方金额
+        /// đơn thuốc số tiền
         /// </summary>
         public decimal je { get; set; }
     }

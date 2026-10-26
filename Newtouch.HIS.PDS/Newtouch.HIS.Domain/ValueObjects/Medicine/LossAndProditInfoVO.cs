@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 报损报溢查询
+    /// tra cứu báo hỏng/báo thừa
     /// </summary>
     public class LossAndProditInfoVO
     {
@@ -92,23 +92,23 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// 零售价总额
+        /// giá bán lẻ tổng mức
         /// </summary>
         public decimal? ljze { get; set; }
         /// <summary>
-        /// 批发价总额
+        /// tổng tiền giá bán buôn
         /// </summary>
         public decimal? pjze { get; set; }
         /// <summary>
-        /// 进价
+        /// giá nhập
         /// </summary>
         public decimal? jj { get; set; }
         /// <summary>
-        /// 进价总额
+        /// tổng tiền giá nhập
         /// </summary>
         public decimal? jjze { get; set; }
         /// <summary>
-        /// 转化因子
+        /// hệ số chuyển đổi
         /// </summary>
         public int? Zhyz { get; set; }
     }

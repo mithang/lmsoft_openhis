@@ -5,17 +5,17 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class SysMedicineReDetailVO
     {
         /// <summary>
-        /// 申领单ID
+        /// phiếu lĩnh ID
         /// </summary>
         public string sldId { get; set; }
 
         /// <summary>
-        /// 可用库存，带单位
+        /// tồn kho khả dụng, kèm đơn vị
         /// </summary>
         public string kc { get; set; }
 
         /// <summary>
-        /// 可用库存（最小单位）
+        /// tồn kho khả dụng (đơn vị nhỏ nhất)
         /// </summary>
         public int kcsl { get; set; }
         public string Ypdm { get; set; }
@@ -24,12 +24,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string sldh { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 药品规格
+        /// quy cách thuốc
         /// </summary>
         public string ypgg { get; set; }
         public string py { get; set; }
@@ -42,34 +42,34 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public decimal Lsj { get; set; }
 
         /// <summary>
-        /// 申领数量，带单位
+        /// số lượng lĩnh, kèm đơn vị
         /// </summary>
         public string Sl { get; set; }
         public decimal Pjze { get; set; }
         public decimal lsje { get; set; }
 
         /// <summary>
-        /// 包装单位
+        /// đơn vị đóng gói
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 申领数量
+        /// số lượng lĩnh
         /// </summary>
         public int Slsl { get; set; }
 
         /// <summary>
-        /// 发药数量（申领数量-已发数量， 最小单位）
+        /// số lượng phát thuốc (số lượng lĩnh-số lượng đã phát, đơn vị nhỏ nhất)
         /// </summary>
         public int fysl { get; set; }
 
         /// <summary>
-        /// 已发数量（最小单位）
+        /// số lượng đã phát (đơn vị nhỏ nhất)
         /// </summary>
         public int yfsl { get; set; }
 
         /// <summary>
-        /// 已发数量 带单位
+        /// số lượng đã phát kèm đơn vị
         /// </summary>
         public string yfslStr { get; set; }
     }

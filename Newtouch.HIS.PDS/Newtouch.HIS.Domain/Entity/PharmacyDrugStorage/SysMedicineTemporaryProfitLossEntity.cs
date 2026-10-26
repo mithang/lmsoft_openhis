@@ -6,7 +6,7 @@ using Newtouch.Infrastructure.EF.Attributes;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品临时损益信息
+    /// hệ thống thuốc tạm thời thông tin lãi/lỗ
     /// </summary>
     [Table("xt_yp_ls_syxx")]
     public class SysMedicineTemporaryProfitLossEntity : IEntity<SysMedicineTemporaryProfitLossEntity>
@@ -58,13 +58,13 @@ namespace Newtouch.HIS.Domain.Entity
         public string Dw { get; set; }
 
         /// <summary>
-        /// 批发价
+        /// giá bán buôn
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Pfj { get; set; }
 
         /// <summary>
-        /// 零售价
+        /// giá bán lẻ
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Lsj { get; set; }

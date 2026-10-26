@@ -3,58 +3,58 @@
 namespace Newtouch.HIS.Domain.DTO.DrugStorage
 {
     /// <summary>
-    /// 批量直接出库执行参数
+    /// hàng loạt xuất kho trực tiếp thực hiện tham số
     /// </summary>
     public class DirectDeliveryBatchDTO
     {
         /// <summary>
-        /// 组织结构
+        /// cơ cấu tổ chức
         /// </summary>
         public string Organizeid { get; set; }
 
         /// <summary>
-        /// 单据号
+        /// số chứng từ
         /// </summary>
         public string djh { get; set; }
 
         /// <summary>
-        /// 出入库单据ID
+        /// chứng từ nhập/xuất kho ID
         /// </summary>
         public string crkId { get; set; }
 
         /// <summary>
-        /// 单据类型
+        /// loại chứng từ
         /// </summary>
         public int djlx { get; set; }
 
         /// <summary>
-        /// 入库部门代码
+        /// bộ phận nhập kho mã
         /// </summary>
         public string rkbm { get; set; }
 
         /// <summary>
-        /// 当前药房部门/出库药房部门
+        /// hiện tại bộ phận nhà thuốc/xuất kho bộ phận nhà thuốc
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 操作者
+        /// thao tác người
         /// </summary>
         public string userCode { get; set; }
 
         /// <summary>
-        /// 出入库方式代码
+        /// phương thức nhập/xuất kho mã
         /// </summary>
         public string crkfs { get; set; }
 
         /// <summary>
-        /// 审核状态
+        /// trạng thái duyệt
         /// </summary>
         public string shzt { get; set; }
 
         private string _ypCodes = "";
         /// <summary>
-        /// 药品代码集合 用','分隔，字符长度不得超过1000
+        /// mã thuốc tập hợp dùng','分隔, 字符长度不得超过1000
         /// </summary>
         public string ypCodes
         {

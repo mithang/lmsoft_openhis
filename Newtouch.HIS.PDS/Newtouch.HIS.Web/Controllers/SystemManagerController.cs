@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Web.Controllers
 {
     /// <summary>
-    /// 系统管理Controller
+    /// hệ thống quản lý Controller
     /// </summary>
     public class SystemManagerController : Controller
     {

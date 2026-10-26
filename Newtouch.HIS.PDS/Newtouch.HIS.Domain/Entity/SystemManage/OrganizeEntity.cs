@@ -12,13 +12,13 @@ namespace Newtouch.HIS.Domain.Entity
     public class OrganizeEntity : IEntity<OrganizeEntity>
     {
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 父级
+        /// cấp cha
         /// </summary>
         public string ParentId { get; set; }
 
@@ -28,12 +28,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string TopOrganizeId { get; set; }
 
         /// <summary>
-        /// 名称
+        /// tên
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 编码
+        /// mã
         /// </summary>
         public string Code { get; set; }
 
@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string ShortName { get; set; }
 
         /// <summary>
-        /// 分类
+        /// phần loại
         /// </summary>
         public string CategoryCode { get; set; }
 
@@ -53,12 +53,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string ManagerCode { get; set; }
 
         /// <summary>
-        /// 电话
+        /// điện thoại
         /// </summary>
         public string TelePhone { get; set; }
 
         /// <summary>
-        /// 微信
+        /// WeChat
         /// </summary>
         public string WeChat { get; set; }
 
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string Fax { get; set; }
 
         /// <summary>
-        /// 邮箱
+        /// email
         /// </summary>
         public string Email { get; set; }
 
@@ -78,12 +78,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string AreaId { get; set; }
 
         /// <summary>
-        /// 联系地址
+        /// liên hệ địa chỉ
         /// </summary>
         public string Address { get; set; }
 
         /// <summary>
-        /// 描述
+        /// mô tả
         /// </summary>
         public string Description { get; set; }
 
@@ -93,27 +93,27 @@ namespace Newtouch.HIS.Domain.Entity
         public bool AllowEdit { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 排序码
+        /// mã sắp xếp
         /// </summary>
         public int? px { get; set; }
 

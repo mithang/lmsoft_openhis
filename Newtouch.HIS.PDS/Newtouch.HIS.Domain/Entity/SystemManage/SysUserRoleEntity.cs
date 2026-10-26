@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysUserRoleEntity : IEntity<SysUserRoleEntity>
     {
         /// <summary>
-        /// 角色授权主键
+        /// khóa chính ủy quyền vai trò
         /// </summary>
         [Key]
         public string Id { get; set; }
@@ -22,22 +22,22 @@ namespace Newtouch.HIS.Domain.Entity
         public string UserId { get; set; }
 
         /// <summary>
-        /// 角色主键
+        /// vai trò khóa chính
         /// </summary>
         public string RoleId { get; set; }
 
         /// <summary>
-        /// 排序码
+        /// mã sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 

@@ -8,22 +8,22 @@ namespace Newtouch.HIS.Domain.Entity.V
     public class FrozenBatchesDetailVEntity
     {
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypdm { get; set; }
 
         /// <summary>
-        /// 批次
+        /// lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 批号
+        /// số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 药库单位进价
+        /// giá nhập theo đơn vị kho thuốc
         /// </summary>
         public decimal jj { get; set; }
 
@@ -33,12 +33,12 @@ namespace Newtouch.HIS.Domain.Entity.V
         public int djsl { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// hạn sử dụng
         /// </summary>
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// 失败信息
+        /// thất bại thông tin
         /// </summary>
         public string errorMsg { get; set; }
     }

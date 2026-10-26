@@ -1,32 +1,32 @@
 ﻿namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 进销存统计对象
+    /// thống kê nhập-xuất-tồn đối tượng
     /// </summary>
     public class PSIStatisticsVO
     {
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypdm { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 规格
+        /// quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 单位
+        /// đơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 零售价
+        /// giá bán lẻ
         /// </summary>
         public decimal? lsj { get; set; }
 

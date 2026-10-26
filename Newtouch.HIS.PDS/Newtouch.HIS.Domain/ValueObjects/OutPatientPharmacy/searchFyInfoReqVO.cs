@@ -8,52 +8,52 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutPatientPharmacy
     public class searchFyInfoReqVO
     {
         /// <summary>
-        /// 开始时间
+        /// thời gian bắt đầu
         /// </summary>
         public DateTime? begindate { get; set; }
 
         /// <summary>
-        /// 结束时间
+        /// thời gian kết thúc
         /// </summary>
         public DateTime? enddate { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// số thẻ
         /// </summary>
         public string kh { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// họ tên
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 关键字
+        /// từ khóa
         /// </summary>
         public string keyWord { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 类型
+        /// loại
         /// </summary>
         public string type { get; set; }
 
         /// <summary>
-        /// 药房部门代码
+        /// mã bộ phận nhà thuốc
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
     }

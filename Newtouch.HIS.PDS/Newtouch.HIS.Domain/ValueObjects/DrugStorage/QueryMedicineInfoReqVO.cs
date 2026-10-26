@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 内部发药查询条件
+    /// trong bộ phát thuốc điều kiện tra cứu
     /// </summary>
     public class QueryMedicineInfoReqVO
     {

@@ -2,7 +2,7 @@
 @using Newtouch.Infrastructure;
 @using Newtouch.Common.Operator;
 @{
-    ViewBag.Title = "过期药品查询(消息提醒)";
+    ViewBag.Title = "tra cứu thuốc hết hạn(nhắc tin nhắn)";
     Layout = "~/Views/Shared/_Index.cshtml";
 
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
@@ -44,33 +44,33 @@
 <form id="form1">
 	<div class="panel panel-default" style="margin-bottom:5px;">
 		<div class="panel-heading">
-			查询条件
+			điều kiện tra cứu
 		</div>
 		<div>
 			<table class="form">
 				<tr>
-					<th class="formTitle">关键字：</th>
+					<th class="formTitle">từ khóa: </th>
 					<td class="formValue">
-						<input id="txtINPUTCODE" type="text" class="form-control" placeholder="药品名称" />
+						<input id="txtINPUTCODE" type="text" class="form-control" placeholder="tên thuốc" />
 					</td>
 					<th class="formValue" style="width: 120px;">
                         <select class="form-control" id="sel_gqrq">
-                            <option value="0">已过期</option>
+                            <option value="0">đã hết hạn</option>
                             <option value="7">今日到期</option>
-                            <option value="1">1个月内过期</option>
-                            <option value="2">2个月内过期</option>
-                            <option value="3">3个月内过期</option>
-                            <option value="4">3月后过期</option>
-                            <option value="6">6月后过期</option>
+                            <option value="1">1 tháng trong hết hạn</option>
+                            <option value="2">2 tháng trong hết hạn</option>
+                            <option value="3">3 tháng trong hết hạn</option>
+                            <option value="4">3 tháng sau hết hạn</option>
+                            <option value="6">6 tháng sau hết hạn</option>
                         </select>
 					</th>
 					<td colspan="3"></td>
 					<td class="formTitle" style="width: 140px;">
-						<input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" />
-						@*<input type="button" id="btn_print" class="btn btn-md btn-primary" value="打印" />*@
+						<input type="button" id="btn_search" class="btn btn-md btn-primary" value="tra cứu" />
+						@*<input type="button" id="btn_print" class="btn btn-md btn-primary" value="in" />*@
 					</td>
 					<td>
-						<input type="button" id="btn_search" class="btn btn-md btn-primary" style="" onclick="newtouch_event_f3()" value="打印" />
+						<input type="button" id="btn_search" class="btn btn-md btn-primary" style="" onclick="newtouch_event_f3()" value="in" />
 					</td>
 				</tr>
 			</table>
@@ -78,9 +78,9 @@
 	</div>
 	<div class="panel panel-default" style="margin-bottom: 5px;">
 		<div class="panel-heading">
-			<span>药品总量 > 当前页 > </span>
-			<span id='yeCon'>零价总额：__元</span>
-			<span id='jjCon'>进价总额：__元</span>
+			<span>tổng lượng thuốc > trang hiện tại > </span>
+			<span id='yeCon'>tổng tiền giá lẻ: __ đồng</span>
+			<span id='jjCon'>tổng tiền giá nhập: __ đồng</span>
 		</div>
 		<div class="gridPanel" id="div-main">
 			<table id="gridYPZL"></table>
@@ -98,7 +98,7 @@
 	var $gridYpzlData = $("#gridYPZL");
 	var $gridkcmxData = $("#gridYPMXInfo");
     $(function () {
-        $(window).resize(function () {//浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {//tải lại khi thay đổi kích thước cửa sổ trình duyệt jqGrid chiều rộng
             window.initLayout("MyTabGrid");
         });
         if ($.request("type")) {
@@ -110,7 +110,7 @@
         $("#sel_gqrq").change(function () { search(); });
 
 
-        @*//打印单按钮事件
+        @*//in đơn nút sự kiện
         $("#btn_print").click(function () {
             var is0kc = $("#chk_NoShow0KC").is(":checked") ? "0" : "-1";
             var kczt = $("#ddlKCZT").val() === '' ? "-1" : $("#ddlKCZT").val();
@@ -120,16 +120,16 @@
     });
 
     function search() {
-        $("#yeCon").text("零价总额：__元");
-        $("#jjCon").text("进价总额：__元");
-        //每次查询先清空Grid
+        $("#yeCon").text("tổng tiền giá lẻ: __ đồng");
+        $("#jjCon").text("tổng tiền giá nhập: __ đồng");
+        //mỗi lần tra cứu trước tiên xóa sạch Grid
         $('#gridYPZL').jqGrid("clearGridData");
 
         $gridYpzlData.jqGrid('setGridParam', {
             url: '/StorageManage/DrugStockSearch/ExpiredDrugsQuery?r=' + Math.random(),
             postData: getSearchPostData()
         }).trigger('reloadGrid');
-        ComputePjzeAndLjze();//计算标题栏中的批价总额和零价总额
+        ComputePjzeAndLjze();//tính tổng tiền giá bán buôn và tổng tiền giá lẻ trong thanh tiêu đề
     }
 
     $(document).keyup(function (event) {
@@ -138,7 +138,7 @@
         }
     });
 
-    //查询条件
+    //điều kiện tra cứu
     function getSearchPostData() {
         var keyword = $("#txtINPUTCODE").val();
         var gpyf = $("#sel_gqrq").val();
@@ -150,34 +150,34 @@
 		return { keyword: keyword, gpyf: gpyf, gqyjcode: gqyjcode };
     };
 
-    //单据主记录
+    //bản ghi chính của chứng từ
 	function gridYPZLData() {
         $gridYpzlData.dataGrid({
             height: $(window).height() - document.getElementById('gridYPZL').offsetTop - 75,
             postData: getSearchPostData(),
             url: "/StorageManage/DrugStockSearch/ExpiredDrugsQuery?r=" + Math.random(),
 			colModel: [
-				{ label: '药品代码', name: 'ypdm', width: 70, align: 'left' },
-                { label: '药品名称', name: 'ypmc', width: 120, align: 'left' },
-                { label: '规格', name: 'gg', width: 80, align: 'left' },
-                { label: '拼音', name: 'py', width: 80, align: 'left' },
-				{ label: '生产厂商', name: 'sccj', width: 150, align: 'left' },
-				{ label: '供应商名称', name: 'gysmc', width: 150, align: 'left' },
-                { label: '有效期', name: 'yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '批号', name: 'ph', width: 94, align: 'center' },
-                { label: '批次', name: 'pc', width: 100, align: 'center' },
-                { label: '库存数量', name: 'kcslStr', width: 80, align: 'center' },
-                { label: '冻结数量', name: 'djslStr', width: 80, align: 'center' },
-                { label: '进价单位', name: 'jjdjdw', width: 100, align: 'center' },
+				{ label: 'mã thuốc', name: 'ypdm', width: 70, align: 'left' },
+                { label: 'tên thuốc', name: 'ypmc', width: 120, align: 'left' },
+                { label: 'quy cách', name: 'gg', width: 80, align: 'left' },
+                { label: 'phiên âm', name: 'py', width: 80, align: 'left' },
+				{ label: 'nhà sản xuất', name: 'sccj', width: 150, align: 'left' },
+				{ label: 'tên nhà cung cấp', name: 'gysmc', width: 150, align: 'left' },
+                { label: 'hạn sử dụng', name: 'yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'số lô', name: 'ph', width: 94, align: 'center' },
+                { label: 'lô', name: 'pc', width: 100, align: 'center' },
+                { label: 'số lượng tồn kho', name: 'kcslStr', width: 80, align: 'center' },
+                { label: 'số lượng đóng băng', name: 'djslStr', width: 80, align: 'center' },
+                { label: 'giá nhập đơn vị', name: 'jjdjdw', width: 100, align: 'center' },
                 {
-                    label: '进价总额', name: 'jjze', width: 80, align: 'center',
+                    label: 'tổng tiền giá nhập', name: 'jjze', width: 80, align: 'center',
                     formatter: function (cellvalue) {
                         return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
                     }
                 },
-                { label: '零售单价', name: 'lsjdjdw', width: 100, align: 'center' },
+                { label: 'đơn giá bán lẻ', name: 'lsjdjdw', width: 100, align: 'center' },
                 {
-                    label: '零价总额', name: 'lsze', width: 80, align: 'center',
+                    label: 'tổng tiền giá lẻ', name: 'lsze', width: 80, align: 'center',
                     formatter: function (cellvalue) {
                         return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
                     }
@@ -188,12 +188,12 @@
             sortname: 'ypmc',
             viewrecords: true,
             loadComplete: function (data) {
-                ComputePjzeAndLjze();//计算标题栏中的批价总额和零价总额
+                ComputePjzeAndLjze();//tính tổng tiền giá bán buôn và tổng tiền giá lẻ trong thanh tiêu đề
             }
         });
     }
 
-    //计算标题栏中的批价总额和零价总额
+    //tính tổng tiền giá bán buôn và tổng tiền giá lẻ trong thanh tiêu đề
     function ComputePjzeAndLjze() {
         var titleJjze = 0;
         var titleLjze = 0;
@@ -206,45 +206,45 @@
                 titleJjze += parseFloat(getRowJjze);
                 titleLjze += parseFloat(getRowLjze);
             }
-            $("#yeCon").text("零价总额：" + titleLjze.toFixed(2) + "元");
-            $("#jjCon").text("进价总额：" + titleJjze.toFixed(2) + "元");
+            $("#yeCon").text("tổng tiền giá lẻ: " + titleLjze.toFixed(2) + "đồng");
+            $("#jjCon").text("tổng tiền giá nhập: " + titleJjze.toFixed(2) + "đồng");
         }
     }
 
-    //药品明细
+    //chi tiết thuốc
     //$gridkcmxData.dataGrid({
     //    url: "",
     //    postData: "",
     //    height: $(window).height() - document.getElementById('gridYPZL').offsetTop - 90,
     //    colModel: [
-    //        { label: '库存数量', name: 'kcslStr', width: 80, align: 'right' },
-    //        { label: '冻结数量', name: 'djslStr', width: 80, align: 'right' },
-    //        { label: '进价单位', name: 'jjdjdw', width: 120, align: 'right' },
+    //        { label: 'số lượng tồn kho', name: 'kcslStr', width: 80, align: 'right' },
+    //        { label: 'số lượng đóng băng', name: 'djslStr', width: 80, align: 'right' },
+    //        { label: 'giá nhập đơn vị', name: 'jjdjdw', width: 120, align: 'right' },
     //        {
-    //            label: '进价总额', name: 'jjze', width: 80, align: 'right',
+    //            label: 'tổng tiền giá nhập', name: 'jjze', width: 80, align: 'right',
     //            formatter: function (cellvalue) {
     //                return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
     //            }
     //        },
-    //        { label: '零售单价', name: 'lsjdjdw', width: 120, align: 'right' },
+    //        { label: 'đơn giá bán lẻ', name: 'lsjdjdw', width: 120, align: 'right' },
     //        {
-    //            label: '零价总额', name: 'lsze', width: 80, align: 'right',
+    //            label: 'tổng tiền giá lẻ', name: 'lsze', width: 80, align: 'right',
     //            formatter: function (cellvalue) {
     //                return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
     //            }
     //        },
-    //        { label: '批号', name: 'ph', width: 120, align: 'center' },
-    //        { label: '批次', name: 'pc', width: 120, align: 'center' },
-    //        { label: '有效期', name: 'yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+    //        { label: 'số lô', name: 'ph', width: 120, align: 'center' },
+    //        { label: 'lô', name: 'pc', width: 120, align: 'center' },
+    //        { label: 'hạn sử dụng', name: 'yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
     //        {
-    //            label: '状态', name: 'kczt', width: 50, align: 'center', formatter: function (val, options) {
+    //            label: 'trạng thái', name: 'kczt', width: 50, align: 'center', formatter: function (val, options) {
     //                return val === "1" ? "<i rowId=" + options.rowId + " onclick='operateZt(this)' class=\"fa fa-toggle-on\"></i>" : "<i rowId=" + options.rowId + " onclick='operateZt(this)' class=\"fa fa-toggle-off\"></i>";
     //            }
     //        },
-    //        { label: '冻结数量', name: 'djsl', hidden: true },
+    //        { label: 'số lượng đóng băng', name: 'djsl', hidden: true },
     //        { label: 'ypdm', name: 'ypdm', hidden: true },
-    //        { label: '转化因子', name: 'zhyz', hidden: true},
-    //        { label: '库位', name: 'ypkw', hidden: true }
+    //        { label: 'hệ số chuyển đổi', name: 'zhyz', hidden: true},
+    //        { label: 'vị trí kho', name: 'ypkw', hidden: true }
     //    ],
     //    multiselect: false,
     //    pager: "#gridMxPager",
@@ -257,6 +257,6 @@
 
         var srcUrl = '@reportUrl' + "?tempCode=1004&systemCode=PDS" + "&hospitalCode=" + orgId + "&yfbmCode=" + yfbmCode + "&time=" + new Date().format('yyyy-MM-dd');
         window.open(srcUrl);
-		//window.open("/Report/PrintReport?type=过期药品打印&param=yfbmCode=" + $("#yfbmcode").val() + "|OrganizeId=" + $("#OrganizeId").val() + "|keyword=" + key + "|gpyf=" + gpyf , "height=500, width=1195, top=100, left=50, toolbar=no, menubar=no, scrollbar=yes, resizeble=no, location=no, status=no");
+		//window.open("/Report/PrintReport?type=hết hạn thuốc in&param=yfbmCode=" + $("#yfbmcode").val() + "|OrganizeId=" + $("#OrganizeId").val() + "|keyword=" + key + "|gpyf=" + gpyf, "height=500, width=1195, top=100, left=50, toolbar=no, menubar=no, scrollbar=yes, resizeble=no, location=no, status=no");
 	}
 </script>

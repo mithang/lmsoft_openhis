@@ -8,37 +8,37 @@ namespace Newtouch.HIS.Domain.VO
     public class StandingBookInventoryDetail
     {
         /// <summary>
-        /// 出入库说明
+        /// ra nhập kho mô tả
         /// </summary>
         public string crksm { get;set; }
 
         /// <summary>
-        /// 入库数量+单位
+        /// số lượng nhập kho+đơn vị
         /// </summary>
         public string rkslanddw { get; set; }
 
         /// <summary>
-        /// 出库数量+单位
+        /// số lượng xuất kho+đơn vị
         /// </summary>
         public string ckslanddw { get; set; }
 
         /// <summary>
-        /// 结转数量+单位
+        /// số lượng kết chuyển+đơn vị
         /// </summary>
         public string jzslanddw { get; set; }
 
         /// <summary>
-        /// 票单号
+        /// số phiếu
         /// </summary>
         public string pzh { get; set; }
 
         /// <summary>
-        /// 科室
+        /// khoa
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// 发生日期
+        /// xảy ra ngày
         /// </summary>
         public DateTime fsrq { get; set; }
     }

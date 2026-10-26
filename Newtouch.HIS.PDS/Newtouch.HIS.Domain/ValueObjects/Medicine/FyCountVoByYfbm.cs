@@ -1,17 +1,17 @@
 ﻿namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 根据药房部门汇总发药总数
+    /// theo bộ phận nhà thuốc tổng hợp phát thuốc tổng số
     /// </summary>
     public class FyCountVoByYfbm
     {
         /// <summary>
-        /// 发药总数
+        /// phát thuốc tổng số
         /// </summary>
         public long fyCount { get; set; }
 
         /// <summary>
-        /// 发药事件 yyyy-MM
+        /// phát thuốc sự kiện yyyy-MM
         /// </summary>
         public string fysj { get; set; }
     }

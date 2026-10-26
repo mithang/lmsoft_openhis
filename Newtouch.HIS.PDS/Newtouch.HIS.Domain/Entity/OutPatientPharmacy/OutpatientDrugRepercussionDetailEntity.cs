@@ -5,75 +5,75 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// mz_tfmx 门诊退药明细
+    /// mz_tfmx trả thuốc ngoại trú chi tiết
     /// </summary>
     [Table("mz_tfmx")]
     public class OutpatientDrugRepercussionDetailEntity : IEntity<OutpatientDrugRepercussionDetailEntity>
     {
         /// <summary>
-        /// 主键ID
+        /// khóa chính ID
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long tfmxId { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 批号
+        /// số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 批次
+        /// lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 最小单位数量
+        /// số lượng đơn vị nhỏ nhất
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 退药人员
+        /// trả thuốc nhân viên
         /// </summary>
         public string Remark { get; set; }
 
         /// <summary>
-        /// 状态 0-无效 1-有效
+        /// trạng thái 0-không hiệu lực 1-còn hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建人员
+        /// người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建日期
+        /// ngày tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 修改人员
+        /// người sửa đổi
         /// </summary>
         public string LastModiFierCode { get; set; }
 
         /// <summary>
-        /// 修改日期
+        /// ngày sửa đổi
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
     }

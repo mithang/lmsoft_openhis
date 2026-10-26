@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysItemsRepo : IRepositoryBase<SysItemsEntity>
     {
         /// <summary>
-        /// 获取字典分类（包括无效的）
+        /// lấy từ điển phần loại (bao gồm không hiệu lực của)
         /// </summary>
         /// <returns></returns>
         IList<SysItemsEntity> GetList(string keyword = null);

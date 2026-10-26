@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品分类
+    /// hệ thống phân loại thuốc
     /// </summary>
     [Table("xt_ypfl")]
     [Obsolete("please use the view")]
@@ -78,7 +78,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 1：有效 0：无效
+        /// 1: còn hiệu lực 0: không hiệu lực
         /// </summary>
         public string zt { get; set; }
 

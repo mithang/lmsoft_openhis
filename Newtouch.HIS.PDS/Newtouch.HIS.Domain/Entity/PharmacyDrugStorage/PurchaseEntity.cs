@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.Entity.PharmacyDrugStorage
 {
     /// <summary>
-    /// 采购
+    /// mua hàng
     /// </summary>
     [Table("xt_yp_cg")]
     public class PurchaseEntity : IEntity<PurchaseEntity>
@@ -19,48 +19,48 @@ namespace Newtouch.HIS.Domain.Entity.PharmacyDrugStorage
         
         public string cgId { get; set; }
         /// <summary>
-        /// 组织机构
+        /// tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 订单时间
+        /// thời gian đơn hàng
         /// </summary>
         public string ddsj { get; set; }
         /// <summary>
-        /// 操作类型
+        /// loại thao tác
         /// </summary>
         public string czlx { get; set; }
 
         /// <summary>
-        /// 医保编码
+        /// BHYT mã
         /// </summary>
         public string yybm { get; set; }
         /// <summary>
-        /// 配送点编码
+        /// mã điểm phân phối
         /// </summary>
         public string psdbm { get; set; }
         /// <summary>
-        /// 订单类型
+        /// loại đơn hàng
         /// </summary>
         public string ddlx { get; set; }
         /// <summary>
-        /// 订单编号
+        /// số đơn hàng
         /// </summary>
         public string ddbh { get; set; }
         /// <summary>
-        /// 医院计划单号
+        /// số phiếu kế hoạch bệnh viện
         /// </summary>
         public string yyjhdh { get; set; }
         /// <summary>
-        /// 最晚到货日期
+        /// ngày giao hàng muộn nhất
         /// </summary>
         public string zwdhrq { get; set; }
         /// <summary>
-        /// 记录数
+        /// số bản ghi
         /// </summary>
         public int jls { get; set; }
         /// <summary>
-        /// 订单状态
+        /// trạng thái đơn hàng
         /// </summary>
         public int ddzt { get; set; }
         /// <summary>

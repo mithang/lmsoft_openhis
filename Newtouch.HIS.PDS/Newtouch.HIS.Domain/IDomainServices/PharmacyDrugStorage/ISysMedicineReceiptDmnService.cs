@@ -1,12 +1,12 @@
 ﻿namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 系统药品单据
+    /// hệ thống thuốc đơn chứng
     /// </summary>
     public interface ISysMedicineReceiptDmnService
     {
         /// <summary>
-        /// 出入库单据 审核
+        /// chứng từ nhập/xuất kho duyệt
         /// </summary>
         /// <param name="crkId"></param>
         /// <param name="djlx"></param>
@@ -15,7 +15,7 @@
         bool ApprovalStorageIoReceipt(string crkId, int djlx, string shzt);
         bool SubmitDrupreparation(string byId, string shzt);
         /// <summary>
-        /// 获取转换因子
+        /// lấy hệ số chuyển đổi
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="yfbmCode"></param>

@@ -6,82 +6,82 @@
     public class fyDetailListRequest
     {
         /// <summary>
-        /// 处方号
+        /// số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 处方明细ID
+        /// chi tiết đơn thuốc ID
         /// </summary>
         public int cfmxId { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 规格
+        /// quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 单位
+        /// đơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 单价
+        /// đơn giá
         /// </summary>
         public decimal dj { get; set; }
 
         /// <summary>
-        /// 价格
+        /// giá
         /// </summary>
         public decimal je { get; set; }
 
         /// <summary>
-        /// 处方内码
+        /// mã nội bộ đơn thuốc
         /// </summary>
         public int cfnm { get; set; }
 
         /// <summary>
-        /// 药厂名称
+        /// tên nhà máy dược
         /// </summary>
         public string ycmc { get; set; }
 
         /// <summary>
-        /// 剂量
+        /// liều dùng
         /// </summary>
         public decimal jl { get; set; }
 
         /// <summary>
-        /// 剂量单位
+        /// đơn vị liều dùng
         /// </summary>
         public string jldw { get; set; }
 
         /// <summary>
-        /// 用法名称
+        /// cách dùng tên
         /// </summary>
         public string yfmc { get; set; }
 
         /// <summary>
-        /// 时间安排 （频次）
+        /// sắp xếp thời gian  (tần suất)
         /// </summary>
         public string sjap { get; set; }
 
         /// <summary>
-        /// 用量
+        /// liều lượng
         /// </summary>
         public decimal yl { get; set; }
 
         /// <summary>
-        /// 用量单位
+        /// đơn vị liều lượng
         /// </summary>
         public string yldw { get; set; }
 
@@ -91,7 +91,7 @@
         public string yszt { get; set; }
 
         /// <summary>
-        /// 频次
+        /// tần suất
         /// </summary>
         public short plh { get; set; }
     }

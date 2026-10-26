@@ -13,47 +13,47 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 发药
+    /// phát thuốc
     /// </summary>
     public interface IfyDmnService
     {
         /// <summary>
-        /// 通过处方信息，获取处方明细
+        /// đạt thông tin đơn thuốc, lấy chi tiết đơn thuốc
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>
         IList<fydisplayDetailInfo> GetDetailInfo(List<fyDetailListRequest> reqdata);
 
         /// <summary>
-        /// 获取发药明细
+        /// lấy chi tiết phát thuốc
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>
         IList<fydisplayDetailInfo> GetAllDetailInfo(List<fyDetailListRequest> reqdata);
 
         ///// <summary>
-        ///// 门诊发药
+        ///// phát thuốc ngoại trú
         ///// </summary>
         ///// <param name="reqdata"></param>
         ///// <returns></returns>
         //List<string> ExecMzHandoutMedicine(List<GetfyDetailCFList> reqdata);
 
         /// <summary>
-        /// 门诊发药
+        /// phát thuốc ngoại trú
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>
         List<string> MzDistributingMedicines(List<GetfyDetailCFList> reqdata);
 
         /// <summary>
-        /// 门诊退药（mz_cfmxph验证）
+        /// trả thuốc ngoại trú (mz_cfmxph kiểm tra)
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>
         List<tyCFMainInfo> ExecMZExitMedicine(List<tyCFMainInfo> reqdata);
 
         /// <summary>
-        /// 获取收货部门
+        /// lấy bộ phận nhận hàng
         /// </summary>
         /// <returns></returns>
         List<DrugSpecialPropertiesVO> GetMeidicineSHBMList();
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void ReleaseFrozenStock(List<OutpatientPrescriptionDetailBatchNumberEntity> list);
 
         /// <summary>
-        /// 门诊发药查询显示详细信息(mz_cfmxph验证)
+        /// tra cứu phát thuốc ngoại trú hiển thị thông tin chi tiết(mz_cfmxph kiểm tra)
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>
@@ -80,7 +80,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<fyMeidicneInfo> GetDeliveryDrugs(string cfh, EnumOperateType operateType = EnumOperateType.Fy);
 
         /// <summary>
-        /// 门诊发药
+        /// phát thuốc ngoại trú
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
@@ -88,7 +88,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string UpdateStock(string cfh, string yfbmCode);
 
         /// <summary>
-        /// 门诊发药V2.0
+        /// phát thuốc ngoại trú V2.0
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
@@ -98,7 +98,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string ExecOutpatientDispensingDrugV2(string cfh, string yfbmCode, string userCode, string organizeId,string zsm);
 
         /// <summary>
-        /// 门诊发药
+        /// phát thuốc ngoại trú
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
@@ -108,7 +108,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string ExecMzHandoutMedicine(string cfh, string yfbmCode, string userCode, string organizeId);
 
         /// <summary>
-        /// 门诊发药
+        /// phát thuốc ngoại trú
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="ypCode"></param>
@@ -120,14 +120,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
 
         /// <summary>
-        /// 门诊发药
+        /// phát thuốc ngoại trú
         /// </summary>
         /// <param name="cfh"></param>
         /// <returns></returns>
         string ReturnDrug(string cfh);
 
         /// <summary>
-        /// 获取已发处方
+        /// lấy đã phát đơn thuốc
         /// </summary>
         /// <param name="keyWord"></param>
         /// <param name="fph"></param>
@@ -137,7 +137,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<cfInfoVo> GetDeliveredCf(string keyWord, string fph, string cfh, Pagination pagination = null);
 
         /// <summary>
-        /// 获取发药信息
+        /// lấy thông tin phát thuốc
         /// </summary>
         /// <param name="startTime"></param>
         /// <param name="endTime"></param>
@@ -149,7 +149,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
 
         /// <summary>
-        /// 门诊发药处方明细查询
+        /// phát thuốc ngoại trú chi tiết đơn thuốc tra cứu
         /// </summary>
         /// <param name="xm"></param>
         /// <param name="cardNo"></param>
@@ -160,7 +160,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<CfmxVO> SelectCfmx(string xm, string cardNo, string cfh, string organizeId, string yfbmCode);
 
         /// <summary>
-        /// 已发药查询 处方信息
+        /// đã phát thuốc tra cứu thông tin đơn thuốc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword">cardNo or xm</param>
@@ -175,7 +175,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<CffyjlVO> SelectDispensedRpInfo(Pagination pagination, string keyword, string invoiceNo, string cfh, EnumOperateType operateType, DateTime kssj, DateTime jssj, string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 查询处方信息
+        /// tra cứu thông tin đơn thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="fph"></param>
@@ -187,7 +187,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<CfxxVO> SelectRpList(string keyword, string fph, DateTime kssj, DateTime jssj, string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 查询处方明细
+        /// tra cứu chi tiết đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
@@ -196,16 +196,16 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<CfmxVO> SelectRpDetail(string cfh, string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 判断是该处方是否存在
+        /// đánh giá có nên đơn thuốc có hay không tồn tại
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
-        /// <returns>返回有效的处方数</returns>
+        /// <returns>quay lại còn hiệu lực của đơn thuốc số</returns>
         int ExistEffectiveRp(string cfh, string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 根据卡号和姓名获取处方信息
+        /// lấy thông tin đơn thuốc theo số thẻ và họ tên
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="cardNo"></param>
@@ -217,7 +217,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
            string organizeId = "");
 
         /// <summary>
-        /// 查询药品大类
+        /// tra cứu thuốc nhóm lớn
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -237,7 +237,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
         #region 医保电子处方
         /// <summary>
-        /// 获取电子处方病人信息
+        /// lấy thông tin bệnh nhân của đơn thuốc điện tử
         /// </summary>
         /// <returns></returns>
         List<DzcfBrxxDTO> GetElectronicPrescriptionCfInfo(string cfh, string xm, string organizeId = "");

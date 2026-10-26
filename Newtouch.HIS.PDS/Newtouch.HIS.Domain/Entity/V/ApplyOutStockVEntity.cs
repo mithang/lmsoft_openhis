@@ -1,97 +1,97 @@
 ﻿namespace Newtouch.HIS.Domain.Entity.V
 {
     /// <summary>
-    /// 申领出库明细
+    /// xuất kho theo phiếu lĩnh chi tiết
     /// </summary>
     public class ApplyOutStockVEntity
     {
         /// <summary>
-        /// 申领部门 入库部门
+        /// bộ phận lĩnh bộ phận nhập kho
         /// </summary>
         public string slbm { get; set; }
 
         /// <summary>
-        /// 申领单明细ID
+        /// chi tiết phiếu lĩnh ID
         /// </summary>
         public string sldmxId { get; set; }
 
         /// <summary>
-        /// 申领单ID
+        /// phiếu lĩnh ID
         /// </summary>
         public string sldId { get; set; }
 
         /// <summary>
-        /// 申领单号
+        /// số phiếu lĩnh
         /// </summary>
         public string sldh { get; set; }
 
         /// <summary>
-        /// 先发数 最小单位
+        /// trước tiên phát số đơn vị nhỏ nhất
         /// </summary>
         public int xfsl { get; set; }
 
         /// <summary>
-        /// 剩余待发数量 初次加载与xfsl相同 最小单位
+        /// số lượng còn chờ phát tải lần đầu và xfsl giống nhau đơn vị nhỏ nhất
         /// </summary>
         public int sysl { get; set; }
 
         /// <summary>
-        /// 最小单位
+        /// đơn vị nhỏ nhất
         /// </summary>
         public string zxdw { get; set; }
 
         /// <summary>
-        /// 转化因子 目前为最小单位转化因子
+        /// hệ số chuyển đổi hiện là hệ số chuyển đổi đơn vị nhỏ nhất
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 包装单位
+        /// đơn vị đóng gói
         /// </summary>
         public string bzdw { get; set; }
 
         /// <summary>
-        /// 现发数 最小单位
+        /// hiện tại phát số đơn vị nhỏ nhất
         /// </summary>
         public int zxdwxfsl { get; set; }
 
         /// <summary>
-        /// 包装数
+        /// số lượng đóng gói
         /// </summary>
         public int bzs { get; set; }
 
         /// <summary>
-        /// 已发数量  带单位
+        /// số lượng đã phát  kèm đơn vị
         /// </summary>
         public string yfslStr { get; set; }
 
         /// <summary>
-        /// 申领数量 带单位
+        /// số lượng lĩnh kèm đơn vị
         /// </summary>
         public string slslStr { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypdm { get; set; }
 
         /// <summary>
-        /// 可用库存 带单位
+        /// tồn kho khả dụng kèm đơn vị
         /// </summary>
         public string kyslStr { get; set; }
 
         /// <summary>
-        /// 可用库存 最小单位
+        /// tồn kho khả dụng đơn vị nhỏ nhất
         /// </summary>
         public int kykc { get; set; }
 
         /// <summary>
-        /// 生产厂家
+        /// nhà sản xuất
         /// </summary>
         public string sccj { get; set; }
 
@@ -106,27 +106,27 @@
         public string lsjdwdj { get; set; }
 
         /// <summary>
-        /// 批发总额
+        /// tổng tiền bán buôn
         /// </summary>
         public decimal pjze { get; set; }
 
         /// <summary>
-        /// 零售总额
+        /// tổng tiền bán lẻ
         /// </summary>
         public decimal lsze { get; set; }
 
         /// <summary>
-        /// 最小单位进价
+        /// giá nhập đơn vị nhỏ nhất
         /// </summary>
         public decimal? zxdwjj { get; set; }
 
         /// <summary>
-        /// 最小单位批发价
+        /// đơn vị nhỏ nhất giá bán buôn
         /// </summary>
         public decimal zxdwpfj { get; set; }
 
         /// <summary>
-        /// 最小单位零售价
+        /// giá bán lẻ đơn vị nhỏ nhất
         /// </summary>
         public decimal zxdwlsj { get; set; }
     }

@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "FybdIndex";//住院发药补打
+    ViewBag.Title = "FybdIndex";//phát thuốc nội trú in bổ sung
     Layout = "~/Views/Shared/_Index.cshtml";
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
 }
@@ -61,7 +61,7 @@
         }
 </style>
 <div style="float:left;width:20%;">
-    <div class="dv-left-title">患者列表</div>
+    <div class="dv-left-title">danh sách bệnh nhân</div>
     <div class="dv-left-tree" id="BqTreeList"></div>
 </div>
 
@@ -69,22 +69,22 @@
     <form id="form1">
         <div class="panel panel-default">
             <div class="panel-heading">
-                查询条件
+                điều kiện tra cứu
             </div>
             <div style="padding: 2px;">
                 <input type="hidden" id="Fyzt" value="2" />
                 <table class="form">
                     <tr>
-                        <th class="formTitle" style="width: 75px; padding-right: 0px;"><span class="required">*</span>日期：</th>
+                        <th class="formTitle" style="width: 75px; padding-right: 0px;"><span class="required">*</span>ngày: </th>
                         <td class="formValue">
                             <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({onpicked:function(){operateTimeList(ThisbrCode,Thisbqbian);;},dateFmt:'yyyy-MM-dd'})" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>操作时间：</th>
+                        <th class="formTitle"><span class="required">*</span>thời gian thao tác: </th>
                         <td class="formValue">
                             <select id="seloperatetime"  class="form-control" multiple="multiple"></select>
                         </td>
                         <td class="formTitle" style="width: 45px;">
-                            <input type="button" id="btn_search" class="btn btn-primary btn-md" value="查询" />
+                            <input type="button" id="btn_search" class="btn btn-primary btn-md" value="tra cứu" />
                         </td>
                     </tr>
                 </table>
@@ -98,13 +98,13 @@
     @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new[] { 6, 8 },
-    F6Text = "补打",
-    F8Text = "补打明细",
+    F6Text = "in bổ sung",
+    F8Text = "in bổ sung chi tiết",
 })
 </div>
 <script type="text/javascript">
-    var ThisbqCode = "";//初始化病区Code
-    var ThisbrCode = "";//初始化病人Code
+    var ThisbqCode = "";//khởi tạo khu bệnh Code
+    var ThisbrCode = "";//khởi tạo bệnh nhân Code
     var Thisbqbian = "";
     var checkArray = [];
     var pageNum = 1;
@@ -114,9 +114,9 @@
     var zyh = [];
 
     $(function () {
-        //绑定病区
+        //gắn khu bệnh
         bqGridList();
-        //绑定病人发药详细信息
+        //gắn thông tin chi tiết phát thuốc của bệnh nhân
         dispenseMedicinGridList(null);
 
     });
@@ -150,9 +150,9 @@
                         includeSelectAllOption: true,
                         enableClickableOptGroups: true,
                         enableCollapsibleOptGroups: true,
-                        selectAllText: "全选",
-                        nonSelectedText: "未选中",
-                        allSelectedText: "全选"
+                        selectAllText: "chọn tất cả",
+                        nonSelectedText: "chưa chọn",
+                        allSelectedText: "chọn tất cả"
                     });
 
                     $('#seloperatetime').multiselect("rebuild");
@@ -176,7 +176,7 @@
         });
     }
 
-    //用户发药详细信息
+    //thông tin chi tiết phát thuốc của người dùng
     function dispenseMedicinGridList() {
         $dispenseMedicinGridList.dataGrid({
             multiselect: true,
@@ -192,38 +192,38 @@
             colModel: [
                 { label: 'Id', name: 'Id', align: 'left', hidden: true },
                 { label: 'zyh', name: 'zyh', align: 'left', hidden: true },
-                { label: '姓名', name: 'patientName', width: 65, align: 'left' },
-                { label: '领药序号', name: 'lyxh', width: 65, align: 'left' },
-                { label: '批次', name: 'pc', width: 100, align: 'left' },
-                { label: '药品', name: 'ypmc', width: 100, align: 'left' },
-                { label: '床位号', name: 'cw', width: 60, align: 'center' },
-                { label: '发药数量', name: 'slStr', width: 60, align: 'right' },
-                { label: '剂型', name: 'jxmc', width: 60, align: 'center' },
-                { label: '规格', name: 'ypgg', width: 100, align: 'left' },
-                { label: '频次', name: 'pcmc', width: 50, align: 'center' },
-                { label: '组号', name: 'zh', width: 40, align: 'center' },
-                { label: '用量', name: 'ylStr', width: 60, align: 'center' },
-                { label: '医嘱性质', name: 'yzxzmc', width: 60, align: 'center' },
-                { label: '生产厂家', name: 'ycmc', width: 100, align: 'left' },
-                { label: '用法', name: 'zlff', width: 50, align: 'center' },
-                { label: '操作员', name: 'CreatorCode', width: 70, align: 'center' },
-                { label: '操作时间', name: 'CreateTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
-                { label: "医嘱ID", name: 'zxId', hidden: true },
-                { label: '单价', name: 'djStr', hidden: true },
-                { label: '金额', name: 'je', hidden: true },
-                { label: '使用数量', name: 'yl', hidden: true },
-                { label: '使用单位', name: 'yldw', hidden: true },
-                { label: "药品编码", name: 'ypCode', hidden: true },
+                { label: 'họ tên', name: 'patientName', width: 65, align: 'left' },
+                { label: 'lĩnh thuốc số thứ tự', name: 'lyxh', width: 65, align: 'left' },
+                { label: 'lô', name: 'pc', width: 100, align: 'left' },
+                { label: 'thuốc', name: 'ypmc', width: 100, align: 'left' },
+                { label: 'số giường', name: 'cw', width: 60, align: 'center' },
+                { label: 'số lượng phát thuốc', name: 'slStr', width: 60, align: 'right' },
+                { label: 'dạng bào chế', name: 'jxmc', width: 60, align: 'center' },
+                { label: 'quy cách', name: 'ypgg', width: 100, align: 'left' },
+                { label: 'tần suất', name: 'pcmc', width: 50, align: 'center' },
+                { label: 'số nhóm', name: 'zh', width: 40, align: 'center' },
+                { label: 'liều lượng', name: 'ylStr', width: 60, align: 'center' },
+                { label: 'tính chất y lệnh', name: 'yzxzmc', width: 60, align: 'center' },
+                { label: 'nhà sản xuất', name: 'ycmc', width: 100, align: 'left' },
+                { label: 'cách dùng', name: 'zlff', width: 50, align: 'center' },
+                { label: 'người thao tác', name: 'CreatorCode', width: 70, align: 'center' },
+                { label: 'thời gian thao tác', name: 'CreateTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: "y lệnh ID", name: 'zxId', hidden: true },
+                { label: 'đơn giá', name: 'djStr', hidden: true },
+                { label: 'số tiền', name: 'je', hidden: true },
+                { label: 'số lượng sử dụng', name: 'yl', hidden: true },
+                { label: 'đơn vị sử dụng', name: 'yldw', hidden: true },
+                { label: "mã thuốc", name: 'ypCode', hidden: true },
                 { label: "yzId", name: 'yzId', hidden: true }
             ],
-            caption: "发药列表",
+            caption: "phát thuốc danh sách",
             pager: "#gridPager",
             sortname: 'CreateTime',
             viewrecords: true,
             //multiboxonly : false,
             onSelectAll: function (rowIds, status) {
-                //选中全部时触发，rowIds为当页所有的rowId
-                //checkArray数组中把当页的全删除 jqGrid('getDataIDs');
+                //kích hoạt khi chọn tất cả, rowIds là khi trang tất cả của rowId
+                //checkArray trong mảng xóa tất cả của trang hiện tại jqGrid('getDataIDs');
                 for (var i = 0; i < rowIds.length; i++) {
                     for (var j = 0; j < checkArray.length; j++) {
                         if (checkArray[j].pageNum == pageNum && checkArray[j].rowId == rowIds[i]) {
@@ -232,7 +232,7 @@
                         }
                     }
                 }
-                //如果是选择的选中，则把当页所有条目加上
+                //nếu có chọn của chọn trong, thì cộng thêm tất cả các mục của trang hiện tại
                 if (status) {
                     for (var i = 0; i < rowIds.length; i++) {
                         var rowData = $dispenseMedicinGridList.jqGrid('getRowData', rowIds[i]);
@@ -241,12 +241,12 @@
                     }
                 }
             },
-            onSelectRow: function (rowId, status) {  //点击checkbox触发 rowId为当前触发的rowid
-                //选中行的行数据
+            onSelectRow: function (rowId, status) {  //nhấp checkbox kích hoạt rowId là của lần kích hoạt hiện tại rowid
+                //chọn trong dòng của dòng dữ liệu
                 var rowData = $dispenseMedicinGridList.jqGrid('getRowData', rowId);
                 var checkedItem = { "pageNum": pageNum, "rowId": rowId, "czlx": rowData.czlx, "yzId": rowData.yzId, "Id": rowData.Id, "zxId": rowData.zxId, "zyh": rowData.zyh, "zytyapplyno": rowData.zytyapplyno };
                 if (status) {
-                    //如果选中，则判断数组中如果没有的话加入数组
+                    //nếu chọn trong, thì đánh giá nếu trong mảng chưa có thì thêm vào mảng
                     for (var i = 0; i < checkArray.length; i++) {
                         if (checkArray[i].pageNum == pageNum && checkArray[i].rowId == rowId) {
                             return false;
@@ -254,7 +254,7 @@
                     }
                     checkArray.push(checkedItem);
                 } else {
-                    //删除数组
+                    //xóa mảng
                     for (var i = 0; i < checkArray.length; i++) {
                         if (checkArray[i].pageNum == pageNum && checkArray[i].rowId == rowId) {
                             checkArray.splice(i, 1);
@@ -264,11 +264,11 @@
                 }
                 //console.log(checkArray)
             },
-            //每个页面加载时触发
+            //kích hoạt mỗi khi tải trang
             loadComplete: function (data) {
-                //改变全局变量pageNum页码
+                //thay đổi biến toàn cục pageNum trang mã
                 pageNum = data.page;
-                //循环数组，让当页中的rowId变为选中状态
+                //lặp mảng, để khi trang trong của rowId chuyển thành trạng thái được chọn
                 for (var i = 0; i < checkArray.length; i++) {
                     if (checkArray[i].pageNum == pageNum) {
                         $dispenseMedicinGridList.jqGrid('setSelection', checkArray[i].rowId, true);
@@ -278,18 +278,18 @@
         });
 
         $(".ui-pg-selbox").change(function () {
-            //要触发的事件
+            //sự kiện cần kích hoạt
             checkArray.splice(0);
         });
 
-        //查询
+        //tra cứu
         $("#btn_search").click(function () {
             if ($("#Kssj").val() === "") {
-                $.modalMsg("开始时间不能为空", "warning", 2000);
+                $.modalMsg("thời gian bắt đầu không được để trống", "warning", 2000);
                 return false;
             }
             if ($("#Jssj").val() === "") {
-                $.modalMsg("结束时间不能为空", "warning", 2000);
+                $.modalMsg("thời gian kết thúc không được để trống", "warning", 2000);
                 return false;
             }
             if ($("#seloperatetime").val() === "") {
@@ -344,9 +344,9 @@
         var patzyh = "";
         var patnots = "";
 
-        //当前选中父节点
+        //nút cha hiện đang được chọn
         var len = 0;
-        var single = 0; //是否单个子节点
+        var single = 0; //có phải là một nút con duy nhất không
 
         if (item != null && item.Ex1 == "p") {
             patlistFath = item.ChildNodes;
@@ -357,7 +357,7 @@
             len = 1;
             single = 1;
         }
-        //选中节点
+        //nút được chọn
         for (var i = 0; i < patlist.length; i++) {
             if (patlist[i].Ex1 === "c") {
                 patzyh += patlist[i].value + ",";
@@ -404,7 +404,7 @@
         operateTimeList(ThisbrCode, Thisbqbian);
     }
 
-    //级联选中所有子节点
+    //chọn liên đới tất cả nút con
     function checkAllSon(node) {
         $('#BqTreeList').treeview('checkNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -413,7 +413,7 @@
             }
         }
     }
-    //级联取消所有子节点
+    //bỏ chọn liên đới tất cả nút con
     function uncheckAllSon(node) {
         $('#BqTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -423,7 +423,7 @@
         }
     }
 
-    // 打印
+    // in
     function newtouch_event_f6() {
         printRptSumary();
     }
@@ -445,17 +445,17 @@
         newWindow.document.write(html);
         return newWindow;
     }
-    //补打明细
+    //in bổ sung chi tiết
     function newtouch_event_f8() {
         var operateType="1";
         if (checkArray.length == 0) {
-            $.modalMsg("请选择操作记录", "warning");
+            $.modalMsg("vui lòng chọn thao tác bản ghi", "warning");
             return false;
         }
-        //var fy = checkArray.filter((item) => item.czlx.indexOf("发药") > 0);
-        //var ty = checkArray.filter((item) => item.czlx.indexOf("退药") > 0);
+        //var fy = checkArray.filter((item) => item.czlx.indexOf("phát thuốc") > 0);
+        //var ty = checkArray.filter((item) => item.czlx.indexOf("trả thuốc") > 0);
         //if (fy.length > 0 && ty.length > 0) {
-        //    $.modalMsg("操作类型请选择退药或发药", "warning");
+        //    $.modalMsg("loại thao tác vui lòng chọn trả thuốc hoặc phát thuốc", "warning");
         //    return false;
         //}
         //else if (fy.length > 0) {
@@ -467,7 +467,7 @@
 
         var zyh = checkArray[0].zyh;
         //if (!!zyh && checkArray.filter((item) => item.zyh != zyh).length>0) {
-        //    $.modalMsg("多人打印请选择汇总打印", "warning");
+        //    $.modalMsg("nhiều người in vui lòng chọn in tổng hợp", "warning");
         //    return false;
         //}
         //var zxIds = checkArray.map((item) => {
@@ -479,7 +479,7 @@
         var czIds = checkArray.map((item) => {
             return item.Id
         }).join(",");
-        var systemCode = "PDS";//报表所属系统编码
+        var systemCode = "PDS";//mã hệ thống của báo cáo
         var uri = '@reportUrl' + "?tempCode=1302" + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=" + '@ViewBag.OrganizeId'
         +"&systemCode=" + systemCode + "&yfbmCode=" + '@ViewBag.yfbmCode' + "&zyh=" + zyh + "&operateType=" + operateType + "&yzIds=" + "&zxIds=" + "&rdNo=" + "&czIds=" + czIds;
         window.open(uri);
@@ -496,12 +496,12 @@
         var operateType = 1;
 
         if (ThisbrCode == null || ThisbrCode == "") {
-            $.modalMsg("请选择患者", "warning", 2000);
+            $.modalMsg("vui lòng chọn bệnh nhân", "warning", 2000);
             return false;
         }
 
         if ($("#seloperatetime").val() == "") {
-            $.modalMsg("请选择操作时间", "warning", 2000);
+            $.modalMsg("vui lòng chọn thời gian thao tác", "warning", 2000);
             return false;
         }
 
@@ -513,7 +513,7 @@
             });
             gyssStr = gyssStr.substring(0, gyssStr.length - 1);
         }
-        var systemCode = "PDS";//报表所属系统编码
+        var systemCode = "PDS";//mã hệ thống của báo cáo
         var uri = '@reportUrl' + "?tempCode=1301" + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=" + '@ViewBag.OrganizeId'
         +"&systemCode=" + systemCode + "&yfbmCode=" + '@ViewBag.yfbmCode' + "&zyh=" + ThisbrCode + "&operateType=1&kssj=" + kssj + "&jssj=" + jssj + "&operatetime=" + gyssStr;
         window.open(uri);

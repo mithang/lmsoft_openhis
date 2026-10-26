@@ -6,95 +6,95 @@
     public class PsiStatisticsVo
     {
         /// <summary>
-        /// 药品单位
+        /// thuốc đơn vị
         /// </summary>
         public string Ypdm { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 药品规格
+        /// quy cách thuốc
         /// </summary>
         public string ypgg { get; set; }
 
         /// <summary>
-        /// 单位
+        /// đơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 进价
+        /// giá nhập
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 零售价
+        /// giá bán lẻ
         /// </summary>
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 期初数量
+        /// đầu kỳ số lượng
         /// </summary>
         public int qcsl { get; set; }
 
         /// <summary>
-        /// 入库数量
+        /// số lượng nhập kho
         /// </summary>
         public int rksl { get; set; }
 
         /// <summary>
-        /// 出库数量
+        /// số lượng xuất kho
         /// </summary>
         public int cksl { get; set; }
 
         /// <summary>
-        /// 损益数量
+        /// số lượng lãi/lỗ
         /// </summary>
         public int sysl { get; set; }
 
         /// <summary>
-        /// 期初数量
+        /// đầu kỳ số lượng
         /// </summary>
         public int qmsl { get; set; }
 
         /// <summary>
-        /// 期初批发总额
+        /// tổng tiền bán buôn đầu kỳ
         /// </summary>
         public decimal qcpfze { get; set; }
 
         /// <summary>
-        /// 入库批发总额
+        /// nhập kho tổng tiền bán buôn
         /// </summary>
         public decimal rkpfze { get; set; }
 
         /// <summary>
-        /// 出库批发总额
+        /// xuất kho tổng tiền bán buôn
         /// </summary>
         public decimal ckpfze { get; set; }
 
         /// <summary>
-        /// 损益批发总额
+        /// lãi/lỗ tổng tiền bán buôn
         /// </summary>
         public decimal sypfze { get; set; }
 
         /// <summary>
-        /// 期末批发总额
+        /// tổng tiền bán buôn cuối kỳ
         /// </summary>
         public decimal qmpfze { get; set; }
 
         /// <summary>
-        /// 调价损益总额
+        /// tổng lãi/lỗ do điều chỉnh giá
         /// </summary>
         public decimal tjsyze { get; set; }
         /// <summary>
-        /// 盘盈数量
+        /// số lượng thừa kiểm kê
         /// </summary>
         public int pysl { get; set; }
         /// <summary>
-        /// 盘亏数量
+        /// số lượng thiếu kiểm kê
         /// </summary>
         public int pksl { get; set; }
         /// <summary>

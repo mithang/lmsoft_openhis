@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品出入库方式
+    /// hệ thống thuốc phương thức nhập/xuất kho
     /// </summary>
     [Table("xt_ypcrkfs")]
     [Obsolete("please use the view")]

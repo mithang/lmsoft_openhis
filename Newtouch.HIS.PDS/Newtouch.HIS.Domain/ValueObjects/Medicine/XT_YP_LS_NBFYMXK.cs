@@ -2,52 +2,52 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 系统药品出库明细
+    /// hệ thống thuốc xuất kho chi tiết
     /// </summary>
     public class XT_YP_LS_NBFYMXK
     {
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string Ypdm { get; set; }
 
         /// <summary>
-        /// 频号
+        /// số tần suất
         /// </summary>
         public string Ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// hạn sử dụng
         /// </summary>
         public string Yxq { get; set; }
 
         /// <summary>
-        /// 药库零售价
+        /// giá bán lẻ kho thuốc
         /// </summary>
         public decimal Lsj { get; set; }
 
         /// <summary>
-        /// 药库批发金额
+        /// kho thuốc tiền bán buôn
         /// </summary>
         public decimal Pfj { get; set; }
 
         /// <summary>
-        /// 零售总额
+        /// tổng tiền bán lẻ
         /// </summary>
         public decimal lsje { get; set; }
 
         /// <summary>
-        /// 发药数量 最小单位数量
+        /// số lượng phát thuốc số lượng đơn vị nhỏ nhất
         /// </summary>
         public int fysl { get; set; }
 
         /// <summary>
-        /// 转换因子
+        /// hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string sldmxId { get; set; }
 
         /// <summary>
-        /// 包装单位
+        /// đơn vị đóng gói
         /// </summary>
         public string bzdw { get; set; }
     }

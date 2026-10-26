@@ -8,27 +8,27 @@
 <form id="form1">
     <div class="panel panel-default" style="margin-top:10px;">
         <div class="panel-heading">
-            查询方式
+            tra cứu phương thức
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">卡号:</th>
+                    <th class="formTitle">số thẻ:</th>
                     <td class="formValue">
-                        <input id="keyword" type="text" class="form-control" placeholder="卡号 姓名" />
+                        <input id="keyword" type="text" class="form-control" placeholder="số thẻ họ tên" />
                     </td>
-                    <th class="formTitle">发票号:</th>
+                    <th class="formTitle">số hóa đơn:</th>
                     <td class="formValue">
-                        <input id="fph" type="text" class="form-control" placeholder="发票号" />
+                        <input id="fph" type="text" class="form-control" placeholder="số hóa đơn" />
                     </td>
-                    <th class="formTitle "><span class="required">*</span>发药时间:</th>
+                    <th class="formTitle "><span class="required">*</span>thời gian phát thuốc:</th>
                     <td class="formValue" style="width: 220px;">
                         <input id="txtstartDate" type="text" class="form-control input-wdatepicker" style="width:90px;float: left;" value="@DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         <span style="float:left;margin:0 5px;">-</span>
                         <input id="txtendDate" type="text" class="form-control input-wdatepicker" style="width:90px;float: left;" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     </td>
                     <td class="formTitle">
-                        <input type="button" class="btn btn-primary btn-md" value="查询" id="btn_search" />
+                        <input type="button" class="btn btn-primary btn-md" value="tra cứu" id="btn_search" />
                     </td>
                 </tr>
             </table>
@@ -43,10 +43,10 @@
     @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new[] { 6, 8, 9, 10 },
-    F6Text = "补打发药单",
+    F6Text = "in bổ sung phát thuốc đơn",
     F8Text = "补打雾化卡",
     F9Text = "补打输液卡",
-    F10Text = "补打用法标签"
+    F10Text = "in bổ sung nhãn cách dùng"
 })
 </form>
 <script>
@@ -59,7 +59,7 @@
         gridRpDetail();
     });
 
-    //回车事件绑定
+    //gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
@@ -73,19 +73,19 @@
             postData: {
                 fph: $("#fph").val(), keyword: $("#keyword").val(), kssj: $("#txtstartDate").val(), jssj: $("#txtendDate").val()
             },
-            caption: "处方列表",
+            caption: "danh sách đơn thuốc",
             colModel: [
-                { label: '处方内码', name: 'cfnm', hidden: true },
-                { label: '门诊号', name: 'mzh', hidden: true },
-                { label: '卡号', name: 'CardNo', width: 80, align: 'left' },
-                { label: '姓名', name: 'xm', width: 70, align: 'left' },
-                { label: '发票号', name: 'Fph', width: 100, align: 'left' },
-                { label: '收费时间', name: 'sfsj', width: 110, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
-                { label: '处方号', name: 'cfh', width: 100, align: 'left' },
-                { label: '医生', name: 'ysmc', width: 70, align: 'left' },
-                { label: '科室', name: 'ksmc', width: 80, align: 'left' },
-                { label: '发药时间', name: 'fysj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
-                { label: '门诊号', name: 'mzh', width: 80, align: 'left' }
+                { label: 'mã nội bộ đơn thuốc', name: 'cfnm', hidden: true },
+                { label: 'số ngoại trú', name: 'mzh', hidden: true },
+                { label: 'số thẻ', name: 'CardNo', width: 80, align: 'left' },
+                { label: 'họ tên', name: 'xm', width: 70, align: 'left' },
+                { label: 'số hóa đơn', name: 'Fph', width: 100, align: 'left' },
+                { label: 'thời gian thu phí', name: 'sfsj', width: 110, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: 'số đơn thuốc', name: 'cfh', width: 100, align: 'left' },
+                { label: 'bác sĩ', name: 'ysmc', width: 70, align: 'left' },
+                { label: 'khoa', name: 'ksmc', width: 80, align: 'left' },
+                { label: 'thời gian phát thuốc', name: 'fysj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: 'số ngoại trú', name: 'mzh', width: 80, align: 'left' }
             ],
             onSelectRow_page: function (rowid, status) {
                 var data = $gridRpInfo.jqGrid('getRowData', rowid);
@@ -98,10 +98,10 @@
             gridComplete: function () {
                 $gridRpDetail.jqGrid("clearGridData");
                 var ids = new Array();
-                //getDataIDs()返回当前grid里所有数据的id
+                //getDataIDs()trả về hiện tại grid trong tất cả dữ liệu id
                 ids = $gridRpInfo.getDataIDs();
                 if (ids == null || ids.length <= 0) return;
-                //选择或反选指定行。如果onselectrow为ture则会触发事件onSelectRow，onselectrow默认为ture
+                //chọn hoặc bỏ chọn dòng chỉ định.nếu onselectrow là ture thì sẽ kích hoạt sự kiện onSelectRow, onselectrow mặc định là ture
                 $gridRpInfo.setSelection(ids[0], true);
                 var pdata = $gridRpInfo.jqGrid('getRowData', ids[0]);
                 tempMzh = pdata.mzh;
@@ -126,34 +126,34 @@
     function gridRpDetail() {
         $gridRpDetail.dataGrid({
             height: $(window).height() - 210,
-            caption: "处方明细",
+            caption: "chi tiết đơn thuốc",
             colModel: [
-                { label: '药品名称', name: 'ypmc', width: 120, align: 'left' },
-                { label: '规格', name: 'gg', width: 80, align: 'left' },
-                { label: '数量', name: 'slStr', width: 80, align: 'right' },
+                { label: 'tên thuốc', name: 'ypmc', width: 120, align: 'left' },
+                { label: 'quy cách', name: 'gg', width: 80, align: 'left' },
+                { label: 'số lượng', name: 'slStr', width: 80, align: 'right' },
                 {
-                    label: '单价', name: 'dj', width: 80, align: 'right',
+                    label: 'đơn giá', name: 'dj', width: 80, align: 'right',
                     formatter: function (cellvalue) {
                         return cellvalue ? parseFloat(cellvalue).toFixed(4) : "0.0000";
                     }
                 },
                 {
-                    label: '金额', name: 'je', width: 90, align: 'right',
+                    label: 'số tiền', name: 'je', width: 90, align: 'right',
                     formatter: function (cellvalue) {
                         return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
                     }
                 },
-                { label: '剂量', name: 'jl', width: 70, align: 'right' },
-                { label: '剂量单位', name: 'jldw', width: 60, align: 'left' },
-                { label: '用法', name: 'yfmc', width: 100, align: 'left' },
-                { label: '医生嘱托', name: 'bz', width: 100, align: 'left' },
-                { label: '生产厂家', name: 'ycmc', width: 120, align: 'left' },
-                { label: '药品分组', name: 'czh', width: 70, align: 'center' }
+                { label: 'liều dùng', name: 'jl', width: 70, align: 'right' },
+                { label: 'đơn vị liều dùng', name: 'jldw', width: 60, align: 'left' },
+                { label: 'cách dùng', name: 'yfmc', width: 100, align: 'left' },
+                { label: 'lời dặn của bác sĩ', name: 'bz', width: 100, align: 'left' },
+                { label: 'nhà sản xuất', name: 'ycmc', width: 120, align: 'left' },
+                { label: 'nhóm thuốc', name: 'czh', width: 70, align: 'center' }
             ]
         });
     }
 
-    //补打发药单
+    //in bổ sung phát thuốc đơn
     function newtouch_event_f6() {
         var id = $("#gridRpInfo").jqGrid("getGridParam", "selrow");
         if (id) {
@@ -162,7 +162,7 @@
             window.open(uri);
             //window.open("/Report/PrintReport?type=MZFYBD_Bill&param=OrganizeId=@ViewBag.OrganizeId" + "|yfbmCode=@ViewBag.yfbmCode" + "|cfh=" + chf);
         } else {
-            $.modalAlert("请选中患者信息！", 'warning');
+            $.modalAlert("vui lòng chọn thông tin bệnh nhân!", 'warning');
         }
     }
 
@@ -172,19 +172,19 @@
     if (id) {
         var cfhs = '';
         var cfmx = $("#gridRpDetail").getCol('yfmc',true);
-        //取全部处方号
+        //lấy tất cả số đơn thuốc
         for (var i = 0; i < cfmx.length; i++) {
             if (cfmx[i].value == "雾化") {
                 cfhs.push($("#gridRpInfo").jqGrid('getRowData', id).cfh);
             }
         }
         if (cfhs.length > 0) {
-            var newcfhs = $.unique(cfhs);//去重
-            var cfh = newcfhs.join(",");//数组串连
+            var newcfhs = $.unique(cfhs);//loại bỏ trùng lặp
+            var cfh = newcfhs.join(",");//nối chuỗi mảng
             var uri = '@reportUrl' + "?tempCode=1311&systemCode=PDS" + "&orgId=" + '@ViewBag.OrganizeId' + "&cfh=" + cfh + "&mzh=" + tempMzh + "&UserCode=" + opeator.UserCode;
             window.open(uri);
-        } else $.modalAlert("无雾化处方，不能打印雾化卡！", 'warning');
-    } else $.modalAlert("请选中患者信息！", 'warning');
+        } else $.modalAlert("无雾化处方, 不能打印雾化卡!", 'warning');
+    } else $.modalAlert("vui lòng chọn thông tin bệnh nhân!", 'warning');
 }
      //补打打印输液卡
     function newtouch_event_f9() {
@@ -192,15 +192,15 @@
         if (id) {
             var cfhs = [];
             var cfmx = $("#gridRpDetail").getCol('yfmc',true);
-            //取全部处方号
+            //lấy tất cả số đơn thuốc
             for (var i = 0; i < cfmx.length; i++) {
                 if (cfmx[i].value == "静脉滴注") {
                     cfhs.push($("#gridRpInfo").jqGrid('getRowData', id).cfh);
                 }
             }
             if (cfhs.length > 0) {
-                var newcfhs = $.unique(cfhs);//去重
-                var cfh = newcfhs.join(",");//数组串连
+                var newcfhs = $.unique(cfhs);//loại bỏ trùng lặp
+                var cfh = newcfhs.join(",");//nối chuỗi mảng
                 //查询含输液的组号
                 $.najax({
                     type: "POST",
@@ -212,28 +212,28 @@
                         window.open(uri);
                     }
                 });
-            } else $.modalAlert("无静脉滴注处方，不能打印输液卡！", 'warning');
-        } else $.modalAlert("请选中患者信息！", 'warning');
+            } else $.modalAlert("无静脉滴注处方, 不能打印输液卡!", 'warning');
+        } else $.modalAlert("vui lòng chọn thông tin bệnh nhân!", 'warning');
     }
-    //补打用法标签
+    //in bổ sung nhãn cách dùng
      function newtouch_event_f10() {
          var id = $("#gridRpInfo").jqGrid("getGridParam", "selrow");
          if (id) {
              var cfh = $("#gridRpInfo").jqGrid('getRowData', id).cfh;
              var cfmx = $("#gridRpDetail").getCol('yfmc', true);
              var lscfmx = [];
-             //取全部处方号
+             //lấy tất cả số đơn thuốc
              for (var i = 0; i < cfmx.length; i++) {
                  if (cfmx[i].value == "口服" || cfmx[i].value == "外用") {
                      lscfmx.push(cfh);
                  }
              }
              if (lscfmx.length > 0) {
-                 var newcfh = $.unique(lscfmx);//去重
-                 var cfhStr = newcfh.join();//数组串连
+                 var newcfh = $.unique(lscfmx);//loại bỏ trùng lặp
+                 var cfhStr = newcfh.join();//nối chuỗi mảng
                  var uri = '@reportUrl' + "?tempCode=1306&systemCode=PDS" + "&orgId=" + '@ViewBag.OrganizeId' + "&cfh=" + cfhStr;
                  window.open(uri);
-             } else $.modalAlert("无口服、外用药处方，不能打印用法标签！", 'warning');
+             } else $.modalAlert("không có uống, ngoài dùng thuốc đơn thuốc, không thể in nhãn cách dùng!", 'warning');
          }
     }
 </script>

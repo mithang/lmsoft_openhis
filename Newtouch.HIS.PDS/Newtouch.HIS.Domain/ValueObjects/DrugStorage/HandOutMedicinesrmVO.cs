@@ -16,22 +16,22 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string dlmc { get; set; }
 
         /// <summary>
-        /// 包装数
+        /// số lượng đóng gói
         /// </summary>
         public decimal bzs { get; set; }
 
         /// <summary>
-        /// 包装单位
+        /// đơn vị đóng gói
         /// </summary>
         public string bzdw { get; set; }
 
         /// <summary>
-        /// 部门单位
+        /// đơn vị bộ phận
         /// </summary>
         public string deptdw { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// hạn sử dụng
         /// </summary>
         public DateTime? yxq { get; set; }
 
@@ -41,47 +41,47 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public int? bmdwsl { get; set; }
 
         /// <summary>
-        /// 部门单位
+        /// đơn vị bộ phận
         /// </summary>
         public string bmdw { get; set; }
 
         /// <summary>
-        /// 批号
+        /// số lô
         /// </summary>
         public string ph { get; set; }
         
         /// <summary>
-        /// 批次
+        /// lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypcode { get; set; }
 
         /// <summary>
-        /// 部门批发价
+        /// giá bán buôn bộ phận
         /// </summary>
         public decimal pfj { get; set; }
 
         /// <summary>
-        /// 部门零售价
+        /// giá bán lẻ bộ phận
         /// </summary>
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 药库批发价
+        /// giá bán buôn kho thuốc
         /// </summary>
         public decimal ykpfj { get; set; }
 
         /// <summary>
-        /// 药库零售价
+        /// giá bán lẻ kho thuốc
         /// </summary>
         public decimal yklsj { get; set; }
 
@@ -91,42 +91,42 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string klsl { get; set; }
 
         /// <summary>
-        /// 库存数量
+        /// số lượng tồn kho
         /// </summary>
         public int kcsl { get; set; }
 
         /// <summary>
-        /// 冻结数量
+        /// số lượng đóng băng
         /// </summary>
         public int? djsl { get; set; }
 
         /// <summary>
-        /// 可用库存数量
+        /// tồn kho khả dụng số lượng
         /// </summary>
         public int? kykcsl { get; set; }
 
         /// <summary>
-        /// 最小单位
+        /// đơn vị nhỏ nhất
         /// </summary>
         public string zxdw { get; set; }
 
         /// <summary>
-        /// 包装单位数量
+        /// đơn vị đóng gói số lượng
         /// </summary>
         public int? bzdwsl { get; set; }
 
         /// <summary>
-        /// 带单位的包装单位数量
+        /// kèm đơn vị của đơn vị đóng gói số lượng
         /// </summary>
         public string bzdwslstr { get; set; }
 
         /// <summary>
-        /// 药库单位/包装单位
+        /// đơn vị kho thuốc/đơn vị đóng gói
         /// </summary>
         public string ykdw { get; set; }
 
         /// <summary>
-        /// 进价 部门单位
+        /// giá nhập đơn vị bộ phận
         /// </summary>
         public decimal? jj { get; set; }
     }

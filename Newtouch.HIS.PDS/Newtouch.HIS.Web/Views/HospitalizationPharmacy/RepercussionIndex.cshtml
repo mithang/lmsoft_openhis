@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "RepercussionIndex";//住院退药
+    ViewBag.Title = "RepercussionIndex";//trả thuốc nội trú
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <link href="@SiteUrl.GetStaticResourceScriptUrl("js/wdtree/tree.css")" rel="stylesheet" />
@@ -24,7 +24,7 @@
     }
 </style>
 <div style="float:left;width:20%;">
-    <div class="dv-left-title">患者列表</div>
+    <div class="dv-left-title">danh sách bệnh nhân</div>
     <div class="dv-left-tree" id="BqTreeList"></div>
 </div>
 
@@ -33,43 +33,43 @@
         <form id="form1">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    查询条件
+                    điều kiện tra cứu
                 </div>
                 <div style="padding: 2px;padding-right:20px;">
                     <input type="hidden"  id="Fyzt" value="2" />
                     <table class="form">
                         <tr>
-                            <th class="formTitle">患者姓名：</th>
+                            <th class="formTitle">họ tên bệnh nhân: </th>
                             <td class="formValue">
-                                <input id="patientName" type="text" class="form-control" placeholder="姓名" />
+                                <input id="patientName" type="text" class="form-control" placeholder="họ tên" />
                             </td>
-                            <th class="formTitle">药品：</th>
+                            <th class="formTitle">thuốc: </th>
                             <td class="formValue">
-                                <input id="ypmc" type="text" class="form-control" placeholder="药品" />
+                                <input id="ypmc" type="text" class="form-control" placeholder="thuốc" />
                             </td>
-                            <th class="formTitle">床位号：</th>
+                            <th class="formTitle">số giường: </th>
                             <td class="formValue">
-                                <input id="cw" type="text" class="form-control" placeholder="床位号" />
+                                <input id="cw" type="text" class="form-control" placeholder="số giường" />
                             </td>
                         </tr>
                         <tr>
-                            <th class="formTitle">发药状态：</th>
+                            <th class="formTitle">trạng thái phát thuốc: </th>
                             <td class="formValue formDdlSelectorTd">
                                 <select id="sel_fybz" class="form-control">
-                                    <option value="2">未退药</option>
-                                    <option value="3">已退药</option>
+                                    <option value="2">chưa trả thuốc</option>
+                                    <option value="3">đã trả thuốc</option>
                                 </select>
                             </td> 
-                            <th class="formTitle">开始时间：</th>
+                            <th class="formTitle">thời gian bắt đầu: </th>
                             <td class="formValue">
                                 <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                             </td>
-                            <th class="formTitle">结束时间：</th>
+                            <th class="formTitle">thời gian kết thúc: </th>
                             <td class="formValue">
                                 <input id="Jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                             </td>
                             <td class="formValue" style="text-align: right;">
-                                <input type="button" id="btn_search" class="btn btn-md btn-primary" style="width:50px; margin-left:40px;" value="查询" />
+                                <input type="button" id="btn_search" class="btn btn-md btn-primary" style="width:50px; margin-left:40px;" value="tra cứu" />
                             </td>
                         </tr>
                     </table>
@@ -87,24 +87,24 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new int[] { 6 ,7 , 8 },
-    F6Text = "退药",
-    F7Text = "明细打印",
-    F8Text = "汇总打印"
+    F6Text = "trả thuốc",
+    F7Text = "chi tiết in",
+    F8Text = "in tổng hợp"
 })
 
 <script type="text/javascript">
-    var ThisbqCode = "";//初始化病区Code
-    var ThisbrCode = "";//初始化病人Code
+    var ThisbqCode = "";//khởi tạo khu bệnh Code
+    var ThisbrCode = "";//khởi tạo bệnh nhân Code
     var globalData = [];
     $(".toolbar").css("width", 350);
     $(function () {
-        //绑定病区
+        //gắn khu bệnh
         bqGridList();
-        //绑定病人发药详细信息
+        //gắn thông tin chi tiết phát thuốc của bệnh nhân
         dispenseMedicinGridList(null, null);
     });
     
-    //绑定病区和病人
+    //gắn khu bệnh và bệnh nhân
     function bqGridList() {
         $("#BqTreeList").treeview({
             height: $(window).height() - 35,
@@ -123,9 +123,9 @@
         var patlistFath = "";
         var patzyh = "";
 
-        //当前选中父节点
+        //nút cha hiện đang được chọn
         var len = 0;
-        var single = 0; //是否单个子节点
+        var single = 0; //có phải là một nút con duy nhất không
 
         if (item != null && item.Ex1 == "p") {
             patlistFath = item.ChildNodes;
@@ -137,7 +137,7 @@
             single = 1;
         }
 
-        //选中节点
+        //nút được chọn
         for (var i = 0; i < patlist.length; i++) {
             if (patlist[i].Ex1 == "c") {
                 patzyh += patlist[i].value + ",";
@@ -169,12 +169,12 @@
             }
         }
 
-        ThisbrCode = patzyh;//存储点击的病人code
-        //重新加载病人发药详细信息
+        ThisbrCode = patzyh;//lưu bệnh nhân được nhấp code
+        //tải lại thông tin chi tiết phát thuốc của bệnh nhân
         $("#btn_search").click();
     }
 
-    //级联选中所有子节点
+    //chọn liên đới tất cả nút con
     function checkAllSon(node) {
         $('#BqTreeList').treeview('checkNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -183,7 +183,7 @@
             }
         }
     }
-    //级联取消所有子节点
+    //bỏ chọn liên đới tất cả nút con
     function uncheckAllSon(node) {
         $('#BqTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -193,7 +193,7 @@
         }
     }
 
-    //用户发药详细信息
+    //thông tin chi tiết phát thuốc của người dùng
     function dispenseMedicinGridList(BQ, BR) {
         var $gridBRXXDrugsList = $("#dispenseMedicinGridList");
         $gridBRXXDrugsList.dataGrid({
@@ -214,31 +214,31 @@
                 addglobadata(status, rowid);
             },
             colModel: [
-                { label: "主键", name: 'Id', hidden: true, key: true },
-                { label: "药品编码", name: 'ypCode', hidden: true },
-                { label: "医嘱ID", name: 'zxId', hidden: true },
-                { label: "住院号", name: 'zyh', hidden: true },
-                { label: "组织机构", name: 'OrganizeId', hidden: true },
-                { label: "药品批次", name: 'pc', hidden: true },
-                { label: "药品批号", name: 'ph', hidden: true },
-                { label: '姓名', name: 'patientName', width: 80, align: 'left' },
-                { label: '床位号', name: 'cw', width: 60, align: 'left' },
-                { label: '药品', name: 'ypmc', width: 100, align: 'left' },
-                { label: '规格', name: 'ypgg', width: 100, align: 'left' },
-                { label: '频次', name: 'pcmc', width: 50, align: 'left' },
-                { label: '组号', name: 'zh', width: 50, align: 'left' },
-                { label: '使用数量', name: 'yl', width: 60, align: 'left' },
-                { label: '使用单位', name: 'yldw', width: 60, align: 'left' },
-                { label: '实发数量', name: 'sl', width: 60, align: 'left' },
-                { label: '实发单位', name: 'zycldw', width: 60, align: 'left' },
-                { label: '医嘱性质', name: 'yzxzmc', width: 80, align: 'left' },                
-                { label: '生成厂家', name: 'ycmc', width: 100, align: 'left' },
-                { label: '用法', name: 'zlff', width: 60, align: 'left' },
-                { label: '单价', name: 'dj', width: 60, align: 'left' },
-                { label: '金额', name: 'je', width: 60, align: 'left' },
-                { label: '发药操作员', name: 'LastModifierCode', width: 100, align: 'left' },
-                { label: '发药时间', name: 'LastModifyTime', width: 120, align: 'left' },
-                { label: '已申请退药', name: 'sqtyzt', width: 120, align: 'left' }
+                { label: "khóa chính", name: 'Id', hidden: true, key: true },
+                { label: "mã thuốc", name: 'ypCode', hidden: true },
+                { label: "y lệnh ID", name: 'zxId', hidden: true },
+                { label: "số nội trú", name: 'zyh', hidden: true },
+                { label: "tổ chức", name: 'OrganizeId', hidden: true },
+                { label: "thuốc lô", name: 'pc', hidden: true },
+                { label: "thuốc số lô", name: 'ph', hidden: true },
+                { label: 'họ tên', name: 'patientName', width: 80, align: 'left' },
+                { label: 'số giường', name: 'cw', width: 60, align: 'left' },
+                { label: 'thuốc', name: 'ypmc', width: 100, align: 'left' },
+                { label: 'quy cách', name: 'ypgg', width: 100, align: 'left' },
+                { label: 'tần suất', name: 'pcmc', width: 50, align: 'left' },
+                { label: 'số nhóm', name: 'zh', width: 50, align: 'left' },
+                { label: 'số lượng sử dụng', name: 'yl', width: 60, align: 'left' },
+                { label: 'đơn vị sử dụng', name: 'yldw', width: 60, align: 'left' },
+                { label: 'thực phát số lượng', name: 'sl', width: 60, align: 'left' },
+                { label: 'đơn vị phát thực tế', name: 'zycldw', width: 60, align: 'left' },
+                { label: 'tính chất y lệnh', name: 'yzxzmc', width: 80, align: 'left' },                
+                { label: 'tạo nhà sản xuất', name: 'ycmc', width: 100, align: 'left' },
+                { label: 'cách dùng', name: 'zlff', width: 60, align: 'left' },
+                { label: 'đơn giá', name: 'dj', width: 60, align: 'left' },
+                { label: 'số tiền', name: 'je', width: 60, align: 'left' },
+                { label: 'phát thuốc người thao tác', name: 'LastModifierCode', width: 100, align: 'left' },
+                { label: 'thời gian phát thuốc', name: 'LastModifyTime', width: 120, align: 'left' },
+                { label: 'đã đề nghị trả thuốc', name: 'sqtyzt', width: 120, align: 'left' }
             ],
             gridComplete: function () {
                 var ids = $("#dispenseMedicinGridList").getDataIDs();
@@ -251,10 +251,10 @@
             },
             pager: "#gridPager",
             sortname: 'CreateTime desc',
-            caption: "已发药列表",
+            caption: "đã phát thuốc danh sách",
             viewrecords: true
         });
-        //查询
+        //tra cứu
         $("#btn_search").click(function () {
             $gridBRXXDrugsList.jqGrid('setGridParam', {
                 postData: {
@@ -282,30 +282,30 @@
             if (i > 0) {
                 for (var j = 0; j < globalData.length; j++) {
                     if (globalData[j].yszyzid == rowid) {
-                        globalData.splice(j, 1); //移除当前行
+                        globalData.splice(j, 1); //loại bỏ hiện tại dòng
                     }
                 }
             }
         }
     }
 
-    // 退药
+    // trả thuốc
     function newtouch_event_f6() {
-        globalData = []//取消多选，清除原来的值
+        globalData = []//取消多选, 清除原来的值
         var ids = $("#dispenseMedicinGridList").jqGrid('getGridParam', 'selarrrow');
         for (var i = 0; i < ids.length; i++) {
             var data = $("#dispenseMedicinGridList").getRowData(ids[i]);
             if (data.sqtyzt == '否') {
-                $.modalAlert("未申请退药,禁止退药！", 'warning');
+                $.modalAlert("chưa đề nghị trả thuốc,禁止退药!", 'warning');
                 return;
             }
             globalData.push(data);
         }
         if (globalData == [] || globalData.length <= 0) {
-            $.modalAlert("退药失败,无药品信息！", 'warning');
+            $.modalAlert("trả thuốc thất bại,không có thông tin thuốc!", 'warning');
             return;
         }
-        $.modalConfirm("确定进行退药吗？", function (flag) {
+        $.modalConfirm("xác định tiến hành trả thuốc không?", function (flag) {
             if (flag) { 
                 var par = {};
                 var medicineList = [];
@@ -322,7 +322,7 @@
                     medicineList.push(obj);
                 }
                 par["ModelBQBRYZZXTYInfoVO"] = medicineList;
-                par["type"] = 3;//退药
+                par["type"] = 3;//trả thuốc
                 $.ajax({
                     type: "POST",
                     url: "/HospitalizationPharmacy/ZYBQTYOperate",
@@ -330,8 +330,8 @@
                     dataType: "text",
                     success: function (res) {
                         if (res == "退药成功") {
-                            $.modalAlert("退药成功！", 'success');
-                            //重新加载医嘱发药信息
+                            $.modalAlert("trả thuốc thành công!", 'success');
+                            //tải lại y lệnh thông tin phát thuốc
                             $("#dispenseMedicinGridList").trigger("reloadGrid");
                         } else {
                             $.modalAlert(res, 'error');
@@ -343,7 +343,7 @@
         }, false);
     }
 
-    //打印明细
+    //in chi tiết
     function newtouch_event_f7() {
         var startTime = $("#Kssj").val();
         var endTime = $("#Jssj").val();
@@ -351,7 +351,7 @@
         window.open("/Report/PrintReport?type=ZYTY_Detail&param=startTime=" + startTime + "|endTime=" + endTime + "|OrganizeId=" + OrganizeId, "height=500, width=1195, top=100, left=50, toolbar=no, menubar=no, scrollbar=yes, resizeble=no, location=no, status=no");
     }
 
-    //打印汇总
+    //in tổng hợp
     function newtouch_event_f8() {
         var startTime = $("#Kssj").val();
         var endTime = $("#Jssj").val();

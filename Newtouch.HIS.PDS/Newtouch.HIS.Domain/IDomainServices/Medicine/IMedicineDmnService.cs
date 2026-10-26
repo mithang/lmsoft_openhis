@@ -8,19 +8,19 @@ using Newtouch.HIS.Domain.ValueObjects.Medicine;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 药品
+    /// thuốc
     /// </summary>
     public interface IMedicineDmnService
     {
         /// <summary>
-        /// 查询损益药品list
+        /// tra cứu thuốc lãi/lỗ list
         /// </summary>
-        /// <param name="inputCode">关键字</param>
+        /// <param name="inputCode">từ khóa</param>
         /// <returns></returns>
         List<ReportLossAndProfitMedicineInfoVO> SelectLossAndProfitMedicineList(string inputCode);
 
         /// <summary>
-        /// 查询药品的kcsl和jj
+        /// tra cứu thuốc của kcsl và jj
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="ph"></param>
@@ -42,7 +42,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region 报损报益
 
         /// <summary>
-        /// 保存
+        /// lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="kcsl"></param>
@@ -50,7 +50,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void SaveReportLossAndProfit(SysMedicineProfitLossEntity entity, int kcsl, decimal jj);
 
         /// <summary>
-        /// 报损报溢查询
+        /// tra cứu báo hỏng/báo thừa
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -62,18 +62,18 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<LossAndProditInfoVO> SelectLossAndProditInfoList(Pagination pagination, string startTime, string endTime, string inputCode, string syyy, int syqk);
 
         /// <summary>
-        /// 批发价总金额、零售价总金额查询
+        /// giá bán buôn tổng số tiền, giá bán lẻ tổng số tiền tra cứu
         /// </summary>
-        /// <param name="startTime">开始时间</param>
-        /// <param name="endTime">结束时间</param>
-        /// <param name="syyy">损益原因</param>
-        /// <param name="inputCode">关键字</param>
-        /// <param name="syqk">损益情况</param>
+        /// <param name="startTime">thời gian bắt đầu</param>
+        /// <param name="endTime">thời gian kết thúc</param>
+        /// <param name="syyy">nguyên nhân lãi/lỗ</param>
+        /// <param name="inputCode">từ khóa</param>
+        /// <param name="syqk">tình hình lãi/lỗ</param>
         /// <returns></returns>
         LossAndProditInfoJeVo ComputePjzeAndLjze(string startTime, string endTime, string syyy, string inputCode, int syqk);
 
         /// <summary>
-        /// 报损报溢 保存
+        /// báo hỏng báo thừa lưu
         /// </summary>
         /// <param name="profitLossEntityList"></param>
         string SaveReportLossAndProfit(List<YpSyxxVo> profitLossEntityList);
@@ -82,7 +82,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
         #region 调价盈亏
         /// <summary>
-        /// 调价盈亏查询
+        /// điều chỉnh giá lãi/lỗ tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
         #endregion
         /// <summary>
-        /// 报损报溢查询
+        /// tra cứu báo hỏng/báo thừa
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -107,7 +107,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<InventoryQureyinfoVO> GetInventoryQureyInfo(Pagination pagination, string startTime, string endTime, string inputCode, string syyy, int syqk);
 
         #region 药品发药统计
-        //药品分类查询
+        //phân loại thuốc tra cứu
         IList<MedicineClassificationVO> GetMedicineClassificationList(string keyword = null);
         #endregion
     }

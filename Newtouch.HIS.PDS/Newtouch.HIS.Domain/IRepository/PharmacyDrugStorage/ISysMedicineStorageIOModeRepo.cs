@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysMedicineStorageIOModeRepo : IRepositoryBase<SysMedicineStorageIOModeEntity>
     {
         /// <summary>
-        /// 获取出入库方式
+        /// lấy phương thức nhập/xuất kho
         /// </summary>
         /// <returns></returns>
         object GetStorageIOMode();

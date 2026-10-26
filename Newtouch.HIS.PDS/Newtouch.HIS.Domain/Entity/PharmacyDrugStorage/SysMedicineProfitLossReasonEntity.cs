@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品损益原因
+    /// hệ thống thuốc nguyên nhân lãi/lỗ
     /// </summary>
     [Table("xt_ypsyyy")]
     public class SysMedicineProfitLossReasonEntity : IEntity<SysMedicineProfitLossReasonEntity>
@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string syyy { get; set; }
 
         /// <summary>
-        /// 0 报损，1 报溢
+        /// 0 báo hỏng, 1 báo thừa
         /// </summary>
         public string sybz { get; set; }
 

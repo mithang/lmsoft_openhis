@@ -4,22 +4,22 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 住院药品医嘱执行批号
+    /// nội trú thuốc thực hiện y lệnh số lô
     /// </summary>
     public interface IZyYpyzzxphRepo : IRepositoryBase<ZyYpyzzxphEntity>
     {
         /// <summary>
-        /// 获取住院有效未归架的排药信息  此方法不加日志
+        /// lấy nội trú còn hiệu lực chưa xếp lên kệ của xếp thuốc thông tin  phương thức này không ghi nhật ký
         /// </summary>
-        /// <param name="yzId">医嘱ID</param>
-        /// <param name="zxId">执行Id</param>
+        /// <param name="yzId">y lệnh ID</param>
+        /// <param name="zxId">thực hiện Id</param>
         /// <param name="ypCode"></param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         List<ZyYpyzzxphEntity> SelectZyphList(string yzId, string zxId, string ypCode, string organizeId);
 
         /// <summary>
-        /// 获取住院有效未归架的排药信息  此方法不加日志
+        /// lấy nội trú còn hiệu lực chưa xếp lên kệ của xếp thuốc thông tin  phương thức này không ghi nhật ký
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="zxId"></param>

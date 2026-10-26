@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "直接出库-发票查询";
+    ViewBag.Title = "xuất kho trực tiếp-tra cứu hóa đơn";
     Layout = "~/Views/Shared/_Form.cshtml";
     var from = (ViewBag.from as string) ?? "";
 }
@@ -18,18 +18,18 @@
     <div class="search">
         <table class="form">
             <tr>
-                <th class="formTitle">发票号：</th>
+                <th class="formTitle">số hóa đơn: </th>
                 <td class="formValue">
-                    <input id="fph" name="fph" type="text" class="form-control form-an" placeholder="请输入发票号" />
+                    <input id="fph" name="fph" type="text" class="form-control form-an" placeholder="vui lòng nhập số hóa đơn" />
                 </td>
-                <th class="formTitle">入库时间：</th>
+                <th class="formTitle">thời gian nhập kho: </th>
                 <td class="formValue" colspan="3">
                     <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; margin-top:10px;float:left;" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     <span style="margin-left:1%;float:left">—</span>
                     <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; margin-top:10px;float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd 23:59:59")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                 </td>
                 <td style="padding-left: 20px;">
-                    <button type="button" id="btn_search" class="btn btn-primary btn-md">&nbsp;查询&nbsp;</button>
+                    <button type="button" id="btn_search" class="btn btn-primary btn-md">&nbsp;tra cứu&nbsp;</button>
                 </td>
             </tr>
         </table>
@@ -43,7 +43,7 @@
 </form>
 
 <script>
-    //上一个window对象
+    //trước đó window đối tượng
     var prevWindow = $.currentWindow();
 
     $(function () {
@@ -57,17 +57,17 @@
             height: $(window).height()-150,
             postData: { kssj: $("#kssj").val(), jssj: $("#jssj").val(), fph: $("#fph").val(), djlx: 1},
             colModel: [
-                { label: '单据号', name: 'Pdh', width: 120, align: 'left' },
+                { label: 'số chứng từ', name: 'Pdh', width: 120, align: 'left' },
                 { label: 'pc', name: 'pc', width: 100, align: 'left', hidden: true },
                 { label: 'Rkbm', name: 'Rkbm', width: 100, align: 'left', hidden:true },
-                { label: '入库部门', name: 'Rkmc', width: 80, align: 'left' },
+                { label: 'bộ phận nhập kho', name: 'Rkmc', width: 80, align: 'left' },
                 {
-                    label: '入库时间', name: 'Rksj', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:m:s', newformat: 'Y-m-d H:m:s' }
+                    label: 'thời gian nhập kho', name: 'Rksj', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:m:s', newformat: 'Y-m-d H:m:s' }
                 },
-                { label: '发票号', name: 'Fph', width: 120, align: 'left' },
+                { label: 'số hóa đơn', name: 'Fph', width: 120, align: 'left' },
                 { label: 'Ckbm', name: 'Ckbm', width: 100, align: 'left', hidden: true },
-                { label: '供应商', name: 'Ckmc', width: 100, align: 'left' },
-                { label: '发票总金额', name: 'Zje', width: 80, align: 'left' },
+                { label: 'nhà cung cấp', name: 'Ckmc', width: 100, align: 'left' },
+                { label: 'hóa đơn tổng số tiền', name: 'Zje', width: 80, align: 'left' },
             ],
             multiselect: false,
             pager: "#gridPager",
@@ -89,7 +89,7 @@
         });
     }
 
-    //jqGrid 双击选中某行
+    //jqGrid nhấp đúp được chọn một dòng
     function btn_edit() {
         SearchConfirm();
     }
@@ -99,15 +99,15 @@
         obj.pc = $("#GridList").jqGridRowValue().pc;
         obj.fph = $("#GridList").jqGridRowValue().Fph;
         prevWindow.GetQueryAjax(obj);
-        //关闭窗口
+        //đóng cửa sổ
         ReceiptCancle();
     }
-    //确定 主页面调用
+    //xác định chính trang gọi
     function SearchConfirm() {
         BillDbGrid();
     }
 
-    //取消
+    //hủy
     function ReceiptCancle() {
         $.modalClose();
     }

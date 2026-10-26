@@ -6,7 +6,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 {
     /// <summary>
-    /// 内部发药申请
+    /// đề nghị phát thuốc nội bộ
     /// </summary>
     public class ApplyController : ControllerBase
     {

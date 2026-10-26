@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 {
     /// <summary>
-    /// 直接出库
+    /// xuất kho trực tiếp
     /// </summary>
     public class DeliveryDirectController : ControllerBase
     {
@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             return result.IsSucceed ? Success() : Error(result.ResultMsg);
         }
         /// <summary>
-        /// get入库发票
+        /// get nhập kho hóa đơn
         /// </summary>
         /// <param name="djlx"></param>
         /// <param name="fph"></param>
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 药库入库发票明细
+        /// chi tiết hóa đơn nhập kho thuốc
         /// </summary>
         /// <param name="djlx"></param>
         /// <param name="fph"></param>

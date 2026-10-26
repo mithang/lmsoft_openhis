@@ -7,7 +7,7 @@ using Newtouch.HIS.Domain.IDomainServices;
 namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 {
     /// <summary>
-    /// 出库至科室
+    /// xuất kho đến khoa
     /// </summary>
     public class DeliveryToDepartmentController : ControllerBase
     {

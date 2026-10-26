@@ -9,13 +9,13 @@ using Newtouch.HIS.Domain.ValueObjects;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 库存应用
+    /// tồn kho ứng dụng
     /// </summary>
     public interface IDrugStorageDmnService
     {
 
         /// <summary>
-        /// 查询当前部门药品(入库)
+        /// tra cứu bộ phận hiện tại thuốc(nhập kho)
         /// </summary>
         /// <param name="keyword">ypmc、py、spm、ypCode</param>
         /// <param name="yfbmCode"></param>
@@ -24,14 +24,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<DepartmentMedicineVO> SelectDepartmentMedicineList(string keyword, string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 药品发票信息
+        /// thuốc hóa đơn thông tin
         /// </summary>
         /// <param name="fph"></param>
         /// <returns></returns>
         List<MedicineInvoiceInfoVO> SelectMedicineListByFPH(string fph);
 
         /// <summary>
-        /// 查询当前部门药品(出库)
+        /// tra cứu bộ phận hiện tại thuốc(xuất kho)
         /// </summary>
         /// <param name="keyword">ypmc、py、spm、ypCode</param>
         /// <param name="fph"></param>
@@ -40,40 +40,40 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<DepartmentMedicineVO> SelectDepartmentMedicineList2(string keyword, string fph, string gyscode);
 
         /// <summary>
-        /// 获取申领单信息
+        /// lấy phiếu lĩnh thông tin
         /// </summary>
         /// <param name="pagination"></param>
-        /// <param name="sldh">申领单号</param>
-        /// <param name="slbm">申领部门</param>
-        /// <param name="ffzt">发药状态</param>
-        /// <param name="txtStartDate">开始日期</param>
-        /// <param name="txtEndDate">结束日期</param>
+        /// <param name="sldh">số phiếu lĩnh</param>
+        /// <param name="slbm">bộ phận lĩnh</param>
+        /// <param name="ffzt">trạng thái phát thuốc</param>
+        /// <param name="txtStartDate">ngày bắt đầu</param>
+        /// <param name="txtEndDate">ngày kết thúc</param>
         /// <returns></returns>
         IList<SysMedicineReInfoVO> GetMedicineRequestInfo(Pagination pagination, string sldh, string slbm, string ffzt, string txtStartDate = "", string txtEndDate = "");
 
         /// <summary>
-        /// 获取申领单明细
+        /// lấy chi tiết phiếu lĩnh
         /// </summary>
         /// <param name="sldId"></param>
         /// <returns></returns>
         List<SysMedicineReDetailVO> GetMedicineDetail(string sldId);
 
         /// <summary>
-        /// 入库
+        /// nhập kho
         /// </summary>
         /// <param name="ioReceiptEntity"></param>
         /// <param name="ioReceiptDetailList"></param>
         void SaveInStorageInfo(SysMedicineStorageIOReceiptEntity ioReceiptEntity, List<SysMedicineStorageIOReceiptDetailEntity> ioReceiptDetailList);
 
         /// <summary>
-        /// 出库
+        /// xuất kho
         /// </summary>
         /// <param name="ioReceiptEntity"></param>
         /// <param name="ioReceiptDetailList"></param>
         void SaveOutStorageInfo(SysMedicineStorageIOReceiptEntity ioReceiptEntity, List<SysMedicineStorageIOReceiptDetailVO> ioReceiptDetailList);
 
         /// <summary>
-        /// 调价申请 查询
+        /// điều chỉnh giá đề nghị tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inputCode"></param>
@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<AdjustPriceMedicineInfoVO> SelectAdjustPriceMedicineInfoList(Pagination pagination, string inputCode);
 
         /// <summary>
-        /// 调价审核查询
+        /// điều chỉnh giá duyệt tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inputCode"></param>
@@ -90,13 +90,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<AdjustPriceMedicineInfoVO> SelectMedicineAdjustPriceApprovalInfoList(Pagination pagination, string inputCode, string shzt);
 
         /// <summary>
-        /// 药品调价执行
+        /// thuốc điều chỉnh giá thực hiện
         /// </summary>
         /// <param name="ypCodeList"></param>
         string ExecteAdjustPrice(ArrayList ypCodeList);
 
         /// <summary>
-        /// 调价历史查询
+        /// điều chỉnh giá lịch sử tra cứu
         /// </summary>
         /// <param name="inputCode"></param>
         /// <param name="startTime"></param>
@@ -105,14 +105,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<AdjustPriceHistoryInfoVO> SelectMedicineAdjustPriceHistoryInfoList(Pagination pagination, string inputCode, string startTime, string endTime);
 
         /// <summary>
-        /// 终止申领出库状态
+        /// chấm dứt xuất kho theo phiếu lĩnh trạng thái
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         void UpgradeStatus(string id);
 
         /// <summary>
-        /// 进销存统计
+        /// thống kê nhập-xuất-tồn
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="searchParam"></param>
@@ -122,37 +122,37 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<PsiStatisticsVo> GetPsiStatisticsVo(Pagination pagination, PsiStatisticsParam searchParam, string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 获取品，不分批次批号，含有效期
+        /// 获取品, không phần lô số lô, 含有效期
         /// </summary>
-        /// <param name="srm">关键字</param>
-        /// <param name="yfbmCode">当前部门</param>
+        /// <param name="srm">từ khóa</param>
+        /// <param name="yfbmCode">bộ phận hiện tại</param>
         /// <param name="organizeId"></param>
         /// <param name="topCount"></param>
         /// <returns></returns>
         List<DrugStockInfoVEntity> GetMedicinesrmList(string srm, string yfbmCode, string organizeId, int topCount = 100);
 
         /// <summary>
-        /// 获取在有效期内的药品，不分批次批号，不含有效期
+        /// lấy tại hạn sử dụng trong của thuốc, không phần lô số lô, không bao gồm hạn sử dụng
         /// </summary>
-        /// <param name="srm">关键字</param>
-        /// <param name="yfbmCode">当前部门</param>
+        /// <param name="srm">từ khóa</param>
+        /// <param name="yfbmCode">bộ phận hiện tại</param>
         /// <param name="organizeId"></param>
         /// <param name="topCount"></param>
         /// <returns></returns>
         List<DrugStockInfoVEntity> GetValidMedicinesrmList(string srm, string yfbmCode, string organizeId, int topCount = 100);
 
         /// <summary>
-        /// 获取在有效期内的药品，不分批次批号，不含有效期
+        /// lấy tại hạn sử dụng trong của thuốc, không phần lô số lô, không bao gồm hạn sử dụng
         /// </summary>
-        /// <param name="ypdm">药品代码</param>
-        /// <param name="yfbmCode">当前部门</param>
+        /// <param name="ypdm">mã thuốc</param>
+        /// <param name="yfbmCode">bộ phận hiện tại</param>
         /// <param name="organizeId"></param>
         /// <param name="topCount"></param>
         /// <returns></returns>
         List<DrugStockInfoVEntity> GetPcKcList(string ypdm, string yfbmCode, string organizeId, int topCount = 100);
 
         /// <summary>
-        /// 获取出入库部门共同拥有的药品信息 库存数量为出库部门数量
+        /// lấy ra bộ phận nhập kho chung cùng sở hữu của thông tin thuốc số lượng tồn kho là bộ phận xuất kho số lượng
         /// </summary>
         /// <param name="ckbm"></param>
         /// <param name="rkbm"></param>
@@ -162,7 +162,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<DrugStockInfoVEntity> GetDrugAndStock(string ckbm, string rkbm, string keyWord, string organizeid);
 
         /// <summary>
-        /// 获取当前部门拥有的药品和库存信息  （外部入库）
+        /// lấy bộ phận hiện tại sở hữu của thuốc và thông tin tồn kho   (nhập kho từ bên ngoài)
         /// </summary>
         /// <param name="currentYfbmCode"></param>
         /// <param name="keyWord"></param>
@@ -171,18 +171,18 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<DrugStockInfoVEntity> GetDrugAndStock(string currentYfbmCode, string keyWord, string organizeid);
 
         /// <summary>
-        /// 获取当前部门拥有的药品和库存信息  （外部出库）
+        /// lấy bộ phận hiện tại sở hữu của thuốc và thông tin tồn kho   (xuất kho ra bên ngoài)
         /// </summary>
         /// <param name="currentYfbmCode"></param>
         /// <param name="keyWord"></param>
         /// <param name="organizeid"></param>
-        /// <param name="fph">发票号</param>
-        /// <param name="gysCode">供应商代码</param>
+        /// <param name="fph">số hóa đơn</param>
+        /// <param name="gysCode">mã nhà cung cấp</param>
         /// <returns></returns>
         List<DrugStockInfoVEntity> GetDrugAndStockByFph(string currentYfbmCode, string keyWord, string organizeid, string fph, string gysCode);
 
         /// <summary>
-        /// 批次分组
+        /// lô nhóm
         /// </summary>
         /// <param name="ypdm"></param>
         /// <param name="yfbmCode"></param>
@@ -191,7 +191,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<DrugStockInfoVEntity> GetStockGroupByBatch(string ypdm, string yfbmCode, string organizeid);
 
         /// <summary>
-        /// 根据发票号筛选 获取批次库存
+        /// theo số hóa đơn lọc lấy lô tồn kho
         /// </summary>
         /// <param name="ypdm"></param>
         /// <param name="yfbmCode"></param>
@@ -202,29 +202,29 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<DrugStockInfoVEntity> GetStockGroupByBatchByFph(string ypdm, string yfbmCode, string organizeid, string fph, string gysCode,string pc =null);
 
         /// <summary>
-        /// 批次分组
+        /// lô nhóm
         /// </summary>
         /// <param name="ypdm"></param>
-        /// <param name="kczt">库存状态 1-展示有效库存  0-展示无效库存  空-全部展示</param>
+        /// <param name="kczt">trạng thái tồn kho 1-hiển thị tồn kho còn hiệu lực  0-hiển thị tồn kho không hiệu lực  trống-hiển thị tất cả</param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeid"></param>
         /// <returns></returns>
         IList<DrugStockInfoVEntity> GetStockGroupByBatch(Pagination pagination, string ypdm, string kczt, string yfbmCode, string organizeid);
 
         /// <summary>
-        /// 获取库存信息  库存量查询用
+        /// lấy thông tin tồn kho  tra cứu lượng tồn kho dùng
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="keyWord"></param>
-        /// <param name="tybz">停用标志 1-展示有效的本部门信息 0-无效的本部门信息 0-全部</param>
-        /// <param name="kczt">库存状态 1-展示有效库存  0-展示无效库存  空-全部展示</param>
-        /// <param name="show0kc">是否展示零库存  0-不展示 1-展示</param>
+        /// <param name="tybz">cờ ngừng sử dụng 1-展示有效的本部门信息 0-không hiệu lực của này bộ phận thông tin 0-tất cả</param>
+        /// <param name="kczt">trạng thái tồn kho 1-hiển thị tồn kho còn hiệu lực  0-hiển thị tồn kho không hiệu lực  trống-hiển thị tất cả</param>
+        /// <param name="show0kc">có hiển thị tồn kho bằng 0 không  0-不展示 1-展示</param>
         /// <param name="organizeid"></param>
         /// <returns></returns>
         IList<DrugStockInfoVEntity> GetDrugAndStock(Pagination pagination, string yfbmCode, string keyWord, string tybz, string kczt, string show0kc, string organizeid,string kcyjcode,string iskcyjz=null);
 
         /// <summary>
-        /// 库存查询
+        /// tồn kho tra cứu
         /// </summary>
         /// <param name="ypdms"></param>
         /// <param name="yfbmCode"></param>
@@ -233,39 +233,39 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<DrugStockInfo> SelectStock(string ypdm, string yfbmCode, string organizeid);
 
         /// <summary>
-        /// 查询过期药品
+        /// tra cứu thuốc hết hạn
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
-        /// <param name="gpyf">距离过期还剩x个月</param>
+        /// <param name="gpyf">距离过期还剩x tháng</param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         IList<DrugStockInfoVEntity> SelectExpiredDrugs(Pagination pagination, string keyword, int gpyf, string yfbmCode, string organizeId, string gqyjcode, int? gqyyjts, string noShow0Kc = null);
 
 		/// <summary>
-		///获取单据全部数据
+		///lấy đơn chứng tất cả dữ liệu
 		/// </summary>
 		/// <param name="crkId"></param>
 		/// <returns></returns>
 		IList<CrkMxAll> GetCrkMxAll(string crkId,string orgId);
 
 		/// <summary>
-		/// 删除单据
+		/// xóa đơn chứng
 		/// </summary>
 		/// <param name="crkId"></param>
 		/// <returns></returns>
 		int DeleteCrkDj(string crkId);
 
 		/// <summary>
-		/// 修改单据
+		/// sửa đơn chứng
 		/// </summary>
 		/// <param name="crkId"></param>
 		/// <returns></returns>
 		int ReviseCrkDj(string crkId);
 
 		/// <summary>
-		/// 获取单据数据
+		/// lấy đơn chứng dữ liệu
 		/// </summary>
 		/// <param name="crkId"></param>
 		/// <returns></returns>

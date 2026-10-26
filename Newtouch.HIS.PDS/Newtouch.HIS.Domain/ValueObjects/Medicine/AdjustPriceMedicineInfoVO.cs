@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 调价药品信息
+    /// thuốc điều chỉnh giá thông tin
     /// </summary>
     public class AdjustPriceMedicineInfoVO
     {
@@ -24,11 +24,11 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public string djdw { get; set; }
         /// <summary>
-        /// 原批发价
+        /// giá bán buôn gốc
         /// </summary>
         public decimal? ypfj { get; set; }
         /// <summary>
-        /// 原零售价
+        /// giá bán lẻ gốc
         /// </summary>
         public decimal? ylsj { get; set; }
         /// <summary>
@@ -124,15 +124,15 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public string zxbz { get; set; }
         /// <summary>
-        /// 调整文件
+        /// điều chỉnh tệp
         /// </summary>
         public string tzwj { get; set; }
         /// <summary>
-        /// 执行时间
+        /// thời gian thực hiện
         /// </summary>
         public DateTime zxsj { get; set; }
         /// <summary>
-        /// 是否过期
+        /// có hết hạn không
         /// </summary>
         public string Isgq { get; set; }
     }

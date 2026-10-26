@@ -2,7 +2,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 药品调价执行
+    /// thuốc điều chỉnh giá thực hiện
     /// </summary>
     public class PriceAdjustmentProfitLossVO
     {

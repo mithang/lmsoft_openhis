@@ -71,28 +71,28 @@
 </style>
 <form id="form1">
     <div class="panel panel-default" id="dv_search">
-        <div class="panel-heading">查询条件</div>
+        <div class="panel-heading">điều kiện tra cứu</div>
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">审核状态：</th>
+                    <th class="formTitle">trạng thái duyệt: </th>
                     <td class="formValue">
-                        @Html.DropDownList("ddlSHZT", EnumDjShzt.WaitingApprove.ToDescSelectList(), "全部", new { @class = "form-control" })
+                        @Html.DropDownList("ddlSHZT", EnumDjShzt.WaitingApprove.ToDescSelectList(), "tất cả", new { @class = "form-control" })
                     </td>
-                    <th class="formTitle">日期：</th>
+                    <th class="formTitle">ngày: </th>
                     <td class="formValue">
                         <input id="txtStartDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">至：</th>
+                    <th class="formTitle">đến: </th>
                     <td class="formValue">
                         <input id="txtEndDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">药房：</th>
+                    <th class="formTitle">nhà thuốc: </th>
                     <td class="formValue">
                         <input id="txtyf" type="text" class="form-control " />
                     </td>
                     <td class="formTitle">
-                        <input type="button" id="btn_search" class="btn btn-md btn-primary" style="height:30px;" value="查询" />
+                        <input type="button" id="btn_search" class="btn btn-md btn-primary" style="height:30px;" value="tra cứu" />
                     </td>
                 </tr>
             </table>
@@ -106,7 +106,7 @@
 <div id="TabGrid">
     <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
         <li role="presentation" class="active">
-            <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">单据明细</a>
+            <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">chi tiết chứng từ</a>
         </li>
         <li style="float:right">
             <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
@@ -122,19 +122,19 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 3, 6, 7, 8 },
-    F3Text = "审核通过",
-    F6Text = "批量审核通过",
-    F7Text = "不通过",
-    F8Text = "撤销审核"
+    F3Text = "duyệt",
+    F6Text = "hàng loạt duyệt",
+    F7Text = "không đạt",
+    F8Text = "thu hồi duyệt"
 })
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //tải lại khi thay đổi kích thước cửa sổ trình duyệt jqGrid chiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
         $('#ddlSHZT').val('0');
-        //搜索框隐藏显示控制
+        //điều khiển ẩn/hiện hộp tìm kiếm
         $(".hiding,.rows,#dv_search,.toolbar").click(function () {
             TabGridHide();
         });
@@ -148,7 +148,7 @@
         BindGys();
     });
 
-    //绑定供应商
+    //gắn nhà cung cấp
     function BindGys() {
         $.najax({
             type: "Get",
@@ -165,16 +165,16 @@
                         includeSelectAllOption: true,
                         enableClickableOptGroups: true,
                         enableCollapsibleOptGroups: true,
-                        selectAllText: "全选",
-                        nonSelectedText: "未选中",
-                        allSelectedText: "全选"
+                        selectAllText: "chọn tất cả",
+                        nonSelectedText: "chưa chọn",
+                        allSelectedText: "chọn tất cả"
                     });
                 }
             }
         });
     }
 
-    //隐藏搜索框并显示箭头
+    //ẩn hộp tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -184,7 +184,7 @@
         }
     }
 
-    //单据主记录
+    //bản ghi chính của chứng từ
     function gridDJMainRecords() {
         var $gridDjMainRecords = $("#gridDJMainRecords");
         $gridDjMainRecords.dataGrid({
@@ -194,7 +194,7 @@
             colModel: [
                 { label: 'Id', name: 'Id', width: 130, align: 'center', hidden: true },
                 {
-                    label: '审核状态', name: 'shzt', width: 55, align: 'left', formatter: function (val) {
+                    label: 'trạng thái duyệt', name: 'shzt', width: 55, align: 'left', formatter: function (val) {
                         switch (val) {
                         case '@((int)EnumDjShzt.WaitingApprove)':
                             return "@EnumDjShzt.WaitingApprove.GetDescription()";
@@ -209,12 +209,12 @@
                         }
                     }
                 },
-                { label: '申请病区', name: 'bqmc', width: 130, align: 'center' },
-                { label: '申请药房', name: 'yfbmmc', width: 100, align: 'left' },
-                { label: '申请人', name: 'CreatorCode', width: 100, align: 'left' },
-                { label: '批发总额', name: 'pfj', width: 80, align: 'right', formatter: function (val) { return val.toFixed(2); }},
-                { label: '零售总额', name: 'lsj', width: 80, align: 'right', formatter: function (val) { return val.toFixed(2); }},
-                { label: '提交时间', name: 'CreateTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:s', newformat: 'Y-m-d H:s' } }
+                { label: 'đề nghị khu bệnh', name: 'bqmc', width: 130, align: 'center' },
+                { label: 'nhà thuốc đề nghị', name: 'yfbmmc', width: 100, align: 'left' },
+                { label: 'người đề nghị', name: 'CreatorCode', width: 100, align: 'left' },
+                { label: 'tổng tiền bán buôn', name: 'pfj', width: 80, align: 'right', formatter: function (val) { return val.toFixed(2); }},
+                { label: 'tổng tiền bán lẻ', name: 'lsj', width: 80, align: 'right', formatter: function (val) { return val.toFixed(2); }},
+                { label: 'gửi thời gian', name: 'CreateTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:s', newformat: 'Y-m-d H:s' } }
             ],
             unwritten: false,
             multiselect: false,
@@ -238,7 +238,7 @@
         });
     }
 
-    //组装查询条件
+    //tập hợp điều kiện tra cứu
     function getSearchPostData() {
         var shzt = $("#ddlSHZT").val();
         var qsrj = $("#txtStartDate").val();
@@ -246,9 +246,9 @@
         return { qsrj: qsrj, jsrj: jsrj, shzt: shzt};
     };
 
-    //单击事件
+    //sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+        $('#gridDJMXInfo').jqGrid("clearGridData");//mỗi lần nhấp, trước tiên xóa chi tiết sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $.najax({
             type: "Get",
             url: "/BillManage/OutOrInStorageBill/SelectDrupreparationInfoMX",
@@ -263,23 +263,23 @@
         });
     }
 
-    //单据明细
+    //chi tiết chứng từ
     $('#gridDJMXInfo').newtouchLocalDataGrid({
         height: $(window).height() - 240,
         unwritten: false,
         sortable: false,
         colModel: [
-            { label: '药品类别', name: 'yplbmc', width: 60, align: 'left' },
-            { label: '药品名称', name: 'ypmc', width: 110, align: 'left' },
-            { label: '数量', name: 'slanddw', width: 60, align: 'right' },
-            { label: '规格', name: 'gg', width: 80, align: 'left' },
-            { label: '批发总额', name: 'pjze', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); } },
-            { label: '零售总额', name: 'ljze', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); } },
-            { label: '生产厂家', name: 'sccj', width: 150, align: 'left' },
+            { label: 'loại thuốc', name: 'yplbmc', width: 60, align: 'left' },
+            { label: 'tên thuốc', name: 'ypmc', width: 110, align: 'left' },
+            { label: 'số lượng', name: 'slanddw', width: 60, align: 'right' },
+            { label: 'quy cách', name: 'gg', width: 80, align: 'left' },
+            { label: 'tổng tiền bán buôn', name: 'pjze', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); } },
+            { label: 'tổng tiền bán lẻ', name: 'ljze', width: 70, align: 'right', formatter: function (val) { return val.toFixed(2); } },
+            { label: 'nhà sản xuất', name: 'sccj', width: 150, align: 'left' },
         ]
     });
 
-    //计算进价总额
+    //tính tổng tiền giá nhập
     function ComputeJJze() {
         var t = 0;
         var count = $("#gridDJMainRecords").getGridParam('records');
@@ -292,16 +292,16 @@
         }
     }
 
-    //审核
+    //duyệt
     function newtouch_event_f3() {
         submitReceiptApproval('@((int)EnumDjShzt.Approved)');
     }
 
-    //批量审核
+    //hàng loạt duyệt
     function newtouch_event_f6() {
-        var ids = $("#gridDJMainRecords").jqGrid('getDataIDs'); //获取所有行Id，遍历使编辑框处于保存状态
+        var ids = $("#gridDJMainRecords").jqGrid('getDataIDs'); //lấy tất cả các dòng Id, duyệt để hộp chỉnh sửa ở trạng thái đã lưu
         if (ids == null || ids.length === 0) {
-            $.modalMsg('请查询要审核的单据', 'warning', 2000);
+            $.modalMsg('vui lòng tra cứu cần duyệt của đơn chứng', 'warning', 2000);
             return false;
         }
         var shdj = [];
@@ -317,11 +317,11 @@
             }
         }
         if (shdj.length === 0) {
-            $.modalMsg('未找到满足审核要求的单据', 'warning', 2000);
+            $.modalMsg('không tìm thấy chứng từ đáp ứng yêu cầu duyệt', 'warning', 2000);
             return false;
         }
 
-        $.modalConfirm("确定批量审核吗？批量审核只针对当前显示页单据！",
+        $.modalConfirm("xác định hàng loạt duyệt không?duyệt hàng loạt chỉ áp dụng cho chứng từ của trang đang hiển thị!",
             function(flag) {
                 if (!flag) return false;
                 $.najax({
@@ -331,10 +331,10 @@
                     dataType: 'json',
                     success: function (ajaxresp) {
                         if (ajaxresp.state === 'success') {
-                            $.modalMsg("操作成功", 'success', 1500);
+                            $.modalMsg("thao tác thành công", 'success', 1500);
                         }
                         else {
-                            $.modalMsg("操作失败", 'error', 1500);
+                            $.modalMsg("thao tác thất bại", 'error', 1500);
                             $.newtouchAlert(ajaxresp);
                         }
                         return;
@@ -346,21 +346,21 @@
             });
     }
 
-    //未通过
+    //chưa đạt
     function newtouch_event_f7() {
         submitReceiptApproval('@((int)EnumDjShzt.Rejected)');
     }
 
-    //作废
+    //hủy bỏ
     function newtouch_event_f8() {
         submitReceiptApproval('@((int)EnumDjShzt.Cancelled)');
     }
 
-    //更新单据审核状态，提交至服务器
+    //cập nhật đơn chứng trạng thái duyệt, gửi đến máy chủ
     function submitReceiptApproval(dstnShzt) {
         var selRowData = $("#gridDJMainRecords").jqGridRowValue();
         if (!selRowData || !selRowData.Id) {
-            $.modalAlert('请选择一条单据', 'error');
+            $.modalAlert('vui lòng chọn một dòng đơn chứng', 'error');
             return;
         }
         if (selRowData.Id) {
@@ -371,10 +371,10 @@
                 dataType: 'json',
                 success: function (ajaxresp) {
                     if (ajaxresp.state === 'success') {
-                        $.modalMsg("操作成功", 'success', 1500);
+                        $.modalMsg("thao tác thành công", 'success', 1500);
                     }
                     else {
-                        $.modalMsg("操作失败", 'error', 1500);
+                        $.modalMsg("thao tác thất bại", 'error', 1500);
                         $.newtouchAlert(ajaxresp);
                     }
                     return;
@@ -387,12 +387,12 @@
     }
 
 
-    //补发票号
+    //bổ sung số hóa đơn
     function UpdateFph(obj) {
         var fph = $(obj).val();
         var crkmxId = $("#gridDJMXInfo").getRowData($(obj).attr("rowid")).crkmxId;
         if (fph !== "") {
-            $.modalConfirm("您确定要将发票号改为" + fph + "吗？",
+            $.modalConfirm("bạn có chắc muốn đổi số hóa đơn thành" + fph + "không?",
                 function(flag) {
                     if (flag) {
                         $.najax({
@@ -402,7 +402,7 @@
                             dataType: "json",
                             success: function(data) {
                                 if (data.state === 'success') {
-                                    $.modalMsg("发票号修改成功", "success", 1000);
+                                    $.modalMsg("đổi số hóa đơn thành công", "success", 1000);
                                 } else {
                                     $.newtouchAlert(data);
                                 }

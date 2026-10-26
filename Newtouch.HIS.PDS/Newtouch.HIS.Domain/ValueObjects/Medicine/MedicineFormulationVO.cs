@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 药品剂型
+    /// dạng bào chế thuốc
     /// </summary>
     public class MedicineFormulationVO
     {

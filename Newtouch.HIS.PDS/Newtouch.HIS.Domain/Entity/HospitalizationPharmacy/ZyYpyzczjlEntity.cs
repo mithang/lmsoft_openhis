@@ -5,93 +5,93 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 住院药品医嘱操作记录
+    /// bản ghi thao tác y lệnh thuốc nội trú
     /// </summary>
     [Table("zy_ypyzczjl")]
     public class ZyYpyzczjlEntity : IEntity<ZyYpyzczjlEntity>
     {
         /// <summary>
-        /// 主键ID
+        /// khóa chính ID
         /// </summary>
         [Key]
         public long Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id
+        /// tổ chức Id
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 药品医嘱信息ID zy_ypyzxx表主键ID
+        /// thuốc y lệnh thông tin ID zy_ypyzxx bảng khóa chính ID
         /// </summary>
         public long ypyzxxId { get; set; }
 
         /// <summary>
-        /// 医嘱执行ID
+        /// thực hiện y lệnh ID
         /// </summary>
         public string zxId { get; set; }
 
         /// <summary>
-        /// 医嘱ID
+        /// y lệnh ID
         /// </summary>
         public string yzId { get; set; }
 
         /// <summary>
-        /// 1：发药 2：退药
+        /// 1: phát thuốc 2: trả thuốc
         /// </summary>
         public string operateType { get; set; }
 
         /// <summary>
-        /// 药品编号
+        /// số hiệu thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 最小单位数量
+        /// số lượng đơn vị nhỏ nhất
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 备注
+        /// ghi chú
         /// </summary>
         public string bz { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// thời gian sửa đổi
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 修改用户
+        /// người sửa đổi
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 
         public string zytyapplyno { get; set; }
 
         /// <summary>
-        /// 住院发药申请ID
+        /// phát thuốc nội trú đề nghị ID
         /// </summary>
         public string zyfyapplyno { get; set; }
 
         /// <summary>
-        /// 追溯码
+        /// mã truy xuất
         /// </summary>
         public string zsm { get; set; }
 
         /// <summary>
-        /// 是否拆零
-        /// 1： 是
-        /// 2： 否
+        /// có tách lẻ không
+        /// 1: có
+        /// 2: không
         /// </summary>
         public int? sfcl { get; set; }
     }

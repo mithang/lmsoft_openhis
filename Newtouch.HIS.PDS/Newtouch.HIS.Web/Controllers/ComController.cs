@@ -7,14 +7,14 @@ using FrameworkBase.MultiOrg.Domain.IDomainServices;
 namespace Newtouch.HIS.Web.Controllers
 {
     /// <summary>
-    /// 公共请求
+    /// yêu cầu chung
     /// </summary>
     public class ComController : ControllerBase
     {
         private readonly IItemDmnService _itemDmnService;
 
         /// <summary>
-        /// 获取下拉框内容
+        /// lấy nội dung hộp thả xuống
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>

@@ -4,52 +4,52 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 需要结转的药品信息
+    /// cần kết chuyển của thông tin thuốc
     /// </summary>
     public class NeedCarryOverMedicineVO
     {
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypdm { get; set; }
 
         /// <summary>
-        /// 批号
+        /// số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// hạn sử dụng
         /// </summary>
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// 药库数量
+        /// kho thuốc số lượng
         /// </summary>
         public int? kcsl { get; set; }
 
         /// <summary>
-        /// 药库批发价
+        /// giá bán buôn kho thuốc
         /// </summary>
         public Decimal? ykpfj { get; set; }
 
         /// <summary>
-        /// 药库零售价
+        /// giá bán lẻ kho thuốc
         /// </summary>
         public decimal yklsj { get; set; }
 
         /// <summary>
-        /// 药库进价
+        /// kho thuốc giá nhập
         /// </summary>
         public decimal? jj { get; set; }
 
         /// <summary>
-        /// 转换因子
+        /// hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
     }

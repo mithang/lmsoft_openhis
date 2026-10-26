@@ -5,119 +5,119 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品出入库单据
+    /// hệ thống thuốc chứng từ nhập/xuất kho
     /// </summary>
     [Table("xt_yp_crkdj")]
     public class SysMedicineStorageIOReceiptEntity : IEntity<SysMedicineStorageIOReceiptEntity>
     {
         /// <summary>
-        /// 出入库ID
+        /// ra nhập kho ID
         /// </summary>
         [Key]
         public string crkId { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 单据类型 
-        /// 1：药品入库  单据号YPRKD111111111111
-        /// 2：外部出库  单据号WBCKD111111111111
-        /// 3：直接出库  单据号NBFYD111111111111
-        /// 4：申领出库  单据号SLCKD111111111111
-        /// 5：内部发药退回    单据号NBFYTHD111111111111
+        /// loại chứng từ 
+        /// 1: thuốc nhập kho  số chứng từ YPRKD111111111111
+        /// 2: xuất kho ra bên ngoài  số chứng từ WBCKD111111111111
+        /// 3: xuất kho trực tiếp  số chứng từ NBFYD111111111111
+        /// 4: xuất kho theo phiếu lĩnh  số chứng từ SLCKD111111111111
+        /// 5: trả lại thuốc phát nội bộ    số chứng từ NBFYTHD111111111111
         /// </summary>
         public int djlx { get; set; }
 
         /// <summary>
-        /// 单据号
+        /// số chứng từ
         /// </summary>
         public string Pdh { get; set; }
 
         /// <summary>
-        /// 入库部门
+        /// bộ phận nhập kho
         /// </summary>
         public string Rkbm { get; set; }
 
         /// <summary>
-        /// 出库部门
+        /// bộ phận xuất kho
         /// </summary>
         public string Ckbm { get; set; }
 
         /// <summary>
-        /// 入库时间
+        /// thời gian nhập kho
         /// </summary>
         public DateTime? Rksj { get; set; }
 
         /// <summary>
-        /// 出库时间
+        /// thời gian xuất kho
         /// </summary>
         public DateTime? Cksj { get; set; }
 
         /// <summary>
-        /// 入库操作员
+        /// nhập kho người thao tác
         /// </summary>
         public string Rkczy { get; set; }
 
         /// <summary>
-        /// 出库操作员
+        /// xuất kho người thao tác
         /// </summary>
         public string Ckczy { get; set; }
 
         /// <summary>
-        /// 来自 NewtouchHIS_Base.dbo.xt_ypcrkfs表的方式代码 
+        /// từ NewtouchHIS_Base.dbo.xt_ypcrkfs bảng của phương thức mã 
         /// </summary>
         public string Crkfsdm { get; set; }
 
         /// <summary>
-        /// 操作时间
+        /// thời gian thao tác
         /// </summary>
         public DateTime? Czsj { get; set; }
 
         /// <summary>
-        /// 申请时间
+        /// thời gian đề nghị
         /// </summary>
         public DateTime? Sqsj { get; set; }
 
         /// <summary>
-        /// 审核操作员
+        /// duyệt người thao tác
         /// </summary>
         public string Shczy { get; set; }
 
         /// <summary>
-        /// 0:未审核 1:已通过 2：未通过
+        /// 0:chưa duyệt 1:đã đạt 2: chưa đạt
         /// </summary>
         public string shzt { get; set; }
 
         /// <summary>
-        /// 状态 1-有效  0-无效
+        /// trạng thái 1-còn hiệu lực  0-không hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 排序
+        /// sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// tạo người
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// thời gian sửa đổi
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改人员
+        /// người sửa đổi
         /// </summary>
         public string LastModifierCode { get; set; }
 

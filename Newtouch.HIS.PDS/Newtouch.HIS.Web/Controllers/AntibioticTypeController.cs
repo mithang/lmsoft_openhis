@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Web.Controllers
             return View();
         }
         /// <summary>
-        /// 创建抗生素类别设置页面视图
+        /// tạo kháng sinh loại cài đặt trang khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult AntibioticTypeSettingForm()
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 抗生素类别信息上传
+        /// kháng sinh loại thông tin tải lên
         /// </summary>
         /// <param name="xm"></param>
         /// <param name="keyvalue"></param>
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Success();
         }
         /// <summary>
-        /// 删除抗生素类别
+        /// xóa kháng sinh loại
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
@@ -73,7 +73,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Success();
         }
         /// <summary>
-        /// 通过Id获取实例
+        /// đạt Id lấy thực ví dụ
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Web.Controllers
             List<object> list = new List<object>();
             foreach (SysMedicineAntibioticTypeVO item in data)
             {
-                list.Add(new { id = item.Id + "|" + item.qxjb, text = item.typeName });//将权限级别信息带入Id中
+                list.Add(new { id = item.Id + "|" + item.qxjb, text = item.typeName });//将权限级别信息带入Id trong
             }
             return Content(list.ToJson());
         }

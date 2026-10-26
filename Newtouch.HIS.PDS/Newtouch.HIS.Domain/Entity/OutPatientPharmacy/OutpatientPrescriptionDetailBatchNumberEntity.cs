@@ -5,99 +5,99 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 门诊处方明细批号
+    /// ngoại trú chi tiết đơn thuốc số lô
     /// </summary>
     [Table("mz_cfmxph")]
     public class OutpatientPrescriptionDetailBatchNumberEntity : IEntity<OutpatientPrescriptionDetailBatchNumberEntity>
     {
         /// <summary>
-        /// 主键
+        /// khóa chính
         /// </summary>
         [Key]
         public string cfmxphId { get; set; }
 
         /// <summary>
-        /// 组织机构
+        /// tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string yp { get; set; }
 
         /// <summary>
-        /// 批号
+        /// số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 最小单位数量
+        /// số lượng đơn vị nhỏ nhất
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// hạn sử dụng
         /// </summary>
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// 药品成组号
+        /// thuốc số nhóm
         /// </summary>
         public string czh { get; set; }
 
         /// <summary>
-        /// 门诊处方明细ID，mz_cfmx.Id
+        /// ngoại trú chi tiết đơn thuốc ID, mz_cfmx.Id
         /// </summary>
         public long? cfmxId { get; set; }
 
         /// <summary>
-        /// 状态：1-有效 ；0-无效
+        /// trạng thái: 1-còn hiệu lực; 0-không hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 排序
+        /// sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// tạo người
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 归家状态：1-已归架；0-未归架
+        /// 归家状态: 1-đã xếp lên kệ; 0-chưa xếp lên kệ
         /// </summary>
         public string gjzt { get; set; }
 
         /// <summary>
-        /// 发药药房代码
+        /// nhà thuốc phát thuốc mã
         /// </summary>
         public string fyyf { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 

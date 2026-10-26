@@ -7,25 +7,25 @@
 <form id="form1">
     <div class="panel panel-default">
         <div class="panel-heading">
-            筛选条件
+            điều kiện lọc
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">关键字</th>
+                    <th class="formTitle">từ khóa</th>
                     <td class="formValue">
-                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="药品代码 拼音 名称" />
+                        <input type="text" id="txtINPUTCODE" class="form-control" placeholder="mã thuốc phiên âm tên" />
                     </td>
-                    <th class="formTitle">执行时间</th>
+                    <th class="formTitle">thời gian thực hiện</th>
                     <td class="formValue">
                         <input id="txtStartTime" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(-31).ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">至</th>
+                    <th class="formTitle">đến</th>
                     <td class="formValue">
                         <input id="txtEndTime" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
                     <td class="formValue">
-                        <input type="button" id="btn_search" class="btn btn-primary btn-md" value="查询" style="width:55px;margin-left:30%;" />
+                        <input type="button" id="btn_search" class="btn btn-primary btn-md" value="tra cứu" style="width:55px;margin-left:30%;" />
                     </td>
                 </tr>
             </table>
@@ -48,33 +48,33 @@
             url: "/DrugStorage/SelectMedicineAdjustPriceHistoryInfoList",
             height: $(window).height() - document.getElementById('gridYPInfoList').offsetTop - 85,
             colModel: [
-                { label: '药品代码', name: 'ypcode', width: 100, align: 'left' },
-                { label: '药品名称', name: 'ypmc', width: 100, align: 'left' },
-                { label: '药品规格', name: 'ypgg', width: 100, align: 'left' },
-                { label: '定价单位', name: 'djdw', width: 100, align: 'left' },
-                { label: '新批发价', name: 'pfj', width: 100, align: 'left' },
-                { label: '新零售价', name: 'lsj', width: 100, align: 'left' },
-                { label: '原批发价', name: 'ypfj', width: 100, align: 'left' },
-                { label: '原零售价', name: 'ylsj', width: 100, align: 'left' },
-                { label: '药品属性', name: 'tssxmc', width: 100, align: 'left' },
-                { label: '剂量', name: 'jl', width: 100, align: 'left' },
-                { label: '剂量单位', name: 'jldw', width: 100, align: 'left' },
-                { label: '药库包装数', name: 'bzs', width: 100, align: 'left' },
-                { label: '药库包装单位', name: 'bzdw', width: 100, align: 'left' },
-                { label: '门诊拆零数', name: 'mzcls', width: 100, align: 'left' },
-                { label: '门诊拆零单位', name: 'mzcldw', width: 100, align: 'left' },
-                { label: '住院拆零数', name: 'zycls', width: 100, align: 'left' },
-                { label: '住院拆零单位', name: 'zycldw', width: 100, align: 'left' },
-                { label: '自负比例', name: 'zfbl', width: 100, align: 'left' },
-                { label: '自负性质', name: 'zfxz', width: 100, align: 'left' },
-                { label: '剂型', name: 'jxmc', width: 100, align: 'left' },
-                { label: '生产厂家', name: 'ycmc', width: 100, align: 'left' },
-                { label: '状态', name: 'mzzybz', width: 100, align: 'left' },
-                { label: '记账类型', name: 'jzlx', width: 100, align: 'left' },
-                { label: '默认保质期', name: 'mrbzq', width: 100, align: 'left' },
-                { label: '执行文件', name: 'tzwj', width: 100, align: 'left' },
-                { label: '操作员', name: 'zxry', width: 100, align: 'left' },
-                { label: '调整时间', name: 'tzsj', width: 150, align: 'left', formatter: 'date', formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'mã thuốc', name: 'ypcode', width: 100, align: 'left' },
+                { label: 'tên thuốc', name: 'ypmc', width: 100, align: 'left' },
+                { label: 'quy cách thuốc', name: 'ypgg', width: 100, align: 'left' },
+                { label: 'đơn vị định giá', name: 'djdw', width: 100, align: 'left' },
+                { label: 'mới giá bán buôn', name: 'pfj', width: 100, align: 'left' },
+                { label: 'mới giá bán lẻ', name: 'lsj', width: 100, align: 'left' },
+                { label: 'giá bán buôn gốc', name: 'ypfj', width: 100, align: 'left' },
+                { label: 'giá bán lẻ gốc', name: 'ylsj', width: 100, align: 'left' },
+                { label: 'thuộc tính thuốc', name: 'tssxmc', width: 100, align: 'left' },
+                { label: 'liều dùng', name: 'jl', width: 100, align: 'left' },
+                { label: 'đơn vị liều dùng', name: 'jldw', width: 100, align: 'left' },
+                { label: 'kho thuốc số lượng đóng gói', name: 'bzs', width: 100, align: 'left' },
+                { label: 'kho thuốc đơn vị đóng gói', name: 'bzdw', width: 100, align: 'left' },
+                { label: 'số tách lẻ ngoại trú', name: 'mzcls', width: 100, align: 'left' },
+                { label: 'đơn vị tách lẻ ngoại trú', name: 'mzcldw', width: 100, align: 'left' },
+                { label: 'số tách lẻ nội trú', name: 'zycls', width: 100, align: 'left' },
+                { label: 'đơn vị tách lẻ nội trú', name: 'zycldw', width: 100, align: 'left' },
+                { label: 'tỷ lệ tự chi trả', name: 'zfbl', width: 100, align: 'left' },
+                { label: 'tính chất tự chi trả', name: 'zfxz', width: 100, align: 'left' },
+                { label: 'dạng bào chế', name: 'jxmc', width: 100, align: 'left' },
+                { label: 'nhà sản xuất', name: 'ycmc', width: 100, align: 'left' },
+                { label: 'trạng thái', name: 'mzzybz', width: 100, align: 'left' },
+                { label: 'ghi sổ loại', name: 'jzlx', width: 100, align: 'left' },
+                { label: 'mặc định hạn bảo quản', name: 'mrbzq', width: 100, align: 'left' },
+                { label: 'thực hiện tệp', name: 'tzwj', width: 100, align: 'left' },
+                { label: 'người thao tác', name: 'zxry', width: 100, align: 'left' },
+                { label: 'điều chỉnh thời gian', name: 'tzsj', width: 150, align: 'left', formatter: 'date', formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
             ],
             multiselect: false,
             pager: "#gridPager",
@@ -85,7 +85,7 @@
 
         $("#btn_search").click(function () {
             if ($("#txtStartDate").val() > $("#txtEndDate").val()) {
-                $.modalAlert("开始日期晚于结束日期", 'warning');
+                $.modalAlert("ngày bắt đầu muộn hơn ngày kết thúc", 'warning');
                 return;
             }
 
@@ -94,7 +94,7 @@
             }).trigger('reloadGrid');
         });
     }
-    //查询条件
+    //điều kiện tra cứu
     function getSearchPostData() {
         var inputCode = $("#txtINPUTCODE").val();
         var startTime = $("#txtStartTime").val();

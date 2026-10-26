@@ -5,64 +5,64 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 住院药品医嘱操作记录
+    /// bản ghi thao tác y lệnh thuốc nội trú
     /// </summary>
     [Table("zy_returnDrugApplyBillDetail")]
     public class ZyReturnDrugApplyBillDetailEntity : IEntity<ZyReturnDrugApplyBillDetailEntity>
     {
         /// <summary>
-        /// 主键ID
+        /// khóa chính ID
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 退药申请单Id  zy_returnDrugApplyBill.Id
+        /// trả thuốc phiếu đề nghị Id  zy_returnDrugApplyBill.Id
         /// </summary>
         public string rabId { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 退药数量（部门单位）
+        /// số lượng trả thuốc (đơn vị bộ phận)
         /// </summary>
         public int tysl { get; set; }
 
         /// <summary>
-        /// 转换因子（tysl*zhyz=最小单位数量）  默认住院拆零数
+        /// hệ số chuyển đổi (tysl*zhyz=số lượng đơn vị nhỏ nhất)  mặc định số tách lẻ nội trú
         /// </summary>
         public int? zhyz { get; set; }
 
         /// <summary>
-        /// 组号
+        /// số nhóm
         /// </summary>
         public string zh { get; set; }
 
         /// <summary>
-        /// 状态：0-无效 ；1-有效
+        /// trạng thái: 0-không hiệu lực; 1-còn hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// thời gian sửa đổi
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 修改用户
+        /// người sửa đổi
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 

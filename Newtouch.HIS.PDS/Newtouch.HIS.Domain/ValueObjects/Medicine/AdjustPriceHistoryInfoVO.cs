@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 药品调价历史对象
+    /// thuốc điều chỉnh giá lịch sử đối tượng
     /// </summary>
     public class AdjustPriceHistoryInfoVO
     {
@@ -124,11 +124,11 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public DateTime zxsj { get; set; }
         /// <summary>
-        /// 执行人员
+        /// thực hiện nhân viên
         /// </summary>
         public string zxry { get; set; }
         /// <summary>
-        /// 调整时间
+        /// điều chỉnh thời gian
         /// </summary>
         public DateTime tzsj { get; set; }
     }

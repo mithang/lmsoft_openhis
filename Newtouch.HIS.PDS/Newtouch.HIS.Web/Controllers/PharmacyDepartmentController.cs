@@ -94,7 +94,7 @@ namespace Newtouch.HIS.Web.Controllers
         //#region xt_yfbm_yp维护
 
         ///// <summary>
-        ///// 主页面 
+        ///// chính trang 
         ///// </summary>
         ///// <returns></returns>
         //public ActionResult OpenMedicineIndex()
@@ -104,7 +104,7 @@ namespace Newtouch.HIS.Web.Controllers
         //}
 
         ///// <summary>
-        ///// 更新添加页面
+        ///// cập nhật thêm trang
         ///// </summary>
         ///// <returns></returns>
         //public ActionResult OpenMadicineForm()
@@ -144,14 +144,14 @@ namespace Newtouch.HIS.Web.Controllers
         //    entity.zt = entity.zt == "true" ? "1" : "0";
         //    if (string.IsNullOrWhiteSpace(entity.OrganizeId))
         //    {
-        //        throw new FailedException("请选择组织机构");
+        //        throw new FailedException("vui lòng chọn tổ chức");
         //    }
         //    else if (!_SysOrganizeDmnService.IsMedicalOrganize(entity.OrganizeId))
         //    {
-        //        throw new FailedException("请选择医疗机构（医院或诊所）");
+        //        throw new FailedException("vui lòng chọn cơ sở y tế (bệnh viện hoặc phòng khám)");
         //    }
         //    _SysPharmacyDepartmentOpenMedicineRepo.submitForm(entity, keyValue);
-        //    return Success("操作成功");
+        //    return Success("thao tác thành công");
         //}
 
         //#endregion

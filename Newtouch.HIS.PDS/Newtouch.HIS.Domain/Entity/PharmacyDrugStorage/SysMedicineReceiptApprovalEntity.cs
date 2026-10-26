@@ -5,39 +5,39 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品单据审核
+    /// hệ thống thuốc đơn chứng duyệt
     /// </summary>
     [Table("xt_yp_djsh")]
     public class SysMedicineReceiptApprovalEntity : IEntity<SysMedicineReceiptApprovalEntity>
     {
         /// <summary>
-        /// 单据审核ID
+        /// đơn chứng duyệt ID
         /// </summary>
         [Key]
         public string djshId { get; set; }
 
         /// <summary>
-        /// 组织结构ID
+        /// cơ cấu tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 出入库单据ID
+        /// chứng từ nhập/xuất kho ID
         /// </summary>
         public string crkId { get; set; }
 
         /// <summary>
-        /// 操作员工号
+        /// người thao tác công số
         /// </summary>
         public string Shczy { get; set; }
 
         /// <summary>
-        /// 审核时间
+        /// thời gian duyệt
         /// </summary>
         public DateTime Shsj { get; set; }
 
         /// <summary>
-        /// 操作员工号
+        /// người thao tác công số
         /// </summary>
         public string Qxczy { get; set; }
 
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime? Qxsj { get; set; }
 
         /// <summary>
-        /// 状态
+        /// trạng thái
         /// </summary>
         public string zt { get; set; }
 

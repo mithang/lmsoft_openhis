@@ -3,47 +3,47 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 申领单 明细 查询
+    /// phiếu lĩnh chi tiết tra cứu
     /// </summary>
     public class RequisitionSelectDetailVO
     {
         /// <summary>
-        /// 药品名称
+        /// tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 批号
+        /// số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 有效日期
+        /// ngày hiệu lực
         /// </summary>
         public DateTime? Yxrq { get; set; }
 
         /// <summary>
-        /// 申领数量
+        /// số lượng lĩnh
         /// </summary>
         public int slsl { get; set; }
 
         /// <summary>
-        /// 申领数量单位
+        /// đơn vị số lượng lĩnh
         /// </summary>
         public string slsldw { get; set; }
 
         /// <summary>
-        /// 已发数量
+        /// số lượng đã phát
         /// </summary>
         public int yfsl { get; set; }
 
         /// <summary>
-        /// 已发数量单位
+        /// số lượng đã phát đơn vị
         /// </summary>
         public string yfsldw { get; set; }
     }

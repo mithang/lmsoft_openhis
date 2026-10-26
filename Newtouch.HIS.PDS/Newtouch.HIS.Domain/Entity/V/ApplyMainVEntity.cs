@@ -7,48 +7,48 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.Entity.V
 {
     /// <summary>
-    /// 申领单主信息
+    /// phiếu lĩnh chính thông tin
     /// </summary>
     public class ApplyMainVEntity
     {
 
         /// <summary>
-        /// 申领单ID
+        /// phiếu lĩnh ID
         /// </summary>
         public string sldId { get; set; }
 
         /// <summary>
-        /// 申领单号
+        /// số phiếu lĩnh
         /// </summary>
         public string Sldh { get; set; }
 
         /// <summary>
-        /// 发放状态
+        /// trạng thái cấp phát
         /// </summary>
         public int ffzt { get; set; }
 
         /// <summary>
-        /// 申领部门名称
+        /// bộ phận lĩnh tên
         /// </summary>
         public string slbmmc { get; set; }
 
         /// <summary>
-        /// 出库部门名称
+        /// bộ phận xuất kho tên
         /// </summary>
         public string ckbmmc { get; set; }
 
         /// <summary>
-        /// 申请时间
+        /// thời gian đề nghị
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 申请人
+        /// người đề nghị
         /// </summary>
         public string CreatorCode { get; set; }
         
         /// <summary>
-        /// 修改时间
+        /// thời gian sửa đổi
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
     }

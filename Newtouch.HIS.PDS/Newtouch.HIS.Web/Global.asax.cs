@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Web
     public class MvcApplication : HttpApplication
     {
         /// <summary>
-        /// 启动应用程序
+        /// khởi động ứng dụng chương trình
         /// </summary>
         protected void Application_Start()
         {
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Web
 
             App_Start.DependencyResolver.RegisteWebApiComponent();
 
-            //向上下文注册表
+            //tới ngữ cảnh đăng ký bảng
             DefaultDbContext.PartialTBRegister(DefaultDbContextTBRegister.Registe);
 
             //数据库链接释放
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Web
             //权限验证向下层注册
             HandlerAuthorizeAttribute.Register((roleIdList, moduleId, action) => DependencyDefaultInstanceResolver.GetInstance<IRoleAuthorizeApp>().ActionValidate(roleIdList, action));
 
-            //运行全局脚本 程序启动时执行一次
+            //运行全局脚本 chương trình khởi động giờ thực hiện một lần
             try
             {
                 var pars = new List<SqlParameter>

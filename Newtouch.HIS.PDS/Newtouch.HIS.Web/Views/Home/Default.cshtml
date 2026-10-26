@@ -138,10 +138,10 @@
                 <div style="height: 380px; border: 1px solid #e6e6e6; background-color: #fff;">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-area-chart fa-lg" style="margin-right:5px;"></i>发药统计（次）
+                            <i class="fa fa-area-chart fa-lg" style="margin-right:5px;"></i>phát thuốc thống kê (lần)
                             <div style="float: right">
-                                <span style="font-weight: 500;"><i class="fa fa-square" style="color: #dcdcdc; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>门诊</span>
-                                <span style="margin-left: 10px; font-weight: 500;"><i class="fa fa-square" style="color: #97bbcd; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>住院</span>
+                                <span style="font-weight: 500;"><i class="fa fa-square" style="color: #dcdcdc; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>ngoại trú</span>
+                                <span style="margin-left: 10px; font-weight: 500;"><i class="fa fa-square" style="color: #97bbcd; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>nội trú</span>
                             </div>
                         </div>
                         <div class="panel-body" style="padding-bottom: 0;">
@@ -192,7 +192,7 @@
         });
     }
 
-    //获取按月
+    //lấy theo tháng
     function GetFyCountVoByYfbm() {
         $.ajax({
             type: "Get",
@@ -206,10 +206,10 @@
         });
     }
 
-    //highCharts 数据展示
+    //highCharts hiển thị dữ liệu
     function GetSalaryChart(monthlySummary) {
         var lineChartData = {
-            labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "8月", "10月", "11月", "12月"],
+            labels: ["1 tháng", "2 tháng", "3 tháng", "4 tháng", "5 tháng", "6 tháng", "7 tháng", "8 tháng", "8 tháng", "10 tháng", "11 tháng", "12 tháng"],
             datasets: [
                 {
                     label: "My First dataset",
@@ -262,7 +262,7 @@
         });
     }
 
-    //获取按月
+    //lấy theo tháng
     function GetFyCountBydl() {
         $.ajax({
             type: "Get",
@@ -276,7 +276,7 @@
         });
     }
 
-    //饼图 数据展示
+    //biểu đồ tròn hiển thị dữ liệu
     function GetLeaveChart(pData) {
         Highcharts.chart('container', {
             chart: {
@@ -289,7 +289,7 @@
                 text: ''
             },
             tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b><br/>总数：{point.y:,.0f}'
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b><br/>tổng số: {point.y:,.0f}'
             },
             plotOptions: {
                 pie: {

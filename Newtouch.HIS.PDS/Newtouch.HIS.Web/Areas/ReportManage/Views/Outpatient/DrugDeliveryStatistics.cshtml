@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "门诊发药统计";
+    ViewBag.Title = "phát thuốc ngoại trú thống kê";
     Layout = "~/Views/Shared/_Index.cshtml";
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
 }
@@ -13,24 +13,24 @@
 </style>
 <form id="form1">
     <div class="panel panel-default">
-        <div class="panel-heading">搜索</div>
+        <div class="panel-heading">tìm kiếm</div>
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle ">开始日期:</th>
+                    <th class="formTitle ">ngày bắt đầu:</th>
                     <td class="formValue">
                         <input id="startTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd 00:00")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
                     </td>
-                    <th class="formTitle">结束日期：</th>
+                    <th class="formTitle">ngày kết thúc: </th>
                     <td class="formValue">
                         <input id="endTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
                     </td>
-                    <th class="formTitle">输入码：</th>
+                    <th class="formTitle">mã nhập: </th>
                     <td class="formValue">
-                        <input id="txtSRM" type="text" class="form-control" placeholder="姓名/卡号/发票号" />
+                        <input id="txtSRM" type="text" class="form-control" placeholder="họ tên/số thẻ/số hóa đơn" />
                     </td>
                     <td class="formTitle">
-                        <input type="button" id="btn_search" class="btn btn-primary" value="查询" style="margin-left:10px;" />
+                        <input type="button" id="btn_search" class="btn btn-primary" value="tra cứu" style="margin-left:10px;" />
                     </td>
                 </tr>
             </table>
@@ -43,7 +43,7 @@
 <script>
     $(function () {
         $('#if_data').css('height', $(window).height() - 85);
-        //查询
+        //tra cứu
         $("#btn_search").click(function () {
             @*var url =
                 "../../Report/PrintReport?type=DrugDeliveryStatistics&param=Organizeid=@ViewBag.OrganizeId|yfbmCode=@Constants.CurrentYfbm.yfbmCode" +
@@ -65,7 +65,7 @@
     });
 
 
-    //回车事件绑定
+    //gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode ===13) {
             $("#btn_search").trigger("click");

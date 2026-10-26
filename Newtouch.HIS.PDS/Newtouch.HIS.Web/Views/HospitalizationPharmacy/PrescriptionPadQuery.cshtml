@@ -17,39 +17,39 @@
     <form id="form1">
         <div class="panel panel-default">
             <div class="panel-heading">
-                查询条件
+                điều kiện tra cứu
             </div>
             <div style="padding: 2px;">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">病区：</th>
+                        <th class="formTitle">khu bệnh: </th>
                         <td class="formValue formDdlSelectorTd">
                             <select id="bqmc" class="form-control">
-                                <option value="">全部</option>
+                                <option value="">tất cả</option>
                             </select>
                         </td>
-                        <th class="formTitle">姓名/住院号：</th>
+                        <th class="formTitle">họ tên/số nội trú: </th>
                         <td class="formValue">
-                            <input id="keyword" type="text" class="form-control" placeholder="姓名/住院号" />
+                            <input id="keyword" type="text" class="form-control" placeholder="họ tên/số nội trú" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>开始时间：</th>
+                        <th class="formTitle"><span class="required">*</span>thời gian bắt đầu: </th>
                         <td class="formValue">
                             <input id="kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01 00:00")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>结束时间：</th>
+                        <th class="formTitle"><span class="required">*</span>thời gian kết thúc: </th>
                         <td class="formValue">
                             <input id="jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddHours(2).ToString("yyyy-MM-dd 23:59")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd 23:59:59'})" />
                         </td>
                         <td class="formTitle" rowspan="2">
-                            <input type="button" id="btn_search" class="btn btn-primary btn-md" value="查询" />
+                            <input type="button" id="btn_search" class="btn btn-primary btn-md" value="tra cứu" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">处方性质：</th>
+                        <th class="formTitle">tính chất đơn thuốc: </th>
                         <td class="formValue formDdlSelectorTd">
                             <select id="yzxz" class="form-control">
-                                <option value="2">长期</option>
-                                <option value="1">临时</option>
+                                <option value="2">dài hạn</option>
+                                <option value="1">tạm thời</option>
                             </select>
                         </td>
                     </tr>
@@ -70,13 +70,13 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new int[] { 6 } ,
-    F6Text = "打印"
+    F6Text = "in"
 })
 
 <script type="text/javascript">
     var $gridList = $("#gridList");
     $(function () {
-        $("#bqmc").bindSelect({ //病区信息集合
+        $("#bqmc").bindSelect({ //tập hợp thông tin khu bệnh
             url: "/HospitalizationPharmacy/GetBQSelectJson",
             id: "bqCode",
             text: "bqmc"
@@ -84,7 +84,7 @@
         dispenseMedicinGridList();
     });
 
-    //回车事件绑定
+    //gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
@@ -101,32 +101,32 @@
                 kssj: $("#kssj").val(), jssj: $("#jssj").val(), yzxz: $("#yzxz").val()
             },
             colModel: [
-                { label: '处方号', name: 'cfh', width: 150, align: 'center' },
-                { label: '住院号', name: 'zyh', width: 80, align: 'center' },
-                { label: '姓名', name: 'hzxm', width: 80, align: 'center' },
-                { label: '病区', name: 'bqmc', width: 110, align: 'center' },
+                { label: 'số đơn thuốc', name: 'cfh', width: 150, align: 'center' },
+                { label: 'số nội trú', name: 'zyh', width: 80, align: 'center' },
+                { label: 'họ tên', name: 'hzxm', width: 80, align: 'center' },
+                { label: 'khu bệnh', name: 'bqmc', width: 110, align: 'center' },
                 { label: 'yzxz', name: 'yzxz', width: 80, align: 'left', hidden:true},
-                { label: '处方性质', name: 'yzxzmc', width: 50, align: 'center' },
-                { label: '医生', name: 'ysmc', width: 80, align: 'center' },
-                { label: '总金额', name: 'je', width: 80, align: 'center' },
-                { label: '领药序号', name: 'lyxh', width: 80, align: 'center', hidden: true },
+                { label: 'tính chất đơn thuốc', name: 'yzxzmc', width: 50, align: 'center' },
+                { label: 'bác sĩ', name: 'ysmc', width: 80, align: 'center' },
+                { label: 'tổng số tiền', name: 'je', width: 80, align: 'center' },
+                { label: 'lĩnh thuốc số thứ tự', name: 'lyxh', width: 80, align: 'center', hidden: true },
                 { label: 'yzlx', name: 'yzlx', width: 80, align: 'center', hidden: true },
                 {
-                    label: '处方类型', name: 'yzlxstr', width: 90, align: 'center', formatter: function (val) {
-                        return val == "2" ? "西药" : (val == "10" ? "中草药" : "西药");
+                    label: 'đơn thuốc loại', name: 'yzlxstr', width: 90, align: 'center', formatter: function (val) {
+                        return val == "2" ? "thuốc Tây" : (val == "10" ? "thuốc thảo dược" : "thuốc Tây");
                     }
                 },
                 {
-                    label: '开单时间', name: 'kssj', width: 130, align: 'center',
+                    label: 'mở đơn thời gian', name: 'kssj', width: 130, align: 'center',
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
                 {
-                    label: '发药标志', name: 'fybz', width: 50, align: 'center', formatter: function (val) {
-                        return val== "2" ? "已发药":(val=="3"?"已退药":"未发药");  //$.enum.getDescByValue("EnumFybz", val);
+                    label: 'cờ phát thuốc', name: 'fybz', width: 50, align: 'center', formatter: function (val) {
+                        return val== "2" ? "đã phát thuốc":(val=="3"?"đã trả thuốc":"chưa phát thuốc");  //$.enum.getDescByValue("EnumFybz", val);
                     }
                 }
             ],
-            //caption: "处方笺列表",
+            //caption: "đơn thuốc danh sách",
             pager: "#gridPager",
             sortname: 'kssj',
             viewrecords: true,
@@ -143,11 +143,11 @@
             var zxrq = $("#gridList").jqGrid('getRowData', rowId).kssj;
             //$.modalOpen({
             //    id: "GetCfDetail",
-            //    title: "处方明细",
+            //    title: "chi tiết đơn thuốc",
             //    url: "/HospitalizationPharmacy/PrescriptionDetailFrom?cfh=" + cfh + "&yzxz="+yzxz+"&zxrq="+zxrq,
             //    width: "950px",
             //    height: "600px",
-            //    btn: ['', '关闭'],
+            //    btn: ['', 'đóng'],
             //    callBack: function (iframeId) {
             //    }
             //});
@@ -163,11 +163,11 @@
 
         $("#btn_search").click(function () {
             if ($("#kssj").val() === "") {
-                $.modalMsg("开始时间不能为空", "warning", 2000);
+                $.modalMsg("thời gian bắt đầu không được để trống", "warning", 2000);
                 return false;
             }
             if ($("#jssj").val() === "") {
-                $.modalMsg("结束时间不能为空", "warning", 2000);
+                $.modalMsg("thời gian kết thúc không được để trống", "warning", 2000);
                 return false;
             }
             $gridList.jqGrid('setGridParam', {
@@ -187,26 +187,26 @@
             //url: '/HospitalizationPharmacy/GetZycfGridDetailJson',
             height:100,
             colModel: [
-                { label: '住院号', name: 'zyh', align: 'center', width: 80 },
-                { label: '姓名', name: 'hzxm', align: 'center', width: 80 },
-                { label: '处方性质', name: 'yzxzmc', align: 'center', width: 50 },
-                { label: '病区', name: 'bqmc', align: 'center', width: 120 },
-                { label: '项目代码', name: 'xmdm', align: 'center', width: 80 },
-                { label: '项目名称', name: 'xmmc', align: 'center', width: 120 },
-                  { label: '特殊处方', name: 'yztag', width: 80, align: 'left', hidden: true },
-                { label: '特殊处方', name: 'yztagName', width: 80, align: 'center' },
-                { label: '单位', name: 'dw', align: 'center', width: 60 },
-                 { label: '数量', name: 'sl', align: 'center', width: 60 },
+                { label: 'số nội trú', name: 'zyh', align: 'center', width: 80 },
+                { label: 'họ tên', name: 'hzxm', align: 'center', width: 80 },
+                { label: 'tính chất đơn thuốc', name: 'yzxzmc', align: 'center', width: 50 },
+                { label: 'khu bệnh', name: 'bqmc', align: 'center', width: 120 },
+                { label: 'hạng mục mã', name: 'xmdm', align: 'center', width: 80 },
+                { label: 'hạng mục tên', name: 'xmmc', align: 'center', width: 120 },
+                  { label: 'đặc biệt đơn thuốc', name: 'yztag', width: 80, align: 'left', hidden: true },
+                { label: 'đặc biệt đơn thuốc', name: 'yztagName', width: 80, align: 'center' },
+                { label: 'đơn vị', name: 'dw', align: 'center', width: 60 },
+                 { label: 'số lượng', name: 'sl', align: 'center', width: 60 },
                 {
-                    label: '单价', name: 'dj', align: 'center', width: 60, formatter: "number"
+                    label: 'đơn giá', name: 'dj', align: 'center', width: 60, formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
                 },
                 {
-                    label: '费用', name: 'je', align: 'center', width: 60, formatter: "number"
+                    label: 'chi phí', name: 'je', align: 'center', width: 60, formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
                 },
-                { label: '剂量', name: 'ypjl', align: 'center', width: 60 },
-                { label: '规格', name: 'ypgg', align: 'center', width: 60 },
+                { label: 'liều dùng', name: 'ypjl', align: 'center', width: 60 },
+                { label: 'quy cách', name: 'ypgg', align: 'center', width: 60 },
 
             ],
             pager: "#gridMxPager",
@@ -221,7 +221,7 @@
     function newtouch_event_f6() {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds.length == 0) {
-            $.modalAlert("请先选中需打印的处方", 'warning');
+            $.modalAlert("vui lòng trước tiên chọn trong cần in của đơn thuốc", 'warning');
             return;
         }
         if (selRowIds.length > 1) {
@@ -234,9 +234,9 @@
         var yzlx = seleRow[0].yzlx;
         var lyxh = seleRow[0].lyxh;
         var zxrq = seleRow[0].kssj.substring(0, 10);
-        var tempCode = "33";//药品
+        var tempCode = "33";//thuốc
         if (yzlx == "10")
-            tempCode = "1022" //中药
+            tempCode = "1022" //trong thuốc
         var rpturl = '@reportUrl' + "?tempCode=" + tempCode + "&systemCode=PDS&orgId=" + '@ViewBag.OrganizeId' + "&zxrq=" + zxrq + "&lyxh=" + lyxh;
         window.open(rpturl + "&zyh=" + zyh + "&yzhs=" + cfh, "_blank",
             "height = 500, width = 1195, top = 100, left = 50, toolbar = no, menubar = no, scrollbars = yes, resizable = yes, location = no, status = no");

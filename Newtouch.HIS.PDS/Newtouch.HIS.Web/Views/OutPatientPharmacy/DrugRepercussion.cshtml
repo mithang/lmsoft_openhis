@@ -15,33 +15,33 @@
 </style>
 <form id="form1">
     <div class="panel panel-default" style="margin-top:10px;">
-        <div class="panel-heading">筛选条件</div>
+        <div class="panel-heading">điều kiện lọc</div>
         <table class="form">
             <tr>
-                <th class="formTitle" style="width:50px;">卡号：</th>
+                <th class="formTitle" style="width:50px;">số thẻ: </th>
                 <td class="formValue">
-                    <input type="text" id="kh" class="form-control" placeholder="卡号" />
+                    <input type="text" id="kh" class="form-control" placeholder="số thẻ" />
                 </td>
-                <th class="formTitle" style="width:50px;">姓名：</th>
+                <th class="formTitle" style="width:50px;">họ tên: </th>
                 <td class="formValue">
-                    <input type="text" id="xm" class="form-control" placeholder="姓名" />
+                    <input type="text" id="xm" class="form-control" placeholder="họ tên" />
                 </td>
-                <th class="formTitle" style="width:60px;">处方号：</th>
+                <th class="formTitle" style="width:60px;">số đơn thuốc: </th>
                 <td class="formValue">
                     <input type="text" id="cfh" class="form-control" />
                 </td>
-                <th class="formTitle" style="width:60px;">发票号：</th>
+                <th class="formTitle" style="width:60px;">số hóa đơn: </th>
                 <td class="formValue">
                     <input type="text" id="fph" class="form-control" />
                 </td>
-                <th class="formTitle" style="width:70px;"><span style="color:red;">*</span>发药时间：</th>
+                <th class="formTitle" style="width:70px;"><span style="color:red;">*</span>thời gian phát thuốc: </th>
                 <td class="formValue" style="width: 220px;">
                     <input id="begindate" type="text" class="form-control input-wdatepicker" style="width:85px;float:left;" value="@DateTime.Now.AddDays(-3).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="float:left;margin:0 5px;">-</span>
                     <input id="enddate" type="text" class="form-control input-wdatepicker" style="width:85px;float:left;" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
                 <td class="formTitle" style="padding: 15px; width: 50px;">
-                    <input type="button" id="btn_search" class="btn btn-primary btn-md" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-primary btn-md" value="tra cứu" />
                 </td>
             </tr>
         </table>
@@ -53,12 +53,12 @@
 <div id="dv_right" style="float: left; width:64.5%; margin-left:0.5%;">
     <table id="gridTYCFInfo"></table>
     <div class="ckbox" style="float:left;margin:10px 10px 12px;">
-        <input id="autoprint" name="autoprint" type="checkbox" @ViewBag.autoPrintSwitch><label for="autoprint">自动打印</label>
+        <input id="autoprint" name="autoprint" type="checkbox" @ViewBag.autoPrintSwitch><label for="autoprint">tự động in</label>
     </div>
     @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new[] { 7 },
-    F7Text = "退药",
+    F7Text = "trả thuốc",
     WapperInlineStyle = "float:right;width:100px;margin:10px 30px 12px;text-align:right;"
 })
 </div>
@@ -69,7 +69,7 @@
         gridTYCF();
         gridTYCFDetail();
 
-        // 药品追溯码扫码
+        // quét mã truy xuất thuốc
         $gridCfDetail.on('keydown', '.scan-input', function (event) {
             if (event.key === 'Enter') {
                 event.preventDefault();
@@ -77,7 +77,7 @@
                 const inputField = $(this);
                 const row = inputField.closest('tr');
 
-                // 是否拆零
+                // có tách lẻ không
                 const sfcl = parseInt(row.find('.sfcl').val(), 10);
                 var maxEntries = 1;
                 if (sfcl === 1) {
@@ -93,7 +93,7 @@
                 }
 
                 if (entries >= maxEntries) {
-                    $.modalMsg("已达到该行的最大扫码条目数量！", "warning", 1500);
+                    $.modalMsg("đã đạt số lượng mục quét mã tối đa của dòng này!", "warning", 1500);
                     inputField.val(inputField.val().split(',').filter(entry => entry.trim() != "").slice(0, maxEntries).join(',') + ",");
                 }
             }
@@ -106,27 +106,27 @@
         return uniqueArr.join(',')+','
     }
 
-    //回车事件绑定
+    //gắn sự kiện phím Enter
     $(document).keyup(function (event) {
 //         if (event.keyCode === 13) {
 //             $("#btn_search").trigger("click");
 //         }
     });
 
-    //获取数据
+    //lấy dữ liệu
     function gridTYCF() {
         $gridCfList.dataGrid({
             height: $(window).height() - 180,
-            caption: "处方列表",
+            caption: "danh sách đơn thuốc",
             url: "/OutPatientPharmacy/SearchFyCfList",
             postData: $("#form1").formSerialize(),
             colModel: [
-                { label: '处方号', name: 'cfh', width: 115, align: 'center' },
-                { label: '发票号', name: 'Fph', width: 70, align: 'center' },
-                { label: '姓名', name: 'xm', width: 60, align: 'center' },
-                { label: '卡号', name: 'CardNo', width: 60, align: 'center' },
+                { label: 'số đơn thuốc', name: 'cfh', width: 115, align: 'center' },
+                { label: 'số hóa đơn', name: 'Fph', width: 70, align: 'center' },
+                { label: 'họ tên', name: 'xm', width: 60, align: 'center' },
+                { label: 'số thẻ', name: 'CardNo', width: 60, align: 'center' },
                 {
-                    label: '发药时间',
+                    label: 'thời gian phát thuốc',
                     name: 'fysj',
                     width: 100,
                     align: 'center',
@@ -134,7 +134,7 @@
                     formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' }
                 },
                 {
-                    label: '收费时间',
+                    label: 'thời gian thu phí',
                     name: 'sfsj',
                     width: 100,
                     align: 'center',
@@ -168,31 +168,31 @@
     function gridTYCFDetail() {
         $gridCfDetail.dataGrid({
             height: $(window).height() - 230,
-            caption: "处方明细",
-            editurl: "clientArray", //行编辑不向服务器提交数据
+            caption: "chi tiết đơn thuốc",
+            editurl: "clientArray", //chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             colModel: [
-                { label: '药品名称', name: 'ypmc', width: 110, align: 'left' },
-                { label: '可退', name: 'slstr', width: 40, align: 'left' },
-                @*{ label: '数量', name: 'sl', width: 50, align: 'center', editable:@partReturnSwitch,editwidth:'85%' },*@
-                { label: '数量', name: 'sl', width: 50, align: 'center', classes: 'quantity' },
-                { label: '单位', name: 'dw', width: 50, align: "left" },
+                { label: 'tên thuốc', name: 'ypmc', width: 110, align: 'left' },
+                { label: 'có thể trả', name: 'slstr', width: 40, align: 'left' },
+                @*{ label: 'số lượng', name: 'sl', width: 50, align: 'center', editable:@partReturnSwitch,editwidth:'85%' },*@
+                { label: 'số lượng', name: 'sl', width: 50, align: 'center', classes: 'quantity' },
+                { label: 'đơn vị', name: 'dw', width: 50, align: "left" },
                 {
-                    label: '<span class="required">*</span>追溯码', name: 'zsm', width: 80, align: 'center',
+                    label: '<span class="required">*</span>mã truy xuất', name: 'zsm', width: 80, align: 'center',
                     formatter: function (cellvalue, options) {
                         return "<input name=\"zsm\" id=\"sel_zsm_" + options.rowId + "\" rowid=" + options.rowId + " class=\"scan-input editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" />";
                     }
                 },
                 {
-                    label: '<span class="required">*</span>是否拆零', name: 'sfcl', width: 80, align: 'center',
+                    label: '<span class="required">*</span>có tách lẻ không', name: 'sfcl', width: 80, align: 'center',
                     formatter: function (cellvalue, options) {
-                        return "<select name=\"sfcl\" id=\"sel_sfcl_" + options.rowId + "\" rowid=" + options.rowId + " class=\"sfcl editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ><option value=\"1\">是</option><option value=\"2\">否</option></select>";
+                        return "<select name=\"sfcl\" id=\"sel_sfcl_" + options.rowId + "\" rowid=" + options.rowId + " class=\"sfcl editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" ><option value=\"1\">có</option><option value=\"2\">không</option></select>";
                     }
                 },
-                { label: '规格', name: 'gg', width: 50, align: 'center' },
-                { label: '批号', name: 'ph', width: 90, align: 'center' },
-                { label: '批次', name: 'pc', width: 100, align: 'left' },
+                { label: 'quy cách', name: 'gg', width: 50, align: 'center' },
+                { label: 'số lô', name: 'ph', width: 90, align: 'center' },
+                { label: 'lô', name: 'pc', width: 100, align: 'left' },
                 {
-                    label: '单价',
+                    label: 'đơn giá',
                     name: 'dj',
                     width: 60,
                     align: 'right',
@@ -201,7 +201,7 @@
                     }
                 },
                 {
-                    label: '金额',
+                    label: 'số tiền',
                     name: 'je',
                     width: 60,
                     align: 'right',
@@ -209,9 +209,9 @@
                         return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
                     }
                 },
-                { label: '生产厂家', name: 'ycmc', width: 120, align: 'left' },
-                { label: '药品分组', name: 'czh', width: 60, align: 'center' },
-                { label: '药品代码', name: 'ypCode', hidden: true },
+                { label: 'nhà sản xuất', name: 'ycmc', width: 120, align: 'left' },
+                { label: 'nhóm thuốc', name: 'czh', width: 60, align: 'center' },
+                { label: 'mã thuốc', name: 'ypCode', hidden: true },
                 { label: 'ktsl', name: 'ktsl', hidden: true },
                 { label: 'zhyz', name: 'zhyz', hidden: true },
                 { label: 'cfh', name: 'cfh', hidden: true }
@@ -224,9 +224,9 @@
         });
     }
 
-    //启用行内编辑框
+    //bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox() {
-        var rowIds = $gridCfDetail.jqGrid('getDataIDs'); //Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        var rowIds = $gridCfDetail.jqGrid('getDataIDs'); //Grid sau khi tải xong thì bật chỉnh sửa trong dòng   1.trước tiên lấy tất cả các dòng Id  2.duyệt và gọi editRow phương thức
         for (var i = 0; i < rowIds.length; i++) {
             $gridCfDetail.jqGrid('editRow',
                 rowIds[i],
@@ -240,16 +240,16 @@
         }
     }
 
-    //退药
+    //trả thuốc
     function newtouch_event_f7() {
         var id = $gridCfList.jqGrid("getGridParam", "selrow");
         if (!id) {
-            $.modalAlert("请选中需要退药的处方！", 'warning');
+            $.modalAlert("vui lòng chọn trong cần trả thuốc của đơn thuốc!", 'warning');
             return false;
         }
-        var rowIds = $gridCfDetail.jqGrid('getDataIDs'); //获取所有行Id，遍历使编辑框处于保存状态
+        var rowIds = $gridCfDetail.jqGrid('getDataIDs'); //lấy tất cả các dòng Id, duyệt để hộp chỉnh sửa ở trạng thái đã lưu
         var tymx = [];
-        //判断退数量
+        //đánh giá số lượng trả
         for (var i = 0; i < rowIds.length; i++) {
             $gridCfDetail.saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
             var rowData = $gridCfDetail.jqGrid('getRowData', rowIds[i]);
@@ -260,22 +260,22 @@
                 rowData.sl === "" ||
                 isNaN(rowData.sl) ||
                 rowData.sl < 0) {
-                $.modalAlert("项目【" + rowData.ypmc + "】退药数量应为自然数，请确认。", "warning");
-                EnableInlineEditBox(); //启用行内编辑框
+                $.modalAlert("hạng mục【" + rowData.ypmc + "】số lượng trả thuốc phải là số tự nhiên, vui lòng xác nhận.", "warning");
+                EnableInlineEditBox(); //bật hộp chỉnh sửa trong dòng
                 return false;
             }
             if (parseInt(rowData.sl) > parseInt(rowData.ktsl)) {
-                $.modalAlert("项目【" + rowData.ypmc + "】退药数量不得超过" + rowData.slstr + "。", "warning");
-                EnableInlineEditBox(); //启用行内编辑框
+                $.modalAlert("hạng mục【" + rowData.ypmc + "】số lượng trả thuốc không được vượt quá" + rowData.slstr + "。", "warning");
+                EnableInlineEditBox(); //bật hộp chỉnh sửa trong dòng
                 return false;
             }
             const rowid = rowIds[i]
-            //追溯码
+            //mã truy xuất
             var zsm = $("#sel_zsm_" + rowid).val()
-            //是否拆零
+            //có tách lẻ không
             var sfclValue = Number($("#sel_sfcl_" + rowid).val());
 
-            // 验证追溯码数量。 是否拆零选是，只需要扫一个，否的话需要扫对应入库数量的码
+            // kiểm tra số lượng mã truy xuất. nếu tách lẻ thì chọn có, chỉ cần quét một cái, nếu không thì cần quét mã tương ứng với số lượng nhập kho
             const zsmLength = $("#sel_zsm_" + rowid).val().split(',').filter(entry => entry.trim() !== '').length
             var maxZsmLength = 1
             if (sfclValue === 1) {
@@ -284,7 +284,7 @@
                 maxZsmLength = parseInt(rowData.sl)
             }
             if (zsmLength != 0 && zsmLength != maxZsmLength) {
-                $.modalMsg("条目" + rowData.ypmc + "数量与追溯码数量不一致！", "warning", 1500);
+                $.modalMsg("mục" + rowData.ypmc + "số lượng không khớp với số lượng mã truy xuất!", "warning", 1500);
                 return false;
             }
             if (parseInt(rowData.sl) > 0) {
@@ -302,10 +302,10 @@
             }
         }
         if (tymx.length === 0) {
-            $.modalAlert("未找到有效的退药信息。", "warning");
+            $.modalAlert("未找到有效的退药信息.", "warning");
             return false;
         }
-        $.modalConfirm("确定退药吗？",
+        $.modalConfirm("xác định trả thuốc không?",
             function (flag) {
                 if (flag) {
                     $.najax({
@@ -322,7 +322,7 @@
                                     window.open(uri);
                                     //window.open("/Report/PrintReport?type=MZTY_Bill&param=OrganizeId=@ViewBag.OrganizeId" + "|yfbmCode=@ViewBag.yfbmCode" + "|cfh=" + cfh + "|tydh=" + tydh);
                                 }
-                                $.modalMsg('退药成功', 'success', 2000);
+                                $.modalMsg('trả thuốc thành công', 'success', 2000);
                                 $gridCfList.jqGrid("clearGridData");
                                 $gridCfList.trigger("reloadGrid");
                                 $gridCfDetail.jqGrid("clearGridData");

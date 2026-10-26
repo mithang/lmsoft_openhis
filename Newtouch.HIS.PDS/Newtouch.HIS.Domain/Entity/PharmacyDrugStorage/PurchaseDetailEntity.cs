@@ -14,61 +14,61 @@ namespace Newtouch.HIS.Domain.Entity.PharmacyDrugStorage
         [Key]
         public string cgmxId { get; set; }
         /// <summary>
-        /// 采购编号
+        /// mua hàng số hiệu
         /// </summary>
         public string cgId { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 药品编号
+        /// số hiệu thuốc
         /// </summary>
         public string ypCode { get; set; }
         public string ypName { get; set; }
         /// <summary>
-        /// 顺序号
+        /// số thứ tự
         /// </summary>
         public int sxh { get; set; }
         /// <summary>
-        /// 采购模式
+        /// mua hàng mô hình
         /// </summary>
         public string cglx { get; set; }
         /// <summary>
-        /// 商品类型
+        /// loại hàng hóa
         /// </summary>
         public string splx { get; set; }
         /// <summary>
-        /// 统编代码
+        /// thống nhất mã
         /// </summary>
         public string zxspbm { get; set; }
         /// <summary>
-        /// 采购计量单位
+        /// đơn vị tính mua hàng
         /// </summary>
         public string cgjldw { get; set; }
         /// <summary>
-        /// 规格包装
+        /// quy cách đóng gói
         /// </summary>
         public string ggbz { get; set; }
         /// <summary>
-        /// 采购数量
+        /// số lượng mua
         /// </summary>
         public decimal cgsl { get; set; }
         /// <summary>
-        /// 采购单价
+        /// đơn giá mua hàng
         /// </summary>
         public decimal cgdj { get; set; }
         /// <summary>
-        /// 药企编码/供应商
+        /// mã doanh nghiệp dược/nhà cung cấp
         /// </summary>
         public string yqbm { get; set; }
         /// <summary>
-        /// 多次配送标识（0不允许  1允许）
+        /// nhiều lần phân phối dấu hiệu (0 không cho phép  1 cho phép)
         /// </summary>
         public string dcpsbs { get; set; }
         /// <summary>
-        /// 备注说明
+        /// ghi chú giải thích
         /// </summary>
         public string bzsm { get; set; }
         /// <summary>
-        /// 单位
+        /// đơn vị
         /// </summary>
         public string dw { get; set; }
 

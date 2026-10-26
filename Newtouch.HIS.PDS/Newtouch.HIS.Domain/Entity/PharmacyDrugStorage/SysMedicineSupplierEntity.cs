@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品供应商
+    /// hệ thống thuốc nhà cung cấp
     /// </summary>
     [Table("xt_ypgys")]
     [Obsolete("please use the view")]

@@ -1,43 +1,43 @@
 ﻿namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 医嘱次|处方药品次
+    /// y lệnh lần|đơn thuốc thuốc lần
     /// </summary>
     public class FyCountBydlVO
     {
         /// <summary>
-        /// 药品发药次汇总
+        /// thuốc phát thuốc lần tổng hợp
         /// </summary>
         public long ypCount { get; set; }
 
         /// <summary>
-        /// 大类代码
+        /// nhóm lớn mã
         /// </summary>
         public string dlCode { get; set; }
 
         /// <summary>
-        /// 大类名称
+        /// tên nhóm lớn
         /// </summary>
         public string dlmc { get; set; }
 
         /// <summary>
-        /// 门诊住院标志
+        /// cờ ngoại trú/nội trú
         /// </summary>
         public string mzzybz { get; set; }
     }
 
     /// <summary>
-    /// 根据大类统计发药数  首页统计highcharts专用
+    /// theo nhóm lớn thống kê phát thuốc số  trang chủ thống kê highcharts专用
     /// </summary>
     public class FyClassificationStatistics
     {
         /// <summary>
-        /// 大类名称
+        /// tên nhóm lớn
         /// </summary>
         public string name { get; set; }
 
         /// <summary>
-        /// 数量
+        /// số lượng
         /// </summary>
         public long y { get; set; }
     }

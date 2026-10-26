@@ -10,18 +10,18 @@
 
 <form id="form1">
     <div class="panel panel-default" style="margin-bottom:10px;">
-        <div class="panel-heading">配送信息</div>
+        <div class="panel-heading">phân phối thông tin</div>
         <table class="form">
             <tr>
-                <th class="formTitle "><span class="required">*</span>药企选择：</th>
+                <th class="formTitle "><span class="required">*</span>doanh nghiệp dược chọn: </th>
                 <td class="formValue">
-                    <input type="text" id="yq" name="yq" class="form-control" placeholder="请选择药企" autocomplete="off" style="width:60%" />
+                    <input type="text" id="yq" name="yq" class="form-control" placeholder="vui lòng chọn doanh nghiệp dược" autocomplete="off" style="width:60%" />
                     <input type="hidden" id="yqbm" />
                 </td>
 
                 <th class="formTitle">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="获取明细" />
-                    <input type="button" id="btn_accept" class="btn btn-md btn-primary" value="明细验收" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="lấy chi tiết" />
+                    <input type="button" id="btn_accept" class="btn btn-md btn-primary" value="nghiệm thu chi tiết" />
                 </th>
                 <td></td>
             </tr>
@@ -42,9 +42,9 @@
     });
 
 
-    //初始化浮层
+    //khởi tạo lớp nổi
     function InitFloat() {
-        //药企
+        //doanh nghiệp dược
         $("#yq").newtouchBatchFloatingSelector({
             clickautotrigger: true,
             height: 200,
@@ -57,8 +57,8 @@
                 return reqData;
             },
             colModel: [
-                { label: '药企编码', name: 'gysCode', widthratio: 30 },
-                { label: '药企', name: 'gysmc', widthratio: 70 }
+                { label: 'mã doanh nghiệp dược', name: 'gysCode', widthratio: 30 },
+                { label: 'doanh nghiệp dược', name: 'gysmc', widthratio: 70 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#yqbm").val($thistr.attr('data-gysCode'));
@@ -75,12 +75,12 @@
             height: $(window).height() - 200,
             postData: { qybm: $("#yqbm").val(), psmxbh: '' },
             colModel: [
-                { label: '配送单号', name: 'PSDH', width: 80, align: 'left' },
-                { label: '药企编码', name: 'YQBM', width: 80, align: 'left' },
-                { label: '配送点编码', name: 'PSDBM', width: 80, align: 'left' },
-                { label: '配送单创建日期', name: 'CJRQ', width: 100, align: 'left' },
-                { label: '配送明细编号', name: 'PSMXBH', width: 140, align: 'left' },
-                { label: '配送单条码', name: 'PSDTM', width: 100, align: 'left' },
+                { label: 'phân phối số phiếu', name: 'PSDH', width: 80, align: 'left' },
+                { label: 'mã doanh nghiệp dược', name: 'YQBM', width: 80, align: 'left' },
+                { label: 'mã điểm phân phối', name: 'PSDBM', width: 80, align: 'left' },
+                { label: 'phân phối đơn ngày tạo', name: 'CJRQ', width: 100, align: 'left' },
+                { label: 'phân phối chi tiết số hiệu', name: 'PSMXBH', width: 140, align: 'left' },
+                { label: 'phân phối đơn dòng mã', name: 'PSDTM', width: 100, align: 'left' },
                 {
                     label: '装箱类型', name: 'ZXLX', width: 100, align: 'left', formatter: function (cellvalue) {
                         if (cellvalue == 1) return '多品规货品拼箱配送';
@@ -89,59 +89,59 @@
                     }
                 },
                 {
-                    label: '采购类型', name: 'CGLX', width: 80, align: 'left', formatter: function (cellvalue) {
-                        if (cellvalue == 1) return '医保范围招标';
-                        else if (cellvalue == 2) return '医保范围未招标';
-                        else if (cellvalue == 3) return '医保范围招标未中标';
-                        else if (cellvalue == 4) return '医保范围挂网';
-                        else if (cellvalue == 5) return '自费范围挂网';
+                    label: 'loại mua hàng', name: 'CGLX', width: 80, align: 'left', formatter: function (cellvalue) {
+                        if (cellvalue == 1) return 'BHYT phạm vi đấu thầu';
+                        else if (cellvalue == 2) return 'BHYT phạm vi chưa đấu thầu';
+                        else if (cellvalue == 3) return 'đấu thầu trong phạm vi BHYT không trúng thầu';
+                        else if (cellvalue == 4) return 'niêm yết mạng trong phạm vi BHYT';
+                        else if (cellvalue == 5) return 'niêm yết mạng trong phạm vi tự chi trả';
                         else if (cellvalue == 6) return '市量价挂钩集中采购';
-                        else if (cellvalue == 9) return '其他';
+                        else if (cellvalue == 9) return 'khác';
                     }
                 },
                 {
-                    label: '商品类型', name: 'SPLX', width: 60, align: 'left', formatter: function (cellvalue) {
-                        if (cellvalue == 1) return '药品类';
-                        else if (cellvalue == 2) return '医用耗材类';
-                        else if (cellvalue == 3) return '医疗器械类';
-                        else if (cellvalue == 9) return '其他';
+                    label: 'loại hàng hóa', name: 'SPLX', width: 60, align: 'left', formatter: function (cellvalue) {
+                        if (cellvalue == 1) return 'thuốc loại';
+                        else if (cellvalue == 2) return 'loại vật tư y tế tiêu hao';
+                        else if (cellvalue == 3) return 'loại thiết bị y tế';
+                        else if (cellvalue == 9) return 'khác';
                     }
                 },
                 {
-                    label: '药品类型', name: 'YPLX', width: 100, align: 'left', formatter: function (cellvalue) {
+                    label: 'loại thuốc', name: 'YPLX', width: 100, align: 'left', formatter: function (cellvalue) {
                         if (cellvalue == 1) return '生物制剂';
-                        else if (cellvalue == 2) return '中成药';
+                        else if (cellvalue == 2) return 'trong thành thuốc';
                         else if (cellvalue == 3) return '中药饮片';
                         else if (cellvalue == 4) return '自制制剂';
                         else if (cellvalue == 5) return '免疫用疫苗';
                         else if (cellvalue == 6) return '实验室检验化验用药品或试剂';
                         else if (cellvalue == 7) return '医学检查用药品或试剂';
                         else if (cellvalue == 8) return '化学药品';
-                        else if (cellvalue == 9) return '其他';
+                        else if (cellvalue == 9) return 'khác';
                     }
                 },
-                { label: '商品统编代码', name: 'ZXSPBM', width: 190, align: 'left' },
+                { label: 'mã thống nhất hàng hóa', name: 'ZXSPBM', width: 190, align: 'left' },
                 { label: '产品名', name: 'CPM', width: 120, align: 'left' },
-                { label: '药品剂型', name: 'YPJX', width: 80, align: 'left' },
-                { label: '规格', name: 'GG', width: 80, align: 'left' },
+                { label: 'dạng bào chế thuốc', name: 'YPJX', width: 80, align: 'left' },
+                { label: 'quy cách', name: 'GG', width: 80, align: 'left' },
                 {
-                    label: '包装材质', name: 'BZDWXZ', width: 100, align: 'left', formatter: function (cellvalue) {
+                    label: 'chất liệu đóng gói', name: 'BZDWXZ', width: 100, align: 'left', formatter: function (cellvalue) {
                         if (cellvalue == 1) return '商品最小零售单位';
                         else if (cellvalue == 2) return '大包装简包装';
                     }
                 },
-                { label: '包装单位名称', name: 'BZDWMC', width: 80, align: 'left' },
-                { label: '用药单位名称', name: 'YYDWMC', width: 80, align: 'left' },
+                { label: 'đơn vị đóng gói tên', name: 'BZDWMC', width: 80, align: 'left' },
+                { label: 'dùng thuốc tên đơn vị', name: 'YYDWMC', width: 80, align: 'left' },
                 { label: '包装内含数量', name: 'BZNHSL', width: 80, align: 'left' },
                 { label: '生产企业名称', name: 'SCQYMC', width: 150, align: 'left' },
-                { label: '生产批号', name: 'SCPH', width: 80, align: 'left' },
-                { label: '生产日期', name: 'SCRQ', width: 80, align: 'left' },
-                { label: '有效日期', name: 'YXRQ', width: 80, align: 'left' },
+                { label: 'số lô sản xuất', name: 'SCPH', width: 80, align: 'left' },
+                { label: 'ngày sản xuất', name: 'SCRQ', width: 80, align: 'left' },
+                { label: 'ngày hiệu lực', name: 'YXRQ', width: 80, align: 'left' },
                 { label: '计划单号', name: 'JHDH', width: 80, align: 'left' },
-                { label: '销售订单号', name: 'XSDDH', width: 90, align: 'left' },
-                { label: '关联订单明细编号', name: 'DDMXBH', width: 160, align: 'left' },
-                { label: '顺序号', name: 'SXH', width: 80, align: 'left' },
-                { label: '配送数量', name: 'PSL', width: 80, align: 'left' },
+                { label: 'số đơn hàng bán', name: 'XSDDH', width: 90, align: 'left' },
+                { label: 'liên kết đơn hàng chi tiết số hiệu', name: 'DDMXBH', width: 160, align: 'left' },
+                { label: 'số thứ tự', name: 'SXH', width: 80, align: 'left' },
+                { label: 'phân phối số lượng', name: 'PSL', width: 80, align: 'left' },
             ],
 
             multiselect: false,
@@ -171,31 +171,31 @@
     }
 
 
-    //启用行内编辑
+    //bật chỉnh sửa trong dòng
     function EnableInlineEditBox(rowid) {
-        $("#gridList").jqGrid('editRow', rowid, false, initInlineFunc);//打开编辑模式
+        $("#gridList").jqGrid('editRow', rowid, false, initInlineFunc);//mở chế độ chỉnh sửa
         $("#jqg_gridList_" + rowid).trigger("click");
     }
 
-    //初始化 浮层
+    //khởi tạo lớp nổi
     function initInlineFunc(rowid) {
-        $("#" + rowid + "_PSYSLXXXXXXX").parent().next().children('select').append('<option value="1">预验收</option><option value="2">实验收</option>');//验收类型
+        $("#" + rowid + "_PSYSLXXXXXXX").parent().next().children('select').append('<option value="1">预验收</option><option value="2">thực nghiệm thu</option>');//nghiệm thu loại
     }
 
-    //获取明细
+    //lấy chi tiết
     $('#btn_search').click(function () {
         if ($("#yq").val() == "" || $("#yq").val() == null) {
-            $.modalAlert("请选择供应商", 'warning');
+            $.modalAlert("vui lòng chọn nhà cung cấp", 'warning');
             return;
         }
         gridList();
     });
 
-    //明细验收
+    //nghiệm thu chi tiết
     $('#btn_accept').click(function () {
         var rowData = $("#gridList").jqGridRowValue();
         if (rowData == null) {
-            $.modalAlert("请选择需要验收的单据", 'warning');
+            $.modalAlert("vui lòng chọn cần nghiệm thu của chứng từ", 'warning');
             return;
         }
         var postData = {
@@ -205,7 +205,7 @@
             ZXSPBM: rowData.ZXSPBM,
             PSL: rowData.PSL,
             SCPH: rowData.SCPH,
-            YSJG: "1",  //0 验收不通过 1 验收通过
+            YSJG: "1",  //0 nghiệm thu không đạt 1 nghiệm thu đạt
             YSJGBZ: rowData.YSJGBZ,
         }
 
@@ -213,7 +213,7 @@
             url: "/OutOrInStoredManage/Purchase/DeliveryAccept",
             param: postData,
             success: function () {
-                $.modalMsg('验收成功', 'success');
+                $.modalMsg('nghiệm thu thành công', 'success');
                 $.modalClose();
             }
         });

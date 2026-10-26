@@ -20,24 +20,24 @@
             url: '/OutPatientPharmacy/GetMzcfGridDetailJson',
             height: $(window).height() - 100,
             colModel: [
-                { label: '门诊号', name: 'mzh', align: 'center', width: 100 },
-                { label: '姓名', name: 'xm', align: 'center', width: 60 },
-                { label: '开单时间', name: 'kssj', align: 'left', width: 50,hidden:true },
-                { label: '药品代码', name: 'ypcode', align: 'center', width: 90 },
-                { label: '药品名称', name: 'ypmc', align: 'center', width: 120 },
-                { label: '单位', name: 'dw', align: 'center', width: 60 },
-                 { label: '数量', name: 'sl', align: 'center', width: 50 },
+                { label: 'số ngoại trú', name: 'mzh', align: 'center', width: 100 },
+                { label: 'họ tên', name: 'xm', align: 'center', width: 60 },
+                { label: 'mở đơn thời gian', name: 'kssj', align: 'left', width: 50,hidden:true },
+                { label: 'mã thuốc', name: 'ypcode', align: 'center', width: 90 },
+                { label: 'tên thuốc', name: 'ypmc', align: 'center', width: 120 },
+                { label: 'đơn vị', name: 'dw', align: 'center', width: 60 },
+                 { label: 'số lượng', name: 'sl', align: 'center', width: 50 },
                 {
-                    label: '单价', name: 'dj', align: 'center', width: 50, formatter: "number"
+                    label: 'đơn giá', name: 'dj', align: 'center', width: 50, formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
                 },
                 {
-                    label: '费用', name: 'je', align: 'center', width: 60, formatter: "number"
+                    label: 'chi phí', name: 'je', align: 'center', width: 60, formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
                 },
-                { label: '剂量', name: 'mcjl', align: 'center', width: 60 },
-                { label: '规格', name: 'gg', align: 'center', width: 100 },
-                { label: '频次', name: 'pcmc', align: 'center', width: 60 },
+                { label: 'liều dùng', name: 'mcjl', align: 'center', width: 60 },
+                { label: 'quy cách', name: 'gg', align: 'center', width: 100 },
+                { label: 'tần suất', name: 'pcmc', align: 'center', width: 60 },
 
             ],
             pager: "#gridPager",

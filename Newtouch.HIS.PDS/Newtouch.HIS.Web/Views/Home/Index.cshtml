@@ -2,9 +2,9 @@
 @using Newtouch.Infrastructure;
 @{
     Layout = null;
-    //是否页面加载时就必须选择Org
+    //khi tải trang có bắt buộc phải chọn ngay không Org
     var mediOrgList = ViewBag.MediOrgList as IList<FrameworkBase.MultiOrg.Domain.Entity.SysOrganizeVEntity>;
-    //是否页面加载时就必须选择Org
+    //khi tải trang có bắt buộc phải chọn ngay không Org
     var needChooseOrg = (ViewBag.NeedChooseOrg as bool?) ?? false;
 
 }
@@ -14,7 +14,7 @@
     <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache,no-store, must-revalidate">
     <META HTTP-EQUIV="pragma" CONTENT="no-cache">
     <META HTTP-EQUIV="expires" CONTENT="0">
-    <title>药房药库系统</title>
+    <title>nhà thuốc kho thuốc hệ thống</title>
     @Html.Partial("_crossDomain")
     <link rel="shortcut icon" href="@SiteUrl.GetStaticResourceScriptUrl("~/img/newtouchcloud.ico")">
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
@@ -73,17 +73,17 @@
 									<span class="hidden-xs" style="width:110px">@OperatorProvider.GetCurrent().UserCode【@Constants.CurrentYfbm.yfbmmc】</span>
 								</a>
 								<ul class="dropdown-menu pull-right">
-									<li><a href="javascript:void(0);" onclick="SetUserPharmacy()"><i class="fa fa-exchange"></i>切换药房</a></li>
-									<li><a class="menuItem" data-id="userInfo" href="/SystemManage/SysUser/PersonalInfo"><i class="fa fa-user"></i>个人信息</a></li>
-									@*<li><a href="javascript:void(0);"><i class="fa fa-inbox"></i>我的信箱</a></li>*@
-									<li><a href="javascript:void(0);" onclick="layer.msg('浏览器缓存清除成功');"><i class="fa fa-trash-o"></i>清空缓存</a></li>
+									<li><a href="javascript:void(0);" onclick="SetUserPharmacy()"><i class="fa fa-exchange"></i>chuyển nhà thuốc</a></li>
+									<li><a class="menuItem" data-id="userInfo" href="/SystemManage/SysUser/PersonalInfo"><i class="fa fa-user"></i>cái người thông tin</a></li>
+									@*<li><a href="javascript:void(0);"><i class="fa fa-inbox"></i>hộp thư của tôi</a></li>*@
+									<li><a href="javascript:void(0);" onclick="layer.msg('浏览器缓存清除成功');"><i class="fa fa-trash-o"></i>xóa sạch bộ nhớ đệm</a></li>
 									<li>
 										<a href="javascript:void(0);"><i class="fa fa-paint-brush"></i>皮肤设置</a>
 										<div class="tab-pane" id="control-sidebar-home-tab">
 										</div>
 									</li>
 									<li class="divider"></li>
-									<li><a href="~/Login/OutLogin"><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>
+									<li><a href="~/Login/OutLogin"><i class="ace-icon fa fa-power-off"></i>an toàn đăng xuất</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -95,9 +95,9 @@
 							<li role="presentation" class="active">
 								<a href="#" class="hidden-xs" style="padding-top:15px" data-toggle="dropdown">消息列表<span class="badge" id="badge1"></span></a>
                                 <ul class="dropdown-menu pull-right" style="width:100%;" id="uldiv">
-                                    <li style="height:25px;"><a style="width:100%;text-align:center;" id="kcyj">库存预警<span class="badge" style="margin-left:5px;" id="badge2"></span></a></li>
-                                    <li style="height:25px; display:none"><a style="width:100%;text-align:center;" id="drgqyj">1个月内过期预警<span class="badge" style="margin-left:5px;" id="badge4"></span></a></li>
-                                    <li style="height:25px;"><a style="width:100%;text-align:center;" id="gqyj">过期预警<span class="badge" style="margin-left:5px;" id="badge3"></span></a></li>
+                                    <li style="height:25px;"><a style="width:100%;text-align:center;" id="kcyj">cảnh báo tồn kho<span class="badge" style="margin-left:5px;" id="badge2"></span></a></li>
+                                    <li style="height:25px; display:none"><a style="width:100%;text-align:center;" id="drgqyj">1 tháng trong cảnh báo hết hạn<span class="badge" style="margin-left:5px;" id="badge4"></span></a></li>
+                                    <li style="height:25px;"><a style="width:100%;text-align:center;" id="gqyj">cảnh báo hết hạn<span class="badge" style="margin-left:5px;" id="badge3"></span></a></li>
                                 </ul>
 							</li>
 						</ul>
@@ -131,7 +131,7 @@
 	<div id="nav-col" class="login-foot" style="left:0px;width:14%;height:5%; text-align:center;font-size:9px;bottom:0px;color:#9BA0A8">
                     <span>
                         Copyright © 2025湖北天天数链技术有限公司
-                        本系统软件源代码许可来源于<a href="https://open.tntlinking.com/communityTreaty">《天天开源软件（社区版）许可协议》</a>
+                        giấy phép mã nguồn của phần mềm hệ thống này bắt nguồn từ<a href="https://open.tntlinking.com/communityTreaty"><天天开源软件 (社区版)许可协议></a>
                     </span>
                 </div>
                 <div id="content-wrapper">
@@ -142,7 +142,7 @@
                         <nav class="page-tabs menuTabs">
                             <div class="page-tabs-content" style="margin-left: 0px;">
                                 <a href="javascript:void(0);" class="menuTab active" data-id="/Home/Default">欢迎首页</a>
-                                @*<a href="javascript:;" class="menuTab" data-id="/Home/About" style="padding-right: 15px;">平台介绍</a>*@
+                                @*<a href="javascript:;" class="menuTab" data-id="/Home/About" style="padding-right: 15px;">giới thiệu nền tảng</a>*@
                             </div>
                         </nav>
                         <button class="roll-nav roll-right tabRight">
@@ -153,9 +153,9 @@
                                 页签操作<i class="fa fa-caret-down" style="padding-left: 3px;"></i>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a class="tabReload" href="javascript:void(0);">刷新当前</a></li>
-                                <li><a class="tabCloseCurrent" href="javascript:void(0);">关闭当前</a></li>
-                                <li><a class="tabCloseAll" href="javascript:void(0);">全部关闭</a></li>
+                                <li><a class="tabReload" href="javascript:void(0);">làm mới hiện tại</a></li>
+                                <li><a class="tabCloseCurrent" href="javascript:void(0);">đóng hiện tại</a></li>
+                                <li><a class="tabCloseAll" href="javascript:void(0);">tất cả đóng</a></li>
                                 <li><a class="tabCloseOther" href="javascript:void(0);">除此之外全部关闭</a></li>
                             </ul>
                         </div>
@@ -173,7 +173,7 @@
     </div>
     <div id="loadingPage" style="display: none;">
         <div class="loading-shade"></div>
-        <div class="loading-content" onclick="$.loading(false)">数据加载中，请稍后…</div>
+        <div class="loading-content" onclick="$.loading(false)">đang tải dữ liệu, 请稍后...</div>
     </div>
     <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/index.common.js")"></script>
     <script src="@SiteUrl.GetStaticResourceScriptUrl("~/Content/js/index.js", false)"></script>
@@ -244,7 +244,7 @@
 							blink('#txtb');
                         }
                         var rows = da.rows
-                        //1:库存预警 2:过期预警
+                        //1:cảnh báo tồn kho 2:cảnh báo hết hạn
 						for (var i = 0; i < rows.length; i++) {
 							if (rows[i].typeas == "1") {
 								kcyjypcode += rows[i].ypCode + ",";
@@ -293,10 +293,10 @@
                 $('#txtb').hide();
             }
 			sessionStorage.setItem('kcyjyp', kcyjypcode);
-			top.top.$.Newtouchtab.addTabWithOutMenu({ name: "库存量查询（消息提醒）", enName: "", url: "/OutOrInStoredManage/Purchase/PurchasePlan" });
-			//top.top.$.Newtouchtab.addTabWithOutMenu({ name: "库存量查询（消息提醒）", enName: "", url: "/StorageManage/DrugStockSearch/StockQuery"});
+			top.top.$.Newtouchtab.addTabWithOutMenu({ name: "tra cứu lượng tồn kho (nhắc tin nhắn)", enName: "", url: "/OutOrInStoredManage/Purchase/PurchasePlan" });
+			//top.top.$.Newtouchtab.addTabWithOutMenu({ name: "tra cứu lượng tồn kho (nhắc tin nhắn)", enName: "", url: "/StorageManage/DrugStockSearch/StockQuery"});
 		}
-        //已过期
+        //đã hết hạn
 		function gqyj() {
 			$("#badge3").text("");
 			var badge2 = Number($("#badge2").text());
@@ -310,7 +310,7 @@
                 $('#txtb').hide();
             }
 			sessionStorage.setItem('gqyjyp', gqyjypcode);
-			top.top.$.Newtouchtab.addTabWithOutMenu({ name: "过期药品查询（消息提醒）", enName: "", url: "/StorageManage/DrugStockSearch/ExpiredDrugsView"});
+			top.top.$.Newtouchtab.addTabWithOutMenu({ name: "tra cứu thuốc hết hạn (nhắc tin nhắn)", enName: "", url: "/StorageManage/DrugStockSearch/ExpiredDrugsView"});
         }
         //当日到期
 		function drgqyj()
@@ -326,7 +326,7 @@
 		        $('#txtb').hide();
 		    }
 		    sessionStorage.setItem('drgqyjyp', drgqyjypcode);
-		    top.top.$.Newtouchtab.addTabWithOutMenu({ name: "1个月内过期药品查询（消息提醒）", enName: "", url: "/StorageManage/DrugStockSearch/ExpiredDrugsView?type=1" });
+		    top.top.$.Newtouchtab.addTabWithOutMenu({ name: "1 tháng trong tra cứu thuốc hết hạn (nhắc tin nhắn)", enName: "", url: "/StorageManage/DrugStockSearch/ExpiredDrugsView?type=1" });
 		}
 
         function Onload() {

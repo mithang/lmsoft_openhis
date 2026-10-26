@@ -3,12 +3,12 @@
     public class InventoryDateDropDownVO
     {
         /// <summary>
-        /// 盘点ID
+        /// kiểm kê ID
         /// </summary>
         public string pdId { get; set; }
         
         /// <summary>
-        /// 盘点时间
+        /// thời gian kiểm kê
         /// </summary>
         public string pdsj { get; set; }
     }

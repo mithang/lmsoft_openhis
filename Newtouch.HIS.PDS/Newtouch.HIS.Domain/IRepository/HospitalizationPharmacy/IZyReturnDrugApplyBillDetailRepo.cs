@@ -4,12 +4,12 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 住院退药申请单明细
+    /// trả thuốc nội trú phiếu đề nghị chi tiết
     /// </summary>
     public interface IZyReturnDrugApplyBillDetailRepo : IRepositoryBase<ZyReturnDrugApplyBillDetailEntity>
     {
         /// <summary>
-        /// 根据退药申请Id获取退药申请明细
+        /// theo trả thuốc đề nghị Id lấy trả thuốc đề nghị chi tiết
         /// </summary>
         /// <param name="rabId"></param>
         /// <returns></returns>

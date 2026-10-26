@@ -35,7 +35,7 @@
                 if (!keyword) {
                     return null;
                 }
-                //遍历数据源，用keyword来筛选出结果
+                //遍历数据源, dùng keyword để lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.newtouchclients.sysPatientNatureList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -45,12 +45,12 @@
                 return resultObjArr;
 
             },
-            caption: "病人性质",
+            caption: "tính chất bệnh nhân",
             colModel: [
-                { label: '编号', name: 'brxzbh', widthratio: 25 },
-                { label: '代码', name: 'brxz', widthratio: 25 },
-                { label: '名称', name: 'brxzmc', widthratio: 25 },
-                { label: '拼音', name: 'py', widthratio: 25 }
+                { label: 'số hiệu', name: 'brxzbh', widthratio: 25 },
+                { label: 'mã', name: 'brxz', widthratio: 25 },
+                { label: 'tên', name: 'brxzmc', widthratio: 25 },
+                { label: 'phiên âm', name: 'py', widthratio: 25 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#brxz").attr("data-label", $thistr.find("td:eq(0)").html() + "-" + $thistr.find("td:eq(1)").html());
@@ -96,7 +96,7 @@
                         var kh = $.currentWindow().$("#kh").val();
                         getSysBasicInfoByCardNo(kh);
                     }
-                    $.currentWindow().DisableSysBasicInfo(true); //true:标志是从免卡登记或根据卡号查询返回明细, false:页面加载时，可以输kh
+                    $.currentWindow().DisableSysBasicInfo(true); //true:标志是从免卡登记或根据卡号查询返回明细, false:trang tải giờ, có thể nhập kh
                 }
             })
         }
@@ -117,10 +117,10 @@
                 $.currentWindow().$("#kh").val(data.kh);
                 $.currentWindow().$("#zjh").val(data.zjh);
                 if (data.xb == 0) {
-                    $.currentWindow().$("input[name=xb]:eq(1)").attr("checked", 'checked');//女
+                    $.currentWindow().$("input[name=xb]:eq(1)").attr("checked", 'checked');//nữ
                     $.currentWindow().$("input[name=xb]:eq(1)").parent().addClass('active');
                 } else {
-                    $.currentWindow().$("input[name=xb]:eq(0)").attr("checked", 'checked');//男
+                    $.currentWindow().$("input[name=xb]:eq(0)").attr("checked", 'checked');//nam
                     $.currentWindow().$("input[name=xb]:eq(0)").parent().addClass('active');
                 }
                 $.currentWindow().$("#nl").val(data.nl);
@@ -132,7 +132,7 @@
                 if (data.zjlx) {
                     var type = data.zjlx.trim();
                     switch (type) {
-                        case "0": type = "身份证"; break;
+                        case "0": type = "CMND/CCCD"; break;
                         case "1": type = "护照"; break;
                         case "2": type = "军官证"; break;
                         default: break;
@@ -212,16 +212,16 @@
         //病历号
         var blh = $("#").val();
         if (!blh) {
-            $.modalAlert("病历号为空！", 'warning');
+            $.modalAlert("病历号为空!", 'warning');
             return false;
         }
-        //拼音
+        //phiên âm
         var py = $("#").val();
         if (!py) {
-            $.modalAlert("拼音为空！", 'warning');
+            $.modalAlert("phiên âm là trống!", 'warning');
             return false;
         }
-        //性别
+        //giới tính
         var xb = false;
         $('input[name="xb"]').each(function () {
             var $this = $(this);
@@ -231,7 +231,7 @@
             }
         });
         if (!xb) {
-            $.modalAlert("请选中性别！", 'warning');
+            $.modalAlert("vui lòng chọn trong giới tính!", 'warning');
             return false;
         }
         return true;
@@ -241,59 +241,59 @@
 <form>
     <div class="panel panel-default" style="margin-top:10px;">
         <div class="panel-heading">
-            基本信息
+            thông tin cơ bản
         </div>
         <table class="form" style="width:98%;border:0">
             <tr>
                 <td class="formTitle">
-                    药品名称<span>*</span>
+                    tên thuốc<span>*</span>
                 </td>
                 <td class="formValue">
                     <input type="text" id="kh" class="form-control">
                 </td>
-                <td class="formTitle">大类</td>
+                <td class="formTitle">nhóm lớn</td>
                 <td class="formValue"><input type="text" id="blh" class="form-control"></td>
-                <td class="formTitle">拼音<span>*</span></td>
+                <td class="formTitle">phiên âm<span>*</span></td>
                 <td class="formValue">
                     <input type="text" id="brxz" name="brxz" class="form-control">
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">商品名称</td>
+                <td class="formTitle">hàng hóa tên</td>
                 <td class="formValue">
                     <input type="text" id="brxz" name="brxz" class="form-control">
                 </td>
-                <td class="formTitle">代码</td>
+                <td class="formTitle">mã</td>
                 <td class="formValue">
                     <input type="text" id="zjh" name="zjh" class="form-control">
                 </td>
-                <td class="formTitle">医保代码</td>
+                <td class="formTitle">mã BHYT</td>
                 <td class="formValue">
                     <input type="text" id="zjh" name="zjh" class="form-control">
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">药厂名称<span>*</span></td>
+                <td class="formTitle">tên nhà máy dược<span>*</span></td>
                 <td class="formValue"><input type="text" id="nl" name="nl" class="form-control"></td>
-                <td class="formTitle">剂型</td>
+                <td class="formTitle">dạng bào chế</td>
                 <td class="formValue">
                     <input type="text" id="nl" name="nl" class="form-control">
                 </td>
-                <td class="formTitle">批准文号</td>
+                <td class="formTitle">số giấy phép</td>
                 <td class="formValue">
                     <input type="text" id="nl" name="nl" class="form-control">
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">使用量</td>
+                <td class="formTitle">khiến liều lượng</td>
                 <td class="formValue">
                     <input type="text" id="nl" name="nl" class="form-control">
                 </td>
-                <td class="formTitle">药品分类<span>*</span></td>
+                <td class="formTitle">phân loại thuốc<span>*</span></td>
                 <td class="formValue">
                     <input type="text" id="nl" name="nl" class="form-control">
                 </td>
-                <td class="formTitle">药品规格</td>
+                <td class="formTitle">quy cách thuốc</td>
                 <td class="formValue"><input type="text" id="dh" class="form-control"></td>
             </tr>
             <tr>
@@ -301,13 +301,13 @@
                 <td class="formValue">
                     <input type="text" id="dh" class="form-control">
                 </td>
-                <td class="formTitle">自负性质</td>
+                <td class="formTitle">tính chất tự chi trả</td>
                 <td class="formValue">
                     <select class="form-control">
-                        <option value="">请选择</option>
-                        <option value="">可报</option>
-                        <option value="">自费</option>
-                        <option value="">分类自负</option>
+                        <option value="">vui lòng chọn</option>
+                        <option value="">được báo</option>
+                        <option value="">tự chi trả</option>
+                        <option value="">tự chi trả theo loại</option>
                     </select>
                 </td>
                 <td class="formTitle">供货商</td>
@@ -317,19 +317,19 @@
                 <td></td>
             </tr>
             <tr>
-                <td class="formTitle">执行时间</td>
+                <td class="formTitle">thời gian thực hiện</td>
                 <td class="formValue">
                     <input id="txtPY" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
                 </td>
-                @*<td>有效</td>
+                @*<td>còn hiệu lực</td>
                     <td class="formValue">
                         <input type="text" id="xian_shi" class="form-control" style="width:90px;float:left" />
                     </td>*@
-                <td class="formTitle">建档人员</td>
+                <td class="formTitle">lập hồ sơ nhân viên</td>
                 <td class="formValue">
                     <input type="text" id="xian_xian" class="form-control newtouch_Readonly" />
                 </td>
-                <td class="formTitle">建档日期</td>
+                <td class="formTitle">lập hồ sơ ngày</td>
                 <td class="formValue">
                     <input type="text" id="xian_dz" class="form-control newtouch_Readonly" />
                 </td>
@@ -343,7 +343,7 @@
         <table class="form" style="width:90%;border:0">
             <tr>
                 <td class="formTitle">
-                    住院单位<span>*</span>
+                    nội trú đơn vị<span>*</span>
                 </td>
                 <td class="formValue">
                     <input type="text" id="kh" class="form-control">
@@ -355,7 +355,7 @@
                     <input type="text" id="kh" class="form-control">
                 </td>
                 <td class="formTitle">
-                    零售价<span>*</span>
+                    giá bán lẻ<span>*</span>
                 </td>
                 <td class="formValue">
                     <input type="text" id="kh" class="form-control">
@@ -363,7 +363,7 @@
             </tr>
             <tr>
                 <td class="formTitle">
-                    门诊单位<span>*</span>
+                    ngoại trú đơn vị<span>*</span>
                 </td>
                 <td class="formValue">
                     <input type="text" id="kh" class="form-control">
@@ -375,7 +375,7 @@
                     <input type="text" id="kh" class="form-control">
                 </td>
                 <td class="formTitle">
-                    批发价<span>*</span>
+                    giá bán buôn<span>*</span>
                 </td>
                 <td class="formValue">
                     <input type="text" id="kh" class="form-control">
@@ -383,7 +383,7 @@
             </tr>
             <tr>
                 <td class="formTitle">
-                    药库单位<span>*</span>
+                    đơn vị kho thuốc<span>*</span>
                 </td>
                 <td class="formValue">
                     <input type="text" id="kh" class="form-control">
@@ -403,7 +403,7 @@
             </tr>
             <tr>
                 <td class="formTitle">
-                    最小单位<span>*</span>
+                    đơn vị nhỏ nhất<span>*</span>
                 </td>
                 <td class="formValue">
                     <input type="text" id="kh" class="form-control">
@@ -415,7 +415,7 @@
                     <input type="text" id="kh" class="form-control">
                 </td>
                 <td class="formTitle">
-                    最小单位零售价<span>*</span>
+                    giá bán lẻ đơn vị nhỏ nhất<span>*</span>
                 </td>
                 <td class="formValue">
                     <input type="text" id="kh" class="form-control">
@@ -433,33 +433,33 @@
     </div>
     <div class="panel panel-default" style="margin-top:10px;">
         <div class="panel-heading">
-            药品属性
+            thuộc tính thuốc
         </div>
         <div class="panel panel-default" style="margin-bottom:0; margin-top:40px;width:95%">
             <div class="panel-heading">
-                药品属性
+                thuộc tính thuốc
             </div>
             <table class="form" style="width:98%;border:0">
                 <tr>
                     <td class="formTitle">中标标志</td>
                     <td class="formValue">
                         <select class="formValue">
-                            <option value="">请选择</option>
-                            <option value="1">无需招标</option>
-                            <option value="1">市招标</option>
-                            <option value="1">区招标</option>
-                            <option value="1">竞价</option>
+                            <option value="">vui lòng chọn</option>
+                            <option value="1">không cần đấu thầu</option>
+                            <option value="1">thành phố đấu thầu</option>
+                            <option value="1">quận đấu thầu</option>
+                            <option value="1">đấu giá</option>
                             <option value="1">询问</option>
                         </select>
                     </td>
-                    <td class="formTitle">药品属性</td>
+                    <td class="formTitle">thuộc tính thuốc</td>
                     <td class="formValue"><input type="text" id="qxdm" class="form-control" /></td>
-                    <td class="formTitle">病区记账类型</td>
+                    <td class="formTitle">khu bệnh ghi sổ loại</td>
                     <td class="formValue">
                         <select class="formValue">
-                            <option value="">请选择</option>
-                            <option value="1">每天取整</option>
-                            <option value="1">每次取整</option>
+                            <option value="">vui lòng chọn</option>
+                            <option value="1">mỗi ngày làm tròn</option>
+                            <option value="1">mỗi lần làm tròn</option>
                         </select>
                     </td>
                 </tr>

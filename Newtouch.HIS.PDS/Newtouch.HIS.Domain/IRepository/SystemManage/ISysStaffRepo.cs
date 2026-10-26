@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysStaffRepo : IRepositoryBase<SysStaffVEntity>
     {
         /// <summary>
-        /// 获取组织机构 有效员工列表
+        /// lấy tổ chức còn hiệu lực viên công danh sách
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

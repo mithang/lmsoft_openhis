@@ -2,22 +2,22 @@
 {
 
     /// <summary>
-    /// 取消排药信息
+    /// hủy xếp thuốc thông tin
     /// </summary>
     public class RpCancelVo
     {
         /// <summary>
-        /// 处方号
+        /// số đơn thuốc
         /// </summary>
         public string cfh { get;set;}
 
         /// <summary>
-        /// 组织机构ID
+        /// tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
         
         /// <summary>
-        /// 药房部门编码
+        /// bộ phận nhà thuốc mã
         /// </summary>
         public string yfbmCode { get; set; }
     }

@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Web.Controllers
         [HandlerAjaxOnly]
         public ActionResult GetClientsDataJson()
         {
-            //年月
+            //năm tháng
             var yearArr = new List<int>();
             var yearMin = DateTime.Now.Year - 5;
             var yearMax = DateTime.Now.Year + 1;
@@ -48,14 +48,14 @@ namespace Newtouch.HIS.Web.Controllers
             object sysDepartList = null;
             if (!string.IsNullOrWhiteSpace(opr.OrganizeId))
             {
-                sysDepartList = _sysDepartmentRepo.GetList(opr.OrganizeId);//科室
+                sysDepartList = _sysDepartmentRepo.GetList(opr.OrganizeId);//khoa
             }
             var data = new
             {
-                //字典 包括无效的
+                //từ điển bao gồm không hiệu lực của
                 dataItems = GetDataItemList(),
-                //获取所有科室 包括无效的
-                sysDepartList = sysDepartList == null ? null : sysDepartList.ToJson(new[] { "Name", "Code", "yjbz", "py" }),    //科室
+                //lấy tất cả khoa bao gồm không hiệu lực của
+                sysDepartList = sysDepartList == null ? null : sysDepartList.ToJson(new[] { "Name", "Code", "yjbz", "py" }),    //khoa
                 authorizeMenu = GetMenuList(),
                 //
                 SysFailedCodeMessageMapList = _sysFailedCodeMessageMappRepo.GetList(opr.OrganizeId),

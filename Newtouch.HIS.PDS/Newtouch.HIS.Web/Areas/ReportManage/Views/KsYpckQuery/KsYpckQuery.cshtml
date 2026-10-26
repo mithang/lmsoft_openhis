@@ -12,30 +12,30 @@
 </style>
 <form id="form1">
     <div class="panel panel-default">
-        <div class="panel-heading">搜索</div>
+        <div class="panel-heading">tìm kiếm</div>
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">药品：</th>
+                    <th class="formTitle">thuốc: </th>
                     <td class="formValue">
                         <input id="keyword" type="text" class="form-control" />
                     </td>
                     <td class="formTitle">
-                        <input type="button" id="btn_search" class="btn btn-primary" value="查询" style="margin-left:10px;" />
+                        <input type="button" id="btn_search" class="btn btn-primary" value="tra cứu" style="margin-left:10px;" />
                     </td>
-                    <th class="formTitle ">统计日期:</th>
+                    <th class="formTitle ">ngày thống kê:</th>
                     <td class="formValue">
                         <input id="startTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">到：</th>
+                    <th class="formTitle">đến: </th>
                     <td class="formValue">
                         <input id="endTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm:ss")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
                     <td class="formValue" style="width:15%;margin-left:10px">
                         <div id="rangeRadio" style="margin-left:30px">
-                            <label><input type="radio" id="qbradio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="0" />全部</label>
-                            <label><input type="radio" id="mzradio" name="optionsRadios" class="optionsRadios formClearIgnore" value="1" />门诊</label>
-                            <label><input type="radio" id="zyradio" name="optionsRadios" class="optionsRadios formClearIgnore" value="2" />住院</label>
+                            <label><input type="radio" id="qbradio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="0" />tất cả</label>
+                            <label><input type="radio" id="mzradio" name="optionsRadios" class="optionsRadios formClearIgnore" value="1" />ngoại trú</label>
+                            <label><input type="radio" id="zyradio" name="optionsRadios" class="optionsRadios formClearIgnore" value="2" />nội trú</label>
                         </div>
                     </td>
                 </tr>
@@ -47,7 +47,7 @@
     </div>
 </form>
 <script>
-    //初始化输入码
+    //khởi tạo mã nhập
     function InitSrm() {
         $("#keyword").newtouchBatchFloatingSelector({
             clickautotrigger: true,
@@ -64,21 +64,21 @@
                 return reqData;
             },
             colModel: [
-                { label: '类别', name: 'dlmc', width: 60 },
-                { label: '代码', name: 'ypdm', width: 100 },
-                { label: '名称', name: 'ypmc', width: 200, align: 'left' },
-                { label: '规格', name: 'gg', width: 110, align: 'left' },
-                { label: '库存', name: 'slStr', width: 90, align: 'center' },
-                { label: '零售单价', name: 'lsjdjdw', width: 120, align: 'center' },//部门单位零售价
-                { label: '批准文号', name: 'pzwh', width: 150, align: 'center' },
-                { label: '厂家', name: 'sccj', width: 200, align: 'left' },
-                { label: 'pfj', name: 'pfj', hidden: true },//部门单位批发价
-                { label: 'lsj', name: 'lsj', hidden: true },//部门单位零售价
+                { label: 'loại', name: 'dlmc', width: 60 },
+                { label: 'mã', name: 'ypdm', width: 100 },
+                { label: 'tên', name: 'ypmc', width: 200, align: 'left' },
+                { label: 'quy cách', name: 'gg', width: 110, align: 'left' },
+                { label: 'tồn kho', name: 'slStr', width: 90, align: 'center' },
+                { label: 'đơn giá bán lẻ', name: 'lsjdjdw', width: 120, align: 'center' },//giá bán lẻ theo đơn vị bộ phận
+                { label: 'số giấy phép', name: 'pzwh', width: 150, align: 'center' },
+                { label: 'nhà sản xuất', name: 'sccj', width: 200, align: 'left' },
+                { label: 'pfj', name: 'pfj', hidden: true },//giá bán buôn theo đơn vị bộ phận
+                { label: 'lsj', name: 'lsj', hidden: true },//giá bán lẻ theo đơn vị bộ phận
                 { label: 'ykpfj', name: 'ykpfj', hidden: true },
                 { label: 'yklsj', name: 'yklsj', hidden: true },
                 { label: 'bzs', name: 'bzs', hidden: true },
                 { label: 'bzdw', name: 'bzdw', hidden: true },
-                { label: 'dw', name: 'dw', hidden: true },//部门单位
+                { label: 'dw', name: 'dw', hidden: true },//đơn vị bộ phận
                 { label: 'zhyz', name: 'zhyz', hidden: true },
                 { label: 'zxdw', name: 'zxdw', hidden: true },
                 { label: 'zxdwlsj', name: 'zxdwlsj', hidden: true }
@@ -92,11 +92,11 @@
     $(function () {
         InitSrm();
         $('#if_data').css('height', $(window).height() - 85);
-        //查询
+        //tra cứu
         $("#btn_search").click(function () {
 
             if ($("#keyword").val() == "" || $("#keyword").val() == null) {
-                $.modalAlert("请先填写药品，然后搜索！", 'error');
+                $.modalAlert("请先填写药品, sau đó tìm kiếm!", 'error');
                 return false;
             }
 

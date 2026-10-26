@@ -1,28 +1,28 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "药品出库统计表";
+    ViewBag.Title = "thuốc xuất kho thống kê bảng";
     Layout = "~/Views/Shared/_Index.cshtml";
-    //报表链接
+    //liên kết báo cáo
     var reportUrl = SysConfigReader.OrgReportLink();
     var reportUrlNew = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
 }
 
 <form id="form1">
     <div class="panel panel-default">
-        <div class="panel-heading">搜索</div>
+        <div class="panel-heading">tìm kiếm</div>
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle ">统计日期:</th>
+                    <th class="formTitle ">ngày thống kê:</th>
                     <td class="formValue">
                         <input id="kssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
                     </td>
-                    <th class="formTitle">到：</th>
+                    <th class="formTitle">đến: </th>
                     <td class="formValue">
                         <input id="jssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd 00:00' })" />
                     </td>
                     <td class="formTitle">
-                        <input type="button" id="btn_search" class="btn btn-primary" value="查询" style="margin-left:10px;" />
+                        <input type="button" id="btn_search" class="btn btn-primary" value="tra cứu" style="margin-left:10px;" />
                     </td>
                 </tr>
             </table>
@@ -41,7 +41,7 @@
     $("#btn_search").click(function () {
         debugger
         if ($('#kssj').val() > $('#jssj').val()) {
-            $.modalAlert("开始时间不能大于结束时间", "error");
+            $.modalAlert("thời gian bắt đầu không được lớn hơn thời gian kết thúc", "error");
             return;
         }
         var orgId = '@ViewBag.OrganizeId';
@@ -50,7 +50,7 @@
         url += "&kssj=" + getDateByStr($('#kssj').val()).toISOString() + "&jssj=" + getDateByStr($('#jssj').val()).toISOString();
 
         console.log(url)
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'đang yêu cầu trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
     });
 
@@ -62,26 +62,26 @@
         $('#layout iframe').css('height', h);
     });
 
-    //刷新列表
+    //làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }
 
     function getDateByStr(dateString) {
-        // 将字符串分割为日期和时间部分
+        // tách chuỗi thành phần ngày và thời gian
         var parts = dateString.split(' ');
         var datePart = parts[0].split('-');
         var timePart = parts[1].split(':');
 
-        // 创建Date对象
+        // tạo Date đối tượng
         var date = new Date(
-            parseInt(datePart[0]), // 年份
-            parseInt(datePart[1]) - 1, // 月份是从0开始的，所以需要减1
-            parseInt(datePart[2]), // 日
-            parseInt(timePart[0]), // 小时
-            parseInt(timePart[1]), // 分钟
-            0, // 秒
-            0 // 毫秒
+            parseInt(datePart[0]), // năm
+            parseInt(datePart[1]) - 1, // tháng bắt đầu từ 0 bắt đầu, do đó cần trừ 1
+            parseInt(datePart[2]), // ngày
+            parseInt(timePart[0]), // giờ
+            parseInt(timePart[1]), // phút
+            0, // giây
+            0 // mili giây
         );
         return date;
     }

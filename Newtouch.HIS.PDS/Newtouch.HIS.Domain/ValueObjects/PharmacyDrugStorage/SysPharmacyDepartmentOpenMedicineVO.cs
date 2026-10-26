@@ -10,52 +10,52 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
     public class SysPharmacyDepartmentOpenMedicineVO : IEntity<SysPharmacyDepartmentOpenMedicineVO>
     {
         /// <summary>
-        /// 主键Id
+        /// khóa chính Id
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 药房部门编号
+        /// bộ phận nhà thuốc số hiệu
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 大类编号
+        /// nhóm lớn số hiệu
         /// </summary>
         public string dlCode { get; set; }
 
         /// <summary>
-        /// 组织机构Id
+        /// tổ chức Id
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 修改用户
+        /// người sửa đổi
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// thời gian sửa đổi
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 状态 0-无效  1-有效
+        /// trạng thái 0-không hiệu lực  1-còn hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 排序
+        /// sắp xếp
         /// </summary>
         public int? px { get; set; }
 

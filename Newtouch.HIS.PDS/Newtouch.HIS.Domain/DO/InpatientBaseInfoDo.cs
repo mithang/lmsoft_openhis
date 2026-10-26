@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.DO
 {
     /// <summary>
-    /// 住院患者基本信息
+    /// nội trú bệnh nhân thông tin cơ bản
     /// </summary>
     public class InpatientBaseInfoDo
     {

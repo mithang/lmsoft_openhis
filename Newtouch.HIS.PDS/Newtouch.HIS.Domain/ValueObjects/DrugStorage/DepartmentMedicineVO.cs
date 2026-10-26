@@ -3,13 +3,13 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 系统部门药品
+    /// hệ thống bộ phận thuốc
     /// </summary>
     public class DepartmentMedicineVO
     {
         #region 系统药品xt_yp
         /// <summary>
-        /// 药品类别
+        /// loại thuốc
         /// </summary>
         public string yplb { get; set; }
         
@@ -24,27 +24,27 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string ypmc { get; set; }
         
         /// <summary>
-        /// 包装数
+        /// số lượng đóng gói
         /// </summary>
         public decimal bzs { get; set; }
 
         /// <summary>
-        /// 药库单位 包装单位
+        /// đơn vị kho thuốc đơn vị đóng gói
         /// </summary>
         public string ykdw { get; set; }
         /// <summary>
-        /// 最小单位
+        /// đơn vị nhỏ nhất
         /// </summary>
         public string zxdw { get; set; }
         /// <summary>
-        /// 生产厂家
+        /// nhà sản xuất
         /// </summary>
         public string sccj { get; set; }
         #endregion
 
         #region 系统药品库存 xt_yp_kcxx
         /// <summary>
-        /// 库存Id
+        /// tồn kho Id
         /// </summary>
         public string kcId { get; set; }
         /// <summary>
@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public int xykc { get; set; }
         /// <summary>
-        /// 可用库存
+        /// tồn kho khả dụng
         /// </summary>
         public int kykc { get; set; }
         /// <summary>
@@ -64,57 +64,57 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public string kykcstr { get; set; }
         /// <summary>
-        /// 库存数量
+        /// số lượng tồn kho
         /// </summary>
         public int kcsl { get; set; }
         /// <summary>
-        /// 转换因子
+        /// hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
         /// <summary>
-        /// 批号
+        /// số lô
         /// </summary>
         public string ph { get; set; }
         /// <summary>
-        /// 批次
+        /// lô
         /// </summary>
         public string pc { get; set; }
         /// <summary>
-        /// 有效期
+        /// hạn sử dụng
         /// </summary>
         public DateTime yxq { get; set; }
         #endregion
 
         #region 出入库明细xt_yp_crkmx 
         /// <summary>
-        /// 生产日期
+        /// ngày sản xuất
         /// </summary>
         public DateTime scrq { get; set; }
         /// <summary>
-        /// 进价
+        /// giá nhập
         /// </summary>
         public decimal jj { get; set; }
         /// <summary>
-        /// 批发价
+        /// giá bán buôn
         /// </summary>
         public decimal pfj { get; set; }
         /// <summary>
-        /// 零售价
+        /// giá bán lẻ
         /// </summary>
         public decimal lsj { get; set; }
         /// <summary>
-        /// 扣率
+        /// tỷ lệ chiết khấu
         /// </summary>
         public decimal kl { get; set; }
         #endregion
 
         #region 药品属性xt_ypsx
         /// <summary>
-        /// 批准文号
+        /// số giấy phép
         /// </summary>
         public string pzwh { get; set; }
         /// <summary>
-        /// 规格
+        /// quy cách
         /// </summary>
         public string gg { get; set; }
         #endregion

@@ -7,25 +7,25 @@ using Newtouch.HIS.Domain.ValueObjects;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 出库
+    /// xuất kho
     /// </summary>
     public interface IHandOutMedicineDmnService
     {
         /// <summary>
-        /// 输入码自动提示
+        /// mã nhập tự động nhắc nhở
         /// </summary>
         /// <returns></returns>
         List<HandOutMedicinesrmVO> GetsrmInfoFlevelList(string yfbmCode, string srm);
 
         /// <summary>
-        ///  获取科室药品库存记录
+        ///  lấy khoa thuốc tồn kho bản ghi
         /// </summary>
         /// <param name="ypdm"></param>
         /// <returns></returns>
         List<MedicinepcInfo> GetpcList(string ypdm);
 
         /// <summary>
-        /// 发药(直接出库)
+        /// phát thuốc(xuất kho trực tiếp)
         /// </summary>
         /// <param name="xtYpLsNbfymxk"></param>
         /// <param name="lybm"></param>
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string HandOutMedicine(List<XT_YP_LS_NBFYMXK> xtYpLsNbfymxk, string lybm, string fydh, string fyfs, int type);
 
         /// <summary>
-        /// 药房向科室发药
+        /// nhà thuốc tới khoa phát thuốc
         /// </summary>
         /// <param name="xtYpLsNbfymxk"></param>
         /// <param name="lybm"></param>
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string DispensingMedicineToKs(List<XT_YP_LS_NBFYMXK> xtYpLsNbfymxk, string lybm, string pdh, string fyfs, int type);
 
         /// <summary>
-        /// 申领出库
+        /// xuất kho theo phiếu lĩnh
         /// </summary>
         /// <param name="xtYpLsNbfymxk"></param>
         /// <param name="fydh"></param>
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string HandOutMedicineByRequest(Dictionary<string, List<XT_YP_LS_NBFYMXK>> xtYpLsNbfymxk, string fydh, string fyfs, int type);
 
         /// <summary>
-        /// 退药
+        /// trả thuốc
         /// </summary>
         /// <param name="xtYpLsNbfymxk"></param>
         /// <param name="tydh"></param>
@@ -67,16 +67,16 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string RequestOfReturnMedicine(List<XT_YP_LS_NBFYMXK> xtYpLsNbfymxk, string tybm, string tydh, string fyfs, int type);
 
         /// <summary>
-        /// 获取退药药品明细
+        /// lấy trả thuốc chi tiết thuốc
         /// </summary>
-        /// <param name="ckbm">出库部门 申请退药的部门</param>
-        /// <param name="rkbm">入库部门 药品即将退回到的部门</param>
-        /// <param name="srm">输入码 关键字</param>
+        /// <param name="ckbm">bộ phận xuất kho đề nghị trả thuốc của bộ phận</param>
+        /// <param name="rkbm">bộ phận nhập kho 药品即将退回到的部门</param>
+        /// <param name="srm">mã nhập từ khóa</param>
         /// <returns></returns>
         List<HandOutMedicinesrmVO> GetTyypBySrm(string ckbm, string rkbm, string srm);
 
         /// <summary>
-        /// 获取药品信息  根据批次批号分组
+        /// lấy thông tin thuốc  theo lô số lô nhóm
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="yfbmCode"></param>
@@ -85,25 +85,25 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<HandOutMedicinesrmVO> GetDrugGroupByPc(string ypCode, string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 获取批量出库药品库存信息
+        /// lấy thông tin tồn kho thuốc xuất kho hàng loạt
         /// </summary>
-        /// <param name="yfbmCode">当前部门</param>
-        /// <param name="rkbm">入库部门</param>
+        /// <param name="yfbmCode">bộ phận hiện tại</param>
+        /// <param name="rkbm">bộ phận nhập kho</param>
         /// <param name="organizeid"></param>
         /// <returns></returns>
         IList<DrugStockInfoVEntity> GetDirectDeliveryDrugsList(Pagination pagination, string yfbmCode, string rkbm, string organizeid);
 
         /// <summary>
-        /// 获取批量出库药品库存信息
+        /// lấy thông tin tồn kho thuốc xuất kho hàng loạt
         /// </summary>
-        /// <param name="yfbmCode">当前部门</param>
-        /// <param name="rkbm">入库部门</param>
+        /// <param name="yfbmCode">bộ phận hiện tại</param>
+        /// <param name="rkbm">bộ phận nhập kho</param>
         /// <param name="organizeid"></param>
         /// <returns></returns>
         IList<DrugStockInfoVEntity> GetDirectDeliveryDrugsList(string yfbmCode, string rkbm, string organizeid);
 
         /// <summary>
-        /// 前天提交批量直接出库
+        /// trước ngày gửi hàng loạt xuất kho trực tiếp
         /// </summary>
         /// <param name="paraDto"></param>
         /// <returns></returns>

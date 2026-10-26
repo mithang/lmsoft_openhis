@@ -1,47 +1,47 @@
 ﻿namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 进销存统计查询条件
+    /// thống kê nhập-xuất-tồn điều kiện tra cứu
     /// </summary>
     public class PsiStatisticsParam
     {
         /// <summary>
-        /// 开始结转时间
+        /// bắt đầu thời gian kết chuyển
         /// </summary>
         public string ksjzsj { get; set; }
 
         /// <summary>
-        /// 结束结转时间
+        /// kết thúc thời gian kết chuyển
         /// </summary>
         public string jsjzsj { get; set; }
 
         /// <summary>
-        /// 药品状态
+        /// trạng thái thuốc
         /// </summary>
         public string ypzt { get; set; }
 
         /// <summary>
-        /// 输入码/药品代码
+        /// mã nhập/mã thuốc
         /// </summary>
         public string srm { get; set; }
 
         /// <summary>
-        /// 大类
+        /// nhóm lớn
         /// </summary>
         public string dl { get; set; }
 
         /// <summary>
-        /// 剂型
+        /// dạng bào chế
         /// </summary>
         public string jx { get; set; }
 
         /// <summary>
-        /// 零差率
+        /// tỷ lệ chênh lệch bằng 0
         /// </summary>
         public string rate { get; set; }
 
         /// <summary>
-        /// 显示无进销存药品
+        /// hiển thị không có nhập-xuất-tồn thuốc
         /// </summary>
         public string noPSI { get; set; }
     }

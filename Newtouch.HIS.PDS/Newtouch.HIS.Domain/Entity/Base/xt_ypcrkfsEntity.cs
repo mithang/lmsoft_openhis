@@ -5,49 +5,49 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain
 {
     /// <summary>
-    /// 药品出入库方式
+    /// thuốc phương thức nhập/xuất kho
     /// </summary>
     [Table("xt_ypcrkfs")]
     public class XtypcrkfsEntity : IEntity<XtypcrkfsEntity>
     {
         /// <summary>
-        /// 主键
+        /// khóa chính
         /// </summary>
         [Key]
         public int crkfsId { get; set; }
 
         /// <summary>
-        /// 出入库方式代码
+        /// phương thức nhập/xuất kho mã
         /// </summary>
         public string crkfsCode { get; set; }
 
         /// <summary>
-        /// 出入库方式名称
+        /// phương thức nhập/xuất kho tên
         /// </summary>
         public string crkfsmc { get; set; }
 
         /// <summary>
-        /// 出入库备注 0:入库  1：出库
+        /// ra nhập kho ghi chú 0:nhập kho  1: xuất kho
         /// </summary>
         public string crkbz { get; set; }
 
         /// <summary>
-        /// 状态 1：有效  0：无效
+        /// trạng thái 1: còn hiệu lực  0: không hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 排序
+        /// sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// tạo người
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Domain
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 修改时间    
+        /// thời gian sửa đổi    
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
     }

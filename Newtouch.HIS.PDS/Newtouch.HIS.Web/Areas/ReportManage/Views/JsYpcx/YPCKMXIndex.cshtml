@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "结算出库数量明细统计";
+    ViewBag.Title = "quyết toán số lượng xuất kho chi tiết thống kê";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -13,38 +13,38 @@
 </style>
 <form id="form1">
     <div class="panel panel-default">
-        <div class="panel-heading">搜索</div>
+        <div class="panel-heading">tìm kiếm</div>
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle ">统计日期:</th>
+                    <th class="formTitle ">ngày thống kê:</th>
                     <td class="formValue">
                         <input id="startTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">到：</th>
+                    <th class="formTitle">đến: </th>
                     <td class="formValue">
                         <input id="endTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm:ss")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">大类：</th>
+                    <th class="formTitle">nhóm lớn: </th>
                     <td class="formValue">
                         <select id="ypdl" class="form-control">
-                            <option value="">全部</option>
+                            <option value="">tất cả</option>
                         </select>
                     </td>
-                    <th class="formTitle">科室：</th>
+                    <th class="formTitle">khoa: </th>
                     <td class="formValue">
                         <select id="depa" class="form-control">
-                            <option value="">全部</option>
+                            <option value="">tất cả</option>
                         </select>
                     </td>
-                    <th class="formTitle">病区：</th>
+                    <th class="formTitle">khu bệnh: </th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="bqmc" class="form-control">
-                            <option value="">全部</option>
+                            <option value="">tất cả</option>
                         </select>
                     </td>
                     <td class="formTitle">
-                        <input type="button" id="btn_search" class="btn btn-primary" value="查询" style="margin-left:10px;" />
+                        <input type="button" id="btn_search" class="btn btn-primary" value="tra cứu" style="margin-left:10px;" />
                     </td>
                 </tr>
             </table>
@@ -62,12 +62,12 @@
             url: "/ReportManage/YpckQuery/GetSysDepartmentList",
             dropdownAutoWidth: true
         });
-        $("#bqmc").bindSelect({ //病区信息集合
+        $("#bqmc").bindSelect({ //tập hợp thông tin khu bệnh
             url: "/HospitalizationPharmacy/GetBQSelectJson",
             id: "bqCode",
             text: "bqmc"
         });
-        $("#ypdl").bindSelect({ //病区信息集合
+        $("#ypdl").bindSelect({ //tập hợp thông tin khu bệnh
             url: "/ReportManage/JsYpcx/GetDlList",
             id: "dlcode",
             text: "dlmc"
@@ -75,7 +75,7 @@
 
         $('#if_data').css('height', $(window).height() - 85);
 
-        //查询
+        //tra cứu
         $("#btn_search").click(function () {
             var ksname = "";
             if ($("#depa").find("option:selected").text()!="全部") {

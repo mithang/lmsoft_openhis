@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Web.Controllers
 
         #region 损益原因
         /// <summary>
-        /// 损益原因视图
+        /// nguyên nhân lãi/lỗ khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult syyy()
@@ -31,10 +31,10 @@ namespace Newtouch.HIS.Web.Controllers
             return View();
         }
         /// <summary>
-        /// 获取分页实体列表
+        /// lấy phần trang thực thể danh sách
         /// </summary>
-        /// <param name="pagination">分页</param>
-        /// <param name="keyword">筛选关键字</param>
+        /// <param name="pagination">phần trang</param>
+        /// <param name="keyword">lọc từ khóa</param>
         /// <returns></returns>
         public ActionResult GetPagintionGridJson(Pagination pagination, string keyword)
         {
@@ -49,9 +49,9 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取实体
+        /// lấy thực thể
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult GetSyyyFormJson(string keyValue)
         {
@@ -59,10 +59,10 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// lưu bảng đơn (thêm mới, sửa)
         /// </summary>
-        /// <param name="warningDTO">实体</param>
-        /// <param name="keyValue">Id值</param>
+        /// <param name="warningDTO">thực thể</param>
+        /// <param name="keyValue">Id giá trị</param>
         /// <returns></returns>
         public ActionResult SubmitSyyyForm(SysMedicineProfitLossReasonEntity SyyyDTO, string keyValue)
         {
@@ -71,9 +71,9 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 删除数据
+        /// xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult DeleteSyyyForm(string keyValue)
         {
@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Web.Controllers
 
         #region 发药配置
         /// <summary>
-        /// 发药配置视图
+        /// phát thuốc cấu hình khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult FypzIndex()
@@ -98,10 +98,10 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取分页实体列表
+        /// lấy phần trang thực thể danh sách
         /// </summary>
-        /// <param name="pagination">分页</param>
-        /// <param name="keyword">筛选关键字</param>
+        /// <param name="pagination">phần trang</param>
+        /// <param name="keyword">lọc từ khóa</param>
         /// <returns></returns>
         public ActionResult GetFypzPagintionGridJson(Pagination pagination, string keyword)
         {
@@ -115,19 +115,19 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(list.ToJson());
         }
         /// <summary>
-        /// 获取实体
+        /// lấy thực thể
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult GetFypzFormJson(string keyValue)
         {
             return Content(_ISysDispensingaConfigRepo.FindEntity(keyValue).ToJson());
         }
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// lưu bảng đơn (thêm mới, sửa)
         /// </summary>
-        /// <param name="warningDTO">实体</param>
-        /// <param name="keyValue">Id值</param>
+        /// <param name="warningDTO">thực thể</param>
+        /// <param name="keyValue">Id giá trị</param>
         /// <returns></returns>
         public ActionResult SubmitFypzForm(SysDispensingaConfigEntity FypzDTO, string keyValue)
         {
@@ -136,9 +136,9 @@ namespace Newtouch.HIS.Web.Controllers
             return Success("操作成功。");
         }
         /// <summary>
-        /// 删除数据
+        /// xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult DeleteFypzForm(string keyValue)
         {
@@ -146,7 +146,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Success("操作成功。");
         }
         /// <summary>
-        /// 获取药库下拉框数据
+        /// lấy kho thuốc hộp thả xuống dữ liệu
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -179,7 +179,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取药库药房下拉框数据
+        /// lấy kho thuốc nhà thuốc hộp thả xuống dữ liệu
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -214,7 +214,7 @@ namespace Newtouch.HIS.Web.Controllers
 
         #region 科室发药配置
         /// <summary>
-        /// 发药配置视图
+        /// phát thuốc cấu hình khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult KsFypzIndex()
@@ -228,10 +228,10 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取科室
+        /// lấy khoa
         /// </summary>
-        /// <param name="pagination">分页</param>
-        /// <param name="keyword">筛选关键字</param>
+        /// <param name="pagination">phần trang</param>
+        /// <param name="keyword">lọc từ khóa</param>
         /// <returns></returns>
         public ActionResult GetKsFypzGridJson(Pagination pagination, string keyword)
         {
@@ -245,19 +245,19 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(list.ToJson());
         }
         /// <summary>
-        /// 获取实体
+        /// lấy thực thể
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult GetKsFypzFormJson(string keyValue)
         {
             return Content(_ISysYpksfypzEntityRepo.FindEntity(keyValue).ToJson());
         }
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// lưu bảng đơn (thêm mới, sửa)
         /// </summary>
-        /// <param name="warningDTO">实体</param>
-        /// <param name="keyValue">Id值</param>
+        /// <param name="warningDTO">thực thể</param>
+        /// <param name="keyValue">Id giá trị</param>
         /// <returns></returns>
         public ActionResult SubmitKsFypzForm(SysYpksfypzEntity FypzDTO, string keyValue)
         {
@@ -266,9 +266,9 @@ namespace Newtouch.HIS.Web.Controllers
             return Success("操作成功。");
         }
         /// <summary>
-        /// 删除科室发药配置
+        /// xóa khoa phát thuốc cấu hình
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult DeleteKsFypzForm(string keyValue)
         {
@@ -276,7 +276,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Success("操作成功。");
         }
         /// <summary>
-        /// 获取科室下拉数据
+        /// lấy khoa thả xuống dữ liệu
         /// </summary>
         /// <returns></returns>
         [HttpGet]

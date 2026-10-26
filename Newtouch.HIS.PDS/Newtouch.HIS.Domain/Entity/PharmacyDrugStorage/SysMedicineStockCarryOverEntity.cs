@@ -6,7 +6,7 @@ using Newtouch.Infrastructure.EF.Attributes;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品库存结转
+    /// hệ thống thuốc tồn kho kết chuyển
     /// </summary>
     [Table("xt_yp_kcjz")]
     public class SysMedicineStockCarryOverEntity : IEntity<SysMedicineStockCarryOverEntity>
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string Ph { get; set; }
 
         /// <summary>
-        /// 默认值Getdate()
+        /// giá trị mặc định Getdate()
         /// </summary>
         public DateTime? Yxq { get; set; }
 
@@ -48,19 +48,19 @@ namespace Newtouch.HIS.Domain.Entity
         public int? Kcsl { get; set; }
 
         /// <summary>
-        /// 药库批发价
+        /// giá bán buôn kho thuốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Ykpfj { get; set; }
 
         /// <summary>
-        /// 药库零售价
+        /// giá bán lẻ kho thuốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Yklsj { get; set; }
 
         /// <summary>
-        /// 进价
+        /// giá nhập
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Jj { get; set; }
@@ -71,7 +71,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int Zhyz { get; set; }
 
         /// <summary>
-        /// 默认值Getdate()
+        /// giá trị mặc định Getdate()
         /// </summary>
         public DateTime jssj { get; set; }
 
@@ -116,7 +116,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 账期
+        /// kỳ sổ sách
         /// </summary>
         public string zq{ get; set; }
     }

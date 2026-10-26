@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<SysPharmacyDepartmentVO> GetList(string orgId, byte? yjbmjb);
 
         /// <summary>
-        /// 获取有效的药房和药库
+        /// lấy còn hiệu lực của nhà thuốc và kho thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="yjbmjb"></param>
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<SysPharmacyDepartmentVO> GetEffectiveList(string orgId, byte? yjbmjb);
 
         /// <summary>
-        /// 获取药房部门信息
+        /// lấy bộ phận nhà thuốc thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -37,21 +37,21 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<SysPharmacyDepartmentVO> GetPagintionList(Pagination pagination, string organizeId, string keyword = null);
 
         /// <summary>
-        /// 修改和添加药房部门
+        /// sửa và thêm bộ phận nhà thuốc
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
         void submitForm(SysPharmacyDepartmentVO entity, int? keyValue);
 
         /// <summary>
-        /// 获取UserId当前已关联的要yfbmCode （不包括子机构）
+        /// lấy UserId hiện tại đã liên kết của cần yfbmCode  (không bao gồm tổ chức con)
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         IList<string> GetCurPharmacyList(string userId, string orgId);
 
         /// <summary>
-        /// 获取组织机构下的药房/药库 （不包括子机构）
+        /// lấy tổ chức dưới của nhà thuốc/kho thuốc  (không bao gồm tổ chức con)
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>

@@ -7,30 +7,30 @@
 <form id="form1">
     <div class="panel panel-default">
         <div class="panel-heading">
-            结转
+            kết chuyển
         </div>
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle" style="width:50px;">账期：</th>
+                    <th class="formTitle" style="width:50px;">kỳ sổ sách: </th>
                     <td class="formValue">
                         <select id="ddlZQ1" class="form-control"></select>
                     </td>
-                    <th class="formTitle" style="width:50px;">结转账期：</th>
+                    <th class="formTitle" style="width:50px;">kết chuyển kỳ sổ sách: </th>
                     <td class="formValue">
                         <select id="ddlZQ2" class="form-control"></select>
                     </td>
-                    <th class="formTitle">结转时间：</th>
+                    <th class="formTitle">thời gian kết chuyển: </th>
                     <td class="formValue" style="width: 150px;">
                         <input id="txtJZTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">输入码：</th>
+                    <th class="formTitle">mã nhập: </th>
                     <td class="formValue">
-                        <input id="txtSRM" type="text" class="form-control" placeholder="拼音/药品名/药品代码" />
+                        <input id="txtSRM" type="text" class="form-control" placeholder="phiên âm/thuốc tên/mã thuốc" />
                     </td>
                     <td class="formValue">
-                        <input type="button" id="btn_search" class="btn btn-primary" style="margin-left: 5px; width:70px;" value="查询" />
-                        <input type="button" id="btn_jz" class="btn btn-primary" style="margin-left: 5px;" value="结转" />
+                        <input type="button" id="btn_search" class="btn btn-primary" style="margin-left: 5px; width:70px;" value="tra cứu" />
+                        <input type="button" id="btn_jz" class="btn btn-primary" style="margin-left: 5px;" value="kết chuyển" />
                     </td>
                 </tr>
             </table>
@@ -43,18 +43,18 @@
 </form>
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //tải lại khi thay đổi kích thước cửa sổ trình duyệt jqGrid chiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
-        gridDrugsList();//药品信息
-        ddlZQList();//加载账期
+        gridDrugsList();//thông tin thuốc
+        ddlZQList();//tải kỳ sổ sách
         $("#btn_jz").click(function () {
             CarryOverMedicine();
         });
     });
 
-    //加载账期
+    //tải kỳ sổ sách
     function ddlZQList() {
         CheckddlZQList();
         $("#ddlZQ2").bindSelect({
@@ -64,7 +64,7 @@
         });
     }
 
-    //不可倒叙结转，不可选择已结账期
+    //不可倒叙结转, không có thể chọn đã kết kỳ sổ sách
     function CheckddlZQList() {
         $.najax({
             url: "/PharmacyDrugStorage/GetLastAccountPeriod",
@@ -92,13 +92,13 @@
         });
     }
 
-    //结转
+    //kết chuyển
     function CarryOverMedicine() {
         if (!$("#ddlZQ1").find("option:selected").text()) {
-            $.modalAlert("未选中账期", 'warning');
+            $.modalAlert("chưa chọn kỳ sổ sách", 'warning');
         }
         var zq = $("#ddlZQ1").find("option:selected").text();
-        //获取最后一次结转时间
+        //lấy cuối cùng một lần thời gian kết chuyển
         var lastCarryTime;
         $.najax({
             type: "get",
@@ -107,16 +107,16 @@
             success: function (ajaxresp) {
                 lastCarryTime = ajaxresp;
                 if (!lastCarryTime) {
-                    $.modalAlert("取上一次结转时间失败", 'error');
+                    $.modalAlert("lấy thời gian kết chuyển lần trước thất bại", 'error');
                     return;
                 }
                 else {
                     var currJzsj = $("#txtJZTime").val();
                     if (currJzsj <= lastCarryTime) {
-                        $.modalAlert("结转时间需大于上次结转时间", 'warning');
+                        $.modalAlert("thời gian kết chuyển cần lớn hơn trên lần thời gian kết chuyển", 'warning');
                         return;
                     }
-                    $.modalConfirm("本次结转账期为" + zq + ",结转时间为:" + lastCarryTime + "~~~~" + currJzsj + ",您确定结转吗？", function (flag) {
+                    $.modalConfirm("này lần kết chuyển kỳ sổ sách là" + zq + ",thời gian kết chuyển là:" + lastCarryTime + "~~~~" + currJzsj + ",bạn có chắc kết chuyển không?", function (flag) {
                         if (flag) {
                             $.najax({
                                 url: "/PharmacyDrugStorage/CarryOverMedicine",
@@ -125,8 +125,8 @@
                                 dataType: "json",
                                 success: function (ajaxresp) {
                                     if (ajaxresp.state === 'success') {
-                                        $.modalAlert("结转成功", 'success');
-                                        ddlZQList();//刷新账期
+                                        $.modalAlert("kết chuyển thành công", 'success');
+                                        ddlZQList();//làm mới kỳ sổ sách
                                         $("#btn_search").trigger('click');
                                     }
                                     else {
@@ -138,16 +138,16 @@
                         } else {
                             return false;
                         }
-                    }, true); //true:modalConfirm不关闭dialog
+                    }, true); //true:modalConfirm không đóng dialog
 
                 }
             }
         });
     }
 
-    //药品信息
+    //thông tin thuốc
     function gridDrugsList() {
-        var captionCon = "合计&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>当前页 批价总额：" + "" + "元&nbsp;&nbsp;&nbsp;&nbsp;零售总额：" + "" + "元</span>";
+        var captionCon = "tổng cộng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>trang hiện tại tổng tiền giá bán buôn: " + "" + "đồng&nbsp;&nbsp;&nbsp;&nbsp;tổng tiền bán lẻ: " + "" + "đồng</span>";
         var $gridDrugsList = $("#gridDrugsList");
         $gridDrugsList.dataGrid({
             postData: getSearchPostData(),
@@ -155,43 +155,43 @@
             url: "",
             caption: captionCon,
             colModel: [
-                { label: '账期', name: 'zq', width: 50, align: 'left' },
-                { label: '药品名称', name: 'ypmc', width: 180, align: 'left' },
-                { label: '药品代码', name: 'ypdm', width: 65, align: 'left' },
-                { label: '规格', name: 'gg', width: 70, align: 'left' },
-                { label: '结转数量', name: 'jzsl', width: 60, align: 'left' },
-                { label: '单位', name: 'dw', width: 50, align: 'left' },
-                { label: '批次', name: 'pc', width: 110, align: 'left' },
-                { label: '生产厂家', name: 'sccj', width: 180, align: 'left' },
-                { label: '批发价', name: 'pfj', width: 55, align: 'left' },
-                { label: '零售价', name: 'lsj', width: 55, align: 'left' },
-                { label: '批发总额', name: 'pfze', width: 70, align: 'left' },
-                { label: '零售总额', name: 'lsze', width: 70, align: 'left' }
+                { label: 'kỳ sổ sách', name: 'zq', width: 50, align: 'left' },
+                { label: 'tên thuốc', name: 'ypmc', width: 180, align: 'left' },
+                { label: 'mã thuốc', name: 'ypdm', width: 65, align: 'left' },
+                { label: 'quy cách', name: 'gg', width: 70, align: 'left' },
+                { label: 'số lượng kết chuyển', name: 'jzsl', width: 60, align: 'left' },
+                { label: 'đơn vị', name: 'dw', width: 50, align: 'left' },
+                { label: 'lô', name: 'pc', width: 110, align: 'left' },
+                { label: 'nhà sản xuất', name: 'sccj', width: 180, align: 'left' },
+                { label: 'giá bán buôn', name: 'pfj', width: 55, align: 'left' },
+                { label: 'giá bán lẻ', name: 'lsj', width: 55, align: 'left' },
+                { label: 'tổng tiền bán buôn', name: 'pfze', width: 70, align: 'left' },
+                { label: 'tổng tiền bán lẻ', name: 'lsze', width: 70, align: 'left' }
             ],
             multiselect: false,
             pager: "#gridPager",
             sortname: 'CreateTime desc',
             viewrecords: true,
             loadComplete: function (data) {
-                ComputePjzeAndLsze();//计算标题栏中的批价总额和零售总额
+                ComputePjzeAndLsze();//tính thanh tiêu đề trong của tổng tiền giá bán buôn và tổng tiền bán lẻ
             }
         });
 
-        //查询
+        //tra cứu
         $("#btn_search").click(function () {
             $gridDrugsList.jqGrid('setGridParam', {
                 postData: getSearchPostData(), url: '/PharmacyDrugStorage/SelectCarryOverMedicineList'
             }).trigger('reloadGrid');
         });
     }
-    //查询条件
+    //điều kiện tra cứu
     function getSearchPostData() {
         var zq = $("#ddlZQ2").find("option:selected").text();
         var inputCode = $("#txtSRM").val();
         return { zq: zq, inputCode: inputCode };
     };
 
-    //计算标题栏中的批价总额和零售总额
+    //tính thanh tiêu đề trong của tổng tiền giá bán buôn và tổng tiền bán lẻ
     function ComputePjzeAndLsze() {
         var titlePjze = 0;
         var titleLsze = 0;
@@ -206,7 +206,7 @@
             }
             titlePjze = window.roundingBy4she6ru5chengshuang(titlePjze, 2);
             titleLsze = window.roundingBy4she6ru5chengshuang(titleLsze, 2);
-            $("#yeCon").text("批价总额：" + titlePjze + "元;零价总额：" + titleLsze + "元");
+            $("#yeCon").text("tổng tiền giá bán buôn: " + titlePjze + "đồng;tổng tiền giá lẻ: " + titleLsze + "đồng");
             $.loading(false);
         }
     }

@@ -9,243 +9,243 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
     public class SysMedicineVO : IEntity<SysMedicineVO>
     {
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public int ypId { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
 
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// tên thuốc
         /// </summary>
 
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 顶级组织主键
+        /// cấp cao nhất khóa chính tổ chức
         /// </summary>
         public string TopOrganizeId { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
 
         public string ypqz { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
 
         public string yphz { get; set; }
 
         /// <summary>
-        /// 商品名
+        /// tên hàng hóa
         /// </summary>
 
         public string spm { get; set; }
 
         /// <summary>
-        /// 首拼
+        /// chữ cái đầu phiên âm
         /// </summary>
 
         public string py { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
 
         public decimal cfl { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
 
         public string cfdw { get; set; }
 
         /// <summary>
-        /// 2018.04.18 意 剂量转换系数
+        /// 2018.04.18 ý hệ số chuyển đổi liều dùng
         /// </summary>
 
         public decimal jl { get; set; }
 
         /// <summary>
-        /// 剂量单位
+        /// đơn vị liều dùng
         /// </summary>
 
         public string jldw { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
 
         public decimal bzs { get; set; }
 
         /// <summary>
-        /// 包装单位
+        /// đơn vị đóng gói
         /// </summary>
 
         public string bzdw { get; set; }
 
         /// <summary>
-        /// 门诊拆零数
+        /// số tách lẻ ngoại trú
         /// </summary>
 
         public decimal mzcls { get; set; }
 
         /// <summary>
-        /// 门诊拆零单位
+        /// đơn vị tách lẻ ngoại trú
         /// </summary>
 
         public string mzcldw { get; set; }
 
         /// <summary>
-        /// 最小单位
+        /// đơn vị nhỏ nhất
         /// </summary>
         public string zxdw { get; set; }
 
         /// <summary>
-        /// 住院拆零数
+        /// số tách lẻ nội trú
         /// </summary>
 
         public decimal zycls { get; set; }
 
         /// <summary>
-        /// 住院拆零单位
+        /// đơn vị tách lẻ nội trú
         /// </summary>
 
         public string zycldw { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
 
         public decimal cls { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
 
         public string cldw { get; set; }
 
         /// <summary>
-        /// 定价单位
+        /// đơn vị định giá
         /// </summary>
 
         public string djdw { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
 
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
 
         public decimal pfj { get; set; }
 
         /// <summary>
-        /// 自负比例
+        /// tỷ lệ tự chi trả
         /// </summary>
 
         public decimal zfbl { get; set; }
 
         /// <summary>
-        /// 自负性质
+        /// tính chất tự chi trả
         /// </summary>
 
         public string zfxz { get; set; }
 
         /// <summary>
-        /// 大类
+        /// nhóm lớn
         /// </summary>
 
         public string dlCode { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
 
         public string jx { get; set; }
 
         /// <summary>
-        /// 药厂名称
+        /// tên nhà máy dược
         /// </summary>
 
         public string ycmc { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
 
         public int? medid { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
 
         public int? medextid { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
 
         public string ypbzdm { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string nbdl { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
 
         public DateTime? CreateTime { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
 
         public string zt { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
 
         public int? px { get; set; }
@@ -258,133 +258,133 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string shbz { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string tsbz { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string jsbz { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string gzy { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string mzy { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string yljsy { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string zbbz { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string zlff { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string sjap { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
 
         public decimal? yl { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string yldw { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string ypgg { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string ybdm { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public int? syts { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public decimal? dczdjl { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public decimal? dczdsl { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public decimal? ljzdjl { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public decimal? ljzdsl { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string pzwh { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string yptssx { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string ypflCode { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string jzlx { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public int mrbzq { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public DateTime? zjtzsj { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string xglx { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public string ghdw { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// khóa chính tổ chức
         /// </summary>
         public int ypcd { get; set; }
 
@@ -404,84 +404,84 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string ypflMc { get; set; }
 
         /// <summary>
-        /// 医保最后同步时间
+        /// BHYT cuối cùng đồng bộ thời gian
         /// </summary>
         public DateTime? LastYBUploadTime { get; set; }
 
         /// <summary>
-        /// 是否已同步医保
+        /// có hay không đã đồng bộ BHYT
         /// </summary>
         public string isSynch { get; set; }
 
         /// <summary>
-        /// 默认剂量
+        /// mặc định liều dùng
         /// </summary>
         public decimal? mrjl { get; set; }
 
         /// <summary>
-        /// 默认频次
+        /// mặc định tần suất
         /// </summary>
         public string mrpc { get; set; }
 
         /// <summary>
-        /// 是否抗生素
+        /// có phải kháng sinh không
         /// </summary>
         public string isKss { get; set; }
 
         /// <summary>
-        /// 抗生素Id
+        /// kháng sinh Id
         /// </summary>
         public string kssId { get; set; }
 
         /// <summary>
-        /// 基药标识
+        /// thuốc cơ bản dấu hiệu
         /// </summary>
         public string jybz { get; set; }
 
         /// <summary>
-        /// 医保标志
+        /// cờ BHYT
         /// </summary>
         public string ybbz { get; set; }
 
         /// <summary>
-        /// 新农合医保代码
+        /// mã BHYT nông thôn mới
         /// </summary>
         public string xnhybdm { get; set; }
 
         /// <summary>
-        /// 备注
+        /// ghi chú
         /// </summary>
         public string bz { get; set; }
         /// <summary>
-        /// 国家医保代码
+        /// mã BHYT quốc gia
         /// </summary>
         public string gjybdm { get; set; }
         public string gjybmc { get; set; }
         /// <summary>
-        /// 超限价金额
+        /// vượt giá giới hạn số tiền
         /// </summary>
         public decimal? cxjje { get; set; }
 
 
         /// <summary>
-        /// 药品种类
+        /// chủng loại thuốc
         /// </summary>
         public string tsypbz { get; set; }
         /// <summary>
-        /// 单次限量
+        /// mỗi lần giới hạn
         /// </summary>
         public decimal? dcxl { get; set; }
         /// <summary>
-        /// 慢病限量
+        /// bệnh mãn tính giới hạn
         /// </summary>
         public decimal? mbxl { get; set; }
 
         /// <summary>
-        /// 默认用法
+        /// cách dùng mặc định
         /// </summary>
         public string mryf { get; set; }
         /// <summary>
-        /// 默认用法名称
+        /// cách dùng mặc định tên
         /// </summary>
         public string mryfmc { get; set; }
 
@@ -490,6 +490,6 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
 
 
 
-        /// <summary>        /// 医保规格        /// </summary>        public string ybgg { get; set; }
+        /// <summary>        /// quy cách BHYT        /// </summary>        public string ybgg { get; set; }
     }
 }

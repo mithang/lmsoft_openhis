@@ -1,7 +1,7 @@
 ﻿
 @using Newtouch.Infrastructure.Enum
 @{
-    ViewBag.Title = "配送点";
+    ViewBag.Title = "điểm phân phối";
     Layout = "~/Views/Shared/_Form.cshtml";
 
 }
@@ -12,43 +12,43 @@
             <div role="tabpanel" class="tab-pane fade in active">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">配送点编码：</th>
+                        <th class="formTitle">mã điểm phân phối: </th>
                         <td class="formValue">
                             <input id="psdbm" name="psdbm" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">配送点名称：</th>
+                        <th class="formTitle">điểm phân phối tên: </th>
                         <td class="formValue">
                             <input id="psdmc" name="psdmc" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">配送地址：</th>
+                        <th class="formTitle">phân phối địa chỉ: </th>
                         <td class="formValue">
                             <input id="psdz" name="psdz" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">联系人姓名：</th>
+                        <th class="formTitle">liên hệ người họ tên: </th>
                         <td class="formValue">
                             <input id="lxrxm" name="lxrxm" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">联系电话：</th>
+                        <th class="formTitle">liên hệ điện thoại: </th>
                         <td class="formValue">
                             <input id="lxdh" name="lxdh" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">邮政编码：</th>
+                        <th class="formTitle">mã bưu chính: </th>
                         <td class="formValue">
                             <input id="yzbm" name="yzbm" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">备注信息：</th>
+                        <th class="formTitle">ghi chú thông tin: </th>
                         <td class="formValue">
                             <input id="bzxx" name="bzxx" type="text" class="form-control" placeholder="" />
                         </td>
@@ -64,7 +64,7 @@
     var keyValue = $.request("keyValue");
     initForm();
 
-    //初始化表单
+    //khởi tạo bảng đơn
     function initForm() {
         if (keyValue != null && keyValue != "") {
             $.najax({
@@ -88,7 +88,7 @@
         }
     }
 
-    //保存
+    //lưu
     function SubmitForm() {
         if (!DataValidate()) {
             return;
@@ -99,14 +99,14 @@
             url: "/PurchaseManage/Purchase/SubmitLocation",
             param: postData,
             success: function () {
-                $.modalMsg('保存成功', 'success');
+                $.modalMsg('lưu thành công', 'success');
                 $.modalClose();
                 callback();
             }
         });
     }
 
-    //数据效验
+    //dữ liệu kiểm tra hiệu lực
     function DataValidate() {
         if ($("#psdbm").val() === "") {
             $.modalAlert("配送点编码必填", 'warning');

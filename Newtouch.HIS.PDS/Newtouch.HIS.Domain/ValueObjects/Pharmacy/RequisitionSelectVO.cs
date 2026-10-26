@@ -3,37 +3,37 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 申领单 查询
+    /// phiếu lĩnh tra cứu
     /// </summary>
     public class RequisitionSelectVO
     {
         /// <summary>
-        /// 申领单Id
+        /// phiếu lĩnh Id
         /// </summary>
         public string sldId { get; set; }
 
         /// <summary>
-        /// 申领单号
+        /// số phiếu lĩnh
         /// </summary>
         public string Sldh { get; set; }
 
         /// <summary>
-        /// 申领部门名称
+        /// bộ phận lĩnh tên
         /// </summary>
         public string slbmmc { get; set; }
 
         /// <summary>
-        /// 出库部门名称
+        /// bộ phận xuất kho tên
         /// </summary>
         public string ckbmmc { get; set; }
 
         /// <summary>
-        /// 申领时间
+        /// thời gian lĩnh
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 发放状态
+        /// trạng thái cấp phát
         /// </summary>
         public int ffzt { get; set; }
 

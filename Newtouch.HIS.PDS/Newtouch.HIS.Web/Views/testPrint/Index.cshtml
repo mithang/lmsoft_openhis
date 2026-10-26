@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "出入库单查询";
+    ViewBag.Title = "ra nhập kho đơn tra cứu";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <script src='http://localhost:8000/CLodopfuncs.js?name=CLODOPA'></script>
@@ -103,58 +103,58 @@
         </div>
         <div class="dv-patientInfo clearfix">
             <ul>
-                <li><span>姓名：</span><span>张三</span></li>
-                <li><span>性别：</span><span>男</span></li>
-                <li><span>年龄：</span><span>33</span></li>
-                <li><span>科室：</span><span>康复科</span></li>
-                <li><span>医保类别：</span><span>自费</span></li>
-                <li><span>医保号：</span><span>无</span></li>
+                <li><span>họ tên: </span><span>张三</span></li>
+                <li><span>giới tính: </span><span>nam</span></li>
+                <li><span>tuổi: </span><span>33</span></li>
+                <li><span>khoa: </span><span>康复科</span></li>
+                <li><span>BHYT loại: </span><span>tự chi trả</span></li>
+                <li><span>BHYT số: </span><span>không có</span></li>
             </ul>
         </div>
         <div class="dv-content">
             <table>
                 <tr>
-                    <th style="width:110px;">处方号</th>
-                    <th style="width:170px;">药品名称</th>
-                    <th style="width:100px;">规格</th>
-                    <th style="width:90px;">单价</th>
-                    <th style="width:60px;">数量</th>
-                    <th style="width:70px;">金额</th>
+                    <th style="width:110px;">số đơn thuốc</th>
+                    <th style="width:170px;">tên thuốc</th>
+                    <th style="width:100px;">quy cách</th>
+                    <th style="width:90px;">đơn giá</th>
+                    <th style="width:60px;">số lượng</th>
+                    <th style="width:70px;">số tiền</th>
                 </tr>
                 <tr>
                     <td class="td-cfh">CF001231123</td>
-                    <td class="td-mc">阿莫西林</td>
-                    <td class="td-gg">2g*10片</td>
-                    <td class="td-lsj">18.00元/盒</td>
+                    <td class="td-mc">Amoxicillin</td>
+                    <td class="td-gg">2g*10 viên</td>
+                    <td class="td-lsj">18.00 đồng/hộp</td>
                     <td class="td-sl">2</td>
                     <td class="td-zje">36.00</td>
                 </tr>
                 <tr>
                     <td class="td-cfh">CF001231123</td>
-                    <td class="td-mc">阿莫西林</td>
-                    <td class="td-gg">2g*10片</td>
-                    <td class="td-lsj">18.00元/盒</td>
+                    <td class="td-mc">Amoxicillin</td>
+                    <td class="td-gg">2g*10 viên</td>
+                    <td class="td-lsj">18.00 đồng/hộp</td>
                     <td class="td-sl">2</td>
                     <td class="td-zje">36.00</td>
                 </tr>
                 <tr>
                     <td class="td-cfh">CF001231123</td>
-                    <td class="td-mc">阿莫西林</td>
-                    <td class="td-gg">2g*10片</td>
-                    <td class="td-lsj">18.00元/盒</td>
+                    <td class="td-mc">Amoxicillin</td>
+                    <td class="td-gg">2g*10 viên</td>
+                    <td class="td-lsj">18.00 đồng/hộp</td>
                     <td class="td-sl">2</td>
                     <td class="td-zje">36.00</td>
                 </tr>
                 <tr>
                     <td class="td-cfh">CF001231123</td>
-                    <td class="td-mc">阿莫西林</td>
-                    <td class="td-gg">2g*10片</td>
-                    <td class="td-lsj">18.00元/盒</td>
+                    <td class="td-mc">Amoxicillin</td>
+                    <td class="td-gg">2g*10 viên</td>
+                    <td class="td-lsj">18.00 đồng/hộp</td>
                     <td class="td-sl">2</td>
                     <td class="td-zje">36.00</td>
                 </tr>
                 <tr>
-                    <td colspan="5" class="td-hj">合计：</td>
+                    <td colspan="5" class="td-hj">tổng cộng: </td>
                     <td class="td-hj">144.00</td>
                 </tr>
             </table>
@@ -162,15 +162,15 @@
         <div class="dv-end clearfix">
             <table>
                 <tr>
-                    <td><span>配药员：</span><span>张爱玲</span></td>
-                    <td><span>发药员：</span><span>李丽华</span></td>
-                    <td><span>审核员：</span><span>吴昊</span></td>
-                    <td><span>医师：</span><span>隋季</span></td>
+                    <td><span>配药员: </span><span>张爱玲</span></td>
+                    <td><span>phát thuốc viên: </span><span>李丽华</span></td>
+                    <td><span>duyệt viên: </span><span>吴昊</span></td>
+                    <td><span>医师: </span><span>隋季</span></td>
                 </tr>
                 <tr>
-                    <td colspan="3"><span style="margin-right:20px;">注：药品当面点清，一旦发出不得退药！</span></td>
+                    <td colspan="3"><span style="margin-right:20px;">chú: 药品当面点清, 一旦发出不得退药!</span></td>
                     <td>
-                        <span>排药日期：</span>
+                        <span>xếp thuốc ngày: </span>
                         <span>2018-12-20</span>
                     </td>
                 </tr>
@@ -178,7 +178,7 @@
         </div>
     </div>
 </body>
-<input type="button" id="btn_print" value="打印" />
+<input type="button" id="btn_print" value="in" />
 <script>
     $(function () {
         $("#btn_print").click(function () {

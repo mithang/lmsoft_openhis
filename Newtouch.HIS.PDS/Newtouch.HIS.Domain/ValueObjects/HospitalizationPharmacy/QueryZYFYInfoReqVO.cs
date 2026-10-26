@@ -3,87 +3,87 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 查询住院费发药信息
+    /// tra cứu nội trú phí thông tin phát thuốc
     /// </summary>
     public class QueryZYFYInfoReqVO
     {
         /// <summary>
-        /// 组织机构ID
+        /// tổ chức ID
         /// </summary>
         public string organizeId { get; set; }
 
         /// <summary>
-        /// 住院药房
+        /// nội trú nhà thuốc
         /// </summary>
         public string zyyf { get; set; }
 
         /// <summary>
-        /// 病区编码
+        /// khu bệnh mã
         /// </summary>
         public string bqCode { get; set; }
 
         /// <summary>
-        /// 药房部门代码
+        /// mã bộ phận nhà thuốc
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 住院号
+        /// số nội trú
         /// </summary>
         public string Zyh { get; set; }
 
         /// <summary>
-        /// 开始时间
+        /// thời gian bắt đầu
         /// </summary>
         public DateTime Kssj { get; set; }
 
         /// <summary>
-        /// 结束时间
+        /// thời gian kết thúc
         /// </summary>
         public DateTime Jssj { get; set; }
 
         /// <summary>
-        /// 发药状态 0：未发；1：已排；2：已发；3：已退
+        /// trạng thái phát thuốc 0: chưa phát; 1: đã xếp; 2: đã phát; 3: đã trả
         /// </summary>
         public string Fyzt { get; set; }
 
         /// <summary>
-        /// 操作类型 1：发药  2：退药
+        /// loại thao tác 1: phát thuốc  2: trả thuốc
         /// </summary>
         public string operateType { get; set; }
 
         /// <summary>
-        /// 申请退药标志 0：否  1：是
+        /// đề nghị trả thuốc cờ 0: không  1: có
         /// </summary>
         public string sqtybz { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 患者姓名
+        /// họ tên bệnh nhân
         /// </summary>
         public string patientName { get; set; }
 
         /// <summary>
-        /// 医嘱性质
+        /// tính chất y lệnh
         /// </summary>
         public string yzxz { get; set; }
 
         /// <summary>
-        /// 批次
+        /// lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 床位号
+        /// số giường
         /// </summary>
         public string cw { get; set; }
 
@@ -99,68 +99,68 @@ namespace Newtouch.HIS.Domain.ValueObjects
     }
 
     /// <summary>
-    /// 住院发药药
+    /// phát thuốc nội trú thuốc
     /// </summary>
     public class HospitalizationDispenseDrugParam : HospitalizationReturnDrugParam
     {
 
         /// <summary>
-        /// 医嘱执行ID
+        /// thực hiện y lệnh ID
         /// </summary>
         public string yzId { get; set; }
         /// <summary>
-        /// 医嘱性质
+        /// tính chất y lệnh
         /// </summary>
         public string yzxz { get; set; }
     }
 
     /// <summary>
-    /// 住院退药
+    /// trả thuốc nội trú
     /// </summary>
     public class HospitalizationReturnDrugParam
     {
         /// <summary>
-        /// 住院号
+        /// số nội trú
         /// </summary>
         public string Zyh { get; set; }
 
         /// <summary>
-        /// 申请退药开始时间
+        /// đề nghị trả thuốc thời gian bắt đầu
         /// </summary>
         public DateTime Kssj { get; set; }
 
         /// <summary>
-        /// 申请退药结束时间
+        /// đề nghị trả thuốc thời gian kết thúc
         /// </summary>
         public DateTime Jssj { get; set; }
 
         /// <summary>
-        /// 床位
+        /// giường
         /// </summary>
         public string cw { get; set; }
 
         /// <summary>
-        /// 患者姓名
+        /// họ tên bệnh nhân
         /// </summary>
         public string patientName { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 药房部门代码
+        /// mã bộ phận nhà thuốc
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 组织结构ID
+        /// cơ cấu tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 发药标志  0：未发；1：已排；2：已发；3：已退
+        /// cờ phát thuốc  0: chưa phát; 1: đã xếp; 2: đã phát; 3: đã trả
         /// </summary>
         public string fybz { get; set; }
 

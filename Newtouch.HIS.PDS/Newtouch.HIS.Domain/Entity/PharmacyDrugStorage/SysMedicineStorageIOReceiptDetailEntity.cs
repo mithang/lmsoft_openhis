@@ -6,122 +6,122 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品出入库明细
+    /// hệ thống thuốc chi tiết nhập/xuất kho
     /// </summary>
     [Table("xt_yp_crkmx")]
     public class SysMedicineStorageIOReceiptDetailEntity : IEntity<SysMedicineStorageIOReceiptDetailEntity>
     {
         /// <summary>
-        /// 出入库明细ID
+        /// chi tiết nhập/xuất kho ID
         /// </summary>
         [Key]
         public string crkmxId { get; set; }
 
         /// <summary>
-        /// 来自表 XT_YP_CRKDJK的主键
+        /// từ bảng XT_YP_CRKDJK của khóa chính
         /// </summary>
         public string crkId { get; set; }
 
         /// <summary>
-        /// 申领单明细ID
+        /// chi tiết phiếu lĩnh ID
         /// </summary>
         public string sldmxId { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string Ypdm { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// số hóa đơn
         /// </summary>
         public string Fph { get; set; }
 
         /// <summary>
-        /// 开票日期
+        /// ngày lập hóa đơn
         /// </summary>
         public DateTime? Kprq { get; set; }
 
         /// <summary>
-        /// 到票日期
+        /// ngày nhận hóa đơn
         /// </summary>
         public DateTime? Dprq { get; set; }
 
         /// <summary>
-        /// 批号
+        /// số lô
         /// </summary>
         public string Ph { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// hạn sử dụng
         /// </summary>
         public DateTime? Yxq { get; set; }
 
         /// <summary>
-        /// 批发价 与zhyz和sl对应
+        /// giá bán buôn và zhyz và sl tương ứng
         /// </summary>
         public decimal Pfj { get; set; }
 
         /// <summary>
-        /// 零售价 与zhyz和sl对应
+        /// giá bán lẻ và zhyz và sl tương ứng
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Lsj { get; set; }
 
         /// <summary>
-        /// 药库批发价
+        /// giá bán buôn kho thuốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Ykpfj { get; set; }
 
         /// <summary>
-        /// 药库零售价
+        /// giá bán lẻ kho thuốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Yklsj { get; set; }
 
         /// <summary>
-        /// 总金额
+        /// tổng số tiền
         /// </summary>
         public decimal Zje { get; set; }
 
         /// <summary>
-        /// 数量 部门单位数量
+        /// số lượng số lượng đơn vị bộ phận
         /// </summary>
         public int Sl { get; set; }
 
         /// <summary>
-        /// 入库转换因子
+        /// nhập kho hệ số chuyển đổi
         /// </summary>
         public int Rkzhyz { get; set; }
 
         /// <summary>
-        /// 入库部门库存
+        /// bộ phận nhập kho tồn kho
         /// </summary>
         public int Rkbmkc { get; set; }
 
         /// <summary>
-        /// 入库单位（单位名称）
+        /// nhập kho đơn vị (tên đơn vị)
         /// </summary>
         public string rkdw { get; set; }
 
         /// <summary>
-        /// 出库转换因子
+        /// xuất kho hệ số chuyển đổi
         /// </summary>
         public int Ckzhyz { get; set; }
 
         /// <summary>
-        /// 出库部门库存
+        /// bộ phận xuất kho tồn kho
         /// </summary>
         public int Ckbmkc { get; set; }
 
         /// <summary>
-        /// 出库单位（单位名称）
+        /// đơn vị xuất kho (tên đơn vị)
         /// </summary>
         public string ckdw { get; set; }
 
         /// <summary>
-        /// 外观
+        /// giao diện
         /// </summary>
         public string Wg { get; set; }
 
@@ -131,63 +131,63 @@ namespace Newtouch.HIS.Domain.Entity
         public int? zbbz { get; set; }
 
         /// <summary>
-        /// 进库注册证
+        /// giấy chứng nhận đăng ký nhập kho
         /// </summary>
         public string jkzcz { get; set; }
 
         /// <summary>
-        /// 合格证明
+        /// giấy chứng nhận đạt chuẩn
         /// </summary>
         public string hgzm { get; set; }
 
         /// <summary>
-        /// 验收结果
+        /// nghiệm thu kết quả
         /// </summary>
         public string ysjg { get; set; }
 
         /// <summary>
-        /// 退货原因
+        /// lý do trả hàng
         /// </summary>
         public string Thyy { get; set; }
 
         /// <summary>
-        /// 处理结果
+        /// xử lý kết quả
         /// </summary>
         public string Cljg { get; set; }
 
         /// <summary>
-        /// 生产日期
+        /// ngày sản xuất
         /// </summary>
         public DateTime? scrq { get; set; }
 
         /// <summary>
-        /// 扣率
+        /// tỷ lệ chiết khấu
         /// </summary>
         public decimal? kl { get; set; }
 
         /// <summary>
-        /// 进价 药库单位进价
+        /// giá nhập giá nhập theo đơn vị kho thuốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal? jj { get; set; }
 
         /// <summary>
-        /// 产地
+        /// nơi sản xuất
         /// </summary>
         public int? cd { get; set; }
 
         /// <summary>
-        /// 批次
+        /// lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 状态
+        /// trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 排序
+        /// sắp xếp
         /// </summary>
         public int? px { get; set; }
 
@@ -211,20 +211,20 @@ namespace Newtouch.HIS.Domain.Entity
         /// </summary>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 进价总金额 药库单位进价
+        /// tổng tiền giá nhập giá nhập theo đơn vị kho thuốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal? pfjze { get; set; }
 
         /// <summary>
-        /// 追溯码
+        /// mã truy xuất
         /// </summary>
         public string zsm { get; set; }
 
         /// <summary>
-        /// 是否拆零
-        /// 1： 是
-        /// 2： 否
+        /// có tách lẻ không
+        /// 1: có
+        /// 2: không
         /// </summary>
         public int? sfcl { get; set; }
 

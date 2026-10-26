@@ -3,12 +3,12 @@
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 药品信息
+    /// thông tin thuốc
     /// </summary>
     public interface ISysMedicineExDmnService
     {
         /// <summary>
-        /// 查询药品详情
+        /// tra cứu thuốc chi tiết
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ypCode"></param>

@@ -4,39 +4,39 @@ using System;
 namespace Newtouch.HIS.Domain.DTO
 {
     /// <summary>
-    /// 单据查询条件
+    /// điều kiện tra cứu chứng từ
     /// </summary>
     public class SelectDrupreParam
     {
         /// <summary>
-        /// 翻页
+        /// chuyển trang
         /// </summary>
         public Pagination pagination { get; set; }
 
         /// <summary>
-        /// 开始日期
+        /// ngày bắt đầu
         /// </summary>
         public DateTime? qsrj { get; set; }
 
         /// <summary>
-        /// 结束日期
+        /// ngày kết thúc
         /// </summary>
         public DateTime? jsrj { get; set; }
 
        
         /// <summary>
-        /// 审核状态
+        /// trạng thái duyệt
         /// </summary>
         public string shzt { get; set; }
 
        
         /// <summary>
-        /// 组织结构
+        /// cơ cấu tổ chức
         /// </summary>
         public string orgId { get; set; }
 
         /// <summary>
-        /// 当前药房部门代码
+        /// hiện tại mã bộ phận nhà thuốc
         /// </summary>
         public string curYfbmCode { get; set; }
 

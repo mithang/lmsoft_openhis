@@ -6,12 +6,12 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 {
     /// <summary>
-    /// 外部入库
+    /// nhập kho từ bên ngoài
     /// </summary>
     public class InStorageController : ControllerBase
     {
         /// <summary>
-        /// 提交外部入库
+        /// gửi nhập kho từ bên ngoài
         /// </summary>
         /// <param name="djInfoDto"></param>
         /// <returns></returns>

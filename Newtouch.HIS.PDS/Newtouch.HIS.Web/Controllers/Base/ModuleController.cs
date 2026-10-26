@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Web.Controllers
         private readonly ISysModuleDmnService _sysModuleDmnService;
 
 
-        //下拉（选择菜单 编辑 上级）
+        //thả xuống (chọn menu chỉnh sửa cấp trên)
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetTreeSelectJson()
@@ -135,7 +135,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 撤销全部授权（组织机构）
+        /// thu hồi tất cả ủy quyền (tổ chức)
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

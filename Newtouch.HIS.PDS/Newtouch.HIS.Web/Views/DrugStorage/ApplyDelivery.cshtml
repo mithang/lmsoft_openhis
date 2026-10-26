@@ -20,27 +20,27 @@
 
 <form id="form1" style="overflow-x: hidden;">
     <div class="panel panel-default" style="margin-bottom: 5px;">
-        <div class="panel-heading">筛选信息</div>
+        <div class="panel-heading">thông tin lọc</div>
         <table class="form">
             <tr>
-                <td class="formTitle">申领单号：</td>
-                <td class="formValue"><input type="text" id="sldh" name="sldh" class="form-control" placeholder="请输入申领单号" /></td>
-                <td class="formTitle">申领部门：</td>
-                <td class="formValue"><input type="text" id="slbm" name="slbm" class="form-control" placeholder="请输入申领部门" /></td>
-                <th class="formTitle" style="width: 75px;padding-right: 0;">日期：</th>
+                <td class="formTitle">số phiếu lĩnh: </td>
+                <td class="formValue"><input type="text" id="sldh" name="sldh" class="form-control" placeholder="vui lòng nhập số phiếu lĩnh" /></td>
+                <td class="formTitle">bộ phận lĩnh: </td>
+                <td class="formValue"><input type="text" id="slbm" name="slbm" class="form-control" placeholder="vui lòng nhập bộ phận lĩnh" /></td>
+                <th class="formTitle" style="width: 75px;padding-right: 0;">ngày: </th>
                 <td class="formValue" style="width:130px;">
                     <input id="txtStartDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddDays(-31).ToString("yyyy-MM-dd 00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
                 </td>
-                <th class="formTitle" style="width: 35px;padding-right: 0;">到：</th>
+                <th class="formTitle" style="width: 35px;padding-right: 0;">đến: </th>
                 <td class="formValue" style="width:130px;">
                     <input id="txtEndDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
                 </td>
-                <td class="formTitle">发药状态：</td>
+                <td class="formTitle">trạng thái phát thuốc: </td>
                 <td class="formValue">
-                    @Html.DropDownList("ffzt", EnumSLDDeliveryStatus.None.ToDescSelectList((int)EnumSLDDeliveryStatus.None), "全部", new { @class = "form-control" })
+                    @Html.DropDownList("ffzt", EnumSLDDeliveryStatus.None.ToDescSelectList((int)EnumSLDDeliveryStatus.None), "tất cả", new { @class = "form-control" })
                 </td>
                 <td class="formTitle">
-                    <input type="button" class="btn btn-primary btn-md" value="查询" id="btn_search" />
+                    <input type="button" class="btn btn-primary btn-md" value="tra cứu" id="btn_search" />
                 </td>
             </tr>
         </table>
@@ -51,7 +51,7 @@
         @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
    {
        ShowKeyList = new[] { 8 },
-       F8Text = "发药"
+       F8Text = "phát thuốc"
    })
     </div>
     <div id="dv_left" class="panel panel-default" style="float: left; width:300px; margin-left:-100%;">
@@ -75,7 +75,7 @@
         medicineGridList([]);
     });
 
-    //自适应
+    //tự thích ứng
     function initLayout() {
         $("#dv_right").width(fymx);
     }
@@ -83,35 +83,35 @@
     function gridList() {
         var $gridList = $("#parentgridList");
         $gridList.dataGrid({
-            caption: "申领信息",
+            caption: "thông tin lĩnh",
             url: "/DrugStorage/RequestInfo",
             height: $(window).height() - 190,
             postData: $("#form1").formSerialize(),
             colModel: [
                 {
-                    label: '发药状态', name: 'ffzt', width: 50, align: 'left',
+                    label: 'trạng thái phát thuốc', name: 'ffzt', width: 50, align: 'left',
                     formatter: function (cellvalue) {
                         switch (cellvalue) {
-                        case @((int)EnumSLDDeliveryStatus.None): return "未发";
-                        case @((int)EnumSLDDeliveryStatus.Part): return "已发部分";
-                        case @((int)EnumSLDDeliveryStatus.All): return "已全发";
-                        case @((int)EnumSLDDeliveryStatus.Abandon): return "已终止";
+                        case @((int)EnumSLDDeliveryStatus.None): return "chưa phát";
+                        case @((int)EnumSLDDeliveryStatus.Part): return "đã phát một phần";
+                        case @((int)EnumSLDDeliveryStatus.All): return "đã toàn phát";
+                        case @((int)EnumSLDDeliveryStatus.Abandon): return "đã chấm dứt";
                         }
                     }
                 },
-                { label: "申领单号", name: "Sldh", width: 120, align: 'left' },
-                { label: '申领部门', name: 'Slbm', width: 55, align: 'left' },
-                { label: '申领时间', name: 'CreateTime', width: 85, align: 'left', formatter: 'date', formatoptions: { srcformat: 'y-m-d H:i', newformat: 'y-m-d H:i' } },
-                { label: '药房部门名称', name: 'yfbmmc', width: 100, align: 'left' },
+                { label: "số phiếu lĩnh", name: "Sldh", width: 120, align: 'left' },
+                { label: 'bộ phận lĩnh', name: 'Slbm', width: 55, align: 'left' },
+                { label: 'thời gian lĩnh', name: 'CreateTime', width: 85, align: 'left', formatter: 'date', formatoptions: { srcformat: 'y-m-d H:i', newformat: 'y-m-d H:i' } },
+                { label: 'tên bộ phận nhà thuốc', name: 'yfbmmc', width: 100, align: 'left' },
                 {
-                    label: '终止', name: '', width: 40, align: 'center', formatter: function (cellvalue, options, rowObject) {//AbandonZT(" + arguments[1].rowId + ")
+                    label: 'chấm dứt', name: '', width: 40, align: 'center', formatter: function (cellvalue, options, rowObject) {//AbandonZT(" + arguments[1].rowId + ")
                         if (rowObject.ffzt === @((int)EnumSLDDeliveryStatus.Abandon)||rowObject.ffzt === @((int)EnumSLDDeliveryStatus.All)) {
                             return "";
                         }
-                        return "<input type=\"button\" class=\"btn btn-default btn-md\" value=\"终止\" onclick=\"btn_Abandon('" + arguments[1].rowId + "'," + rowObject.ffzt + ");\" />";
+                        return "<input type=\"button\" class=\"btn btn-default btn-md\" value=\"chấm dứt\" onclick=\"btn_Abandon('" + arguments[1].rowId + "'," + rowObject.ffzt + ");\" />";
                     }
                 },
-                { label: "主键", name: "sldId", hidden: true, key: true },
+                { label: "khóa chính", name: "sldId", hidden: true, key: true },
                 { label: "ffzt", name: "ffzt", hidden: true }
             ],
             pager: "#gridPager1",
@@ -146,11 +146,11 @@
                 var sldId = data.sldId;
                 if (data.ffzt === '@((int)EnumSLDDeliveryStatus.Abandon)') {
                     $("#jqg_parentgridList_" + rowid).hide();
-                    $.modalAlert("该条记录已终止", "warning");
+                    $.modalAlert("nên dòng bản ghi đã chấm dứt", "warning");
                     return;
                 } else if (data.ffzt === '@((int)EnumSLDDeliveryStatus.All)') {
                     $("#jqg_parentgridList_" + rowid).hide();
-                    $.modalAlert("该条记录已全发药", "warning");
+                    $.modalAlert("nên dòng bản ghi đã toàn phát thuốc", "warning");
                     return;
                 }
                 $.najax({
@@ -185,7 +185,7 @@
         });
     }
 
-    //终止
+    //chấm dứt
     function btn_Abandon(id, zt) {
         if (zt === @((int)EnumSLDDeliveryStatus.None) || zt === @((int)EnumSLDDeliveryStatus.Part)) {
             $.najax({
@@ -194,7 +194,7 @@
                 cache: false,
                 success: function (res) {
                     if (res.state === "success") {
-                        $.modalMsg("终止成功！", 'success', 1000);
+                        $.modalMsg("chấm dứt thành công!", 'success', 1000);
                     }
                     $("#parentgridList").resetSelection();
                     $("#parentgridList").trigger("reloadGrid");
@@ -216,44 +216,44 @@
     function medicineGridList() {
         $MedicineGridList.newtouchLocalDataGrid({
             autoScroll: true,
-            caption: "药品信息",
+            caption: "thông tin thuốc",
             height: $(window).height() - 220,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             colModel: [
                 {
-                    label: '现发数量', name: 'fysl', width: 55, align: 'center', editable: true, editwidth:"88%",
+                    label: 'hiện tại phát số lượng', name: 'fysl', width: 55, align: 'center', editable: true, editwidth:"88%",
                     editrules: { integer: true }
                 },
-                { label: '单位', name: 'bzdw', width: 40, align: 'center' },
-                { label: '已发数量', name: 'yfslStr', width: 55, align: 'right' },
-                { label: '申领数量', name: 'Sl', width: 55, align: 'right' },
-                { label: '现有库存', name: 'kc', width: 80, align: 'center' },
-                { label: '药品名称', name: 'ypmc', width: 110, align: 'left' },
-                { label: '规格', name: 'ypgg', width: 80, align: 'left' },
-                { label: '生产厂家', name: 'ycmc', width: 110, align: 'left' },
-                { label: '批发价', name: 'Pfj', width: 50, align: 'right' },
-                { label: '零售价', name: 'Lsj', width: 50, align: 'right' },
-                { label: '批发总额', name: 'Pjze', width: 50, align: 'right' },
-                { label: '零价总额', name: 'lsje', width: 50, align: 'right' },
+                { label: 'đơn vị', name: 'bzdw', width: 40, align: 'center' },
+                { label: 'số lượng đã phát', name: 'yfslStr', width: 55, align: 'right' },
+                { label: 'số lượng lĩnh', name: 'Sl', width: 55, align: 'right' },
+                { label: 'tồn kho hiện có', name: 'kc', width: 80, align: 'center' },
+                { label: 'tên thuốc', name: 'ypmc', width: 110, align: 'left' },
+                { label: 'quy cách', name: 'ypgg', width: 80, align: 'left' },
+                { label: 'nhà sản xuất', name: 'ycmc', width: 110, align: 'left' },
+                { label: 'giá bán buôn', name: 'Pfj', width: 50, align: 'right' },
+                { label: 'giá bán lẻ', name: 'Lsj', width: 50, align: 'right' },
+                { label: 'tổng tiền bán buôn', name: 'Pjze', width: 50, align: 'right' },
+                { label: 'tổng tiền giá lẻ', name: 'lsje', width: 50, align: 'right' },
                 { label: "sldmxId", name: "sldmxId", hidden: true },
-                { label: '药品编码', name: 'Ypdm', hidden: true },
-                { label: '申领部门', name: 'Slbm', hidden: true },
-                { label: '转换因子（包装单位）', name: 'zhyz', hidden: true },
-                { label: '申领数量', name: 'Slsl', hidden: true },
-                { label: '已发数量', name: 'yfsl', hidden: true },
-                { label: '库存数量', name: 'kcsl', hidden: true },
-                { label: '申领单ID', name: 'sldId', hidden: true }
+                { label: 'mã thuốc', name: 'Ypdm', hidden: true },
+                { label: 'bộ phận lĩnh', name: 'Slbm', hidden: true },
+                { label: 'hệ số chuyển đổi (đơn vị đóng gói)', name: 'zhyz', hidden: true },
+                { label: 'số lượng lĩnh', name: 'Slsl', hidden: true },
+                { label: 'số lượng đã phát', name: 'yfsl', hidden: true },
+                { label: 'số lượng tồn kho', name: 'kcsl', hidden: true },
+                { label: 'phiếu lĩnh ID', name: 'sldId', hidden: true }
             ],
             onSelectRow: function (rowid, status) {
-                if (rowid && lastRowId && rowid !== lastRowId) {   //&&: 相当于true/fase(判断是否有值)
+                if (rowid && lastRowId && rowid !== lastRowId) {   //&&: tương đương với true/fase(đánh giá có hay không có giá trị)
                     $MedicineGridList.saveRow(lastRowId, function (result) {
-                        // return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
-                    }); //先保存处于编辑状态的那一行    //function checksave
+                        // return false; //kiểm tra nhập nội dung có hay không hợp lệ, hủy lưu quay lại false    //không hiệu lực v.v. sửa chữa
+                    }); //trước tiên lưu ở chỉnh sửa trạng thái của đó một dòng    //function checksave
                 }
                 //$("#" + rowid + "_fysl").attr("width", 50);
                 lastRowId = rowid;
                 $MedicineGridList.jqGrid('editRow', rowid, true, null, function (result) {
-                    //return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
+                    //return false; //kiểm tra nhập nội dung có hay không hợp lệ, hủy lưu quay lại false    //không hiệu lực v.v. sửa chữa
                 }, null, null, function () {
                 });
             },
@@ -263,14 +263,14 @@
         });
     }
 
-    //发药
+    //phát thuốc
     function newtouch_event_f8() {
         $MedicineGridList.saveRow(lastRowId, null, null, null, function (callbackRowId) {
         }, null, null);
         var kcInfoJsonSave = $MedicineGridList.jqGrid('getRowData_AllLine');
         var par = {};
         if (kcInfoJsonSave === [] || kcInfoJsonSave.length === 0) {
-            $.modalAlert("发药失败,无药品信息！", 'error');
+            $.modalAlert("phát thuốc thất bại,không có thông tin thuốc!", 'error');
             return false;
         }
         var dic = [];
@@ -281,17 +281,17 @@
             if (fysl > 0) {
                 var maxfysl = parseInt(obj.Slsl) - parseInt(obj.yfsl);
                 if (fysl - maxfysl > 0) {
-                    $.modalAlert("【" + obj.ypmc + "】发数量不可大于" + maxfysl / parseInt(obj.zhyz) + "！", 'warning');
+                    $.modalAlert("【" + obj.ypmc + "】phát số lượng không có thể lớn hơn" + maxfysl / parseInt(obj.zhyz) + "！", 'warning');
                     flag = false;
                     $MedicineGridList.jqGrid('editRow', obj.jqRowId, true, null, function (result) {
-                        //return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
+                        //return false; //kiểm tra nhập nội dung có hay không hợp lệ, hủy lưu quay lại false    //không hiệu lực v.v. sửa chữa
                     }, null, null, function () { });
                     return false;
                 } else if (parseInt(obj.kcsl) < fysl) {
-                    $.modalAlert("【" + obj.ypmc + "】库存不足！", 'warning');
+                    $.modalAlert("【" + obj.ypmc + "】库存不足!", 'warning');
                     flag = false;
                     $MedicineGridList.jqGrid('editRow', obj.jqRowId, true, null, function (result) {
-                        //return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
+                        //return false; //kiểm tra nhập nội dung có hay không hợp lệ, hủy lưu quay lại false    //không hiệu lực v.v. sửa chữa
                     }, null, null, function () { });
                     return false;
                 }
@@ -310,8 +310,8 @@
         });
         if (!flag) return false;
         par["xtYpLsNbfymxk"] = dic;
-        par["type"] =@((int)EnumDanJuLX.shenlingfayao);//申领单发药
-        par["fyfs"] = @((int)EnumFyfs.Zcck);//正常出库
+        par["type"] =@((int)EnumDanJuLX.shenlingfayao);//phiếu lĩnh phát thuốc
+        par["fyfs"] = @((int)EnumFyfs.Zcck);//bình thường xuất kho
         $.najax({
             type: "POST",
             url: "/DrugStorage/ExecHandOutMedicineByReq",
@@ -320,7 +320,7 @@
             success: function (res) {
                 medicineData = [];
                 if (res.state === "success") {
-                    $.modalMsg('发药成功', 'success', 1000);
+                    $.modalMsg('phát thuốc thành công', 'success', 1000);
                     $("#parentgridList").resetSelection();
                     $("#parentgridList").trigger("reloadGrid");
                     $('#parentgridList').jqGrid("clearGridData");

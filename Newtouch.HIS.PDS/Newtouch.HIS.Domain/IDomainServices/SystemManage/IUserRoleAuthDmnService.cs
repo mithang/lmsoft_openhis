@@ -4,26 +4,26 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 用户角色权限 公用DmnService
+    /// người dùng vai trò quyền dùng chung DmnService
     /// </summary>
     public interface IUserRoleAuthDmnService
     {
         /// <summary>
-        /// 获取用户已授权的角色列表
+        /// lấy người dùng đã ủy quyền của vai trò danh sách
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         IList<SysRoleEntity> GetUserRoleList(string userId);
 
         /// <summary>
-        /// 获取UserId 根据RoleId
+        /// lấy UserId theo RoleId
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>
         IList<string> GetCurUserIdListByRoleId(string roleId);
 
         /// <summary>
-        /// 保存 角色 用户列表
+        /// lưu vai trò người dùng danh sách
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="userIds"></param>

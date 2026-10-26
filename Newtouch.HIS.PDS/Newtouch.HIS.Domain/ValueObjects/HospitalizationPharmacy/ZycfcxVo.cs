@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationPharmacy
         public string yzh { get; set; }
         public DateTime? zxrq { get; set; }
         /// <summary>
-        /// 1:临时 2:长期
+        /// 1:tạm thời 2:dài hạn
         /// </summary>
         public string yzxz { get; set; }
     }

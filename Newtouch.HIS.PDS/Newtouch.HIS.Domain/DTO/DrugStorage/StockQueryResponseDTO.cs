@@ -8,34 +8,34 @@ namespace Newtouch.HIS.Domain.DTO.DrugStorage
     public class StockQueryResponseDTO
     {
         /// <summary>
-        /// 药品库存信息
+        /// thuốc thông tin tồn kho
         /// </summary>
         public List<DrugStockInfo> drugStockInfos { get; set; }
     }
 
     /// <summary>
-    /// 库存药品信息
+    /// tồn kho thông tin thuốc
     /// </summary>
     public class DrugStockInfo
     {
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 领药药房
+        /// nhà thuốc lĩnh thuốc
         /// </summary>
         public string lyyf { get; set; }
 
         /// <summary>
-        /// 领药药房名称
+        /// nhà thuốc lĩnh thuốc tên
         /// </summary>
         public string lyyfmc { get; set; }
 

@@ -3,48 +3,48 @@
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 药房部门
+    /// bộ phận nhà thuốc
     /// </summary>
     [Table("V_S_xt_yfbm")]
     public class SysPharmacyDepartmentVEntity : IEntity<SysPharmacyDepartmentVEntity>
     {
         /// <summary>
-        /// 药房部门ID
+        /// bộ phận nhà thuốc ID
         /// </summary>
         public int yfbmId { get; set; }
 
         /// <summary>
-        /// 药房部门名称
+        /// tên bộ phận nhà thuốc
         /// </summary>
         public string yfbmmc { get; set; }
 
         /// <summary>
-        /// 药房部门代码
+        /// mã bộ phận nhà thuốc
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 组织机构代码
+        /// tổ chức mã
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 门诊住院标志
+        /// cờ ngoại trú/nội trú
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 药剂部门级别
+        /// cấp bộ phận dược
         /// </summary>
         public byte yjbmjb { get; set; }
 
         /// <summary>
-        /// 科室代码
+        /// khoa mã
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// 状态 0：无效  1：有效
+        /// trạng thái 0: không hiệu lực  1: còn hiệu lực
         /// </summary>
         public string zt { get; set; }
 

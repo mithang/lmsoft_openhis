@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public int ypsxId { get; set; }
 
         /// <summary>
-        /// 关联系统药品药品编号
+        /// liên kết hệ thống thuốc số hiệu thuốc
         /// </summary>
         public int ypId { get; set; }
 
@@ -24,17 +24,17 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string ypCode { get; set; }
 
         /// <summary>
-        /// --0 无需审核 1 需要审核   －－一期暂时不做 2006.06.21
+        /// --0 không có cần duyệt 1 cần duyệt   －－giai đoạn 1 tạm thời không làm 2006.06.21
         /// </summary>
         public string shbz { get; set; }
 
         /// <summary>
-        /// 0 普通项目 1 特殊项目 refer xt_yptsbz   特殊药品说明是特定的病人性质才可使用的。
+        /// 0 hạng mục thường 1 đặc biệt hạng mục refer xt_yptsbz   đặc biệt thuốc mô tả có đặc thù của tính chất bệnh nhân mới có thể sử dụng của.
         /// </summary>
         public string tsbz { get; set; }
 
         /// <summary>
-        /// 包含了原来的“皮试标志”
+        /// bao gồm đã ban đầu của"thử phản ứng da cờ"
         /// </summary>
         public string jsbz { get; set; }
 
@@ -54,12 +54,12 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string yljsy { get; set; }
 
         /// <summary>
-        /// 0 无需招标   1 市招标   2 区招标   3 竞价   4 询价
+        /// 0 không cần đấu thầu   1 thành phố đấu thầu   2 quận đấu thầu   3 đấu giá   4 cứu giá
         /// </summary>
         public string zbbz { get; set; }
 
         /// <summary>
-        /// 默认用法来自xt_ypyf
+        /// cách dùng mặc định từ xt_ypyf
         /// </summary>
         public string zlff { get; set; }
 
@@ -89,27 +89,27 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string ybdm { get; set; }
 
         /// <summary>
-        /// 医保控量设置字段
+        /// trường cài đặt khống chế số lượng BHYT
         /// </summary>
         public int? syts { get; set; }
 
         /// <summary>
-        /// 医保控量设置字段
+        /// trường cài đặt khống chế số lượng BHYT
         /// </summary>
         public decimal? dczdjl { get; set; }
 
         /// <summary>
-        /// 医保控量设置字段
+        /// trường cài đặt khống chế số lượng BHYT
         /// </summary>
         public decimal? dczdsl { get; set; }
 
         /// <summary>
-        /// 医保控量设置字段
+        /// trường cài đặt khống chế số lượng BHYT
         /// </summary>
         public decimal? ljzdjl { get; set; }
 
         /// <summary>
-        /// 医保控量设置字段
+        /// trường cài đặt khống chế số lượng BHYT
         /// </summary>
         public decimal? ljzdsl { get; set; }
 
@@ -119,17 +119,17 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string pzwh { get; set; }
 
         /// <summary>
-        /// 来自系统药品特殊属性xt_ypxz
+        /// từ hệ thống thuốc đặc biệt thuộc tính xt_ypxz
         /// </summary>
         public string yptssx { get; set; }
 
         /// <summary>
-        /// 来自xt_ypfl
+        /// từ xt_ypfl
         /// </summary>
         public string ypflCode { get; set; }
 
         /// <summary>
-        /// 0：每顿取整收费1：每次取整收费
+        /// 0: mỗi lần làm tròn thu phí 1: mỗi lần làm tròn thu phí
         /// </summary>
         public string jzlx { get; set; }
 
@@ -144,7 +144,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public DateTime? zjtzsj { get; set; }
 
         /// <summary>
-        /// xg：修改,xz：新增,ty：停用,qy：启用,tj：调价
+        /// xg: sửa,xz: thêm mới,ty: ngừng sử dụng,qy: kích hoạt,tj: điều chỉnh giá
         /// </summary>
         public string xglx { get; set; }
 
@@ -189,45 +189,45 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public int? px { get; set; }
 
         /// <summary>
-        /// 组织Id
+        /// tổ chức Id
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 药品同步医保时间
+        /// thuốc đồng bộ BHYT thời gian
         /// </summary>
         public DateTime? LastYBUploadTime { get; set; }
         /// <summary>
-        /// 默认剂量
+        /// mặc định liều dùng
         /// </summary>
         public decimal? mrjl { get; set; }
         /// <summary>
-        /// 默认频次
+        /// mặc định tần suất
         /// </summary>
         public string mrpc { get; set; }
         /// <summary>
-        /// 医保标志
+        /// cờ BHYT
         /// </summary>
         public string ybbz { get; set; }
         /// <summary>
-        /// 新农合医保代码
+        /// mã BHYT nông thôn mới
         /// </summary>
         public string xnhybdm { get; set; }
         /// <summary>
-        /// 新农合医保代码
+        /// mã BHYT nông thôn mới
         /// </summary>
         public string gjybdm { get; set; }
         public string gjybmc { get; set; }
         /// <summary>
-        /// 单次限量
+        /// mỗi lần giới hạn
         /// </summary>
         public decimal? dcxl { get; set; }
         /// <summary>
-        /// 慢病限量
+        /// bệnh mãn tính giới hạn
         /// </summary>
         public decimal? mbxl { get; set; }
 
         /// <summary>
-        /// 默认用法
+        /// cách dùng mặc định
         /// </summary>
         public string mryf { get; set; }
 
@@ -236,6 +236,6 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
 
 
 
-        /// <summary>        /// 医保规格        /// </summary>        public string ybgg { get; set; }
+        /// <summary>        /// quy cách BHYT        /// </summary>        public string ybgg { get; set; }
     }
 }

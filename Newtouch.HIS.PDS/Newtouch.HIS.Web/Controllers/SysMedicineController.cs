@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Web.Controllers
             return View();
         }
 
-        //grid json 数据源
+        //grid json nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetGridJson(Pagination pagination, string keyword, string organizeId, string zt, string ypflCode)
@@ -73,7 +73,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region 绑定下拉控件的值
 
         /// <summary>
-        /// 根据组织机构获取药品信息列表
+        /// theo tổ chức lấy thông tin thuốc danh sách
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>
@@ -97,7 +97,7 @@ namespace Newtouch.HIS.Web.Controllers
         #endregion
 
         /// <summary>
-        /// 提交数据信息
+        /// gửi dữ liệu thông tin
         /// </summary>
         /// <param name="model"></param>
         /// <param name="p"></param>
@@ -114,22 +114,22 @@ namespace Newtouch.HIS.Web.Controllers
         //    //model.ybbz = model.ybbz == "true" ? "1" : "0";
         //    if (string.IsNullOrWhiteSpace(model.OrganizeId))
         //    {
-        //        throw new FailedException("请选择组织机构");
+        //        throw new FailedException("vui lòng chọn tổ chức");
         //    }
 
         //    if (!_sysOrganizeDmnService.IsMedicalOrganize(model.OrganizeId))
         //    {
-        //        throw new FailedException("请选择医疗机构（医院或诊所）");
+        //        throw new FailedException("vui lòng chọn cơ sở y tế (bệnh viện hoặc phòng khám)");
         //    }
         //    _sysMedicineDmnService.SubmitMedicine(model, keyValue);
         //    var t = _sysPharmacyDepartmentApp.SubmitEmpowermentPharmacyDepartment(keyValue, ypCode, OrganizeId, UserIdentity.UserCode, p);
 
-        //    var msg = string.IsNullOrWhiteSpace(t) ? "操作成功。" : ("保存药品信息成功，但授权药房药库失败，" + t);
+        //    var msg = string.IsNullOrWhiteSpace(t)? "thao tác thành công.": ("lưu thông tin thuốc thành công, nhưng ủy quyền nhà thuốc kho thuốc thất bại, " + t);
         //    return Success(msg);
         //}
 
         /// <summary>
-        /// 修改信息时，把信息带到新页面
+        /// sửa thông tin giờ, 把信息带到新页面
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -142,7 +142,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 药品信息同步医保
+        /// thông tin thuốc đồng bộ BHYT
         /// </summary>
         /// <param name="ypCode"></param>
         /// <returns></returns>
@@ -152,7 +152,7 @@ namespace Newtouch.HIS.Web.Controllers
         //{
         //    if (ypId <= 0)
         //    {
-        //        return Success("请选择同步的药品！");
+        //        return Success("vui lòng chọn đồng bộ của thuốc!");
         //    }
         //    var ypEntity = _sysMedicineDmnService.GetFormJson(ypId);
         //    if (!string.IsNullOrWhiteSpace(ypEntity.ybdm))
@@ -165,16 +165,16 @@ namespace Newtouch.HIS.Web.Controllers
         //            {
         //                return Error(error);
         //            }
-        //            return Success(string.Format("[{0}]医保同步成功！", ypEntity.ypmc));
+        //            return Success(string.Format("[{0}]BHYT đồng bộ thành công!", ypEntity.ypmc));
         //        }
         //        else
         //        {
-        //            return Error(string.Format("[{0}]医保同步失败：{1}", ypEntity.ypmc, Result.ErrorMsg));
+        //            return Error(string.Format("[{0}]BHYT đồng bộ thất bại: {1}", ypEntity.ypmc, Result.ErrorMsg));
         //        }
         //    }
         //    else
         //    {
-        //        return Success("缺少医保代码！");
+        //        return Success("缺少医保代码!");
         //    }
         //}
 
@@ -194,7 +194,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 获取抗生素信息
+        /// lấy thông tin kháng sinh
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
@@ -205,7 +205,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 保存抗生素信息
+        /// lưu kháng sinh thông tin
         /// </summary>
         /// <param name="AntibioticInfo"></param>
         /// <returns></returns>
@@ -216,14 +216,14 @@ namespace Newtouch.HIS.Web.Controllers
         //    AntibioticInfo.LastModifierCode = UserIdentity.UserCode;
         //    AntibioticInfo.LastModifyTime = DateTime.Now;
         //    var getId = _sysMedicineAntibioticInfoRepo.SubmitForm(AntibioticInfo);
-        //    return string.IsNullOrWhiteSpace(getId) ? Error("保存抗生素失败") : Success("", getId);
+        //    return string.IsNullOrWhiteSpace(getId)? Error("lưu kháng sinh thất bại"): Success("", getId);
         //}
 
         #region 自动授权药房药库
 
 
         /// <summary>
-        /// 获取所有药房药库
+        /// lấy tất cả nhà thuốc kho thuốc
         /// </summary>
         /// <returns></returns>
         public ActionResult GetAllYfbm()
@@ -233,7 +233,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取该药品已授权的药房药库
+        /// lấy nên thuốc đã ủy quyền của nhà thuốc kho thuốc
         /// </summary>
         /// <param name="ypId"></param>
         /// <returns></returns>
@@ -244,11 +244,11 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 提交授权药房药库
+        /// gửi ủy quyền nhà thuốc kho thuốc
         /// </summary>
         /// <param name="p"></param>
-        /// <param name="ypCode">药品代码</param>
-        /// <param name="keyValue">药品ID</param>
+        /// <param name="ypCode">mã thuốc</param>
+        /// <param name="keyValue">thuốc ID</param>
         /// <returns></returns>
         //public ActionResult SubmitEmpowermentPharmacyDepartment(List<string> p, string ypCode, int? keyValue)
         //{
@@ -265,7 +265,7 @@ namespace Newtouch.HIS.Web.Controllers
         #endregion
 
 
-        //药品用法下拉浮层
+        //cách dùng thuốc thả xuống lớp nổi
         public ActionResult GetUsageFloat(string keyword = null)
         {
             var list = _sysMedicineDmnService.GetUsageFloat(keyword);
@@ -276,7 +276,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region base基础数据
 
         /// <summary>
-        /// 根据关键字查询药品分类
+        /// theo từ khóa tra cứu phân loại thuốc
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>
@@ -286,7 +286,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        //下拉框数据绑定
+        //hộp thả xuống dữ liệu gắn
         public ActionResult GetSelectJson(string code)
         {
             var data = _sysMedicineBaseDmnService.GetValidListByItemCode(code, "");
@@ -298,7 +298,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(list.ToJson());
         }
 
-        //收费大类树形（医院） 下拉 数据源
+        //收费大类树形 (bệnh viện) thả xuống nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetTreeSelectJson(string organizeId, string treeidFieldName = "Code")
@@ -336,7 +336,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取药品单位列表
+        /// lấy thuốc đơn vị danh sách
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>

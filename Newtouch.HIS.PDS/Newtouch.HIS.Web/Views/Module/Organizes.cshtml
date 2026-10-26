@@ -11,9 +11,9 @@
 </form>
 
 <div style="position: fixed; bottom: 10px; right: 10px;">
-    <a class="btn btn-primary" onclick="btn_authall()">授权全部</a>
+    <a class="btn btn-primary" onclick="btn_authall()">ủy quyền tất cả</a>
     &nbsp;&nbsp;
-    <a class="btn btn-danger" onclick="btn_authcancelall()">撤销全部</a>
+    <a class="btn btn-danger" onclick="btn_authcancelall()">thu hồi tất cả</a>
 </div>
 
 <script>
@@ -54,7 +54,7 @@
         });
     }
     function btn_authcancelall() {
-        $.modalConfirm("撤销全部授权", function (flag) {
+        $.modalConfirm("thu hồi tất cả ủy quyền", function (flag) {
             if (flag) {
                 var postData = {};
                 $.submitForm({

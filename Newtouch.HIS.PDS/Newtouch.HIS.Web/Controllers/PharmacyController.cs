@@ -13,7 +13,7 @@ using Newtouch.Core.Common.Exceptions;
 namespace Newtouch.HIS.Web.Controllers
 {
     /// <summary>
-    /// 药房Controller
+    /// nhà thuốc Controller
     /// </summary>
     public class PharmacyController : ControllerBase
     {
@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 
         /// <summary>
-        /// 内部申领
+        /// lĩnh nội bộ
         /// </summary>
         /// <returns></returns>
         public ActionResult RequisitionForm()
@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 初始化单据号
+        /// khởi tạo số chứng từ
         /// </summary>
         /// <returns></returns>
         public ActionResult RequisitionGetNewDjh()
@@ -42,7 +42,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 内部申领 发药部门 Sele
+        /// lĩnh nội bộ bộ phận phát thuốc Sele
         /// </summary>
         /// <returns></returns>
         public ActionResult RequisitionFybmSele(string keyword)
@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 内部申领 输入码 Sele
+        /// lĩnh nội bộ mã nhập Sele
         /// </summary>
         /// <returns></returns>
         public ActionResult RequisitionSrmSele(string keyword, string fybm)
@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 内部申领 提交表单
+        /// lĩnh nội bộ gửi bảng đơn
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 
         /// <summary>
-        /// 申领单查询（药房部门发出去的）
+        /// phiếu lĩnh tra cứu (药房部门发出去的)
         /// </summary>
         /// <returns></returns>
         public ActionResult RequisitionSearchIndex()
@@ -101,7 +101,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 申领出库 申领单 数据源
+        /// xuất kho theo phiếu lĩnh phiếu lĩnh nguồn dữ liệu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startDate"></param>
@@ -141,7 +141,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 申领出库 申领单 明细数据 数据源
+        /// xuất kho theo phiếu lĩnh phiếu lĩnh chi tiết dữ liệu nguồn dữ liệu
         /// </summary>
         /// <param name="sldId"></param>
         /// <returns></returns>
@@ -153,10 +153,10 @@ namespace Newtouch.HIS.Web.Controllers
 
 
         /// <summary>
-        /// 请求获取当前部门 的 ypCode药品 的 库存量
+        /// yêu cầu lấy bộ phận hiện tại của ypCode thuốc của tồn kho lượng
         /// </summary>
-        /// <param name="ypCode">药品代码</param>
-        /// <param name="fybm">发药部门</param>
+        /// <param name="ypCode">mã thuốc</param>
+        /// <param name="fybm">bộ phận phát thuốc</param>
         /// <returns></returns>
         public ActionResult GetYpKcslAndYpdw(string ypCode, string fybm)
         {

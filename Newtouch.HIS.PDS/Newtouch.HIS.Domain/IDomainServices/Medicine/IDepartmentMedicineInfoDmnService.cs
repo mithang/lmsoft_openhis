@@ -4,22 +4,22 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 部门 药品
+    /// bộ phận thuốc
     /// </summary>
     public interface IDepartmentMedicineInfoDmnService
     {
         /// <summary>
-        /// 获取药房的药品 库存数量和单位
+        /// lấy nhà thuốc của thuốc số lượng tồn kho và đơn vị
         /// </summary>
-        /// <param name="yfbmCode">当前药房部门</param>
-        /// <param name="ypCode">药品代码</param>
-        /// <param name="orgId">组织机构</param>
-        /// <param name="fybm">发药部门</param>
+        /// <param name="yfbmCode">hiện tại bộ phận nhà thuốc</param>
+        /// <param name="ypCode">mã thuốc</param>
+        /// <param name="orgId">tổ chức</param>
+        /// <param name="fybm">bộ phận phát thuốc</param>
         /// <returns></returns>
         DepartmentMedicineStockUnitVO GetYpKcslAndYpdw(string yfbmCode, string ypCode, string orgId, string fybm);
 
         /// <summary>
-        /// 获取 内部申领 药品数据源
+        /// lấy lĩnh nội bộ thuốc nguồn dữ liệu
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="fybm"></param>

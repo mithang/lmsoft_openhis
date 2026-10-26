@@ -10,7 +10,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 {
 	/// <summary>
-	/// 药品库存查询
+	/// thuốc tồn kho tra cứu
 	/// </summary>
 	public class DrugStockSearchController : ControllerBase
 	{
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 
 
         /// <summary>
-        /// 药品查询 出库部门默认当前部门
+        /// thuốc tra cứu bộ phận xuất kho mặc định bộ phận hiện tại
         /// </summary>
         /// <param name="rkbm"></param>
         /// <param name="keyWord"></param>
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		}
 
 		/// <summary>
-		/// 获取当前部门拥有的药品和库存信息  （外部入库）
+		/// lấy bộ phận hiện tại sở hữu của thuốc và thông tin tồn kho   (nhập kho từ bên ngoài)
 		/// </summary>
 		/// <param name="rkbm"></param>
 		/// <param name="keyWord"></param>
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		}
 
 		/// <summary>
-		/// 获取当前部门拥有的药品和库存信息  （外部入库）
+		/// lấy bộ phận hiện tại sở hữu của thuốc và thông tin tồn kho   (nhập kho từ bên ngoài)
 		/// </summary>
 		/// <param name="keyword"></param>
 		/// <param name="fph"></param>
@@ -63,13 +63,13 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		}
 
 		/// <summary>
-		/// 获取库存信息  库存量查询用
+		/// lấy thông tin tồn kho  tra cứu lượng tồn kho dùng
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="keyword"></param>
-		/// <param name="tybz">停用标志  dbo.xt_yp_bmypxx.zt  1-可用 0-停用</param>
-		/// <param name="kczt">库存标志 空-全部 0-无效库存  1-有效库存</param>
-		/// <param name="show0kc">是否展示零库存</param>
+		/// <param name="tybz">cờ ngừng sử dụng  dbo.xt_yp_bmypxx.zt  1-khả dụng 0-ngừng sử dụng</param>
+		/// <param name="kczt">tồn kho cờ trống-tất cả 0-không hiệu lực tồn kho  1-còn hiệu lực tồn kho</param>
+		/// <param name="show0kc">có hiển thị tồn kho bằng 0 không</param>
 		/// <returns></returns>
 		[HttpGet]
 		[Core.Attributes.HandlerAuthorizeIgnore]
@@ -86,7 +86,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		}
 
 		/// <summary>
-		/// 根据药品代码获取按批次分组的库存数量 当前登录药房部门
+		/// theo mã thuốc lấy theo lô nhóm của số lượng tồn kho hiện tại đăng nhập bộ phận nhà thuốc
 		/// </summary>
 		/// <param name="ypdm"></param>
 		/// <returns></returns>
@@ -98,7 +98,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		}
 
 		/// <summary>
-		/// 根据药品代码获取按批次分组的库存数量 当前登录药房部门
+		/// theo mã thuốc lấy theo lô nhóm của số lượng tồn kho hiện tại đăng nhập bộ phận nhà thuốc
 		/// </summary>
 		/// <param name="ypdm"></param>
 		/// <param name="fph"></param>
@@ -113,7 +113,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		}
 
 		/// <summary>
-		/// 根据药品代码获取按批次分组的库存数量 当前登录药房部门
+		/// theo mã thuốc lấy theo lô nhóm của số lượng tồn kho hiện tại đăng nhập bộ phận nhà thuốc
 		/// </summary>
 		/// <param name="ypdm"></param>
 		/// <returns></returns>
@@ -134,7 +134,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		#region 库存查询功能页
 
 		/// <summary>
-		/// 库存查询 视图
+		/// tồn kho tra cứu khung nhìn
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult StockQuery()
@@ -145,7 +145,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		}
 
 		/// <summary>
-		/// 修改库存状态
+		/// sửa trạng thái tồn kho
 		/// </summary>
 		/// <param name="ypdm"></param>
 		/// <param name="ph"></param>
@@ -162,7 +162,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		#region 过期药品查询
 
 		/// <summary>
-		/// 过期药品查询 视图
+		/// tra cứu thuốc hết hạn khung nhìn
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult ExpiredDrugsView()
@@ -174,7 +174,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		}
 
 		/// <summary>
-		/// 查询过期药品
+		/// tra cứu thuốc hết hạn
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="keyword"></param>
@@ -182,7 +182,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		/// <returns></returns>
 		public ActionResult ExpiredDrugsQuery(Pagination pagination, string keyword, int gpyf,string gqyjcode,string noShow0Kc=null)
 		{
-            int gqyjz = -SysConfigReader.Int("GET_YFGQYG");//过期预警值
+            int gqyjz = -SysConfigReader.Int("GET_YFGQYG");//giá trị cảnh báo hết hạn
             var stockTotalList = new
 			{
 				rows = drugStorageDmnService.SelectExpiredDrugs(pagination, keyword.Trim(), gpyf, Constants.CurrentYfbm.yfbmCode, OrganizeId, gqyjcode, gqyjz, noShow0Kc),
@@ -198,7 +198,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		#region 查询当前单据全部明细数据
 
 		/// <summary>
-		/// 查询单据数据
+		/// tra cứu đơn chứng dữ liệu
 		/// </summary>
 		/// <param name="crkId"></param>
 		/// <returns></returns>
@@ -209,7 +209,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		}
 
 		/// <summary>
-		/// 删除单据数据
+		/// xóa đơn chứng dữ liệu
 		/// </summary>
 		/// <param name="crkId"></param>
 		/// <returns></returns>
@@ -220,7 +220,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		}
 
 		/// <summary>
-		/// 修改单据数据
+		/// sửa đơn chứng dữ liệu
 		/// </summary>
 		/// <param name="crkId"></param>
 		/// <returns></returns>
@@ -231,7 +231,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		}
 
 		/// <summary>
-		/// 查询单据数据
+		/// tra cứu đơn chứng dữ liệu
 		/// </summary>
 		/// <param name="crkId"></param>
 		/// <returns></returns>
@@ -255,7 +255,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
         }
 
         /// <summary>
-        /// 获取药品有效期库存信息 当前登录药房部门
+        /// lấy thuốc hạn sử dụng thông tin tồn kho hiện tại đăng nhập bộ phận nhà thuốc
         /// </summary>
         /// <param name="ypdm"></param>
         /// <returns></returns>
@@ -274,7 +274,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
         }
         
         /// <summary>
-        /// 更新药品有效期
+        /// cập nhật thuốc hạn sử dụng
         /// </summary>
         /// <param name="kcId"></param>
         /// <param name="yxq"></param>

@@ -71,97 +71,97 @@ namespace Newtouch.HIS.Domain.DTO.PharmacyDrugStorage
         public string sfchmc { get; set; }
 
         /// <summary>
-        /// 药企名称
+        /// doanh nghiệp dược tên
         /// </summary>
 
         public string yqmc { get; set; }
 
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypdm { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 大类名称
+        /// tên nhóm lớn
         /// </summary>
         public string dlmc { get; set; }
 
         /// <summary>
-        /// 规格
+        /// quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 带单位部门数量
+        /// kèm đơn vị số bộ phận lượng
         /// </summary>
         public string slStr { get; set; }
 
 
         /// <summary>
-        /// 包装数单位
+        /// đơn vị số lượng đóng gói
         /// </summary>
         public string bzdw { get; set; }
 
         /// <summary>
-        /// 最小单位
+        /// đơn vị nhỏ nhất
         /// </summary>
         public string zxdw { get; set; }
 
 
         /// <summary>
-        /// 单位
+        /// đơn vị
         /// </summary>
         public string dw { get; set; }
 
 
         /// <summary>
-        /// 转化因子
+        /// hệ số chuyển đổi
         /// </summary>
         public int? zhyz { get; set; }
 
         /// <summary>
-        /// 包装数
+        /// số lượng đóng gói
         /// </summary>
         public int? bzs { get; set; }
 
         /// <summary>
-        /// 部门批发价
+        /// giá bán buôn bộ phận
         /// </summary>
         //public decimal? pfj { get; set; }
 
         ///// <summary>
-        ///// 部门零售价
+        ///// giá bán lẻ bộ phận
         ///// </summary>
         //public decimal? lsj { get; set; }
 
         /// <summary>
-        /// 最小单位零售价
+        /// giá bán lẻ đơn vị nhỏ nhất
         /// </summary>
         public decimal? zxdwlsj { get; set; }
 
         /// <summary>
-        /// 药库批发价
+        /// giá bán buôn kho thuốc
         /// </summary>
         public decimal? ykpfj { get; set; }
 
         /// <summary>
-        /// 药库零售价
+        /// giá bán lẻ kho thuốc
         /// </summary>
         public decimal? yklsj { get; set; }
 
         /// <summary>
-        /// 生产厂商
+        /// nhà sản xuất
         /// </summary>
         public string sccj { get; set; }
 
         /// <summary>
-        /// 零售价单价单位
+        /// giá bán lẻ đơn giá đơn vị
         /// </summary>
         public string lsjdjdw { get; set; }
     }

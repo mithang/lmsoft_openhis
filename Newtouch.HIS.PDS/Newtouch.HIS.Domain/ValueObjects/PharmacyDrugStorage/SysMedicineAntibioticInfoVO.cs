@@ -19,57 +19,57 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 一级分类Id
+        /// phân loại cấp 1 Id
         /// </summary>
         public string kssLevel1TypeId { get; set; }
 
         /// <summary>
-        /// 二级分类Id
+        /// phân loại cấp 2 Id
         /// </summary>
         public string kssLevel2TypeId { get; set; }
 
         /// <summary>
-        /// 权限级别(0 非限制使用药物,1 限制使用药物,2 特殊使用药物)
+        /// cấp quyền(0 không hạn chế sử dụng thuốc,1 hạn chế sử dụng thuốc,2 đặc biệt sử dụng thuốc)
         /// </summary>
         public string qxjb { get; set; }
 
         /// <summary>
-        /// 剂量范围(大于)
+        /// liều dùng phạm vi(lớn hơn)
         /// </summary>
         public decimal? jlfwBegin { get; set; }
 
         /// <summary>
-        /// 剂量范围(小于)
+        /// liều dùng phạm vi(nhỏ hơn)
         /// </summary>
         public decimal? jlfwEnd { get; set; }
 
         /// <summary>
-        /// 频次范围(大于)
+        /// tần suất phạm vi(lớn hơn)
         /// </summary>
         public decimal? pcfwBegin { get; set; }
 
         /// <summary>
-        /// 频次范围(小于)
+        /// tần suất phạm vi(nhỏ hơn)
         /// </summary>
         public decimal? pcfwEnd { get; set; }
 
         /// <summary>
-        /// DDD值
+        /// DDD giá trị
         /// </summary>
         public decimal? DDDnum { get; set; }
 
         /// <summary>
-        /// DDD单位
+        /// DDD đơn vị
         /// </summary>
         public string DDDdw { get; set; }
 
         /// <summary>
-        /// 效价
+        /// hiệu giá
         /// </summary>
         public decimal? xj { get; set; }
 
         /// <summary>
-        /// 空瓶(0 否,1 是)
+        /// trống lọ(0 không,1 có)
         /// </summary>
         public string kp { get; set; }
 
@@ -94,11 +94,11 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 1：有效 0：无效
+        /// 1: còn hiệu lực 0: không hiệu lực
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// 抗生素剂量单位
+        /// kháng sinh đơn vị liều dùng
         /// </summary>
         public string kssjldw { get; set; }
     }

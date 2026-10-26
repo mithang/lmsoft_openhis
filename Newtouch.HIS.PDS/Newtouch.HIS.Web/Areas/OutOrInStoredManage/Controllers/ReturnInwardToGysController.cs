@@ -6,7 +6,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 {
     /// <summary>
-    /// 外部出库
+    /// xuất kho ra bên ngoài
     /// </summary>
     public class ReturnInwardToGysController : ControllerBase
     {

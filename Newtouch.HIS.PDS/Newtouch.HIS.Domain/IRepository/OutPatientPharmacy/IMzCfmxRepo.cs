@@ -4,38 +4,38 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 门诊处方
+    /// don thuoc ngoai tru
     /// </summary>
     public interface IMzCfmxRepo : IRepositoryBase<MzCfmxEntity>
     {
         /// <summary>
-        /// 根据处方号获取处方明细
+        /// lay chi tiet don thuoc theo so don thuoc
         /// </summary>
         /// <param name="cfh"></param>
         /// <returns></returns>
         List<MzCfmxEntity> GetCfmxByCfh(string cfh);
 
         /// <summary>
-        /// 判断是否已存在
+        /// danh gia da ton tai hay chua
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="ypCode"></param>
         /// <param name="organizeId"></param>
-        /// <param name="gg">规格</param>
+        /// <param name="gg">quy cach</param>
         /// <returns></returns>
         bool IsExist(string cfh, string ypCode, string organizeId, string gg = "");
 
         /// <summary>
-        /// 删除老的处方明细
+        /// xoa chi tiet don thuoc cu
         /// </summary>
-        /// <param name="cfh">处方号</param>
+        /// <param name="cfh">so don thuoc</param>
         /// <returns></returns>
         int DeleteCfmx(string cfh);
 
         /// <summary>
-        /// 删除老的处方明细
+        /// xoa chi tiet don thuoc cu
         /// </summary>
-        /// <param name="cfhs">处方号列表</param>
+        /// <param name="cfhs">danh sach so don thuoc</param>
         /// <returns></returns>
         int DeleteCfmx(List<string> cfhs);
     }

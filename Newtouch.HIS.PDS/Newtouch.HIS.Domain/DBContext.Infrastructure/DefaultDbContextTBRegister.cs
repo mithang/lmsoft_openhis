@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Domain.DBContext.Infrastructure
     public class DefaultDbContextTBRegister
     {
         /// <summary>
-        /// 注册表（底层已经注册了一部分）
+        /// đăng ký bảng (底层已经注册了一部分)
         /// </summary>
         /// <param name="modelBuilder"></param>
         public static void Registe(DbModelBuilder modelBuilder)
@@ -57,14 +57,14 @@ namespace Newtouch.HIS.Domain.DBContext.Infrastructure
             modelBuilder.Entity<ZyReturnDrugApplyBillEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<ZyTymxEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.ComplexType<XT_YP_LS_NBFYMXK>();
-            //采购
+            //mua hàng
 
             modelBuilder.Entity<PurchaseEntity>().RegisterTable().HasKey(p => p.cgId);
             modelBuilder.Entity<PurchaseDetailEntity>().RegisterTable().HasKey(p => p.cgmxId);
             modelBuilder.Entity<PurchaseLogEntity>().RegisterTable().HasKey(p => p.Id);
-            //配送点
+            //điểm phân phối
             modelBuilder.Entity<PurchaseLocationEntity>().RegisterTable().HasKey(p => p.Id);
-            //发票
+            //hóa đơn
             modelBuilder.Entity<PurchaseBillEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<PurchaseBillDetailEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());

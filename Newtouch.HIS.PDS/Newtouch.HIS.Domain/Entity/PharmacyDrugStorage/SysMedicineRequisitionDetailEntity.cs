@@ -11,53 +11,53 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysMedicineRequisitionDetailEntity : IEntity<SysMedicineRequisitionDetailEntity>
     {
         /// <summary>
-        /// 申领单明细Id
+        /// chi tiết phiếu lĩnh Id
         /// </summary>
         [Key]
         public string sldmxId { get; set; }
 
         /// <summary>
-        /// 申领单Id
+        /// phiếu lĩnh Id
         /// </summary>
         public string sldId { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 有效日期
+        /// ngày hiệu lực
         /// </summary>
         public DateTime? Yxrq { get; set; }
 
         /// <summary>
-        /// 转换因子 发药药库的转化因子
+        /// hệ số chuyển đổi phát thuốc kho thuốc của hệ số chuyển đổi
         /// </summary>
         public int Zhyz { get; set; }
 
         /// <summary>
-        /// 批号
+        /// số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 申领数量 最小单位
+        /// số lượng lĩnh đơn vị nhỏ nhất
         /// </summary>
         public int slsl { get; set; }
 
         /// <summary>
-        /// 已发数量 最小单位
+        /// số lượng đã phát đơn vị nhỏ nhất
         /// </summary>
         public int yfsl { get; set; }
 
         /// <summary>
-        /// 状态  1：有效  0：无效
+        /// trạng thái  1: còn hiệu lực  0: không hiệu lực
         /// </summary>
         public string zt { get; set; }
 

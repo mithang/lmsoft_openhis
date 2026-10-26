@@ -5,64 +5,64 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 门诊处方药品操作记录
+    /// ngoại trú đơn thuốc thuốc thao tác bản ghi
     /// </summary>
     [Table("mz_cfypczjl")]
     public class MzCfypczjlEntity : IEntity<MzCfypczjlEntity>
     {
         /// <summary>
-        /// 主键ID
+        /// khóa chính ID
         /// </summary>
         [Key]
         public long Id { get; set; }
 
         /// <summary>
-        /// 门诊处方明细ID mz_cfmx表主键
+        /// ngoại trú chi tiết đơn thuốc ID mz_cfmx bảng khóa chính
         /// </summary>
         public long mzcfmxId { get; set; }
 
         /// <summary>
-        /// 操作类型 1：发药 2：退药
+        /// loại thao tác 1: phát thuốc 2: trả thuốc
         /// </summary>
         public string operateType { get; set; }
 
         /// <summary>
-        /// 药品编号
+        /// số hiệu thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 操作数量  最小单位
+        /// thao tác số lượng  đơn vị nhỏ nhất
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 备注
+        /// ghi chú
         /// </summary>
         public string bz { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// thời gian sửa đổi
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改用户
+        /// người sửa đổi
         /// </summary>
         public string LastModifierCode { get; set; }
 

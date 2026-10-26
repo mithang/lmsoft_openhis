@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "AntibioticCFQuery";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //报表链接
+    //liên kết báo cáo
     //var reportUrl = SysConfigReader.OrgReportLink();
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
 }
@@ -10,23 +10,23 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">统计年月：</th>
+                <th class="formTitle">thống kê năm tháng: </th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an" style="width: 140px;"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM'})" value="@(DateTime.Now.ToString("yyyy-MM"))" />
                 </td>
-                <th class="formTitle">门诊/住院：</th>
+                <th class="formTitle">ngoại trú/nội trú: </th>
                 <td class="formValue">
                     <select id="SelKss" name="SelKss" class="form-control">
-                        <option value="-1">全部</option>
-                        <option value="0">门诊</option>
-                        <option value="1">住院</option>
+                        <option value="-1">tất cả</option>
+                        <option value="0">ngoại trú</option>
+                        <option value="1">nội trú</option>
 
                     </select>
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="tra cứu" style="width:55px" />
                 </td>
             </tr>
         </table>
@@ -42,7 +42,7 @@
 <script type="text/javascript">
     function submit() {
         if ($('#kssj').val().length == 0) {
-            $.modalAlert("缺少开始时间", "error");
+            $.modalAlert("thiếu thời gian bắt đầu", "error");
             return;
         }
         var kssj = $('#kssj').val() + "-01 00:00:00";
@@ -50,16 +50,16 @@
         var selkss = $('#SelKss').val();
         var head = "";
         if (selkss=="0") {
-            head = "门诊";
+            head = "ngoại trú";
         }
         if (selkss == "1") {
-            head = "住院";
+            head = "nội trú";
         }
-        head = kssj.substring(5, 7) + "月" + head;
+        head = kssj.substring(5, 7) + "tháng" + head;
         
         var url = getUrl();
         //url += "&tjsj=" + kssj + "&jssj=" + jssj + "&mzorzy=" + selkss + "&OrganizeId=" + orgId + "&systemCode=PDS&czydm=wadmin&hospitalCode=" + orgId;
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'đang yêu cầu trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
     }
 
@@ -76,7 +76,7 @@
       
     });
 
-    //刷新列表
+    //làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }

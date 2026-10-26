@@ -20,7 +20,7 @@ using Newtouch.Tools.Excel;
 namespace Newtouch.HIS.Web.Controllers
 {
 	/// <summary>
-	/// xt_yp_ls_syxx 药品Controller
+	/// xt_yp_ls_syxx thuốc Controller
 	/// </summary>
 	public class MedicineController : ControllerBase
 	{
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Web.Controllers
 		private readonly IDrugStorageApp _drugStorageApp;
 
 		/// <summary>
-		/// 系统药品
+		/// hệ thống thuốc
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult SysMedicine()
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// 本部门药品信息
+		/// này bộ phận thông tin thuốc
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult GetypGridJson(Pagination pagination, MedicineInfoParam model, string keyword, string organizeId)
@@ -74,7 +74,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// 同步部门药品
+		/// đồng bộ bộ phận thuốc
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult SyncDeptDrug()
@@ -83,7 +83,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// 盈亏查询
+		/// lãi/lỗ tra cứu
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult PriceAdjustmentProfitAndLossQuery()
@@ -101,10 +101,10 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// 同步
+		/// đồng bộ
 		/// </summary>
 		/// <param name="yp"></param>
-		/// <param name="opereateType">0:添加  1：删除</param>
+		/// <param name="opereateType">0:thêm  1: xóa</param>
 		/// <returns></returns>
 		[HttpPost]
 		public ActionResult FreshList(string[] yp, int opereateType)
@@ -130,7 +130,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// 控制,取消控制
+		/// kiểm soát,hủy kiểm soát
 		/// </summary>
 		/// <param name="ypCode"></param>
 		/// <param name="type"></param>
@@ -142,7 +142,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// 退药部门
+		/// bộ phận trả thuốc
 		/// </summary>
 		/// <param name="xtYpLsNbfymxk"></param>
 		/// <param name="tybm"></param>
@@ -156,7 +156,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// 系统药品供应商 数据源
+		/// hệ thống thuốc nhà cung cấp nguồn dữ liệu
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult MedicineSupplierList(string keyword)
@@ -166,7 +166,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// 获取药品特殊属性
+		/// lấy thuộc tính đặc biệt của thuốc
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult GetMedicineTSSXList()
@@ -176,7 +176,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// 获取收货部门
+		/// lấy bộ phận nhận hàng
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult GetMeidicineSHBMList()
@@ -188,7 +188,7 @@ namespace Newtouch.HIS.Web.Controllers
 		#region 报损报溢
 
 		/// <summary>
-		/// 报损报溢
+		/// báo hỏng báo thừa
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult ReportLossAndProfit()
@@ -197,7 +197,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// 获取新的损益单号
+		/// lấy mới của lãi/lỗ số phiếu
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult initialSYDH()
@@ -207,7 +207,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// 根据类型加载损益原因
+		/// theo loại tải nguyên nhân lãi/lỗ
 		/// </summary>
 		/// <param name="sylx"></param>
 		/// <returns></returns>
@@ -219,7 +219,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// 获取责任人list
+		/// lấy người chịu trách nhiệm list
 		/// </summary>
 		/// <param name="inputCode"></param>
 		/// <returns></returns>
@@ -230,7 +230,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// 查询损益药品list
+		/// tra cứu thuốc lãi/lỗ list
 		/// </summary>
 		/// <param name="inputCode"></param>
 		/// <returns></returns>
@@ -267,7 +267,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// 报损报溢 （保存）
+		/// báo hỏng báo thừa  (lưu)
 		/// </summary>
 		/// <param name="syxx"></param>
 		/// <returns></returns>
@@ -315,7 +315,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 		#region 报损报溢查询
 		/// <summary>
-		/// 报损报溢查询
+		/// tra cứu báo hỏng/báo thừa
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult ReportLossAndProfitQuery()
@@ -324,7 +324,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// 报损报溢查询
+		/// tra cứu báo hỏng/báo thừa
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult SelectLossAndProditInfoList(Pagination pagination, string startTime, string endTime, string syyy, string inputCode, int syqk)
@@ -339,7 +339,7 @@ namespace Newtouch.HIS.Web.Controllers
 			return Content(list.ToJson());
 		}
 		/// <summary>
-		/// 盘点明细查询
+		/// chi tiết kiểm kê tra cứu
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult InventoryQureyInfoList(Pagination pagination, string startTime, string endTime, string syyy, string inputCode, int syqk)
@@ -354,13 +354,13 @@ namespace Newtouch.HIS.Web.Controllers
 			return Content(list.ToJson());
 		}
 		/// <summary>
-		/// 批发价总金额、零售价总金额查询
+		/// giá bán buôn tổng số tiền, giá bán lẻ tổng số tiền tra cứu
 		/// </summary>
-		/// <param name="startTime">开始时间</param>
-		/// <param name="endTime">结束时间</param>
-		/// <param name="syyy">损益原因</param>
-		/// <param name="inputCode">关键字</param>
-		/// <param name="syqk">损益情况</param>
+		/// <param name="startTime">thời gian bắt đầu</param>
+		/// <param name="endTime">thời gian kết thúc</param>
+		/// <param name="syyy">nguyên nhân lãi/lỗ</param>
+		/// <param name="inputCode">từ khóa</param>
+		/// <param name="syqk">tình hình lãi/lỗ</param>
 		/// <returns></returns>
 		public ActionResult ComputePjzeAndLjze(string startTime, string endTime, string syyy, string inputCode, int syqk)
 		{
@@ -425,9 +425,9 @@ namespace Newtouch.HIS.Web.Controllers
 				throw new FailedException("未指定导出列");
 			}
 			var pagination = new Pagination();
-			pagination.sidx = "Tjsj desc"; //时间升序
-			pagination.rows = 65536 - 1;    //Excel最大行数
-			pagination.page = 1;    //第一页把所有都查出来
+			pagination.sidx = "Tjsj desc"; //thời gian tăng dần
+			pagination.rows = 65536 - 1;    //Excel số dòng tối đa
+			pagination.page = 1;    //trang đầu tiên tra cứu tất cả
 			var boolLkc = Lkc == "1";
 			var allUseableYfbmCodes = string.Join(",", OperatorProvider.GetCurrent().yfbmCodeList.ToArray());
 			var list = _medicineDmnService.SelectPriceAdjustmentProfitLossList(pagination, startTime, endTime, Srm, yfbmCode, boolLkc, allUseableYfbmCodes);
@@ -452,7 +452,7 @@ namespace Newtouch.HIS.Web.Controllers
 			sheet.columns.ToList().ForEach(p =>
 			{
 				p.WidthTimes = (double)p.Width / colStanWidth;
-				p.Width = 0;    //Width都置为0
+				p.Width = 0;    //Width đều đặt thành 0
 			});
 
 			var path = DateTime.Now.ToString("\\\\yyyyMMdd\\\\HHmmssfff") + "调价盈亏查询" + ".xls";
@@ -461,7 +461,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 			if (isContainFilter == true)
 			{
-				//筛选条件
+				//điều kiện lọc
 				var filterDict = new Dictionary<string, string>();
 				if (startTime.HasValue)
 				{

@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "进销存统计";
+    ViewBag.Title = "thống kê nhập-xuất-tồn";
     Layout = "~/Views/Shared/_Index.cshtml";
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
 }
@@ -8,54 +8,54 @@
 <form id="form1">
     <div class="panel panel-default" style="margin-bottom:5px;">
         <div class="panel-heading">
-            查询条件
+            điều kiện tra cứu
         </div>
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">开始时间：</th>
+                    <th class="formTitle">thời gian bắt đầu: </th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlKSSJ" class="form-control"></select>
                     </td>
-                    <th class="formTitle">结束时间：</th>
+                    <th class="formTitle">thời gian kết thúc: </th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlJSSJ" class="form-control"></select>
                     </td>
-                    <th class="formTitle">药品状态：</th>
+                    <th class="formTitle">trạng thái thuốc: </th>
                     <td class="formValue formDdlSelectorTd">
-                        @Html.DropDownList("ddlYPZT", EnumYPZT.Enabled.ToDescSelectList(), "全部", new { @class = "form-control" })
+                        @Html.DropDownList("ddlYPZT", EnumYPZT.Enabled.ToDescSelectList(), "tất cả", new { @class = "form-control" })
                     </td>
-                    <th class="formTitle">零差率：</th>
+                    <th class="formTitle">tỷ lệ chênh lệch bằng 0: </th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlLCL" class="form-control">
-                            <option value="">全部</option>
-                            <option value="0">零差率</option>
+                            <option value="">tất cả</option>
+                            <option value="0">tỷ lệ chênh lệch bằng 0</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">药品代码：</th>
+                    <th class="formTitle">mã thuốc: </th>
                     <td class="formValue">
                         <input id="txtINPUTCODE" type="text" class="form-control" />
                     </td>
-                    <th class="formTitle">剂型：</th>
+                    <th class="formTitle">dạng bào chế: </th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlJX" class="form-control">
-                            <option value="">全部</option>
+                            <option value="">tất cả</option>
                         </select>
                     </td>
-                    <th class="formTitle">药品类别：</th>
+                    <th class="formTitle">loại thuốc: </th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlYPLB" class="form-control">
-                            <option value="">全部</option>
+                            <option value="">tất cả</option>
                         </select>
                     </td>
                     <td class="formValue" colspan="2" style="padding-left:20px;">
                         <input id="chk_Show" type="checkbox" />
-                        <label for="chk_Show">显示未发生进销存药品</label>
-                        <input type="button" id="btn_dc" class="btn btn-md btn-primary" onclick="Excelbuttion()" style="width:50px; float: right;" value="导出" />
-                        <input type="button" id="btn_print" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="打印" />
-                        <input type="button" id="btn_TJ" class="btn btn-md btn-primary" style="width:50px; float: right;" value="统计" />
+                        <label for="chk_Show">hiển thị chưa xảy ra nhập-xuất-tồn thuốc</label>
+                        <input type="button" id="btn_dc" class="btn btn-md btn-primary" onclick="Excelbuttion()" style="width:50px; float: right;" value="xuất" />
+                        <input type="button" id="btn_print" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="in" />
+                        <input type="button" id="btn_TJ" class="btn btn-md btn-primary" style="width:50px; float: right;" value="thống kê" />
                     </td>
                 </tr>
             </table>
@@ -69,19 +69,19 @@
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">入库批发：</th>
+                    <th class="formTitle">入库批发: </th>
                     <td class="formValue">
                         <input type="text" id="txtRKPFZE" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">出库批发：</th>
+                    <th class="formTitle">出库批发: </th>
                     <td class="formValue">
                         <input type="text" id="txtCKPFZE" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">调价损益：</th>
+                    <th class="formTitle">điều chỉnh giá lãi/lỗ: </th>
                     <td class="formValue">
                         <input type="text" id="txtTJSYZE" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">损溢零售：</th>
+                    <th class="formTitle">损溢零售: </th>
                     <td class="formValue">
                         <input type="text" id="txtSYLSZE" class="form-control newtouch_Readonly" />
                     </td>
@@ -93,14 +93,14 @@
 
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //tải lại khi thay đổi kích thước cửa sổ trình duyệt jqGrid chiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
-        initialddljzsjList();//加载结转时间
-        initialddlJXList();//初始化药品剂型
-        initialddlYPLBList();//初始化药品类别
-        gridDrugsInfoData();//加载药品明细
+        initialddljzsjList();//tải thời gian kết chuyển
+        initialddlJXList();//khởi tạo dạng bào chế thuốc
+        initialddlYPLBList();//khởi tạo loại thuốc
+        gridDrugsInfoData();//tải chi tiết thuốc
     });
 
     function initialddljzsjList() {
@@ -116,7 +116,7 @@
         });
     }
 
-    //药品剂型
+    //dạng bào chế thuốc
     function initialddlJXList() {
         $("#ddlJX").bindSelect({
             url: "/PharmacyDrugStorage/GetMedicineFormulationList",
@@ -125,7 +125,7 @@
         });
     }
 
-    //药品类别
+    //loại thuốc
     function initialddlYPLBList() {
         $("#ddlYPLB").bindSelect({
             url: "/PharmacyDrugStorage/GetMedicineCategoryList2",
@@ -136,7 +136,7 @@
 
     
     var gridop = null;
-    //单据主记录
+    //bản ghi chính của chứng từ
     function gridDrugsInfoData() {
         var $gridDrugsInfoData = $("#gridDrugsInfo");
         var gridOptins = {
@@ -144,63 +144,63 @@
             postData: getSearchPostData(),
             url: '/DrugStorage/PSIStatisticsInfoList',
             colModel: [
-                { label: '药品代码', name: 'Ypdm', width: 70, align: 'left' },
-                { label: '药品名称', name: 'ypmc', width: 110, align: 'left' },
-                { label: '规格', name: 'ypgg', width: 70, align: 'left' },
-                { label: '单位', name: 'dw', width: 50, align: 'center' },
-                { label: '进价', name: 'jj', width: 50, align: 'center' },
-                { label: '零售价', name: 'lsj', width: 50, align: 'center' },
-                { label: '期初数量', name: 'qcsl', width: 80, align: 'right' },
+                { label: 'mã thuốc', name: 'Ypdm', width: 70, align: 'left' },
+                { label: 'tên thuốc', name: 'ypmc', width: 110, align: 'left' },
+                { label: 'quy cách', name: 'ypgg', width: 70, align: 'left' },
+                { label: 'đơn vị', name: 'dw', width: 50, align: 'center' },
+                { label: 'giá nhập', name: 'jj', width: 50, align: 'center' },
+                { label: 'giá bán lẻ', name: 'lsj', width: 50, align: 'center' },
+                { label: 'đầu kỳ số lượng', name: 'qcsl', width: 80, align: 'right' },
                 {
-                    label: '期初批发总额', name: 'qcpfze', width: 80, align: 'right',
+                    label: 'tổng tiền bán buôn đầu kỳ', name: 'qcpfze', width: 80, align: 'right',
                     formatter: function (val) {
                         return val.toFixed(2);
                     }
                 },
-                { label: '入库数量', name: 'rksl', width: 70, align: 'right' },
+                { label: 'số lượng nhập kho', name: 'rksl', width: 70, align: 'right' },
                 {
-                    label: '入库批发总额', name: 'rkpfze', width: 80, align: 'right',
+                    label: 'nhập kho tổng tiền bán buôn', name: 'rkpfze', width: 80, align: 'right',
                     formatter: function (val) {
                         return val.toFixed(2);
                     }
                 },
-                { label: '出库数量', name: 'cksl', width: 70, align: 'right' },
+                { label: 'số lượng xuất kho', name: 'cksl', width: 70, align: 'right' },
                 {
-                    label: '出库批发总额', name: 'ckpfze', width: 80, align: 'right',
+                    label: 'xuất kho tổng tiền bán buôn', name: 'ckpfze', width: 80, align: 'right',
                     formatter: function (val) {
                         return val.toFixed(2);
                     }
                 },
-                { label: '损益数量', name: 'sysl', width: 70, align: 'right' },
+                { label: 'số lượng lãi/lỗ', name: 'sysl', width: 70, align: 'right' },
                 {
-                    label: '损溢批发总额', name: 'sypfze', width: 80, align: 'right',
+                    label: 'lãi/lỗ tổng tiền bán buôn', name: 'sypfze', width: 80, align: 'right',
                     formatter: function (val) {
                         return val.toFixed(2);
                     }
                 },
-                { label: '盘盈数量', name: 'pysl', width: 70, align: 'right' },
+                { label: 'số lượng thừa kiểm kê', name: 'pysl', width: 70, align: 'right' },
                 {
                     label: '盘盈批发总额', name: 'pyze', width: 80, align: 'right',
                     formatter: function (val) {
                         return val.toFixed(2);
                     }
                 },
-                { label: '盘亏数量', name: 'pksl', width: 70, align: 'right' },
+                { label: 'số lượng thiếu kiểm kê', name: 'pksl', width: 70, align: 'right' },
                 {
                     label: '盘亏批发总额', name: 'pkze', width: 80, align: 'right',
                     formatter: function (val) {
                         return val.toFixed(2);
                     }
                 },
-                { label: '期末数量', name: 'qmsl', width: 70, align: 'right' },
+                { label: 'số lượng cuối kỳ', name: 'qmsl', width: 70, align: 'right' },
                 {
-                    label: '期末批发总额', name: 'qmpfze', width: 80, align: 'right',
+                    label: 'tổng tiền bán buôn cuối kỳ', name: 'qmpfze', width: 80, align: 'right',
                     formatter: function (val) {
                         return val.toFixed(2);
                     }
                 },
                 {
-                    label: '调价损溢总额', name: 'tjsyze', width: 80, align: 'right',
+                    label: 'tổng lãi/lỗ do điều chỉnh giá', name: 'tjsyze', width: 80, align: 'right',
                     formatter: function (val) {
                         return val.toFixed(2);
                     }
@@ -211,18 +211,18 @@
             sortname: 'Ypdm desc',
             viewrecords: true,
             loadComplete: function (data) {
-                StatisticsZE();//统计总额
+                StatisticsZE();//thống kê tổng mức
             }
         };
         $gridDrugsInfoData.dataGrid(gridOptins);
         
-        //统计
+        //thống kê
         $("#btn_TJ").click(function () {
             if ($("#ddlKSSJ").val() >= $("#ddlJSSJ").val() && $("#ddlJSSJ").val() !== "") {
-                $.modalAlert("结束结转时间需大于开始账期", 'warning');
+                $.modalAlert("kết thúc thời gian kết chuyển cần lớn hơn bắt đầu kỳ sổ sách", 'warning');
                 return;
             }
-            //清空Grid
+            //xóa sạch Grid
             $('#gridDrugsInfo').jqGrid("clearGridData");
             $gridDrugsInfoData.jqGrid('setGridParam', {
                 postData: getSearchPostData(),
@@ -232,7 +232,7 @@
         gridop = gridOptins;
     }
 
-    //查询条件
+    //điều kiện tra cứu
     function getSearchPostData() {
         return {
             ksjzsj: $("#ddlKSSJ").val(),
@@ -246,12 +246,12 @@
         };
     };
 
-    //统计总额
+    //thống kê tổng mức
     function StatisticsZE() {
-        var statisticsRkpfze = 0;  //入库进价总额
-        var statisticsCkpfze = 0;  //出库进价总额
-        var statisticsTjsyze = 0;  //调价损益总额
-        var statisticsSylsze = 0;  //损益零售总额
+        var statisticsRkpfze = 0;  //tổng tiền giá nhập khi nhập kho
+        var statisticsCkpfze = 0;  //tổng tiền giá nhập khi xuất kho
+        var statisticsTjsyze = 0;  //tổng lãi/lỗ do điều chỉnh giá
+        var statisticsSylsze = 0;  //tổng tiền bán lẻ lãi/lỗ
         var count = $("#gridDrugsInfo").getGridParam('records');
         if (count > 0) {
             var rowIds = $("#gridDrugsInfo").getDataIDs();
@@ -260,15 +260,15 @@
                 var getRowCkpfze = $("#gridDrugsInfo").getRowData(rowIds[i]).ckpfze;
                 var getRowTjsyze = $("#gridDrugsInfo").getRowData(rowIds[i]).tjsyze;
                 var getRowSypfze = $("#gridDrugsInfo").getRowData(rowIds[i]).sypfze;
-                statisticsRkpfze = statisticsRkpfze + parseFloat(getRowRkpfze);//入库进价总额
-                statisticsCkpfze = statisticsCkpfze + parseFloat(getRowCkpfze);//出库进价总额
-                statisticsTjsyze = statisticsTjsyze + parseFloat(getRowTjsyze);//调价损益总额
-                statisticsSylsze = statisticsSylsze + parseFloat(getRowSypfze);//损益零售总额
+                statisticsRkpfze = statisticsRkpfze + parseFloat(getRowRkpfze);//tổng tiền giá nhập khi nhập kho
+                statisticsCkpfze = statisticsCkpfze + parseFloat(getRowCkpfze);//tổng tiền giá nhập khi xuất kho
+                statisticsTjsyze = statisticsTjsyze + parseFloat(getRowTjsyze);//tổng lãi/lỗ do điều chỉnh giá
+                statisticsSylsze = statisticsSylsze + parseFloat(getRowSypfze);//tổng tiền bán lẻ lãi/lỗ
             }
-            statisticsRkpfze = roundingBy4she6ru5chengshuang(statisticsRkpfze, 2);//入库进价总额
-            statisticsCkpfze = roundingBy4she6ru5chengshuang(statisticsCkpfze, 2);//出库进价总额
-            statisticsTjsyze = roundingBy4she6ru5chengshuang(statisticsTjsyze, 2);//调价损益总额
-            statisticsSylsze = roundingBy4she6ru5chengshuang(statisticsSylsze, 2);//损益零售总额
+            statisticsRkpfze = roundingBy4she6ru5chengshuang(statisticsRkpfze, 2);//tổng tiền giá nhập khi nhập kho
+            statisticsCkpfze = roundingBy4she6ru5chengshuang(statisticsCkpfze, 2);//tổng tiền giá nhập khi xuất kho
+            statisticsTjsyze = roundingBy4she6ru5chengshuang(statisticsTjsyze, 2);//tổng lãi/lỗ do điều chỉnh giá
+            statisticsSylsze = roundingBy4she6ru5chengshuang(statisticsSylsze, 2);//tổng tiền bán lẻ lãi/lỗ
         }
         $("#txtRKPFZE").val(statisticsRkpfze);
         $("#txtCKPFZE").val(statisticsCkpfze);
@@ -291,19 +291,19 @@
         url += "?cols=" + cols;
         $.modalOpen({
             id: "ExcelExportChooseColumns",
-            title: "导出Excel",
+            title: "xuất Excel",
             url: url,
             width: "600px",
             height: "350px",
             callBack: function (iframeId) {
-                //结果
+                //kết quả
                 var restArr = top.frames[iframeId].GetChoosedCols();
                 if (!!!restArr || !!!restArr.length || restArr.length == 0) {
-                    $.modalAlert("请选择导出列", 'error');
+                    $.modalAlert("vui lòng chọn xuất cột", 'error');
                     return false;
                 }
                 var isContainFilter = top.frames[iframeId].GetIsContainFilter();
-                //关闭选择窗口
+                //đóng chọn cửa sổ
                 $.modalClose("ExcelExportChooseColumns");
                 //
                 exportCols = $.jsonWhere(exportCols, function (v) {
@@ -315,7 +315,7 @@
                     }
                     return matched;
                 });
-                //导出
+                //xuất
                 Export(isContainFilter);
             }
         });
@@ -350,7 +350,7 @@
         url += "&isContainFilter=" + isContainFilter;
         url += "&jxtext=" + $("#ddlJX option:selected").text();
         url += "&lbtext=" + $("#ddlYPLB option:selected").text();
-        url += "&colStanWidth=" + "70";  //列宽度标准列
+        url += "&colStanWidth=" + "70";  //cột tiêu chuẩn chiều rộng cột
         var cols = JSON.stringify(exportCols);
         top.$.cookie('ExportExcelCols', cols, { path: "/" });
         //url += "&cols=" + cols;

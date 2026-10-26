@@ -11,102 +11,102 @@ namespace Newtouch.HIS.Domain.DTO.Medicine
         public long Id { get; set; }
 
         /// <summary>
-        /// 处方内码
+        /// mã nội bộ đơn thuốc
         /// </summary>
         public long cfnm { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 结算内码
+        /// quyết toán trong mã
         /// </summary>
         public long jsnm { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// số thẻ
         /// </summary>
         public string CardNo { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// họ tên
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// số hóa đơn
         /// </summary>
         public string Fph { get; set; }
 
         /// <summary>
-        /// 年龄
+        /// tuổi
         /// </summary>
         public int? nl { get; set; }
 
         /// <summary>
-        /// 病人性质
+        /// tính chất bệnh nhân
         /// </summary>
         public string brxzmc { get; set; }
 
         /// <summary>
-        /// 医生
+        /// bác sĩ
         /// </summary>
         public string ysmc { get; set; }
 
         /// <summary>
-        /// 科室
+        /// khoa
         /// </summary>
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 领药药房
+        /// nhà thuốc lĩnh thuốc
         /// </summary>
         public string lyyf { get; set; }
 
         /// <summary>
-        /// 收费时间
+        /// thời gian thu phí
         /// </summary>
         public DateTime? sfsj { get; set; }
 
         /// <summary>
-        /// 0：未排；1：已排；2：已发；3：已退
+        /// 0: chưa xếp; 1: đã xếp; 2: đã phát; 3: đã trả
         /// </summary>
         public string fybz { get; set; }
 
         /// <summary>
-        /// 组织机构Id
+        /// tổ chức Id
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 处方金额
+        /// đơn thuốc số tiền
         /// </summary>
         public decimal je { get; set; }
 
         /// <summary>
-        /// 0：无效 1：有效
+        /// 0: không hiệu lực 1: còn hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建人员
+        /// người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建日期
+        /// ngày tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 修改人员
+        /// người sửa đổi
         /// </summary>
         public string LastModiFierCode { get; set; }
 
         /// <summary>
-        /// 修改日期
+        /// ngày sửa đổi
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
         public string cfId { get; set; }

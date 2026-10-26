@@ -5,12 +5,12 @@ using Newtouch.HIS.Domain.Entity.V;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 结转
+    /// kết chuyển
     /// </summary>
     public interface ISysMedicineStockCarryDownRepo : IRepositoryBase<SysMedicineStockCarryDownEntity>
     {
         /// <summary>
-        /// 获取历史结转时间
+        /// lấy lịch sử thời gian kết chuyển
         /// </summary>
         /// <returns></returns>
         List<KeyValueVEntity> GetlsjzDateTime(string yfbmCode, string organizeId);

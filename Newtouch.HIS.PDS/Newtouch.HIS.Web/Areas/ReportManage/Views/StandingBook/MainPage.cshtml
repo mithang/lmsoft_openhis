@@ -21,12 +21,12 @@
 <form id="form1">
     <div class="panel panel-default">
         <div class="panel-heading">
-            药品筛选信息
+            thuốc thông tin lọc
         </div>
         <div>
             <table class="form">
                 <tr>
-                    <td class="formTitle">药房名称：</td>
+                    <td class="formTitle">tên nhà thuốc: </td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="yfbmCode" name="yfbmCode">
                             @foreach (LoginUserCurrentYfbmModel t in lt)
@@ -35,20 +35,20 @@
                             }
                         </select>
                     </td>
-                    <td class="formTitle">开始日期：</td>
+                    <td class="formTitle">ngày bắt đầu: </td>
                     <td class="formValue">
                         <input type="text" id="startTime" style="width: 140px;" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd 00:00:00' })" />
                     </td>
-                    <td class="formTitle">结束日期： </td>
+                    <td class="formTitle">ngày kết thúc: </td>
                     <td class="formValue">
                         <input type="text" id="endTime" style="width: 140px;" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd HH:mm")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" />
                     </td>
-                    <td class="formTitle">药品：</td>
+                    <td class="formTitle">thuốc: </td>
                     <td class="formValue">
-                        <input type="text" id="ypdm" class="form-control" placeholder="请输入药品代码 拼音 名称" />
+                        <input type="text" id="ypdm" class="form-control" placeholder="vui lòng nhập mã thuốc phiên âm tên" />
                     </td>
                     <td class="formTitle">
-                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="查询" />
+                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="tra cứu" />
                     </td>
                 </tr>
             </table>
@@ -74,11 +74,11 @@
         gridmx();
     });
 
-    //自适应
+    //tự thích ứng
     function initLayout() {
         $("#dv_right").width(fymx);
     }
-    //回车事件绑定
+    //gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
@@ -93,13 +93,13 @@
             },
             height: $(window).height() - 125,
             colModel: [
-                { label: "药品代码", name: "ypCode", width: 60, align: 'left' },
-                { label: '药品名称', name: 'ypmc', width: 120, align: 'left' },
-                { label: '规格', name: 'ypgg', width: 80, align: 'left' },
-                { label: '单位', name: 'deptdw', width: 45, align: 'center' },
-                { label: '零售价', name: 'lsj', width: 50, align: 'left' },
-                { label: '批发价', name: 'pfj', width: 50, align: 'left' },
-                { label: '拼音', name: 'py', width: 65, align: 'left' }
+                { label: "mã thuốc", name: "ypCode", width: 60, align: 'left' },
+                { label: 'tên thuốc', name: 'ypmc', width: 120, align: 'left' },
+                { label: 'quy cách', name: 'ypgg', width: 80, align: 'left' },
+                { label: 'đơn vị', name: 'deptdw', width: 45, align: 'center' },
+                { label: 'giá bán lẻ', name: 'lsj', width: 50, align: 'left' },
+                { label: 'giá bán buôn', name: 'pfj', width: 50, align: 'left' },
+                { label: 'phiên âm', name: 'py', width: 65, align: 'left' }
             ],
             sortname: 'ypmc asc',
             viewrecords: true,
@@ -133,13 +133,13 @@
             caption: "台账明细",
             url: "",
             colModel: [
-                { label: '出库说明', name: 'crksm', width: 80, align: 'left' },
-                { label: '入库数量', name: 'rkslanddw', width: 70, align: 'right' },
-                { label: '出库数量', name: 'ckslanddw', width: 70, align: 'left' },
-                { label: '结转数量', name: 'jzslanddw', width: 70, align: 'center' },
-                { label: '票单号', name: 'pdh', width: 80, align: 'center' },
-                { label: '科室名称', name: 'ks', width: 80, align: 'center' },
-                { label: '发生日期', name: 'fsrq', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'xuất kho mô tả', name: 'crksm', width: 80, align: 'left' },
+                { label: 'số lượng nhập kho', name: 'rkslanddw', width: 70, align: 'right' },
+                { label: 'số lượng xuất kho', name: 'ckslanddw', width: 70, align: 'left' },
+                { label: 'số lượng kết chuyển', name: 'jzslanddw', width: 70, align: 'center' },
+                { label: 'số phiếu', name: 'pdh', width: 80, align: 'center' },
+                { label: 'tên khoa', name: 'ks', width: 80, align: 'center' },
+                { label: 'xảy ra ngày', name: 'fsrq', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
             ]
         });
     }

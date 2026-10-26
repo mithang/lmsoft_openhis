@@ -3,72 +3,72 @@
 namespace Newtouch.HIS.Domain.Entity.V
 {
     /// <summary>
-    /// 申领单明细
+    /// chi tiết phiếu lĩnh
     /// </summary>
     public class ApplyDetailVEntity
     {
         /// <summary>
-        /// 申领单明细ID
+        /// chi tiết phiếu lĩnh ID
         /// </summary>
         public string sldmxId { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypdm { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 收费大类名称
+        /// thu phí tên nhóm lớn
         /// </summary>
         public string dlmc { get; set; }
 
         /// <summary>
-        /// 批号
+        /// số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// hạn sử dụng
         /// </summary>
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// 申领数量 带单位
+        /// số lượng lĩnh kèm đơn vị
         /// </summary>
         public string slslStr { get; set; }
 
         /// <summary>
-        /// 申领数量 最小单位
+        /// số lượng lĩnh đơn vị nhỏ nhất
         /// </summary>
         public int slsl { get; set; }
 
         /// <summary>
-        /// 已发数量 带单位
+        /// số lượng đã phát kèm đơn vị
         /// </summary>
         public string yfslStr { get; set; }
 
         /// <summary>
-        /// 已发数量 最小单位
+        /// số lượng đã phát đơn vị nhỏ nhất
         /// </summary>
         public int yfsl { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
     }

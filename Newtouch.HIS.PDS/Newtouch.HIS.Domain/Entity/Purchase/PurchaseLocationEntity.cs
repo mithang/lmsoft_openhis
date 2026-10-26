@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.Entity.Purchase
 {
     /// <summary>
-    /// 采购配送点
+    /// mua hàng điểm phân phối
     /// </summary>
     [Table("xt_yp_psd")]
     public class PurchaseLocationEntity : IEntity<PurchaseLocationEntity>
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Domain.Entity.Purchase
         public string bzxx { get; set; }
         public int? psdzt { get; set; }
         /// <summary>
-        /// 组织机构
+        /// tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>

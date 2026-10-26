@@ -1,7 +1,7 @@
 ﻿@using Newtouch.Infrastructure;
 @using Newtouch.HIS.Web.Core.Extensions;
 @{
-    ViewBag.Title = "过期药品查询(首页图表)";
+    ViewBag.Title = "tra cứu thuốc hết hạn(首页图表)";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -20,45 +20,45 @@
 <form id="form1">
     <div class="panel panel-default">
         <div class="panel-heading">
-            筛选信息
+            thông tin lọc
         </div>
         <div>
             <table class="form">
                 <tr>
-                    <td class="formTitle">药品代码：</td>
+                    <td class="formTitle">mã thuốc: </td>
                     <td class="formValue">
-                        <input type="text" id="ypdm" class="form-control" placeholder="请输入药品代码 拼音 名称" />
+                        <input type="text" id="ypdm" class="form-control" placeholder="vui lòng nhập mã thuốc phiên âm tên" />
                     </td>
-                    <td class="formTitle">药品类别：</td>
+                    <td class="formTitle">loại thuốc: </td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="yplb">
-                            <option value="">全部</option>
+                            <option value="">tất cả</option>
                         </select>
                     </td>
-                    <td class="formTitle">药品属性：</td>
+                    <td class="formTitle">thuộc tính thuốc: </td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="ypsx">
-                            <option value="">全部</option>
+                            <option value="">tất cả</option>
                         </select>
                     </td>
                     <td class="formTitle" rowspan="2">
-                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="查询" />
+                        <input type="button" class="btn btn-primary btn-md" id="btn_search" value="tra cứu" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">药品剂型：</td>
+                    <td class="formTitle">dạng bào chế thuốc: </td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="ypjx" name="ypjx">
-                            <option value="">全部</option>
+                            <option value="">tất cả</option>
                         </select>
                     </td>
-                    <td class="formTitle">使用状态：</td>
+                    <td class="formTitle">trạng thái sử dụng: </td>
                     <td class="formValue formDdlSelectorTd">
-                        @Html.DropDownList("syzt", BenBuMenZT.Control.ToDescSelectList(), "全部", new { @class = "form-control" })
+                        @Html.DropDownList("syzt", BenBuMenZT.Control.ToDescSelectList(), "tất cả", new { @class = "form-control" })
                     </td>
-                    <td class="formTitle">药品状态：</td>
+                    <td class="formTitle">trạng thái thuốc: </td>
                     <td class="formValue formDdlSelectorTd">
-                        @Html.DropDownList("ypzt", EnumYPZT.Enabled.ToDescSelectList(), "全部", new { @class = "form-control" })
+                        @Html.DropDownList("ypzt", EnumYPZT.Enabled.ToDescSelectList(), "tất cả", new { @class = "form-control" })
                     </td>
                 </tr>
             </table>
@@ -86,21 +86,21 @@
             postData: $("#form1").formSerialize(),
             height: $(window).height() - 235,
             colModel: [
-                { label: "药品代码", name: "ypCode", width: 70, align: 'left' },
-                { label: '药品名称', name: 'ypmc', width: 150, align: 'left' },
-                { label: '药品类别', name: 'yplb', width: 50, align: 'left' },
-                { label: '库存数量', name: 'kcsl', width: 70, align: 'left' },
-                //{ label: '药品属性', name: 'ypxzmc', width: 50, align: 'left' },
-                { label: '规格', name: 'ypgg', width: 100, align: 'left' },
-                { label: '零售价', name: 'lsj', width: 50, align: 'left' },
-                { label: '批发价', name: 'pfj', width: 50, align: 'left' },
-                { label: '单位', name: 'deptdw', width: 50, align: 'left' },
-                { label: '生产厂家', name: 'ycmc', width: 150, align: 'left' },
-                { label: '有效期', name: 'yxq', width: 150, align: 'left' },
-                { label: '使用状态', name: 'syzt', width: 50, align: 'left' },
-                { label: '库位', name: 'Ypkw', width: 55, align: 'left' },
-                { label: '停用标志', name: 'ypzt', width: 65, align: 'left' },
-                { label: "主键", name: "ypId", hidden: true, key: true }
+                { label: "mã thuốc", name: "ypCode", width: 70, align: 'left' },
+                { label: 'tên thuốc', name: 'ypmc', width: 150, align: 'left' },
+                { label: 'loại thuốc', name: 'yplb', width: 50, align: 'left' },
+                { label: 'số lượng tồn kho', name: 'kcsl', width: 70, align: 'left' },
+                //{ label: 'thuộc tính thuốc', name: 'ypxzmc', width: 50, align: 'left' },
+                { label: 'quy cách', name: 'ypgg', width: 100, align: 'left' },
+                { label: 'giá bán lẻ', name: 'lsj', width: 50, align: 'left' },
+                { label: 'giá bán buôn', name: 'pfj', width: 50, align: 'left' },
+                { label: 'đơn vị', name: 'deptdw', width: 50, align: 'left' },
+                { label: 'nhà sản xuất', name: 'ycmc', width: 150, align: 'left' },
+                { label: 'hạn sử dụng', name: 'yxq', width: 150, align: 'left' },
+                { label: 'trạng thái sử dụng', name: 'syzt', width: 50, align: 'left' },
+                { label: 'vị trí kho', name: 'Ypkw', width: 55, align: 'left' },
+                { label: 'cờ ngừng sử dụng', name: 'ypzt', width: 65, align: 'left' },
+                { label: "khóa chính", name: "ypId", hidden: true, key: true }
             ],
             pager: "#gridPager",
             sortname: 'ypmc asc',
@@ -137,14 +137,14 @@
         }
     }
 
-    //药品类别
+    //loại thuốc
     function initialddlYPLBList() {
         $("#yplb").bindSelect({
             url: "/PharmacyDrugStorage/GetMedicineCategoryList"
         });
     }
 
-    //药品剂型
+    //dạng bào chế thuốc
     function initialddlJXList() {
         $("#ypjx").bindSelect({
             url: "/PharmacyDrugStorage/GetMedicineFormulationList",
@@ -153,7 +153,7 @@
         });
     }
 
-    //药品属性
+    //thuộc tính thuốc
     function iniddlTSSXList() {
         $("#ypsx").bindSelect({
             url: "/Medicine/GetMedicineTSSXList",

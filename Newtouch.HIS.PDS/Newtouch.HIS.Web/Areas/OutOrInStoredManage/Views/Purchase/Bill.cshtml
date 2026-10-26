@@ -1,7 +1,7 @@
 ﻿
 @using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "发票获取与验收";
+    ViewBag.Title = "hóa đơn lấy và nghiệm thu";
     Layout = "~/Views/Shared/_Index.cshtml";
 
 }
@@ -46,18 +46,18 @@
 </style>
 <form id="form1">
     <div class="panel panel-default" style="margin-bottom:10px;">
-        <div class="panel-heading">发票信息</div>
+        <div class="panel-heading">hóa đơn thông tin</div>
         <table class="form">
             <tr>
-                <th class="formTitle "><span class="required">*</span>药企：</th>
+                <th class="formTitle "><span class="required">*</span>doanh nghiệp dược: </th>
                 <td class="formValue">
-                    <input type="text" id="yq" name="yq" class="form-control" placeholder="请选择药企" autocomplete="off" style="width:60%"/>
+                    <input type="text" id="yq" name="yq" class="form-control" placeholder="vui lòng chọn doanh nghiệp dược" autocomplete="off" style="width:60%"/>
                     <input type="hidden" id="yqbm" />
                 </td>
 
                 <th class="formTitle">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="获取明细" />
-                    <input type="button" id="btn_accept" class="btn btn-md btn-primary" value="明细验收" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="lấy chi tiết" />
+                    <input type="button" id="btn_accept" class="btn btn-md btn-primary" value="nghiệm thu chi tiết" />
                 </th>
                 <td></td>
             </tr>
@@ -78,10 +78,10 @@
     });
 
 
-    //初始化浮层
+    //khởi tạo lớp nổi
     function InitFloat() {
 
-        //药企
+        //doanh nghiệp dược
         $("#yq").newtouchBatchFloatingSelector({
             clickautotrigger: true,
             height: 200,
@@ -94,8 +94,8 @@
                 return reqData;
             },
             colModel: [
-                { label: '药企编码', name: 'gysCode', widthratio: 30 },
-                { label: '药企', name: 'gysmc', widthratio: 70 }
+                { label: 'mã doanh nghiệp dược', name: 'gysCode', widthratio: 30 },
+                { label: 'doanh nghiệp dược', name: 'gysmc', widthratio: 70 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#yqbm").val($thistr.attr('data-gysCode'));
@@ -115,52 +115,52 @@
             postData: { yqbm: $("#yqbm").val(), fpmxbh: '1' },
             colModel: [
             
-                { label: '发票号', name: 'FPH', width: 80, align: 'left' ,key:true,},
-                { label: '发票日期', name: 'FPRQ', width: 80, align: 'left' },
-                { label: '发票含税总金额', name: 'FPHSZJE', width: 100, align: 'left' },
-                { label: '药企编码', name: 'YQBM', width: 80, align: 'left' },
-                { label: '医院编码', name: 'YYBM', width: 100, align: 'left' },
-                { label: '配送点编码', name: 'PSDBM', width: 100, align: 'left' },
+                { label: 'số hóa đơn', name: 'FPH', width: 80, align: 'left' ,key:true,},
+                { label: 'hóa đơn ngày', name: 'FPRQ', width: 80, align: 'left' },
+                { label: 'hóa đơn bao gồm thuế tổng số tiền', name: 'FPHSZJE', width: 100, align: 'left' },
+                { label: 'mã doanh nghiệp dược', name: 'YQBM', width: 80, align: 'left' },
+                { label: 'mã bệnh viện', name: 'YYBM', width: 100, align: 'left' },
+                { label: 'mã điểm phân phối', name: 'PSDBM', width: 100, align: 'left' },
                 { label: '带量采购标志', name: 'DLSGBZ', width: 80, align: 'left' },
-                { label: '发票备注', name: 'FPBZ', width: 60, align: 'left' },
+                { label: 'hóa đơn ghi chú', name: 'FPBZ', width: 60, align: 'left' },
                 {
-                    label: '是否无配送发票', name: 'SFWPSFP', width: 90, align: 'left', formatter: function (cellvalue) {
-                        if (cellvalue == 0) return '否';
-                        else if (cellvalue == 1) return '是';
+                    label: 'có hay không không có phân phối hóa đơn', name: 'SFWPSFP', width: 90, align: 'left', formatter: function (cellvalue) {
+                        if (cellvalue == 0) return 'không';
+                        else if (cellvalue == 1) return 'có';
                     }
                 },
-                { label: '无配送发票说明', name: 'WPSFPSM', width: 80, align: 'left' },
-                { label: '发票明细编号', name: 'FPMXBH', width: 140, align: 'left' },
+                { label: 'không có phân phối hóa đơn mô tả', name: 'WPSFPSM', width: 80, align: 'left' },
+                { label: 'hóa đơn chi tiết số hiệu', name: 'FPMXBH', width: 140, align: 'left' },
                 {
-                    label: '商品类型', name: 'SPLX', width: 60, align: 'left', formatter: function (cellvalue) {
-                        if (cellvalue == 1) return '药品类';
-                        else if (cellvalue == 2) return '医用耗材类';
-                        else if (cellvalue == 3) return '医疗器械类';
-                        else if (cellvalue == 9) '其他';
+                    label: 'loại hàng hóa', name: 'SPLX', width: 60, align: 'left', formatter: function (cellvalue) {
+                        if (cellvalue == 1) return 'thuốc loại';
+                        else if (cellvalue == 2) return 'loại vật tư y tế tiêu hao';
+                        else if (cellvalue == 3) return 'loại thiết bị y tế';
+                        else if (cellvalue == 9) 'khác';
                     }
                 },
                 {
                     label: '是否冲红', name: 'SFCH', width: 60, align: 'left', formatter: function (cellvalue) {
-                        if (cellvalue == 0) return '否';
-                        else if (cellvalue == 1) return '是';
+                        if (cellvalue == 0) return 'không';
+                        else if (cellvalue == 1) return 'có';
                     }
                 },
-                { label: '商品统编代码', name: 'ZXSPBM', width: 120, align: 'left' },
-                { label: '生产批号', name: 'SCPH', width: 60, align: 'left' },
-                { label: '生产日期', name: 'SCRQ', width: 60, align: 'left' },
-                { label: '商品数量', name: 'SPSL', width: 60, align: 'left' },
-                { label: '关联明细编号', name: 'GLMXBH', width: 120, align: 'left' },
-                { label: '销售订单号', name: 'XSDDH', width: 120, align: 'left' },
-                { label: '顺序号', name: 'SXH', width: 60, align: 'left' },
-                { label: '有效日期', name: 'YXRQ', width: 60, align: 'left' },
+                { label: 'mã thống nhất hàng hóa', name: 'ZXSPBM', width: 120, align: 'left' },
+                { label: 'số lô sản xuất', name: 'SCPH', width: 60, align: 'left' },
+                { label: 'ngày sản xuất', name: 'SCRQ', width: 60, align: 'left' },
+                { label: 'hàng hóa số lượng', name: 'SPSL', width: 60, align: 'left' },
+                { label: 'liên kết chi tiết số hiệu', name: 'GLMXBH', width: 120, align: 'left' },
+                { label: 'số đơn hàng bán', name: 'XSDDH', width: 120, align: 'left' },
+                { label: 'số thứ tự', name: 'SXH', width: 60, align: 'left' },
+                { label: 'ngày hiệu lực', name: 'YXRQ', width: 60, align: 'left' },
                 { label: '无税单价', name: 'WSDJ', width: 60, align: 'left' },
-                { label: '含税单价', name: 'HSDJ', width: 60, align: 'left' },
+                { label: 'bao gồm thuế đơn giá', name: 'HSDJ', width: 60, align: 'left' },
                 { label: '税率', name: 'SL', width: 60, align: 'left' },
                 { label: '税额', name: 'SE', width: 60, align: 'left' },
-                { label: '含税金额', name: 'HSJE', width: 60, align: 'left' },
-                { label: '批发价', name: 'PFJ', width: 60, align: 'left' },
-                { label: '零售价', name: 'LSJ', width: 60, align: 'left' },
-                { label: '药品批准文号', name: 'PZWH', width: 120, align: 'left' },
+                { label: 'bao gồm thuế số tiền', name: 'HSJE', width: 60, align: 'left' },
+                { label: 'giá bán buôn', name: 'PFJ', width: 60, align: 'left' },
+                { label: 'giá bán lẻ', name: 'LSJ', width: 60, align: 'left' },
+                { label: 'thuốc số giấy phép', name: 'PZWH', width: 120, align: 'left' },
 
             ],
 
@@ -181,21 +181,21 @@
         });
     }
 
-    //获取明细
+    //lấy chi tiết
     $('#btn_search').click(function () {
         if ($("#yq").val() == "" || $("#yq").val() == null) {
-            $.modalAlert("请选择药企", 'warning');
+            $.modalAlert("vui lòng chọn doanh nghiệp dược", 'warning');
             return ;
         }
         gridList();
     });
 
 
-    //明细验收
+    //nghiệm thu chi tiết
     $('#btn_accept').click(function () {
         var rowData = $("#gridList").jqGridRowValue();
         if (rowData == null || rowData.length==0) {
-            $.modalAlert("请选择需要验收的单据", 'warning');
+            $.modalAlert("vui lòng chọn cần nghiệm thu của chứng từ", 'warning');
             return;
         }
         //var psmxbh = rowData.PSMXBH;
@@ -204,14 +204,14 @@
         //var pssl = rowData.PSSL
         $.modalOpen({
             id: "Form",
-            title: "发票验收",
+            title: "hóa đơn nghiệm thu",
             url: "/OutOrInStoredManage/Purchase/BillForm?FPH=" + rowData.FPH + "&YQBM=" + rowData.YQBM + "&FPHSZJE=" + rowData.FPHSZJE,
             width: "350px",
             height: "150px",
             callBack: function (iframeId) {
-                //验收
+                //nghiệm thu
                 top.frames[iframeId].SubmitForm();
-                //发票明细落地
+                //chi tiết hóa đơn được ghi nhận
                 $.najax({
                     type: "POST",
                     url: "/OutOrInStoredManage/Purchase/BillDetailInsert",
@@ -219,12 +219,12 @@
                     dataType: "json",
                     success: function (res) {
                         if (res.state == "success") {
-                            $.modalMsg("发票落地成功！", 'success');
+                            $.modalMsg("发票落地成功!", 'success');
                             //$('#gridDJMXInfo').jqGrid("clearGridData");
 
                             $('#btn_search').trigger('click');
                         } else {
-                            $.modalMsg("发票落地失败：" + res.message, 'warning');
+                            $.modalMsg("发票落地失败: " + res.message, 'warning');
                         }
                     }
                 });
@@ -234,12 +234,12 @@
 
 
 
-    ////明细验收
+    ////nghiệm thu chi tiết
     //$('#btn_accept').click(function () {
     //    //var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
     //    var rowData = $("#gridList").jqGridRowValue();
     //    if (rowData == null ) {
-    //        $.modalAlert("请选择需要验收的单据", 'warning');
+    //        $.modalAlert("vui lòng chọn cần nghiệm thu của chứng từ", 'warning');
     //        return;
     //    }
     //    var yqbm = rowData.YQBM;
@@ -256,9 +256,9 @@
     //        success: function (res) {
     //            if (res.state == "success") {
     //                $('#btn_search').trigger('click');
-    //                $.modalAlert("单据验收成功！", 'success');
+    //                $.modalAlert("chứng từ nghiệm thu thành công!", 'success');
     //            } else {
-    //                $.modalAlert("单据验收失败：" + res.message, 'warning');
+    //                $.modalAlert("chứng từ nghiệm thu thất bại: " + res.message, 'warning');
     //            }
     //        }
     //    });

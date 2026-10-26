@@ -6,126 +6,126 @@ using Newtouch.Infrastructure.EF.Attributes;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 门诊处方明细
+    /// ngoại trú chi tiết đơn thuốc
     /// </summary>
     [Table("mz_cfmx")]
     public class MzCfmxEntity : IEntity<MzCfmxEntity>
     {
         /// <summary>
-        /// 主键ID
+        /// khóa chính ID
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 处方明细内码
+        /// chi tiết đơn thuốc trong mã
         /// </summary>
         public long Cfmxnm { get; set; }
 
         /// <summary>
-        /// 规格
+        /// quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 单位数量
+        /// đơn vị số lượng
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 转换因子
+        /// hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 单位名称
+        /// tên đơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 最小单位单价
+        /// đơn vị nhỏ nhất đơn giá
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal? dj { get; set; }
 
         /// <summary>
-        /// 生产厂商
+        /// nhà sản xuất
         /// </summary>
         public string ycmc { get; set; }
 
         /// <summary>
-        /// 金额 sl*dj
+        /// số tiền sl*dj
         /// </summary>
         public decimal je { get; set; }
 
         /// <summary>
-        /// 剂量
+        /// liều dùng
         /// </summary>
         public decimal? jl { get; set; }
 
         /// <summary>
-        /// 剂量单位
+        /// đơn vị liều dùng
         /// </summary>
         public string jldw { get; set; }
 
         /// <summary>
-        /// 用法名称
+        /// cách dùng tên
         /// </summary>
         public string yfmc { get; set; }
 
         /// <summary>
-        /// 医生嘱托(备注)
+        /// lời dặn của bác sĩ(ghi chú)
         /// </summary>
         public string bz { get; set; }
 
         /// <summary>
-        /// 药品分组
+        /// nhóm thuốc
         /// </summary>
         public string czh { get; set; }
 
         /// <summary>
-        /// 组织机构Id
+        /// tổ chức Id
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 状态 0-无效 1-有效
+        /// trạng thái 0-không hiệu lực 1-còn hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建人员
+        /// người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建日期
+        /// ngày tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 修改人员
+        /// người sửa đổi
         /// </summary>
         public string LastModiFierCode { get; set; }
 
         /// <summary>
-        /// 修改日期
+        /// ngày sửa đổi
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
     }

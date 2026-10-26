@@ -11,7 +11,7 @@ using Newtouch.HIS.Application.Implementation.Process;
 namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
 {
     /// <summary>
-    /// 内部申领单
+    /// lĩnh nội bộ đơn
     /// </summary>
     public class ApplyBillController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
 
         #region 内部申领单查询
         /// <summary>
-        /// 内部申领单查询
+        /// lĩnh nội bộ đơn tra cứu
         /// </summary>
         /// <returns></returns>
         public ActionResult Query()
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取申领单主信息
+        /// lấy phiếu lĩnh chính thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ffzt"></param>
@@ -51,7 +51,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取申领单主信息
+        /// lấy phiếu lĩnh chính thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ffzt"></param>
@@ -76,7 +76,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         #region 申领出库
 
         /// <summary>
-        /// 申领出库
+        /// xuất kho theo phiếu lĩnh
         /// </summary>
         /// <returns></returns>
         public ActionResult ApplyOutStock()
@@ -85,7 +85,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取申领出库明细
+        /// lấy xuất kho theo phiếu lĩnh chi tiết
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="sldIds"></param>
@@ -108,7 +108,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取申领出库明细
+        /// lấy xuất kho theo phiếu lĩnh chi tiết
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="sldIds"></param>
@@ -120,7 +120,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 提交发药
+        /// gửi phát thuốc
         /// </summary>
         /// <param name="fymx"></param>
         /// <returns></returns>

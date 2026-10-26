@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 内部发药查询返回对象
+    /// trong bộ phát thuốc tra cứu quay lại đối tượng
     /// </summary>
     public class HandOutMedicineQueryVO
     {
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string ypgg { get; set; }
         
         /// <summary>
-        /// 药厂名称
+        /// tên nhà máy dược
         /// </summary>
         public string ycmc { get; set; }
         public decimal Pfj { get; set; }

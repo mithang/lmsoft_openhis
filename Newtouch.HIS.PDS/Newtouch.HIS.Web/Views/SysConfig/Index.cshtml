@@ -19,21 +19,21 @@
             url: "/SysConfig/GetGridJson",
             height: $(window).height() - 128,
             colModel: [
-                 { label: "主键", name: "Id", hidden: true, key: true },
-                  { label: "名称", name: "Name", width: 80, align: 'left' },
-                  { label: '编码', name: 'Code', width: 80, align: 'left' },
+                 { label: "khóa chính", name: "Id", hidden: true, key: true },
+                  { label: "tên", name: "Name", width: 80, align: 'left' },
+                  { label: 'mã', name: 'Code', width: 80, align: 'left' },
                   { label: 'Value', name: 'Value', width: 300, align: 'left' },
-                  { label: '说明', name: 'Memo', width: 150, align: 'left' },
-                  { label: '排序', name: 'px', width: 50, align: 'left' },
+                  { label: 'mô tả', name: 'Memo', width: 150, align: 'left' },
+                  { label: 'sắp xếp', name: 'px', width: 50, align: 'left' },
                    {
-                       label: "有效", name: "zt", width: 60, align: "center",
+                       label: "còn hiệu lực", name: "zt", width: 60, align: "center",
                        formatter: function (cellvalue) {
                            return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>";
                        }
                    },
-                  { label: '修改用户', name: 'CreatorCode', width: 150, align: 'left' },
+                  { label: 'người sửa đổi', name: 'CreatorCode', width: 150, align: 'left' },
                      {
-                         label: '创建时间', name: 'CreateTime', width: 80, align: 'left',
+                         label: 'thời gian tạo', name: 'CreateTime', width: 80, align: 'left',
                          formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                      },
             ],
@@ -59,7 +59,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增配置",
+            title: "thêm mới cấu hình",
             url: "/SysConfig/Form",
             width: "550px",
             height: "570px",
@@ -73,7 +73,7 @@
         var keyValue = $("#gridList").jqGridRowValue().Id;
         $.modalOpen({
             id: "Form",
-            title: "修改配置",
+            title: "sửa cấu hình",
             url: "/SysConfig/Form?keyValue=" + keyValue,
             width: "550px",
             height: "570px",
@@ -83,9 +83,9 @@
         });
     }
     function btn_sync() {
-        $.modalConfirm("确定要同步所有系统参数吗？", function (r) {
+        $.modalConfirm("xác định cần đồng bộ tất cả hệ thống tham số không?", function (r) {
             if (r) {
-                $.loading(true, '数据同步中...');
+                $.loading(true, 'dữ liệu đồng bộ trong...');
                 $.najax({
                     url: "/Home/SyncSysConfigParams",
                     type: "POST",
@@ -93,7 +93,7 @@
                     dataType: "json",
                     async: false,
                     success: function (data) {
-                        $.modalAlert("同步成功", data.state);
+                        $.modalAlert("đồng bộ thành công", data.state);
                         $('#btn_search').trigger('click');
                         $.loading(false);
                     }
@@ -108,7 +108,7 @@
     function btn_ShowAllConfig() {
         $.modalOpen({
             id: "Form",
-            title: "查看所有配置项",
+            title: "xem tất cả mục cấu hình",
             url: "/SystemManage/SysConfig/ConfigsPreviewIndex",
           width: "850px",
             height: "570px",
@@ -126,15 +126,15 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a id="NF-add" authorize="yes" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建项目</a>
+            <a id="NF-add" authorize="yes" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>tạo mới hạng mục</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_sync()"><i class="fa fa-pencil-square-o"></i>同步</a>
+            <a class="btn btn-primary" onclick="btn_sync()"><i class="fa fa-pencil-square-o"></i>đồng bộ</a>
         </div>
         <div class="operate">
             <ul class="nav nav-pills">
-                <li class="first">已选中<span>1</span>项</li>
-                <li><a id="NF-edit" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改配置</a></li>
+                <li class="first">đã chọn trong<span>1</span>项</li>
+                <li><a id="NF-edit" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>sửa cấu hình</a></li>
                 <li class="split"></li>
             </ul>
             <a href="javascript:;" class="close"></a>
@@ -145,7 +145,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="配置名称/配置代码" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="cấu hình tên/cấu hình mã" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -155,7 +155,7 @@
         </table>
     </div>
     <div style="float:right;padding-right:100px;">
-        <a title="查看所有配置项" onclick="btn_ShowAllConfig()" style="cursor:pointer;color:blue;text-decoration:underline;">配置项</a>
+        <a title="xem tất cả mục cấu hình" onclick="btn_ShowAllConfig()" style="cursor:pointer;color:blue;text-decoration:underline;">配置项</a>
     </div>
 </div>
 <div class="gridPanel">

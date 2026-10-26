@@ -2,7 +2,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 药品类别
+    /// loại thuốc
     /// </summary>
     public class MedicineCategoryVO
     {

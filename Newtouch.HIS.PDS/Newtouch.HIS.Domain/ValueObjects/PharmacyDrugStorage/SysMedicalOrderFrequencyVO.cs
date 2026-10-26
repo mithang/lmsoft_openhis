@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public int? px { get; set; }
 
         /// <summary>
-        /// 医嘱频次名称说明（中文名称）
+        /// y lệnh tần suất tên mô tả (中文名称)
         /// </summary>
         public string yzpcmcsm { get; set; }
     }
