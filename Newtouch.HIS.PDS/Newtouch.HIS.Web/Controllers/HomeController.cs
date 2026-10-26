@@ -101,7 +101,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取待处理html
+        /// Lấy html chờ xử lý
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -118,7 +118,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取带处理总数
+        /// Lấy tổng số chờ xử lý
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -150,11 +150,11 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 切换登陆用户药房
+        /// Chuyển nhà thuốc của người dùng đăng nhập
         /// </summary>
         /// <param name="kfId">kho ID</param>
         /// <param name="kfName">kho tên</param>
-        /// <param name="kfLeve">库房等级</param>
+        /// <param name="kfLeve">Cấp kho</param>
         /// <returns></returns>
         public ActionResult SetUserPharmacy(string yfbmCode, string mzzybz, string yfbmjb, string yfbmmc)
         {
@@ -196,9 +196,9 @@ namespace Newtouch.HIS.Web.Controllers
          */
         public ActionResult SyncSysConfigParams(string orgId)
         {
-            //基础数据
+            //Dữ liệu cơ sở
             var sysConfigBaseEntities = _sysConfigRepo.GetList("", "*").ToList();
-            //组织机构自带数据
+            //Dữ liệu tự có của tổ chức
             var sysConfigEntities = _sysConfigRepo.GetList("", orgId).ToList();
             //theo code loại bỏ trùng lặp
             var sysConfigCodes = new HashSet<string>(sysConfigEntities.Select(entity => entity.Code));

@@ -272,11 +272,11 @@
         });
     }
 
-    //拼装退药多选框
+    //Ghép hộp chọn nhiều trả thuốc
     function addglobadata(status, rowid) {
         var data = $("#dispenseMedicinGridList").getRowData(rowid);
         var i = globalData.length;
-        if (status) {//追加当前行
+        if (status) {//Thêm dòng hiện tại
             globalData.push(data);
         } else {
             if (i > 0) {
@@ -291,7 +291,7 @@
 
     // trả thuốc
     function newtouch_event_f6() {
-        globalData = []//取消多选, 清除原来的值
+        globalData = []//Hủy chọn nhiều, xóa giá trị gốc
         var ids = $("#dispenseMedicinGridList").jqGrid('getGridParam', 'selarrrow');
         for (var i = 0; i < ids.length; i++) {
             var data = $("#dispenseMedicinGridList").getRowData(ids[i]);

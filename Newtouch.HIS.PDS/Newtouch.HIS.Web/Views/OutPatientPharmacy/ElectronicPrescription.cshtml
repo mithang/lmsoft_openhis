@@ -380,7 +380,7 @@
             }
         });
     }
-    //电子处方 tải lên 签名
+    //Đơn thuốc điện tử tải lên chữ ký
     function newtouch_event_f8() {
         var pats = new Array();
         var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true);//param2:mặc định tất cả các dòng; param3: true quay lại object
@@ -397,7 +397,7 @@
         // tạo một cái mới của Date đối tượng
         var date = new Date();
 
-        // lấy năm, 月份 (注意月份从0开始计数), ngày, giờ, 分钟和秒钟
+        // lấy năm, tháng (chú ý tháng đếm bắt đầu từ 0), ngày, giờ, phút và giây
         var year = date.getFullYear(); // 2021
         var month = (date.getMonth() + 1).toString().padStart(2, '0'); // 09
         var day = date.getDate().toString().padStart(2, '0'); // 30
@@ -405,14 +405,14 @@
         var minutes = date.getMinutes().toString().padStart(2, '0'); // 47
         var seconds = date.getSeconds().toString().padStart(2, '0'); // 36
 
-        // 将结果组合成指定格式的字符串
+        // Kết hợp kết quả thành chuỗi theo định dạng chỉ định
         var currentTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
         if (shzt == "已撤回" || shzt == "有效") {
             $.modalAlert("nên đơn thuốc đã duyệt hoặc đã rút lại!không thể duyệt!", 'warning');
             return;
         }
 
-        //就诊登记
+        //Đăng ký khám
         CQjzdj();
         var d001data = { "hisId": $('#lab_mzh').text(), "cfh": $("#lab_cfh").text(), "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', "orgId": '@(opr.OrganizeId)' };
         $.loading(true, '上传预核验...');

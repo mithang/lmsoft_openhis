@@ -155,7 +155,7 @@
                         <td class="formTitle"><span class="required">*</span>cờ BHYT: </td>
                         <td class="formValue">
                             <div class="ckbox">
-                                <!-- cờ BHYT: 即便有医保代码对照, 也需要打上医保标志才会跟医保交互 -->
+                                <!-- cờ BHYT: Dù đã có đối chiếu mã BHYT, cũng cần đánh dấu BHYT mới tương tác với BHYT -->
                                 <select id="ybbz" name="ybbz" class="form-control required">
                                     <option value="">==vui lòng chọn==</option>
                                     <option value="1">có</option>
@@ -553,7 +553,7 @@
         initUnitChange();
     });
 
-    //初始化单位换算
+    //Khởi tạo quy đổi đơn vị
     function initUnitChange() {
         $("#zxdw").on("input", function () {
             changeZxdw();
@@ -598,7 +598,7 @@
         });
     }
 
-    //最小单位发生变化
+    //Đơn vị nhỏ nhất thay đổi
     function changeZxdw() {
         $("span[name=zxdw]").html($("#zxdw").val());
     }
@@ -1098,7 +1098,7 @@
             var parentId = "";
             if (typeval != "") {
                 parentId = typeval.split("|")[0];
-                qxjb = typeval.split("|")[1];//一级分类变更时沿用权限级别
+                qxjb = typeval.split("|")[1];//Khi phân loại cấp 1 thay đổi vẫn dùng cấp quyền
             }
             $("#qxjb").val(qxjb);
             $("#kssType2").bindSelect({
@@ -1109,7 +1109,7 @@
         $("#kssType2").change(function () {
             var typeval = $("#kssType2").val();
             if (typeval != "") {
-                var qxjb = typeval.split("|")[1];//二级分类变更时沿用权限级别
+                var qxjb = typeval.split("|")[1];//Khi phân loại cấp 2 thay đổi vẫn dùng cấp quyền
                 $("#qxjb").val(qxjb);
             }
         });
@@ -1177,7 +1177,7 @@
         }
     });
 
-    function submitForm() {//点击提交序列化
+    function submitForm() {//Nhấp gửi để tuần tự hóa
         debugger;
         if ($("#OrganizeId").val() == "") {
             $("#OrganizeId").focus();
@@ -1217,7 +1217,7 @@
             //return false;
         }
 
-        //取消国家医保代码必填项
+        //Hủy mục bắt buộc mã BHYT quốc gia
         //if ($("#ybbz").val() == 1 && ($("#gjybdm").val() == "" || $("#gjybdm").val() == null)) {
         //    $.modalMsg("vui lòng nhập mã BHYT quốc gia!", "warning", 1500);
         //    return false;
@@ -1256,7 +1256,7 @@
     //    });
     //}
 
-    //组装被选中的药房药库
+    //Ghép nhà thuốc/kho thuốc đã chọn
     function AssembleEmpowermentPharmacyDepartment() {
         var chk = $("input:checkbox[name=yfbm]:checked");
         if (chk === null || chk.length === 0) return false;
@@ -1308,7 +1308,7 @@
         if (type1 !== "") {
             var result1 = "";
             $("#kssType1 option").each(function () {
-                //遍历所有option
+                //Duyệt tất cả option
                 var value = $(this).val();   //lấy option giá trị
                 if (value.indexOf(type1) > -1) {
                     result1 = value;
@@ -1320,7 +1320,7 @@
                 setTimeout(function () {
                     var result2 = "";
                     $("#kssType2 option").each(function () {
-                        //遍历所有option
+                        //Duyệt tất cả option
                         var value = $(this).val(); //lấy option giá trị
                         if (value.indexOf(type2) > -1) {
                             result2 = value;

@@ -27,7 +27,7 @@
     });
 
     function initControl() {
-        //报销政策
+        //Chính sách thanh toán
         $("#").newtouchFloatingSelector({
             height: 200,
             width: 300,
@@ -35,7 +35,7 @@
                 if (!keyword) {
                     return null;
                 }
-                //遍历数据源, dùng keyword để lọc ra kết quả
+                //Duyệt nguồn dữ liệu, dùng keyword để lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.newtouchclients.sysPatientNatureList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -58,7 +58,7 @@
                 return;
             }
         });
-        //地域
+        //Khu vực
         $("#").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -88,15 +88,15 @@
                 success: function () {
                     $.loading(false);
                     if ($.currentWindow().$("#txtkh").length == 1) {
-                        //门诊挂号免卡登记
+                        //Đăng ký miễn thẻ khi đăng ký khám ngoại trú
                         $.currentWindow().LoadPatientInfo(data.kh);
                     }
                     else {
-                        //住院病人基本信息登记 免卡
+                        //Đăng ký thông tin cơ bản bệnh nhân nội trú miễn thẻ
                         var kh = $.currentWindow().$("#kh").val();
                         getSysBasicInfoByCardNo(kh);
                     }
-                    $.currentWindow().DisableSysBasicInfo(true); //true:标志是从免卡登记或根据卡号查询返回明细, false:trang tải giờ, có thể nhập kh
+                    $.currentWindow().DisableSysBasicInfo(true); //true:dấu hiệu là từ đăng ký miễn thẻ hoặc tra cứu theo số thẻ trả về chi tiết, false:trang tải giờ, có thể nhập kh
                 }
             })
         }
@@ -209,7 +209,7 @@
         if (!validator.form()) {
             return false;
         }
-        //病历号
+        //Số bệnh án
         var blh = $("#").val();
         if (!blh) {
             $.modalAlert("病历号为空!", 'warning');

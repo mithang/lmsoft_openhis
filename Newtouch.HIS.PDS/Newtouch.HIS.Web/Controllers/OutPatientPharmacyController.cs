@@ -264,7 +264,7 @@ namespace Newtouch.HIS.Web.Controllers
             }
             var vo = apicfRep.data.ToJson().ToList<cdInfoVO>().FirstOrDefault();
 
-            //3. 循环配药
+            //3. Phát thuốc theo chu trình
             var res = _pharmacyDrugStorageDmnService.OutPatientBookItem(apiResp.data, cfnm, vo);
             if (!string.IsNullOrWhiteSpace(res))
             {
@@ -1003,7 +1003,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-        /// 按照处方进行查询明细
+        /// Tra cứu chi tiết theo đơn thuốc
         /// </summary>
         /// <param name="cardNo"></param>
         /// <param name="xm"></param>
@@ -1042,7 +1042,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 预退药 chi tiết đơn thuốc tra cứu
+        /// Trả thuốc dự kiến chi tiết đơn thuốc tra cứu
         /// </summary>
         /// <param name="cfh"></param>
         /// <returns></returns>
@@ -1214,7 +1214,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 门诊发药查询界面, chính bảng thông tin
+        /// Giao diện tra cứu phát thuốc ngoại trú, chính bảng thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -1303,7 +1303,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 查询门诊退药子表信息
+        /// Tra cứu thông tin bảng con trả thuốc ngoại trú
         /// </summary>
         /// <param name="pCfh"></param>
         /// <returns></returns>
@@ -1463,7 +1463,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-		/// 门诊就诊登记修改获取
+		/// Lấy sửa đăng ký khám ngoại trú
 		/// </summary>
 		/// <param name="mzh"></param>
 		/// <returns></returns>
@@ -1473,7 +1473,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(model.ToJson());
         }
         /// <summary>
-        /// 修改审核不通过意见
+        /// Sửa ý kiến duyệt không đạt
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="ysshyj"></param>

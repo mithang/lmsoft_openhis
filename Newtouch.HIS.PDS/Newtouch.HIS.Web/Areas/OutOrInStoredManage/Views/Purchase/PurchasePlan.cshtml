@@ -336,7 +336,7 @@
             $.modalMsg("请先勾选需操作的数据", 'warning');
             return;
         }
-        //采用阳光采购平台接口表结构 以下部分赋默认值
+        //Sử dụng cấu trúc bảng giao diện nền tảng mua sắm công khai, các phần dưới đây gán giá trị mặc định
         $.each(rowsData, function (row, values) {
             if (!reg.test($("#sel_cgsl_" + values.jqRowId).val())) {
                 $.modalMsg("số lượng phải lớn hơn 0 số nguyên!", "warning", 1500);

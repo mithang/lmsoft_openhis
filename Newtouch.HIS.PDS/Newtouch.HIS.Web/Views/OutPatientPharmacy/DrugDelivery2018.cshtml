@@ -195,7 +195,7 @@
         return uniqueArr.join(',') + ','
     }
 
-    //gắn sự kiện phím Enter--和扫码枪冲突, 注释掉
+    //gắn sự kiện phím Enter--xung đột với súng quét mã, đã chú thích lại
     //$(document).keyup(function (event) {
     //    if (event.keyCode === 13) {
     //        $("#btn_search").trigger("click");
@@ -275,7 +275,7 @@
             success: function (res) {
                 if (res != null) {
                     sessionStorage.setItem('CfInfo', JSON.stringify(res));
-                    //弹出处方选择界面
+                    //Hiện giao diện chọn đơn thuốc
                     $.modalOpen({
                         id: "Form",
                         title: "đơn thuốc chọn",
@@ -574,7 +574,7 @@
     }
 
     function newtouch_event_f8() { printAtomizationCards(1); }
-    //打印雾化卡
+    //In thẻ khí dung
     function printAtomizationCards(type1) {
         var cfhs = [];
         var cfmx = $gridCfmx.getDataIDs();
@@ -586,7 +586,7 @@
         }
         if (cfhs.length > 0) {
             var newcfh = $.unique(cfhs);//loại bỏ trùng lặp
-            var cfh = newcfh.join(","); //数组转字符串逗号分割
+            var cfh = newcfh.join(","); //Mảng chuyển thành chuỗi phân tách bằng dấu phẩy
             var uri = '@reportUrl' + "?tempCode=1309&systemCode=PDS" + "&orgId=" + '@ViewBag.OrganizeId' + "&cfh=" + cfh + "&mzh=" + tempMzh + "&UserCode=" + opeator.UserCode;
             window.open(uri);
         }
@@ -596,7 +596,7 @@
     function newtouch_event_f9() {
         printInfusionCards(1);
      }
-    //打印输液卡
+    //In thẻ truyền dịch
     function printInfusionCards(type1) {
         var cfmx = $gridCfmx.getDataIDs();
         var lscfmx = [];
@@ -608,8 +608,8 @@
         }
         if (lscfmx.length > 0) {
             var newcfh = $.unique(lscfmx);//loại bỏ trùng lặp
-            var cfh = newcfh.join(",");//数组转字符串逗号分割
-            //查询含输液的组号
+            var cfh = newcfh.join(",");//Mảng chuyển thành chuỗi phân tách bằng dấu phẩy
+            //Tra cứu số nhóm chứa truyền dịch
             $.najax({
                 type: "POST",
                 url: "/OutPatientPharmacy/GetRecipeGroupNum",
@@ -637,7 +637,7 @@
         }
         if (lscfmx.length>0) {
             var newcfh = $.unique(lscfmx);//loại bỏ trùng lặp
-            var cfhStr = newcfh.join(",");//数组逗号串连
+            var cfhStr = newcfh.join(",");//Mảng nối bằng dấu phẩy
             var uri = '@reportUrl' + "?tempCode=1306&systemCode=PDS" + "&orgId=" + '@ViewBag.OrganizeId' + "&cfh=" + cfhStr;
             window.open(uri);
         } else { if (type == 1) $.modalAlert("không có uống, ngoài dùng thuốc đơn thuốc, không thể in nhãn cách dùng!", 'warning'); }
@@ -713,7 +713,7 @@
         document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
     }
 
-    //读取cookie
+    //Đọc cookie
     function getCookie(name) {
         var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
         if (arr === document.cookie.match(reg))

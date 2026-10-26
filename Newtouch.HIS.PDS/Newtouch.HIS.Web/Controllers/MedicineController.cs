@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		///退货申请
+		///Xin trả hàng
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult RequestOfReturn()
@@ -114,7 +114,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// 获取同步候选药品
+		/// Lấy thuốc ứng viên đồng bộ
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult GettbypGridJson(Pagination pagination, MedicineInfoParam model)
@@ -240,7 +240,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// 提交报损报益
+		/// Gửi báo hỏng báo thừa
 		/// </summary>
 		/// <param name="syxx"></param>
 		/// <returns></returns>
@@ -370,7 +370,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 		#endregion
 		/// <summary>
-		/// 盘盈盘亏查询
+		/// Tra cứu thừa thiếu kiểm kê
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult InventoryQureyReport()

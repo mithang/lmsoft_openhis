@@ -593,7 +593,7 @@
         });
     }
 
-    //xóa sạch input标签
+    //xóa sạch inputthẻ
     function CleanInput() {
         $("#txtSRM").val("");
         $("#txtCKSL").val("");
@@ -647,7 +647,7 @@
         $("#thLSZEDW").text("tổng tiền bán lẻ(đồng/" + $("#ddlCKDW").find("option:selected").text() + "):");
         $("#txtPFZE").val((pfj * Sl).toFixed(4));
         $("#txtLSZE").val((lsj * Sl).toFixed(4));
-        CKJE_Leave();//重算出库单价
+        CKJE_Leave();//Tính lại đơn giá xuất kho
         ComputeKL();//tính tỷ lệ chiết khấu
         return false;
     }

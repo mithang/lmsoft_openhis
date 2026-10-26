@@ -121,9 +121,9 @@
         var inputCode = $("#txtINPUTCODE").val();
         var syqk = -1; //tất cả
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Profit') {
-            syqk = 1;  //盘盈
+            syqk = 1;  //Thừa kiểm kê
         } else if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
-            syqk = 2;  //盘亏
+            syqk = 2;  //Thiếu kiểm kê
         }
         return { startTime: startTime, endTime: endTime, inputCode: inputCode, syqk: syqk };
     };

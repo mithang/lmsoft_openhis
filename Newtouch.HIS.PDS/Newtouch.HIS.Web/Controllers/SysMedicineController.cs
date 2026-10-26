@@ -129,7 +129,7 @@ namespace Newtouch.HIS.Web.Controllers
         //}
 
         /// <summary>
-        /// sửa thông tin giờ, 把信息带到新页面
+        /// sửa thông tin giờ, đưa thông tin sang trang mới
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -298,7 +298,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(list.ToJson());
         }
 
-        //收费大类树形 (bệnh viện) thả xuống nguồn dữ liệu
+        //cây danh mục thu phí lớn (bệnh viện) thả xuống nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetTreeSelectJson(string organizeId, string treeidFieldName = "Code")

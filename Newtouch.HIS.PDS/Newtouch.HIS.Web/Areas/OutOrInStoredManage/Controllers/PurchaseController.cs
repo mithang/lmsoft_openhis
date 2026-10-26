@@ -76,7 +76,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             return View();
         }
         /// <summary>
-        /// 采购计划生成
+        /// Tạo kế hoạch mua hàng
         /// </summary>
         /// <returns></returns>
         public ActionResult PurchasePlan()
@@ -84,14 +84,14 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             return View();
         }
         /// <summary>
-        /// 采购计划单据录入
+        /// Nhập chứng từ kế hoạch mua hàng
         /// </summary>
         /// <returns></returns>
         public ActionResult PurchasePlanFrom() {
             return View();
         }
         /// <summary>
-        /// 采购计划单据审核
+        /// Duyệt chứng từ kế hoạch mua hàng
         /// </summary>
         /// <returns></returns>
         public ActionResult PurchaseApproval()
@@ -267,7 +267,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-        /// 补填采购单发票号
+        /// Bổ sung số hóa đơn cho đơn mua hàng
         /// </summary>
         /// <param name="crkmxId"></param>
         /// <param name="fph"></param>
@@ -318,7 +318,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             //}
             //return Content(list.ToJson());
 
-            ////发票查询测试
+            ////Kiểm tra tra cứu hóa đơn
             //var list = new List<OutputStructYY004>();
             //OutputStructYY004 obj = new OutputStructYY004();
             //obj.FPH = "07832501";
@@ -430,7 +430,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         {
             //1.nền tảng mua sắm Sunshine nghiệm thu
             var result = _sunPurchaseDmnService.Purchase_YY019(main, this.OrganizeId);
-            //2.发票数据落地
+            //2.Dữ liệu hóa đơn lưu xuống bảng
             _purchaseBillRepo.InsertItem(main, this.OrganizeId);
             return Success();
         }
@@ -460,7 +460,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         {
             //1.tải lên đến nền tảng mua sắm Sunshine YY011
             var ddbh = _sunPurchaseDmnService.Purchase_YY011(this.OrganizeId, thId);
-            //2.lấy YY011 của số đơn hàng  (YY011落地表)
+            //2.lấy YY011 của số đơn hàng  (bảng lưu YY011)
             //var ddbh = "00001";
             //3.cập nhật ddbh
             //_returnedRepo.PurchaseDdbhUpdate(thId, ddbh, this.OrganizeId);

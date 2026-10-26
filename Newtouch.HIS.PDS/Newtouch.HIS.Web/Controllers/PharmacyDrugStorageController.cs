@@ -186,7 +186,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(receiptMaininfoList.ToJson());
         }
         /// <summary>
-        /// 科室备药查询
+        /// Tra cứu thuốc dự trữ của khoa
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="qsrj"></param>
@@ -409,7 +409,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// tra cứu cần chi tiết kiểm kê 返回部门单位数量和最小单位数量相互独立
+        /// tra cứu cần chi tiết kiểm kê trả về số lượng đơn vị bộ phận và số lượng đơn vị nhỏ nhất độc lập với nhau
         /// </summary>
         /// <returns></returns>
         public ActionResult InventoryInfoQuery(Pagination pagination, string pdId, string pdsj, string srm, string ypzt, string yplb, int kcxs = -1)

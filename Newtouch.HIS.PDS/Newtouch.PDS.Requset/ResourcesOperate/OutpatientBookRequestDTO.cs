@@ -5,165 +5,165 @@ using Newtouch.HIS.API.Common;
 namespace Newtouch.PDS.Requset.ResourcesOperate
 {
     /// <summary>
-    /// 预定报文
+    /// Thông báo đặt trước
     /// </summary>
     public class OutpatientBookRequestDTO : RequestBase
     {
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         [Required]
         public List<ItemDetail> Items { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// ID tổ chức
         /// </summary>
         [Required]
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 操作员代码
+        /// Mã người thao tác
         /// </summary>
         public string CreatorCode { get; set; }
     }
 
     /// <summary>
-    /// 资源详情
+    /// Chi tiết tài nguyên
     /// </summary>
     public class ItemDetail
     {
 
         /// <summary>
-        /// 药房部门代码
+        /// Mã bộ phận nhà thuốc
         /// </summary>
         [Required]
         public string Yfbm { get; set; }
 
         /// <summary>
-        /// 处方号 必填
+        /// Số đơn thuốc bắt buộc
         /// </summary>
         [Required]
         public string Cfh { get; set; }
 
         /// <summary>
-        /// 项目/药品代码
+        /// Mã hạng mục/thuốc
         /// </summary>
         [Required]
         public string ItemCode { get; set; }
 
         /// <summary>
-        /// 项目/药品数量 （药房部门单位）
+        /// Số lượng hạng mục/thuốc （đơn vị bộ phận nhà thuốc）
         /// </summary>
         [Required]
         public decimal ItemCount { get; set; }
 
         /// <summary>
-        /// 转化因子 与ItemCount配合使用 ItemCount*Zhyz=最小单位数量
+        /// Hệ số chuyển đổi dùng cùng ItemCount ItemCount*Zhyz=số lượng đơn vị nhỏ nhất
         /// </summary>
         public int Zhyz { get; set; }
 
         /// <summary>
-        /// 项目/药品名称
+        /// Tên hạng mục/thuốc
         /// </summary>
         public string ItemName { get; set; }
 
         /// <summary>
-        /// 药品规格
+        /// Quy cách thuốc
         /// </summary>
         public string ItemSpecifications { get; set; }
 
         /// <summary>
-        /// 项目/药品单价 （药房部门单位单价与ItemUnit匹配）
+        /// Đơn giá hạng mục/thuốc （đơn giá đơn vị bộ phận nhà thuốc khớp với ItemUnit）
         /// </summary>
         public decimal ItemUnitPrice { get; set; }
 
         /// <summary>
-        /// 项目/药品单位名称 （药房部门单位，与ItemCount匹配）
+        /// Tên đơn vị hạng mục/thuốc （đơn vị bộ phận nhà thuốc, khớp với ItemCount）
         /// </summary>
         public string ItemUnitName { get; set; }
 
         /// <summary>
-        /// 项目/药品生产商名称
+        /// Tên nhà sản xuất hạng mục/thuốc
         /// </summary>
         public string ItemManufacturer { get; set; }
 
         /// <summary>
-        /// 收费大类
+        /// Danh mục thu phí lớn
         /// </summary>
         public string DlCode { get; set; }
 
         /// <summary>
-        /// 剂量
+        /// Liều lượng
         /// </summary>
         public decimal? Dosage { get; set; }
 
         /// <summary>
-        /// 剂量单位
+        /// Đơn vị liều lượng
         /// </summary>
         public string DosageUnit { get; set; }
 
         /// <summary>
-        /// 用法名称
+        /// Tên cách dùng
         /// </summary>
         public string UsageName { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string CardNo { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string xb { get; set; }
 
         /// <summary>
-        /// 年龄
+        /// Tuổi
         /// </summary>
         public int nl { get; set; }
 
         /// <summary>
-        /// 病人性质名称
+        /// Tên tính chất bệnh nhân
         /// </summary>
         public string brxzmc { get; set; }
 
         /// <summary>
-        /// 医生名称
+        /// Tên bác sĩ
         /// </summary>
         public string ysmc { get; set; }
 
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string Remark { get; set; }
 
         /// <summary>
-        /// 成组号
+        /// Số nhóm
         /// </summary>
         public string GroupNum { get; set; }
     }
 
     /// <summary>
-    /// 预定失败项
+    /// Hạng mục đặt trước thất bại
     /// </summary>
     public class FailItemDetail : ItemDetail
     {
         /// <summary>
-        /// 失败原因
+        /// Nguyên nhân thất bại
         /// </summary>
         public string FailMsg { get; set; }
 
         /// <summary>
-        /// 失败代码
+        /// Mã thất bại
         /// </summary>
         public string FailCode { get; set; }
     }

@@ -5,56 +5,56 @@ using Newtouch.HIS.API.Common;
 namespace Newtouch.PDS.Requset.ResourcesOperate
 {
     /// <summary>
-    /// 门诊
+    /// Ngoại trú
     /// </summary>
     public class OutpatientCommitRequestDTO : RequestBase
     {
         /// <summary>
-        /// 结算内码 必填
+        /// Mã nội bộ thanh toán bắt buộc
         /// </summary>
         [Required]
         public long Jsnm { get; set; }
 
         /// <summary>
-        /// 收费时间
+        /// Thời gian thu phí
         /// </summary>
         [Required]
         public DateTime Sfsj { get; set; }
 
         /// <summary>
-        /// 处方号 必填
+        /// Số đơn thuốc bắt buộc
         /// </summary>
         [Required]
         public string Cfh { get; set; }
 
         /// <summary>
-        /// 处方内码 必填
+        /// Mã nội bộ đơn thuốc bắt buộc
         /// </summary>
         [Required]
         public long Cfnm { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string CardNo { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string Fph { get; set; }
 
         /// <summary>
-        /// 发药药房代码
+        /// Mã nhà thuốc phát thuốc
         /// </summary>
         public string fyyf { get; set; }
 
         /// <summary>
-        /// 组织机构
+        /// Tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 提交人
+        /// Người gửi
         /// </summary>
         public string CreatorCode { get; set; }
     }

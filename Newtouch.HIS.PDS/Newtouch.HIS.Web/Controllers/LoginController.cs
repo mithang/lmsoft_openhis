@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Web.Controllers
         [HttpGet]
         public virtual ActionResult Index()
         {
-            //写入客户端Id
+            //Ghi Id client
             WebHelper.WriteCookie(Constants.AppId + "_ClientId", Guid.NewGuid().ToString("N").ToLower());
 
             ViewBag.IsCheckChkCode = ConfigurationHelper.GetAppConfigBoolValue("Is_CheckChkCode");
@@ -136,7 +136,7 @@ namespace Newtouch.HIS.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(access_token))
             {
-                return RedirectToAction("Index", "Login");  //缺少令牌
+                return RedirectToAction("Index", "Login");  //Thiếu token
             }
             var eOpr = OperatorProvider.GetCurrent();
             if (eOpr != null && eOpr.token == access_token)
@@ -153,9 +153,9 @@ namespace Newtouch.HIS.Web.Controllers
             var aaa = ConfigurationHelper.GetAppConfigValue("UAUserInfoGetAPI");
             if (string.IsNullOrWhiteSpace(aaa))
             {
-                return RedirectToAction("Index", "Login");  //未配置身份换取的API địa chỉ
+                return RedirectToAction("Index", "Login");  //Chưa cấu hình API đổi danh tính địa chỉ
             }
-            //tới API请求换取身份
+            //tới APIyêu cầu đổi danh tính
             var sw = new Stopwatch();
             sw.Start();
             var reqObj = new
@@ -169,7 +169,7 @@ namespace Newtouch.HIS.Web.Controllers
             sw.Reset();
             if (apiResp.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                return RedirectToAction("Index", "Login");  //身份换取失败
+                return RedirectToAction("Index", "Login");  //Đổi danh tính thất bại
             }
             sw.Start();
             string account = "", organizeId = "";
@@ -224,7 +224,7 @@ namespace Newtouch.HIS.Web.Controllers
                 }
                 else
                 {
-                    addr = null;    //视为null
+                    addr = null;    //Coi như null
                 }
             }
             return Content(new AjaxResult { state = ResultType.success.ToString(), data = addr }.ToJson());

@@ -194,7 +194,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 删除指定医嘱
+        /// Xóa y lệnh chỉ định
         /// </summary>
         /// <param name="yzId">y lệnh ID</param>
         /// <param name="zxId">thực hiện y lệnh ID</param>
@@ -311,7 +311,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 科室备药药品申请单信息
+        /// Thông tin đơn xin thuốc dự trữ của khoa
         /// </summary>
         /// <param name="queryParam"></param>
         /// <returns></returns>
@@ -359,7 +359,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 科室备药药品库存退回申请单信息
+        /// Thông tin đơn xin trả lại tồn kho thuốc dự trữ của khoa
         /// </summary>
         /// <param name="queryParam"></param>
         /// <returns></returns>
@@ -556,7 +556,7 @@ namespace Newtouch.HIS.Web.Controllers
             return View("RepercussionIndex2019");
         }
         /// <summary>
-        /// trả thuốc -- 按照退药申请单退药
+        /// trả thuốc -- theo đơn xin trả thuốc
         /// </summary>
         /// <returns></returns>
         public ActionResult RepercussionIndex2021()

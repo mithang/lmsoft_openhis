@@ -166,7 +166,7 @@
         }
     }
 
-     //补打打印雾化卡
+     //In bổ sung thẻ khí dung
     function newtouch_event_f8() {
     var id = $("#gridRpInfo").jqGrid("getGridParam", "selrow");
     if (id) {
@@ -186,7 +186,7 @@
         } else $.modalAlert("无雾化处方, 不能打印雾化卡!", 'warning');
     } else $.modalAlert("vui lòng chọn thông tin bệnh nhân!", 'warning');
 }
-     //补打打印输液卡
+     //In bổ sung thẻ truyền dịch
     function newtouch_event_f9() {
         var id = $("#gridRpInfo").jqGrid("getGridParam", "selrow");
         if (id) {
@@ -201,7 +201,7 @@
             if (cfhs.length > 0) {
                 var newcfhs = $.unique(cfhs);//loại bỏ trùng lặp
                 var cfh = newcfhs.join(",");//nối chuỗi mảng
-                //查询含输液的组号
+                //Tra cứu số nhóm chứa truyền dịch
                 $.najax({
                     type: "POST",
                     url: "/OutPatientPharmacy/GetRecipeGroupNum",

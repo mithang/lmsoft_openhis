@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 
         /// <summary>
-        /// 用户选择器
+        /// Bộ chọn người dùng
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -42,7 +42,7 @@ namespace Newtouch.HIS.Web.Controllers
             {
                 organizeId = base.GetAuthOrganizeId();  //mặc định quyền OrganizeId
             }
-            //带缓存的系统用户树
+            //Cây người dùng hệ thống có bộ nhớ đệm
             var treeList = _cache.Get<List<TreeViewModel>>(string.Format(CacheKey.OrganizeUserTreeSetKey, organizeId), () => {
                 var organizedata = _sysOrganizeDmnService.GetValidListByParentOrg(organizeId);
                 var iitreeList = new List<TreeViewModel>();

@@ -31,17 +31,17 @@ namespace Newtouch.HIS.Web
             //tới ngữ cảnh đăng ký bảng
             DefaultDbContext.PartialTBRegister(DefaultDbContextTBRegister.Registe);
 
-            //数据库链接释放
+            //Giải phóng kết nối cơ sở dữ liệu
             AspNetObjectContextDisposalModule.Register(() =>
             {
                 Infrastructure.EF.DatabaseFactoryDisposeHelper.TryDisposeDBContext<IDefaultDatabaseFactory, DefaultDbContext>();
                 //Infrastructure.EF.DatabaseFactoryDisposeHelper.TryDisposeDBContext<IBaseDatabaseFactory, BaseDatabaseFactory>();
             });
 
-            //权限验证向下层注册
+            //Đăng ký xác thực quyền xuống tầng dưới
             HandlerAuthorizeAttribute.Register((roleIdList, moduleId, action) => DependencyDefaultInstanceResolver.GetInstance<IRoleAuthorizeApp>().ActionValidate(roleIdList, action));
 
-            //运行全局脚本 chương trình khởi động giờ thực hiện một lần
+            //Chạy tập lệnh toàn cục chương trình khởi động giờ thực hiện một lần
             try
             {
                 var pars = new List<SqlParameter>

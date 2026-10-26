@@ -6,71 +6,71 @@ using Newtouch.HIS.API.Common;
 namespace Newtouch.PDS.Requset.ResourcesOperate
 {
     /// <summary>
-    /// 处方修改
+    /// Sửa đơn thuốc
     /// </summary>
     public class UpdateRpRequset : RequestBase
     {
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string Cfh { get; set; }
 
         /// <summary>
-        /// 药房部门代码
+        /// Mã bộ phận nhà thuốc
         /// </summary>
         public string Yfbm { get; set; }
 
         /// <summary>
-        /// 处方内码
+        /// Mã nội bộ đơn thuốc
         /// </summary>
         public int Cfnm { get; set; }
 
         /// <summary>
-        /// 组织结构
+        /// Cơ cấu tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 修改后的处方明细
+        /// Chi tiết đơn thuốc sau khi sửa
         /// </summary>
         public List<Cfmx> Cfmx { get; set; }
 
         /// <summary>
-        /// 操作员代码
+        /// Mã người thao tác
         /// </summary>
         public string CreatorCode { get; set; }
     }
 
     /// <summary>
-    /// 处方明细
+    /// Chi tiết đơn thuốc
     /// </summary>
     public class Cfmx
     {
 
         /// <summary>
-        /// 处方明细内码(非必填)
+        /// Mã nội bộ chi tiết đơn thuốc(không bắt buộc)
         /// </summary>
         public int Cfmxnm { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         [Required]
         public string YpCode { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string YpName { get; set; }
 
         /// <summary>
-        /// 药品数量
+        /// Số lượng thuốc
         /// </summary>
         [Required]
         public int YpCount { get; set; }
 
         /// <summary>
-        /// 收费大类
+        /// Danh mục thu phí lớn
         /// </summary>
         public string DlCode { get; set; }
     }

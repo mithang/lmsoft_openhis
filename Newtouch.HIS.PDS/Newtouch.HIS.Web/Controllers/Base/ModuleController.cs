@@ -100,7 +100,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 授权给指定组织机构
+        /// Cấp quyền cho tổ chức chỉ định
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="orgList"></param>
@@ -118,7 +118,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 授权给所有组织机构
+        /// Cấp quyền cho tất cả tổ chức
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

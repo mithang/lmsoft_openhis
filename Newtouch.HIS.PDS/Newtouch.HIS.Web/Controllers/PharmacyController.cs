@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 
         /// <summary>
-        /// phiếu lĩnh tra cứu (药房部门发出去的)
+        /// phiếu lĩnh tra cứu (mà bộ phận nhà thuốc đã phát ra)
         /// </summary>
         /// <returns></returns>
         public ActionResult RequisitionSearchIndex()

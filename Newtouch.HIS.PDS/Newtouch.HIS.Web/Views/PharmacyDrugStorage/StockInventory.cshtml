@@ -104,7 +104,7 @@
                 lastRowId = rowid;
                 $gridKCInfo.jqGrid('editRow', rowid, true, null, null, null, null, function (callbackRowId) {
                     GetYfbmYpComplexYpSlandDw(callbackRowId);//thay đổi số lượng theo đơn vị bộ phận hiện tại
-                    lastRowId = undefined;  //回调
+                    lastRowId = undefined;  //Gọi lại
                 });
             },
             colModel: [

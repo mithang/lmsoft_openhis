@@ -208,7 +208,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         }
 
         /// <summary>
-        /// 获取要申领的药品列表
+        /// Lấy danh sách thuốc cần lĩnh
         /// </summary>
         /// <param name="rkbm"></param>
         /// <param name="keyWord"></param>

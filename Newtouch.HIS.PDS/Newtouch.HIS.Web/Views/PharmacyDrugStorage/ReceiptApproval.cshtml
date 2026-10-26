@@ -6,7 +6,7 @@
     var djlxItemStrs = "1,2,3,4,5,6"; //enum tương ứng EnumDanJuLX
     if (Constants.CurrentYfbm.yfbmjb == "2")  //nhà thuốc
     {
-        djlxItemStrs = "3,4,6"; //có thể duyệt trực tiếp phát thuốc, 申领发药, khoa phát thuốc
+        djlxItemStrs = "3,4,6"; //có thể duyệt trực tiếp phát thuốc, phát thuốc theo phiếu lĩnh, khoa phát thuốc
     }
     else   //kho thuốc
     {
@@ -212,7 +212,7 @@
             { label: 'phiên âm', name: 'py', width: 100, align: 'left', hidden: true },
             { label: 'số lượng', name: 'slanddw', width: 60, align: 'left', hidden: true }
         ],
-        gridComplete: function () {//jqGrid加载完后执行的方法
+        gridComplete: function () {//phương thức thực thi sau khi jqGrid tải xong
         },
     });
 
@@ -290,9 +290,9 @@
 
     //lấy url trong của tham số
     function getQueryString(name) {
-        // 匹配目标参数
+        // khớp tham số đích
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-        var result = window.location.search.substr(1).match(reg); // đối với querystring匹配目标参数
+        var result = window.location.search.substr(1).match(reg); // đối với querystringkhớp tham số đích
         if (result != null) {
             return decodeURIComponent(result[2]);
         } else {

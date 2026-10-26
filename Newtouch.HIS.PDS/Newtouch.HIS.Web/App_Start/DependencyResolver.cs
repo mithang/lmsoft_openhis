@@ -12,7 +12,7 @@ using System.Web;
 namespace Newtouch.HIS.Web.App_Start
 {
     /// <summary>
-    /// 依赖注入配置
+    /// Cấu hình dependency injection
     /// </summary>
     public class DependencyResolver
     {
@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Web.App_Start
             ////đăng ký mặc định EF ngữ cảnh
             builder.RegisterType<DefaultDatabaseFactory>().As<IDefaultDatabaseFactory>().InstancePerLifetimeScope();
 
-            //注册控制器
+            //Đăng ký controller
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             builder.RegisterControllers(Assembly.Load("FrameworkBase.MultiOrg.Web"));
 

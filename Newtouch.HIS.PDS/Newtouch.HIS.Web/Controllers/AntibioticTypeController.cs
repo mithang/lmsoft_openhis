@@ -12,7 +12,7 @@ namespace Newtouch.HIS.Web.Controllers
     public class AntibioticTypeController : ControllerBase
     {
         /// <summary>
-        /// 创建抗生素类别总览页面视图
+        /// Tạo view tổng quan danh mục kháng sinh
         /// </summary>
         ISysMedicineAntibioticTypeDmnService _ISysMedicineAntibioticTypeDmnService;
         public ActionResult AntibioticTypeQuery()
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取指定类别等级抗生素类别信息
+        /// Lấy thông tin danh mục kháng sinh theo cấp danh mục chỉ định
         /// </summary>
         /// <param name="lbdj"></param>
         /// <param name="parentId"></param>
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Web.Controllers
             List<object> list = new List<object>();
             foreach (SysMedicineAntibioticTypeVO item in data)
             {
-                list.Add(new { id = item.Id + "|" + item.qxjb, text = item.typeName });//将权限级别信息带入Id trong
+                list.Add(new { id = item.Id + "|" + item.qxjb, text = item.typeName });//Đưa thông tin cấp quyền vàoId trong
             }
             return Content(list.ToJson());
         }

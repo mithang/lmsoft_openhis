@@ -210,7 +210,7 @@
                 clearTimeout(times);
             }
         });
-		//图标闪烁
+		//Biểu tượng nhấp nháy
 		function blink(selector) {
 			$(selector).fadeOut('slow', function () {
 				$(this).fadeIn('slow', function () {
@@ -312,7 +312,7 @@
 			sessionStorage.setItem('gqyjyp', gqyjypcode);
 			top.top.$.Newtouchtab.addTabWithOutMenu({ name: "tra cứu thuốc hết hạn (nhắc tin nhắn)", enName: "", url: "/StorageManage/DrugStockSearch/ExpiredDrugsView"});
         }
-        //当日到期
+        //Hết hạn trong ngày
 		function drgqyj()
 		{
 		    var badge2 = Number($("#badge2").text());
@@ -473,7 +473,7 @@
                 window.alert('Please use a modern browser to properly view this template!');
             }
         }
-        //切换用户药房
+        //Chuyển nhà thuốc của người dùng
         function SetUserPharmacy() {
             $.modalOpen({
                 id: "Form",

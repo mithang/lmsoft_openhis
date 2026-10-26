@@ -286,7 +286,7 @@
         });
     }
 
-    //初始化药品框输入码
+    //Khởi tạo mã nhập khung thuốc
     function InitSrm(id, rowid) {
         $("#" + id).newtouchBatchFloatingSelector({
             clickautotrigger: true,
@@ -449,7 +449,7 @@
         par["jls"] = list.length//số bản ghi
         par["yybm"] = "001";//mã bệnh viện
         //par["ddbh"] = " ";//số đơn hàng thêm mới:trống   sửa/thu hồi:số đơn hàng
-        //par["yyjhdh"] = "test";//số phiếu kế hoạch bệnh viện 后台生成
+        //par["yyjhdh"] = "test";//số phiếu kế hoạch bệnh viện do hệ thống tạo
         //par["ddzt"] = "1";//1 đã lưu 2 đã gửi báo cáo 3 đã nghiệm thu
         par["ddsj"] = new Date();//thời gian đơn hàng
         par["czlx"] = 1;//loại thao tác 1 thêm mới 3 hủy bỏ

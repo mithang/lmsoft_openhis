@@ -463,7 +463,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 预览申领出库的药品信息
+        /// Xem trước thông tin thuốc xuất kho theo phiếu lĩnh
         /// </summary>
         /// <returns></returns>
         public ActionResult PreViewInfo()
@@ -472,7 +472,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        ///退货审核
+        ///Duyệt trả hàng
         /// </summary>
         /// <returns></returns>
         public ActionResult ConfirmationOfReturn()
@@ -540,7 +540,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// trong bộ phát thuốc tra cứu
         /// </summary>
         /// <param name="pagination"></param>
-        /// <param name="req">搜索条件</param>
+        /// <param name="req">Điều kiện tìm kiếm</param>
         /// <returns></returns>
         public ActionResult QueryHandOutMeidicineList(Pagination pagination, QueryMedicineInfoReqVO req)
         {
@@ -625,7 +625,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region 公共调用
 
         /// <summary>
-        /// mã nhập tự động nhắc nhở (一级部门提示, không có hệ số chuyển đổi, ví dụ như dược khoa)
+        /// mã nhập tự động nhắc nhở (gợi ý bộ phận cấp 1, không có hệ số chuyển đổi, ví dụ như dược khoa)
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="ckbm">bộ phận xuất kho(nhà thuốc phát thuốc)</param>
@@ -660,7 +660,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// mã nhập tự động nhắc nhở (二级部门提示, tính hệ số chuyển đổi, ví dụ như ngoại trú nhà thuốc)
+        /// mã nhập tự động nhắc nhở (gợi ý bộ phận cấp 2, tính hệ số chuyển đổi, ví dụ như ngoại trú nhà thuốc)
         /// </summary>
         /// <returns></returns>
         public ActionResult MedicinesrmSlevelList(string rkbm, string keyword)
@@ -1007,7 +1007,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region 快速入库
 
         /// <summary>
-        /// 快速入库 khung nhìn
+        /// Nhập kho nhanh khung nhìn
         /// </summary>
         /// <returns></returns>
         public ActionResult BriefInStorage()
@@ -1061,7 +1061,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// gửi hàng loạt xuất kho
         /// </summary>
         /// <param name="rkbm">bộ phận nhập kho</param>
-        /// <param name="ypCodes">thuốc 按逗号分隔</param>
+        /// <param name="ypCodes">thuốc phân tách bằng dấu phẩy</param>
         /// <param name="djh">số chứng từ</param>
         /// <param name="fyfs">phương thức phát thuốc mã</param>
         /// <returns></returns>

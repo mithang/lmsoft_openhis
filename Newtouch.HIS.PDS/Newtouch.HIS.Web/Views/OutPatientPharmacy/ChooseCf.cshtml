@@ -14,7 +14,7 @@
     function selectGridAll()
     {
         var jqGrid = $("#chooseCfGrid");
-        // 拿到所有行id
+        // Lấy id của tất cả các dòng
         var jqGridIDs = jqGrid.getDataIDs();
         for (var i = 0; i < jqGridIDs.length; i++) {
             jqGrid.setSelection(jqGridIDs[i], true);

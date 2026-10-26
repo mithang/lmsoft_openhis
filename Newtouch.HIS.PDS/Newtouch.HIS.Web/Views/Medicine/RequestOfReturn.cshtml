@@ -378,9 +378,9 @@
                 if (!rowDataArr || rowDataArr.length === 0) {
                     return; //tại sao không tìm thấy
                 }
-                rowData = rowDataArr[0];  //đạt rowData.newid从对象数组中取出该行数据
+                rowData = rowDataArr[0];  //đạt rowData.newidlấy dữ liệu dòng đó từ mảng đối tượng
                 if (true) { //&&có thể chỉnh sửa
-                    //序列化至编辑域中
+                    //Tuần tự hóa vào vùng chỉnh sửa
                     var data = {};
                     data = JSON.stringify(rowData);
                     $("#form1").formSerialize(JSON.parse(data));

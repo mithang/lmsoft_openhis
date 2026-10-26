@@ -4,29 +4,29 @@ using Newtouch.HIS.API.Common;
 namespace Newtouch.PDS.Requset.ResourcesOperate
 {
     /// <summary>
-    /// 取消指定处方所有预定
+    /// Hủy tất cả đặt trước của đơn thuốc chỉ định
     /// </summary>
     public class OutpatientCancelAllBookRequestDTO : RequestBase
     {
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         [Required]
         public string cfh { get; set; }
 
         /// <summary>
-        /// 发药药房代码
+        /// Mã nhà thuốc phát thuốc
         /// </summary>
         public string fyyf { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// ID tổ chức
         /// </summary>
         [Required]
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 操作员代码
+        /// Mã người thao tác
         /// </summary>
         public string CreatorCode { get; set; }
     }

@@ -40,7 +40,7 @@
         </table>
     </div>
 </div>
-<!--bệnh nhân thông tin 包括病历号  họ tên -->
+<!--bệnh nhân thông tin bao gồm số bệnh án  họ tên -->
 <form id="formPatSer" style="margin:2px;margin-top:10px;">
     <div class="gridPanel">
         <table id="GridList" rel="formPatSer"></table>
@@ -77,7 +77,7 @@
         $gridList.dataGrid({
             url: "/OutOrInStoredManage/Purchase/GetPurchaseGridJson",
             height: $(window).height() - 130,
-            postData: { kssj: $("#kssj").val(), jssj: $("#jssj").val(), ddzt: 2, yyjhdh: $("#yyjhdh").val(), gysCode: "", ddbh: $("#ddbh").val(),ddyy:"1" },//ddyy:药库入库引用时参数标识
+            postData: { kssj: $("#kssj").val(), jssj: $("#jssj").val(), ddzt: 2, yyjhdh: $("#yyjhdh").val(), gysCode: "", ddbh: $("#ddbh").val(),ddyy:"1" },//ddyy:dấu hiệu tham số khi kho thuốc tham chiếu nhập kho
             colModel: [
 
                 { label: 'cgId', name: 'cgId', hidden: true },

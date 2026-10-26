@@ -113,7 +113,7 @@
 })
 
 <script>
-    window.newtouch_globalconfig.f4opions = { container: '#divSLMX' }; //đóng 回车 Next
+    window.newtouch_globalconfig.f4opions = { container: '#divSLMX' }; //đóng Enter Next
 
     $(function () {
         $(window).resize(function () { //tải lại khi thay đổi kích thước cửa sổ trình duyệt jqGrid chiều rộng
@@ -153,7 +153,7 @@
         itemdbclickhandler: function ($thistr) {
             $("#txtfybm").val($thistr.attr('data-yfbmCode')).nfnAddReadonly();
             $("#txtfybmmc").val($thistr.attr('data-yfbmmc'));
-            //放开下方的药品输入区
+            //Mở vùng nhập thuốc phía dưới
             $("#ypCode,#slsl").nfnRemoveReadonly();
             $('#editRowId').val('');
         },
@@ -322,7 +322,7 @@
     });
 
 
-    //là thuốc Grid组装数据
+    //là thuốc Gridghép dữ liệu
     function getEditRowData() {
         var data = [{
             ypCode: $('#ypCode').val(),
@@ -344,12 +344,12 @@
         return data;
     }
 
-    //清楚
+    //Xóa sạch
     function newtouch_event_f4() {
         $("#lqdw").val("");   //đơn vị số lượng lĩnh
         $("#spanSlslDw").html('');
         $('#spanklslDw').html("");
-        $('#gridSLMX').jqGrid("clearGridData"); //清除明细的grid
+        $('#gridSLMX').jqGrid("clearGridData"); //Xóa grid chi tiết
     }
 
     //thêm nút
@@ -373,14 +373,14 @@
         }
 
         $("#gridSLMX").newtouchLocalDataGrid(null, data);
-        $('#divSLMX input').val('');    //中间明细块 tất cả input đặt lại
+        $('#divSLMX input').val('');    //Khối chi tiết ở giữa tất cả input đặt lại
         $("#spanSlslDw").html('');
         $("#spanklslDw").html("");
         $("#lqdw").val("");
         $('#ypCode').val('').trigger('focus');
     }
 
-    //检查输入合法性
+    //Kiểm tra tính hợp lệ của dữ liệu nhập
     function checkInputVal(data) {
         if (!data[0].ypCode) {
             $.modalAlert("药品代码必填", 'warning');
@@ -423,7 +423,7 @@
                 return;
             }
             $("#gridSLMX").newtouchLocalDataGrid(null, data);
-            $('#divSLMX input').val('');    //中间明细块 tất cả input đặt lại
+            $('#divSLMX input').val('');    //Khối chi tiết ở giữa tất cả input đặt lại
             $("#spanSlslDw").html('');
             $('#spanklslDw').html("");
             $("#lqdw").val("");

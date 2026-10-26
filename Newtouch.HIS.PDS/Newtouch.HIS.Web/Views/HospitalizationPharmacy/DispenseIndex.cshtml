@@ -251,7 +251,7 @@ else
             }
         }
 
-        ThisbrCode = patzyh;//存储选择的病人code
+        ThisbrCode = patzyh;//Lưu code bệnh nhân đã chọn
         //tải lại thông tin chi tiết phát thuốc của bệnh nhân
         search("ckb");
     }
@@ -560,7 +560,7 @@ else
             var uri = '@reportUrl' + "?tempCode=64" + "&orgId=" + '@ViewBag.OrganizeId' +"&systemCode="+systemCode+ "&yfbmCode=" + '@ViewBag.yfbmCode' + "&zyfyapplyno=" + fyid+"&zyh="+ zyhs[i]+"&operateType=1"+"&czIds=";
             window.open(uri);
         }
-        @*if (boleal == true) {//药品标签打印
+        @*if (boleal == true) {//In nhãn thuốc
             window.open("/Report/PrintReport?type=ZYFYLable_Detail&param=OrganizeId=@ViewBag.OrganizeId|yfbmCode=@ViewBag.yfbmCode|zyfyapplyno=" + fyid + "height=500, width=1195, top=100, left=50, toolbar=no, menubar=no, scrollbar=yes, resizeble=no, location=no, status=no");
         }
         else {
