@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据查询药品剂型
+        /// Truy vấn dạng bào chế thuốc theo truy vấn
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -66,7 +66,7 @@ and (jxCode like @searchKeyword or jxmc like @searchKeyword or py like @searchKe
                     throw new FailedException("剂型名称不能重复！");
                 }
 
-                SysMedicineFormulationEntity oldEntity = null;   //变更前Entity
+                SysMedicineFormulationEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

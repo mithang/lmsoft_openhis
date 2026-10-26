@@ -22,7 +22,7 @@ namespace Newtouch.HIS.DomainServices.Rehabilitation
         #region 康复收费项目
 
         /// <summary>
-        /// 获得所有列表(康复收费项目)
+        /// Lấy tất cả danh sách (hạng mục thu phí phục hồi chức năng)
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -52,7 +52,7 @@ WHERE sfxm.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 修改form(康复收费项目)
+        /// Sửa đổi form (hạng mục thu phí phục hồi chức năng)
         /// </summary>
         /// <param name="sfxmId"></param>
         /// <returns></returns>
@@ -84,7 +84,7 @@ WHERE sfxm.OrganizeId=@OrganizeId
         #region 康复收费项目对照
 
         /// <summary>
-        /// 获得所有列表(康复收费项目对照)
+        /// Lấy tất cả danh sách (đối chiếu hạng mục thu phí phục hồi chức năng)
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="OrganizeId"></param>
@@ -112,7 +112,7 @@ WHERE sfxm.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 修改form(康复收费项目对照)
+        /// Sửa đổi form (đối chiếu hạng mục thu phí phục hồi chức năng)
         /// </summary>
         /// <param name="sfxmdzId"></param>
         /// <returns></returns>
@@ -135,7 +135,7 @@ WHERE sfxm.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 收费项目检索
+        /// Tra cứu hạng mục thu phí
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

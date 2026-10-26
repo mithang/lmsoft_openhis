@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.Entity.SystemManage
 {
     /// <summary>
-    /// 医保病人性质
+    /// Tính chất bệnh nhân bảo hiểm y tế
     /// </summary>
     [Table("Sh_Ybfyxzbl")]
     public class Sh_YbfyxzblEntity :IEntity<Sh_YbfyxzblEntity>

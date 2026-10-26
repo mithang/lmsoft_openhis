@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.IRepository.Settlement
     {
 
         /// <summary>
-        /// 获取实体数据
+        /// Lấy dữ liệu thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Domain.IRepository.Settlement
         /// <param name="keyValue"></param>
         void SubmitForm(SysMedicineAuthorityEntity entity, string keyValue);
         /// <summary>
-        /// 获取有效权限
+        /// Lấy quyền có hiệu lực
         /// </summary>
         /// <returns></returns>
         IList<SysMedicineAuthorityEntity> GetValidList(string orgId, string keyword);

@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Base.Controllers
             return View();
         }
         /// <summary>
-        /// 用法树
+        /// Cây cách dùng
         /// </summary>
         /// <returns></returns>
         public ActionResult GetDosageTree(string jxCode)

@@ -12,7 +12,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Base.Controllers
 {
     /// <summary>
-    /// 中医证候
+    /// Chứng hậu y học cổ truyền
     /// </summary>
     public class SysTCMSyndromeController : ControllerBase
     {

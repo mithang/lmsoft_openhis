@@ -25,11 +25,11 @@ namespace Newtouch.HIS.Domain
         }
 
         /// <summary>
-        /// 当创建实体时，更新实体 的 主键字段、创建人员、创建时间
-        /// 调用示例
-        /// Guid/string主键  Create() 或 Create(true) 或 Create(true, '73FD1267-79BA-4E23-A152-744AF73117E9')
-        /// 自增主键  Create()
-        /// int/long非自增主键  Create() 或 Create(true, 9999)
+        /// Khi tạo thực thể, cập nhật trường khóa chính, người tạo và thời gian tạo của thực thể
+        /// Ví dụ gọi
+        /// Khóa chính Guid/string  Create() hoặc Create(true) hoặc Create(true, '73FD1267-79BA-4E23-A152-744AF73117E9')
+        /// Khóa chính tự tăng  Create()
+        /// Khóa chính int/long không tự tăng  Create() hoặc Create(true, 9999)
         /// </summary>
         public void Create(bool isSetPrimaryKeyValue = false, object keyValue = null, bool isSetOrgId = false, bool isSetTopOrgId = false)
         {
@@ -56,11 +56,11 @@ namespace Newtouch.HIS.Domain
         }
 
         /// <summary>
-        /// 当更新实体时，更新 当前实体 的 主键字段、更新人、更新时间
-        /// 调用示例
+        /// Khi cập nhật thực thể, cập nhật trường khóa chính, người cập nhật và thời gian cập nhật của thực thể hiện tại
+        /// Ví dụ gọi
         /// Modify() 、 Modify('73FD1267-79BA-4E23-A152-744AF73117E9')、 Modify(9999)
         /// </summary>
-        /// <param name="keyValue">!=null更新主键字段，否则不更新主键字段</param>
+        /// <param name="keyValue">!=null thì cập nhật trường khóa chính, nếu không thì không cập nhật trường khóa chính</param>
         public void Modify(object keyValue = null, bool isSetOrgId = false, bool isSetTopOrgId = false)
         {
             var loginInfo = OperatorProvider.GetCurrent();

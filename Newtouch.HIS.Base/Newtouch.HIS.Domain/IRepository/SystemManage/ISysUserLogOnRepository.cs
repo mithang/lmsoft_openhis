@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysUserLogOnRepository : IRepositoryBase<SysUserLogOnEntity>
     {
         /// <summary>
-        /// 更新 可 登录 状态
+        /// Cập nhật trạng thái có thể đăng nhập
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="locked"></param>

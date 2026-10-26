@@ -6,7 +6,7 @@ using System.Web.Http;
 namespace Newtouch.HIS.Base.HOSP.API.Configs
 {
     /// <summary>
-    /// 字典
+    /// Từ điển
     /// </summary>
     [RoutePrefix("api/Items")]
     public class ItemsController : ApiControllerBase<ItemsController>

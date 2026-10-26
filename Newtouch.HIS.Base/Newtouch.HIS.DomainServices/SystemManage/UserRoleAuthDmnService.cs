@@ -11,7 +11,7 @@ using System.Linq;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 用户角色权限 公用DmnService
+    /// DmnService dùng chung quyền vai trò người dùng
     /// </summary>
     public class UserRoleAuthDmnService : DmnServiceBase, IUserRoleAuthDmnService
     {
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取用户已授权的角色列表
+        /// Lấy danh sách vai trò đã được ủy quyền cho người dùng
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -47,7 +47,7 @@ and a.zt = '1' and b.zt = '1'";
         }
 
         /// <summary>
-        /// 获取角色 关联 用户（org）
+        /// Lấy người dùng (org) liên kết với vai trò
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>
@@ -65,7 +65,7 @@ and a.zt = '1' and b.zt = '1'";
         }
 
         /// <summary>
-        /// 保存 角色 用户列表
+        /// Lưu danh sách người dùng vai trò
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="userIds"></param>
@@ -86,10 +86,10 @@ and a.zt = '1' and b.zt = '1'";
                     }
                 }
 
-                //先 del
+                //Xóa trước
                 db.Delete<SysUserRoleEntity>(p => p.RoleId == roleId);
 
-                //再添加
+                //Thêm lại
                 if (userList != null)
                 {
                     foreach (var user in userList)
@@ -107,14 +107,14 @@ and a.zt = '1' and b.zt = '1'";
         }
 
         /// <summary>
-        /// 更新用户角色
+        /// Cập nhật vai trò người dùng
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="orgId"></param>
         /// <param name="roleIdList"></param>
         public void UpdateUserRole(string userId, string orgId, string[] roleIdList)
         {
-            //角色list
+            //Danh sách vai trò
             var roleLists = new List<SysUserRoleEntity>();
             foreach (var item in roleIdList.Where(p => !string.IsNullOrWhiteSpace(p)).Distinct())
             {
@@ -128,14 +128,14 @@ and a.zt = '1' and b.zt = '1'";
 
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
-                //组织机构角色Id列表
+                //Danh sách Id vai trò tổ chức
                 var orgRoleIdList = db.IQueryable<SysRoleEntity>(p => p.OrganizeId == orgId).Select(p => p.Id);
                 //
                 var oldRoleList = db.IQueryable<SysUserRoleEntity>().Where(p => p.UserId == userId
                     && orgRoleIdList.Contains(p.RoleId)).ToList();
                 for (int i = 0; i < roleLists.Count; i++)
                 {
-                    //限制：关联其他组织机构的角色
+                    //Hạn chế: Vai trò liên kết với tổ chức khác
 
                     if (oldRoleList.Any(p => p.RoleId == roleLists[i].RoleId))
                     {

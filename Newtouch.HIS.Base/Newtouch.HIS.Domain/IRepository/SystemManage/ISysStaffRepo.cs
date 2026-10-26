@@ -10,14 +10,14 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysStaffRepo : IRepositoryBase<SysStaffEntity>
     {
         /// <summary>
-        /// 获取机构下所以系统人员（不包括子机构）
+        /// Lấy tất cả nhân viên hệ thống thuộc cơ sở (không bao gồm cơ sở con)
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>
         IList<SysStaffEntity> GetsatffListByOrg(string OrganizeId);
 
         /// <summary>
-        /// 获取管理人员Id列表 根据UserId
+        /// Lấy danh sách Id người quản lý theo UserId
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>

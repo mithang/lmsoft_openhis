@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Base.Controllers
             this._rehabilitationDmnService = rehabilitationDmnService;
         }
         /// <summary>
-        /// 主页面
+        /// Trang chính
         /// </summary>
         /// <returns></returns>
         public override ActionResult Index()
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Base.Controllers
         }
 
         /// <summary>
-        /// 新增/修改
+        /// Thêm mới/Sửa đổi
         /// </summary>
         /// <returns></returns>
         public override ActionResult Form()
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Base.Controllers
         }
 
         /// <summary>
-        /// 收费分类下拉
+        /// Danh sách thả xuống phân loại thu phí
         /// </summary>
         /// <returns></returns>
         public ActionResult GetsfflBindSelect()
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Base.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         public ActionResult SubmitForm(RehabChargeItemEntity entity, string sfxmId)
         {
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Base.Controllers
 
 
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách có hiệu lực
         /// </summary>
         public ActionResult GetRehabChargeItemList(string keyword)
         {
@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Base.Controllers
         }
 
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửa đổi Form
         /// </summary>
         public ActionResult GetFormJson(string sfxmId)
         {
@@ -86,7 +86,7 @@ namespace Newtouch.HIS.Base.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         public ActionResult DeleteForm(string sfxmId)
         {

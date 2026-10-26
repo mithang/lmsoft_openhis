@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Base.HOSP.Request
     public class OrgRequestBase : RequestBase
     {
         /// <summary>
-        /// 组织机构Id（已经定位到了具体医院）
+        /// Id tổ chức (đã xác định đến bệnh viện cụ thể)
         /// </summary>
         [Required]
         public string OrganizeId { get; set; }

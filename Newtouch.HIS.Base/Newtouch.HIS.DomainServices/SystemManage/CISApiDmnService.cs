@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 字典、字典项 DmnService
+    /// Từ điển, mục từ điển DmnService
     /// </summary>
     public class CISApiDmnService : DmnServiceBase, ICISApiDmnService
     {

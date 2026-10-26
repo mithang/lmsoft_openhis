@@ -5,54 +5,54 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 组织机构DmnService
+    /// DmnService tổ chức
     /// </summary>
     public interface ISysOrganizeDmnService
     {
         /// <summary>
-        /// 获取组织机构已授权的应用列表
+        /// Lấy danh sách ứng dụng đã được ủy quyền cho tổ chức
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<SysApplicationEntity> GetAuthedAppListByTopOrgId(string topOrgId);
 
         /// <summary>
-        /// 是否含有下级机构，有下级机构返回true
+        /// Có cơ sở cấp dưới hay không, nếu có thì trả về true
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         bool IsHasLowerOrganize(string orgId);
 
         /// <summary>
-        /// 通过机构类别来判断 是否 是 医院
+        /// Xác định theo danh mục cơ sở có phải là bệnh viện hay không
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         bool IsHospital(string orgId);
 
         /// <summary>
-        /// 通过机构类别来判断 是否 是 诊所
+        /// Xác định theo danh mục cơ sở có phải là phòng khám hay không
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         bool IsClinic(string orgId);
 
         /// <summary>
-        /// 通过机构类别来判断 是否 是 医疗机构（有具体的业务）
+        /// Xác định theo danh mục cơ sở có phải là cơ sở y tế hay không (có nghiệp vụ cụ thể)
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         bool IsMedicalOrganize(string orgId);
 
         /// <summary>
-        /// 获取Org名称
+        /// Lấy tên Org
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         string GetNameByOrgId(string orgId);
 
         /// <summary>
-        /// 获取 UserId 对应的 医疗机构 List
+        /// Lấy List cơ sở y tế tương ứng với UserId
         /// </summary>
         /// <returns></returns>
         IList<SysOrganizeEntity> GetMedicalOrganizeListByUserId(string userId);
@@ -60,16 +60,16 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region 科室
 
         /// <summary>
-        /// 获取科室列表
+        /// Lấy danh sách khoa
         /// </summary>
         /// <returns></returns>
         List<SysDepartmentVO> GetListByOrg(string organizeId);
 
         /// <summary>
-        /// 更新科室关联病区
+        /// Cập nhật khu bệnh liên kết với khoa
         /// </summary>
         /// <param name="deptId"></param>
-        /// <param name="wardList">病区Code List</param>
+        /// <param name="wardList">Danh sách Code khu bệnh</param>
         /// <param name="OrganizeId"></param>
         void UpdateDepartmentWard(string deptId, string[] wardList, string OrganizeId);
 

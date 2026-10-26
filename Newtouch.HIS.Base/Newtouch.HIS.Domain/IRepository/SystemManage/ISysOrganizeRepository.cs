@@ -11,57 +11,57 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysOrganizeRepository : IRepositoryBase<SysOrganizeEntity>
     {
         /// <summary>
-        /// 获取组织下的所有组织
+        /// Lấy tất cả các tổ chức thuộc tổ chức
         /// </summary>
         /// <returns></returns>
         List<SysOrganizeEntity> GetListByTopOrg(string topOrganizeId);
 
         /// <summary>
-        /// 获取组织下的所有有效组织（top）
+        /// Lấy tất cả các tổ chức có hiệu lực thuộc tổ chức (top)
         /// </summary>
         /// <returns></returns>
         List<SysOrganizeEntity> GetValidListByTopOrg(string topOrganizeId);
 
         /// <summary>
-        /// 获取组织下的所有有效组织（parent）
+        /// Lấy tất cả các tổ chức có hiệu lực thuộc tổ chức (parent)
         /// </summary>
         /// <returns></returns>
         List<SysOrganizeVO> GetValidListByParentOrg(string parentOrgId);
 
         /// <summary>
-        /// 获取组织下的所有组织（parent）（包括无效的）
+        /// Lấy tất cả các tổ chức thuộc tổ chức (parent) (bao gồm cả các mục không hiệu lực)
         /// </summary>
         /// <returns></returns>
         List<SysOrganizeVO> GetListByParentOrg(string parentOrgId);
 
         /// <summary>
-        /// 获取顶级组织机构列表 包括无效的
+        /// Lấy danh sách tổ chức cấp cao nhất, bao gồm cả các mục không hiệu lực
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
         IList<SysOrganizeEntity> GetPagintionListByTopOrg(Pagination pagination, string keyword = null);
 
         /// <summary>
-        /// 获取顶级组织机构列表 包括无效的
+        /// Lấy danh sách tổ chức cấp cao nhất, bao gồm cả các mục không hiệu lực
         /// </summary>
         /// <returns></returns>
         List<SysOrganizeEntity> GetTopOrgList();
 
         /// <summary>
-        /// 获取顶级组织机构列表
+        /// Lấy danh sách tổ chức cấp cao nhất
         /// </summary>
         /// <returns></returns>
         List<SysOrganizeEntity> GetValidTopOrgList();
 
         /// <summary>
-        /// 提交新建、更新 实体
+        /// Gửi tạo mới, cập nhật thực thể
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
         void SubmitForm(SysOrganizeEntity entity, string keyValue);
 
         /// <summary>
-        /// 根据OrgId获取Code
+        /// Lấy Code theo OrgId
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

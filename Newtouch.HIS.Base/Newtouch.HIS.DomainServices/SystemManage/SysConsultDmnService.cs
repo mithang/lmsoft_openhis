@@ -41,7 +41,7 @@ and (code='zrys' or code='fzrys')";
         }
 
         /// <summary>
-        /// 根据专家工号获取专家姓名
+        /// Lấy họ tên chuyên gia theo mã nhân viên chuyên gia
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="gh"></param>

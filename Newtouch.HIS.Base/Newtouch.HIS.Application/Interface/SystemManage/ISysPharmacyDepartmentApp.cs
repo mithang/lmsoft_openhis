@@ -4,12 +4,12 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 系统药房部门
+    /// Phòng dược của hệ thống
     /// </summary>
     public interface ISysPharmacyDepartmentApp
     {
         /// <summary>
-        /// 获取该药品授权的组织机构
+        /// Lấy tổ chức được ủy quyền cho thuốc đó
         /// </summary>
         /// <param name="ypId"></param>
         /// <param name="organizeId"></param>
@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Application.Interface
         List<SysPharmacyDepartmentVEntity> EmpowermentPharmacyDepartmentQuery(string ypId, string organizeId);
 
         /// <summary>
-        /// 授权药房部门
+        /// Ủy quyền phòng dược
         /// </summary>
         /// <param name="ypId"></param>
         /// <param name="ypCode"></param>

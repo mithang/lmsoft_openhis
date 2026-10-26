@@ -8,7 +8,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 菜单App
+    /// App menu
     /// </summary>
     public class ModuleApp : IModuleApp
     {
@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 获取有效菜单列表
+        /// Lấy danh sách menu có hiệu lực
         /// </summary>
         /// <returns></returns>
         public List<SysModuleEntity> GetValidList()
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 获取实体
+        /// Lấy thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 删除菜单
+        /// Xóa menu
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(string keyValue)

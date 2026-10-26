@@ -11,7 +11,7 @@ using System.Web.Http;
 namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
     /// <summary>
-    /// 药品提供商
+    /// Nhà cung cấp thuốc
     /// </summary>
     [RoutePrefix("api/MedicineSupplier")]
     public class MedicineSupplierController : ApiControllerBase<MedicineSupplierController>

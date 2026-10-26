@@ -11,58 +11,58 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysModuleButtonEntity : IEntity<SysModuleButtonEntity>
     {
         /// <summary>
-        /// 按钮主键
+        /// Khóa chính nút bấm
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 模块主键
+        /// Khóa chính module
         /// </summary>
         public string ModuleId { get; set; }
 
         /// <summary>
-        /// 名称
+        /// Tên
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 编码
+        /// Mã
         /// </summary>
         public string Code { get; set; }
 
         /// <summary>
-        /// 连接
+        /// Kết nối
         /// </summary>
         public string UrlAddress { get; set; }
 
         /// <summary>
-        /// 描述
+        /// Mô tả
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// 创建日期
+        /// Ngày tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户主键
+        /// Khóa chính người dùng tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối cùng
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// Người dùng sửa đổi cuối cùng
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 排序码
+        /// Mã sắp xếp
         /// </summary>
         public int? px { get; set; }
 

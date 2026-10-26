@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 提交药品剂型对应关系
+        /// Gửi quan hệ tương ứng dạng bào chế thuốc
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="yfbmCode"></param>
@@ -26,9 +26,9 @@ namespace Newtouch.HIS.Repository
         {
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
-                //先 del
+                //Xóa trước
                 db.Delete<SysMedicineDosageEntity>(p => p.jxCode == jxCode);
-                //再添加
+                //Thêm lại
                // var yfCodeArr = (yfCode ?? "").Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
 				var userYfbmentity = new SysMedicineDosageEntity();

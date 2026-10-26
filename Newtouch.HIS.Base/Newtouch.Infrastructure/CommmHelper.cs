@@ -10,7 +10,7 @@ namespace Newtouch.Infrastructure
     public class CommmHelper
     {
         /// <summary>
-        /// 获取本地文件对应的本地路径
+        /// Lấy đường dẫn cục bộ tương ứng với tệp cục bộ
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>

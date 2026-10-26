@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据组织机构,级别,获取抗生素信息列表
+        /// Lấy danh sách thông tin kháng sinh theo tổ chức, cấp độ
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>
@@ -72,7 +72,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 提交抗生素类别信息
+        /// Gửi thông tin danh mục kháng sinh
         /// </summary>
         /// <param name="entity"></param>
         public void SubmitForm(SysMedicineAntibioticTypeEntity entity)

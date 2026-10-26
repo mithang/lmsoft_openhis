@@ -19,19 +19,19 @@ namespace Newtouch.HIS.Repository
         }
         
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         public void SubmitForm(RehabChargeItemEntity entity, string sfxmId)
         {
             if (!string.IsNullOrEmpty(sfxmId))
             {
-                //Code重复判断
+                //Kiểm tra trùng lặp Code
                 if (this.IQueryable().Any(a => a.Code == entity.Code && a.sfxmId != sfxmId))
                 {
                     throw new FailedException("编码不可重复");
                 }
 
-                RehabChargeItemEntity oldEntity = null;   //变更前Entity
+                RehabChargeItemEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(sfxmId);
                 this.DetacheEntity(oldEntity);
 
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Repository
             }
             else
             {
-                //Code重复判断
+                //Kiểm tra trùng lặp Code
                 if (this.IQueryable().Any(a => a.Code == entity.Code))
                 {
                     throw new FailedException("编码不可重复");
@@ -59,7 +59,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(string sfxmId, string OrganizeId)

@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取字典分类（包括无效的）
+        /// Lấy phân loại từ điển (bao gồm cả các mục không hiệu lực)
         /// </summary>
         /// <returns></returns>
         public IList<SysItemsEntity> GetList()
@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取有效字典分类
+        /// Lấy phân loại từ điển có hiệu lực
         /// </summary>
         /// <returns></returns>
         public IList<SysItemsEntity> GetValidList()
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 提交新建、更新 实体
+        /// Gửi tạo mới, cập nhật thực thể
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Repository
                     throw new FailedException("编码不可重复");
                 }
 
-                SysItemsEntity oldEntity = null;   //变更前Entity
+                SysItemsEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(keyValue);
                 this.DetacheEntity(oldEntity);
 

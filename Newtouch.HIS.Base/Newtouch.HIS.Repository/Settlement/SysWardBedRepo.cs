@@ -18,19 +18,19 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         public void SubmitForm(SysWardBedEntity entity, int? cwId)
         {
             if (cwId != null && cwId > 0)
             {
-                //Code重复判断
+                //Kiểm tra trùng lặp Code
                 if (this.IQueryable().Any(a => a.cwCode == entity.cwCode && a.cwId != cwId && a.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("编码不可重复");
                 }
 
-                SysWardBedEntity oldEntity = null;   //变更前Entity
+                SysWardBedEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(cwId.Value);
                 this.DetacheEntity(oldEntity);
 
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Repository
             }
             else
             {
-                //Code重复判断
+                //Kiểm tra trùng lặp Code
                 if (this.IQueryable().Any(a => a.cwCode == entity.cwCode && a.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("编码不可重复");
@@ -56,7 +56,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         public void DeleteForm(int cwId, string orgId)
         {
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据床位占用情况
+        /// Theo tình trạng sử dụng giường bệnh
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>

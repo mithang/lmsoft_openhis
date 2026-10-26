@@ -10,7 +10,7 @@ using System.Web.Http;
 namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
     /// <summary>
-    /// 病区相关
+    /// Liên quan đến khu bệnh
     /// </summary>
     [RoutePrefix("api/Ward")]
     [DefaultAuthorize]
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
         }
 
         /// <summary>
-        /// 更新床位是否占用
+        /// Cập nhật giường bệnh có đang sử dụng hay không
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

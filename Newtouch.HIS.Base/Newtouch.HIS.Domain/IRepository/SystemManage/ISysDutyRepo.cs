@@ -9,27 +9,27 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysDutyRepo : IRepositoryBase<SysDutyEntity>
     {
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách có hiệu lực
         /// </summary>
         /// <returns></returns>
         IList<SysDutyEntity> GetValidList();
 
         /// <summary>
-        /// 获取所有
+        /// Lấy tất cả
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         IList<SysDutyEntity> GetList(string keyword);
 
         /// <summary>
-        /// 获取实体数据
+        /// Lấy dữ liệu thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         SysDutyEntity GetForm(string keyValue);
 
         /// <summary>
-        /// 提交保存
+        /// Gửi để lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>

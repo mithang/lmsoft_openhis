@@ -8,7 +8,7 @@ using System.Web.Http;
 namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
     /// <summary>
-    /// 药品剂型
+    /// Dạng bào chế thuốc
     /// </summary>
     public class MedicineFormulationController : ApiController
     {

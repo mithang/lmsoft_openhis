@@ -9,25 +9,25 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysApplicationRepo : IRepositoryBase<SysApplicationEntity>
     {
         /// <summary>
-        /// 获取列表（包括无效的）
+        /// Lấy danh sách (bao gồm cả các mục không hiệu lực)
         /// </summary>
         /// <returns></returns>
         IList<SysApplicationEntity> GetList();
 
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách có hiệu lực
         /// </summary>
         /// <returns></returns>
         IList<SysApplicationEntity> GetValidList();
 
         /// <summary>
-        /// 提交新建、更新 实体
+        /// Gửi tạo mới, cập nhật thực thể
         /// </summary>
         /// <returns></returns>
         void SubmitForm(SysApplicationEntity entity, string keyValue);
 
         /// <summary>
-        /// 返回一个实体
+        /// Trả về một thực thể
         /// </summary>
         /// <param name="appId"></param>
         /// <returns></returns>

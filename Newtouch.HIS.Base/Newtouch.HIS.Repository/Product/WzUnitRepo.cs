@@ -5,7 +5,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 单位维护
+    /// Bảo trì đơn vị
     /// </summary>
     public class WzUnitRepo : RepositoryBase<WzUnitEntity>, IWzUnitRepo
     {

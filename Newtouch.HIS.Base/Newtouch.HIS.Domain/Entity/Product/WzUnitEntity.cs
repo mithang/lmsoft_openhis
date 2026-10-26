@@ -5,49 +5,49 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 单位
+    /// Đơn vị
     /// </summary>
     [Table("wz_unit")]
     public class WzUnitEntity : IEntity<WzUnitEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 单位名称(必填)
+        /// Tên đơn vị (bắt buộc)
         /// </summary>
         public string name { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
 
         /// <summary>
-        /// 状态  0:作废；1.有效
+        /// Trạng thái  0: Hủy bỏ; 1. Có hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối cùng
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Người sửa đổi cuối cùng
         /// </summary>
         public string LastModifierCode { get; set; }
     }

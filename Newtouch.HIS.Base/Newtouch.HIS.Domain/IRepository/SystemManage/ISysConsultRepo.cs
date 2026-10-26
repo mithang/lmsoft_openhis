@@ -10,28 +10,28 @@ namespace Newtouch.HIS.Domain.IRepository.SystemManage
     public interface ISysConsultRepo : IRepositoryBase<SysConsultEntity>
     {
         /// <summary>
-        /// 获取诊室列表
+        /// Lấy danh sách phòng khám
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         List<SysConsultEntity> GetConsultList(string orgId);
 
         /// <summary>
-        /// 获取科室下诊室列表
+        /// Lấy danh sách phòng khám thuộc khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ksCode"></param>
         /// <returns></returns>
         List<SysConsultEntity> GetConsultListByDept(string orgId, string ksCode);
         /// <summary>
-        /// 获取科室下有效诊室列表
+        /// Lấy danh sách phòng khám có hiệu lực thuộc khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ksCode"></param>
         /// <returns></returns>
         List<SysConsultEntity> GetValidConsultListByDept(string orgId, string ksCode);
         /// <summary>
-        /// 新增诊室
+        /// Thêm phòng khám mới
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="ksCode"></param>

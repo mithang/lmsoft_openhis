@@ -10,7 +10,7 @@ using Newtouch.Infrastructure.EF.Conventions;
 namespace Newtouch.HIS.Domain.DBContext.Infrastructure
 {
     /// <summary>
-    /// base库DB上下文
+    /// DB context của thư viện base
     /// </summary>
     public class BaseDbContext : DbContextBase
     {
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Domain.DBContext.Infrastructure
             modelBuilder.Entity<SysMedicineClassificationEntity>().RegisterTable().HasKey(p => p.ypflId);
             modelBuilder.Entity<SysMedicineEntity>().RegisterTable().HasKey(p => p.ypId);
             modelBuilder.Entity<SysMedicineBaseEntity>().RegisterTable().HasKey(p => p.ypId);
-            //药品剂量 精确到4位小数
+            //Liều lượng thuốc, chính xác đến 4 chữ số thập phân
             modelBuilder.Entity<SysMedicineEntity>().Property(x => x.jl).HasPrecision(9, 4);
             modelBuilder.Entity<SysMedicineAntibioticTypeEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<SysMedicineAntibioticInfoEntity>().RegisterTable().HasKey(p => p.Id);
@@ -91,7 +91,7 @@ namespace Newtouch.HIS.Domain.DBContext.Infrastructure
             modelBuilder.Entity<SysStaffDutyEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<SysStaffWardEntity>().RegisterTable().HasKey(p => p.Id);
 
-            //药品权限
+            //Quyền thuốc
             modelBuilder.Entity<SysMedicineAuthorityEntity>().RegisterTable().HasKey(p => p.qxId);
             modelBuilder.Entity<SysMedicineAuthorityRelationEntity>().RegisterTable().HasKey(p => p.id);
 
@@ -116,11 +116,11 @@ namespace Newtouch.HIS.Domain.DBContext.Infrastructure
             modelBuilder.Entity<GzybCodeContrastEntity>().RegisterTable().HasKey(p => p.id);
 
             modelBuilder.Entity<SysStaffSignatureEntity>().RegisterTable().HasKey(p => p.Id);
-            //报表管理
+            //Quản lý báo cáo
             modelBuilder.Entity<SysReportTemplateEntity>().RegisterTable().HasKey(p => p.TemplateID);
             modelBuilder.Entity<SysReportEntity>().RegisterTable().HasKey(p => p.ReportID);
 
-            //系统诊室
+            //Phòng khám hệ thống
             modelBuilder.Entity<SysConsultEntity>().RegisterTable().HasKey(p => p.zsId);
             modelBuilder.Entity<SysStaffConsultEntity>().RegisterTable().HasKey(p => p.Id);
 
@@ -128,7 +128,7 @@ namespace Newtouch.HIS.Domain.DBContext.Infrastructure
 
             modelBuilder.Entity<Demo>().RegisterTable().HasKey(p => p.ID);
 
-            modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());//注入
+            modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());//Inject
             base.OnModelCreating(modelBuilder);
         }
 

@@ -73,7 +73,7 @@ and (zhCode like @searchKeyword or zhmc like @searchKeyword or py like @searchKe
                     throw new FailedException("编码不可重复");
                 }
 
-                SysTCMSyndromeEntity oldEntity = null;   //变更前Entity
+                SysTCMSyndromeEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 药品抗生素信息
+    /// Thông tin kháng sinh của thuốc
     /// </summary>
     [Table("xt_ypKss")]
     public class SysMedicineAntibioticInfoEntity : IEntity<SysMedicineAntibioticInfoEntity>
@@ -22,57 +22,57 @@ namespace Newtouch.HIS.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 一级分类Id
+        /// Id phân loại cấp một
         /// </summary>
         public string kssLevel1TypeId { get; set; }
 
         /// <summary>
-        /// 二级分类Id
+        /// Id phân loại cấp hai
         /// </summary>
         public string kssLevel2TypeId { get; set; }
         
         /// <summary>
-        /// 权限级别(0 非限制使用药物,1 限制使用药物,2 特殊使用药物)
+        /// Cấp độ quyền (0 Thuốc sử dụng không hạn chế, 1 Thuốc sử dụng hạn chế, 2 Thuốc sử dụng đặc biệt)
         /// </summary>
         public string qxjb { get; set; }
 
         /// <summary>
-        /// 剂量范围(大于)
+        /// Phạm vi liều lượng (lớn hơn)
         /// </summary>
         public decimal? jlfwBegin { get; set; }
 
         /// <summary>
-        /// 剂量范围(小于)
+        /// Phạm vi liều lượng (nhỏ hơn)
         /// </summary>
         public decimal? jlfwEnd { get; set; }
         
         /// <summary>
-        /// 频次范围(大于)
+        /// Phạm vi tần suất (lớn hơn)
         /// </summary>
         public decimal? pcfwBegin { get; set; }
 
         /// <summary>
-        /// 频次范围(小于)
+        /// Phạm vi tần suất (nhỏ hơn)
         /// </summary>
         public decimal? pcfwEnd { get; set; }
 
         /// <summary>
-        /// DDD值
+        /// Giá trị DDD
         /// </summary>
         public decimal? DDDnum { get; set; }
 
         /// <summary>
-        /// DDD单位
+        /// Đơn vị DDD
         /// </summary>
         public string DDDdw { get; set; }
 
         /// <summary>
-        /// 效价
+        /// Hiệu giá
         /// </summary>
         public decimal? xj { get; set; }
 
         /// <summary>
-        /// 空瓶(0 否,1 是)
+        /// Bình rỗng (0 Không, 1 Có)
         /// </summary>
         public string kp { get; set; }
 
@@ -97,11 +97,11 @@ namespace Newtouch.HIS.Domain.Entity
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 1：有效 0：无效
+        /// 1: Có hiệu lực 0: Không hiệu lực
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// 抗生素剂量单位
+        /// Đơn vị liều lượng kháng sinh
         /// </summary>
         public string kssjldw { get; set; }
     }

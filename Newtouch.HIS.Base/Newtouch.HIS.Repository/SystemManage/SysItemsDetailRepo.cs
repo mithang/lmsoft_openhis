@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取公共字典项List 所有机构公用的
+        /// Lấy List mục từ điển chung, dùng chung cho tất cả các cơ sở
         /// </summary>
         /// <param name="itemId"></param>
         /// <param name="keyword"></param>
@@ -45,9 +45,9 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取 单一组织机构 字典项List
+        /// Lấy List mục từ điển của một tổ chức duy nhất
         /// </summary>
-        /// <param name="orgId">医疗机构Id，不传时差共享的</param>
+        /// <param name="orgId">Id cơ sở y tế, khi không truyền thì tra cứu các mục dùng chung</param>
         /// <param name="itemId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -68,7 +68,7 @@ order by CreateTime desc";
         }
 
         /// <summary>
-        /// 更新、保存字典项
+        /// Cập nhật, lưu mục từ điển
         /// </summary>
         /// <param name="itemsDetailEntity"></param>
         /// <param name="keyValue"></param>
@@ -89,7 +89,7 @@ order by CreateTime desc";
                     throw new FailedException("编码不可重复");
                 }
 
-                SysItemsDetailEntity oldEntity = null;   //变更前Entity
+                SysItemsDetailEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(keyValue);
                 this.DetacheEntity(oldEntity);
 
@@ -121,9 +121,9 @@ order by CreateTime desc";
         }
 
         /// <summary>
-        /// 获取 科目分类树状图
+        /// Lấy sơ đồ cây phân loại môn học
         /// </summary>
-        /// <param name="orgId">医疗机构Id，不传时差共享的</param>
+        /// <param name="orgId">Id cơ sở y tế, khi không truyền thì tra cứu các mục dùng chung</param>
         /// <returns></returns>
         public List<ProjectZbVO> GetTreeViewdata(string orgId)
         {

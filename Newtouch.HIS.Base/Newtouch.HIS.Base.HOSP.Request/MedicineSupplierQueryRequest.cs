@@ -1,12 +1,12 @@
 ﻿namespace Newtouch.HIS.Base.HOSP.Request
 {
     /// <summary>
-    /// 药品供应商 查询
+    /// Truy vấn nhà cung cấp thuốc
     /// </summary>
     public class MedicineSupplierQueryRequest : OrgRequestBase
     {
         /// <summary>
-        /// 关键字
+        /// Từ khóa
         /// </summary>
         public string keyword { get; set; }
 

@@ -92,11 +92,11 @@ namespace Newtouch.HIS.Domain.Entity
         public string zlks { get; set; }
 
         /// <summary>
-        /// 是否上传医保 上传1 未上传0
+        /// Có tải lên bảo hiểm y tế hay không: đã tải lên 1, chưa tải lên 0
         /// </summary>
         public int? UploadYB { get; set; }
         /// <summary>
-        /// 是否上传医保后撤销 撤销1 撤销0
+        /// Có hủy sau khi tải lên bảo hiểm y tế hay không: đã hủy 1, chưa hủy 0
         /// </summary>
         public int? RevokeYB { get; set; }
 

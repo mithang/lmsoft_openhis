@@ -19,11 +19,11 @@ namespace Newtouch.HIS.Application.Implementation
     public class SysUserApp : ISysUserApp
     {
         /// <summary>
-        /// 登录次数过多，账号自动锁定 的 时间段（单位：分）
+        /// Khoảng thời gian tài khoản tự động bị khóa khi số lần đăng nhập quá nhiều (đơn vị: phút)
         /// </summary>
         private static int _loginFailedTimesLimit_Minutes = 60;
         /// <summary>
-        /// 登录次数过多，账号自动锁定 的 最大次数
+        /// Số lần tối đa khiến tài khoản tự động bị khóa khi số lần đăng nhập quá nhiều
         /// </summary>
         private static int _loginFailedTimesLimit_Count = 3;
 
@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Application.Implementation
                 var userLogOnEntity = _sysUserLogOnRepository.FindEntity(p => p.UserId == userEntity.Id);
                 if (userLogOnEntity.Locked.HasValue && userLogOnEntity.Locked.Value)
                 {
-                    //不提供 自动解锁 功能
+                    //Không cung cấp chức năng tự động mở khóa
                     throw new FailedException(string.Format("密码连续输错超过{0}次,账号已被锁定", _loginFailedTimesLimit_Count));
                 }
                 string dbPassword = Md5.md5(DESEncrypt.Encrypt(password.ToLower(), userLogOnEntity.UserSecretkey).ToLower(), 32).ToLower();
@@ -91,13 +91,13 @@ namespace Newtouch.HIS.Application.Implementation
                     }
 
                     var startTime = DateTime.Now.AddMinutes(-_loginFailedTimesLimit_Minutes);
-                    //取M分钟内的 最新的N-1条登录日志记录
+                    //Lấy N-1 bản ghi nhật ký đăng nhập mới nhất trong M phút
                     var loginLogList = _sysLogRepository.IQueryable().Where(p => p.Type == "Login" && p.Account == username && p.TopOrganizeId == Constants.TopOrganizeId && p.CreateTime > startTime).OrderByDescending(p => p.CreateTime).Take(_loginFailedTimesLimit_Count - 1).Select(p => p.Result).ToList();
-                    if (loginLogList.Count == _loginFailedTimesLimit_Count - 1 && !loginLogList.Any(p => p.HasValue && p.Value))  //如果是N-1条，且没有登录成功的记录
+                    if (loginLogList.Count == _loginFailedTimesLimit_Count - 1 && !loginLogList.Any(p => p.HasValue && p.Value))  //Nếu là N-1 bản ghi và không có bản ghi đăng nhập thành công
                     {
-                        //到了最大错误次数了，锁定之
-                        //更新状态至‘锁定’
-                        //更新BASE.SYS_USERLOGON
+                        //Đã đạt số lần sai tối đa, khóa tài khoản
+                        //Cập nhật trạng thái thành ‘Khóa’
+                        //Cập nhật BASE.SYS_USERLOGON
                         userLogOnEntity.Locked = false;
                         userLogOnEntity.Modify();
                         _sysUserLogOnRepository.Update(userLogOnEntity);
@@ -122,7 +122,7 @@ namespace Newtouch.HIS.Application.Implementation
         /// <param name="keyValue"></param>
         public void RevisePassword(string userPassword, string keyValue)
         {
-            var userLogOnEntity = _sysUserLogOnRepository.FindEntity(p => p.UserId == keyValue);    //是UserId
+            var userLogOnEntity = _sysUserLogOnRepository.FindEntity(p => p.UserId == keyValue);    //Là UserId
 
             if (userLogOnEntity == null)
             {
@@ -145,7 +145,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 为组织机构创建一个系统管理员 admin
+        /// Tạo một quản trị viên hệ thống admin cho tổ chức
         /// </summary>
         /// <param name="organizeId"></param>
         public void CreateDefaultAdminToOrg(string topOrgId, string userPassword)
@@ -167,15 +167,15 @@ namespace Newtouch.HIS.Application.Implementation
             userLogOnEntity.UserPassword = Md5.md5(DESEncrypt.Encrypt(Md5.md5(userPassword, 32).ToLower(), userLogOnEntity.UserSecretkey).ToLower(), 32).ToLower();
             userLogOnEntity.Create(true);
 
-            //保存至数据库
+            //Lưu vào cơ sở dữ liệu
             _sysUserDmnService.CreateUser(userEntity, userLogOnEntity);
         }
 
         /// <summary>
-        /// 微软SSO登录(邮箱)
+        /// Đăng nhập SSO của Microsoft (email)
         /// </summary>
-        /// <param name="userId">用户ID</param>
-        /// <param name="organizeId">机构ID</param>
+        /// <param name="userId">ID người dùng</param>
+        /// <param name="organizeId">ID tổ chức</param>
         /// <returns></returns>
         public SysUserEntity MsSsoLogin(string userId, string organizeId)
         {

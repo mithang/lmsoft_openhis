@@ -9,19 +9,19 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysItemsRepository : IRepositoryBase<SysItemsEntity>
     {
         /// <summary>
-        /// 获取字典分类（包括无效的）
+        /// Lấy phân loại từ điển (bao gồm cả các mục không hiệu lực)
         /// </summary>
         /// <returns></returns>
         IList<SysItemsEntity> GetList();
 
         /// <summary>
-        /// 获取有效字典分类
+        /// Lấy phân loại từ điển có hiệu lực
         /// </summary>
         /// <returns></returns>
         IList<SysItemsEntity> GetValidList();
 
         /// <summary>
-        /// 提交新建、更新 实体
+        /// Gửi tạo mới, cập nhật thực thể
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>

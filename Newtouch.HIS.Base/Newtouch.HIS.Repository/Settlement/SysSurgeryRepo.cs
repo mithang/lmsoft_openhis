@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Repository.Settlement
 					throw new FailedException("编码不可重复");
 				}
 
-				SurgeryEntity oldEntity = null;   //变更前Entity
+				SurgeryEntity oldEntity = null;   //Entity trước khi thay đổi
 				oldEntity = this.FindEntity(keyValue.Value);
 				this.DetacheEntity(oldEntity);
 

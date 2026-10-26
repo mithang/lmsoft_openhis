@@ -32,17 +32,17 @@ namespace Newtouch.HIS.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 0 通用 1 门诊 2住院
+        /// 0 Chung 1 Ngoại trú 2 Nội trú
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 门诊打印报表 费用所属（比饮食费归‘其他’）
+        /// Báo cáo in ngoại trú, khoản chi phí thuộc về (ví dụ phí ăn uống được xếp vào ‘Khác’)
         /// </summary>
         public string mzprintreportcode { get; set; }
 
         /// <summary>
-        /// 门诊结算 费用所属（比饮食费归‘其他’）
+        /// Thanh toán ngoại trú, khoản chi phí thuộc về (ví dụ phí ăn uống được xếp vào ‘Khác’)
         /// </summary>
         public string mzprintbillcode { get; set; }
 
@@ -87,12 +87,12 @@ namespace Newtouch.HIS.Domain.Entity
         public int? ParentId { get; set; }
 
         /// <summary>
-        /// 通用报表大类
+        /// Nhóm lớn báo cáo chung
         /// </summary>
         public string reportdlcode { get; set; }
 
         /// <summary>
-        /// 大类类别，对应枚举 EnumSfdlDllb 1药品 2治疗项目 3非治疗项目
+        /// Danh mục nhóm lớn, tương ứng với enum EnumSfdlDllb 1 Thuốc 2 Hạng mục điều trị 3 Hạng mục không điều trị
         /// </summary>
         public int? dllb { get; set; }
 

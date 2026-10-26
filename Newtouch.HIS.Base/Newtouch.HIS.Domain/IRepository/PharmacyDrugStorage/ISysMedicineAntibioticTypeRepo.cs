@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysMedicineAntibioticTypeRepo : IRepositoryBase<SysMedicineAntibioticTypeEntity>
     {
         /// <summary>
-        /// 根据组织机构,级别,获取抗生素分类列表
+        /// Lấy danh sách phân loại kháng sinh theo tổ chức, cấp độ
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="Level"></param>
@@ -17,14 +17,14 @@ namespace Newtouch.HIS.Domain.IRepository
         /// <returns></returns>
         IList<SysMedicineAntibioticTypeEntity> GetValidListByOrg(string OrganizeId, string Level, string parentId);
         /// <summary>
-        /// 根据组织机构,上级Id,获取抗生素分类列表
+        /// Lấy danh sách phân loại kháng sinh theo tổ chức, Id cấp trên
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="parentId"></param>
         /// <returns></returns>
         IList<SysMedicineAntibioticTypeEntity> GetListByParentId(string OrganizeId, string parentId);
         /// <summary>
-        /// 提交抗生素分类信息
+        /// Gửi thông tin phân loại kháng sinh
         /// </summary>
         /// <param name="entity"></param>
         void SubmitForm(SysMedicineAntibioticTypeEntity entity);

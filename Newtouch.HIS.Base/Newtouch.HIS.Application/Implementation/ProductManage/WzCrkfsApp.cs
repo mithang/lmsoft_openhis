@@ -5,7 +5,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 出入库方式
+    /// Phương thức nhập/xuất kho
     /// </summary>
     public class WzCrkfsApp : AppBase, IWzCrkfsApp
     {

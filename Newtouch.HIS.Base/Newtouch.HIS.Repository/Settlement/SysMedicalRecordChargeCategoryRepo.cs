@@ -11,7 +11,7 @@ using System.Linq;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 病案收费大类
+    /// Nhóm thu phí lớn hồ sơ bệnh án
     /// </summary>
     public class SysMedicalRecordChargeCategoryRepo : RepositoryBase<SysMedicalRecordChargeCategoryEntity>, ISysMedicalRecordChargeCategoryRepo
     {
@@ -65,13 +65,13 @@ order by CreateTime desc";
         {
             if (keyValue.HasValue && keyValue.Value > 0)
             {
-                //Code重复判断
+                //Kiểm tra trùng lặp Code
                 if (this.IQueryable().Any(p => p.dlCode == entity.dlCode && p.dlId != keyValue.Value && p.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("编码不可重复");
                 }
 
-                SysMedicalRecordChargeCategoryEntity oldEntity = null;   //变更前Entity
+                SysMedicalRecordChargeCategoryEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 
@@ -86,7 +86,7 @@ order by CreateTime desc";
             }
             else
             {
-                //Code重复判断
+                //Kiểm tra trùng lặp Code
                 if (this.IQueryable().Any(p => p.dlCode == entity.dlCode && p.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("编码不可重复");

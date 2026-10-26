@@ -21,10 +21,10 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 判断是否存在该数据
+        /// Xác định dữ liệu đó có tồn tại hay không
         /// </summary>
-        /// <param name="aaa100">代码类别</param>
-        /// <param name="aaa102">代码值</param>
+        /// <param name="aaa100">Danh mục mã</param>
+        /// <param name="aaa102">Giá trị mã</param>
         /// <returns></returns>
         public bool Exist(string aaa100, string aaa102)
         {
@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 写入数据
+        /// Ghi dữ liệu
         /// </summary>
         /// <param name="entity"></param>
         public bool InsertInfo(GzybCodeContrastEntity entity)

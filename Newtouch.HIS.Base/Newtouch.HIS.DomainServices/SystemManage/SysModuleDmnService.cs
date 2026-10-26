@@ -13,7 +13,7 @@ using Newtouch.Core.Common.Utils;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 系统菜单、菜单按钮 DmnService
+    /// Menu hệ thống, nút menu DmnService
     /// </summary>
     public class SysModuleDmnService : DmnServiceBase, ISysModuleDmnService
     {
@@ -37,7 +37,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 根据角色 获取 配置的 权限 菜单
+        /// Lấy menu quyền đã cấu hình theo vai trò
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
@@ -50,7 +50,7 @@ namespace Newtouch.HIS.DomainServices
                 var adminRoleId = _sysRoleRepo.IQueryable().Where(p => p.OrganizeId == "*" && p.Code == "Administrator").Select(p => p.Id).FirstOrDefault();
                 if (!string.IsNullOrWhiteSpace(adminRoleId))
                 {
-                    //向Role开放的
+                    //Mở cho Role
                     mIdList = _sysRoleAuthorizeRepository.IQueryable(t => t.zt == "1"
     && t.RoleId == adminRoleId).Select(p => p.ItemId).ToList();
                 }
@@ -62,17 +62,17 @@ namespace Newtouch.HIS.DomainServices
             }
             else
             {
-                //向角色开放的
+                //Mở cho vai trò
                 if (roleIdList == null)
                 {
                     return null;
                 }
 
-                //向organize开放的
+                //Mở cho organize
                 var orgItemIdList = _sysModuleRepository.IQueryable(t => t.zt == "1"
      && (t.OrganizeId == null || t.OrganizeId == orgId))
      .Select(p => p.Id).ToList();
-                //向Role开放的
+                //Mở cho Role
                 var idList = _sysRoleAuthorizeRepository.IQueryable(t => t.zt == "1"
 && roleIdList.Contains(t.RoleId)).Select(p => p.ItemId);
                 query = query.Where(p => orgItemIdList.Contains(p.Id) && idList.Contains(p.Id));
@@ -80,7 +80,7 @@ namespace Newtouch.HIS.DomainServices
             var showDescToMenuTitle = ConfigurationHelper.GetAppConfigBoolValue("IS_ShowDescToMenuTitle");
             if (showDescToMenuTitle == false)
             {
-                //在菜单中不显示Description
+                //Không hiển thị Description trong menu
                 var list = query.ToList();
                 list.ForEach(p => p.Description = null);
                 return list.OrderBy(t => t.px).ToList();
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取机构 系统菜单   grid
+        /// Lấy menu hệ thống của cơ sở   grid
         /// </summary>
         /// <returns></returns>
         public IList<SysModuleVO> GetMenuListByTopOrg(string topOrgId)
@@ -118,7 +118,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取机构 系统菜单 按钮    grid
+        /// Lấy nút menu hệ thống của cơ sở    grid
         /// </summary>
         /// <returns></returns>
         public IList<SysModuleButtonVO> GetMenuButtonListByTopOrg(string topOrgId, string moduleId)
@@ -152,7 +152,7 @@ and Id not in
         }
 
         /// <summary>
-        /// 获取机构 已开放 的菜单
+        /// Lấy menu đã mở của cơ sở
         /// </summary>
         /// <returns></returns>
         public IList<SysModuleEntity> GetOpenMenuListByTopOrg(string topOrgId)
@@ -168,7 +168,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SqlParamet
         }
 
         /// <summary>
-        /// 获取机构 已开放 的按钮
+        /// Lấy nút đã mở của cơ sở
         /// </summary>
         /// <returns></returns>
         public IList<SysModuleButtonEntity> GetOpenMenuButtonListByTopOrg(string topOrgId)
@@ -184,7 +184,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SqlParamet
         }
 
         /// <summary>
-        /// 提交新建、更新 菜单
+        /// Gửi tạo mới, cập nhật menu
         /// </summary>
         /// <param name="moduleEntity"></param>
         /// <param name="keyValue"></param>
@@ -197,14 +197,14 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SqlParamet
             }
             else
             {
-                //新增
+                //Thêm mới
                 moduleEntity.Create(true);
                 _sysModuleRepository.Insert(moduleEntity);
             }
         }
 
         /// <summary>
-        /// 提交新建、更新 权限按钮
+        /// Gửi tạo mới, cập nhật nút quyền
         /// </summary>
         /// <param name="moduleButtonEntity"></param>
         /// <param name="keyValue"></param>
@@ -217,7 +217,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SqlParamet
             }
             else
             {
-                //新增
+                //Thêm mới
                 using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
                 {
                     moduleButtonEntity.Create(true);
@@ -225,7 +225,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SqlParamet
 
                     if (!string.IsNullOrWhiteSpace(topOrgId))
                     {
-                        //自动为topOrganizeId分配ModuleButton的权限
+                        //Tự động phân quyền ModuleButton cho topOrganizeId
                         var authEntity = new SysOrganizeAuthorizeEntity()
                         {
                             TopOrganizeId = topOrgId,
@@ -339,7 +339,7 @@ else
         }
 
         /// <summary>
-        /// 查看用户是否可访问该系统（根据对他开放的权限菜单来判定）
+        /// Xem người dùng có thể truy cập hệ thống này hay không (xác định theo menu quyền đã mở cho người đó)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="topOrgId"></param>
@@ -378,7 +378,7 @@ WHERE zt='1'
         }
 
         /// <summary>
-        /// 获取系统菜单 grid
+        /// Lấy menu hệ thống grid
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

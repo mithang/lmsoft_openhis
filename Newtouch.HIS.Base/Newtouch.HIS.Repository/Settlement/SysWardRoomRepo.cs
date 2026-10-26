@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 修改和添加病区信息
+        /// Sửa đổi và thêm thông tin khu bệnh
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -60,7 +60,7 @@ namespace Newtouch.HIS.Repository
                     throw new FailedException("房间编码不能重复！");
                 }
 
-                SysWardRoomEntity oldEntity = null;   //变更前Entity
+                SysWardRoomEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

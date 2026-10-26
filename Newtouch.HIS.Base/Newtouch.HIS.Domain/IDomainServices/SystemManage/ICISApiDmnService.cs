@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 字典、字典项 DmnService
+    /// Từ điển, mục từ điển DmnService
     /// </summary>
     public interface ICISApiDmnService
     {

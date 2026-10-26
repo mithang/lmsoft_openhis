@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Application.Implementation.SystemManage
         /// <param name="keyValue"></param>
         public void SubmitForm(SysDepartmentEntity SysDepartmentEntity, string keyValue)
         {
-            SysDepartmentEntity oldEntity = null;   //变更前Entity
+            SysDepartmentEntity oldEntity = null;   //Entity trước khi thay đổi
             if (!string.IsNullOrEmpty(keyValue))
             {
                 if (_sysDepartrepo.IQueryable().Any(p => p.OrganizeId == SysDepartmentEntity.OrganizeId && p.Code == SysDepartmentEntity.Code && p.Id != keyValue))

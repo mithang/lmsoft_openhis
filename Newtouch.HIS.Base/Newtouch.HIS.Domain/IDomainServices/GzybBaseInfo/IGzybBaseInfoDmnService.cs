@@ -5,12 +5,12 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 贵州医保基础信息
+    /// Thông tin cơ bản bảo hiểm y tế Quý Châu
     /// </summary>
     public interface IGzybBaseInfoDmnService
     {
         /// <summary>
-        /// 获取贵州服务项目目录,最大流水号
+        /// Lấy danh mục hạng mục dịch vụ Quý Châu, số thứ tự lớn nhất
         /// </summary>
         /// <returns></returns>
         int GetItemCodeMaxLsh();

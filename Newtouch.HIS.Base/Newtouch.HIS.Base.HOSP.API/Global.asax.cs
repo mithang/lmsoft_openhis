@@ -19,10 +19,10 @@ namespace Newtouch.HIS.Base.HOSP.API
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
-            //注册 释放数据库链接
+            //Đăng ký giải phóng kết nối cơ sở dữ liệu
             FrameworkBase.API.ApiControllerBaseEx.RegisterDBContextDisposer(() =>
             {
-                //释放DefaultDbContext
+                //Giải phóng DefaultDbContext
                 Newtouch.Infrastructure.EF.DatabaseFactoryDisposeHelper.TryDisposeDBContext<IBaseDatabaseFactory, BaseDbContext>();
             });
 

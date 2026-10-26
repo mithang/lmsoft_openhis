@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获得所有列表
+        /// Lấy tất cả danh sách
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="sfflId"></param>
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 修改form
+        /// Sửa đổi form
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -50,19 +50,19 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         public void SubmitForm(RehabChargeClassificationEntity entity, string sfflId)
         {
             if (!string.IsNullOrEmpty(sfflId))
             {
-                //Code重复判断
+                //Kiểm tra trùng lặp Code
                 if (this.IQueryable().Any(a => a.Code == entity.Code && a.sfflId != sfflId))
                 {
                     throw new FailedException("编码不可重复");
                 }
 
-                RehabChargeClassificationEntity oldEntity = null;   //变更前Entity
+                RehabChargeClassificationEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(sfflId);
                 this.DetacheEntity(oldEntity);
 
@@ -78,7 +78,7 @@ namespace Newtouch.HIS.Repository
             else
             {
                 entity.Create(true, System.Guid.NewGuid());
-                //Code重复判断
+                //Kiểm tra trùng lặp Code
                 if (this.IQueryable().Any(a => a.Code == entity.Code))
                 {
                     throw new FailedException("编码不可重复");
@@ -91,7 +91,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(string sfflId, string OrganizeId)

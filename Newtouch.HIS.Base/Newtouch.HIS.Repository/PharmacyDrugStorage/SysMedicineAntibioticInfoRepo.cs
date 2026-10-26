@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 提交抗生素类别信息
+        /// Gửi thông tin danh mục kháng sinh
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>Id</returns>
@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 通过Id获取药品抗生素信息
+        /// Lấy thông tin kháng sinh của thuốc theo Id
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="OrganizeId"></param>

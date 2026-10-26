@@ -9,7 +9,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.Application.Implementation.SystemManage
 {
     /// <summary>
-    /// 角色权限App
+    /// App quyền vai trò
     /// </summary>
     public class RoleAuthorizeApp : IRoleAuthorizeApp
     {
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Application.Implementation.SystemManage
         }
 
         /// <summary>
-        /// 获取角色授权列表
+        /// Lấy danh sách ủy quyền vai trò
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Application.Implementation.SystemManage
         }
 
         /// <summary>
-        /// 权限验证
+        /// Xác thực quyền
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="moduleId"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Application.Implementation.SystemManage
             var moduledata = _moduleRepository.IQueryable().ToList();
             var buttondata = _moduleButtonRepository.IQueryable().ToList();
 
-            //包括 菜单按钮
+            //Bao gồm nút menu
             var orgAuthedItemId= _sysOrganizeAuthorizeRepo.IQueryable(t => t.zt == "1"
 && (t.TopOrganizeId == "*" || t.TopOrganizeId == Constants.TopOrganizeId)).Select(p => p.ItemId).ToList();
 
@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Application.Implementation.SystemManage
             {
                 if (!string.IsNullOrEmpty(item.UrlAddress))
                 {
-                    //如果加了HandlerAuthorizeAttribute，就要求有对应的Meum/MenuButton 且有设置Url
+                    //Nếu đã thêm HandlerAuthorizeAttribute thì yêu cầu có Meum/MenuButton tương ứng và đã thiết lập Url
                     string[] url = item.UrlAddress.Split('?');
                     if (item.Id == moduleId && url[0] == action)
                     {

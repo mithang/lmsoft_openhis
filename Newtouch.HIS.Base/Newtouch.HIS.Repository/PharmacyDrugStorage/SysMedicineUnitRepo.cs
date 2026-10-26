@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 查询药品单位
+        /// Truy vấn đơn vị thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Repository
                     throw new FailedException("单位名称不能重复！");
                 }
 
-                SysMedicineUnitEntity oldEntity = null;   //变更前Entity
+                SysMedicineUnitEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

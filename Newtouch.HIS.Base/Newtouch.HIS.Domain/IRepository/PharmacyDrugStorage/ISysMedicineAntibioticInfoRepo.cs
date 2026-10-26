@@ -9,13 +9,13 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysMedicineAntibioticInfoRepo : IRepositoryBase<SysMedicineAntibioticInfoEntity>
     {
         /// <summary>
-        /// 提交药品抗生素信息
+        /// Gửi thông tin kháng sinh của thuốc
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>Id</returns>
         string SubmitForm(SysMedicineAntibioticInfoEntity entity);
         /// <summary>
-        /// 通过Id获取药品抗生素信息
+        /// Lấy thông tin kháng sinh của thuốc theo Id
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="OrganizeId"></param>

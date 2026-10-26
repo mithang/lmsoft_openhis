@@ -130,12 +130,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// 持续时长（单位：分）
+        /// Thời lượng kéo dài (đơn vị: phút)
         /// </summary>
         public int? duration { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string bz { get; set; }
 

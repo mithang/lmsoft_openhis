@@ -9,47 +9,47 @@ namespace Newtouch.HIS.Domain.ValueObjects
 	public class G_yb_xmxxVO
 	{
 		/// <summary>
-		/// 结算传输编码
+		/// Mã truyền tải thanh toán
 		/// </summary>
 		public string jscsbm { get; set; }
 		/// <summary>
-		/// 国家项目代码
+		/// Mã hạng mục quốc gia
 		/// </summary>
 		public string gjxmdm { get; set; }
 		/// <summary>
-		/// 国家项目名称
+		/// Tên hạng mục quốc gia
 		/// </summary>
 		public string gjxmmc { get; set; }
 		/// <summary>
-		/// 编码
+		/// Mã
 		/// </summary>
 		public string bm { get; set; }
 		/// <summary>
-		/// 项目名称
+		/// Tên hạng mục
 		/// </summary>
 		public string xmmc { get; set; }
 		/// <summary>
-		/// 项目内涵
+		/// Nội hàm hạng mục
 		/// </summary>
 		public string xmnh { get; set; }
 		/// <summary>
-		/// 除外内容
+		/// Nội dung ngoại trừ
 		/// </summary>
 		public string cwnr { get; set; }
 		/// <summary>
-		/// 计价单位
+		/// Đơn vị tính giá
 		/// </summary>
 		public string jjdw { get; set; }
 		/// <summary>
-		/// 说明
+		/// Giải thích
 		/// </summary>
 		public string sm { get; set; }
 		/// <summary>
-		/// 医保性质
+		/// Tính chất bảo hiểm y tế
 		/// </summary>
 		public string ybxz { get; set; }
 		/// <summary>
-		/// 拼音码
+		/// Mã pinyin
 		/// </summary>
 		public string pym { get; set; }
 	}

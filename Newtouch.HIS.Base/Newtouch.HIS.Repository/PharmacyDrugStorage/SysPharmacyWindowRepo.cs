@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Repository
                     throw new FailedException("窗口编号不能重复！");
                 }
 
-                SysPharmacyWindowEntity oldEntity = null;   //变更前Entity
+                SysPharmacyWindowEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

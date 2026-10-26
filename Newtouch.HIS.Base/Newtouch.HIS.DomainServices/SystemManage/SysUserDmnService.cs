@@ -16,7 +16,7 @@ using System.Text;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 用户相关DmnService
+    /// DmnService liên quan đến người dùng
     /// </summary>
     public class SysUserDmnService : DmnServiceBase, ISysUserDmnService
     {
@@ -37,7 +37,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 提交新建、更新 系统用户
+        /// Gửi tạo mới, cập nhật người dùng hệ thống
         /// </summary>
         /// <param name="userEntity"></param>
         /// <param name="userLogOnEntity"></param>
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.DomainServices
         {
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
-                SysUserEntity oldEntity = null;   //变更前Entity
+                SysUserEntity oldEntity = null;   //Entity trước khi thay đổi
 
                 if (!string.IsNullOrEmpty(keyValue))
                 {
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取系统（登录）用户
+        /// Lấy người dùng hệ thống (đăng nhập)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -122,15 +122,15 @@ left join Sys_UserLogOn logon
 on a.Id = logon.UserId
 where 1 = 1
  ");
-            if (OrganizeId == Constants.TopOrganizeId)  //如果是顶级组织机构
+            if (OrganizeId == Constants.TopOrganizeId)  //Nếu là tổ chức cấp cao nhất
             {
-                //显示所有用户
+                //Hiển thị tất cả người dùng
                 sb.Append(" and a.TopOrganizeId = @topOrganizeId and a.Account != 'admin' ");
                 pars.Add(new SqlParameter("@topOrganizeId", OrganizeId));
             }
             else
             {
-                //仅显示该机构的用户
+                //Chỉ hiển thị người dùng của cơ sở đó
                 sb.Append(" and c.OrganizeId = @OrganizeId and c.Id is not null ");
                 pars.Add(new SqlParameter("@OrganizeId", OrganizeId));
             }
@@ -144,7 +144,7 @@ where 1 = 1
         }
 
         /// <summary>
-        /// 根据系统（登录）用户Id 获取 系统人员
+        /// Lấy nhân viên hệ thống theo Id người dùng hệ thống (đăng nhập)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -161,7 +161,7 @@ where b.Id = @userId";
         }
 
         /// <summary>
-        /// 获取系统人员信息
+        /// Lấy thông tin nhân viên hệ thống
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -182,7 +182,7 @@ where a.Id = @userId";
         }
 
         /// <summary>
-        /// 获取隶属于角色 的 用户列表
+        /// Lấy danh sách người dùng thuộc vai trò
         /// </summary>
         /// <param name="roleId"></param>
         public IList<RoleUserVO> GetPagintionUserListByRoleId(Pagination pagination, string gh, string name, string roleId, string topOrganizeId)
@@ -214,7 +214,7 @@ and c.TopOrganizeId = @topOrganizeId and d.TopOrganizeId = @topOrganizeId";
         }
 
         /// <summary>
-        /// 新建用户
+        /// Tạo người dùng mới
         /// </summary>
         /// <param name="userEntity"></param>
         /// <param name="userLogOnEntity"></param>
@@ -229,7 +229,7 @@ and c.TopOrganizeId = @topOrganizeId and d.TopOrganizeId = @topOrganizeId";
         }
 
         /// <summary>
-        /// 根据UserId获取关联的系统人员列表
+        /// Lấy danh sách nhân viên hệ thống liên kết theo UserId
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -247,7 +247,7 @@ where a.UserId = @userId";
         }
 
         /// <summary>
-        /// 根据OrganizeId获取 系统人员VO（且有对应的SysUser）
+        /// Lấy VO nhân viên hệ thống theo OrganizeId (và có SysUser tương ứng)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -288,7 +288,7 @@ and a.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 根据员工Id获取所有岗位
+        /// Lấy tất cả các vị trí theo Id nhân viên
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="StaffId"></param>
@@ -306,7 +306,7 @@ and a.zt = '1' and b.zt = '1' and c.zt = '1'";
         }
 
         /// <summary>
-        /// 重置密码
+        /// Đặt lại mật khẩu
         /// </summary>
         /// <param name="userPassword"></param>
         /// <param name="keyValue"></param>
@@ -315,7 +315,7 @@ and a.zt = '1' and b.zt = '1' and c.zt = '1'";
             var secretkey = Md5.md5(Comm.CreateNo(), 16).ToLower();
             var password = Md5.md5(DESEncrypt.Encrypt(Md5.md5(userPassword, 32).ToLower(), secretkey).ToLower(), 32).ToLower();
 
-            //这里不直接操作表 就没法弄了，不能通过视图
+            //Ở đây không trực tiếp thao tác với bảng thì không làm được, không thể thông qua view
             this.ExecuteSqlCommand("update sys_userlogon set UserSecretkey = @secretkey, UserPassword = @password where UserId = @userId and zt = '1'", new[] {
                 new SqlParameter("@userId", userId)
                 ,new SqlParameter("@secretkey", secretkey)

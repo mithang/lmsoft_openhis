@@ -34,9 +34,9 @@ namespace Newtouch.HIS.Repository
                         throw new FailedException("系统人员存在重复绑定");
                     }
                 }
-                //先 del
+                //Xóa trước
                 db.Delete<SysUserStaffEntity>(p => p.UserId == userId);
-                //再添加
+                //Thêm lại
                 foreach (var staffId in staffIdArr)
                 {
                     var userStaffentity = new SysUserStaffEntity();

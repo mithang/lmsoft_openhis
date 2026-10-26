@@ -12,42 +12,42 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class PharmacyWindowVO
     {
         /// <summary>
-        /// 药房窗口Id
+        /// Id cửa sổ phòng dược
         /// </summary>
         public int yfckId { get; set; }
 
         /// <summary>
-        /// 药房窗口代码
+        /// Mã cửa sổ phòng dược
         /// </summary>
         public string yfckCode { get; set; }
 
         /// <summary>
-        /// 药房窗口名称
+        /// Tên cửa sổ phòng dược
         /// </summary>
         public string yfckmc { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 修改用户
+        /// Người dùng sửa đổi
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa đổi
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 顶级组织机构Id
+        /// Id tổ chức cấp cao nhất
         /// </summary>
         public string TopOrganizeId { get; set; }
     }

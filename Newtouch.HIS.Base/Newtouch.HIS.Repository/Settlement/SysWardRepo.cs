@@ -78,7 +78,7 @@ from Sys_Staff staff where  OrganizeId='9bb029d0-5da0-4118-9d19-06b829eede46' an
         }
 
         /// <summary>
-        /// 修改和添加病区信息
+        /// Sửa đổi và thêm thông tin khu bệnh
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -93,7 +93,7 @@ from Sys_Staff staff where  OrganizeId='9bb029d0-5da0-4118-9d19-06b829eede46' an
                     throw new FailedException("病区编号不能重复！");
                 }
 
-                /*停用病区的判断*/
+                /*Xác định ngừng sử dụng khu bệnh*/
                 var zt = entity.zt;
                 if (zt == "0")
                 {
@@ -110,7 +110,7 @@ from Sys_Staff staff where  OrganizeId='9bb029d0-5da0-4118-9d19-06b829eede46' an
                 }
                 
 
-                SysWardEntity oldEntity = null;   //变更前Entity
+                SysWardEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 
@@ -136,7 +136,7 @@ from Sys_Staff staff where  OrganizeId='9bb029d0-5da0-4118-9d19-06b829eede46' an
         }
 
         /// <summary>
-        /// 获取所有病区列表
+        /// Lấy danh sách tất cả các khu bệnh
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

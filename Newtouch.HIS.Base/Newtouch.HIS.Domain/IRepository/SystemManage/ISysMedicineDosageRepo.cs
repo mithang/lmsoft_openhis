@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysMedicineDosageRepo: IRepositoryBase<SysMedicineDosageEntity>
     {
         /// <summary>
-        /// 提交药品剂型对应关系
+        /// Gửi quan hệ tương ứng dạng bào chế thuốc
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="yfbmCode"></param>

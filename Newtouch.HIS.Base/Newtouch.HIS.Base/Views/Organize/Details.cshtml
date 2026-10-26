@@ -11,93 +11,93 @@
         <div style="padding-top: 20px; margin-right: 30px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">名称：</th>
+                    <th class="formTitle">Tên:</th>
                     <td class="formValue">
                         <input id="Name" name="Name" type="text" class="form-control required" placeholder="" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">简称：</th>
+                    <th class="formTitle">Tên viết tắt:</th>
                     <td class="formValue">
                         <input id="ShortName" name="ShortName" type="text" class="form-control" placeholder="" />
                     </td>
-                    <th class="formTitle">编码：</th>
+                    <th class="formTitle">Mã:</th>
                     <td class="formValue">
                         <input id="Code" name="Code" type="text" class="form-control required" placeholder="" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">分类：</th>
+                    <th class="formTitle">Phân loại:</th>
                     <td class="formValue">
                         <select id="CategoryCode" name="CategoryCode" class="form-control required">
-                            <option value="">==请选择==</option>
+                            <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <th class="formTitle">邮箱：</th>
+                    <th class="formTitle">Email:</th>
                     <td class="formValue">
                         <input id="Email" name="Email" type="text" class="form-control" placeholder="" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">电话：</th>
+                    <th class="formTitle">Điện thoại:</th>
                     <td class="formValue">
                         <input id="TelePhone" name="TelePhone" type="text" class="form-control required" placeholder="" />
                     </td>
-                    <th class="formTitle">微信：</th>
+                    <th class="formTitle">WeChat:</th>
                     <td class="formValue">
-                        <input id="WeChat" name="WeChat" type="text" class="form-control" placeholder="请输入官方微信号" />
+                        <input id="WeChat" name="WeChat" type="text" class="form-control" placeholder="Vui lòng nhập số WeChat chính thức" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">传真：</th>
+                    <th class="formTitle">Fax:</th>
                     <td class="formValue">
                         <input id="Fax" name="Fax" type="text" class="form-control" placeholder="" />
                     </td>
-                    <th class="formTitle">排序：</th>
+                    <th class="formTitle">Sắp xếp:</th>
                     <td class="formValue">
                         <input id="px" name="px" type="text" class="form-control" placeholder="" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle" style="height: 35px;">选项：</th>
+                    <th class="formTitle" style="height: 35px;">Tùy chọn:</th>
                     <td class="formValue" style="padding-top: 1px;">
                         <div class="ckbox">
-                            <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                            <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Có hiệu lực</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <th class="formTitle" valign="top" style="padding-top: 5px;">
-                        地址：
+                        Địa chỉ:
                     </th>
                     <td class="formValue" colspan="3">
-                        <input id="Address" name="Address" type="text" class="form-control required" placeholder="请输入地址" />
+                        <input id="Address" name="Address" type="text" class="form-control required" placeholder="Vui lòng nhập địa chỉ" />
                     </td>
                 </tr>
                 <tr>
                     <th class="formTitle" valign="top" style="padding-top: 5px;">
-                        介绍：
+                        Giới thiệu:
                     </th>
                     <td class="formValue" colspan="3">
                         <textarea id="Description" name="Description" class="form-control" style="height: 50px;"></textarea>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">创建人员：</th>
+                    <th class="formTitle">Nhân viên tạo:</th>
                     <td class="formValue">
                         <input id="CreatorCode" name="CreatorCode" type="text" class="form-control" />
                     </td>
-                    <th class="formTitle">创建时间：</th>
+                    <th class="formTitle">Thời gian tạo:</th>
                     <td class="formValue">
                         <input id="CreateTime" name="CreateTime" type="text" class="form-control" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">修改人员：</th>
+                    <th class="formTitle">Người sửa đổi:</th>
                     <td class="formValue">
                         <input id="LastModifierCode" name="LastModifierCode" type="text" class="form-control" />
                     </td>
-                    <th class="formTitle">修改时间：</th>
+                    <th class="formTitle">Thời gian sửa đổi:</th>
                     <td class="formValue">
                         <input id="LastModifyTime" name="LastModifyTime" type="text" class="form-control" />
                     </td>
@@ -124,7 +124,7 @@
         }
     });
     function initControl() {
-        //机构分类下拉
+        //Danh sách thả xuống phân loại cơ sở
         $("#CategoryCode").bindSelect({
             url: "/ItemsData/GetSelectJson",
             param: { code: "OrganizeType" }

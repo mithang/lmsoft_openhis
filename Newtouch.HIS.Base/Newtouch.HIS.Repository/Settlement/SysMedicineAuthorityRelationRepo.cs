@@ -73,7 +73,7 @@ order by CreateTime desc";
             {
                 return;
             }
-            //权限list
+            //Danh sách quyền
             var authorityLists = new List<SysMedicineAuthorityRelationEntity>();
             foreach (var item in AuthorityList.Where(p => !string.IsNullOrWhiteSpace(p)).Distinct())
             {

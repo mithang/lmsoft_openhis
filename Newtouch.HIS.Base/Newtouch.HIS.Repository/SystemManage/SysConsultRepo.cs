@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         }
 
         /// <summary>
-        /// 获取诊室列表
+        /// Lấy danh sách phòng khám
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         }
 
         /// <summary>
-        /// 获取科室下诊室列表
+        /// Lấy danh sách phòng khám thuộc khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ksCode"></param>
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         }
 
         /// <summary>
-        /// 获取科室下有效诊室列表
+        /// Lấy danh sách phòng khám có hiệu lực thuộc khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ksCode"></param>
@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Repository.SystemManage
 
 
         /// <summary>
-        /// 新增诊室
+        /// Thêm phòng khám mới
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="ksCode"></param>
@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Repository.SystemManage
             }
             else
             {
-                //Code重复判断
+                //Kiểm tra trùng lặp Code
                 if (this.IQueryable().Any(p => p.zsCode == entity.zsCode))
                 {
                     throw new FailedException("编码不可重复");

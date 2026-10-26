@@ -9,28 +9,28 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysChargeCategoryBaseRepo : IRepositoryBase<SysChargeCategoryBaseEntity>
     {
         /// <summary>
-        /// 获取有效
+        /// Lấy các mục có hiệu lực
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         IList<SysChargeCategoryBaseEntity> GetValidList(string orgId);
 
         /// <summary>
-        /// 获取所有
+        /// Lấy tất cả
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         IList<SysChargeCategoryBaseEntity> GetList(string orgId);
 
         /// <summary>
-        /// 获取实体数据
+        /// Lấy dữ liệu thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         SysChargeCategoryBaseEntity GetForm(int keyValue);
 
         /// <summary>
-        /// 提交保存
+        /// Gửi để lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>

@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据关键字查询药品大分类
+        /// Truy vấn phân loại lớn thuốc theo từ khóa
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>
@@ -65,7 +65,7 @@ and (ypflCode like @searchKeyword or ypflmc like @searchKeyword or py like @sear
                     throw new FailedException("名称不能重复！");
                 }
 
-                SysMedicineClassificationEntity oldEntity = null;   //变更前Entity
+                SysMedicineClassificationEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

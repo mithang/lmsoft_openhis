@@ -17,17 +17,17 @@ namespace Newtouch.HIS.Domain.Entity
         public string sfxmId { get; set; }
 
         /// <summary>
-        /// 医院机构Id
+        /// Id cơ sở bệnh viện
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 单位
+        /// Đơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 计费方式 对应 EnumCollectionMethod
+        /// Phương thức tính phí, tương ứng với EnumCollectionMethod
         /// </summary>
         public int CollectionMethod { get; set; }
 

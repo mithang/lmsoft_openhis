@@ -16,7 +16,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.Application
 {
     /// <summary>
-    /// 系统药房部门
+    /// Phòng dược của hệ thống
     /// </summary>
     public class SysPharmacyDepartmentApp : AppBase, ISysPharmacyDepartmentApp
     {
@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 获取该药品授权的组织机构
+        /// Lấy tổ chức được ủy quyền cho thuốc đó
         /// </summary>
         /// <param name="ypId"></param>
         /// <param name="organizeId"></param>
@@ -51,7 +51,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 授权药房部门
+        /// Ủy quyền phòng dược
         /// </summary>
         /// <param name="ypId"></param>
         /// <param name="ypCode"></param>
@@ -71,7 +71,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 新增药房部门授权
+        /// Thêm ủy quyền phòng dược mới
         /// </summary>
         /// <param name="yfbmyp"></param>
         /// <param name="ypxx"></param>
@@ -123,7 +123,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 新增药房部门授权
+        /// Thêm ủy quyền phòng dược mới
         /// </summary>
         /// <param name="yfbmyp"></param>
         /// <param name="ypxx"></param>
@@ -179,7 +179,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 插入药房部门药品
+        /// Thêm thuốc của phòng dược
         /// </summary>
         /// <param name="p"></param>
         /// <param name="ypxx"></param>

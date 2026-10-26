@@ -11,53 +11,53 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysPharmacyDepartmentOpenMedicineEntity : IEntity<SysPharmacyDepartmentOpenMedicineEntity>
     {
         /// <summary>
-        /// 主键Id
+        /// Id khóa chính
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 药房部门编号
+        /// Số hiệu phòng dược
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 大类编号
+        /// Số hiệu nhóm lớn
         /// </summary>
         public string dlCode { get; set; }
 
         /// <summary>
-        /// 组织机构Id
+        /// Id tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 修改用户
+        /// Người dùng sửa đổi
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa đổi
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối cùng
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// Người dùng sửa đổi cuối cùng
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 状态 0-无效  1-有效
+        /// Trạng thái 0 - Không hiệu lực  1 - Có hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 

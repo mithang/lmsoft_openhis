@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 抗生素类别
+    /// Danh mục kháng sinh
     /// </summary>
     [Table("xt_kssType")]
     public class SysMedicineAntibioticTypeEntity : IEntity<SysMedicineAntibioticTypeEntity>
@@ -22,27 +22,27 @@ namespace Newtouch.HIS.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 类别名称
+        /// Tên danh mục
         /// </summary>
         public string typeName { get; set; }
 
         /// <summary>
-        /// 类别等级
+        /// Cấp danh mục
         /// </summary>
         public string typelevel { get; set; }
 
         /// <summary>
-        /// 权限级别(0 非限制使用药物,1 限制使用药物,2 特殊使用药物)
+        /// Cấp độ quyền (0 Thuốc sử dụng không hạn chế, 1 Thuốc sử dụng hạn chế, 2 Thuốc sử dụng đặc biệt)
         /// </summary>
         public string qxjb { get; set; }
 
         /// <summary>
-        /// 权限级别名称
+        /// Tên cấp độ quyền
         /// </summary>
         public string qxjbmc { get; set; }
 
         /// <summary>
-        /// 上级类别Id
+        /// Id danh mục cấp trên
         /// </summary>
         public string parentId { get; set; }
 
@@ -67,7 +67,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 1：有效 0：无效
+        /// 1: Có hiệu lực 0: Không hiệu lực
         /// </summary>
         public string zt { get; set; }
     }

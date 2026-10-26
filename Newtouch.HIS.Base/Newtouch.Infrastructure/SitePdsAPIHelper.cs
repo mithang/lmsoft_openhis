@@ -7,17 +7,17 @@ using Newtouch.Core.Redis;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 药房药库
+    /// Phòng dược, kho thuốc
     /// </summary>
     public class SitePdsApiHelper
     {
         /// <summary>
-        /// 结算API
+        /// API thanh toán
         /// </summary>
         private static readonly string _sitePdsAPIHost;
 
         /// <summary>
-        /// 静态构造函数
+        /// Hàm tạo tĩnh
         /// </summary>
         static SitePdsApiHelper()
         {
@@ -31,7 +31,7 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// GetToken
         /// </summary>
-        /// <param name="force">是否强刷新Token</param>
+        /// <param name="force">Có buộc làm mới Token hay không</param>
         /// <returns></returns>
         public static string GetToken(bool force = false)
         {
@@ -70,7 +70,7 @@ namespace Newtouch.Infrastructure
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <param name="req"></param>
-        /// <param name="tokenExpireReTryTimes">因Token过期重试次数</param>
+        /// <param name="tokenExpireReTryTimes">Số lần thử lại do Token hết hạn</param>
         /// <returns></returns>
         public static T Request<T>(string url, object req, int tokenExpireReTryTimes = 1) where T : new()
         {
@@ -80,7 +80,7 @@ namespace Newtouch.Infrastructure
         #region private methods
 
         /// <summary>
-        /// 结算API Host
+        /// Host API thanh toán
         /// </summary>
         private static string SitePdsApiHost
         {
@@ -91,7 +91,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 域 http://sample.com/
+        /// Miền http://sample.com/
         /// </summary>
         private static string SitePdsApiDomain
         {
@@ -106,9 +106,9 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 结算系统API Url
+        /// Url API hệ thống thanh toán
         /// </summary>
-        /// <param name="url">url 如'~/Home/Index'</param>
+        /// <param name="url">url như '~/Home/Index'</param>
         /// <returns></returns>
         private static string GetPdsApiUrl(string url)
         {

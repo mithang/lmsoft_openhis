@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int dlId { get; set; }
 
         /// <summary>
-        /// 对应首页分类
+        /// Phân loại trang chủ tương ứng
         /// </summary>
         public string dlCode { get; set; }
 

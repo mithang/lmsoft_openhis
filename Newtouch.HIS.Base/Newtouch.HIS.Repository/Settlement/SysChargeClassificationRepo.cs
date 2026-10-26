@@ -8,7 +8,7 @@ using Newtouch.Common.Exceptions;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 收费分类
+    /// Phân loại thu phí
     /// </summary>
     public class SysChargeClassificationRepo : RepositoryBase<SysChargeClassificationEntity>, ISysChargeClassificationRepo
     {
@@ -56,7 +56,7 @@ namespace Newtouch.HIS.Repository
         {
             if (keyValue.HasValue && keyValue.Value > 0)
             {
-                //Code重复判断
+                //Kiểm tra trùng lặp Code
                 if (this.IQueryable().Any(p => p.flCode == entity.flCode && p.flId != keyValue.Value && p.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("编码不可重复");
@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Repository
             }
             else
             {
-                //Code重复判断
+                //Kiểm tra trùng lặp Code
                 if (this.IQueryable().Any(p => p.flCode == entity.flCode && p.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("编码不可重复");

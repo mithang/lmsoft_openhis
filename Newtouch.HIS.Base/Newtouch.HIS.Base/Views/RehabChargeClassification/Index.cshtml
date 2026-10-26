@@ -10,10 +10,10 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa đổi</a>
         </div>
     </div>
     <div class="search">
@@ -21,7 +21,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="名称/编码/首拼" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Mã/Chữ đầu pinyin" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -49,13 +49,13 @@
             height: $(window).height() - 128,
             colModel: [
             { label: "sfflId", name: "sfflId", width: 100, align: "center", hidden: true },
-            { label: "编码", name: "Code", width: 100, align: "center" },
-            { label: "名称", name: "Name", width: 100, align: "center" },
-            { label: "首拼", name: "py", width: 100, align: "center" },
-                   { label: '排序', name: 'px', width: 40, align: 'left' },
-                  { label: "有效", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: '创建时间', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+            { label: "Mã", name: "Code", width: 100, align: "center" },
+            { label: "Tên", name: "Name", width: 100, align: "center" },
+            { label: "Chữ đầu pinyin", name: "py", width: 100, align: "center" },
+                   { label: 'Sắp xếp', name: 'px', width: 40, align: 'left' },
+                  { label: "Có hiệu lực", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Thời gian sửa đổi cuối cùng', name: 'LastModifyTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
             ]
         });
         $("#btn_search").click(function () {
@@ -65,13 +65,13 @@
         })
         $("#btn_search").trigger('click');
     }
-    //查询条件
+    //Điều kiện truy vấn
     function getSearchPostData() {
         var keyword = $("#txt_keyword").val();
         return { keyword: keyword };
     };
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -79,7 +79,7 @@
     function btn_add() {
         $.modalOpen({
             id: "FormFIEdit",
-            title: "康复项目分类维护",
+            title: "Bảo trì phân loại hạng mục phục hồi chức năng",
             url: "/RehabChargeClassification/Form",
             width: "500px",
             height: "470px",
@@ -88,16 +88,16 @@
             }
         });
     }
-    //修改
+    //Sửa đổi
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().sfflId;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         $.modalOpen({
             id: "FormFIEdit",
-            title: "修改信息",
+            title: "Sửa đổi thông tin",
             url: "/RehabChargeClassification/Form?sfflId=" + keyValue,
             width: "500px",
             height: "470px",

@@ -52,7 +52,7 @@ order by CreateTime desc";
         /// <param name="keyValue"></param>
         public void SubmitForm(SysMedicineAuthorityEntity entity, string keyValue)
         {
-            //Code重复判断
+            //Kiểm tra trùng lặp Code
             if (this.IQueryable().Any(p => p.qxCode == entity.qxCode && p.qxId != keyValue && p.OrganizeId == entity.OrganizeId))
             {
                 throw new FailedException("编码不可重复");

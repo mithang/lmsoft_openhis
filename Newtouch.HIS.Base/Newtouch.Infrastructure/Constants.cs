@@ -8,12 +8,12 @@ namespace Newtouch.Infrastructure
     public class Constants
     {
         /// <summary>
-        /// 顶级组织机构Id
+        /// Id tổ chức cấp cao nhất
         /// </summary>
         private static string _TopOrganizeId;
 
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// Id tổ chức (cấp cao nhất, cấu hình hệ thống)
         /// </summary>
         public static string TopOrganizeId
         {
@@ -32,12 +32,12 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 应用Id
+        /// Id ứng dụng
         /// </summary>
         private static string _AppId;
 
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// Id tổ chức (cấp cao nhất, cấu hình hệ thống)
         /// </summary>
         public static string AppId
         {
@@ -48,7 +48,7 @@ namespace Newtouch.Infrastructure
                     _AppId = System.Configuration.ConfigurationManager.AppSettings["AppId"] as string;
                     if (string.IsNullOrWhiteSpace(_AppId))
                     {
-                        //throw new Exception("AppId未配置");
+                        //throw new Exception("AppId chưa được cấu hình");
                     }
                 }
                 return _AppId;
@@ -58,7 +58,7 @@ namespace Newtouch.Infrastructure
         private static string _LogonDefaultPassword;
 
         /// <summary>
-        /// 登录的默认密码（创建新用户时的的默认密码）
+        /// Mật khẩu mặc định khi đăng nhập (mật khẩu mặc định khi tạo người dùng mới)
         /// </summary>
         public static string LogonDefaultPassword
         {

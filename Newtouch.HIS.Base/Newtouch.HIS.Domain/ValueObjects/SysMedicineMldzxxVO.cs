@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    ///目录对照上传
+    ///Tải lên đối chiếu danh mục
     /// </summary>
     public class SysMedicineMldzxxVO : IEntity<SysMedicineMldzxxVO>
     {

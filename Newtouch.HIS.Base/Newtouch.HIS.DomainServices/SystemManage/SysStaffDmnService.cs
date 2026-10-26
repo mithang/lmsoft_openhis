@@ -44,7 +44,7 @@ namespace Newtouch.HIS.DomainServices.SystemManage
         }
 
 		/// <summary>
-		/// 获取系统人员 分页列表（不包括子机构）
+		/// Lấy danh sách phân trang nhân viên hệ thống (không bao gồm cơ sở con)
 		/// </summary>
 		/// <param name="topOrganizeId"></param>
 		/// <param name="pagination"></param>
@@ -66,7 +66,7 @@ namespace Newtouch.HIS.DomainServices.SystemManage
 		}
 
 		/// <summary>
-		/// 添加、更新 系统人员
+		/// Thêm, cập nhật nhân viên hệ thống
 		/// </summary>
 		/// <param name="entity"></param>
 		/// <param name="keyValue"></param>
@@ -75,12 +75,12 @@ namespace Newtouch.HIS.DomainServices.SystemManage
 			if (!string.IsNullOrEmpty(keyValue))
 			{
 				if (_sysStaffRepo.IQueryable().Any(p => p.OrganizeId == entity.OrganizeId && p.Id != keyValue
-					&& p.gh == entity.gh))  //同一医院内不能有gh一样的
+					&& p.gh == entity.gh))  //Trong cùng một bệnh viện không được có gh giống nhau
 				{
 					throw new FailedException("工号不可重复");
 				}
 
-				SysStaffEntity oldEntity = null;   //变更前Entity
+				SysStaffEntity oldEntity = null;   //Entity trước khi thay đổi
 				oldEntity = _sysStaffRepo.FindEntity(keyValue);
 				_sysStaffRepo.DetacheEntity(oldEntity);
 
@@ -95,11 +95,11 @@ namespace Newtouch.HIS.DomainServices.SystemManage
 			else
 			{
 				var staff = "";
-				//新增用户 开事物
+				//Thêm người dùng mới, mở transaction
 				using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
 				{
 					if (db.IQueryable<SysStaffEntity>().Any(p => p.OrganizeId == entity.OrganizeId
-	   && p.gh == entity.gh))   //同一医院内不能有gh一样的
+	   && p.gh == entity.gh))   //Trong cùng một bệnh viện không được có gh giống nhau
 					{
 						throw new FailedException("工号不可重复");
 					}
@@ -108,18 +108,18 @@ namespace Newtouch.HIS.DomainServices.SystemManage
 
 					if (asLoginUser)
 					{
-						var orgCode = db.IQueryable<SysOrganizeEntity>().Where(p => p.Id == entity.OrganizeId).Select(p => p.Code).FirstOrDefault();    //组织机构编码
+						var orgCode = db.IQueryable<SysOrganizeEntity>().Where(p => p.Id == entity.OrganizeId).Select(p => p.Code).FirstOrDefault();    //Mã tổ chức
 						var topOrgCode = entity.OrganizeId != Constants.TopOrganizeId
-								  ? db.IQueryable<SysOrganizeEntity>().Where(p => p.Id == Constants.TopOrganizeId).Select(p => p.Code).FirstOrDefault()    //顶级组织机构编码
+								  ? db.IQueryable<SysOrganizeEntity>().Where(p => p.Id == Constants.TopOrganizeId).Select(p => p.Code).FirstOrDefault()    //Mã tổ chức cấp cao nhất
 								  : orgCode;
                         if (!string.IsNullOrWhiteSpace(orgCode) && !string.IsNullOrWhiteSpace(entity.gh))
                         {
                             var accont = entity.gh;
 
-                            //创建系统账户
+                            //Tạo tài khoản hệ thống
 
                             if (!_sysUserRepo.IQueryable().Any(p => p.TopOrganizeId == entity.TopOrganizeId
-    && p.Account == accont))    //同一顶级机构内不能有Account一样的
+    && p.Account == accont))    //Trong cùng một cơ sở cấp cao nhất không được có Account giống nhau
                             {
                                 var userEntity = new SysUserEntity()    //
                                 {
@@ -127,19 +127,19 @@ namespace Newtouch.HIS.DomainServices.SystemManage
                                     Account = accont,
                                 };
                                 userEntity.Create(true);
-                                var userLogOnEntity = new SysUserLogOnEntity()  //用户登录
+                                var userLogOnEntity = new SysUserLogOnEntity()  //Đăng nhập người dùng
                                 {
                                     UserPassword = Constants.LogonDefaultPassword,
                                 };
                                 userLogOnEntity.UserId = userEntity.Id;
                                 userLogOnEntity.UserSecretkey = Md5.md5(Comm.CreateNo(), 16).ToLower();
                                 //topOrgCode + orgCode + default
-                                //先为明文密码赋值在加密处理
+                                //Gán giá trị cho mật khẩu dạng rõ trước, sau đó xử lý mã hóa
                                 userLogOnEntity.UserPassword = userLogOnEntity.UserPassword;
                                 userLogOnEntity.UserPwdPlaintext = userLogOnEntity.UserPassword;
                                 userLogOnEntity.UserPassword = Md5.md5(DESEncrypt.Encrypt(Md5.md5(userLogOnEntity.UserPassword, 32).ToLower(), userLogOnEntity.UserSecretkey).ToLower(), 32).ToLower();
                                 userLogOnEntity.Create(true);
-                                var userStaffEntity = new SysUserStaffEntity()  //人员用户 关联关系
+                                var userStaffEntity = new SysUserStaffEntity()  //Quan hệ liên kết người dùng nhân viên
                                 {
                                     UserId = userEntity.Id,
                                     StaffId = entity.Id
@@ -176,7 +176,7 @@ namespace Newtouch.HIS.DomainServices.SystemManage
 			{
 				return;
 			}
-			//角色list
+			//Danh sách vai trò
 			var dutyLists = new List<SysStaffDutyEntity>();
 			foreach (var item in dutyIdList.Where(p => !string.IsNullOrWhiteSpace(p)).Distinct())
 			{
@@ -281,7 +281,7 @@ namespace Newtouch.HIS.DomainServices.SystemManage
 
         //        if (staffConsult !=null)
         //        {
-        //            //修改
+        //            Sửa đổi
         //            var keyValue = staffConsult.Id;
         //            entity.Id = staffConsult.Id;
         //            entity.OrganizeId = OrganizeId;
@@ -295,7 +295,7 @@ namespace Newtouch.HIS.DomainServices.SystemManage
         //            db.Update(entity);
         //        }
         //        else {
-        //            //新增
+        //            Thêm mới
         //            entity.OrganizeId = OrganizeId;
         //            entity.StaffId = staffId;
         //            entity.zsCode = zsCode;
@@ -312,11 +312,11 @@ namespace Newtouch.HIS.DomainServices.SystemManage
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
                
-                //删除
+                //Xóa
                 var oldEntity = db.IQueryable<SysStaffConsultEntity>().Where(p => p.StaffId == staffId && p.OrganizeId == OrganizeId && p.zt=="1").FirstOrDefault();
                 db.Delete(oldEntity);
 
-                //新增
+                //Thêm mới
                 var entity = new SysStaffConsultEntity();
                 entity.OrganizeId = OrganizeId;
                 entity.StaffId = staffId;

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 床位
+    /// Giường bệnh
     /// </summary>
     [Table("xt_cw")]
     public class SysWardBedEntity : IEntity<SysWardBedEntity>
@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string bqCode { get; set; }
 
         /// <summary>
-        /// 0 非加床 1 加床
+        /// 0 Không phải giường kê thêm 1 Giường kê thêm
         /// </summary>
         public string jcbz { get; set; }
 
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string cwf { get; set; }
 
         /// <summary>
-        /// 医保四期项目库规定的床位费用from xt_sfxm
+        /// Chi phí giường bệnh theo quy định của kho hạng mục giai đoạn bốn bảo hiểm y tế from xt_sfxm
         /// </summary>
         public string djyyjsf { get; set; }
 
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string bszlf { get; set; }
 
         /// <summary>
-        /// 医保四期项目库规定的床位费用from xt_sfxm
+        /// Chi phí giường bệnh theo quy định của kho hạng mục giai đoạn bốn bảo hiểm y tế from xt_sfxm
         /// </summary>
         public string yymjkqjhf { get; set; }
 
@@ -92,17 +92,17 @@ namespace Newtouch.HIS.Domain.Entity
         public int? px { get; set; }
 
         /// <summary>
-        /// 病房
+        /// Phòng bệnh
         /// </summary>
         public string bfCode { get; set; }
 
         /// <summary>
-        /// 床位类型 对应枚举EnumWardBedType
+        /// Loại giường bệnh, tương ứng với enum EnumWardBedType
         /// </summary>
         public string cwlx { get; set; }
 
         /// <summary>
-        /// 是否占用
+        /// Có đang sử dụng hay không
         /// </summary>
         public bool? sfzy { get; set; }
 

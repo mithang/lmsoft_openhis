@@ -6,12 +6,12 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 用户相关DmnService
+    /// DmnService liên quan đến người dùng
     /// </summary>
     public interface ISysUserDmnService
     {
         /// <summary>
-        /// 提交新建、更新 系统用户
+        /// Gửi tạo mới, cập nhật người dùng hệ thống
         /// </summary>
         /// <param name="userEntity"></param>
         /// <param name="userLogOnEntity"></param>
@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void SubmitForm(SysUserEntity userEntity, SysUserLogOnEntity userLogOnEntity, string keyValue);
 
         /// <summary>
-        /// 获取系统（登录）用户
+        /// Lấy người dùng hệ thống (đăng nhập)
         /// </summary>
         /// <param name="topOrganizeId"></param>
         /// <param name="pagination"></param>
@@ -29,55 +29,55 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<SysUserVO> GetPagintionList(Pagination pagination, string OrganizeId, string keyword = null);
 
         /// <summary>
-        /// 根据系统（登录）用户Id 获取 系统人员
+        /// Lấy nhân viên hệ thống theo Id người dùng hệ thống (đăng nhập)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         SysStaffEntity GetStaffByUserId(string userId);
 
         /// <summary>
-        /// 获取系统人员信息
+        /// Lấy thông tin nhân viên hệ thống
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         SysUserVO GetSysUserByUserId(string userId);
 
         /// <summary>
-        /// 获取隶属于角色 的 用户列表
+        /// Lấy danh sách người dùng thuộc vai trò
         /// </summary>
         /// <param name="roleId"></param>
         IList<RoleUserVO> GetPagintionUserListByRoleId(Pagination pagination, string gh, string name, string roleId, string topOrganizeId);
 
         /// <summary>
-        /// 新建用户
+        /// Tạo người dùng mới
         /// </summary>
         /// <param name="userEntity"></param>
         /// <param name="userLogOnEntity"></param>
         void CreateUser(SysUserEntity userEntity, SysUserLogOnEntity userLogOnEntity);
 
         /// <summary>
-        /// 根据UserId获取关联的系统人员列表
+        /// Lấy danh sách nhân viên hệ thống liên kết theo UserId
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         IList<SysStaffEntity> GetStaffListByUserId(string userId);
 
         /// <summary>
-        /// 根据OrganizeId获取 系统人员VO（且有对应的SysUser）
+        /// Lấy VO nhân viên hệ thống theo OrganizeId (và có SysUser tương ứng)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         IList<SysUserStaffVO> GetSatffVOListByOrg(string orgId);
 
         /// <summary>
-        /// 获取用户的语言类型
+        /// Lấy loại ngôn ngữ của người dùng
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         string GetLanguageTypeByUserId(string userId);
 
         /// <summary>
-        /// 根据员工Id获取所有岗位
+        /// Lấy tất cả các vị trí theo Id nhân viên
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="StaffId"></param>
@@ -85,7 +85,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<string> GetDutyListByStaffId(string orgId, string StaffId);
 
         /// <summary>
-        /// 重置密码
+        /// Đặt lại mật khẩu
         /// </summary>
         /// <param name="userPassword"></param>
         /// <param name="keyValue"></param>

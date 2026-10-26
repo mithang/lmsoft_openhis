@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Base.SSO.Controllers
 
         // GET: User
         /// <summary>
-        /// 个人信息
+        /// Thông tin cá nhân
         /// </summary>
         /// <returns></returns>
         public ActionResult PersonalInfo()
@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Base.SSO.Controllers
         }
 
         /// <summary>
-        /// 提交 重置个人密码
+        /// Gửi để đặt lại mật khẩu cá nhân
         /// </summary>
         /// <param name="newpwd"></param>
         /// <returns></returns>

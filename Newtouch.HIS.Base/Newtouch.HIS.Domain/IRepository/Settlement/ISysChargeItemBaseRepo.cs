@@ -6,33 +6,33 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 收费项目
+    /// Hạng mục thu phí
     /// </summary>
     public interface ISysChargeItemBaseRepo : IRepositoryBase<SysChargeItemBaseEntity>
     {
         /// <summary>
-        /// 获取所有
+        /// Lấy tất cả
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         IList<SysChargeItemBaseEntity> GetList(string keyValue, string orgId);
         
         /// <summary>
-        /// 获取实体数据
+        /// Lấy dữ liệu thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         SysChargeItemBaseEntity GetForm(int keyValue);
 
         /// <summary>
-        /// 提交保存
+        /// Gửi để lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
         void SubmitForm(SysChargeItemBaseEntity entity, int? keyValue);
 
         /// <summary>
-        /// 医保同步修改最后上传时间
+        /// Thời gian tải lên cuối cùng khi đồng bộ sửa đổi bảo hiểm y tế
         /// </summary>
         /// <param name="ypId"></param>
         /// <returns></returns>

@@ -9,21 +9,21 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysMedicineStorageIOModeRepo : IRepositoryBase<SysMedicineStorageIOModeEntity>
     {
         /// <summary>
-        /// 获取所有
+        /// Lấy tất cả
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         IList<SysMedicineStorageIOModeEntity> GetList(string keyword);
 
         /// <summary>
-        /// 获取实体数据
+        /// Lấy dữ liệu thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         SysMedicineStorageIOModeEntity GetForm(int keyValue);
 
         /// <summary>
-        /// 提交保存
+        /// Gửi để lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>

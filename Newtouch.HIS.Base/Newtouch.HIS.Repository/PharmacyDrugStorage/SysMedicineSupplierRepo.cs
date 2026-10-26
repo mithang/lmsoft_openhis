@@ -43,7 +43,7 @@ and (isnull(@keyword,'')=''or gysmc like @searchkeyword or gysCode like @searchk
                     throw new FailedException("编号不能重复！");
                 }
 
-                SysMedicineSupplierEntity oldEntity = null;   //变更前Entity
+                SysMedicineSupplierEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

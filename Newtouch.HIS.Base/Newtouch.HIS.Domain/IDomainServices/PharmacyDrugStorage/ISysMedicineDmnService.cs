@@ -6,7 +6,7 @@ using Newtouch.HIS.Domain.ValueObjects;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 药品
+    /// Thuốc
     /// </summary>
     public interface ISysMedicineDmnService
     {
@@ -19,14 +19,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void SubmitMedicine(SysMedicineVO model, int? ypId);
 
         /// <summary>
-        /// 修改医保同步时间
+        /// Sửa đổi thời gian đồng bộ bảo hiểm y tế
         /// </summary>
         /// <param name="ypId"></param>
         /// <returns></returns>
         bool YibaoUpload(int ypId, out string error);
 
         /// <summary>
-        /// 绑定药品list集合
+        /// Liên kết tập hợp list thuốc
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="pagination"></param>
@@ -37,14 +37,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
 		
 		/// <summary>
-		/// 修改信息时,绑定修改值
+		/// Khi sửa đổi thông tin, liên kết giá trị sửa đổi
 		/// </summary>
 		/// <param name="keyValue"></param>
 		/// <returns></returns>
 		SysMedicineVO GetFormJson(int keyValue);
 
         /// <summary>
-        /// 获取系统人员信息
+        /// Lấy thông tin nhân viên hệ thống
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="organizeId"></param>
@@ -52,14 +52,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         SysMedicineVO SelectMedicineInfo(string ypCode, string organizeId);
 
 		/// <summary>
-		/// 获取药品系数
+		/// Lấy hệ số thuốc
 		/// </summary>
 		/// <param name="name"></param>
 		/// <returns></returns>
 		string GetTradePricePlus(string name);
 
 		/// <summary>
-		/// 获取当前组织下的系统药品信息
+		/// Lấy thông tin thuốc hệ thống thuộc tổ chức hiện tại
 		/// </summary>
 		/// <param name="organizeId"></param>
 		/// <param name="pagination"></param>
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 		IList<SysMedicineVO> GetPaginationListdm(string organizeId, Pagination pagination, string type, string keyword = null);
         IList<SysMedicineMldzxxVO> GetPaginationListMldzxx(string organizeId, Pagination pagination, string type, string keyword = null);
         /// <summary>
-        /// 查询医保药品信息
+        /// Truy vấn thông tin thuốc bảo hiểm y tế
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="ypmc"></param>
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<G_yb_ypxxVO> GetYpypxxlist(string organizeId, string ypmc, string py, string gjybdm, string pzwh,string dataSource);
 
 		/// <summary>
-		/// 保存医保对码信息
+		/// Lưu thông tin đối mã bảo hiểm y tế
 		/// </summary>
 		/// <param name="ybxx"></param>
 		/// <param name="ypid"></param>
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
 
 		/// <summary>
-		/// 系统材料信息
+		/// Thông tin vật liệu hệ thống
 		/// </summary>
 		/// <param name="organizeId"></param>
 		/// <param name="pagination"></param>
@@ -99,7 +99,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 		IList<SysMedicineVO> GetclxxList(string organizeId, Pagination pagination, string type, string keyword = null);
 
 		/// <summary>
-		/// 查询医保材料信息 根据系统材料信息
+		/// Truy vấn thông tin vật liệu bảo hiểm y tế theo thông tin vật liệu hệ thống
 		/// </summary>
 		/// <param name="organizeId"></param>
 		/// <param name="ypmc"></param>
@@ -110,7 +110,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 		IList<G_yb_clxxVO> GetYbclxxlist(string organizeId, string ypmc, string py, string gjybdm, string pzwh,string dataSource);
 
 		/// <summary>
-		/// 保存材料对码
+		/// Lưu đối mã vật liệu
 		/// </summary>
 		/// <param name="ybxx"></param>
 		/// <param name="ypid"></param>
@@ -121,7 +121,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
 
 		/// <summary>
-		/// 系统项目信息
+		/// Thông tin hạng mục hệ thống
 		/// </summary>
 		/// <param name="organizeId"></param>
 		/// <param name="pagination"></param>
@@ -132,7 +132,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
 
 		/// <summary>
-		/// 查询医保项目信息 根据系统项目信息
+		/// Truy vấn thông tin hạng mục bảo hiểm y tế theo thông tin hạng mục hệ thống
 		/// </summary>
 		/// <param name="organizeId"></param>
 		/// <param name="ypmc"></param>
@@ -145,7 +145,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 		int SaveYpxm(G_yb_xmxxVO ybxx, int? ypid, string organizeId);
 
         /// <summary>
-        /// 药品用法
+        /// Cách dùng thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

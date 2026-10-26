@@ -7,25 +7,25 @@
     <div style="padding-top: 20px; margin-right: 30px;">
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>名称：</th>
+                <th class="formTitle"><span class="required">*</span>Tên:</th>
                 <td class="formValue">
                     <input type="text" class="form-control required" id="Name" name="Name" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>编码：</th>
+                <th class="formTitle"><span class="required">*</span>Mã:</th>
                 <td class="formValue">
                     <input type="text" class="form-control required" id="Code" name="Code" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>首拼：</th>
+                <th class="formTitle"><span class="required">*</span>Chữ đầu pinyin:</th>
                 <td class="formValue">
                     <input type="text" class="form-control required" id="py" name="py" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">有效：</th>
+                <th class="formTitle">Có hiệu lực:</th>
                 <td class="formValue">
                     <div class="ckbox">
                         <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt"></label>
@@ -52,7 +52,7 @@
         }
     })
 
-    //首拼
+    //Chữ đầu pinyin
     $('#Name').keyup(function () {
         $('#py').val($(this).toShouPin());
     })

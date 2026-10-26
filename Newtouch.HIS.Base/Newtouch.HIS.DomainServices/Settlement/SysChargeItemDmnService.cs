@@ -72,7 +72,7 @@ where a.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 获取医保病人性质 自负/超限比例
+        /// Lấy tính chất bệnh nhân bảo hiểm y tế, tỷ lệ tự trả/vượt giới hạn
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>

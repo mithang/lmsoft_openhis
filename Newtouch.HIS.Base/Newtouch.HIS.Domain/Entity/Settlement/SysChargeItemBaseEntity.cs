@@ -67,32 +67,32 @@ namespace Newtouch.HIS.Domain.Entity
         public string flCode { get; set; }
 
         /// <summary>
-        /// 确定自负现金比例，无关这部分的性质（分类自负、自理）   见字段zfxz      注意：当自负比例为负数时，表示定额自负   (例：某材料12300，可报10000,那么自负比例＝-2300)
+        /// Xác định tỷ lệ tự trả bằng tiền mặt, không liên quan đến tính chất của phần này (tự trả theo phân loại, tự trả)   Xem trường zfxz      Lưu ý: Khi tỷ lệ tự trả là số âm, nghĩa là tự trả định mức   (Ví dụ: một vật liệu 12300, có thể báo 10000, vậy tỷ lệ tự trả = -2300)
         /// </summary>
         public decimal zfbl { get; set; }
 
         /// <summary>
-        /// 确定自负部分（费用×自负比例）的性质   0  可报 1 自理 2 分类自负 3 绝对自理（处理离休专家、特需挂号费）      （费用×（1－自负比例） 为可记帐部分）
+        /// Xác định tính chất của phần tự trả (chi phí × tỷ lệ tự trả)   0 Có thể báo 1 Tự trả 2 Tự trả theo phân loại 3 Tự trả tuyệt đối (xử lý phí đăng ký khám chuyên gia nghỉ hưu, khám theo yêu cầu)      (Chi phí × (1 - tỷ lệ tự trả) là phần có thể ghi sổ)
         /// </summary>
         public string zfxz { get; set; }
 
         /// <summary>
-        /// 0：通用，1：门诊，2：住院
+        /// 0: Chung, 1: Ngoại trú, 2: Nội trú
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 0 无需实施，（住院直接入帐）    1 需要实施，（住院实施后方可入帐）   from xt_yjxmdz
+        /// 0 Không cần thực hiện (nội trú ghi sổ trực tiếp)    1 Cần thực hiện (nội trú chỉ ghi sổ sau khi thực hiện)   from xt_yjxmdz
         /// </summary>
         public string ssbz { get; set; }
 
         /// <summary>
-        /// 0 普通项目 1 特殊项目 refer xt_sfxmtsbz   特殊项目说明是特定的病人性质才可使用的。 
+        /// 0 Hạng mục thông thường 1 Hạng mục đặc biệt refer xt_sfxmtsbz   Hạng mục đặc biệt chỉ được sử dụng cho tính chất bệnh nhân cụ thể. 
         /// </summary>
         public string tsbz { get; set; }
 
         /// <summary>
-        /// 0 非收费项目（例：挂号费..） 1 收费项目
+        /// 0 Hạng mục không thu phí (ví dụ: phí đăng ký khám..) 1 Hạng mục thu phí
         /// </summary>
         public string sfbz { get; set; }
 
@@ -137,59 +137,59 @@ namespace Newtouch.HIS.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// 持续时长（单位：分）
+        /// Thời lượng kéo dài (đơn vị: phút)
         /// </summary>
         public int? duration { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string bz { get; set; }
 
         /// <summary>
-        /// 单位计量数
+        /// Số lượng đo theo đơn vị
         /// </summary>
         public int? dwjls { get; set; }
 
         /// <summary>
-        /// 计价策略
+        /// Chiến lược tính giá
         /// </summary>
         public int? jjcl { get; set; }
 
         /// <summary>
-        /// 默认执行科室
+        /// Khoa thực hiện mặc định
         /// </summary>
         public string zxks { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
         /// <summary>
-        /// 医保最后同步时间
+        /// Thời gian đồng bộ bảo hiểm y tế cuối cùng
         /// </summary>
         public DateTime? LastYBUploadTime { get; set; }
 
         /// <summary>
-        /// 手术等级
+        /// Cấp độ phẫu thuật
         /// </summary>
         public string ssdj { get; set; }
 
         public string sqlx { get; set; }
         /// <summary>
-        /// 医保标志1：医保；0：自费
+        /// Cờ bảo hiểm y tế 1: Bảo hiểm y tế; 0: Tự trả
         /// </summary>
         public string ybbz { get; set; }
         /// <summary>
-        /// 新农合医保代码
+        /// Mã bảo hiểm y tế nông thôn mới
         /// </summary>
         public string xnhybdm { get; set; }
         /// <summary>
-        /// 国家医保代码
+        /// Mã bảo hiểm y tế quốc gia
         /// </summary>
         public string gjybdm { get; set; }
         /// <summary>
-        /// 超限价金额
+        /// Số tiền vượt giá giới hạn
         /// </summary>
         public decimal? cxjje { get; set; }
         public string pzwh { get; set; }

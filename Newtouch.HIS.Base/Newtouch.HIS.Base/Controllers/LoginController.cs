@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Base.Controllers
         }
 
         /// <summary>
-        /// 1.单点登录的回调，接收token，访问单点登录的API以获得UserId
+        /// 1. Callback đăng nhập một lần (SSO), nhận token, truy cập API đăng nhập một lần để lấy UserId
         /// </summary>
         /// <returns></returns>
         public ActionResult SSOCallback(string access_token)
@@ -74,7 +74,7 @@ namespace Newtouch.HIS.Base.Controllers
         }
 
         /// <summary>
-        /// 2.验证登录
+        /// 2. Xác thực đăng nhập
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
@@ -82,7 +82,7 @@ namespace Newtouch.HIS.Base.Controllers
         {
             var username = WebHelper.GetCookie(Constants.AppId + "_OpenId");
             WebHelper.RemoveCookie(Constants.AppId + "_OpenId");
-            //登录日志Entity
+            //Entity nhật ký đăng nhập
             var logEntity = new SysLogEntity
             {
                 Id = Guid.NewGuid().ToString(),
@@ -108,7 +108,7 @@ namespace Newtouch.HIS.Base.Controllers
             {
                 SaveLoginSuccessStatus(userEntity, logEntity);
                 _sysLogRepository.Insert(logEntity);
-                //用来标志用户的登录来源
+                //Dùng để đánh dấu nguồn đăng nhập của người dùng
                 WebHelper.WriteCookie(Constants.AppId + "_" + username + "_" + "LoginFlag", EnumLoginFlag.SSO.ToString());
 
                 return RedirectToAction("Index", "Home");
@@ -122,7 +122,7 @@ namespace Newtouch.HIS.Base.Controllers
         [HttpGet]
         public virtual ActionResult Index()
         {
-            //写入客户端Id
+            //Ghi Id client
             WebHelper.WriteCookie(Constants.AppId + "_ClientId", Guid.NewGuid().ToString("N").ToLower());
 
             ViewBag.IsCheckChkCode = ConfigurationHelper.GetAppConfigBoolValue("Is_CheckChkCode");
@@ -137,7 +137,7 @@ namespace Newtouch.HIS.Base.Controllers
             string code;
             var stream = new VerifyCode().GetVerifyCode(out code);
 
-            //验证码 5分钟内有效
+            //Mã xác minh có hiệu lực trong 5 phút
             RedisHelper.StringSet(clientId + "_chkCode", code, new TimeSpan(0, 5, 0));
 
             return File(stream, @"image/Gif");
@@ -172,7 +172,7 @@ namespace Newtouch.HIS.Base.Controllers
             {
                 WebHelper.RemoveCookie(Constants.AppId + "_" + userCode + "_" + "LoginFlag");
 
-                var url = ConfigurationHelper.GetAppConfigValue("SSOOutLogin");  //退出SSO登录
+                var url = ConfigurationHelper.GetAppConfigValue("SSOOutLogin");  //Thoát đăng nhập SSO
 
                 return Redirect(url);
             }
@@ -183,7 +183,7 @@ namespace Newtouch.HIS.Base.Controllers
         }
 
         /// <summary>
-        /// 返回单点登录首页
+        /// Trả về trang chủ đăng nhập một lần
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -212,7 +212,7 @@ namespace Newtouch.HIS.Base.Controllers
             if (opr != null) { userCode = opr.UserCode; }
             WebHelper.RemoveCookie(Constants.AppId + "_" + userCode + "_" + "LoginFlag");
 
-            var url = ConfigurationHelper.GetAppConfigValue("SSOHomeHost"); ;  //跳转到单点登录页面
+            var url = ConfigurationHelper.GetAppConfigValue("SSOHomeHost"); ;  //Chuyển đến trang đăng nhập một lần
 
             return Redirect(url);
         }
@@ -221,7 +221,7 @@ namespace Newtouch.HIS.Base.Controllers
         [HandlerAjaxOnly]
         public ActionResult CheckLogin(string username, string password, string code)
         {
-            //登录日志Entity
+            //Entity nhật ký đăng nhập
             var logEntity = new SysLogEntity
             {
                 Id = Guid.NewGuid().ToString(),
@@ -235,7 +235,7 @@ namespace Newtouch.HIS.Base.Controllers
             {
                 if (ConfigurationHelper.GetAppConfigBoolValue("Is_CheckChkCode") ?? true)
                 {
-                    //登录验证码 验证
+                    //Xác thực mã xác minh đăng nhập
                     var clientId = WebHelper.GetCookie(Constants.AppId + "_ClientId");
                     var chkCode = RedisHelper.StringGet(clientId + "_chkCode");
                     if (string.IsNullOrWhiteSpace(chkCode) || code.ToLower() != chkCode.ToLower())
@@ -246,7 +246,7 @@ namespace Newtouch.HIS.Base.Controllers
                 SysUserEntity userEntity = null;
                 if (username == "root")
                 {
-                    if (password == Md5.md5(DateTime.Now.ToString("HHMMdd"), 32).ToLower())  //password是对的
+                    if (password == Md5.md5(DateTime.Now.ToString("HHMMdd"), 32).ToLower())  //password là đúng
                     {
                         userEntity = new SysUserEntity()
                         {
@@ -291,7 +291,7 @@ namespace Newtouch.HIS.Base.Controllers
 
 
         /// <summary>
-        /// 身份验证通过后，记录成功登陆状态
+        /// Sau khi xác thực danh tính thành công, ghi lại trạng thái đăng nhập thành công
         /// </summary>
         /// <param name="userEntity"></param>
         /// <param name="logEntity"></param>

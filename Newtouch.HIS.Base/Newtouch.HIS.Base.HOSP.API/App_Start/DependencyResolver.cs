@@ -23,26 +23,26 @@ namespace Newtouch.HIS.Base.HOSP.API.App_Start
     public class DependencyResolver
     {
         /// <summary>
-        /// 注入Web API控制器/过滤器
+        /// Inject controller/bộ lọc Web API
         /// </summary>
         /// <param name="config">HttpConfiguration</param>
         public static void RegisteWebApiComponent()
         {
             var builder = new ContainerBuilder();
 
-            // 注册WebAPI控制器
+            // Đăng ký controller WebAPI
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            //注册默认EF上下文
+            //Đăng ký EF context mặc định
             builder.RegisterType<BaseDatabaseFactory>().As<IBaseDatabaseFactory>().InstancePerLifetimeScope();
 
-            //日志注册
+            //Đăng ký nhật ký
             builder.RegisterType<NLogger>().As<ILogger>().InstancePerLifetimeScope();
 
-            //缓存
+            //Bộ nhớ đệm
             builder.RegisterType<SERedisCache>().As<ICache>().InstancePerLifetimeScope();
 
-            //API用户身份解析器
+            //Trình phân tích danh tính người dùng API
             builder.RegisterType<HISAPIUserIdentityResolver>().As<IUserIdentityResolver<Identity>>().InstancePerLifetimeScope();
 
             builder.RegisterAssemblyTypes(typeof(SysUserRoleRepo).Assembly)
@@ -56,10 +56,10 @@ namespace Newtouch.HIS.Base.HOSP.API.App_Start
                 .Where(t => !string.IsNullOrEmpty(t.Namespace))
                 .AsImplementedInterfaces().InstancePerLifetimeScope();
 
-            //注册Autofac过滤器提供程序.
+            //Đăng ký nhà cung cấp bộ lọc Autofac.
             builder.RegisterWebApiFilterProvider(GlobalConfiguration.Configuration);
 
-            // 设置依赖解析器-Dependency Resolver
+            // Thiết lập trình phân giải phụ thuộc - Dependency Resolver
             var container = builder.Build();
             var resolver = new AutofacWebApiDependencyResolver(container);
             GlobalConfiguration.Configuration.DependencyResolver = resolver;

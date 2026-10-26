@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Base.SSO.Controllers
             var opr = this.UserIdentity;
             if (!opr.IsRoot && !opr.IsAdministrator)
             {
-                //过滤应用
+                //Lọc ứng dụng
                 foreach (var item in appList)
                 {
                     var entity = _sysApplicationRepo.GetEntity(item.Id);
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Base.SSO.Controllers
             //var opr = this.UserIdentity;
             //if (!opr.IsRoot && !opr.IsAdministrator)
             //{
-            //    //过滤应用
+            //    Lọc ứng dụng
             //    foreach (var item in appList)
             //    {
             //        var entity = _sysApplicationRepo.GetEntity(item.Id);
@@ -88,7 +88,7 @@ namespace Newtouch.HIS.Base.SSO.Controllers
         }
 
         /// <summary>
-        /// 生成令牌
+        /// Tạo token
         /// </summary>
         /// <param name="host"></param>
         /// <returns></returns>
@@ -112,7 +112,7 @@ namespace Newtouch.HIS.Base.SSO.Controllers
                 AppId = appId,
                 Host = ConfigurationHelper.GetAppConfigValue("SSOHost")
             };
-            //写进redis
+            //Ghi vào redis
             Core.Redis.RedisHelper.StringSet(token, Tools.Json.ToJson(tokenObject), new TimeSpan(0, 120, 0));
 
             //return Content("<script>window.open('" + url + "')</script>");

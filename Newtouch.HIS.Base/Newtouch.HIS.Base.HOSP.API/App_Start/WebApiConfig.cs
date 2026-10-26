@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Base.HOSP.API.App_Start
         /// <param name="config"></param>
         public static void Register(HttpConfiguration config)
         {
-            //启用跨域
+            //Bật truy cập liên miền (CORS)
             var cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);
 
@@ -32,17 +32,17 @@ namespace Newtouch.HIS.Base.HOSP.API.App_Start
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            //默认返回 json
+            //Mặc định trả về json
             //GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings.Add(
             //  new QueryStringMapping("datatype", "json", "application/json")
             //  );
             config.Formatters.JsonFormatter.SupportedMediaTypes.Clear();
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json"));
 
-            //全局注册Filters
+            //Đăng ký Filters toàn cục
             config.Filters.Add(new HIS.API.Common.Filter.TokenDecryptFilterAttribute());
 
-            //依赖注入
+            //Dependency Injection
             DependencyResolver.RegisteWebApiComponent();
 
         }

@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Base.Controllers
             this._itemDmnService = itemDmnService;
         }
 
-        //下拉 by Code
+        //Thả xuống theo Code
         /// <summary>
         /// 
         /// </summary>

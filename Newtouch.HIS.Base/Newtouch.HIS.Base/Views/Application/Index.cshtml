@@ -9,17 +9,17 @@
         </div>
         <div class="btn-group">
             <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()">
-                <i class="fa fa-plus"></i>新建
+                <i class="fa fa-plus"></i>Tạo mới
             </a>
         </div>
         <div class="btn-group">
             <a id="NF-edit" authorize="yes" class="btn btn-primary" onclick="btn_edit()">
-                <i class="fa fa-pencil-square-o"></i>修改
+                <i class="fa fa-pencil-square-o"></i>Sửa đổi
             </a>
         </div>
         <div class="btn-group">
             <a id="NF-authorg" authorize="yes" class="btn btn-primary" onclick="btn_authorg()">
-                <i class="fa fa-pencil-square-o"></i>机构授权
+                <i class="fa fa-pencil-square-o"></i>Ủy quyền cơ sở
             </a>
         </div>
     </div>
@@ -38,11 +38,11 @@
             url: "/Application/GetGridJson",
             height: $(window).height() - 96,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: '名称', name: 'Name', width: 150, align: 'left' },
-             { label: "有效", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: '创建时间', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Tên', name: 'Name', width: 150, align: 'left' },
+             { label: "Có hiệu lực", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Thời gian sửa đổi cuối cùng', name: 'LastModifyTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
             ]
         });
         $("#btn_search").click(function () {
@@ -54,7 +54,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增应用",
+            title: "Thêm ứng dụng mới",
             url: "/Application/Form",
             width: "400px",
             height: "320px",
@@ -66,12 +66,12 @@
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "修改应用",
+            title: "Sửa đổi ứng dụng",
             url: "/Application/Form?keyValue=" + keyValue,
             width: "400px",
             height: "320px",
@@ -83,12 +83,12 @@
     function btn_authorg() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "机构授权",
+            title: "Ủy quyền cơ sở",
             url: "/Application/Organizes?keyValue=" + keyValue,
             width: "400px",
             height: "520px",

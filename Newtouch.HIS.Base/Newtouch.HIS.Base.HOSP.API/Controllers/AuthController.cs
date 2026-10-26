@@ -11,7 +11,7 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
     /// <summary>
-    /// 授权认证
+    /// Xác thực ủy quyền
     /// </summary>
     [RoutePrefix("api/Auth")]
     public class AuthController : ApiControllerBase<AuthController>
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
         private readonly IAccessAuthDmnService _accessAuthDmnService;
         #endregion
         /// <summary>
-        /// 以关键信息（用户名、密码等）换取访问令牌
+        /// Dùng thông tin quan trọng (tên đăng nhập, mật khẩu, v.v.) để đổi lấy access token
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -41,17 +41,17 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
                     resp.sub_msg = "";
                     return;
                 }
-                //then假设身份验证通过了
+                //then giả sử xác thực danh tính đã thành công
                 AccessIdentity ident= new AccessIdentity();
                 ident.AppId = request.AppId;
                 ident.OrganizeId = request.OrganizeId;
                 ident.Account = request.Account;
-                //1、由request验证出用户身份 //需要的时候加上验证
+                //1. Xác thực danh tính người dùng từ request // thêm xác thực khi cần
                 string message = "";
                 bool authed= _accessAuthDmnService.Authorized(ident, out message);
                 if (authed)
                 {
-                    //2、身份存储在Redis（有一定的过期时间）
+                    //2. Danh tính được lưu trong Redis (có thời gian hết hạn nhất định)
                     var identity = new UserIdentity
                     {
                         AppId = request.AppId,
@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
                         //Tag = "ProxyAPI_TP"
                     };
                     var token = SaveIdentity(identity);
-                    //3、返回key
+                    //3. Trả về key
                     resp.data = new
                     {
                         token = token
@@ -80,7 +80,7 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
         }
 
         /// <summary>
-        /// 以关键信息（用户名、密码等）换取访问令牌
+        /// Dùng thông tin quan trọng (tên đăng nhập, mật khẩu, v.v.) để đổi lấy access token
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -99,10 +99,10 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
                     resp.sub_msg = "";
                     return;
                 }
-                //then假设身份验证通过了
-                //1、由request验证出用户身份 //需要的时候加上验证
+                //then giả sử xác thực danh tính đã thành công
+                //1. Xác thực danh tính người dùng từ request // thêm xác thực khi cần
 
-                //2、身份存储在Redis（有一定的过期时间）
+                //2. Danh tính được lưu trong Redis (có thời gian hết hạn nhất định)
                 var identity = new UserIdentity
                 {
                     AppId = request.AppId,
@@ -114,7 +114,7 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
                 };
                 var token = SaveIdentity(identity);
 
-                //3、返回key
+                //3. Trả về key
                 resp.data = new
                 {
                     token = token

@@ -22,7 +22,7 @@ namespace Newtouch.HIS.DomainServices.Settlement
 
 
         /// <summary>
-        /// 获得所有列表、修改form
+        /// Lấy tất cả danh sách, sửa đổi form
         /// </summary>
         public List<SysWardBedVO> GetWardBedList(int? cwId, string orgId = null, string keyword = null)
         {
@@ -52,7 +52,7 @@ namespace Newtouch.HIS.DomainServices.Settlement
         }
 
         /// <summary>
-        /// 修改form
+        /// Sửa đổi form
         /// </summary>
         public SysWardBedVO GetWardBedEntity(int cwId)
         {

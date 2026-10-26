@@ -147,7 +147,7 @@ WHERE x.ypId =@ypId
 
 		public void SyncCommonDrug(SysMedicineBaseEntity sysMedicineBaseEntity, string organizeId)
 		{
-			//插入药品信息yp
+			//Chèn thông tin thuốc yp
 			var sysMedicinePropertyBaseEntity =
 				_sysMedicinePropertyBaseRepo.FindEntity(p => p.ypId == sysMedicineBaseEntity.ypId);
 			sysMedicineBaseEntity.ypId = 0;
@@ -155,7 +155,7 @@ WHERE x.ypId =@ypId
 			sysMedicineBaseEntity.Create();
 			var entity = sysMedicineBaseEntity.ToJson().ToObject<SysMedicineEntity>().Clone();
 			_sysMedicineRepository.Insert(entity);
-			//药品属性ypsx
+			//Thuộc tính thuốc ypsx
 			sysMedicinePropertyBaseEntity.ypsxId = 0;
 			sysMedicinePropertyBaseEntity.ypId = entity.ypId;
 			sysMedicinePropertyBaseEntity.OrganizeId = organizeId;
@@ -171,7 +171,7 @@ WHERE x.ypId =@ypId
 			sysChargeCategoryBaseEntity.OrganizeId = organizeId;
 			sysChargeCategoryBaseEntity.Create();
 			_sysChargeCategoryRepository.SubmitForm(sysChargeCategoryBaseEntity.ToJson().ToObject<SysChargeCategoryEntity>(), 0);
-			//同步收费大类类型
+			//Đồng bộ loại nhóm thu phí lớn
 			
 			
 			

@@ -33,16 +33,16 @@ namespace Newtouch.HIS.Base.Controllers
         {
             var data = new
             {
-                //字典 包括无效的
+                //Từ điển, bao gồm cả các mục không hiệu lực
                 dataItems = this.GetDataItemList(),
-                //获取所顶级组织机构 包括无效的
+                //Lấy tổ chức cấp cao nhất, bao gồm cả các mục không hiệu lực
                 topOrganize = _sysOrganizeRepository.GetTopOrgList(),
             };
             return Content(data.ToJson());
         }
 
         /// <summary>
-        /// 字典 包括无效的
+        /// Từ điển, bao gồm cả các mục không hiệu lực
         /// </summary>
         /// <returns></returns>
         private object GetDataItemList()

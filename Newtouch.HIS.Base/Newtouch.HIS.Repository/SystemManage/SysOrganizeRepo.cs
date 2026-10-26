@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取当前组织下的所有组织
+        /// Lấy tất cả các tổ chức thuộc tổ chức hiện tại
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeEntity> GetListByTopOrg(string topOrganizeId)
@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取当前组织下的所有组织
+        /// Lấy tất cả các tổ chức thuộc tổ chức hiện tại
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeEntity> GetValidListByTopOrg(string topOrganizeId)
@@ -42,7 +42,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取组织下的所有有效组织（parent）
+        /// Lấy tất cả các tổ chức có hiệu lực thuộc tổ chức (parent)
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeVO> GetValidListByParentOrg(string parentOrgId)
@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取组织下的所有组织（parent）（包括无效的）
+        /// Lấy tất cả các tổ chức thuộc tổ chức (parent) (bao gồm cả các mục không hiệu lực)
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeVO> GetListByParentOrg(string parentOrgId)
@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取顶级组织机构列表
+        /// Lấy danh sách tổ chức cấp cao nhất
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -106,7 +106,7 @@ where ParentId is null and
         }
 
         /// <summary>
-        /// 获取顶级组织机构列表 包括无效的
+        /// Lấy danh sách tổ chức cấp cao nhất, bao gồm cả các mục không hiệu lực
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeEntity> GetTopOrgList()
@@ -116,7 +116,7 @@ where ParentId is null and
         }
 
         /// <summary>
-        /// 获取顶级组织机构列表
+        /// Lấy danh sách tổ chức cấp cao nhất
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeEntity> GetValidTopOrgList()
@@ -126,7 +126,7 @@ where ParentId is null and
         }
 
         /// <summary>
-        /// 提交新建、更新 实体
+        /// Gửi tạo mới, cập nhật thực thể
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -140,16 +140,16 @@ where ParentId is null and
                 }
                 var isCodeRepeated = string.IsNullOrWhiteSpace(entity.ParentId)
                     ? this.IQueryable().Any(p => p.ParentId == null
-                        && p.Code == entity.Code && p.Id != keyValue)   //顶级机构中不能有重复code
+                        && p.Code == entity.Code && p.Id != keyValue)   //Trong cơ sở cấp cao nhất không được có code trùng lặp
                     : this.IQueryable().Any(p => p.TopOrganizeId == entity.TopOrganizeId
-                        && p.Code == entity.Code && p.Id != keyValue)   //某一顶级机构下 的所有 不能有重复
+                        && p.Code == entity.Code && p.Id != keyValue)   //Tất cả thuộc một cơ sở cấp cao nhất không được trùng lặp
                     ;
                 if (isCodeRepeated)
                 {
                     throw new FailedException("编码不可重复");
                 }
 
-                SysOrganizeEntity oldEntity = null;   //变更前Entity
+                SysOrganizeEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(keyValue);
                 this.DetacheEntity(oldEntity);
 
@@ -167,13 +167,13 @@ where ParentId is null and
                 if (string.IsNullOrWhiteSpace(entity.ParentId) && string.IsNullOrWhiteSpace(entity.TopOrganizeId))
                 {
                     entity.ParentId = null;
-                    entity.TopOrganizeId = entity.Id;   //此为顶级机构
+                    entity.TopOrganizeId = entity.Id;   //Đây là cơ sở cấp cao nhất
                 }
                 var isCodeRepeated = string.IsNullOrWhiteSpace(entity.ParentId)
                     ? this.IQueryable().Any(p => p.ParentId == null
-                        && p.Code == entity.Code)   //顶级机构中不能有重复code
+                        && p.Code == entity.Code)   //Trong cơ sở cấp cao nhất không được có code trùng lặp
                     : this.IQueryable().Any(p => p.TopOrganizeId == entity.TopOrganizeId
-                        && p.Code == entity.Code)   //某一顶级机构下 的所有 不能有重复
+                        && p.Code == entity.Code)   //Tất cả thuộc một cơ sở cấp cao nhất không được trùng lặp
                     ;
                 if (isCodeRepeated)
                 {
@@ -185,7 +185,7 @@ where ParentId is null and
         }
 
         /// <summary>
-        /// 根据OrgId获取Code
+        /// Lấy Code theo OrgId
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

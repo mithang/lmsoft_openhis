@@ -3,7 +3,7 @@
 
     Layout = "~/Views/Shared/_Index.cshtml";
 
-    //是否页面加载时就必须选择Org
+    //Có phải chọn Org ngay khi tải trang hay không
     var mediOrgList = ViewBag.MediOrgList as IList<Newtouch.HIS.Domain.Entity.SysOrganizeEntity>;
 }
 
@@ -30,7 +30,7 @@
             type: "post",
             dataType: "json",
             success: function (data) {
-                cookieRemove(); //必须选择医疗机构
+                cookieRemove(); //Phải chọn cơ sở y tế
 
                 top.top.location.href = top.top.location.href;
             }
@@ -45,7 +45,7 @@
         }
         var chooseOrgVal = top.$.cookie(chooseOrgKey);
         if (chooseOrgVal != null) {
-            //用完立remove
+            //Dùng xong thìremove
             top.$.cookie(chooseOrgKey, '', { path: "/", expires: -1 });
         }
     }

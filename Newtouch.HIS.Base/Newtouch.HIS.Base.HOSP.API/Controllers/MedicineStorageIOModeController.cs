@@ -10,7 +10,7 @@ using Autofac;
 namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
     /// <summary>
-    /// 药品 出入库方式
+    /// Phương thức nhập/xuất kho của thuốc
     /// </summary>
     [RoutePrefix("api/MedicineStorageIOMode")]
     public class MedicineStorageIOModeController : ApiControllerBase<MedicineStorageIOModeController>

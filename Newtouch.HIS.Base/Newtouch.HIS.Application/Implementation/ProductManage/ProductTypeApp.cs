@@ -5,7 +5,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 物资类别操作
+    /// Thao tác danh mục vật tư
     /// </summary>
     public class ProductTypeApp : AppBase, IProductTypeApp
     {

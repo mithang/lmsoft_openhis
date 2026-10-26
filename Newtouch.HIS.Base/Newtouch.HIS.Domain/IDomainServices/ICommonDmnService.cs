@@ -3,12 +3,12 @@
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 一些不知道往哪放的sql查询，放在此处
+    /// Một số truy vấn sql không biết đặt ở đâu thì đặt tại đây
     /// </summary>
     public interface ICommonDmnService
     {
         /// <summary>
-        /// 获取就诊人数（门诊和住院）
+        /// Lấy số lượng bệnh nhân khám (ngoại trú và nội trú)
         /// </summary>
         VisitNumBO GetVisitNum(bool isAdministrator, string orgId = null, string topOrgId = null);
     }

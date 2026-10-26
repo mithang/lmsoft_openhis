@@ -78,7 +78,7 @@ and (zdCode like @searchKeyword or zdmc like @searchKeyword or py like @searchKe
                     throw new FailedException("编码不可重复");
                 }
 
-                SysDiagnosisEntity oldEntity = null;   //变更前Entity
+                SysDiagnosisEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

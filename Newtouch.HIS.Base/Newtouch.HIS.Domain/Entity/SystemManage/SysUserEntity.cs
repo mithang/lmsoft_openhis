@@ -5,54 +5,54 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统（登录）用户
+    /// Người dùng hệ thống (đăng nhập)
     /// </summary>
     [Table("Sys_User")]
     public class SysUserEntity : IEntity<SysUserEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// Id tổ chức (cấp cao nhất, cấu hình hệ thống)
         /// </summary>
         public string TopOrganizeId { get; set; }
 
         /// <summary>
-        /// 登录账户
+        /// Tài khoản đăng nhập
         /// </summary>
         public string Account { get; set; }
 
         /// <summary>
-        /// 语言类型：en英文
+        /// Loại ngôn ngữ: en tiếng Anh
         /// </summary>
         public string LanguageType { get; set; }
 
         /// <summary>
-        /// 排序码
+        /// Mã sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// Người dùng tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối cùng
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// Người dùng sửa đổi cuối cùng
         /// </summary>
         public string LastModifierCode { get; set; }
 

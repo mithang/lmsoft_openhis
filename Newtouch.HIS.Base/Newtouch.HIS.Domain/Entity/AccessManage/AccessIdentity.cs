@@ -10,41 +10,41 @@ namespace Newtouch.HIS.Domain.Entity
     {
         public string RegCode { get; set; }
         /// <summary>
-        /// 注册名称
+        /// Tên đăng ký
         /// </summary>
         public string RegName { get; set; }
 
         /// <summary>
-        /// 权限等级 AuthorizedLevEnum
+        /// Cấp độ quyền AuthorizedLevEnum
         /// </summary>
         public string AuthorizedLev { get; set; }
         /// <summary>
-        /// 授权期限 AuthorizedPeriod
+        /// Thời hạn ủy quyền AuthorizedPeriod
         /// </summary>
         public string AuthorizedPeriod { get; set; }
         public DateTime? Timestamp { get; set; }
         /// <summary>
-        /// 密钥
+        /// Khóa bí mật
         /// </summary>
         public string accesskey { get; set; }
         public List<AccessAuth> authlist { get; set; }
         //
-        // 摘要:
-        //     应用Id
+        // Tóm tắt:
+        //     Id ứng dụng
         public string AppId { get; set; }
         //
-        // 摘要:
-        //     令牌类型（用户类型）
+        // Tóm tắt:
+        //     Loại token (loại người dùng)
         public string TokenType { get; set; }
         //
-        // 摘要:
-        //     用户Id
+        // Tóm tắt:
+        //     Id người dùng
         public string UserId { get; set; }
         public string UserCode { get; set; }
         public string UserName { get; set; }
         //
-        // 摘要:
-        //     用户账户
+        // Tóm tắt:
+        //     Tài khoản người dùng
         public string Account { get; set; }
         public string OrganizeId { get; set; }
     }

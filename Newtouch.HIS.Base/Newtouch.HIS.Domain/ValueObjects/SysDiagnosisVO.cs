@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 系统诊断
+    /// Chẩn đoán hệ thống
     /// </summary>
     [NotMapped]
     public class SysDiagnosisVO : SysDiagnosisEntity
     {
         /// <summary>
-        /// 是否允许编辑
+        /// Có cho phép chỉnh sửa hay không
         /// </summary>
         public bool AllowEdit { get; set; }
     }

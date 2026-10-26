@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 查找科室病区绑定信息
+        /// Tìm thông tin liên kết khu bệnh của khoa
         /// </summary>
         /// <param name="deptId"></param>
         /// <returns></returns>

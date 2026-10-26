@@ -9,21 +9,21 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysNationRepo : IRepositoryBase<SysNationEntity>
     {
         /// <summary>
-        /// 获取所有
+        /// Lấy tất cả
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         IList<SysNationEntity> GetList(string keyword);
 
         /// <summary>
-        /// 获取实体数据
+        /// Lấy dữ liệu thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         SysNationEntity GetForm(int keyValue);
 
         /// <summary>
-        /// 提交保存
+        /// Gửi để lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>

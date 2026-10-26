@@ -10,11 +10,11 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class SysChargeItemVO : SysChargeItemEntity
     {
         /// <summary>
-        /// 是否允许编辑
+        /// Có cho phép chỉnh sửa hay không
         /// </summary>
         public string sfdlmc { get; set; }
         /// <summary>
-        /// 是否同步医保
+        /// Có đồng bộ bảo hiểm y tế hay không
         /// </summary>
         public string isSynch { get; set; }
         public string gjybmc { get; set; }

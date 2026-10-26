@@ -4,25 +4,25 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 菜单App
+    /// App menu
     /// </summary>
     public interface IModuleApp
     {
         /// <summary>
-        /// 获取有效菜单列表
+        /// Lấy danh sách menu có hiệu lực
         /// </summary>
         /// <returns></returns>
         List<SysModuleEntity> GetValidList();
 
         /// <summary>
-        /// 获取实体
+        /// Lấy thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         SysModuleEntity GetForm(string keyValue);
 
         /// <summary>
-        /// 删除菜单
+        /// Xóa menu
         /// </summary>
         /// <param name="keyValue"></param>
         void DeleteForm(string keyValue);

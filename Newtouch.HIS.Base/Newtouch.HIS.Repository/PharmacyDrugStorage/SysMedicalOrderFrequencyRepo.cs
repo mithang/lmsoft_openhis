@@ -20,19 +20,19 @@ namespace Newtouch.HIS.Repository
 
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         public void SubmitForm(SysMedicalOrderFrequencyEntity entity, int? yzpcId)
         {
             if (yzpcId != null && yzpcId > 0)
             {
-                //Code重复判断
+                //Kiểm tra trùng lặp Code
                 if (this.IQueryable().Any(a => a.yzpcCode == entity.yzpcCode && a.OrganizeId == entity.OrganizeId && a.yzpcId != yzpcId))
                 {
                     throw new FailedException("编码不可重复");
                 }
 
-                SysMedicalOrderFrequencyEntity oldEntity = null;   //变更前Entity
+                SysMedicalOrderFrequencyEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(yzpcId.Value);
                 this.DetacheEntity(oldEntity);
 
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Repository
             }
             else
             {
-                //Code重复判断
+                //Kiểm tra trùng lặp Code
                 if (this.IQueryable().Any(a => a.yzpcCode == entity.yzpcCode && a.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("编码不可重复");
@@ -60,7 +60,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获得所有列表
+        /// Lấy tất cả danh sách
         /// </summary>
         public List<SysMedicalOrderFrequencyEntity> GetOrderFrequencyList(string orgId, string keyword = null)
         {
@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 修改form
+        /// Sửa đổi form
         /// </summary>
         public SysMedicalOrderFrequencyEntity GetOrderFrequencyEntity(int? yzpcId,string orgId)
         {
@@ -86,7 +86,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         public void DeleteForm(string orgId, int yzpcId)
         {

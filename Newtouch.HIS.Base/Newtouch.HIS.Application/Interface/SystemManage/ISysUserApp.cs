@@ -29,16 +29,16 @@ namespace Newtouch.HIS.Application.Interface
         void UpdateUserZT(SysUserEntity userEntity);
 
         /// <summary>
-        /// 为组织机构创建一个系统管理员 admin
+        /// Tạo một quản trị viên hệ thống admin cho tổ chức
         /// </summary>
         /// <param name="userPassword"></param>
         void CreateDefaultAdminToOrg(string topOrgId, string userPassword);
 
         /// <summary>
-        /// 微软SSO登录(邮箱)
+        /// Đăng nhập SSO của Microsoft (email)
         /// </summary>
-        /// <param name="userId">用户ID</param>
-        /// <param name="organizeId">机构ID</param>
+        /// <param name="userId">ID người dùng</param>
+        /// <param name="organizeId">ID tổ chức</param>
         /// <returns></returns>
         SysUserEntity MsSsoLogin(string userId, string organizeId);
     }

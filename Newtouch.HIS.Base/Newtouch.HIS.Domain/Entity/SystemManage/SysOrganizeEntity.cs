@@ -11,28 +11,28 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysOrganizeEntity : IEntity<SysOrganizeEntity>
     {
         /// <summary>
-        /// 组织主键
+        /// Khóa chính tổ chức
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 父级
+        /// Cấp cha
         /// </summary>
         public string ParentId { get; set; }
 
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// Id tổ chức (cấp cao nhất, cấu hình hệ thống)
         /// </summary>
         public string TopOrganizeId { get; set; }
 
         /// <summary>
-        /// 名称
+        /// Tên
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 编码
+        /// Mã
         /// </summary>
         public string Code { get; set; }
 
@@ -42,32 +42,32 @@ namespace Newtouch.HIS.Domain.Entity
         public string ShortName { get; set; }
 
         /// <summary>
-        /// 分类
+        /// Phân loại
         /// </summary>
         public string CategoryCode { get; set; }
 
         /// <summary>
-        /// 负责人
+        /// Người phụ trách
         /// </summary>
         public string ManagerCode { get; set; }
 
         /// <summary>
-        /// 电话
+        /// Điện thoại
         /// </summary>
         public string TelePhone { get; set; }
 
         /// <summary>
-        /// 微信
+        /// WeChat
         /// </summary>
         public string WeChat { get; set; }
 
         /// <summary>
-        /// 传真
+        /// Fax
         /// </summary>
         public string Fax { get; set; }
 
         /// <summary>
-        /// 邮箱
+        /// Email
         /// </summary>
         public string Email { get; set; }
 
@@ -77,37 +77,37 @@ namespace Newtouch.HIS.Domain.Entity
         public string AreaId { get; set; }
 
         /// <summary>
-        /// 联系地址
+        /// Địa chỉ liên hệ
         /// </summary>
         public string Address { get; set; }
 
         /// <summary>
-        /// 描述
+        /// Mô tả
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// Người dùng tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối cùng
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// Người dùng sửa đổi cuối cùng
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 排序码
+        /// Mã sắp xếp
         /// </summary>
         public int? px { get; set; }
 
@@ -116,7 +116,7 @@ namespace Newtouch.HIS.Domain.Entity
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// 国家机构代码
+        /// Mã cơ sở quốc gia
         /// </summary>
         public string gjjgdm { get; set; }
         

@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string py { get; set; }
 
         /// <summary>
-        /// 0 通用 1 门诊 2住院
+        /// 0 Chung 1 Ngoại trú 2 Nội trú
         /// </summary>
         public string mzzybz { get; set; }
 

@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取UserId关联RoleId
+        /// Lấy RoleId liên kết với UserId
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>

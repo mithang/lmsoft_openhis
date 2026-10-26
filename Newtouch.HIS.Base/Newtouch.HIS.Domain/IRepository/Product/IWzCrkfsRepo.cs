@@ -3,12 +3,12 @@
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 出入库方式
+    /// Phương thức nhập/xuất kho
     /// </summary>
     public interface IWzCrkfsRepo : IRepositoryBase<WzCrkfsEntity>
     {
         /// <summary>
-        /// 根据ID删除出入库方式
+        /// Xóa phương thức nhập/xuất kho theo ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

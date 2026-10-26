@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysUserRoleRepo : IRepositoryBase<SysUserRoleEntity>
     {
         /// <summary>
-        /// 获取UserId关联RoleId
+        /// Lấy RoleId liên kết với UserId
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>

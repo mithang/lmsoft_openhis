@@ -15,7 +15,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.DomainServices
 {
 	/// <summary>
-	/// 药品信息
+	/// Thông tin thuốc
 	/// </summary>
 	public class SysMedicineDmnService : DmnServiceBase, ISysMedicineDmnService
 	{
@@ -37,7 +37,7 @@ namespace Newtouch.HIS.DomainServices
 		}
 
 		/// <summary>
-		/// 获取当前组织下的系统药品信息
+		/// Lấy thông tin thuốc hệ thống thuộc tổ chức hiện tại
 		/// </summary>
 		/// <returns></returns>
 		public IList<SysMedicineVO> GetPaginationList(string organizeId, Pagination pagination, string zt, string ypflCode,string keyword = null)
@@ -94,7 +94,7 @@ namespace Newtouch.HIS.DomainServices
 
 
 		/// <summary>
-		/// 获取当前组织下的系统药品信息
+		/// Lấy thông tin thuốc hệ thống thuộc tổ chức hiện tại
 		/// </summary>
 		/// <returns></returns>
 		public IList<SysMedicineVO> GetPaginationListdm(string organizeId, Pagination pagination, string type, string keyword = null)
@@ -152,7 +152,7 @@ namespace Newtouch.HIS.DomainServices
 
 			return this.QueryWithPage<SysMedicineVO>(sql, pagination, par);
 		}
-        /// 目录对照查询
+        /// Truy vấn đối chiếu danh mục
 		/// </summary>
 		/// <returns></returns>
 		public IList<SysMedicineMldzxxVO> GetPaginationListMldzxx(string organizeId, Pagination pagination, string type, string keyword = null)
@@ -266,7 +266,7 @@ left join  xt_mldz mldz on xm.sfxmCode=mldz.code
             return this.QueryWithPage<SysMedicineMldzxxVO>(sql, pagination, par);
         }
         /// <summary>
-        /// 查询医保药品信息
+        /// Truy vấn thông tin thuốc bảo hiểm y tế
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="ypmc"></param>
@@ -390,14 +390,14 @@ from G_yb_wm_tcmpat_info_b
 				
 			//if (!string.IsNullOrEmpty(py))
 			//{
-			//	sql += "  and 注册名称 like @ypmc";
+			//	sql += "  and Tên đăng ký like @ypmc";
 			//	pars.Add(new SqlParameter("@ypmc", "%" + ypmc + "%"));
 			//}
 			return this.FindList<G_yb_ypxxVO>(sql, pars.ToArray());
 		}
 
 		/// <summary>
-		/// 保存药品医保对码
+		/// Lưu đối mã bảo hiểm y tế của thuốc
 		/// </summary>
 		/// <param name="ybxx"></param>
 		/// <param name="ypid"></param>
@@ -419,7 +419,7 @@ from G_yb_wm_tcmpat_info_b
 					}
 					if (!string.IsNullOrEmpty(ybxx.jyl))
 					{
-						ypsxEntity.ybbz = "1";//存在国家医保代码 不查看药品本身属性 直接默认医保
+						ypsxEntity.ybbz = "1";//Nếu có mã bảo hiểm y tế quốc gia thì không xem thuộc tính của bản thân thuốc mà mặc định trực tiếp là bảo hiểm y tế
 						ypEntity.zfxz = EnumZFXZv2.J.GetDescription().Contains(ybxx.jyl) ? "4" : EnumZFXZv2.Y.GetDescription().Contains(ybxx.jyl) ? "5" : EnumZFXZv2.B.GetDescription().Contains(ybxx.jyl) ? "6" : "1";
 					}
 
@@ -435,7 +435,7 @@ from G_yb_wm_tcmpat_info_b
 		}
 
 		/// <summary>
-		/// 查询系统材料信息
+		/// Truy vấn thông tin vật liệu hệ thống
 		/// </summary>
 		/// <param name="organizeId"></param>
 		/// <param name="pagination"></param>
@@ -489,7 +489,7 @@ from G_yb_wm_tcmpat_info_b
 		}
 
 		/// <summary>
-		/// 查询医保材料信息 根据系统材料信息
+		/// Truy vấn thông tin vật liệu bảo hiểm y tế theo thông tin vật liệu hệ thống
 		/// </summary>
 		/// <param name="organizeId"></param>
 		/// <param name="ypmc"></param>
@@ -542,7 +542,7 @@ from gb_clxx )a where 1=1 ";
 					
 					break;
 				case "2":
-					//医保下载目录
+					//Tải xuống danh mục bảo hiểm y tế
 					sql = @"select top 200 * from(
 select 
 MED_LIST_CODG hcdm
@@ -585,7 +585,7 @@ from G_yb_mcs_info_b )a where 1=1 ";
 			return this.FindList<G_yb_clxxVO>(sql, pars.ToArray());
 		}
 		/// <summary>
-		/// 保存材料对码
+		/// Lưu đối mã vật liệu
 		/// </summary>
 		/// <param name="ybxx"></param>
 		/// <param name="ypid"></param>
@@ -628,7 +628,7 @@ from G_yb_mcs_info_b )a where 1=1 ";
 
 
 		/// <summary>
-		/// 查询系统项目信息
+		/// Truy vấn thông tin hạng mục hệ thống
 		/// </summary>
 		/// <param name="organizeId"></param>
 		/// <param name="pagination"></param>
@@ -680,7 +680,7 @@ from G_yb_mcs_info_b )a where 1=1 ";
 			return this.QueryWithPage<SysChargeItemEntity>(sql, pagination, par);
 		}
 		/// <summary>
-		/// 查询医保项目信息 根据系统项目信息
+		/// Truy vấn thông tin hạng mục bảo hiểm y tế theo thông tin hạng mục hệ thống
 		/// </summary>
 		/// <param name="organizeId"></param>
 		/// <param name="ypmc"></param>
@@ -709,7 +709,7 @@ select
 ,ybxz
 ,pym
 from gb_sfxm)a where 1=1 ";
-					// 原视图
+					// View gốc
 					if (!string.IsNullOrEmpty(gjybdm))
 					{
 						sql +=
@@ -720,7 +720,7 @@ from gb_sfxm)a where 1=1 ";
 					break;
 
 				case "2":
-					// 医保目录
+					// Danh mục bảo hiểm y tế
 					sql = @"select top 200 * from(
 select
 YLML_CODE jscsbm
@@ -748,7 +748,7 @@ from G_yb_ylfuxm_new_list_b)a where 1=1 ";
 		}
 
 		/// <summary>
-		/// 保存项目对码
+		/// Lưu đối mã hạng mục
 		/// </summary>
 		/// <param name="ybxx"></param>
 		/// <param name="ypid"></param>
@@ -785,7 +785,7 @@ from G_yb_ylfuxm_new_list_b)a where 1=1 ";
 		}
 
 		/// <summary>
-		/// 获取系统人员信息
+		/// Lấy thông tin nhân viên hệ thống
 		/// </summary>
 		/// <param name="keyValue"></param>
 		/// <returns></returns>
@@ -812,7 +812,7 @@ WHERE x.ypId =@ypId
         }
 
         /// <summary>
-        /// 获取系统人员信息
+        /// Lấy thông tin nhân viên hệ thống
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="organizeId"></param>
@@ -841,7 +841,7 @@ AND x.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 新增药品信息以及药品熟悉信息表
+        /// Thêm thông tin thuốc và bảng thông tin thuộc tính thuốc
         /// </summary>
         /// <param name="model"></param>
         /// <param name="ypId"></param>
@@ -851,7 +851,7 @@ AND x.OrganizeId=@OrganizeId
             {
 	            if (!model.OrganizeId.Equals("*"))
 	            { model.ypId = ypId.Value;
-		            //更新
+		            //Cập nhật
 		            using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
 		            {
 			            var ypEntity = db.IQueryable<SysMedicineEntity>().FirstOrDefault(p => p.ypId == model.ypId);
@@ -860,7 +860,7 @@ AND x.OrganizeId=@OrganizeId
 			            var oldypEntity = ypEntity.Clone();
 			            var oldypsxEntity = ypsxEntity.Clone();
 
-			            model.OrganizeId = ypEntity.OrganizeId;//组织 机构 不能变
+			            model.OrganizeId = ypEntity.OrganizeId;//Tổ chức, cơ sở không được thay đổi
 			            UpdateEnityProperties(ypEntity, ypsxEntity, model);
 
 			            ypEntity.Modify();
@@ -881,13 +881,13 @@ AND x.OrganizeId=@OrganizeId
 		            model.ypId = ypId.Value;
 		            using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
 		            {
-			            //系统基础库更新
+			            //Cập nhật thư viện cơ sở hệ thống
 			            var ypEntity = db.IQueryable<SysMedicineBaseEntity>().FirstOrDefault(p => p.ypId == ypId);
 			            var ypsxEntity = db.IQueryable<SysMedicinePropertyBaseEntity>().FirstOrDefault(p => p.ypId == ypId);
 			            ypEntity.pfj = model.pfj;
 			            var oldypEntity = ypEntity.Clone();
 			            var oldypsxEntity = ypsxEntity.Clone();
-			            model.OrganizeId = ypEntity.OrganizeId;//组织 机构 不能变
+			            model.OrganizeId = ypEntity.OrganizeId;//Tổ chức, cơ sở không được thay đổi
 			            UpdateEnityProperties(ypEntity,ypsxEntity, model);
 			            ypEntity.Modify();
 			            ypsxEntity.Modify();
@@ -903,17 +903,17 @@ AND x.OrganizeId=@OrganizeId
             }
             else
             {
-                //新增
+                //Thêm mới
                 if (model.OrganizeId.Equals("*"))
                 {
 	                model.ypId = _sysMedicineBaseRepository.GetBaseLastYpId() + 1;
 	                var ypEntity = new SysMedicineBaseEntity();
 	                var ypsxEntity = new SysMedicinePropertyBaseEntity();
-	                //在系统基础库插入插入药品
+	                //Chèn thuốc vào thư viện cơ sở hệ thống
 	                UpdateEnityBaseProperties(ypEntity, ypsxEntity, model);
 	                ypEntity.Create(); ;
 	                 _sysMedicineBaseRepository.Insert(ypEntity);
-	                //插入药品属性
+	                //Chèn thuộc tính thuốc
 	                ypsxEntity.ypId = ypEntity.ypId;
 	                ypsxEntity.Create();
 	                _sysMedicinePropertyBaseRepo.Insert(ypsxEntity);
@@ -923,11 +923,11 @@ AND x.OrganizeId=@OrganizeId
 	                model.ypId = 0;
 	                var ypEntity = new SysMedicineEntity();
 	                var ypsxEntity = new SysMedicinePropertyEntity();
-	                //插入药品
+	                //Chèn thuốc
 	                UpdateEnityProperties(ypEntity, ypsxEntity, model);
 	                ypEntity.Create();
 	                _sysMedicineRepository.Insert(ypEntity);
-	                //插入药品属性
+	                //Chèn thuộc tính thuốc
 	                ypsxEntity.ypId = ypEntity.ypId;
 	                ypsxEntity.Create();
 	                _sysMedicinePropertyRepo.Insert(ypsxEntity);
@@ -937,7 +937,7 @@ AND x.OrganizeId=@OrganizeId
             }
         }
         /// <summary>
-        /// 医保同步修改最后上传时间
+        /// Thời gian tải lên cuối cùng khi đồng bộ sửa đổi bảo hiểm y tế
         /// </summary>
         /// <param name="ypId"></param>
         /// <returns></returns>
@@ -971,7 +971,7 @@ AND x.OrganizeId=@OrganizeId
         #region private methods
 
         /// <summary>
-        /// 拼装值
+        /// Giá trị ghép
         /// </summary>
         /// <param name="ypEntity"></param>
         /// <param name="ypsxEntity"></param>
@@ -981,7 +981,7 @@ AND x.OrganizeId=@OrganizeId
             #region 药品信息表值
             modelyp.bzdw = model.bzdw;
             modelyp.bzs = model.bzs;
-            modelyp.cfdw = "";//默认
+            modelyp.cfdw = "";//Mặc định
             modelyp.cfl = decimal.Parse("0.0000");
             //modelyp.cldw = model.cldw;
             //modelyp.cls = model.cls;
@@ -989,28 +989,28 @@ AND x.OrganizeId=@OrganizeId
             modelyp.dlCode = model.dlCode;
             modelyp.jl = model.jl;
             modelyp.jldw = model.jldw; ;
-            modelyp.jx = model.jx;//( or liek ) and bgbz='0' and zt='1' 根据代码/姓名/首拼获取剂型信息获得
+            modelyp.jx = model.jx;//( or liek ) and bgbz='0' and zt='1' Lấy thông tin dạng bào chế theo mã/tên/chữ đầu pinyin
             modelyp.lsj = model.lsj;
-            modelyp.medextid = 0;//默认
-            modelyp.medid = 0;//默认
+            modelyp.medextid = 0;//Mặc định
+            modelyp.medid = 0;//Mặc định
             modelyp.mzcldw = model.mzcldw;
             modelyp.mzcls = model.mzcls;
-            modelyp.mzzybz = "1";//门诊住院标志默认1
+            modelyp.mzzybz = "1";//Cờ ngoại trú/nội trú mặc định là 1
             modelyp.nbdl = model.nbdl;
             modelyp.pfj = model.pfj;
             modelyp.px = model.px;
             modelyp.py = model.py;
             modelyp.spm = model.spm;
-            modelyp.OrganizeId = model.OrganizeId;    //组织机构Id
+            modelyp.OrganizeId = model.OrganizeId;    //Id tổ chức
             modelyp.ycmc = model.ycmc;
-            modelyp.ypbzdm = model.ypbzdm;//药品包装代码默认3
+            modelyp.ypbzdm = model.ypbzdm;//Mã đóng gói thuốc mặc định là 3
             modelyp.bz = model.bz;
-            modelyp.cxjje = model.cxjje;//超限价金额
+            modelyp.cxjje = model.cxjje;//Số tiền vượt giá giới hạn
             modelyp.ypId = model.ypId;
             modelyp.ypCode = model.ypCode;
             modelyp.ypmc = model.ypmc;
-            modelyp.yphz = "";//默认
-            modelyp.ypqz = "";//默认
+            modelyp.yphz = "";//Mặc định
+            modelyp.ypqz = "";//Mặc định
             modelyp.zfbl = model.zfbl;
             modelyp.zfxz = model.zfxz;
             modelyp.zt = model.zt;
@@ -1024,7 +1024,7 @@ AND x.OrganizeId=@OrganizeId
 			#endregion
 
 			#region 药品SX值
-			modelypsx.OrganizeId = model.OrganizeId;    //组织机构Id
+			modelypsx.OrganizeId = model.OrganizeId;    //Id tổ chức
             modelypsx.dczdjl = model.dczdjl;
             modelypsx.dczdsl = model.dczdsl;
             modelypsx.ghdw = model.ghdw;
@@ -1076,7 +1076,7 @@ AND x.OrganizeId=@OrganizeId
             #region 药品信息表值
             modelyp.bzdw = model.bzdw;
             modelyp.bzs = model.bzs;
-            modelyp.cfdw = "";//默认
+            modelyp.cfdw = "";//Mặc định
             modelyp.cfl = decimal.Parse("0.0000");
             //modelyp.cldw = model.cldw;
             //modelyp.cls = model.cls;
@@ -1084,28 +1084,28 @@ AND x.OrganizeId=@OrganizeId
             modelyp.dlCode = model.dlCode;
             modelyp.jl = model.jl;
             modelyp.jldw = model.jldw; ;
-            modelyp.jx = model.jx;//( or liek ) and bgbz='0' and zt='1' 根据代码/姓名/首拼获取剂型信息获得
+            modelyp.jx = model.jx;//( or liek ) and bgbz='0' and zt='1' Lấy thông tin dạng bào chế theo mã/tên/chữ đầu pinyin
             modelyp.lsj = model.lsj;
-            modelyp.medextid = 0;//默认
-            modelyp.medid = 0;//默认
+            modelyp.medextid = 0;//Mặc định
+            modelyp.medid = 0;//Mặc định
             modelyp.mzcldw = model.mzcldw;
             modelyp.mzcls = model.mzcls;
-            modelyp.mzzybz = "1";//门诊住院标志默认1
+            modelyp.mzzybz = "1";//Cờ ngoại trú/nội trú mặc định là 1
             modelyp.nbdl = model.nbdl;
             modelyp.pfj = model.pfj;
             modelyp.px = model.px;
             modelyp.py = model.py;
             modelyp.spm = model.spm;
-            modelyp.OrganizeId = model.OrganizeId;    //组织机构Id
+            modelyp.OrganizeId = model.OrganizeId;    //Id tổ chức
             modelyp.ycmc = model.ycmc;
-            modelyp.ypbzdm = model.ypbzdm;//药品包装代码默认3
+            modelyp.ypbzdm = model.ypbzdm;//Mã đóng gói thuốc mặc định là 3
             modelyp.bz = model.bz;
-            modelyp.cxjje = model.cxjje;//超限价金额
+            modelyp.cxjje = model.cxjje;//Số tiền vượt giá giới hạn
             modelyp.ypId = model.ypId;
             modelyp.ypCode = model.ypCode;
             modelyp.ypmc = model.ypmc;
-            modelyp.yphz = "";//默认
-            modelyp.ypqz = "";//默认
+            modelyp.yphz = "";//Mặc định
+            modelyp.ypqz = "";//Mặc định
             modelyp.zfbl = model.zfbl;
             modelyp.zfxz = model.zfxz;
             modelyp.zt = model.zt;
@@ -1119,7 +1119,7 @@ AND x.OrganizeId=@OrganizeId
 			#endregion
 
 			#region 药品SX值
-			modelypsx.OrganizeId = model.OrganizeId;    //组织机构Id
+			modelypsx.OrganizeId = model.OrganizeId;    //Id tổ chức
             modelypsx.dczdjl = model.dczdjl;
             modelypsx.dczdsl = model.dczdsl;
             modelypsx.ghdw = model.ghdw;
@@ -1170,7 +1170,7 @@ AND x.OrganizeId=@OrganizeId
 		#endregion
 
 		/// <summary>
-		/// 获取药品系数
+		/// Lấy hệ số thuốc
 		/// </summary>
 		/// <param name="name"></param>
 		/// <returns></returns>
@@ -1185,7 +1185,7 @@ AND x.OrganizeId=@OrganizeId
 
 
         /// <summary>
-        /// 根据查询药品用法
+        /// Truy vấn cách dùng thuốc theo truy vấn
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -1197,7 +1197,7 @@ AND x.OrganizeId=@OrganizeId
             });
         }
 
-        //药品用法
+        //Cách dùng thuốc
         public IList<SysMedicineUsageEntity> GetUsageFloat(string keyword)
         {
             var sql = @"select * from xt_ypyf(nolock) where zt = '1' and (yfCode like @searchKeyword or yfmc like @searchKeyword or py like @searchKeyword) order by py asc";
@@ -1210,7 +1210,7 @@ AND x.OrganizeId=@OrganizeId
             #region 药品信息表值
             modelyp.bzdw = model.bzdw;
             modelyp.bzs = model.bzs;
-            modelyp.cfdw = "";//默认
+            modelyp.cfdw = "";//Mặc định
             modelyp.cfl = decimal.Parse("0.0000");
             //modelyp.cldw = model.cldw;
             //modelyp.cls = model.cls;
@@ -1218,28 +1218,28 @@ AND x.OrganizeId=@OrganizeId
             modelyp.dlCode = model.dlCode;
             modelyp.jl = model.jl;
             modelyp.jldw = model.jldw; ;
-            modelyp.jx = model.jx;//( or liek ) and bgbz='0' and zt='1' 根据代码/姓名/首拼获取剂型信息获得
+            modelyp.jx = model.jx;//( or liek ) and bgbz='0' and zt='1' Lấy thông tin dạng bào chế theo mã/tên/chữ đầu pinyin
             modelyp.lsj = model.lsj;
-            modelyp.medextid = 0;//默认
-            modelyp.medid = 0;//默认
+            modelyp.medextid = 0;//Mặc định
+            modelyp.medid = 0;//Mặc định
             modelyp.mzcldw = model.mzcldw;
             modelyp.mzcls = model.mzcls;
-            modelyp.mzzybz = "1";//门诊住院标志默认1
+            modelyp.mzzybz = "1";//Cờ ngoại trú/nội trú mặc định là 1
             modelyp.nbdl = model.nbdl;
             modelyp.pfj = model.pfj;
             modelyp.px = model.px;
             modelyp.py = model.py;
             modelyp.spm = model.spm;
-            modelyp.OrganizeId = model.OrganizeId;    //组织机构Id
+            modelyp.OrganizeId = model.OrganizeId;    //Id tổ chức
             modelyp.ycmc = model.ycmc;
-            modelyp.ypbzdm = model.ypbzdm;//药品包装代码默认3
+            modelyp.ypbzdm = model.ypbzdm;//Mã đóng gói thuốc mặc định là 3
             modelyp.bz = model.bz;
-            modelyp.cxjje = model.cxjje;//超限价金额
+            modelyp.cxjje = model.cxjje;//Số tiền vượt giá giới hạn
             modelyp.ypId = model.ypId;
             modelyp.ypCode = model.ypCode;
             modelyp.ypmc = model.ypmc;
-            modelyp.yphz = "";//默认
-            modelyp.ypqz = "";//默认
+            modelyp.yphz = "";//Mặc định
+            modelyp.ypqz = "";//Mặc định
             modelyp.zfbl = model.zfbl;
             modelyp.zfxz = model.zfxz;
             modelyp.zt = model.zt;
@@ -1253,7 +1253,7 @@ AND x.OrganizeId=@OrganizeId
 			#endregion
 
 			#region 药品SX值
-			modelypsx.OrganizeId = model.OrganizeId;    //组织机构Id
+			modelypsx.OrganizeId = model.OrganizeId;    //Id tổ chức
             modelypsx.dczdjl = model.dczdjl;
             modelypsx.dczdsl = model.dczdsl;
             modelypsx.ghdw = model.ghdw;

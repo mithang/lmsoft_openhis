@@ -4,15 +4,15 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 字典、字典项 DmnService
+    /// Từ điển, mục từ điển DmnService
     /// </summary>
     public interface IItemDmnService
     {
         /// <summary>
-        /// 获取有效字典项 列表
+        /// Lấy danh sách mục từ điển có hiệu lực
         /// </summary>
         /// <param name="code"></param>
-        /// <param name="orgId">医疗机构，null仅查共享的</param>
+        /// <param name="orgId">Cơ sở y tế, null chỉ tra cứu các mục dùng chung</param>
         /// <returns></returns>
         IList<SysItemsDetailEntity> GetValidListByItemCode(string code,string keyword, string orgId = null);
 

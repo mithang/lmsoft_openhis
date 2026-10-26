@@ -61,13 +61,13 @@ namespace Newtouch.HIS.Repository
         {
             if (!string.IsNullOrWhiteSpace(keyValue))
             {
-                //Code重复判断
+                //Kiểm tra trùng lặp Code
                 if (this.IQueryable().Any(p => p.Code == entity.Code && p.Id != keyValue))
                 {
                     throw new FailedException("编码不可重复");
                 }
 
-                SysDutyEntity oldEntity = null;   //变更前Entity
+                SysDutyEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(keyValue);
                 this.DetacheEntity(oldEntity);
 
@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Repository
             }
             else
             {
-                //Code重复判断
+                //Kiểm tra trùng lặp Code
                 if (this.IQueryable().Any(p => p.Code == entity.Code))
                 {
                     throw new FailedException("编码不可重复");

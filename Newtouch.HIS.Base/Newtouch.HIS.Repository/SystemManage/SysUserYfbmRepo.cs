@@ -25,9 +25,9 @@ namespace Newtouch.HIS.Repository
         {
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
-                //先 del
+                //Xóa trước
                 db.Delete<SysUserYfbmEntity>(p => p.UserId == userId);
-                //再添加
+                //Thêm lại
                 var yfbmCodeArr = (yfbmCode ?? "").Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var YfbmCode in yfbmCodeArr)
                 {

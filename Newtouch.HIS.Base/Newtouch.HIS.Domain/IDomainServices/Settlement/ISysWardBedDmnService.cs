@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.Settlement
     public interface ISysWardBedDmnService
     {
         /// <summary>
-        /// 获得所有列表、修改form
+        /// Lấy tất cả danh sách, sửa đổi form
         /// </summary>
         List<SysWardBedVO> GetWardBedList(int? cwId, string orgId = null, string keyword = null);
 

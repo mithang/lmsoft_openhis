@@ -12,7 +12,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Base.Controllers
 {
     /// <summary>
-    /// 系统诊断
+    /// Chẩn đoán hệ thống
     /// </summary>
     public class SysDiagnosisController : ControllerBase
     {

@@ -9,15 +9,15 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IGzybCodeContrastRepo : IRepositoryBase<GzybCodeContrastEntity>
     {
         /// <summary>
-        /// 判断是否存在该数据
+        /// Xác định dữ liệu đó có tồn tại hay không
         /// </summary>
-        /// <param name="aaa100">代码类别</param>
-        /// <param name="aaa102">代码值</param>
+        /// <param name="aaa100">Danh mục mã</param>
+        /// <param name="aaa102">Giá trị mã</param>
         /// <returns></returns>
         bool Exist(string aaa100, string aaa102);
 
         /// <summary>
-        /// 写入数据
+        /// Ghi dữ liệu
         /// </summary>
         /// <param name="entity"></param>
         bool InsertInfo(GzybCodeContrastEntity entity);

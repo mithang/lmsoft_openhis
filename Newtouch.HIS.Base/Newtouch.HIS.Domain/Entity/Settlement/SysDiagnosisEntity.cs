@@ -82,7 +82,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// 诊断类型 对应字典   DiagnosisType
+        /// Loại chẩn đoán, tương ứng với từ điển   DiagnosisType
         /// </summary>
         public string zdlx { get; set; }
 
@@ -94,7 +94,7 @@ namespace Newtouch.HIS.Domain.Entity
 
         public string zdmc_yb { get; set; }
         /// <summary>
-        /// 慢性病
+        /// Bệnh mạn tính
         /// </summary>
         public string mxb { get; set; }
     }

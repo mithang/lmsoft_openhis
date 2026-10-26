@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 药房部门药品
+    /// Thuốc của phòng dược
     /// </summary>
     public interface ISysPharmacyDrugRepo : IRepositoryBase<SysPharmacyDepartmentOpenMedicineEntity>
     {

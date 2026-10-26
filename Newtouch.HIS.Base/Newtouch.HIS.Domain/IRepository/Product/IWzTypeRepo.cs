@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 物资类别
+    /// Danh mục vật tư
     /// </summary>
     public interface IWzTypeRepo : IRepositoryBase<WzTypeEntity>
     {

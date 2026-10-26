@@ -9,7 +9,7 @@ using System.Web.Http;
 namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
     /// <summary>
-    /// 系统收费大类
+    /// Nhóm thu phí lớn của hệ thống
     /// </summary>
     public class ChargeCategoryController : ApiController
     {

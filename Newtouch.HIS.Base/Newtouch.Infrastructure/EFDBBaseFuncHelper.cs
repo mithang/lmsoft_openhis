@@ -39,7 +39,7 @@ namespace Newtouch.Infrastructure
         {
             if (!dbType.HasValue)
             {
-                dbType = EnumDBFactoryType.NewtouchDBBase;  //默认
+                dbType = EnumDBFactoryType.NewtouchDBBase;  //Mặc định
             }
             IDatabaseFactory databaseFactory = null;
             switch (dbType)
@@ -53,7 +53,7 @@ namespace Newtouch.Infrastructure
 
         #region
         /// <summary>
-        /// 获取 字段/业务 唯一值
+        /// Lấy giá trị duy nhất của trường/nghiệp vụ
         /// </summary>
         /// <param name="fieldName"></param>
         /// <returns></returns>
@@ -94,7 +94,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 上下文 类型
+    /// Loại context
     /// </summary>
     public enum EnumDBFactoryType
     {

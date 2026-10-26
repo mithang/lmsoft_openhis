@@ -22,7 +22,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取贵州服务项目目录,最大流水号
+        /// Lấy danh mục hạng mục dịch vụ Quý Châu, số thứ tự lớn nhất
         /// </summary>
         /// <returns></returns>
         public int GetItemCodeMaxLsh()

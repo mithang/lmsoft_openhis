@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 隶属角色的用户信息
+    /// Thông tin người dùng thuộc vai trò
     /// </summary>
     public class RoleUserVO
     {

@@ -3,12 +3,12 @@
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 出入库方式
+    /// Phương thức nhập/xuất kho
     /// </summary>
     public interface IWzCrkfsApp
     {
         /// <summary>
-        /// 表单提交
+        /// Gửi biểu mẫu
         /// </summary>
         /// <param name="wzCrkfsEntity"></param>
         /// <param name="keyWord"></param>

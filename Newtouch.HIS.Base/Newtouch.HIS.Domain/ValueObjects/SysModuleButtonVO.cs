@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class SysModuleButtonVO : SysModuleButtonEntity
     {
         /// <summary>
-        /// 是否对Org开放
+        /// Có mở cho Org hay không
         /// </summary>
         public bool IsOpenToOrg { get; set; }
 

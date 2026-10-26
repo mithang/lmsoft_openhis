@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Base.SSO.Controllers
         [HttpGet]
         public virtual ActionResult Index()
         {
-            //写入客户端Id
+            //Ghi Id client
             WebHelper.WriteCookie(Constants.AppId + "_ClientId", Guid.NewGuid().ToString("N").ToLower());
 
             ViewBag.IsCheckChkCode = ConfigurationHelper.GetAppConfigBoolValue("Is_CheckChkCode");
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.Base.SSO.Controllers
             string code;
             var stream = new VerifyCode().GetVerifyCode(out code);
 
-            //验证码 5分钟内有效
+            //Mã xác minh có hiệu lực trong 5 phút
             RedisHelper.StringSet(clientId + "_chkCode", code, new TimeSpan(0, 5, 0));
 
             AppLogger.Info(string.Format("生成验证码：{0}", code));
@@ -103,7 +103,7 @@ namespace Newtouch.HIS.Base.SSO.Controllers
         [HandlerAjaxOnly]
         public ActionResult CheckLogin(string username, string password, string code)
         {
-            //登录日志Entity
+            //Entity nhật ký đăng nhập
             var logEntity = new SysLogEntity
             {
                 Id = Guid.NewGuid().ToString(),
@@ -119,7 +119,7 @@ namespace Newtouch.HIS.Base.SSO.Controllers
 
                 if (ConfigurationHelper.GetAppConfigBoolValue("Is_CheckChkCode") ?? true)
                 {
-                    //登录验证码 验证
+                    //Xác thực mã xác minh đăng nhập
                     var clientId = WebHelper.GetCookie(Constants.AppId + "_ClientId");
                     var chkCode = RedisHelper.StringGet(clientId + "_chkCode");
                     if (string.IsNullOrWhiteSpace(chkCode) || code.ToLower() != chkCode.ToLower())
@@ -133,7 +133,7 @@ namespace Newtouch.HIS.Base.SSO.Controllers
 
                 if (username == "root")
                 {
-                    if (password == Md5.md5(DateTime.Now.ToString("HHMMdd"), 32).ToLower())  //password是对的
+                    if (password == Md5.md5(DateTime.Now.ToString("HHMMdd"), 32).ToLower())  //password là đúng
                     {
                         userEntity = new SysUserEntity()
                         {
@@ -155,11 +155,11 @@ namespace Newtouch.HIS.Base.SSO.Controllers
                     var staffList = _sysUserDmnService.GetStaffListByUserId(userEntity.Id);
                     if (userEntity.Account != "root" && userEntity.Account != "admin")
                     {
-                        //root admin 不可以关联医院Id，建立了关联也无视
+                        //root admin không được liên kết Id bệnh viện, dù đã tạo liên kết cũng bỏ qua
                         staffList = _sysUserDmnService.GetStaffListByUserId(userEntity.Id);
                         if (staffList.Count == 0)
                         {
-                            //170904 如果尚未关联系统人员 视登录失败
+                            //170904 Nếu chưa liên kết nhân viên hệ thống thì coi là đăng nhập thất bại
                             throw new FailedException("登录失败，尚未关联系统人员");
                         }
                     }

@@ -9,7 +9,7 @@
     <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache,no-store, must-revalidate">
     <META HTTP-EQUIV="pragma" CONTENT="no-cache">
     <META HTTP-EQUIV="expires" CONTENT="0">
-    <title>医疗云HIS.BASE系统</title>
+    <title>Hệ thống y tế đám mây HIS.BASE</title>
     <link rel="shortcut icon" href="@SiteUrl.GetStaticResourceScriptUrl("~/img/newtouchcloud.ico")">
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
     <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/jquery/jquery.choose.js")"></script>
@@ -90,11 +90,11 @@
                                     <span class="hidden-xs">@OperatorProvider.GetCurrent().UserCode</span>
                                 </a>
                                 <ul class="dropdown-menu pull-right">
-                                    @*<li><a class="menuItem" data-id="userInfo" href="/SystemManage/User/Info"><i class="fa fa-user"></i>个人信息</a></li>
-                                    <li><a href="javascript:void();"><i class="fa fa-inbox"></i>我的信箱</a></li>*@
-                                    <li><a href="javascript:void();" onclick="layer.msg('浏览器缓存清除成功');"><i class="fa fa-trash-o"></i>清空缓存</a></li>
+                                    @*<li><a class="menuItem" data-id="userInfo" href="/SystemManage/User/Info"><i class="fa fa-user"></i>Thông tin cá nhân</a></li>
+                                    <li><a href="javascript:void();"><i class="fa fa-inbox"></i>Hộp thư của tôi</a></li>*@
+                                    <li><a href="javascript:void();" onclick="layer.msg('Xóa bộ nhớ đệm trình duyệt thành công');"><i class="fa fa-trash-o"></i>Xóa bộ nhớ đệm</a></li>
                                     <li>
-                                        <a href="javascript:void();"><i class="fa fa-paint-brush"></i>皮肤设置</a>
+                                        <a href="javascript:void();"><i class="fa fa-paint-brush"></i>Cài đặt giao diện</a>
                                         <div class="tab-pane" id="control-sidebar-home-tab">
                                         </div>
                                     </li>
@@ -102,14 +102,14 @@
                                         if (cookieLoginFlag == "SSO")
                                         {
                                             <li class="divider" style="margin: 0px 0;"></li>
-                                            <li><a href="~/Login/ReturnSSOHome"><i class="fa fa-undo"></i>返回首页</a></li>
+                                            <li><a href="~/Login/ReturnSSOHome"><i class="fa fa-undo"></i>Trả về trang chủ</a></li>
                                             <li class="divider" style="margin: 0px 0;"></li>
                                         }
                                         else {
                                             <li class="divider"></li>
                                         }
                                     }
-                                    <li><a href="~/Login/OutLogin"><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>
+                                    <li><a href="~/Login/OutLogin"><i class="ace-icon fa fa-power-off"></i>Thoát an toàn</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -129,38 +129,38 @@
                                         @OperatorProvider.GetCurrent().UserCode;@OperatorProvider.GetCurrent().UserName
                                     </span>
                                     <span class="status">
-                                        <i class="fa fa-circle"></i>在线
+                                        <i class="fa fa-circle"></i>Trực tuyến
                                     </span>
                                 </div>
                             </div>*@
                             <div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">
                                 @*<ul class="nav nav-pills nav-stacked">*@
                                     @*<li class="nav-header hidden-sm hidden-xs">
-                                        常用菜单
+                                        Menu thường dùng
                                         <i class="fa fa-gear" style="color: #868b98; font-size: 12px; margin-top: -6px; position: absolute; right: 23px; top: 50%; cursor: pointer;"></i>
                                     </li>
                                     <li class="common">
                                         <a href="#">
                                             <i class="fa fa-star-o"></i>
-                                            <span>联系人</span>
+                                            <span>Người liên hệ</span>
                                         </a>
                                     </li>
                                     <li class="common">
                                         <a href="#">
                                             <i class="fa fa-star-o"></i>
-                                            <span>合同</span>
+                                            <span>Hợp đồng</span>
                                         </a>
                                     </li>
                                     <li class="common">
                                         <a href="maps.html">
                                             <i class="fa fa-star-o"></i>
-                                            <span>产品</span>
+                                            <span>Sản phẩm</span>
                                         </a>
                                     </li>
                                     <li class="common">
                                         <a href="#">
                                             <i class="fa fa-star-o"></i>
-                                            <span>客户</span>
+                                            <span>Khách hàng</span>
                                         </a>
                                     </li>*@
                                 @*</ul>*@
@@ -168,63 +168,63 @@
                                     <li class="open">
                                         <a href="#" class="dropdown-toggle">
                                             <i class="fa fa-gears"></i>
-                                            <span>系统管理</span>
+                                            <span>Quản lý hệ thống</span>
                                             <i class="fa fa-angle-right drop-icon"></i>
                                         </a>
                                         <ul class="submenu" style="display: block; overflow: auto; height: auto;">
                                             <li>
-                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/ItemsData/Index" data-index="2">字典管理</a>
+                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/ItemsData/Index" data-index="2">Quản lý từ điển</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a href="#" class="dropdown-toggle">
                                             <i class="fa fa-gears"></i>
-                                            <span>组织机构</span>
+                                            <span>Tổ chức</span>
                                             <i class="fa fa-angle-right drop-icon"></i>
                                         </a>
                                         <ul class="submenu">
                                             <li>
-                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/Organize/Index" data-index="1">机构管理</a>
+                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/Organize/Index" data-index="1">Quản lý cơ sở</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a heaf="#" class="dropdown-toggle">
                                             <i class="fa fa-gears"></i>
-                                            <span>基础数据</span>
+                                            <span>Dữ liệu cơ sở</span>
                                             <i class="fa fa-angle-right drop-icon"></i>
                                         </a>
                                         <ul class="submenu">
                                             <li>
-                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/SysMedicineUnit/Index" data-index="1">药品单位</a>
+                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/SysMedicineUnit/Index" data-index="1">Đơn vị thuốc</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/SysMedicineFormulation/Index" data-index="2">药品剂型</a>
+                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/SysMedicineFormulation/Index" data-index="2">Dạng bào chế thuốc</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/SysMedicineUsage/Index" data-index="4">药品用法</a>
+                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/SysMedicineUsage/Index" data-index="4">Cách dùng thuốc</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/SysMedicineClassification/Index" data-index="4">药品分类</a>
+                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/SysMedicineClassification/Index" data-index="4">Phân loại thuốc</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/Duty/Index" data-index="7">系统岗位</a>
+                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/Duty/Index" data-index="7">Vị trí hệ thống</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/SysDiagnosis/Index" data-index="8">系统诊断</a>
+                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/SysDiagnosis/Index" data-index="8">Chẩn đoán hệ thống</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/SysNationality/Index" data-index="7">系统国籍</a>
+                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/SysNationality/Index" data-index="7">Quốc tịch hệ thống</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/SysNation/Index" data-index="8">系统民族</a>
+                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/SysNation/Index" data-index="8">Dân tộc hệ thống</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/SysMedicineStorageIOMode/Index" data-index="8">药品出入库方式</a>
+                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/SysMedicineStorageIOMode/Index" data-index="8">Phương thức nhập/xuất kho thuốc</a>
                                             </li>
                                             <li>
-                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/SysTCMSyndrome/Index" data-index="8">中医证候</a>
+                                                <a class="menuItem" data-id="@(Guid.NewGuid().ToString())" href="/SysTCMSyndrome/Index" data-index="8">Chứng hậu y học cổ truyền</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -240,7 +240,7 @@
                         </button>
                         <nav class="page-tabs menuTabs">
                             <div class="page-tabs-content" style="margin-left: 0px;">
-                                <a href="javascript:;" class="menuTab active" data-id="/Home/Default">首页</a>
+                                <a href="javascript:;" class="menuTab active" data-id="/Home/Default">Trang chủ</a>
                             </div>
                         </nav>
                         <button class="roll-nav roll-right tabRight">
@@ -248,13 +248,13 @@
                         </button>
                         <div class="btn-group roll-nav roll-right">
                             <button class="dropdown tabClose" data-toggle="dropdown">
-                                页签操作<i class="fa fa-caret-down" style="padding-left: 3px;"></i>
+                                Thao tác tab<i class="fa fa-caret-down" style="padding-left: 3px;"></i>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a class="tabReload" href="javascript:void();">刷新当前</a></li>
-                                <li><a class="tabCloseCurrent" href="javascript:void();">关闭当前</a></li>
-                                <li><a class="tabCloseAll" href="javascript:void();">全部关闭</a></li>
-                                <li><a class="tabCloseOther" href="javascript:void();">除此之外全部关闭</a></li>
+                                <li><a class="tabReload" href="javascript:void();">Làm mới hiện tại</a></li>
+                                <li><a class="tabCloseCurrent" href="javascript:void();">Đóng hiện tại</a></li>
+                                <li><a class="tabCloseAll" href="javascript:void();">Đóng tất cả</a></li>
+                                <li><a class="tabCloseOther" href="javascript:void();">Đóng tất cả trừ cái này</a></li>
                             </ul>
                         </div>
                         <button class="roll-nav roll-right fullscreen"><i class="fa fa-arrows-alt"></i></button>
@@ -271,7 +271,7 @@
     </div>
     <div id="loadingPage" style="display: none;">
         <div class="loading-shade"></div>
-        <div class="loading-content" onclick="$.loading(false)">数据加载中，请稍后…</div>
+        <div class="loading-content" onclick="$.loading(false)">Đang tải dữ liệu, vui lòng chờ…</div>
     </div>
     <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/index.common.js")"></script>
     <script src="@SiteUrl.GetStaticResourceScriptUrl("~/Content/js/index.js", false)"></script>

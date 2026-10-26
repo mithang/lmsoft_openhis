@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity.SystemManage
 {
     /// <summary>
-    /// 测试demo
+    /// Demo thử nghiệm
     /// </summary>
     [Table("t_demo")]
     public class Demo : IEntity<Demo>

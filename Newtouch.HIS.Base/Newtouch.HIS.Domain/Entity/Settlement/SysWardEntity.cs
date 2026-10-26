@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 病区
+    /// Khu bệnh
     /// </summary>
     [Table("xt_bq")]
     public class SysWardEntity : IEntity<SysWardEntity>
@@ -66,15 +66,15 @@ namespace Newtouch.HIS.Domain.Entity
         /// </summary>
         public int? px { get; set; }
         /// <summary>
-        /// 科主任工号
+        /// Mã nhân viên trưởng khoa
         /// </summary>
         public string kzr_gh { get; set; }
         /// <summary>
-        /// 护士长工号
+        /// Mã nhân viên y tá trưởng
         /// </summary>
         public string hsz_gh { get; set; }
        /// <summary>
-       /// 康复治疗师工号
+       /// Mã nhân viên chuyên viên phục hồi chức năng
        /// </summary>
         public string kfzlsz_gh { get; set; }
 

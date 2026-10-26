@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Base
     public class MvcApplication : System.Web.HttpApplication
     {
         /// <summary>
-        /// 启动应用程序
+        /// Khởi động ứng dụng
         /// </summary>
         protected void Application_Start()
         {
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Base
 
             App_Start.DependencyResolver.RegisteWebApiComponent();
 
-            //数据库链接释放
+            //Giải phóng kết nối cơ sở dữ liệu
             AspNetObjectContextDisposalModule.Register(() =>
             {
                 Infrastructure.EF.DatabaseFactoryDisposeHelper.TryDisposeDBContext<IBaseDatabaseFactory, BaseDbContext>();

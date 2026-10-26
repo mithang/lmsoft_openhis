@@ -5,16 +5,16 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2022-06-28 21:50
-    /// 描 述：接口注入
+    /// Người tạo: chl
+    /// Ngày: 2022-06-28 21:50
+    /// Mô tả: Inject interface
     /// </summary>
     public class AccesscenterRepo : RepositoryBase<AccesscenterEntity>, IAccesscenterRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory EF context</param>
         public AccesscenterRepo(IBaseDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {

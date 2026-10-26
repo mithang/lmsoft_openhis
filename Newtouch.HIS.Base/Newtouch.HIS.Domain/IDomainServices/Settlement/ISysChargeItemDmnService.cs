@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface ISysChargeItemDmnService
     {
         /// <summary>
-        /// 收费项目
+        /// Hạng mục thu phí
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="Pagination"></param>
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <returns></returns>
         IList<SysChargeItemVO> GetPagintionList(string orgId, Pagination pagination, string sfdl, string zt,string keyword = null);
         /// <summary>
-        /// 获取医保性质字典
+        /// Lấy từ điển tính chất bảo hiểm y tế
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>

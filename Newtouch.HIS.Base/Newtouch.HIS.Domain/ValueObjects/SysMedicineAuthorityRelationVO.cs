@@ -11,15 +11,15 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class SysMedicineAuthorityRelationVO
     {
         /// <summary>
-        /// 权限编码
+        /// Mã quyền
         /// </summary>
         public string qxCode { get; set; }
         /// <summary>
-        /// 权限名称
+        /// Tên quyền
         /// </summary>
         public string qxmc { get; set; }
         /// <summary>
-        /// 医生姓名
+        /// Họ tên bác sĩ
         /// </summary>
         public string name { get; set; }
         public string departmentCode { get; set; }

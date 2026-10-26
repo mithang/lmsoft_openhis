@@ -22,7 +22,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 查询药房窗口信息
+        /// Truy vấn thông tin cửa sổ phòng dược
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="yfckCode"></param>
@@ -44,7 +44,7 @@ and (isnull(@keyword, '') = '' or yfck.yfckCode like @searchkeyword or yfck.yfck
         }
 
         /// <summary>
-        /// 查看药房部门药品信息
+        /// Xem thông tin thuốc của phòng dược
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="organizeId"></param>
@@ -79,7 +79,7 @@ order by yfbmyp.yfbmCode, yfbmyp.CreateTime desc
         }
 
         /// <summary>
-        /// 查看药房部门药品信息(大类)
+        /// Xem thông tin thuốc của phòng dược (nhóm lớn)
         /// </summary>
         /// <param name="dlCode"></param>
         /// <param name="yfbmCode"></param>
@@ -105,7 +105,7 @@ AND yfbmyp.zt='1'
 
 
         /// <summary>
-        /// 查看药房部门药品信息(大类)
+        /// Xem thông tin thuốc của phòng dược (nhóm lớn)
         /// </summary>
         /// <param name="dlCode"></param>
         /// <param name="organizeId"></param>
