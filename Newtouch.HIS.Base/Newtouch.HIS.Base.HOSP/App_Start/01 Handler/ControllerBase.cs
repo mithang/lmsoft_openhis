@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Base.HOSP
 {
     /// <summary>
-    /// Controller基类
+    /// ControllerLớp cơ sở
     /// </summary>
     [HandlerLogin]
     public abstract class ControllerBase : Controller
@@ -98,7 +98,7 @@ namespace Newtouch.HIS.Base.HOSP
         }
 
         /// <summary>
-        /// 获取权限Org
+        /// Lấy quyềnOrg
         /// </summary>
         /// <param name="throwFailedException"></param>
         /// <returns></returns>
@@ -109,11 +109,11 @@ namespace Newtouch.HIS.Base.HOSP
             string orgId = null;
             if (opr.IsAdministrator || opr.IsRoot)
             {
-                orgId = Infrastructure.Constants.TopOrganizeId; //如果是系统管理员 则让其拉所有组织机构的数据
+                orgId = Infrastructure.Constants.TopOrganizeId; //Nếu là quản trị viên hệ thống thì để người đó lấy dữ liệu tất cả tổ chức
             }
             else
             {
-                orgId = OperatorProvider.GetCurrent().OrganizeId;   //默认用当前关联用户的OrganizeId
+                orgId = OperatorProvider.GetCurrent().OrganizeId;   //Mặc định dùng của người dùng liên kết hiện tạiOrganizeId
             }
             if (throwFailedException && string.IsNullOrWhiteSpace(orgId))
             {
