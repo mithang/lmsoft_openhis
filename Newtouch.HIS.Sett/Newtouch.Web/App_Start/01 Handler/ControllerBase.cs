@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Web
 {
     /// <summary>
-    /// Controller基类
+    /// Controller lớp cơ sở
     /// </summary>
     [HandlerLogin]
     public abstract class ControllerBase : OrgControllerBase
