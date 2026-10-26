@@ -11,7 +11,7 @@ using FrameworkBase.MultiOrg.Infrastructure;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 用户角色权限 公用DmnService
+    /// Quyền vai trò người dùng, dùng chungDmnService
     /// </summary>
     public class UserRoleAuthDmnService : DmnServiceBase, IUserRoleAuthDmnService
     {
@@ -20,7 +20,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取用户已授权的角色列表
+        /// Lấy danh sách vai trò đã ủy quyền cho người dùng
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ where a.UserId = @userId and a.zt = '1' and c.zt = '1'";
         }
 
         /// <summary>
-        /// 获取UserId 根据RoleId
+        /// LấyUserId TheoRoleId
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>
@@ -52,7 +52,7 @@ where a.UserId = @userId and a.zt = '1' and c.zt = '1'";
         }
 
         /// <summary>
-        /// 保存 角色 用户列表
+        /// Lưu danh sách người dùng vai trò
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="userIds"></param>
@@ -60,7 +60,7 @@ where a.UserId = @userId and a.zt = '1' and c.zt = '1'";
         {
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
-                //先 del
+                //Trước tiên del
                 var hospUserIdList = this.FindList<string>(@"
 WITH cteTree
     AS (SELECT *
@@ -80,7 +80,7 @@ where b.OrganizeId  in (select Id from cteTree)"
                 //
                 db.Delete<SysUserRoleEntity>(p => p.RoleId == roleId && hospUserIdList.Contains(p.UserId));
 
-                //再添加
+                //Thêm lại
                 var userIdArr = (userIds ?? "").Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Distinct().ToArray();
                 foreach (var userId in userIdArr)
                 {

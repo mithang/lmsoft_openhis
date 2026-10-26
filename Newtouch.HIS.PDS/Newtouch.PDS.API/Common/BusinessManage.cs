@@ -4,7 +4,7 @@ using Newtouch.PDS.Requset;
 namespace Newtouch.PDS.API.Common
 {
     /// <summary>
-    /// 简单的业务处理
+    /// Xử lý nghiệp vụ đơn giản
     /// </summary>
     public class BusinessManage
     {
@@ -17,7 +17,7 @@ namespace Newtouch.PDS.API.Common
         }
 
         /// <summary>
-        /// 对外访问
+        /// Truy cập bên ngoài
         /// </summary>
         /// <returns></returns>
         public static BusinessManage GetInstance()
@@ -28,7 +28,7 @@ namespace Newtouch.PDS.API.Common
         #endregion
 
         /// <summary>
-        /// 组装返回报文
+        /// Lắp ráp thông điệp trả về
         /// </summary>
         /// <param name="result"></param>
         /// <param name="response"></param>

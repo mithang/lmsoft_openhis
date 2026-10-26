@@ -14,7 +14,7 @@ using static Newtouch.Common.Web.APIRequestHelper;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 落地处方明细
+    /// Chi tiết đơn thuốc triển khai
     /// </summary>
     public class DownloadCfmxApp : ProcessorFun<string>
     {
@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 验证
+        /// Xác thực
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 预处理
+        /// Tiền xử lý
         /// </summary>
         protected override void BeforeAction(ActResult actResult)
         {
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 从结算系统获取处方明细
+        /// Lấy chi tiết đơn thuốc từ hệ thống thanh toán
         /// </summary>
         /// <returns></returns>
         private List<OutPatientpyCfmxDTO> QueryCfmx()
@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
@@ -96,7 +96,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装处方明细
+        /// Lắp ráp chi tiết đơn thuốc
         /// </summary>
         private void AssembleMzCfmxEntityEntities()
         {
@@ -104,12 +104,12 @@ namespace Newtouch.HIS.Application.Implementation
             _mzCfmxEntities = new List<MzCfmxEntity>();
             _cfmx.ForEach(p =>
             {
-                //该处方明细是否存在
+                //Chi tiết đơn thuốc đó có tồn tại hay không
                 if (IsExist(p))
                 {
                     _mzCfmxRepo.DeleteCfmx(Request);
                 }
-                //同步处方明细的时候，判断数量大于0的落地
+                //Khi đồng bộ chi tiết đơn thuốc, phán đoán số lượng lớn hơn0Việc triển khai của
                 if (p.sl > 0)
                 {
                     var zhyz = _sysMedicineReceiptDmnService.GetZhyz(OperatorProvider.GetCurrent(true).OrganizeId, Constants.CurrentYfbm.yfbmCode, p.yp);
@@ -140,7 +140,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 判断是否存在该处方明细
+        /// Phán đoán xem chi tiết đơn thuốc đó có tồn tại hay không
         /// </summary>
         /// <param name="outPatientpyCfmxDto"></param>
         /// <returns></returns>
@@ -150,7 +150,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 后处理
+        /// Xử lý sau
         /// </summary>
         protected override void AfterAction(ActResult actResult)
         {

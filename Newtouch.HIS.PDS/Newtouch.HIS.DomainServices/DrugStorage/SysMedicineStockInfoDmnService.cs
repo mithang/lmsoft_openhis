@@ -15,7 +15,7 @@ using Newtouch.Infrastructure.TSQL;
 namespace Newtouch.HIS.DomainServices.DrugStorage
 {
     /// <summary>
-    /// 库存操作
+    /// Thao tác tồn kho
     /// </summary>
     public class SysMedicineStockInfoDmnService : DmnServiceBase, ISysMedicineStockInfoDmnService
     {
@@ -24,9 +24,9 @@ namespace Newtouch.HIS.DomainServices.DrugStorage
         }
 
         /// <summary>
-        /// 外部入库 扣库存(作废)
+        /// Nhập kho ngoài, trừ tồn kho(Hủy bỏ)
         /// </summary>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="ypdm"></param>
@@ -51,7 +51,7 @@ namespace Newtouch.HIS.DomainServices.DrugStorage
         }
 
         /// <summary>
-        /// 冻结库存，并返回被冻结的批次信息
+        /// Đóng băng tồn kho và trả về thông tin lô đã bị đóng băng
         /// </summary>
         /// <param name="kcsl"></param>
         /// <param name="ypdm"></param>
@@ -78,7 +78,7 @@ namespace Newtouch.HIS.DomainServices.DrugStorage
         }
 
         /// <summary>
-        /// 提交报损报益
+        /// Gửi báo hỏng báo thừa
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>
@@ -91,7 +91,7 @@ namespace Newtouch.HIS.DomainServices.DrugStorage
                     var kcxxRepo = new SysMedicineStockInfoRepo(new DefaultDatabaseFactory());
                     var kcxx = kcxxRepo.SelectData(syxx.Ypdm, syxx.Ph, syxx.pc, syxx.yfbmCode, syxx.OrganizeId);
                     var curKcsl = kcxx.Sum(p => p.kcsl);
-                    if (syxx.Sysl < 0)//报损  盘库存是否充足
+                    if (syxx.Sysl < 0)//Báo hỏng, kiểm kê xem tồn kho có đủ hay không
                     {
                         if (kcxx.Sum(p => p.kcsl) + syxx.Sysl < 0)
                             return string.Format("代码为{0}、批号{1}、批次{2}的药品库存不足", syxx.Ypdm, syxx.Ph, syxx.pc);

@@ -10,12 +10,12 @@ using Newtouch.PDS.Requset.Stock;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 库存应用
+    /// Ứng dụng tồn kho
     /// </summary>
     public interface IDrugStorageApp
     {
         /// <summary>
-        /// 查询当前部门药品(入库)
+        /// Tra cứu thuốc của bộ phận hiện tại(Nhập kho)
         /// </summary>
         /// <param name="keyword">ypmc、py、spm、ypCode</param>
         /// <param name="yfbmCode"></param>
@@ -24,14 +24,14 @@ namespace Newtouch.HIS.Application.Interface
         string PrepareMedicine(BYDjInfoDTO yplist, string organizeId,string yhgh);
         string PrepareMedicineReturn(BythDjInfoDTO yplist, string organizeId, string yhgh);
         /// <summary>
-        /// 药品发票信息
+        /// Thông tin hóa đơn thuốc
         /// </summary>
         /// <param name="fph">fph</param>
         /// <returns></returns>
         List<MedicineInvoiceInfoVO> SelectMedicineListByFPH(string fph);
 
         /// <summary>
-        /// 查询当前部门药品(出库)
+        /// Tra cứu thuốc của bộ phận hiện tại(Xuất kho)
         /// </summary>
         /// <param name="keyword">ypmc、py、spm、ypCode</param>
         /// <param name="fph"></param>
@@ -40,21 +40,21 @@ namespace Newtouch.HIS.Application.Interface
         List<DepartmentMedicineVO> SelectDepartmentMedicineList2(string keyword, string fph, string gyscode);
 
         /// <summary>
-        /// 入库
+        /// Nhập kho
         /// </summary>
         /// <param name="ioReceiptEntity"></param>
         /// <param name="ioReceiptDetailEntityList"></param>
         void SaveInStorageInfo(SysMedicineStorageIOReceiptEntity ioReceiptEntity, List<SysMedicineStorageIOReceiptDetailEntity> ioReceiptDetailEntityList);
 
         /// <summary>
-        /// 出库
+        /// Xuất kho
         /// </summary>
         /// <param name="ioReceiptEntity"></param>
         /// <param name="ioReceiptDetailList"></param>
         void SaveOutStorageInfo(SysMedicineStorageIOReceiptEntity ioReceiptEntity, List<SysMedicineStorageIOReceiptDetailVO> ioReceiptDetailList);
 
         /// <summary>
-        /// 调价申请 查询
+        /// Tra cứu đề nghị điều chỉnh giá
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inputCode"></param>
@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Application.Interface
         IList<AdjustPriceMedicineInfoVO> SelectAdjustPriceMedicineInfoList(Pagination pagination, string inputCode);
 
         /// <summary>
-        /// 调价审核查询
+        /// Tra cứu duyệt điều chỉnh giá
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inputCode"></param>
@@ -71,13 +71,13 @@ namespace Newtouch.HIS.Application.Interface
         IList<AdjustPriceMedicineInfoVO> SelectMedicineAdjustPriceApprovalInfoList(Pagination pagination, string inputCode, string shzt);
 
         /// <summary>
-        /// 药品调价执行
+        /// Thực hiện điều chỉnh giá thuốc
         /// </summary>
         /// <param name="ypCodeList"></param>
         string ExecteAdjustPrice(ArrayList ypCodeList);
 
         /// <summary>
-        /// 调价历史查询
+        /// Tra cứu lịch sử điều chỉnh giá
         /// </summary>
         /// <param name="inputCode"></param>
         /// <param name="startTime"></param>
@@ -86,22 +86,22 @@ namespace Newtouch.HIS.Application.Interface
         IList<AdjustPriceHistoryInfoVO> SelectMedicineAdjustPriceHistoryInfoList(Pagination pagination, string inputCode, string startTime, string endTime);
 
         /// <summary>
-        /// 结转
+        /// Kết chuyển
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
         void CarryOverMedicine(string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 库存查询
+        /// Tra cứu tồn kho
         /// </summary>
-        /// <param name="yplist">药品信息</param>
+        /// <param name="yplist">Thông tin thuốc</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         StockQueryResponseDTO StockQuery(List<DrugInfo> yplist, string organizeId);
 
         /// <summary>
-        /// 提交报损报溢
+        /// Gửi báo hỏng báo thừa
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>

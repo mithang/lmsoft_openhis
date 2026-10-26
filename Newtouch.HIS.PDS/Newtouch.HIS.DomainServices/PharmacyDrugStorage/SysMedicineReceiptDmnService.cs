@@ -27,11 +27,11 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 出入库单据 审核
+        /// Duyệt phiếu xuất nhập kho
         /// </summary>
         /// <param name="crkId"></param>
-        /// <param name="djlx">单据类型</param>
-        /// <param name="dstnShzt">审核结果</param>
+        /// <param name="djlx">Loại phiếu</param>
+        /// <param name="dstnShzt">Kết quả duyệt</param>
         /// <returns></returns>
         public bool ApprovalStorageIoReceipt(string crkId, int djlx, string dstnShzt)
         {
@@ -41,14 +41,14 @@ namespace Newtouch.HIS.DomainServices
                 var djsh = db.IQueryable<SysMedicineReceiptApprovalEntity>().FirstOrDefault(p => p.crkId == crkId);
                 if (dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())
                 {
-                    if (djsh == null)   //作废操作，应该存在单据审核记录
+                    if (djsh == null)   //Thao tác hủy bỏ, phải tồn tại bản ghi duyệt phiếu
                     {
                         throw new FailedException("未找到单据审核记录，作废失败");
                     }
                 }
                 else
                 {
-                    if (djsh != null)   //费非作废操作，应该不存在单据审核记录
+                    if (djsh != null)   //Thao tác phí không phải hủy bỏ, phải không tồn tại bản ghi duyệt phiếu
                     {
                         throw new FailedException("单据已审核，不能重复审核");
                     }
@@ -70,26 +70,26 @@ namespace Newtouch.HIS.DomainServices
                 {
                     foreach (var djmxItem in djmxList)
                     {
-                        //对每一条出入库单据明细进行循环处理
+                        //Xử lý vòng lặp cho từng chi tiết phiếu xuất nhập kho
                         switch (djlx)
                         {
                             case (int)EnumDanJuLX.yaopinruku:
                                 {
-                                    //药品入库
+                                    //Nhập kho thuốc
                                     Yaopinruku(db, crkdj, djmxItem, dstnShzt, curUser);
                                     crkdj.Rksj = DateTime.Now;
                                 }
                                 break;
                             case (int)EnumDanJuLX.waibucuku:
                                 {
-                                    //外部出库
+                                    //Xuất kho ngoài
                                     Waibuchuku(db, crkdj, djmxItem, dstnShzt, curUser);
                                     crkdj.Cksj = DateTime.Now;
                                 }
                                 break;
                             case (int)EnumDanJuLX.zhijiefayao:
                                 {
-                                    //直接发药
+                                    //Phát thuốc trực tiếp
                                     Zhijiefayao(db, crkdj, djmxItem, dstnShzt, curUser);
                                     crkdj.Cksj = DateTime.Now;
                                     crkdj.Rksj = DateTime.Now;
@@ -97,7 +97,7 @@ namespace Newtouch.HIS.DomainServices
                                 break;
                             case (int)EnumDanJuLX.shenlingfayao:
                                 {
-                                    //申领发药
+                                    //Phát thuốc theo phiếu lĩnh
                                     Shenlingfayao(db, crkdj, djmxItem, dstnShzt, curUser);
                                     crkdj.Cksj = DateTime.Now;
                                     crkdj.Rksj = DateTime.Now;
@@ -105,7 +105,7 @@ namespace Newtouch.HIS.DomainServices
                                 break;
                             case (int)EnumDanJuLX.neibufayaotuihui:
                                 {
-                                    //内部发药退回
+                                    //Trả lại phát thuốc nội bộ
                                     Neibufayaotuihui(db, crkdj, djmxItem, dstnShzt, curUser);
                                     crkdj.Cksj = DateTime.Now;
                                     crkdj.Rksj = DateTime.Now;
@@ -123,13 +123,13 @@ namespace Newtouch.HIS.DomainServices
 
                 if (dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())
                 {
-                    //更新
+                    //Cập nhật
                     djsh.Qxczy = curUser.UserCode;
                     djsh.Qxsj = DateTime.Now;
                     djsh.Modify();
                     db.Update(djsh);
                 }
-                else if (djsh == null)   //下来了应该就恒成立
+                else if (djsh == null)   //Đã xuống thì hẳn là luôn đúng
                 {
                     djsh = new SysMedicineReceiptApprovalEntity()
                     {
@@ -150,11 +150,11 @@ namespace Newtouch.HIS.DomainServices
             return true;
         }
         /// <summary>
-        /// 出入库单据 审核
+        /// Duyệt phiếu xuất nhập kho
         /// </summary>
         /// <param name="crkId"></param>
-        /// <param name="djlx">单据类型</param>
-        /// <param name="dstnShzt">审核结果</param>
+        /// <param name="djlx">Loại phiếu</param>
+        /// <param name="dstnShzt">Kết quả duyệt</param>
         /// <returns></returns>
         public bool SubmitDrupreparation(string byId, string dstnShzt)
         {
@@ -163,7 +163,7 @@ namespace Newtouch.HIS.DomainServices
             {
                 var djsh = db.IQueryable<XtksbyEntity>().FirstOrDefault(p => p.Id == byId);
 
-                //更新
+                //Cập nhật
                 djsh.shzt = dstnShzt;
                 djsh.LastModifierCode = curUser.UserCode;
                 djsh.LastModifyTime = DateTime.Now;
@@ -176,16 +176,16 @@ namespace Newtouch.HIS.DomainServices
         #region private methods
 
         /// <summary>
-        /// 药品入库
+        /// Nhập kho thuốc
         /// </summary>
         /// <param name="db">EFDbTransaction</param>
-        /// <param name="crkdj">出入库单据</param>
-        /// <param name="mx">出入库单据明细</param>
-        /// <param name="dstnShzt">审核结果</param>
-        /// <param name="curUser">登录用户信息</param>
+        /// <param name="crkdj">Phiếu xuất nhập kho</param>
+        /// <param name="mx">Chi tiết phiếu xuất nhập kho</param>
+        /// <param name="dstnShzt">Kết quả duyệt</param>
+        /// <param name="curUser">Thông tin người dùng đăng nhập</param>
         private void Yaopinruku(Infrastructure.EF.EFDbTransaction db, SysMedicineStorageIOReceiptEntity crkdj, SysMedicineStorageIOReceiptDetailEntity mx, string dstnShzt, OperatorModel curUser)
         {
-            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //操作类型：审核通过
+            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //Loại thao tác: Duyệt đạt
             {
                 var entity = new SysMedicineStockInfoEntity
                 {
@@ -198,29 +198,29 @@ namespace Newtouch.HIS.DomainServices
                     yxq = mx.Yxq,
                     kcsl = mx.Sl * mx.Rkzhyz,
                     djsl = 0,
-                    ypkw = _sysPharmacyDepartmentMedicineRepo.GetYpkw(mx.Ypdm, crkdj.Rkbm, curUser.OrganizeId),  //部门药品信息
+                    ypkw = _sysPharmacyDepartmentMedicineRepo.GetYpkw(mx.Ypdm, crkdj.Rkbm, curUser.OrganizeId),  //Thông tin thuốc của bộ phận
                     kzbz = 0,
                     tybz = 0,
                     crkmxId = mx.crkmxId,
                     jj = mx.jj,
-                    zhyz = mx.Rkzhyz,   //药库部门 该 药品 的 转换因子
-                    cd = mx.cd, //产地目录
+                    zhyz = mx.Rkzhyz,   //Hệ số chuyển đổi của thuốc đó tại bộ phận kho thuốc
+                    cd = mx.cd, //Danh mục nơi sản xuất
                 };
                 entity.Create();
                 db.Insert(entity);
             }
-            else if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Rejected).ToString())   //操作类型：审核不通过
+            else if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Rejected).ToString())   //Loại thao tác: Duyệt không đạt
             {
 
             }
-            else if (crkdj.shzt == ((int)EnumDjShzt.Approved).ToString() && dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())   //操作类型：作废
+            else if (crkdj.shzt == ((int)EnumDjShzt.Approved).ToString() && dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())   //Loại thao tác: Hủy bỏ
             {
                 var entity = db.IQueryable<SysMedicineStockInfoEntity>().Single(p => p.OrganizeId == curUser.OrganizeId && p.yfbmCode == crkdj.Rkbm && p.pc == mx.pc && p.ph == mx.Ph);
                 if (entity.djsl > 0)
                 {
                     throw new FailedException("存在冻结库存，不能作废");
                 }
-                if (entity.kcsl < mx.Sl * mx.Rkzhyz)   //即 库存发生变更过 则不能作废
+                if (entity.kcsl < mx.Sl * mx.Rkzhyz)   //Tức là nếu tồn kho đã thay đổi thì không được hủy bỏ
                 {
                     throw new FailedException("药库库存不足，不能作废");
                 }
@@ -230,7 +230,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 外部出库
+        /// Xuất kho ngoài
         /// </summary>
         /// <param name="db"></param>
         /// <param name="crkdj"></param>
@@ -239,7 +239,7 @@ namespace Newtouch.HIS.DomainServices
         /// <param name="curUser"></param>
         private void Waibuchuku(Infrastructure.EF.EFDbTransaction db, SysMedicineStorageIOReceiptEntity crkdj, SysMedicineStorageIOReceiptDetailEntity mx, string dstnShzt, OperatorModel curUser)
         {
-            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //操作类型：审核通过
+            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //Loại thao tác: Duyệt đạt
             {
                 var entities = db.IQueryable<SysMedicineStockInfoEntity>(p => p.ypdm == mx.Ypdm
                   && p.yfbmCode == crkdj.Ckbm
@@ -259,26 +259,26 @@ namespace Newtouch.HIS.DomainServices
                 foreach (var ckbmkcEntity in entities)
                 {
                     if (sysl <= 0) break;
-                    var curMin = ckbmkcEntity.kcsl <= ckbmkcEntity.djsl ? ckbmkcEntity.kcsl : ckbmkcEntity.djsl;//取最小的数
+                    var curMin = ckbmkcEntity.kcsl <= ckbmkcEntity.djsl ? ckbmkcEntity.kcsl : ckbmkcEntity.djsl;//Lấy số nhỏ nhất
                     if (curMin <= 0) continue;
                     if (curMin >= sysl)
                     {
-                        ckbmkcEntity.kcsl -= sysl;  //出库部门库存 扣库存
-                        ckbmkcEntity.djsl -= sysl;  //提交发药时 会冻结数量
+                        ckbmkcEntity.kcsl -= sysl;  //Tồn kho của bộ phận xuất kho, trừ tồn kho
+                        ckbmkcEntity.djsl -= sysl;  //Khi gửi phát thuốc sẽ đóng băng số lượng
                         sysl = 0;
                     }
                     else
                     {
-                        ckbmkcEntity.kcsl -= curMin;  //出库部门库存 扣库存
-                        ckbmkcEntity.djsl -= curMin;  //提交发药时 会冻结数量
+                        ckbmkcEntity.kcsl -= curMin;  //Tồn kho của bộ phận xuất kho, trừ tồn kho
+                        ckbmkcEntity.djsl -= curMin;  //Khi gửi phát thuốc sẽ đóng băng số lượng
                         sysl = sysl - curMin;
                     }
                     db.Update(ckbmkcEntity);
                 }
             }
-            else if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Rejected).ToString())   //操作类型：审核不通过
+            else if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Rejected).ToString())   //Loại thao tác: Duyệt không đạt
             {
-                //要还冻结数量
+                //Số lượng đóng băng cần trả
                 var entities = db.IQueryable<SysMedicineStockInfoEntity>(p => p.ypdm == mx.Ypdm
                     && p.OrganizeId == curUser.OrganizeId
                     && p.yfbmCode == crkdj.Ckbm
@@ -292,7 +292,7 @@ namespace Newtouch.HIS.DomainServices
                     var sysl = sl;
                     foreach (var p in entities)
                     {
-                        //把冻结数量还回去
+                        //Trả lại số lượng đóng băng
                         if (sysl <= 0) break;
                         if (p.djsl == 0) continue;
                         if (p.djsl >= sysl)
@@ -309,7 +309,7 @@ namespace Newtouch.HIS.DomainServices
                     }
                 }
             }
-            else if (crkdj.shzt == ((int)EnumDjShzt.Approved).ToString() && dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())   //操作类型：作废
+            else if (crkdj.shzt == ((int)EnumDjShzt.Approved).ToString() && dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())   //Loại thao tác: Hủy bỏ
             {
                 var ckbmkcEntity = db.FindEntity<SysMedicineStockInfoEntity>(p => p.ypdm == mx.Ypdm
                     && p.zt == ((int)EnumKCZT.Enabled).ToString()
@@ -324,7 +324,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 外部出库
+        /// Xuất kho ngoài
         /// </summary>
         /// <param name="crkdj"></param>
         /// <param name="mx"></param>
@@ -333,7 +333,7 @@ namespace Newtouch.HIS.DomainServices
         /// <param name="db"></param>
         private void Waibucuku(Infrastructure.EF.EFDbTransaction db, SysMedicineStorageIOReceiptEntity crkdj, SysMedicineStorageIOReceiptDetailEntity mx, string dstnShzt, OperatorModel curUser)
         {
-            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //操作类型：审核通过
+            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //Loại thao tác: Duyệt đạt
             {
                 var entity = db.IQueryable<SysMedicineStockInfoEntity>().Single(p => p.OrganizeId == curUser.OrganizeId && p.yfbmCode == crkdj.Ckbm && p.pc == mx.pc);
                 if (entity.kcsl < mx.Sl * mx.Ckzhyz)
@@ -341,27 +341,27 @@ namespace Newtouch.HIS.DomainServices
                     throw new FailedException("药库库存不足，审核失败");
                 }
                 entity.kcsl -= mx.Sl * mx.Ckzhyz;
-                entity.djsl -= mx.Sl * mx.Ckzhyz;   //申请出库时 会冻结
+                entity.djsl -= mx.Sl * mx.Ckzhyz;   //Khi đề nghị xuất kho sẽ đóng băng
                 db.Update(entity);
             }
-            else if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Rejected).ToString())   //操作类型：审核不通过
+            else if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Rejected).ToString())   //Loại thao tác: Duyệt không đạt
             {
-                //要还冻结数量
+                //Số lượng đóng băng cần trả
                 var entity = db.IQueryable<SysMedicineStockInfoEntity>().Single(p => p.OrganizeId == curUser.OrganizeId && p.yfbmCode == crkdj.Ckbm && p.pc == mx.pc);
-                //把冻结数量还回去
-                entity.djsl -= mx.Sl * mx.Ckzhyz;  //这一部分不再被冻结，不还给供应商。可以用了
+                //Trả lại số lượng đóng băng
+                entity.djsl -= mx.Sl * mx.Ckzhyz;  //Phần này không còn bị đóng băng nữa, không trả lại cho nhà cung cấp. Có thể dùng được rồi
                 db.Update(entity);
             }
-            else if (crkdj.shzt == ((int)EnumDjShzt.Approved).ToString() && dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())   //操作类型：作废
+            else if (crkdj.shzt == ((int)EnumDjShzt.Approved).ToString() && dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())   //Loại thao tác: Hủy bỏ
             {
                 var entity = db.IQueryable<SysMedicineStockInfoEntity>().Single(p => p.OrganizeId == curUser.OrganizeId && p.yfbmCode == crkdj.Ckbm && p.pc == mx.pc);
                 //if (entity.djsl > 0)
                 //{
-                //    throw new FailedException("存在冻结库存，不能作废");
+                //    throw new FailedException("Tồn tại tồn kho đóng băng, không được hủy bỏ");
                 //}
-                //else if (entity.kcsl < mx.Sl)   //即 库存发生变更过 则不能作废
+                //else if (entity.kcsl < mx.Sl)   //Tức là nếu tồn kho đã thay đổi thì không được hủy bỏ
                 //{
-                //    throw new FailedException("库存不足，不能作废");
+                //    throw new FailedException("Tồn kho không đủ, không được hủy bỏ");
                 //}
                 entity.kcsl += mx.Sl * mx.Ckzhyz;
                 db.Update(entity);
@@ -369,7 +369,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 直接发药
+        /// Phát thuốc trực tiếp
         /// </summary>
         /// <param name="crkdj"></param>
         /// <param name="mx"></param>
@@ -381,7 +381,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 申领发药
+        /// Phát thuốc theo phiếu lĩnh
         /// </summary>
         /// <param name="db"></param>
         /// <param name="crkdj"></param>
@@ -391,19 +391,19 @@ namespace Newtouch.HIS.DomainServices
         private void Shenlingfayao(Infrastructure.EF.EFDbTransaction db, SysMedicineStorageIOReceiptEntity crkdj, SysMedicineStorageIOReceiptDetailEntity mx, string dstnShzt, OperatorModel curUser)
         {
             UnfreezeAndSubtractKcsl(db, crkdj, mx, dstnShzt, curUser);
-            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //操作类型：审核通过
+            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //Loại thao tác: Duyệt đạt
             {
             }
             else
             {
-                var sldmxEntity = db.IQueryable<SysMedicineRequisitionDetailEntity>().SingleOrDefault(p => p.sldmxId == mx.sldmxId);//关联的申领单 状态处理
+                var sldmxEntity = db.IQueryable<SysMedicineRequisitionDetailEntity>().SingleOrDefault(p => p.sldmxId == mx.sldmxId);//Xử lý trạng thái phiếu lĩnh liên quan
                 if (sldmxEntity == null) throw new FailedException("操作失败，关联申领单明细异常");
                 var sldEntity = db.IQueryable<SysMedicineRequisitionEntity>().SingleOrDefault(p => p.sldId == sldmxEntity.sldId);
                 if (sldEntity == null) throw new FailedException("操作失败，关联申领单主信息异常");
-                var sldmxList = db.IQueryable<SysMedicineRequisitionDetailEntity>().Where(p => p.sldId == sldEntity.sldId).ToList();//该申领单下的所有明细记录
+                var sldmxList = db.IQueryable<SysMedicineRequisitionDetailEntity>().Where(p => p.sldId == sldEntity.sldId).ToList();//Tất cả các bản ghi chi tiết dưới phiếu lĩnh đó
                 switch (sldEntity.ffzt)
                 {
-                    //作废和不通过 是 一样的处理
+                    //Hủy bỏ và không đạt là xử lý giống nhau
                     case (int)EnumSLDDeliveryStatus.None:
                         throw new FailedException("操作失败，申领单未发药。");
                     case (int)EnumSLDDeliveryStatus.Abandon:
@@ -412,7 +412,7 @@ namespace Newtouch.HIS.DomainServices
 
                 sldmxEntity.yfsl -= mx.Sl;
                 if (sldmxEntity.yfsl < 0) throw new FailedException("操作失败，申领单明细数量不允许为负数");
-                sldEntity.ffzt = sldmxList.Any(p => p.yfsl > 0) ? (int)EnumSLDDeliveryStatus.Part : (int)EnumSLDDeliveryStatus.None;//不可能全发
+                sldEntity.ffzt = sldmxList.Any(p => p.yfsl > 0) ? (int)EnumSLDDeliveryStatus.Part : (int)EnumSLDDeliveryStatus.None;//Không thể phát hết
 
                 db.Update(sldmxEntity);
                 db.Update(sldEntity);
@@ -421,7 +421,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 内部发药退回
+        /// Trả lại phát thuốc nội bộ
         /// </summary>
         /// <param name="db"></param>
         /// <param name="crkdj"></param>
@@ -434,7 +434,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 发药 解冻并减库存（直接出库、申领出库、内部发药退回）
+        /// Phát thuốc, giải đông và giảm tồn kho (xuất kho trực tiếp, xuất kho theo phiếu lĩnh, trả lại phát thuốc nội bộ）
         /// </summary>
         /// <param name="db"></param>
         /// <param name="crkdj"></param>
@@ -447,7 +447,7 @@ namespace Newtouch.HIS.DomainServices
             string dstnShzt,
             OperatorModel curUser)
         {
-            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //操作类型：审核通过
+            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //Loại thao tác: Duyệt đạt
             {
                 var ckbmkcEntities = db.IQueryable<SysMedicineStockInfoEntity>(p => p.ypdm == mx.Ypdm
                 && p.OrganizeId == curUser.OrganizeId
@@ -473,18 +473,18 @@ namespace Newtouch.HIS.DomainServices
                 foreach (var ckbmkcEntity in ckbmkcEntities)
                 {
                     if (sysl <= 0) break;
-                    var curMin = ckbmkcEntity.kcsl <= ckbmkcEntity.djsl ? ckbmkcEntity.kcsl : ckbmkcEntity.djsl;//取最小的数
+                    var curMin = ckbmkcEntity.kcsl <= ckbmkcEntity.djsl ? ckbmkcEntity.kcsl : ckbmkcEntity.djsl;//Lấy số nhỏ nhất
                     if (curMin <= 0) continue;
                     if (curMin >= sysl)
                     {
-                        ckbmkcEntity.kcsl -= sysl;  //出库部门库存 扣库存
-                        ckbmkcEntity.djsl -= sysl;  //提交发药时 会冻结数量
+                        ckbmkcEntity.kcsl -= sysl;  //Tồn kho của bộ phận xuất kho, trừ tồn kho
+                        ckbmkcEntity.djsl -= sysl;  //Khi gửi phát thuốc sẽ đóng băng số lượng
                         sysl = 0;
                     }
                     else
                     {
-                        ckbmkcEntity.kcsl -= curMin;  //出库部门库存 扣库存
-                        ckbmkcEntity.djsl -= curMin;  //提交发药时 会冻结数量
+                        ckbmkcEntity.kcsl -= curMin;  //Tồn kho của bộ phận xuất kho, trừ tồn kho
+                        ckbmkcEntity.djsl -= curMin;  //Khi gửi phát thuốc sẽ đóng băng số lượng
                         sysl = sysl - curMin;
                     }
                     db.Update(ckbmkcEntity);
@@ -496,7 +496,7 @@ namespace Newtouch.HIS.DomainServices
                 p.ypdm == mx.Ypdm &&
                 p.zt == ((int)EnumKCZT.Enabled).ToString());
 
-                if (rkbmkcEntity != null)//药房 加库存
+                if (rkbmkcEntity != null)//Nhà thuốc tăng tồn kho
                 {
                     rkbmkcEntity.kcsl += mx.Sl * mx.Ckzhyz;
                     db.Update(rkbmkcEntity);
@@ -504,7 +504,7 @@ namespace Newtouch.HIS.DomainServices
                 else
                 {
                     //var yp = _baseDataDmnService.GetYpDetails(curUser.OrganizeId, mx.Ypdm);
-                    //药房新增一条库存信息
+                    //Nhà thuốc thêm một thông tin tồn kho
                     var entity = new SysMedicineStockInfoEntity
                     {
                         kcId = Guid.NewGuid().ToString(),
@@ -516,21 +516,21 @@ namespace Newtouch.HIS.DomainServices
                         yxq = mx.Yxq,
                         kcsl = mx.Sl * mx.Ckzhyz,
                         djsl = 0,
-                        ypkw = _sysPharmacyDepartmentMedicineRepo.GetYpkw(mx.Ypdm, crkdj.Rkbm, curUser.OrganizeId),  //部门药品信息
+                        ypkw = _sysPharmacyDepartmentMedicineRepo.GetYpkw(mx.Ypdm, crkdj.Rkbm, curUser.OrganizeId),  //Thông tin thuốc của bộ phận
                         kzbz = 0,
                         tybz = 0,
                         crkmxId = mx.crkmxId,
-                        jj = mx.jj,//库存表保存药库单位进价
-                        zhyz = mx.Ckzhyz,   //药房部门 该 药品 的 转换因子
-                        cd = mx.cd, //产地目录
+                        jj = mx.jj,//Bảng tồn kho lưu giá nhập theo đơn vị kho thuốc
+                        zhyz = mx.Ckzhyz,   //Hệ số chuyển đổi của thuốc đó tại bộ phận nhà thuốc
+                        cd = mx.cd, //Danh mục nơi sản xuất
                     };
                     entity.Create();
                     db.Insert(entity);
                 }
             }
-            else if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Rejected).ToString())   //操作类型：审核不通过
+            else if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Rejected).ToString())   //Loại thao tác: Duyệt không đạt
             {
-                //要还冻结数量
+                //Số lượng đóng băng cần trả
                 var entities = db.IQueryable<SysMedicineStockInfoEntity>(p => p.ypdm == mx.Ypdm
                     && p.OrganizeId == curUser.OrganizeId
                     && p.yfbmCode == crkdj.Ckbm
@@ -544,7 +544,7 @@ namespace Newtouch.HIS.DomainServices
                     var sysl = sl;
                     foreach (var p in entities.ToList())
                     {
-                        //把冻结数量还回去
+                        //Trả lại số lượng đóng băng
                         if (sysl <= 0) break;
                         if (p.djsl == 0) continue;
                         if (p.djsl >= sysl)
@@ -561,7 +561,7 @@ namespace Newtouch.HIS.DomainServices
                     }
                 }
             }
-            else if (crkdj.shzt == ((int)EnumDjShzt.Approved).ToString() && dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())   //操作类型：作废
+            else if (crkdj.shzt == ((int)EnumDjShzt.Approved).ToString() && dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())   //Loại thao tác: Hủy bỏ
             {
                 #region 当时入库 的 相关 计数
                 var ckbmkcEntities = db.IQueryable<SysMedicineStockInfoEntity>(p => p.ypdm == mx.Ypdm && p.zt == ((int)EnumKCZT.Enabled).ToString() && p.ph == mx.Ph && p.OrganizeId == curUser.OrganizeId && p.yfbmCode == crkdj.Ckbm && p.pc == mx.pc);
@@ -573,9 +573,9 @@ namespace Newtouch.HIS.DomainServices
                 var ckSysl = rkSysl;
                 if ((rkbmkcEntities.Where(p => p.kcsl > 0 && p.djsl >= 0).Sum(p => p.kcsl) - rkbmkcEntities.Where(p => p.kcsl > 0 && p.djsl >= 0).Sum(p => p.djsl)) < rkSysl)
                 {
-                    throw new FailedException(string.Format("编码为【{0}】的药品药房库存不足，不能作废", mx.Ypdm));   //药房还不回去了
+                    throw new FailedException(string.Format("编码为【{0}】的药品药房库存不足，不能作废", mx.Ypdm));   //Nhà thuốc không trả lại được nữa
                 }
-                foreach (var rkbmkcEntity in rkbmkcEntities)//入库部门库存数要退回去
+                foreach (var rkbmkcEntity in rkbmkcEntities)//Số tồn kho của bộ phận nhập kho cần trả về
                 {
                     if (rkSysl <= 0) break;
                     if (rkbmkcEntity.kcsl <= 0) continue;
@@ -600,7 +600,7 @@ namespace Newtouch.HIS.DomainServices
         #endregion
 
         /// <summary>
-        /// 获取转换因子
+        /// Lấy hệ số chuyển đổi
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="yfbmCode"></param>

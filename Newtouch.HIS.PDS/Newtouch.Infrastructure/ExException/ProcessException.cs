@@ -3,7 +3,7 @@
 namespace Newtouch.Infrastructure.ExException
 {
     /// <summary>
-    /// 处理过程产生的异常
+    /// Ngoại lệ phát sinh trong quá trình xử lý
     /// </summary>
     public class ProcessException : Exception
     {

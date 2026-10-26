@@ -9,12 +9,12 @@ using Newtouch.Common.Operator;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 库存盘点 xt_yp_pdxx
+    /// Kiểm kê tồn kho xt_yp_pdxx
     /// </summary>
     public class SysMedicineInventoryRepo : RepositoryBase<SysMedicineInventoryEntity>, ISysMedicineInventoryRepo
     {
         /// <summary>
-        /// 初始化
+        /// Khởi tạo
         /// </summary>
         /// <param name="databaseFactory"></param>
         public SysMedicineInventoryRepo(IDefaultDatabaseFactory databaseFactory) : base(databaseFactory)
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 判断是否有未完成的盘点 （开始）
+        /// Phán đoán xem có kiểm kê chưa hoàn thành hay không (bắt đầu）
         /// </summary>
         /// <returns></returns>
         public int SelectUnfinishedInventory()
@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 判断是否有未完成的盘点 （结束）
+        /// Phán đoán xem có kiểm kê chưa hoàn thành hay không (kết thúc）
         /// </summary>
         /// <returns></returns>
         public int SelectUnfinishedInventoryByPdId(string pdId)
@@ -42,7 +42,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据盘点ID获取盘点信息
+        /// Theo kiểm kêIDLấy thông tin kiểm kê
         /// </summary>
         /// <param name="pdId"></param>
         /// <param name="organizeId"></param>

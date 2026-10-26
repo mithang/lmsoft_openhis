@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.DomainServices.OutOrInStoredOperate
 {
     /// <summary>
-    /// 内部发药退回
+    /// Trả lại phát thuốc nội bộ
     /// </summary>
     public class ReturnInwardDmnService : DmnServiceBase, IReturnInwardDmnService
     {
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.DomainServices.OutOrInStoredOperate
         }
 
         /// <summary>
-        /// 提交内部发药退回
+        /// Gửi trả lại phát thuốc nội bộ
         /// </summary>
         /// <returns></returns>
         public string SubmitReturnInward(SysMedicineStorageIOReceiptEntity dj, List<SysMedicineStorageIOReceiptDetailEntity> mx)

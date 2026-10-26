@@ -17,7 +17,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
     public class SysPharmacyWindowDmnService : DmnServiceBase, ISysPharmacyWindowDmnService
     {
         /// <summary>
-        /// 初始化
+        /// Khởi tạo
         /// </summary>
         /// <param name="databaseFactory"></param>
         public SysPharmacyWindowDmnService(IDefaultDatabaseFactory databaseFactory) : base(databaseFactory)

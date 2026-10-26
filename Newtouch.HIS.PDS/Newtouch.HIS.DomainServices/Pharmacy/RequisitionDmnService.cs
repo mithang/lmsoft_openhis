@@ -18,7 +18,7 @@ using Newtouch.Core.Common.Exceptions;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 内部申领
+    /// Lĩnh nội bộ
     /// </summary>
     public class RequisitionDmnService : DmnServiceBase, IRequisitionDmnService
     {
@@ -29,12 +29,12 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 新申领 提交保存
+        /// Phiếu lĩnh mới, gửi và lưu
         /// </summary>
-        /// <param name="sldh">申领单号</param>
-        /// <param name="fybmCode">发药部门</param>
-        /// <param name="slbmCode">申领部门（当前登录用户药房部门）</param>
-        /// <param name="mxList">申领药品明细</param>
+        /// <param name="sldh">Số phiếu lĩnh</param>
+        /// <param name="fybmCode">Bộ phận phát thuốc</param>
+        /// <param name="slbmCode">Bộ phận lĩnh (bộ phận nhà thuốc của người dùng đang đăng nhập）</param>
+        /// <param name="mxList">Chi tiết thuốc lĩnh</param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         public bool SubmitRequisition(string sldh, string fybmCode, string slbmCode, IList<RequisitionDepartmentMedicineSubmitItemVO> mxList, string orgId)
@@ -63,11 +63,11 @@ namespace Newtouch.HIS.DomainServices
                         sldId = mainEntity.sldId,
                         ypCode = mx.ypCode,
                         //Yxrq = mx.Yxq,
-                        Zhyz = mx.bbmzhyz,  //发药部门的转换因子
+                        Zhyz = mx.bbmzhyz,  //Hệ số chuyển đổi của bộ phận phát thuốc
                         //ph = "",
                         //pc = "",
-                        slsl = mx.slsl,    //转换成最小单位，保存之
-                        yfsl = 0,   //已发数量
+                        slsl = mx.slsl,    //Chuyển thành đơn vị nhỏ nhất, lưu lại
+                        yfsl = 0,   //Số lượng đã phát
                     };
                     mxEntity.Create(true);
                     db.Insert(mxEntity);
@@ -78,16 +78,16 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 内部申领单 查询
+        /// Tra cứu phiếu lĩnh nội bộ
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
         /// <param name="sldh"></param>
-        /// <param name="slbm">申领部门</param>
-        /// <param name="ckbm">出库部门</param>
-        /// <param name="ffzt">发放状态</param>
+        /// <param name="slbm">Bộ phận lĩnh</param>
+        /// <param name="ckbm">Bộ phận xuất kho</param>
+        /// <param name="ffzt">Trạng thái cấp phát</param>
         /// <param name="allUseableFfzt"></param>
         /// <returns></returns>
         public IList<RequisitionSelectVO> RequisitionSearch(Pagination pagination, string orgId, DateTime? startDate, DateTime? endDate
@@ -143,7 +143,7 @@ and sld.OrganizeId =@Organizeid
         }
 
         /// <summary>
-        /// 内部申领单 明细查询
+        /// Tra cứu chi tiết phiếu lĩnh nội bộ
         /// </summary>
         /// <param name="sldId"></param>
         /// <param name="orgId"></param>

@@ -16,7 +16,7 @@ using static Newtouch.Common.Web.APIRequestHelper;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 发药
+    /// Phát thuốc
     /// </summary>
     public class DeliveryDrugApp : ProcessorFun<string>
     {
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 验证
+        /// Xác thực
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)

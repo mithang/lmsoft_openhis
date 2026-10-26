@@ -13,14 +13,14 @@ using Newtouch.Core.Common.Exceptions;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 系统配置
+    /// Cấu hình hệ thống
     /// </summary>
     public class SysConfigRepo : RepositoryBase<SysConfigEntity>, ISysConfigRepo
     {
         private readonly ICache _cache;
 
         /// <summary>
-        /// 构造函数初始化
+        /// Khởi tạo hàm tạo
         /// </summary>
         /// <param name="databaseFactory"></param>
         /// <param name="cache"></param>
@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 通过code和组织机构代码获取配置信息
+        /// Thông quacodeVà lấy thông tin cấu hình theo mã tổ chức
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
@@ -42,7 +42,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 通过code和组织机构代码获取配置信息
+        /// Thông quacodeVà lấy thông tin cấu hình theo mã tổ chức
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
@@ -130,7 +130,7 @@ namespace Newtouch.HIS.Repository
         {
             if (!string.IsNullOrWhiteSpace(keyValue))
             {
-                //Code重复判断
+                //CodePhán đoán lặp lại
                 if (IQueryable().Any(p => p.Code == entity.Code && p.Id != keyValue && p.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("编码不可重复");
@@ -140,7 +140,7 @@ namespace Newtouch.HIS.Repository
             }
             else
             {
-                //Code重复判断
+                //CodePhán đoán lặp lại
                 if (IQueryable().Any(p => p.Code == entity.Code && p.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("编码不可重复");
@@ -151,7 +151,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 更改配置
+        /// Thay đổi cấu hình
         /// </summary>
         /// <param name="code"></param>
         /// <param name="value"></param>

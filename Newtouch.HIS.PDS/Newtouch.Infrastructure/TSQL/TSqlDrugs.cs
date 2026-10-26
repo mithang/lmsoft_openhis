@@ -1,12 +1,12 @@
 ﻿namespace Newtouch.Infrastructure.TSQL
 {
     /// <summary>
-    /// 药品
+    /// Thuốc
     /// </summary>
     public class TSqlDrugs
     {
         /// <summary>
-        /// 部门药品授权
+        /// Ủy quyền thuốc của bộ phận
         /// </summary>
         public const string bm_yp_xxtb = @"
 DECLARE @bmypId VARCHAR(50), @ypmc VARCHAR(256), @result VARCHAR(256);

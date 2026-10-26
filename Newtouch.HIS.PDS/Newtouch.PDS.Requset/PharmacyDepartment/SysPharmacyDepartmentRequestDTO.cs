@@ -3,17 +3,17 @@
 namespace Newtouch.PDS.Requset.PharmacyDepartment
 {
     /// <summary>
-    /// 系统药房部门
+    /// Bộ phận nhà thuốc hệ thống
     /// </summary>
     public class SysPharmacyDepartmentRequestDto : RequestBase
     {
         /// <summary>
-        /// 药品Id
+        /// ThuốcId
         /// </summary>
         public string ypId { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string organizeId { get; set; }
     }

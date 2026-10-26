@@ -11,7 +11,7 @@ using Newtouch.PDS.Requset;
 namespace Newtouch.HIS.Application.Implementation.Process
 {
     /// <summary>
-    /// 外部入库审核
+    /// Duyệt nhập kho ngoài
     /// </summary>
     internal class InStorageBillApprovalProcess : ProcessorFun<OutOrInStorageBillApprovalDTO>
     {
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
@@ -75,7 +75,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 组装库存信息
+        /// Lắp ráp thông tin tồn kho
         /// </summary>
         /// <returns></returns>
         private List<SysMedicineStockInfoEntity> AssembleKcxx()
@@ -95,13 +95,13 @@ namespace Newtouch.HIS.Application.Implementation.Process
                     yxq = p.Yxq,
                     kcsl = p.Sl * p.Rkzhyz,
                     djsl = 0,
-                    ypkw = _sysPharmacyDepartmentMedicineRepo.GetYpkw(p.Ypdm, Request.dj.Rkbm, OrganizeId),  //部门药品信息
+                    ypkw = _sysPharmacyDepartmentMedicineRepo.GetYpkw(p.Ypdm, Request.dj.Rkbm, OrganizeId),  //Thông tin thuốc của bộ phận
                     kzbz = 0,
                     tybz = 0,
                     crkmxId = p.crkmxId,
-                    jj = p.jj, //外部入库单只用药库单位，jj保存的就是药库单位进价
+                    jj = p.jj, //Phiếu nhập kho ngoài chỉ dùng đơn vị kho thuốc，jjGiá đã lưu chính là giá nhập theo đơn vị của kho thuốc
                     zhyz = p.Rkzhyz,
-                    cd = p.cd, //产地目录
+                    cd = p.cd, //Danh mục nơi sản xuất
                 };
                 item.Create();
                 result.Add(item);

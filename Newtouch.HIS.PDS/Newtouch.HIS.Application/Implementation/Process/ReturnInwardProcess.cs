@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly IReturnInwardDmnService returnInwardDmnService;
 
         /// <summary>
-        /// 初始化
+        /// Khởi tạo
         /// </summary>
         /// <param name="request"></param>
         public ReturnInwardProcess(DjInfoDTO request) : base(request)
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Application.Implementation
         private List<SysMedicineStorageIOReceiptDetailEntity> djmx;
 
         /// <summary>
-        /// 验证
+        /// Xác thực
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
@@ -42,7 +42,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 预处理
+        /// Tiền xử lý
         /// </summary>
         protected override void BeforeAction(ActResult actResult)
         {
@@ -96,7 +96,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)

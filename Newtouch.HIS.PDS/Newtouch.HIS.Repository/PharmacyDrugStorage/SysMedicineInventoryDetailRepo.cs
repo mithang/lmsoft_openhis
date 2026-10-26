@@ -9,12 +9,12 @@ using FrameworkBase.MultiOrg.Repository;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 药品盘点明细 xt_yp_pdxxmx
+    /// Chi tiết kiểm kê thuốc xt_yp_pdxxmx
     /// </summary>
     public class SysMedicineInventoryDetailRepo : RepositoryBase<SysMedicineInventoryDetailEntity>, ISysMedicineInventoryDetailRepo
     {
         /// <summary>
-        /// 初始化
+        /// Khởi tạo
         /// </summary>
         /// <param name="databaseFactory"></param>
         public SysMedicineInventoryDetailRepo(IDefaultDatabaseFactory databaseFactory): base(databaseFactory)
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 盘点保存时 变更数量
+        /// Khi lưu kiểm kê, thay đổi số lượng
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         public void UpdateSlBySaveInventoryInfo(List<SaveInventoryInfoVO> inventoryInfoList)
@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Repository
 
 
         // <summary>
-        /// 保存库存追溯码信息
+        /// Lưu thông tin mã truy xuất tồn kho
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         public void UpdateZsmBySaveInventoryInfo(List<SaveInventoryInfoVO> inventoryInfoList)

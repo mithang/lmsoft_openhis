@@ -18,7 +18,7 @@ using System.Linq;
 namespace Newtouch.HIS.DomainServices.BillManage
 {
     /// <summary>
-    /// 内部申领单
+    /// Phiếu lĩnh nội bộ
     /// </summary>
     public class ApplyDmnService : DmnServiceBase, IApplyDmnService
     {
@@ -37,7 +37,7 @@ namespace Newtouch.HIS.DomainServices.BillManage
         }
 
         /// <summary>
-        /// 提交内部申领
+        /// Gửi phiếu lĩnh nội bộ
         /// </summary>
         /// <param name="sysMedicineRequisitionEntity"></param>
         /// <param name="sysMedicineRequisitionDetailEntities"></param>
@@ -54,7 +54,7 @@ namespace Newtouch.HIS.DomainServices.BillManage
         }
 
         /// <summary>
-        /// 获取申领单主信息
+        /// Lấy thông tin chính phiếu lĩnh
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ffzt"></param>
@@ -63,7 +63,7 @@ namespace Newtouch.HIS.DomainServices.BillManage
         /// <param name="endTime"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeid"></param>
-        /// <param name="slbm">申领部门</param>
+        /// <param name="slbm">Bộ phận lĩnh</param>
         /// <returns></returns>
         public IList<ApplyMainVEntity> GetApplyMainInfo(Pagination pagination, int ffzt, string djh, DateTime startTime, DateTime endTime, string yfbmCode, string organizeid, string slbm = "")
         {
@@ -93,7 +93,7 @@ AND (sld.Slbm=@rkbm OR ''=@rkbm)
         }
 
         /// <summary>
-        /// 获取申领单明细
+        /// Lấy chi tiết phiếu lĩnh
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="sldId"></param>
@@ -123,11 +123,11 @@ AND sldmx.zt='1'
         }
 
         /// <summary>
-        /// 获取申领出库明细
+        /// Lấy chi tiết xuất kho theo phiếu lĩnh
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="sldIds"></param>
-        /// <param name="yfbmCode">当前部门</param>
+        /// <param name="yfbmCode">Bộ phận hiện tại</param>
         /// <param name="organizeid"></param>
         /// <returns></returns>
         public IList<ApplyOutStockVEntity> GetApplyOutStockDetail(Pagination pagination, string sldIds, string yfbmCode, string organizeid)
@@ -160,10 +160,10 @@ GROUP BY sldmx.sldmxId,sld.sldId,sld.Slbm,sld.Sldh,sldmx.slsl,sldmx.yfsl,yp.bzs,
         }
 
         /// <summary>
-        /// 修改申领单发放状态
+        /// Sửa trạng thái cấp phát phiếu lĩnh
         /// </summary>
         /// <param name="sldId"></param>
-        /// <param name="ffzt">目标状态</param>
+        /// <param name="ffzt">Trạng thái đích</param>
         /// <param name="organizeid"></param>
         /// <returns></returns>
         public string UpgradeStatus(string sldId, int ffzt, string organizeid)
@@ -180,10 +180,10 @@ SELECT @@ROWCOUNT;
         }
 
         /// <summary>
-        /// 提交申领发药 以申领单为原子，结果只有两种 1.全部成功 2.全部失败   没有成功一半的情况 
+        /// Gửi phát thuốc theo phiếu lĩnh, lấy phiếu lĩnh làm nguyên tử, kết quả chỉ có hai loại 1.Tất cả đều thành công 2.Tất cả đều thất bại, không có trường hợp thành công một nửa 
         /// </summary>
-        /// <param name="group">同一申领单发药信息</param>
-        /// <param name="source">全部发药信息</param>
+        /// <param name="group">Thông tin phát thuốc của cùng một phiếu lĩnh</param>
+        /// <param name="source">Toàn bộ thông tin phát thuốc</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
         /// <returns></returns>
@@ -239,7 +239,7 @@ SELECT @@ROWCOUNT;
         }
 
         /// <summary>
-        /// 修改申领单信息
+        /// Sửa thông tin phiếu lĩnh
         /// </summary>
         /// <param name="db"></param>
         private void UpdateSld(Infrastructure.EF.EFDbTransaction db, string sldId, List<ApplyOutStockVEntity> group)
@@ -265,7 +265,7 @@ SELECT @@ROWCOUNT;
         }
 
         /// <summary>
-        /// 判断是否部分发药
+        /// Phán đoán xem có phát thuốc một phần hay không
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
@@ -283,7 +283,7 @@ SELECT @@ROWCOUNT;
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="fsgc">冻结成功的</param>
+        /// <param name="fsgc">Đóng băng thành công</param>
         /// <returns></returns>
         private string GenerateCrkdj(FrozenStockAndGenerateCrkdjDTO fsgc)
         {
@@ -300,7 +300,7 @@ SELECT @@ROWCOUNT;
         }
 
         /// <summary>
-        /// 组装出入库单据主表
+        /// Lắp ráp bảng chính phiếu xuất nhập kho
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeid"></param>
@@ -330,7 +330,7 @@ SELECT @@ROWCOUNT;
         }
 
         /// <summary>
-        /// 组装出入库单据明细
+        /// Lắp ráp chi tiết phiếu xuất nhập kho
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="frozenList"></param>
@@ -373,7 +373,7 @@ SELECT @@ROWCOUNT;
         }
 
         /// <summary>
-        /// 根据单据ID获取出入库单据明细
+        /// Theo phiếuIDLấy chi tiết phiếu xuất nhập kho
         /// </summary>
         /// <param name="crkId"></param>
         /// <param name="djlx"></param>
@@ -409,7 +409,7 @@ WHERE crkdj.crkId=@crkId ");
             return FindList<ReceiptQueryDetailVO>(sql.ToString(), param);
         }
         /// <summary>
-        /// 根据单据ID获取出入库单据明细
+        /// Theo phiếuIDLấy chi tiết phiếu xuất nhập kho
         /// </summary>
         /// <param name="crkId"></param>
         /// <param name="djlx"></param>

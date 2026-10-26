@@ -27,7 +27,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.DomainServices.OutPatientPharmacy
 {
     /// <summary>
-    /// 药品处理
+    /// Xử lý thuốc
     /// </summary>
     public class pyDmnService : DmnServiceBase, IPyDmnService
     {
@@ -44,7 +44,7 @@ namespace Newtouch.HIS.DomainServices.OutPatientPharmacy
         }
 
         /// <summary>
-        /// 排药
+        /// Xếp thuốc
         /// </summary>
         /// <param name="apiResp"></param>
         /// <param name="cfnm"></param>
@@ -60,7 +60,7 @@ namespace Newtouch.HIS.DomainServices.OutPatientPharmacy
             }
             using (var db = new EFDbTransaction(_databaseFactory).BeginTrans())
             {
-                //4. 配药
+                //4. Cấp phát thuốc
                 var pyparlist = apiResp.ToJson().ToList<PyparListVo>();
                 foreach (var t in pyparlist)
                 {
@@ -97,7 +97,7 @@ namespace Newtouch.HIS.DomainServices.OutPatientPharmacy
         }
 
         /// <summary>
-        /// 取消排药
+        /// Hủy xếp thuốc
         /// </summary>
         /// <param name="mzCfmxEntity"></param>
         /// <returns></returns>
@@ -124,7 +124,7 @@ namespace Newtouch.HIS.DomainServices.OutPatientPharmacy
         }
 
         /// <summary>
-        /// 获取待处理事件总数
+        /// Lấy tổng số sự kiện chờ xử lý
         /// </summary>
         /// <returns></returns>
         public NeedDealCountVO GetNeedDealCount()
@@ -167,7 +167,7 @@ DECLARE @rkdshCount BIGINT;
         }
 
         /// <summary>
-        /// 获取待处理事件总数
+        /// Lấy tổng số sự kiện chờ xử lý
         /// </summary>
         /// <returns></returns>
         public NeedDealCountVO GetNeedDealCountByYk()
@@ -236,7 +236,7 @@ DECLARE @rkdshCount BIGINT;
         }
 
         /// <summary>
-        /// 获取待处理事件总数
+        /// Lấy tổng số sự kiện chờ xử lý
         /// </summary>
         /// <returns></returns>
         public NeedDealCountVO GetNeedDealCountByYf()
@@ -286,7 +286,7 @@ DECLARE @rkdshCount BIGINT;
                     (int)EnumFybz.Wp + "' AND OrganizeId=@OrganizeId AND lyyf=@yfbmCode) T --门诊待排药 ");
                 //sql.AppendLine(
                 //    "SELECT @mzdfCount=COUNT(0) FROM (SELECT DISTINCT CardNo FROM dbo.mz_cf(NOLOCK) WHERE fybz='" +
-                //    (int)EnumFybz.Yp + "' AND OrganizeId=@OrganizeId AND lyyf=@yfbmCode) T --门诊待发药 ");
+                //    (int)EnumFybz.Yp + "' AND OrganizeId=@OrganizeId AND lyyf=@yfbmCode) T --Thuốc ngoại trú chờ phát ");
                 sql.AppendLine(string.Format(@"
 SELECT @mzdfCount=COUNT(0) 
 FROM (
@@ -332,7 +332,7 @@ FROM (
         }
 
         /// <summary>
-        /// 获取门诊月处方发药次 处方次/月
+        /// Lấy số lần phát thuốc theo đơn thuốc tháng ngoại trú, số lần đơn thuốc/Tháng
         /// </summary>
         /// <returns></returns>
         public List<FyCountVoByYfbm> GetMzFyCountVoByYfbm()
@@ -368,7 +368,7 @@ FROM (
         }
 
         /// <summary>
-        /// 获取住院月医嘱发药次 医嘱次/月
+        /// Lấy số lần phát thuốc theo y lệnh tháng nội trú, số lần y lệnh/Tháng
         /// </summary>
         /// <returns></returns>
         public List<FyCountVoByYfbm> GetZyFyCountVoByYfbm()
@@ -403,7 +403,7 @@ FROM (
         }
 
         /// <summary> 
-        /// 获取医嘱次|处方药品次
+        /// Lấy số lần y lệnh|Lần thuốc trong đơn thuốc
         /// </summary>
         /// <returns></returns>
         public List<FyCountBydlVO> GetFyCountBydl()
@@ -481,7 +481,7 @@ END
         }
 
         /// <summary>
-        /// 插入门诊处方信息
+        /// Chèn thông tin đơn thuốc ngoại trú
         /// </summary>
         /// <param name="mzCfEntities"></param>
         /// <param name="mzCfmxEntities"></param>
@@ -499,7 +499,7 @@ END
         }
 
         /// <summary>
-        /// 物理删除处方主表和明细表   慎用
+        /// Xóa vật lý bảng chính và bảng chi tiết đơn thuốc, dùng thận trọng
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -521,19 +521,19 @@ DELETE FROM dbo.mz_cfmx WHERE cfh=@cfh AND OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 查询处方信息
+        /// Tra cứu thông tin đơn thuốc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="xm"></param>
         /// <param name="cardNo"></param>
         /// <param name="invoiceNo"></param>
-        /// <param name="ksmc">科室名称</param>
-        /// <param name="kssj">排药时间</param>
-        /// <param name="jssj">排药时间</param>
+        /// <param name="ksmc">Tên khoa</param>
+        /// <param name="kssj">Thời gian xếp thuốc</param>
+        /// <param name="jssj">Thời gian xếp thuốc</param>
         /// <param name="organizeId"></param>
         /// <param name="yfbmCode"></param>
-        /// <param name="jszt">结算状态 0-未结算 1-已结算</param>
-        /// <param name="settExpired">结算已过期 1-是 0-否</param>
+        /// <param name="jszt">Trạng thái thanh toán 0-Chưa thanh toán 1-Đã thanh toán</param>
+        /// <param name="settExpired">Thanh toán đã hết hạn 1-Là 0-Không</param>
         /// <returns></returns>
         public IList<CfxxVO> SelectRpList(Pagination pagination, string xm, string cardNo, string invoiceNo, string ksmc
             , DateTime kssj, DateTime jssj, string organizeId, string yfbmCode, int jszt, string settExpired)
@@ -551,13 +551,13 @@ AND mxph.CreateTime BETWEEN @kssj AND @jssj ");
             switch (jszt)
             {
                 case 1:
-                    //已结算
+                    //Đã thanh toán
                     sql.AppendLine(@"
 AND cf.jsnm>0 
 AND cf.sfsj<=GETDATE() ");
                     break;
                 case 0:
-                    //未结算
+                    //Chưa thanh toán
                     sql.AppendLine(@"AND cf.jsnm<=0 ");
                     settExpiredTime = _sysConfigRepo.GetValueByCode("settExpiredTime", organizeId);
                     int.TryParse(settExpiredTime, out tmpHour);
@@ -617,17 +617,17 @@ AND cf.sfsj<=GETDATE() ");
         }
 
         /// <summary>
-        /// 查询处方信息
+        /// Tra cứu thông tin đơn thuốc
         /// </summary>
         /// <param name="xm"></param>
         /// <param name="cardNo"></param>
         /// <param name="invoiceNo"></param>
-        /// <param name="ksmc">科室名称</param>
-        /// <param name="kssj">排药时间</param>
-        /// <param name="jssj">排药时间</param>
+        /// <param name="ksmc">Tên khoa</param>
+        /// <param name="kssj">Thời gian xếp thuốc</param>
+        /// <param name="jssj">Thời gian xếp thuốc</param>
         /// <param name="organizeId"></param>
         /// <param name="yfbmCode"></param>
-        /// <param name="jszt">结算状态 0-未结算 1-已结算</param>
+        /// <param name="jszt">Trạng thái thanh toán 0-Chưa thanh toán 1-Đã thanh toán</param>
         /// <returns></returns>
         public List<CfxxVO> SelectRpList(string xm, string cardNo, string invoiceNo, string ksmc, DateTime kssj,
             DateTime jssj, string organizeId, string yfbmCode, int jszt)
@@ -643,13 +643,13 @@ AND mxph.CreateTime BETWEEN @kssj AND @jssj ");
             switch (jszt)
             {
                 case 1:
-                    //已结算
+                    //Đã thanh toán
                     sql.AppendLine(@"
 AND cf.jsnm>0 
 AND cf.sfsj<=GETDATE() ");
                     break;
                 case 0:
-                    //未结算
+                    //Chưa thanh toán
                     sql.AppendLine(@"
 AND cf.jsnm<=0 ");
                     break;
@@ -690,7 +690,7 @@ AND cf.jsnm<=0 ");
         }
 
         /// <summary>
-        /// 查询处方明细
+        /// Tra cứu chi tiết đơn thuốc
         /// </summary>
         /// <param name="cardNo"></param>
         /// <param name="cfh"></param>
@@ -721,7 +721,7 @@ AND cf.CardNo=@CardNo
         }
 
         /// <summary>
-        /// 查询处方排药明细
+        /// Tra cứu chi tiết xếp thuốc của đơn thuốc
         /// </summary>
         /// <param name="cardNo"></param>
         /// <param name="cfh"></param>
@@ -756,7 +756,7 @@ SELECT CONVERT(INT,a.zxdwsl/a.zhyz) sl,a.ypmc, a.gg, a.dw, a.ycmc, a.jl, a.jldw,
         }
 
         /// <summary>
-        /// 取消排药
+        /// Hủy xếp thuốc
         /// </summary>
         /// <param name="cardNo"></param>
         /// <param name="cfh"></param>
@@ -817,7 +817,7 @@ SELECT CONVERT(INT,a.zxdwsl/a.zhyz) sl,a.ypmc, a.gg, a.dw, a.ycmc, a.jl, a.jldw,
         }
 
         /// <summary>
-        /// 门诊排药
+        /// Xếp thuốc ngoại trú
         /// </summary>
         /// <param name="patientInfo"></param>
         /// <param name="yfbmCode"></param>
@@ -869,7 +869,7 @@ SELECT CONVERT(INT,a.zxdwsl/a.zhyz) sl,a.ypmc, a.gg, a.dw, a.ycmc, a.jl, a.jldw,
         }
 
         /// <summary>
-        /// 取消门诊预定
+        /// Hủy đặt trước ngoại trú
         /// </summary>
         /// <param name="successList"></param>
         /// <param name="organizeId"></param>
@@ -885,7 +885,7 @@ SELECT CONVERT(INT,a.zxdwsl/a.zhyz) sl,a.ypmc, a.gg, a.dw, a.ycmc, a.jl, a.jldw,
         }
 
         /// <summary>
-        /// 获取已排未发未结算的排药信息
+        /// Lấy thông tin xếp thuốc đã xếp, chưa phát, chưa thanh toán
         /// </summary>
         /// <param name="expirationDate"></param>
         /// <param name="yfbmCode"></param>
@@ -916,9 +916,9 @@ AND mxph.CreateTime<@expirationDate
         }
 
         /// <summary>
-        /// 获取要取消的处方
+        /// Lấy đơn thuốc cần hủy
         /// </summary>
-        /// <param name="cfh">目标处方号</param>
+        /// <param name="cfh">Số đơn thuốc đích</param>
         /// <param name="processesMaxNum"></param>
         /// <param name="expirationDate"></param>
         /// <param name="yfbmCode"></param>
@@ -952,7 +952,7 @@ ORDER BY cf.cfh ASC
         }
 
         /// <summary>
-        /// 取消排药
+        /// Hủy xếp thuốc
         /// </summary>
         /// <param name="mxphs"></param>
         /// <param name="yfbmCode"></param>
@@ -994,7 +994,7 @@ WHERE cfh=@cfh and OrganizeId=@OrganizeId and zt='1'
         }
 
         /// <summary>
-        /// 取消排药 取消冻结，药品归架
+        /// Hủy xếp thuốc, hủy đóng băng, thuốc trả về kệ
         /// </summary>
         /// <param name="mxphs"></param>
         /// <param name="userCode"></param>
@@ -1015,14 +1015,14 @@ WHERE cfh=@cfh and OrganizeId=@OrganizeId and zt='1'
                     if (sykc == 0) break;
                     if (kcxx.djsl >= sykc)
                     {
-                        //库存足
+                        //Tồn kho đủ
                         var part1Result = SubtractForzenKc(kcxx.ypdm, sykc, kcxx.kcId, userCode, kcxx.OrganizeId);
                         if (!string.IsNullOrWhiteSpace(part1Result)) return part1Result;
                         sykc = 0;
                     }
                     else
                     {
-                        //库存不足
+                        //Tồn kho không đủ
                         var part1Result = SubtractForzenKc(kcxx.ypdm, kcxx.djsl, kcxx.kcId, userCode, kcxx.OrganizeId);
                         if (!string.IsNullOrWhiteSpace(part1Result)) return part1Result;
                         sykc -= kcxx.djsl;
@@ -1037,7 +1037,7 @@ WHERE cfh=@cfh and OrganizeId=@OrganizeId and zt='1'
         }
 
         /// <summary>
-        /// 解冻库存
+        /// Giải đông tồn kho
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="sl"></param>
@@ -1075,7 +1075,7 @@ WHERE kcId=@kcId AND OrganizeId=@OrganizeId AND zt='1' AND tybz='0'
         }
 
         /// <summary>
-        /// 修改发药标志
+        /// Sửa cờ phát thuốc
         /// </summary>
         /// <param name="mxph"></param>
         /// <param name="userCode"></param>
@@ -1115,7 +1115,7 @@ WHERE cfh=@cfh AND yp=@ypCode AND fyyf=@yfbmCode AND OrganizeId=@OrganizeId AND 
         }
 
         /// <summary>
-        /// 门诊取消排药
+        /// Hủy xếp thuốc ngoại trú
         /// </summary>
         /// <param name="rpInfo"></param>
         /// <param name="userCode"></param>

@@ -8,12 +8,12 @@ using Newtouch.Infrastructure.Log;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// xml序列化扩展
+    /// xmlMở rộng tuần tự hóa
     /// </summary>
     public static class XmlSerializerExt
     {
         /// <summary>
-        /// object 转 xml
+        /// object Chuyển xml
         /// </summary>
         /// <param name="ob"></param>
         /// <param name="encoding"></param>
@@ -25,7 +25,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// xml 转 object
+        /// xml Chuyển object
         /// </summary>
         /// <param name="xml"></param>
         /// <param name="encoding"></param>

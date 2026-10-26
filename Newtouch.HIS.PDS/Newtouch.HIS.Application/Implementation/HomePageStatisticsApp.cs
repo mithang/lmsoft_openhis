@@ -8,7 +8,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 首页统计
+    /// Thống kê trang chủ
     /// </summary>
     internal class HomePageStatisticsApp : AppBase, IHomePageStatisticsApp
     {
@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Application.Implementation
         private string _mzzybz;
 
         /// <summary>
-        /// 获取代办HTML
+        /// Lấy việc cần làmHTML
         /// </summary>
         /// <returns></returns>
         public string AssembleNeedDealHtml()
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装药库代办HTML
+        /// Lắp ráp việc cần làm của kho thuốcHTML
         /// </summary>
         /// <returns></returns>
         private string AssembleYkNeedDelaHtml()
@@ -110,7 +110,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装门诊药房代办HTML
+        /// Lắp ráp việc cần làm của nhà thuốc ngoại trúHTML
         /// </summary>
         /// <returns></returns>
         private string AssembleMzyfNeedDelaHtml()
@@ -164,7 +164,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装门诊药房代办HTML
+        /// Lắp ráp việc cần làm của nhà thuốc ngoại trúHTML
         /// </summary>
         /// <returns></returns>
         private string AssembleMzyfNeedDelaHtmlV2()
@@ -218,7 +218,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装住院药房代办HTML
+        /// Lắp ráp việc cần làm của nhà thuốc nội trúHTML
         /// </summary>
         /// <returns></returns>
         private string AssembleZyyfNeedDelaHtml()
@@ -281,7 +281,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 获取代办总数
+        /// Lấy tổng số việc cần làm
         /// </summary>
         /// <returns></returns>
         public NeedDealCountVO GetPendingCount()

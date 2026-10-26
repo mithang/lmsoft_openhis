@@ -27,9 +27,9 @@ namespace Newtouch.HIS.DomainServices
 
         #region 报损报溢
         /// <summary>
-        /// 查询损益药品list
+        /// Tra cứu thuốc lãi lỗlist
         /// </summary>
-        /// <param name="inputCode">关键字</param>
+        /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>
         public List<ReportLossAndProfitMedicineInfoVO> SelectLossAndProfitMedicineList(string inputCode)
         {
@@ -80,7 +80,7 @@ order by a.ypcode,a.kcsl,a.yxq
         }
 
         /// <summary>
-        /// 查询药品的kcsl和jj
+        /// Tra cứu của thuốckcslVàjj
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="ph"></param>
@@ -103,7 +103,7 @@ order by a.ypcode,a.kcsl,a.yxq
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="kcsl"></param>
@@ -114,13 +114,13 @@ order by a.ypcode,a.kcsl,a.yxq
             var organizeId = OperatorProvider.GetCurrent().OrganizeId;
             using (var db = new EFDbTransaction(_databaseFactory).BeginTrans())
             {
-                //insert 损益表
+                //insert Bảng lãi lỗ
                 var sykc = kcsl + entity.Sysl;
-                entity.Sykc = sykc; //损益库存
-                entity.Jj = jj;  //进价
+                entity.Sykc = sykc; //Tồn kho lãi lỗ
+                entity.Jj = jj;  //Giá nhập
                 db.Insert(entity);
 
-                //update 库存
+                //update Tồn kho
                 var kcxxEntity = db.IQueryable<SysMedicineStockInfoEntity>().FirstOrDefault(a => a.zt == "1" && a.tybz == 0 && a.yfbmCode == yfbmCode && a.OrganizeId == organizeId && a.ypdm == entity.Ypdm && a.pc == (entity.pc ?? ""));
                 kcxxEntity.kcsl = kcsl + entity.Sysl;
                 kcxxEntity.ph = kcxxEntity.ph.Trim();
@@ -131,7 +131,7 @@ order by a.ypcode,a.kcsl,a.yxq
         }
 
         /// <summary>
-        /// 报损报溢 保存
+        /// Lưu báo hỏng báo thừa
         /// </summary>
         /// <param name="profitLossEntityList"></param>
         public string SaveReportLossAndProfit(List<YpSyxxVo> profitLossEntityList)
@@ -150,7 +150,7 @@ order by a.ypcode,a.kcsl,a.yxq
 
         #region 报损报溢查询
         /// <summary>
-        /// 报损报溢查询
+        /// Tra cứu báo hỏng báo thừa
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -221,13 +221,13 @@ order by a.ypcode,a.kcsl,a.yxq
         }
 
         /// <summary>
-        /// 批发价总金额、零售价总金额查询
+        /// Tra cứu tổng tiền giá bán buôn, tổng tiền giá bán lẻ
         /// </summary>
-        /// <param name="startTime">开始时间</param>
-        /// <param name="endTime">结束时间</param>
-        /// <param name="syyy">损益原因</param>
-        /// <param name="inputCode">关键字</param>
-        /// <param name="syqk">损益情况</param>
+        /// <param name="startTime">Thời gian bắt đầu</param>
+        /// <param name="endTime">Thời gian kết thúc</param>
+        /// <param name="syyy">Lý do lãi lỗ</param>
+        /// <param name="inputCode">Từ khóa</param>
+        /// <param name="syqk">Tình hình lãi lỗ</param>
         /// <returns></returns>
         public LossAndProditInfoJeVo ComputePjzeAndLjze(string startTime, string endTime, string syyy, string inputCode, int syqk)
         {
@@ -294,7 +294,7 @@ FROM (
 
         #region 调价盈亏查询
         /// <summary>
-        /// 调价盈亏查询
+        /// Tra cứu lãi lỗ điều chỉnh giá
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -357,7 +357,7 @@ FROM (
 
 
         /// <summary>
-        /// 盘点明细查询
+        /// Tra cứu chi tiết kiểm kê
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -426,7 +426,7 @@ FROM (
         #region 药品发药统计
 
         /// <summary>
-        /// 根据关键字查询药品大分类
+        /// Tra cứu phân loại lớn thuốc theo từ khóa
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>

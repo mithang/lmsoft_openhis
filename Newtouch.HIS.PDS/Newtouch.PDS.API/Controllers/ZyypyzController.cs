@@ -9,7 +9,7 @@ using Newtouch.PDS.Requset.Zyypyz;
 namespace Newtouch.PDS.API.Controllers
 {
     /// <summary>
-    /// 住院药品医嘱
+    /// Y lệnh thuốc nội trú
     /// </summary>
     [RoutePrefix("api/Zyypyz")]
     public class ZyypyzController : ApiControllerBase<ZyypyzController>
@@ -21,7 +21,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// 医嘱执行
+        /// Thực hiện y lệnh
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>

@@ -14,7 +14,7 @@ using Newtouch.PDS.Requset;
 namespace Newtouch.HIS.Application.Implementation.Process
 {
     /// <summary>
-    /// 住院退药
+    /// Trả thuốc nội trú
     /// </summary>
     public class HospitalizatiionReturnMedicineProcess : ProcessorFun<tyInfo>
     {
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
                         executeBatchDetail = execteBatch
                     });
 
-                    //每个执行批次
+                    //Mỗi lô thực hiện
                     Request.tyDrugDetail.FindAll(n => n.applyNo == item && n.yzId == yzId).Select(i => i.zxId).Distinct().ToList().ForEach(
                         z =>
                         {

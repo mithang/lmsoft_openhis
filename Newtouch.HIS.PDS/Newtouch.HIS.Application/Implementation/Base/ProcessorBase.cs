@@ -14,7 +14,7 @@ using Newtouch.PDS.Requset;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 处理过程
+    /// Quá trình xử lý
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class ProcessorFun<T> : ProcessorBase, IProcess
@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Application.Implementation
         protected Dictionary<string, string> Tags;
 
         /// <summary>
-        /// 基类初始化
+        /// Khởi tạo lớp cơ sở
         /// </summary>
         /// <param name="request"></param>
         protected ProcessorFun(T request)
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 处理过程
+        /// Quá trình xử lý
         /// </summary>
         /// <returns></returns>
         public ActResult Process()
@@ -100,7 +100,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 异步处理
+        /// Xử lý bất đồng bộ
         /// </summary>
         /// <param name="result"></param>
         protected virtual void AsyncProcess(ActResult result)
@@ -113,7 +113,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 销毁处理
+        /// Xử lý hủy
         /// </summary>
         /// <param name="result"></param>
         protected virtual void Dispose(ActResult result)
@@ -122,12 +122,12 @@ namespace Newtouch.HIS.Application.Implementation
     }
 
     /// <summary>
-    /// 处理方法
+    /// Phương thức xử lý
     /// </summary>
     public abstract class ProcessorBase : AppBase
     {
         /// <summary>
-        /// 验证Request
+        /// Xác thựcRequest
         /// </summary>
         protected virtual ActResult Validata()
         {
@@ -135,14 +135,14 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 预处理
+        /// Tiền xử lý
         /// </summary>
         protected virtual void BeforeAction(ActResult actResult)
         {
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected virtual void Action(ActResult actResult)
@@ -150,14 +150,14 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 后处理
+        /// Xử lý sau
         /// </summary>
         protected virtual void AfterAction(ActResult actResult)
         {
         }
 
         /// <summary>
-        /// 异步处理
+        /// Xử lý bất đồng bộ
         /// </summary>
         protected virtual void AsyncAction(ActResult actResult)
         {

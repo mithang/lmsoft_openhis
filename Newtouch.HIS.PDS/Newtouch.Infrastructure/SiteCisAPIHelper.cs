@@ -8,17 +8,17 @@ using Newtouch.Core.Redis;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 医护协同工作站
+    /// Trạm làm việc phối hợp y bác sĩ
     /// </summary>
     public class SiteCisAPIHelper
     {
         /// <summary>
-        /// 结算API
+        /// Thanh toánAPI
         /// </summary>
         private static readonly string _siteCisAPIHost;
 
         /// <summary>
-        /// 静态构造函数
+        /// Hàm tạo tĩnh
         /// </summary>
         static SiteCisAPIHelper()
         {
@@ -32,7 +32,7 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// GetToken
         /// </summary>
-        /// <param name="force">是否强刷新Token</param>
+        /// <param name="force">Có làm mới mạnh hay khôngToken</param>
         /// <returns></returns>
         public static string GetToken(bool force = false)
         {
@@ -72,7 +72,7 @@ namespace Newtouch.Infrastructure
         /// <typeparam name="TV"></typeparam>
         /// <param name="url"></param>
         /// <param name="req"></param>
-        /// <param name="tokenExpireReTryTimes">因Token过期重试次数</param>
+        /// <param name="tokenExpireReTryTimes">VìTokenSố lần thử lại khi hết hạn</param>
         /// <param name="httpContext"></param>
         /// <returns></returns>
         public static T Request<TV, T>(string url, TV req, int tokenExpireReTryTimes = 1, HttpContext httpContext = null)
@@ -85,7 +85,7 @@ namespace Newtouch.Infrastructure
         #region private methods
 
         /// <summary>
-        /// 结算API Host
+        /// Thanh toánAPI Host
         /// </summary>
         private static string SiteCisApiHost
         {
@@ -96,7 +96,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 域 http://sample.com/
+        /// Miền http://sample.com/
         /// </summary>
         private static string SiteCisApiDomain
         {
@@ -111,9 +111,9 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 医护协同系统API Url
+        /// Hệ thống phối hợp y bác sĩAPI Url
         /// </summary>
-        /// <param name="url">url 如'~/Home/Index'</param>
+        /// <param name="url">url Như'~/Home/Index'</param>
         /// <returns></returns>
         private static string GetCisApiUrl(string url)
         {

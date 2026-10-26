@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 验证
+        /// Xác thực
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装预定报文
+        /// Lắp ráp thông điệp đặt trước
         /// </summary>
         /// <returns></returns>
         private OutpatientBookRequestDTO AssembleBookAppRequest(RpInfo rpInfo)

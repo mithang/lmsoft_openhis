@@ -8,7 +8,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 药品信息
+    /// Thông tin thuốc
     /// </summary>
     public class SysMedicineExDmnService : DmnServiceBase, ISysMedicineExDmnService
     {
@@ -17,7 +17,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 查询药品详情
+        /// Tra cứu chi tiết thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ypCode"></param>

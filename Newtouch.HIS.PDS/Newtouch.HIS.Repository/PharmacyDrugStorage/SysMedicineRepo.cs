@@ -9,12 +9,12 @@ using FrameworkBase.MultiOrg.Repository;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 系统药品 V_S_xt_yp
+    /// Thuốc hệ thống V_S_xt_yp
     /// </summary>
     public class SysMedicineRepo : RepositoryBase<SysMedicineVEntity>, ISysMedicineRepo
     {
         /// <summary>
-        /// 初始化构造函数
+        /// Hàm tạo khởi tạo
         /// </summary>
         /// <param name="databaseFactory"></param>
         public SysMedicineRepo(IDefaultDatabaseFactory databaseFactory)
@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取一个药品对象
+        /// Lấy một đối tượng thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ypCode"></param>
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取一个药品集合 strwhere 暂时无效
+        /// Lấy một tập hợp thuốc strwhere Tạm thời không hợp lệ
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

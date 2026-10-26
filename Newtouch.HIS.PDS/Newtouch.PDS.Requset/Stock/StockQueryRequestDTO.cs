@@ -4,33 +4,33 @@ using System.Collections.Generic;
 namespace Newtouch.PDS.Requset
 {
     /// <summary>
-    /// 根据药品代码查询库存
+    /// Tra cứu tồn kho theo mã thuốc
     /// </summary>
     public class StockQueryRequestDTO : RequestBase
     {
         /// <summary>
-        /// 组织机构
+        /// Tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 药品信息集合
+        /// Tập hợp thông tin thuốc
         /// </summary>
         public List<DrugInfo> yplist { get; set; }
     }
 
     /// <summary>
-    /// 药品信息
+    /// Thông tin thuốc
     /// </summary>
     public class DrugInfo
     {
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 领药药房
+        /// Nhà thuốc lĩnh thuốc
         /// </summary>
         public string lyyf { get; set; }
     }

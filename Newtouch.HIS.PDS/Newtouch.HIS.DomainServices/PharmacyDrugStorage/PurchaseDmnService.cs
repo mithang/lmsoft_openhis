@@ -71,29 +71,29 @@ order by sxh
         {
             try
             {
-                //更新
+                //Cập nhật
                 if (cgEntity.cgId != null)
                 {
-                    //更新采购列表
+                    //Cập nhật danh sách mua hàng
                     //string sql = "delete from zy_ksbyth where Id=@Id and OrganizeId=@orgId and zt='1' ";
                     //SqlParameter[] para = {
                     //        new SqlParameter("@Id", Djnr.isdeldj),
                     //        new SqlParameter("@orgId", orgId) };
                     //ExecuteSqlCommand(sql, para);
 
-                    //删除采购明细
+                    //Xóa chi tiết mua hàng
                     string sql2 = "delete from xt_yp_cgmx where cgId=@cgId and OrganizeId=@orgId and zt='1' ";
                     SqlParameter[] para2 = {
                             new SqlParameter("@cgId", cgEntity.cgId),
                             new SqlParameter("@orgId", orgId) };
                     ExecuteSqlCommand(sql2, para2);
-                    //再添加采购明细
+                    //Thêm lại chi tiết mua hàng
                     return "采购单据修改成功!";
                 }
 
                 //if (Djnr.issavesubmit == "1")
                 //{
-                //    shzt = "2";//提交
+                //    shzt = "2";//Gửi
                 //    tjsj = DateTime.Now.Date;
                 //}
                 //var request = new
@@ -103,7 +103,7 @@ order by sxh
                 //    yplist = Djnr
                 //};
 
-                //新增
+                //Thêm mới
                 else
                 {
                     using (var db = new EFDbTransaction(_databaseFactory).BeginTrans())
@@ -112,7 +112,7 @@ order by sxh
                         //cgEntity.OrganizeId = orgId;
                         //cgEntity.ddsj = DateTime.Now.ToString("yyyy-MM-dd HH:ss:mm");
                         //cgEntity.ddbh = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueValue("xt_cg_ddbh", orgId, "{0:D4}", true);
-                        //cgEntity.ddzt = 1; //1已保存
+                        //cgEntity.ddzt = 1; //1Đã lưu
                         //cgEntity.zt = "1";
                         //cgEntity.CreatorCode = user.rygh;
                         //cgEntity.CreateTime = DateTime.Now;
@@ -125,7 +125,7 @@ order by sxh
                             OrganizeId = orgId,
                             ddsj = DateTime.Now.ToString("yyyy-MM-dd HH:ss:mm"),
                             ddbh = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueValue("xt_cg_ddbh", orgId, "{0:D4}", true),
-                            ddzt = 1,//1已保存
+                            ddzt = 1,//1Đã lưu
                             zt = "1",
                             CreatorCode = user.rygh,
                             CreateTime = DateTime.Now,
@@ -160,14 +160,14 @@ order by sxh
                 //    var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/PrepareMedicineReturn", request, autoAppendToken: false);
                 //    if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS && apires.msg == "")
                 //    {
-                //        return "保存并提交成功！";
+                //        return "Lưu và gửi thành công！";
                 //    }
                 //    else
                 //    {
-                //        return "调用药房接口失败，请联系开发人员！";
+                //        return "Gọi giao diện nhà thuốc thất bại, vui lòng liên hệ nhân viên phát triển！";
                 //    }
                 //}
-                //return "科室备药退回保存成功！";
+                //return "Lưu trả lại thuốc dự trữ của khoa thành công！";
             }
             catch (Exception ex)
             {
@@ -177,7 +177,7 @@ order by sxh
 
 
         /// <summary>
-        /// 获取采购明细及药品信息(药品入库-采购单引用)
+        /// Lấy chi tiết mua hàng và thông tin thuốc(Nhập kho thuốc-Tham chiếu đơn mua hàng)
         /// </summary>
         /// <param name="cgId"></param>
         /// <param name="orgId"></param>
@@ -224,7 +224,7 @@ FROM (
 
 
         /// <summary>
-        /// 获取发票明细及药品信息 (药品入库-采购单引用)
+        /// Lấy chi tiết hóa đơn và thông tin thuốc (Nhập kho thuốc-Tham chiếu đơn mua hàng)
         /// </summary>
         /// <param name="cgId"></param>
         /// <param name="orgId"></param>

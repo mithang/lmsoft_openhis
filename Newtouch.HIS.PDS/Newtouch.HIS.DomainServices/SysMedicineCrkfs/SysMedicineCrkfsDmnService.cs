@@ -10,7 +10,7 @@ using Newtouch.HIS.Domain.IDomainServices;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 药品出入库方式
+    /// Phương thức xuất nhập kho thuốc
     /// </summary>
     public class SysMedicineCrkfsDmnService : DmnServiceBase, ISysMedicineCrkfsDmnService
     {
@@ -19,9 +19,9 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取出入库方式
+        /// Lấy phương thức xuất nhập kho
         /// </summary>
-        /// <param name="crkbz">出入库标志 0：入库  1：出库</param>
+        /// <param name="crkbz">Cờ xuất nhập kho 0：Nhập kho  1：Xuất kho</param>
         /// <returns></returns>
         public List<SysMedicineCrkfsVEntity> GetList(string crkbz)
         {

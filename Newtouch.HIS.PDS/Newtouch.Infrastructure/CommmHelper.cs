@@ -7,17 +7,17 @@ using System.Text.RegularExpressions;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 帮助类
+    /// Lớp trợ giúp
     /// </summary>
     public class CommmHelper
     {
         /// <summary>
-        /// 收费项目 治疗量 换算成 数量
+        /// Hạng mục phí, lượng điều trị quy đổi thành số lượng
         /// </summary>
         /// <param name="zll"></param>
         /// <param name="dwjls"></param>
-        /// <param name="jjcl">枚举EnumSfxmJjcl</param>
-        /// <param name="throwExWhenZero">当数量结果为0时 是否抛异常，默认抛</param>
+        /// <param name="jjcl">EnumEnumSfxmJjcl</param>
+        /// <param name="throwExWhenZero">Khi kết quả số lượng là0Khi đó có ném ngoại lệ hay không, mặc định ném</param>
         /// <returns></returns>
         public static int CalcSfxmSl(int? zll, int? dwjls, int? jjcl,
             bool throwExWhenZero = true)
@@ -43,10 +43,10 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 导出到指定目录
+        /// Xuất ra thư mục chỉ định
         /// </summary>
         /// <param name="path"></param>
-        /// <param name="filepaths">指定盘 例如："D:\\"</param>
+        /// <param name="filepaths">Chỉ định đĩa, ví dụ："D:\\"</param>
         /// <returns></returns>
         public static string GetLocalFilePath(string path,string filepaths)
         {
@@ -68,7 +68,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取本地文件对应的网络访问路径
+        /// Lấy đường dẫn truy cập mạng tương ứng với tệp cục bộ
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
@@ -95,7 +95,7 @@ namespace Newtouch.Infrastructure
 
         #region 身份证校验
         /// <summary>  
-        /// 验证身份证合理性  
+        /// Xác thực tính hợp lý của chứng minh nhân dân  
         /// </summary>  
         /// <param name="Id"></param>  
         /// <returns></returns>  
@@ -119,7 +119,7 @@ namespace Newtouch.Infrastructure
 
 
         /// <summary>  
-        /// 18位身份证号码验证  
+        /// 18Xác thực số chứng minh nhân dân 18 chữ số  
         /// </summary>  
         private static bool CheckIDCard18(string idNumber)
         {
@@ -127,18 +127,18 @@ namespace Newtouch.Infrastructure
             if (long.TryParse(idNumber.Remove(17), out n) == false
                 || n < Math.Pow(10, 16) || long.TryParse(idNumber.Replace('x', '0').Replace('X', '0'), out n) == false)
             {
-                return false;//数字验证  
+                return false;//Xác thực số  
             }
             string address = "11x22x35x44x53x12x23x36x45x54x13x31x37x46x61x14x32x41x50x62x15x33x42x51x63x21x34x43x52x64x65x71x81x82x91";
             if (address.IndexOf(idNumber.Remove(2)) == -1)
             {
-                return false;//省份验证  
+                return false;//Xác thực tỉnh  
             }
             string birth = idNumber.Substring(6, 8).Insert(6, "-").Insert(4, "-");
             DateTime time = new DateTime();
             if (DateTime.TryParse(birth, out time) == false)
             {
-                return false;//生日验证  
+                return false;//Xác thực ngày sinh  
             }
             string[] arrVarifyCode = ("1,0,x,9,8,7,6,5,4,3,2").Split(',');
             string[] Wi = ("7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2").Split(',');
@@ -152,39 +152,39 @@ namespace Newtouch.Infrastructure
             Math.DivRem(sum, 11, out y);
             if (arrVarifyCode[y] != idNumber.Substring(17, 1).ToLower())
             {
-                return false;//校验码验证  
+                return false;//Xác thực mã kiểm tra  
             }
-            return true;//符合GB11643-1999标准  
+            return true;//Phù hợpGB11643-1999Tiêu chuẩn  
         }
 
 
         /// <summary>  
-        /// 16位身份证号码验证  
+        /// 16Xác thực số chứng minh nhân dân 18 chữ số  
         /// </summary>  
         private static bool CheckIDCard15(string idNumber)
         {
             long n = 0;
             if (long.TryParse(idNumber, out n) == false || n < Math.Pow(10, 14))
             {
-                return false;//数字验证  
+                return false;//Xác thực số  
             }
             string address = "11x22x35x44x53x12x23x36x45x54x13x31x37x46x61x14x32x41x50x62x15x33x42x51x63x21x34x43x52x64x65x71x81x82x91";
             if (address.IndexOf(idNumber.Remove(2)) == -1)
             {
-                return false;//省份验证  
+                return false;//Xác thực tỉnh  
             }
             string birth = idNumber.Substring(6, 6).Insert(4, "-").Insert(2, "-");
             DateTime time = new DateTime();
             if (DateTime.TryParse(birth, out time) == false)
             {
-                return false;//生日验证  
+                return false;//Xác thực ngày sinh  
             }
             return true;
         }
         #endregion
 
         #region 汉字拼音
-        //定义拼音区编码数组
+        //Định nghĩa mảng mã vùng phiên âm
         private static int[] getValue = new int[]
             {
         -20319,-20317,-20304,-20295,-20292,-20283,-20265,-20257,-20242,-20230,-20051,-20036,
@@ -221,7 +221,7 @@ namespace Newtouch.Infrastructure
         -10815,-10800,-10790,-10780,-10764,-10587,-10544,-10533,-10519,-10331,-10329,-10328,
         -10322,-10315,-10309,-10307,-10296,-10281,-10274,-10270,-10262,-10260,-10256,-10254
             };
-        //定义拼音数组
+        //Định nghĩa mảng phiên âm
         private static string[] getName = new string[]
             {
         "A","Ai","An","Ang","Ao","Ba","Bai","Ban","Bang","Bao","Bei","Ben",
@@ -258,19 +258,19 @@ namespace Newtouch.Infrastructure
         "Zhang","Zhao","Zhe","Zhen","Zheng","Zhi","Zhong","Zhou","Zhu","Zhua","Zhuai","Zhuan",
         "Zhuang","Zhui","Zhun","Zhuo","Zi","Zong","Zou","Zu","Zuan","Zui","Zun","Zuo"
            };
-        /// <summary>汉字转换成全拼的拼音</summary>
-        /// <param name="Chstr">汉字字符串</param>
-        /// <returns>转换后的拼音字符串</returns> 
+        /// <summary>Chuyển chữ Hán thành phiên âm đầy đủ</summary>
+        /// <param name="Chstr">Chuỗi chữ Hán</param>
+        /// <returns>Chuỗi phiên âm sau khi chuyển đổi</returns> 
         public static string StrConvertToPinyin(string Chstr,string type)
         {
-            Regex reg = new Regex("^[\u4e00-\u9fa5]$");//验证是否输入汉字
+            Regex reg = new Regex("^[\u4e00-\u9fa5]$");//Xác thực xem có nhập chữ Hán hay không
             byte[] arr = new byte[2];
             string pystr = "";
             int asc = 0, M1 = 0, M2 = 0;
-            char[] mChar = Chstr.ToCharArray();//获取汉字对应的字符数组
+            char[] mChar = Chstr.ToCharArray();//Lấy mảng ký tự tương ứng với chữ Hán
             for (int j = 0; j < mChar.Length; j++)
             {
-                //如果输入的是汉字
+                //Nếu dữ liệu nhập là chữ Hán
                 if (reg.IsMatch(mChar[j].ToString()))
                 {
                     arr = System.Text.Encoding.Default.GetBytes(mChar[j].ToString());
@@ -310,7 +310,7 @@ namespace Newtouch.Infrastructure
                             default:
                                 for (int i = (getValue.Length - 1); i >= 0; i--)
                                 {
-                                    if (getValue[i] <= asc) //判断汉字的拼音区编码是否在指定范围内
+                                    if (getValue[i] <= asc) //Phán đoán xem mã vùng phiên âm của chữ Hán có trong phạm vi chỉ định hay không
                                     {
                                         if (type == "1")
                                         {
@@ -318,7 +318,7 @@ namespace Newtouch.Infrastructure
                                         }
                                         else
                                         {
-                                            pystr += getName[i];//如果不超出范围则获取对应的拼音
+                                            pystr += getName[i];//Nếu không vượt quá phạm vi thì lấy phiên âm tương ứng
                                         }
                                         break;
                                     }
@@ -327,25 +327,25 @@ namespace Newtouch.Infrastructure
                         }
                     }
                 }
-                else    //如果不是汉字
+                else    //Nếu không phải chữ Hán
                 {
-                    pystr += mChar[j].ToString();//如果不是汉字则返回
+                    pystr += mChar[j].ToString();//Nếu không phải chữ Hán thì trả về
                 }
             }
-            return pystr;//返回获取到的汉字拼音
+            return pystr;//Trả về phiên âm chữ Hán đã lấy được
         }
 
         /////   <summary> 
-        /////   得到一个汉字的拼音第一个字母，如果是一个英文字母则直接返回大写字母 
+        /////   Lấy chữ cái đầu tiên trong phiên âm của một chữ Hán, nếu là chữ cái tiếng Anh thì trả về trực tiếp chữ viết hoa 
         /////   </summary> 
-        /////   <param   name="CnChar">单个汉字</param> 
-        /////   <returns>单个大写字母</returns> 
+        /////   <param   name="CnChar">Một chữ Hán</param> 
+        /////   <returns>Một chữ cái viết hoa</returns> 
         //private static string GetCharSpellCode(string CnChar)
         //{
         //    long iCnChar;
         //    byte[] ZW = System.Text.Encoding.Default.GetBytes(CnChar);
 
-        //    //如果是字母，则直接返回 
+        //    //Nếu là chữ cái thì trả về trực tiếp 
         //    if (ZW.Length == 1)
         //    {
         //        return CnChar.ToUpper();
@@ -381,7 +381,7 @@ namespace Newtouch.Infrastructure
         //    // 'R';           //51387..51445 
         //    // 'S';           //51446..52217 
         //    // 'T';           //52218..52697 
-        //    //没有U,V 
+        //    //Không cóU,V 
         //    // 'W';           //52698..52979 
         //    // 'X';           //52980..53640 
         //    // 'Y';           //53689..54480 

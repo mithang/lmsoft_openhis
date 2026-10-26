@@ -15,7 +15,7 @@ using Newtouch.PDS.Requset.ResourcesOperate;
 namespace Newtouch.HIS.Application.Implementation.Process
 {
     /// <summary>
-    /// (未发药前)部分退药
+    /// (Trước khi phát thuốc)Trả thuốc một phần
     /// </summary>
     public class OutpatientPartReturnBeforeDispensingMedicineProcess : ProcessorFun<OutpatientPartReturnBeforeDispensingMedicineRequestDTO>
     {

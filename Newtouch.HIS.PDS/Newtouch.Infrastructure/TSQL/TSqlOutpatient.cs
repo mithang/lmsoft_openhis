@@ -1,14 +1,14 @@
 ﻿namespace Newtouch.Infrastructure.TSQL
 {
     /// <summary>
-    /// T-Sql 门诊
+    /// T-Sql Ngoại trú
     /// </summary>
     public class TSqlOutpatient
     {
         #region 发药
 
         /// <summary>
-        /// 发药
+        /// Phát thuốc
         /// </summary>
         public const string sp_yp_commit_mz = @"
 DECLARE @result VARCHAR(100);
@@ -90,7 +90,7 @@ SELECT @result;
         #region 门诊发药V2.0
 
         /// <summary>
-        /// 门诊发药V2.0
+        /// Phát thuốc ngoại trúV2.0
         /// </summary>
         public const string mz_fy = @"
 DECLARE @result VARCHAR(100);
@@ -199,7 +199,7 @@ SELECT @result;
 ";
 
         /// <summary>
-        /// 门诊扣库存 发药使用
+        /// Ngoại trú trừ tồn kho, dùng cho phát thuốc
         /// </summary>
         public const string mz_reduce_stock = @"
 DECLARE @result VARCHAR(100);
@@ -294,7 +294,7 @@ END
         #region 门诊发药统计
         
         /// <summary>
-        /// 门诊发药统计
+        /// Thống kê phát thuốc ngoại trú
         /// </summary>
         public const string drug_deliver_statistics = @"
 SELECT s.xm,s.nl,s.CardNo,s.cfh,s.fph,s.fyrq,s.ypmc,s.ycmc
@@ -323,7 +323,7 @@ FROM (
         #region 门诊处方退药
 
         /// <summary>
-        /// 门诊处方退药
+        /// Trả thuốc đơn thuốc ngoại trú
         /// </summary>
         public const string mz_rp_reture_drug = @"
 DECLARE @ktsl INT;

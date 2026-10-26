@@ -12,12 +12,12 @@ using Newtouch.HIS.Domain.Entity.V;
 namespace Newtouch.HIS.DomainServices
 {
 	/// <summary>
-	/// 药品库存信息
+	/// Thông tin tồn kho thuốc
 	/// </summary>
 	public partial class DrugStorageDmnService
 	{
 		/// <summary>
-		/// 获取出入库部门共同拥有的药品信息 库存数量为出库部门数量
+		/// Lấy thông tin thuốc chung của các bộ phận xuất nhập kho, số lượng tồn kho là số lượng của bộ phận xuất kho
 		/// </summary>
 		/// <param name="ckbm"></param>
 		/// <param name="rkbm"></param>
@@ -59,7 +59,7 @@ GROUP BY s.dlmc,s.ypmc,s.ypCode,s.ypgg,s.bmdw,s.zhyz,s.bzs,s.bzdw,s.zxdw,s.pzwh,
 		}
 
 		/// <summary>
-		/// 获取当前部门拥有的药品和库存信息  （外部入库）
+		/// Lấy thông tin thuốc và tồn kho mà bộ phận hiện tại sở hữu (nhập kho ngoài）
 		/// </summary>
 		/// <param name="currentYfbmCode"></param>
 		/// <param name="keyWord"></param>
@@ -97,13 +97,13 @@ GROUP BY s.dlmc,s.ypmc,s.ypCode,s.ypgg,s.bmdw,s.zhyz,s.bzs,s.bzdw,s.zxdw,s.pzwh,
 		}
 
 		/// <summary>
-		/// 获取当前部门拥有的药品和库存信息  （外部出库）
+		/// Lấy thông tin thuốc và tồn kho mà bộ phận hiện tại sở hữu (xuất kho ngoài）
 		/// </summary>
 		/// <param name="currentYfbmCode"></param>
 		/// <param name="keyWord"></param>
 		/// <param name="organizeid"></param>
-		/// <param name="fph">发票号</param>
-		/// <param name="gysCode">供应商代码</param>
+		/// <param name="fph">Số hóa đơn</param>
+		/// <param name="gysCode">Mã nhà cung cấp</param>
 		/// <returns></returns>
 		public List<DrugStockInfoVEntity> GetDrugAndStockByFph(string currentYfbmCode, string keyWord, string organizeid, string fph, string gysCode)
 		{
@@ -145,7 +145,7 @@ GROUP BY s.dlmc,s.ypmc,s.ypCode,s.ypgg,s.bmdw,s.zhyz,s.bzs,s.bzdw,s.zxdw,s.pzwh,
 		}
 
 		/// <summary>
-		/// 批次分组
+		/// Nhóm theo lô
 		/// </summary>
 		/// <param name="ypdm"></param>
 		/// <param name="yfbmCode"></param>
@@ -182,7 +182,7 @@ ORDER BY s.kykc DESC
 		}
 
 		/// <summary>
-		/// 根据发票号筛选 获取批次库存
+		/// Sàng lọc theo số hóa đơn, lấy tồn kho theo lô
 		/// </summary>
 		/// <param name="ypdm"></param>
 		/// <param name="yfbmCode"></param>
@@ -228,11 +228,11 @@ FROM (
 		}
 
 		/// <summary>
-		/// 批次分组
+		/// Nhóm theo lô
 		/// </summary>
 		/// <param name="ypdm"></param>
 		/// <param name="yfbmCode"></param>
-		/// <param name="kczt">库存状态 1-展示有效库存  0-展示无效库存  空-全部展示</param>
+		/// <param name="kczt">Trạng thái tồn kho 1-Hiển thị tồn kho hợp lệ  0-Hiển thị tồn kho không hợp lệ, rỗng-Hiển thị tất cả</param>
 		/// <param name="organizeid"></param>
 		/// <returns></returns>
 		public IList<DrugStockInfoVEntity> GetStockGroupByBatch(Pagination pagination, string ypdm, string kczt, string yfbmCode, string organizeid)
@@ -277,13 +277,13 @@ FROM (
 		}
 
 		/// <summary>
-		/// 获取库存信息  库存量查询用
+		/// Lấy thông tin tồn kho, dùng để tra cứu số lượng tồn kho
 		/// </summary>
 		/// <param name="yfbmCode"></param>
 		/// <param name="keyWord"></param>
-		/// <param name="tybz">停用标志 1-展示有效的本部门信息 0-无效的本部门信息 0-全部</param>
-		/// <param name="kczt">库存状态 1-展示有效库存  0-展示无效库存  空-全部展示</param>
-		/// <param name="show0kc">是否展示零库存  0-不展示 1-展示</param>
+		/// <param name="tybz">Cờ ngừng dùng 1-Hiển thị thông tin bộ phận này hợp lệ 0-Thông tin bộ phận này không hợp lệ 0-Tất cả</param>
+		/// <param name="kczt">Trạng thái tồn kho 1-Hiển thị tồn kho hợp lệ  0-Hiển thị tồn kho không hợp lệ, rỗng-Hiển thị tất cả</param>
+		/// <param name="show0kc">Có hiển thị tồn kho bằng 0 hay không  0-Không hiển thị 1-Hiển thị</param>
 		/// <param name="organizeid"></param>
 		/// <returns></returns>
 		public IList<DrugStockInfoVEntity> GetDrugAndStock(Pagination pagination, string yfbmCode, string keyWord, string tybz, string kczt, string show0kc, string organizeid, string kcyjcode,string iskcyjz=null)
@@ -337,7 +337,7 @@ FROM (
 	, yp.zxdw, yp.pzwh,yp.gjybdm,yp.kcyjz
 ) s
 ");
-            if (!string.IsNullOrWhiteSpace(iskcyjz))//库存预警生成采购计划使用
+            if (!string.IsNullOrWhiteSpace(iskcyjz))//Dùng cảnh báo tồn kho để tạo kế hoạch mua hàng
             {
                 sql.AppendLine("	where   kcsl<=isnull(kcyjz,0)");
             }
@@ -345,7 +345,7 @@ FROM (
 		}
 
 		/// <summary>
-		/// 库存查询
+		/// Tra cứu tồn kho
 		/// </summary>
 		/// <param name="ypdms"></param>
 		/// <param name="yfbmCode"></param>
@@ -374,11 +374,11 @@ GROUP BY kcxx.ypdm, yp.ypmc, kcxx.yfbmCode, yfbm.yfbmmc ";
 		}
 
 		/// <summary>
-		/// 查询过期药品
+		/// Tra cứu thuốc quá hạn
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="keyword"></param>
-		/// <param name="gpyf">距离过期还剩x个月</param>
+		/// <param name="gpyf">Còn lại đến khi hết hạnxTháng</param>
 		/// <param name="yfbmCode"></param>
 		/// <param name="organizeId"></param>
 		/// <returns></returns>
@@ -479,10 +479,10 @@ where crkId = @crkId and a.zt='1'
 			var index = 0;
 			using (var db = new EFDbTransaction(_databaseFactory).BeginTrans())
 			{
-				//删除出入库表
+				//Xóa bảng xuất nhập kho
 				var inventoryEntity = db.FindEntity<SysMedicineStorageIOReceiptEntity>(crkId);
 				db.Delete(inventoryEntity);
-				//删除出入库明细表
+				//Xóa bảng chi tiết xuất nhập kho
 				var inventoryDetailEntityList = db.IQueryable<SysMedicineStorageIOReceiptDetailEntity>().Where(a => a.crkId == crkId).ToList();
 				foreach (var item in inventoryDetailEntityList)
 				{

@@ -9,7 +9,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 住院退药申请单
+    /// Phiếu đề nghị trả thuốc nội trú
     /// </summary>
     public class ZyReturnDrugApplyBillRepo : RepositoryBase<ZyReturnDrugApplyBillEntity>, IZyReturnDrugApplyBillRepo
     {
@@ -18,11 +18,11 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 修改处理状态
+        /// Sửa trạng thái xử lý
         /// </summary>
         /// <param name="applyNo"></param>
         /// <param name="organizeId"></param>
-        /// <returns> >0:成功  其余:失败 </returns>
+        /// <returns> >0:Thành công, phần còn lại:Thất bại </returns>
         public ZyReturnDrugApplyBillEntity SelectData(string applyNo, string organizeId)
         {
             const string sql = @"
@@ -38,13 +38,13 @@ WHERE applyNo=@applyNo AND OrganizeId=@OrganizeId AND zt='1' AND ProcessState='0
         }
 
         /// <summary>
-        /// 修改处理状态
+        /// Sửa trạng thái xử lý
         /// </summary>
         /// <param name="applyNo"></param>
         /// <param name="userCode"></param>
         /// <param name="organizeId"></param>
         /// <param name="db"></param>
-        /// <returns> >0:成功  其余:失败 </returns>
+        /// <returns> >0:Thành công, phần còn lại:Thất bại </returns>
         public int UpdateProcessStateDoingWithTrans(string applyNo, string userCode, string organizeId, Infrastructure.EF.EFDbTransaction db)
         {
             const string sql = @"
@@ -62,12 +62,12 @@ WHERE applyNo=@applyNo AND OrganizeId=@OrganizeId AND zt='1' AND ProcessState='0
         }
 
         /// <summary>
-        /// 修改处理状态
+        /// Sửa trạng thái xử lý
         /// </summary>
         /// <param name="applyNo"></param>
         /// <param name="userCode"></param>
         /// <param name="organizeId"></param>
-        /// <returns> >0:成功  其余:失败 </returns>
+        /// <returns> >0:Thành công, phần còn lại:Thất bại </returns>
         public int UpdateProcessStateCompleteWithTrans(string applyNo, string userCode, string organizeId, Infrastructure.EF.EFDbTransaction db)
         {
             const string sql = @"

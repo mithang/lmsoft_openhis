@@ -18,7 +18,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 药品信息
+    /// Thông tin thuốc
     /// </summary>
     public class MedicineInfoDmnService : DmnServiceBase, IMedicineInfoDmnService
     {
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 本部门药品信息 查询
+        /// Tra cứu thông tin thuốc của bộ phận này
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -89,7 +89,7 @@ EXEC dbo.YP_XT_BBMYPXXK
         }
 
         /// <summary>
-        /// 本部门药品信息 查询
+        /// Tra cứu thông tin thuốc của bộ phận này
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -168,10 +168,10 @@ GROUP BY yp.ypId ,sx.ypgg ,bm.Zcxh ,bm.zt,bm.yfbmCode,bm.OrganizeId,bm.Ypdm,bm.Y
 
 
         /// <summary>
-        /// 同步本部门药品信息
+        /// Đồng bộ thông tin thuốc của bộ phận này
         /// </summary>
         /// <param name="yp"></param>
-        /// <param name="operateType">0:添加  1：删除</param>
+        /// <param name="operateType">0:Thêm  1：Xóa</param>
         /// <param name="orgId"></param>
         /// <param name="yfbmCode"></param>
         /// <returns></returns>
@@ -188,10 +188,10 @@ GROUP BY yp.ypId ,sx.ypgg ,bm.Zcxh ,bm.zt,bm.yfbmCode,bm.OrganizeId,bm.Ypdm,bm.Y
         }
 
         /// <summary>
-        /// 同步本部门药品信息
+        /// Đồng bộ thông tin thuốc của bộ phận này
         /// </summary>
         /// <param name="ypId"></param>
-        /// <param name="operateType">0:添加  1：删除</param>
+        /// <param name="operateType">0:Thêm  1：Xóa</param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         private string Fresh(string ypId, int operateType, string orgId, string yfbmCode)
@@ -207,10 +207,10 @@ GROUP BY yp.ypId ,sx.ypgg ,bm.Zcxh ,bm.zt,bm.yfbmCode,bm.OrganizeId,bm.Ypdm,bm.Y
         }
 
         /// <summary>
-        /// 控制
+        /// Kiểm soát
         /// </summary>
         /// <param name="ypCode"></param>
-        /// <param name="type">1 控制 2 正常</param>
+        /// <param name="type">1 Kiểm soát 2 Bình thường</param>
         /// <param name="orgId"></param>
         /// <param name="yfbmCode"></param>
         /// <returns></returns>
@@ -226,7 +226,7 @@ GROUP BY yp.ypId ,sx.ypgg ,bm.Zcxh ,bm.zt,bm.yfbmCode,bm.OrganizeId,bm.Ypdm,bm.Y
         }
 
         /// <summary>
-        /// 内部发药查询
+        /// Tra cứu phát thuốc nội bộ
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="vo"></param>
@@ -320,7 +320,7 @@ WHERE   dj.OrganizeId=@Organizeid
         }
 
         /// <summary>
-        /// 本部门同步药品候选信息 查询
+        /// Tra cứu thông tin thuốc ứng viên đồng bộ của bộ phận này
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -370,7 +370,7 @@ WHERE	yp.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 获取本部门过期药品
+        /// Lấy thuốc quá hạn của bộ phận này
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -401,7 +401,7 @@ WHERE a.kcsl > 0 AND a.yxq < GETDATE() AND a.yfbmCode =@yfbmCode AND a.OrganizeI
         }
 
         /// <summary>
-        /// 获取药房人员列表
+        /// Lấy danh sách nhân sự nhà thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

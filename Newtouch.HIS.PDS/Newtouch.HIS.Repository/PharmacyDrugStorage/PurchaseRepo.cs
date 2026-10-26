@@ -80,7 +80,7 @@ cg.zwdhrq, cg.jls, cg.ddzt, cg.CreateTime, cg.CreatorCode, cg.gysCode, cg.gysNam
            
         }
         /// <summary>
-        /// 批量修改审核状态
+        /// Sửa hàng loạt trạng thái duyệt
         /// </summary>
         /// <param name="cgId"></param>
         /// <param name="ddzt"></param>
@@ -98,7 +98,7 @@ cg.zwdhrq, cg.jls, cg.ddzt, cg.CreateTime, cg.CreatorCode, cg.gysCode, cg.gysNam
         }
 
         /// <summary>
-        /// 更新采购单的订单编号
+        /// Cập nhật số đơn hàng của đơn mua hàng
         /// </summary>
         /// <param name="cgId"></param>
         /// <param name="ddbh"></param>
@@ -131,7 +131,7 @@ cg.zwdhrq, cg.jls, cg.ddzt, cg.CreateTime, cg.CreatorCode, cg.gysCode, cg.gysNam
             {
                 entity.cgId = Guid.NewGuid().ToString();
                 entity.ddsj = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                entity.ddzt = 1; //1已保存
+                entity.ddzt = 1; //1Đã lưu
                 entity.Create(true);
                 this.Insert(entity);
                 return entity.cgId;

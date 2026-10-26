@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取组织机构 有效员工列表
+        /// Lấy danh sách nhân viên hợp lệ của tổ chức
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

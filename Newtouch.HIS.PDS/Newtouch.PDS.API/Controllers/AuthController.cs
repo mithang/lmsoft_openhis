@@ -9,7 +9,7 @@ using Newtouch.PDS.Requset;
 namespace Newtouch.PDS.API.Controllers
 {
     /// <summary>
-    /// 授权认证
+    /// Xác thực ủy quyền
     /// </summary>
     [RoutePrefix("api/Auth")]
     public class AuthController : ApiControllerBase<AuthController>
@@ -21,7 +21,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// 以关键信息（用户名、密码等）换取访问令牌
+        /// Đổi thông tin quan trọng (tên đăng nhập, mật khẩu, v.v.) lấy mã truy cập
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -41,10 +41,10 @@ namespace Newtouch.PDS.API.Controllers
                     resp.sub_msg = "";
                     return;
                 }
-                //then假设身份验证通过了
-                //1、由request验证出用户身份 //需要的时候加上验证
+                //thenGiả sử xác thực danh tính đã thành công
+                //1、BởirequestXác thực ra danh tính người dùng //Khi cần thì thêm xác thực
 
-                //2、身份存储在Redis（有一定的过期时间）
+                //2、Danh tính được lưu tạiRedis（Có thời gian hết hạn nhất định）
                 var identity = new UserIdentity
                 {
                     AppId = request.AppId,
@@ -56,7 +56,7 @@ namespace Newtouch.PDS.API.Controllers
                 };
                 var token = SaveIdentity(identity);
 
-                //3、返回key
+                //3、Trả vềkey
                 resp.data = new
                 {
                     token = token

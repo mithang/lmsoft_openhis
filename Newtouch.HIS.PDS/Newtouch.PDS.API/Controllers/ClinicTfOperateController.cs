@@ -9,7 +9,7 @@ using Newtouch.PDS.Requset.ClinicTfOperate;
 namespace Newtouch.PDS.API.Controllers
 {
     /// <summary>
-    /// 门诊退费更新待发药处方
+    /// Hoàn phí ngoại trú cập nhật đơn thuốc chờ phát
     /// </summary>
     [RoutePrefix("api/ClinicTfOperate")]
     public class ClinicTfOperateController : ApiControllerBase<ClinicTfOperateController>
@@ -19,7 +19,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// 更新处方by退费
+        /// Cập nhật đơn thuốcbyHoàn phí
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>

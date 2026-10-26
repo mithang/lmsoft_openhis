@@ -9,7 +9,7 @@ using FrameworkBase.MultiOrg.Infrastructure;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 组织机构 DmnService
+    /// Tổ chức DmnService
     /// </summary>
     public class SysOrganizeDmnService : DmnServiceBase, ISysOrganizeDmnService
     {
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取组织机构类型（集团、医院）
+        /// Lấy loại tổ chức (tập đoàn, bệnh viện）
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -32,7 +32,7 @@ where a.Id = @orgId and (b.TopOrganizeId = @topOrgId or b.TopOrganizeId = '*')";
         }
 
         /// <summary>
-        /// 是否含有下级机构，有下级机构返回true
+        /// Có chứa tổ chức cấp dưới hay không, nếu có tổ chức cấp dưới thì trả vềtrue
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -43,7 +43,7 @@ where a.Id = @orgId and (b.TopOrganizeId = @topOrgId or b.TopOrganizeId = '*')";
         }
 
         /// <summary>
-        /// 获取组织下的所有有效组织（parent）
+        /// Lấy tất cả các tổ chức hợp lệ dưới tổ chức（parent）
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeVEntity> GetValidListByParentOrg(string parentOrgId)
@@ -103,7 +103,7 @@ where a.Id = @orgId and (b.TopOrganizeId = @topOrgId or b.TopOrganizeId = '*')";
         }
 
         /// <summary>
-        /// 获取所有的顶级组织机构
+        /// Lấy tất cả các tổ chức cấp cao nhất
         /// </summary>
         /// <returns></returns>
         public IList<SysOrganizeVEntity> GetValidTopOrgList()

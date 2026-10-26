@@ -10,7 +10,7 @@ using Newtouch.PDS.Requset;
 namespace Newtouch.HIS.Application.Implementation
 {
 	/// <summary>
-	/// 外部入库
+	/// Nhập kho ngoài
 	/// </summary>
 	public class InStorageProcess : ProcessorFun<DjInfoDTO>
 	{
@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Application.Implementation
 		private List<SysMedicineStorageIOReceiptDetailEntity> djmx;
 
 		/// <summary>
-		/// 验证
+		/// Xác thực
 		/// </summary>
 		/// <returns></returns>
 		protected override ActResult Validata()
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Application.Implementation
 		}
 
 		/// <summary>
-		/// 预处理
+		/// Tiền xử lý
 		/// </summary>
 		protected override void BeforeAction(ActResult actResult)
 		{
@@ -112,7 +112,7 @@ namespace Newtouch.HIS.Application.Implementation
 		}
 
 		/// <summary>
-		/// 主处理
+		/// Xử lý chính
 		/// </summary>
 		/// <returns></returns>
 		protected override void Action(ActResult actResult)

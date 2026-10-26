@@ -25,7 +25,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 发/退药
+    /// Phát/Trả thuốc
     /// </summary>
     public class DispenseIndexInfoDmnService : DmnServiceBase, IDispenseIndexInfoDmnService
     {
@@ -42,7 +42,7 @@ namespace Newtouch.HIS.DomainServices
         #region 病区配药
 
         /// <summary>
-        /// 执行配药操作调用存储过程 （如果医嘱执行药品数量 大于0 数据以及获取到，直接执行配药操作）
+        /// Thực hiện thao tác cấp phát thuốc và gọi thủ tục lưu trữ (nếu số lượng thuốc thực hiện theo y lệnh lớn hơn0 Dữ liệu đã lấy được, thực hiện trực tiếp thao tác cấp phát thuốc）
         /// </summary>
         /// <param name="zxId"></param>
         /// <param name="tdrq"></param>
@@ -54,21 +54,21 @@ namespace Newtouch.HIS.DomainServices
             var outpar = new SqlParameter("@as_err", System.Data.SqlDbType.VarChar, 100);
             outpar.Direction = System.Data.ParameterDirection.Output;
             var sqlParList = new List<SqlParameter>();
-            sqlParList.Add(new SqlParameter("@ai_nm", model.zxId));//处方内码
-            sqlParList.Add(new SqlParameter("@ai_mxnm", ""));//明细内码
-            sqlParList.Add(new SqlParameter("@as_yp", model.ypCode.Trim()));//药品code@ai_mxnm
-            sqlParList.Add(new SqlParameter("@as_yjbm", model.lyyf.Trim()));//药剂部门(对应的ks)  
-            sqlParList.Add(new SqlParameter("@adc_sl", model.sl));//数量
-            sqlParList.Add(new SqlParameter("@ai_cls", model.cls));//拆零数(无需拆零传1)
+            sqlParList.Add(new SqlParameter("@ai_nm", model.zxId));//Mã nội bộ đơn thuốc
+            sqlParList.Add(new SqlParameter("@ai_mxnm", ""));//Mã nội bộ chi tiết
+            sqlParList.Add(new SqlParameter("@as_yp", model.ypCode.Trim()));//Thuốccode@ai_mxnm
+            sqlParList.Add(new SqlParameter("@as_yjbm", model.lyyf.Trim()));//Bộ phận dược(Tương ứngks)  
+            sqlParList.Add(new SqlParameter("@adc_sl", model.sl));//Số lượng
+            sqlParList.Add(new SqlParameter("@ai_cls", model.cls));//Số lượng lẻ(Không cần truyền lẻ1)
             sqlParList.Add(new SqlParameter("@OrganizeId", OperatorProvider.GetCurrent().OrganizeId));//OrganizeId
-            sqlParList.Add(new SqlParameter("@user_code", OperatorProvider.GetCurrent().UserCode));//数量
-            sqlParList.Add(new SqlParameter("@adt_tdrq", model.jdrq));// 提档日期
-            sqlParList.Add(new SqlParameter("@yzzxid", ""));//医嘱执行ID
+            sqlParList.Add(new SqlParameter("@user_code", OperatorProvider.GetCurrent().UserCode));//Số lượng
+            sqlParList.Add(new SqlParameter("@adt_tdrq", model.jdrq));// Ngày chuyển hồ sơ
+            sqlParList.Add(new SqlParameter("@yzzxid", ""));//Thực hiện y lệnhID
             sqlParList.Add(outpar);
-            sqlParList.Add(new SqlParameter("@as_fkcbz", "0"));//负库存标志 0 不使用负库存 1使用  
+            sqlParList.Add(new SqlParameter("@as_fkcbz", "0"));//Cờ tồn kho âm 0 Không dùng tồn kho âm 1Sử dụng  
             _databaseFactory.Get().Database.ExecuteSqlCommand(" Exec YP_XT_OP_PY @ai_nm,@ai_mxnm,@as_yp,"
                + "@as_yjbm,@adc_sl,@ai_cls,@OrganizeId,@user_code,@adt_tdrq,@yzzxid,@as_err out,@as_fkcbz", sqlParList.ToArray());
-            if (outpar.Value.ToString().Trim() == "" || outpar.Value.ToString().Trim() == "1")// 存储过程返回 1 为执行成功。
+            if (outpar.Value.ToString().Trim() == "" || outpar.Value.ToString().Trim() == "1")// Thủ tục lưu trữ trả về 1 Là thực hiện thành công。
             {
                 return "1";
             }
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 执行排药的时候进行退药操作调用存储过程（如果医嘱执行药品数量 小于等于0  执行退药操作）
+        /// Khi thực hiện xếp thuốc, tiến hành thao tác trả thuốc và gọi thủ tục lưu trữ (nếu số lượng thuốc thực hiện theo y lệnh nhỏ hơn hoặc bằng0  Thực hiện thao tác trả thuốc）
         /// </summary>
         /// <param name="zxId"></param>
         /// <param name="tdrq"></param>
@@ -91,16 +91,16 @@ namespace Newtouch.HIS.DomainServices
             var outpar = new SqlParameter("@a_err", System.Data.SqlDbType.VarChar, 100);
             outpar.Direction = System.Data.ParameterDirection.Output;
             var sqlParList = new List<SqlParameter>();
-            sqlParList.Add(new SqlParameter("@a_yzId", model.zxId));//处方内码/医嘱ID
-            sqlParList.Add(new SqlParameter("@a_yp", model.ypCode));//药品code
-            sqlParList.Add(new SqlParameter("@adt_tdrq", model.lyyf));//药剂部门(对应的ks)  
-            sqlParList.Add(new SqlParameter("@a_yjbm", model.sl));//数量
-            sqlParList.Add(new SqlParameter("@@a_sl", model.cls));//拆零数(无需拆零传1)    
-            sqlParList.Add(new SqlParameter("@a_cls", model.jdrq));// 提档日期
-            sqlParList.Add(new SqlParameter("@a_fkcbz", "0"));//负库存标志 0 不使用负库存 1使用 
-            sqlParList.Add(outpar);// 错误提示
+            sqlParList.Add(new SqlParameter("@a_yzId", model.zxId));//Mã nội bộ đơn thuốc/Y lệnhID
+            sqlParList.Add(new SqlParameter("@a_yp", model.ypCode));//Thuốccode
+            sqlParList.Add(new SqlParameter("@adt_tdrq", model.lyyf));//Bộ phận dược(Tương ứngks)  
+            sqlParList.Add(new SqlParameter("@a_yjbm", model.sl));//Số lượng
+            sqlParList.Add(new SqlParameter("@@a_sl", model.cls));//Số lượng lẻ(Không cần truyền lẻ1)    
+            sqlParList.Add(new SqlParameter("@a_cls", model.jdrq));// Ngày chuyển hồ sơ
+            sqlParList.Add(new SqlParameter("@a_fkcbz", "0"));//Cờ tồn kho âm 0 Không dùng tồn kho âm 1Sử dụng 
+            sqlParList.Add(outpar);// Thông báo lỗi
             _databaseFactory.Get().Database.ExecuteSqlCommand("Exec YP_XT_OP_BQPY @a_yzId, @a_yp,@adt_tdrq, @a_yjbm,@a_sl,@a_cls,@a_fkcbz, @a_err out ", sqlParList.ToArray());
-            if (outpar.ToString().Trim() == "" || outpar.ToString().Trim() == "1")// 存储过程返回 1 为执行成功。
+            if (outpar.ToString().Trim() == "" || outpar.ToString().Trim() == "1")// Thủ tục lưu trữ trả về 1 Là thực hiện thành công。
             {
                 return "1";
             }
@@ -116,7 +116,7 @@ namespace Newtouch.HIS.DomainServices
         #region 发药
 
         /// <summary>
-        /// 发药退回前判断是否已经操作过了
+        /// Trước khi trả lại phát thuốc, phán đoán xem đã thao tác hay chưa
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
@@ -149,7 +149,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 发药退回
+        /// Trả lại phát thuốc
         /// </summary>
         /// <param name="list"></param>
         /// <param name="fybz"></param>
@@ -173,7 +173,7 @@ namespace Newtouch.HIS.DomainServices
                     foreach (var item in list)
                     {
                         var strSql = new StringBuilder();
-                        //修改发药状态LastModiFierCode
+                        //Sửa trạng thái phát thuốcLastModiFierCode
                         strSql.Append(@"UPDATE NewtouchHIS_PDS.dbo.zy_ypyzxx
                                   SET       fybz = @fybz,
                                             LastModiFierCode = @user,
@@ -188,7 +188,7 @@ namespace Newtouch.HIS.DomainServices
                         };
                         db.ExecuteSqlCommand(strSql.ToString(), paraList);
 
-                        //把发药冻结从冻结中扣去
+                        //Trừ phần đóng băng phát thuốc khỏi phần đóng băng
                         strSql.Clear();
                         strSql.Append(@"update NewtouchHIS_PDS.dbo.xt_yp_kcxx
                                   SET	djsl=djsl-@sl,
@@ -223,7 +223,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 发药前判断是否已经被操作过了
+        /// Trước khi phát thuốc, phán đoán xem đã bị thao tác hay chưa
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
@@ -256,7 +256,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 发药操作
+        /// Thao tác phát thuốc
         /// </summary>
         /// <param name="list"></param>
         /// <param name="fybz"></param>
@@ -280,7 +280,7 @@ namespace Newtouch.HIS.DomainServices
                     foreach (var item in list)
                     {
                         var strSql = new StringBuilder();
-                        //修改发药状态LastModiFierCode
+                        //Sửa trạng thái phát thuốcLastModiFierCode
                         strSql.Append(@"UPDATE NewtouchHIS_PDS.dbo.zy_ypyzxx
                                   SET       fybz = @fybz,
                                             LastModiFierCode = @user,
@@ -294,7 +294,7 @@ namespace Newtouch.HIS.DomainServices
                         new SqlParameter("@Id", item.Id)
                         };
                         db.ExecuteSqlCommand(strSql.ToString(), paraList);
-                        //添加发药操作记录
+                        //Thêm bản ghi thao tác phát thuốc
                         strSql.Clear();
                         strSql.Append(@"insert into NewtouchHIS_PDS.dbo.zy_ypyzczjl
                                   (ypyzxxId,operateType,ypCode,sl,CreateTime,CreatorCode)
@@ -310,7 +310,7 @@ namespace Newtouch.HIS.DomainServices
                         };
                         db.ExecuteSqlCommand(strSql.ToString(), paraList);
 
-                        //把发药从库存中扣去
+                        //Trừ phát thuốc khỏi tồn kho
                         strSql.Clear();
                         strSql.Append(@"update NewtouchHIS_PDS.dbo.xt_yp_kcxx
                                   SET	kcsl=kcsl-@sl,
@@ -346,17 +346,17 @@ namespace Newtouch.HIS.DomainServices
             }
         }
 
-        //配药/发药 完成，修改医嘱执行状态
+        //Cấp phát thuốc/Phát thuốc hoàn thành, sửa trạng thái thực hiện y lệnh
         public string UPBQPYyzzxZT(string tdrq, string zxId, string fybz, string ypdj, string ypje, string zfbl, string zfxz)
         {
-            //fybz 0：未配药，1：已配药 ，2：已发药
+            //fybz 0：Chưa cấp phát thuốc，1：Đã cấp phát thuốc ，2：Đã phát thuốc
             var reqObj = new
-            {//修改医嘱执行表 发药备注状态
+            {//Sửa bảng thực hiện y lệnh, trạng thái ghi chú phát thuốc
                 pyry = OperatorProvider.GetCurrent().UserCode,
                 pyrq = "",
                 tdrq = tdrq,
                 zxId = zxId,
-                fybz = fybz,// 修改为 1 为配药状态，2 为发药状态
+                fybz = fybz,// Sửa thành 1 Là trạng thái cấp phát thuốc，2 Là trạng thái phát thuốc
                 ypdj = ypdj,
                 ypje = ypje,
                 zfbl = zfbl,
@@ -368,7 +368,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取发药明细
+        /// Lấy chi tiết phát thuốc
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -424,10 +424,10 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
         }
 
         /// <summary>
-        /// 删除医嘱信息
+        /// Xóa thông tin y lệnh
         /// </summary>
-        /// <param name="yzId">医嘱ID</param>
-        /// <param name="zxId">医嘱执行ID</param>
+        /// <param name="yzId">Y lệnhID</param>
+        /// <param name="zxId">Thực hiện y lệnhID</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
         /// <returns></returns>
@@ -482,7 +482,7 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
         #region  获取退药明细以及医嘱批号表链查能够执行退药操作的数据信息
 
         /// <summary>
-        /// 获取退药明细表，关联医嘱表ID
+        /// Lấy bảng chi tiết trả thuốc, liên kết bảng y lệnhID
         /// </summary>
         /// <returns></returns>
         public List<ModelZyTyYszyzIdInfoVO> YpTyyszyzidList()
@@ -495,7 +495,7 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
             });
         }
         /// <summary>
-        /// 获取退药明细详细信息
+        /// Lấy thông tin chi tiết trả thuốc
         /// </summary>
         /// <returns></returns>
         public List<ModelBQBRYZZXTYInfoVO> YpTymxxxList(List<ModelZyTyYszyzIdInfoVO> list)
@@ -525,10 +525,10 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
         }
 
         /// <summary>
-        /// 退药前判断是否符合条件
+        /// Trước khi trả thuốc, phán đoán xem có phù hợp điều kiện hay không
         /// </summary>
         /// <param name="list"></param>
-        /// <returns>0:无发药信息，1：可以退药，2：没有申请退药，3：已经退过了</returns>
+        /// <returns>0:Không có thông tin phát thuốc，1：Có thể trả thuốc，2：Chưa đề nghị trả thuốc，3：Đã trả rồi</returns>
         public int IsTYHasOperated(List<ModelBQBRYZZXTYInfoVO> list)
         {
             StringBuilder strSql = new StringBuilder("select fybz,sqtybz from NewtouchHIS_PDS.dbo.zy_ypyzxx");
@@ -567,10 +567,10 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
         }
 
         /// <summary>
-        /// 住院医嘱执行退药操作
+        /// Thực hiện thao tác trả thuốc theo y lệnh nội trú
         /// </summary>
         /// <param name="list"></param>
-        /// <param name="type">退药状态</param>
+        /// <param name="type">Trạng thái trả thuốc</param>
         /// <returns></returns>
         public string ZYBQTYOperate(List<ModelBQBRYZZXTYInfoVO> list, string type,string OrganizeId)
         {
@@ -599,7 +599,7 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
                     foreach (var item in list)
                     {
                         var strSql = new StringBuilder();
-                        //修改发药状态LastModiFierCode
+                        //Sửa trạng thái phát thuốcLastModiFierCode
                         strSql.Append(@"UPDATE NewtouchHIS_PDS.dbo.zy_ypyzxx
                                   SET       fybz = @fybz,
                                             LastModiFierCode = @user,
@@ -614,7 +614,7 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
                         };
                         db.ExecuteSqlCommand(strSql.ToString(), paraList);
 
-                        //添加退药操作记录
+                        //Thêm bản ghi thao tác trả thuốc
                         strSql.Clear();
                         strSql.Append(@"insert into NewtouchHIS_PDS.dbo.zy_ypyzczjl
                                   (ypyzxxId,operateType,ypCode,sl,LastModifyTime,LastModifierCode)
@@ -630,7 +630,7 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
                         };
                         db.ExecuteSqlCommand(strSql.ToString(), paraList);
 
-                        //退药量归还到库存
+                        //Lượng trả thuốc hoàn trả vào tồn kho
                         strSql.Clear();
                         strSql.Append(@"update NewtouchHIS_PDS.dbo.xt_yp_kcxx
                                   SET	kcsl=kcsl+@tysl,
@@ -669,7 +669,7 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
         }
 
         /// <summary>
-        /// 获取住院退药的病人
+        /// Lấy bệnh nhân trả thuốc nội trú
         /// </summary>
         /// <param name="zybrbq"></param>
         /// <param name="organizeId"></param>
@@ -696,7 +696,7 @@ AND yz.OrganizeId=@OrganizeId
 
         #region 住院发药
         /// <summary>
-        /// 获取需要发药的病区（去重）
+        /// Lấy khu bệnh cần phát thuốc (khử trùng lặp）
         /// </summary>
         /// <returns></returns>
         public IList<ZYFYBQModelVO> GetFyBq(string orgId)
@@ -705,7 +705,7 @@ AND yz.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 获取退药病人和病区
+        /// Lấy bệnh nhân và khu bệnh trả thuốc
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
@@ -732,7 +732,7 @@ AND yz.Id=yzph.zyypxxId
         }
 
         /// <summary>
-        /// 获取需要发药的病人
+        /// Lấy bệnh nhân cần phát thuốc
         /// </summary>
         /// <returns></returns>
         public IList<YPFYPatientInfoVO> GetFyPatient(string zybrbq)
@@ -741,7 +741,7 @@ AND yz.Id=yzph.zyypxxId
         }
 
         /// <summary>
-        /// 插入退药申请单
+        /// Chèn phiếu đề nghị trả thuốc
         /// </summary>
         /// <param name="applyBillDetail"></param>
         /// <param name="applyBill"></param>
@@ -781,7 +781,7 @@ WHERE yzId=@yzId AND OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 获取退药病人和病区
+        /// Lấy bệnh nhân và khu bệnh trả thuốc
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
@@ -810,7 +810,7 @@ AND yz.fybz IN ('2','3')
         }
 
         /// <summary>
-        /// 获取退药明细
+        /// Lấy chi tiết trả thuốc
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -874,7 +874,7 @@ ORDER BY r.applyNo, r.ypmc
         }
 
         /// <summary>
-        /// 获取退药明细
+        /// Lấy chi tiết trả thuốc
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -940,7 +940,7 @@ ORDER BY r.applyNo, r.ypmc
         }
 
         /// <summary>
-        /// 获取退药明细
+        /// Lấy chi tiết trả thuốc
         /// </summary>
         /// <param name="applyNo"></param>
         /// <param name="yzId"></param>
@@ -993,7 +993,7 @@ WHERE rdb.applyNo=@applyNo
         }
 
         /// <summary>
-        /// 住院退药
+        /// Trả thuốc nội trú
         /// </summary>
         /// <param name="rd"></param>
         /// <returns></returns>
@@ -1020,7 +1020,7 @@ WHERE rdb.applyNo=@applyNo
 
                         foreach (var zxpc in tyParam.executeBatchDetail)
                         {
-                            //修改发药标志
+                            //Sửa cờ phát thuốc
                             zyyzxxRepo.UpdateFybzTy(tyParam.yzId, zxpc.zxId, rd.userCode, rd.organizeId, db);
                             var ypyzxxid= yzxxRepo.SelectDataByYzId(tyParam.yzId,zxpc.zxId, rd.organizeId);
                             zxpc.tyRpDetail.ForEach(yp =>
@@ -1028,7 +1028,7 @@ WHERE rdb.applyNo=@applyNo
                                 var tyxx = SelectReturnDrugDetail(rd.applyNo, tyParam.yzId, zxpc.zxId, yp.ypCode, rd.yfbmCode, rd.organizeId);
                                 if (tyxx == null || tyxx.Count == 0) throw new Exception(string.Format("【{0}】未找到退药申请信息！", yp.ypmc));
 
-                                //插入退药记录
+                                //Chèn bản ghi trả thuốc
                                 var czjl = new ZyYpyzczjlEntity
                                 {
                                     OrganizeId = rd.organizeId,
@@ -1051,7 +1051,7 @@ WHERE rdb.applyNo=@applyNo
                                 yp.drugBatch.ForEach(batch =>
                                 {
 
-                                    //还库存
+                                    //Hoàn trả tồn kho
                                     kcxxRepo.UpdateKcslWithTrans(batch.sl * yp.zhyz, batch.pc, batch.ph, yp.ypCode, rd.yfbmCode, rd.organizeId, rd.userCode, db);
                                     var tymxEntity = new ZyTymxEntity
                                     {
@@ -1092,7 +1092,7 @@ WHERE rdb.applyNo=@applyNo
         #region  住院 发/退/全部 药查询
 
         /// <summary>
-        /// 住院发、退药查询列表
+        /// Danh sách tra cứu phát thuốc, trả thuốc nội trú
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -1176,7 +1176,7 @@ WHERE (s.bqCode=@bqCode OR ''=ISNULL(@bqCode,'')) ");
         }
 
         /// <summary>
-        /// 住院发药查询列表
+        /// Danh sách tra cứu phát thuốc nội trú
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -1243,7 +1243,7 @@ AND a.zyypxxId=c.Id
         }
 
         /// <summary>
-        /// 住院退药查询列表
+        /// Danh sách tra cứu trả thuốc nội trú
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -1374,7 +1374,7 @@ a.Id, a.yzId, a.zxId, a.ypCode, b.yzxz, b.zlff, c.ycmc, b.dj, c.djdw, a.CreateTi
         }
 
         /// <summary>
-        /// 住院退药V2
+        /// Trả thuốc nội trúV2
         /// </summary>
         /// <param name="rd"></param>
         /// <returns></returns>
@@ -1401,7 +1401,7 @@ a.Id, a.yzId, a.zxId, a.ypCode, b.yzxz, b.zlff, c.ycmc, b.dj, c.djdw, a.CreateTi
 
                         foreach (var zxpc in tyParam.executeBatchDetail)
                         {
-                            //修改发药标志
+                            //Sửa cờ phát thuốc
                             zyyzxxRepo.UpdateFybzTy(tyParam.yzId, zxpc.zxId, rd.userCode, rd.organizeId, db);
                             var ypyzxxid = yzxxRepo.SelectDataByYzId(tyParam.yzId, zxpc.zxId, rd.organizeId);
                             zxpc.tyRpDetail.ForEach(yp =>
@@ -1409,7 +1409,7 @@ a.Id, a.yzId, a.zxId, a.ypCode, b.yzxz, b.zlff, c.ycmc, b.dj, c.djdw, a.CreateTi
                                 var tyxx = SelectReturnDrugDetail(rd.applyNo, tyParam.yzId, zxpc.zxId, yp.ypCode, rd.yfbmCode, rd.organizeId);
                                 if (tyxx == null || tyxx.Count == 0) throw new Exception(string.Format("【{0}】未找到退药申请信息！", yp.ypmc));
 
-                                //插入退药记录
+                                //Chèn bản ghi trả thuốc
                                 var czjl = new ZyYpyzczjlEntity
                                 {
                                     OrganizeId = rd.organizeId,
@@ -1433,7 +1433,7 @@ a.Id, a.yzId, a.zxId, a.ypCode, b.yzxz, b.zlff, c.ycmc, b.dj, c.djdw, a.CreateTi
                                 yp.drugBatch.ForEach(batch =>
                                 {
 
-                                    //还库存
+                                    //Hoàn trả tồn kho
                                     kcxxRepo.UpdateKcslWithTrans(batch.sl * yp.zhyz, batch.pc, batch.ph, yp.ypCode, rd.yfbmCode, rd.organizeId, rd.userCode, db);
                                     var tymxEntity = new ZyTymxEntity
                                     {
@@ -1593,7 +1593,7 @@ s.Id, s.yzId, s.zxId, s.ypCode, s.yzxz, s.zlff, s.ycmc, s.dj, s.djdw, s.CreateTi
         }
 
         /// <summary>
-        /// 获取退药明细V2
+        /// Lấy chi tiết trả thuốcV2
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -1721,7 +1721,7 @@ ORDER BY r.zytyapplyno
         }
 
         /// <summary>
-        /// 获取退药明细V2
+        /// Lấy chi tiết trả thuốcV2
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -1923,7 +1923,7 @@ AND sqd.thzt = '1' ");
         }
 
         /// <summary>
-        /// 获取发药明细
+        /// Lấy chi tiết phát thuốc
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -1965,7 +1965,7 @@ AND sqd.thzt = '1' ");
             return FindList<DeptMedicineApplySendVo>(sql, param);
         }
         /// <summary>
-        /// 科室备药发药
+        /// Phát thuốc dự trữ của khoa
         /// </summary>
         /// <param name="SqdArr"></param>
         /// <param name="userCode"></param>
@@ -2019,7 +2019,7 @@ where ksby.zt=1  and ksby.OrganizeId=@OrgId
         }
 
         /// <summary>
-        /// 科室备药库存退还
+        /// Hoàn trả tồn kho thuốc dự trữ của khoa
         /// </summary>
         /// <param name="SqdArr"></param>
         /// <param name="userCode"></param>

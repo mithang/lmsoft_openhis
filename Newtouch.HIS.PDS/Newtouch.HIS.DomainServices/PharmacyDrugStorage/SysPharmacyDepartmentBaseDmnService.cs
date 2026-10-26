@@ -18,7 +18,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
     public class SysPharmacyDepartmentBaseDmnService : DmnServiceBase, ISysPharmacyDepartmentBaseDmnService
     {
         /// <summary>
-        /// 初始化
+        /// Khởi tạo
         /// </summary>
         /// <param name="databaseFactory"></param>
         public SysPharmacyDepartmentBaseDmnService(IDefaultDatabaseFactory databaseFactory) : base(databaseFactory)
@@ -59,7 +59,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
         }
 
         /// <summary>
-        /// 获取有效的药房和药库
+        /// Lấy nhà thuốc và kho thuốc hợp lệ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="yjbmjb"></param>
@@ -204,7 +204,7 @@ where yfbmId=@yfbmId");
         }
 
         /// <summary>
-        /// 获取UserId当前已关联的要yfbmCode （不包括子机构）
+        /// LấyUserIdĐã liên quan hiện tại cầnyfbmCode （Không bao gồm tổ chức con）
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -218,7 +218,7 @@ where yfbmId=@yfbmId");
         }
 
         /// <summary>
-        /// 获取组织机构下的药房/药库 （不包括子机构）
+        /// Lấy nhà thuốc dưới tổ chức/Kho thuốc (không bao gồm tổ chức con）
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>

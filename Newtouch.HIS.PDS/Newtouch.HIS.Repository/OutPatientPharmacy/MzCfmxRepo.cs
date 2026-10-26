@@ -13,7 +13,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 门诊处方明细
+    /// Chi tiết đơn thuốc ngoại trú
     /// </summary>
     public class MzCfmxRepo : RepositoryBase<MzCfmxEntity>, IMzCfmxRepo
     {
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据处方号获取处方明细
+        /// Lấy chi tiết đơn thuốc theo số đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <returns></returns>
@@ -47,12 +47,12 @@ AND cf.zt = @zt
         }
 
         /// <summary>
-        /// 判断是否已存在
+        /// Phán đoán xem đã tồn tại hay chưa
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="ypCode"></param>
         /// <param name="organizeId"></param>
-        /// <param name="gg">规格</param>
+        /// <param name="gg">Quy cách</param>
         /// <returns></returns>
         public bool IsExist(string cfh, string ypCode, string organizeId, string gg = "")
         {
@@ -76,9 +76,9 @@ AND cf.zt = @zt
         }
 
         /// <summary>
-        /// 删除老的处方明细
+        /// Xóa chi tiết đơn thuốc cũ
         /// </summary>
-        /// <param name="chf">处方号</param>
+        /// <param name="chf">Số đơn thuốc</param>
         /// <returns></returns>
         public int DeleteCfmx(string cfh)
         {
@@ -94,7 +94,7 @@ AND cf.zt = @zt
         }
 
         /// <summary>
-        /// 修改发药标致 已排=>未发
+        /// Sửa dấu hiệu phát thuốc thành đã xếp=>Chưa phát
         /// </summary>
         /// <param name="cfhs"></param>
         /// <returns></returns>
@@ -113,7 +113,7 @@ AND cf.zt = @zt
         }
 
         /// <summary>
-        /// 获取处方明细信息
+        /// Lấy thông tin chi tiết đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>

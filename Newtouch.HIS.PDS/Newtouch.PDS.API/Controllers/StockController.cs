@@ -20,7 +20,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// 库存查询
+        /// Tra cứu tồn kho
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>

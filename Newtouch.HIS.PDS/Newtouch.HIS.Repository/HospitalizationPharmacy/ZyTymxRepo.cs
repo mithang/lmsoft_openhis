@@ -6,7 +6,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 住院退药明细
+    /// Chi tiết trả thuốc nội trú
     /// </summary>
     public class ZyTymxRepo: RepositoryBase<ZyTymxEntity>, IZyTymxRepo
     {

@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 处理接口
+    /// Giao diện xử lý
     /// </summary>
     public interface IProcess
     {

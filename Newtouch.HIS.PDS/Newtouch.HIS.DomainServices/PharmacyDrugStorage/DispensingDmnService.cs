@@ -25,7 +25,7 @@ using static Newtouch.Common.Web.APIRequestHelper;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 发药
+    /// Phát thuốc
     /// </summary>
     public class DispensingDmnService : DmnServiceBase, IDispensingDmnService
     {
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.DomainServices
         #region 门诊
 
         /// <summary>
-        /// 门诊处方预定（冻结库存）
+        /// Đặt trước đơn thuốc ngoại trú (đóng băng tồn kho）
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
@@ -62,7 +62,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 门诊处方预定（冻结库存） V2
+        /// Đặt trước đơn thuốc ngoại trú (đóng băng tồn kho） V2
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
@@ -79,10 +79,10 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 取消预定--支持多批次
+        /// Hủy đặt trước--Hỗ trợ nhiều lô
         /// </summary>
         /// <param name="ypCode"></param>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="yfbmCode"></param>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -105,10 +105,10 @@ namespace Newtouch.HIS.DomainServices
 
 
         /// <summary>
-        /// 取消预定
+        /// Hủy đặt trước
         /// </summary>
         /// <param name="ypCode"></param>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="yfbmCode"></param>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -129,7 +129,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 取消预定
+        /// Hủy đặt trước
         /// </summary>
         /// <param name="mxphlist"></param>
         /// <param name="organizeId"></param>
@@ -161,7 +161,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// HIS门诊取消结算冻结返还
+        /// HISHủy thanh toán ngoại trú, hoàn trả đóng băng
         /// </summary>
         /// <param name="mxphlist"></param>
         /// <param name="organizeId"></param>
@@ -191,10 +191,10 @@ namespace Newtouch.HIS.DomainServices
             }
         }
         /// <summary>
-        /// HIS门诊取消结算冻结返还
+        /// HISHủy thanh toán ngoại trú, hoàn trả đóng băng
         /// </summary>
         /// <param name="ypCode"></param>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="yfbmCode"></param>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -274,10 +274,10 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 门诊发药扣库存
+        /// Phát thuốc ngoại trú trừ tồn kho
         /// </summary>
         /// <param name="ypCode"></param>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="yfbmCode"></param>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -296,7 +296,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 门诊发药扣库存
+        /// Phát thuốc ngoại trú trừ tồn kho
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="yfbmCode"></param>
@@ -318,7 +318,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 门诊退药还库存
+        /// Trả thuốc ngoại trú hoàn trả tồn kho
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="zxdwsl"></param>
@@ -328,7 +328,7 @@ namespace Newtouch.HIS.DomainServices
         /// <param name="userCode"></param>
         /// <param name="ph"></param>
         /// <param name="pc"></param>
-        /// <param name="returnDrugBillNo">退药单号</param>
+        /// <param name="returnDrugBillNo">Số phiếu trả thuốc</param>
         /// <returns></returns>
         public string OutpatientReturnDrugAddStock(string ypCode, string ph,
             string pc, int zxdwsl,
@@ -343,7 +343,7 @@ namespace Newtouch.HIS.DomainServices
                 new SqlParameter("@ph", ph),
                 new SqlParameter("@pc", pc),
                 new SqlParameter("@cfh", cfh),
-                new SqlParameter("@tysl", zxdwsl),//最小单位数量
+                new SqlParameter("@tysl", zxdwsl),//Số lượng đơn vị nhỏ nhất
                 new SqlParameter("@userCode", userCode),
                 new SqlParameter("@returnDrugBillNo", returnDrugBillNo)
             };
@@ -355,7 +355,7 @@ namespace Newtouch.HIS.DomainServices
         #region 住院
 
         /// <summary>
-        /// 住院Book冻结库存 并保存zy_ypyzzxph
+        /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
@@ -394,14 +394,14 @@ namespace Newtouch.HIS.DomainServices
                         };
                         if (kykc >= sykc)
                         {
-                            //当前批次库存 足够
+                            //Tồn kho lô hiện tại đủ
                             tagDjsl = sykc;
                             zyphEntity.sl = sykc;
                             sykc = 0;
                         }
                         else
                         {
-                            //当前批次库存 不足
+                            //Tồn kho lô hiện tại không đủ
                             tagDjsl = kykc;
                             itemKc.djsl = itemKc.djsl + kykc;
                             zyphEntity.sl = kykc;
@@ -450,14 +450,14 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         }
 
         /// <summary>
-        /// 住院Book冻结库存 并保存zy_ypyzzxph
+        /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
         /// <param name="yzId"></param>
-        /// <param name="zxId">执行ID</param>
-        /// <param name="organizeId">组织机构ID</param>
-        /// <param name="yfbmCode">药房部门编码</param>
-        /// <param name="creatorCode">创建人</param>
-        /// <param name="patientName">医嘱所属患者</param>
+        /// <param name="zxId">Thực hiệnID</param>
+        /// <param name="organizeId">Tổ chứcID</param>
+        /// <param name="yfbmCode">Mã bộ phận nhà thuốc</param>
+        /// <param name="creatorCode">Người tạo</param>
+        /// <param name="patientName">Bệnh nhân thuộc y lệnh</param>
         /// <returns></returns>
         public string HospitalizationBook(string yzId, string zxId, string organizeId, string yfbmCode, string creatorCode, string patientName)
         {
@@ -474,7 +474,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         }
 
         /// <summary>
-        /// 取消冻结，并物理删除医嘱信息 慎用
+        /// Hủy đóng băng và xóa vật lý thông tin y lệnh, dùng thận trọng
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="zxId"></param>
@@ -490,7 +490,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         }
 
         /// <summary>
-        /// 住院Book冻结库存 并保存zy_ypyzzxph
+        /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
         /// <param name="zxId"></param>
         /// <param name="yzDetails"></param>
@@ -547,14 +547,14 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
                             };
                             if (kykc >= sykc)
                             {
-                                //当前批次库存 足够
+                                //Tồn kho lô hiện tại đủ
                                 tagDjsl = sykc;
                                 zyphEntity.sl = sykc;
                                 sykc = 0;
                             }
                             else
                             {
-                                //当前批次库存 不足
+                                //Tồn kho lô hiện tại không đủ
                                 tagDjsl = kykc;
                                 itemKc.djsl = itemKc.djsl + kykc;
                                 zyphEntity.sl = kykc;
@@ -593,7 +593,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         }
 
         /// <summary>
-        /// 取消住院book
+        /// Hủy nội trúbook
         /// </summary>
         /// <param name="zxId"></param>
         /// <param name="bookItemDo"></param>
@@ -645,7 +645,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         }
 
         /// <summary>
-        /// 取消排药
+        /// Hủy xếp thuốc
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
@@ -694,7 +694,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
 
 
         /// <summary>
-        /// 排药
+        /// Xếp thuốc
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
@@ -709,14 +709,14 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         }
 
         /// <summary>
-        /// 修改排药状态和归架标志
+        /// Sửa trạng thái xếp thuốc và cờ trả về kệ
         /// </summary>
         /// <param name="zyphRepo"></param>
         /// <param name="param"></param>
         /// <returns></returns>
         private string UpdateArrangementZtAndGjzt(ZyYpyzzxphRepo zyphRepo, CancelArrangement param)
         {
-            //直接取消排药
+            //Hủy xếp thuốc trực tiếp
             var zyph = zyphRepo.FindEntity(p =>
                 p.zxId == param.zxId && p.yzId == param.yzId && p.OrganizeId == param.OrganizeId && p.ph == param.ph && p.pc == param.pc &&
                 p.zt == "1" && p.gjzt == "0" && p.fyyf == param.yfbmCode);
@@ -727,7 +727,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         }
 
         /// <summary>
-        /// 住院发药 支持多条医嘱多个排药明细，但医嘱和排药明细必须对应
+        /// Phát thuốc nội trú hỗ trợ nhiều y lệnh với nhiều chi tiết xếp thuốc, nhưng y lệnh và chi tiết xếp thuốc phải tương ứng
         /// </summary>
         /// <param name="zyphLs"></param>
         /// <param name="yzLs"></param>
@@ -736,7 +736,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         /// <returns></returns>
         public string HospitalizationDispensing(List<ZyYpyzzxphEntity> zyphLs, List<ZyYpyzxxEntity> yzLs, string userCode,out string fyid,string organizeId)
         {
-            fyid = Guid.NewGuid().ToString();//发药ID
+            fyid = Guid.NewGuid().ToString();//Phát thuốcID
             using (var db = new EFDbTransaction(_databaseFactory).BeginTrans())
             {
                 foreach (var zyph in zyphLs)
@@ -768,7 +768,7 @@ AND pc=@pc AND ph=@ph AND zt='1' AND OrganizeId = @OrganizeId
                     var sysl = (int)zyph.sl;
                     if (kcxxLs.Sum(p => p.djsl) < zyph.sl)
                     {
-                        //冻结数不足
+                        //Số lượng đóng băng không đủ
                         foreach (var kcxx in kcxxLs.TakeWhile(kcxx => sysl > 0))
                         {
                             int subtractKc;
@@ -801,7 +801,7 @@ WHERE pc=@pc AND ph=@ph AND ypdm=@ypCode AND OrganizeId=@OrganizeId AND yfbmCode
                     }
                     else
                     {
-                        //冻结数足够
+                        //Số lượng đóng băng đủ
                         foreach (var kcxx in kcxxLs.TakeWhile(kcxx => sysl > 0))
                         {
                             int subtractKc;
@@ -940,21 +940,21 @@ WHERE pc=@pc AND ph=@ph AND ypdm=@ypCode AND OrganizeId=@OrganizeId AND yfbmCode
         #endregion
         #region 生成项目费用
         /// <summary>
-        /// 同步最新CPOE项目费用
+        /// Đồng bộ mới nhấtCPOEPhí hạng mục
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
         public void SyncPatFee(string orgId, string zyh, int zxtype)
         {
-            //是否启用费用同步最新机制
+            //Có bật cơ chế đồng bộ phí mới nhất hay không
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
                 string sql = "";
-                if (zxtype == 0) //同步项目费用
+                if (zxtype == 0) //Đồng bộ phí hạng mục
                 {
                     sql = @" exec [NewtouchHIS_Sett]..[skd_syncxmjfbcope] @orgId=@orgId,@lqrq=@lqrq,@zyh=@zyh ";
                 }
-                else //同步药品费用
+                else //Đồng bộ phí thuốc
                 {
                     sql = @" exec [NewtouchHIS_Sett]..[skd_syncypjfbcope] @orgId=@orgId,@lqrq=@lqrq,@zyh=@zyh";
                 }

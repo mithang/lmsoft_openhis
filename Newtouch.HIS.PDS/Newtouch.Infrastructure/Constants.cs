@@ -16,12 +16,12 @@ namespace Newtouch.Infrastructure
     {
 
         /// <summary>
-        /// 顶级组织机构Id
+        /// Tổ chức cấp cao nhấtId
         /// </summary>
         private static string _topOrganizeId;
 
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// Tổ chứcId（Cấp cao nhất, cấu hình hệ thống）
         /// </summary>
         public static string TopOrganizeId
         {
@@ -41,12 +41,12 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 应用Id
+        /// Ứng dụngId
         /// </summary>
         private static string _AppId;
 
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// Tổ chứcId（Cấp cao nhất, cấu hình hệ thống）
         /// </summary>
         public static string AppId
         {
@@ -57,7 +57,7 @@ namespace Newtouch.Infrastructure
                     _AppId = System.Configuration.ConfigurationManager.AppSettings["AppId"] as string;
                     if (string.IsNullOrWhiteSpace(_AppId))
                     {
-                        //throw new Exception("AppId未配置");
+                        //throw new Exception("AppIdChưa cấu hình");
                     }
                 }
                 return _AppId;
@@ -103,7 +103,7 @@ namespace Newtouch.Infrastructure
         #region 登录用户当前的药房部门信息 永不过期 不同系统之间会共享
 
         /// <summary>
-        /// 获取当前的药剂部门（药房或药库）
+        /// Lấy bộ phận dược hiện tại (nhà thuốc hoặc kho thuốc）
         /// </summary>
         public static LoginUserCurrentYfbmModel CurrentYfbm
         {
@@ -115,7 +115,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取当前的药剂部门（药房或药库）
+        /// Lấy bộ phận dược hiện tại (nhà thuốc hoặc kho thuốc）
         /// </summary>
         /// <param name="userId"></param>
         public static LoginUserCurrentYfbmModel GetCurrentYfbm(string userId)
@@ -125,13 +125,13 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 设置当前的药剂部门（药房或药库）
+        /// Đặt bộ phận dược hiện tại (nhà thuốc hoặc kho thuốc）
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="value"></param>
         public static void SetCurrentYfbm(string userId, LoginUserCurrentYfbmModel value)
         {
-            //避免其他电脑登陆导致当前设备药房角色变化
+            //Tránh việc đăng nhập từ máy tính khác làm thay đổi vai trò nhà thuốc của thiết bị hiện tại
             userId = userId + AddressIp;
             if (value == null)
             {
@@ -144,7 +144,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 返回最小时间 1970-01-01 00:00:000
+        /// Trả về thời gian nhỏ nhất 1970-01-01 00:00:000
         /// </summary>
         public static DateTime MinDateTime
         {
@@ -154,7 +154,7 @@ namespace Newtouch.Infrastructure
         #endregion
 
         /// <summary>
-        /// 时间格式化
+        /// Định dạng thời gian
         /// </summary>
         public const string DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
 
@@ -162,35 +162,35 @@ namespace Newtouch.Infrastructure
         #region log tags
 
         /// <summary>
-        /// 客户流水号
+        /// Số giao dịch của khách hàng
         /// </summary>
         public const string ClientNo = "clientNo";
         /// <summary>
-        /// 医嘱ID
+        /// Y lệnhID
         /// </summary>
         public const string ZyId = "zxId";
         /// <summary>
-        /// 医药代码
+        /// Mã dược phẩm
         /// </summary>
         public const string YpCode = "ypCode";
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public const string Cfh = "Cfh";
         /// <summary>
-        /// 处方内码
+        /// Mã nội bộ đơn thuốc
         /// </summary>
         public const string Cfnm = "Cfnm";
         /// <summary>
-        /// 组织机构代码
+        /// Mã tổ chức
         /// </summary>
         public const string OrganizeId = "OrganizeId";
         /// <summary>
-        /// 药房部门
+        /// Bộ phận nhà thuốc
         /// </summary>
         public const string Yfbm = "Yfbm";
         /// <summary>
-        /// 当前操作员
+        /// Người thao tác hiện tại
         /// </summary>
         public const string CreatorCode = "CreatorCode";
         #endregion

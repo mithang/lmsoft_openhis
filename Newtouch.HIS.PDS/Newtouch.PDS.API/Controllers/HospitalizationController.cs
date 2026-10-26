@@ -12,7 +12,7 @@ namespace Newtouch.PDS.API.Controllers
     public class HospitalizationController : ApiController
     {
         /// <summary>
-        /// 住院退药接口
+        /// Giao diện trả thuốc nội trú
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -104,7 +104,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// 退药前判断发药记录是否符合退药条件
+        /// Trước khi trả thuốc, phán đoán xem bản ghi phát thuốc có phù hợp điều kiện trả thuốc hay không
         /// </summary>
         /// <param name="zxId"></param>
         /// <returns></returns>

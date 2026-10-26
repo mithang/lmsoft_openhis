@@ -27,7 +27,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 根据角色 获取 配置的 权限 菜单
+        /// Lấy menu quyền đã cấu hình theo vai trò
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
@@ -37,12 +37,12 @@ namespace Newtouch.HIS.DomainServices
             if (isRoot)
             {
                 //all
-                //170818改为只能看到 系统菜单
+                //170818Đổi thành chỉ được thấy menu hệ thống
                 query = query.Where(p => p.Name == "系统管理" || p.Name == "系统菜单" || p.Name == "菜单管理" || p.Name == "FailMsg配置" || p.Name == "快捷菜单");
             }
             else if (isAdministrator)
             {
-                //170818 业务系统 改为只能看到 角色管理
+                //170818 Hệ thống nghiệp vụ đổi thành chỉ được thấy quản lý vai trò
                 query = query.Where(p => p.Name == "系统管理" || p.Name == "角色管理" || p.Name == "系统角色");
             }
             else
@@ -52,10 +52,10 @@ namespace Newtouch.HIS.DomainServices
                     return null;
                 }
 
-                //向organize开放的
+                //Hướng tớiorganizeĐược mở
                 var orgItemIdList = _sysOrganizeAuthorizeRepo.IQueryable(t => t.zt == "1" && t.ItemType == 1
 && (t.TopOrganizeId == "*" || t.TopOrganizeId == topOrgId)).Select(p => p.ItemId);
-                //向Role开放的
+                //Hướng tớiRoleĐược mở
                 var idList = _sysRoleAuthorizeRepository.IQueryable(t => t.zt == "1" && t.ItemType == 1
 && roleIdList.Contains(t.RoleId)).Select(p => p.ItemId);
                 query = query.Where(p => orgItemIdList.Contains(p.Id) && idList.Contains(p.Id));
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 根据角色 获取 配置的 权限 按钮
+        /// Lấy nút quyền đã cấu hình theo vai trò
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
@@ -78,7 +78,7 @@ namespace Newtouch.HIS.DomainServices
             }
             else if (isAdministrator)
             {
-                //向organize开放的
+                //Hướng tớiorganizeĐược mở
                 var idList = _sysOrganizeAuthorizeRepo.IQueryable(t => t.zt == "1" && t.ItemType == 2
 && (t.TopOrganizeId == "*" || t.TopOrganizeId == topOrgId)).Select(p => p.ItemId);
                 query = query.Where(p => idList.Contains(p.Id));
@@ -89,10 +89,10 @@ namespace Newtouch.HIS.DomainServices
                 {
                     return null;
                 }
-                //向organize开放的
+                //Hướng tớiorganizeĐược mở
                 var orgIdList = _sysOrganizeAuthorizeRepo.IQueryable(t => t.zt == "1" && t.ItemType == 2
 && (t.TopOrganizeId == "*" || t.TopOrganizeId == topOrgId)).Select(p => p.ItemId);
-                //向Role开放的
+                //Hướng tớiRoleĐược mở
                 var idList = _sysRoleAuthorizeRepository.IQueryable(t => t.zt == "1" && t.ItemType == 2
 && roleIdList.Contains(t.RoleId)).Select(p => p.ItemId);
                 query = query.Where(p => orgIdList.Contains(p.Id) && idList.Contains(p.Id));
@@ -101,7 +101,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取机构 系统菜单
+        /// Lấy menu hệ thống của cơ cấu
         /// </summary>
         /// <returns></returns>
         public IList<SysModuleVO> GetMenuListByTopOrg(string topOrgId)
@@ -131,7 +131,7 @@ select * from
         }
 
         /// <summary>
-        /// 获取机构 系统菜单 按钮
+        /// Lấy menu hệ thống, nút của cơ cấu
         /// </summary>
         /// <returns></returns>
         public IList<SysModuleButtonVO> GetMenuButtonListByTopOrg(string topOrgId, string moduleId)
@@ -165,7 +165,7 @@ and Id not in
         }
 
         /// <summary>
-        /// 获取机构 已开放 的菜单
+        /// Lấy menu đã mở của cơ cấu
         /// </summary>
         /// <returns></returns>
         public IList<SysModuleEntity> GetOpenMenuListByTopOrg(string topOrgId)
@@ -181,7 +181,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SqlParamet
         }
 
         /// <summary>
-        /// 获取机构 已开放 的按钮
+        /// Lấy nút đã mở của cơ cấu
         /// </summary>
         /// <returns></returns>
         public IList<SysModuleButtonEntity> GetOpenMenuButtonListByTopOrg(string topOrgId)
@@ -197,7 +197,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SqlParamet
         }
 
         /// <summary>
-        /// 提交新建、更新 菜单
+        /// Gửi tạo mới, cập nhật menu
         /// </summary>
         /// <param name="moduleEntity"></param>
         /// <param name="keyValue"></param>
@@ -210,7 +210,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SqlParamet
             }
             else
             {
-                //新增
+                //Thêm mới
                 using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
                 {
                     moduleEntity.Create(true);
@@ -218,7 +218,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SqlParamet
 
                     if (!string.IsNullOrWhiteSpace(topOrgId))
                     {
-                        //自动为topOrganizeId分配Module的权限
+                        //Tự động làtopOrganizeIdPhân bổModuleQuyền của
                         var authEntity = new SysOrganizeAuthorizeEntity()
                         {
                             TopOrganizeId = topOrgId,
@@ -235,7 +235,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SqlParamet
         }
 
         /// <summary>
-        /// 提交新建、更新 权限按钮
+        /// Gửi tạo mới, cập nhật nút quyền
         /// </summary>
         /// <param name="moduleButtonEntity"></param>
         /// <param name="keyValue"></param>
@@ -248,7 +248,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SqlParamet
             }
             else
             {
-                //新增
+                //Thêm mới
                 using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
                 {
                     moduleButtonEntity.Create(true);
@@ -256,7 +256,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SqlParamet
 
                     if (!string.IsNullOrWhiteSpace(topOrgId))
                     {
-                        //自动为topOrganizeId分配ModuleButton的权限
+                        //Tự động làtopOrganizeIdPhân bổModuleButtonQuyền của
                         var authEntity = new SysOrganizeAuthorizeEntity()
                         {
                             TopOrganizeId = topOrgId,

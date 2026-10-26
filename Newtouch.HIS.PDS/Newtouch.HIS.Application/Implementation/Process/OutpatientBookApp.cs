@@ -24,7 +24,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 资源预定
+    /// Đặt trước tài nguyên
     /// </summary>
     public class OutpatientBookApp : ProcessorFun<OutpatientBookRequestDTO>
     {
@@ -36,16 +36,16 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly IOutpatientPrescriptionDetailBatchNumberRepo _mxphRepo;
 
         /// <summary>
-        /// book失败项目，返回给请求方
+        /// bookHạng mục thất bại, trả về cho bên yêu cầu
         /// </summary>
         private readonly List<FailItemDetail> _failList;
         /// <summary>
-        /// book成功项目， 后期还原
+        /// bookHạng mục thành công, khôi phục sau
         /// </summary>
         private readonly List<BookItemDo> _successList;
 
         /// <summary>
-        /// 初始化
+        /// Khởi tạo
         /// </summary>
         /// <param name="request"></param>
         public OutpatientBookApp(OutpatientBookRequestDTO request) : base(request)
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 验证
+        /// Xác thực
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
@@ -131,23 +131,23 @@ namespace Newtouch.HIS.Application.Implementation
             actResult.ResultMsg = errorMsg.ToString();
             if (_successList.Any())
             {
-                //还原 解冻
+                //Khôi phục, giải đông
                 OutPatientBookCancel();
             }
         }
 
         /// <summary>
-        /// 后处理
+        /// Xử lý sau
         /// </summary>
         /// <param name="actResult"></param>
         protected override void AfterAction(ActResult actResult)
         {
             try
             {
-                //插入 mz_cf、mz_cfmx 表
+                //Chèn mz_cf、mz_cfmx Bảng
                 var mzcfxx = new List<MzCfEntity>();
                 var mzcfmx = new List<MzCfmxEntity>();
-                Parallel.For(0, 2, i => //组装数据
+                Parallel.For(0, 2, i => //Lắp ráp dữ liệu
                 {
                     switch (i)
                     {
@@ -163,14 +163,14 @@ namespace Newtouch.HIS.Application.Implementation
             }
             catch (Exception e)
             {
-                //还原 解冻
+                //Khôi phục, giải đông
                 OutPatientBookCancel();
                 LogCore.Error("OutpatientBookApp AfterAction InsertOutpatientRpInfo error", e);
             }
         }
 
         /// <summary>
-        /// 取消门诊预定
+        /// Hủy đặt trước ngoại trú
         /// </summary>
         private void OutPatientBookCancel()
         {
@@ -262,7 +262,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装门诊处方信息
+        /// Lắp ráp thông tin đơn thuốc ngoại trú
         /// </summary>
         /// <returns></returns>
         private List<MzCfEntity> AssembleMzCfEntity()
@@ -292,7 +292,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装门诊处方明细信息
+        /// Lắp ráp thông tin chi tiết đơn thuốc ngoại trú
         /// </summary>
         /// <returns></returns>
         private List<MzCfmxEntity> AssembleMzCfmxEntity()

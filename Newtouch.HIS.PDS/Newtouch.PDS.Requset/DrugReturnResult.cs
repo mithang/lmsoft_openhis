@@ -4,12 +4,12 @@ using System.ComponentModel;
 namespace Newtouch.PDS.Requset
 {
     /// <summary>
-    /// 退药执行结果
+    /// Kết quả thực hiện trả thuốc
     /// </summary>
     public class DrugReturnResult
     {
         /// <summary>
-        /// 执行结果
+        /// Kết quả thực hiện
         /// </summary>
         public DrugReturnResult()
         {
@@ -19,34 +19,34 @@ namespace Newtouch.PDS.Requset
         }
 
         /// <summary>
-        /// 是否成功
+        /// Có thành công hay không
         /// </summary>
         public bool IsSucceed { get; set; }
 
         /// <summary>
-        /// 错误编码
+        /// Mã lỗi
         /// </summary>
         public int ErrorCode { get; set; }
 
         /// <summary>
-        /// 错误描述
+        /// Mô tả lỗi
         /// </summary>
         public string ErrorMsg { get; set; }
 
         /// <summary>
-        /// 返回医嘱ID
+        /// Trả về y lệnhID
         /// </summary>
         public string yzId { get; set; }
         /// <summary>
-        /// 药品CODE
+        /// ThuốcCODE
         /// </summary>
         public string ypCode { get; set; }
         /// <summary>
-        /// 组号
+        /// Số nhóm
         /// </summary>
         public string zh { get; set; }
         /// <summary>
-        /// 执行日期
+        /// Ngày thực hiện
         /// </summary>
         public DateTime? zxrq { get; set; }
     }
@@ -54,55 +54,55 @@ namespace Newtouch.PDS.Requset
     public enum ErrorCode
     {
         /// <summary>
-        /// 执行成功
+        /// Thực hiện thành công
         /// </summary>
         [Description("执行成功")]
         Success = 0,
 
         /// <summary>
-        /// 医嘱号不能为空
+        /// Số y lệnh không được để trống
         /// </summary>
         [Description("医嘱号不能为空")]
         Error1 = 1,
 
         /// <summary>
-        /// 药品编码不能为空
+        /// Mã thuốc không được để trống
         /// </summary>
         [Description("药品编码不能为空")]
         Error2 = 2,
 
         /// <summary>
-        /// 无法查询该医嘱信息
+        /// Không thể tra cứu thông tin y lệnh đó
         /// </summary>
         [Description("无法查询该医嘱信息")]
         Error3 = 3,
 
         /// <summary>
-        /// 未发药,禁止退药
+        /// Chưa phát thuốc,Cấm trả thuốc
         /// </summary>
         [Description("未发药,禁止退药")]
         Error4 = 4,
 
         /// <summary>
-        /// 药品已经退过了
+        /// Thuốc đã trả rồi
         /// </summary>
         [Description("药品已经退过了")]
         Error5 = 5,
 
         /// <summary>
-        /// 已经申请退药禁,止重复操作
+        /// Đã đề nghị trả thuốc, cấm,Ngăn thao tác lặp lại
         /// </summary>
         [Description("已经申请退药禁,止重复操作")]
         Error6 = 6,
 
         /// <summary>
-        /// 退药申请人不能为空
+        /// Người đề nghị trả thuốc không được để trống
         /// </summary>
         [Description("退药申请人不能为空")]
         Error7 = 7,
 
         /// <summary>
-        /// 执行日期不能为空
+        /// Ngày thực hiện không được để trống
         /// </summary>
         [Description("执行日期不能为空")]
         Error8 = 8,

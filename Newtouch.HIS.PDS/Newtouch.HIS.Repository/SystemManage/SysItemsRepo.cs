@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取字典分类（包括无效的）
+        /// Lấy phân loại từ điển (bao gồm không hợp lệ）
         /// </summary>
         /// <returns></returns>
         public IList<SysItemsEntity> GetList(string keyword = null)

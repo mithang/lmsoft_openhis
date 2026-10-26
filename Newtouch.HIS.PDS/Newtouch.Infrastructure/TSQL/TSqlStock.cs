@@ -1,12 +1,12 @@
 ﻿namespace Newtouch.Infrastructure.TSQL
 {
     /// <summary>
-    /// 库存
+    /// Tồn kho
     /// </summary>
     public class TSqlStock
     {
         /// <summary>
-        /// 批量直接出库
+        /// Xuất kho trực tiếp hàng loạt
         /// </summary>
         public const string direct_delivery_batch_search = @"
 SELECT s.ypdm, s.ypmc, s.dlmc, s.gg, s.ycmc, dbo.f_getComplexYpSlandDw(s.kysl, s.ckbmzhyz, s.ckbmbmdw, s.zxdw) slStr
@@ -31,7 +31,7 @@ FROM (
 ";
 
         /// <summary>
-        /// 直接批量出库
+        /// Xuất kho hàng loạt trực tiếp
         /// </summary>
         public const string direct_delivery_batch_submit = @"
 BEGIN TRANSACTION
@@ -260,7 +260,7 @@ COMMIT TRANSACTION
 ";
 
         /// <summary>
-        /// 冻结库存（减库存使用  内部发药退回）
+        /// Đóng băng tồn kho (dùng để giảm tồn kho, trả lại phát thuốc nội bộ）
         /// </summary>
         public const string frozen_stock_Reduce_use_by_returninward = @"
 BEGIN TRANSACTION
@@ -323,7 +323,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 冻结库存（减库存使用  直接出库）
+        /// Đóng băng tồn kho (dùng để giảm tồn kho, xuất kho trực tiếp）
         /// </summary>
         public const string frozen_stock_Reduce_use_by_deliveryDirect = @"
 BEGIN TRANSACTION
@@ -379,7 +379,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 生成盘点信息
+        /// Tạo thông tin kiểm kê
         /// </summary>
         public const string generate_inventoryInfo = @"
 BEGIN TRANSACTION;
@@ -496,7 +496,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 结束盘点
+        /// Kết thúc kiểm kê
         /// </summary>
         public const string end_inventoryInfo = @"
 IF EXISTS(SELECT 1 FROM tempdb..sysobjects where id=object_id(N'tempdb..#tmpypjspd') and type='U')
@@ -583,7 +583,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 作废  减库存
+        /// Hủy bỏ, giảm tồn kho
         /// </summary>
         public const string cancel_subtract_kcsl = @"
 BEGIN TRY 
@@ -645,7 +645,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 冻结库存并返回冻结信息
+        /// Đóng băng tồn kho và trả về thông tin đóng băng
         /// </summary>
         public const string frozen_stork_and_return_frozenInfo = @"
 BEGIN TRANSACTION
@@ -753,7 +753,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 库存结转
+        /// Kết chuyển tồn kho
         /// </summary>
         public const string yp_xt_kcjz_v2 = @"
 BEGIN TRY
@@ -805,7 +805,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 库存结转
+        /// Kết chuyển tồn kho
         /// </summary>
         public const string yp_xt_kcjz = @"
 BEGIN TRY
@@ -858,7 +858,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 扣库存
+        /// Trừ tồn kho
         /// </summary>
         public const string SubtractStock = @"
 DECLARE @kykc INT, @ypmc VARCHAR(200);
@@ -920,7 +920,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 科室备药发药
+        /// Phát thuốc dự trữ của khoa
         /// </summary>
         public const string KsbyStock = @"IF EXISTS(SELECT 1 FROM tempdb..sysobjects WHERE id=OBJECT_ID(N'tempdb..#ypkc') AND type='U')
 BEGIN

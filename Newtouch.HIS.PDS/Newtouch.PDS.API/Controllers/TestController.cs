@@ -11,7 +11,7 @@ using Newtouch.Tools.Security;
 namespace Newtouch.PDS.API.Controllers
 {
     /// <summary>
-    /// 资源操作
+    /// Thao tác tài nguyên
     /// </summary>
     [RoutePrefix("api/test")]
     public class TestController : ApiControllerBase<TestController>
@@ -37,7 +37,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// 测试token
+        /// Kiểm thửtoken
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

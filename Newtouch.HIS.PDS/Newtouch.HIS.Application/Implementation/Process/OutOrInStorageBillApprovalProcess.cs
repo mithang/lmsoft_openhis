@@ -13,7 +13,7 @@ using Newtouch.HIS.Domain.IDomainServices;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 出入库单据审核
+    /// Duyệt phiếu xuất nhập kho
     /// </summary>
     public class OutOrInStorageBillApprovalProcess : ProcessorFun<OutOrInStorageBillApprovalDTO>
     {
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 验证
+        /// Xác thực
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 throw new FailedException("审核状态不能为空！");
             }
-            var djmc = "";//单据名称
+            var djmc = "";//Tên phiếu
             switch (Request.djlx)
             {
                 case (int)EnumDanJuLX.keshifayao:
@@ -80,7 +80,7 @@ namespace Newtouch.HIS.Application.Implementation
             }
             if (Request.shzt == ((int)EnumDjShzt.Cancelled).ToString())
             {
-                if (((int)EnumDjShzt.WaitingApprove).ToString() == Request.dj.shzt) throw new FailedException("单据尚未审核，不允许作废！"); //作废操作，应该存在单据审核记录
+                if (((int)EnumDjShzt.WaitingApprove).ToString() == Request.dj.shzt) throw new FailedException("单据尚未审核，不允许作废！"); //Thao tác hủy bỏ, phải tồn tại bản ghi duyệt phiếu
                 if (((int)EnumDjShzt.Cancelled).ToString() == Request.dj.shzt) throw new FailedException("单据已作废，不能重复作废！");
                 if (((int)EnumDjShzt.Rejected).ToString() == Request.dj.shzt) throw new FailedException("单据已审核不通过，不能作废！");
             }
@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Application.Implementation
             }
             else
             {
-                if (((int)EnumDjShzt.WaitingApprove).ToString() != Request.dj.shzt) throw new FailedException("单据已审核，不能重复审核！");//非作废操作，应该不存在单据审核记录
+                if (((int)EnumDjShzt.WaitingApprove).ToString() != Request.dj.shzt) throw new FailedException("单据已审核，不能重复审核！");//Thao tác không phải hủy bỏ, phải không tồn tại bản ghi duyệt phiếu
             }
             Request.djmx = _crkdjmx.IQueryable(p => p.crkId == Request.crkId && p.zt == "1").ToList();
             if (Request.djmx == null || Request.djmx.Count <= 0)
@@ -99,13 +99,13 @@ namespace Newtouch.HIS.Application.Implementation
             }
             //if (_mx.Any(p => p.Sl <= 0))
             //{
-            //    throw new FailedException("存在数量为零的明细记录，操作失败");
+            //    throw new FailedException("Tồn tại bản ghi chi tiết có số lượng bằng 0, thao tác thất bại");
             //}
             return new ActResult();
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)

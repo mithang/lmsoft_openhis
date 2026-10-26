@@ -26,11 +26,11 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据处方号和组织机构获取未归架的门诊处方明细批号信息
+        /// Lấy thông tin số lô chi tiết đơn thuốc ngoại trú chưa trả về kệ theo số đơn thuốc và tổ chức
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
-        /// <param name="gjzt">归架状态：0-未归架  1-已归架</param>
+        /// <param name="gjzt">Trạng thái trả về kệ：0-Chưa trả về kệ  1-Đã trả về kệ</param>
         /// <returns></returns>
         public List<OutpatientPrescriptionDetailBatchNumberEntity> GetList(string cfh, string organizeId, string gjzt = "0")
         {
@@ -51,12 +51,12 @@ AND zt='1'
         }
 
         /// <summary>
-        /// 根据处方号和组织机构获取门诊处方明细批号信息
+        /// Lấy thông tin số lô chi tiết đơn thuốc ngoại trú theo số đơn thuốc và tổ chức
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
-        /// <param name="gjzt">归架状态：0-未归架  1-已归架</param>
+        /// <param name="gjzt">Trạng thái trả về kệ：0-Chưa trả về kệ  1-Đã trả về kệ</param>
         /// <returns></returns>
         public List<OutpatientPrescriptionDetailBatchNumberEntity> GetList(string cfh, string yfbmCode, string organizeId, string gjzt = "0")
         {
@@ -79,13 +79,13 @@ AND zt='1'
         }
 
         /// <summary>
-        /// 根据处方号和组织机构获取门诊处方明细批号信息
+        /// Lấy thông tin số lô chi tiết đơn thuốc ngoại trú theo số đơn thuốc và tổ chức
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="ypCode"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
-        /// <param name="gjzt">归架状态：0-未归架  1-已归架</param>
+        /// <param name="gjzt">Trạng thái trả về kệ：0-Chưa trả về kệ  1-Đã trả về kệ</param>
         /// <returns></returns>
         public List<OutpatientPrescriptionDetailBatchNumberEntity> GetList(string cfh, string ypCode, string yfbmCode, string organizeId, string gjzt = "0")
         {
@@ -111,13 +111,13 @@ AND zt='1'
         }
 
         /// <summary>
-        /// 根据处方号和组织机构获取门诊处方明细批号信息
+        /// Lấy thông tin số lô chi tiết đơn thuốc ngoại trú theo số đơn thuốc và tổ chức
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="ypCode"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
-        /// <param name="gjzt">归架状态：0-未归架  1-已归架</param>
+        /// <param name="gjzt">Trạng thái trả về kệ：0-Chưa trả về kệ  1-Đã trả về kệ</param>
         /// <returns></returns>
         public List<MzcfphxxVO> GetListByGroup(string cfh, string ypCode, string yfbmCode, string organizeId, string gjzt = "0")
         {
@@ -144,7 +144,7 @@ GROUP BY pc, ph
         }
 
         /// <summary>
-        /// 归架药品
+        /// Thuốc trả về kệ
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="pc"></param>

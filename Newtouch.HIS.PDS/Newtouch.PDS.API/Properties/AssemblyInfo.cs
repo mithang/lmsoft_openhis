@@ -2,9 +2,9 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// 有关程序集的常规信息是通过以下项进行控制的
-// 控制。更改这些特性值可修改
-// 与程序集关联的信息。
+// Thông tin thường lệ về assembly được kiểm soát thông qua các mục sau
+// Kiểm soát. Thay đổi các giá trị thuộc tính này có thể sửa đổi
+// Thông tin liên quan đến assembly。
 [assembly: AssemblyTitle("Newtouch.PDS.API")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
@@ -14,22 +14,22 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// 将 ComVisible 设置为 false 将使此程序集中的类型
-// 对 COM 组件不可见。如果需要
-// 从 COM 访问此程序集中的某个类型，请针对该类型将 ComVisible 特性设置为 true。
+// Sẽ ComVisible Đặt thành false Sẽ làm cho các kiểu trong assembly này
+// Đối với COM Thành phần không hiển thị. Nếu cần
+// Từ COM Để truy cập một kiểu nào đó trong assembly này, hãy đối với kiểu đó ComVisible Đặt đặc tính thành true。
 [assembly: ComVisible(false)]
 
-// 如果此项目向 COM 公开，则下列 GUID 用于 typelib 的 ID
+// Nếu hạng mục này hướng tới COM Công khai, thì các mục sau GUID Dùng cho typelib Của ID
 [assembly: Guid("9ff5879c-b402-490b-9a03-3d564de5f5e2")]
 
-// 程序集的版本信息由下列四个值组成:
+// Thông tin phiên bản của assembly gồm bốn giá trị sau:
 //
-//      主版本
-//      次版本
-//      内部版本号
-//      修订版本
+//      Phiên bản chính
+//      Phiên bản phụ
+//      Số phiên bản nội bộ
+//      Phiên bản sửa đổi
 //
-// 你可以指定所有值，也可以让修订版本和内部版本号采用默认值，
-// 方法是按如下所示使用 "*":
+// Bạn có thể chỉ định mọi giá trị, hoặc để phiên bản sửa đổi và số phiên bản nội bộ dùng giá trị mặc định，
+// Phương thức được dùng như minh họa dưới đây "*":
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

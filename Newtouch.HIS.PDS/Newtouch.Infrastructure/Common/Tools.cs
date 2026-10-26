@@ -3,12 +3,12 @@
 namespace Newtouch.Infrastructure.Common
 {
     /// <summary>
-    /// 工具类
+    /// Lớp công cụ
     /// </summary>
     public static class Tools
     {
         /// <summary>
-        /// 过滤SQL语句,防止注入
+        /// LọcSQLCâu lệnh,Ngăn chặn tiêm
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>

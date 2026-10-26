@@ -11,13 +11,13 @@ namespace Newtouch.PDS.API.Tests.Controllers
         [TestMethod]
         public void Index()
         {
-            // 排列
+            // Sắp xếp
             HomeController controller = new HomeController();
 
-            // 操作
+            // Thao tác
             ViewResult result = controller.Index() as ViewResult;
 
-            // 断言
+            // Khẳng định
             Assert.IsNotNull(result);
             Assert.AreEqual("Home Page", result.ViewBag.Title);
         }

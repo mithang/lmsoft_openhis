@@ -12,14 +12,14 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Application
 {
     /// <summary>
-    /// 菜单App
+    /// MenuApp
     /// </summary>
     public class ModuleApp : AppBase, IModuleApp
     {
         private readonly ISysModuleRepo _moduleRepository;
 
         /// <summary>
-        /// 获取有效菜单列表
+        /// Lấy danh sách menu hợp lệ
         /// </summary>
         /// <returns></returns>
         public List<SysModuleEntity> GetValidList()
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 获取实体
+        /// Lấy thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 删除菜单
+        /// Xóa menu
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(string keyValue)

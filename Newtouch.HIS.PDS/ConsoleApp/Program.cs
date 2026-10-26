@@ -20,7 +20,7 @@ namespace ConsoleApp
     class Program
     {
 
-        static SemaphoreSlim semLim = new SemaphoreSlim(3); //3表示最多只能有三个线程同时访问
+        static SemaphoreSlim semLim = new SemaphoreSlim(3); //3Nghĩa là tối đa chỉ có ba luồng truy cập đồng thời
 
         static void Main(string[] args)
         {
@@ -84,7 +84,7 @@ namespace ConsoleApp
 
             List<string> list1 = new List<string>();
             Test1(list1);
-            Console.WriteLine(" list1：" + list1.Count); // 总数量为 1
+            Console.WriteLine(" list1：" + list1.Count); // Tổng số lượng là 1
 
             Console.WriteLine("");
             Console.WriteLine("---- 亮瞎眼的分割线 ----");
@@ -92,14 +92,14 @@ namespace ConsoleApp
 
             List<string> list2 = new List<string>();
             Test2(list2);
-            Console.WriteLine(" list2：" + list2.Count); // 总数量仍为 0
+            Console.WriteLine(" list2：" + list2.Count); // Tổng số lượng vẫn là 0
 
             Console.WriteLine("");
         }
         static void Test1(List<string> list)
         {
             list.Add("1");
-            Console.WriteLine(" Test1()：" + list.Count); // 总数量为 1
+            Console.WriteLine(" Test1()：" + list.Count); // Tổng số lượng là 1
         }
 
         static void Test2(List<string> list)
@@ -108,7 +108,7 @@ namespace ConsoleApp
             list2.Add("1");
 
             list = list2;
-            Console.WriteLine(" Test2()：" + list.Count); // 总数量为 1
+            Console.WriteLine(" Test2()：" + list.Count); // Tổng số lượng là 1
         }
 
         static void Multithreadinglock()
@@ -173,8 +173,8 @@ namespace ConsoleApp
                         //}
                         //else
                         //{
-                        //    Console.WriteLine(string.Format("子线程【{0}】 处理事情：{1}", Thread.CurrentThread.ManagedThreadId, p));
-                        //    errorMsg = "命中444";
+                        //    Console.WriteLine(string.Format("Luồng con【{0}】 Xử lý sự việc：{1}", Thread.CurrentThread.ManagedThreadId, p));
+                        //    errorMsg = "Trúng444";
                         //    cts.Cancel();
                         //    return false;
                         //}
@@ -201,42 +201,42 @@ namespace ConsoleApp
         static void TaskTest()
         {
             Console.WriteLine(string.Format("主线程 开始，线程号：{0}", Thread.CurrentThread.ManagedThreadId));
-            ////IsBackground=true，将其设置为后台线程
+            ////IsBackground=true，Đặt nó thành luồng nền
             ////Thread t = new Thread(Run) { IsBackground = true };
             ////t.Start();
             //ThreadPool.QueueUserWorkItem(_ => Run());
-            //Console.WriteLine(string.Format("主线程 在做其他的事，线程号：{0}", Thread.CurrentThread.ManagedThreadId));
-            ////主线程结束，后台线程会自动结束，不管有没有执行完成
+            //Console.WriteLine(string.Format("Luồng chính đang làm việc khác, số luồng：{0}", Thread.CurrentThread.ManagedThreadId));
+            ////Khi luồng chính kết thúc, luồng nền sẽ tự động kết thúc, bất kể đã thực hiện xong hay chưa
             //Thread.Sleep(300);
             ////Thread.Sleep(1500);
-            //Console.WriteLine(string.Format("主线程 结束，线程号：{0}", Thread.CurrentThread.ManagedThreadId));
+            //Console.WriteLine(string.Format("Luồng chính kết thúc, số luồng：{0}", Thread.CurrentThread.ManagedThreadId));
 
             //Task<string> task = Task<string>.Run(() =>
             //{
             //    Thread.Sleep(3000);
-            //    Console.WriteLine(string.Format("子线程 后台线程调用,线程号：{0}", Thread.CurrentThread.ManagedThreadId));
+            //    Console.WriteLine(string.Format("Luồng con, luồng nền gọi,Số luồng：{0}", Thread.CurrentThread.ManagedThreadId));
             //    return Thread.CurrentThread.ManagedThreadId.ToString();
             //});
             ////Thread.Sleep(300);
-            //Console.WriteLine(string.Format("主线程 在做其他的事，线程号：{0}", Thread.CurrentThread.ManagedThreadId));
-            //Console.WriteLine(string.Format("子线程 返回值：{0}", task.Result));
+            //Console.WriteLine(string.Format("Luồng chính đang làm việc khác, số luồng：{0}", Thread.CurrentThread.ManagedThreadId));
+            //Console.WriteLine(string.Format("Giá trị trả về của luồng con：{0}", task.Result));
             ////task.Wait();
-            //Console.WriteLine(string.Format("主线程 结束，线程号：{0}", Thread.CurrentThread.ManagedThreadId));
+            //Console.WriteLine(string.Format("Luồng chính kết thúc, số luồng：{0}", Thread.CurrentThread.ManagedThreadId));
 
 
-            //Console.WriteLine(string.Format("-------主线程 启动-------  线程号：{0}", Thread.CurrentThread.ManagedThreadId));
+            //Console.WriteLine(string.Format("-------Luồng chính khởi động-------  Số luồng：{0}", Thread.CurrentThread.ManagedThreadId));
             //Task<int> task = GetStrLengthAsync();
             //Thread.Sleep(300);
-            //Console.WriteLine("主线程 继续执行");
-            //Console.WriteLine(string.Format("主线程 Task返回的值{0},  线程号：{1}", task.Result, Thread.CurrentThread.ManagedThreadId));
-            //Console.WriteLine(string.Format("-------主线程 结束------- 线程号：{0}", Thread.CurrentThread.ManagedThreadId));
+            //Console.WriteLine("Luồng chính tiếp tục thực hiện");
+            //Console.WriteLine(string.Format("Luồng chính TaskGiá trị trả về{0},  Số luồng：{1}", task.Result, Thread.CurrentThread.ManagedThreadId));
+            //Console.WriteLine(string.Format("-------Luồng chính kết thúc------- Số luồng：{0}", Thread.CurrentThread.ManagedThreadId));
             //var result = new List<string>();
             //var sw = new Stopwatch();
             //sw.Start();
             //var list = new List<int> { 1, 2, 3, 4, 5, 6, 6, 7, 8, 9 };
             //Parallel.ForEach<int>(list, n =>
             //{
-            //    var tmp = string.Format("value:{0}   线程：{1}", n, Thread.CurrentThread.ManagedThreadId);
+            //    var tmp = string.Format("value:{0}   Luồng：{1}", n, Thread.CurrentThread.ManagedThreadId);
             //    result.Add(tmp);
             //    Console.WriteLine(tmp);
             //    Thread.Sleep(1000);
@@ -246,7 +246,7 @@ namespace ConsoleApp
             //Console.WriteLine(sw.Elapsed);
             //Console.Read();
 
-            //Console.WriteLine("主线程开始");
+            //Console.WriteLine("Luồng chính bắt đầu");
             //Task<string> task = Task<string>.Run(() =>
             //{
             //    Thread.Sleep(2000);
@@ -260,19 +260,19 @@ namespace ConsoleApp
             //});
             //task.ContinueWith(m =>
             //{
-            //    Console.WriteLine("第一个任务结束啦！我是第二个任务");
+            //    Console.WriteLine("Nhiệm vụ đầu tiên đã kết thúc! Tôi là nhiệm vụ thứ hai");
             //    Thread.Sleep(2000);
             //});
-            //Console.WriteLine("主线程结束");
+            //Console.WriteLine("Luồng chính kết thúc");
             //task.Wait();
             //Thread.Sleep(100);
 
             //Task.Run(() =>
             //{
             //    Thread.CurrentThread.IsBackground = false;
-            //    Console.WriteLine("子线程 开始  线程号：{0}", Thread.CurrentThread.ManagedThreadId);
+            //    Console.WriteLine("Luồng con bắt đầu, số luồng：{0}", Thread.CurrentThread.ManagedThreadId);
             //    Thread.Sleep(5000);
-            //    Console.WriteLine("子线程 结束  线程号：{0}", Thread.CurrentThread.ManagedThreadId);
+            //    Console.WriteLine("Luồng con kết thúc, số luồng：{0}", Thread.CurrentThread.ManagedThreadId);
             //    Thread.Sleep(2000);
             //});
             //Thread.Sleep(1000);
@@ -286,7 +286,7 @@ namespace ConsoleApp
         {
             Thread.Sleep(2000);
             Console.WriteLine(string.Format("GetStrLengthAsync方法开始执行 线程号：{0}", Thread.CurrentThread.ManagedThreadId));
-            //此处返回的<string>中的字符串类型，而不是Task<string>
+            //Trả về tại đây<string>Kiểu chuỗi trong đó, chứ không phảiTask<string>
             //string str = await GetString();
             //string str = GetString().Result;
             Task<string> str = GetString();
@@ -311,9 +311,9 @@ namespace ConsoleApp
         //static void SemaphoreTest()
         //{
         //    semLim.Wait();
-        //    Console.WriteLine("线程" + Thread.CurrentThread.ManagedThreadId.ToString() + "开始执行");
+        //    Console.WriteLine("Luồng" + Thread.CurrentThread.ManagedThreadId.ToString() + "Bắt đầu thực hiện");
         //    Thread.Sleep(2000);
-        //    Console.WriteLine("线程" + Thread.CurrentThread.ManagedThreadId.ToString() + "执行完毕");
+        //    Console.WriteLine("Luồng" + Thread.CurrentThread.ManagedThreadId.ToString() + "Đã thực hiện xong");
         //    semLim.Release();
         //}
 
@@ -324,7 +324,7 @@ namespace ConsoleApp
         }
 
         /// <summary>
-        /// 循环执行
+        /// Thực hiện vòng lặp
         /// </summary>
         public static void LoopExec()
         {
@@ -412,7 +412,7 @@ namespace ConsoleApp
         }
 
         /// <summary>
-        /// 医嘱执行
+        /// Thực hiện y lệnh
         /// </summary>
         private static void Yzzx()
         {

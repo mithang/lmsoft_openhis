@@ -8,8 +8,8 @@ using System.Text.RegularExpressions;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 常用到的（放Repo、DmnService都不合适的，但又要请求数据库的）
-    /// 比如获取唯一编号（自增，但有不能重复）
+    /// Thường dùng (đặtRepo、DmnServiceĐều không phù hợp, nhưng lại phải yêu cầu cơ sở dữ liệu）
+    /// Ví dụ lấy số duy nhất (tự tăng, nhưng không được lặp lại）
     /// </summary>
     public class EFDBBaseFuncHelper
     {
@@ -21,7 +21,7 @@ namespace Newtouch.Infrastructure
         private readonly IDefaultDatabaseFactory _databaseFactory;
 
         /// <summary>
-        /// 默认DB上下文
+        /// Mặc địnhDBNgữ cảnh
         /// </summary>
         public static EFDBBaseFuncHelper Instance
         {
@@ -33,7 +33,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 指定DB上下文
+        /// Chỉ địnhDBNgữ cảnh
         /// </summary>
         /// <param name="dbType"></param>
         /// <returns></returns>
@@ -41,7 +41,7 @@ namespace Newtouch.Infrastructure
         {
             if (!dbType.HasValue)
             {
-                dbType = EnumDBFactoryType.DefaultDB;  //默认
+                dbType = EnumDBFactoryType.DefaultDB;  //Mặc định
             }
             IDefaultDatabaseFactory databaseFactory = null;
             switch (dbType)
@@ -56,7 +56,7 @@ namespace Newtouch.Infrastructure
         #region DBHelper
 
         /// <summary>
-        /// 获取主键字段唯一Id
+        /// Lấy duy nhất trường khóa chínhId
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
@@ -72,7 +72,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取主键字段唯一Id
+        /// Lấy duy nhất trường khóa chínhId
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
@@ -88,7 +88,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取主键字段唯一Id
+        /// Lấy duy nhất trường khóa chínhId
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
@@ -104,7 +104,7 @@ namespace Newtouch.Infrastructure
             return outParameter.Value.ToString();
         }
         /// <summary>
-        /// 获取 字段/业务 唯一值
+        /// Lấy trường/Giá trị duy nhất của nghiệp vụ
         /// </summary>
         /// <param name="fieldName"></param>
         /// <returns></returns>
@@ -140,10 +140,10 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取单据号
+        /// Lấy số phiếu
         /// </summary>
         /// <param name="djmc"></param>
-        /// <param name="orgId">当前医院对应的组织机构Id</param>
+        /// <param name="orgId">Tổ chức tương ứng với bệnh viện hiện tạiId</param>
         /// <param name="yfbmCode"></param>
         /// <returns></returns>
         public string GetNewMedicineReceiptNo(string djmc, string yfbmCode, string orgId)
@@ -172,12 +172,12 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 上下文 类型
+    /// Loại ngữ cảnh
     /// </summary>
     public enum EnumDBFactoryType
     {
         /// <summary>
-        /// 系统主库
+        /// Kho chính hệ thống
         /// </summary>
         DefaultDB
     }

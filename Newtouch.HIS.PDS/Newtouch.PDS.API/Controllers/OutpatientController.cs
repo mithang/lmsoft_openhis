@@ -12,7 +12,7 @@ using Newtouch.PDS.Requset;
 namespace Newtouch.PDS.API.Controllers
 {
     /// <summary>
-    /// 门诊管理
+    /// Quản lý ngoại trú
     /// </summary>
     [RoutePrefix("api/Outpatient")]
     public class OutpatientController : ApiControllerBase<OutpatientController>
@@ -24,7 +24,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// 更新门诊处方患者信息
+        /// Cập nhật thông tin bệnh nhân của đơn thuốc ngoại trú
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>

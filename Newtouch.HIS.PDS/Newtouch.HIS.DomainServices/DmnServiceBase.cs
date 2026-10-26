@@ -13,12 +13,12 @@ namespace Newtouch.HIS.DomainServices
     public class DmnServiceBase : EFDBBase
     {
         /// <summary>
-        /// 是否为private readonly I 解析实例
+        /// Có phải là hay khôngprivate readonly I Phân tích thể hiện
         /// </summary>
         private static readonly bool? PrfAutoResolve;
 
         /// <summary>
-        /// 静态构造函数
+        /// Hàm tạo tĩnh
         /// </summary>
         static DmnServiceBase()
         {
@@ -26,7 +26,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 构造函数（在这里给prf ioc赋值的）
+        /// Hàm tạo (tại đây choprf iocĐã gán giá trị）
         /// </summary>
         /// <param name="databaseFactory"></param>
         public DmnServiceBase(IDatabaseFactory databaseFactory)
@@ -34,13 +34,13 @@ namespace Newtouch.HIS.DomainServices
         {
             if (PrfAutoResolve ?? true)
             {
-                //利用IOC为private readonly field赋值
+                //Tận dụngIOCLàprivate readonly fieldGán giá trị
                 this.PRFAutoResolve();
             }
         }
 
         /// <summary>
-        /// 构造函数（在这里给prf ioc赋值的）
+        /// Hàm tạo (tại đây choprf iocĐã gán giá trị）
         /// </summary>
         /// <param name="databaseFactory"></param>
         /// <param name="needIoc"></param>
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.DomainServices
         {
             if (needIoc)
             {
-                //利用IOC为private readonly field赋值
+                //Tận dụngIOCLàprivate readonly fieldGán giá trị
                 this.PRFAutoResolve();
             }
         }
@@ -56,7 +56,7 @@ namespace Newtouch.HIS.DomainServices
         #region no log
 
         /// <summary>
-        /// 查询Sql，返回实体
+        /// Tra cứuSql，Trả về thực thể
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="sql"></param>
@@ -67,7 +67,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 查询Sql，返回实体
+        /// Tra cứuSql，Trả về thực thể
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="sql"></param>
@@ -83,7 +83,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 对数据库执行给定的 DDL/DML 命令
+        /// Thực thi trên cơ sở dữ liệu giá trị đã cho DDL/DML Lệnh
         /// </summary>
         /// <param name="sql"></param>
         /// <param name="parameters"></param>
@@ -96,7 +96,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 查询Sql，返回实体列表
+        /// Tra cứuSql，Trả về danh sách thực thể
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="sql"></param>
@@ -108,7 +108,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 查询Sql，返回实体列表
+        /// Tra cứuSql，Trả về danh sách thực thể
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="sql"></param>

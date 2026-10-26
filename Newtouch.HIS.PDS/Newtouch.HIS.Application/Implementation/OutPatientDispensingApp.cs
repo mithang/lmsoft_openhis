@@ -22,17 +22,17 @@ using Exception = System.Exception;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 门诊发药
+    /// Phát thuốc ngoại trú
     /// </summary>
     public class OutPatientDispensingApp : AppBase, IOutPatientDispensingApp
     {
         private readonly IfyDmnService _fydeDmnService;
 
         /// <summary>
-        /// 执行发药
+        /// Thực hiện phát thuốc
         /// </summary>
         /// <param name="deliveryInfo"></param>
-        /// <param name="cfhList">发药处方号</param>
+        /// <param name="cfhList">Số đơn thuốc phát thuốc</param>
         /// <returns></returns>
         public string ExecAllDeliveryDrugV2(OutpatienDrugDeliveryInfo deliveryInfo, out List<string> cfhList)
         {
@@ -106,13 +106,13 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 执行发药
+        /// Thực hiện phát thuốc
         /// </summary>
         /// <param name="patients"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="userCode"></param>
         /// <param name="organizeId"></param>
-        /// <param name="cfhList">发药处方号</param>
+        /// <param name="cfhList">Số đơn thuốc phát thuốc</param>
         /// <returns></returns>
         public string ExecAllDeliveryDrug(patientInfoVO[] patients, string yfbmCode, string userCode, string organizeId, out List<string> cfhList)
         {

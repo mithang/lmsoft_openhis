@@ -1,14 +1,14 @@
 ﻿namespace Newtouch.Infrastructure.TSQL
 {
     /// <summary>
-    /// 发药
+    /// Phát thuốc
     /// </summary>
     public class TSqlDispensing
     {
         #region 门诊预定 冻结库存
 
         /// <summary>
-        /// 资源预定
+        /// Đặt trước tài nguyên
         /// </summary>
         public const string mz_yp_book = @"
 DECLARE @ypmc VARCHAR(200);--药品名称
@@ -122,7 +122,7 @@ END CATCH
 
 
         /// <summary>
-        /// 门诊资源预定（冻结库存，生成排药明细）
+        /// Đặt trước tài nguyên ngoại trú (đóng băng tồn kho, tạo chi tiết xếp thuốc）
         /// </summary>
         public const string mz_yp_book_v2 = @"
 DECLARE @resultMsg VARCHAR(500);
@@ -290,7 +290,7 @@ SELECT @resultMsg resultMsg;
         #region 门诊取消预定 解冻
 
         /// <summary>
-        /// 门诊取消预定 解冻 （精简版）
+        /// Hủy đặt trước ngoại trú, giải đông (bản rút gọn）
         /// </summary>
         public const string mz_yp_book_cancel_simplify = @"
 IF EXISTS(SELECT 1 FROM tempdb..sysobjects WHERE id=OBJECT_ID(N'tempdb..#mxph') AND type='U')
@@ -376,7 +376,7 @@ END CATCH
 SELECT @resultMsg resultMsg;
 ";
         /// <summary>
-        /// 门诊取消预定 解冻--按照cfmxphid解冻
+        /// Hủy đặt trước ngoại trú, giải đông--TheocfmxphidGiải đông
         /// </summary>
         public const string mz_yp_book_cancel_v2 = @"
 IF EXISTS(SELECT 1 FROM tempdb..sysobjects WHERE id=OBJECT_ID(N'tempdb..#ArrData') AND type='U')
@@ -469,7 +469,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 门诊取消预定 解冻
+        /// Hủy đặt trước ngoại trú, giải đông
         /// </summary>
         public const string mz_yp_book_cancel = @"
 IF EXISTS(SELECT 1 FROM tempdb..sysobjects WHERE id=OBJECT_ID(N'tempdb..#ArrData') AND type='U')
@@ -566,7 +566,7 @@ END CATCH
         #region 门诊发药处方明细查询
 
         /// <summary>
-        /// 门诊发药处方明细查询
+        /// Tra cứu chi tiết đơn thuốc phát thuốc ngoại trú
         /// </summary>
         public const string mz_fy_cfmx = @"
 SELECT a.czh, a.Fph, a.cfh,convert(varchar(50),a.cfnm) cfnm,a.ypCode, a.ypmc, a.gg, CONVERT(INT,a.zxdwsl/a.zhyz) sl, a.dw, a.dj, a.ycmc, a.je, ISNULL(a.jl,0) jl, a.jldw, a.yfmc, a.yszt, a.ysmc, a.sfsj,a.gjybdm
@@ -615,7 +615,7 @@ order by czh
 		#region 门诊发药
 
 		/// <summary>
-		/// 门诊发药
+		/// Phát thuốc ngoại trú
 		/// </summary>
 		public const string mz_yp_delivery = @"
 --处理页面输入追溯码
@@ -785,7 +785,7 @@ SELECT @resultMsg resultMsg
         #region 住院预定 冻结库存
 
         /// <summary>
-        /// 住院预定 冻结库存
+        /// Đặt trước nội trú, đóng băng tồn kho
         /// </summary>
         public const string zy_yp_book = @"
 DECLARE @resultMsg VARCHAR(500);
@@ -944,7 +944,7 @@ SELECT @resultMsg resultMsg
 ";
 
         /// <summary>
-        /// 住院药品取消冻结，并物理删除医嘱信息（慎用）
+        /// Hủy đóng băng thuốc nội trú và xóa vật lý thông tin y lệnh (dùng thận trọng）
         /// </summary>
         public const string zy_yp_cancelForzen_deleteData = @"
 DECLARE @resultMsg VARCHAR(500);

@@ -11,7 +11,7 @@ using Newtouch.PDS.Requset.ClinicTfOperate;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 医嘱执行
+    /// Thực hiện y lệnh
     /// </summary>
     public class ClinicTfOperateApp : ProcessorFun<ClinicTfOperateRequest>
     {
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 验证
+        /// Xác thực
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 检验医嘱明细
+        /// Kiểm tra chi tiết y lệnh
         /// </summary>
         /// <param name="detail"></param>
         private static void ValidataYzDetail(CfDetial CfDetial)
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
@@ -57,11 +57,11 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 foreach (var item in _cfEntities)
                 {
-                    //退费之前，先判断是否已经排药
+                    //Trước khi hoàn phí, trước tiên phán đoán xem đã xếp thuốc hay chưa
                     if (IsPrescribeYp(item.cfh, item.OrganizeId))
                     {
                         List<MzCfmxEntity> Cfmx = mzCfmxRepo.GetCfmxByCfh(item.cfh);
-                        //已排药的情况，先退还冻结
+                        //Trường hợp đã xếp thuốc, trước tiên hoàn trả phần đóng băng
                         Cfmx.ForEach(p =>
                         {
                             try
@@ -80,7 +80,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 处方作废
+        /// Hủy đơn thuốc
         /// </summary>
         /// <param name="actResult"></param>
         protected override void AfterAction(ActResult actResult)
@@ -108,7 +108,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装退费处方数据
+        /// Lắp ráp dữ liệu đơn thuốc hoàn phí
         /// </summary>
         /// <returns></returns>
         private void AssembleTfCfEntity()
@@ -126,10 +126,10 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 判断该处方是否已排药
+        /// Phán đoán xem đơn thuốc đó đã xếp thuốc hay chưa
         /// </summary>
         /// <param name="cfh"></param>
-        /// <returns>true:已排药;false:未排药</returns>
+        /// <returns>true:Đã xếp thuốc;false:Chưa xếp thuốc</returns>
         private bool IsPrescribeYp(string cfh, string OrganizeId)
         {
             var entity = _mzCfRepo.FindEntity(p => p.cfh == cfh &&

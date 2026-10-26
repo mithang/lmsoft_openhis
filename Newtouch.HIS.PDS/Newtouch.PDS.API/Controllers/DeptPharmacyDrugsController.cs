@@ -11,13 +11,13 @@ using Newtouch.PDS.Requset.DeptPharmacyDrugs;
 namespace Newtouch.PDS.API.Controllers
 {
     /// <summary>
-    /// 部门药房药品
+    /// Thuốc nhà thuốc của bộ phận
     /// </summary>
     [RoutePrefix("api/DeptPharmacyDrugs")]
     public class DeptPharmacyDrugsController : ApiControllerBase<DeptPharmacyDrugsController>
     {
         /// <summary>
-        /// 初始化
+        /// Khởi tạo
         /// </summary>
         /// <param name="com"></param>
         public DeptPharmacyDrugsController(IComponentContext com) : base(com)
@@ -25,7 +25,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// 门诊排药合计信息（待排药）
+        /// Thông tin tổng hợp xếp thuốc ngoại trú (chờ xếp thuốc）
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>

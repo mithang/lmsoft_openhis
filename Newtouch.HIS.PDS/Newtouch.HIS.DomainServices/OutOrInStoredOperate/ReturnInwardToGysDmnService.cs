@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.DomainServices.OutOrInStoredOperate
 {
     /// <summary>
-    /// 外部出库
+    /// Xuất kho ngoài
     /// </summary>
     public class ReturnInwardToGysDmnService : DmnServiceBase, IReturnInwardToGysDmnService
     {
@@ -26,7 +26,7 @@ namespace Newtouch.HIS.DomainServices.OutOrInStoredOperate
         }
 
         /// <summary>
-        /// 提交直接出库
+        /// Gửi xuất kho trực tiếp
         /// </summary>
         /// <returns></returns>
         public string SubmitReturnInwardToGys(SysMedicineStorageIOReceiptEntity dj, List<SysMedicineStorageIOReceiptDetailEntity> mx)

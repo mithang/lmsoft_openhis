@@ -16,14 +16,14 @@ using Newtouch.PDS.Requset.Zyypyz;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 医嘱执行
+    /// Thực hiện y lệnh
     /// </summary>
     public class YzzxApp : ProcessorFun<ZyypyzzxRequest>
     {
         private readonly IZyYpyzxxRepo _zyYpyzzxRepo;
         private List<ZyYpyzxxEntity> _yzEntities;
         private readonly List<BookItemDo> _sucessList;
-        private string zxId = Guid.NewGuid().ToString();//医嘱执行ID
+        private string zxId = Guid.NewGuid().ToString();//Thực hiện y lệnhID
 
         public YzzxApp(ZyypyzzxRequest request) : base(request)
         {
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 验证
+        /// Xác thực
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
@@ -73,7 +73,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
@@ -82,7 +82,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 单线程执行
+        /// Thực hiện đơn luồng
         /// </summary>
         private void SinglethreadAction(ActResult actResult)
         {
@@ -93,7 +93,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 多线程执行
+        /// Thực hiện đa luồng
         /// </summary>
         private void MultithreadingAction()
         {
@@ -152,7 +152,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 取消冻结
+        /// Hủy đóng băng
         /// </summary>
         private void CancelForzenKc()
         {
@@ -166,7 +166,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 排药
+        /// Xếp thuốc
         /// </summary>
         /// <param name="actResult"></param>
         protected override void AfterAction(ActResult actResult)
@@ -174,11 +174,11 @@ namespace Newtouch.HIS.Application.Implementation
             AssembleZyYpyzzxEntity();
             if (_yzEntities == null || _yzEntities.Count <= 0) throw new ProcessException("保存住院药品医嘱执行数据失败");
             _zyYpyzzxRepo.Insert(_yzEntities);
-            actResult.Data = Request.yzList;//由于事务控制，所以要么全部失败，否则全部成功，Data返回成功队列
+            actResult.Data = Request.yzList;//Do kiểm soát giao dịch, nên hoặc tất cả đều thất bại, hoặc tất cả đều thành công，DataTrả về hàng đợi thành công
         }
 
         /// <summary>
-        /// 组装住院药品医嘱执行表数据
+        /// Lắp ráp dữ liệu bảng thực hiện y lệnh thuốc nội trú
         /// </summary>
         /// <returns></returns>
         private void AssembleZyYpyzzxEntity()

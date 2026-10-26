@@ -6,14 +6,14 @@ using Newtouch.PDS.Requset;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 患者基本信息管理
+    /// Quản lý thông tin cơ bản bệnh nhân
     /// </summary>
     public class PatientBaseInfoApp : AppBase, IPatientBaseInfoApp
     {
         private readonly IMzCfRepo _mzCfRepo;
 
         /// <summary>
-        /// 补充门诊患者基本信息
+        /// Bổ sung thông tin cơ bản bệnh nhân ngoại trú
         /// </summary>
         /// <param name="pbi"></param>
         /// <returns></returns>

@@ -19,7 +19,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 发药
+    /// Phát thuốc
     /// </summary>
     public class HandOutMedicineDmnService : DmnServiceBase, IHandOutMedicineDmnService
     {
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 输入码自动提示（一级部门提示，没有转换因子，例如药剂科）
+        /// Gợi ý tự động mã nhập (gợi ý bộ phận cấp một, không có hệ số chuyển đổi, ví dụ khoa dược）
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="srm"></param>
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取药品信息  根据批次批号分组
+        /// Lấy thông tin thuốc, nhóm theo lô/số lô
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="yfbmCode"></param>
@@ -87,11 +87,11 @@ ORDER BY s.yxq ASC
         }
 
         /// <summary>
-        /// 获取退药药品明细
+        /// Lấy chi tiết thuốc trả thuốc
         /// </summary>
-        /// <param name="ckbm">出库部门 申请退药的部门</param>
-        /// <param name="rkbm">入库部门 药品即将退回到的部门</param>
-        /// <param name="srm">输入码 关键字</param>
+        /// <param name="ckbm">Bộ phận xuất kho, bộ phận đề nghị trả thuốc</param>
+        /// <param name="rkbm">Bộ phận nhập kho, bộ phận mà thuốc sắp được trả về</param>
+        /// <param name="srm">Mã nhập, từ khóa</param>
         /// <returns></returns>
         public List<HandOutMedicinesrmVO> GetTyypBySrm(string ckbm, string rkbm, string srm)
         {
@@ -105,7 +105,7 @@ ORDER BY s.yxq ASC
         }
 
         /// <summary>
-        ///  获取科室药品库存记录
+        ///  Lấy bản ghi tồn kho thuốc của khoa
         /// </summary>
         /// <param name="ypdm"></param>
         /// <returns></returns>
@@ -136,7 +136,7 @@ ORDER BY s.yxq ASC
         }
 
         /// <summary>
-        /// 申领出库
+        /// Xuất kho theo phiếu lĩnh
         /// </summary>
         /// <param name="xtYpLsNbfymxk"></param>
         /// <param name="fydh"></param>
@@ -254,7 +254,7 @@ ORDER BY s.yxq ASC
         }
 
         /// <summary>
-        /// 退药
+        /// Trả thuốc
         /// </summary>
         /// <param name="xtYpLsNbfymxk"></param>
         /// <param name="tybm"></param>
@@ -290,7 +290,7 @@ ORDER BY s.yxq ASC
         }
 
         /// <summary>
-        /// 发药(直接出库)
+        /// Phát thuốc(Xuất kho trực tiếp)
         /// </summary>
         /// <param name="xtYpLsNbfymxk"></param>
         /// <param name="lybm"></param>
@@ -329,7 +329,7 @@ ORDER BY s.yxq ASC
         }
 
         /// <summary>
-        /// 药房向科室发药
+        /// Nhà thuốc phát thuốc cho khoa
         /// </summary>
         /// <param name="xtYpLsNbfymxk"></param>
         /// <param name="lybm"></param>
@@ -366,10 +366,10 @@ ORDER BY s.yxq ASC
         }
 
         /// <summary>
-        /// 获取批量出库药品库存信息
+        /// Lấy thông tin tồn kho thuốc xuất kho hàng loạt
         /// </summary>
-        /// <param name="yfbmCode">当前部门</param>
-        /// <param name="rkbm">入库部门</param>
+        /// <param name="yfbmCode">Bộ phận hiện tại</param>
+        /// <param name="rkbm">Bộ phận nhập kho</param>
         /// <param name="organizeid"></param>
         /// <returns></returns>
         public IList<DrugStockInfoVEntity> GetDirectDeliveryDrugsList(Pagination pagination, string yfbmCode, string rkbm, string organizeid)
@@ -384,10 +384,10 @@ ORDER BY s.yxq ASC
         }
 
         /// <summary>
-        /// 获取批量出库药品库存信息
+        /// Lấy thông tin tồn kho thuốc xuất kho hàng loạt
         /// </summary>
-        /// <param name="yfbmCode">当前部门</param>
-        /// <param name="rkbm">入库部门</param>
+        /// <param name="yfbmCode">Bộ phận hiện tại</param>
+        /// <param name="rkbm">Bộ phận nhập kho</param>
         /// <param name="organizeid"></param>
         /// <returns></returns>
         public IList<DrugStockInfoVEntity> GetDirectDeliveryDrugsList(string yfbmCode, string rkbm, string organizeid)
@@ -402,7 +402,7 @@ ORDER BY s.yxq ASC
         }
 
         /// <summary>
-        /// 前天提交批量直接出库
+        /// Hôm kia gửi xuất kho trực tiếp hàng loạt
         /// </summary>
         /// <param name="paraDto"></param>
         /// <returns></returns>

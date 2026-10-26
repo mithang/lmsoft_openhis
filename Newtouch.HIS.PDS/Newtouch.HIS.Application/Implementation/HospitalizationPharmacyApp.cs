@@ -23,7 +23,7 @@ using System.Web;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 住院库存造作
+    /// Thao tác tồn kho nội trú
     /// </summary>
     public class HospitalizationPharmacyApp : AppBase, IHospitalizationPharmacyApp
     {
@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly IDispensingDmnService _dispensingDmnService;
 
         /// <summary>
-        /// 住院发药
+        /// Phát thuốc nội trú
         /// </summary>
         /// <param name="drugsParam"></param>
         /// <param name="userCode"></param>
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Application.Implementation
             //    else
             //    {
             //        var drug = new SysMedicineExDmnService(new DefaultDatabaseFactory(), false).GetYpDetails(item.organizeId, item.ypCode);
-            //        throw new Exception(string.Format("药品【{0}】未找到有效的排药信息", drug != null && !string.IsNullOrWhiteSpace(drug.ypmc) ? drug.ypmc : item.ypCode));
+            //        throw new Exception(string.Format("Thuốc【{0}】Không tìm thấy thông tin xếp thuốc hợp lệ", drug != null && !string.IsNullOrWhiteSpace(drug.ypmc) ? drug.ypmc : item.ypCode));
             //    }
             //    var yzxx = new ZyYpyzzxRepo(new DefaultDatabaseFactory()).SelectDataByYzId(item.yzId, item.zxId, item.ypCode, item.organizeId);
             //    if (yzxx != null && yzxx.Count > 0)
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Application.Implementation
             //    else
             //    {
             //        var drug = new SysMedicineExDmnService(new DefaultDatabaseFactory(), false).GetYpDetails(item.organizeId, item.ypCode);
-            //        throw new Exception(string.Format("药品【{0}】未找到要发药的医嘱", drug != null && !string.IsNullOrWhiteSpace(drug.ypmc) ? drug.ypmc : item.ypCode));
+            //        throw new Exception(string.Format("Thuốc【{0}】Không tìm thấy y lệnh cần phát thuốc", drug != null && !string.IsNullOrWhiteSpace(drug.ypmc) ? drug.ypmc : item.ypCode));
             //    }
             //});
             #endregion
@@ -108,7 +108,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 参数验证和数据组装
+        /// Xác thực tham số và lắp ráp dữ liệu
         /// </summary>
         /// <param name="drugsParam"></param>
         /// <param name="yzxxLs"></param>
@@ -230,7 +230,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 参数验证和数据组装(新)(周滋明)
+        /// Xác thực tham số và lắp ráp dữ liệu(Mới)(Chu Tư Minh)
         /// </summary>
         /// <param name="drugsParam"></param>
         /// <param name="yzxxLs"></param>
@@ -294,7 +294,7 @@ namespace Newtouch.HIS.Application.Implementation
                                 continue;
                             }
 
-                            // 验证患者住院状态
+                            // Xác thực trạng thái nội trú của bệnh nhân
                             InpatientBaseInfoRequest reqObj = new InpatientBaseInfoRequest()
                             {
                                 zyh = px.zyh,
@@ -323,7 +323,7 @@ namespace Newtouch.HIS.Application.Implementation
                                 throw new Exception(errorMsg);
                             }
 
-                            // 添加住院患者信息到缓存区
+                            // Thêm thông tin bệnh nhân nội trú vào vùng đệm
                             patients.Add(new InpatientBaseInfoDo()
                             {
                                 xm = px.patientName,

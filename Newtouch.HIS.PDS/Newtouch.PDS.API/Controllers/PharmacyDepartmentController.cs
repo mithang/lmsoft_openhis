@@ -10,7 +10,7 @@ using Newtouch.PDS.Requset.PharmacyDepartment;
 namespace Newtouch.PDS.API.Controllers
 {
     /// <summary>
-    /// 库房部门
+    /// Bộ phận kho
     /// </summary>
     [RoutePrefix("api/PharmacyDepartment")]
     public class PharmacyDepartmentController : ApiControllerBase<PharmacyDepartmentController>
@@ -23,7 +23,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// 查询该药品已赋权的药房部门
+        /// Tra cứu bộ phận nhà thuốc đã được cấp quyền đối với thuốc đó
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// 药品授权药房部门
+        /// Bộ phận nhà thuốc được ủy quyền thuốc
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -57,7 +57,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         /// <summary>
-        /// 药品授权药房部门
+        /// Bộ phận nhà thuốc được ủy quyền thuốc
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>

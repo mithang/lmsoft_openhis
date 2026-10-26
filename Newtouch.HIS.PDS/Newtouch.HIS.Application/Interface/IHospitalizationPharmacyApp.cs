@@ -4,12 +4,12 @@ using Newtouch.HIS.Domain.ValueObjects;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 住院药房操作
+    /// Thao tác nhà thuốc nội trú
     /// </summary>
     public interface IHospitalizationPharmacyApp
     {
         /// <summary>
-        /// 住院发药
+        /// Phát thuốc nội trú
         /// </summary>
         /// <param name="drugsParam"></param>
         /// <param name="userCode"></param>

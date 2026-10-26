@@ -21,7 +21,7 @@ using static Newtouch.Common.Web.APIRequestHelper;
 namespace Newtouch.HIS.Application.Implementation.Process
 {
     /// <summary>
-    /// 门诊退药
+    /// Trả thuốc ngoại trú
     /// </summary>
     public class OutpatientReturnDrugsProcess : ProcessorFun<tyInfo>
     {

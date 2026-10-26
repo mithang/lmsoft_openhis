@@ -15,7 +15,7 @@ namespace Newtouch.Infrastructure.Log
         #region 单例
 
         /// <summary>
-        /// 服务名称
+        /// Tên dịch vụ
         /// </summary>
         private static string _serviceName = string.Empty;
 

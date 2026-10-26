@@ -11,7 +11,7 @@ using Newtouch.PDS.Requset;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 处方下载
+    /// Tải xuống đơn thuốc
     /// </summary>
     public class DownloadCfsApp : ProcessorFun<List<OutPatientpyCfListDTO>>
     {
@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 验证
+        /// Xác thực
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装处方信息
+        /// Lắp ráp thông tin đơn thuốc
         /// </summary>
         private void AssembleMzCfEntityEntities()
         {
@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 判断是否存在该处方
+        /// Phán đoán xem đơn thuốc đó có tồn tại hay không
         /// </summary>
         /// <param name="outPatientpyCfListDto"></param>
         /// <returns></returns>

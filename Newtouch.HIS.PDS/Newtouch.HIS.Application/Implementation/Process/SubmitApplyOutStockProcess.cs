@@ -11,7 +11,7 @@ using System.Text;
 namespace Newtouch.HIS.Application.Implementation.Process
 {
     /// <summary>
-    /// 提交内部发药
+    /// Gửi phát thuốc nội bộ
     /// </summary>
     public class SubmitApplyOutStockProcess : ProcessorFun<List<ApplyOutStockVEntity>>
     {
@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 验证
+        /// Xác thực
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)

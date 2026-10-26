@@ -9,7 +9,7 @@ using Newtouch.PDS.Requset.ResourcesOperate;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 处方更新
+    /// Cập nhật đơn thuốc
     /// </summary>
     public class UpdateRpApp : ProcessorFun<UpdateRpRequset>
     {
@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly IOutpatientPrescriptionDetailBatchNumberRepo outpatientPrescriptionDetailBatchNumberRepo;
         private readonly IfyDmnService fyDmnService;
         /// <summary>
-        /// 初始化
+        /// Khởi tạo
         /// </summary>
         /// <param name="request"></param>
         public UpdateRpApp(UpdateRpRequset request) : base(request)
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 验证
+        /// Xác thực
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 预处理 先原处方药品归架
+        /// Tiền xử lý, trước tiên thuốc của đơn thuốc gốc trả về kệ
         /// </summary>
         protected override void BeforeAction(ActResult actResult)
         {
@@ -50,7 +50,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装预定报文
+        /// Lắp ráp thông điệp đặt trước
         /// </summary>
         /// <returns></returns>
         private OutpatientBookRequestDTO AssembleBookAppRequest()

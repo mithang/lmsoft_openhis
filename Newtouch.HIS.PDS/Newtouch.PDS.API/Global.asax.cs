@@ -18,13 +18,13 @@ namespace Newtouch.PDS.API
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 
-            //向上下文注册表
+            //Đăng ký vào sổ đăng ký ngữ cảnh
             DefaultDbContext.PartialTBRegister(DefaultDbContextTBRegister.Registe);
 
-            //注册 释放数据库链接
+            //Đăng ký giải phóng kết nối cơ sở dữ liệu
             FrameworkBase.API.ApiControllerBaseEx.RegisterDBContextDisposer(() =>
             {
-                //释放DefaultDbContext
+                //Giải phóngDefaultDbContext
                 var key = "AspNetObjectContextDisposalModule_Dispose_Flag_" + typeof(DefaultDbContext).Name;
                 if (HttpContext.Current == null && HttpContext.Current.Items[key] == null) return;
                 var dbFactory = DependencyDefaultInstanceResolver.GetInstance<IDefaultDatabaseFactory>();
@@ -36,7 +36,7 @@ namespace Newtouch.PDS.API
 
             IEntityEx.RegisterCurUserCodeGetter(() =>
             {
-                //在基类认证用户身份时写上的
+                //Được viết khi lớp cơ sở xác thực danh tính người dùng
                 var account = HttpContext.Current.Items["API_UserIdentity_Account"];
                 return account == null ? null : account.ToString();
             });

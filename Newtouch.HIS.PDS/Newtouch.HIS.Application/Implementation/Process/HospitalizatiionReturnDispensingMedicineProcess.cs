@@ -14,7 +14,7 @@ using Newtouch.PDS.Requset.ResourcesOperate;
 namespace Newtouch.HIS.Application.Implementation.Process
 {
     /// <summary>
-    /// 住院退药申请流程
+    /// Quy trình đề nghị trả thuốc nội trú
     /// </summary>
     public class HospitalizatiionReturnDispensingMedicineProcess : ProcessorFun<HospitalizatiionReturnDispensingMedicineRequestDTO>
     {

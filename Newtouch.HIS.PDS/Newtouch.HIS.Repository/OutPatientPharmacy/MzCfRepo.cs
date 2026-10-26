@@ -19,7 +19,7 @@ using DbParameter = System.Data.Common.DbParameter;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 门诊处方
+    /// Đơn thuốc ngoại trú
     /// </summary>
     public class MzCfRepo : RepositoryBase<MzCfEntity>, IMzCfRepo
     {
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 修改发药标致 未发=>已排
+        /// Sửa dấu hiệu phát thuốc thành chưa phát=>Đã xếp
         /// </summary>
         /// <param name="cfhs"></param>
         /// <returns></returns>
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 修改发药标致
+        /// Sửa dấu hiệu phát thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="fybz"></param>
@@ -68,10 +68,10 @@ WHERE cfh=@cfh and OrganizeId=@OrganizeId and zt='1'
         }
 
         /// <summary>
-        /// 修改发药标致 已排=>未发
+        /// Sửa dấu hiệu phát thuốc thành đã xếp=>Chưa phát
         /// </summary>
-        /// <param name="cfhs">处方号</param>
-        /// <param name="organizeId">组织机构</param>
+        /// <param name="cfhs">Số đơn thuốc</param>
+        /// <param name="organizeId">Tổ chức</param>
         /// <returns></returns>
         public int UpdateFybzToWFByCfh(List<string> cfhs, string organizeId)
         {
@@ -83,7 +83,7 @@ WHERE cfh=@cfh and OrganizeId=@OrganizeId and zt='1'
         }
 
         /// <summary>
-        /// 获取未排药的处方
+        /// Lấy đơn thuốc chưa xếp thuốc
         /// </summary>
         /// <returns></returns>
         public List<MzCfEntity> GetNoArrangedCfList(DateTime? bT = null, DateTime? eT = null)
@@ -124,7 +124,7 @@ SELECT [Id]
         }
 
         /// <summary>
-        /// 获取处方
+        /// Lấy đơn thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="fybz"></param>
@@ -164,7 +164,7 @@ SELECT [Id]
         }
 
         /// <summary>
-        /// 返回去重后的姓名和收费时间
+        /// Trả về họ tên và thời gian thu phí sau khi khử trùng lặp
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="yfbmCode"></param>
@@ -201,7 +201,7 @@ AND cf.fybz=@fybz
         }
 
         /// <summary>
-        /// 根据卡号和姓名获取处方信息
+        /// Lấy thông tin đơn thuốc theo số thẻ và họ tên
         /// </summary>
         /// <param name="cardNo"></param>
         /// <param name="xm"></param>
@@ -317,7 +317,7 @@ AND cf.zt = @zt
         }
 
         /// <summary>
-        /// 根据卡号和姓名获取处方信息
+        /// Lấy thông tin đơn thuốc theo số thẻ và họ tên
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="cardNo"></param>
@@ -352,7 +352,7 @@ AND cf.lyyf=@yfbmCode
         }
 
         /// <summary>
-        /// 根据卡号和姓名获取处方信息
+        /// Lấy thông tin đơn thuốc theo số thẻ và họ tên
         /// </summary>
         /// <param name="cardNo"></param>
         /// <param name="xm"></param>
@@ -365,7 +365,7 @@ AND cf.lyyf=@yfbmCode
         }
 
         /// <summary>
-        /// 根据卡号和姓名获取处方信息
+        /// Lấy thông tin đơn thuốc theo số thẻ và họ tên
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="cardNo"></param>
@@ -402,10 +402,10 @@ AND lyyf=@yfbmCode
         }
 
         /// <summary>
-        /// 通过处方号获取组号
+        /// Lấy số nhóm theo số đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
-        /// <param name="type">用法名称</param>
+        /// <param name="type">Tên cách dùng</param>
         /// <returns></returns>
         public List<GetMzCfZt> GetZhInOutpatient(string cfh ,string type)
         {
@@ -427,7 +427,7 @@ where cfId in(select col from dbo.f_split(@cfid,',')) and d.yfmc=@type");
         }
 
         /// <summary>
-        /// 查询已发或者已退处方 默认显示前500条
+        /// Tra cứu đơn thuốc đã phát hoặc đã trả, mặc định hiển thị trước500Dòng
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
@@ -489,7 +489,7 @@ WHERE s.sl>0
         }
 
         /// <summary>
-        /// 批量插入处方信息 返回受影响行
+        /// Chèn hàng loạt thông tin đơn thuốc, trả về số dòng bị ảnh hưởng
         /// </summary>
         /// <param name="mzCfs"></param>
         /// <returns></returns>
@@ -515,7 +515,7 @@ WHERE s.sl>0
         }
 
         /// <summary>
-        /// 删除老的处方信息
+        /// Xóa thông tin đơn thuốc cũ
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="cfnm"></param>
@@ -535,9 +535,9 @@ WHERE s.sl>0
         }
 
         /// <summary>
-        /// 作废处方，退费用
+        /// Hủy đơn thuốc, hoàn phí
         /// </summary>
-        /// <param name="cfh">处方号</param>
+        /// <param name="cfh">Số đơn thuốc</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         public int DeleteCf(string cfh, string organizeId)
@@ -555,7 +555,7 @@ WHERE s.sl>0
         }
 
         /// <summary>
-        /// 根据处方号获取有效的处方
+        /// Lấy đơn thuốc hợp lệ theo số đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -572,7 +572,7 @@ WHERE s.sl>0
         }
 
         /// <summary>
-        /// 更新性别
+        /// Cập nhật giới tính
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="xb"></param>
@@ -591,7 +591,7 @@ WHERE s.sl>0
         }
 
         /// <summary>
-        /// 门诊退费退还冻结数量的处方信息
+        /// Thông tin đơn thuốc hoàn phí ngoại trú hoàn trả số lượng đóng băng
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -609,7 +609,7 @@ WHERE s.sl>0
 
         #region 医保电子处方
         /// <summary>
-        /// 获取电子处方病人信息
+        /// Lấy thông tin bệnh nhân đơn thuốc điện tử
         /// </summary>
         /// <returns></returns>
         public IList<patientInfoVO> GetElectronicPrescription(Pagination pagination, string organizeId, string isysh, string keyword = "")
@@ -647,7 +647,7 @@ and cf.OrganizeId=@OrganizeId
             return QueryWithPage<patientInfoVO>(sql.ToString(), pagination, param.ToArray());
         }
         /// <summary>
-        /// 根据处方号和姓名获取处方明细信息
+        /// Lấy thông tin chi tiết đơn thuốc theo số đơn thuốc và họ tên
         /// </summary>
         /// <returns></returns>
         public List<DzcfmxVO> QueryElectronicPrescriptionCfmx(string cfh, string xm, string organizeId)

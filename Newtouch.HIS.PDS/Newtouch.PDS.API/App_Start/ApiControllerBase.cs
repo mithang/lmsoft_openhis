@@ -22,17 +22,17 @@ using NLog.Contact.DTO;
 namespace Newtouch.PDS.API.App_Start
 {
     /// <summary>
-    /// API Controll 基类
+    /// API Controll Lớp cơ sở
     /// </summary>
     public class ApiControllerBase<TControllerType> : ApiController
     {
         /// <summary>
-        /// 是否为private readonly I 解析实例
+        /// Có phải là hay khôngprivate readonly I Phân tích thể hiện
         /// </summary>
         private static bool? _PRFAutoResolve = null;
 
         /// <summary>
-        /// 静态构造函数
+        /// Hàm tạo tĩnh
         /// </summary>
         static ApiControllerBase()
         {
@@ -40,18 +40,18 @@ namespace Newtouch.PDS.API.App_Start
         }
 
         /// <summary>
-        /// 构造函数
+        /// Hàm tạo
         /// </summary>
         public ApiControllerBase(IComponentContext com)
         {
-            //当前Controller内部可用
+            //Hiện tạiControllerCó thể dùng nội bộ
             _componentContext = com;
-            //其他地方用
+            //Dùng ở nơi khác
             HttpContext.Current.Items["API_IComponentContext"] = com;
 
             if (_PRFAutoResolve ?? true)
             {
-                //利用IOC为private readonly field赋值
+                //Tận dụngIOCLàprivate readonly fieldGán giá trị
                 this.PRFAutoResolve();
             }
 
@@ -60,21 +60,21 @@ namespace Newtouch.PDS.API.App_Start
         }
 
         /// <summary>
-        /// IOC解析器
+        /// IOCBộ phân tích
         /// </summary>
         private readonly IComponentContext _componentContext;
-        //用户Identity解析器（从token中解析身份）
+        //Người dùngIdentityBộ phân tích (từtokenPhân tích danh tính trong đó）
         private readonly IUserIdentityResolver<Identity> _userIdentityResolver;
-        //访问enter时间
+        //Truy cậpenterThời gian
         private readonly DateTime? _enterTime;
 
         /// <summary>
-        /// 用户身份
+        /// Danh tính người dùng
         /// </summary>
         protected internal Identity Identity { get; private set; }
 
         /// <summary>
-        /// 处理（内部异常捕获）
+        /// Xử lý (bắt ngoại lệ nội bộ）
         /// </summary>
         /// <typeparam name="TRequestModel"></typeparam>
         /// <typeparam name="TResponseModel"></typeparam>
@@ -106,7 +106,7 @@ namespace Newtouch.PDS.API.App_Start
                 }
                 else
                 {
-                    ////2017-03-27调整了Authorize和Validate的顺序，因为可以从token中提取request需要的相关身份参数
+                    ////2017-03-27Đã điều chỉnhAuthorizeVàValidateThứ tự của, vì có thể từtokenTrích xuất trongrequestTham số danh tính liên quan cần thiết
                     Authorize(request.Token, request.TokenType);
                     if (Identity != null)
                     {
@@ -176,7 +176,7 @@ namespace Newtouch.PDS.API.App_Start
                 response.sub_msg = ex.Message + ex.StackTrace;
             }
 
-            //记录访问日志
+            //Ghi nhật ký truy cập
             if (AppLogger.Instance != null)
             {
                 var requestStr = JsonConvert.SerializeObject(request);
@@ -204,7 +204,7 @@ namespace Newtouch.PDS.API.App_Start
         }
 
         /// <summary>
-        /// 返回HttpResponseMessage
+        /// Trả vềHttpResponseMessage
         /// </summary>
         /// <typeparam name="TRequestModel"></typeparam>
         /// <typeparam name="TResponseModel"></typeparam>
@@ -218,14 +218,14 @@ namespace Newtouch.PDS.API.App_Start
         {
             if (request != null && !string.IsNullOrWhiteSpace(request.jsonpCallback))
             {
-                //jsonp请求
+                //jsonpYêu cầu
                 return CreateJsonPResponse(response, request.jsonpCallback);
             }
             return CreateResponse(response);
         }
 
         /// <summary>
-        /// 返回HttpResponseMessage
+        /// Trả vềHttpResponseMessage
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="mediaType"></param>
@@ -238,7 +238,7 @@ namespace Newtouch.PDS.API.App_Start
         }
 
         /// <summary>
-        /// 返回HttpResponseMessage
+        /// Trả vềHttpResponseMessage
         /// </summary>
         /// <param name="content"></param>
         /// <param name="mediaType"></param>
@@ -250,7 +250,7 @@ namespace Newtouch.PDS.API.App_Start
         }
 
         /// <summary>
-        /// 返回HttpResponseMessage（jsonp 构造返回结果）
+        /// Trả vềHttpResponseMessage（jsonp Tạo kết quả trả về）
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="callback"></param>
@@ -274,8 +274,8 @@ namespace Newtouch.PDS.API.App_Start
         }
 
         /// <summary>
-        /// 对象列集合过滤（接口只需返回其中几列）
-        /// 示例：在Action：resp.data = base.FilterObjectProperty(list, req.ResponseColumns, includeProps: new string[] { "c1", "c2" });
+        /// Lọc tập hợp cột đối tượng (giao diện chỉ cần trả về vài cột trong số đó）
+        /// Ví dụ: tạiAction：resp.data = base.FilterObjectProperty(list, req.ResponseColumns, includeProps: new string[] { "c1", "c2" });
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="responseParams"></param>
@@ -287,11 +287,11 @@ namespace Newtouch.PDS.API.App_Start
         {
             if (!string.IsNullOrWhiteSpace(responseParams))
             {
-                //只需要其中几列
+                //Chỉ cần vài cột trong số đó
                 var propNames = ArrayConvertor.Convert(responseParams, ',');
                 if (propNames != null && propNames.Length > 0)
                 {
-                    //给
+                    //Cho
                     includeProps = includeProps != null ? includeProps.Union(propNames).Distinct().ToArray() : propNames;
                 }
             }
@@ -300,7 +300,7 @@ namespace Newtouch.PDS.API.App_Start
         }
 
         /// <summary>
-        ///  json序列化（指定列集合）
+        ///  jsonTuần tự hóa (tập hợp cột chỉ định）
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="retainProps"></param>
@@ -322,7 +322,7 @@ namespace Newtouch.PDS.API.App_Start
         #region private methods
 
         /// <summary>
-        /// 身份验证
+        /// Xác thực danh tính
         /// </summary>
         /// <param name="token"></param>
         /// <param name="tokenType"></param>
@@ -333,12 +333,12 @@ namespace Newtouch.PDS.API.App_Start
                 this.Identity = _userIdentityResolver.GetIdentity(token, tokenType);
                 if (this.Identity == null || string.IsNullOrWhiteSpace(this.Identity.Account) || string.IsNullOrWhiteSpace(this.Identity.UserId))
                 {
-                    throw new TokenExpiredException(); //身份认证失败
+                    throw new TokenExpiredException(); //Xác thực danh tính thất bại
                 }
             }
             if (this.Identity == null)
             {
-                bool needAuthorize = false; //该接口是否需要身份认证
+                bool needAuthorize = false; //Giao diện đó có cần xác thực danh tính hay không
                 var controllerType = ControllerContext.ControllerDescriptor.ControllerType;
                 var actionName = ActionContext.ActionDescriptor.ActionName;
 
@@ -380,8 +380,8 @@ namespace Newtouch.PDS.API.App_Start
         #endregion
 
         /// <summary>
-        /// 保存用户身份，并返回token
-        /// （缓存在Redis）
+        /// Lưu danh tính người dùng và trả vềtoken
+        /// （Được lưu trong bộ nhớ đệm tạiRedis）
         /// </summary>
         /// <param name="iden"></param>
         /// <returns></returns>
@@ -399,12 +399,12 @@ namespace Newtouch.PDS.API.App_Start
     public static class ApiControllerBaseEx
     {
         /// <summary>
-        /// 委托：释放数据库链接（在每一次API请求 处理之后、返回之前调用）
+        /// Ủy thác: giải phóng kết nối cơ sở dữ liệu (trong mỗi lầnAPIGọi sau khi xử lý yêu cầu, trước khi trả về）
         /// </summary>
         public static Action _dbContextDisposer { private set; get; }
 
         /// <summary>
-        /// 注册 释放数据库链接的方法
+        /// Đăng ký phương thức giải phóng kết nối cơ sở dữ liệu
         /// </summary>
         /// <param name="dbContextDisposer"></param>
         public static void RegisterDBContextDisposer(Action dbContextDisposer)
@@ -424,8 +424,8 @@ namespace Newtouch.PDS.API.App_Start
         }
 
         /// <summary>
-        /// 保存用户身份，并返回token
-        /// （依赖Redis）
+        /// Lưu danh tính người dùng và trả vềtoken
+        /// （Phụ thuộcRedis）
         /// </summary>
         /// <param name="iden"></param>
         /// <returns></returns>
@@ -438,8 +438,8 @@ namespace Newtouch.PDS.API.App_Start
         }
 
         /// <summary>
-        /// 根据token，获取用户身份
-        /// （缓存在Redis）
+        /// Theotoken，Lấy danh tính người dùng
+        /// （Được lưu trong bộ nhớ đệm tạiRedis）
         /// </summary>
         /// <typeparam name="TIdentity"></typeparam>
         /// <param name="token"></param>
@@ -450,7 +450,7 @@ namespace Newtouch.PDS.API.App_Start
             var tokenVal = RedisHelper.Get<string>(token);
             if (string.IsNullOrWhiteSpace(tokenVal)) return null;
             var identity = JsonConvert.DeserializeObject<TIdentity>(tokenVal);
-            RedisHelper.KeyExpire(token, new TimeSpan(0, 20, 0));   //重新设置token过期时间
+            RedisHelper.KeyExpire(token, new TimeSpan(0, 20, 0));   //Đặt lạitokenThời gian hết hạn
             return identity;
         }
 

@@ -16,7 +16,7 @@ namespace Newtouch.HIS.DomainServices.OutOrInStoredOperate
 {
 
     /// <summary>
-    /// 直接出库
+    /// Xuất kho trực tiếp
     /// </summary>
     public class DeliveryDirectDmnService : DmnServiceBase, IDeliveryDirectDmnService
     {
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.DomainServices.OutOrInStoredOperate
         }
 
         /// <summary>
-        /// 提交直接出库
+        /// Gửi xuất kho trực tiếp
         /// </summary>
         /// <returns></returns>
         public string SubmitDeliveryDirect(SysMedicineStorageIOReceiptEntity dj, List<SysMedicineStorageIOReceiptDetailEntity> mx)
@@ -52,7 +52,7 @@ namespace Newtouch.HIS.DomainServices.OutOrInStoredOperate
             return result;
         }
         /// <summary>
-        /// 获取入库发票
+        /// Lấy hóa đơn nhập kho
         /// </summary>
         /// <param name="djlx"></param>
         /// <param name="fph"></param>
@@ -87,7 +87,7 @@ namespace Newtouch.HIS.DomainServices.OutOrInStoredOperate
 
         }
         /// <summary>
-        /// 药库入库发票明细
+        /// Chi tiết hóa đơn nhập kho thuốc
         /// </summary>
         /// <param name="djlx"></param>
         /// <param name="fph"></param>

@@ -10,22 +10,22 @@ namespace Newtouch.PDS.Requset.ClinicTfOperate
     public class ClinicTfOperateRequest : RequestBase
     {
         /// <summary>
-        /// 处方列表
+        /// Danh sách đơn thuốc
         /// </summary>
         public List<CfDetial> cfhs { get; set; }
     }
 
     /// <summary>
-    /// 退费处方信息
+    /// Thông tin đơn thuốc hoàn phí
     /// </summary>
     public class CfDetial
     {
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
         /// <summary>
-        /// 组织机构
+        /// Tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
     }

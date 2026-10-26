@@ -10,7 +10,7 @@ using FrameworkBase.MultiOrg.Infrastructure;
 namespace Newtouch.HIS.DomainServices.Medicine
 {
     /// <summary>
-    /// 部门 药品
+    /// Bộ phận, thuốc
     /// </summary>
     public class DepartmentMedicineInfoDmnService : DmnServiceBase, IDepartmentMedicineInfoDmnService
     {
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.DomainServices.Medicine
         }
 
         /// <summary>
-        /// 根据药房代码、药品代码 获取药房的 药品 的 库存数量和单位
+        /// Lấy số lượng tồn kho và đơn vị của thuốc tại nhà thuốc theo mã nhà thuốc, mã thuốc
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="ypCode"></param>
@@ -74,7 +74,7 @@ SELECT @fybmdw AS fybmdw, @fybmzhyz AS fybmzhyz, * FROM #tmp
         }
 
         /// <summary>
-        /// 获取 内部申领 药品数据源
+        /// Lấy nguồn dữ liệu thuốc lĩnh nội bộ
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="fybm"></param>

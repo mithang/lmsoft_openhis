@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取 组织机构 字典项List
+        /// Lấy mục từ điển tổ chứcList
         /// </summary>
         /// <param name="itemId"></param>
         /// <param name="keyword"></param>

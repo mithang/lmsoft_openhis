@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Repository
         {
         }
         /// <summary>
-        /// 获取科室名称
+        /// Lấy tên khoa
         /// </summary>
         /// <returns></returns>
         public List<CodeNameVO> GetCodeName(string organizeId, int yjbmjb, string keyword = null)
@@ -43,7 +43,7 @@ SELECT Distinct [Code] as code
             return FindList<CodeNameVO>(sqlStr.ToString(), pars.ToArray());
         }
         /// <summary>
-        /// 获取分页实体列表
+        /// Lấy danh sách thực thể có phân trang
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>

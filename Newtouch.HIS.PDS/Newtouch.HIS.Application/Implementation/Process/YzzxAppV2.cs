@@ -15,12 +15,12 @@ using Newtouch.PDS.Requset.Zyypyz;
 namespace Newtouch.HIS.Application.Implementation.Process
 {
     /// <summary>
-    /// 住院预定资源（冻结库存）
+    /// Đặt trước tài nguyên nội trú (đóng băng tồn kho）
     /// </summary>
     public class YzzxAppV2 : ProcessorFun<ZyypyzzxRequest>
     {
         private List<ZyYpyzxxEntity> _yzEntities = new List<ZyYpyzxxEntity>();
-        private string zxId = Guid.NewGuid().ToString();//医嘱执行ID
+        private string zxId = Guid.NewGuid().ToString();//Thực hiện y lệnhID
 
         private Dictionary<string, FrameworkBase.MultiOrg.Domain.Entity.SysMedicineComplexVEntity> 
             _ypDict = new Dictionary<string, FrameworkBase.MultiOrg.Domain.Entity.SysMedicineComplexVEntity>();
@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 验证
+        /// Xác thực
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
@@ -176,7 +176,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
 
             if (string.IsNullOrWhiteSpace(errorMsg.ToString()))
             {
-                actResult.Data = Request.yzList;//由于事务控制，所以要么全部失败，否则全部成功，Data返回成功队列
+                actResult.Data = Request.yzList;//Do kiểm soát giao dịch, nên hoặc tất cả đều thất bại, hoặc tất cả đều thành công，DataTrả về hàng đợi thành công
                 return;
             }
 
@@ -187,7 +187,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 重写父类方法(空实现)
+        /// Ghi đè phương thức lớp cha(Triển khai rỗng)
         /// </summary>
         /// <param name="result"></param>
         protected override void AsyncProcess(ActResult result)
@@ -195,7 +195,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 重写父类方法(释放内存)
+        /// Ghi đè phương thức lớp cha(Giải phóng bộ nhớ)
         /// </summary>
         /// <param name="result"></param>
         protected override void Dispose(ActResult result)
@@ -204,7 +204,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 取消冻结，删除医嘱明细
+        /// Hủy đóng băng, xóa chi tiết y lệnh
         /// </summary>
         /// <param name="tg"></param>
         private void CancelForzen(List<ZyYpyzxxEntity> tg)
@@ -216,7 +216,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 获取药品信息(基于缓存)
+        /// Lấy thông tin thuốc(Dựa trên bộ nhớ đệm)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ypCode"></param>

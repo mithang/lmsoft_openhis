@@ -23,7 +23,7 @@ namespace Newtouch.PDS.API.Tests.Controllers
             };
             var apiResp = SiteSettAPIHelper.Request<OutpatientBookRequestDTO, APIRequestHelper.DefaultResponse>("api/ResourcesOperate/Book", reqObj);
 
-            // 断言
+            // Khẳng định
             Assert.IsNotNull(apiResp);
             Assert.AreEqual(APIRequestHelper.ResponseResultCode.SUCCESS, apiResp.code);
             //Assert.AreEqual("value1", result.ElementAt(0));
@@ -33,18 +33,18 @@ namespace Newtouch.PDS.API.Tests.Controllers
         [TestMethod]
         public void GetById()
         {
-            // 排列
+            // Sắp xếp
             ValuesController controller = new ValuesController();
 
-            // 操作
+            // Thao tác
             string result = controller.Get(5);
 
-            // 断言
+            // Khẳng định
             Assert.AreEqual("value", result);
         }
 
         /// <summary>
-        /// 测试token
+        /// Kiểm thửtoken
         /// </summary>
         [TestMethod]
         public void TestTokenWithJson()
@@ -65,7 +65,7 @@ namespace Newtouch.PDS.API.Tests.Controllers
         }
 
         /// <summary>
-        /// 测试token
+        /// Kiểm thửtoken
         /// </summary>
         [TestMethod]
         public void TestTokenWithObj()
@@ -86,7 +86,7 @@ namespace Newtouch.PDS.API.Tests.Controllers
         }
 
         /// <summary>
-        /// 测试token
+        /// Kiểm thửtoken
         /// </summary>
         [TestMethod]
         public void TestTokenWithStr()

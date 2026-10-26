@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取当前组织下的所有组织
+        /// Lấy tất cả các tổ chức dưới tổ chức hiện tại
         /// </summary>
         /// <returns></returns>
         public List<OrganizeEntity> GetListByTopOrg(string topOrganizeId)
@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取当前组织下的所有组织
+        /// Lấy tất cả các tổ chức dưới tổ chức hiện tại
         /// </summary>
         /// <returns></returns>
         public List<OrganizeEntity> GetValidListByTopOrg(string topOrganizeId)

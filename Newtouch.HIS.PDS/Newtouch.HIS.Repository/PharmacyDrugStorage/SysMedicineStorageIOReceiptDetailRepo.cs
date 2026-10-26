@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 修改发票号
+        /// Sửa số hóa đơn
         /// </summary>
         /// <param name="crkmxId"></param>
         /// <param name="fph"></param>

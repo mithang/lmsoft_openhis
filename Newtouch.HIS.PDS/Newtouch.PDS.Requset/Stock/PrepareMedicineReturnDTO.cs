@@ -12,7 +12,7 @@ namespace Newtouch.PDS.Requset.Stock
         public string OrganizeId { get; set; }
         public string yhgh { get; set; }
         /// <summary>
-        /// 明细
+        /// Chi tiết
         /// </summary>
         public BythDjInfoDTO yplist { get; set; }
     }

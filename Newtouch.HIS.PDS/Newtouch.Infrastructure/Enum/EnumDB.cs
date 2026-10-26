@@ -3,60 +3,60 @@
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 日志记录类型
+    /// Loại ghi nhật ký
     /// </summary>
     public enum DbLogType
     {
         /// <summary>
-        /// 其他
+        /// Khác
         /// </summary>
         [Description("其他")]
         Other = 0,
 
         /// <summary>
-        /// 登录
+        /// Đăng nhập
         /// </summary>
         [Description("登录")]
         Login = 1,
 
         /// <summary>
-        /// 退出
+        /// Thoát
         /// </summary>
         [Description("退出")]
         Exit = 2,
 
         /// <summary>
-        /// 访问
+        /// Truy cập
         /// </summary>
         [Description("访问")]
         Visit = 3,
 
         /// <summary>
-        /// 新增
+        /// Thêm mới
         /// </summary>
         [Description("新增")]
         Create = 4,
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         [Description("删除")]
         Delete = 5,
 
         /// <summary>
-        /// 修改
+        /// Sửa đổi
         /// </summary>
         [Description("修改")]
         Update = 6,
 
         /// <summary>
-        /// 提交
+        /// Gửi
         /// </summary>
         [Description("提交")]
         Submit = 7,
 
         /// <summary>
-        /// 异常
+        /// Ngoại lệ
         /// </summary>
         [Description("异常")]
         Exception = 8,
@@ -64,111 +64,111 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 单据类型
+    /// Loại phiếu
     /// </summary>
     public enum EnumDanJuLX
     {
         /// <summary>
-        /// 药品入库
+        /// Nhập kho thuốc
         /// </summary>
-        [Description("药品入库")]   //单据号YPRKD111111111111
+        [Description("药品入库")]   //Số phiếuYPRKD111111111111
         yaopinruku = 1,
 
         /// <summary>
-        /// 外部出库
+        /// Xuất kho ngoài
         /// </summary>
-        [Description("外部出库")]   //单据号WBCKD111111111111
+        [Description("外部出库")]   //Số phiếuWBCKD111111111111
         waibucuku = 2,
 
         /// <summary>
-        /// 直接发药
+        /// Phát thuốc trực tiếp
         /// </summary>
-        [Description("直接出库")]   //单据号NBFYD111111111111
+        [Description("直接出库")]   //Số phiếuNBFYD111111111111
         zhijiefayao = 3,
 
         /// <summary>
-        /// 申领发药
+        /// Phát thuốc theo phiếu lĩnh
         /// </summary>
-        [Description("申领出库")]   //单据号SLCKD111111111111
+        [Description("申领出库")]   //Số phiếuSLCKD111111111111
         shenlingfayao = 4,
 
         /// <summary>
-        /// 内部发药退回
+        /// Trả lại phát thuốc nội bộ
         /// </summary>
-        [Description("内部发药退回")] //单据号NBFYTHD111111111111
+        [Description("内部发药退回")] //Số phiếuNBFYTHD111111111111
         neibufayaotuihui = 5,
 
         /// <summary>
-        /// 药房向科室发药
+        /// Nhà thuốc phát thuốc cho khoa
         /// </summary>
-        [Description("科室发药")] //单据号KSFYD111111111111
+        [Description("科室发药")] //Số phiếuKSFYD111111111111
         keshifayao = 6,
 
         /// <summary>
-        /// 基药出库
+        /// Xuất kho thuốc thiết yếu
         /// </summary>
-        [Description("基药出库")] // 根据出库方式统计单据信息
+        [Description("基药出库")] // Thống kê thông tin phiếu theo phương thức xuất kho
         jiyaochuku = 13,
         /// <summary>
-        /// 批量出库
+        /// Xuất kho hàng loạt
         /// </summary>
-        [Description("批量出库")] // 根据出库方式统计单据信息
+        [Description("批量出库")] // Thống kê thông tin phiếu theo phương thức xuất kho
         piliangchuku = 14,
     }
 
     /// <summary>
-    /// 库存状态
+    /// Trạng thái tồn kho
     /// </summary>
     public enum EnumKCZT
     {
         /// <summary>
-        /// 启用
+        /// Bật
         /// </summary>
         [Description("启用")]
         Enabled = 1,
         /// <summary>
-        /// 停用
+        /// Ngừng dùng
         /// </summary>
         [Description("停用")]
         Disabled = 0
     }
 
     /// <summary>
-    /// 本部门状态
+    /// Trạng thái bộ phận này
     /// </summary>
     public enum BenBuMenZT
     {
         /// <summary>
-        /// 正常
+        /// Bình thường
         /// </summary>
         [Description("正常")]
         Normal = 1,
         /// <summary>
-        /// 控制
+        /// Kiểm soát
         /// </summary>
         [Description("控制")]
         Control = 0
     }
 
     /// <summary>
-    /// 药品状态
+    /// Trạng thái thuốc
     /// </summary>
     public enum EnumYPZT
     {
         /// <summary>
-        /// 启用
+        /// Bật
         /// </summary>
         [Description("启用")]
         Enabled = 1,
         /// <summary>
-        /// 停用
+        /// Ngừng dùng
         /// </summary>
         [Description("停用")]
         Disabled = 0
     }
 
     /// <summary>
-    /// 库存显示
+    /// Hiển thị tồn kho
     /// </summary>
     public enum EnumKCXS
     {
@@ -178,153 +178,153 @@ namespace Newtouch.Infrastructure
         [Description("全部")]
         None = -1,
         /// <summary>
-        /// 显示零库存
+        /// Hiển thị tồn kho bằng 0
         /// </summary>
         [Description("显示零库存")]
         Xslkc = 0,
         /// <summary>
-        /// 不显示理论数量为零
+        /// Không hiển thị khi số lượng lý thuyết bằng 0
         /// </summary>
         [Description("不显示理论数量为零")]
         Bxsllslwl = 1,
         /// <summary>
-        /// 不显示实际数量为零
+        /// Không hiển thị khi số lượng thực tế bằng 0
         /// </summary>
         [Description("不显示实际数量为零")]
         Bxssjslwl = 2,
         /// <summary>
-        /// 不显示实际数量为零
+        /// Không hiển thị khi số lượng thực tế bằng 0
         /// </summary>
         [Description("不显示两者都为零")]
         Bxslzdwl = 4
     }
 
     /// <summary>
-    /// 申领单发放状态
+    /// Trạng thái cấp phát phiếu lĩnh
     /// </summary>
     public enum EnumSLDDeliveryStatus
     {
         /// <summary>
-        /// 未发
+        /// Chưa phát
         /// </summary>
         [Description("未发")]
         None = 0,
 
         /// <summary>
-        /// 已发部分
+        /// Đã phát một phần
         /// </summary>
         [Description("已发部分")]
         Part,
 
         /// <summary>
-        /// 已全发
+        /// Đã phát hết
         /// </summary>
         [Description("已全发")]
         All,
 
         /// <summary>
-        /// 已终止（某些（甚至全部）明细以后都不会再发了，但这会被视为一张已结束的申领单）
+        /// Đã chấm dứt (một số (thậm chí tất cả) chi tiết về sau sẽ không phát nữa, nhưng việc này sẽ được xem là một phiếu lĩnh đã kết thúc）
         /// </summary>
         [Description("已终止")]
         Abandon
     }
 
     /// <summary>
-    /// 审核结果
+    /// Kết quả duyệt
     /// </summary>
     public enum EnumDjShzt
     {
         /// <summary>
-        /// 未审核
+        /// Chưa duyệt
         /// </summary>
         [Description("未审核")]
         WaitingApprove = 0,
         /// <summary>
-        /// 已通过
+        /// Đã đạt
         /// </summary>
         [Description("已通过")]
         Approved = 1,
         /// <summary>
-        /// 未通过（最终状态）
+        /// Chưa đạt (trạng thái cuối cùng）
         /// </summary>
         [Description("未通过")]
         Rejected = 2,
         /// <summary>
-        /// 已作废（最终状态）（只有审核通过 -> 才可至此状态）
+        /// Đã hủy bỏ (trạng thái cuối cùng) (chỉ khi duyệt đạt -> Mới có thể đến trạng thái này）
         /// </summary>
         [Description("已作废")]
         Cancelled = 3,
     }
 
     /// <summary>
-    /// 损益标志
+    /// Cờ lãi lỗ
     /// </summary>
     public enum EnumProfitLossMark
     {
         /// <summary>
-        /// 报损
+        /// Báo hỏng
         /// </summary>
         [Description("报损")]
         Loss = 0,
 
         /// <summary>
-        /// 报溢
+        /// Báo thừa
         /// </summary>
         [Description("报溢")]
         Profit = 1
     }
 
     /// <summary>
-    /// 药品调价操作类型（撤销 批准 拒绝 执行）
+    /// Loại thao tác điều chỉnh giá thuốc (hủy, phê duyệt, từ chối, thực hiện）
     /// </summary>
     public enum EnumPriceAdjustOperationType
     {
         /// <summary>
-        /// 待审核
+        /// Chờ duyệt
         /// </summary>
         [Description("待审核")]
         None = 0,
         /// <summary>
-        /// 批准
+        /// Phê duyệt
         /// </summary>
         [Description("批准")]
         Approval = 1,
         /// <summary>
-        /// 拒绝
+        /// Từ chối
         /// </summary>
         [Description("拒绝")]
         Refuse = 2,
         /// <summary>
-        /// 撤销
+        /// Hủy
         /// </summary>
         [Description("撤销")]
         Withdraw = 3,
         /// <summary>
-        /// 执行
+        /// Thực hiện
         /// </summary>
         [Description("执行")]
         Execute = 4
     }
 
     /// <summary>
-    /// 药品调价执行状态（0：未执行 1：已执行）
+    /// Trạng thái thực hiện điều chỉnh giá thuốc（0：Chưa thực hiện 1：Đã thực hiện）
     /// </summary>
     public enum EnumPriceAdjustZXStatus
     {
         /// <summary>
-        /// 未执行
+        /// Chưa thực hiện
         /// </summary>
         [Description("未执行")]
         Not = 0,
         /// <summary>
-        /// 已执行
+        /// Đã thực hiện
         /// </summary>
         [Description("已执行")]
         Executed = 1
     }
 
     /// <summary>
-    /// 收费大类 大类类别
+    /// Loại phí lớn, loại loại lớn
     /// </summary>
     public enum EnumSfdlDllb
     {
@@ -346,37 +346,37 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 发药备注 0：未发；1：已排；2：已发；3：已退
+    /// Ghi chú phát thuốc 0：Chưa phát；1：Đã xếp；2：Đã phát；3：Đã trả
     /// </summary>
     public enum EnumFybz
     {
         /// <summary>
-        /// 未排
+        /// Chưa xếp
         /// </summary>
         [Description("未排")]
         Wp = 0,
 
         /// <summary>
-        /// 已排
+        /// Đã xếp
         /// </summary>
         [Description("已排")]
         Yp = 1,
 
         /// <summary>
-        /// 已发
+        /// Đã phát
         /// </summary>
         [Description("已发")]
         Yf = 2,
 
         /// <summary>
-        /// 已退
+        /// Đã trả
         /// </summary>
         [Description("已退")]
         Yt = 3
     }
 
     /// <summary>
-    /// 医嘱性质 临时、长期
+    /// Tính chất y lệnh: tạm thời, dài hạn
     /// </summary>
     public enum Yzxz
     {
@@ -387,13 +387,13 @@ namespace Newtouch.Infrastructure
         None = 0,
 
         /// <summary>
-        /// 临时
+        /// Tạm thời
         /// </summary>
         [Description("临时")]
         Ls = 1,
 
         /// <summary>
-        /// 长期
+        /// Dài hạn
         /// </summary>
         [Description("长期")]
         Cq = 2,
@@ -403,14 +403,14 @@ namespace Newtouch.Infrastructure
         [Description("药品")]
         Yp = 2,
         /// <summary>
-        /// 中草药
+        /// Thuốc thảo dược Trung Quốc
         /// </summary>
         [Description("中草药")]
         zcy = 10,
     }
 
     /// <summary>
-    /// 药品操作记录 zy_ypyzczjl.operateType 和 mz_cfypczjl.operateType
+    /// Bản ghi thao tác thuốc zy_ypyzczjl.operateType Và mz_cfypczjl.operateType
     /// </summary>
     public enum EnumOperateType
     {
@@ -420,65 +420,65 @@ namespace Newtouch.Infrastructure
         None = 0,
         
         /// <summary>
-        /// 发药
+        /// Phát thuốc
         /// </summary>
         [Description("发药")]
         Fy = 1,
 
         /// <summary>
-        /// 退药
+        /// Trả thuốc
         /// </summary>
         [Description("退药")]
         Ty = 2
     }
 
     /// <summary>
-    /// 发药方式
+    /// Phương thức phát thuốc
     /// </summary>
     public enum EnumFyfs
     {
         /// <summary>
-        /// 正常出库
+        /// Xuất kho bình thường
         /// </summary>
         [Description("正常出库")]
         Zcck = 11,
 
         /// <summary>
-        /// 退货出库
+        /// Xuất kho trả hàng
         /// </summary>
         [Description("退货出库")]
         Thck = 5,
 
         /// <summary>
-        /// 赠送出库
+        /// Xuất kho tặng
         /// </summary>
         [Description("赠送出库")]
         Zsck = 12,
 
         /// <summary>
-        /// 救灾出库
+        /// Xuất kho cứu trợ thiên tai
         /// </summary>
         [Description("救灾出库")]
         Jzck = 13,
     }
 
     /// <summary>
-    /// 性别
+    /// Giới tính
     /// </summary>
     public enum EnumSex
     {
         /// <summary>
-        /// 男
+        /// Nam
         /// </summary>
         [Description("男")]
         male = 1,
         /// <summary>
-        /// 女
+        /// Nữ
         /// </summary>
         [Description("女")]
         female = 2,
         /// <summary>
-        /// 不详
+        /// Không rõ
         /// </summary>
         [Description("不详")]
         other = 3
@@ -487,18 +487,18 @@ namespace Newtouch.Infrastructure
     public enum EnumSF
     {
         /// <summary>
-        /// 否
+        /// Không
         /// </summary>
         [Description("否")]
         f = 0,
         /// <summary>
-        /// 是
+        /// Là
         /// </summary>
         [Description("是")]
         s = 1,
     }
     /// <summary>
-    /// 采购模式
+    /// Chế độ mua hàng
     /// </summary>
     public enum EnumCGLX
     {
@@ -520,7 +520,7 @@ namespace Newtouch.Infrastructure
         qt = 9,
     }
     /// <summary>
-    /// 商品类型
+    /// Loại hàng hóa
     /// </summary>
     public enum EnumSPLX
     {
@@ -532,7 +532,7 @@ namespace Newtouch.Infrastructure
         qt = 9,
     }
     /// <summary>
-    /// 采购计量单位
+    /// Đơn vị đo lường mua hàng
     /// </summary>
     public enum EnumCGJLDW
     {
@@ -543,7 +543,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 装箱类型
+    /// Loại đóng thùng
     /// </summary>
     public enum EnumZXLX
     {
@@ -556,7 +556,7 @@ namespace Newtouch.Infrastructure
     }
     
     /// <summary>
-    /// 药品类型
+    /// Loại thuốc
     /// </summary>
     public enum EnumYPLX
     {
@@ -580,7 +580,7 @@ namespace Newtouch.Infrastructure
         qt = 9,
     }
     /// <summary>
-    /// 包装单位性质
+    /// Tính chất đơn vị đóng gói
     /// </summary>
     public enum EnumBZDWXZ
     {

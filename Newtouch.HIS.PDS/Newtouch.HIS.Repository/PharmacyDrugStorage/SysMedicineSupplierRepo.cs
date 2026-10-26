@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据关键字返回供应商实体
+        /// Trả về thực thể nhà cung cấp theo từ khóa
         /// </summary>
         /// <param name="keyword">Gysdm、Gysmc、Mcsx、</param>
         /// <returns></returns>

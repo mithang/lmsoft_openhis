@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 出入库方式
+    /// Phương thức xuất nhập kho
     /// </summary>
     public class XtypcrkfsRepo : RepositoryBase<XtypcrkfsEntity>, IXtypcrkfsRepo
     {

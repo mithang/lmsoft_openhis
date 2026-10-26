@@ -19,26 +19,26 @@ namespace Newtouch.PDS.API.App_Start
     public class DependencyResolver
     {
         /// <summary>
-        /// 注入Web API控制器/过滤器
+        /// TiêmWeb APIBộ điều khiển/Bộ lọc
         /// </summary>
         public static void RegisteWebApiComponent()
         {
             var builder = new ContainerBuilder();
 
-            //注册控制器
+            //Đăng ký bộ điều khiển
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            //注册默认EF上下文
+            //Đăng ký mặc địnhEFNgữ cảnh
             builder.RegisterType<DefaultDatabaseFactory>().As<IDefaultDatabaseFactory>().InstancePerLifetimeScope();
 
-            //日志注册
+            //Đăng ký nhật ký
             //LoggerHelper.InitLog4net("/Configs/log4net.config");
             builder.RegisterType<NLogger>().As<ILogger>().InstancePerLifetimeScope();
 
-            ////缓存
+            ////Bộ nhớ đệm
             builder.RegisterType<SERedisCache>().As<ICache>().InstancePerLifetimeScope();
 
-            //API用户身份解析器
+            //APIBộ phân tích danh tính người dùng
             builder.RegisterType<HISAPIUserIdentityResolver>().As<IUserIdentityResolver<Identity>>().InstancePerLifetimeScope();
 
             #region IOC注册底层
@@ -49,7 +49,7 @@ namespace Newtouch.PDS.API.App_Start
             #endregion
 
             #region IOC, then registe yours
-            //DLL所在的绝对路径
+            //DLLĐường dẫn tuyệt đối nơi đặt
             var repoAssembly = Assembly.Load("Newtouch.HIS.Repository");
             builder.RegisterAssemblyTypes(repoAssembly).Where(t => t.Name.EndsWith("Repo") || t.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerLifetimeScope();
 
@@ -61,10 +61,10 @@ namespace Newtouch.PDS.API.App_Start
             builder.RegisterAssemblyTypes(appAssembly).Where(t => t.Name.EndsWith("App")).Where(t => !string.IsNullOrEmpty(t.Namespace)).AsImplementedInterfaces().InstancePerLifetimeScope();
             #endregion
 
-            //注册Autofac过滤器提供程序.
+            //Đăng kýAutofacNhà cung cấp bộ lọc.
             builder.RegisterWebApiFilterProvider(GlobalConfiguration.Configuration);
 
-            // 设置依赖解析器-Dependency Resolver
+            // Đặt bộ phân tích phụ thuộc-Dependency Resolver
             var container = builder.Build();
             var resolver = new AutofacWebApiDependencyResolver(container);
             GlobalConfiguration.Configuration.DependencyResolver = resolver;

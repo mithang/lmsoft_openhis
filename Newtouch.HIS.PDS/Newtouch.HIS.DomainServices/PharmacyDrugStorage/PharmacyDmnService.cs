@@ -23,7 +23,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
         }
 
         /// <summary>
-        /// 查询药房窗口信息
+        /// Tra cứu thông tin cửa sổ nhà thuốc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="yfckCode"></param>
@@ -45,7 +45,7 @@ and (isnull(@keyword, '') = '' or yfck.yfckCode like @searchkeyword or yfck.yfck
         }
 
         /// <summary>
-        /// 查看药房部门药品信息(大类)
+        /// Xem thông tin thuốc của bộ phận nhà thuốc(Loại lớn)
         /// </summary>
         /// <param name="dlCode"></param>
         /// <param name="organizeId"></param>

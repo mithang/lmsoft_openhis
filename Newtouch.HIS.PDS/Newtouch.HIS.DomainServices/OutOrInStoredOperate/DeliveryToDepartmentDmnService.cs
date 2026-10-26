@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.DomainServices.OutOrInStoredOperate
 {
     /// <summary>
-    /// 科室发药
+    /// Phát thuốc cho khoa
     /// </summary>
     public class DeliveryToDepartmentDmnService : DmnServiceBase, IDeliveryToDepartmentDmnService
     {
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.DomainServices.OutOrInStoredOperate
         }
 
         /// <summary>
-        /// 提交科室发药
+        /// Gửi phát thuốc cho khoa
         /// </summary>
         /// <returns></returns>
         public string SubmitDeliveryToDepartment(SysMedicineStorageIOReceiptEntity dj, List<SysMedicineStorageIOReceiptDetailEntity> mx)

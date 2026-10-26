@@ -16,7 +16,7 @@ using Newtouch.PDS.Requset.ResourcesOperate;
 namespace Newtouch.HIS.Application.Implementation.Process
 {
     /// <summary>
-    /// 门诊排药V2.0 2019-09-18
+    /// Xếp thuốc ngoại trúV2.0 2019-09-18
     /// </summary>
     public class OutpatientBookAppV2 : ProcessorFun<OutpatientBookRequestDTO>
     {
@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 验证
+        /// Xác thực
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
@@ -69,12 +69,12 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 预处理 组装mz_cf和mz_cfmx数据
+        /// Tiền xử lý, lắp rápmz_cfVàmz_cfmxDữ liệu
         /// </summary>
         /// <param name="actResult"></param>
         protected override void BeforeAction(ActResult actResult)
         {
-            Parallel.For(0, 2, i => //组装数据
+            Parallel.For(0, 2, i => //Lắp ráp dữ liệu
             {
                 switch (i)
                 {
@@ -118,7 +118,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 组装门诊处方信息
+        /// Lắp ráp thông tin đơn thuốc ngoại trú
         /// </summary>
         /// <returns></returns>
         private List<MzCfEntity> AssembleMzCfEntity()
@@ -149,7 +149,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 组装门诊处方明细信息
+        /// Lắp ráp thông tin chi tiết đơn thuốc ngoại trú
         /// </summary>
         /// <returns></returns>
         private List<MzCfmxEntity> AssembleMzCfmxEntity()

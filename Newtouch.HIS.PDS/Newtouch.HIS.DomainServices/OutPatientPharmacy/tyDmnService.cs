@@ -20,7 +20,7 @@ using Newtouch.PDS.Requset.ResourcesOperate;
 namespace Newtouch.HIS.DomainServices.OutPatientPharmacy
 {
     /// <summary>
-    /// 退药
+    /// Trả thuốc
     /// </summary>
     public class tyDmnService : DmnServiceBase, ItyDmnService
     {
@@ -31,7 +31,7 @@ namespace Newtouch.HIS.DomainServices.OutPatientPharmacy
         }
 
         /// <summary>
-        /// 查询可退药品信息
+        /// Tra cứu thông tin thuốc có thể trả
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
@@ -79,7 +79,7 @@ INNER JOIN NewtouchHIS_Base.dbo.V_S_xt_ypsx ypsx ON ypsx.ypId=yp.ypId AND ypsx.O
         }
 
         /// <summary>
-        /// 查询全退可退药品信息
+        /// Tra cứu thông tin thuốc có thể trả khi trả toàn bộ
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
@@ -128,14 +128,14 @@ INNER JOIN NewtouchHIS_Base.dbo.V_C_xt_yp yp ON yp.ypCode=b.ypCode AND yp.Organi
         }
 
         /// <summary>
-        /// 查询药品可退数量
+        /// Tra cứu số lượng thuốc có thể trả
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
-        /// <returns>最小单位可退数量</returns>
+        /// <returns>Số lượng có thể trả theo đơn vị nhỏ nhất</returns>
         public int SelectRefundedSl(string ypCode, string pc, string ph, string yfbmCode, string organizeId)
         {
             const string sql = @"
@@ -165,12 +165,12 @@ SELECT CONVERT(INT,ISNULL(SUM(a.sl),0)) zxdwsl FROM (
         }
 
         /// <summary>
-        /// 线程锁
+        /// Khóa luồng
         /// </summary>
         public static object ThreadLocker = new object();
 
         /// <summary>
-        /// 门诊退药
+        /// Trả thuốc ngoại trú
         /// </summary>
         /// <param name="tyInfo"></param>
         /// <param name="returnDrugBillNo"></param>
@@ -232,7 +232,7 @@ SELECT CONVERT(INT,ISNULL(SUM(a.sl),0)) zxdwsl FROM (
         }
 
         /// <summary>
-        /// 门诊退药
+        /// Trả thuốc ngoại trú
         /// </summary>
         /// <param name="tyInfo"></param>
         /// <param name="returnDrugBillNo"></param>
@@ -253,7 +253,7 @@ SELECT CONVERT(INT,ISNULL(SUM(a.sl),0)) zxdwsl FROM (
                         new SqlParameter("@ph", p.ph),
                         new SqlParameter("@pc", p.pc),
                         new SqlParameter("@cfh", tyInfo.cfh),
-                        new SqlParameter("@tysl", p.sl * p.zhyz), //最小单位数量
+                        new SqlParameter("@tysl", p.sl * p.zhyz), //Số lượng đơn vị nhỏ nhất
                         new SqlParameter("@userCode", tyInfo.userCode),
                         new SqlParameter("@returnDrugBillNo", trdbn),
                         new SqlParameter("@zsm",p.zsm),
@@ -273,7 +273,7 @@ SELECT CONVERT(INT,ISNULL(SUM(a.sl),0)) zxdwsl FROM (
         }
 
         /// <summary>
-        /// 根据处方号获取有效的处方
+        /// Lấy đơn thuốc hợp lệ theo số đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -290,7 +290,7 @@ SELECT CONVERT(INT,ISNULL(SUM(a.sl),0)) zxdwsl FROM (
         }
 
         /// <summary>
-        /// 门诊部分退药
+        /// Trả thuốc ngoại trú một phần
         /// </summary>
         /// <param name="item"></param>
         /// <param name="organizeId"></param>

@@ -14,12 +14,12 @@ using Newtouch.Core.Common.Exceptions;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 药品调价 xt_yptj
+    /// Điều chỉnh giá thuốc xt_yptj
     /// </summary>
     public class SysMedicinePriceAdjustmentRepo : RepositoryBase<SysMedicinePriceAdjustmentEntity>, ISysMedicinePriceAdjustmentRepo
     {
         /// <summary>
-        /// 构造函数初始化
+        /// Khởi tạo hàm tạo
         /// </summary>
         /// <param name="databaseFactory"></param>
         public SysMedicinePriceAdjustmentRepo(IDefaultDatabaseFactory databaseFactory) : base(databaseFactory)
@@ -27,29 +27,29 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取一个调价的entity 未审核 未执行
+        /// Lấy một điều chỉnh giáentity Chưa duyệt, chưa thực hiện
         /// </summary>
         /// <param name="ypCode"></param>
         /// <returns></returns>
         public SysMedicinePriceAdjustmentEntity GetMedicinePriceAdjustmentNotApproveEntity(string ypCode)
         {
             var organizeId = OperatorProvider.GetCurrent().OrganizeId;
-            return IQueryable().FirstOrDefault(a => a.ypCode == ypCode && a.zxbz == "0" && (a.shzt == "0" || a.shzt == "1") && a.zxsj > DateTime.Now && a.OrganizeId == organizeId);   //未审核 未执行
+            return IQueryable().FirstOrDefault(a => a.ypCode == ypCode && a.zxbz == "0" && (a.shzt == "0" || a.shzt == "1") && a.zxsj > DateTime.Now && a.OrganizeId == organizeId);   //Chưa duyệt, chưa thực hiện
         }
 
         /// <summary>
-        /// 获取一个调价的entity 已审核 未执行
+        /// Lấy một điều chỉnh giáentity Đã duyệt, chưa thực hiện
         /// </summary>
         /// <param name="ypCode"></param>
         /// <returns></returns>
         public SysMedicinePriceAdjustmentEntity GetMedicinePriceAdjustmentNotExecteEntity(string ypCode)
         {
             var organizeId = OperatorProvider.GetCurrent().OrganizeId;
-            return IQueryable().FirstOrDefault(a => a.ypCode == ypCode && a.zxbz == "0" && a.shzt == "1" && a.OrganizeId == organizeId);   //已审核 未执行
+            return IQueryable().FirstOrDefault(a => a.ypCode == ypCode && a.zxbz == "0" && a.shzt == "1" && a.OrganizeId == organizeId);   //Đã duyệt, chưa thực hiện
         }
 
         /// <summary>
-        /// 添加药品调价记录(申请)
+        /// Thêm bản ghi điều chỉnh giá thuốc(Đề nghị)
         /// </summary>
         /// <param name="entity"></param>
         public void AddPriceAdjustmentRecord(SysMedicinePriceAdjustmentEntity entity)
@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 检查是否有未处理的数据
+        /// Kiểm tra xem có dữ liệu chưa xử lý hay không
         /// </summary>
         /// <param name="ypCodeList"></param>
         public string CheckStatus(ArrayList ypCodeList)
@@ -74,11 +74,11 @@ namespace Newtouch.HIS.Repository
                 {
                     return string.Format(@"查无药品代码为{0}的药品！", item);
                 }
-                if (entity.shzt.Equals("0") || entity.shzt.Equals("2") || entity.shzt.Equals("3"))  //未审核 拒绝 撤销
+                if (entity.shzt.Equals("0") || entity.shzt.Equals("2") || entity.shzt.Equals("3"))  //Chưa duyệt, từ chối, hủy
                 {
                     return entity.ypCode + " 状态处于未审核或拒绝或撤销的状态，不可执行";
                 }
-                if ("1".Equals(entity.zxbz))   //执行
+                if ("1".Equals(entity.zxbz))   //Thực hiện
                 {
                     return entity.ypCode + " 已执行过的数据，不可重复执行";
                 }
@@ -91,10 +91,10 @@ namespace Newtouch.HIS.Repository
         }
 
         ///  <summary>
-        ///  药品调价审核
+        ///  Duyệt điều chỉnh giá thuốc
         ///  </summary>
-        ///  --shzt:0:未审核 1:已审核 2:已拒绝 3.已撤销
-        ///  --zxbz:0:未执行 1:已执行
+        ///  --shzt:0:Chưa duyệt 1:Đã duyệt 2:Đã từ chối 3.Đã hủy
+        ///  --zxbz:0:Chưa thực hiện 1:Đã thực hiện
         /// <param name="ypCodeList"></param>
         /// <param name="operationType"></param>
         public string MedicinePriceAdjustment(ArrayList ypCodeList, int operationType)
@@ -114,15 +114,15 @@ namespace Newtouch.HIS.Repository
                     entity.zxbz = ((int)EnumPriceAdjustZXStatus.Not).ToString();
                     switch (operationType)
                     {
-                        case (int)EnumPriceAdjustOperationType.Approval:   //审核
+                        case (int)EnumPriceAdjustOperationType.Approval:   //Duyệt
                             entity.shzt = operationType.ToString();
                             entity.shczy = OperatorProvider.GetCurrent().UserCode;
                             break;
-                        case (int)EnumPriceAdjustOperationType.Refuse:   //拒绝
+                        case (int)EnumPriceAdjustOperationType.Refuse:   //Từ chối
                             entity.shzt = operationType.ToString();
                             entity.shczy = OperatorProvider.GetCurrent().UserCode;
                             break;
-                        case (int)EnumPriceAdjustOperationType.Withdraw:  //撤销
+                        case (int)EnumPriceAdjustOperationType.Withdraw:  //Hủy
                             entity.shzt = operationType.ToString();
                             entity.pfj = entity.ypfj;
                             entity.lsj = entity.ylsj;

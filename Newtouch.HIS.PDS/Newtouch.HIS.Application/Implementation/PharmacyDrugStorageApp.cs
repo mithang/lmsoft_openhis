@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly ISysMedicineStockCarryDownRepo _sysMedicineStockCarryDownRepo;
 
         /// <summary>
-        /// 库存量查询
+        /// Tra cứu số lượng tồn kho
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inputCode"></param>
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 库存量查询明细
+        /// Tra cứu chi tiết số lượng tồn kho
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="yfbmCode"></param>
@@ -51,7 +51,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 单据查询明细
+        /// Tra cứu chi tiết phiếu
         /// </summary>
         /// <param name="crkId"></param>
         /// <param name="djlx"></param>
@@ -73,7 +73,7 @@ namespace Newtouch.HIS.Application.Implementation
         #region 库存盘点
 
         /// <summary>
-        /// 获取盘点日期
+        /// Lấy ngày kiểm kê
         /// </summary>
         /// <returns></returns>
         public List<InventoryDateDropDownVO> GetPdDateDropdownList()
@@ -82,7 +82,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 获取药品类别 （盘点）
+        /// Lấy loại thuốc (kiểm kê）
         /// </summary>
         /// <returns></returns>
         public List<MedicineCategoryVO> GetMedicineCategoryList()
@@ -91,23 +91,23 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 开始盘点
+        /// Bắt đầu kiểm kê
         /// </summary>
         public InventoryDateDropDownVO StartInventory()
         {
-            //判断是否有未完成的盘点
+            //Phán đoán xem có kiểm kê chưa hoàn thành hay không
             var pdDate = _pharmacyDrugStorageDmnService.GetHangUpPdDates();
             if (pdDate != null && pdDate.Count > 0)
             {
                 return null;
             }
-            //生成盘点信息
+            //Tạo thông tin kiểm kê
             var resultMessage = _pharmacyDrugStorageDmnService.GenerateInventoryInfo(Constants.CurrentYfbm.yfbmCode, OperatorProvider.GetCurrent().OrganizeId, OperatorProvider.GetCurrent().UserCode);
             if (!string.IsNullOrEmpty(resultMessage))
             {
                 throw new FailedException(resultMessage);
             }
-            //获取盘点的开始时间
+            //Lấy thời gian bắt đầu kiểm kê
             var inventoryDateDropDown = GetPdDateDropdownList().FirstOrDefault();
             if (inventoryDateDropDown == null)
             {
@@ -117,7 +117,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 查询需盘点的药品信息
+        /// Tra cứu thông tin thuốc cần kiểm kê
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="pdId"></param>
@@ -133,7 +133,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 盘点保存
+        /// Lưu kiểm kê
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         /// <param name="pdId"></param>
@@ -157,7 +157,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 结束盘点
+        /// Kết thúc kiểm kê
         /// </summary>
         /// <returns></returns>
         public void EndInventory(string pdId)
@@ -171,7 +171,7 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 throw new FailedException("该盘点已结束");
             }
-            //生成盘点信息
+            //Tạo thông tin kiểm kê
             var resultMessage = _pharmacyDrugStorageDmnService.EndInventoryInfo(pdId);
             if (!string.IsNullOrEmpty(resultMessage) && !resultMessage.Contains("成功"))
             {
@@ -180,12 +180,12 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 取消盘点
+        /// Hủy kiểm kê
         /// </summary>
         /// <param name="pdId"></param>
         public void CancelInventory(string pdId)
         {
-            //判断是否有未完成的盘点
+            //Phán đoán xem có kiểm kê chưa hoàn thành hay không
             var count = _sysMedicineInventoryRepo.SelectUnfinishedInventoryByPdId(pdId);
             if (count != 1)
             {
@@ -198,7 +198,7 @@ namespace Newtouch.HIS.Application.Implementation
 
         #region 库存结转
         /// <summary>
-        /// 获取药品特殊属性
+        /// Lấy thuộc tính đặc biệt của thuốc
         /// </summary>
         /// <returns></returns>
         public List<DrugSpecialPropertiesVO> GetDrugSpecialPropertiesList()
@@ -207,11 +207,11 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 结转
+        /// Kết chuyển
         /// </summary>
         public void CarryOverMedicine(string zq, DateTime kssj, DateTime jssj)
         {
-            var needCarryOverMedicineList = _pharmacyDrugStorageDmnService.SelectNeedCarryOverMedicineList();//先查询需要结转的药品信息
+            var needCarryOverMedicineList = _pharmacyDrugStorageDmnService.SelectNeedCarryOverMedicineList();//Trước tiên tra cứu thông tin thuốc cần kết chuyển
             if (needCarryOverMedicineList.Count > 0)
             {
                 _pharmacyDrugStorageDmnService.CarryOverMedicine(needCarryOverMedicineList, zq, kssj, jssj);
@@ -223,7 +223,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 查询已结转药品
+        /// Tra cứu thuốc đã kết chuyển
         /// </summary>
         /// <param name="zq"></param>
         /// <param name="inputCode"></param>
@@ -238,7 +238,7 @@ namespace Newtouch.HIS.Application.Implementation
 
         #region 进销存统计
         /// <summary>
-        /// 返回药品剂型list
+        /// Trả về dạng bào chế thuốclist
         /// </summary>
         /// <returns></returns>
         public List<MedicineFormulationVO> GetMedicineFormulationList()
@@ -247,7 +247,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 药品类别 （进销存）
+        /// Loại thuốc (nhập xuất tồn）
         /// </summary>
         /// <returns></returns>
         public List<MedicineCategoryVO> GetMedicineCategoryList2()
