@@ -17,12 +17,12 @@ ConfigInitHelper.SysConfig = builder.Configuration.GetSection("BusinessConfig").
 //        Db = 11,
 //        Prefix = "OpenHis.Hangfire:"
 //    });
-//    x.SetDataCompatibilityLevel(CompatibilityLevel.Version_180); //设置数据兼容性级别
+//    x.SetDataCompatibilityLevel(CompatibilityLevel.Version_180); //Cai dat muc do tuong thich du lieu
 //    x.UseSimpleAssemblyNameTypeSerializer();
 //    x.UseRecommendedSerializerSettings();
-//    x.UseDashboardMetric(DashboardMetrics.ServerCount)//服务器数量
+//    x.UseDashboardMetric(DashboardMetrics.ServerCount)//So luong may chu
 //       .UseConsole()
-//       .UseManagementPages(Assembly.Load("NewtouchHIS.HangFire.UI")); //加载程序集
+//       .UseManagementPages(Assembly.Load("NewtouchHIS.HangFire.UI")); //Nap assembly
 //});
 //// Add the processing server as IHostedService
 //builder.Services.AddHangfireServer();
@@ -36,11 +36,11 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
 }
 app.UseStaticFiles();
-////启用hangfire dashboard中间件
+////Bat middleware hangfire dashboard
 //app.UseHangfireDashboard("/hangfire", new DashboardOptions
 //{
 //    Authorization = new[] { new HisAuthorizationFilter() },
-//    DashboardTitle = "开源HIS.任务调度管理", //页面标题
+//    DashboardTitle = "开源HIS.任务调度管理", //Tieu de trang
 //});
 
 app.ConfigureSelfHangfire(builder.Configuration);

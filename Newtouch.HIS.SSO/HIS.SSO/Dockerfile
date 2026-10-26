@@ -1,4 +1,4 @@
-# 在部署包中构建镜像
+# Xay dung image trong goi trien khai
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0-windowsservercore-ltsc2019
 WORKDIR /app

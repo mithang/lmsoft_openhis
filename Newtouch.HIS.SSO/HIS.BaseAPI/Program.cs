@@ -8,12 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddInterfaceServiceBase(builder.Configuration);
 builder.Services.AddControllers();
-//所有控制器启动身份验证
+//Tat ca cac controller deu khoi dong xac thuc danh tinh
 builder.Services.AddMvc(options =>
 {
     options.Filters.Add(new AppResultFilter());
     options.Filters.Add(typeof(LogTrackingAttribute));
-    options.Filters.Add(new AuthorizeFilter());//所有MVC服务默认添加授权标签
+    options.Filters.Add(new AuthorizeFilter());//Tat ca cac dich vu MVC mac dinh them nhan uy quyen
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -40,8 +40,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 #region jwt
-app.UseAuthentication();        //添加jwt鉴权 
-//代码从上到下执行，中间可以加判断， 权限设置问题
+app.UseAuthentication();        //Them xac thuc jwt 
+//Code thuc thi tu tren xuong duoi, o giua co the them dieu kien kiem tra, van de cai dat quyen
 #endregion
 app.UseAuthorization();
 app.UseNewtouchExceptionHandler();

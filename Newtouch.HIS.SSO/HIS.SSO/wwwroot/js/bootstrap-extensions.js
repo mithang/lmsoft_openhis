@@ -1,7 +1,7 @@
 
-//单选选中
+//Chon don (radio)
 function bstableSelected(table, uniqueId, values, $element) {
-    //判断是否已选中
+    //Kiem tra xem da duoc chon hay chua
     if ($($element).hasClass("table-selected")) {
         $($element).removeClass('table-selected');
         bstableSelectedToggle(table, uniqueId, values, false);
@@ -12,9 +12,9 @@ function bstableSelected(table, uniqueId, values, $element) {
         bstableSelectedToggle(table, uniqueId, values, true);
     }
 }
-//多选选中
+//Chon nhieu (checkbox)
 function bstableMutiSelected(table, uniqueId, values, $element) {
-    //判断是否已选中
+    //Kiem tra xem da duoc chon hay chua
     if ($($element).hasClass("table-selected")) {
         $($element).removeClass('table-selected');
         bstableSelectedToggle(table, uniqueId, values, false);
@@ -32,12 +32,12 @@ function bstableSelectedToggle(table, uniqueId, values, checked) {
         $(table).bootstrapTable('uncheckBy', { field: uniqueId, values: values });
     }
 }
-//请求的参数
+//Cac tham so cua yeu cau
 function pageQueryParams(params, paradata) {
     var data = {
-        //每页多少条数据
+        //So ban ghi tren moi trang
         limit: params.limit,
-        //请求第几页
+        //Yeu cau trang thu may
         offset: params.offset,
         order: params.order,
         sort: params.sort,
@@ -70,7 +70,7 @@ var toggleNodeExpand = function ($bstree, expandibleNodes, silent, levels) {
     return $bstree.treeview('toggleNodeExpanded', [expandibleNodes, {silent: silent }]);
 };
 
-// 递归选中所有子节点
+// De quy chon tat ca cac nut con
 function checkSubNodes($bstree,node, value) {
     if (node.nodes && node.nodes.length > 0) {
         var children = $bstree.treeview('getSiblings', node.nodes[0].nodeId);
@@ -94,7 +94,7 @@ function uncheckSubNodes($bstree, node, value,relParent) {
             }
         });
     }
-    //取消父节点选中状态
+    //Huy trang thai chon cua nut cha
     else if (relParent) {
         var parent = $bstree.treeview('getParent', node.nodeId);
         if (parent) {
@@ -102,7 +102,7 @@ function uncheckSubNodes($bstree, node, value,relParent) {
         }
     }
 }
-//选择节点选中，并展开父节点
+//Chon nut, va mo rong nut cha
 function bsTreeCheckedNodeProc($bstree, selectNodes) {
     if (!selectNodes) {
         return false;

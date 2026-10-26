@@ -15,7 +15,7 @@ builder.Services.AddWebServiceBase(builder.Configuration);
 builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 {
     options.Filters.Add(typeof(LogTrackingAttribute));
-    //**框架权限验证**
+    //**Xac thuc quyen framework**
     options.Filters.Add(typeof(FrameworkAuthorizationFilter));
 });
 var app = builder.Build();
