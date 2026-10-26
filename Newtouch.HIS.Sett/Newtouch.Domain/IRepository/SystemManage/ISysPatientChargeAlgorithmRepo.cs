@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- * Copyright © 2016 Newtouch 版权所有
+ * Copyright © 2016 Newtouch Bảo lưu bản quyền
  * Author: Newtouch
  * Description: 
 
@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysPatientChargeAlgorithmRepo : IRepositoryBase<SysPatientChargeAlgorithmEntity>
     {
         /// <summary>
-        /// 获取所有有效算法
+        /// Lấy tất cả thuật toán hiệu lực
         /// </summary>
         /// <returns></returns>
         List<SysPatientChargeAlgorithmEntity> getAllMzActive();

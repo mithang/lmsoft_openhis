@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- * Copyright © 2016 Newtouch 版权所有
+ * Copyright © 2016 Newtouch Bảo lưu bản quyền
  * Author: Newtouch
  * Description: 
 
@@ -11,12 +11,12 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 收费项目
+    /// Hạng mục thu phí
     /// </summary>
     public interface ISysChargeItemRepo : IRepositoryBase<SysChargeItemVEntity>
     {
         /// <summary>
-        /// 根据sfxm Code获取Entity
+        /// Theosfxm CodeLấyEntity
         /// </summary>
         /// <param name="sfxm"></param>
         /// <param name="orgId"></param>
@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Domain.IRepository
         SysChargeItemVEntity SelectSysChargeItemBysfxm(string sfxm, string orgId);
 
         /// <summary>
-        /// 根据编码获取dl
+        /// Lấy theo mãdl
         /// </summary>
         /// <param name="sfxm"></param>
         /// <param name="orgId"></param>

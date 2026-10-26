@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IOutpatientAccountDetailRepo : IRepositoryBase<OutpatientAccountDetailEntity>
     {
         /// <summary>
-        /// 根据记账计划明细Id获取list
+        /// Theo chi tiết kế hoạch ghi sổIdLấylist
         /// </summary>
         /// <returns></returns>
         IList<OutpatientAccountDetailEntity> GetListbyjzjhids(string orgId, IList<string> mxIdList);

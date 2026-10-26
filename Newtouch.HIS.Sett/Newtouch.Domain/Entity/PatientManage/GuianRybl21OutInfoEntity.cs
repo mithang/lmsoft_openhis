@@ -18,67 +18,67 @@ namespace Newtouch.HIS.Domain.Entity
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
 
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string prm_ykc010 { get; set; }
         /// <summary>
-        /// 就诊编号
+        /// Số khám bệnh
         /// </summary>
         public string prm_akc190 { get; set; }
         /// <summary>
-        /// 分中心编号(HIS必须保存该字段，作为以后交易的输入)
+        /// Mã trung tâm chi nhánh(HISPhải lưu trường này,Làm đầu vào cho giao dịch sau này)
         /// </summary>
         public string prm_yab003 { get; set; }
         /// <summary>
-        /// 支付类别
+        /// Loại thanh toán
         /// </summary>
         public string prm_aka130 { get; set; }
         /// <summary>
-        /// 个人编号
+        /// Số cá nhân
         /// </summary>
         public string prm_aac001 { get; set; }
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string prm_aac003 { get; set; }
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string prm_aac004 { get; set; }
         /// <summary>
-        /// 身份号码
+        /// Số CMND
         /// </summary>
         public string prm_aac002 { get; set; }
         /// <summary>
-        /// 单位编码
+        /// Mã đơn vị
         /// </summary>
         public string prm_aab001 { get; set; }
         /// <summary>
-        /// 单位名称
+        /// Tên đơn vị
         /// </summary>
         public string prm_aab004 { get; set; }
         /// <summary>
-        /// 人员状态
+        /// Trạng thái nhân viên
         /// </summary>
         public string prm_akc021 { get; set; }
         /// <summary>
-        /// 实足年龄
+        /// Tuổi thực
         /// </summary>
         public int prm_akc023 { get; set; }
         /// <summary>
-        /// 社会保险办法(HIS必须保存该字段，作为以后交易的输入)
+        /// Phương pháp BHXH(HISPhải lưu trường này,Làm đầu vào cho giao dịch sau này)
         /// </summary>
         public string prm_ykb065 { get; set; }
         /// <summary>
-        /// 组织机构Id
+        /// Tổ chứcId
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 交易流水号
+        /// Số giao dịch
         /// </summary>
         public string jylsh { get; set; }
         /// <summary>
-        /// 交易验证码
+        /// Mã xác minh giao dịch
         /// </summary>
         public string jyyzm { get; set; }
     }

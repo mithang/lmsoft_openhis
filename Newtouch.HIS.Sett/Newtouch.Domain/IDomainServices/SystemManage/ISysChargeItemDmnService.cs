@@ -10,40 +10,40 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface ISysChargeItemDmnService
     {
         /// <summary>
-        /// 项目检索
+        /// Tìm kiếm hạng mục
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>
-        /// <param name="xmzlfzlbz">项目的治疗非治疗标志：true 治疗项目 false 非治疗项目 null都包含</param>
+        /// <param name="xmzlfzlbz">Cờ điều trị/không điều trị của hạng mục:true Hạng mục điều trị false Hạng mục không điều trị nullĐều bao gồm</param>
         /// <param name="mzzybz"></param>
         /// <returns></returns>
         IList<SysChargeItemVO> SelectSearch(string keyword, string orgId, bool? xmzlfzlbz = true, string mzzybz = null, string dlCode = null, bool isContansChildDl = true);
 
         /// <summary>
-        /// 项目And药品检索
+        /// Hạng mụcAndTìm kiếm thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>
-        /// <param name="zlfzlbz">项目的治疗非治疗标志：true 治疗项目 false 非治疗项目 null都包含</param>
+        /// <param name="zlfzlbz">Cờ điều trị/không điều trị của hạng mục:true Hạng mục điều trị false Hạng mục không điều trị nullĐều bao gồm</param>
         /// <param name="mzzybz"></param>
         /// <returns></returns>
         IList<SysChargeItemAndMedicineVO> SelectItemAndMedicineSearch(string keyword, string orgId, bool? zlfzlbz = true, string mzzybz = null);
 
         /// <summary>
-        /// 获取大类
+        /// Lấy loại lớn
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<SysChargeClassVO> GetSFDLList(string orgId);
 
         /// <summary>
-        /// 收费模板页面index list
+        /// Trang mẫu thu phíindex list
         /// </summary>
         /// <returns></returns>
         IList<SysChargeTemplateGridVO> Search(Pagination pagination, string keyword, string organizeId, string yxbz);
 
         /// <summary>
-        /// 获取用法
+        /// Lấy cách dùng
         /// </summary>
         /// <returns></returns>
         IList<SysUsageVO> GetYF();

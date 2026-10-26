@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 门诊结算支付方式
+    /// Phương thức thanh toán quyết toán ngoại trú
     /// </summary>
     [Table("mz_jszffs")]
     public class OutpatientSettlementPaymentModelEntity : IEntity<OutpatientSettlementPaymentModelEntity>
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int mzjszffsbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -34,17 +34,17 @@ namespace Newtouch.HIS.Domain.Entity
         public string xjzffs { get; set; }
 
         /// <summary>
-        /// 支付金额
+        /// Số tiền thanh toán
         /// </summary>
         public decimal zfje { get; set; }
 
         /// <summary>
-        /// 作废不用
+        /// Hủy, không dùng
         /// </summary>
         public string ssry { get; set; }
 
         /// <summary>
-        /// 作废不用
+        /// Hủy, không dùng
         /// </summary>
         public DateTime? ssrq { get; set; }
 

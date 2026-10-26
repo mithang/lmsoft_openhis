@@ -6,39 +6,39 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 角色快捷菜单授权配置
+    /// Cấu hình ủy quyền menu nhanh vai trò
     /// </summary>
     [Table("Sys_RoleShortcutMenu")]
     public class SysRoleShortcutMenuEntity : IEntity<SysRoleShortcutMenuEntity>
     {
         /// <summary>
-        /// 快捷菜单角色授权 主键
+        /// Ủy quyền vai trò menu nhanh Khóa chính
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 角色主键
+        /// Khóa chính vai trò
         /// </summary>
         public string RoleId { get; set; }
 
         /// <summary>
-        /// 快捷菜单
+        /// Menu nhanh
         /// </summary>
         public string SCMId { get; set; }
 
         /// <summary>
-        /// 排序码
+        /// Mã sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// 医疗机构Id
+        /// Cơ sở y tếId
         /// </summary>
         public string OrganizeId { get; set; }
 

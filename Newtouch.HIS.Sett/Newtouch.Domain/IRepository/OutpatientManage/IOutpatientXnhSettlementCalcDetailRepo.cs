@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 门诊新农合结算
+    /// Quyết toán Bảo hiểm nông thôn mới ngoại trú
     /// </summary>
     public interface IOutpatientXnhSettlementCalcDetailRepo : IRepositoryBase<OutpatientXnhSettlementCalcDetailEntity>
     {

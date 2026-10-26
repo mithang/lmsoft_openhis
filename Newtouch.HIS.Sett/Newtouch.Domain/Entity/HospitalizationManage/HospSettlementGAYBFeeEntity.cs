@@ -6,9 +6,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2019-04-08 14:00
-    /// 描 述：住院结算-医保费用-贵安
+    /// Tạo：张冬林
+    /// Ngày tháng:2019-04-08 14:00
+    /// Mô tả:Quyết toán nội trú-Chi phí BHYT-Quý An
     /// </summary>
     [Table("zy_js_gaybjyfy")]
     public class HospSettlementGAYBFeeEntity : IEntity<HospSettlementGAYBFeeEntity>
@@ -26,11 +26,11 @@ namespace Newtouch.HIS.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 关联zy_js jsnm
+        /// Liên kếtzy_js jsnm
         /// </summary>
         public int jsnm { get; set; }
         /// <summary>
-        /// 费用总额（包括不和医保交易的全自费部分）
+        /// Tổng chi phí(Bao gồm phần tự chi trả toàn bộ không giao dịch với BHYT)
         /// </summary>
         public decimal his_hisfyze { get; set; }
         /// <summary>
@@ -54,7 +54,7 @@ namespace Newtouch.HIS.Domain.Entity
         /// <returns></returns>
         public string prm_ykb065 { get; set; }
         /// <summary>
-        /// prm_hisfyze 需要和医保交易的部分的费用总额
+        /// prm_hisfyze Tổng chi phí của phần cần giao dịch với BHYT
         /// </summary>
         /// <returns></returns>
         public decimal prm_hisfyze { get; set; }

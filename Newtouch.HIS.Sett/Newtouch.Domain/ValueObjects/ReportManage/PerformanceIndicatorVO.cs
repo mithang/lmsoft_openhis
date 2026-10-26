@@ -6,19 +6,19 @@
     public class PerformanceIndicatorVO
     {
         /// <summary>
-        /// 日期 例：201701
+        /// Ngày tháng Ví dụ:201701
         /// </summary>
         public string col { get; set; }
         /// <summary>
-        /// 总人数
+        /// Tổng số người
         /// </summary>
         public int zrs { get; set; }
         /// <summary>
-        /// 总人次
+        /// Tổng lượt người
         /// </summary>
         public int zrc { get; set; }
         /// <summary>
-        /// 平均人次
+        /// Lượt người bình quân
         /// </summary>
         public decimal pjrc { get; set; }
     }

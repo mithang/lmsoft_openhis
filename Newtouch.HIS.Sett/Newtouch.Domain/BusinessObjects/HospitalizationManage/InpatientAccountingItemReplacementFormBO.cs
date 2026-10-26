@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.BusinessObjects
 {
     /// <summary>
-    /// 住院记账 项目 提交 关联 替代项目
+    /// Ghi sổ nội trú Hạng mục Gửi Liên kết Hạng mục thay thế
     /// </summary>
     public class InpatientAccountingItemReplacementFormBO
     {

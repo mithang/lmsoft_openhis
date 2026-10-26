@@ -1,32 +1,32 @@
 ﻿namespace Newtouch.HIS.Domain.BusinessObjects
 {
     /// <summary>
-    /// （出院结算）新增 收支记录
+    /// (Quyết toán xuất viện)Thêm mới Bản ghi thu chi
     /// </summary>
     public class HospSettPaymentRecordBO
     {
         /// <summary>
-        /// 支付方式编号
+        /// Mã phương thức thanh toán
         /// </summary>
         public int? xjzffsbh { get; set; }
 
         /// <summary>
-        /// 支付方式
+        /// Phương thức thanh toán
         /// </summary>
         public string xjzffs { get; set; }
 
         /// <summary>
-        /// 支付方式名称
+        /// Tên phương thức thanh toán
         /// </summary>
         public string zffsmc { get; set; }
 
         /// <summary>
-        /// 支付金额
+        /// Số tiền thanh toán
         /// </summary>
         public decimal zfje { get; set; }
 
         /// <summary>
-        /// 支付账户
+        /// Tài khoản thanh toán
         /// </summary>
         public int? zfzh { get; set; }
 

@@ -6,111 +6,111 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统病人账户
-    /// 用于：个人（包括慈善病人）、单位帐户等，预交金的表
+    /// Tài khoản bệnh nhân hệ thống
+    /// Dùng cho:Cá nhân(Bao gồm bệnh nhân từ thiện),Tài khoản đơn vị v.v.,Bảng tạm ứng
     /// </summary>
     [Table("xt_brzh")]
     public class SysPatientAccountEntity : IEntity<SysPatientAccountEntity>
     {
         /// <summary>
-        /// 帐户编号
+        /// Mã tài khoản
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int zhbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 帐户
+        /// Tài khoản
         /// </summary>
         public int zh { get; set; }
 
         /// <summary>
-        /// 病人内码
-        /// 单位帐户 brnm = 0
+        /// Mã nội bộ bệnh nhân
+        /// Tài khoản đơn vị brnm = 0
         /// </summary>
         public int patid { get; set; }
 
         /// <summary>
-        /// 帐户所有人
+        /// Chủ tài khoản
         /// </summary>
         public string zhsyr { get; set; }
 
         /// <summary>
-        /// 拼音
+        /// Pinyin
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 启用日期
+        /// Ngày kích hoạt
         /// </summary>
         public DateTime qyrq { get; set; }
 
         /// <summary>
-        /// 终止日期
+        /// Ngày chấm dứt
         /// </summary>
         public DateTime zzrq { get; set; }
 
         /// <summary>
-        /// 帐户余额
-        /// 该字段不存余额，如果要查询余额，则到表xt_brzhszjl查询最后一条记录   --------------------------------------      暂时用于处理慈善病人   -1 表示无需校验余额      
+        /// Số dư tài khoản
+        /// Trường này không lưu số dư,Nếu muốn tra cứu số dư,thì tra bảngxt_brzhszjlTra cứu bản ghi cuối cùng   --------------------------------------      Tạm dùng để xử lý bệnh nhân từ thiện   -1 Thể hiện không cần kiểm tra số dư      
         /// </summary>
         public decimal zhye { get; set; }
 
         /// <summary>
-        /// 帐户性质
-        /// 0 单位帐户   1 个人帐户，   2 家床账户，   3 住院预缴款账户，   4 帮困账户      --2007.4.10 账户对应多个性质，分别处理，互不影响      -- 2 家床帐户 2006.11.19  不特别设立家床账户，从个人账户中扣除，通过“账户收支记录”中的“收支性质”区分   
+        /// Tính chất tài khoản
+        /// 0 Tài khoản đơn vị   1 Tài khoản cá nhân,   2 Tài khoản giường gia đình,   3 Tài khoản tạm ứng nội trú,   4 Tài khoản trợ giúp khó khăn      --2007.4.10 Tài khoản tương ứng với nhiều tính chất,Xử lý riêng,Không ảnh hưởng lẫn nhau      -- 2 Tài khoản giường gia đình 2006.11.19  Không lập riêng tài khoản giường gia đình,Khấu trừ từ tài khoản cá nhân,Thông qua"Bản ghi thu chi tài khoản"trong"Tính chất thu chi"Phân biệt   
         /// </summary>
         public string zhxz { get; set; }
 
         /// <summary>
-        /// 帐户备注
-        /// 家床病人诊断
+        /// Ghi chú tài khoản
+        /// Chẩn đoán bệnh nhân giường gia đình
         /// </summary>
         public string zhbz { get; set; }
 
         /// <summary>
-        /// 状态
-        /// 0 无效 1 有效
+        /// Trạng thái
+        /// 0 Không hiệu lực 1 Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 关联住院号
+        /// Số nhập viện liên kết
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 创建用户名称
+        /// Tên người tạo
         /// </summary>
         public string CreatorUserName { get; set; }
 

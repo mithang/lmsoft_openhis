@@ -9,11 +9,11 @@ namespace Newtouch.HIS.Domain.IRepository
         void SubmitForm(SysPatientChargeAdditionalEntity sysPatiChargeAddEntity, int? keyValue, string orgId);
 
         /// <summary>
-        /// 获取服务费比例
+        /// Lấy tỷ lệ phí dịch vụ
         /// </summary>
-        /// <param name="brxz">病人性质</param>
-        /// <param name="dl">大类</param>
-        /// <param name="sfxm">收费项目</param>
+        /// <param name="brxz">Tính chất bệnh nhân</param>
+        /// <param name="dl">Loại lớn</param>
+        /// <param name="sfxm">Hạng mục thu phí</param>
         /// <returns></returns>
         SysPatientChargeAdditionalEntity GetFWFBL(string brxz, string dl, string sfxm, string orgId);
 

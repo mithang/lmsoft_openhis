@@ -35,11 +35,11 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
 
         public DateTime? sfrq { get; set; }
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
         /// <summary>
-        /// 是否是欠费预结
+        /// Có phải là quyết toán trước khi nợ phí hay không
         /// </summary>
         public bool isQfyj { get; set; }
 

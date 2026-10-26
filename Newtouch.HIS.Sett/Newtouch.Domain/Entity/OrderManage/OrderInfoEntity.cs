@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 订单信息表 2023-9-8 chl
+    /// Bảng thông tin đơn hàng 2023-9-8 chl
     /// </summary>
     [Table("order_info")]
     public class OrderInfoEntity : IEntity<OrderInfoEntity>
@@ -16,71 +16,71 @@ namespace Newtouch.HIS.Domain.Entity
         public string Id { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 订单号
+        /// Số đơn hàng
         /// </summary>
         public string OrderNo { get; set; }
         /// <summary>
-        /// 订单类型 EnumOrderType
+        /// Loại đơn hàng EnumOrderType
         /// </summary>
         public int? OrderType { get; set; }
         /// <summary>
-        /// 就诊卡号
+        /// Số thẻ khám bệnh
         /// </summary>
         public string CardNo { get; set; }
         /// <summary>
-        /// 本次就诊标识  门诊：mzh；住院：zyh
+        /// Dấu khám bệnh lần này  Khám ngoại trú:mzh;Nhập viện:zyh
         /// </summary>
         public string VisitNo { get; set; }
         /// <summary>
-        /// 订单状态 EnumOrderStatus
+        /// Trạng thái đơn hàng EnumOrderStatus
         /// </summary>
         public int OrderStu { get; set; }
         /// <summary>
-        /// 订单金额
+        /// Số tiền đơn hàng
         /// </summary>
         public decimal OrderAmt { get; set; }
         /// <summary>
-        /// 支付金额
+        /// Số tiền thanh toán
         /// </summary>
         public decimal? PayFee { get; set; }
         /// <summary>
-        /// 支付流水号
+        /// Số giao dịch thanh toán
         /// </summary>
         public string PayLsh { get; set; }
         /// <summary>
-        /// 支付者身份信息
+        /// Thông tin thân phận người thanh toán
         /// </summary>
         public string PayerId { get; set; }        
         /// <summary>
-        /// 订单支付时间
+        /// Thời gian thanh toán đơn hàng
         /// </summary>
         public DateTime? PayTime { get; set; }
         /// <summary>
-        /// 支付方式
+        /// Phương thức thanh toán
         /// </summary>
         public int? PayWay { get; set; }
         /// <summary>
-        /// HIS内部结算号
+        /// HISSố quyết toán nội bộ
         /// </summary>
         public string SettTradeNo { get; set; }
         public string Memo { get; set; }
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 

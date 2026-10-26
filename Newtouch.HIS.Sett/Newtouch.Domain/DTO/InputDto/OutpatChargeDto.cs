@@ -1,68 +1,68 @@
 ﻿/**********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description： 门诊收费处方结算保存实体 
-// Author：HLF
-// CreateDate： 2016/12/30 10:17:05 
+// Copyright (C) 2016 Newtouch Bảo lưu bản quyền. 
+// Description: Thực thể lưu quyết toán đơn thuốc thu phí ngoại trú 
+// Author:HLF
+// CreateDate: 2016/12/30 10:17:05 
 //**********************************************************/
 namespace Newtouch.HIS.Domain.DTO
 {
     /// <summary>
-    /// grid列表DTO
+    /// gridDanh sáchDTO
     /// </summary>
     public class OutpatChargeDto: OutpatInfoDto
     {
     
         /// <summary>
-        /// 门急诊标志
+        /// Cờ khám ngoại trú/cấp cứu
         /// </summary>
         public string mjzbz { get; set; }
 
         public string ybdm { get; set; }
 
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         public string ys { get; set; }
 
         public string ysmc { get; set; }
 
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ks { get; set; }
         /// <summary>
-        /// 科室编号
+        /// Mã khoa
         /// </summary>
         public int ksbh { get; set; }
 
         public string ksmc { get; set; }
 
-        //大类
+        //Loại lớn
         public string dl { get; set; }
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 收费项目类别 1项目  2药品
+        /// Loại hạng mục thu phí 1Hạng mục  2Thuốc
         /// </summary>
         public string xmtype { get; set; }
         /// <summary>
-        /// 药房代码
+        /// Mã nhà thuốc
         /// </summary>
         public string yfdm { get; set; }
         /// <summary>
-        /// 收费项目编号
+        /// Mã hạng mục thu phí
         /// </summary>
         public string sfxm { get; set; }
         public string ypbzdm { get; set; }
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public decimal sl { get; set; }
         /// <summary>
-        /// 总金额
+        /// Tổng số tiền
         /// </summary>
         public string zje { get; set; }
         public int pt_nm { get; set; }
@@ -70,58 +70,58 @@ namespace Newtouch.HIS.Domain.DTO
         public byte pt_zdmxxz { get; set; }
 
         /// <summary>
-        /// 成组号
+        /// Số nhóm
         /// </summary>
         public string czh { get; set; }
 
-        //处方明细有关 sfxm dl
+        //Liên quan chi tiết đơn thuốc sfxm dl
         /// <summary>
-        /// 项目编号 int
+        /// Số hạng mục int
         /// </summary>
         public int xmbh { get; set; }
         public string xmmc { get; set; }
         /// <summary>
-        /// 单价
+        /// Đơn giá
         /// </summary>
         public decimal dj { get; set; }
         /// <summary>
-        /// 金额
+        /// Số tiền
         /// </summary>
         public decimal je { get; set; }
         /// <summary>
-        /// 支付比例
+        /// Tỷ lệ thanh toán
         /// </summary>
         public decimal zfbl { get; set; }
         public string zfxz { get; set; }
         public string dw { get; set; }
         /// <summary>
-        /// 服务费
+        /// Phí dịch vụ
         /// </summary>
         public decimal fwfdj { get; set; }
 
-        //结算相关数据
+        //Dữ liệu liên quan quyết toán
         //dl dj sl je zfbl zfxz  sfxm
-        //项目名称 outJmbl outJmje mxnm mxbm 
+        //Tên hạng mục outJmbl outJmje mxnm mxbm 
         public string nbdl { get; set; }
 
 
         ///// <summary>
-        ///// 现金支付方式
+        ///// Phương thức thanh toán tiền mặt
         ///// </summary>
         //public string xjzffs { get; set; }
 
         ///// <summary>
-        ///// 支付金额
+        ///// Số tiền thanh toán
         ///// </summary>
         //public string zfje { get; set; }
 
         ///// <summary>
-        ///// 预收款 == 实收款
+        ///// Khoản thu trước == Số tiền thực thu
         ///// </summary>
         //public string ysk { get; set; }
 
         ///// <summary>
-        ///// 找零
+        ///// Tiền thối lại
         ///// </summary>
         //public string zl { get; set; }
 

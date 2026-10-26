@@ -16,14 +16,14 @@ namespace Newtouch.HIS.Domain.IRepository
         void SubmitForm(SysPatientChargeWaiverEntity sysPatiChargeWaiverEntity, int? keyValue, string orgId);
 
         ///// <summary>
-        ///// 根据首拼查询收费项目
+        ///// Tra cứu hạng mục thu phí theo chữ cái đầu
         ///// </summary>
         ///// <param name="parm"></param>
         ///// <returns></returns>
         // decimal GetXT_brsfjm(string strWhere);
 
         /// <summary>
-        /// 根据病人性质、大类、收费项目获得减免金额
+        /// Theo tính chất bệnh nhân,Loại lớn,Số tiền giảm miễn hạng mục thu phí nhận được
         /// </summary>
         /// <param name="parmBrxz"></param>
         /// <param name="parmDl"></param>

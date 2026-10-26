@@ -5,66 +5,66 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 出院结算 提交结算
+    /// Quyết toán xuất viện Gửi quyết toán
     /// </summary>
     public class OutHospSettDBDataUpdateCollectVO
     {
         /// <summary>
-        /// 住院结算
+        /// Quyết toán nội trú
         /// </summary>
         public HospSettlementEntity zy_js { get; set; }
 
         /// <summary>
-        /// 住院结算明细
+        /// Chi tiết quyết toán nội trú
         /// </summary>
         public IList<HospSettlementDetailEntity> zy_jsmxList { get; set; }
 
         /// <summary>
-        /// 住院交易结算
+        /// Quyết toán giao dịch nội trú
         /// </summary>
         public IList<HospTransactionSettlementEntity> zy_jyjsList { get; set; }
 
         /// <summary>
-        /// 住院交易结算明细
+        /// Chi tiết quyết toán giao dịch nội trú
         /// </summary>
         public IList<HospTransactionSettlementDetailEntity> zy_jyjsmxList { get; set; }
 
         /// <summary>
-        /// 住院结算支付方式
+        /// Phương thức thanh toán quyết toán nội trú
         /// </summary>
         public IList<HospSettlementPaymentModelEntity> zy_jszffsList { get; set; }
 
         /// <summary>
-        /// 系统病人帐户收支记录
+        /// Bản ghi thu chi tài khoản bệnh nhân hệ thống
         /// </summary>
         public IList<SysPatientAccountRevenueAndExpenseEntity> xt_brzhszjlList { get; set; }
 
         /// <summary>
-        /// 住院结算大类
+        /// Loại lớn quyết toán nội trú
         /// </summary>
         public IList<HospSettlementCategoryEntity> zy_jsdlList { get; set; }
 
-        //update 住院病人基本信息
-        //insert 住院病人基本信息变更
-        //update 财务发票 更新当前发票号
+        //update Thông tin cơ bản bệnh nhân nội trú
+        //insert Thay đổi thông tin cơ bản bệnh nhân nội trú
+        //update Hóa đơn tài chính Cập nhật số hóa đơn hiện tại
 
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 在院状态
+        /// Trạng thái đang nằm viện
         /// </summary>
         public string zybz { get; set; }
 
         /// <summary>
-        /// 出院日期
+        /// Ngày xuất viện
         /// </summary>
         public DateTime? cyrq { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 

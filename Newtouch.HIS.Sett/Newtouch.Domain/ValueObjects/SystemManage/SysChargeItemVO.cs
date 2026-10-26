@@ -1,8 +1,8 @@
 ﻿namespace Newtouch.HIS.Domain.ValueObjects.SystemManage
 {
     /// <summary>
-    /// 收费项目VO
-    /// 不包括药品
+    /// Hạng mục thu phíVO
+    /// Không bao gồm thuốc
     /// </summary>
     public class SysChargeItemVO
     {
@@ -48,15 +48,15 @@
         public int? duration { get; set; }
 
         /// <summary>
-        /// 门诊住院标志
+        /// Cờ ngoại trú/nội trú
         /// </summary>
         public string mzzybz { get; set; }
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string bz { get; set; }
         /// <summary>
-        /// 单位计量数
+        /// Số lượng đơn vị đo
         /// </summary>
         public int? dwjls { get; set; }
         public int? jjcl { get; set; }

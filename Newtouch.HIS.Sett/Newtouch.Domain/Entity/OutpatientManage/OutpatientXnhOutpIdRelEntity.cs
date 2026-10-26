@@ -6,64 +6,64 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 新农合门诊补偿序号关联表
+    /// Bảng liên kết số thứ tự bồi thường ngoại trú Bảo hiểm nông thôn mới
     /// </summary>
     [Table("mz_xnh_outpIdRel")]
     public class OutpatientXnhOutpIdRelEntity : IEntity<OutpatientXnhOutpIdRelEntity>
     {
         /// <summary>
-        /// 主键ID
+        /// Khóa chínhID
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 挂号内码
+        /// Mã nội bộ đăng ký khám
         /// </summary>
         public int ghnm { get; set; }
 
         /// <summary>
-        /// 补偿序号
+        /// Số thứ tự bồi thường
         /// </summary>
         public string outpId { get; set; }
 
         /// <summary>
-        /// 门诊号
+        /// Số khám ngoại trú
         /// </summary>
         public string mzh { get; set; }
 
         /// <summary>
-        /// 处理状态 0-门诊回退 1-明细已上传 2-已结算 3-已红冲 
+        /// Trạng thái xử lý 0-Quay lại ngoại trú 1-Chi tiết đã tải lên 2-Đã quyết toán 3-Đã đảo hóa đơn đỏ 
         /// </summary>
         public int processingStatus { get; set; }
 
         /// <summary>
-        /// 状态 1-有效  0-无效
+        /// Trạng thái 1-Hiệu lực  0-Không hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改者
+        /// Người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
     }

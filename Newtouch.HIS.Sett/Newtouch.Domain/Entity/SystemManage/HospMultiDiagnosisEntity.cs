@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string rydzdId { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string zdmc { get; set; }
 
         /// <summary>
-        /// 1：诊断1 2：诊断2  3：诊断3
+        /// 1:Chẩn đoán1 2:Chẩn đoán2  3:Chẩn đoán3
         /// </summary>
         public string zdpx { get; set; }
 

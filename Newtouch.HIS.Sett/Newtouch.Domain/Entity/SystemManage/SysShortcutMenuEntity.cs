@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2017-10-16 11:07
-    /// 描 述：快捷菜单
+    /// Tạo：张冬林
+    /// Ngày tháng:2017-10-16 11:07
+    /// Mô tả:Menu nhanh
     /// </summary>
     [Table("Sys_ShortcutMenu")]
     public class SysShortcutMenuEntity : IEntity<SysShortcutMenuEntity>

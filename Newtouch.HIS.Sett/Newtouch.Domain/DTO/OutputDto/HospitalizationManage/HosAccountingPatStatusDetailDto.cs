@@ -10,17 +10,17 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto
     public class HosAccountingPatStatusDetailDto
     {
         /// <summary>
-        /// 此次住院 已 记账 计划
+        /// Lần nội trú này đã Ghi sổ Kế hoạch
         /// </summary>
         public IList<HospAccountingPlanVO> jzjhList { get; set; }
 
         /// <summary>
-        /// 住院病人基本信息
+        /// Thông tin cơ bản bệnh nhân nội trú
         /// </summary>
         public HospPatientInfoVO patInfo { get; set; }
 
         /// <summary>
-        /// 中途结算日期
+        /// Ngày quyết toán giữa chừng
         /// </summary>
         public DateTime? zjrq { get; set; }
 

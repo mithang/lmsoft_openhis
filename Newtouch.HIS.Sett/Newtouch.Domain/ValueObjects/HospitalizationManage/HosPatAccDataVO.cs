@@ -1,8 +1,8 @@
 ﻿/**********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description：账户充值退费  事物处理实体 
-// Author：HLF
-// CreateDate： 2017/1/11 16:34:07 
+// Copyright (C) 2016 Newtouch Bảo lưu bản quyền. 
+// Description:Nạp tiền tài khoản và hoàn phí  Thực thể xử lý sự vụ 
+// Author:HLF
+// CreateDate: 2017/1/11 16:34:07 
 //**********************************************************/
 
 using Newtouch.HIS.Domain.Entity;
@@ -19,19 +19,19 @@ namespace Newtouch.HIS.Domain.ValueObjects
     {
 
         /// <summary>
-        /// 账户收支记录
+        /// Bản ghi thu chi tài khoản
         /// </summary>
         public SysPatientAccountRevenueAndExpenseEntity szjl { get; set; }
          
 
         /// <summary>
-        /// 更新之前 账户
+        /// Trước khi cập nhật Tài khoản
         /// </summary>
         public SysPatientAccountEntity oldzh { get; set; }
          
 
         /// <summary>
-        /// 更新之前财务收据
+        /// Biên lai tài chính trước khi cập nhật
         /// </summary>
         public FinanceReceiptEntity oldcwsj { get; set; }
 
@@ -42,19 +42,19 @@ namespace Newtouch.HIS.Domain.ValueObjects
     {
 
         /// <summary>
-        /// 账户收支记录
+        /// Bản ghi thu chi tài khoản
         /// </summary>
         public SysAccountRevenueAndExpenseEntity szjl { get; set; }
 
 
         /// <summary>
-        /// 更新之前 账户
+        /// Trước khi cập nhật Tài khoản
         /// </summary>
         public SysAccountEntity oldzh { get; set; }
 
 
         /// <summary>
-        /// 更新之前财务收据
+        /// Biên lai tài chính trước khi cập nhật
         /// </summary>
         public FinanceReceiptEntity oldcwsj { get; set; }
 
@@ -64,19 +64,19 @@ namespace Newtouch.HIS.Domain.ValueObjects
     {
 
         /// <summary>
-        /// 账户收支记录
+        /// Bản ghi thu chi tài khoản
         /// </summary>
         public InpatientAccountRevenueAndExpenseEntity szjl { get; set; }
 
 
         /// <summary>
-        /// 更新之前 账户
+        /// Trước khi cập nhật Tài khoản
         /// </summary>
         public InpatientAccountEntity oldzh { get; set; }
 
 
         /// <summary>
-        /// 更新之前财务收据
+        /// Biên lai tài chính trước khi cập nhật
         /// </summary>
         public FinanceReceiptEntity oldcwsj { get; set; }
 

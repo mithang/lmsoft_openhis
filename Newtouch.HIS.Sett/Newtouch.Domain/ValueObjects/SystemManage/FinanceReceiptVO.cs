@@ -9,62 +9,62 @@ namespace Newtouch.HIS.Domain.ValueObjects.SystemManage
     public class FinanceReceiptVO
     {
         /// <summary>
-        /// 财务收据ID
+        /// Biên lai tài chínhID
         /// </summary>
         public string cwsjId { get; set; }
 
         /// <summary>
-        /// 人员
+        /// Nhân viên
         /// </summary>
         public string ry { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 首字母
+        /// Chữ cái đầu
         /// </summary>
         public string szm { get; set; }
 
         /// <summary>
-        /// 起始收据号
+        /// Số biên lai bắt đầu
         /// </summary>
         public long qssjh { get; set; }
 
         /// <summary>
-        /// 当前收据号
+        /// Số biên lai hiện tại
         /// </summary>
         public long dqsjh { get; set; }
 
         /// <summary>
-        /// 结束收据号
+        /// Số biên lai kết thúc
         /// </summary>
         public long? jssjh { get; set; }
 
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 

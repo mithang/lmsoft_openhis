@@ -8,48 +8,48 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class RegScheduleVO: OutpatientRegistScheduleEntity
     {
         /// <summary>
-        /// 收费项目名称
+        /// Tên hạng mục thu phí
         /// </summary>
         public string sfxmmc { get; set; }
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ksmc { get; set; }
         /// <summary>
-        /// 医生名称
+        /// Tên bác sĩ
         /// </summary>
         public string rymc { get; set; }
         /// <summary>
-        /// 医生工号
+        /// Mã nhân viên bác sĩ
         /// </summary>
         public string gh { get; set; }
         /// <summary>
-        /// 科室拼音
+        /// Pinyin khoa
         /// </summary>
         public string kspy { get; set; }
         /// <summary>
-        /// 人员拼音
+        /// Pinyin nhân viên
         /// </summary>
         public string rypy { get; set; }
         /// <summary>
-        /// 收费项目拼音
+        /// Pinyin hạng mục thu phí
         /// </summary>
         public string sfxmpy { get; set; }
         /// <summary>
-        /// xt_ghzb挂号专病
+        /// xt_ghzbBệnh chuyên khoa đăng ký khám
         /// </summary>
         public new string ghzb { get; set; }
         /// <summary>
-        /// 挂号专病名称
+        /// Tên bệnh chuyên khoa đăng ký khám
         /// </summary>
         public string ghzbmc { get; set; }
         /// <summary>
-        /// 挂号专病拼音
+        /// Pinyin bệnh chuyên khoa đăng ký khám
         /// </summary>
         public string ghzbpy { get; set; }
 
         /// <summary>
-        /// 诊疗项目名称
+        /// Tên hạng mục khám chữa bệnh
         /// </summary>
         public string zlxmmc { get; set; }
 

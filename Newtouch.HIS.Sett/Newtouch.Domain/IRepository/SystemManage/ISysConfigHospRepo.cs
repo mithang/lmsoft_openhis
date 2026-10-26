@@ -8,14 +8,14 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysConfigHospRepo : IRepositoryBase<SysConfigHospEntity>
     {
         /// <summary>
-        /// 根据代码获取住院配置
+        /// Lấy cấu hình nội trú theo mã
         /// </summary>
         /// <param name="dm"></param>
         /// <returns></returns>
         SysConfigHospEntity GetByDM(string dm);
 
         /// <summary>
-        /// 根据dm获取配置
+        /// TheodmLấy cấu hình
         /// </summary>
         /// <param name="dm"></param>
         /// <returns></returns>

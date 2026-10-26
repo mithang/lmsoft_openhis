@@ -8,17 +8,17 @@ namespace Newtouch.HIS.Domain.BusinessObjects.HospitalizationManage
     public class InpatientSettleItemBO
     {
         /// <summary>
-        /// 治疗项目计费表
+        /// Bảng tính phí hạng mục điều trị
         /// </summary>
         public IList<TreatmentItemFeeDetailVO> TreatmentItemList { get; set; }
 
         /// <summary>
-        /// 药品计费表
+        /// Bảng tính phí thuốc
         /// </summary>
         public IList<DrugFeeDetailVO> DrugList { get; set; }
 
         /// <summary>
-        /// 非治疗项目计费表
+        /// Bảng tính phí hạng mục không điều trị
         /// </summary>
         public IList<NonTreatmentItemFeeDetailVO> Non_treatmentItemList { get; set; }
     }

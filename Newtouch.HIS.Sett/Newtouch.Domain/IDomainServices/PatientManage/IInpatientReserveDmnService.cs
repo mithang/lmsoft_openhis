@@ -9,13 +9,13 @@ namespace Newtouch.HIS.Domain.IDomainServices.PatientManage
     public interface IInpatientReserveDmnService
     {
         /// <summary>
-        /// 保存住院账户数据事务
+        /// Lưu giao dịch dữ liệu tài khoản nội trú
         /// </summary>
         /// <param name="vo"></param>
         void PatZyAccDBProc(PatZyAccDataVO vo, InpatientAccountEntity zh, FinanceReceiptEntity cwsj, string type);
 
         /// <summary>
-        /// 获取住院管理》账户管理》获取账户收支记录信息
+        /// Lấy quản lý nội trú》Quản lý tài khoản》Lấy thông tin bản ghi thu chi tài khoản
         /// </summary>
         /// <returns></returns>
         List<InpatientPatAccPayVO> GetAccPayInfo(int zh, string orgId, string zhxz);

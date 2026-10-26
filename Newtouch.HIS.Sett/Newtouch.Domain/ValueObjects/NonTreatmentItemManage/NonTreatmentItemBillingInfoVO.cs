@@ -33,27 +33,27 @@ namespace Newtouch.HIS.Domain.ValueObjects.NonTreatmentItemManage
         public decimal? dj { get; set; }
 
         /// <summary>
-        /// 退的数量
+        /// Số lượng trả lại
         /// </summary>
         public int? tsl { get; set; }
 
         /// <summary>
-        /// 退的金额
+        /// Số tiền trả lại
         /// </summary>
         public decimal? tje { get; set; }
 
         /// <summary>
-        /// 售卖时间
+        /// Thời gian bán
         /// </summary>
         public DateTime? SaleTime { get; set; }
 
         /// <summary>
-        /// 退费时间
+        /// Thời gian hoàn phí
         /// </summary>
         public DateTime? RefundTime { get; set; }
 
         /// <summary>
-        /// 退费人员
+        /// Nhân viên hoàn phí
         /// </summary>
         public string tfryName { get; set; }
     }

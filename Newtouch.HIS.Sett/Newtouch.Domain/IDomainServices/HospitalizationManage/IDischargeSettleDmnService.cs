@@ -19,12 +19,12 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
 
         #region 出院结算
         /// <summary>
-        /// 根据住院号获取病人基本信息
+        /// Lấy thông tin cơ bản bệnh nhân theo số nhập viện
         /// </summary>
         List<InpatientSettPatInfoVO> SelectInpatientSettPatInfo(string zyh, string orgId);
 	    
 		/// <summary>
-		/// 根据住院号获取病人 医保相关信息
+		/// Lấy bệnh nhân theo số nhập viện Thông tin liên quan BHYT
 		/// </summary>
 		/// <param name="zyh"></param>
 		/// <param name="orgId"></param>
@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
 		InpatientSettYbPatInfoVO GetInpatientSettYbPatInfo(string zyh, string orgId);
 
 		/// <summary>
-		/// 治疗项目计费表（zy_xmjfb）
+		/// Bảng tính phí hạng mục điều trị(zy_xmjfb)
 		/// </summary>
 		/// <param name="zyh"></param>
 		/// <param name="OrganizeId"></param>
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
 
         decimal GetInpatSettFeeSum(string zyh, string orgId, string sczt, string xmmc, DateTime? kssj = null, DateTime? jssj = null);
         /// <summary>
-        /// 药品计费表
+        /// Bảng tính phí thuốc
         /// </summary>
         List<DrugFeeDetailVO> SelectDrugList(string zyh, string orgId, DateTime? kssj = null, DateTime? jssj = null, string ks = null);
 
@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
         List<DrugFeeDetailVO> SelectWsfDrugList(string zyh, string orgId, DateTime? kssj = null, DateTime? jssj = null, string ks = null, string xmlb = null, string xmmc = null);
         List<TreatmentItemFeeDetailVO> SelectWsfItemList(string zyh, string orgId, DateTime? kssj, DateTime? jssj, string ks = null, string xmlb = null, string xmmc = null);
         /// <summary>
-        /// 非治疗项目计费表
+        /// Bảng tính phí hạng mục không điều trị
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="OrganizeId"></param>
@@ -57,28 +57,28 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
         List<NonTreatmentItemFeeDetailVO> SelectNonTreatmentItemList(string zyh, string orgId);
 
         /// <summary>
-        /// 保存结算
+        /// Lưu quyết toán
         /// </summary>
         /// <param name="settpatInfo"></param>
         /// <param name="settleItemsBo"></param>
         /// <param name="expectedcyrq"></param>
         /// <param name="orgId"></param>
         /// <param name="fph"></param>
-        /// <param name="feeRelated">金额及支付信息</param>
-        /// <param name="ybfeeRelated">医保相关费用信息</param>
+        /// <param name="feeRelated">Số tiền và thông tin thanh toán</param>
+        /// <param name="ybfeeRelated">Thông tin chi phí liên quan BHYT</param>
         void SaveSett(InpatientSettPatInfoVO settpatInfo, InpatientSettleItemBO settleItemsBo, DateTime expectedcyrq, string orgId, string fph, InpatientSettFeeRelatedDTO feeRelated
             , CQZyjs05Dto ybfeeRelated, S14OutResponseDTO xnhfeeRelated
             , string outTradeNo,string jslx, out int jsnm);
 
         /// <summary>
-        /// 获取按大类分组费用
+        /// Lấy chi phí nhóm theo loại lớn
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<HospFeeChargeCategoryGroupVO> GetHospGroupFeeVOList(string zyh, string orgId, string ver);
         /// <summary>
-        /// 获取按大类分组费用-明细费用
+        /// Lấy chi phí nhóm theo loại lớn-Chi phí chi tiết
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -86,7 +86,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
         /// <returns></returns>
         IList<HospFeeChargeCategoryGroupDetailVO> GetHospGroupFeeVOList(Pagination pagination, string zyh, string orgId, string sfdl);
         /// <summary>
-        /// 获取按大类分组费用-带模糊查询
+        /// Lấy chi phí nhóm theo loại lớn-Kèm tra cứu mờ
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -94,7 +94,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
         /// <returns></returns>
         IList<HospFeeChargeCategoryGroupDetailVO> GetHospGroupFeeVOData(Pagination pagination, string zyh, string orgId,string keyword);
         /// <summary>
-        /// 获取收费明细
+        /// Lấy chi tiết thu phí
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
@@ -103,7 +103,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
         /// <returns></returns>
         IList<HospFeeChargeCategoryGroupDetailVO> GetDetailedQuery(Pagination pagination, string zyh, string orgId, string sfxmCode, string zfbz,decimal? dj);
         /// <summary>
-        /// 住院患者中心获取费用账单
+        /// Trung tâm bệnh nhân nội trú lấy hóa đơn chi phí
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
@@ -119,7 +119,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
         #region 取消出院结算
 
         /// <summary>
-        /// 取消出院结算
+        /// Hủy quyết toán xuất viện
         /// </summary>
         /// <param name="preSettlEntity"></param>
         /// <param name="settlDetailList"></param>
@@ -132,7 +132,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
         #region 模拟结算（GA）
 
         /// <summary>
-        /// 保存医保预结算数据
+        /// Lưu dữ liệu quyết toán trước BHYT
         /// </summary>
         void SaveSett2303(CqybSett2303Entity YuJieSuan);
 
@@ -160,12 +160,12 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
         HosCqybJsPatInfoVO GetCQInpatientSettYbPatInfo(string zyh, string orgId);
 
         /// <summary>
-        /// 获取未审批明细
+        /// Lấy chi tiết chưa phê duyệt
         /// </summary>
-        /// <param name="cfmxlshstr">交易流水号字符串</param>
+        /// <param name="cfmxlshstr">Chuỗi số giao dịch</param>
         /// <param name="orgId"></param>
-        /// <param name="FinalType">审批类型</param>
-        /// <param name="highPrices">高收费价格</param>
+        /// <param name="FinalType">Loại phê duyệt</param>
+        /// <param name="highPrices">Giá thu phí cao</param>
         /// <returns></returns>
         IList<RequestApprovalVO> sweep_expired_approvals(string cfmxlshstr, string orgId, string zyh);
 
@@ -173,14 +173,14 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
 
         void commitPartialSettle(string zyh, string orgId, DateTime startTime, DateTime endTime, InpatientSettFeeRelatedDTO feeRelated, CQZyjs05Dto ybfeeRelated, string jslx, InpatientSettleItemBO ypjfbList, out int jsnm, int? expectedCount = null);
         /// <summary>
-        /// 转出院结算更新病人基本信息
+        /// Khi chuyển viện quyết toán thì cập nhật thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
         void UpdatePatientInfo(string zyh, string orgId);
 
         /// <summary>
-        /// 最后一次交易流水号
+        /// Số giao dịch lần cuối cùng
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -188,7 +188,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
         int GetCQLastJsnm(string zyh, string orgId);
 
         /// <summary>
-        /// 最后一次交易流水号
+        /// Số giao dịch lần cuối cùng
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -201,14 +201,14 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
 
         #region 医保数据传输
         /// <summary>
-        /// 查询HIS费用总额
+        /// Tra cứuHISTổng chi phí
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         InpatIentFeeObj GetHospPreInfo(string zyh, string orgId,DateTime jzsj);
         /// <summary>
-        /// 是否存在未上传明细
+        /// Có tồn tại chi tiết chưa tải lên hay không
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

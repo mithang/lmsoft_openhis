@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity.SystemManage
 {
     /// <summary>
-    /// GRS收入信息详情表
+    /// GRSBảng chi tiết thông tin thu nhập
     /// </summary>
     [Table("jgss_srxxdetail")]
     public class jgss_EarningDetailInfoEntity : IEntity<jgss_EarningDetailInfoEntity>
@@ -22,31 +22,31 @@ namespace Newtouch.HIS.Domain.Entity.SystemManage
         /// </summary>
         public string srxxId { get; set; }
         /// <summary>
-        /// 门诊收费金额
+        /// Số tiền thu phí ngoại trú
         /// </summary>
         public decimal mzsfje { get; set; }
         /// <summary>
-        /// 门诊执行金额
+        /// Số tiền thực hiện ngoại trú
         /// </summary>
         public decimal mzzxje { get; set; }
         /// <summary>
-        /// 住院收费金额
+        /// Số tiền thu phí nội trú
         /// </summary>
         public decimal zysfje { get; set; }
         /// <summary>
-        /// 住院执行金额
+        /// Số tiền thực hiện nội trú
         /// </summary>
         public decimal zyzxje { get; set; }
         /// <summary>
-        /// 总收入
+        /// Tổng thu nhập
         /// </summary>
         public decimal zsr { get; set; }
         /// <summary>
-        /// 大类code
+        /// Loại lớncode
         /// </summary>
         public string dlCode { get; set; }
         /// <summary>
-        /// 大类名称
+        /// Tên loại lớn
         /// </summary>
         public string dlmc { get; set; }
         public string CreatorCode { get; set; }
@@ -55,19 +55,19 @@ namespace Newtouch.HIS.Domain.Entity.SystemManage
         public DateTime? LastModifyTime { get; set; }
         public string zt { get; set; }
         /// <summary>
-        /// 核实收入
+        /// Xác minh thu nhập
         /// </summary>
         public decimal hssr { get; set; }
         /// <summary>
-        /// 差额
+        /// Chênh lệch
         /// </summary>
         public decimal ce { get; set; }
         /// <summary>
-        /// 调整说明
+        /// Giải thích điều chỉnh
         /// </summary>
         public string tzsm { get; set; }
         /// <summary>
-        /// 分成比例
+        /// Tỷ lệ chia
         /// </summary>
         public decimal fcbl { get; set; }
     }

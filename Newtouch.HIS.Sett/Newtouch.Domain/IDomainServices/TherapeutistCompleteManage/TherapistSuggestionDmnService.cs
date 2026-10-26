@@ -17,17 +17,17 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<TherapistAdviceDto> GetZLJYList(string mzzyh, string orgId, string brlx);
 
         /// <summary>
-        /// 获取治疗建议列表（API用）
+        /// Lấy danh sách đề xuất điều trị(APIdùng)
         /// </summary>
         /// <param name="mzzyh"></param>
         /// <param name="orgId"></param>
         /// <param name="brlx"></param>
-        /// <param name="startTime">开立起始时间</param>
+        /// <param name="startTime">Thời gian bắt đầu lập</param>
         /// <returns></returns>
         IList<TherapistSuggestionVO> GetTherapistSuggestionList(string mzzyh, string orgId, string brlx, DateTime startTime);
 
         /// <summary>
-        /// 更新建议的转换状态
+        /// Cập nhật trạng thái chuyển đổi được đề xuất
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cvList"></param>

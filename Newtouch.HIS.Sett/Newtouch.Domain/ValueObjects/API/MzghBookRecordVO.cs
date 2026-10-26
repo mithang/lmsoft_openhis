@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.API
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 预约号
+        /// Số hẹn khám
         /// </summary>
         /// <returns></returns>
         [Key]
@@ -25,19 +25,19 @@ namespace Newtouch.HIS.Domain.ValueObjects.API
         public decimal BookId { get; set; }
 
         /// <summary>
-        /// 预约状态 1 已约 2 已挂号 3 已取消预约 EnumMzyyzt
+        /// Trạng thái hẹn khám 1 Đã hẹn 2 Đã đăng ký khám 3 Đã hủy hẹn khám EnumMzyyzt
         /// </summary>
         /// <returns></returns>
         public string yyzt { get; set; }
 
         /// <summary>
-        /// 门诊排班日程
+        /// Lịch trực ngoại trú
         /// </summary>
         /// <returns></returns>
         public decimal ScheduId { get; set; }
 
         /// <summary>
-        /// brxz 挂号时 自费 医保
+        /// brxz Khi đăng ký khám Tự chi trả BHYT
         /// </summary>
         /// <returns></returns>
         public string ghxz { get; set; }
@@ -52,37 +52,37 @@ namespace Newtouch.HIS.Domain.ValueObjects.API
         public string lxdh { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         /// <returns></returns>
         public string kh { get; set; }
 
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         /// <returns></returns>
         public string ks { get; set; }
 
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         /// <returns></returns>
         public string ys { get; set; }
 
         /// <summary>
-        /// 就诊日期
+        /// Ngày khám
         /// </summary>
         /// <returns></returns>
         public DateTime OutDate { get; set; }
 
         /// <summary>
-        /// 挂号类型 门诊 急诊 专家
+        /// Loại đăng ký khám Khám ngoại trú Cấp cứu Chuyên gia
         /// </summary>
         /// <returns></returns>
         public string RegType { get; set; }
 
         /// <summary>
-        /// 时间段 0无 1全天 2上午 3下午
+        /// Khoảng thời gian 0không 1Cả ngày 2Buổi sáng 3Buổi chiều
         /// </summary>
         /// <returns></returns>
         public int? Period { get; set; }
@@ -112,19 +112,19 @@ namespace Newtouch.HIS.Domain.ValueObjects.API
         public decimal? RegFee { get; set; }
 
         /// <summary>
-        /// 已付费用
+        /// Chi phí đã trả
         /// </summary>
         /// <returns></returns>
         public decimal? PayFee { get; set; }
 
         /// <summary>
-        /// 支付流水号
+        /// Số giao dịch thanh toán
         /// </summary>
         /// <returns></returns>
         public string PayLsh { get; set; }
 
         /// <summary>
-        /// 支付时间
+        /// Thời gian thanh toán
         /// </summary>
         /// <returns></returns>
         public DateTime? PayTime { get; set; }
@@ -159,7 +159,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.API
         /// <returns></returns>
         public string AppId { get; set; }
         /// <summary>
-        /// 预约内容
+        /// Nội dung hẹn khám
         /// </summary>
         public string yynr { get; set; }
 

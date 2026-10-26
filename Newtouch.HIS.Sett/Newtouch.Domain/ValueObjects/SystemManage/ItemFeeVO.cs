@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 拆零数
+        /// Số lẻ đã tách
         /// </summary>
         public int? cls { get; set; }
         public decimal ztsl { get; set; }

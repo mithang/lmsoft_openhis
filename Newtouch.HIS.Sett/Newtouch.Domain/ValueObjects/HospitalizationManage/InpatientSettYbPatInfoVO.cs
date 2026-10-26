@@ -7,32 +7,32 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 住院医保结算 患者信息
+    /// Quyết toán BHYT nội trú Thông tin bệnh nhân
     /// </summary>
     public class InpatientSettYbPatInfoVO
     {
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// 就诊编号
+        /// Số khám bệnh
         /// </summary>
         public string jzbh { get; set; }
         /// <summary>
-        /// 社保编号
+        /// Số BHXH
         /// </summary>
         public string sbbh { get; set; }
         /// <summary>
-        /// 分中心编号
+        /// Mã trung tâm chi nhánh
         /// </summary>
         public string fzxbh { get; set; }
         /// <summary>
-        /// 支付类别
+        /// Loại thanh toán
         /// </summary>
         public string zhifuleibie { get; set; }
         /// <summary>
-        /// 社保办法
+        /// Phương pháp BHXH
         /// </summary>
         public string sbbf { get; set; }
     }

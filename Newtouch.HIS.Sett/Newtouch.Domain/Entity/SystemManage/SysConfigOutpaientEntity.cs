@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统配置门诊
+    /// Cấu hình hệ thống ngoại trú
     /// </summary>
     [Table("xt_pzmz")]
     public class SysConfigOutpaientEntity : IEntity<SysConfigOutpaientEntity>
@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int mzbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 

@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int brxzbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -39,32 +39,32 @@ namespace Newtouch.HIS.Domain.Entity
         public string py { get; set; }
 
         /// <summary>
-        /// 0 所有卡都可选的类型   1 医保卡可选的类型
+        /// 0 Loại mà tất cả các thẻ đều có thể chọn   1 Loại thẻ BHYT có thể chọn
         /// </summary>
         public string brxzlb { get; set; }
 
         /// <summary>
-        /// 0 不交易 1 普通交易 2 大病交易 3 家床交易
+        /// 0 Không giao dịch 1 Giao dịch thông thường 2 Giao dịch bệnh nặng 3 Giao dịch giường gia đình
         /// </summary>
         public string ybjylx { get; set; }
 
         /// <summary>
-        /// 0：普通  1：离休  2：伤残   这里的设置只影响到新增病人时的“病人性质”过滤，所有交易费用的范围确定使用“交易费用范围”来控制      --此字段含义存在的问题！！！！！！   当“伤残”病人时，无法选择自费属性
+        /// 0:Thông thường  1:Nghỉ hưu  2:Thương tật   Cài đặt ở đây chỉ ảnh hưởng khi thêm bệnh nhân mới"Tính chất bệnh nhân"Lọc,Việc xác định phạm vi tất cả chi phí giao dịch sử dụng"Phạm vi chi phí giao dịch"Để kiểm soát      --Vấn đề tồn tại trong ý nghĩa của trường này!!!!!!   khi"Thương tật"Khi bệnh nhân,Không thể chọn thuộc tính tự chi trả
         /// </summary>
         public string ybtsdy { get; set; }
 
         /// <summary>
-        /// 医保交易的费用范围   0 可记帐部分参与计算（普通医保）   1 可记帐＋分类自负进行交易（伤残）   2 可记帐＋分类自负＋自理进行交易（暂无）      ----cms作废字段
+        /// Phạm vi chi phí giao dịch BHYT   0 Phần được ghi sổ tham gia tính toán(BHYT thông thường)   1 Được ghi sổ＋Giao dịch tự chi trả theo phân loại(Thương tật)   2 Được ghi sổ＋Tự chi trả theo phân loại＋Giao dịch tự lo(Tạm thời không có)      ----cmsTrường hủy
         /// </summary>
         public string jyfyfw { get; set; }
 
         /// <summary>
-        /// 0 不使用凭证   1 使用凭证
+        /// 0 Không dùng chứng từ   1 Dùng chứng từ
         /// </summary>
         public string pzbz { get; set; }
 
         /// <summary>
-        /// 0 通用 1 仅门诊 2 仅住院    3 系统（门诊住院都不可用）例如：家床
+        /// 0 Dùng chung 1 Chỉ ngoại trú 2 Chỉ nội trú    3 Hệ thống(Ngoại trú và nội trú đều không khả dụng)Ví dụ:Giường gia đình
         /// </summary>
         public string mzzybz { get; set; }
 
@@ -74,22 +74,22 @@ namespace Newtouch.HIS.Domain.Entity
         public int? bzs { get; set; }
 
         /// <summary>
-        /// 0 不享受减免（诊疗费）   1 享受减免
+        /// 0 Không được hưởng giảm miễn(Phí khám chữa bệnh)   1 Được hưởng giảm miễn
         /// </summary>
         public string sqjmbz { get; set; }
 
         /// <summary>
-        /// from xt_zhxz   如果有设置：则在结算时，优先扣除设置之账户   （例如：帮困病人此字段设置为4，当结算时，先扣除帮困账户）
+        /// from xt_zhxz   Nếu có cài đặt:Thì khi quyết toán,Tài khoản được cài đặt khấu trừ ưu tiên   (Ví dụ:Trường này của bệnh nhân trợ giúp khó khăn được đặt thành4,Khi quyết toán,Trừ tài khoản trợ giúp khó khăn trước)
         /// </summary>
         public string zhxz { get; set; }
 
         /// <summary>
-        /// 0 无效 1 有效
+        /// 0 Không hiệu lực 1 Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 0：城保 1：个体医保 2：小城镇 3：小时工   A:民政医疗帮困   B：老年遗嘱 C:五保老人 D：重残人员   E:中小学生和婴幼儿  F： 其他居民   G：医疗互助帮困对象   
+        /// 0:Bảo hiểm thành thị 1:BHYT cá thể 2:Thị trấn nhỏ 3:Lao động theo giờ   A:Giúp đỡ khó khăn y tế dân chính   B:Di chúc người già C:Người già được bảo đảm năm mặt D:Người khuyết tật nặng   E:Học sinh tiểu học, trung học và trẻ sơ sinh  F: Cư dân khác   G:Đối tượng tương trợ y tế giúp đỡ khó khăn   
         /// </summary>
         public string syybbf { get; set; }
 
@@ -135,7 +135,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string bz { get; set; }
 
         /// <summary>
-        /// 关联主键brxzbh
+        /// Khóa chính liên kếtbrxzbh
         /// </summary>
         public int? ParentId { get; set; }
         public string insutype { get; set; }

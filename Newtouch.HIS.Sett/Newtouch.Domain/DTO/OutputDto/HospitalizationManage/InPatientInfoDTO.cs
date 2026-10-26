@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.DTO
 {
     /// <summary>
-    /// 住院病人患者（接口用）
+    /// Bệnh nhân nội trú(Dùng cho giao diện)
     /// </summary>
     public class InPatientInfoDTO
     {
@@ -105,85 +105,85 @@ namespace Newtouch.HIS.Domain.DTO
         public string wb { get; set; }
 
         /// <summary>
-        /// 证件类型
+        /// Loại giấy tờ
         /// </summary>
         public string zjlx { get; set; }
         /// <summary>
-        /// 证件类型
+        /// Loại giấy tờ
         /// </summary>
         public string zjlxValue { get; set; }
         /// <summary>
-        /// 证件号
+        /// Số giấy tờ
         /// </summary>
         public string zjh { get; set; }
         /// <summary>
-        /// 身份证号码
+        /// Số CMND/CCCD
         /// </summary>
         public string idCardNo { get; set; }
 
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string sex { get; set; }
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string sexValue { get; set; }
 
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ks { get; set; }
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         public string ys { get; set; }
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         public string ysxm { get; set; }
 
-        //危重级别？
-        //入院方式？
+        //Mức nguy kịch?
+        //Cách nhập viện?
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
         /// <summary>
-        /// 卡类型
+        /// Loại thẻ
         /// </summary>
         public string CardType { get; set; }
         /// <summary>
-        /// 卡类型
+        /// Loại thẻ
         /// </summary>
         public string CardTypeName { get; set; }
 
         /// <summary>
-        /// 紧急联系人
+        /// Người liên hệ khẩn cấp
         /// </summary>
         public string contPerName { get; set; }
         /// <summary>
-        /// 紧急联系人电话
+        /// Điện thoại người liên hệ khẩn cấp
         /// </summary>
         public string contPerPhoneNum { get; set; }
         /// <summary>
-        /// 紧急联系人关系
+        /// Quan hệ người liên hệ khẩn cấp
         /// </summary>
         public string contPerRel { get; set; }
         /// <summary>
-        /// 紧急联系人关系
+        /// Quan hệ người liên hệ khẩn cấp
         /// </summary>
         public string contPerRelValue { get; set; }
 
         public string ryfs { get; set; }
         /// <summary>
-        /// 是否已上传
+        /// Đã tải lên hay chưa
         /// </summary>
         public string issc { get; set; }
         public string doctor { get; set; }
@@ -200,20 +200,20 @@ namespace Newtouch.HIS.Domain.DTO
     }
 
     /// <summary>
-    /// 住院病人患者（患者查询用）
+    /// Bệnh nhân nội trú(Dùng để tra cứu bệnh nhân)
     /// </summary>
     public class InPatientInfoVO : InPatientInfoDTO
     {
         /// <summary>
-        /// 已结金额
+        /// Số tiền đã quyết toán
         /// </summary>
         public decimal? yjfyje { get; set; }
         /// <summary>
-        /// 未结金额
+        /// Số tiền chưa quyết toán
         /// </summary>
         public decimal? wjfyje { get; set; }
         /// <summary>
-        /// 参保地编码
+        /// Mã nơi tham gia bảo hiểm
         /// </summary>
         public string cbdbm { get; set; }
         public string jzh { get; set; }
@@ -224,15 +224,15 @@ namespace Newtouch.HIS.Domain.DTO
         public decimal? zyfy { get; set; }
         public decimal? yjj { get; set; }
         /// <summary>
-        /// 卡性质:0 自费 1:医保
+        /// Tính chất thẻ:0 Tự chi trả 1:BHYT
         /// </summary>
         public string brxzlb { get; set; }
         /// <summary>
-        /// 医保结算流水号
+        /// Số giao dịch quyết toán BHYT
         /// </summary>
         public string setl_id { get; set; }
         /// <summary>
-        /// 人员编号
+        /// Mã nhân viên
         /// </summary>
         public string psn_no { get; set; }
         public string mdtrt_id { get; set; }

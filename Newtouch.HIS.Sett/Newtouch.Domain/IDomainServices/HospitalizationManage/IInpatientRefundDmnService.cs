@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
     public interface IInpatientRefundDmnService
     {
         /// <summary>
-        /// 保存退费
+        /// Lưu hoàn phí
         /// </summary>
         string SaveRefund(List<HospItemBillingEntity> xmjfbEntitylist, List<HospDrugBillingEntity> ypjfbEntitylist, string zyh, string orgId);
     }

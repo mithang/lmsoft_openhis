@@ -5,43 +5,43 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 挂号费用
+    /// Chi phí đăng ký khám
     /// </summary>
     [NotMapped]
     public class GHZGroupAndFeesVO
     {
         /// <summary>
-        /// 挂号费
+        /// Phí đăng ký khám
         /// </summary>
         public decimal ghfPrice { get; set; }
 
         /// <summary>
-        /// 诊疗费
+        /// Phí khám chữa bệnh
         /// </summary>
         public decimal zlfPrice { get; set; }
 
         /// <summary>
-        /// 磁卡费
+        /// Phí thẻ từ
         /// </summary>
         public decimal ckfPrice { get; set; }
 
         /// <summary>
-        /// 工本费
+        /// Phí làm thẻ
         /// </summary>
         public decimal gbfPrice { get; set; }
 
         /// <summary>
-        /// 总金额
+        /// Tổng số tiền
         /// </summary>
         public decimal totalfees { get; set; }
 
         /// <summary>
-        /// 关联项目的Entity
+        /// Của hạng mục liên kếtEntity
         /// </summary>
         public Dictionary<string, SysChargeItemVEntity> sfxmList { get; set; }
         public Dictionary<string, List<SysChargeItemVEntity>> sfxmzhList { get; set; }
         /// <summary>
-        /// 排班Id
+        /// Lịch trựcId
         /// </summary>
         public decimal? ScheduId { get; set; }
     }

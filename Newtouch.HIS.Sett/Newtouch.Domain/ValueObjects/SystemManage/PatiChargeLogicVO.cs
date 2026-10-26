@@ -23,17 +23,17 @@ namespace Newtouch.HIS.Domain.ValueObjects.SystemManage
         public decimal zfbl { get; set; }
 
         /// <summary>
-        /// 确定按自负比例计算出来的自负部分的性质   0 自负（同医保交易后自负现金）   1 自理
+        /// Xác định tính chất của phần tự chi trả tính được theo tỷ lệ tự chi trả   0 Tự chi trả(Tiền mặt tự chi trả sau giao dịch BHYT)   1 Tự lo
         /// </summary>
         public string zfxz { get; set; }
 
         /// <summary>
-        /// 0 所有费用皆使用此比例，不判断上限
+        /// 0 Tất cả chi phí đều dùng tỷ lệ này,Không xét giới hạn trên
         /// </summary>
         public decimal fysx { get; set; }
 
         /// <summary>
-        /// 0：通用，1：门诊，2：住院
+        /// 0:Dùng chung,1:Khám ngoại trú,2:Nhập viện
         /// </summary>
         public string mzzybz { get; set; }
 

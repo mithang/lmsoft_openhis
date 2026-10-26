@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.DBContext.Infrastructure
 {
     /// <summary>
-    /// base库DB上下文Factory
+    /// basekhoDBNgữ cảnhFactory
     /// </summary>
     public class BaseDatabaseFactory : DatabaseFactory<BaseDbContext>, IBaseDatabaseFactory
     {

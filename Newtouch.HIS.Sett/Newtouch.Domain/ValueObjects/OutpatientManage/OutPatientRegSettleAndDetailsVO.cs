@@ -6,13 +6,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 门诊结算和结算明细
+    /// Quyết toán ngoại trú và chi tiết quyết toán
     /// </summary>
     [NotMapped]
     public class OutPatientRegSettleAndDetailsVO: OutpatientRegistNonAttendanceEntity
     {
         /// <summary>
-        /// 收费项目
+        /// Hạng mục thu phí
         /// </summary>
         public string sfxm { get; set; }
 

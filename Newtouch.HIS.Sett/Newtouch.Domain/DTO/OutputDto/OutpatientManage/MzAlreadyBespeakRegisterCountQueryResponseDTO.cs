@@ -3,32 +3,32 @@
 namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
 {
     /// <summary>
-    /// 科室或专家已挂号总数查询返回报文
+    /// Bản tin trả về tra cứu tổng số đã đăng ký khám của khoa hoặc chuyên gia
     /// </summary>
     public class MzAlreadyBespeakRegisterCountQueryResponseDTO
     {
         /// <summary>
-        /// 科室代码
+        /// Mã khoa
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// 医生工号
+        /// Mã nhân viên bác sĩ
         /// </summary>
         public string ysgh { get; set; }
 
         /// <summary>
-        /// 预约日期
+        /// Ngày hẹn khám
         /// </summary>
         public DateTime regDate { get; set; }
 
         /// <summary>
-        /// 预约时间
+        /// Thời gian hẹn khám
         /// </summary>
         public string regTime { get; set; }
 
         /// <summary>
-        /// 已预约挂号总数
+        /// Tổng số đăng ký khám đã hẹn
         /// </summary>
         public int alreadyBespeakRegisterCount { get; set; }
     }

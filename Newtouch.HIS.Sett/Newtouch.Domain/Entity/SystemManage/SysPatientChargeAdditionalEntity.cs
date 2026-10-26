@@ -6,73 +6,73 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统病人收费附加（17楼）
+    /// Phụ thêm tính phí bệnh nhân hệ thống(17Tầng)
     /// </summary>
     [Table("xt_brsffj")]
     public class SysPatientChargeAdditionalEntity : IEntity<SysPatientChargeAdditionalEntity>
     {
         /// <summary>
-        /// 病人收费附加编号
+        /// Số phụ thêm tính phí bệnh nhân
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int brsffjbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 病人性质
+        /// Tính chất bệnh nhân
         /// </summary>
         public string brxz { get; set; }
 
         /// <summary>
-        /// 附加显示大类
+        /// Loại lớn hiển thị bổ sung
         /// </summary>
         public string fjxsdl { get; set; }
 
         /// <summary>
-        /// 服务费比例
+        /// Tỷ lệ phí dịch vụ
         /// </summary>
         public decimal fwfbl { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
         /// <summary>
-        /// 大类
+        /// Loại lớn
         /// </summary>
         public string dl { get; set; }
         /// <summary>
-        /// 收费项目
+        /// Hạng mục thu phí
         /// </summary>
         public string sfxm { get; set; }
 

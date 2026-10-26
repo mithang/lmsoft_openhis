@@ -7,7 +7,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     {
         public int brsfjmbh { get; set; }
         /// <summary>
-        /// 病人性质
+        /// Tính chất bệnh nhân
         /// </summary>
         public string brxz { get; set; }
         /// <summary>
@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public string brxzmc { get; set; }
         /// <summary>
-        /// 大类
+        /// Loại lớn
         /// </summary>
         public string dl { get; set; }
         /// <summary>
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public decimal jmbl { get; set; }
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
         /// <summary>

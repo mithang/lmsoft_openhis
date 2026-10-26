@@ -9,20 +9,20 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysCardRepo : IRepositoryBase<SysCardEntity>
     {
         /// <summary>
-        /// 获取所有卡
+        /// Lấy tất cả thẻ
         /// </summary>
         /// <returns></returns>
         List<SysCardEntity> GetList(string orgId);
 
         /// <summary>
-        /// 根据卡号获取病人内码
+        /// Lấy mã nội bộ bệnh nhân theo số thẻ
         /// </summary>
         /// <param name="cardno"></param>
         /// <returns></returns>
         string GetPatidByCardNo(string cardno, string orgId);
 
         /// <summary>
-        /// 获取新虚拟卡 卡号
+        /// Lấy thẻ ảo mới Số thẻ
         /// </summary>
         /// <returns></returns>
         string GetCardSerialNo(string orgId);
@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Domain.IRepository
         void SubmitForm(SysCardEntity SysPatBasicInfoEntity, string keyValue, string orgId);
 
         /// <summary>
-        /// 根据卡号获取卡类型
+        /// Lấy loại thẻ theo số thẻ
         /// </summary>
         /// <param name="cardno"></param>
         /// <param name="orgId"></param>
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Domain.IRepository
         string GetCardType(string cardno, string orgId);
 
         /// <summary>
-        /// 根据卡号和组织机构获取卡信息（先假设不同类型的卡 卡号不会重复）
+        /// Lấy thông tin thẻ theo số thẻ và tổ chức(Trước tiên giả định các loại thẻ khác nhau Số thẻ sẽ không trùng lặp)
         /// </summary>
         /// <param name="cardno"></param>
         /// <param name="orgId"></param>
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Domain.IRepository
         SysCardEntity GetCardEntity(string cardno, string orgId);
 
         /// <summary>
-        /// 获取卡实体
+        /// Lấy thực thể thẻ
         /// </summary>
         /// <param name="cardType"></param>
         /// <param name="cardno"></param>

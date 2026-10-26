@@ -6,97 +6,97 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统病人账户收支记录
+    /// Bản ghi thu chi tài khoản bệnh nhân hệ thống
     /// </summary>
     [Table("xt_brzhszjl")]
     public class SysPatientAccountRevenueAndExpenseEntity : IEntity<SysPatientAccountRevenueAndExpenseEntity>
     {
         /// <summary>
-        /// 帐户收支记录编号
+        /// Số bản ghi thu chi tài khoản
         /// </summary>
         [Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int zhszjlbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 账户
+        /// Tài khoản
         /// </summary>
         public int? zh { get; set; }
 
         /// <summary>
-        /// 病人内码
+        /// Mã nội bộ bệnh nhân
         /// </summary>
         public int patid { get; set; }
 
         /// <summary>
-        /// 收支金额
+        /// Số tiền thu chi
         /// </summary>
         public decimal szje { get; set; }
 
         /// <summary>
-        /// 帐户余额
+        /// Số dư tài khoản
         /// </summary>
         public decimal zhye { get; set; }
 
         /// <summary>
-        /// 凭证号
+        /// Số chứng từ
         /// </summary>
         public string pzh { get; set; }
 
         /// <summary>
-        /// 收支性质
-        /// 0 门诊充值、取款(账户存取)      1 家床记帐、退回(家床记帐)   2 门诊结算、退回(门诊结??，包括家床结帐)      3 病区记帐、退回(病区记帐)   4 住院结算、退回(住院结算）住院结算不会产生费用，所以这里的收支是为了填平病区记帐说造成的负账户（账户余额为正，则不需要操作）      5 住院充值、取款(账户存取)   6 住院补缴款   
+        /// Tính chất thu chi
+        /// 0 Nạp tiền ngoại trú,Rút tiền(Gửi/rút tài khoản)      1 Ghi sổ giường gia đình,Trả lại(Ghi sổ giường gia đình)   2 Quyết toán ngoại trú,Trả lại(Quyết toán ngoại trú??,Bao gồm quyết toán giường gia đình)      3 Ghi sổ khu bệnh,Trả lại(Ghi sổ khu bệnh)   4 Quyết toán nội trú,Trả lại(Quyết toán nội trú)Quyết toán nội trú sẽ không phát sinh chi phí,Vì vậy thu chi ở đây là để bù đắp tài khoản âm do ghi sổ khu bệnh gây ra(Số dư tài khoản là số dương,Thì không cần thao tác)      5 Nạp tiền nội trú,Rút tiền(Gửi/rút tài khoản)   6 Khoản bổ sung nội trú   
         /// </summary>
         public string szxz { get; set; }
 
         /// <summary>
-        /// 现金支付方式 编码
+        /// Phương thức thanh toán tiền mặt Mã
         /// </summary>
         public string xjzffs { get; set; }
 
         /// <summary>
-        /// 结算内码
+        /// Mã nội bộ quyết toán
         /// </summary>
         public int? jsnm { get; set; }
 
         /// <summary>
-        /// 关联住院号
-        /// 家床则为家床号   住院则为住院号
+        /// Số nhập viện liên kết
+        /// Giường gia đình thì là số giường gia đình   Nội trú thì là số nhập viện
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建用户姓名
+        /// Họ tên người tạo
         /// </summary>
         public string CreatorUserName { get; set; }
 

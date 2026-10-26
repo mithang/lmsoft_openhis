@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 住院病人病案信息
+    /// Thông tin bệnh án bệnh nhân nội trú
     /// </summary>
     public class PatInformationVO
     {

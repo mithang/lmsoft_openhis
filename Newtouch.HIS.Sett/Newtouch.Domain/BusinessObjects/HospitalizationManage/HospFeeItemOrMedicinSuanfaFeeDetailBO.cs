@@ -1,46 +1,46 @@
 ﻿namespace Newtouch.HIS.Domain.BusinessObjects
 {
     /// <summary>
-    /// 出院结算 费用（项目/药品）详情 算法 费用 明细
+    /// Quyết toán xuất viện Chi phí(Hạng mục/Thuốc)Chi tiết Thuật toán Chi phí Chi tiết
     /// </summary>
     public class HospFeeItemOrMedicinSuanfaFeeDetailBO
     {
         /// <summary>
-        /// 减免金额
+        /// Số tiền giảm miễn
         /// </summary>
         public decimal jmje { get; set; }
         /// <summary>
-        /// 费用合计（自费病人需要要支付的现金）
+        /// Tổng chi phí(Tiền mặt bệnh nhân tự chi trả cần phải trả)
         /// </summary>
         public decimal total { get; set; }
 
         /// <summary>
-        /// 分类自负
+        /// Tự chi trả theo phân loại
         /// </summary>
         public decimal flzf { get; set; }
 
         /// <summary>
-        /// 记账费用
+        /// Chi phí ghi sổ
         /// </summary>
         public decimal jzfy { get; set; }
 
         /// <summary>
-        /// 自理费用
+        /// Chi phí tự lo
         /// </summary>
         public decimal zl { get; set; }
 
         /// <summary>
-        /// 现金
+        /// Tiền mặt
         /// </summary>
         public decimal xj { get; set; }
 
         /// <summary>
-        /// 算法自负（通过算法计算出的自负金额）
+        /// Tự chi trả theo thuật toán(Số tiền tự chi trả tính được qua thuật toán)
         /// </summary>
         public decimal sfzf { get; set; }
 
         /// <summary>
-        /// 算法自理（通过算法计算出的自负金额）
+        /// Tự lo theo thuật toán(Số tiền tự chi trả tính được qua thuật toán)
         /// </summary>
         public decimal sfzl { get; set; }
 

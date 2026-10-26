@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统收费材料项目综合
+    /// Tổng hợp hạng mục vật tư thu phí hệ thống
     /// </summary>
     [Table("xt_sfclxmzh")]
     public class SysChargeMaterialItemSynthesisEntity : IEntity<SysChargeMaterialItemSynthesisEntity>
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int clzhxmbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -49,12 +49,12 @@ namespace Newtouch.HIS.Domain.Entity
         public decimal dj { get; set; }
 
         /// <summary>
-        /// 确定自负现金比例，无关这部分的性质（分类自负、自理）   见字段zfxz      注意：当自负比例为负数时，表示定额自负   (例：某材料12300，可报10000,那么自负比例＝-2300)
+        /// Xác định tỷ lệ tiền mặt tự chi trả,Không liên quan đến tính chất của phần này(Tự chi trả theo phân loại,Tự lo)   Xem trườngzfxz      Chú ý:Khi tỷ lệ tự chi trả là số âm,Thể hiện mức tự chi trả cố định   (Ví dụ:Một loại vật tư nào đó12300,Được thanh toán10000,thì tỷ lệ tự chi trả＝-2300)
         /// </summary>
         public decimal? zfbl { get; set; }
 
         /// <summary>
-        /// 一次性材料综合的可报最高限额
+        /// Hạn mức thanh toán tối đa tổng hợp của vật tư dùng một lần
         /// </summary>
         public decimal kbfwsx { get; set; }
 

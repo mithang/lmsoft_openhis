@@ -13,19 +13,19 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
 	public class zzjRegScheduleVO
 	{
 		/// <summary>
-		/// 科室
+		/// Khoa
 		/// </summary>
 		public string ks { get; set; }
 		/// <summary>
-		/// 科室名称
+		/// Tên khoa
 		/// </summary>
 		public string ksmc { get; set; }
 		/// <summary>
-		/// 排班id
+		/// Lịch trựcid
 		/// </summary>
 		public string ghpbId { get; set; }
 		/// <summary>
-		/// 门急诊标志（1门诊 2急诊 3专家）
+		/// Cờ khám ngoại trú/cấp cứu(1Khám ngoại trú 2Cấp cứu 3Chuyên gia)
 		/// </summary>
 		public string mjzbz { get; set; }
 	}
@@ -33,43 +33,43 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
 	public class zzjCardInfoVO
 	{
 		/// <summary>
-		/// 身份证号
+		/// Số CMND/CCCD
 		/// </summary>
 		public string ID_NO { get; set; }
 		/// <summary>
-		/// 就诊卡号
+		/// Số thẻ khám bệnh
 		/// </summary>
 		public string CARD_NO { get; set; }
 		/// <summary>
-		/// 病人ID
+		/// Bệnh nhânID
 		/// </summary>
 		public string PATIENT_ID { get; set; }
 		/// <summary>
-		/// 病人姓名
+		/// Tên bệnh nhân
 		/// </summary>
 		public string PATIENT_NAME { get; set; }
 		/// <summary>
-		/// 就诊卡类型
+		/// Loại thẻ khám bệnh
 		/// </summary>
 		public string CARD_TYPE { get; set; }
 		/// <summary>
-		/// 就诊卡类型名称
+		/// Tên loại thẻ khám bệnh
 		/// </summary>
 		public string CARD_TYPENAME { get; set; }
 		/// <summary>
-		/// 手机号
+		/// Số điện thoại di động
 		/// </summary>
 		public string PHONE_NUMBER { get; set; }
 		/// <summary>
-		/// 就诊卡状态
+		/// Trạng thái thẻ khám bệnh
 		/// </summary>
 		public string STATUS { get; set; }
 		/// <summary>
-		/// 就诊卡余额
+		/// Số dư thẻ khám bệnh
 		/// </summary>
 		public string TOTAL_FEE { get; set; }
 		/// <summary>
-		/// 查询时间
+		/// Thời gian tra cứu
 		/// </summary>
 		public string QUERY_TIME { get; set; }
 	}
@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
 	public class OutpfeeMasterInfoVO: OutpfeeMasterPatInfo
 	{
 		/// <summary>
-		/// 结算列表
+		/// Danh sách quyết toán
 		/// </summary>
 		public List<OutpfeeMasterInfoList> ITEMS { get; set; }
 		
@@ -85,31 +85,31 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
 	public class OutpfeeMasterPatInfo
 	{
 		/// <summary>
-		/// 患者姓名
+		/// Tên bệnh nhân
 		/// </summary>
 		public string PATIENT_NAME { get; set; }
 		/// <summary>
-		/// 患者编码
+		/// Mã bệnh nhân
 		/// </summary>
 		public string PATIENT_ID { get; set; }
 		/// <summary>
-		/// 身份证号
+		/// Số CMND/CCCD
 		/// </summary>
 		public string ID_NO { get; set; }
 		/// <summary>
-		/// 电话号码
+		/// Số điện thoại
 		/// </summary>
 		public string PHONE_NUMBER { get; set; }
 		/// <summary>
-		/// 性别
+		/// Giới tính
 		/// </summary>
 		public string GENDER { get; set; }
 		/// <summary>
-		/// 年龄
+		/// Tuổi
 		/// </summary>
 		public string AGE { get; set; }
 		/// <summary>
-		/// 出生日期
+		/// Ngày sinh
 		/// </summary>
 		public string BIRTHDAY { get; set; }
 
@@ -117,107 +117,107 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
 	public class OutpfeeMasterInfoList
 	{
 		/// <summary>
-		/// 就诊日期
+		/// Ngày khám
 		/// </summary>
 		public string VISIT_DATE { get; set; }
 		/// <summary>
-		/// 就诊序号
+		/// Số thứ tự khám
 		/// </summary>
 		public string VISIT_NO { get; set; }
 		/// <summary>
-		/// 就诊科室
+		/// Khoa khám bệnh
 		/// </summary>
 		public string DEPT_NAME { get; set; }
 		/// <summary>
-		/// 就诊卡号
+		/// Số thẻ khám bệnh
 		/// </summary>
 		public string CARD_NO { get; set; }
 		/// <summary>
-		/// 门诊号
+		/// Số khám ngoại trú
 		/// </summary>
 		public string OUTPATIENT_NO { get; set; }
 		/// <summary>
-		/// 票据号
+		/// Số phiếu
 		/// </summary>
 		public string RECEIPT_NO { get; set; }
 		/// <summary>
-		/// 业务流水号
+		/// Số giao dịch nghiệp vụ
 		/// </summary>
 		public string BUSSINESS_NO { get; set; }
 		/// <summary>
-		/// 发票号
+		/// Số hóa đơn
 		/// </summary>
 		public string INVOICE_NO { get; set; }
 		/// <summary>
-		/// 发票类型
+		/// Loại hóa đơn
 		/// </summary>
 		public string INVOICE_TYPE { get; set; }
 		/// <summary>
-		/// 费用类别
+		/// Loại chi phí
 		/// </summary>
 		public string INSUR_TYPE { get; set; }
 		/// <summary>
-		/// 报销卡类别
+		/// Loại thẻ hoàn trả
 		/// </summary>
 		public string CARD_TYPE { get; set; }
 		/// <summary>
-		/// 报销卡卡号
+		/// Số thẻ hoàn trả
 		/// </summary>
 		public string INSUR_CARD_NO { get; set; }
 		/// <summary>
-		/// 报销卡交易流水号
+		/// Số giao dịch thẻ hoàn trả
 		/// </summary>
 		public string INSUR_RCPT_NO { get; set; }
 		/// <summary>
-		/// 总金额
+		/// Tổng số tiền
 		/// </summary>
 		public string ACCOUNT_SUM { get; set; }
 		/// <summary>
-		/// 统筹支付金额
+		/// Số tiền chi trả từ quỹ chung
 		/// </summary>
 		public string INSUR_PAY { get; set; }
 		/// <summary>
-		/// 账户支付金额
+		/// Số tiền thanh toán từ tài khoản
 		/// </summary>
 		public string ACCOUNT_PAY { get; set; }
 		/// <summary>
-		/// 个人现金支付金额
+		/// Số tiền mặt cá nhân thanh toán
 		/// </summary>
 		public string PERSONAL_PAY { get; set; }
 		/// <summary>
-		/// 大病基金
+		/// Quỹ bệnh nặng
 		/// </summary>
 		public string DISEASE_FUND { get; set; }
 		/// <summary>
-		/// 公务员补助
+		/// Trợ cấp công chức
 		/// </summary>
 		public string INJURY_FUND { get; set; }
 		/// <summary>
-		/// 生育基金
+		/// Quỹ sinh đẻ
 		/// </summary>
 		public string FERTILITY_FUND { get; set; }
 		/// <summary>
-		/// 自费金额
+		/// Số tiền tự chi trả
 		/// </summary>
 		public string MYSELF_PAY { get; set; }
 		/// <summary>
-		/// 分类自负金额
+		/// Số tiền tự chi trả theo phân loại
 		/// </summary>
 		public string CLASS_SELF_PAY { get; set; }
 		/// <summary>
-		/// 账户余额
+		/// Số dư tài khoản
 		/// </summary>
 		public string INSUR_ACCOUNT { get; set; }
 		/// <summary>
-		/// 结算日期
+		/// Ngày quyết toán
 		/// </summary>
 		public string SETTLEMENT_DATE { get; set; }
 		/// <summary>
-		/// 订单号
+		/// Số đơn hàng
 		/// </summary>
 		public string ORDER_NO { get; set; }
 		/// <summary>
-		/// 支付渠道
+		/// Kênh thanh toán
 		/// </summary>
 		public string PAY_CHANNEL { get; set; }
 	}
@@ -230,31 +230,31 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
 	public class OutpfeeDetailPatInfo
 	{
 		/// <summary>
-		/// 患者姓名
+		/// Tên bệnh nhân
 		/// </summary>
 		public string PATIENT_NAME { get; set; }
 		/// <summary>
-		/// 患者编码
+		/// Mã bệnh nhân
 		/// </summary>
 		public string PATIENT_ID { get; set; }
 		/// <summary>
-		/// 身份证号
+		/// Số CMND/CCCD
 		/// </summary>
 		public string ID_NO { get; set; }
 		/// <summary>
-		/// 电话号码
+		/// Số điện thoại
 		/// </summary>
 		public string PHONE_NUMBER { get; set; }
 		/// <summary>
-		/// 就诊日期
+		/// Ngày khám
 		/// </summary>
 		public string VISIT_DATE { get; set; }
 		/// <summary>
-		/// 就诊序号
+		/// Số thứ tự khám
 		/// </summary>
 		public string VISIT_NO { get; set; }
 		/// <summary>
-		/// 支付时间
+		/// Thời gian thanh toán
 		/// </summary>
 		public string PAY_DATE { get; set; }
 	}
@@ -262,79 +262,79 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
 	public class OutpfeeDetailList
 	{
 		/// <summary>
-		/// 此费用唯一标识
+		/// Định danh duy nhất của chi phí này
 		/// </summary>
 		public string M_FEIYONGID { get; set; }
 		/// <summary>
-		/// 项目序号
+		/// Số thứ tự hạng mục
 		/// </summary>
 		public string ITEM_NO { get; set; }
 		/// <summary>
-		/// 项目编码
+		/// Mã hạng mục
 		/// </summary>
 		public string ITEM_CODE { get; set; }
 		/// <summary>
-		/// 项目名称
+		/// Tên hạng mục
 		/// </summary>
 		public string ITEM_NAME { get; set; }
 		/// <summary>
-		/// 项目规格
+		/// Quy cách hạng mục
 		/// </summary>
 		public string ITEM_SPEC { get; set; }
 		/// <summary>
-		/// 项目单位
+		/// Đơn vị hạng mục
 		/// </summary>
 		public string ITEM_UNITS { get; set; }
 		/// <summary>
-		/// 项目剂型
+		/// Dạng bào chế hạng mục
 		/// </summary>
 		public string ITEM_FORM { get; set; }
 		/// <summary>
-		/// 项目数量
+		/// Số lượng hạng mục
 		/// </summary>
 		public string ITEM_AMOUNT { get; set; }
 		/// <summary>
-		/// 项目单价
+		/// Đơn giá hạng mục
 		/// </summary>
 		public string ITEM_PRICE { get; set; }
 		/// <summary>
-		/// 项目总金额
+		/// Tổng số tiền hạng mục
 		/// </summary>
 		public string ITEM_COSTS { get; set; }
 		/// <summary>
-		/// 项目类别
+		/// Loại hạng mục
 		/// </summary>
 		public string ITEM_CLASS { get; set; }
 		/// <summary>
-		/// 医保类别
+		/// Loại BHYT
 		/// </summary>
 		public string INSUR_CLASS { get; set; }
 		/// <summary>
-		/// 自负比例
+		/// Tỷ lệ tự chi trả
 		/// </summary>
 		public string MYSELF_SCALE { get; set; }
 		/// <summary>
-		/// 自费金额
+		/// Số tiền tự chi trả
 		/// </summary>
 		public string SELF_PAY { get; set; }
 		/// <summary>
-		/// 分类自负金额
+		/// Số tiền tự chi trả theo phân loại
 		/// </summary>
 		public string CLASS_SELF_PAY { get; set; }
 		/// <summary>
-		/// 医保项目编码
+		/// Mã hạng mục BHYT
 		/// </summary>
 		public string MEDICAL_INSURANCE_ITEM_CODE { get; set; }
 		/// <summary>
-		/// 医保项目名称
+		/// Tên hạng mục BHYT
 		/// </summary>
 		public string MEDICAL_INSURANCE_ITEM_NAME { get; set; }
 		/// <summary>
-		/// 开单医生
+		/// Bác sĩ kê đơn
 		/// </summary>
 		public string DOCTOR_NAME { get; set; }
 		/// <summary>
-		/// 执行科室
+		/// Khoa thực hiện
 		/// </summary>
 		public string PERFORM_DEPT { get; set; }
 	}
@@ -347,55 +347,55 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
 	public class InPatientInfoPatInfo
 	{
 		/// <summary>
-		/// 患者编码
+		/// Mã bệnh nhân
 		/// </summary>
 		public string PATIENT_ID { get; set; }
 		/// <summary>
-		/// 身份证号
+		/// Số CMND/CCCD
 		/// </summary>
 		public string ID_NO { get; set; }
 		/// <summary>
-		/// 在院科室
+		/// Khoa đang nằm viện
 		/// </summary>
 		public string DeptName { get; set; }
 		/// <summary>
-		/// 在院病区
+		/// Khu bệnh đang nằm viện
 		/// </summary>
 		public string WardName { get; set; }
 		/// <summary>
-		/// 床位号
+		/// Số giường bệnh
 		/// </summary>
 		public string BedNo { get; set; }
 		/// <summary>
-		/// 在院状态
+		/// Trạng thái đang nằm viện
 		/// </summary>
 		public string PatStatus { get; set; }
 		/// <summary>
-		/// 入院时间
+		/// Thời gian nhập viện
 		/// </summary>
 		public string InHospitalDate { get; set; }
 		/// <summary>
-		/// 入区时间
+		/// Thời gian vào khu
 		/// </summary>
 		public string InDate { get; set; }
 		/// <summary>
-		/// 出区时间
+		/// Thời gian ra khỏi khu
 		/// </summary>
 		public string OutDate { get; set; }
 		/// <summary>
-		/// 性别
+		/// Giới tính
 		/// </summary>
 		public string SexName { get; set; }
 		/// <summary>
-		/// 预交金总额
+		/// Tổng số tiền tạm ứng
 		/// </summary>
 		public string AccBalance { get; set; }
 		/// <summary>
-		/// 总费用
+		/// Tổng chi phí
 		/// </summary>
 		public string TotalMoney { get; set; }
 		/// <summary>
-		/// 住院号
+		/// Số nhập viện
 		/// </summary>
 		public string zyh { get; set; }
 	}
@@ -403,35 +403,35 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
 	public class InPatientInfoList
 	{
 		/// <summary>
-		/// 项目名称
+		/// Tên hạng mục
 		/// </summary>
 		public string ITEM_NAME { get; set; }
 		/// <summary>
-		/// 项目剂型
+		/// Dạng bào chế hạng mục
 		/// </summary>
 		public string ITEM_FORM { get; set; }
 		/// <summary>
-		/// 项目数量
+		/// Số lượng hạng mục
 		/// </summary>
 		public string ITEM_AMOUNT { get; set; }
 		/// <summary>
-		/// 项目单价
+		/// Đơn giá hạng mục
 		/// </summary>
 		public string ITEM_PRICE { get; set; }
 		/// <summary>
-		/// 项目总金额
+		/// Tổng số tiền hạng mục
 		/// </summary>
 		public string ITEM_COSTS { get; set; }
 		/// <summary>
-		/// 项目类别
+		/// Loại hạng mục
 		/// </summary>
 		public string ITEM_CLASS { get; set; }
 		/// <summary>
-		/// 项目单位
+		/// Đơn vị hạng mục
 		/// </summary>
 		public string ITEM_UNITS { get; set; }
 		/// <summary>
-		/// 产生日期
+		/// Ngày phát sinh
 		/// </summary>
 		public string ITEM_DATE { get; set; }
 	}

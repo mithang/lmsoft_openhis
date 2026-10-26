@@ -4,26 +4,26 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 快捷菜单
+    /// Menu nhanh
     /// </summary>
     public interface ISysRoleShortcutMenuDmnService
     {
         /// <summary>
-        /// 获取角色开放的快捷菜单 List
+        /// Lấy menu nhanh mà vai trò được mở List
         /// </summary>
         /// <param name="roleIdList"></param>
         /// <returns></returns>
         IList<SysShortcutMenuEntity> GetAuthedSCMList(IList<string> roleIdList, string orgId);
 
         /// <summary>
-        /// 获取快捷菜单 已授权的角色列表
+        /// Lấy menu nhanh Danh sách vai trò đã ủy quyền
         /// </summary>
         /// <param name="scmId"></param>
         /// <returns></returns>
         IList<string> GetAuthedRoleIdList(string scmId, string orgId);
 
         /// <summary>
-        /// 快捷菜单 授权 给指定 角色
+        /// Menu nhanh Ủy quyền Cho chỉ định Vai trò
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="roleList"></param>

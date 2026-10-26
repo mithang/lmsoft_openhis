@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class NonTreatmentItemFeeDetailVO
     {
         /// <summary>
-        /// 是否是药品 0：非 1：是
+        /// Có phải là thuốc hay không 0:không phải 1:là
         /// </summary>
         public string isYP { get; set; }
         /// <summary>

@@ -8,14 +8,14 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IMoneyUpperLimitReminderRepo : IRepositoryBase<MoneyUpperLimitReminderEntity>
     {
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="sxtxId"></param>
         void SubmitForm(MoneyUpperLimitReminderEntity entity, string userCode, string sxtxId);
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="ybbabId"></param>
         /// <param name="orgId"></param>

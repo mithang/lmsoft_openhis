@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 住院模拟结算-医保费用-贵安
+    /// Quyết toán mô phỏng nội trú-Chi phí BHYT-Quý An
     /// </summary>
     public interface IHospSimulateSettlementGAYBFeeRepo : IRepositoryBase<HospSimulateSettlementGAYBFeeEntity>
     {

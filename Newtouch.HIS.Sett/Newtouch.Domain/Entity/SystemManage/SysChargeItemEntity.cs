@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 收费项目
+    /// Hạng mục thu phí
     /// </summary>
     [Table("xt_sfxm")]
     [Obsolete("please use the view")]
@@ -49,27 +49,27 @@ namespace Newtouch.HIS.Domain.Entity
         public string fl { get; set; }
 
         /// <summary>
-        /// 确定自负现金比例，无关这部分的性质（分类自负、自理）   见字段zfxz      注意：当自负比例为负数时，表示定额自负   (例：某材料12300，可报10000,那么自负比例＝-2300)
+        /// Xác định tỷ lệ tiền mặt tự chi trả,Không liên quan đến tính chất của phần này(Tự chi trả theo phân loại,Tự lo)   Xem trườngzfxz      Chú ý:Khi tỷ lệ tự chi trả là số âm,Thể hiện mức tự chi trả cố định   (Ví dụ:Một loại vật tư nào đó12300,Được thanh toán10000,thì tỷ lệ tự chi trả＝-2300)
         /// </summary>
         public decimal zfbl { get; set; }
 
         /// <summary>
-        /// 确定自负部分（费用×自负比例）的性质   0  可报 1 自理 2 分类自负 3 绝对自理（处理离休专家、特需挂号费）      （费用×（1－自负比例） 为可记帐部分）
+        /// Xác định phần tự chi trả(Chi phí×Tỷ lệ tự chi trả)Tính chất của   0  Được thanh toán 1 Tự lo 2 Tự chi trả theo phân loại 3 Tự lo tuyệt đối(Xử lý chuyên gia nghỉ hưu,Phí đăng ký khám đặc biệt)      (Chi phí×(1－Tỷ lệ tự chi trả) Là phần được ghi sổ)
         /// </summary>
         public string zfxz { get; set; }
 
         /// <summary>
-        /// 0：通用，1：门诊，2：住院
+        /// 0:Dùng chung,1:Khám ngoại trú,2:Nhập viện
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 0 无需实施，（住院直接入帐）    1 需要实施，（住院实施后方可入帐）   from xt_yjxmdz
+        /// 0 Không cần thực hiện,(Ghi sổ trực tiếp nội trú)    1 Cần thực hiện,(Sau khi thực hiện nội trú mới được ghi sổ)   from xt_yjxmdz
         /// </summary>
         public string ssbz { get; set; }
 
         /// <summary>
-        /// 0 普通项目 1 特殊项目 refer xt_sfxmtsbz   特殊项目说明是特定的病人性质才可使用的。 
+        /// 0 Hạng mục thông thường 1 Hạng mục đặc biệt refer xt_sfxmtsbz   Giải thích hạng mục đặc biệt là chỉ tính chất bệnh nhân đặc biệt mới được dùng. 
         /// </summary>
         public string tsbz { get; set; }
 
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string jsbz { get; set; }
 
         /// <summary>
-        /// 0 非收费项目（例：挂号费..） 1 收费项目
+        /// 0 Hạng mục không thu phí(Ví dụ:Phí đăng ký khám..) 1 Hạng mục thu phí
         /// </summary>
         public string sfbz { get; set; }
 

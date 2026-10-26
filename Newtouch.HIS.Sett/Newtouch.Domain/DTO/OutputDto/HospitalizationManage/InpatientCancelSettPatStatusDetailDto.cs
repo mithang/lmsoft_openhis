@@ -7,26 +7,26 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.HospitalizationManage
     public class InpatientCancelSettPatStatusDetailDto
     {
         /// <summary>
-        /// 住院病人基本信息
+        /// Thông tin cơ bản bệnh nhân nội trú
         /// </summary>
         public InpatientSettPatInfoVO InpatientSettPatInfo { get; set; }
 
         /// <summary>
-        /// 最后一次（未退的）结算
+        /// Lần cuối cùng(Chưa trả lại)Quyết toán
         /// </summary>
         public HospSettlementEntity LastUnCancelledSett { get; set; }
 
         /// <summary>
-        /// 医保费用相关
+        /// Liên quan chi phí BHYT
         /// </summary>
         public HospSettlementGAYBFeeEntity YbFee { get; set; }
         /// <summary>
-        /// 贵安新农合交易相关
+        /// Liên quan giao dịch Bảo hiểm nông thôn mới Quý An
         /// </summary>
 
         public HospSettlementGAXNHFeeEntity XnhFee { get; set; }
 		///// <summary>
-		///// 重庆医保结算
+		///// Quyết toán BHYT Trùng Khánh
 		///// </summary>
 	 //   public CqybSett05Entity CqYbFee { get; set; }
 	}

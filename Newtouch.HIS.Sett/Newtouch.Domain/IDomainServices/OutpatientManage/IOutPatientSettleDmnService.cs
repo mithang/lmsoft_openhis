@@ -9,12 +9,12 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 门诊记账
+    /// Ghi sổ ngoại trú
     /// </summary>
     public interface IOutPatientSettleDmnService
     {
         /// <summary>
-        /// 查询当日已挂号
+        /// Tra cứu đã đăng ký khám trong ngày
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="creatorCode"></param>
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<OutPatientRegInfoVO> GetCurrentDayRegList(string orgId, string creatorCode);
 
         /// <summary>
-        /// 门诊退号（未结挂号）
+        /// Trả số ngoại trú(Đăng ký khám chưa quyết toán)
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <returns></returns>
         GHZGroupAndFeesVO GetOutpatientFees(string ghxm, string zlxm, bool isCkf, bool isGbf, string orgId = null);
         /// <summary>
-        /// 收费项目组合费用
+        /// Chi phí tổ hợp hạng mục thu phí
         /// </summary>
         /// <param name="ghxm"></param>
         /// <param name="zlxm"></param>
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <returns></returns>
         GHZGroupAndFeesVO GetOutpatientFeesbyGroup(string ghxm, string zlxm, bool isCkf, bool isGbf, string orgId = null);
         /// <summary>
-        /// 门诊挂号保存
+        /// Lưu đăng ký khám ngoại trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="patid"></param>
@@ -68,11 +68,11 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <param name="jzxh"></param>
         /// <param name="ghpbId"></param>
         /// <param name="feeRelated"></param>
-        /// <param name="brxz">病人性质由页面传过来，因为医保患者可以挂自费</param>
-        /// <param name="ybjsh">医保端结算号</param>
-        /// <param name="mzh">门诊号</param>
-        /// <param name="mzh">门诊号</param>
-        /// <param name="mzyyghId">门诊预约挂号ID 对应Newtouch_CIS.dbo.mz_yygh.Id</param>
+        /// <param name="brxz">Tính chất bệnh nhân do trang truyền qua,Vì bệnh nhân BHYT có thể đăng ký tự chi trả</param>
+        /// <param name="ybjsh">Số quyết toán đầu BHYT</param>
+        /// <param name="mzh">Số khám ngoại trú</param>
+        /// <param name="mzh">Số khám ngoại trú</param>
+        /// <param name="mzyyghId">Đăng ký khám hẹn trước ngoại trúID Tương ứngNewtouch_CIS.dbo.mz_yygh.Id</param>
         /// <returns></returns>
         void Save(string orgId, int patid, string kh, string ghly, string mjzbz,
             string ks, string ys, string ksmc, string ysmc, string ghxm, string zlxm
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         long Book(OutpatientRegistEntity gh, decimal ssk, string fph, bool isCkf, bool isGbf);
 
         /// <summary>
-        /// check患者是否有待结费用挂号记录（不区分某次挂号）
+        /// checkBệnh nhân có bản ghi đăng ký khám với chi phí chờ quyết toán hay không(Không phân biệt lần đăng ký khám nào)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="patid"></param>
@@ -103,7 +103,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         bool CheckHasUnsettedRegister(string orgId, int patid);
 
         /// <summary>
-        /// check患者是否有未结费用记录（不区分某次挂号）
+        /// checkBệnh nhân có bản ghi chi phí chưa quyết toán hay không(Không phân biệt lần đăng ký khám nào)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="patid"></param>
@@ -111,7 +111,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         bool CheckHasUnsetted(string orgId, int patid);
 
         /// <summary>
-        /// 生成唯一门诊号、就诊序号
+        /// Tạo số ngoại trú duy nhất,Số thứ tự khám
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="ghlx"></param>
@@ -120,7 +120,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <returns></returns>
         Tuple<short, string> GetMzhJzxh(int patid, string ghpbId, string ks, string ys, string OrganizeId, string UserCode);
         /// <summary>
-        /// 根据已知jzxh 挂号日期 得门诊号
+        /// Theo thông tin đã biếtjzxh Ngày đăng ký khám Lấy số ngoại trú
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="ghpbId"></param>
@@ -134,7 +134,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
             string jzrq);
 
         /// <summary>
-        /// 生成chongqing就诊序号门诊号
+        /// TạochongqingSố thứ tự khám/Số ngoại trú
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="ghpbId"></param>
@@ -147,13 +147,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
         CqybGjbmInfoVo GetDepartmentDoctorIdC(string orgId, string ks,string ys);
         List<GhJzInfo> GetRegListJson(Inparameter inparameter, string orgid);
         /// <summary>
-        /// 获取医保就诊登记所需信息
+        /// Lấy thông tin cần thiết đăng ký khám BHYT
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
         CqybGjbmInfoVo GetYbjzdjVo(string mzh,string orgId);
         /// <summary>
-        /// 获取医院行政区划代码来判断是否异地医保
+        /// Lấy mã phân vùng hành chính bệnh viện để xác định có phải BHYT khác địa phương hay không
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

@@ -4,7 +4,7 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 门诊挂号信息
+    /// Thông tin đăng ký khám ngoại trú
     /// </summary>
     [NotMapped]
     public class OutPatientRegInfoVO : OutpatientRegistEntity
@@ -17,42 +17,42 @@ namespace Newtouch.HIS.Domain.ValueObjects
     }
 
     /// <summary>
-    /// 门诊挂号信息
+    /// Thông tin đăng ký khám ngoại trú
     /// </summary>
     public class OutPatientRegVO
     {
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// 门诊号
+        /// Số khám ngoại trú
         /// </summary>
         public string mzh { get; set; }
 
         /// <summary>
-        /// 是否欠费预结
+        /// Có phải là quyết toán trước khi nợ phí hay không
         /// </summary>
         public bool iqQfyj { get; set; }
 
         /// <summary>
-        /// 患者主索引
+        /// Chỉ mục chính bệnh nhân
         /// </summary>
         public int? patid { get; set; }
 
         /// <summary>
-        /// 拼音
+        /// Pinyin
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 新农合个人编码
+        /// Mã cá nhân Bảo hiểm nông thôn mới
         /// </summary>
         public string xnhgrbm { get; set; }
     }

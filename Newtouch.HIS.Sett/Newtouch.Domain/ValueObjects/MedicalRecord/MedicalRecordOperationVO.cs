@@ -3,20 +3,20 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 住院项目计费 项目 的 详细信息
+    /// Tính phí hạng mục nội trú Hạng mục của Thông tin chi tiết
     /// </summary>
     public class MedicalRecordOperationVO
     {
         /// <summary>
-        /// 手术ID
+        /// Phẫu thuậtID
         /// </summary>
         public string ssId { get; set; }
         /// <summary>
-        /// 诊断代码
+        /// Mã chẩn đoán
         /// </summary>
         public string ssdm { get; set; }
         /// <summary>
-        /// 诊断名称
+        /// Tên chẩn đoán
         /// </summary>
         public string ssmc { get; set; }
     }

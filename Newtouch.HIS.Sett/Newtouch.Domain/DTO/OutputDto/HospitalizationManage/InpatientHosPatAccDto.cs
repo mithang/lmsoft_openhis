@@ -13,17 +13,17 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.HospitalizationManage
 {
 
     /// <summary>
-    /// 预交金
+    /// Tiền tạm ứng
     /// </summary>
     public class InpatientReserveDto
     {
         /// <summary>
-        /// 基本信息
+        /// Thông tin cơ bản
         /// </summary>
         public InpatientReservePatientInfoDto patInfo;
 
         /// <summary>
-        /// 账户信息
+        /// Thông tin tài khoản
         /// </summary>
         public List<InpatientPatAccPayVO> accPayInfoList;
     }
@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.HospitalizationManage
     {
         public int zhCode { get; set; }
         /// <summary>
-        /// 账户性质 区分院内账户时使用
+        /// Tính chất tài khoản Dùng khi phân biệt tài khoản trong viện
         /// </summary>
         public int? zhxz { get; set; }
     }

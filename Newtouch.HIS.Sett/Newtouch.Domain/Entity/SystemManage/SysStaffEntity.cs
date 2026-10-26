@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统人员
+    /// Nhân viên hệ thống
     /// </summary>
     [Table("xt_ry")]
     [Obsolete("please use the view")]
@@ -48,22 +48,22 @@ namespace Newtouch.HIS.Domain.Entity
         public string gh { get; set; }
 
         /// <summary>
-        /// 0 非医生 1 实习医生 2 轮转医生    3 住院医生 4 主治医生 5 副主任医生 6 主任医生
+        /// 0 Không phải bác sĩ 1 Bác sĩ thực tập 2 Bác sĩ luân chuyển    3 Bác sĩ nội trú 4 Bác sĩ điều trị chính 5 Phó chủ nhiệm bác sĩ 6 Bác sĩ trưởng khoa
         /// </summary>
         public string ysbz { get; set; }
 
         /// <summary>
-        /// 0 不可操作系统 1 可操作系统
+        /// 0 Không thể thao tác hệ thống 1 Có thể thao tác hệ thống
         /// </summary>
         public string czbz { get; set; }
 
         /// <summary>
-        /// 1 有最大权限 0 无最大权限
+        /// 1 Có quyền tối đa 0 Không có quyền tối đa
         /// </summary>
         public string zdqxbz { get; set; }
 
         /// <summary>
-        /// 0 不可用 1 可用
+        /// 0 Không khả dụng 1 Khả dụng
         /// </summary>
         public string zt { get; set; }
 

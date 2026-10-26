@@ -7,7 +7,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface IMoneyUpperLimitReminderDmnService
     {
         /// <summary>
-        /// 金额上限查询
+        /// Tra cứu giới hạn trên số tiền
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<MoneyUpperLimitReminderSelectVO> GetAllList(Pagination pagination, string orgId, string keyword, string reminderType, string sxtxId = null);
 
         /// <summary>
-        /// 获取记账人员 记账信息（本月）
+        /// Lấy nhân viên ghi sổ Thông tin ghi sổ(Tháng này)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="gh"></param>

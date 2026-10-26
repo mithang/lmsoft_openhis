@@ -5,12 +5,12 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 处方主表
+    /// Bảng chính đơn thuốc
     /// </summary>
     public interface IOutpatientPrescriptionRepo : IRepositoryBase<OutpatientPrescriptionEntity>
     {
         /// <summary>
-        /// 根据cfh获取 处方实体
+        /// TheocfhLấy Thực thể đơn thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfh"></param>
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.IRepository
         OutpatientPrescriptionEntity GetValidEntityByCfh(string orgId, string cfh);
 
         /// <summary>
-        /// 根据cfnm获取 处方实体
+        /// TheocfnmLấy Thực thể đơn thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfnm"></param>
@@ -26,10 +26,10 @@ namespace Newtouch.HIS.Domain.IRepository
         OutpatientPrescriptionEntity GetValidEntityByCfnm(string orgId, int cfnm);
 
         /// <summary>
-        /// 生成新处方号
+        /// Tạo số đơn thuốc mới
         /// </summary>
         /// <param name="orgId"></param>
-        /// <param name="type">处方类型1药品 2非药品</param>
+        /// <param name="type">Loại đơn thuốc1Thuốc 2Không phải thuốc</param>
         /// <returns></returns>
         string GeneratePresNo(string orgId, int type);
 

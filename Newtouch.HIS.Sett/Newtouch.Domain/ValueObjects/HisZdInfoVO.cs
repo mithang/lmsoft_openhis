@@ -33,11 +33,11 @@ namespace Newtouch.HIS.Domain.ValueObjects
 		public DateTime? ksrq { get; set; }
 		public DateTime? jsrq { get; set; }
 		/// <summary>
-		/// 第一个筛选条件
+		/// Điều kiện lọc đầu tiên
 		/// </summary>
 		public string keywordo { get; set; }
 		/// <summary>
-		/// 第二个筛选条件
+		/// Điều kiện lọc thứ hai
 		/// </summary>
 		public string keywordt { get; set; }
 	}

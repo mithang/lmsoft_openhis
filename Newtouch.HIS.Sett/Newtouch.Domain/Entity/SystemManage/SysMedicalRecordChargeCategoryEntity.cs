@@ -5,61 +5,61 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统病案收费大类
+    /// Loại lớn thu phí bệnh án hệ thống
     /// </summary>
     [Table("xt_basfdl")]
     [Obsolete("please use the view")]
     public class SysMedicalRecordChargeCategoryEntity : IEntity<SysMedicalRecordChargeCategoryEntity>
     {
         /// <summary>
-        /// 大类编号
+        /// Mã loại lớn
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int dlbh { get; set; }
 
         /// <summary>
-        /// 大类（对应首页分类）
+        /// Loại lớn(Phân loại trang chủ tương ứng)
         /// </summary>
         public string dl { get; set; }
 
         /// <summary>
-        /// 大类名称
+        /// Tên loại lớn
         /// </summary>
         public string dlmc { get; set; }
 
         /// <summary>
-        /// 拼音
+        /// Pinyin
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 

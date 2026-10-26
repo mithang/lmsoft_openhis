@@ -5,37 +5,37 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class PatientBasicAndCardInfoVO
     {
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
 
         #region 病人基本信息
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// 出生年月
+        /// Năm tháng sinh
         /// </summary>
         public DateTime csny { get; set; }
         /// <summary>
-        /// 证件号
+        /// Số giấy tờ
         /// </summary>
         public string zjh { get; set; }
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string xb { get; set; }
         /// <summary>
-        /// 年龄
+        /// Tuổi
         /// </summary>
         public Int16 nl { get; set; }
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
         /// <summary>
-        /// 电话
+        /// Điện thoại
         /// </summary>
         public string yddh { get; set; }
 
@@ -44,11 +44,11 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public string py { get; set; }
         /// <summary>
-        /// 地域
+        /// Khu vực
         /// </summary>
         public string dy { get; set; }
         /// <summary>
-        /// 婚否
+        /// Tình trạng hôn nhân
         /// </summary>
         public byte? hf { get; set; }
 

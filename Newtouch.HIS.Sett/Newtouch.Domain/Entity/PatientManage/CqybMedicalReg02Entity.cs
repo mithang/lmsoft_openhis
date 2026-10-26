@@ -10,70 +10,70 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.Entity.PatientManage
 {
 	/// <summary>
-	/// 重庆医保_就诊登记02返回落地
+	/// BHYT Trùng Khánh_Đăng ký khám bệnh02Trả về và ghi nhận
 	/// </summary>
 	[Table("cqyb_OutPut02")]
 	public class CqybMedicalReg02Entity : IEntity<CqybMedicalReg02Entity>
 	{
 		/// <summary>
-		/// 主键ID
+		/// Khóa chínhID
 		/// </summary>
 		[Key]
 		public int Id { get; set; }
 		/// <summary>
-		/// 组织机构Id（有具体业务的医院）
+		/// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
 		/// </summary>
 		public string OrganizeId { get; set; }
 		/// <summary>
-		/// 患者id
+		/// Bệnh nhânid
 		/// </summary>
 		public string patid { get; set; }
 		/// <summary>
-		/// 门诊住院号
+		/// Số ngoại trú/nội trú
 		/// </summary>
 		public string zymzh { get; set; }
 		/// <summary>
-		/// 交易流水号
+		/// Số giao dịch
 		/// </summary>
 		public string jylsh { get; set; }
 		/// <summary>
-		/// 帐户余额
+		/// Số dư tài khoản
 		/// </summary>
 		public string zhye { get; set; }
 		/// <summary>
-		/// 原转出医院名称
+		/// Tên bệnh viện chuyển đi ban đầu
 		/// </summary>
 		public string yzcyymc { get; set; }
 		/// <summary>
-		/// 参保类别
+		/// Loại tham gia bảo hiểm
 		/// </summary>
 		public string cblx { get; set; }
 		/// <summary>
-		/// 登记类型1门诊，2住院
+		/// Loại đăng ký1Khám ngoại trú,2Nhập viện
 		/// </summary>
 		public string jytype { get; set; }
 		/// <summary>
-		/// 创建用户ID
+		/// Người tạoID
 		/// </summary>
 		public string CreatorCode { get; set; }
 		/// <summary>
-		/// 创建时间
+		/// Thời gian tạo
 		/// </summary>
 		public DateTime? CreateTime { get; set; }
 		/// <summary>
-		/// 最后修改时间
+		/// Thời gian sửa đổi lần cuối
 		/// </summary>
 		public DateTime? LastModifyTime { get; set; }
 		/// <summary>
-		/// 最后修改用户ID
+		/// Người sửa đổi lần cuốiID
 		/// </summary>
 		public string LastModifierCode { get; set; }
 		/// <summary>
-		/// 排序
+		/// Sắp xếp
 		/// </summary>
 		public int px { get; set; }
 		/// <summary>
-		/// 状态
+		/// Trạng thái
 		/// </summary>
 		public string zt { get; set; }
 

@@ -2,7 +2,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
 {
     /// <summary>
-    /// 门诊挂号项目
+    /// Hạng mục đăng ký khám ngoại trú
     /// </summary>
     public class OutpatientRegistItemVO
     {

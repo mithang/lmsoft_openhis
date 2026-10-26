@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 大病项目
+    /// Hạng mục bệnh nặng
     /// </summary>
     [Table("xt_dbxm")]
     public class SysSeriouIllnessItemEntity : IEntity<SysSeriouIllnessItemEntity>
@@ -18,52 +18,52 @@ namespace Newtouch.HIS.Domain.Entity
         public string dbxmId { get; set; }
 
         /// <summary>
-        /// 大病项目
+        /// Hạng mục bệnh nặng
         /// </summary>
         public string dbxm { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 大病项目名称
+        /// Tên hạng mục bệnh nặng
         /// </summary>
         public string dbxmmc { get; set; }
 
         /// <summary>
-        /// 拼音
+        /// Pinyin
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 

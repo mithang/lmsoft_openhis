@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string szm { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Domain.Entity
         public long dqfph { get; set; }
 
         /// <summary>
-        /// 领用人员
+        /// Nhân viên lĩnh dùng
         /// </summary>
         public DateTime lyrq { get; set; }
 
@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string lyry { get; set; }
 
         /// <summary>
-        /// 0:无效; 1:有效
+        /// 0:Không hiệu lực; 1:Hiệu lực
         /// </summary>
         public string zt { get; set; }
         

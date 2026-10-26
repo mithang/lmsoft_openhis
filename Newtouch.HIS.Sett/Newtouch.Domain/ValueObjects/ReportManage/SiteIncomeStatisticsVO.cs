@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.ValueObjects.ReportManage
 {
     /// <summary>
-    /// 站点收入统计
+    /// Thống kê thu nhập trạm
     /// </summary>
     public class SiteIncomeStatisticsVo
     {
@@ -9,31 +9,31 @@
         public string itemName { get; set; }
 
         /// <summary>
-        /// 项目code
+        /// Hạng mụccode
         /// </summary>
         public string dlcode { get; set; }
         /// <summary>
-        /// 项目名称
+        /// Tên hạng mục
         /// </summary>
         public string dlmc { get; set; }
 
         /// <summary>
-        /// 门诊收费金额
+        /// Số tiền thu phí ngoại trú
         /// </summary>
         public double opsfje { get; set; }
 
         /// <summary>
-        /// 门诊治疗执行金额
+        /// Số tiền thực hiện điều trị ngoại trú
         /// </summary>
         public double opzlzxje { get; set; }
 
         /// <summary>
-        /// 住院收费金额
+        /// Số tiền thu phí nội trú
         /// </summary>
         public double hpsfje { get; set; }
 
         /// <summary>
-        /// 住院治疗执行金额
+        /// Số tiền thực hiện điều trị nội trú
         /// </summary>
         public double hpzlzxje { get; set; }
 

@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// 结算保存成功 的 结果返回
+    /// Lưu quyết toán thành công của Trả về kết quả
     /// </summary>
     public class SettSaveSuccessResultDto
     {

@@ -8,12 +8,12 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysMedicalInsuranceFilingRepo : IRepositoryBase<SysMedicalInsuranceFilingEntity>
     {
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         void SubmitForm(SysMedicalInsuranceFilingEntity entity, string ybbabId);
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         void DeleteForm(string ybbabId, string orgId);

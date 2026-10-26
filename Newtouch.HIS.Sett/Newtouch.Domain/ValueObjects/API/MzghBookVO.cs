@@ -11,19 +11,19 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 预约号
+        /// Số hẹn khám
         /// </summary>
         /// <returns></returns>
         public decimal BookId { get; set; }
 
         /// <summary>
-        /// 门诊排班日程
+        /// Lịch trực ngoại trú
         /// </summary>
         /// <returns></returns>
         public decimal SchedId { get; set; }
 
         /// <summary>
-        /// brxz 挂号时 自费 医保
+        /// brxz Khi đăng ký khám Tự chi trả BHYT
         /// </summary>
         /// <returns></returns>
         public string ghxz { get; set; }
@@ -35,37 +35,37 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public int? patid { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         /// <returns></returns>
         public string kh { get; set; }
 
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         /// <returns></returns>
         public string ks { get; set; }
 
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         /// <returns></returns>
         public string ys { get; set; }
 
         /// <summary>
-        /// 就诊日期
+        /// Ngày khám
         /// </summary>
         /// <returns></returns>
         public DateTime OutDate { get; set; }
 
         /// <summary>
-        /// 挂号类型 门诊 急诊 专家
+        /// Loại đăng ký khám Khám ngoại trú Cấp cứu Chuyên gia
         /// </summary>
         /// <returns></returns>
         public string RegType { get; set; }
 
         /// <summary>
-        /// 时间段 0无 1全天 2上午 3下午
+        /// Khoảng thời gian 0không 1Cả ngày 2Buổi sáng 3Buổi chiều
         /// </summary>
         /// <returns></returns>
         public int Period { get; set; }
@@ -83,73 +83,73 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string PeriodEnd { get; set; }
 
         /// <summary>
-        /// 排队号
+        /// Số xếp hàng
         /// </summary>
         /// <returns></returns>
         public int? QueueNo { get; set; }
 
         /// <summary>
-        /// 挂号总费用
+        /// Tổng chi phí đăng ký khám
         /// </summary>
         /// <returns></returns>
         public decimal RegFee { get; set; }
 
         /// <summary>
-        /// 已付费用
+        /// Chi phí đã trả
         /// </summary>
         /// <returns></returns>
         public decimal? PayFee { get; set; }
 
         /// <summary>
-        /// 支付流水号
+        /// Số giao dịch thanh toán
         /// </summary>
         /// <returns></returns>
         public string PayLsh { get; set; }
 
         /// <summary>
-        /// 支付时间
+        /// Thời gian thanh toán
         /// </summary>
         /// <returns></returns>
         public DateTime? PayTime { get; set; }
 
         /// <summary>
-        /// 是否取消
+        /// Có hủy hay không
         /// </summary>
         /// <returns></returns>
         public string IsCancel { get; set; }
 
         /// <summary>
-        /// 取消原因
+        /// Lý do hủy
         /// </summary>
         /// <returns></returns>
         public string CancelReason { get; set; }
 
         /// <summary>
-        /// 取消时间
+        /// Thời gian hủy
         /// </summary>
         /// <returns></returns>
         public DateTime? CancelTime { get; set; }
 
         /// <summary>
-        /// 门诊号
+        /// Số khám ngoại trú
         /// </summary>
         /// <returns></returns>
         public string mzh { get; set; }
 
         /// <summary>
-        /// 联系电话
+        /// Điện thoại liên hệ
         /// </summary>
         /// <returns></returns>
         public string lxdh { get; set; }
 
         /// <summary>
-        /// 预约来源
+        /// Nguồn hẹn khám
         /// </summary>
         /// <returns></returns>
         public string AppName { get; set; }
 
         /// <summary>
-        /// 预约来源
+        /// Nguồn hẹn khám
         /// </summary>
         /// <returns></returns>
         public string AppId { get; set; }

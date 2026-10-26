@@ -5,67 +5,67 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统农保收费大类
+    /// Loại lớn thu phí Bảo hiểm nông nghiệp hệ thống
     /// </summary>
     [Table("xt_nbsfdl")]
     [Obsolete("please use the view")]
     public class SysAgriInsuranceChargeCategoryEntity : IEntity<SysAgriInsuranceChargeCategoryEntity>
     {
         /// <summary>
-        /// 大类编号
+        /// Mã loại lớn
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int dlbh { get; set; }
 
         /// <summary>
-        /// 大类
+        /// Loại lớn
         /// </summary>
         public string dl { get; set; }
 
         /// <summary>
-        /// 大类名称
+        /// Tên loại lớn
         /// </summary>
         public string dlmc { get; set; }
 
         /// <summary>
-        /// 拼音
+        /// Pinyin
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 门诊住院标志
-        /// 0 通用 1 门诊 2住院
+        /// Cờ ngoại trú/nội trú
+        /// 0 Dùng chung 1 Khám ngoại trú 2Nhập viện
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 

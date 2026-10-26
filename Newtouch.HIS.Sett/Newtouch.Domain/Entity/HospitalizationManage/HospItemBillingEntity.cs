@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int jfbbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -29,17 +29,17 @@ namespace Newtouch.HIS.Domain.Entity
         public string zyh { get; set; }
 
         /// <summary>
-        /// 医嘱唯一码
+        /// Mã duy nhất y lệnh
         /// </summary>
         public string yzwym { get; set; }
 
         /// <summary>
-        /// 医嘱执行Id
+        /// Thực hiện y lệnhId
         /// </summary>
         public int? zxid { get; set; }
 
         /// <summary>
-        /// 医嘱明细Id
+        /// Chi tiết y lệnhId
         /// </summary>
         public int? mxid { get; set; }
 
@@ -59,22 +59,22 @@ namespace Newtouch.HIS.Domain.Entity
         public string dl { get; set; }
 
         /// <summary>
-        /// 医生Code
+        /// Bác sĩCode
         /// </summary>
         public string ys { get; set; }
 
         /// <summary>
-        /// 医生名称
+        /// Tên bác sĩ
         /// </summary>
         public string ysmc { get; set; }
 
         /// <summary>
-        /// 科室Code
+        /// KhoaCode
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ksmc { get; set; }
 
@@ -124,7 +124,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string zfxz { get; set; }
 
         /// <summary>
-        /// 0 待实施 1 已实施（已结束实施/不再实施）    2 无需实施 (在程序中也显示为已实施)         //住院记帐，无需实施的项目，实施标志默认为1（已实施）
+        /// 0 Chờ thực hiện 1 Đã thực hiện(Đã kết thúc thực hiện/Không còn thực hiện)    2 Không cần thực hiện (Trong chương trình cũng hiển thị là đã thực hiện)         //Ghi sổ nội trú,Hạng mục không cần thực hiện,Cờ thực hiện mặc định là1(Đã thực hiện)
         /// </summary>
         public string ssbz { get; set; }
 
@@ -134,7 +134,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string ssry { get; set; }
 
         /// <summary>
-        /// 对应同步翻云医嘱的医嘱执行时间
+        /// Thời gian thực hiện y lệnh tương ứng đồng bộ y lệnh Phiên Vân
         /// </summary>
         public DateTime? ssrq { get; set; }
 
@@ -144,12 +144,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string zxks { get; set; }
 
         /// <summary>
-        /// 1 临时医嘱   2 长期医嘱   3 出院医嘱
+        /// 1 Y lệnh tạm thời   2 Y lệnh dài hạn   3 Y lệnh xuất viện
         /// </summary>
         public string yzxz { get; set; }
 
         /// <summary>
-        /// 1 未撤销   2 已撤销
+        /// 1 Chưa hủy   2 Đã hủy
         /// </summary>
         public string yzzt { get; set; }
 
@@ -164,7 +164,7 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime? cxtdrq { get; set; }
 
         /// <summary>
-        /// 默认0   表示未撤销结算
+        /// Mặc định0   Thể hiện chưa hủy quyết toán
         /// </summary>
         public int cxzyjfbbh { get; set; }
 
@@ -189,12 +189,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string zltime { get; set; }
 
         /// <summary>
-        /// 绑定执行Id
+        /// Liên kết thực hiệnId
         /// </summary>
         public string bdzxid { get; set; }
 
         /// <summary>
-        /// from  xt_sfclxmzh  对应综合材料类别编号
+        /// from  xt_sfclxmzh  Mã loại vật tư tổng hợp tương ứng
         /// </summary>
         public int? clzhxmbh { get; set; }
 
@@ -254,21 +254,21 @@ namespace Newtouch.HIS.Domain.Entity
         public int? duration { get; set; }
 
         /// <summary>
-        /// 总治疗量
+        /// Tổng liều điều trị
         /// </summary>
         public int? zzll { get; set; }
 
         /// <summary>
-        /// 收费组套ID xt_sfmb
+        /// Bộ thu phíID xt_sfmb
         /// </summary>
         public string ztbh { get; set; }
 
         /// <summary>
-        /// 组套数量
+        /// Số lượng bộ
         /// </summary>
         public decimal? ztsl { get; set; }
         /// <summary>
-        /// 同一组套标识
+        /// Dấu bộ giống nhau
         /// </summary>
         public string dcztbs { get; set; }
         public int? zzfbz { get; set; }

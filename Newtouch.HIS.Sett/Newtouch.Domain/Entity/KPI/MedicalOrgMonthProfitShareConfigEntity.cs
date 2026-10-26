@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-01-29 15:52
-    /// 描 述：医疗机构利润分成配置
+    /// Tạo：张冬林
+    /// Ngày tháng:2018-01-29 15:52
+    /// Mô tả:Cấu hình chia lợi nhuận cơ sở y tế
     /// </summary>
     [Table("medicalorgps_m_config")]
     public class MedicalOrgMonthProfitShareConfigEntity : IEntity<MedicalOrgMonthProfitShareConfigEntity>

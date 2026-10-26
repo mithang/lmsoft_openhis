@@ -11,24 +11,24 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IHospPatientBasicInfoRepo : IRepositoryBase<HospPatientBasicInfoEntity>
     {
         /// <summary>
-        /// 根据住院号获取病人住院基本信息
+        /// Lấy thông tin cơ bản nội trú bệnh nhân theo số nhập viện
         /// add by HLF
         /// </summary>
-        /// <param name="zyh">住院号</param>
-        /// <param name="kh">卡号</param> 
-        /// <param name="xm">姓名</param> 
+        /// <param name="zyh">Số nhập viện</param>
+        /// <param name="kh">Số thẻ</param> 
+        /// <param name="xm">Họ tên</param> 
         /// <returns></returns>
         List<HospPatientBasicInfoEntity> GetHosPatInfoList(string zyh, string kh, string xm, string OrganizeId);
 
         /// <summary>
-        /// 根据病人内码获取有效的住院基本信息
+        /// Lấy thông tin cơ bản nội trú hiệu lực theo mã nội bộ bệnh nhân
         /// </summary>
         /// <param name="patid"></param>
         /// <returns></returns>
         HospPatientBasicInfoEntity GetFirstPatiInfoByPatid(int? patid);
 
         /// <summary>
-        /// 根据zyh判断是否存在病人基本信息
+        /// TheozyhXác định có tồn tại thông tin cơ bản bệnh nhân hay không
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -36,19 +36,19 @@ namespace Newtouch.HIS.Domain.IRepository
         string GetBlhByZyh(string zyh, string orgId);
 
         /// <summary>
-        /// 获取机构病人列表
+        /// Lấy danh sách bệnh nhân của cơ sở
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<PendingExecutionPatientVO> GetWardPatientVOListByOrg(string orgId, string bqCode = null);
 
         /// <summary>
-        /// 根据zyh获取病人信息
+        /// TheozyhLấy thông tin bệnh nhân
         /// </summary>
         HospPatientBasicInfoEntity GetInpatientInfoByZyh(string zyh, string orgId);
 
         /// <summary>
-        /// 筛选住院病人
+        /// Lọc bệnh nhân nội trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -57,14 +57,14 @@ namespace Newtouch.HIS.Domain.IRepository
         List<HospPatientBasicInfoEntity> GetInpatientList(string orgId, string keyword = null, string zybz = "zaiyuanbr");
 
         /// <summary>
-        /// 更新住院病人在院标志
+        /// Cập nhật cờ đang nằm viện của bệnh nhân nội trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
         /// <param name="zybz"></param>
         void UpdateInpatientStatus(string orgId, string zyh, string zybz);
         /// <summary>
-        /// 通过出区、转区更新患者基本信息
+        /// Thông qua ra khỏi khu,Khi chuyển khu thì cập nhật thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="bq"></param>

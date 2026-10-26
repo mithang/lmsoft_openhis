@@ -5,39 +5,39 @@ namespace Newtouch.HIS.Domain.ValueObjects
     {
         public string OrderNo { get; set; }
         /// <summary>
-        /// 门诊号
+        /// Số khám ngoại trú
         /// </summary>
         public string mzh { get; set; }
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
         /// <summary>
-        /// 处方金额
+        /// Số tiền đơn thuốc
         /// </summary>
         public decimal? cfje { get; set; }
         /// <summary>
-        /// 处方明细
+        /// Chi tiết đơn thuốc
         /// </summary>
         public string cfxmmx { get; set; }
         /// <summary>
-        /// 处方收费项目
+        /// Hạng mục thu phí đơn thuốc
         /// </summary>
         public string sfxm { get; set; }
         /// <summary>
-        /// 处方收费项目名称
+        /// Tên hạng mục thu phí đơn thuốc
         /// </summary>
         public string sfxmmc { get; set; }
         /// <summary>
-        /// 处方类型 EnumCflx
+        /// Loại đơn thuốc EnumCflx
         /// </summary>
         public string cflx { get; set; }
         /// <summary>
-        /// 是否药品处方
+        /// Có phải là đơn thuốc hay không
         /// </summary>
         public string isyp { get; set; }
         /// <summary>
-        /// 处方说明
+        /// Giải thích đơn thuốc
         /// </summary>
         public string cfmc { get; set; }
     }

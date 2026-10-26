@@ -7,89 +7,89 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.ReportTemplateVO
 {
     /// <summary>
-    /// 中草药信息表
+    /// Bảng thông tin thảo dược Trung y
     /// </summary>
     public class G_yb_tcmherb_info_bVO
     {
-        //	医疗目录编码				
+        //	Mã danh mục y tế				
         public string MED_LIST_CODG { get; set; }
-        //	中草药名称				
+        //	Tên thảo dược Trung y				
         public string TCMHERB_NAME { get; set; }
-        //	单复方标志				
+        //	Cờ thuốc đơn phương/phức phương				
         public string CPND_FLAG { get; set; }
-        //	质量等级				
+        //	Cấp chất lượng				
         public string QLT_REG { get; set; }
-        //	中草药年份				
+        //	Năm thảo dược Trung y				
         public string TCMHERB_YEAR { get; set; }
-        //	药用部位				
+        //	Bộ phận dùng làm thuốc				
         public string MED_PART { get; set; }
-        //	安全计量				
+        //	Đo lường an toàn				
         public string SAFE_MTR { get; set; }
-        //	常规用法				
+        //	Cách dùng thông thường				
         public string CNVL_USED { get; set; }
-        //	性味				
+        //	Tính vị				
         public string NATFLA { get; set; }
-        //	归经				
+        //	Quy kinh				
         public string MERTPM { get; set; }
-        //	品种				
+        //	Chủng loại				
         public string CAT { get; set; }
-        //	开始日期				
+        //	Ngày bắt đầu				
         public DateTime? BEGNDATE { get; set; }
-        //	结束日期				
+        //	Ngày kết thúc				
         public DateTime? ENDDATE { get; set; }
-        //	有效标志				
+        //	Cờ hiệu lực				
         public string VALI_FLAG { get; set; }
-        //	数据唯一记录号				
+        //	Số bản ghi duy nhất của dữ liệu				
         public string RID { get; set; }
-        //	数据创建时间				
+        //	Thời gian tạo dữ liệu				
         public DateTime CRTE_TIME { get; set; }
-        //	数据更新时间				
+        //	Thời gian cập nhật dữ liệu				
         public DateTime UPDT_TIME { get; set; }
-        ////	创建人ID				
+        ////	Người tạoID				
         //public string CRTER_ID { get; set; }
-        ////	创建人姓名				
+        ////	Tên người tạo				
         //public string CRTER_NAME { get; set; }
-        ////	创建机构编号				
+        ////	Mã cơ sở tạo				
         //public string CRTE_OPTINS_NO { get; set; }
-        ////	经办人ID				
+        ////	Người xử lýID				
         //public string OPTER_ID { get; set; }
-        ////	经办人姓名				
+        ////	Tên người xử lý				
         //public string OPTER_NAME { get; set; }
-        ////	经办时间				
+        ////	Thời gian xử lý				
         //public DateTime? OPT_TIME { get; set; }
-        ////	经办机构编号				
+        ////	Mã cơ sở xử lý				
         //public string OPTINS_NO { get; set; }
-        //	版本号				
+        //	Số phiên bản				
         public string VER { get; set; }
-        //	版本名称				
+        //	Tên phiên bản				
         public string VER_NAME { get; set; }
-        //	药材名称				
+        //	Tên dược liệu				
         public string MLMS_NAME { get; set; }
-        //	功能主治				
+        //	Chức năng và chỉ định				
         public string EFCC_ATD { get; set; }
-        //	炮制方法				
+        //	Phương pháp bào chế				
         public string PSDG_MTD { get; set; }
-        //	功效分类				
+        //	Phân loại công hiệu				
         public string ECY_TYPE { get; set; }
-        //	药材种来源				
+        //	Nguồn gốc dược liệu				
         public string MLMS_CAT_SOUC { get; set; }
-        //	国家医保支付政策				
+        //	Chính sách thanh toán BHYT quốc gia				
         public string NAT_HI_PAY_POL { get; set; }
-        //	省级医保支付政策				
+        //	Chính sách thanh toán BHYT cấp tỉnh				
         public string PROV_HI_PAY_POL { get; set; }
-        //	标准名称				
+        //	Tên tiêu chuẩn				
         public string STD_NAME { get; set; }
-        //	标准页码				
+        //	Số trang tiêu chuẩn				
         public string STD_PAGEN { get; set; }
-        //	标准电子档案				
+        //	Hồ sơ điện tử tiêu chuẩn				
         public string STD_ELECACS { get; set; }
-        ////	下发标志				
+        ////	Cờ ban hành				
         //public string ISU_FLAG { get; set; }
-        ////	传输数据ID				
+        ////	Truyền dữ liệuID				
         //public string TRAM_DATA_ID { get; set; }
-        ////	生效时间				
+        ////	Thời gian có hiệu lực				
         //public DateTime? EFFT_TIME { get; set; }
-        ////	失效时间				
+        ////	Thời gian hết hiệu lực				
         //public DateTime? INVD_TIME { get; set; }
 
     }

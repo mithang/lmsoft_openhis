@@ -5,35 +5,35 @@ namespace Newtouch.HIS.Domain.ValueObjects.DaySettleManage
     public class DailyFeeDataGirdDto
     { 
         /// <summary>
-      /// 结算内码
+      /// Mã nội bộ quyết toán
       /// </summary>
         public int jsnm { get; set; }
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
         public DateTime? jzsj { get; set; }
         /// <summary>
-        /// 结算对应挂号的门诊号
+        /// Số ngoại trú của lần đăng ký khám tương ứng với quyết toán
         /// </summary>
         public string mzh { get; set; }
         /// <summary>
-        /// 病人性质名称
+        /// Tên tính chất bệnh nhân
         /// </summary>
         public string brxzmc { get; set; }
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; } 
         public decimal jszje { get; set; }
 
         public decimal ybbx { get; set; }
         /// <summary>
-        /// 支付金额
+        /// Số tiền thanh toán
         /// </summary>
         public decimal? jsxjzf { get; set; }
         public string xb { get; set; }

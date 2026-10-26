@@ -9,60 +9,60 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.ReportTemplateVO
 {
     /// <summary>
-    /// 中医诊断表
+    /// Bảng chẩn đoán Trung y
     /// </summary>
     public class G_yb_tcm_diag_bVO
     {
-        //	中医诊断ID				
+        //	Chẩn đoán Trung yID				
         public string TCM_DIAG_ID { get; set; }
-        //	版本名称				
+        //	Tên phiên bản				
         public string VER_NAME { get; set; }
-        //	科别类目代码				
+        //	Mã danh mục khoa				
         public string CATY_CGY_CODE { get; set; }
-        //	科别类目名称				
+        //	Tên danh mục khoa				
         public string CATY_CGY_NAME { get; set; }
-        //	专科系统分类目代码				
+        //	Mã phân loại hệ thống chuyên khoa				
         public string SPCY_SYS_TAXA_CODE { get; set; }
-        //	专科系统分类目名称				
+        //	Tên phân loại hệ thống chuyên khoa				
         public string SPCY_SYS_TAXA_NAME { get; set; }
-        //	病种类型代码				
+        //	Mã loại loại bệnh				
         public string DISE_TYPE_CODE { get; set; }
-        //	病种类型名称				
+        //	Tên loại loại bệnh				
         public string DISE_TYPE_NAME { get; set; }
-        //	备注				
+        //	Ghi chú				
         public string MEMO { get; set; }
-        //	有效标志				
+        //	Cờ hiệu lực				
         public string VALI_FLAG { get; set; }
-        //	数据唯一记录号				
+        //	Số bản ghi duy nhất của dữ liệu				
         public string RID { get; set; }
-        //	数据创建时间		
+        //	Thời gian tạo dữ liệu		
 
         public DateTime CRTE_TIME { get; set; }
-        //	数据更新时间				
+        //	Thời gian cập nhật dữ liệu				
         public DateTime UPDT_TIME { get; set; }
-        ////	创建人ID				
+        ////	Người tạoID				
         //public string CRTER_ID { get; set; }
-        ////	创建人姓名				
+        ////	Tên người tạo				
         //public string CRTER_NAME { get; set; }
-        ////	创建机构编号				
+        ////	Mã cơ sở tạo				
         //public string CRTE_OPTINS_NO { get; set; }
-        ////	经办人ID				
+        ////	Người xử lýID				
         //public string OPTER_ID { get; set; }
-        ////	经办人姓名				
+        ////	Tên người xử lý				
         //public string OPTER_NAME { get; set; }
-        ////	经办时间				
+        ////	Thời gian xử lý				
         //public DateTime OPT_TIME { get; set; }
-        ////	经办机构编号				
+        ////	Mã cơ sở xử lý				
         //public string OPTINS_NO { get; set; }
-        //	版本号				
+        //	Số phiên bản				
         public string VER { get; set; }
-        ////	下发标志				
+        ////	Cờ ban hành				
         //public string ISU_FLAG { get; set; }
-        ////	传输数据ID				
+        ////	Truyền dữ liệuID				
         //public string TRAM_DATA_ID { get; set; }
-        ////	生效时间				
+        ////	Thời gian có hiệu lực				
         //public DateTime? EFFT_TIME { get; set; }
-        ////	失效时间				
+        ////	Thời gian hết hiệu lực				
         //public DateTime? INVD_TIME { get; set; }
 
     }

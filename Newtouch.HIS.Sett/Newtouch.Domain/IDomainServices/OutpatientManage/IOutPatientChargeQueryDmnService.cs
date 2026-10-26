@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface IOutPatientChargeQueryDmnService
     {
         /// <summary>
-        /// 查询收费项目
+        /// Tra cứu hạng mục thu phí
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<OutPatientRegChargeVO> SelectRegChargeQuery(Pagination pagination, string kh, string fph, string xm, string syy, DateTime? createTimestart, DateTime? createTimeEnd);
 
         /// <summary>
-        /// 查询收费项目
+        /// Tra cứu hạng mục thu phí
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<OutPatientRegChargeMVO> RegChargeQuery(Pagination pagination, string kh, string fph, string jsfph, string xm, string syy, DateTime? createTimestart, DateTime? createTimeEnd, DateTime? sfrqTimestart, DateTime? sfrqTimeEnd, string zxlsh);
 
         /// <summary>
-        /// 待上传的门诊自费病人结算信息
+        /// Thông tin quyết toán bệnh nhân tự chi trả ngoại trú chờ tải lên
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="xm"></param>
@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <returns></returns>
         IList<OutPatientRegChargeMVO> ZFRegChargeQuery(Pagination pagination, string xm, DateTime? createTimestart, DateTime? createTimeEnd);
         /// <summary>
-        /// 获取结算支付方式
+        /// Lấy phương thức thanh toán quyết toán
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="jsnms"></param>

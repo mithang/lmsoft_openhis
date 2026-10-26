@@ -11,14 +11,14 @@ namespace Newtouch.HIS.Domain.IRepository.OutpatientManage
     {
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="financialInvoiceEntity"></param>
         /// <param name="fpdm"></param>
         void SubmitForm(OutpatientRegistScheduleEntity financialInvoiceEntity, int? ghpbId);
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="fpdm"></param>
         void DeleteForm(int ghpbId, string OrganizeId);

@@ -5,7 +5,7 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 门诊挂号
+    /// Đăng ký khám ngoại trú
     /// </summary>
     public interface IOutpatientRegistRepo : IRepositoryBase<OutpatientRegistEntity>
     {
@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Domain.IRepository
         OutpatientRegistEntity SelectOutPatientReg(string mzh, string orgId);
 
         /// <summary>
-        /// 根据mzh获取挂号实体
+        /// TheomzhLấy thực thể đăng ký khám
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Domain.IRepository
         List<OutpatientRegistEntity> SelectOutPatientRegList(List<int> ghnmList, string orgId);
 
         /// <summary>
-        /// 根据卡号和组织机构获取挂号信息
+        /// Lấy thông tin đăng ký khám theo số thẻ và tổ chức
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="orgId"></param>
@@ -31,23 +31,23 @@ namespace Newtouch.HIS.Domain.IRepository
         OutpatientRegistEntity SelectCFZ(string kh, string orgId);
 
         /// <summary>
-        /// 获取当前卡号当天挂号信息
+        /// Lấy thông tin đăng ký khám trong ngày của số thẻ hiện tại
         /// add HLF
         /// </summary>
-        /// <param name="kh">卡号</param>
+        /// <param name="kh">Số thẻ</param>
         /// <returns></returns>
         List<OutpatientRegistEntity> GetOutPatRegEntityList(string kh, string orgId);
 
         #region GRS门诊挂号
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="hospItemFeeEntity"></param>
         /// <param name="keyValue"></param>
         string SubmitForm(OutpatientRegistEntity OutpatientRegistEntity, int? keyValue, string pzzy, string orgId, string curUserCode, out string mzh);
 
         /// <summary>
-        /// 病人今天是否已挂号
+        /// Hôm nay bệnh nhân đã đăng ký khám hay chưa
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="orgId"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Domain.IRepository
         bool AllowRegh(string blh, string orgId);
         int UpdatePatPhone(string patid, string phone, string userCode, string organizeId);
         /// <summary>
-        /// 取消挂号
+        /// Hủy đăng ký khám
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ghnm"></param>
@@ -64,14 +64,14 @@ namespace Newtouch.HIS.Domain.IRepository
         #endregion
 
         /// <summary>
-        /// 更新门诊挂号 就诊状态、就诊医生
+        /// Cập nhật đăng ký khám ngoại trú Trạng thái khám bệnh,Bác sĩ khám bệnh
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
         void UpdateConsultationStatus(string orgId, string mzh, string jzbz, string jzys);
 
         /// <summary>
-        /// 更新门诊挂号 诊断信息
+        /// Cập nhật đăng ký khám ngoại trú Thông tin chẩn đoán
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -79,14 +79,14 @@ namespace Newtouch.HIS.Domain.IRepository
         /// <param name="zdmc"></param>
         void UpdateDiagnosis(string orgId, string mzh, string zdicd10, string zdmc);
         /// <summary>
-        /// 更新患者性质
+        /// Cập nhật tính chất bệnh nhân
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
         /// <param name="brxz"></param>
         void updatePatBrxzInfo(string orgId, string mzh, string brxz);
         /// <summary>
-        /// 门诊挂号不进行医保登记 收费时进行登记跟新自费卡为医保卡
+        /// Đăng ký khám ngoại trú không đăng ký BHYT Khi thu phí thì đăng ký cập nhật thẻ tự chi trả thành thẻ BHYT
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Domain.IRepository
         /// <param name="brxz"></param>
         void UpdateChargeMzghInfo(string orgId, string mzh, string kh,string cardtype, string brxz,string zjh,string status);
         /// <summary>
-        /// 更新挂号医保就诊id流水号
+        /// Cập nhật khám BHYT đăng ký khámidSố giao dịch
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -104,11 +104,11 @@ namespace Newtouch.HIS.Domain.IRepository
         void updateYbghjzId(string orgId, string mzh, string jzId, string jzpzlx);
 
         /// <summary>
-        /// 记录补偿序号
+        /// Ghi số thứ tự bồi thường
         /// </summary>
         /// <param name="mzh"></param>
-        /// <param name="outpId">补偿序号</param>
-        /// <param name="userCode">修改人</param>
+        /// <param name="outpId">Số thứ tự bồi thường</param>
+        /// <param name="userCode">Người sửa đổi</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         int RecordOutpId(string mzh, string outpId, string userCode, string organizeId);

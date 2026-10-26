@@ -12,11 +12,11 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
     public class OutBookScheduleVO : OutBookScheduleEntity
     {
         /// <summary>
-        /// 挂号项目名称
+        /// Tên hạng mục đăng ký khám
         /// </summary>
         public string sfxmmc { get; set; }
         /// <summary>
-        /// 诊疗项目名称
+        /// Tên hạng mục khám chữa bệnh
         /// </summary>
         public string zlxmmc { get; set; }
     }

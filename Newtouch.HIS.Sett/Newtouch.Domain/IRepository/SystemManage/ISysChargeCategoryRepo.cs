@@ -4,12 +4,12 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 收费大类
+    /// Loại lớn thu phí
     /// </summary>
     public interface ISysChargeCategoryRepo : IRepositoryBase<SysChargeCategoryVEntity>
     {
         /// <summary>
-        /// 获取收费大类列表
+        /// Lấy danh sách loại lớn thu phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="dllbs"></param>
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<SysChargeCategoryVEntity> GetList(string orgId, string dllbs = "", string zt = "");
 
         /// <summary>
-        /// 收取所有收费大类（带缓存）
+        /// Thu tất cả các loại lớn thu phí(Kèm bộ nhớ đệm)
         /// </summary>
         /// <returns></returns>
         IList<SysChargeCategoryVEntity> GetLazyList(string orgId);

@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<SysDiagnosisVEntity> GetList(string orgId);
 
         /// <summary>
-        /// 根据条件获取诊断下拉框
+        /// Lấy hộp thả xuống chẩn đoán theo điều kiện
         /// </summary>
         /// <param name="zd"></param>
         /// <returns></returns>

@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int yzId { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 

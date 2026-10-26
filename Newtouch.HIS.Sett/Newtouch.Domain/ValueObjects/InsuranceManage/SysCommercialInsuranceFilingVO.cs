@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.InsuranceManage
     public class SysCommercialInsuranceFilingVO : SysCommercialInsuranceFilingEntity
     {
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
@@ -18,13 +18,13 @@ namespace Newtouch.HIS.Domain.ValueObjects.InsuranceManage
         public string xm { get; set; }
         public string zjh { get; set; }
         /// <summary>
-        /// 出生年月
+        /// Năm tháng sinh
         /// </summary>
         public DateTime? csny { get; set; }
         public string bxName { get; set; }
 
         /// <summary>
-        /// 年龄
+        /// Tuổi
         /// </summary>
         public int? nl
         {

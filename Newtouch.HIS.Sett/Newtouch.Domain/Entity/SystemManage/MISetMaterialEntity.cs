@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Domain.Entity
         public long cl_id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -117,12 +117,12 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime? xxsxrq { get; set; }
 
         /// <summary>
-        /// 注册证有效开始日期
+        /// Ngày bắt đầu hiệu lực chứng nhận đăng ký
         /// </summary>
         public DateTime? scsxrq { get; set; }
 
         /// <summary>
-        /// 注册证有效结束日期
+        /// Ngày kết thúc hiệu lực chứng nhận đăng ký
         /// </summary>
         public DateTime? scjsrq { get; set; }
 

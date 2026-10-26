@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class OutPatientSettlePayMethodVO: OutpatientSettlementPaymentModelEntity
     {
         /// <summary>
-        /// 现金支付方式名称
+        /// Tên phương thức thanh toán tiền mặt
         /// </summary>
         public string xjzffsmc { get; set; }
     }

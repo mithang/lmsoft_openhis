@@ -6,69 +6,69 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 新农合门诊结算计算明细
+    /// Chi tiết tính toán quyết toán ngoại trú Bảo hiểm nông thôn mới
     /// </summary>
     [Table("mz_xnh_settcalcDetail")]
     public class OutpatientXnhSettlementCalcDetailEntity : IEntity<OutpatientXnhSettlementCalcDetailEntity>
     {
         /// <summary>
-        /// 主键ID
+        /// Khóa chínhID
         /// </summary>
         [Key]
         public long Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// mz_xnh_settResult表主键
+        /// mz_xnh_settResultKhóa chính bảng
         /// </summary>
         public string resultId { get; set; }
 
         /// <summary>
-        /// 计算名称
+        /// Tên tính toán
         /// </summary>
         public string calcName { get; set; }
 
         /// <summary>
-        /// 计算说明
+        /// Giải thích tính toán
         /// </summary>
         public string calcMemo { get; set; }
 
         /// <summary>
-        /// 本次计算
+        /// Tính toán lần này
         /// </summary>
         public string calcBefore { get; set; }
 
         /// <summary>
-        /// 结果
+        /// Kết quả
         /// </summary>
         public string calcAfter { get; set; }
 
         /// <summary>
-        /// 状态 1-有效  0-无效
+        /// Trạng thái 1-Hiệu lực  0-Không hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改者
+        /// Người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
     }

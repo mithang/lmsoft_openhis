@@ -3,113 +3,113 @@
 namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
 {
     /// <summary>
-    /// 已结算处方明细查询接口返回报文
+    /// Bản tin trả về của giao diện tra cứu chi tiết đơn thuốc đã quyết toán
     /// </summary>
     public class OutpatientSettledRpQueryResponseDTO
     {
         /// <summary>
-        /// 患者姓名
+        /// Tên bệnh nhân
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
         public string mzh { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 处方内码
+        /// Mã nội bộ đơn thuốc
         /// </summary>
         public int cfnm { get; set; }
 
         /// <summary>
-        /// 处方明细ID
+        /// Chi tiết đơn thuốcID
         /// </summary>
         public int cfmxId { get; set; }
 
         /// <summary>
-        /// 结算内码
+        /// Mã nội bộ quyết toán
         /// </summary>
         public int jsnm { get; set; }
 
         /// <summary>
-        /// 结算明细内码
+        /// Mã nội bộ chi tiết quyết toán
         /// </summary>
         public int jsmxnm { get; set; }
 
         /// <summary>
-        /// 收费时间
+        /// Thời gian thu phí
         /// </summary>
         public DateTime sfsj { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 药品规格
+        /// Quy cách thuốc
         /// </summary>
         public string ypgg { get; set; }
 
         /// <summary>
-        /// 用量
+        /// Liều dùng
         /// </summary>
         public decimal? yl { get; set; }
 
         /// <summary>
-        /// 用量单位
+        /// Đơn vị liều lượng
         /// </summary>
         public string yldw { get; set; }
 
         /// <summary>
-        /// 用量+用量单位
+        /// Liều dùng+Đơn vị liều lượng
         /// </summary>
         public string ylstr { get; set; }
 
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 数量单位
+        /// Đơn vị số lượng
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 数量+数量单位
+        /// Số lượng+Đơn vị số lượng
         /// </summary>
         public string slstr { get; set; }
 
         /// <summary>
-        /// 剂量
+        /// Liều lượng
         /// </summary>
         public decimal? jl { get; set; }
 
         /// <summary>
-        /// 剂量单位
+        /// Đơn vị liều dùng
         /// </summary>
         public string jldw { get; set; }
 
         /// <summary>
-        /// 剂量+剂量单位
+        /// Liều lượng+Đơn vị liều dùng
         /// </summary>
         public string jlstr { get; set; }
         public string yfcode { get; set; }

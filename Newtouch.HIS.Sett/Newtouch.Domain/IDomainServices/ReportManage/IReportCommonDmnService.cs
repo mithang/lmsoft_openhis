@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
 	    void turnInFee(string orgId, string czr, DateTime kssj, DateTime jssj);
 
-		//获取大类名称
+		//Lấy tên loại lớn
 		IList<GetDlMc> GetDlMc(string orgId);
 
 

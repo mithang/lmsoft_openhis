@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 门诊处方明细
+    /// Chi tiết đơn thuốc ngoại trú
     /// </summary>
     [Table("mz_cfmx")]
     public class OutpatientPrescriptionDetailEntity : IEntity<OutpatientPrescriptionDetailEntity>
@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int cfmxId { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -66,32 +66,32 @@ namespace Newtouch.HIS.Domain.Entity
         public string zfxz { get; set; }
 
         /// <summary>
-        /// 用量
+        /// Liều dùng
         /// </summary>
         public decimal? yl { get; set; }
 
         /// <summary>
-        /// 用量单位
+        /// Đơn vị liều lượng
         /// </summary>
         public string yldw { get; set; }
 
         /// <summary>
-        /// 剂量
+        /// Liều lượng
         /// </summary>
         public decimal? jl { get; set; }
 
         /// <summary>
-        /// 剂量单位
+        /// Đơn vị liều dùng
         /// </summary>
         public string jldw { get; set; }
 
         /// <summary>
-        /// 单位
+        /// Đơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 退药标志。0 未退 1 已退 2 部分退(尚未启用)   药房收到退药后,此标志置1,   收费处退费后，此标志不操作（未发药则仍然是0，已发药仍为1）   --2007.03.27注释 收费处退费后,此标志置1(处理未领药之处方)      --2008-01-06 如果以后做部分退（收了2盒，退1盒），必须启用2(部分退)，而且要检查所有的报表和程序处理这个标志的地方
+        /// Cờ trả thuốc.0 Chưa trả lại 1 Đã trả lại 2 Trả lại một phần(Chưa kích hoạt)   Sau khi nhà thuốc nhận trả thuốc,Đặt cờ này1,   Sau khi nơi thu phí hoàn phí,Cờ này không thao tác(Chưa phát thuốc thì vẫn là0,Đã phát thuốc vẫn là1)   --2007.03.27Chú thích Sau khi nơi thu phí hoàn phí,Đặt cờ này1(Xử lý đơn thuốc chưa lĩnh thuốc)      --2008-01-06 Nếu sau này làm trả lại một phần(Đã thu2Hộp,Trả lại1Hộp),Phải kích hoạt2(Trả lại một phần),Và phải kiểm tra tất cả các báo cáo và nơi chương trình xử lý cờ này
         /// </summary>
         public string tybz { get; set; }
 
@@ -101,50 +101,50 @@ namespace Newtouch.HIS.Domain.Entity
         public string bz { get; set; }
 
         /// <summary>
-        /// 门诊拆零数（对应多少个最小单位）
+        /// Số lẻ đã tách ngoại trú(Tương ứng với bao nhiêu đơn vị nhỏ nhất)
         /// </summary>
         public short? cls { get; set; }
 
         /// <summary>
-        /// 药房代码（应该和主表一致）（一个药品处方的药应该是一个药房）
+        /// Mã nhà thuốc(Nên nhất quán với bảng chính)(Thuốc của một đơn thuốc nên thuộc một nhà thuốc)
         /// </summary>
         public string yfdm { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 成组号 放在处方明细表
+        /// Số nhóm Đặt trong bảng chi tiết đơn thuốc
         /// </summary>
         public string czh { get; set; }
 
         /// <summary>
-        /// 就诊计划明细ID
+        /// Chi tiết kế hoạch khám bệnhID
         /// </summary>
         public string jzjhmxId { get; set; }
 
         /// <summary>
-        /// 康复类别
+        /// Loại phục hồi chức năng
         /// </summary>
         public string kflb { get; set; }
 
         /// <summary>
-        /// 用法代码
+        /// Mã cách dùng
         /// </summary>
         public string yfCode { get; set; }
         /// <summary>
-        /// 转自费标志
+        /// Cờ chuyển sang tự chi trả
         /// </summary>
         public int? zzfbz { get; set; }
         /// <summary>
-        /// 频次
+        /// Tần suất
         /// </summary>
         public string pcCode { get; set; }
         /// <summary>

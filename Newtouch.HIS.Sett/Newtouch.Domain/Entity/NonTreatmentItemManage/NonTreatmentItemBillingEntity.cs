@@ -125,7 +125,7 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime jzrq { get; set; }
 
         /// <summary>
-        /// 单价
+        /// Đơn giá
         /// </summary>
         public decimal? dj { get; set; }
 

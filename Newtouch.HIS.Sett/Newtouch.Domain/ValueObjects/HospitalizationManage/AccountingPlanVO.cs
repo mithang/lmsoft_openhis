@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
 {
     /// <summary>
-    /// 查询记账计划 门诊住院通用
+    /// Tra cứu kế hoạch ghi sổ Dùng chung ngoại trú/nội trú
     /// </summary>
     public class AccountingPlanVO
     {
@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         public int? zxzt { get; set; }
 
         /// <summary>
-        /// 门诊住院号
+        /// Số ngoại trú/nội trú
         /// </summary>
         public string mzzyh { get; set; }
 
@@ -73,7 +73,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         public int? yzxcs { get; set; }
 
         /// <summary>
-        /// 剩余次数
+        /// Số lần còn lại
         /// </summary>
         public int? sycs { get; set; }
 
@@ -88,18 +88,18 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         public string blh { get; set; }
 
         /// <summary>
-        /// 最后系统执行时间（在我们页面上操作‘执行’的时间）
+        /// Thời gian hệ thống thực hiện lần cuối(Thao tác trên trang của chúng ta'Thực hiện'Thời gian của)
         /// </summary>
         public DateTime? zhxtzxsj { get; set; }
 
         /// <summary>
-        /// 数量（单次治疗量换算过来的）
+        /// Số lượng(Được quy đổi từ liều điều trị mỗi lần)
         /// </summary>
         public int? sl { get; set; }
         public DateTime? sfrq { get; set; }
 
         /// <summary>
-        /// 医嘱性质 1临时 2长期
+        /// Tính chất y lệnh 1Tạm thời 2Dài hạn
         /// </summary>
         public string yzxz { get; set; }
     }

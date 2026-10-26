@@ -3,12 +3,12 @@
 namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
 {
    /// <summary>
-   /// 查询住院医保未审批明细返回对象
+   /// Đối tượng trả về tra cứu chi tiết BHYT nội trú chưa phê duyệt
    /// </summary>
     public class RequestApprovalVO
     {
         /// <summary>
-        /// 费用状态
+        /// Trạng thái chi phí
         /// </summary>
         public string fyzt { get; set; }
 
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         public string ypgg { get; set; }
 
         /// <summary>
-        /// 门诊住院号
+        /// Số ngoại trú/nội trú
         /// </summary>
         public DateTime createtime { get; set; }
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.ValueObjects.SystemManage
 {
     /// <summary>
-    /// 成本信息
+    /// Thông tin chi phí
     /// </summary>
     public class jgssCostVO
     {
@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.SystemManage
     }
 
     /// <summary>
-    /// 机构实收andGRS实收
+    /// Thực thu của cơ sởandGRSThực thu
     /// </summary>
     public class jgssandgrsssVO {
         public decimal jgss { get; set; }

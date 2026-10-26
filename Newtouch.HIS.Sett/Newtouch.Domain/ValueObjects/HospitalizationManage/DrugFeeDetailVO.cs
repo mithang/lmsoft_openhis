@@ -5,12 +5,12 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
     public class DrugFeeDetailVO
     {
         /// <summary>
-        /// 是否是药品 0：非 1：是
+        /// Có phải là thuốc hay không 0:không phải 1:là
         /// </summary>
         public string isYP { get; set; }
 
         /// <summary>
-        /// 编号
+        /// Số hiệu
         /// </summary>
         public int jfbbh { get; set; }
         public string yzwym { get; set; }
@@ -21,17 +21,17 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         public string dw { get; set; }
 
         /// <summary>
-        /// 单价
+        /// Đơn giá
         /// </summary>
         public decimal dj { get; set; }
         
         /// <summary>
-        /// 金额
+        /// Số tiền
         /// </summary>
         public decimal je { get; set; }
 
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public decimal sl { get; set; }
 
@@ -43,47 +43,47 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         public decimal? tsl { get; set; }
 
         /// <summary>
-        /// 收费项目
+        /// Hạng mục thu phí
         /// </summary>
         public string sfxm { get; set; }
 
         /// <summary>
-        /// 收费项目名称
+        /// Tên hạng mục thu phí
         /// </summary>
         public string sfxmmc { get; set; }
 
         /// <summary>
-        /// 收费大类
+        /// Loại lớn thu phí
         /// </summary>
         public string dl { get; set; }
 
         /// <summary>
-        /// 收费大类 名称
+        /// Loại lớn thu phí Tên
         /// </summary>
         public string dlmc { get; set; }
 
         /// <summary>
-        /// 创建日期
+        /// Ngày tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 减免金额（不 乘 数量）
+        /// Số tiền giảm miễn(không nhân Số lượng)
         /// </summary>
         public decimal jmje { get; set; }
 
         /// <summary>
-        /// 减免比例
+        /// Tỷ lệ giảm miễn
         /// </summary>
         public decimal jmbl { get; set; }
 
         /// <summary>
-        /// 自负比例
+        /// Tỷ lệ tự chi trả
         /// </summary>
         public decimal zfbl { get; set; }
 
         /// <summary>
-        /// 自负性质
+        /// Tính chất tự chi trả
         /// </summary>
         public string zfxz { get; set; }
 
@@ -94,7 +94,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         public string ybbm { get; set; }
 
         /// <summary>
-        /// 执行时间
+        /// Thời gian thực hiện
         /// </summary>
         public DateTime? tdrq { get; set; }
 

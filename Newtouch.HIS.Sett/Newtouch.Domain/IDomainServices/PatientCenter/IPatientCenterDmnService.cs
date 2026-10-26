@@ -24,10 +24,10 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region 费用信息
         IList<HospFeeUploadDetailVO> GetHospXmYpFeeVOList(Pagination pagination, string zyh, string orgId);
         /// <summary>
-        /// 计费表费用
+        /// Chi phí bảng tính phí
         /// </summary>
         /// <param name="zyh"></param>
-        /// <param name="group">1 sfdl 2 sfxm 3 sfxm+jfrq 4 无</param>
+        /// <param name="group">1 sfdl 2 sfxm 3 sfxm+jfrq 4 không</param>
         /// <param name="sfdl"></param>
         /// <param name="sfxm"></param>
         /// <param name="orgId"></param>
@@ -46,15 +46,15 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
         #region 诊断
 
-        //根据住院号获取诊断信息
+        //Lấy thông tin chẩn đoán theo số nhập viện
         IList<PatZDListVO> GetDiagLsit( string orgId, string zyh);
 
         /// <summary>
-        ///  获取患者出院诊断
+        ///  Lấy chẩn đoán xuất viện bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
-        /// <param name="zdlb">诊断类别 1入院诊断2出院诊断</param>
+        /// <param name="zdlb">Loại chẩn đoán 1Chẩn đoán nhập viện2Chẩn đoán xuất viện</param>
         /// <returns></returns>
         //IList<PatZDListVO> GetPatHisZDInfo( string zyh, string orgId, int? zdlb);
 

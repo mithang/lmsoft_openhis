@@ -5,7 +5,7 @@ using Newtouch.HIS.Domain.BusinessObjects;
 namespace Newtouch.HIS.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 门诊记账 griddto
+    /// Ghi sổ ngoại trú griddto
     /// </summary>
     public class OutpatAccGridInfoDto
     {
@@ -18,12 +18,12 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         public string sfdlCode { get; set; }
         public DateTime jzsj { get; set; }
         public string bz { get; set; }
-        public byte ttbz { get; set; }//1表示团队治疗
+        public byte ttbz { get; set; }//1Thể hiện điều trị tập thể
         public string kflb { get; set; }
         public string dw { get; set; }
         public string cfh { get; set; }
         /// <summary>
-        /// 1表示药品 2表示项目
+        /// 1Thể hiện là thuốc 2Thể hiện là hạng mục
         /// </summary>
         public string yzlx { get; set; }
         public IList<InpatientAccountingPlanItemDoctorDto> ysList { get; set; }
@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         public string jfbId { get; set; }
         public int? zll { get; set; }
         /// <summary>
-        /// 医嘱性质 1表示临时，2表示长期
+        /// Tính chất y lệnh 1Thể hiện tạm thời,2Thể hiện dài hạn
         /// </summary>
         public string yzxz { get; set; }
         public DateTime? StartDate { get; set; }
@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         public string cfh { get; set; }
         public int cfnm { get; set; }
         /// <summary>
-        /// 1表示药品 2表示项目
+        /// 1Thể hiện là thuốc 2Thể hiện là hạng mục
         /// </summary>
         public string yzlx { get; set; }
         public int? zll { get; set; }
@@ -114,7 +114,7 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         public decimal? jl { get; set; }
         public string jldw { get; set; }
         /// <summary>
-        /// 药房部门
+        /// Bộ phận nhà thuốc
         /// </summary>
         public string yfbm { get; set; }
         public decimal? zfbl { get; set; }

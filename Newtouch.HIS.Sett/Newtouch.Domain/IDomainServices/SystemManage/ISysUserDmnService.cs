@@ -7,12 +7,12 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 用户相关DmnService
+    /// Liên quan người dùngDmnService
     /// </summary>
     public interface ISysUserExDmnService
     {
         /// <summary>
-        /// 根据UserId获取系统用户可操作的药房部门Code List
+        /// TheoUserIdLấy bộ phận nhà thuốc người dùng hệ thống có thể thao tácCode List
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="orgId"></param>

@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int Kcxh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -50,22 +50,22 @@ namespace Newtouch.HIS.Domain.Entity
         public string Ypkw { get; set; }
 
         /// <summary>
-        /// 0：不控制1：控制
+        /// 0:Không kiểm soát1:Kiểm soát
         /// </summary>
         public short Kzbz { get; set; }
 
         /// <summary>
-        /// 已配药未发（领）药的数量
+        /// Đã pha thuốc chưa phát(lĩnh)Số lượng thuốc
         /// </summary>
         public int Djsl { get; set; }
 
         /// <summary>
-        /// 0：启用1：停用
+        /// 0:Kích hoạt1:Ngừng sử dụng
         /// </summary>
         public short Tybz { get; set; }
 
         /// <summary>
-        /// 来自 表 XT_YP_CRKMXK 
+        /// Đến từ Bảng XT_YP_CRKMXK 
         /// </summary>
         public int Crkmxxh { get; set; }
 
@@ -75,12 +75,12 @@ namespace Newtouch.HIS.Domain.Entity
         public decimal? jj { get; set; }
 
         /// <summary>
-        /// 对应药房药房的拆零数
+        /// Số lẻ đã tách của nhà thuốc tương ứng
         /// </summary>
         public int? zhyz { get; set; }
 
         /// <summary>
-        /// 产地目录
+        /// Danh mục nơi sản xuất
         /// </summary>
         public int? cd { get; set; }
 

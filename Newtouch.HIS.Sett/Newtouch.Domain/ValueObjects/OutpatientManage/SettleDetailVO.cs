@@ -6,67 +6,67 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
     public class SettleDetailVO
     {
         /// <summary>
-        /// 病人姓名
+        /// Tên bệnh nhân
         /// </summary>
         public string Patient_Name { get; set; }
 
         /// <summary>
-        /// 出生日期
+        /// Ngày sinh
         /// </summary>
         public string DateOfBirth { get; set; }
 
         /// <summary>
-        /// 清单打印编号
+        /// Số in danh sách
         /// </summary>
         public string No { get; set; }
 
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string Sex { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string MedicalRecordNo { get; set; }
 
         ///// <summary>
-        ///// 诊疗天数
+        ///// Số ngày khám chữa bệnh
         ///// </summary>
         //public string ZLDate { get; set; }
 
         /// <summary>
-        /// 打印 -年
+        /// In -năm
         /// </summary>
         public string Year { get; set; }
 
         /// <summary>
-        /// 打印-月
+        /// In-tháng
         /// </summary>
         public string Month { get; set; }
 
         /// <summary>
-        /// 打印-日
+        /// In-Ngày
         /// </summary>
         public string Date { get; set; }
 
         /// <summary>
-        /// 费用总额
+        /// Tổng chi phí
         /// </summary>
         public string SummOfCharges { get; set; }
 
         /// <summary>
-        /// 结算开始日期
+        /// Ngày bắt đầu quyết toán
         /// </summary>
         public DateTime jsKsrq { get; set; }
 
         /// <summary>
-        /// 结算结束日期
+        /// Ngày kết thúc quyết toán
         /// </summary>
         public DateTime jsJsrq { get; set; }
 
         /// <summary>
-        /// 诊疗天数
+        /// Số ngày khám chữa bệnh
         /// </summary>
         public string ZLDate
         {

@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.DTO
 {
     /// <summary>
-    /// 处方状态
+    /// Trạng thái đơn thuốc
     /// </summary>
     public class PrescriptionStatusDTO
     {
@@ -11,7 +11,7 @@
         public string cfzt { get; set; }
 
         /// <summary>
-        /// 1正常 0已作废
+        /// 1Bình thường 0Đã hủy
         /// </summary>
         public string cfztValue { get; set; }
 
@@ -21,7 +21,7 @@
         public string jszt { get; set; }
 
         /// <summary>
-        /// 0未结 1已结
+        /// 0Chưa quyết toán 1Đã quyết toán
         /// </summary>
         public string jsztValue { get; set; }
 

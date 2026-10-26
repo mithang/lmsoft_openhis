@@ -19,14 +19,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
     {
 
         /// <summary>
-        /// 根据病人内码找病人基本信息
+        /// Tìm thông tin cơ bản bệnh nhân theo mã nội bộ bệnh nhân
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
          OutpatAccInfoDto GetPatInfoByPatid(int patid, string orgId);
         /// <summary>
-        /// 同时保存病人和卡信息
+        /// Đồng thời lưu thông tin bệnh nhân và thẻ
         /// </summary>
         /// <returns></returns>
         void SavePatBasicCardInfo(SysHosBasicInfoVO vo, string orgId, string CreatorCode);
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         DateTime? IFCQRQISJZSJ(string zyh, string orgId);
 
         /// <summary>
-        /// 根据patid获取住院登记的病人基本信息
+        /// TheopatidLấy thông tin cơ bản bệnh nhân đăng ký nội trú
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="result"></param>
@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<SysHosBasicInfoVO> GetPatBasicCardInfo(string patid, out bool result, string OrganizeId);
 
         /// <summary>
-        /// 病人管理获取form窗体
+        /// Lấy quản lý bệnh nhânformBiểu mẫu
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="OrganizeId"></param>
@@ -51,7 +51,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         SysHosBasicInfoVO GetSyspatientFormJson(string patid, string OrganizeId,string zjh);
 
         /// <summary>
-        /// 同时保存住院基本信息和预交账户信息
+        /// Đồng thời lưu thông tin cơ bản nội trú và thông tin tài khoản tạm ứng
         /// </summary>
         /// <param name="SysHosBasicInfoVO"></param>
         /// <param name="OrganizeId"></param>
@@ -59,13 +59,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string SaveSysBasicAccountInfo(SysHosBasicInfoVO SysHosBasicInfoVO, string OrganizeId, out string res);
 
         /// <summary>
-        /// check zyh是否存在有效计费
+        /// check zyhCó tồn tại tính phí hiệu lực hay không
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         bool CheckHasFee(string zyh, string orgId);
         /// <summary>
-        /// 病人是否已入区
+        /// Bệnh nhân đã vào khu hay chưa
         /// </summary>
         /// <typeparam name="SysPatientManageSelectVO"></typeparam>
         /// <param name=""></param>
@@ -76,7 +76,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region 病人管理
 
         /// <summary>
-        /// 病人管理查询
+        /// Tra cứu quản lý bệnh nhân
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -92,14 +92,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #endregion
 
         /// <summary>
-        /// 根据住院号查询有效住院病人基本信息
+        /// Tra cứu thông tin cơ bản bệnh nhân nội trú hiệu lực theo số nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         List<SysHosBasicInfoVO> GetSysBasicByZHY(string kh, string zyh, string orgid);
 
         /// <summary>
-        /// 费用一日清 住院号浮层搜索用
+        /// Bảng kê chi phí trong ngày Dùng để tìm kiếm lớp nổi số nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgid"></param>
@@ -107,7 +107,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<SysHosBasicInfoVO> GetSysBasicVagueByZHY(string zyh, string orgid);
 
         /// <summary>
-        /// 门诊病人挂号查询
+        /// Tra cứu đăng ký khám bệnh nhân ngoại trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="flag"></param>
@@ -125,7 +125,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
             , Pagination pagination = null);
 
         /// <summary>
-        /// 住院患者查询（接口用）
+        /// Tra cứu bệnh nhân nội trú(Dùng cho giao diện)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="flag"></param>
@@ -145,7 +145,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
             , Pagination pagination = null);
 
         /// <summary>
-        /// 住院患者查询（患者查询用）
+        /// Tra cứu bệnh nhân nội trú(Dùng để tra cứu bệnh nhân)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="flag"></param>
@@ -167,7 +167,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
             , Pagination pagination = null, DateTime? ryrqkssj = null, DateTime? ryrqjssj = null,string ksmc=null,string bqmc=null);
 
         /// <summary>
-        /// 更新住院患者多诊断之主诊断
+        /// Cập nhật chẩn đoán chính trong nhiều chẩn đoán của bệnh nhân nội trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -175,23 +175,23 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void UpdatePatInpMultiDiagnosis(string orgId, string zyh, string zddm,string user);
 
         /// <summary>
-        /// 住院病人信息 分页数据
+        /// Thông tin bệnh nhân nội trú Dữ liệu phân trang
         /// </summary>
-        /// <param name="pagination">分页信息</param>
-        /// <param name="zyh">住院号</param>
-        /// <param name="xm">姓名</param>
+        /// <param name="pagination">Thông tin phân trang</param>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <param name="xm">Họ tên</param>
         /// <returns></returns>
         IList<HospPatientBasicInfoEntity> GetPatSearchList(Pagination pagination, string orgId, string zyh, string xm, string brzybzType = null);
 
         /// <summary>
-        /// 取消入院
+        /// Hủy nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
         void CancelAdmission(string zyh, string orgId);
 
         /// <summary>
-        /// 自费转医保
+        /// Tự chi trả chuyển sang BHYT
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="patid"></param>
@@ -200,7 +200,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void InpatientZFchangetoYB(string orgId, string zyh, int patid, GACardReadInfoDTO cardInfo, GuianRybl21OutInfoEntity ryblInfo);
 
         /// <summary>
-        /// 自费转新农合
+        /// Tự chi trả chuyển sang Bảo hiểm nông thôn mới
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -210,7 +210,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         bool InpatientZFchangetoXNH(string orgId, string zyh, HosPatZFToXNHVO cardInfo,
             GuianXnhS04InfoEntity ryblInfo, out string msg);
         /// <summary>
-        /// 医保转自费
+        /// BHYT chuyển sang tự chi trả
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -228,7 +228,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
          Response<string> S06submit(S06RequestDTO request, string orgId);
          S06RequestDTO ComposeS06par(SysHosBasicInfoVO vo, string orgId);
         /// <summary>
-        /// 验证新农合接口对照
+        /// Xác minh đối chiếu giao diện Bảo hiểm nông thôn mới
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="code"></param>
@@ -255,7 +255,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
         #region 医保业务
         /// <summary>
-        /// 是否首次就诊
+        /// Có phải là lần khám đầu tiên hay không
         /// </summary>
         /// <param name="sfzh"></param>
         /// <param name="xm"></param>
@@ -270,14 +270,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<OutPatientRegistrationInfoDTO> OutPatientConsultationQuery(OutPatientConsultationQueryRequest dto);
         IList<InpatientDayFeeDTO> InpatientDayFee(InpatientDayFeeRequest dto);
         /// <summary>
-        /// 根据住院号获取入院诊断信息
+        /// Lấy thông tin chẩn đoán nhập viện theo số nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="HospitalID"></param>
         /// <returns></returns>
         IList<ryzd> getRyzdByZyh(string zyh, string HospitalID);
         /// <summary>
-        /// 根据住院号获取出院诊断信息
+        /// Lấy thông tin chẩn đoán xuất viện theo số nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="HospitalID"></param>
@@ -285,21 +285,21 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<cyzd> getCyzdByZyh(string zyh, string HospitalID);
 
         /// <summary>
-        /// 门诊历史账单
+        /// Hóa đơn lịch sử ngoại trú
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         IList<MZhistorybillDTO> MZhistorybill(MZhistorybillRequest req);
 
         /// <summary>
-        /// 账单明细
+        /// Chi tiết hóa đơn
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         IList<MZhistorybillMXDTO> MZhistorybillMX(MZhistorybillMXRequest req);
 
         /// <summary>
-        /// 更新报警额
+        /// Cập nhật mức cảnh báo
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="organizeId"></param>
@@ -312,7 +312,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<HisKsZdVO> GetksZzdList(string orgid);
 
         /// <summary>
-        /// 基金结算清单上传查询
+        /// Tra cứu tải lên bảng kê quyết toán quỹ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="sczt"></param>

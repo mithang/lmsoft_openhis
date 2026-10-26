@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.BusinessObjects
 {
     /// <summary>
-    /// 住院费用 按 大类 分类
+    /// Chi phí nội trú theo Loại lớn Phân loại
     /// </summary>
     public class HospFeeClassifyWithDLBO
     {
@@ -19,17 +19,17 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         public string dlmc { get; set; }
 
         /// <summary>
-        /// 大类结算金额合计（未除去减免的）
+        /// Tổng số tiền quyết toán loại lớn(Chưa trừ phần giảm miễn)
         /// </summary>
         public decimal jsje { get; set; }
 
         /// <summary>
-        /// 项目计费列表
+        /// Danh sách tính phí hạng mục
         /// </summary>
         public IList<HospItemFeeDetailVO> ItemFeeList { get; set; }
 
         /// <summary>
-        /// 药品计费列表
+        /// Danh sách tính phí thuốc
         /// </summary>
         public IList<HospMedicinFeeDetailVO> MedicinFeeList { get; set; }
 

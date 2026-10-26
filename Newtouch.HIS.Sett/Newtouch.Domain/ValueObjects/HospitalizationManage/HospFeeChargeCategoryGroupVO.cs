@@ -3,22 +3,22 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 住院费用 按dl分组
+    /// Chi phí nội trú theodlNhóm
     /// </summary>
     public class HospFeeChargeCategoryGroupVO
     {
         /// <summary>
-        /// 收费大类编码
+        /// Mã loại lớn thu phí
         /// </summary>
         public string dlCode { get; set; }
 
         /// <summary>
-        /// 收费大类名称
+        /// Tên loại lớn thu phí
         /// </summary>
         public string dlmc { get; set; }
 
         /// <summary>
-        /// 金额
+        /// Số tiền
         /// </summary>
         public decimal je { get; set; }
     }
@@ -32,14 +32,14 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public decimal sl { get; set; }
         public string jfdw { get; set; }
         /// <summary>
-        /// 自负性质
+        /// Tính chất tự chi trả
         /// </summary>
         public string zfxz { get; set; }
         public string gg { get; set; }
         public string zzfbz { get; set; }
     }
     /// <summary>
-    /// 费用上传
+    /// Tải lên chi phí
     /// </summary>
     public class HospFeeUploadDetailVO
     {
@@ -59,21 +59,21 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string gjybdm { get; set; }
         public string ybdm { get; set; }
         /// <summary>
-        /// 自费性质 4:甲 5:已 6:丙 1:自费
+        /// Tính chất tự chi trả 4:Giáp 5:đã 6:Bính 1:Tự chi trả
         /// </summary>
         public string zfxz { get; set; }
         /// <summary>
-        /// 医保上传状态 1: 已上传  0:未上传
+        /// Trạng thái tải lên BHYT 1: Đã tải lên  0:Chưa tải lên
         /// </summary>
         public string ybsczt { get; set; }
         public string zzfbz { get; set; }
         /// <summary>
-        /// 费用上传记录表中jfbbh
+        /// Trong bảng bản ghi tải lên chi phíjfbbh
         /// </summary>
         public string feedetl_sn { get; set; }
         public string dlmc { get; set; }
         /// <summary>
-        /// 入参表zyh
+        /// Bảng tham số đầu vàozyh
         /// </summary>
         public string zyh { get; set; }
     }

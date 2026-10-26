@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 科室
+    /// Khoa
     /// </summary>
     [Table("xt_ks")]
     [Obsolete("please use the view")]
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int ksbh { get; set; }
 
         /// <summary>
-        /// 门诊住院科室以数字组成，其他行政等科室以字母开头
+        /// Khoa ngoại trú/nội trú gồm các chữ số,Các khoa hành chính khác bắt đầu bằng chữ cái
         /// </summary>
         public string ks { get; set; }
 
@@ -33,27 +33,27 @@ namespace Newtouch.HIS.Domain.Entity
         public string py { get; set; }
 
         /// <summary>
-        /// 0 通用 1 仅门诊 2 仅住院 3 门诊住院皆不可用（行政科室）
+        /// 0 Dùng chung 1 Chỉ ngoại trú 2 Chỉ nội trú 3 Ngoại trú và nội trú đều không khả dụng(Khoa hành chính)
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 0 非医技科室 1 医技科室 
+        /// 0 Khoa không phải kỹ thuật y tế 1 Khoa kỹ thuật y tế 
         /// </summary>
         public string yjbz { get; set; }
 
         /// <summary>
-        /// 0 不可用 1 可用
+        /// 0 Không khả dụng 1 Khả dụng
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 0.未控制 1.控制
+        /// 0.Chưa kiểm soát 1.Kiểm soát
         /// </summary>
         public byte? xbkz { get; set; }
 
         /// <summary>
-        /// 0.未设定 1.儿科
+        /// 0.Chưa thiết lập 1.Khoa nhi
         /// </summary>
         public byte? tsksdy { get; set; }
 

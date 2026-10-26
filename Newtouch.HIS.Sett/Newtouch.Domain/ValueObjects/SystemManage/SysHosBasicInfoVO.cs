@@ -5,41 +5,41 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class SysHosBasicInfoVO
     {
         /// <summary>
-        /// 卡类型 对应枚举EnumCardType
+        /// Loại thẻ Enum tương ứngEnumCardType
         /// </summary>
         public string cardtype { get; set; }
         public string CardTypeName { get; set; }
         /// <summary>
-        /// 病人内码
+        /// Mã nội bộ bệnh nhân
         /// </summary>
         public int? patid { get; set; }
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
 
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh2 { get; set; }
 
         /// <summary>
-        /// 病人性质
+        /// Tính chất bệnh nhân
         /// </summary>
         public string brxz { get; set; }
 
         /// <summary>
-        /// 大病  add by caishanshan  暂加
+        /// Bệnh nặng  add by caishanshan  Tạm thêm
         /// </summary>
         public string db { get; set; }
 
         /// <summary>
-        /// 大病诊断  add by caishanshan  暂加
+        /// Chẩn đoán bệnh nặng  add by caishanshan  Tạm thêm
         /// </summary>
         public string dbzd { get; set; }
 
@@ -54,48 +54,48 @@ namespace Newtouch.HIS.Domain.ValueObjects
 
         #region 病人基本信息
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// 出生年月
+        /// Năm tháng sinh
         /// </summary>
         public string csny { get; set; }
         /// <summary>
-        /// 身份证
+        /// CMND/CCCD
         /// </summary>
         public string zjh { get; set; }
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string xb { get; set; }
         /// <summary>
-        /// 年龄
+        /// Tuổi
         /// </summary>
         public short? nl { get; set; }
 
         public string zjlx { get; set; }
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
         /// <summary>
-        /// 电话
+        /// Điện thoại
         /// </summary>
         public string dh { get; set; }
         /// <summary>
-        /// 地域
+        /// Khu vực
         /// </summary>
         public string dy { get; set; }
 
         public int? dybh { get; set; }
 
         /// <summary>
-        /// 地域
+        /// Khu vực
         /// </summary>
         public string dymc { get; set; }
         /// <summary>
-        /// 婚否
+        /// Tình trạng hôn nhân
         /// </summary>
         public byte? hf { get; set; }
 
@@ -122,18 +122,18 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string jjllr { get; set; }
         public string jjllrgx { get; set; }
         /// <summary>
-        /// 邮编
+        /// Mã bưu điện
         /// </summary>
         public string cs_yb { get; set; }
         public string hu_yb { get; set; }
         public string xian_yb { get; set; }
         public string dwyb { get; set; }
         /// <summary>
-        /// 疾病史
+        /// Tiền sử bệnh
         /// </summary>
         public string jbs { get; set; }
         /// <summary>
-        /// 籍贯
+        /// Quê quán
         /// </summary>
         public string jg { get; set; }
 
@@ -141,27 +141,27 @@ namespace Newtouch.HIS.Domain.ValueObjects
 
         #region 住院基本信息
         /// <summary>
-        /// 健康教练
+        /// Huấn luyện viên sức khỏe
         /// </summary>
         public string jkjl { get; set; }
 
         /// <summary>
-        /// 健康教练名称
+        /// Tên huấn luyện viên sức khỏe
         /// </summary>
         public string jkjlmc { get; set; }
 
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         public string doctor { get; set; }
 
         /// <summary>
-        /// 医生名称
+        /// Tên bác sĩ
         /// </summary>
         public string doctormc { get; set; }
 
         /// <summary>
-        /// 床位
+        /// Giường bệnh
         /// </summary>
         public string cw { get; set; }
 
@@ -171,12 +171,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string ks { get; set; }
 
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 因为入院时不确定床位，所以先保存病区，以使本区护士可以操作此病人
+        /// Vì khi nhập viện chưa xác định giường bệnh,Vì vậy lưu khu bệnh trước,Để y tá khu này có thể thao tác bệnh nhân này
         /// </summary>
         public string bq { get; set; }
 
@@ -193,7 +193,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string cyrq { get; set; }
 
         /// <summary>
-        /// 入院途径 枚举EnumRYTJ
+        /// Đường nhập viện EnumEnumRYTJ
         /// </summary>
         public string rytj { get; set; }
 
@@ -283,7 +283,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string jjlxr_dz { get; set; }
 
         /// <summary>
-        /// 枚举EnumHF
+        /// EnumEnumHF
         /// </summary>
         public int? hy { get; set; }
 
@@ -394,38 +394,38 @@ namespace Newtouch.HIS.Domain.ValueObjects
         #endregion
 
         /// <summary>
-        /// 社保编号
+        /// Số BHXH
         /// </summary>
         public string sbbh { get; set; }
 
         /// <summary>
-        /// 参保地编码
+        /// Mã nơi tham gia bảo hiểm
         /// </summary>
         public string cbdbm { get; set; }
 
         public string zxsbbf { get; set; }
         /// <summary>
-        /// 新农合个人编码
+        /// Mã cá nhân Bảo hiểm nông thôn mới
         /// </summary>
         public string xnhgrbm { get; set; }
 
         public string xnhylzh { get; set; }
         /// <summary>
-        /// 新农合返回的住院补偿序号
+        /// Số thứ tự bồi thường nội trú Bảo hiểm nông thôn mới trả về
         /// </summary>
         public string inpId { get; set; }
 		/// <summary>
-		/// 参保类别
+		/// Loại tham gia bảo hiểm
 		/// </summary>
 	    public string cblb { get; set; }
 		/// <summary>
-		/// 转出医院
+		/// Bệnh viện chuyển đi
 		/// </summary>
 		public string zcyy { get; set; }
         public string dwbh { get; set; }
         public string grbh { get; set; }
         /// <summary>
-        /// 险种类型
+        /// Loại hình bảo hiểm
         /// </summary>
         public string xzlx { get; set; }
         public string jzlx { get; set; }
@@ -443,16 +443,16 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string zcbz { get; set; }
         public DateTime? syrq { get; set; }
         /// <summary>
-        /// yktmodify 修改一卡通信息/ yktregister 新建一卡通信息
-        /// /yktcardregister 卡信息新建
+        /// yktmodify Sửa thông tin thẻ liên thông/ yktregister Tạo mới thông tin thẻ liên thông
+        /// /yktcardregister Tạo mới thông tin thẻ
         /// </summary>
         public string yktbz { get; set; }
         /// <summary>
-        /// 是否第三方健卡 Y:是 N:否
+        /// Có phải là thẻ sức khỏe bên thứ ba hay không Y:là N:không
         /// </summary>
         public string isdsfly { get; set; }
         /// <summary>
-        /// 账户标志
+        /// Cờ tài khoản
         /// </summary>
         public string accountattr { get; set; }
 

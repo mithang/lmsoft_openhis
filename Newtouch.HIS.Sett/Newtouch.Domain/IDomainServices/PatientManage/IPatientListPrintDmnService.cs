@@ -7,7 +7,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.PatientManage
     public interface IPatientListPrintDmnService
     {
         /// <summary>
-        /// 获取患者列表
+        /// Lấy danh sách bệnh nhân
         /// </summary>
         /// <returns></returns>
         List<PatientListOutPutVO> PatientList(PatientListInputVO PatientListInputVO);

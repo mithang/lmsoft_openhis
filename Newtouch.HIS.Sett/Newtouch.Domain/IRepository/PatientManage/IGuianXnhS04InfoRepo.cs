@@ -12,7 +12,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IGuianXnhS04InfoRepo : IRepositoryBase<GuianXnhS04InfoEntity>
     {
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="hospItemFeeEntity"></param>
         /// <param name="keyValue"></param>

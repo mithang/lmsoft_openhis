@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
     {
     }
     /// <summary>
-    /// 本地查询所用
+    /// Dùng cho tra cứu cục bộ
     /// </summary>
     public class GuiAnMzjsPatInfoDto
     {
@@ -27,64 +27,64 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
     }
 
     /// <summary>
-    /// 医保结算上传
+    /// Tải lên quyết toán BHYT
     /// </summary>
     public class InPtmzjs
     {
         /// <summary>
-        /// 就诊编号
+        /// Số khám bệnh
         /// </summary>
         public string prm_akc190 { get; set; }
         /// <summary>
-        /// 个人编号
+        /// Số cá nhân
         /// </summary>
         public string prm_aac001 { get; set; }
         /// <summary>
-        /// 门诊诊断信息
+        /// Thông tin chẩn đoán ngoại trú
         /// </summary>
         public string prm_ykc173 { get; set; }
         /// <summary>
-        /// HIS 费用总额
+        /// HIS Tổng chi phí
         /// </summary>
         public string prm_hisfyze { get; set; }
         /// <summary>
-        /// 支付类别
+        /// Loại thanh toán
         /// </summary>
         public string prm_aka130 { get; set; }
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string prm_yka110 { get; set; }
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string prm_aae013 { get; set; }
         /// <summary>
-        /// 经办人编码
+        /// Mã người xử lý
         /// </summary>
         public string prm_aae011 { get; set; }
         /// <summary>
-        /// 经办人姓名
+        /// Tên người xử lý
         /// </summary>
         public string prm_ykc141 { get; set; }
         /// <summary>
-        /// 执行社会保险办法
+        /// Thực hiện phương pháp BHXH
         /// </summary>
         public string prm_ykb065 { get; set; }
         /// <summary>
-        /// 结算明细
+        /// Chi tiết quyết toán
         /// </summary>
         public List<FeejsMx> row { get; set; }
     }
 
     /// <summary>
-    /// 费用结算明细
+    /// Chi tiết quyết toán chi phí
     /// </summary>
     public class FeejsMx
     {
 
         /// <summary>
-        /// 记账流水号
+        /// Số giao dịch ghi sổ
         /// </summary>
         public string yka105 { get; set; }
         /// <summary>
@@ -96,128 +96,128 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
         /// </summary>
         public string ykd126 { get; set; }
         /// <summary>
-        /// 医保通用项目编码_YKA002
+        /// Mã hạng mục chung BHYT_YKA002
         /// </summary>
         public string yka002 { get; set; }
         /// <summary>
-        /// 医保通用项目名称_YKA003
+        /// Tên hạng mục chung BHYT_YKA003
         /// </summary>
         public string yka003 { get; set; }
         /// <summary>
-        /// 数量_AKC226
+        /// Số lượng_AKC226
         /// </summary>
         public decimal akc226 { get; set; }
         /// <summary>
-        /// 实际价格_AKC225
+        /// Giá thực tế_AKC225
         /// </summary>
         public decimal akc225 { get; set; }
         /// <summary>
-        /// 明细项目费用总额_YKA315
+        /// Tổng chi phí hạng mục chi tiết_YKA315
         /// </summary>
         public decimal yka315 { get; set; }
         /// <summary>
-        /// 开单科室编码_YKA097
+        /// Mã khoa kê đơn_YKA097
         /// </summary>
         public string yka097 { get; set; }
         /// <summary>
-        /// 开单科室名称_YKA098
+        /// Tên khoa kê đơn_YKA098
         /// </summary>
         public string yka098 { get; set; }
         /// <summary>
-        /// 开单医生公民身份号码
+        /// Số CMND của bác sĩ kê đơn
         /// </summary>
         public string ykd102 { get; set; }
         /// <summary>
-        /// 开单医生姓名
+        /// Tên bác sĩ kê đơn
         /// </summary>
         public string yka099 { get; set; }
         /// <summary>
-        /// 受单科室编码_YKA100
+        /// Mã khoa nhận đơn_YKA100
         /// </summary>
         public string yka100 { get; set; }
         /// <summary>
-        /// 受单科室名称_YKA101
+        /// Tên khoa nhận đơn_YKA101
         /// </summary>
         public string yka101 { get; set; }
         /// <summary>
-        /// 受单医生公民身份号码
+        /// Số CMND của bác sĩ nhận đơn
         /// </summary>
         public string ykd106 { get; set; }
         /// <summary>
-        /// 受单医生姓名
+        /// Tên bác sĩ nhận đơn
         /// </summary>
         public string yka102 { get; set; }
         /// <summary>
-        /// 明细发生时间_YKE123
+        /// Thời gian phát sinh chi tiết_YKE123
         /// </summary>
         public string yke123 { get; set; }
         /// <summary>
-        /// 经办人姓名_YKC141
+        /// Tên người xử lý_YKC141
         /// </summary>
         public string ykc141 { get; set; }
         /// <summary>
-        /// 经办时间_AAE036
+        /// Thời gian xử lý_AAE036
         /// </summary>
         public string aae036 { get; set; }
         /// <summary>
-        /// 备注_AAE013
+        /// Ghi chú_AAE013
         /// </summary>
         public string aae013 { get; set; }
         /// <summary>
-        /// 中药使用方式
+        /// Cách dùng thuốc Trung y
         /// </summary>
         public string yke201 { get; set; }
         /// <summary>
-        /// 最小计价单位
+        /// Đơn vị tính giá nhỏ nhất
         /// </summary>
         public string yka295 { get; set; }
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string aka074 { get; set; }
         /// <summary>
-        /// 剂型
+        /// Dạng bào chế
         /// </summary>
         public string aka070 { get; set; }
         /// <summary>
-        /// 剂型名称
+        /// Tên dạng bào chế
         /// </summary>
         public string yae374 { get; set; }
         /// <summary>
-        /// 是否医院制剂
+        /// Có phải là chế phẩm của bệnh viện hay không
         /// </summary>
         public string yke009 { get; set; }
         /// <summary>
-        /// 医院审批标志
+        /// Cờ phê duyệt bệnh viện
         /// </summary>
         public string yke186 { get; set; }
     }
 
     /// <summary>
-    /// 返回前端数据整合：医保+自立
+    /// Trả về tích hợp dữ liệu frontend:BHYT+Tự lập
     /// </summary>
     public class guianMainAllOfMzjs
     {
         /// <summary>
-        /// 退款总金额
+        /// Tổng số tiền hoàn tiền
         /// </summary>
         public decimal? tkzje { get; set; }
         /// <summary>
-        /// 再次结算医保总金额
+        /// Tổng số tiền BHYT quyết toán lại
         /// </summary>
         public decimal? ybzje { get; set; }
         /// <summary>
-        /// 再次结算自立总金额
+        /// Tổng số tiền tự lập quyết toán lại
         /// </summary>
         public decimal? zlzje { get; set; }
 
         /// <summary>
-        /// 自立项目列表
+        /// Danh sách hạng mục tự lập
         /// </summary>
         public List<FeejsMx> guianZLMainOfMzjs;
 
         /// <summary>
-        /// 医保项目列表
+        /// Danh sách hạng mục BHYT
         /// </summary>
         public InPtmzjs guianYBMainOfMzjs;
     }

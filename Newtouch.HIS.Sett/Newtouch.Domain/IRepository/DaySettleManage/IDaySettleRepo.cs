@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IDaySettleMxRepo : IRepositoryBase<DaySettleMxEntity>
     {
         /// <summary>
-        /// 出院结算时检查是否有未完成且未终止的执行计划
+        /// Khi quyết toán xuất viện, kiểm tra xem có kế hoạch thực hiện chưa hoàn thành và chưa chấm dứt hay không
         /// </summary>
         void CheckAccountingPlanDetailStatus(string zyh, string orgId);
     }

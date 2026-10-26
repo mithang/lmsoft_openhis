@@ -1,76 +1,76 @@
 ﻿/**********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description：门诊挂号项目实体 
-// Author：HLF
-// CreateDate： 2016/12/26 16:07:31 
+// Copyright (C) 2016 Newtouch Bảo lưu bản quyền. 
+// Description:Thực thể hạng mục đăng ký khám ngoại trú 
+// Author:HLF
+// CreateDate: 2016/12/26 16:07:31 
 //**********************************************************/
 using System;
 
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 门诊挂号项目实体
+    /// Thực thể hạng mục đăng ký khám ngoại trú
     /// </summary>
     public class OutPatChargeItemVO
     {
         /// <summary>
-        /// 挂号内码
+        /// Mã nội bộ đăng ký khám
         /// </summary>
         public int ghnm { get; set; }
 
         /// <summary>
-        /// 科室编号
+        /// Mã khoa
         /// </summary>
         public int ksbh { get; set; }
 
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// 医生编号
+        /// Mã bác sĩ
         /// </summary>
         public string ys { get; set; }
 
         /// <summary>
-        /// 门急诊标志
+        /// Cờ khám ngoại trú/cấp cứu
         /// </summary>
         public string mjzbz { get; set; }
 
         /// <summary>
-        /// 大病项目
+        /// Hạng mục bệnh nặng
         /// </summary>
         public string dbxm { get; set; }
 
         /// <summary>
-        /// 复诊标志
+        /// Cờ tái khám
         /// </summary>
         public Byte fzbz { get; set; }
 
         /// <summary>
-        /// 创建日期
+        /// Ngày tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 挂号科室  组合字段
+        /// Khoa đăng ký khám  Trường tổ hợp
         /// </summary>
         public string gh_ks { get; set; }
 
         /// <summary>
-        /// 挂号显示名称
+        /// Tên hiển thị đăng ký khám
         /// </summary>
         public string ghName { get; set; }
 
         /// <summary>
-        /// 科室显示名称
+        /// Tên hiển thị khoa
         /// </summary>
         public string ksName { get; set; }
 
 
         /// <summary>
-        /// 医生名称
+        /// Tên bác sĩ
         /// </summary>
         public string ysName { get; set; }
          

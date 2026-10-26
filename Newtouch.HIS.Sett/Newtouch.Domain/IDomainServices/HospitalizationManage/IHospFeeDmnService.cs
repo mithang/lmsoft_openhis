@@ -4,46 +4,46 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 住院计费 DmnService
+    /// Tính phí nội trú DmnService
     /// </summary>
     public interface IHospFeeDmnService
     {
         /// <summary>
-        /// 根据住院获取住院的项目计费 的 详细信息 列表（所有）
+        /// Lấy tính phí hạng mục nội trú theo số nhập viện của Thông tin chi tiết Danh sách(Tất cả)
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         IList<HospItemFeeDetailVO> GetAllItemFeeDetailVOList(string zyh, string orgId);
 
         /// <summary>
-        /// 根据住院获取住院的项目计费 的 详细信息 列表（含退费）
+        /// Lấy tính phí hạng mục nội trú theo số nhập viện của Thông tin chi tiết Danh sách(Bao gồm hoàn phí)
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         IList<HospItemFeeDetailVO> GetItemFeeDetailVOList(string zyh, string orgId);
 
         /// <summary>
-        /// 根据住院获取住院的药品计费 的 详细信息 列表（所有）
+        /// Lấy tính phí thuốc nội trú theo số nhập viện của Thông tin chi tiết Danh sách(Tất cả)
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         IList<HospMedicinFeeDetailVO> GetAllMedicinFeeDetailVOList(string zyh, string orgId);
 
         /// <summary>
-        /// 根据住院获取住院的药品计费 的 详细信息 列表（含退费）
+        /// Lấy tính phí thuốc nội trú theo số nhập viện của Thông tin chi tiết Danh sách(Bao gồm hoàn phí)
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         IList<HospItemFeeDetailVO> GetMedicinFeeDetailVOList(string zyh, string orgId);
         /// <summary>
-        /// 同步最新CPOE项目费用
+        /// Đồng bộ mới nhấtCPOEChi phí hạng mục
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
         void SyncPatFee(string orgId, string zyh,int zxtype);
 
         /// <summary>
-        /// check是否 产生非医保相关费用
+        /// checkCó hay không Phát sinh chi phí không liên quan BHYT
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

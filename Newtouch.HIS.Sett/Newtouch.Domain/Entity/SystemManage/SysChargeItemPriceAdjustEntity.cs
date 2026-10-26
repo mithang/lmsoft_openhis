@@ -6,100 +6,100 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统收费项目调价
+    /// Điều chỉnh giá hạng mục thu phí hệ thống
     /// </summary>
     [Table("xt_sfxmtj")]
     public class SysChargeItemPriceAdjustEntity : IEntity<SysChargeItemPriceAdjustEntity>
     {
         /// <summary>
-        /// 调价编号
+        /// Mã điều chỉnh giá
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int tjbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 收费项目
+        /// Hạng mục thu phí
         /// </summary>
         public string sfxm { get; set; }
 
         /// <summary>
-        /// 收费项目名称
+        /// Tên hạng mục thu phí
         /// </summary>
         public string sfxmmc { get; set; }
 
         /// <summary>
-        /// 单价
+        /// Đơn giá
         /// </summary>
         public decimal dj { get; set; }
 
         /// <summary>
-        /// 自负比例
-        /// 确定自负现金比例，无关这部分的性质（分类自负、自理）   见字段zfxz      注意：当自负比例为负数时，表示定额自负   (例：某材料12300，可报10000,那么自负比例＝-2300)
+        /// Tỷ lệ tự chi trả
+        /// Xác định tỷ lệ tiền mặt tự chi trả,Không liên quan đến tính chất của phần này(Tự chi trả theo phân loại,Tự lo)   Xem trườngzfxz      Chú ý:Khi tỷ lệ tự chi trả là số âm,Thể hiện mức tự chi trả cố định   (Ví dụ:Một loại vật tư nào đó12300,Được thanh toán10000,thì tỷ lệ tự chi trả＝-2300)
         /// </summary>
         public decimal? zfbl { get; set; }
 
         /// <summary>
-        /// 自负性质
-        /// 确定自负部分（费用×自负比例）的性质   1 自理 2 分类自负 3 绝对自理（处理离休专家、特需挂号费）      （费用×（1－自负比例） 为可记帐部分）
+        /// Tính chất tự chi trả
+        /// Xác định phần tự chi trả(Chi phí×Tỷ lệ tự chi trả)Tính chất của   1 Tự lo 2 Tự chi trả theo phân loại 3 Tự lo tuyệt đối(Xử lý chuyên gia nghỉ hưu,Phí đăng ký khám đặc biệt)      (Chi phí×(1－Tỷ lệ tự chi trả) Là phần được ghi sổ)
         /// </summary>
         public string zfxz { get; set; }
 
         /// <summary>
-        /// 状态
-        /// 0：无效  1：有效
+        /// Trạng thái
+        /// 0:Không hiệu lực  1:Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 执行标志
-        /// 0：未执行  1：已执行
+        /// Cờ thực hiện
+        /// 0:Chưa thực hiện  1:Đã thực hiện
         /// </summary>
         public string zxbz { get; set; }
 
         /// <summary>
-        /// 执行日期
+        /// Ngày thực hiện
         /// </summary>
         public DateTime zxrq { get; set; }
 
         /// <summary>
-        /// 定点生效日期
+        /// Ngày có hiệu lực tại điểm chỉ định
         /// </summary>
         public DateTime ddsxrq { get; set; }
 
         /// <summary>
-        /// 生效标志
-        /// 0：即时生效  1：定点生效
+        /// Cờ có hiệu lực
+        /// 0:Có hiệu lực ngay  1:Có hiệu lực tại điểm chỉ định
         /// </summary>
         public string sxbz { get; set; }
 
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 

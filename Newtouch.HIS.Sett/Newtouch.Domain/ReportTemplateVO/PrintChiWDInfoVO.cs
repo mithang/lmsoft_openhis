@@ -3,22 +3,22 @@
     public class PrintChiWDInfoVO
     {
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 出生日期
+        /// Ngày sinh
         /// </summary>
         public string csrq { get; set; }
       
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string xb { get; set; }
 

@@ -6,13 +6,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 门诊结算医保交易费用
+    /// Chi phí giao dịch BHYT quyết toán ngoại trú
     /// </summary>
     [Table("mz_js_ybjyfy")]
     public class OutpatientSettlementYBFeeEntity : IEntity<OutpatientSettlementYBFeeEntity>
     {
         /// <summary>
-        /// 费用内码
+        /// Mã nội bộ chi phí
         /// </summary>
         [Key]
         public int ybfynm { get; set; }
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Domain.Entity
         /// </summary>
         public int jsnm { get; set; }
         /// <summary>
-        /// 医保结算号（医保返回的）
+        /// Số quyết toán BHYT(BHYT trả về)
         /// </summary>
         public string ybjsh { get; set; }
         /// <summary>
@@ -29,63 +29,63 @@ namespace Newtouch.HIS.Domain.Entity
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 总费用
+        /// Tổng chi phí
         /// </summary>
         public decimal? ZFY { get; set; }
         /// <summary>
-        /// 现金支付
+        /// Thanh toán tiền mặt
         /// </summary>
         public decimal? XJZF { get; set; }
         /// <summary>
-        /// 一般费用（居保：医保费用）
+        /// Chi phí thông thường(Bảo hiểm cư dân:Chi phí BHYT)
         /// </summary>
         public decimal? YBFY { get; set; }
         /// <summary>
-        /// 特殊费用
+        /// Chi phí đặc biệt
         /// </summary>
         public decimal? TSFY { get; set; }
         /// <summary>
-        /// 基本支付（居保：账户支付）
+        /// Chi trả cơ bản(Bảo hiểm cư dân:Thanh toán từ tài khoản)
         /// </summary>
         public decimal? JBZF { get; set; }
         /// <summary>
-        /// 公补支付
+        /// Thanh toán trợ cấp công
         /// </summary>
         public decimal? GBZF { get; set; }
         /// <summary>
-        /// 门诊自负段一般可报费用累计(居保起付线)
+        /// Lũy kế chi phí thông thường được thanh toán trong đoạn tự chi trả ngoại trú(Mức khởi điểm bảo hiểm cư dân)
         /// </summary>
         public decimal? SUMZFDYBFY { get; set; }
         /// <summary>
-        /// 门诊自负段内一般可报费用（居保：本次门诊自负段）
+        /// Chi phí thông thường được thanh toán trong đoạn tự chi trả ngoại trú(Bảo hiểm cư dân:Đoạn tự chi trả ngoại trú lần này)
         /// </summary>
         public decimal? ZFDYBFY { get; set; }
         /// <summary>
-        /// 基本余额
+        /// Số dư cơ bản
         /// </summary>
         public decimal? JBYE { get; set; }
         /// <summary>
-        /// 公补余额
+        /// Số dư trợ cấp công
         /// </summary>
         public decimal? GBYE { get; set; }
         /// <summary>
-        /// 可到中心报销一般费用
+        /// Có thể đến trung tâm hoàn trả chi phí thông thường
         /// </summary>
         public decimal? KBXYBFY { get; set; }
         /// <summary>
-        /// 可到中心报销特殊费用
+        /// Có thể đến trung tâm hoàn trả chi phí đặc biệt
         /// </summary>
         public decimal? KBXTSFY { get; set; }
         /// <summary>
-        /// （居保）统筹支付
+        /// (Bảo hiểm cư dân)Chi trả từ quỹ chung
         /// </summary>
         public decimal? TCZF { get; set; }
         /// <summary>
-        /// （居保）救助(优抚)支付
+        /// (Bảo hiểm cư dân)Cứu trợ(Ưu đãi)Thanh toán
         /// </summary>
         public decimal? JZZF { get; set; }
         /// <summary>
-        /// （居保）大病补充支付
+        /// (Bảo hiểm cư dân)Thanh toán bổ sung bệnh nặng
         /// </summary>
         public decimal? DKC023 { get; set; }
 

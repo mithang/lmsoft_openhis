@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.IRepository.SystemManage
     public interface ISysUserRepo
     {
         /// <summary>
-        /// 返回一个实体
+        /// Trả về một thực thể
         /// </summary>
         /// <param name="topOrgId"></param>
         /// <param name="account"></param>

@@ -10,78 +10,78 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.Entity.OutpatientManage
 {
 	/// <summary>
-	/// 重庆医保账户抵用落地
+	/// Khấu trừ tài khoản BHYT Trùng Khánh và ghi nhận
 	/// </summary>
 	[Table("cqyb_OutPut23")]
 	public class CqybSett23Entity : IEntity<CqybSett23Entity>
 	{
 		/// <summary>
-		/// 主键ID
+		/// Khóa chínhID
 		/// </summary>
 		[Key]
 		public int Id { get; set; }
 		/// <summary>
-		/// 组织机构代码
+		/// Mã tổ chức
 		/// </summary>
 		public string OrganizeId { get; set; }
 		/// <summary>
-		/// 结算内码
+		/// Mã nội bộ quyết toán
 		/// </summary>
 		public int jsnm { get; set; }
 		/// <summary>
-		/// 门诊住院号
+		/// Số ngoại trú/nội trú
 		/// </summary> 
 		public string zymzh { get; set; }
         /// <summary>
-        /// 本次抵用金额
+        /// Số tiền khấu trừ lần này
         /// </summary>
         public decimal? bcdyje { get; set; }
         /// <summary>
-        /// 抵用人姓名
+        /// Tên người khấu trừ
         /// </summary>
         public string dyrxm { get; set; }
         /// <summary>
-        /// 抵用人身份证号
+        /// Số CMND người khấu trừ
         /// </summary>
         public string dyrsfzh { get; set; }
         /// <summary>
-        /// 抵用人账户余额
+        /// Số dư tài khoản người khấu trừ
         /// </summary>
         public decimal? dyrzhye { get; set; }
         /// <summary>
-        /// 抵用交易流水号
+        /// Số giao dịch khấu trừ
         /// </summary>
         public string dyjylsh { get; set; }
         /// <summary>
-        /// 已抵用总金额
+        /// Tổng số tiền đã khấu trừ
         /// </summary>
         public decimal? ydyzje { get; set; }
         /// <summary>
-        /// 结算类型 0挂号 1门诊 2 住院
+        /// Loại quyết toán 0Đăng ký khám 1Khám ngoại trú 2 Nhập viện
         /// </summary>
         public string jslx { get; set; }
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 		/// <summary>
-		/// 创建时间
+		/// Thời gian tạo
 		/// </summary>
 		public DateTime? CreateTime { get; set; }
 		/// <summary>
-		/// 最后修改时间
+		/// Thời gian sửa đổi lần cuối
 		/// </summary>
 		public DateTime? LastModifyTime { get; set; }
 		/// <summary>
-		/// 最后修改用户ID
+		/// Người sửa đổi lần cuốiID
 		/// </summary>
 		public string LastModifierCode { get; set; }
 		/// <summary>
-		/// 排序
+		/// Sắp xếp
 		/// </summary>
 		public int px { get; set; }
 		/// <summary>
-		/// 状态
+		/// Trạng thái
 		/// </summary>
 		public string zt { get; set; }
 	}

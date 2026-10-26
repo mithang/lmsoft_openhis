@@ -14,47 +14,47 @@ namespace Newtouch.HIS.Domain.Entity
         [Key]
         public string Id { get; set; }
         /// <summary>
-        /// 请求支付订单号
+        /// Số đơn hàng yêu cầu thanh toán
         /// </summary>
         public string OutTradeNo { get; set; }
         /// <summary>
-        /// 第三方交易号
+        /// Số giao dịch bên thứ ba
         /// </summary>
         public string TradeNo { get; set; }
         /// <summary>
-        /// 支付金额
+        /// Số tiền thanh toán
         /// </summary>
         public decimal Amount { get; set; }
         /// <summary>
-        /// 交易时间
+        /// Thời gian giao dịch
         /// </summary>
         public DateTime? OrderDate { get; set; }
         /// <summary>
-        /// 支付来源 支付宝1 微信2
+        /// Nguồn thanh toán Alipay1 WeChat2
         /// </summary>
         public int PayType { get; set; }
         /// <summary>
-        /// 是否支付成功 0 否 1 是
+        /// Thanh toán có thành công hay không 0 không 1 là
         /// </summary>
         public int PayStatus { get; set; }
         public string Memo { get; set; }
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 
@@ -63,11 +63,11 @@ namespace Newtouch.HIS.Domain.Entity
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// 支付账户
+        /// Tài khoản thanh toán
         /// </summary>
         public string PayAccount { get; set; }
         /// <summary>
-        /// 交易描述
+        /// Mô tả giao dịch
         /// </summary>
         public string TradeDesc { get; set; }
 

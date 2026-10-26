@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int jfbbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -89,12 +89,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string ycqh { get; set; }
 
         /// <summary>
-        /// 暂时不使用
+        /// Tạm thời không sử dụng
         /// </summary>
         public decimal? yl { get; set; }
 
         /// <summary>
-        /// 暂时不使用
+        /// Tạm thời không sử dụng
         /// </summary>
         public string yldw { get; set; }
 
@@ -174,7 +174,7 @@ namespace Newtouch.HIS.Domain.Entity
         public short? pyry { get; set; }
 
         /// <summary>
-        /// 暂行规则：打印发药单即更新配药日期，且减库存。发药日期不处理。   	待今后需要护士领药时减库存再模仿门诊发药流程改造
+        /// Quy tắc tạm thời:In phiếu phát thuốc thì cập nhật ngày pha thuốc,Và trừ tồn kho.Ngày phát thuốc không xử lý.   	Chờ sau này khi y tá cần lĩnh thuốc thì trừ tồn kho rồi cải tạo theo quy trình phát thuốc ngoại trú
         /// </summary>
         public DateTime? pyrq { get; set; }
 
@@ -184,7 +184,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string fyry { get; set; }
 
         /// <summary>
-        /// 对应同步翻云医嘱的医嘱执行时间
+        /// Thời gian thực hiện y lệnh tương ứng đồng bộ y lệnh Phiên Vân
         /// </summary>
         public DateTime? fyrq { get; set; }
 
@@ -194,12 +194,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string zxks { get; set; }
 
         /// <summary>
-        /// 1 临时医嘱   2 长期医嘱   3 出院医嘱
+        /// 1 Y lệnh tạm thời   2 Y lệnh dài hạn   3 Y lệnh xuất viện
         /// </summary>
         public string yzxz { get; set; }
 
         /// <summary>
-        /// 1 未撤销   2 已撤销   
+        /// 1 Chưa hủy   2 Đã hủy   
         /// </summary>
         public string yzzt { get; set; }
 
@@ -214,7 +214,7 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime? cxrq { get; set; }
 
         /// <summary>
-        /// 默认0   表示未撤销结算
+        /// Mặc định0   Thể hiện chưa hủy quyết toán
         /// </summary>
         public int cxzyjfbbh { get; set; }
 
@@ -239,7 +239,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string zltime { get; set; }
 
         /// <summary>
-        /// 绑定执行Id
+        /// Liên kết thực hiệnId
         /// </summary>
         public string bdzxid { get; set; }
 

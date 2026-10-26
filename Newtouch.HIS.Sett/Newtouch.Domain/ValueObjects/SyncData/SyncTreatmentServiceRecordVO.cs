@@ -5,13 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 治疗记录
+    /// Hồ sơ điều trị
     /// </summary>
     [NotMapped]
     public class SyncTreatmentServiceRecordVO : SyncTreatmentServiceRecordEntity
     {
         /// <summary>
-        /// 字典
+        /// Từ điển
         /// </summary>
         public string kflb { get; set; }
 
@@ -22,27 +22,27 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string StaffName { get; set; }
 
         /// <summary>
-        /// 科室Code
+        /// KhoaCode
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 收费大类Code
+        /// Loại lớn thu phíCode
         /// </summary>
         public string sfdlCode { get; set; }
 
         /// <summary>
-        /// 收费大类名称
+        /// Tên loại lớn thu phí
         /// </summary>
         public string sfdlmc { get; set; }
 
         /// <summary>
-        /// 单价
+        /// Đơn giá
         /// </summary>z
         public decimal? dj { get; set; }
 

@@ -10,20 +10,20 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 用户角色权限 公用DmnService
+    /// Quyền vai trò người dùng Dùng chungDmnService
     /// </summary>
     public interface IUserRoleAuthDmnService
     {
         /// <summary>
-        /// 获取用户已授权的角色列表
+        /// Lấy danh sách vai trò người dùng đã ủy quyền
         /// </summary>
         /// <param name="userId"></param>
-        /// <param name="orgId">医疗机构Id</param>
+        /// <param name="orgId">Cơ sở y tếId</param>
         /// <returns></returns>
         IList<SysRoleEntity> GetUserRoleList(string userId, string orgId);
 
         /// <summary>
-        /// 获取角色 关联 用户（org）
+        /// Lấy vai trò Liên kết Người dùng(org)
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>

@@ -1,28 +1,28 @@
 ﻿namespace Newtouch.HIS.Domain.BusinessObjects
 {
     /// <summary>
-    /// 门诊结算金额支付相关基类
+    /// Lớp cơ sở liên quan thanh toán số tiền quyết toán ngoại trú
     /// </summary>
     public class OutpatientSettFeeRelatedBaseBO
     {
         /// <summary>
-        /// 原支付应收
+        /// Khoản phải thu thanh toán ban đầu
         /// </summary>
         public decimal? orglxjzfys { get; set; }
         /// <summary>
-        /// 折扣比例
+        /// Tỷ lệ chiết khấu
         /// </summary>
         public decimal? zkbl { get; set; }
         /// <summary>
-        /// 折扣金额
+        /// Số tiền chiết khấu
         /// </summary>
         public decimal? zkje { get; set; }
         /// <summary>
-        /// 支付应收（原支付应收打折后）
+        /// Khoản phải thu thanh toán(Khoản phải thu thanh toán ban đầu sau chiết khấu)
         /// </summary>
         public decimal? xjzfys { get; set; }
         /// <summary>
-        /// 实收款
+        /// Số tiền thực thu
         /// </summary>
         public decimal? ssk { get; set; }
         public string zffs1 { get; set; }
@@ -30,7 +30,7 @@
         public string zffs2 { get; set; }
         public decimal? zfje2 { get; set; }
         /// <summary>
-        /// 找零
+        /// Tiền thối lại
         /// </summary>
         public decimal? zhaoling { get; set; }
 

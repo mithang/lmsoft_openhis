@@ -11,16 +11,16 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
 	{
 	}
 	/// <summary>
-	/// 添加处方明细（交易类别代码:04）入参
+	/// Thêm chi tiết đơn thuốc(Mã loại giao dịch:04)Tham số đầu vào
 	/// </summary>
 	public class UploadPrescriptionsInPut
 	{
 		/// <summary>
-		/// 住院门诊号
+		/// Số ngoại trú/nội trú
 		/// </summary> 
 		public string zymzh { get; set; }
 		/// <summary>
-		/// 处方明细列表
+		/// Danh sách chi tiết đơn thuốc
 		/// </summary> 
 		public IList<UploadPrescriptionsListInPut> cflist { get; set; }
 
@@ -28,488 +28,488 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
 	public class UploadPrescriptionsListInPut
 	{
 		/// <summary>
-		/// 处方号
+		/// Số đơn thuốc
 		/// </summary> 
 		public string cfh { get; set; }
 		/// <summary>
-		/// 开方日期
+		/// Ngày kê đơn
 		/// </summary> 
 		public string kfrq { get; set; }
 		/// <summary>
-		/// 项目医保流水号
+		/// Số giao dịch BHYT hạng mục
 		/// </summary> 
 		public string xmyblsh { get; set; }
 		/// <summary>
-		/// 医院内码
+		/// Mã nội bộ bệnh viện
 		/// </summary> 
 		public string yynm { get; set; }
 		/// <summary>
-		/// 项目名称
+		/// Tên hạng mục
 		/// </summary> 
 		public string xmmc { get; set; }
 		/// <summary>
-		/// 单价
+		/// Đơn giá
 		/// </summary> 
 		public decimal dj { get; set; }
 		/// <summary>
-		/// 数 量
+		/// Số lượng
 		/// </summary> 
 		public decimal? sl { get; set; }
 		/// <summary>
-		/// 急诊标志
+		/// Cờ cấp cứu
 		/// </summary> 
 		public string jzbz { get; set; }
 		/// <summary>
-		/// 处方医师名字
+		/// Tên bác sĩ đơn thuốc
 		/// </summary> 
 		public string cfssmc { get; set; }
 		/// <summary>
-		/// 经办人
+		/// Người xử lý
 		/// </summary> 
 		public string jbr { get; set; }
 		/// <summary>
-		/// 单位
+		/// Đơn vị
 		/// </summary> 
 		public string dw { get; set; }
 		/// <summary>
-		/// 规格
+		/// Quy cách
 		/// </summary> 
 		public string gg { get; set; }
 		/// <summary>
-		/// 剂型
+		/// Dạng bào chế
 		/// </summary> 
 		public string jx { get; set; }
 		/// <summary>
-		/// 冲消明细流水号
+		/// Số giao dịch chi tiết đã xóa
 		/// </summary> 
 		public string cxmxlsh { get; set; }
 		/// <summary>
-		/// 金额
+		/// Số tiền
 		/// </summary> 
 		public decimal? je { get; set; }
 		/// <summary>
-		/// 科室编码
+		/// Mã khoa
 		/// </summary> 
 		public string ksbm { get; set; }
 		/// <summary>
-		/// 科室名称
+		/// Tên khoa
 		/// </summary> 
 		public string ksmc { get; set; }
 		/// <summary>
-		/// 医师编码
+		/// Mã bác sĩ
 		/// </summary> 
 		public string ysbm { get; set; }
 		/// <summary>
-		/// 每次用量
+		/// Liều lượng mỗi lần
 		/// </summary> 
 		public decimal? mcyl { get; set; }
 		/// <summary>
-		/// 用法标准
+		/// Tiêu chuẩn cách dùng
 		/// </summary> 
 		public string yfbz { get; set; }
 		/// <summary>
-		/// 执行周期
+		/// Chu kỳ thực hiện
 		/// </summary> 
 		public string zxzq { get; set; }
 		/// <summary>
-		/// 险种类别
+		/// Loại hình bảo hiểm
 		/// </summary> 
 		public string xzlb { get; set; }
 		/// <summary>
-		/// 转自费标识
+		/// Dấu chuyển sang tự chi trả
 		/// </summary> 
 		public string zzfbz { get; set; }
 		/// <summary>
-		/// 单次用药剂量
+		/// Liều dùng thuốc mỗi lần
 		/// </summary> 
 		public decimal? dcyyjl { get; set; }
 		/// <summary>
-		/// 单次用药剂量单位
+		/// Đơn vị liều dùng thuốc mỗi lần
 		/// </summary> 
 		public string dcyyjldw { get; set; }
 		/// <summary>
-		/// 单次用量
+		/// Liều lượng mỗi lần
 		/// </summary> 
 		public decimal? dcyl { get; set; }
 		/// <summary>
-		/// 最小计量单位
+		/// Đơn vị đo nhỏ nhất
 		/// </summary> 
 		public string zxjldw { get; set; }
 		/// <summary>
-		/// 取药总量
+		/// Tổng lượng thuốc lấy
 		/// </summary> 
 		public decimal?  qyzl { get; set; }
 		/// <summary>
-		/// 用药途径
+		/// Đường dùng thuốc
 		/// </summary> 
 		public string yytj { get; set; }
 		/// <summary>
-		/// 使用频次
+		/// Tần suất sử dụng
 		/// </summary> 
 		public string sypc { get; set; }
 		/// <summary>
-		/// 审核 ID
+		/// Kiểm tra ID
 		/// </summary> 
 		public string shid { get; set; }
 		/// <summary>
-		/// 用药天数
+		/// Số ngày dùng thuốc
 		/// </summary> 
 		public string yyts { get; set; }
 		/// <summary>
-		/// 用药疗程
+		/// Liệu trình dùng thuốc
 		/// </summary> 
 		public string yylc { get; set; }
         /// <summary>
-        /// 国家目录代码
+        /// Mã danh mục quốc gia
         /// </summary>
         public string gjmldm { get; set; }
         /// <summary>
-        /// 国家医师编码
+        /// Mã bác sĩ quốc gia
         /// </summary>
         public string gjysbm { get; set; }
 	}
     public class PreSettInPut
 	{
 		/// <summary>
-		/// 住院(门诊)号
+		/// Nhập viện(Khám ngoại trú)Số
 		/// </summary> 
 		public string zymzh { get; set; }
 		/// <summary>
-		/// 截止日期
+		/// Ngày hết hạn
 		/// </summary> 
 		public string jzrq { get; set; }
 		/// <summary>
-		/// 住院床日
+		/// Ngày giường nội trú
 		/// </summary> 
 		public string zycr { get; set; }
 		/// <summary>
-		/// 本次结算总金额
+		/// Tổng số tiền quyết toán lần này
 		/// </summary> 
 		public string bcjszje { get; set; }
 		/// <summary>
-		/// 账户余额支付标志
+		/// Cờ thanh toán số dư tài khoản
 		/// </summary> 
 		public string zhyezfbz { get; set; }
 		/// <summary>
-		/// 本次结算明细总条数
+		/// Tổng số dòng chi tiết quyết toán lần này
 		/// </summary> 
 		public string bcjsmxzts { get; set; }
 		/// <summary>
-		/// 险种类别
+		/// Loại hình bảo hiểm
 		/// </summary> 
 		public string xzlb { get; set; }
 		/// <summary>
-		/// 工伤认定编号
+		/// Số xác định tai nạn lao động
 		/// </summary> 
 		public string gsrdbh { get; set; }
 		/// <summary>
-		/// 工伤认定疾病编码
+		/// Mã bệnh được xác định tai nạn lao động
 		/// </summary> 
 		public string gsrdjbbm { get; set; }
 		/// <summary>
-		/// 尘肺结算类型
+		/// Loại quyết toán bệnh bụi phổi
 		/// </summary> 
 		public string cfjslx { get; set; }
 		/// <summary>
-		/// 出院科室编码
+		/// Mã khoa xuất viện
 		/// </summary> 
 		public string cyksbm { get; set; }
 		/// <summary>
-		/// 出院医师编码
+		/// Mã bác sĩ xuất viện
 		/// </summary> 
 		public string cyysbm { get; set; }
 	}
 
 	/// <summary>
-	/// 更新就诊信息 (交易类别代码:03)入参
+	/// Cập nhật thông tin khám bệnh (Mã loại giao dịch:03)Tham số đầu vào
 	/// </summary>
 	public class MedicalUpdateInPut
 	{
 		/// <summary>
-		/// 住院号(门诊号)
+		/// Số nhập viện(Số khám ngoại trú)
 		/// </summary> 
 		public string zymzh { get; set; }
 		/// <summary>
-		/// 更新标志
+		/// Cập nhật cờ
 		/// </summary> 
 		public string gxbz { get; set; }
 		/// <summary>
-		/// 医疗类别
+		/// Loại hình y tế
 		/// </summary> 
 		public string yllb { get; set; }
 		/// <summary>
-		/// 入院科室编码
+		/// Mã khoa nhập viện
 		/// </summary> 
 		public string ryksbm { get; set; }
 		/// <summary>
-		/// 入院医师编码
+		/// Mã bác sĩ nhập viện
 		/// </summary> 
 		public string ryysbm { get; set; }
 		/// <summary>
-		/// 入院日期
+		/// Ngày nhập viện
 		/// </summary> 
 		public string ryrq { get; set; }
 		/// <summary>
-		/// 入院诊断
+		/// Chẩn đoán nhập viện
 		/// </summary> 
 		public string ryzd { get; set; }
 		/// <summary>
-		/// 出院日期
+		/// Ngày xuất viện
 		/// </summary> 
 		public string cyrq { get; set; }
 		/// <summary>
-		/// 确诊疾病编码
+		/// Mã bệnh đã xác định
 		/// </summary> 
 		public string qzjbbm { get; set; }
 		/// <summary>
-		/// 出院原因
+		/// Lý do xuất viện
 		/// </summary> 
 		public string cyyy { get; set; }
 		/// <summary>
-		/// 经办人
+		/// Người xử lý
 		/// </summary> 
 		public string jbr { get; set; }
 		/// <summary>
-		/// 并发症
+		/// Biến chứng
 		/// </summary> 
 		public string bfz { get; set; }
 		/// <summary>
-		/// 病案号
+		/// Số bệnh án
 		/// </summary> 
 		public string bah { get; set; }
 		/// <summary>
-		/// 生育证号码
+		/// Số giấy chứng sinh
 		/// </summary> 
 		public string syzhm { get; set; }
 		/// <summary>
-		/// 新生儿出生日期
+		/// Ngày sinh trẻ sơ sinh
 		/// </summary> 
 		public DateTime? xsrcsrq { get; set; }
 		/// <summary>
-		/// 居民特殊就诊标记
+		/// Dấu khám đặc biệt cho cư dân
 		/// </summary> 
 		public string jmtsjzbj { get; set; }
 		/// <summary>
-		/// 险种类别
+		/// Loại hình bảo hiểm
 		/// </summary> 
 		public string xzlb { get; set; }
 		/// <summary>
-		/// 转入医院编码
+		/// Mã bệnh viện chuyển vào
 		/// </summary> 
 		public string zryybm { get; set; }
 		/// <summary>
-		/// 出院诊断医生编码
+		/// Mã bác sĩ chẩn đoán xuất viện
 		/// </summary> 
 		public string cyzdysbm { get; set; }
 		/// <summary>
-		/// 主要病情描述
+		/// Mô tả tình trạng bệnh chính
 		/// </summary> 
 		public string zybqms { get; set; }
 		/// <summary>
-		/// 出院次要疾病诊断编码 1
+		/// Mã chẩn đoán bệnh phụ khi xuất viện 1
 		/// </summary> 
 		public string cycyjbzdbm1 { get; set; }
 		/// <summary>
-		/// 出院次要疾病诊断编码 2
+		/// Mã chẩn đoán bệnh phụ khi xuất viện 2
 		/// </summary> 
 		public string cycyjbzdbm2 { get; set; }
 		/// <summary>
-		/// 出院次要疾病诊断编码 3
+		/// Mã chẩn đoán bệnh phụ khi xuất viện 3
 		/// </summary> 
 		public string cycyjbzdbm3 { get; set; }
 		/// <summary>
-		/// 出院次要疾病诊断编码 4
+		/// Mã chẩn đoán bệnh phụ khi xuất viện 4
 		/// </summary> 
 		public string cycyjbzdbm4 { get; set; }
 		/// <summary>
-		/// 出院次要疾病诊断编码 5
+		/// Mã chẩn đoán bệnh phụ khi xuất viện 5
 		/// </summary> 
 		public string cycyjbzdbm5 { get; set; }
 		/// <summary>
-		/// 出院次要疾病诊断编码 6
+		/// Mã chẩn đoán bệnh phụ khi xuất viện 6
 		/// </summary> 
 		public string cycyjbzdbm6 { get; set; }
 		/// <summary>
-		/// 出院次要疾病诊断编码 7
+		/// Mã chẩn đoán bệnh phụ khi xuất viện 7
 		/// </summary> 
 		public string cycyjbzdbm7 { get; set; }
 		/// <summary>
-		/// 出院次要疾病诊断编码 8
+		/// Mã chẩn đoán bệnh phụ khi xuất viện 8
 		/// </summary> 
 		public string cycyjbzdbm8 { get; set; }
 		/// <summary>
-		/// 出院次要疾病诊断编码 9
+		/// Mã chẩn đoán bệnh phụ khi xuất viện 9
 		/// </summary> 
 		public string cycyjbzdbm9 { get; set; }
 		/// <summary>
-		/// 出院次要疾病诊断编码 10
+		/// Mã chẩn đoán bệnh phụ khi xuất viện 10
 		/// </summary> 
 		public string cycyjbzdbm10 { get; set; }
 		/// <summary>
-		/// 主诉
+		/// Lời khai chính
 		/// </summary> 
 		public string zs { get; set; }
 		/// <summary>
-		/// 症状描述
+		/// Mô tả triệu chứng
 		/// </summary> 
 		public string zzms { get; set; }
         /// <summary>
-        /// 入院国家医师编码
+        /// Mã bác sĩ quốc gia khi nhập viện
         /// </summary>
         public string rygjysbm { get; set; }
         /// <summary>
-        /// 出院诊断国家医师编码
+        /// Mã bác sĩ quốc gia chẩn đoán xuất viện
         /// </summary>
         public string cyzdgjysbm { get; set; }
        
     }
 	/// <summary>
-	/// 合并重庆，贵安，常熟医保返回字段
+	/// Hợp nhất Trùng Khánh,Quý An,Trường BHYT Thường Thục trả về
 	/// </summary>
 	public class CQMzjs05Dto: OutpatientSettGAYbFeeRelatedDTO
 	{
 		/// <summary>
-		/// 交易流水号
+		/// Số giao dịch
 		/// </summary> 
 		public string jylsh { get; set; }
 		/// <summary>
-		/// 统筹支付
+		/// Chi trả từ quỹ chung
 		/// </summary> 
 		public decimal? cqtczf { get; set; }
 		/// <summary>
-		/// 帐户支付
+		/// Thanh toán từ tài khoản
 		/// </summary> 
 		public decimal? zhzf { get; set; }
 		/// <summary>
-		/// 公务员补助
+		/// Trợ cấp công chức
 		/// </summary> 
 		public decimal? gwybz { get; set; }
 		/// <summary>
-		/// 现金支付
+		/// Thanh toán tiền mặt
 		/// </summary> 
 		public decimal? cqxjzf { get; set; }
 		/// <summary>
-		/// 大额理赔金额
+		/// Số tiền bồi thường lớn
 		/// </summary> 
 		public decimal? delpje { get; set; }
 		/// <summary>
-		/// 历史起付线公务员返还
+		/// Hoàn trả mức khởi điểm cho công chức trong lịch sử
 		/// </summary> 
 		public decimal? lsqfxgwyff { get; set; }
 		/// <summary>
-		/// 帐户余额
+		/// Số dư tài khoản
 		/// </summary> 
 		public decimal? zhye { get; set; }
 		/// <summary>
-		/// 单病种定点医疗机构垫支
+		/// Cơ sở y tế chỉ định ứng trước cho bệnh đơn lẻ
 		/// </summary> 
 		public decimal? dbzddyljgdz { get; set; }
 		/// <summary>
-		/// 民政救助金额
+		/// Số tiền cứu trợ dân chính
 		/// </summary> 
 		public decimal? mzjzje { get; set; }
 		/// <summary>
-		/// 民政救助门诊余额
+		/// Số dư cứu trợ dân chính ngoại trú
 		/// </summary> 
 		public decimal? mzjzmzye { get; set; }
 		/// <summary>
-		/// 耐多药项目支付金额
+		/// Số tiền thanh toán hạng mục kháng đa thuốc
 		/// </summary> 
 		public decimal? ndyxmzfje { get; set; }
 		/// <summary>
-		/// 一般诊疗支付数
+		/// Số lần thanh toán khám chữa bệnh thông thường
 		/// </summary> 
 		public decimal? ybzlzfs { get; set; }
 		/// <summary>
-		/// 神华救助基金支付数
+		/// Số lần chi trả từ quỹ cứu trợ Thần Hoa
 		/// </summary> 
 		public decimal? shjzjjzfs { get; set; }
 		/// <summary>
-		/// 本年统筹支付累计
+		/// Lũy kế chi trả từ quỹ chung trong năm
 		/// </summary> 
 		public decimal? bntczflj { get; set; }
 		/// <summary>
-		/// 本年大额支付累计
+		/// Lũy kế chi trả lớn trong năm
 		/// </summary> 
 		public decimal? bndezflj { get; set; }
 		/// <summary>
-		/// 特病起付线支付累计
+		/// Lũy kế thanh toán mức khởi điểm cho bệnh đặc biệt
 		/// </summary> 
 		public decimal? tbqfxzflj { get; set; }
 		/// <summary>
-		/// 耐多药项目累计
+		/// Lũy kế hạng mục kháng đa thuốc
 		/// </summary> 
 		public decimal? ndyxmlj { get; set; }
 		/// <summary>
-		/// 本年民政救助住院支付累计
+		/// Lũy kế chi trả cứu trợ dân chính nội trú trong năm
 		/// </summary> 
 		public decimal? bnmzjzzyzflj { get; set; }
 		/// <summary>
-		/// 中心结算时间
+		/// Thời gian quyết toán trung tâm
 		/// </summary> 
 		public DateTime zxjssj { get; set; }
 		/// <summary>
-		/// 本次起付线支付金额
+		/// Số tiền thanh toán mức khởi điểm lần này
 		/// </summary> 
 		public decimal? bcqfxzfje { get; set; }
 		/// <summary>
-		/// 本次进入医保范围费用
+		/// Chi phí lần này thuộc phạm vi BHYT
 		/// </summary> 
 		public decimal? bcjrybfwfy { get; set; }
 		/// <summary>
-		/// 药事服务支付数
+		/// Số lần thanh toán dịch vụ dược
 		/// </summary> 
 		public decimal? ysfwzfs { get; set; }
 		/// <summary>
-		/// 医院超标扣款金额
+		/// Số tiền bệnh viện bị khấu trừ do vượt chuẩn
 		/// </summary> 
 		public decimal? yycbkkje { get; set; }
 		/// <summary>
-		/// 生育基金支付
+		/// Chi từ quỹ sinh đẻ
 		/// </summary> 
 		public decimal? syjjzf { get; set; }
 		/// <summary>
-		/// 生育现金支付
+		/// Thanh toán tiền mặt sinh đẻ
 		/// </summary> 
 		public decimal? syxjzf { get; set; }
 		/// <summary>
-		/// 工伤基金支付
+		/// Chi từ quỹ tai nạn lao động
 		/// </summary> 
 		public decimal? gsjjzf { get; set; }
 		/// <summary>
-		/// 工伤现金支付
+		/// Thanh toán tiền mặt tai nạn lao động
 		/// </summary> 
 		public decimal? gsxjzf { get; set; }
 		/// <summary>
-		/// 工伤单病种机构垫支
+		/// Cơ sở ứng trước cho bệnh đơn lẻ do tai nạn lao động
 		/// </summary> 
 		public decimal? gsdbzjgdz { get; set; }
 		/// <summary>
-		/// 工伤全自费原因
+		/// Lý do tai nạn lao động tự chi trả toàn bộ
 		/// </summary> 
 		public string gsqzfyy { get; set; }
 		/// <summary>
-		/// 其他补助
+		/// Trợ cấp khác
 		/// </summary> 
 		public decimal? qtbz { get; set; }
 		/// <summary>
-		/// 生育账户支付
+		/// Thanh toán từ tài khoản sinh đẻ
 		/// </summary> 
 		public decimal? syzhzf { get; set; }
 		/// <summary>
-		/// 工伤账户支付
+		/// Thanh toán từ tài khoản tai nạn lao động
 		/// </summary> 
 		public decimal? gszhzf { get; set; }
 		/// <summary>
-		/// 本次结算是否健康扶贫人员
+		/// Lần quyết toán này có phải là đối tượng giảm nghèo vì sức khỏe hay không
 		/// </summary> 
 		public string bcjssfjkfpry { get; set; }
 		/// <summary>
-		/// 健康扶贫医疗基金
+		/// Quỹ y tế giảm nghèo vì sức khỏe
 		/// </summary> 
 		public decimal? jkfpyljj { get; set; }
 		/// <summary>
-		/// 精准脱贫保险金额
+		/// Số tiền bảo hiểm giảm nghèo chính xác
 		/// </summary> 
 		public decimal? jztpbxje { get; set; }
         public string pch { get; set; }
@@ -519,7 +519,7 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
         public string jzlx { get; set; }
         public string jzpzm { get; set; }
         /// <summary>
-        /// 是否是空对象
+        /// Có phải là đối tượng rỗng hay không
         /// </summary>
         /// <returns></returns>
         public bool IsNull()
@@ -545,20 +545,20 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
 
     }
 	/// <summary>
-	/// 处方退方 (交易类别代码：10)入参
+	/// Trả đơn thuốc (Mã loại giao dịch:10)Tham số đầu vào
 	/// </summary>
 	public class RefundPrescriptionsInPut
 	{
 		/// <summary>
-		/// 住院(门诊)号
+		/// Nhập viện(Khám ngoại trú)Số
 		/// </summary>
 		public string zymzh { get; set; }
 		/// <summary>
-		/// 处方号
+		/// Số đơn thuốc
 		/// </summary>
 		public string cfh { get; set; }
 		/// <summary>
-		/// 险种类别
+		/// Loại hình bảo hiểm
 		/// </summary>
 		public string xzlb { get; set; }
 	}
@@ -588,34 +588,34 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
     public class Input_Bbrxx
     {
         /// <summary>
-        /// 医疗类别
+        /// Loại hình y tế
         /// </summary>
         public string med_type { get; set; }
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string hisId { get; set; }
         /// <summary>
-        /// 就诊ID
+        /// Khám bệnhID
         /// </summary>
         public string mdtrt_id { get; set; }
         /// <summary>
-        /// 参保地编码
+        /// Mã nơi tham gia bảo hiểm
         /// </summary>
         public string insuplc_admdvs { get; set; }
         /// <summary>
-        /// 人员类别
+        /// Loại nhân viên
         /// </summary>
         public string psn_no { get; set; }
         public string operatorId { get; set; }
         public string operatorName { get; set; }
         /// <summary>
-        /// 01 电子凭证令牌 02 身份证号 03 社保卡号
+        /// 01 Token chứng từ điện tử 02 Số CMND/CCCD 03 Số thẻ BHXH
         /// </summary>
         public string mdtrt_cert_type { get; set; }
         public string mdtrt_cert_no { get; set; }
         /// <summary>
-        /// 险种类型
+        /// Loại hình bảo hiểm
         /// </summary>
         public string insutype { get; set; }
         public string dise_codg { get; set; }
@@ -627,7 +627,7 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
         public string setl_id { get; set; }
         public string psn_no { get; set; }
         /// <summary>
-        /// 参保地编码
+        /// Mã nơi tham gia bảo hiểm
         /// </summary>
         public string insuplc_admdvs { get; set; }
         public string insutype { get; set; }

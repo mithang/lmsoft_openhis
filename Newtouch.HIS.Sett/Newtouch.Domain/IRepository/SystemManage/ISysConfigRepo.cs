@@ -7,7 +7,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysConfigRepo : IRepositoryBase<SysConfigEntity>
     {
         /// <summary>
-        /// 根据Code获取配置Entity
+        /// TheoCodeLấy cấu hìnhEntity
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Domain.IRepository
         SysConfigEntity GetByCode(string code, string orgId);
 
         /// <summary>
-        /// 根据Code获取配置Value
+        /// TheoCodeLấy cấu hìnhValue
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>

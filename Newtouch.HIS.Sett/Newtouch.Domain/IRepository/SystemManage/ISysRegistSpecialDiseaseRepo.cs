@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Domain.IRepository
         SysRegistSpecialDiseaseEntity SelectSysChargeItemByghzb(string ghzb, string orgId);
 
         /// <summary>
-        /// 获取所有挂号专病
+        /// Lấy tất cả bệnh chuyên khoa đăng ký khám
         /// </summary>
         /// <param name="ghzb"></param>
         /// <returns></returns>

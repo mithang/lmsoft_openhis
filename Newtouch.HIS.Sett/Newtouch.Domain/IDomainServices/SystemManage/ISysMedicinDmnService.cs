@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface ISysMedicinDmnService
     {
         /// <summary>
-        /// 检索药品（for 下拉）
+        /// Tìm kiếm thuốc(for Thả xuống)
         /// </summary>
         /// <param name="keywrod"></param>
         /// <returns></returns>

@@ -1,8 +1,8 @@
 ﻿/**********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description： 财务票据-预交金收据
-// Author：HLF
-// CreateDate： 2016/12/15 12:36:16 
+// Copyright (C) 2016 Newtouch Bảo lưu bản quyền. 
+// Description: Phiếu tài chính-Biên lai tạm ứng
+// Author:HLF
+// CreateDate: 2016/12/15 12:36:16 
 //**********************************************************/
 using Newtouch.HIS.Domain.Entity;
 using System;
@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IFinanceReceiptRepo : IRepositoryBase<FinanceReceiptEntity>
     {
         /// <summary>
-        /// 根据工号获取可使用的收据号
+        /// Lấy số biên lai có thể dùng theo mã nhân viên
         /// </summary>
         /// <param name="gh"></param>
         /// <returns></returns>
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Domain.IRepository
         string getDQSJHForpzh(string gh, string orgId);
 
         /// <summary>
-        /// 根据工号获取凭证号数据Entity
+        /// Lấy dữ liệu số chứng từ theo mã nhân viênEntity
         /// </summary>
         /// <param name="gh"></param>
         /// <returns></returns>
@@ -33,31 +33,31 @@ namespace Newtouch.HIS.Domain.IRepository
 
 
         /// <summary>
-        ///  验证收据号
+        ///  Xác minh số biên lai
         /// </summary>
-        /// <param name="sjhfull">完整的收据号</param>
-        /// <param name="gh">工号</param>
+        /// <param name="sjhfull">Số biên lai đầy đủ</param>
+        /// <param name="gh">Mã nhân viên</param>
         /// <returns></returns>
         bool checkSJH(string sjhfull, string gh, out FinanceReceiptEntity outEntity,out string type, string orgId);
 
         /// <summary>
-        /// 判断当前收据号是否已被使用
+        /// Xác định số biên lai hiện tại đã được dùng hay chưa
         /// </summary>
-        /// <param name="gh">工号</param>
-        /// <param name="szm">首字母</param>
-        /// <param name="sjh">收据号</param>
-        /// <param name="outEntity">返回收据号实体</param>
+        /// <param name="gh">Mã nhân viên</param>
+        /// <param name="szm">Chữ cái đầu</param>
+        /// <param name="sjh">Số biên lai</param>
+        /// <param name="outEntity">Trả về thực thể số biên lai</param>
         /// <returns></returns>
         bool checkSJIsUsedForUser(string gh, string szm, long sjh, out FinanceReceiptEntity outEntity,out string type, string orgId);
 
         /// <summary>
-        /// 添加收据凭证号
+        /// Thêm số chứng từ biên lai
         /// </summary>
         /// <param name="sjEntity"></param>
         void AddReceiptInfo(FinanceReceiptEntity sjEntity, string orgId);
 
         /// <summary>
-        /// 修改收据凭证号
+        /// Sửa số chứng từ biên lai
         /// </summary>
         /// <param name="sjEntity"></param>
         /// <param name="cwsjId"></param>

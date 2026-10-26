@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<FinancialInvoiceEntity> GetListByUserCode(string lyry, string orgId);
 
         /// <summary>
-        /// 使用发票，数据库变更 同步当前发票号
+        /// Dùng hóa đơn,Thay đổi CSDL Đồng bộ số hóa đơn hiện tại
         /// </summary>
         /// <param name="fph"></param>
         /// <param name="lyry"></param>
@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Domain.IRepository
         void UpdateCurrentGetEntitys(string fph, string lyry, out FinancialInvoiceEntity updateEntity, out FinancialInvoiceEntity insertEntity, string orgId);
 
         /// <summary>
-        /// 获取所有发票列表
+        /// Lấy danh sách tất cả hóa đơn
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="organizeId"></param>
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<FinancialInvoiceEntity> GetFinancialInvoiceList(string keyValue, string organizeId);
 
         /// <summary>
-        /// 修改页面，根据主键获取实体
+        /// Trang sửa đổi,Lấy thực thể theo khóa chính
         /// </summary>
         /// <param name="fpdm"></param>
         /// <param name="orgId"></param>
@@ -43,14 +43,14 @@ namespace Newtouch.HIS.Domain.IRepository
         FinancialInvoiceEntity GetFinancialInvoiceEntity(string fpdm,string orgId);
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="financialInvoiceEntity"></param>
         /// <param name="fpdm"></param>
         void SubmitForm(FinancialInvoiceEntity financialInvoiceEntity, string fpdm);
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="fpdm"></param>
         /// <param name="orgId"></param>

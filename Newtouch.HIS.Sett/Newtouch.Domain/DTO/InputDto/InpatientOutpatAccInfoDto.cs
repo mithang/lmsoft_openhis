@@ -24,11 +24,11 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         public int? dybh { get; set; }
         public string kh { get; set; }
         /// <summary>
-        /// 卡类型
+        /// Loại thẻ
         /// </summary>
         public string CardType { get; set; }
         /// <summary>
-        /// 卡类型名称
+        /// Tên loại thẻ
         /// </summary>
         public string CardTypeName { get; set; }
         public string mzh { get; set; }
@@ -45,27 +45,27 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         public DateTime? CreateTime { get; set; }
 
         /// <summary>
-        /// 初复诊
+        /// Khám lần đầu/tái khám
         /// </summary>
         public byte fzbz { get; set; }
 
         /// <summary>
-        /// 大病
+        /// Bệnh nặng
         /// </summary>
         public string db { get; set; }
 
         /// <summary>
-        /// 大病诊断
+        /// Chẩn đoán bệnh nặng
         /// </summary>
         public string dbzd { get; set; }
 
         /// <summary>
-        /// 婚否 枚举 EnumHF
+        /// Tình trạng hôn nhân Enum EnumHF
         /// </summary>
         public byte? hf { get; set; }
 
         /// <summary>
-        /// 国籍
+        /// Quốc tịch
         /// </summary>
         public string gjCode { get; set; }
 
@@ -75,7 +75,7 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         public string gjmc { get; set; }
 
         /// <summary>
-        /// 民族
+        /// Dân tộc
         /// </summary>
         public string mzCode { get; set; }
 
@@ -85,27 +85,27 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         public string mzmc { get; set; }
 
         /// <summary>
-        /// 挂号状态
+        /// Trạng thái đăng ký khám
         /// </summary>
         public string ghzt { get; set; }
 
         /// <summary>
-        /// 医保结算号
+        /// Số quyết toán BHYT
         /// </summary>
         public string ybjsh { get; set; }
 
         /// <summary>
-        /// 就诊原因
+        /// Lý do khám
         /// </summary>
         public string jzyy { get; set; }
 
         /// <summary>
-        /// 社保编号
+        /// Số BHXH
         /// </summary>
         public string sbbh { get; set; }
 
         /// <summary>
-        /// 就诊标志
+        /// Cờ khám bệnh
         /// </summary>
         public string jiuzhenbiaozhi { get; set; }
 
@@ -124,12 +124,12 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         /// </summary>
         public string ks { get; set; }
 
-        /// <summary>一个
+        /// <summary>Một
         /// 
         /// </summary>
         public string ksmc { get; set; }
         /// <summary>
-        /// 参保类别
+        /// Loại tham gia bảo hiểm
         /// </summary>
         public string cblb { get; set; }
         public string grbh { get; set; }
@@ -140,7 +140,7 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         public string zyh { get; set; }
         public string zybz { get; set; }
         /// <summary>
-        /// 预交金报警额
+        /// Mức cảnh báo tạm ứng
         /// </summary>
         public decimal bje { get; set; }
 

@@ -6,59 +6,59 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统现金支付方式
+    /// Phương thức thanh toán tiền mặt hệ thống
     /// </summary>
     [Table("xt_xjzffs")]
     public class SysCashPaymentModelEntity : IEntity<SysCashPaymentModelEntity>
     {
         /// <summary>
-        /// 现金支付方式编号
+        /// Mã phương thức thanh toán tiền mặt
         /// </summary>
         [Key]
         public int xjzffsbh { get; set; }
 
         /// <summary>
-        /// 现金支付方式
+        /// Phương thức thanh toán tiền mặt
         /// </summary>
         public string xjzffs { get; set; }
 
         /// <summary>
-        /// 现金支付方式名称
+        /// Tên phương thức thanh toán tiền mặt
         /// </summary>
         public string xjzffsmc { get; set; }
 
         /// <summary>
-        /// 账户性质
+        /// Tính chất tài khoản
         /// </summary>
         public string zhxz { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 

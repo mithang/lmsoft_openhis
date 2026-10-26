@@ -8,14 +8,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface IGRSCostEarningDmnService
     {
         /// <summary>
-        /// 添加成本信息list
+        /// Thêm thông tin chi phílist
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="srxxId"></param>
         void AddCostList(List<jgssCostVO> vo, string srxxId);
 
         /// <summary>
-        /// 站点收支统计表-收入信息详情
+        /// Bảng thống kê thu chi của trạm-Chi tiết thông tin thu nhập
         /// </summary>
         /// <param name="site"></param>
         /// <param name="year"></param>
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
 
         /// <summary>
-        /// 添加收支
+        /// Thêm thu chi
         /// </summary>
         /// <param name="vo"></param>
         void submitEarningInfo(SiteCostEarningVO vo, string keyvalue, string orgId);
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<jgszchargemoneyVO> GetMoneyDetailList(Pagination pagination, string siteId, string year, string month, string type, string dlcode);
 
         /// <summary>
-        /// 查看站点收费金额详情
+        /// Xem chi tiết số tiền thu phí trạm
         /// </summary>
         /// <param name="siteId"></param>
         /// <param name="year"></param>
@@ -45,14 +45,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<jgszchargemoneyVO> GetMoneyDetailList(string siteId, string year, string month, string type, string dlCode);
 
         /// <summary>
-        /// 查看站点收支统计表
+        /// Xem bảng thống kê thu chi trạm
         /// </summary>
         /// <param name="srxxId"></param>
         /// <returns></returns>
         SiteCostEarningVO GetEarningInfo(string srxxId, string orgId);
 
         /// <summary>
-        /// 获取机构实收和GRS实收
+        /// Lấy thực thu của cơ sở vàGRSThực thu
         /// </summary>
         /// <param name="site"></param>
         /// <param name="year"></param>
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         jgssandgrsssVO Getss(string site, string year, string month);
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="srxxId"></param>
         void deletess(string srxxId);
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string UploadFile(HttpPostedFileBase file, out string parth);
 
         /// <summary>
-        /// 获取上个月的成本信息
+        /// Lấy thông tin chi phí tháng trước
         /// </summary>
         /// <param name="site"></param>
         /// <param name="year"></param>

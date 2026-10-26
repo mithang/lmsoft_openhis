@@ -6,70 +6,70 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统病人收费范围
+    /// Phạm vi tính phí bệnh nhân hệ thống
     /// </summary>
     [Table("xt_brsffw")]
     public class SysPatientChargeRangeEntity : IEntity<SysPatientChargeRangeEntity>
     {
         /// <summary>
-        /// 病人收费范围编号
+        /// Mã phạm vi tính phí bệnh nhân
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int brsffwbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 病人性质
+        /// Tính chất bệnh nhân
         /// </summary>
         public string brxz { get; set; }
 
         /// <summary>
-        /// 大类
+        /// Loại lớn
         /// </summary>
         public string dl { get; set; }
 
         /// <summary>
-        /// 收费项目
+        /// Hạng mục thu phí
         /// </summary>
         public string sfxm { get; set; }
 
         /// <summary>
-        /// 药品
+        /// Thuốc
         /// </summary>
         public string yp { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 

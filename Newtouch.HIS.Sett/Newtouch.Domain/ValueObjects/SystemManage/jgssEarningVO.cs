@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.ValueObjects.SystemManage
 {
     /// <summary>
-    /// 站点收支统计表 收入信息
+    /// Bảng thống kê thu chi của trạm Thông tin thu nhập
     /// </summary>
     public class jgssEarningVO
     {

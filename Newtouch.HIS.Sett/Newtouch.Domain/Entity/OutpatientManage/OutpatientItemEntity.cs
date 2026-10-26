@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 门诊项目
+    /// Hạng mục ngoại trú
     /// </summary>
     [Table("mz_xm")]
     public class OutpatientItemEntity : IEntity<OutpatientItemEntity>
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int xmnm { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -29,17 +29,17 @@ namespace Newtouch.HIS.Domain.Entity
         public int ghnm { get; set; }
 
         /// <summary>
-        /// 同本次挂号的病人内码－提高性能之冗余字段
+        /// Mã nội bộ bệnh nhân của lần đăng ký khám này－Trường dư thừa để nâng cao hiệu năng
         /// </summary>
         public int patid { get; set; }
 
         /// <summary>
-        /// 同本次挂号的病人性质－提高性能之冗余字段
+        /// Tính chất bệnh nhân của lần đăng ký khám này－Trường dư thừa để nâng cao hiệu năng
         /// </summary>
         public string brxz { get; set; }
 
         /// <summary>
-        /// 1：门诊 2：急诊
+        /// 1:Khám ngoại trú 2:Cấp cứu
         /// </summary>
         public string mjzbz { get; set; }
 
@@ -64,17 +64,17 @@ namespace Newtouch.HIS.Domain.Entity
         public string dl { get; set; }
 
         /// <summary>
-        /// 单价
+        /// Đơn giá
         /// </summary>
         public decimal dj { get; set; }
 
         /// <summary>
-        /// 计价数量
+        /// Số lượng tính giá
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 总金额
+        /// Tổng số tiền
         /// </summary>
         public decimal je { get; set; }
 
@@ -89,19 +89,19 @@ namespace Newtouch.HIS.Domain.Entity
         public string zfxz { get; set; }
 
         /// <summary>
-        /// 0 待结 1 已结 2 已退
-        /// （不管是否关联处方，其都要赋值）
+        /// 0 Chờ quyết toán 1 Đã quyết toán 2 Đã trả lại
+        /// (Bất kể có liên kết đơn thuốc hay không,Đều phải gán giá trị)
         /// </summary>
         public string xmzt { get; set; }
 
         /// <summary>
-        /// 0 收费处 1 医生站
-        /// （不管是否关联处方，其都要赋值）
+        /// 0 Nơi thu phí 1 Trạm bác sĩ
+        /// (Bất kể có liên kết đơn thuốc hay không,Đều phải gán giá trị)
         /// </summary>
         public string xmly { get; set; }
 
         /// <summary>
-        /// 0 待实施 1 已实施（已结束实施/不再实施） 2无需实施 9实施过程中
+        /// 0 Chờ thực hiện 1 Đã thực hiện(Đã kết thúc thực hiện/Không còn thực hiện) 2Không cần thực hiện 9Trong quá trình thực hiện
         /// </summary>
         public string ssbz { get; set; }
 
@@ -116,21 +116,21 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime? ssrq { get; set; }
 
         /// <summary>
-        /// 结算内码（多次关联结算、退结算 所以赋值没啥意义）
+        /// Mã nội bộ quyết toán(Liên kết quyết toán nhiều lần,Hủy quyết toán Vì vậy việc gán giá trị không có ý nghĩa gì)
         /// </summary>
         public int? jsnm { get; set; }
 
         /// <summary>
-        /// 结算日期（多次关联结算、退结算 所以赋值没啥意义）
+        /// Ngày quyết toán(Liên kết quyết toán nhiều lần,Hủy quyết toán Vì vậy việc gán giá trị không có ý nghĩa gì)
         /// </summary>
         public DateTime? jsrq { get; set; }
 
         /// <summary>
-        /// 减免比例
+        /// Tỷ lệ giảm miễn
         /// </summary>
         private decimal? _jmbl { get; set; }
         /// <summary>
-        /// 减免比例
+        /// Tỷ lệ giảm miễn
         /// </summary>
         public decimal? jmbl
         {
@@ -145,11 +145,11 @@ namespace Newtouch.HIS.Domain.Entity
         }
 
         /// <summary>
-        /// 减免金额
+        /// Số tiền giảm miễn
         /// </summary>
         private decimal? _jmje { get; set; }
         /// <summary>
-        /// 减免金额
+        /// Số tiền giảm miễn
         /// </summary>
         public decimal? jmje
         {
@@ -210,41 +210,41 @@ namespace Newtouch.HIS.Domain.Entity
         public int? duration { get; set; }
 
         /// <summary>
-        /// 总治疗量
+        /// Tổng liều điều trị
         /// </summary>
         public int? zzll { get; set; }
 
         /// <summary>
-        /// 单位
+        /// Đơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 处方内码
-        /// 20180326项目也开始关联处方主表
+        /// Mã nội bộ đơn thuốc
+        /// 20180326Hạng mục cũng bắt đầu liên kết bảng chính đơn thuốc
         /// </summary>
         public int? cfnm { get; set; }
 
         /// <summary>
-        /// 收费日期 20180329加
+        /// Ngày thu phí 20180329cộng
         /// </summary>
         public DateTime? sfrq { get; set; }
         /// <summary>
-        /// 备注 20180408加
+        /// Ghi chú 20180408cộng
         /// </summary>
         public string bz { get; set; }
 
         /// <summary>
-        /// 单次治疗量（在由项目生成计划的时候需要）
+        /// Liều điều trị mỗi lần(Cần khi tạo kế hoạch từ hạng mục)
         /// </summary>
         public int? dczll { get; set; }
 
         /// <summary>
-        /// 执行次数（在由项目生成计划的时候需要）
+        /// Số lần thực hiện(Cần khi tạo kế hoạch từ hạng mục)
         /// </summary>
         public int? zxcs { get; set; }
         /// <summary>
-        /// 转自费标志
+        /// Cờ chuyển sang tự chi trả
         /// </summary>
         public int? zzfbz { get; set; }
 

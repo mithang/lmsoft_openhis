@@ -1,8 +1,8 @@
 ﻿/**********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description：账户充值退费  事物处理实体 
-// Author：HLF
-// CreateDate： 2017/1/11 16:34:07 
+// Copyright (C) 2016 Newtouch Bảo lưu bản quyền. 
+// Description:Nạp tiền tài khoản và hoàn phí  Thực thể xử lý sự vụ 
+// Author:HLF
+// CreateDate: 2017/1/11 16:34:07 
 //**********************************************************/
 
 using Newtouch.HIS.Domain.Entity;

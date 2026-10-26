@@ -9,67 +9,67 @@ namespace Newtouch.HIS.Domain.ValueObjects.API
     public class SysRecipeVO
     {
         /// <summary>
-        /// 处方ID
+        /// Đơn thuốcID
         /// </summary>
         public int cfnm { get; set; }
         /// <summary>
-        /// 门诊流水号
+        /// Số giao dịch ngoại trú
         /// </summary>
         public string mzh { get; set; }
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
         /// <summary>
-        /// 就诊卡号
+        /// Số thẻ khám bệnh
         /// </summary>
         public string kh { get; set; }
         /// <summary>
-        /// 处方状态
+        /// Trạng thái đơn thuốc
         /// </summary>
         public string cfzt { get; set; }
         /// <summary>
-        /// 处方类型
+        /// Loại đơn thuốc
         /// </summary>
         public int cflx { get; set; }
         /// <summary>
-        /// 处方类型名称
+        /// Tên loại đơn thuốc
         /// </summary>
         public string cflxmc { get; set; }
         /// <summary>
-        /// 开方科室编号
+        /// Mã khoa kê đơn
         /// </summary>
         public string ks { get; set; }
         /// <summary>
-        /// 开方科室名称
+        /// Tên khoa kê đơn
         /// </summary>
         public string ksmc { get; set; }
         /// <summary>
-        /// 开方医生职称编号
+        /// Mã chức danh bác sĩ kê đơn
         /// </summary>
         public string dutyId { get; set; }
         /// <summary>
-        /// 开方医生职称
+        /// Chức danh bác sĩ kê đơn
         /// </summary>
         public string dutyName { get; set; }
         /// <summary>
-        /// 开方医生工号
+        /// Mã nhân viên bác sĩ kê đơn
         /// </summary>
         public string gh { get; set; }
         /// <summary>
-        /// 开方医生姓名
+        /// Tên bác sĩ kê đơn
         /// </summary>
         public string ysxm { get; set; }
         /// <summary>
-        /// 开方时间
+        /// Thời gian kê đơn
         /// </summary>
         public DateTime? createTime { get; set; }
         /// <summary>
-        /// 处方金额
+        /// Số tiền đơn thuốc
         /// </summary>
         public Decimal zje { get; set; }
         /// <summary>
-        /// 急诊标志
+        /// Cờ cấp cứu
         /// </summary>
         public string mjzbz { get; set; }
     }

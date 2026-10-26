@@ -4,32 +4,32 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.DTO
 {
     /// <summary>
-    /// 门诊结算金额支付相关
+    /// Liên quan thanh toán số tiền quyết toán ngoại trú
     /// </summary>
     public class OutpatientSettFeeRelatedDTO
     {
         /// <summary>
-        /// 结算总金额（dj*sl之和）
+        /// Tổng số tiền quyết toán(dj*slTổng)
         /// </summary>
         public decimal? zje { get; set; }
         /// <summary>
-        /// 原支付应收
+        /// Khoản phải thu thanh toán ban đầu
         /// </summary>
         public decimal? orglxjzfys { get; set; }
         /// <summary>
-        /// 折扣比例
+        /// Tỷ lệ chiết khấu
         /// </summary>
         public decimal? zkbl { get; set; }
         /// <summary>
-        /// 折扣金额
+        /// Số tiền chiết khấu
         /// </summary>
         public decimal? zkje { get; set; }
         /// <summary>
-        /// 支付应收（原支付应收打折后）
+        /// Khoản phải thu thanh toán(Khoản phải thu thanh toán ban đầu sau chiết khấu)
         /// </summary>
         public decimal? xjzfys { get; set; }
         /// <summary>
-        /// 实收款
+        /// Số tiền thực thu
         /// </summary>
         public decimal? ssk { get; set; }
         public string zffs1 { get; set; }
@@ -37,39 +37,39 @@ namespace Newtouch.HIS.Domain.DTO
         public string zffs2 { get; set; }
         public decimal? zfje2 { get; set; }
         /// <summary>
-        /// 找零
+        /// Tiền thối lại
         /// </summary>
         public decimal? zhaoling { get; set; }
         /// <summary>
-        /// 抵用交易流水号，重庆医保账户抵用
+        /// Số giao dịch khấu trừ,Khấu trừ tài khoản BHYT Trùng Khánh
         /// </summary>
         public string dyjylsh { get; set; }
 
         #region new
         /// <summary>
-        /// 预交金支付金额
+        /// Số tiền thanh toán tạm ứng
         /// </summary>
         public decimal? yjjzfje { get; set; }
         /// <summary>
-        /// 预交金可退余额
+        /// Số dư tạm ứng có thể trả lại
         /// </summary>
         public decimal? yjjtye { get; set; }
         /// <summary>
-        /// 窗口实收金额
+        /// Số tiền thực thu tại cửa sổ
         /// </summary>
         public decimal? djjess { get; set; }
         /// <summary>
-        /// 窗口实收支付方式
+        /// Phương thức thanh toán thực thu tại cửa sổ
         /// </summary>
         public string djjesszffs { get; set; }
 
         #endregion
         /// <summary>
-        /// 医保结算流水号 
+        /// Số giao dịch quyết toán BHYT 
         /// </summary>
         public string ybjslsh { get; set; }
         /// <summary>
-        /// 电子凭证码
+        /// Mã chứng từ điện tử
         /// </summary>
         public string ecToken { get; set; }
 
@@ -79,85 +79,85 @@ namespace Newtouch.HIS.Domain.DTO
     public class PatZfList
     {
         /// <summary>
-        /// 窗口实收金额
+        /// Số tiền thực thu tại cửa sổ
         /// </summary>
         public decimal? zfje { get; set; }
         /// <summary>
-        /// 窗口实收支付方式
+        /// Phương thức thanh toán thực thu tại cửa sổ
         /// </summary>
         public string zffsmc { get; set; }
     }
 
     /// <summary>
-    /// 门诊结算医保相关费用
+    /// Chi phí liên quan BHYT quyết toán ngoại trú
     /// </summary>
     public class OutpatientSettYbFeeRelatedDTO
     {
         /// <summary>
-        /// 总费用
+        /// Tổng chi phí
         /// </summary>
         public decimal? ZFY { get; set; }
         /// <summary>
-        /// 现金支付
+        /// Thanh toán tiền mặt
         /// </summary>
         public decimal? XJZF { get; set; }
         /// <summary>
-        /// 一般费用（居保：医保费用）
+        /// Chi phí thông thường(Bảo hiểm cư dân:Chi phí BHYT)
         /// </summary>
         public decimal? YBFY { get; set; }
         /// <summary>
-        /// 特殊费用
+        /// Chi phí đặc biệt
         /// </summary>
         public decimal? TSFY { get; set; }
         /// <summary>
-        /// 基本支付（居保：账户支付）
+        /// Chi trả cơ bản(Bảo hiểm cư dân:Thanh toán từ tài khoản)
         /// </summary>
         public decimal? JBZF { get; set; }
         /// <summary>
-        /// 公补支付
+        /// Thanh toán trợ cấp công
         /// </summary>
         public decimal? GBZF { get; set; }
         /// <summary>
-        /// 门诊自负段一般可报费用累计(居保起付线)
+        /// Lũy kế chi phí thông thường được thanh toán trong đoạn tự chi trả ngoại trú(Mức khởi điểm bảo hiểm cư dân)
         /// </summary>
         public decimal? SUMZFDYBFY { get; set; }
         /// <summary>
-        /// 门诊自负段内一般可报费用（居保：本次门诊自负段）
+        /// Chi phí thông thường được thanh toán trong đoạn tự chi trả ngoại trú(Bảo hiểm cư dân:Đoạn tự chi trả ngoại trú lần này)
         /// </summary>
         public decimal? ZFDYBFY { get; set; }
         /// <summary>
-        /// 基本余额
+        /// Số dư cơ bản
         /// </summary>
         public decimal? JBYE { get; set; }
         /// <summary>
-        /// 公补余额
+        /// Số dư trợ cấp công
         /// </summary>
         public decimal? GBYE { get; set; }
         /// <summary>
-        /// 可到中心报销一般费用
+        /// Có thể đến trung tâm hoàn trả chi phí thông thường
         /// </summary>
         public decimal? KBXYBFY { get; set; }
         /// <summary>
-        /// 可到中心报销特殊费用
+        /// Có thể đến trung tâm hoàn trả chi phí đặc biệt
         /// </summary>
         public decimal? KBXTSFY { get; set; }
 
 
         /// <summary>
-        /// （居保）统筹支付
+        /// (Bảo hiểm cư dân)Chi trả từ quỹ chung
         /// </summary>
         public decimal? TCZF { get; set; }
         /// <summary>
-        /// （居保）救助(优抚)支付
+        /// (Bảo hiểm cư dân)Cứu trợ(Ưu đãi)Thanh toán
         /// </summary>
         public decimal? JZZF { get; set; }
         /// <summary>
-        /// （居保）大病补充支付
+        /// (Bảo hiểm cư dân)Thanh toán bổ sung bệnh nặng
         /// </summary>
         public decimal? DKC023 { get; set; }
 
         /// <summary>
-        /// 医保账户支出
+        /// Chi từ tài khoản BHYT
         /// </summary>
         public decimal? YBZHZC
         {
@@ -173,218 +173,218 @@ namespace Newtouch.HIS.Domain.DTO
 
     }
     /// <summary>
-    /// 贵安和常熟医保返回字段合并
+    /// Hợp nhất trường BHYT Quý An và Thường Thục trả về
     /// </summary>
     public class OutpatientSettGAYbFeeRelatedDTO: OutpatientSettYbFeeRelatedDTO
     {
 
         /// <summary>
-        /// 交易流水号
+        /// Số giao dịch
         /// </summary>
         public string astr_jylsh { get; set; }
         /// <summary>
-        /// 交易验证码
+        /// Mã xác minh giao dịch
         /// </summary>
         public string astr_jyyzm { get; set; }
         /// <summary>
-        /// 交易标志
+        /// Cờ giao dịch
         /// </summary>
         public long aint_appcode { get; set; }
         /// <summary>
-        /// 交易信息
+        /// Thông tin giao dịch
         /// </summary>
         public string astr_appmsg { get; set; }
         /// <summary>
-        /// 就诊编号
+        /// Số khám bệnh
         /// </summary>
         public string prm_akc190 { get; set; }
         /// <summary>
-        /// 分中心编号
+        /// Mã trung tâm chi nhánh
         /// </summary>
         public string prm_yab003 { get; set; }
         /// <summary>
-        /// 结算编号
+        /// Số quyết toán
         /// </summary>
         public string prm_yka103 { get; set; }
         /// <summary>
-        /// 个人编号
+        /// Số cá nhân
         /// </summary>
         public string prm_aac001 { get; set; }
         /// <summary>
-        /// 个人账户支付金额
+        /// Số tiền thanh toán từ tài khoản cá nhân
         /// </summary>
         public decimal? prm_yka065 { get; set; }
         /// <summary>
-        /// 经办时间
+        /// Thời gian xử lý
         /// </summary>
         public DateTime? prm_aae036 { get; set; }
         /// <summary>
-        /// 医疗费总额
+        /// Tổng chi phí y tế
         /// </summary>
         public decimal prm_yka055 { get; set; }
         /// <summary>
-        /// 全自费金额
+        /// Tổng số tiền tự chi trả toàn bộ
         /// </summary>
         public decimal prm_yka056 { get; set; }
         /// <summary>
-        /// 挂钩自费金额
+        /// Số tiền tự chi trả liên kết
         /// </summary>
         public decimal prm_yka057 { get; set; }
         /// <summary>
-        /// 符合范围金额
+        /// Số tiền phù hợp phạm vi
         /// </summary>
         public decimal prm_yka111 { get; set; }
         /// <summary>
-        /// 进入起付线金额
+        /// Số tiền vào mức khởi điểm
         /// </summary>
         public decimal? prm_yka058 { get; set; }
         /// <summary>
-        /// 基本医疗统筹支付金额
+        /// Số tiền chi trả từ quỹ chung y tế cơ bản
         /// </summary>
         public decimal? prm_yka248 { get; set; }
         /// <summary>
-        /// 大额医疗支付金额
+        /// Số tiền thanh toán y tế lớn
         /// </summary>
         public decimal? prm_yka062 { get; set; }
         /// <summary>
-        /// 公务员补助报销金额
+        /// Số tiền hoàn trả trợ cấp công chức
         /// </summary>
         public decimal prm_yke030 { get; set; }
         /// <summary>
-        /// 伤残人员医疗保障基金
+        /// Quỹ bảo đảm y tế cho người thương tật
         /// </summary>
         public decimal prm_ake032 { get; set; }
         /// <summary>
-        /// 民政补助基金
+        /// Quỹ trợ cấp dân chính
         /// </summary>
         public decimal prm_ake181 { get; set; }
         /// <summary>
-        /// 其他基金支付
+        /// Chi từ quỹ khác
         /// </summary>
         public decimal prm_ake173 { get; set; }
         /// <summary>
-        /// 本次支付后账户余额
+        /// Số dư tài khoản sau thanh toán lần này
         /// </summary>
         public decimal prm_akc087 { get; set; }
         /// <summary>
-        /// 清算分中心
+        /// Trung tâm chi nhánh thanh toán
         /// </summary>
         public string prm_ykb037 { get; set; }
         /// <summary>
-        /// 清算类别
+        /// Loại thanh toán
         /// </summary>
         public string prm_yka316 { get; set; }
         /// <summary>
-        /// 医疗人员类别
+        /// Loại nhân viên y tế
         /// </summary>
         public string prm_akc021 { get; set; }
         /// <summary>
-        /// 公务员级别
+        /// Cấp công chức
         /// </summary>
         public string prm_ykc120 { get; set; }
         /// <summary>
-        /// 参保所属分中心
+        /// Trung tâm chi nhánh nơi tham gia bảo hiểm
         /// </summary>
         public string prm_yab139 { get; set; }
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string prm_aac003 { get; set; }
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string prm_aac004 { get; set; }
         /// <summary>
-        /// 身份证号
+        /// Số CMND/CCCD
         /// </summary>
         public string prm_aac002 { get; set; }
         /// <summary>
-        /// 出生日期
+        /// Ngày sinh
         /// </summary>
         public DateTime prm_aac006 { get; set; }
         /// <summary>
-        /// 实足年龄
+        /// Tuổi thực
         /// </summary>
         public decimal? prm_akc023 { get; set; }
         /// <summary>
-        /// 单位编码
+        /// Mã đơn vị
         /// </summary>
         public string prm_aab001 { get; set; }
         /// <summary>
-        /// 单位名称
+        /// Tên đơn vị
         /// </summary>
         public string prm_aab004 { get; set; }
         /// <summary>
-        /// 个人参保状态
+        /// Trạng thái tham gia bảo hiểm cá nhân
         /// </summary>
         public string prm_aac031 { get; set; }
         /// <summary>
-        /// 居民医疗人员类别
+        /// Loại nhân viên y tế cư dân
         /// </summary>
         public string prm_ykc280 { get; set; }
         /// <summary>
-        /// 居民医疗人员身份
+        /// Thân phận nhân viên y tế cư dân
         /// </summary>
         public string prm_ykc281 { get; set; }
         /// <summary>
-        /// 清算方式
+        /// Phương thức thanh toán
         /// </summary>
         public string prm_yka054 { get; set; }
         /// <summary>
-        /// 清算期号
+        /// Số kỳ thanh toán
         /// </summary>
         public string prm_yae366 { get; set; }
         /// <summary>
-        /// 本年真实住院次数
+        /// Số lần nội trú thực tế trong năm
         /// </summary>
         public decimal? prm_akc090 { get; set; }
         /// <summary>
-        /// 基本统筹已累计金额
+        /// Số tiền lũy kế quỹ chung cơ bản
         /// </summary>
         public decimal? prm_yka120 { get; set; }
         /// <summary>
-        /// 大额统筹已累计金额
+        /// Số tiền lũy kế quỹ chung lớn
         /// </summary>
         public decimal? prm_yka122 { get; set; }
         /// <summary>
-        /// 公务员补助普通门诊起付年度累计（含慢性病）
+        /// Lũy kế năm mức khởi điểm khám ngoại trú thông thường được trợ cấp công chức(Bao gồm bệnh mãn tính)
         /// </summary>
         public decimal? prm_yka368 { get; set; }
         /// <summary>
-        /// 本年公务员门诊补助累计额（含慢性病）
+        /// Lũy kế trợ cấp ngoại trú cho công chức trong năm(Bao gồm bệnh mãn tính)
         /// </summary>
         public decimal? prm_yke025 { get; set; }
         /// <summary>
-        /// 规定病种起付线累计
+        /// Lũy kế mức khởi điểm loại bệnh quy định
         /// </summary>
         public decimal? prm_yka900 { get; set; }
         /// <summary>
-        /// 年度
+        /// Năm
         /// </summary>
         public decimal? prm_aae001 { get; set; }
         /// <summary>
-        /// 单病种（结算）编码
+        /// Bệnh đơn lẻ(Quyết toán)Mã
         /// </summary>
         public string prm_yka089 { get; set; }
         /// <summary>
-        /// 单病种（结算）病种名称
+        /// Bệnh đơn lẻ(Quyết toán)Tên loại bệnh
         /// </summary>
         public string prm_yka027 { get; set; }
         /// <summary>
-        /// 单病种（结算）医疗机构自费费用
+        /// Bệnh đơn lẻ(Quyết toán)Chi phí tự chi trả của cơ sở y tế
         /// </summary>
         public decimal? prm_yka028 { get; set; }
         /// <summary>
-        /// 单病种（结算）包干标准
+        /// Bệnh đơn lẻ(Quyết toán)Tiêu chuẩn khoán
         /// </summary>
         public decimal? prm_yka345 { get; set; }
         /// <summary>
-        /// 医保地类型，贵安：guian，常熟：changshu
+        /// Loại địa phương BHYT,Quý An:guian,Thường Thục:changshu
         /// </summary>
         public string ybdlx { get; set; }
 
 
-        //以下医保返回有值
+        //BHYT dưới đây trả về có giá trị
         /// <summary>
         /// 
         /// </summary>

@@ -7,42 +7,42 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 门诊挂号
+    /// Đăng ký khám ngoại trú
     /// </summary>
     public class BespeakRegisterParamDTO
     {
         /// <summary>
-        /// 证件类型
+        /// Loại giấy tờ
         /// </summary>
         public int? zjlx { get; set; }
 
         /// <summary>
-        /// 证件号
+        /// Số giấy tờ
         /// </summary>
         public string zjh { get; set; }
 
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
 
         /// <summary>
-        /// 门诊挂号科室
+        /// Khoa đăng ký khám ngoại trú
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// 门诊挂号类型 1:普通门诊  2:急诊  3:专家门诊
+        /// Loại đăng ký khám ngoại trú 1:Khám ngoại trú thông thường  2:Cấp cứu  3:Khám chuyên gia
         /// </summary>
         public int mzlx { get; set; }
 
         /// <summary>
-        /// 专家挂号 医生工号
+        /// Đăng ký khám chuyên gia Mã nhân viên bác sĩ
         /// </summary>
         public string ysgh { get; set; }
     }

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 商业保险
+    /// Bảo hiểm thương mại
     /// </summary>
     [Table("xt_sybx")]
     public class CommercialInsuranceEntity : IEntity<CommercialInsuranceEntity>

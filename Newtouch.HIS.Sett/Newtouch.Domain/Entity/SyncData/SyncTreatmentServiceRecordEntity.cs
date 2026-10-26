@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 同步治疗记录
+    /// Đồng bộ hồ sơ điều trị
     /// </summary>
     [Table("TB_Sync_TreatmentServiceRecord")]
     public class SyncTreatmentServiceRecordEntity : IEntity<SyncTreatmentServiceRecordEntity>
@@ -98,7 +98,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string patientType { get; set; }
 
         /// <summary>
-        /// 就是治疗日志（服务日期），不会变更
+        /// Chính là nhật ký điều trị(Ngày dịch vụ),Sẽ không thay đổi
         /// </summary>
         public DateTime CreatedDate { get; set; }
 
@@ -108,57 +108,57 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime? ModifiedDate { get; set; }
 
         /// <summary>
-        /// 同步时间
+        /// Thời gian đồng bộ
         /// </summary>
         public DateTime DownloadTime { get; set; }
 
         /// <summary>
-        /// 1 未确认 2 已确认 3 作废
+        /// 1 Chưa xác nhận 2 Đã xác nhận 3 Hủy
         /// </summary>
         public int? clzt { get; set; }
 
         /// <summary>
-        /// 是否自动确认
+        /// Có tự động xác nhận hay không
         /// </summary>
         public bool? zdqrbz { get; set; }
 
         /// <summary>
-        /// 问题记录标志。比如serviceCode我们的基础数据里没有
+        /// Cờ ghi vấn đề.Ví dụserviceCodeTrong dữ liệu cơ sở của chúng ta không có
         /// </summary>
         public bool? wtjlbz { get; set; }
 
         /// <summary>
-        /// 备注。同步数据被搁置原因、不能被确认的原因
+        /// Ghi chú.Lý do dữ liệu đồng bộ bị gác lại,Lý do không thể xác nhận
         /// </summary>
         public string remark { get; set; }
 
         /// <summary>
-        /// 处理人（UserCode）
+        /// Người xử lý(UserCode)
         /// </summary>
         public string clr { get; set; }
 
         /// <summary>
-        /// 处理时间
+        /// Thời gian xử lý
         /// </summary>
         public DateTime? clsj { get; set; }
 
         /// <summary>
-        /// 重新处理标志
+        /// Cờ xử lý lại
         /// </summary>
         public bool? cxclbz { get; set; }
 
         /// <summary>
-        /// 最后处理人（UserCode）
+        /// Người xử lý lần cuối(UserCode)
         /// </summary>
         public string zhclr { get; set; }
 
         /// <summary>
-        /// 最后处理时间
+        /// Thời gian xử lý lần cuối
         /// </summary>
         public DateTime? zhclsj { get; set; }
 
         /// <summary>
-        /// 计费表Id
+        /// Bảng tính phíId
         /// </summary>
         public int? jfbId { get; set; }
 

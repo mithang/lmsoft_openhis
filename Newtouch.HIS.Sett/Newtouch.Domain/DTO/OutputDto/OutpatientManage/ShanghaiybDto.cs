@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
     public class SN02InputDto {
         public string cfh { get; set; }
         /// <summary>
-        /// 明细账单号
+        /// Số hóa đơn chi tiết
         /// </summary>
         public string mxzdh { get; set; }
     }

@@ -7,61 +7,61 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.ReportTemplateVO
 {
     /// <summary>
-    /// 医保按病种结算目录表
+    /// Bảng danh mục quyết toán BHYT theo loại bệnh
     /// </summary>
     public class G_yb_dise_setl_list_bVO
     {
-        //	病种结算目录ID				
+        //	Danh mục quyết toán loại bệnhID				
         public string DISE_SETL_LIST_ID { get; set; }
-        //	按病种结算病种目录代码				
+        //	Mã danh mục loại bệnh quyết toán theo loại bệnh				
         public string BYDISE_SETL_LIST_CODE { get; set; }
-        //	按病种结算病种名称				
+        //	Tên loại bệnh quyết toán theo loại bệnh				
         public string BYDISE_SETL_DISE_NAME { get; set; }
-        //	限定手术操作代码				
+        //	Mã phẫu thuật giới hạn				
         public string QUA_OPRN_OPRT_CODE { get; set; }
-        //	限定手术操作名称				
+        //	Tên phẫu thuật giới hạn				
         public string QUA_OPRN_OPRT_NAME { get; set; }
-        //	有效标志				
+        //	Cờ hiệu lực				
         public string VALI_FLAG { get; set; }
-        //	数据唯一记录号				
+        //	Số bản ghi duy nhất của dữ liệu				
         public string RID { get; set; }
-        //	数据创建时间				
+        //	Thời gian tạo dữ liệu				
         public DateTime CRTE_TIME { get; set; }
-        //	数据更新时间				
+        //	Thời gian cập nhật dữ liệu				
         public DateTime UPDT_TIME { get; set; }
-        ////	创建人ID				
+        ////	Người tạoID				
         //public string CRTER_ID { get; set; }
-        ////	创建人姓名				
+        ////	Tên người tạo				
         //public string CRTER_NAME { get; set; }
-        ////	创建机构编号				
+        ////	Mã cơ sở tạo				
         //public string CRTE_OPTINS_NO { get; set; }
-        ////	经办人ID				
+        ////	Người xử lýID				
         //public string OPTER_ID { get; set; }
-        ////	经办人姓名				
+        ////	Tên người xử lý				
         //public string OPTER_NAME { get; set; }
-        ////	经办时间				
+        ////	Thời gian xử lý				
         //public DateTime OPT_TIME { get; set; }
-        ////	经办机构编号				
+        ////	Mã cơ sở xử lý				
         //public string OPTINS_NO { get; set; }
-        //	版本号				
+        //	Số phiên bản				
         public string VER { get; set; }
-        //	病种内涵				
+        //	Nội hàm loại bệnh				
         public string DISE_CONT { get; set; }
-        //	备注				
+        //	Ghi chú				
         public string MEMO { get; set; }
-        //	版本名称				
+        //	Tên phiên bản				
         public string VER_NAME { get; set; }
-        //	诊疗指南页码				
+        //	Số trang hướng dẫn khám chữa bệnh				
         public string TRT_GUIDE_PAGEN { get; set; }
-        //	诊疗指南电子档案				
+        //	Hồ sơ điện tử hướng dẫn khám chữa bệnh				
         public string TRT_GUIDE_ELECACS { get; set; }
-        ////	下发标志				
+        ////	Cờ ban hành				
         //public string ISU_FLAG { get; set; }
-        ////	传输数据ID				
+        ////	Truyền dữ liệuID				
         //public string TRAM_DATA_ID { get; set; }
-        ////	生效时间				
+        ////	Thời gian có hiệu lực				
         //public DateTime? EFFT_TIME { get; set; }
-        ////	失效时间				
+        ////	Thời gian hết hiệu lực				
         //public DateTime? INVD_TIME { get; set; }
 
     }

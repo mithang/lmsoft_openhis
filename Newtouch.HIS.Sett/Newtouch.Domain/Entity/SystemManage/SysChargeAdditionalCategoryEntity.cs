@@ -6,70 +6,70 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统收费附加大类（17楼）
+    /// Loại lớn phụ thêm thu phí hệ thống(17Tầng)
     /// </summary>
     [Table("xt_fjsfdl")]
     public class SysChargeAdditionalCategoryEntity : IEntity<SysChargeAdditionalCategoryEntity>
     {
         /// <summary>
-        /// 大类编号
+        /// Mã loại lớn
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int dlbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 大类
+        /// Loại lớn
         /// </summary>
         public string dl { get; set; }
 
         /// <summary>
-        /// 大类名称
+        /// Tên loại lớn
         /// </summary>
         public string dlmc { get; set; }
 
         /// <summary>
-        /// 拼音
+        /// Pinyin
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 门诊住院标志（0 通用 1 门诊 2住院）
+        /// Cờ ngoại trú/nội trú(0 Dùng chung 1 Khám ngoại trú 2Nhập viện)
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 

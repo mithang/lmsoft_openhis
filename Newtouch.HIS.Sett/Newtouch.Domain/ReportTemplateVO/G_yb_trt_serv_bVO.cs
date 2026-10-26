@@ -7,43 +7,43 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.ReportTemplateVO
 {
     /// <summary>
-    /// 医疗服务项目表
+    /// Bảng hạng mục dịch vụ y tế
     /// </summary>
     public class G_yb_trt_serv_bVO
     {
-        //	医疗目录编码				
+        //	Mã danh mục y tế				
         public string MED_LIST_CODG { get; set; }
-        //	计价单位				
+        //	Đơn vị tính giá				
         public string PRCUNT { get; set; }
-        //	计价单位名称				
+        //	Tên đơn vị tính giá				
         public string PRCUNT_NAME { get; set; }
         
-        //	诊疗项目说明				
+        //	Giải thích hạng mục khám chữa bệnh				
         public string TRT_ITEM_DSCR { get; set; }
-        //	诊疗除外内容				
+        //	Nội dung loại trừ khám chữa bệnh				
         public string TRT_EXCT_CONT { get; set; }
-        //	诊疗项目内涵				
+        //	Nội hàm hạng mục khám chữa bệnh				
         public string TRT_ITEM_CONT { get; set; }
-        //	有效标志				
+        //	Cờ hiệu lực				
         public string VALI_FLAG { get; set; }
-        //	备注				
+        //	Ghi chú				
         public string MEMO { get; set; }
-        //	服务项目类别				
+        //	Loại hạng mục dịch vụ				
         public string SERVITEM_TYPE { get; set; }
-        //	医疗服务项目名称				
+        //	Tên hạng mục dịch vụ y tế				
         public string SERVITEM_NAME { get; set; }
-        //	项目说明				
+        //	Giải thích hạng mục				
         public string ITEM_DSCR { get; set; }
-        //	开始日期				
+        //	Ngày bắt đầu				
         public DateTime? BEGNDATE { get; set; }
-        //	结束日期				
+        //	Ngày kết thúc				
         public DateTime? ENDDATE { get; set; }
-        //	数据唯一记录号				
+        //	Số bản ghi duy nhất của dữ liệu				
         public string RID { get; set; }
         
-        //	版本号				
+        //	Số phiên bản				
         public string VER { get; set; }
-        //	版本名称				
+        //	Tên phiên bản				
         public string VER_NAME { get; set; }
        
 

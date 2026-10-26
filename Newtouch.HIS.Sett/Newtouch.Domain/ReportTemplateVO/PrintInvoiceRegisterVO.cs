@@ -98,19 +98,19 @@ namespace Newtouch.HIS.Domain.ReportTemplateVO
         public string Memo { get; set; }
 
         /// <summary>
-        /// 支付方式 如：现金:xx元，pos：yy元
+        /// Phương thức thanh toán như:Tiền mặt:xxđồng,pos:yyđồng
         /// </summary>
         public string PayFuc { get; set; }
         /// <summary>
-        /// 分币误差
+        /// Sai số tiền xu
         /// </summary>
         public string XjWc { get; set; }
         /// <summary>
-        /// 合计 如：应收xxx预收yyy找零zzz
+        /// Tổng cộng như:Phải thuxxxThu trướcyyyTiền thối lạizzz
         /// </summary>
         public string Account { get; set; }
         /// <summary>
-        /// 科室 如：疼痛科
+        /// Khoa như:Khoa đau
         /// </summary>
         public string Ks { get; set; }
 

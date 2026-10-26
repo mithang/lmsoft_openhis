@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    ///门诊结算表
+    ///Bảng quyết toán ngoại trú
     /// </summary>
     [Table("mz_jsmx")]
     public class OutpatientSettlementDetailEntity : IEntity<OutpatientSettlementDetailEntity>
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int jsmxnm { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -29,12 +29,12 @@ namespace Newtouch.HIS.Domain.Entity
         public int jsnm { get; set; }
 
         /// <summary>
-        /// 治疗项目处方明细内码
+        /// Mã nội bộ chi tiết đơn thuốc hạng mục điều trị
         /// </summary>
         public int? mxnm { get; set; }
 
         /// <summary>
-        /// 药品处方明细内码
+        /// Mã nội bộ chi tiết đơn thuốc thuốc
         /// </summary>
         public int? cf_mxnm { get; set; }
 
@@ -44,17 +44,17 @@ namespace Newtouch.HIS.Domain.Entity
         public decimal? sl { get; set; }
 
         /// <summary>
-        /// 0 挂号 1 家床记帐 2 门诊结帐（包括家床结帐） 3 住院 4 账户收支   -------   在退费时，必须知道是否家床记帐，确定是否执行医保结算   －－－－   (原：0 挂号 1 处方 2 项目  因为处方和项目同时结算，故不分)   
+        /// 0 Đăng ký khám 1 Ghi sổ giường gia đình 2 Quyết toán ngoại trú(Bao gồm quyết toán giường gia đình) 3 Nhập viện 4 Thu chi tài khoản   -------   Khi hoàn phí,Phải biết có phải ghi sổ giường gia đình hay không,Xác định có thực hiện quyết toán BHYT hay không   －－－－   (gốc:0 Đăng ký khám 1 Đơn thuốc 2 Hạng mục  Vì đơn thuốc và hạng mục được quyết toán cùng lúc,Vì vậy không phân biệt)   
         /// </summary>
         public string jslx { get; set; }
 
         /// <summary>
-        /// 交易金额（dj*sl）
+        /// Số tiền giao dịch(dj*sl)
         /// </summary>
         public decimal? jyje { get; set; }
 
         /// <summary>
-        /// 医保交易金额
+        /// Số tiền giao dịch BHYT
         /// </summary>
         public decimal? jyfwje { get; set; }
 
@@ -88,7 +88,7 @@ namespace Newtouch.HIS.Domain.Entity
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// 可退数量
+        /// Số lượng có thể trả lại
         /// </summary>
         public decimal? ktsl { get; set; }
 

@@ -4,19 +4,19 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 住院入院多诊断
+    /// Nhiều chẩn đoán nhập viện nội trú
     /// </summary>
     public interface IHospMultiDiagnosisRepo : IRepositoryBase<HospMultiDiagnosisEntity>
     {
         /// <summary>
-        /// 用过住院号获取诊断信息
+        /// Lấy thông tin chẩn đoán qua số nhập viện đã dùng
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         List<HospMultiDiagnosisEntity> GetDiagnoseByZYH(string zyh);
 
         /// <summary>
-        /// 查询
+        /// Tra cứu
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="organizeId"></param>

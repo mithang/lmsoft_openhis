@@ -5,18 +5,18 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 角色 DmnService
+    /// Vai trò DmnService
     /// </summary>
     public interface ISysRoleDmnService
     {
         /// <summary>
-        /// 删除系统角色
+        /// Xóa vai trò hệ thống
         /// </summary>
         /// <param name="keyValue"></param>
         void DeleteForm(string keyValue);
 
         /// <summary>
-        /// 提交新建、更新 实体 角色、角色权限
+        /// Gửi tạo mới,Cập nhật Thực thể Vai trò,Quyền vai trò
         /// </summary>
         /// <param name="roleEntity"></param>
         /// <param name="roleAuthorizeEntitys"></param>

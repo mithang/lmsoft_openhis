@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 门诊记账计划明细
+    /// Chi tiết kế hoạch ghi sổ ngoại trú
     /// </summary>
     [Table("mz_jzjhmx")]
     public class OutpatientAccountDetailEntity : IEntity<OutpatientAccountDetailEntity>
@@ -88,23 +88,23 @@ namespace Newtouch.HIS.Domain.Entity
         public string ysmc { get; set; }
         public string ksmc { get; set; }
         /// <summary>
-        /// 团体标志
+        /// Cờ đoàn thể
         /// </summary>
         public bool? ttbz { get; set; }
         public string kflb { get; set; }
 
         /// <summary>
-        /// 治疗量
+        /// Liều điều trị
         /// </summary>
         public int? zll { get; set; }
 
         /// <summary>
-        /// 最后执行时间
+        /// Thời gian thực hiện lần cuối
         /// </summary>
         public DateTime? LastEexcutionTime { get; set; }
 
         /// <summary>
-        /// 执行状态 见枚举EnumJzjhZXZT
+        /// Trạng thái thực hiện Xem enumEnumJzjhZXZT
         /// </summary>
         public int? zxzt { get; set; }
         public string yzxz { get; set; }
@@ -115,22 +115,22 @@ namespace Newtouch.HIS.Domain.Entity
         /// </summary>
         public DateTime? EndDate { get; set; }
         /// <summary>
-        /// 总次数
+        /// Tổng số lần
         /// </summary>
         public int? zcs { get; set; }
 
         /// <summary>
-        /// 已执行次数
+        /// Số lần đã thực hiện
         /// </summary>
         public int? yzxcs { get; set; }
 
         /// <summary>
-        /// 执行科室
+        /// Khoa thực hiện
         /// </summary>
         public string zxks { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 

@@ -13,73 +13,73 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
     public class InMzjshtDto
     {
         /// <summary>
-        /// 就诊编号
+        /// Số khám bệnh
         /// </summary>
         public string prm_akc190 { get; set; }
         /// <summary>
-        /// 分中心编号
+        /// Mã trung tâm chi nhánh
         /// </summary>
         public string prm_yab003 { get; set; }
         /// <summary>
-        /// 支付类别
+        /// Loại thanh toán
         /// </summary>
         public string prm_aka130 { get; set; }
         /// <summary>
-        /// 结算编号
+        /// Số quyết toán
         /// </summary>
         public string prm_yka103 { get; set; }
         /// <summary>
-        /// 经办人员编码
+        /// Mã nhân viên xử lý
         /// </summary>
         public string prm_aae011 { get; set; }
         /// <summary>
-        /// 经人人姓名
+        /// Tên người xử lý
         /// </summary>
         public string prm_ykc141 { get; set; }
         /// <summary>
-        /// 经办时间
+        /// Thời gian xử lý
         /// </summary>
         public string prm_aae036 { get; set; }
         /// <summary>
-        /// 退费原因
+        /// Lý do hoàn phí
         /// </summary>
         public string prm_aae013 { get; set; }
         /// <summary>
-        /// 社会保险办法
+        /// Phương pháp BHXH
         /// </summary>
         public string prm_ykb065 { get; set; }
         /// <summary>
-        /// 个人编号
+        /// Số cá nhân
         /// </summary>
         public string prm_aac001 { get; set; }
     }
     /// <summary>
-    /// 前端传参到后台
+    /// Frontend truyền tham số về backend
     /// </summary>
     public class GuiAnMztfProDto
     {
         /// <summary>
-        /// 交易流水号
+        /// Số giao dịch
         /// </summary>
         public string astr_jylsh { get; set; }
         /// <summary>
-        /// 交易验证码
+        /// Mã xác minh giao dịch
         /// </summary>
         public string astr_jyyzm { get; set; }
         /// <summary>
-        /// 交易标志
+        /// Cờ giao dịch
         /// </summary>
         public long aint_appcode { get; set; }
         /// <summary>
-        /// 交易信息
+        /// Thông tin giao dịch
         /// </summary>
         public string astr_appmsg { get; set; }
         /// <summary>
-        /// 总金额
+        /// Tổng số tiền
         /// </summary>
         public decimal? ZFY { get; set; }
         /// <summary>
-        /// 现金支付
+        /// Thanh toán tiền mặt
         /// </summary>
         public decimal? XJZF { get; set; }
 

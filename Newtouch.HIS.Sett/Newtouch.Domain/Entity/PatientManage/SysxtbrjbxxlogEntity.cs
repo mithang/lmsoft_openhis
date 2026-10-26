@@ -19,12 +19,12 @@ namespace Newtouch.HIS.Domain.Entity.PatientManage
         public int patid { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 本院磁卡号（包括医保离休病人），或者医保卡号
+        /// Số thẻ từ của bệnh viện(Bao gồm bệnh nhân BHYT nghỉ hưu),Hoặc số thẻ BHYT
         /// </summary>
         public string blh { get; set; }
 
@@ -49,11 +49,11 @@ namespace Newtouch.HIS.Domain.Entity.PatientManage
         public DateTime? csny { get; set; }
 
         /// <summary>
-        /// 证件类型
+        /// Loại giấy tờ
         /// </summary>
         public string zjlx { get; set; }
         /// <summary>
-        /// 证件号
+        /// Số giấy tờ
         /// </summary>
         public string zjh { get; set; }
 
@@ -73,7 +73,7 @@ namespace Newtouch.HIS.Domain.Entity.PatientManage
         public string cs_xian { get; set; }
         public string cs_dz { get; set; }
         /// <summary>
-        /// 邮编
+        /// Mã bưu điện
         /// </summary>
         public string cs_yb { get; set; }
         /// <summary>
@@ -87,18 +87,18 @@ namespace Newtouch.HIS.Domain.Entity.PatientManage
         public string hu_shi { get; set; }
 
         /// <summary>
-        /// 户籍县
+        /// Huyện hộ khẩu
         /// </summary>
         public string hu_xian { get; set; }
 
         /// <summary>
-        /// 户籍地址
+        /// Địa chỉ hộ khẩu
         /// </summary>
         public string hu_dz { get; set; }
         public string hu_yb { get; set; }
 
         /// <summary>
-        /// 现住址省
+        /// Tỉnh nơi ở hiện tại
         /// </summary>
         public string xian_sheng { get; set; }
 
@@ -118,7 +118,7 @@ namespace Newtouch.HIS.Domain.Entity.PatientManage
         public string xian_dz { get; set; }
         public string xian_yb { get; set; }
         /// <summary>
-        /// 紧急联系人省
+        /// Tỉnh người liên hệ khẩn cấp
         /// </summary>
         public string jjlxr_sheng { get; set; }
 
@@ -138,28 +138,28 @@ namespace Newtouch.HIS.Domain.Entity.PatientManage
         public string jjlxr_dz { get; set; }
 
         /// <summary>
-        /// 紧急联系人关系
+        /// Quan hệ người liên hệ khẩn cấp
         /// </summary>
         public string jjllrgx { get; set; }
         /// <summary>
-        /// 紧急联系人
+        /// Người liên hệ khẩn cấp
         /// </summary>
         public string jjllr { get; set; }
         /// <summary>
-        /// 紧急联系电话
+        /// Điện thoại liên hệ khẩn cấp
         /// </summary>
         public string jjlldh { get; set; }
         /// <summary>
-        /// 是否异地
+        /// Có phải khác địa phương hay không
         /// </summary>
         public int? dybh { get; set; }
         /// <summary>
-        /// 单位名称
+        /// Tên đơn vị
         /// </summary>
         public string dwmc { get; set; }
 
         /// <summary>
-        /// 单位地址
+        /// Địa chỉ đơn vị
         /// </summary>
         public string dwdz { get; set; }
       
@@ -175,32 +175,32 @@ namespace Newtouch.HIS.Domain.Entity.PatientManage
         public string gj { get; set; }
 
         /// <summary>
-        /// 枚举EnumHF
+        /// EnumEnumHF
         /// </summary>
         public byte? hf { get; set; }
 
         /// <summary>
-        /// 民族
+        /// Dân tộc
         /// </summary>
         public string mz { get; set; }
         
 
         /// <summary>
-        /// 职业
+        /// Nghề nghiệp
         /// </summary>
         public string zy { get; set; }
 
         /// <summary>
-        /// 最佳联系方式
+        /// Phương thức liên hệ tốt nhất
         /// </summary>
         public string zjlxfs { get; set; }
         /// <summary>
-        /// 电话
+        /// Điện thoại
         /// </summary>
         public string dh { get; set; }
 
         /// <summary>
-        /// 手机
+        /// Điện thoại di động
         /// </summary>
         public string phone { get; set; }
 
@@ -215,19 +215,19 @@ namespace Newtouch.HIS.Domain.Entity.PatientManage
         public string email { get; set; }
 
         /// <summary>
-        /// 病人来源
+        /// Nguồn bệnh nhân
         /// </summary>
         public string brly { get; set; }
         /// <summary>
-        /// 过敏史
+        /// Tiền sử dị ứng
         /// </summary>
         public string gms { get; set; }
         /// <summary>
-        /// 疾病史
+        /// Tiền sử bệnh
         /// </summary>
         public string jbs { get; set; }
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string bz { get; set; }
 
@@ -250,7 +250,7 @@ namespace Newtouch.HIS.Domain.Entity.PatientManage
 
         public string px { get; set; }
         /// <summary>
-        /// 0 无效 1 有效
+        /// 0 Không hiệu lực 1 Hiệu lực
         /// </summary>
         public string zt { get; set; }
 

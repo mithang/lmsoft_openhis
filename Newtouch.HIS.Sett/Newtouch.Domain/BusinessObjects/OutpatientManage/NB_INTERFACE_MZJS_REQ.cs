@@ -9,32 +9,32 @@ namespace Newtouch.HIS.Domain.BusinessObjects
     public class NB_INTERFACE_MZJS_REQ
     {
         /// <summary>
-        /// 卡编号
+        /// Mã thẻ
         /// </summary>
         public string kbh { get; set; }
 
         /// <summary>
-        /// 门诊流水号(代表一张门诊收费发票的唯一流水号))
+        /// Số giao dịch ngoại trú(Số giao dịch duy nhất đại diện cho một hóa đơn thu phí ngoại trú))
         /// </summary>
         public string mzlsh { get; set; }
 
         /// <summary>
-        /// 医院代码
+        /// Mã bệnh viện
         /// </summary>
         public string yydm { get; set; }
 
         /// <summary>
-        /// 操作员代码
+        /// Mã nhân viên thao tác
         /// </summary>
         public string czydm { get; set; }
 
         /// <summary>
-        /// 操作员名称
+        /// Tên nhân viên thao tác
         /// </summary>
         public string czymc { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
     }

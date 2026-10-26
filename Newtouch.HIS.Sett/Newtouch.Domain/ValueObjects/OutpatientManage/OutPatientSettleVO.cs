@@ -6,45 +6,45 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 门诊收费对象
+    /// Đối tượng thu phí ngoại trú
     /// </summary>
     [NotMapped]
     public class OutPatientSettleVO: OutpatientRegistEntity
     {
         /// <summary>
-        /// 病人性质名称
+        /// Tên tính chất bệnh nhân
         /// </summary>
         public string brxzmc { get; set; }
         /// <summary>
-        /// 大病项目名称
+        /// Tên hạng mục bệnh nặng
         /// </summary>
         public string dbxmmc { get; set; }
         /// <summary>
-        /// 总金额
+        /// Tổng số tiền
         /// </summary>
         public decimal zje { get; set; }
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ksmc { get; set; }
         /// <summary>
-        /// 人员名称
+        /// Tên nhân viên
         /// </summary>
         public string rymc { get; set; }
         /// <summary>
-        /// 作废日期
+        /// Ngày hủy
         /// </summary>
         public DateTime? zfrq { get; set; }
         /// <summary>
-        /// 收费项目名称
+        /// Tên hạng mục thu phí
         /// </summary>
         public string sfxmmc { get; set; }
         /// <summary>
-        /// 作废
+        /// Hủy
         /// </summary>
         public string iszf { get; set; }
         /// <summary>
-        /// 退回
+        /// Trả lại
         /// </summary>
         public string isth { get; set; }
 

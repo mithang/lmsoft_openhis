@@ -4,12 +4,12 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 同步治疗记录
+    /// Đồng bộ hồ sơ điều trị
     /// </summary>
     public interface ISyncTreatmentServiceRecordDmnService
     {
         /// <summary>
-        /// 获取同步治疗记录
+        /// Lấy hồ sơ điều trị đồng bộ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="clzt"></param>

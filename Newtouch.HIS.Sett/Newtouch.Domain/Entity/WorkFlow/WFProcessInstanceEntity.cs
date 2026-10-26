@@ -32,12 +32,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string CustomName { get; set; }
 
         /// <summary>
-        /// 枚举 1普通 9重要
+        /// Enum 1Thông thường 9Quan trọng
         /// </summary>
         public int wfLevel { get; set; }
 
         /// <summary>
-        /// 当前节点标示
+        /// Dấu nút hiện tại
         /// </summary>
         public string ActivityId { get; set; }
 
@@ -57,12 +57,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string PreviousId { get; set; }
 
         /// <summary>
-        /// 当前节点（ActivityId）的处理人
+        /// Nút hiện tại(ActivityId)Người xử lý của
         /// </summary>
         public string MarkerList { get; set; }
 
         /// <summary>
-        /// 0运行中,1运行结束,2被召回,3不同意,4被驳回
+        /// 0Đang chạy,1Kết thúc chạy,2Bị thu hồi,3Không đồng ý,4Bị từ chối
         /// </summary>
         public int IsFinish { get; set; }
 

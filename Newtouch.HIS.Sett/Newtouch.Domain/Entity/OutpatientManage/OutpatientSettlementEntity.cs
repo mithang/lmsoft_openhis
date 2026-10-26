@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 门诊结算
+    /// Quyết toán ngoại trú
     /// </summary>
     [Table("mz_js")]
     public class OutpatientSettlementEntity : IEntity<OutpatientSettlementEntity>
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int jsnm { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string brxz { get; set; }
 
         /// <summary>
-        /// 枚举EnumJslx 0 挂号 1 家床记帐 2 门诊结帐（包括家床结帐） 3 住院 4 账户收支   -------   在退费时，必须知道是否家床记帐，确定是否执行医保结算   －－－－   (原：0 挂号 1 处方 2 项目  因为处方和项目同时结算，故不分)   
+        /// EnumEnumJslx 0 Đăng ký khám 1 Ghi sổ giường gia đình 2 Quyết toán ngoại trú(Bao gồm quyết toán giường gia đình) 3 Nhập viện 4 Thu chi tài khoản   -------   Khi hoàn phí,Phải biết có phải ghi sổ giường gia đình hay không,Xác định có thực hiện quyết toán BHYT hay không   －－－－   (gốc:0 Đăng ký khám 1 Đơn thuốc 2 Hạng mục  Vì đơn thuốc và hạng mục được quyết toán cùng lúc,Vì vậy không phân biệt)   
         /// </summary>
         public string jslx { get; set; }
 
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Domain.Entity
         public decimal jzfy { get; set; }
 
         /// <summary>
-        /// 结算时应收（另结算现场需支付）
+        /// Khoản phải thu khi quyết toán(Hiện trường quyết toán khác cần thanh toán)
         /// </summary>
         public decimal xjzf { get; set; }
 
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Domain.Entity
         public decimal zhjz { get; set; }
 
         /// <summary>
-        /// from xt_xjzffs //20180829作废，改依赖mz_jszffs表
+        /// from xt_xjzffs //20180829Hủy,Đổi phụ thuộcmz_jszffsBảng
         /// </summary>
         public string xjzffs { get; set; }
 
@@ -89,47 +89,47 @@ namespace Newtouch.HIS.Domain.Entity
         public string fph { get; set; }
 
         /// <summary>
-        /// 1 已结（未退） 2 已退 3 补收 4 补收又退   --2006-06-17 启用,作为便于识别结算情况的冗余字段      --2006.06.16 暂时不用此字段   好像可以通过   已结：结算内码>0   已结（未退）：结算内码>0and撤销内码>0   已退：撤销结算内码>0
+        /// 1 Đã quyết toán(Chưa trả lại) 2 Đã trả lại 3 Thu bổ sung 4 Thu bổ sung rồi trả lại   --2006-06-17 Kích hoạt,Trường dư thừa để dễ nhận biết tình hình quyết toán      --2006.06.16 Tạm thời không dùng trường này   Hình như có thể thông qua   Đã quyết toán:Mã nội bộ quyết toán>0   Đã quyết toán(Chưa trả lại):Mã nội bộ quyết toán>0andMã nội bộ hủy>0   Đã trả lại:Mã nội bộ hủy quyết toán>0
         /// </summary>
         public int jszt { get; set; }
 
         /// <summary>
-        /// 撤销本次结算的结算（金额为负）所???用的内码
+        /// Hủy quyết toán lần này(Số tiền là số âm)nơi???Mã nội bộ dùng
         /// </summary>
         public int cxjsnm { get; set; }
 
         /// <summary>
-        /// 2012-11-24 需要修改账户支付方法，   帐户支付：个人、单位或银联等账户，可多账户分别支付，   	　由＂门诊－结算账户＂表来记录具体账户支付信息（待建）   	同时，删除”账户“字段         扣除记帐费用所用到账户
+        /// 2012-11-24 Cần sửa phương pháp thanh toán tài khoản,   Thanh toán từ tài khoản:Cá nhân,Tài khoản đơn vị hoặc UnionPay v.v.,Có thể thanh toán riêng từ nhiều tài khoản,   	　do＂Khám ngoại trú－Tài khoản quyết toán＂Bảng dùng để ghi thông tin thanh toán tài khoản cụ thể(Chờ xây dựng)   	Đồng thời,Xóa"Tài khoản"Trường         Tài khoản dùng để khấu trừ chi phí ghi sổ
         /// </summary>
         public int? zh { get; set; }
 
         /// <summary>
-        /// 地税、国税发票上的发票代码，由于需要导出发票上报，所以必须   2013-8-7 作废此字段：采用财务发票管理（cw_fp）的程序录入发票号码和发票代码的起始号，然后通过两个号码的差数来计算每张发票的发票编码，同时计算出作废发票清单
+        /// Thuế địa phương,Mã hóa đơn trên hóa đơn thuế quốc gia,Do cần xuất hóa đơn để báo cáo,Vì vậy phải   2013-8-7 Hủy trường này:Áp dụng quản lý hóa đơn tài chính(cw_fp)chương trình nhập số hóa đơn và số bắt đầu của mã hóa đơn,Sau đó tính mã hóa đơn của mỗi hóa đơn qua hiệu số của hai số này,Đồng thời tính ra danh sách hóa đơn đã hủy
         /// </summary>
         public string fpdm { get; set; }
 
         /// <summary>
-        /// （自费的折扣比例）
+        /// (Tỷ lệ chiết khấu tự chi trả)
         /// </summary>
         public decimal jmbl { get; set; }
 
         /// <summary>
-        /// （自费的折扣金额）
+        /// (Số tiền chiết khấu tự chi trả)
         /// </summary>
         public decimal jmje { get; set; }
 
         /// <summary>
-        ///                医保交易类型 yb_deal_wjy = 0,//无医保交易               yb_deal_mzgh = 1,//门诊挂号               yb_deal_mzsf = 2,//门诊收费               yb_deal_dbgh = 3,//大病挂号               yb_deal_dbsf = 4,//大病收费               yb_deal_jcsf = 5,//家床收费                yb_deal_zysf = 6,    //住院收费               yb_deal_gsgh = 7,    //工伤挂号               yb_deal_gsmz = 8,   //工伤收费               yb_deal_sssf = 9 //明细项目实时收费                               nb_yb_fyjs_mz_T1 = 10,  //农保门诊结算              nb_yb_bc_ztjs = 11, //农保住院中途结算收费              nb_yb_fyjs_zy_T1 = 12,  //农保住院出院结算收费              yb_deal_gszy = 13, //住院工伤收费              yb_deal_jcjz = 14,//家床记账     
+        ///                Loại giao dịch BHYT yb_deal_wjy = 0,//Không có giao dịch BHYT               yb_deal_mzgh = 1,//Đăng ký khám ngoại trú               yb_deal_mzsf = 2,//Thu phí ngoại trú               yb_deal_dbgh = 3,//Đăng ký khám bệnh nặng               yb_deal_dbsf = 4,//Thu phí bệnh nặng               yb_deal_jcsf = 5,//Thu phí giường gia đình                yb_deal_zysf = 6,    //Thu phí nội trú               yb_deal_gsgh = 7,    //Đăng ký khám tai nạn lao động               yb_deal_gsmz = 8,   //Thu phí tai nạn lao động               yb_deal_sssf = 9 //Thu phí thời gian thực đối với hạng mục chi tiết                               nb_yb_fyjs_mz_T1 = 10,  //Quyết toán ngoại trú Bảo hiểm nông nghiệp              nb_yb_bc_ztjs = 11, //Thu phí quyết toán giữa chừng nội trú Bảo hiểm nông nghiệp              nb_yb_fyjs_zy_T1 = 12,  //Thu phí quyết toán xuất viện nội trú Bảo hiểm nông nghiệp              yb_deal_gszy = 13, //Thu phí tai nạn lao động nội trú              yb_deal_jcjz = 14,//Ghi sổ giường gia đình     
         /// </summary>
         public string jylx { get; set; }
 
         /// <summary>
-        /// 预收款 应80 收100 找零20， 这里100
+        /// Khoản thu trước nên80 thu100 Tiền thối lại20, Ở đây100
         /// </summary>
         public decimal? ysk { get; set; }
 
         /// <summary>
-        /// 找零  应80 收100 找零20， 这里20
+        /// Tiền thối lại  nên80 thu100 Tiền thối lại20, Ở đây20
         /// </summary>
         public decimal? zl { get; set; }
 
@@ -173,64 +173,64 @@ namespace Newtouch.HIS.Domain.Entity
         public int ghnm { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 性别xb
+        /// Giới tínhxb
         /// </summary>
         public string xb { get; set; }
 
         /// <summary>
-        /// 出生年月
+        /// Năm tháng sinh
         /// </summary>
         public DateTime? csny { get; set; }
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// 证件类型 
+        /// Loại giấy tờ 
         /// </summary>
         public string zjlx { get; set; }
 
         /// <summary>
-        /// 证件号
+        /// Số giấy tờ
         /// </summary>
         public string zjh { get; set; }
 
         /// <summary>
-        /// （收费日期）
+        /// (Ngày thu phí)
         /// </summary>
         public DateTime? jzsj { get; set; }
 
         /// <summary>
-        /// 退或被退都请置为1 方便查询
+        /// Dù trả hay bị trả đều vui lòng đặt thành1 Thuận tiện tra cứu
         /// </summary>
         public int? tbz { get; set; }
 
         /// <summary>
-        /// 折后应收金额（自费部分打折后应收款金额）
-        /// （貌似和xjzf字段意义重复了，故20180829作废）
+        /// Số tiền phải thu sau chiết khấu(Số tiền phải thu sau chiết khấu phần tự chi trả)
+        /// (Hình như vàxjzfÝ nghĩa trường bị trùng lặp,Vì vậy20180829Hủy)
         /// </summary>
         public decimal? zkhzje { get; set; }
 
         /// <summary>
-        /// 是否是欠费预结
+        /// Có phải là quyết toán trước khi nợ phí hay không
         /// </summary>
         public bool? isQfyj { get; set; }
         /// <summary>
-        /// 请求支付订单号
+        /// Số đơn hàng yêu cầu thanh toán
         /// </summary>
         public string OutTradeNo { get; set; }
         /// <summary>
-        /// 医保结算流水号
+        /// Số giao dịch quyết toán BHYT
         /// </summary>
         public string ybjslsh { get; set; }
         /// <summary>
-        /// 结算是否使用减免
+        /// Quyết toán có dùng giảm miễn hay không
         /// </summary>
         public string isjm { get; set; }
 

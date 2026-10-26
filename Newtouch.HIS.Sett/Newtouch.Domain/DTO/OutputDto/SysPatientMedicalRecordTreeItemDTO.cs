@@ -1,47 +1,47 @@
 ﻿namespace Newtouch.HIS.Domain.DTO
 {
     /// <summary>
-    /// 历史病历
+    /// Bệnh án lịch sử
     /// </summary>
     public class SysPatientMedicalRecordTreeItemDTO
     {
         /// <summary>
-        /// 唯一主键
+        /// Khóa chính duy nhất
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// 日期
+        /// Ngày tháng
         /// </summary>
         public string rq { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string bz { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建人姓名
+        /// Tên người tạo
         /// </summary>
         public string CreatorUserName { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public string CreateTime { get; set; }
 
         /// <summary>
-        /// 父级Id
+        /// Cấp chaId
         /// </summary>
         public string ParentId { get; set; }
 
@@ -61,17 +61,17 @@
         public string attachPath { get; set; }
 
         /// <summary>
-        /// 网络访问路径
+        /// Đường dẫn truy cập mạng
         /// </summary>
         public string attachUrl { get; set; }
 
         /// <summary>
-        /// 创建时间（上传时间）
+        /// Thời gian tạo(Thời gian tải lên)
         /// </summary>
         public string DetailCreateTime { get; set; }
 
         /// <summary>
-        /// 创建人姓名
+        /// Tên người tạo
         /// </summary>
         public string DetailCreatorUserName { get; set; }
 

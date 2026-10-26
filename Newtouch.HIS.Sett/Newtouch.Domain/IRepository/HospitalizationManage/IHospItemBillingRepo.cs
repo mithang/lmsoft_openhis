@@ -12,15 +12,15 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IHospItemBillingRepo : IRepositoryBase<HospItemBillingEntity>
     {
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="hospItemFeeEntity"></param>
         /// <param name="keyValue"></param>
         void SubmitForm(HospItemBillingEntity hospItemFeeEntity, int? keyValue);
 
         /// <summary>
-        /// 查询 时间段内的 项目计费EntityList
-        /// 已考虑退费
+        /// Tra cứu Trong khoảng thời gian Tính phí hạng mụcEntityList
+        /// Đã xét hoàn phí
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Domain.IRepository
             , IQueryable<HospItemBillingEntity> sourceQuery = null);
         
         /// <summary>
-        /// 记账中物资耗材库存扣减
+        /// Trừ tồn kho vật tư tiêu hao trong ghi sổ
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="yfbm"></param>

@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Domain.IRepository
 
 
         /// <summary>
-        ///获取待确认和已确认的门诊号/住院号distinct
+        ///Lấy số ngoại trú chờ xác nhận và đã xác nhận/Số nhập việndistinct
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>
@@ -42,14 +42,14 @@ namespace Newtouch.HIS.Domain.IRepository
         /// <param name="type"></param>
         List<OptimaAccLeftDto> GetUnitList(string orgId, string type, string rygh, string kssj = null, string jssj = null);
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="SyncTreatmentServiceRecordEntity"></param>
         /// <param name="keyValue"></param>
         void SubmitForm(SyncTreatmentServiceRecordEntity SyncTreatmentServiceRecordEntity, int? keyValue, string orgId);
 
         /// <summary>
-        /// 批量作废
+        /// Hủy hàng loạt
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="Id"></param>

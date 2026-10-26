@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 住院结算大类
+    /// Loại lớn quyết toán nội trú
     /// </summary>
     [Table("zy_jsdl")]
     public class HospSettlementCategoryEntity : IEntity<HospSettlementCategoryEntity>
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string jsdlId { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 

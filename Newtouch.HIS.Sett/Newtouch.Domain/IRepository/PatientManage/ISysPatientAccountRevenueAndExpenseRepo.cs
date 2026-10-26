@@ -9,14 +9,14 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysPatientAccountRevenueAndExpenseRepo : IRepositoryBase<SysPatientAccountRevenueAndExpenseEntity>
     {
         /// <summary>
-        /// 根据住院号、预交金账户 获取 收支记录 列表
+        /// Theo số nhập viện,Tài khoản tạm ứng Lấy Bản ghi thu chi Danh sách
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         IList<SysPatientAccountRevenueAndExpenseEntity> GetListByZyhAndYjjzh(string zyh, int zh, string orgId);
 
         /// <summary>
-        /// 根据账户 获取账户最后一条记录（为获取账户余额）
+        /// Theo tài khoản Lấy bản ghi cuối cùng của tài khoản(Để lấy số dư tài khoản)
         /// add by HLF
         /// </summary>
         /// <param name="zh"></param>
@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Domain.IRepository
         SysPatientAccountRevenueAndExpenseEntity GetLastJL(int zh, string orgId);
 
         /// <summary>
-        /// 添加账户收支记录
+        /// Thêm bản ghi thu chi tài khoản
         /// </summary>
         /// <param name="sysPatPayInfoEntity"></param>
         void AddPayInfo(SysPatientAccountRevenueAndExpenseEntity sysPatPayInfoEntity, string orgId, string curUserCode, string curUserName);

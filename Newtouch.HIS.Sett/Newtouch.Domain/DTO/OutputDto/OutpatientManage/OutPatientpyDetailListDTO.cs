@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
 {
     /// <summary>
-    /// 门诊排药查看单个处方的药品详细信息
+    /// Xem thuốc ngoại trú xem thông tin chi tiết thuốc của một đơn thuốc
     /// </summary>
     public class OutPatientpyDetailListDTO
     {
@@ -25,7 +25,7 @@
         public string czh { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string OrganizeId { get; set; }
     }

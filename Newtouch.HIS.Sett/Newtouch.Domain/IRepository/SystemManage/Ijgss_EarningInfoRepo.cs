@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface Ijgss_EarningInfoRepo : IRepositoryBase<jgss_EarningInfoEntity>
     {
         /// <summary>
-        /// 更新审核状态
+        /// Cập nhật trạng thái kiểm tra
         /// </summary>
         /// <param name="id"></param>
         /// <param name="shzt"></param>

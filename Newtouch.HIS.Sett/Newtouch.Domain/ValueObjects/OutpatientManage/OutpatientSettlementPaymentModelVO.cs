@@ -2,16 +2,16 @@
 namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
 {
     /// <summary>
-    /// 门诊结算支付方式
+    /// Phương thức thanh toán quyết toán ngoại trú
     /// </summary>
     public class OutpatientSettlementPaymentModelVO
     {
         /// <summary>
-        /// 支付方式名称
+        /// Tên phương thức thanh toán
         /// </summary>
         public string xjzffsmc { get; set; }
         /// <summary>
-        /// 支付金额
+        /// Số tiền thanh toán
         /// </summary>
         public decimal zfje { get; set; }
     }

@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-01-29 15:52
-    /// 描 述：治疗师利润提成配置
+    /// Tạo：张冬林
+    /// Ngày tháng:2018-01-29 15:52
+    /// Mô tả:Cấu hình hoa hồng lợi nhuận của kỹ thuật viên điều trị
     /// </summary>
     [Table("zlsps_m_config")]
     public class TherapeutistMonthProfitShareConfigEntity : IEntity<TherapeutistMonthProfitShareConfigEntity>
@@ -55,23 +55,23 @@ namespace Newtouch.HIS.Domain.Entity
         public decimal? ycebl { get; set; }
 
         /// <summary>
-        /// 第二月超额
+        /// Vượt mức tháng thứ hai
         /// </summary>
         /// <returns></returns>
         public int? deyce { get; set; }
         /// <summary>
-        /// 第二月超额 比例
+        /// Vượt mức tháng thứ hai Tỷ lệ
         /// </summary>
         /// <returns></returns>
         public decimal? deycebl { get; set; }
 
         /// <summary>
-        /// 第三月超额
+        /// Vượt mức tháng thứ ba
         /// </summary>
         /// <returns></returns>
         public int? dsyce { get; set; }
         /// <summary>
-        /// 第三月超额比例
+        /// Tỷ lệ vượt mức tháng thứ ba
         /// </summary>
         /// <returns></returns>
         public decimal? dsycebl { get; set; }

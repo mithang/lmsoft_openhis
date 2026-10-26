@@ -11,21 +11,21 @@ namespace Newtouch.HIS.Domain.IRepository
     {
 
         /// <summary>
-        /// 获取机构科室列表
+        /// Lấy danh sách khoa của cơ sở
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<SysDepartmentVEntity> GetList(string orgId, string keyword = null);
 
         /// <summary>
-        /// 根据Code获取科室
+        /// TheoCodeLấy khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         SysDepartmentVEntity GetByCode(string code, string orgId);
 
         /// <summary>
-        /// 根据Name获取Code
+        /// TheoNameLấyCode
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Domain.IRepository
         string GetCodeByName_FirstOrDefault(string name, string orgId);
 
         /// <summary>
-        /// 根据Code获取名称
+        /// TheoCodeLấy tên
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>

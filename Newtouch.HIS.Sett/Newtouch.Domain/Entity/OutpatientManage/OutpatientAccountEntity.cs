@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 门诊记账计划
+    /// Kế hoạch ghi sổ ngoại trú
     /// </summary>
     [Table("mz_jzjh")]
     public class OutpatientAccountEntity : IEntity<OutpatientAccountEntity>
@@ -59,12 +59,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// 填写介绍人
+        /// Điền người giới thiệu
         /// </summary>
         public string remark { get; set; }
         public int? ghnm { get; set; }
         /// <summary>
-        /// 外部结算内码（对接系统用）
+        /// Mã nội bộ quyết toán bên ngoài(Dùng để kết nối hệ thống)
         /// </summary>
         public int? outerjsnm { get; set; }
 

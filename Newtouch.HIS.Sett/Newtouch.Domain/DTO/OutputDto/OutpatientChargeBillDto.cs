@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// 门诊收费票据
+    /// Phiếu thu phí ngoại trú
     /// </summary>
     public class OutpatientChargeBillDto
     {
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto
         public decimal ZHZF { get; set; }
     }
     /// <summary>
-    /// 重庆cs端发票打印
+    /// Trùng KhánhcsIn hóa đơn đầu cuối
     /// </summary>
     public class CqOutpatientChargeBillDto
     {

@@ -23,11 +23,11 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         public int? dybh { get; set; }
         public string kh { get; set; }
         /// <summary>
-        /// 卡类型
+        /// Loại thẻ
         /// </summary>
         public string CardType { get; set; }
         /// <summary>
-        /// 卡类型名称
+        /// Tên loại thẻ
         /// </summary>
         public string CardTypeName { get; set; }
         public string mzh { get; set; }
@@ -44,27 +44,27 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         public DateTime? CreateTime { get; set; }
 
         /// <summary>
-        /// 初复诊
+        /// Khám lần đầu/tái khám
         /// </summary>
         public byte fzbz { get; set; }
 
         /// <summary>
-        /// 大病
+        /// Bệnh nặng
         /// </summary>
         public string db { get; set; }
 
         /// <summary>
-        /// 大病诊断
+        /// Chẩn đoán bệnh nặng
         /// </summary>
         public string dbzd { get; set; }
 
         /// <summary>
-        /// 婚否 枚举 EnumHF
+        /// Tình trạng hôn nhân Enum EnumHF
         /// </summary>
         public byte? hf { get; set; }
 
         /// <summary>
-        /// 国籍
+        /// Quốc tịch
         /// </summary>
         public string gjCode { get; set; }
 
@@ -74,7 +74,7 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         public string gjmc { get; set; }
 
         /// <summary>
-        /// 民族
+        /// Dân tộc
         /// </summary>
         public string mzCode { get; set; }
 
@@ -84,27 +84,27 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         public string mzmc { get; set; }
 
         /// <summary>
-        /// 挂号状态
+        /// Trạng thái đăng ký khám
         /// </summary>
         public string ghzt { get; set; }
 
         /// <summary>
-        /// 医保结算号
+        /// Số quyết toán BHYT
         /// </summary>
         public string ybjsh { get; set; }
 
         /// <summary>
-        /// 就诊原因
+        /// Lý do khám
         /// </summary>
         public string jzyy { get; set; }
 
         /// <summary>
-        /// 社保编号
+        /// Số BHXH
         /// </summary>
         public string sbbh { get; set; }
 
         /// <summary>
-        /// 就诊标志
+        /// Cờ khám bệnh
         /// </summary>
         public string jiuzhenbiaozhi { get; set; }
 
@@ -123,12 +123,12 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         /// </summary>
         public string ks { get; set; }
 
-        /// <summary>一个
+        /// <summary>Một
         /// 
         /// </summary>
         public string ksmc { get; set; }
 		/// <summary>
-		/// 参保类别
+		/// Loại tham gia bảo hiểm
 		/// </summary>
 		public string cblb { get; set; }
         public string zyh { get; set; }
@@ -170,17 +170,17 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         public string sfdlmc { get; set; }
 
         /// <summary>
-        /// 单位
+        /// Đơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 单位时长
+        /// Thời lượng đơn vị
         /// </summary>
         public int? duration { get; set; }
 
         /// <summary>
-        /// 收费项目当前的单价
+        /// Đơn giá hiện tại của hạng mục thu phí
         /// </summary>
         public decimal? dj { get; set; }
 
@@ -210,8 +210,8 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 由 ys ysmc ks ksmc 构造而来
-        /// VO引用DTO有问题
+        /// do ys ysmc ks ksmc Được tạo thành từ
+        /// VOTrích dẫnDTOCó vấn đề
         /// </summary>
         public IList<InpatientAccountingPlanItemDoctorDto> ysList
         {
@@ -245,12 +245,12 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
 
 
         /// <summary>
-        /// 医嘱类型 1药品 2项目
+        /// Loại y lệnh 1Thuốc 2Hạng mục
         /// </summary>
         public string yzlx { get; set; }
 
         /// <summary>
-        /// 康复类别
+        /// Loại phục hồi chức năng
         /// </summary>
         public string kflb { get; set; }
 
@@ -263,7 +263,7 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         public string jfbId { get; set; }
 
         /// <summary>
-        /// 单次治疗量
+        /// Liều điều trị mỗi lần
         /// </summary>
         public int? zll { get; set; }
         public int? zxzt { get; set; }
@@ -272,11 +272,11 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
         public DateTime? EndDate { get; set; }
         public string yzxz { get; set; }
         /// <summary>
-        /// 单位计量数
+        /// Số lượng đơn vị đo
         /// </summary>
         public int? dwjls { get; set; }
         /// <summary>
-        /// 计价策略
+        /// Chính sách tính giá
         /// </summary>
         public int? jjcl { get; set; }
 
@@ -292,12 +292,12 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
     public class OutpatOptimAccInfoDto
     {
         /// <summary>
-        /// 就诊记录
+        /// Hồ sơ khám bệnh
         /// </summary>
         public OutpatAccInfoDto OutpatAccInfoDto { get; set; }
         
         /// <summary>
-        /// 就诊记录集合
+        /// Tập hợp hồ sơ khám bệnh
         /// </summary>
         public List<OutpatAccInfoDto> OutpatAccListDto { get; set; }
         

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 用户VO
+    /// Người dùngVO
     /// </summary>
     [NotMapped]
     public class SysUserVO : SysUserVEntity

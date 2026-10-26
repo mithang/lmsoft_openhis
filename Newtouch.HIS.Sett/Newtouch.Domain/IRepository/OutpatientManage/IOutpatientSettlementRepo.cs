@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Domain.IRepository
         OutpatientSettlementEntity SelectMZJS(int jsnm, string orgId);
 
         ///// <summary>
-        ///// 根据ghnm查询list
+        ///// TheoghnmTra cứulist
         ///// </summary>
         ///// <param name="orgId"></param>
         ///// <param name="ghnm"></param>
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Domain.IRepository
         //List<OutpatientSettlementEntity> SelectEntityByGhnm(string orgId, int ghnm);
 
         /// <summary>
-        /// 强制更新发票号
+        /// Cưỡng chế cập nhật số hóa đơn
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="fph"></param>

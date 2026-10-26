@@ -11,24 +11,24 @@ using Newtouch.HIS.Proxy.guian.DTO.S25;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 门诊的一些通用方法
-    /// 一定是不区分版本
+    /// Một số phương pháp chung ngoại trú
+    /// Chắc chắn không phân biệt phiên bản
     /// </summary>
     public interface IOutPatientUniversalDmnService
     {
         /// <summary>
-        /// 提交明细（重要：如果是向处方追加或作废明细，线下意义这是在变更这张处方，医生一般不这么做）（处方的话更新主表信息）（请提前构造好其请求参数）（根据明细的主键xmnm、cfmxId值来判断这是新增，还是修改记录）（当是新增，根据cfnm字段，又分新增明细及处方，还是向已有处方追加明细）（修改的话是直接更新数据库明细记录/此版本暂不支持，否则请去退费）
+        /// Gửi chi tiết(Quan trọng:Nếu là thêm vào đơn thuốc hoặc hủy chi tiết,Theo nghĩa ngoại tuyến thì đây là thay đổi đơn thuốc này,Bác sĩ thường không làm vậy)(Nếu là đơn thuốc thì cập nhật thông tin bảng chính)(Vui lòng tạo trước tham số yêu cầu của nó)(Theo khóa chính chi tiếtxmnm,cfmxIdDùng giá trị để xác định đây là thêm mới,Hay là bản ghi sửa đổi)(Khi là thêm mới,TheocfnmTrường,Lại chia thành thêm mới chi tiết và đơn thuốc,Hay là thêm chi tiết vào đơn thuốc đã có)(Nếu sửa thì cập nhật trực tiếp bản ghi chi tiết CSDL/Phiên bản này tạm thời không hỗ trợ,Nếu không thì vui lòng đi hoàn phí)
         /// </summary>
-        /// <param name="orgId">医疗机构Id</param>
-        /// <param name="changedCfnmList">返回用的</param>
-        /// <param name="changedXmnmList">返回用的（如果项目不关联处方）</param>
-        /// <param name="updateSkipSettledCfhList">（这是一个返回）更新已结处方被跳过的cfh List</param>
-        /// <param name="mzh">如果需要新增的话，给你准备好</param>
-        /// <param name="ys">如果需要新增的话，给你准备好（未指定时去挂号的ys）</param>
-        /// <param name="ItemsGroupBOList">计费信息分组（新增处方/新增处方明细/新增项目明细）处方信息/处方明细信息/项目信息</param>
-        /// <param name="settledUpdateForbidden">已结时 是否禁止更新</param>
-        /// <param name="settledUpdateSkip">（已结时禁止更新）检查是否Skip，true不抛异常跳过，否则抛异常</param>
-        /// <param name="cfly">处方来源（0 收费处 1 医生站）</param>
+        /// <param name="orgId">Cơ sở y tếId</param>
+        /// <param name="changedCfnmList">Dùng để trả về</param>
+        /// <param name="changedXmnmList">Dùng để trả về(Nếu hạng mục không liên kết đơn thuốc)</param>
+        /// <param name="updateSkipSettledCfhList">(Đây là một trả về)Cập nhật đơn thuốc đã quyết toán bị bỏ quacfh List</param>
+        /// <param name="mzh">Nếu cần thêm mới,Đã chuẩn bị sẵn cho bạn</param>
+        /// <param name="ys">Nếu cần thêm mới,Đã chuẩn bị sẵn cho bạn(Khi chưa chỉ định thì đi đăng ký khámys)</param>
+        /// <param name="ItemsGroupBOList">Nhóm thông tin tính phí(Thêm đơn thuốc mới/Thêm chi tiết đơn thuốc mới/Thêm chi tiết hạng mục mới)Thông tin đơn thuốc/Thông tin chi tiết đơn thuốc/Thông tin hạng mục</param>
+        /// <param name="settledUpdateForbidden">Khi đã quyết toán Có cấm cập nhật hay không</param>
+        /// <param name="settledUpdateSkip">(Khi đã quyết toán thì cấm cập nhật)Kiểm tra có hay khôngSkip,trueKhông ném ngoại lệ, bỏ qua,Nếu không thì ném ngoại lệ</param>
+        /// <param name="cfly">Nguồn đơn thuốc(0 Nơi thu phí 1 Trạm bác sĩ)</param>
         void SubmitItems(
             string orgId
             , out IList<int> changedCfnmList, out IList<int> changedXmnmList
@@ -40,14 +40,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
             , string cfly = null);
 
         /// <summary>
-        /// 更新门诊处方/门诊项目的结算信息（更新结算信息）（这个cfnm可能已作废，目的可能是也作废结算信息）（调用此方法前，请先更新好mz_cfmx、mz_xm，且已持久化到数据库中）根据cfnm查出所有的相关表mz_js mz_jsmx mz_cf mz_cfmx mz_xm，根据mz_cfmx、mz_xm的正确数据更新其他表（可能会新增mz_jsmx）（可能会新增mz_js）（check mz_xm、mz_cf zt 0，对应mz_jsmx 也要更新）（多个mz_cf可以对应一个结算）（但一个mz_cf不能对应多个结算）
+        /// Cập nhật đơn thuốc ngoại trú/Thông tin quyết toán hạng mục ngoại trú(Cập nhật thông tin quyết toán)(NàycfnmCó thể đã hủy,Mục đích có thể cũng là hủy thông tin quyết toán)(Trước khi gọi phương thức này,Vui lòng cập nhật trướcmz_cfmx,mz_xm,Và đã được lưu bền vào CSDL)TheocfnmTìm ra tất cả các bảng liên quanmz_js mz_jsmx mz_cf mz_cfmx mz_xm,Theomz_cfmx,mz_xmDùng dữ liệu đúng để cập nhật các bảng khác(Có thể sẽ thêm mớimz_jsmx)(Có thể sẽ thêm mớimz_js)(check mz_xm,mz_cf zt 0,Tương ứngmz_jsmx Cũng cần cập nhật)(Nhiềumz_cfCó thể tương ứng với một lần quyết toán)(Nhưng mộtmz_cfKhông thể tương ứng với nhiều lần quyết toán)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
         /// <param name="settlementAddBO"></param>
-        /// <param name="feeRelated">金额及支付信息</param>
-        /// <param name="ybfeeRelated">医保相关费用</param>
-        /// <returns>返回新生成的结算内码List</returns>
+        /// <param name="feeRelated">Số tiền và thông tin thanh toán</param>
+        /// <param name="ybfeeRelated">Chi phí liên quan BHYT</param>
+        /// <returns>Trả về mã nội bộ quyết toán mới tạoList</returns>
         IList<int> AddSettlement(string orgId, string mzh
             , OutpatientSettlementAddBO settlementAddBO
             , OutpatientSettFeeRelatedDTO feeRelated = null
@@ -56,23 +56,23 @@ namespace Newtouch.HIS.Domain.IDomainServices
             , string outTradeNo = null);
 
         /// <summary>
-        /// 门诊退费（不用关联门诊处方、项目）
+        /// Hoàn phí ngoại trú(Không cần liên kết đơn thuốc ngoại trú,Hạng mục)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="jsnm"></param>
-        /// <param name="tjsxmDict">退结算明细List jsmxnm:退数量 退数量 正数</param>
-        /// <param name="expectedTmxZje">预期退费项目金额合计（单价*退数量），防止过程中数据发生变更</param>
-        /// <param name="newfph">新结算发票号</param>
-        /// <param name="newJszbInfo">生成的新结算结算信息</param>
-        /// <param name="outTradeNo">原支付交易号</param>
-        /// <param name="refundAmount">退现金金额（现金、支付宝、微信等）</param>
-        /// <param name="hcybjsh">退费.医保交易.红冲结算号</param>
-        /// <param name="newwjybjsh">退费.医保交易.新的结算号</param>
-        /// <param name="hcybfeeRelated">红冲结算 的 结算医保金额相关</param>
-        /// <param name="newybfeeRelated">退费.医保交易.新的结算 结算医保返回费用信息</param>
+        /// <param name="tjsxmDict">Chi tiết hủy quyết toánList jsmxnm:Số lượng trả lại Số lượng trả lại Số dương</param>
+        /// <param name="expectedTmxZje">Tổng số tiền hạng mục hoàn phí dự kiến(Đơn giá*Số lượng trả lại),Ngăn dữ liệu thay đổi trong quá trình</param>
+        /// <param name="newfph">Số hóa đơn quyết toán mới</param>
+        /// <param name="newJszbInfo">Thông tin quyết toán mới được tạo</param>
+        /// <param name="outTradeNo">Số giao dịch thanh toán ban đầu</param>
+        /// <param name="refundAmount">Số tiền mặt trả lại(Tiền mặt,Alipay,WeChat v.v.)</param>
+        /// <param name="hcybjsh">Hoàn phí.Giao dịch BHYT.Số quyết toán đảo hóa đơn đỏ</param>
+        /// <param name="newwjybjsh">Hoàn phí.Giao dịch BHYT.Số quyết toán mới</param>
+        /// <param name="hcybfeeRelated">Quyết toán đảo hóa đơn đỏ của Liên quan số tiền BHYT quyết toán</param>
+        /// <param name="newybfeeRelated">Hoàn phí.Giao dịch BHYT.Quyết toán mới Thông tin chi phí BHYT quyết toán trả về</param>
         /// <param name="guianMztfProDto"></param>
-        /// <param name="s25ResponseDto">贵安新农合医保使用，结算返回结果</param>
-        /// <param name="outpId">贵安新农合医保使用，门诊补偿序号</param>
+        /// <param name="s25ResponseDto">BHYT Bảo hiểm nông thôn mới Quý An sử dụng,Kết quả quyết toán trả về</param>
+        /// <param name="outpId">BHYT Bảo hiểm nông thôn mới Quý An sử dụng,Số thứ tự bồi thường ngoại trú</param>
         void RefundSettlement(string orgId, int jsnm
             , Dictionary<int, decimal> tjsxmDict, decimal expectedTmxZje
             , string newfph
@@ -85,42 +85,42 @@ namespace Newtouch.HIS.Domain.IDomainServices
             , string outpId = "");
 
         /// <summary>
-        /// 计划退费全停
+        /// Kế hoạch hoàn phí dừng toàn bộ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="jsnm"></param>
         void AccountPlanRefundAll(string orgId, int jsnm);
 
         /// <summary>
-        /// 作废处方（已结一定是不能作废）
+        /// Hủy đơn thuốc(Đã quyết toán thì chắc chắn không thể hủy)
         /// </summary>
         /// <param name="orgId"></param>
-        /// <param name="cfnmList">处方内码List</param>
-        /// <param name="cfhList">处方号List</param>
-        /// <param name="settledUpdateForbidden">已结时 是否禁止更新</param>
+        /// <param name="cfnmList">Mã nội bộ đơn thuốcList</param>
+        /// <param name="cfhList">Số đơn thuốcList</param>
+        /// <param name="settledUpdateForbidden">Khi đã quyết toán Có cấm cập nhật hay không</param>
         void CancelPrescription(string orgId
             , IList<int> cfnmList = null
             , IList<string> cfhList = null
             , bool settledUpdateForbidden = true);
 
         /// <summary>
-        /// 根据门诊号 等 查询处方号
+        /// Theo số ngoại trú v.v. Tra cứu số đơn thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
         /// <param name="cfzt"></param>
         /// <param name="cfly"></param>
-        /// <param name="cfhs">多个处方号，逗号分割</param>
+        /// <param name="cfhs">Nhiều số đơn thuốc,Tách bằng dấu phẩy</param>
         /// <returns></returns>
         IList<OutpatientPrescriptionEntity> GetValidCfListByMzh(string orgId, string mzh
             , string cfzt = null, string cfly = null, string cfhs = null);
 
         /// <summary>
-        /// 更新欠费预结的记录至已收费
+        /// Cập nhật bản ghi quyết toán trước khi nợ phí thành đã thu phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="jsnm"></param>
-        /// <param name="feeRelated">金额及支付信息</param>
+        /// <param name="feeRelated">Số tiền và thông tin thanh toán</param>
         /// <param name="sfrq"></param>
         /// <param name="fph"></param>
         void UpdateArrearageSettlement(string orgId, int jsnm
@@ -129,14 +129,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
             , string fph = null);
 
         /// <summary>
-        /// 获取门诊结算/退费 患者出院信息（医保结算号、社保编号、就诊原因、科室、医生、诊断）
+        /// Lấy quyết toán ngoại trú/Hoàn phí Thông tin xuất viện của bệnh nhân(Số quyết toán BHYT,Số BHXH,Lý do khám,Khoa,Bác sĩ,Chẩn đoán)
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         OutPatChargePatientInfoVO GetSettPatientInfo(string mzh, string orgId);
         /// <summary>
-        /// 获取收费结算 组套明细
+        /// Lấy quyết toán thu phí Chi tiết bộ
         /// </summary>
         /// <param name="cfnms"></param>
         /// <param name="orgId"></param>
@@ -152,7 +152,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         int pushApplicationformRef(string cfh, string orgid,int sqdzt);
 
 		/// <summary>
-		///  开立物资项目扣减库存数量 扣减冻结数量
+		///  Số lượng tồn kho đã trừ của hạng mục vật tư đã lập Số lượng đã trừ phần đóng băng
 		/// </summary>
 		/// <param name="cfh"></param>
 		/// <param name="orgId"></param>
@@ -160,7 +160,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 		int Sumwzdj(string[] cfh, string orgId, string rygh);
 
 		/// <summary>
-		///  开立物资项目扣减库存数量 扣减冻结数量
+		///  Số lượng tồn kho đã trừ của hạng mục vật tư đã lập Số lượng đã trừ phần đóng băng
 		/// </summary>
 		/// <param name="cfh"></param>
 		/// <param name="orgId"></param>

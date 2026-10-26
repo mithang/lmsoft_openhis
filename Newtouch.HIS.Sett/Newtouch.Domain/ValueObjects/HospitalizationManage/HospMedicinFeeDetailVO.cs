@@ -3,72 +3,72 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 住院药品计费 药品 的 详细信息
+    /// Tính phí thuốc nội trú Thuốc của Thông tin chi tiết
     /// </summary>
     public class HospMedicinFeeDetailVO
     {
         /// <summary>
-        /// 编号
+        /// Số hiệu
         /// </summary>
         public int jfbbh { get; set; }
 
         /// <summary>
-        /// 单价
+        /// Đơn giá
         /// </summary>
         public decimal dj { get; set; }
 
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 收费大类
+        /// Loại lớn thu phí
         /// </summary>
         public string dl { get; set; }
 
         /// <summary>
-        /// 收费大类 名称
+        /// Loại lớn thu phí Tên
         /// </summary>
         public string dlmc { get; set; }
 
         /// <summary>
-        /// 创建日期
+        /// Ngày tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 减免金额（不用 乘 数量）
+        /// Số tiền giảm miễn(Không cần dùng nhân Số lượng)
         /// </summary>
         public decimal jmje { get; set; }
 
         /// <summary>
-        /// 减免比例
+        /// Tỷ lệ giảm miễn
         /// </summary>
         public decimal jmbl { get; set; }
 
         /// <summary>
-        /// 自负比例
+        /// Tỷ lệ tự chi trả
         /// </summary>
         public decimal zfbl { get; set; }
 
         /// <summary>
-        /// 自负性质
+        /// Tính chất tự chi trả
         /// </summary>
         public string zfxz { get; set; }
 
         /// <summary>
-        /// 医保编码
+        /// Mã BHYT
         /// </summary>
         public string ybbm { get; set; }
 
         /// <summary>
-        /// 金额 = 单价 * 数量
+        /// Số tiền = Đơn giá * Số lượng
         /// </summary>
         public decimal je
         {

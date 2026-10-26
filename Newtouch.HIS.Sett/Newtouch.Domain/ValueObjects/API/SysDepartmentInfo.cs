@@ -9,22 +9,22 @@ namespace Newtouch.HIS.Domain.ValueObjects.API
     public class SysDepartmentInfo
     {
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 可是编号
+        /// Nhưng là mã số
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// 门诊住院标志
+        /// Cờ ngoại trú/nội trú
         /// </summary>
         public byte mzzybz { get; set; }
 

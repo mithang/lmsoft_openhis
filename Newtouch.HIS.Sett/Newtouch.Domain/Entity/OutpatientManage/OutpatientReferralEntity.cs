@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 门诊转诊记录
+    /// Bản ghi chuyển viện ngoại trú
     /// </summary>
     [Table("mz_zzjl")]
     public class OutpatientReferralEntity : IEntity<OutpatientReferralEntity>
@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// 转诊原因
+        /// Lý do chuyển viện
         /// </summary>
         public string zzyy { get; set; }
         /// <summary>
@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Domain.Entity
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 排班id
+        /// Lịch trựcid
         /// </summary>
         public string scheduid { get; set; }
     }

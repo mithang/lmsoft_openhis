@@ -6,13 +6,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统病人历史病历
+    /// Bệnh án lịch sử bệnh nhân hệ thống
     /// </summary>
     [Table("xt_brlsbl")]
     public class SysPatientMedicalRecordEntity : IEntity<SysPatientMedicalRecordEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         public string Id { get; set; }
@@ -23,47 +23,47 @@ namespace Newtouch.HIS.Domain.Entity
         public string blh { get; set; }
 
         /// <summary>
-        /// 组织机构Id
+        /// Tổ chứcId
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 病历日期
+        /// Ngày bệnh án
         /// </summary>
         public DateTime rq { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string bz { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 

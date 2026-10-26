@@ -2,7 +2,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
 {
     /// <summary>
-    /// 门诊处方明细
+    /// Chi tiết đơn thuốc ngoại trú
     /// </summary>
     public class OutpatientPrescriptionDetailVO
     {

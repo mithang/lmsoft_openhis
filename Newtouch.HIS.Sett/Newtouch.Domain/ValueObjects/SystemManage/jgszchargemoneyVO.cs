@@ -7,42 +7,42 @@
         //public string dlmc { get; set; }
 
         /// <summary>
-        /// 收费项目代码
+        /// Mã hạng mục thu phí
         /// </summary>
         public string sfxmCode { get; set; }
 
         /// <summary>
-        /// 收费项目名称
+        /// Tên hạng mục thu phí
         /// </summary>
         public string sfxmmc { get; set; }
 
         /// <summary>
-        /// 单价
+        /// Đơn giá
         /// </summary>
         public decimal dj { get; set; }
 
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public int? sl { get; set; }
 
         /// <summary>
-        /// 结算总额
+        /// Tổng số tiền quyết toán
         /// </summary>
         public decimal zje { get; set; }
 
         /// <summary>
-        /// 患者姓名
+        /// Tên bệnh nhân
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 记账计划总额
+        /// Tổng số tiền kế hoạch ghi sổ
         /// </summary>
         public decimal? jhzje { get; set; }
 
         /// <summary>
-        /// 退费总额  jhzje-zje=tzje
+        /// Tổng số tiền hoàn phí  jhzje-zje=tzje
         /// </summary>
         public decimal? tzje { get; set; }
     }

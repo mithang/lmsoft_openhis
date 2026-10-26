@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 住院订单详情--2023-9-19 chl
+    /// Chi tiết đơn hàng nội trú--2023-9-19 chl
     /// </summary>
     [Table("order_zy")]
     public class OrderZyEntity : IEntity<OrderZyEntity>
@@ -15,70 +15,70 @@ namespace Newtouch.HIS.Domain.Entity
         public string Id { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 订单号
+        /// Số đơn hàng
         /// </summary>
         public string OrderNo { get; set; }
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// 收费大类
+        /// Loại lớn thu phí
         /// </summary>
         public string dlcode { get; set; }
         /// <summary>
-        /// 收费大类名称
+        /// Tên loại lớn thu phí
         /// </summary>
         public string dlmc { get; set; }
         /// <summary>
-        /// 处方收费项目
+        /// Hạng mục thu phí đơn thuốc
         /// </summary>
         public string sfxm { get; set; }
         /// <summary>
-        /// 单价
+        /// Đơn giá
         /// </summary>
         public decimal? dj { get; set; }
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public decimal? sl { get; set; }
         /// <summary>
-        /// 金额
+        /// Số tiền
         /// </summary>
         public decimal? je { get; set; }
         /// <summary>
-        /// 计费单位
+        /// Đơn vị tính phí
         /// </summary>
         public string jfdw { get; set; }
         /// <summary>
-        /// 自负性质
+        /// Tính chất tự chi trả
         /// </summary>
         public string zfxz { get; set; }
         /// <summary>
-        /// 转自费标识
+        /// Dấu chuyển sang tự chi trả
         /// </summary>
         public string zzfbz { get; set; }
         /// <summary>
-        /// 项目明细 暂不用
+        /// Chi tiết hạng mục Tạm thời không dùng
         /// </summary>
         public string sfxmmx { get; set; }
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 

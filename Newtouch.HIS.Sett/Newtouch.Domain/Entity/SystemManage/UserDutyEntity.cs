@@ -12,34 +12,34 @@ namespace Newtouch.HIS.Domain.Entity
     public class UserDutyEntity : IEntity<UserDutyEntity>
     {
         /// <summary>
-        /// 岗位授权主键
+        /// Khóa chính ủy quyền vị trí
         /// </summary>
         [Key]
         public string Id { get; set; }
 
 
         /// <summary>
-        /// 用户主键
+        /// Khóa chính người dùng
         /// </summary>
         public string UserId { get; set; }
 
         /// <summary>
-        /// 岗位主键
+        /// Khóa chính vị trí
         /// </summary>
         public string DutyId { get; set; }
 
         /// <summary>
-        /// 排序码
+        /// Mã sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 

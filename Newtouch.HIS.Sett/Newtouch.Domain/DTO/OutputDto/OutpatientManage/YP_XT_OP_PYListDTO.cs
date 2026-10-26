@@ -1,27 +1,27 @@
 ﻿namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
 {
     /// <summary>
-    /// 处方药品信息
+    /// Thông tin thuốc đơn thuốc
     /// </summary>
     public class YP_XT_OP_PYListDTO
     {
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 处方明细ID
+        /// Chi tiết đơn thuốcID
         /// </summary>
         public int cfmxId { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string yp { get; set; }
 
         /// <summary>
-        /// 数量 结算表数量
+        /// Số lượng Số lượng bảng quyết toán
         /// </summary>
         public decimal sl { get; set; }
 
@@ -31,7 +31,7 @@
         public string tybz { get; set; }
 
         /// <summary>
-        /// 拆零数
+        /// Số lẻ đã tách
         /// </summary>
         public int cls { get; set; }
     }

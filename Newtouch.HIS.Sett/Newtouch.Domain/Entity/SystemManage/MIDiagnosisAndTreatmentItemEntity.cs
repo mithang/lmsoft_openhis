@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 医保诊疗项目
-    /// （所有医保项目，编辑xt_sfxm时自动带出ybdm、wjdm等）
+    /// Hạng mục khám chữa bệnh BHYT
+    /// (Tất cả hạng mục BHYT,Biên tậpxt_sfxmKhi đó tự động đưa raybdm,wjdmv.v.)
     /// </summary>
     [Table("yb_setup_zlxm")]
     public class MIDiagnosisAndTreatmentItemEntity : IEntity<MIDiagnosisAndTreatmentItemEntity>
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int setup_zlxmbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
 
         public string OrganizeId { get; set; }

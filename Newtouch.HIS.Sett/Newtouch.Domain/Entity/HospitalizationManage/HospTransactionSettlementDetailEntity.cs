@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 住院交易结算明细
+    /// Chi tiết quyết toán giao dịch nội trú
     /// </summary>
     [Table("zy_jyjsmx")]
     public class HospTransactionSettlementDetailEntity : IEntity<HospTransactionSettlementDetailEntity>
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int jsmxbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int ypjfbbh { get; set; }
 
         /// <summary>
-        /// 1 药品   2 项目
+        /// 1 Thuốc   2 Hạng mục
         /// </summary>
         public string yzlx { get; set; }
 

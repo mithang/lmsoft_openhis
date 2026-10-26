@@ -4,47 +4,47 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.DTO
 {
     /// <summary>
-    /// 历史病历
+    /// Bệnh án lịch sử
     /// </summary>
     public class SysPatientMedicalRecordDTO
     {
         /// <summary>
-        /// 唯一主键
+        /// Khóa chính duy nhất
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// 日期
+        /// Ngày tháng
         /// </summary>
         public string rq { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string bz { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建人姓名
+        /// Tên người tạo
         /// </summary>
         public string CreatorUserName { get; set; }
 
         /// <summary>
-        /// 创建时间（上传时间）
+        /// Thời gian tạo(Thời gian tải lên)
         /// </summary>
         public string CreateTime { get; set; }
 
         /// <summary>
-        /// 明细
+        /// Chi tiết
         /// </summary>
         public IList<SysPatientMedicalRecordDetailVO> Details { get; set; }
 

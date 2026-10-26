@@ -191,7 +191,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int? mjzbz { get; set; }
 
         /// <summary>
-        /// 药品用法
+        /// Cách dùng thuốc
         /// </summary>
         public string yfCode { get; set; }
 

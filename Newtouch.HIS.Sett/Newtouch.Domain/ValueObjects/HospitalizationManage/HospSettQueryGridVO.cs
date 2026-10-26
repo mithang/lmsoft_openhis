@@ -3,12 +3,12 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 住院管理>住院结算查询 
+    /// Quản lý nội trú>Tra cứu quyết toán nội trú 
     /// </summary>
     public class HospSettQueryGridVO
     {
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
 

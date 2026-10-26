@@ -11,73 +11,73 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysModuleEntity : IEntity<SysModuleEntity>
     {
         /// <summary>
-        /// 模块主键
+        /// Khóa chính mô-đun
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 父级
+        /// Cấp cha
         /// </summary>
         public string ParentId { get; set; }
 
         /// <summary>
-        /// 名称
+        /// Tên
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 英文名称
+        /// Tên tiếng Anh
         /// </summary>
         public string EnName { get; set; }
 
         /// <summary>
-        /// 编码
+        /// Mã
         /// </summary>
         public string Code { get; set; }
 
         /// <summary>
-        /// 图标
+        /// Biểu tượng
         /// </summary>
         public string Icon { get; set; }
 
         /// <summary>
-        /// 连接
+        /// Kết nối
         /// </summary>
         public string UrlAddress { get; set; }
 
         /// <summary>
-        /// 目标
+        /// Mục tiêu
         /// </summary>
         public string Target { get; set; }
 
         /// <summary>
-        /// 排序码
+        /// Mã sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 描述
+        /// Mô tả
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// 创建日期
+        /// Ngày tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户主键
+        /// Khóa chính người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// Người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 

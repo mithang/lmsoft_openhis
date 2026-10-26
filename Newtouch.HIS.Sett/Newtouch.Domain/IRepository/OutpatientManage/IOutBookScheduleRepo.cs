@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Domain.IRepository.OutpatientManage
         IList<OutBookScheduleVO> GetPagintionListTime(string orgId,string kssj,string jssj,string ys,string czztcx, string ScheduId, string ks, string lx);
         int ExecSchedule();
         /// <summary>
-        /// 项目组合排班
+        /// Lịch trực tổ hợp hạng mục
         /// </summary>
         /// <returns></returns>
         int ExecSchedulebyGroup();

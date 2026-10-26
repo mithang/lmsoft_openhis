@@ -12,147 +12,147 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
 	public class CQZyjs05Dto : InpatientSettGAYbFeeRelatedDTO
 	{
 		/// <summary>
-		/// 交易流水号
+		/// Số giao dịch
 		/// </summary> 
 		public string jylsh { get; set; }
 		/// <summary>
-		/// 统筹支付
+		/// Chi trả từ quỹ chung
 		/// </summary> 
 		public decimal? cqtczf { get; set; }
 		/// <summary>
-		/// 帐户支付
+		/// Thanh toán từ tài khoản
 		/// </summary> 
 		public decimal? zhzf { get; set; }
 		/// <summary>
-		/// 公务员补助
+		/// Trợ cấp công chức
 		/// </summary> 
 		public decimal? gwybz { get; set; }
 		/// <summary>
-		/// 现金支付
+		/// Thanh toán tiền mặt
 		/// </summary> 
 		public decimal? cqxjzf { get; set; }
 		/// <summary>
-		/// 大额理赔金额
+		/// Số tiền bồi thường lớn
 		/// </summary> 
 		public decimal? delpje { get; set; }
 		/// <summary>
-		/// 历史起付线公务员返还
+		/// Hoàn trả mức khởi điểm cho công chức trong lịch sử
 		/// </summary> 
 		public decimal? lsqfxgwyff { get; set; }
 		/// <summary>
-		/// 帐户余额
+		/// Số dư tài khoản
 		/// </summary> 
 		public decimal? zhye { get; set; }
 		/// <summary>
-		/// 单病种定点医疗机构垫支
+		/// Cơ sở y tế chỉ định ứng trước cho bệnh đơn lẻ
 		/// </summary> 
 		public decimal? dbzddyljgdz { get; set; }
 		/// <summary>
-		/// 民政救助金额
+		/// Số tiền cứu trợ dân chính
 		/// </summary> 
 		public decimal? mzjzje { get; set; }
 		/// <summary>
-		/// 民政救助门诊余额
+		/// Số dư cứu trợ dân chính ngoại trú
 		/// </summary> 
 		public decimal? mzjzmzye { get; set; }
 		/// <summary>
-		/// 耐多药项目支付金额
+		/// Số tiền thanh toán hạng mục kháng đa thuốc
 		/// </summary> 
 		public decimal? ndyxmzfje { get; set; }
 		/// <summary>
-		/// 一般诊疗支付数
+		/// Số lần thanh toán khám chữa bệnh thông thường
 		/// </summary> 
 		public decimal? ybzlzfs { get; set; }
 		/// <summary>
-		/// 神华救助基金支付数
+		/// Số lần chi trả từ quỹ cứu trợ Thần Hoa
 		/// </summary> 
 		public decimal? shjzjjzfs { get; set; }
 		/// <summary>
-		/// 本年统筹支付累计
+		/// Lũy kế chi trả từ quỹ chung trong năm
 		/// </summary> 
 		public decimal? bntczflj { get; set; }
 		/// <summary>
-		/// 本年大额支付累计
+		/// Lũy kế chi trả lớn trong năm
 		/// </summary> 
 		public decimal? bndezflj { get; set; }
 		/// <summary>
-		/// 特病起付线支付累计
+		/// Lũy kế thanh toán mức khởi điểm cho bệnh đặc biệt
 		/// </summary> 
 		public decimal? tbqfxzflj { get; set; }
 		/// <summary>
-		/// 耐多药项目累计
+		/// Lũy kế hạng mục kháng đa thuốc
 		/// </summary> 
 		public decimal? ndyxmlj { get; set; }
 		/// <summary>
-		/// 本年民政救助住院支付累计
+		/// Lũy kế chi trả cứu trợ dân chính nội trú trong năm
 		/// </summary> 
 		public decimal? bnmzjzzyzflj { get; set; }
 		/// <summary>
-		/// 中心结算时间
+		/// Thời gian quyết toán trung tâm
 		/// </summary> 
 		public DateTime zxjssj { get; set; }
 		/// <summary>
-		/// 本次起付线支付金额
+		/// Số tiền thanh toán mức khởi điểm lần này
 		/// </summary> 
 		public decimal? bcqfxzfje { get; set; }
 		/// <summary>
-		/// 本次进入医保范围费用
+		/// Chi phí lần này thuộc phạm vi BHYT
 		/// </summary> 
 		public decimal? bcjrybfwfy { get; set; }
 		/// <summary>
-		/// 药事服务支付数
+		/// Số lần thanh toán dịch vụ dược
 		/// </summary> 
 		public decimal? ysfwzfs { get; set; }
 		/// <summary>
-		/// 医院超标扣款金额
+		/// Số tiền bệnh viện bị khấu trừ do vượt chuẩn
 		/// </summary> 
 		public decimal? yycbkkje { get; set; }
 		/// <summary>
-		/// 生育基金支付
+		/// Chi từ quỹ sinh đẻ
 		/// </summary> 
 		public decimal? syjjzf { get; set; }
 		/// <summary>
-		/// 生育现金支付
+		/// Thanh toán tiền mặt sinh đẻ
 		/// </summary> 
 		public decimal? syxjzf { get; set; }
 		/// <summary>
-		/// 工伤基金支付
+		/// Chi từ quỹ tai nạn lao động
 		/// </summary> 
 		public decimal? gsjjzf { get; set; }
 		/// <summary>
-		/// 工伤现金支付
+		/// Thanh toán tiền mặt tai nạn lao động
 		/// </summary> 
 		public decimal? gsxjzf { get; set; }
 		/// <summary>
-		/// 工伤单病种机构垫支
+		/// Cơ sở ứng trước cho bệnh đơn lẻ do tai nạn lao động
 		/// </summary> 
 		public decimal? gsdbzjgdz { get; set; }
 		/// <summary>
-		/// 工伤全自费原因
+		/// Lý do tai nạn lao động tự chi trả toàn bộ
 		/// </summary> 
 		public string gsqzfyy { get; set; }
 		/// <summary>
-		/// 其他补助
+		/// Trợ cấp khác
 		/// </summary> 
 		public decimal? qtbz { get; set; }
 		/// <summary>
-		/// 生育账户支付
+		/// Thanh toán từ tài khoản sinh đẻ
 		/// </summary> 
 		public decimal? syzhzf { get; set; }
 		/// <summary>
-		/// 工伤账户支付
+		/// Thanh toán từ tài khoản tai nạn lao động
 		/// </summary> 
 		public decimal? gszhzf { get; set; }
 		/// <summary>
-		/// 本次结算是否健康扶贫人员
+		/// Lần quyết toán này có phải là đối tượng giảm nghèo vì sức khỏe hay không
 		/// </summary> 
 		public string bcjssfjkfpry { get; set; }
 		/// <summary>
-		/// 健康扶贫医疗基金
+		/// Quỹ y tế giảm nghèo vì sức khỏe
 		/// </summary> 
 		public decimal? jkfpyljj { get; set; }
 		/// <summary>
-		/// 精准脱贫保险金额
+		/// Số tiền bảo hiểm giảm nghèo chính xác
 		/// </summary> 
 		public decimal? jztpbxje { get; set; }
 	}

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 门诊项目
+    /// Hạng mục ngoại trú
     /// </summary>
     [Table("mz_jzjhmxzx")]
     public class OutpatientItemExeEntity : IEntity<OutpatientItemExeEntity>
@@ -18,67 +18,67 @@ namespace Newtouch.HIS.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// 关联mz_jzjhmx表主键
+        /// Liên kếtmz_jzjhmxKhóa chính bảng
         /// </summary>
         public string jzjhmxId { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 执行时间
+        /// Thời gian thực hiện
         /// </summary>
         public DateTime zxsj { get; set; }
 
         /// <summary>
-        /// 康复类别（字典RTM）
+        /// Loại phục hồi chức năng(Từ điểnRTM)
         /// </summary>
         public string kflb { get; set; }
 
         /// <summary>
-        /// 治疗量
+        /// Liều điều trị
         /// </summary>
         public int? zll { get; set; }
 
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 治疗师工号
+        /// Mã nhân viên kỹ thuật viên điều trị
         /// </summary>
         public string zlsgh { get; set; }
 

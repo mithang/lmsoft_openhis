@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface INonTreatmentItemBillingRepo : IRepositoryBase<NonTreatmentItemBillingEntity>
     {
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         void SaveBilling(List<NonTreatmentItemBillingEntity> entityList);
     }

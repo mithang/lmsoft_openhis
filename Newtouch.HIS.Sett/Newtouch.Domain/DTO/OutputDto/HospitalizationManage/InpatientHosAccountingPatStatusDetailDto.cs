@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto
     public class InpatientHosAccountingPatStatusDetailDto
     {
         /// <summary>
-        /// 住院病人基本信息
+        /// Thông tin cơ bản bệnh nhân nội trú
         /// </summary>
         public HospPatientInfoVO patInfo { get; set; }
 

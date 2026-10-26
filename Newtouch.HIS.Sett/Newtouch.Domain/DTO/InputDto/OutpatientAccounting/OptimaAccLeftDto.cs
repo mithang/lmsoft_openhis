@@ -10,11 +10,11 @@ namespace Newtouch.HIS.Domain.DTO.InputDto.OutpatientAccounting
         public string patientName { get; set; }
         public string patientType { get; set; }
         /// <summary>
-        /// 未确认标志
+        /// Cờ chưa xác nhận
         /// </summary>
         public int? wqrzt { get; set; }
         /// <summary>
-        /// 标识显示在院状态的数据
+        /// Dữ liệu đánh dấu hiển thị trạng thái đang nằm viện
         /// </summary>
         public int? hidden { get; set; }
     }
@@ -47,72 +47,72 @@ namespace Newtouch.HIS.Domain.DTO.InputDto.OutpatientAccounting
         public decimal? zfbl { get; set; }
         public string zfxz { get; set; }
         /// <summary>
-        /// 单次治疗量
+        /// Liều điều trị mỗi lần
         /// </summary>
         public int? dczll { get; set; }
         /// <summary>
-        /// 执行次数
+        /// Số lần thực hiện
         /// </summary>
         public int? zxcs { get; set; }
 
         /// <summary>
-        /// 项目内码（未关联处方）
+        /// Mã nội bộ hạng mục(Chưa liên kết đơn thuốc)
         /// </summary>
         public int? xmnm { get; set; }
 
         /// <summary>
-        /// 药品明细主键
+        /// Khóa chính chi tiết thuốc
         /// </summary>
         public int? cfmxId { get; set; }
 
         /// <summary>
-        /// 类型（1药品 2项目）
+        /// Loại(1Thuốc 2Hạng mục)
         /// </summary>
         public string yzlx { get; set; }
 
         /// <summary>
-        /// 科室编码
+        /// Mã khoa
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// 医生编码
+        /// Mã bác sĩ
         /// </summary>
         public string ys { get; set; }
 
         /// <summary>
-        /// 医生姓名
+        /// Tên bác sĩ
         /// </summary>
         public string ysmc { get; set; }
 
         public DateTime klsj { get; set; }
 
         /// <summary>
-        /// 医保代码
+        /// Mã BHYT
         /// </summary>
         public string ybdm { get; set; }
         /// <summary>
-        /// 医保标志 1：医保  0自费
+        /// Cờ BHYT 1:BHYT  0Tự chi trả
         /// </summary>
         public string ybbz { get; set; }
 
         /// <summary>
-        /// 明细ID cfmxId或xmnm
+        /// Chi tiếtID cfmxIdhoặcxmnm
         /// </summary>
         public int mxId { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 新农合医保代码
+        /// Mã BHYT Bảo hiểm nông thôn mới
         /// </summary>
         public string xnhybdm { get; set; }
         public int? cflx { get; set; }
         
-        ///医保限制用药提醒
+        ///Nhắc nhở giới hạn dùng thuốc BHYT
         public string yybz { get; set; }
     }
 
@@ -124,15 +124,15 @@ namespace Newtouch.HIS.Domain.DTO.InputDto.OutpatientAccounting
     public class TbbzmlDto
     {
         /// <summary>
-        /// 病种目录代码
+        /// Mã danh mục loại bệnh
         /// </summary>
         public string mtbbzmldm { get; set; }
         /// <summary>
-        /// 病种目录大类名称
+        /// Tên loại lớn danh mục loại bệnh
         /// </summary>
         public string mtbbzdlmc { get; set; }
         /// <summary>
-        /// 病种分类名称
+        /// Tên phân loại loại bệnh
         /// </summary>
         public string mtbbzflmc { get; set; }
     }

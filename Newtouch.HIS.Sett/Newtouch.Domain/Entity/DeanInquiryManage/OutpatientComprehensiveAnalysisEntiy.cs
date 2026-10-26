@@ -9,63 +9,63 @@ namespace Newtouch.HIS.Domain.Entity.DeanInquiryManage
     public class OutpatientComprehensiveAnalysisEntiy
     {
         /// <summary>
-        /// 门诊人次
+        /// Lượt khám ngoại trú
         /// </summary>
         public int mzrc { get; set; }
         /// <summary>
-        /// 门诊人次同比
+        /// Lượt người ngoại trú so với cùng kỳ
         /// </summary>
         public decimal? mzrc_tb { get; set; }
         /// <summary>
-        /// 门诊人次环比
+        /// Lượt người ngoại trú so với kỳ trước
         /// </summary>
         public decimal? mzrc_hb { get; set; }
         /// <summary>
-        /// 门诊人数
+        /// Số người ngoại trú
         /// </summary>
         public int? mzrs { get; set; }
         /// <summary>
-        /// 门诊人数同比
+        /// Số người ngoại trú so với cùng kỳ
         /// </summary>
         public decimal? mzrs_tb { get; set; }
         /// <summary>
-        /// 门诊人数环比
+        /// Số người ngoại trú so với kỳ trước
         /// </summary>
         public decimal? mzrs_hb { get; set; }
         /// <summary>
-        /// 复诊率
+        /// Tỷ lệ tái khám
         /// </summary>
         public decimal? fzl { get; set; }
         /// <summary>
-        /// 复诊率同比
+        /// Tỷ lệ tái khám so với cùng kỳ
         /// </summary>
         public decimal? fzl_tb { get; set; }
         /// <summary>
-        /// 复诊率环比
+        /// Tỷ lệ tái khám so với kỳ trước
         /// </summary>
         public decimal? fzl_hb { get; set; }
         /// <summary>
-        /// 诊次费用
+        /// Chi phí mỗi lần khám
         /// </summary>
         public decimal? zcfy { get; set; }
         /// <summary>
-        /// 诊次费用同比
+        /// Chi phí mỗi lần khám so với cùng kỳ
         /// </summary>
         public decimal? zcfy_tb { get; set; }
         /// <summary>
-        /// 诊次费用环比
+        /// Chi phí mỗi lần khám so với kỳ trước
         /// </summary>
         public decimal? zcfy_hb { get; set; }
         /// <summary>
-        /// 平均诊疗时长
+        /// Thời gian khám chữa bệnh trung bình
         /// </summary>
         public decimal? pjzlsc { get; set; }
         /// <summary>
-        /// 平均诊疗时长同比
+        /// Thời gian khám chữa bệnh bình quân so với cùng kỳ
         /// </summary>
         public decimal? pjzlsc_tb { get; set; }
         /// <summary>
-        /// 平均诊疗时长环比
+        /// Thời gian khám chữa bệnh bình quân so với kỳ trước
         /// </summary>
         public decimal? pjzlsc_hb { get; set; }
     }
@@ -73,39 +73,39 @@ namespace Newtouch.HIS.Domain.Entity.DeanInquiryManage
     public class OutpatientComprehensiveAnalysisEntiy_Mzhzfx
     {
         /// <summary>
-        /// 患者性质占比_医保
+        /// Tỷ trọng tính chất bệnh nhân_BHYT
         /// </summary>
         public int hzxzb_yb { get; set; }
         /// <summary>
-        /// 患者性质占比_自费
+        /// Tỷ trọng tính chất bệnh nhân_Tự chi trả
         /// </summary>
         public int hzxzb_zf { get; set; }
         /// <summary>
-        /// 门诊患者性别占比_男性
+        /// Tỷ trọng giới tính bệnh nhân ngoại trú_Nam giới
         /// </summary>
         public int mzhzxbzb_m { get; set; }
         /// <summary>
-        /// 门诊患者性别占比_女性
+        /// Tỷ trọng giới tính bệnh nhân ngoại trú_Nữ giới
         /// </summary>
         public int mzhzxbzb_w { get; set; }
         /// <summary>
-        ///  不同患者年龄段_3岁以下
+        ///  Các nhóm tuổi bệnh nhân khác nhau_3Dưới tuổi
         /// </summary>
         public int age_3 { get; set; }
         /// <summary>
-        ///  不同患者年龄段_3-16岁
+        ///  Các nhóm tuổi bệnh nhân khác nhau_3-16tuổi
         /// </summary>
         public int age_3_16 { get; set; }
         /// <summary>
-        ///  不同患者年龄段_17-65岁
+        ///  Các nhóm tuổi bệnh nhân khác nhau_17-65tuổi
         /// </summary>
         public int age_17_65 { get; set; }
         /// <summary>
-        ///  不同患者年龄段_65-75岁
+        ///  Các nhóm tuổi bệnh nhân khác nhau_65-75tuổi
         /// </summary>
         public int age_65_75 { get; set; }
         /// <summary>
-        ///  不同患者年龄段_75岁以上
+        ///  Các nhóm tuổi bệnh nhân khác nhau_75Trên tuổi
         /// </summary>
         public int age_75 { get; set; }
     }

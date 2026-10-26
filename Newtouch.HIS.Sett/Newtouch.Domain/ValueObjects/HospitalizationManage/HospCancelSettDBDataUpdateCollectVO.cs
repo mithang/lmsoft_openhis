@@ -10,37 +10,37 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class HospCancelSettDBDataUpdateCollectVO
     {
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 在院状态
+        /// Trạng thái đang nằm viện
         /// </summary>
         public string zybz { get; set; }
 
         /// <summary>
-        /// 出院日期
+        /// Ngày xuất viện
         /// </summary>
         public DateTime? cyrq { get; set; }
 
         /// <summary>
-        /// 撤销结算
+        /// Hủy quyết toán
         /// </summary>
         public HospSettlementEntity cxjs { get; set; }
 
         /// <summary>
-        /// 撤销结算明细列表
+        /// Danh sách chi tiết hủy quyết toán
         /// </summary>
         public IList<HospSettlementDetailEntity> cx_zyjsmxList { get; set; }
 
         /// <summary>
-        /// 撤销 系统病人账户收支记录
+        /// Hủy Bản ghi thu chi tài khoản bệnh nhân hệ thống
         /// </summary>
         public IList<SysPatientAccountRevenueAndExpenseEntity> cx_xt_brzhszjlList { get; set; }
 
         /// <summary>
-        /// 撤销 住院结算支付方式
+        /// Hủy Phương thức thanh toán quyết toán nội trú
         /// </summary>
         public IList<HospSettlementPaymentModelEntity> cx_zy_jszffsList { get; set; }
 

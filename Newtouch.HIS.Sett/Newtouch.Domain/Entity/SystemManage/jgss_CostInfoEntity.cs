@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity.SystemManage
 {
     /// <summary>
-    /// GRS成本信息
+    /// GRSThông tin chi phí
     /// </summary>
     [Table("jgss_cbxx")]
     public class jgss_CostInfoEntity : IEntity<jgss_CostInfoEntity>

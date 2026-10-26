@@ -8,48 +8,48 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string Id { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 支付金额
+        /// Số tiền thanh toán
         /// </summary>
         public decimal? PayFee { get; set; }
         /// <summary>
-        /// 支付流水号
+        /// Số giao dịch thanh toán
         /// </summary>
         public string PayLsh { get; set; }
         /// <summary>
-        /// 支付方式
+        /// Phương thức thanh toán
         /// </summary>
         public int? PayWay { get; set; }
         /// <summary>
-        /// 支付者身份信息
+        /// Thông tin thân phận người thanh toán
         /// </summary>
         public string PayerId { get; set; }
         /// <summary>
-        /// 订单支付时间
+        /// Thời gian thanh toán đơn hàng
         /// </summary>
         public DateTime? PayTime { get; set; }
         /// <summary>
-        /// HIS内部结算号
+        /// HISSố quyết toán nội bộ
         /// </summary>
         public string SettTradeNo { get; set; }
 
         public string Memo { get; set; }
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 
@@ -64,49 +64,49 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class OrderInfoBaseVO
     {
         /// <summary>
-        /// 订单号
+        /// Số đơn hàng
         /// </summary>
         public string OrderNo { get; set; }
         /// <summary>
-        /// 订单类型 EnumOrderType
+        /// Loại đơn hàng EnumOrderType
         /// </summary>
         public int? OrderType { get; set; }
         /// <summary>
-        /// 就诊卡号
+        /// Số thẻ khám bệnh
         /// </summary>
         public string CardNo { get; set; }
         /// <summary>
-        /// 本次就诊标识  门诊：mzh；住院：zyh
+        /// Dấu khám bệnh lần này  Khám ngoại trú:mzh;Nhập viện:zyh
         /// </summary>
         public string VisitNo { get; set; }
         /// <summary>
-        /// 订单状态 EnumOrderStatus
+        /// Trạng thái đơn hàng EnumOrderStatus
         /// </summary>
         public int? OrderStu { get; set; }
         /// <summary>
-        /// 订单金额
+        /// Số tiền đơn hàng
         /// </summary>
         public decimal? OrderAmt { get; set; }
         /// <summary>
-        /// 锁定超时时间
+        /// Thời gian quá hạn khóa
         /// </summary>
         public DateTime? LockExpTime { get; set; }
     }
     /// <summary>
-    /// 完整订单信息
+    /// Thông tin đơn hàng đầy đủ
     /// </summary>
     public class OutpOrderVO
     {
         /// <summary>
-        /// 基本信息
+        /// Thông tin cơ bản
         /// </summary>
         public OrderInfoVO info { get; set; }
         /// <summary>
-        /// 订单明细
+        /// Chi tiết đơn hàng
         /// </summary>
         public List<OrderMzVO> mx { get; set; }
         /// <summary>
-        /// 处方类型 0 全部 EnumYiZhuXZ
+        /// Loại đơn thuốc 0 Toàn bộ EnumYiZhuXZ
         /// </summary>
         public int? cflx { get; set; } 
     }
@@ -114,12 +114,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class InHosOrderVO
     {
         /// <summary>
-        /// 基本信息
+        /// Thông tin cơ bản
         /// </summary>
         public OrderInfoVO info { get; set; }
         public HosPatientVo patient { get; set; }
         /// <summary>
-        /// 出院日期（默认同出区时间）
+        /// Ngày xuất viện(Mặc định cùng thời gian ra khỏi khu)
         /// </summary>
         public DateTime cyrq { get; set; }
     }
@@ -127,11 +127,11 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class OrderDetailVO
     {
         /// <summary>
-        /// 门诊订单明细
+        /// Chi tiết đơn hàng ngoại trú
         /// </summary>
         public List<OrderMzVO> mzList { get; set; }
         /// <summary>
-        /// 住院订单明细
+        /// Chi tiết đơn hàng nội trú
         /// </summary>
         public List<OrderZyBaseVO> zyList { get; set; }
     }

@@ -9,71 +9,71 @@ namespace Newtouch.HIS.Domain.ValueObjects.API
     public class SysRecipeDrugVO
     {
         /// <summary>
-        /// 处方明细编号
+        /// Số chi tiết đơn thuốc
         /// </summary>
         public int cfmxId { get; set; }
         /// <summary>
-        /// 处方ID
+        /// Đơn thuốcID
         /// </summary>
         public int cfnm { get; set; }
         /// <summary>
-        /// 组号
+        /// Số nhóm
         /// </summary>
         public string czh { get; set; }
         /// <summary>
-        /// 药品编号
+        /// Số thuốc
         /// </summary>
         public string yp { get; set; }
         /// <summary>
-        /// 药品通用名
+        /// Tên chung của thuốc
         /// </summary>
         public string ypmc { get; set; }
         /// <summary>
-        /// 药品商品名
+        /// Tên thương mại thuốc
         /// </summary>
         public string spm { get; set; }
         /// <summary>
-        /// 包装规格数量
+        /// Số lượng quy cách đóng gói
         /// </summary>
         public Decimal bzs { get; set; }
         /// <summary>
-        /// 包装规格单
+        /// Phiếu quy cách đóng gói
         /// </summary>
         public string bzdw { get; set; }
         /// <summary>
-        /// 生产厂家名称
+        /// Tên nhà sản xuất
         /// </summary>
         public string ycmc { get; set; }
         /// <summary>
-        /// 剂型编号
+        /// Số dạng bào chế
         /// </summary>
         public string jxCode { get; set; }
         /// <summary>
-        /// 剂型
+        /// Dạng bào chế
         /// </summary>
         public string jx { get; set; }
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string ypgg { get; set; }
         /// <summary>
-        /// 单价
+        /// Đơn giá
         /// </summary>
         public Decimal dj { get; set; }
         /// <summary>
-        /// 发药数量
+        /// Số lượng phát thuốc
         /// </summary>
         public Decimal sl { get; set; }
         /// <summary>
-        /// 总价
+        /// Tổng giá
         /// </summary>
         public Decimal je { get; set; }
         /// <summary>
-        /// 是否退药标志
+        /// Có phải là cờ trả thuốc hay không
         /// </summary>
         public string tybz { get; set; }
         /// <summary>
-        /// 医保等级
+        /// Cấp BHYT
         /// </summary>
         public string zfxz { get; set; }
     }

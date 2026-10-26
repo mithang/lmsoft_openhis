@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 住院记账计划
+    /// Kế hoạch ghi sổ nội trú
     /// </summary>
     public class HospAccountingPlanVO
     {
@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string patientName { get; set; }
 
         /// <summary>
-        /// 医嘱性质
+        /// Tính chất y lệnh
         /// </summary>
         public string yzxz { get; set; }
 
@@ -55,17 +55,17 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string sfdlmc { get; set; }
 
         /// <summary>
-        /// 单位
+        /// Đơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 单位时长
+        /// Thời lượng đơn vị
         /// </summary>
         public int? duration { get; set; }
 
         /// <summary>
-        /// 收费项目当前的单价
+        /// Đơn giá hiện tại của hạng mục thu phí
         /// </summary>
         public decimal? dj { get; set; }
 
@@ -100,8 +100,8 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 由 ys ysmc ks ksmc 构造而来
-        /// VO引用DTO有问题
+        /// do ys ysmc ks ksmc Được tạo thành từ
+        /// VOTrích dẫnDTOCó vấn đề
         /// </summary>
         public IList<InpatientAccountingPlanItemDoctorDto> ysList
         {
@@ -135,31 +135,31 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string bz { get; set; }
 
         /// <summary>
-        /// 执行状态
+        /// Trạng thái thực hiện
         /// </summary>
         public int zxzt { get; set; }
 
         /// <summary>
-        /// 最后执行时间
+        /// Thời gian thực hiện lần cuối
         /// </summary>
         public DateTime? LastEexcutionTime { get; set; }
 
         /// <summary>
-        /// 医嘱类型 1药品 2项目
+        /// Loại y lệnh 1Thuốc 2Hạng mục
         /// </summary>
         public string yzlx { get; set; }
 
         /// <summary>
-        /// 康复类别
+        /// Loại phục hồi chức năng
         /// </summary>
         public string kflb { get; set; }
         public int? zll { get; set; }
         /// <summary>
-        ///单位计量数
+        ///Số lượng đơn vị đo
         /// </summary>
         public int? dwjls { get; set; }
         /// <summary>
-        /// 计价策略
+        /// Chính sách tính giá
         /// </summary>
         public int? jjcl { get; set; }
         public string zxks { get; set; }

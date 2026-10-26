@@ -62,7 +62,7 @@
         public string yzpcmc { get; set; }
 
         /// <summary>
-        /// 部位
+        /// Vị trí
         /// </summary>
         public string bw { get; set; }
     }

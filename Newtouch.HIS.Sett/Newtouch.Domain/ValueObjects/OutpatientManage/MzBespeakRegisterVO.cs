@@ -5,42 +5,42 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
 {
     /// <summary>
-    /// 门诊挂号
+    /// Đăng ký khám ngoại trú
     /// </summary>
     public class MzBespeakRegisterVO
     {
         /// <summary>
-        /// 选中科室或专家已预约挂号总数
+        /// Tổng số đăng ký khám đã hẹn của khoa hoặc chuyên gia đã chọn
         /// </summary>
         public int alreadyBespeakRegisterCount { get; set; }
         
         /// <summary>
-        /// 选中科室或专家已号总数
+        /// Tổng số đã đăng ký của khoa hoặc chuyên gia đã chọn
         /// </summary>
         public int alreadyRegisterCount { get; set; }
 
         /// <summary>
-        /// 当前操作员
+        /// Nhân viên thao tác hiện tại
         /// </summary>
         public string userCode { get; set; }
 
         /// <summary>
-        /// 全天最大预约数  每个预约时段的最大预约数总和
+        /// Số hẹn khám tối đa cả ngày  Tổng số hẹn khám tối đa của mỗi khoảng thời gian hẹn
         /// </summary>
         public int? allBespeakMaxCount { get; set; }
 
         /// <summary>
-        /// 当前患者挂号信息
+        /// Thông tin đăng ký khám của bệnh nhân hiện tại
         /// </summary>
         public BespeakRegisterParamDTO registerInfo { get; set; }
 
         /// <summary>
-        /// 选中科室或专家指定预约时间挂号排班 
+        /// Lịch trực đăng ký khám thời gian hẹn được chỉ định của khoa hoặc chuyên gia đã chọn 
         /// </summary>
         public List<MzBespeakRegisterSchedulingQueryResponseDTO> bespeakRegSchedulingDetail { get; set; }
 
         /// <summary>
-        /// 当前患者预约挂号信息  不分科室、专家、日期
+        /// Thông tin hẹn đăng ký khám của bệnh nhân hiện tại  Không phân khoa,Chuyên gia,Ngày tháng
         /// </summary>
         public List<MzBespeakRegisterQueryResponseDTO> bespeakRegDetail { get; set; }
     }

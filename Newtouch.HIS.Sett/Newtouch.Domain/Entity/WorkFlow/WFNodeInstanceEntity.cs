@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string SchemeNodeCode { get; set; }
 
         /// <summary>
-        /// 从 节点模板 冗余过来的；或 自定义名称
+        /// từ Mẫu nút Được dư thừa chuyển qua;hoặc Tên tùy chỉnh
         /// </summary>
         public string Name { get; set; }
 

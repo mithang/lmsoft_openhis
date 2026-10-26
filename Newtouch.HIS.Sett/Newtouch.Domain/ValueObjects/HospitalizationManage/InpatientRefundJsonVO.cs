@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
     public class InpatientRefundJsonVO
     {
         /// <summary>
-        /// 是否是药品 0：非 1：是
+        /// Có phải là thuốc hay không 0:không phải 1:là
         /// </summary>
         public string isYp { get; set; }
         /// <summary>
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         /// </summary>
         public decimal? tsl { get; set; }
         /// <summary>
-        /// 组套的计费编号
+        /// Mã tính phí của bộ
         /// </summary>
         public string jfbbhs { get; set; }
     }

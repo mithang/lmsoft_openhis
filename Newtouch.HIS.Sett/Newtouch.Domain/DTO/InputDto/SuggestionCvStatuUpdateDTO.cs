@@ -6,12 +6,12 @@
     public class SuggestionCvStatuUpdateDTO
     {
         /// <summary>
-        /// 建议Id
+        /// Đề xuấtId
         /// </summary>
         public string jyId { get; set; }
 
         /// <summary>
-        /// 转换标志
+        /// Cờ chuyển đổi
         /// </summary>
         public string zhbz { get; set; }
     }

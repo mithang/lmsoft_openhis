@@ -9,11 +9,11 @@ namespace Newtouch.HIS.Domain.ValueObjects.YibaoInterfaceManage
     public class YibaoDataVo
     {
         /// <summary>
-        /// 就诊ID
+        /// Khám bệnhID
         /// </summary>
         public string mdtrt_id { get; set; }
         /// <summary>
-        /// 结算ID
+        /// Quyết toánID
         /// </summary>
         public string setl_id { get; set; }
         public string psn_no { get; set; }
@@ -22,20 +22,20 @@ namespace Newtouch.HIS.Domain.ValueObjects.YibaoInterfaceManage
         public string zymzh { get; set; }
         public decimal? medfee_sumamt { get; set; }
         /// <summary>
-        /// 交易入参报文ID 冲正交易使用
+        /// Bản tin tham số đầu vào giao dịchID Dùng cho giao dịch đảo
         /// </summary>
         public string medins_setl_id { get; set; }
         public string cbdbm { get; set; }
         /// <summary>
-        /// 交易编码
+        /// Mã giao dịch
         /// </summary>
         public string infno { get; set; }
         /// <summary>
-        /// 交易错误信息
+        /// Thông tin lỗi giao dịch
         /// </summary>
         public string errormsg { get; set; }
         /// <summary>
-        /// 单边帐
+        /// Tài khoản một bên
         /// </summary>
         public string dbz { get; set; }
         public int? jsnm { get; set; }

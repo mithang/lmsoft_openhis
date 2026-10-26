@@ -51,12 +51,12 @@ namespace Newtouch.HIS.Domain.Entity
         public int? ParentId { get; set; }
 
         /// <summary>
-        /// 报表 统计 收费大类
+        /// Báo cáo Thống kê Loại lớn thu phí
         /// </summary>
         public string reportdlcode { get; set; }
 
         /// <summary>
-        /// 大类类别，对应枚举 EnumSfdlDllb 1药品 2治疗项目 3非治疗项目
+        /// Loại loại lớn,Enum tương ứng EnumSfdlDllb 1Thuốc 2Hạng mục điều trị 3Hạng mục không điều trị
         /// </summary>
         public int? dllb { get; set; }
 

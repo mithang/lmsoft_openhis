@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 系统费用相关 DmnService
+    /// Liên quan chi phí hệ thống DmnService
     /// </summary>
     public interface ISysFeeDmnService
     {
@@ -25,14 +25,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void SaveChargeTemplate(SysChargeTemplateEntity tmp, IList<SysChargeItemTemplateVO> itemList);
 
         /// <summary>
-        /// 系统病人收费范围
+        /// Phạm vi tính phí bệnh nhân hệ thống
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         List<SysPatientChargeRangeVO> GetSysPatientChargeRangeList(string keyValue, int? bh = null);
 
         /// <summary>
-        /// 系统病人收费减免
+        /// Giảm miễn tính phí bệnh nhân hệ thống
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="bh"></param>

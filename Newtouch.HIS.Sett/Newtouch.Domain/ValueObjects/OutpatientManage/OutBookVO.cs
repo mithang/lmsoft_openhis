@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
     {
 
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         /// <returns></returns>
         [Key]
@@ -122,12 +122,12 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
         public string mjzbz { get; set; }
 
         /// <summary>
-        /// 科室名字
+        /// Tên khoa
         /// </summary>
         public string ksmz { get; set; }
 
         /// <summary>
-        /// 医生姓名
+        /// Tên bác sĩ
         /// </summary>
         public string ysxm { get; set; }
         /// <summary>
@@ -135,11 +135,11 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
         /// </summary>
         public string sfxmmc { get; set; }
         /// <summary>
-        /// 诊疗项目名称
+        /// Tên hạng mục khám chữa bệnh
         /// </summary>
         public string zlxmmc { get; set; }
         /// <summary>
-        /// 排班描述
+        /// Mô tả lịch trực
         /// </summary>
         public string pbdesc { get; set; }
 

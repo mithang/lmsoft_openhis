@@ -9,73 +9,73 @@ namespace Newtouch.HIS.Domain.Entity.PatientManage
     public class InpatientAccountRevenueAndExpenseEntity : IEntity<InpatientAccountRevenueAndExpenseEntity>
     {
         /// <summary>
-        /// 帐户收支记录编号
+        /// Số bản ghi thu chi tài khoản
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 账户
+        /// Tài khoản
         /// </summary>
         public int zhCode { get; set; }
 
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 收支金额
+        /// Số tiền thu chi
         /// </summary>
         public decimal szje { get; set; }
 
         /// <summary>
-        /// 帐户余额
+        /// Số dư tài khoản
         /// </summary>
         public decimal zhye { get; set; }
 
         /// <summary>
-        /// 凭证号
+        /// Số chứng từ
         /// </summary>
         public string pzh { get; set; }
 
         /// <summary>
-        ///  收支性质
+        ///  Tính chất thu chi
         /// </summary>
         public int szxz { get; set; }
 
         /// <summary>
-        /// 现金支付/退款方式 编码
+        /// Thanh toán tiền mặt/Phương thức hoàn tiền Mã
         /// </summary>
         public string xjzffs { get; set; }
 
         /// <summary>
-        /// 结算内码
+        /// Mã nội bộ quyết toán
         /// </summary>
         public int? jsnm { get; set; }
 
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 
@@ -86,7 +86,7 @@ namespace Newtouch.HIS.Domain.Entity.PatientManage
         public string memo { get; set; }
 
         /// <summary>
-        /// 订单号
+        /// Số đơn hàng
         /// </summary>
         public string outTradeNo { get; set; }
     }

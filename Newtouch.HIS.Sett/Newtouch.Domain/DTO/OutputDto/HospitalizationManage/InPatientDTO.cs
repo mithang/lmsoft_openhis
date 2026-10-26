@@ -50,7 +50,7 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.HospitalizationManage
         //public string zzdicd10 { get; set; }
 
         /// <summary>
-        /// 出院诊断
+        /// Chẩn đoán xuất viện
         /// </summary>
         //public string zzdmc { get; set; }
 
@@ -109,89 +109,89 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.HospitalizationManage
         public string wb { get; set; }
 
         /// <summary>
-        /// 证件类型
+        /// Loại giấy tờ
         /// </summary>
         public string zjlx { get; set; }
         /// <summary>
-        /// 证件类型
+        /// Loại giấy tờ
         /// </summary>
         public string zjlxValue { get; set; }
         /// <summary>
-        /// 证件号
+        /// Số giấy tờ
         /// </summary>
         public string zjh { get; set; }
         /// <summary>
-        /// 身份证号码
+        /// Số CMND/CCCD
         /// </summary>
         public string idCardNo { get; set; }
 
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string sex { get; set; }
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string sexValue { get; set; }
 
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ks { get; set; }
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         public string ys { get; set; }
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         public string ysxm { get; set; }
 
-        //危重级别？
-        //入院方式？
+        //Mức nguy kịch?
+        //Cách nhập viện?
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
         /// <summary>
-        /// 卡类型
+        /// Loại thẻ
         /// </summary>
         public string CardType { get; set; }
         /// <summary>
-        /// 卡类型
+        /// Loại thẻ
         /// </summary>
         public string CardTypeName { get; set; }
 
         /// <summary>
-        /// 紧急联系人
+        /// Người liên hệ khẩn cấp
         /// </summary>
         public string contPerName { get; set; }
         /// <summary>
-        /// 紧急联系人电话
+        /// Điện thoại người liên hệ khẩn cấp
         /// </summary>
         public string contPerPhoneNum { get; set; }
         /// <summary>
-        /// 紧急联系人关系
+        /// Quan hệ người liên hệ khẩn cấp
         /// </summary>
         public string contPerRel { get; set; }
         /// <summary>
-        /// 紧急联系人关系
+        /// Quan hệ người liên hệ khẩn cấp
         /// </summary>
         public string contPerRelValue { get; set; }
 
         public string ryfs { get; set; }
         /// <summary>
-        /// 入院诊断
+        /// Chẩn đoán nhập viện
         /// </summary>
         public IList<ryzd> ryzd { get; set; }
         /// <summary>
-        /// 出院诊断
+        /// Chẩn đoán xuất viện
         /// </summary>
         public IList<cyzd> cyzd { get; set; }
     }

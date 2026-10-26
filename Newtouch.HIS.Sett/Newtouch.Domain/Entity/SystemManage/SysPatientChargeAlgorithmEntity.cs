@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int brsfsfbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string brxz { get; set; }
 
         /// <summary>
-        /// *代表所有收费大类 (dl)
+        /// *Đại diện cho tất cả các loại lớn thu phí (dl)
         /// </summary>
         public string dl { get; set; }
 
@@ -44,27 +44,27 @@ namespace Newtouch.HIS.Domain.Entity
         public byte sfjb { get; set; }
 
         /// <summary>
-        /// 什么范围内的费用参与自费比例的计算      0 可记帐部分参与计算（暂无）   1 可记帐＋分类自负（离休、慈善等大多数……）   2 可记帐＋分类自负＋自理－绝对自理（离休挂号费0.1时,绝对自理处理离休特需挂号等不可报部分－见系统收费项目.自负性质）      “同大类”的“所有级别”的可报范围必须一致
+        /// Chi phí trong phạm vi nào tham gia tính toán tỷ lệ tự chi trả      0 Phần được ghi sổ tham gia tính toán(Tạm thời không có)   1 Được ghi sổ＋Tự chi trả theo phân loại(Nghỉ hưu,Từ thiện v.v. đa số……)   2 Được ghi sổ＋Tự chi trả theo phân loại＋Tự lo－Tự lo tuyệt đối(Phí đăng ký khám nghỉ hưu0.1khi,Tự lo tuyệt đối xử lý phần không được thanh toán như phí đăng ký khám đặc biệt nghỉ hưu－Xem hạng mục thu phí hệ thống.Tính chất tự chi trả)      "Cùng loại lớn"của"Tất cả các cấp"Phạm vi được thanh toán phải nhất quán
         /// </summary>
         public string fyfw { get; set; }
 
         /// <summary>
-        /// 确定记帐、自负比例，无论医保是否可保（见自费标志）   当比例为负数时，表示定额自负，不是按比例了。例如（离休挂号费定额支付）
+        /// Xác định ghi sổ,Tỷ lệ tự chi trả,Bất kể BHYT có thanh toán hay không(Xem cờ tự chi trả)   Khi tỷ lệ là số âm,Thể hiện mức tự chi trả cố định,Không còn tính theo tỷ lệ nữa.Ví dụ(Thanh toán định mức phí đăng ký khám nghỉ hưu)
         /// </summary>
         public decimal zfbl { get; set; }
 
         /// <summary>
-        /// 确定按自负比例计算出来的自负部分的性质   0 自负（同医保交易后自负现金）   1 自理
+        /// Xác định tính chất của phần tự chi trả tính được theo tỷ lệ tự chi trả   0 Tự chi trả(Tiền mặt tự chi trả sau giao dịch BHYT)   1 Tự lo
         /// </summary>
         public string zfxz { get; set; }
 
         /// <summary>
-        /// 0 所有费用皆使用此比例，不判断上限
+        /// 0 Tất cả chi phí đều dùng tỷ lệ này,Không xét giới hạn trên
         /// </summary>
         public decimal fysx { get; set; }
 
         /// <summary>
-        /// 0：通用，1：门诊，2：住院
+        /// 0:Dùng chung,1:Khám ngoại trú,2:Nhập viện
         /// </summary>
         public string mzzybz { get; set; }
 

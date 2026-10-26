@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IHospSettlementRepo : IRepositoryBase<HospSettlementEntity>
     {
         /// <summary>
-        /// 根据住院号查询所有的计算记录，把已结和已冲销的记录进行对冲，得到未冲销的数据
+        /// Tra cứu tất cả bản ghi tính toán theo số nhập viện,Đối trừ các bản ghi đã quyết toán và đã xóa,Lấy dữ liệu chưa xóa
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>

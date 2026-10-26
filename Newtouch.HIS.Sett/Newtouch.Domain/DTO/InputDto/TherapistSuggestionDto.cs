@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 门诊住院患者信息
+    /// Thông tin bệnh nhân ngoại trú/nội trú
     /// </summary>
     public class MzZyPatInfoDto
     {

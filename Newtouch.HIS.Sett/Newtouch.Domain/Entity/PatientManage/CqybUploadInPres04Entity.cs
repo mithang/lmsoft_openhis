@@ -13,72 +13,72 @@ namespace Newtouch.HIS.Domain.Entity.PatientManage
 	public class CqybUploadInPres04Entity : IEntity<CqybUploadInPres04Entity>
 	{
 		/// <summary>
-		/// 主键ID
+		/// Khóa chínhID
 		/// </summary>
 		[Key]
 		public int Id { get; set; }
 		/// <summary>
-		/// 组织机构Id（有具体业务的医院）
+		/// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
 		/// </summary>
 		public string OrganizeId { get; set; }
 		/// <summary>
-		/// 住院门诊号
+		/// Số ngoại trú/nội trú
 		/// </summary>
 		public string zymzh { get; set; }
 		/// <summary>
-		/// 处方号
+		/// Số đơn thuốc
 		/// </summary>
 		public string cfh { get; set; }
         /// <summary>
-        /// 批次号
+        /// Số lô
         /// </summary>
         public string pch { get; set; }
 		/// <summary>
-		/// 上传类型1门诊，2住院
+		/// Loại tải lên1Khám ngoại trú,2Nhập viện
 		/// </summary>
 		public string jytype { get; set; }
         /// <summary>
-        /// 金额
+        /// Số tiền
         /// </summary>
         public decimal? je { get; set; }
         /// <summary>
-		/// 审批标志 0未审批 1审批
+		/// Cờ phê duyệt 0Chưa phê duyệt 1Phê duyệt
 		/// </summary>
 		public string spbz { get; set; }
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 		/// <summary>
-		/// 创建时间
+		/// Thời gian tạo
 		/// </summary>
 		public DateTime? CreateTime { get; set; }
 		/// <summary>
-		/// 最后修改时间
+		/// Thời gian sửa đổi lần cuối
 		/// </summary>
 		public DateTime? LastModifyTime { get; set; }
 		/// <summary>
-		/// 最后修改用户ID
+		/// Người sửa đổi lần cuốiID
 		/// </summary>
 		public string LastModifierCode { get; set; }
 		/// <summary>
-		/// 排序
+		/// Sắp xếp
 		/// </summary>
 		public int px { get; set; }
 		/// <summary>
-		/// 状态
+		/// Trạng thái
 		/// </summary>
 		public string zt { get; set; }
         /// <summary>
-        /// 国家目录代码
+        /// Mã danh mục quốc gia
         /// </summary>
         public string gjmldm { get; set; }
         /// <summary>
-        /// 国家医师编码
+        /// Mã bác sĩ quốc gia
         /// </summary>
         public string gjysbm { get; set; }
         /// <summary>
-        /// 医师编码(证件号)
+        /// Mã bác sĩ(Số giấy tờ)
         /// </summary>
         public string ysbm { get; set; }
     }

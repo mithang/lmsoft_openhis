@@ -6,57 +6,57 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 系统菜单、菜单按钮 DmnService
+    /// Menu hệ thống,Nút menu DmnService
     /// </summary>
     public interface ISysModuleDmnService
     {
         /// <summary>
-        /// 根据角色 获取 配置的 权限 菜单
+        /// Theo vai trò Lấy Của cấu hình Quyền Menu
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
         IList<SysModuleEntity> GetMenuListByTopOrg(string topOrgId, IList<string> roleIdList, bool isRoot = false, bool isAdministrator = false);
         
         /// <summary>
-        /// 获取系统菜单 grid
+        /// Lấy menu hệ thống grid
         /// </summary>
         /// <returns></returns>
         IList<SysModuleVO> GetMenuListByTopOrg(string topOrgId);
         
         /// <summary>
-        /// 获取当前机构 已开放 的菜单
+        /// Lấy cơ sở hiện tại Đã mở Menu của
         /// </summary>
         /// <returns></returns>
         IList<SysModuleEntity> GetOpenMenuListByTopOrg(string topOrgId);
 
         /// <summary>
-        /// 提交新建、更新 菜单
+        /// Gửi tạo mới,Cập nhật Menu
         /// </summary>
         /// <param name="moduleEntity"></param>
         /// <param name="keyValue"></param>
         void SubmitForm(SysModuleEntity moduleEntity, string keyValue, string topOrgId = null);
         
         /// <summary>
-        /// （菜单、菜单按钮）获取应用已授权的组织机构列表
+        /// (Menu,Nút menu)Lấy danh sách tổ chức đã ủy quyền ứng dụng
         /// </summary>
         /// <param name="appId"></param>
         /// <returns></returns>
         IList<SysOrganizeVEntity> GetAuthedOrgListByModuleId(string moduleId, int itemType);
 
         /// <summary>
-        /// （菜单、菜单按钮）将菜单授权给指定机构
+        /// (Menu,Nút menu)Ủy quyền menu cho cơ sở được chỉ định
         /// </summary>
         /// <param name="moduleId"></param>
         void UpdateAuthOrganizeList(string moduleId, string orgList, int itemType);
 
         /// <summary>
-        /// （菜单、菜单按钮）将菜单授权给所有机构
+        /// (Menu,Nút menu)Ủy quyền menu cho tất cả các cơ sở
         /// </summary>
         /// <param name="moduleId"></param>
         void AuthAllOrganize(string moduleId, int itemType);
 
         /// <summary>
-        /// （菜单、菜单按钮）撤销全部授权（组织机构）
+        /// (Menu,Nút menu)Hủy toàn bộ ủy quyền(Tổ chức)
         /// </summary>
         /// <param name="moduleId"></param>
         void AuthCancelAllOrganize(string moduleId, int itemType);
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
 
         /// <summary>
-        /// 查看用户是否可访问该系统（根据对他开放的权限菜单来判定）
+        /// Xem người dùng có thể truy cập hệ thống này hay không(Xác định theo menu quyền được mở cho người đó)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="topOrgId"></param>

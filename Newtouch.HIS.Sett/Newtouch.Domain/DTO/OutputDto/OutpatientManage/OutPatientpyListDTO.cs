@@ -3,12 +3,12 @@
 namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
 {
     /// <summary>
-    /// 查询排药信息返回对象
+    /// Đối tượng trả về tra cứu thông tin xếp thuốc
     /// </summary>
     public class OutPatientpyListDTO
     {
         /// <summary>
-        /// 结算内码 通jsnm
+        /// Mã nội bộ quyết toán thôngjsnm
         /// </summary>
         public int sfxh { get; set; }
         public string sffyxh { get; set; }
@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
         public string yb { get; set; }
         
         /// <summary>
-        /// 总金额
+        /// Tổng số tiền
         /// </summary>
         public decimal Zje { get; set; }
         public string gyb { get; set; }
@@ -48,22 +48,22 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
         public string Fph { get; set; }
 
         /// <summary>
-        /// 处方内码
+        /// Mã nội bộ đơn thuốc
         /// </summary>
         public long pcfnm { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 领药药房
+        /// Nhà thuốc lĩnh thuốc
         /// </summary>
         public string lyyf { get; set; }
 
         /// <summary>
-        /// 处方金额
+        /// Số tiền đơn thuốc
         /// </summary>
         public decimal je { get; set; }
     }

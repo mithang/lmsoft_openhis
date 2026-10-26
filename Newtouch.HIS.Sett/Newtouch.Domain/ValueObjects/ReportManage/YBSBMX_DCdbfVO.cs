@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.ReportManage
 
 	}
 	/// <summary>
-	/// 职工门急诊 
+	/// Ngoại trú/cấp cứu cán bộ công nhân viên 
 	/// </summary>
 	public class ZGMJZ_Query : YBSBMX
 	{
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.ReportManage
 	}
 
 	/// <summary>
-	/// 职工特殊门急诊
+	/// Ngoại trú/cấp cứu đặc biệt cán bộ công nhân viên
 	/// </summary>
 	public class ZGMJZTS_Query : YBSBMX
 	{
@@ -126,7 +126,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.ReportManage
 		public string LSH { get; set; }
 	}
 	/// <summary>
-	/// 职工大病门诊
+	/// Ngoại trú bệnh nặng cán bộ công nhân viên
 	/// </summary>
 	public class ZGDBMZ_Qury : YBSBMX
 	{
@@ -178,7 +178,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.ReportManage
 		public decimal TCZF { get; set; }
 	}
 	/// <summary>
-	/// 职工住院 职工特殊住院
+	/// Nội trú cán bộ công nhân viên Nội trú đặc biệt cán bộ công nhân viên
 	/// </summary>
 	public class ZGZY_Query : YBSBMX
 	{
@@ -241,7 +241,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.ReportManage
 		public decimal GRZFG { get; set; }
 	}
 	/// <summary>
-	/// 居民门急诊
+	/// Ngoại trú/cấp cứu cư dân
 	/// </summary>
 	public class JMMJZ_Query : YBSBMX
 	{
@@ -290,7 +290,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.ReportManage
 		public decimal GRZFG { get; set; }
 	}
 	/// <summary>
-	/// 居民住院
+	/// Nội trú cư dân
 	/// </summary>
 	public class JMZY_Query : YBSBMX
 	{
@@ -350,7 +350,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.ReportManage
 		public decimal GRZFG { get; set; }
 	}
 	/// <summary>
-	/// 互助帮困
+	/// Giúp đỡ tương trợ
 	/// </summary>
 	public class HZBK_Query : YBSBMX
 	{
@@ -401,7 +401,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.ReportManage
 		public decimal GRZFG { get; set; }
 	}
 	/// <summary>
-	/// 异地门诊
+	/// Ngoại trú khác địa phương
 	/// </summary>
 	public class MZYD_Query : YBSBMX
 	{
@@ -451,7 +451,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.ReportManage
 		public string LSH { get; set; }
 	}
 	/// <summary>
-	/// 异地住院
+	/// Nội trú khác địa phương
 	/// </summary>
 	public class ZYYD_Query : YBSBMX
 	{

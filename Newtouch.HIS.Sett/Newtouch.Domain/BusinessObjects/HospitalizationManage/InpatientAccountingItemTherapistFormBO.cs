@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.BusinessObjects
 {
     /// <summary>
-    /// 住院记账 项目 提交 关联 治疗师
+    /// Ghi sổ nội trú Hạng mục Gửi Liên kết Kỹ thuật viên điều trị
     /// </summary>
     public class InpatientAccountingPlanItemDoctorDto
     {

@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface IBookkeepInHosDmnService
     {
         /// <summary>
-        /// 查询收费项目模板
+        /// Tra cứu mẫu hạng mục thu phí
         /// </summary>
         /// <param name="ks"></param>
         /// <returns></returns>
@@ -26,21 +26,21 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
 
         /// <summary>
-        /// 根据收费项目编号获取模板内容
+        /// Lấy nội dung mẫu theo mã hạng mục thu phí
         /// </summary>
         /// <param name="sfxmbh"></param>
         /// <returns></returns>
         List<TemplateContentVO> GetChargeItemContent(string sfmbbh, string orgId);
 
         /// <summary>
-        /// 根据住院号 查询 记账计划
+        /// Theo số nhập viện Tra cứu Kế hoạch ghi sổ
         /// </summary>
         /// <param name="zyhList"></param>
         /// <param name="zxrq"></param>
         IList<HospAccountingPlanVO> BeenAccountingPlanQuery(string orgId, string zyh);
 
         /// <summary>
-        /// 保存记账计划
+        /// Lưu kế hoạch ghi sổ
         /// </summary>
         /// <param name="jzjh"></param>
         /// <param name="jhmxEntityList"></param>
@@ -48,28 +48,28 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void SaveAccountingPlan(HospAccountingPlanEntity jzjh, List<HospAccountingPlanDetailEntity> jhmxEntityList, List<string> updateToStopJzjhxmIdList);
 
         /// <summary>
-        /// 获取机构病人列表（当前医生、存在未执行记账计划）
+        /// Lấy danh sách bệnh nhân của cơ sở(Bác sĩ hiện tại,Tồn tại kế hoạch ghi sổ chưa thực hiện)
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<PendingExecutionPatientVO> GetPendingExecutionPatientVOList(string orgId,string kscode);
 
         /// <summary>
-        /// 获取机构门诊病人列表（当前医生、存在未执行记账计划）
+        /// Lấy danh sách bệnh nhân ngoại trú của cơ sở(Bác sĩ hiện tại,Tồn tại kế hoạch ghi sổ chưa thực hiện)
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<PendingExecutionPatientVO> GetOutPendingExecutionPatientVOList(string orgId,string kscode);
 
         /// <summary>
-        /// 待执行记账计划 查询
+        /// Kế hoạch ghi sổ chờ thực hiện Tra cứu
         /// </summary>
         /// <param name="zyhList"></param>
         /// <param name="zxrq"></param>
         IList<HospAccountingPlanWaitingExeVO> WaitingAccountingPlanQuery(string orgId, string zyhStr, string gh, string zxks, bool isRehabDoctor);
 
         /// <summary>
-        /// 待执行门诊记账计划 查询（仅收费项目，不包含药品）
+        /// Kế hoạch ghi sổ ngoại trú chờ thực hiện Tra cứu(Chỉ hạng mục thu phí,Không bao gồm thuốc)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="Str"></param>
@@ -79,34 +79,34 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<HospAccountingPlanWaitingExeVO> WaitingOutAccountingPlanQuery(string orgId, string Str,string gh, string zxks, bool isRehabDoctor);
 
         /// <summary>
-        /// 执行记账计划，生成计费
+        /// Thực hiện kế hoạch ghi sổ,Tạo tính phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zxItem"></param>
         /// <param name="curOprCode"></param>
         /// <param name="curOprDeptCode"></param>
-        /// <param name="zxrq">治疗日期</param>
+        /// <param name="zxrq">Ngày điều trị</param>
         void ExecuteAccountingPlan(string orgId, IList<zxGirdDto> zxItem, string curOprCode, string curOprDeptCode, DateTime zxrq, out Dictionary<string, string> jfbStr);
 
         /// <summary>
-        /// 执行记账计划，生成计费
+        /// Thực hiện kế hoạch ghi sổ,Tạo tính phí
         /// </summary>
-        /// <param name="jzjhmxIdList">jzjhmxId列表</param>
+        /// <param name="jzjhmxIdList">jzjhmxIdDanh sách</param>
         void ExecuteOutAccountingPlan(string orgId, IList<zxGirdDto> zxItem, string curOprCode, string curOprDeptCode, DateTime zxrq);
         /// <summary>
-        /// 停止记账计划
+        /// Dừng kế hoạch ghi sổ
         /// </summary>
-        /// <param name="jzjhmxIdList">jzjhmxId列表</param>
+        /// <param name="jzjhmxIdList">jzjhmxIdDanh sách</param>
         void StopAccountingPlan(IList<string> mxIdList, DateTime stopDate, string curOprCode, string curOprDeptCode);
 
         /// <summary>
-        /// 取消预停止
+        /// Hủy dừng trước
         /// </summary>
-        /// <param name="jzjhmxIdList">jzjhmxId列表</param>
+        /// <param name="jzjhmxIdList">jzjhmxIdDanh sách</param>
         void CancelPreStopAccountingPlan(IList<string> mxIdList, string curOprCode, string curOprDeptCode);
 
         /// <summary>
-        /// 执行查询
+        /// Thực hiện tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -122,13 +122,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
             , string zls, string cxzt, string jzjhmxId, string sfzt);
 
         /// <summary>
-        /// 记账计划查询
+        /// Tra cứu kế hoạch ghi sổ
         /// </summary>
         List<AccountingPlanVO> SelectAccountingPlanList(Pagination pagination, string keyword, DateTime? kssj, DateTime? jssj
             , int? zxzt, string orgId, int? yzxz);
 
         /// <summary>
-        /// 门诊计划执行查询
+        /// Tra cứu thực hiện kế hoạch ngoại trú
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -144,7 +144,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<AccountingExecuteVO> SelectOutAccountingExecuteList(Pagination pagination, string keyword, DateTime? kssj, DateTime? jssj, int? zxzt, string orgId
           , string zls, string cxzt, string jzjhmxId, string sfzt);
         /// <summary>
-        /// 查询记账计划详情
+        /// Tra cứu chi tiết kế hoạch ghi sổ
         /// </summary>
         /// <param name="jzjhmxId"></param>
         /// <param name="orgId"></param>
@@ -152,14 +152,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<AccoutingPlanDetailVO> GetFormPlan(Pagination pagination, string jzjhmxId, string orgId, string from);
 
         /// <summary>
-        /// 查询记账计划执行详情
+        /// Tra cứu chi tiết thực hiện kế hoạch ghi sổ
         /// </summary>
         /// <param name="jzjhmxId"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         AccoutingPlanDetailVO GetFormPlan(string zxId, string orgId, string from);
         /// <summary>
-        /// 根据住院号 获取所有计费（项目/药品）总金额
+        /// Theo số nhập viện Lấy tất cả tính phí(Hạng mục/Thuốc)Tổng số tiền
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -167,12 +167,12 @@ namespace Newtouch.HIS.Domain.IDomainServices
         decimal? GetJfZjeByZyh(string zyh, string orgId);
 
         /// <summary>
-        /// 保存住院计费
+        /// Lưu tính phí nội trú
         /// </summary>
         void SaveInpatientAccounting(string zyh, IList<InpatientAccountingItemDto> xmList, string orgId, string curUserCode);
 
         /// <summary>
-        /// 撤销执行入库
+        /// Hủy thực hiện nhập kho
         /// </summary>
         /// <param name="jzjhmxId"></param>
         /// <param name="zxbh"></param>
@@ -181,7 +181,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void RevokeExec(string jzjhmxId, string zxbh, string orgId, string from);
 
         /// <summary>
-        /// 更改执行的治疗师和执行时间
+        /// Thay đổi kỹ thuật viên điều trị thực hiện và thời gian thực hiện
         /// </summary>
         /// <param name="jzjhmxId"></param>
         /// <param name="zxbh"></param>
@@ -192,7 +192,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region 住院记账，和门诊记账同个页面版本
 
         /// <summary>
-        /// 更新住院计划 剩余次数，同时停止需要停止的计划
+        /// Cập nhật kế hoạch nội trú Số lần còn lại,Đồng thời dừng các kế hoạch cần dừng
         /// </summary>
         /// <param name="db"></param>
         /// <param name="orgId"></param>
@@ -200,7 +200,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void updateHospitaljzjh(string orgId, IList<string> jzjhmxIdList);
 
         /// <summary>
-        /// 判断是否需要停止计划
+        /// Xác định có cần dừng kế hoạch hay không
         /// </summary>
         /// <param name="jzjhmxId"></param>
         /// <param name="orgId"></param>
@@ -208,7 +208,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         bool StopOutpatientjzjh(string jzjhmxId, string orgId);
 
         /// <summary>
-        /// 执行完的康复项目同步到秦皇岛中间库
+        /// Sau khi thực hiện xong hạng mục phục hồi chức năng thì đồng bộ sang CSDL trung gian Tần Hoàng Đảo
         /// </summary>
         /// <param name="jfbStr"></param>
         /// <param name="orgId"></param>
@@ -218,7 +218,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region 费用结算 出院结算
 
         /// <summary>
-        /// 获取最后一次中途结算 结束结算日期
+        /// Lấy quyết toán giữa chừng lần cuối Ngày kết thúc quyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -228,7 +228,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         DateTime? GetLastValidSettTime(string zyh, string orgId);
 
         /// <summary>
-        /// 根据住院号 获取未结明细
+        /// Theo số nhập viện Lấy chi tiết chưa quyết toán
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
@@ -237,7 +237,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<HosFeeItemInfoDto> GetFeeItemPaginationList(Pagination pagination, string zyh, string orgId, DateTime startTime, DateTime endTime);
 
         /// <summary>
-        /// 中途结算
+        /// Quyết toán giữa chừng
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -247,22 +247,22 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void MidwaySettlement(string zyh, string orgId, DateTime startTime, DateTime endTime, int? expectedCount = null);
 
         /// <summary>
-        /// 撤销最后一次中途结算
+        /// Hủy quyết toán giữa chừng lần cuối
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
         void CancelTheLastMidwaySett(string zyh,string zffs1, string orgId, out decimal refoundmoney);
 
         /// <summary>
-        /// 根据 中途结算 出院结算
-        /// 中途结算 已 结完
+        /// Theo Quyết toán giữa chừng Quyết toán xuất viện
+        /// Quyết toán giữa chừng đã Kết thúc
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
         void DischargeSettlement(string zyh, string orgId, DateTime cyrq);
 
         /// <summary>
-        /// 根据住院号 获取时间段内的 项目药品计费明细（考虑退费的）
+        /// Theo số nhập viện Lấy trong khoảng thời gian Chi tiết tính phí thuốc hạng mục(Xét hoàn phí)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
@@ -276,7 +276,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string getzfxzById(string sfxmCode, string orgId);
 
         /// <summary>
-        /// 住院记账保存
+        /// Lưu ghi sổ nội trú
         /// </summary>
         string SaveFee(List<HospItemBillingEntity> xmjfbEntitylist, List<HospDrugBillingEntity> ypjfbEntitylist);
         List<HospItemFeeVO> Verification(string xmCodes, string orgId, string ks);

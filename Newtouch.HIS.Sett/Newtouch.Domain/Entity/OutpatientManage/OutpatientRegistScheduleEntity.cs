@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 门诊挂号排班
+    /// Lịch trực đăng ký khám ngoại trú
     /// </summary>
     [Table("mz_ghpb")]
     public class OutpatientRegistScheduleEntity : IEntity<OutpatientRegistScheduleEntity>
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int ghpbId { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -29,12 +29,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string ks { get; set; }
 
         /// <summary>
-        /// 0 所有医生
+        /// 0 Tất cả bác sĩ
         /// </summary>
         public string ys { get; set; }
 
         /// <summary>
-        /// 0无 1全天 2上午 3下午
+        /// 0không 1Cả ngày 2Buổi sáng 3Buổi chiều
         /// </summary>
         public string zyi { get; set; }
 
@@ -74,12 +74,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// 总号量
+        /// Tổng lượng số
         /// </summary>
         public int? zhl { get; set; }
 
         /// <summary>
-        /// 挂号专病
+        /// Bệnh chuyên khoa đăng ký khám
         /// </summary>
         public string ghzb { get; set; }
 
@@ -109,17 +109,17 @@ namespace Newtouch.HIS.Domain.Entity
         public int? px { get; set; }
 
         /// <summary>
-        /// 挂号项目
+        /// Hạng mục đăng ký khám
         /// </summary>
         public string ghlx { get; set; }
 
         /// <summary>
-        /// 诊疗项目
+        /// Hạng mục khám chữa bệnh
         /// </summary>
         public string zlxm { get; set; }
 
         /// <summary>
-        /// 门急诊标志 门诊 急诊 专家
+        /// Cờ khám ngoại trú/cấp cứu Khám ngoại trú Cấp cứu Chuyên gia
         /// </summary>
         public string mjzbz { get; set; }
 

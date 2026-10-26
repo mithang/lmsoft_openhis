@@ -1,8 +1,8 @@
 ﻿/**********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description：整合收费项目模板 及相应的收费项目列表 
-// Author：hlf
-// CreateDate： 2017/1/10 12:24:52 
+// Copyright (C) 2016 Newtouch Bảo lưu bản quyền. 
+// Description:Tích hợp mẫu hạng mục thu phí Và danh sách hạng mục thu phí tương ứng 
+// Author:hlf
+// CreateDate: 2017/1/10 12:24:52 
 //**********************************************************/
 
 using System;
@@ -16,12 +16,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class OutPatChargeItemTempVO
     {
         /// <summary>
-        /// 模板列表
+        /// Danh sách mẫu
         /// </summary>
         public List<ChargeItemTemplateVO> tempList { get; set; }
 
         /// <summary>
-        /// 模板详细信息
+        /// Thông tin chi tiết mẫu
         /// </summary>
         public List<OutPatChargeItemDetailVO> tempDetailList { get; set; }
     } 

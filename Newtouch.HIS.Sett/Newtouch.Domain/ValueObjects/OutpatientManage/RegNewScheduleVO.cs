@@ -9,91 +9,91 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class RegNewScheduleVO
     {
         /// <summary>
-        /// 排班ID
+        /// Lịch trựcID
         /// </summary>
         public decimal ghpbId { get; set; }
         /// <summary>
-        /// 医生工号
+        /// Mã nhân viên bác sĩ
         /// </summary>
         public string gh { get; set; }
         /// <summary>
-        /// 医生姓名
+        /// Tên bác sĩ
         /// </summary>
         public string rymc { get; set; }
         /// <summary>
-        /// 出诊科室
+        /// Khoa khám bệnh
         /// </summary>
         public string ks { get; set; }
         /// <summary>
-        /// 出诊科室名称
+        /// Tên khoa khám bệnh
         /// </summary>
         public string ksmc { get; set; }
         /// <summary>
-        /// 门诊类型
+        /// Loại ngoại trú
         /// </summary>
         public string RegType { get; set; }
         /// <summary>
-        /// 标题
+        /// Tiêu đề
         /// </summary>
         public string Title { get; set; }
         /// <summary>
-        /// 出诊时间段 1：全天 2：上午 3：下午
+        /// Khoảng thời gian khám bệnh 1:Cả ngày 2:Buổi sáng 3:Buổi chiều
         /// </summary>
         public string Period { get; set; }
         /// <summary>
-        /// 出诊描述
+        /// Mô tả khám bệnh
         /// </summary>
         public string PeriodDesc { get; set; }
         /// <summary>
-        /// 号源数
+        /// Số đăng ký khám
         /// </summary>
         public int TotalNum { get; set; }
         /// <summary>
-        /// 剩余号源
+        /// Số đăng ký khám còn lại
         /// </summary>
         public int YYNum { get; set; }
         /// <summary>
-        /// 出诊开始时间
+        /// Thời gian bắt đầu khám bệnh
         /// </summary>
         public string PeriodStart { get; set; }
         /// <summary>
-        /// 出诊结算时间
+        /// Thời gian quyết toán khám bệnh
         /// </summary>
         public string PeriodEnd { get; set; }
         /// <summary>
-        /// 挂号项目
+        /// Hạng mục đăng ký khám
         /// </summary>
         public string ghlx { get; set; }
         /// <summary>
-        /// 治疗项目
+        /// Hạng mục điều trị
         /// </summary>
         public string zlxm { get; set; }
         /// <summary>
-        /// 周几
+        /// Thứ mấy
         /// </summary>
         public string weekdd { get; set; }
         /// <summary>
-        /// 挂号项目名称
+        /// Tên hạng mục đăng ký khám
         /// </summary>
         public string sfxmmc { get; set; }
         /// <summary>
-        /// 治疗项目名称
+        /// Tên hạng mục điều trị
         /// </summary>
         public string zlxmmc { get; set; }
         /// <summary>
-        /// 排班描述
+        /// Mô tả lịch trực
         /// </summary>
         public string pbdesc { get; set; }
         /// <summary>
-        /// 对应老HIS科室编码
+        /// Tương ứng với cũHISMã khoa
         /// </summary>
         public string ybksbm { get; set; }
         /// <summary>
-        /// 出诊日期
+        /// Ngày khám bệnh
         /// </summary>
         public DateTime? OutDate { get; set; }
         /// <summary>
-        /// 费用
+        /// Chi phí
         /// </summary>
         public decimal? RegFee { get; set; }
         public string IsBook { get; set; }
@@ -102,50 +102,50 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class MzghbookScheduleVO
     {
         /// <summary>
-        /// 预约状态 
+        /// Trạng thái hẹn khám 
         /// </summary>
         public string yyzt { get; set; }
         /// <summary>
-        /// 排班日程ID
+        /// Lịch trựcID
         /// </summary>
         public decimal ScheduId { get; set; }
         /// <summary>
-        /// 出诊科室名称
+        /// Tên khoa khám bệnh
         /// </summary>
         public string ksmc { get; set; }
         /// <summary>
-        /// 出诊科室
+        /// Khoa khám bệnh
         /// </summary>
         public string ks { get; set; }
         /// <summary>
-        /// 挂号项目Code
+        /// Hạng mục đăng ký khámCode
         /// </summary>
         public string ghlx { get; set; }
         /// <summary>
-        /// 治疗项目Code
+        /// Hạng mục điều trịCode
         /// </summary>
         public string zlxm { get; set; }
 
         public string sfxmmc { get; set; }
         public string zlxmmc { get; set; }
         /// <summary>
-        /// 序列号
+        /// Số thứ tự
         /// </summary>
         public int QueueNo { get; set; }
 
         public string ysgh { get; set; }
         public string ysxm { get; set; }
         /// <summary>
-        /// 出诊日期
+        /// Ngày khám bệnh
         /// </summary>
         public DateTime OutDate { get; set; }
         public string PeriodDesc { get; set; }
         /// <summary>
-        /// 门诊类型
+        /// Loại ngoại trú
         /// </summary>
         public string Regtype { get; set; }
         /// <summary>
-        /// 排班标题
+        /// Tiêu đề lịch trực
         /// </summary>
         public string Title { get; set; }
         public string AppId { get; set; }

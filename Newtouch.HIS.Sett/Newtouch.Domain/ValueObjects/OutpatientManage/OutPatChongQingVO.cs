@@ -9,64 +9,64 @@ namespace Newtouch.HIS.Domain.ValueObjects
 	public class OutPatChongQingVO
 	{
 		/// <summary>
-		/// 门诊号
+		/// Số khám ngoại trú
 		/// </summary>
 		public string mzh { get; set; }
 		/// <summary>
-		/// 结算内码
+		/// Mã nội bộ quyết toán
 		/// </summary>
 		public int jsnm { get; set; }
 
 		/// <summary>
-		/// 收费日期
+		/// Ngày thu phí
 		/// </summary>
 		public DateTime? sfrq { get; set; }
 
 		/// <summary>
-		/// 结算人员
+		/// Nhân viên quyết toán
 		/// </summary>
 		public string CreatorCode { get; set; }
 
 		/// <summary>
-		/// 结算时间
+		/// Thời gian quyết toán
 		/// </summary>
 		public DateTime CreateTime { get; set; }
 
 		/// <summary>
-		/// 结算人员姓名
+		/// Tên nhân viên quyết toán
 		/// </summary>
 		public string CreatorUserName { get; set; }
 
 		/// <summary>
-		/// 门诊挂号 或 门诊收费记账
+		/// Đăng ký khám ngoại trú hoặc Ghi sổ thu phí ngoại trú
 		/// </summary>
 		public string jslx { get; set; }
 
 		/// <summary>
-		/// 发票号
+		/// Số hóa đơn
 		/// </summary>
 		public string fph { get; set; }
 
 		/// <summary>
-		/// 医保结算 医保结算号
+		/// Quyết toán BHYT Số quyết toán BHYT
 		/// </summary>
 		public string ybjsh { get; set; }
 
 		/// <summary>
-		/// 总金额
+		/// Tổng số tiền
 		/// </summary>
 		public decimal jszje { get; set; }
 
 		/// <summary>
-		/// 结算支付
+		/// Thanh toán quyết toán
 		/// </summary>
 		public decimal jsxjzf { get; set; }
 		/// <summary>
-		/// 现金支付方式名称
+		/// Tên phương thức thanh toán tiền mặt
 		/// </summary>
 		public string xjzffsmc { get; set; }
         /// <summary>
-        /// 挂号来源
+        /// Nguồn đăng ký khám
         /// </summary>
         public string ghly { get; set; } 
         public string jzid { get; set; }

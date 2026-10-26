@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.Entity.DeanInquiryManage
 {
     /// <summary>
-    /// 门诊医生工作量排名
+    /// Xếp hạng khối lượng công việc bác sĩ ngoại trú
     /// </summary>
     public class BusinessRankingEntiy
     {
@@ -17,96 +17,96 @@ namespace Newtouch.HIS.Domain.Entity.DeanInquiryManage
     }
 
     /// <summary>
-    /// 门诊科室收入排名
+    /// Xếp hạng thu nhập khoa ngoại trú
     /// </summary>
     public class BusinessRankingEntiy_mzkssr
     {
         /// <summary>
-        /// 门诊科室
+        /// Khoa ngoại trú
         /// </summary>
         public string mzks { get; set; }
         /// <summary>
-        /// 门诊收入
+        /// Thu nhập ngoại trú
         /// </summary>
         public decimal mzsr { get; set; }
         /// <summary>
-        /// 药品收入
+        /// Thu nhập thuốc
         /// </summary>
         public decimal ypsr { get; set; }
         /// <summary>
-        /// 药品占比
+        /// Tỷ trọng thuốc
         /// </summary>
         public string ypzb { get; set; }
     }
 
     /// <summary>
-    /// 住院业务科室排名
+    /// Xếp hạng khoa nghiệp vụ nội trú
     /// </summary>
     public class BusinessRankingEntiy_zyywks
     {
 
         public string bqCode { get; set; }
         /// <summary>
-        /// 住院科室
+        /// Khoa nội trú
         /// </summary>
         public string zyks { get; set; }
         /// <summary>
-        /// 出院人数
+        /// Số người xuất viện
         /// </summary>
         public int cyrs { get; set; }
         /// <summary>
-        /// 入院人数
+        /// Số người nhập viện
         /// </summary>
         public int ryrs { get; set; }
         /// <summary>
-        /// 手术人数
+        /// Số người phẫu thuật
         /// </summary>
         public int ssrs { get; set; }
         /// <summary>
-        /// 住院总费用
+        /// Tổng chi phí nội trú
         /// </summary>
         public decimal? zyzfy { get; set; }
         /// <summary>
-        /// 次均费用
+        /// Chi phí bình quân mỗi lần
         /// </summary>
         public decimal? cjfy { get; set; }
         /// <summary>
-        /// 平均住院天数
+        /// Số ngày nội trú trung bình
         /// </summary>
         public decimal? pjzyts { get; set; }
     }
 
     /// <summary>
-    /// 医生业务排名
+    /// Xếp hạng nghiệp vụ bác sĩ
     /// </summary>
     public class BusinessRankingEntiy_ysyw
     {
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         public string ys { get; set; }
         /// <summary>
-        /// 出院人数
+        /// Số người xuất viện
         /// </summary>
         public int cyrs { get; set; }
         /// <summary>
-        /// 入院人数
+        /// Số người nhập viện
         /// </summary>
         public int ryrs { get; set; }
         /// <summary>
-        /// 手术人数
+        /// Số người phẫu thuật
         /// </summary>
         public int ssrs { get; set; }
         /// <summary>
-        /// 住院总费用
+        /// Tổng chi phí nội trú
         /// </summary>
         public decimal? zyzfy { get; set; }
         /// <summary>
-        /// 次均费用
+        /// Chi phí bình quân mỗi lần
         /// </summary>
         public decimal? cjfy { get; set; }
         /// <summary>
-        /// 平均住院天数
+        /// Số ngày nội trú trung bình
         /// </summary>
         public decimal? pjzyts { get; set; }
     }

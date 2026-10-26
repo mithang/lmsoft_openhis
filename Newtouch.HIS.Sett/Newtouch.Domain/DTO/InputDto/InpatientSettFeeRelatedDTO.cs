@@ -3,25 +3,25 @@
 namespace Newtouch.HIS.Domain.DTO
 {
     /// <summary>
-    /// 出院结算金额支付相关
+    /// Liên quan thanh toán số tiền quyết toán xuất viện
     /// </summary>
     public class InpatientSettFeeRelatedDTO
     {
         /// <summary>
-        /// 结算总金额（dj*sl之和）
+        /// Tổng số tiền quyết toán(dj*slTổng)
         /// </summary>
         public decimal? zje { get; set; }
         /// <summary>
-        /// 原支付应收
+        /// Khoản phải thu thanh toán ban đầu
         /// </summary>
         public decimal? orglxjzfys { get; set; }
 
         /// <summary>
-        /// 支付应收（原支付应收打折后）
+        /// Khoản phải thu thanh toán(Khoản phải thu thanh toán ban đầu sau chiết khấu)
         /// </summary>
         public decimal? xjzfys { get; set; }
         /// <summary>
-        /// 实收款
+        /// Số tiền thực thu
         /// </summary>
         public decimal? ssk { get; set; }
         public string zffs1 { get; set; }
@@ -29,45 +29,45 @@ namespace Newtouch.HIS.Domain.DTO
         public string zffs2 { get; set; }
         public decimal? zfje2 { get; set; }
         /// <summary>
-        /// 找零
+        /// Tiền thối lại
         /// </summary>
         public decimal? zhaoling { get; set; }
         /// <summary>
-        /// 抵用交易流水号，重庆医保账户抵用
+        /// Số giao dịch khấu trừ,Khấu trừ tài khoản BHYT Trùng Khánh
         /// </summary>
         public string dyjylsh { get; set; }
         public string ver { get; set; }
         /// <summary>
-        /// 医保交易流水号
+        /// Số giao dịch BHYT
         /// </summary>
         public string ybjslsh { get; set; }
 
         #region new
         /// <summary>
-        /// 预交金支付金额
+        /// Số tiền thanh toán tạm ứng
         /// </summary>
         public decimal? yjjzfje { get; set; }
         /// <summary>
-        /// 预交金可退余额
+        /// Số dư tạm ứng có thể trả lại
         /// </summary>
         public decimal? yjjtye { get; set; }
         /// <summary>
-        /// 窗口实收金额
+        /// Số tiền thực thu tại cửa sổ
         /// </summary>
         public decimal? djjess { get; set; }
         /// <summary>
-        /// 窗口实收支付方式
+        /// Phương thức thanh toán thực thu tại cửa sổ
         /// </summary>
         public string djjesszffs { get; set; }
 
         /// <summary>
-        /// 折扣比例
+        /// Tỷ lệ chiết khấu
         /// </summary>
         public decimal? zkbl { get; set; }
         public decimal jmje { get; set; }
 
         /// <summary>
-        /// 电子凭证码
+        /// Mã chứng từ điện tử
         /// </summary>
         public string ecToken { get; set; }
 

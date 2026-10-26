@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity.SystemManage
 {
     /// <summary>
-    /// GRS收入信息
+    /// GRSThông tin thu nhập
     /// </summary>
     [Table("jgss_srxx")]
    public class jgss_EarningInfoEntity : IEntity<jgss_EarningInfoEntity>
@@ -17,23 +17,23 @@ namespace Newtouch.HIS.Domain.Entity.SystemManage
         public string year { get; set; }
         public string month { get; set; }
         /// <summary>
-        /// 机构实收
+        /// Thực thu của cơ sở
         /// </summary>
         public decimal jgss { get; set; }
         /// <summary>
-        /// grs实收
+        /// grsThực thu
         /// </summary>
         public decimal grsss { get; set; }
         /// <summary>
-        /// 附件名称
+        /// Tên tệp đính kèm
         /// </summary>
         public string fjmc { get; set; }
         /// <summary>
-        /// 附件类型
+        /// Loại tệp đính kèm
         /// </summary>
         public string ContentType { get; set; }
         /// <summary>
-        /// 附件类型
+        /// Loại tệp đính kèm
         /// </summary>
         public string fjPath { get; set; }
         public string CreatorCode { get; set; }
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Domain.Entity.SystemManage
         public decimal mzsfzje { get; set; }
         public decimal zysfzje { get; set; }
         /// <summary>
-        /// 总收入
+        /// Tổng thu nhập
         /// </summary>
         public decimal zsr { get; set; }
         public string shr { get; set; }

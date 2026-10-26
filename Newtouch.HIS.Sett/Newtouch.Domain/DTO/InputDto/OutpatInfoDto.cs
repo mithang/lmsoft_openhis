@@ -1,8 +1,8 @@
 ﻿/**********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description：收费保存需要的个人信息 
-// Author：HLF
-// CreateDate： 2017/1/17 13:21:19 
+// Copyright (C) 2016 Newtouch Bảo lưu bản quyền. 
+// Description:Thông tin cá nhân cần khi lưu thu phí 
+// Author:HLF
+// CreateDate: 2017/1/17 13:21:19 
 //**********************************************************/
 
 using System;
@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Domain.DTO
     public class OutpatInfoDto
     {
         /// <summary>
-        /// 是否组合病人性质
+        /// Có phải là tính chất bệnh nhân tổ hợp hay không
         /// </summary>
         public bool IsZhbrxz { get; set; }
 
@@ -24,63 +24,63 @@ namespace Newtouch.HIS.Domain.DTO
 
         public string zh_mbrxz { get; set; }
         /// <summary>
-        /// 是否医保病人
+        /// Có phải là bệnh nhân BHYT hay không
         /// </summary>
         public bool isYbbr { get; set; }
         /// <summary>
-        /// 病人内码
+        /// Mã nội bộ bệnh nhân
         /// </summary>
         public int patid { get; set; }
 
 
 
         /// <summary>
-        /// 挂号内码
+        /// Mã nội bộ đăng ký khám
         /// </summary>
         public int ghnm { get; set; }
 
         /// <summary>
-        /// 病人性质
+        /// Tính chất bệnh nhân
         /// </summary>
         public string brxz { get; set; }
         /// <summary>
-        /// 病人性质编号
+        /// Mã tính chất bệnh nhân
         /// </summary>
         public int brxzbh { get; set; }
 
         /// <summary>
-        /// 病人性质-名称
+        /// Tính chất bệnh nhân-Tên
         /// </summary>
         public string brxzmc { get; set; }
 
 
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string xb { get; set; }
 
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// 出生年月
+        /// Năm tháng sinh
         /// </summary>
         public DateTime? csny { get; set; }
 
         /// <summary>
-        /// 证件号
+        /// Số giấy tờ
         /// </summary>
         public string zjh { get; set; }
 
         /// <summary>
-        /// 证件类型
+        /// Loại giấy tờ
         /// </summary>
         public string zjlx { get; set; }
     }

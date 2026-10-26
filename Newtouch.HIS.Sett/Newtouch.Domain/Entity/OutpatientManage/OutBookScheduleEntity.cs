@@ -12,7 +12,7 @@ namespace Newtouch.HIS.Domain.Entity.OutpatientManage
     public class OutBookScheduleEntity : IEntity<OutBookScheduleEntity>
     {
         /// <summary>
-        /// 组织机构
+        /// Tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Domain.Entity.OutpatientManage
         /// </summary>
         public Decimal ScheduId { get; set; }
         /// <summary>
-        /// 排班编号
+        /// Số lịch trực
         /// </summary>
         public string ghpbId { get; set; }
         /// <summary>
@@ -28,19 +28,19 @@ namespace Newtouch.HIS.Domain.Entity.OutpatientManage
         /// </summary>
         public DateTime? OutDate { get; set; }
         /// <summary>
-        /// 医生工号
+        /// Mã nhân viên bác sĩ
         /// </summary>
         public string ysgh { get; set; }
         /// <summary>
-        /// 医生姓名
+        /// Tên bác sĩ
         /// </summary>
         public string ysxm { get; set; }
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string czks { get; set; }
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string czksmc { get; set; }
         /// <summary>
@@ -48,11 +48,11 @@ namespace Newtouch.HIS.Domain.Entity.OutpatientManage
         /// </summary>
         public string RegType { get; set; }
         /// <summary>
-        /// 标题
+        /// Tiêu đề
         /// </summary>
         public string Title { get; set; }
         /// <summary>
-        /// 时间段
+        /// Khoảng thời gian
         /// </summary>
         public string Period { get; set; }
         /// <summary>
@@ -64,11 +64,11 @@ namespace Newtouch.HIS.Domain.Entity.OutpatientManage
         /// </summary>
         public int TotalNum { get; set; }
         /// <summary>
-        /// 开始时间段
+        /// Khoảng thời gian bắt đầu
         /// </summary>
         public string PeriodStart { get; set; }
         /// <summary>
-        /// 结束时间断
+        /// Đoạn thời gian kết thúc
         /// </summary>
         public string PeriodEnd { get; set; }
         /// <summary>
@@ -76,7 +76,7 @@ namespace Newtouch.HIS.Domain.Entity.OutpatientManage
         /// </summary>
         public Decimal RegFee { get; set; }
         /// <summary>
-        /// 是否可预约
+        /// Có thể hẹn khám hay không
         /// </summary>
         public string IsBook { get; set; }
         /// <summary>
@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Domain.Entity.OutpatientManage
         /// </summary>
         public string ghlx { get; set; }
         /// <summary>
-        /// 诊疗项目
+        /// Hạng mục khám chữa bệnh
         /// </summary>
         public string zlxm { get; set; }
         /// <summary>
@@ -92,51 +92,51 @@ namespace Newtouch.HIS.Domain.Entity.OutpatientManage
         /// </summary>
         public int weekdd { get; set; }
         /// <summary>
-        /// 是否取消
+        /// Có hủy hay không
         /// </summary>
         public string IsCancel { get; set; }
         /// <summary>
-        /// 取消原因
+        /// Lý do hủy
         /// </summary>
         public string CancelReason { get; set; }
         /// <summary>
-        /// 取消时间
+        /// Thời gian hủy
         /// </summary>
         public string CancelTime { get; set; }
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// 预约数
+        /// Số hẹn khám
         /// </summary>
         public int YYNum { get; set; }
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime? CreateTime { get; set; }
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
         /// <summary>
-        /// 上次修改时间
+        /// Thời gian sửa đổi lần trước
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
         /// <summary>
-        /// 上次修改人
+        /// Người sửa đổi lần trước
         /// </summary>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 是否停诊 0正常出诊  1停诊状态
+        /// Có ngừng khám hay không 0Khám bệnh bình thường  1Trạng thái ngừng khám
         /// </summary>
         public string istz { get; set; }
         /// <summary>
-        /// 停诊原因
+        /// Lý do ngừng khám
         /// </summary>
         public string tzyy { get; set; }
         /// <summary>
-        /// 停诊时间
+        /// Thời gian ngừng khám
         /// </summary>
         public string tzsj { get; set; }
     }

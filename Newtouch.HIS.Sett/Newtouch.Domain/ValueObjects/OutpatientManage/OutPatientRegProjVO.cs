@@ -5,25 +5,25 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 挂号项目
+    /// Hạng mục đăng ký khám
     /// </summary>
     [NotMapped]
     public class OutPatientRegProjVO: OutpatientRegistItemEntity
     {
         /// <summary>
-        /// 人员名称
+        /// Tên nhân viên
         /// </summary>
         public string rymc { get; set; }
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ksmc { get; set; }
         /// <summary>
-        /// 收费项目名称
+        /// Tên hạng mục thu phí
         /// </summary>
         public string sfxmmc { get; set; }
         /// <summary>
-        /// 农保大类
+        /// Loại lớn Bảo hiểm nông nghiệp
         /// </summary>
         public string nbdl { get; set; }
     }

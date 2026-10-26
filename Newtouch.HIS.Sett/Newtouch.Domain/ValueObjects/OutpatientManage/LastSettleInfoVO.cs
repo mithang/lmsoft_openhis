@@ -2,28 +2,28 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 上一次结算信息
+    /// Thông tin quyết toán lần trước
     /// </summary>
     public class LastSettleInfoVO
     {
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// 应收款
+        /// Khoản phải thu
         /// </summary>
         public decimal? ysk { get; set; }
         /// <summary>
-        /// 现金支付
+        /// Thanh toán tiền mặt
         /// </summary>
         public decimal xjzf { get; set; }
         /// <summary>
-        /// 找零
+        /// Tiền thối lại
         /// </summary>
         public decimal zl { get; set; }
         /// <summary>
-        /// 前一张发票号
+        /// Số hóa đơn trước
         /// </summary>
         public string fph { get; set; }
     }

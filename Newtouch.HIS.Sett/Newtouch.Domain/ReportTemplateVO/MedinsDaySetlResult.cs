@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.ReportTemplateVO
 {
     /// <summary>
-    /// 医疗服务项目表
+    /// Bảng hạng mục dịch vụ y tế
     /// </summary>
     public class MedinsDaySetlResult
     {
-        //	人员编号				
+        //	Mã nhân viên				
         public string psn_no { get; set; }
-        //	医药机构结算ID				
+        //	Quyết toán cơ sở y dượcID				
         public string medinsSetlId { get; set; }
-        //	医疗费总额				
+        //	Tổng chi phí y tế				
         public string medfee_sumamt { get; set; }
-        //	基金支付总额	
+        //	Tổng số tiền quỹ chi trả	
         public string fund_pay_sumamt { get; set; }
-        //	个人账户支出	
+        //	Chi từ tài khoản cá nhân	
         public string acct_pay { get; set; }
     }
 }

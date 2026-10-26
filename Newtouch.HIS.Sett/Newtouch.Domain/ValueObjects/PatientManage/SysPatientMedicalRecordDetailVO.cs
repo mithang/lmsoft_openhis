@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 病历明细
+    /// Chi tiết bệnh án
     /// </summary>
     public class SysPatientMedicalRecordDetailVO
     {
@@ -28,12 +28,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string attachPath { get; set; }
 
         /// <summary>
-        /// 网络访问路径
+        /// Đường dẫn truy cập mạng
         /// </summary>
         public string attachUrl { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public string CreateTime { get; set; }
 

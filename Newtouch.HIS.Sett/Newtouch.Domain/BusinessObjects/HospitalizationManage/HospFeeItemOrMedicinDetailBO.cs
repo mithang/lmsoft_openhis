@@ -4,7 +4,7 @@ using Newtouch.HIS.Domain.ValueObjects;
 namespace Newtouch.HIS.Domain.BusinessObjects
 {
     /// <summary>
-    /// 出院结算 费用（项目/药品）详情
+    /// Quyết toán xuất viện Chi phí(Hạng mục/Thuốc)Chi tiết
     /// </summary>
     public class HospFeeItemOrMedicinDetailBO
     {
@@ -14,17 +14,17 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 是否需要医保交易
+        /// Có cần giao dịch BHYT hay không
         /// </summary>
         public bool isNeedYBJY { get; set; }
 
         /// <summary>
-        /// 收费大类
+        /// Loại lớn thu phí
         /// </summary>
         public string dl { get; set; }
 
         /// <summary>
-        /// 收费大类 名称
+        /// Loại lớn thu phí Tên
         /// </summary>
         public string dlmc { get; set; }
 
@@ -41,44 +41,44 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         #region
 
         /// <summary>
-        /// 减免后金额
+        /// Số tiền sau giảm miễn
         /// </summary>
         public decimal jmhje { get; set; }
 
         /// <summary>
-        /// 自理费用
+        /// Chi phí tự lo
         /// </summary>
         public decimal zlfy { get; set; }
 
         /// <summary>
-        /// 可报金额
+        /// Số tiền được thanh toán
         /// </summary>
         public decimal kbje { get; set; }
 
         /// <summary>
-        /// 分类自负
+        /// Tự chi trả theo phân loại
         /// </summary>
         public decimal flzf { get; set; }
 
         #endregion
 
         /// <summary>
-        /// 医保交易金额（计算之后得到的数据）
+        /// Số tiền giao dịch BHYT(Dữ liệu thu được sau khi tính toán)
         /// </summary>
         public decimal ybjyje { get; set; }
 
         /// <summary>
-        /// 医保交易范围金额（计算之后得到的数据）
+        /// Số tiền trong phạm vi giao dịch BHYT(Dữ liệu thu được sau khi tính toán)
         /// </summary>
         public decimal ybjyfwje { get; set; }
 
         /// <summary>
-        /// 算法计算 后 的 费用明细
+        /// Tính toán theo thuật toán sau đó Chi tiết chi phí
         /// </summary>
         public HospFeeItemOrMedicinSuanfaFeeDetailBO sfjsfymx { get; set; }
 
         /// <summary>
-        /// 一次性材料 收费项目 综合
+        /// Vật tư dùng một lần Hạng mục thu phí Tổng hợp
         /// </summary>
         public SysChargeMaterialItemSynthesisEntity sfclxmzhEntity { get; set; }
 

@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Domain.IRepository
         string GetMzzybzByCode(string code, string orgId);
 
         /// <summary>
-        /// 获取发药药房列表
+        /// Lấy danh sách nhà thuốc phát thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzzybz"></param>

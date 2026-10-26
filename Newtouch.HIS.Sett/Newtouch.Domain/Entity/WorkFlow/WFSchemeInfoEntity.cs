@@ -22,12 +22,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string Code { get; set; }
 
         /// <summary>
-        /// 创建、修改 都 新的Version
+        /// Tạo,Sửa đổi đều MớiVersion
         /// </summary>
         public string Version { get; set; }
 
         /// <summary>
-        /// 字典 流程类型：库存类
+        /// Từ điển Loại quy trình:Loại tồn kho
         /// </summary>
         public string Type { get; set; }
 
@@ -37,12 +37,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string Name { get; set; }
 
         /// <summary>
-        /// 1启用 2停用 3草稿
+        /// 1Kích hoạt 2Ngừng sử dụng 3Bản nháp
         /// </summary>
         public int qybz { get; set; }
 
         /// <summary>
-        /// 1可召回 ；否则 不可召回
+        /// 1Có thể thu hồi ;Nếu không Không thể thu hồi
         /// </summary>
         public bool? kzhbz { get; set; }
 

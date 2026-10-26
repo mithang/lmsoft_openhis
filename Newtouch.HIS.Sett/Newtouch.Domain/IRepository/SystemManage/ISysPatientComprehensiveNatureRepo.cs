@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysPatientComprehensiveNatureRepo : IRepositoryBase<SysPatientComprehensiveNatureEntity>
     {
         /// <summary>
-        /// 根据主病人性质 获取 所有
+        /// Theo tính chất bệnh nhân chính Lấy Tất cả
         /// </summary>
         /// <param name="zbrxz"></param>
         /// <returns></returns>

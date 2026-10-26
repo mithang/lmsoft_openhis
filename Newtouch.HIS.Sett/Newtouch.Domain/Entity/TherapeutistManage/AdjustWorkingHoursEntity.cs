@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 时长调整
+    /// Điều chỉnh thời lượng
     /// </summary>
     [Table("jz_sctz")]
     public class AdjustWorkingHoursEntity : IEntity<AdjustWorkingHoursEntity>

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 收费分类
+    /// Phân loại thu phí
     /// </summary>
     [Table("xt_sffl")]
     [Obsolete("please use the view")]

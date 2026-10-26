@@ -10,45 +10,45 @@ namespace Newtouch.HIS.Domain.IDomainServices.ReportManage
     {
         #region 门诊记账1.2 and 1.3版本，不适用多个治疗师和医院的记账逻辑
         /// <summary>
-        /// 获取治疗师治疗总费用
+        /// Lấy tổng chi phí điều trị của kỹ thuật viên điều trị
         /// </summary>
         List<TherapistVisit> GetTherapistDischarge(string year, string orgId);
 
         /// <summary>
-        /// 获取治疗师治疗总人数
+        /// Lấy tổng số người điều trị kỹ thuật viên điều trị
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         List<TherapistVisit> GetTherapistVisit(string year, string orgId);
 
         /// <summary>
-        /// 获取平均费用（总费用/总人次）
+        /// Lấy chi phí bình quân(Tổng chi phí/Tổng lượt người)
         /// </summary>
         /// <param name="year"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         List<TherapistVisit> GetTherapistavgDischarge(string year, string orgId);
         /// <summary>
-        /// 获取治疗师平均治疗人次（总人次/总人数）
+        /// Lấy lượt người điều trị bình quân kỹ thuật viên điều trị(Tổng lượt người/Tổng số người)
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         List<TherapistVisit> GetTherapistavgVisit(string year, string orgId);
 
         /// <summary>
-        /// 获取治疗师月度平均治疗人次（总人次/总人数）
+        /// Lấy lượt người điều trị bình quân tháng kỹ thuật viên điều trị(Tổng lượt người/Tổng số người)
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         List<TherapistMonthVisit> GetMonthTherapistavgVisit(string year, string orgId, string month);
 
         /// <summary>
-        /// 获取治疗师治疗总费用
+        /// Lấy tổng chi phí điều trị của kỹ thuật viên điều trị
         /// </summary>
         List<TherapistMonthCharge> GetMonthTherapistDischarge(string year, string orgId, string month);
 
         /// <summary>
-        /// 获取治疗师月度治疗人数
+        /// Lấy số người điều trị tháng kỹ thuật viên điều trị
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -56,7 +56,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.ReportManage
 
 
         /// <summary>
-        /// 获取月度平均费用（总费用/总人次）
+        /// Lấy chi phí bình quân tháng(Tổng chi phí/Tổng lượt người)
         /// </summary>
         /// <param name="year"></param>
         /// <param name="orgId"></param>
@@ -66,14 +66,14 @@ namespace Newtouch.HIS.Domain.IDomainServices.ReportManage
 
         #region 门诊 
         /// <summary>
-        /// 获取门诊就诊人数
+        /// Lấy số người khám ngoại trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         List<OutpatientVisitNumVO> GetOutpatientVisitNum(string orgId);
 
         /// <summary>
-        /// 获取门诊就诊人次
+        /// Lấy lượt người khám ngoại trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.ReportManage
 
 
         /// <summary>
-        /// 门诊收入统计
+        /// Thống kê thu nhập ngoại trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -90,60 +90,60 @@ namespace Newtouch.HIS.Domain.IDomainServices.ReportManage
 
         #region 住院
         /// <summary>
-        /// 获取住院收入统计
+        /// Lấy thống kê thu nhập nội trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         List<InpatientSCNumVO> GetInpatientSalaryNum(string orgId);
 
         /// <summary>
-        /// 获取住院新增人数
+        /// Lấy số người nội trú tăng thêm
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         List<OutpatientVisitNumVO> GetInpatientVisitNum(string orgId);
 
         /// <summary>
-        /// 获取出院人数
+        /// Lấy số người xuất viện
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         List<InpatientVisitNumVO> GetInpatientDischargeNum(string orgId);
 
         /// <summary>
-        /// 获取治疗师住院治疗总费用
+        /// Lấy tổng chi phí điều trị nội trú của kỹ thuật viên điều trị
         /// </summary>
         List<TherapistVisit> GetInTherapistDischarge(string year, string orgId);
 
         /// <summary>
-        /// 获取治疗师住院治疗人次
+        /// Lấy lượt người điều trị nội trú của kỹ thuật viên điều trị
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         List<TherapistVisit> GetInTherapistVisit(string year, string orgId);
 
         /// <summary>
-        /// 获取治疗之住院平均费用（总费用/总人次）
+        /// Lấy chi phí nội trú bình quân của điều trị(Tổng chi phí/Tổng lượt người)
         /// </summary>
         /// <param name="year"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         List<TherapistVisit> GetInTherapistavgDischarge(string year, string orgId);
         /// <summary>
-        /// 获取治疗师住院治疗月度总费用
+        /// Lấy tổng chi phí điều trị nội trú tháng của kỹ thuật viên điều trị
         /// </summary>
         List<TherapistMonthCharge> GetMonthInTherapistDischarge(string year, string orgId, string month);
         /// <summary>
-        /// 获取治疗师住院治疗月度平均费用
+        /// Lấy chi phí điều trị nội trú bình quân tháng của kỹ thuật viên điều trị
         /// </summary>
         List<TherapistMonthCharge> GetMonthInTherapistavgDischarge(string year, string orgId, string month);
         /// <summary>
-        /// 获取治疗师住院治疗月度总访问人次
+        /// Lấy tổng lượt thăm điều trị nội trú tháng của kỹ thuật viên điều trị
         /// </summary>
         List<TherapistMonthVisit> GetMonthInTherapistVisit(string year, string month, string orgId);
 
         /// <summary>
-        /// 获取治疗师住院治疗月度平均人次
+        /// Lấy lượt người điều trị nội trú bình quân tháng của kỹ thuật viên điều trị
         /// </summary>
         /// <param name="year"></param>
         /// <param name="orgId"></param>
@@ -151,7 +151,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.ReportManage
         List<TherapistMonthVisit> GetMonthInTherapistavgVisit(string year, string month, string orgId);
 
         /// <summary>
-        /// 获取治疗师住院治疗平均人次
+        /// Lấy lượt người điều trị nội trú bình quân của kỹ thuật viên điều trị
         /// </summary>
         /// <param name="year"></param>
         /// <param name="orgId"></param>
@@ -161,7 +161,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.ReportManage
 
         #region Common
         /// <summary>
-        /// 门诊住院收入统计对比
+        /// So sánh thống kê thu nhập ngoại trú/nội trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

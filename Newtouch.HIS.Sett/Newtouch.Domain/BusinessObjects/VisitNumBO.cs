@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         public List<InpatientVisitNumVO> InpatientList { get; set; }
 
         /// <summary>
-        /// 合计在院人数
+        /// Tổng số người đang nằm viện
         /// </summary>
         public int zyrs { get; set; }
 

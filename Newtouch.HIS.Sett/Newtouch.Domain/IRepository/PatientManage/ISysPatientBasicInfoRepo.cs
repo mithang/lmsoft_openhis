@@ -11,13 +11,13 @@ namespace Newtouch.HIS.Domain.IRepository
         void SubmitForm(SysPatientBasicInfoEntity sysPatBasicInfoEntity, string keyValue);
 
         /// <summary>
-        /// （病历号由系统自动生成）获取最新病历号
+        /// (Số bệnh án do hệ thống tự động tạo)Lấy số bệnh án mới nhất
         /// </summary>
         /// <returns></returns>
         string Getblh(string orgId);
 
         /// <summary>
-        /// 根据证件号，姓名获取病人基本信息
+        /// Theo số giấy tờ,Lấy thông tin cơ bản bệnh nhân theo họ tên
         /// </summary>
         /// <param name="zjh"></param>
         /// <param name="orgId"></param>
@@ -25,14 +25,14 @@ namespace Newtouch.HIS.Domain.IRepository
         string GetBasicInfoByZjh(string zjh, string orgId);
 
         /// <summary>
-        /// 根据patid获取病人基本信息
+        /// TheopatidLấy thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="patid"></param>
         /// <returns></returns>
         SysPatientBasicInfoEntity GetInfoByPatid(string patid, string orgId);
 
         /// <summary>
-        /// 根据姓名获取病人基本信息
+        /// Lấy thông tin cơ bản bệnh nhân theo họ tên
         /// </summary>
         /// <param name="xm"></param>
         /// <param name="orgId"></param>
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Domain.IRepository
         List<SysPatientBasicInfoEntity> GetBasicInfoByxm(string xm, string orgId);
 
         /// <summary>
-        /// 根据病历号获取信息
+        /// Lấy thông tin theo số bệnh án
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="blh"></param>
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Domain.IRepository
         SysPatientBasicInfoEntity GetInfoByblh(string orgId, string blh);
 
         /// <summary>
-        /// 根据病历号查询
+        /// Tra cứu theo số bệnh án
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="blh"></param>
@@ -56,7 +56,7 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<PatOnlyBlhSearchVO> GetPatOnlyBlhSearchList(Pagination pagination, string orgId, string blh, string xm);
 
         /// <summary>
-        /// 更新紧急联系人相关信息
+        /// Cập nhật thông tin liên quan người liên hệ khẩn cấp
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="orgId"></param>

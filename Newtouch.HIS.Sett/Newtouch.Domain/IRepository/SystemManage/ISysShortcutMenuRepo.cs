@@ -6,29 +6,29 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2017-10-16 11:07
-    /// 描 述：快捷菜单
+    /// Tạo：张冬林
+    /// Ngày tháng:2017-10-16 11:07
+    /// Mô tả:Menu nhanh
     /// </summary>
     public interface ISysShortcutMenuRepo : IRepositoryBase<SysShortcutMenuEntity>
     {
         /// <summary>
-        /// 获取实体列表
+        /// Lấy danh sách thực thể
         /// </summary>
-        /// <param name="keyword">筛选关键字</param>
+        /// <param name="keyword">Từ khóa lọc</param>
         IList<SysShortcutMenuEntity> GetList(string keyword);
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu(Thêm mới,Sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void SubmitForm(SysShortcutMenuEntity entity, string keyValue);
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void DeleteForm(string keyValue);
 
     }

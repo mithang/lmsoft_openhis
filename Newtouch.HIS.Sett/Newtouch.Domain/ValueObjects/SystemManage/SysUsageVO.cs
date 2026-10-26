@@ -9,20 +9,20 @@ namespace Newtouch.HIS.Domain.ValueObjects.SystemManage
     public class SysUsageVO
     {
         //
-        // 摘要:
+        // Tóm tắt:
         //     Id
         public int yfId { get; set; }
         //
-        // 摘要:
-        //     用法编码
+        // Tóm tắt:
+        //     Mã cách dùng
         public string yfCode { get; set; }
         //
-        // 摘要:
-        //     名称
+        // Tóm tắt:
+        //     Tên
         public string yfmc { get; set; }
         //
-        // 摘要:
-        //     有效标志
+        // Tóm tắt:
+        //     Cờ hiệu lực
         public string zt { get; set; }
         public string yplx { get; set; }
     }

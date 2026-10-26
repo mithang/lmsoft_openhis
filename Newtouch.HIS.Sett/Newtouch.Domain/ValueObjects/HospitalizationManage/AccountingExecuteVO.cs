@@ -3,12 +3,12 @@
 namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
 {
     /// <summary>
-    /// 查询执行结果 门诊住院通用
+    /// Tra cứu kết quả thực hiện Dùng chung ngoại trú/nội trú
     /// </summary>
     public class AccountingExecuteVO
     {
         /// <summary>
-        /// 执行记录Id
+        /// Bản ghi thực hiệnId
         /// </summary>
         public string zxjlId { get; set; }
 
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         public string jzjhmxId { get; set; }
 
         /// <summary>
-        /// 患者姓名
+        /// Tên bệnh nhân
         /// </summary>
         public string xm { get; set; }
 
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         public string zt { get; set; }
 
         /// <summary>
-        /// 门诊住院号
+        /// Số ngoại trú/nội trú
         /// </summary>
         public string mzzyh { get; set; }
 
@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         public string blh { get; set; }
 
         /// <summary>
-        /// 数量（单次治疗量换算过来的）
+        /// Số lượng(Được quy đổi từ liều điều trị mỗi lần)
         /// </summary>
         public decimal? sl { get; set; }
 

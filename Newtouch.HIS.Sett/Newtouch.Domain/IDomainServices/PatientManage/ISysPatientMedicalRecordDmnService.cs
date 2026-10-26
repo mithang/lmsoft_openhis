@@ -8,12 +8,12 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 病人病历DmnService
+    /// Bệnh án bệnh nhânDmnService
     /// </summary>
     public interface ISysPatientMedicalRecordDmnService
     {
         /// <summary>
-        /// 获取病历
+        /// Lấy bệnh án
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="blId"></param>
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
             , string orgId);
 
         /// <summary>
-        /// 卫健数据上传日志
+        /// Nhật ký tải lên dữ liệu Ủy ban Y tế
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ksrq"></param>

@@ -1,19 +1,19 @@
 ﻿namespace Newtouch.HIS.Domain.ValueObjects.SystemManage
 {
     /// <summary>
-    /// 收费项目、药品 VO
+    /// Hạng mục thu phí,Thuốc VO
     /// </summary>
     public class SysChargeItemAndMedicineVO
     {
         /// <summary>
         /// 
-        /// 当为药品时ypCode
+        /// Khi là thuốcypCode
         /// </summary>
         public string sfxmCode { get; set; }
 
         /// <summary>
         /// 
-        /// 当为药品时ypmc
+        /// Khi là thuốcypmc
         /// </summary>
         public string sfxmmc { get; set; }
 
@@ -48,25 +48,25 @@
         public int? duration { get; set; }
 
         /// <summary>
-        /// 1 药品   2 项目
+        /// 1 Thuốc   2 Hạng mục
         /// </summary>
         public string yzlx { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string bz { get; set; }
         /// <summary>
-        /// 单位计量数
+        /// Số lượng đơn vị đo
         /// </summary>
         public int? dwjls { get; set; }
         public int? jjcl { get; set; }
         /// <summary>
-        /// 剂量
+        /// Liều lượng
         /// </summary>
         public decimal? jl { get; set; }
         /// <summary>
-        /// 剂量单位
+        /// Đơn vị liều dùng
         /// </summary>
         public string jzdw { get; set; }
 

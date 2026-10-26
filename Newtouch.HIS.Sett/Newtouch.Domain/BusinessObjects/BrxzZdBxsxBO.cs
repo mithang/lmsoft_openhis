@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.BusinessObjects
 {
     /// <summary>
-    /// 根据病人性质和诊断判断，报销费用的上限
+    /// Xác định theo tính chất bệnh nhân và chẩn đoán,Giới hạn chi phí hoàn trả
     /// </summary>
     [Serializable]
     public class BrxzZdBxsxBO
     {
         /// <summary>
-        /// 病人性质
+        /// Tính chất bệnh nhân
         /// </summary>
         public string brxz { get; set; }
 
@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         public string icd10 { get; set; }
 
         /// <summary>
-        /// 报销上限
+        /// Giới hạn hoàn trả
         /// </summary>
         public decimal bxsx { get; set; }
     }

@@ -4,66 +4,66 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 门诊挂号收费查询
+    /// Tra cứu thu phí đăng ký khám ngoại trú
     /// </summary>
     public class OutPatientRegChargeVO
     {
         #region 挂号收费查询的主记录
 
         /// <summary>
-        /// 病例号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
         /// <summary>
-        /// 结算内码
+        /// Mã nội bộ quyết toán
         /// </summary>
         public int jsnm { get; set; }
         /// <summary>
-        /// 查询结算内码
+        /// Tra cứu mã nội bộ quyết toán
         /// </summary>
         public int cxjsnm { get; set; }
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// 挂号内码
+        /// Mã nội bộ đăng ký khám
         /// </summary>
         public int ghnm { get; set; }
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
         /// <summary>
-        /// 建档人员
+        /// Nhân viên lập hồ sơ
         /// </summary>
         public string CreatorCode { get; set; }
         /// <summary>
-        /// 人员名称
+        /// Tên nhân viên
         /// </summary>
         public string rymc { get; set; }
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
         /// <summary>
-        /// 收费项目名称
+        /// Tên hạng mục thu phí
         /// </summary>
         public string sfxmmc { get; set; }
         /// <summary>
-        /// 医生名称
+        /// Tên bác sĩ
         /// </summary>
         public string ys { get; set; }
         /// <summary>
-        /// 是否退回
+        /// Có trả lại hay không
         /// </summary>
         public string isreturned { get; set; }
         /// <summary>
-        /// 老的发票号
+        /// Số hóa đơn cũ
         /// </summary>
         public string oldfph { get; set; }
         /// <summary>
@@ -71,7 +71,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public string isxfph { get; set; }
         /// <summary>
-        /// 结算标志
+        /// Cờ quyết toán
         /// </summary>
         public string jsbz { get; set; }
         /// <summary>

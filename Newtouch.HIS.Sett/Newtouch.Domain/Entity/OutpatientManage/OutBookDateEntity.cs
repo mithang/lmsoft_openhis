@@ -12,7 +12,7 @@ namespace Newtouch.HIS.Domain.Entity.OutpatientManage
     [Table("mz_ghpb_date")]
     public class OutBookDateEntity : IEntity<OutBookDateEntity>
     { /// <summary>
-      /// 主键
+      /// Khóa chính
       /// </summary>
       /// <returns></returns>
         [Key]

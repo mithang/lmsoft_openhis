@@ -6,9 +6,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2019-04-08 14:00
-    /// 描 述：住院模拟结算-医保费用-贵安
+    /// Tạo：张冬林
+    /// Ngày tháng:2019-04-08 14:00
+    /// Mô tả:Quyết toán mô phỏng nội trú-Chi phí BHYT-Quý An
     /// </summary>
     [Table("zy_mnjs_gayb")]
     public class HospSimulateSettlementGAYBFeeEntity : IEntity<HospSimulateSettlementGAYBFeeEntity>
@@ -120,7 +120,7 @@ namespace Newtouch.HIS.Domain.Entity
         /// <returns></returns>
         public decimal? prm_zhkzf { get; set; }
         /// <summary>
-        /// 城乡居民人员类型
+        /// Loại nhân viên cư dân thành thị và nông thôn
         /// </summary>
         public string prm_ykc299 { get; set; }
         /// <summary>

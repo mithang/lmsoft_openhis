@@ -15,12 +15,12 @@ namespace Newtouch.HIS.Domain.DBContext.Infrastructure
     public class DefaultDbContextTBRegister
     {
         /// <summary>
-        /// 注册表（底层已经注册了一部分）
+        /// Bảng đăng ký(Tầng dưới đã đăng ký một phần)
         /// </summary>
         /// <param name="modelBuilder"></param>
         public static void Registe(DbModelBuilder modelBuilder)
         {
-            //注册新表
+            //Đăng ký bảng mới
             modelBuilder.Entity<DbBackupEntity>().ToTable("Sys_DbBackup").HasKey(p => p.Id);
             modelBuilder.Entity<FilterIPEntity>().ToTable("Sys_FilterIP").HasKey(p => p.Id);
 
@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Domain.DBContext.Infrastructure
             modelBuilder.Entity<HospDrugBillingEntity>().Property(p => p.dj).HasPrecision(18, 4);
             modelBuilder.Entity<HospItemBillingEntity>().Property(p => p.dj).HasPrecision(18, 4);
             modelBuilder.Entity<HospMultiDiagnosisEntity>().RegisterTable().HasKey(p => p.rydzdId);
-            modelBuilder.Entity<HospSettlementEntity>().RegisterTable().HasKey(p => p.jsnm);//住院结算
+            modelBuilder.Entity<HospSettlementEntity>().RegisterTable().HasKey(p => p.jsnm);//Quyết toán nội trú
 
 
             modelBuilder.Entity<HospTransactionSettlementDetailEntity>().RegisterTable().HasKey(p => p.jsmxbh);
@@ -62,27 +62,27 @@ namespace Newtouch.HIS.Domain.DBContext.Infrastructure
             modelBuilder.Entity<HospSettlementCategoryEntity>().RegisterTable().HasKey(p => p.jsdlId);
 
 
-            modelBuilder.Entity<OutpatientRegistEntity>().RegisterTable().HasKey(p => p.ghnm);//门诊挂号
-            modelBuilder.Entity<OutpatientSettlementCategoryEntity>().RegisterTable().HasKey(p => p.jsdlId);//门诊结算大类
-            modelBuilder.Entity<OutpatientSettlementEntity>().RegisterTable().HasKey(p => p.jsnm);//门诊结算
-            modelBuilder.Entity<OutpatientSettlementYBFeeEntity>().RegisterTable().HasKey(p => p.ybfynm);//门诊结算
-            modelBuilder.Entity<OutpatientRegistItemEntity>().RegisterTable().HasKey(p => p.xmnm);//门诊挂号项目
-            modelBuilder.Entity<OutpatientRegistNonAttendanceEntity>().RegisterTable().HasKey(p => p.thnm);//门诊挂号退号
-            modelBuilder.Entity<OutpatientSettlementPaymentModelEntity>().RegisterTable().HasKey(p => p.mzjszffsbh);//门诊结算支付方式
-            modelBuilder.Entity<OutpatientSettlementDetailEntity>().RegisterTable().HasKey(p => p.jsmxnm);//门诊结算明细
+            modelBuilder.Entity<OutpatientRegistEntity>().RegisterTable().HasKey(p => p.ghnm);//Đăng ký khám ngoại trú
+            modelBuilder.Entity<OutpatientSettlementCategoryEntity>().RegisterTable().HasKey(p => p.jsdlId);//Loại lớn quyết toán ngoại trú
+            modelBuilder.Entity<OutpatientSettlementEntity>().RegisterTable().HasKey(p => p.jsnm);//Quyết toán ngoại trú
+            modelBuilder.Entity<OutpatientSettlementYBFeeEntity>().RegisterTable().HasKey(p => p.ybfynm);//Quyết toán ngoại trú
+            modelBuilder.Entity<OutpatientRegistItemEntity>().RegisterTable().HasKey(p => p.xmnm);//Hạng mục đăng ký khám ngoại trú
+            modelBuilder.Entity<OutpatientRegistNonAttendanceEntity>().RegisterTable().HasKey(p => p.thnm);//Trả số đăng ký khám ngoại trú
+            modelBuilder.Entity<OutpatientSettlementPaymentModelEntity>().RegisterTable().HasKey(p => p.mzjszffsbh);//Phương thức thanh toán quyết toán ngoại trú
+            modelBuilder.Entity<OutpatientSettlementDetailEntity>().RegisterTable().HasKey(p => p.jsmxnm);//Chi tiết quyết toán ngoại trú
 
-            modelBuilder.Entity<OutpatientPrescriptionEntity>().RegisterTable().HasKey(p => p.cfnm);//门诊处方
-            modelBuilder.Entity<OutpatientPrescriptionDetailEntity>().RegisterTable().HasKey(p => p.cfmxId);//门诊处方明细 
-            modelBuilder.Entity<OutpatientItemEntity>().RegisterTable().HasKey(p => p.xmnm);//门诊项目
-            modelBuilder.Entity<OupatientInvoicePrintEntity>().RegisterTable().HasKey(p => p.dybh);//门诊发票打印
+            modelBuilder.Entity<OutpatientPrescriptionEntity>().RegisterTable().HasKey(p => p.cfnm);//Đơn thuốc ngoại trú
+            modelBuilder.Entity<OutpatientPrescriptionDetailEntity>().RegisterTable().HasKey(p => p.cfmxId);//Chi tiết đơn thuốc ngoại trú 
+            modelBuilder.Entity<OutpatientItemEntity>().RegisterTable().HasKey(p => p.xmnm);//Hạng mục ngoại trú
+            modelBuilder.Entity<OupatientInvoicePrintEntity>().RegisterTable().HasKey(p => p.dybh);//In hóa đơn ngoại trú
 
 
-            modelBuilder.Entity<FinanceReceiptEntity>().RegisterTable().HasKey(p => p.cwsjId); //财务收据 
-            modelBuilder.Entity<FinancialInvoiceEntity>().RegisterTable().HasKey(p => p.fpdm); //财务发票
-            modelBuilder.Entity<SysDrugInventoryEntity>().RegisterTable().HasKey(p => p.Kcxh);//药品库存
+            modelBuilder.Entity<FinanceReceiptEntity>().RegisterTable().HasKey(p => p.cwsjId); //Biên lai tài chính 
+            modelBuilder.Entity<FinancialInvoiceEntity>().RegisterTable().HasKey(p => p.fpdm); //Hóa đơn tài chính
+            modelBuilder.Entity<SysDrugInventoryEntity>().RegisterTable().HasKey(p => p.Kcxh);//Tồn kho thuốc
 
-            modelBuilder.Entity<SysChargeTemplateEntity>().RegisterTable().HasKey(p => p.sfmbbh); //系统收费模版
-            modelBuilder.Entity<SysChargeTemplateItemMappEntity>().RegisterTable().HasKey(p => p.sfmbxmId); //收费模版项目
+            modelBuilder.Entity<SysChargeTemplateEntity>().RegisterTable().HasKey(p => p.sfmbbh); //Mẫu thu phí hệ thống
+            modelBuilder.Entity<SysChargeTemplateItemMappEntity>().RegisterTable().HasKey(p => p.sfmbxmId); //Hạng mục mẫu thu phí
             modelBuilder.Entity<SysFailedCodeMessageMappEntity>().RegisterTable().HasKey(p => p.Id);
             
             modelBuilder.Entity<SysChargeItemSpecialMarkEntity>().RegisterTable().HasKey(p => p.sfxmtsbzbh);
@@ -98,20 +98,20 @@ namespace Newtouch.HIS.Domain.DBContext.Infrastructure
             modelBuilder.Entity<NonTreatmentItemBillingEntity>().RegisterTable().HasKey(p => p.jfbId);
             modelBuilder.Entity<SysMedicalInsuranceFilingEntity>().RegisterTable().HasKey(p => p.ybbabId);
 
-            modelBuilder.Entity<OutpatientAccountEntity>().RegisterTable().HasKey(p => p.jzjhId);//mz_jzjh 门诊记账计划
-            modelBuilder.Entity<OutpatientAccountDetailEntity>().RegisterTable().HasKey(p => p.jzjhmxId);//mz_jzjhmx 门诊记账计划明细
-            modelBuilder.Entity<CommercialInsuranceEntity>().RegisterTable().HasKey(p => p.Id);//xt_sybx 商业保险
-            modelBuilder.Entity<SysCommercialInsuranceFilingEntity>().RegisterTable().HasKey(p => p.sbbabId);//xt_sbbab 商保备案表
-            modelBuilder.Entity<SysCommercialInsuranceChargeItemEntity>().RegisterTable().HasKey(p => p.sbkbxmId);//xt_sbkbxm 商保可报项目 
-            modelBuilder.Entity<DoctorWorkingDaysPlanEntity>().RegisterTable().HasKey(p => p.Id);//jz_yspb 治疗师排班
-            modelBuilder.Entity<AdjustWorkingHoursEntity>().RegisterTable().HasKey(p => p.Id);//jz_sctz 时长调整
+            modelBuilder.Entity<OutpatientAccountEntity>().RegisterTable().HasKey(p => p.jzjhId);//mz_jzjh Kế hoạch ghi sổ ngoại trú
+            modelBuilder.Entity<OutpatientAccountDetailEntity>().RegisterTable().HasKey(p => p.jzjhmxId);//mz_jzjhmx Chi tiết kế hoạch ghi sổ ngoại trú
+            modelBuilder.Entity<CommercialInsuranceEntity>().RegisterTable().HasKey(p => p.Id);//xt_sybx Bảo hiểm thương mại
+            modelBuilder.Entity<SysCommercialInsuranceFilingEntity>().RegisterTable().HasKey(p => p.sbbabId);//xt_sbbab Bảng đăng ký bảo hiểm thương mại
+            modelBuilder.Entity<SysCommercialInsuranceChargeItemEntity>().RegisterTable().HasKey(p => p.sbkbxmId);//xt_sbkbxm Hạng mục được bảo hiểm thương mại thanh toán 
+            modelBuilder.Entity<DoctorWorkingDaysPlanEntity>().RegisterTable().HasKey(p => p.Id);//jz_yspb Lịch trực của kỹ thuật viên điều trị
+            modelBuilder.Entity<AdjustWorkingHoursEntity>().RegisterTable().HasKey(p => p.Id);//jz_sctz Điều chỉnh thời lượng
 
             modelBuilder.Entity<RptMonthReportDetailEntity>().RegisterTable().HasKey(p => p.Id);
 
-            //同步治疗记录
+            //Đồng bộ hồ sơ điều trị
             modelBuilder.Entity<SyncTreatmentServiceRecordEntity>().RegisterTable().HasKey(p => p.Id);
 
-            //金额上限提醒
+            //Nhắc nhở giới hạn trên số tiền
             modelBuilder.Entity<MoneyUpperLimitReminderEntity>().RegisterTable().HasKey(p => p.sxtxId);
             modelBuilder.Entity<SysShortcutMenuEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<SysRoleShortcutMenuEntity>().RegisterTable().HasKey(p => p.Id);
@@ -119,42 +119,42 @@ namespace Newtouch.HIS.Domain.DBContext.Infrastructure
             modelBuilder.Entity<TherapeutistMonthProfitShareConfigEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<OutpatientItemExeEntity>().RegisterTable().HasKey(p => p.Id);
 
-            //治疗师建议
+            //Đề xuất kỹ thuật viên điều trị
             modelBuilder.Entity<TherapistSuggestionEntity>().RegisterTable().HasKey(p => p.jyId);
-            //系统账户
+            //Tài khoản hệ thống
             modelBuilder.Entity<SysAccountEntity>().RegisterTable().HasKey(p => p.Id);
-            //系统账户收支记录
+            //Bản ghi thu chi tài khoản hệ thống
             modelBuilder.Entity<SysAccountRevenueAndExpenseEntity>().RegisterTable().HasKey(p => p.Id);
 
-            //住院账户
+            //Tài khoản nội trú
             modelBuilder.Entity<InpatientAccountEntity>().RegisterTable().HasKey(p => p.Id);
-            //住院账户收支记录
+            //Bản ghi thu chi tài khoản nội trú
             modelBuilder.Entity<InpatientAccountRevenueAndExpenseEntity>().RegisterTable().HasKey(p => p.Id);
 
-            //GRS成本信息表
+            //GRSBảng thông tin chi phí
             modelBuilder.Entity<jgss_CostInfoEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<jgss_EarningInfoEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<jgss_EarningDetailInfoEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<jgss_AttachmentInfoEntity>().RegisterTable().HasKey(p => p.Id);
             
-            //移动支付记录表
+            //Bảng bản ghi thanh toán di động
             modelBuilder.Entity<OrderPayInfoEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<OrderRefundInfoEntity>().RegisterTable().HasKey(p => p.Id);
 
-            //日结算表
+            //Bảng quyết toán ngày
             modelBuilder.Entity<DaySettleEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<DaySettleMxEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<GuianRybl21OutInfoEntity>().RegisterTable().HasKey(p => p.prm_ykc010);
 	        modelBuilder.Entity<RptrptMzRjbEntity>().RegisterTable().HasKey(p => p.Id);
 
-			//住院医保结算 -费用 -模拟结算
+			//Quyết toán BHYT nội trú -Chi phí -Quyết toán mô phỏng
 			modelBuilder.Entity<HospSimulateSettlementGAYBFeeEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<HospSettlementGAYBFeeEntity>().RegisterTable().HasKey(p => p.Id);
 
             modelBuilder.Entity<OutpatientSettlementGAYBFeeEntity>().RegisterTable().HasKey(p => p.id);
 
             modelBuilder.Entity<HospSettlementGAYBZYMXXRFeeEntity>().RegisterTable().HasKey(p => p.Id);
-            //////////////////////新农合
+            //////////////////////Bảo hiểm nông thôn mới
             modelBuilder.Entity<HospSettlementGAXNHFeeEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<HospSettlementGAXNHMXFeeEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<GuianXnhS04InfoEntity>().RegisterTable().HasKey(p => p.Id);
@@ -163,10 +163,10 @@ namespace Newtouch.HIS.Domain.DBContext.Infrastructure
             modelBuilder.Entity<OutpatientXnhSettlementCalcDetailEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<BaseGaXnhS30Entity>().RegisterTable().HasKey(p => p.Id);
 
-            modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());//注入DecimalPrecisionAttribute 特性
+            modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());//TiêmDecimalPrecisionAttribute Đặc tính
 
 
-			//重庆医保
+			//BHYT Trùng Khánh
 	        modelBuilder.Entity<CqybMedicalReg02Entity>().RegisterTable().HasKey(p => p.Id);
 	        modelBuilder.Entity<CqybUploadPresList04Entity>().RegisterTable().HasKey(p => p.Id);
 	        modelBuilder.Entity<CqybSett05Entity>().RegisterTable().HasKey(p => p.Id);
@@ -176,7 +176,7 @@ namespace Newtouch.HIS.Domain.DBContext.Infrastructure
             modelBuilder.Entity<CqybUpdateMedicalInput03Entity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<CqybSett2303Entity>().RegisterTable().HasKey(p => p.prejs_id);
 
-            //门诊预约
+            //Hẹn khám ngoại trú
             modelBuilder.Entity<OutBookEntity>().RegisterTable().HasKey(p => p.ghpbId);
             modelBuilder.Entity<OutBookRelEntity>().RegisterTable().HasKey(p => p.id);
             modelBuilder.Entity<OutBookDateEntity>().RegisterTable().HasKey(p => p.Id);
@@ -184,12 +184,12 @@ namespace Newtouch.HIS.Domain.DBContext.Infrastructure
 
             modelBuilder.Entity<SysDepartmentBindingEntity>().RegisterTable().HasKey(p => p.bddm);
 
-            //治疗项目组合
+            //Tổ hợp hạng mục điều trị
             modelBuilder.Entity<TreatmentportfolioEntity>().RegisterTable().HasKey(p => p.Id);
 
-            //一卡通日志
+            //Nhật ký thẻ liên thông
             modelBuilder.Entity<SysxtbrjbxxlogEntity>().RegisterTable().HasKey(p => p.Id);
-            //排班
+            //Lịch trực
             modelBuilder.Entity<OutBookScheduleEntity>().RegisterTable().HasKey(p => p.ScheduId);
         }
 

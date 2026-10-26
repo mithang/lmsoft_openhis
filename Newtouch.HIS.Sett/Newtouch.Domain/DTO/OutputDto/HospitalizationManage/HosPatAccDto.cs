@@ -1,8 +1,8 @@
 ﻿/**********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description： 住院管理》账户管理》界面返回实体
-// Author：HLF
-// CreateDate： 2016/12/8 10:12:01 
+// Copyright (C) 2016 Newtouch Bảo lưu bản quyền. 
+// Description: Quản lý nội trú》Quản lý tài khoản》Thực thể giao diện trả về
+// Author:HLF
+// CreateDate: 2016/12/8 10:12:01 
 //**********************************************************/
 
 using Newtouch.HIS.Domain.DTO.InputDto;
@@ -18,17 +18,17 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// 预交金
+    /// Tiền tạm ứng
     /// </summary>
    public class ReserveDto
     {
         /// <summary>
-        /// 基本信息
+        /// Thông tin cơ bản
         /// </summary>
         public ReservePatientInfoDto patInfo;
 
         /// <summary>
-        /// 账户信息
+        /// Thông tin tài khoản
         /// </summary>
         public List<PatAccPayVO> accPayInfoList;
     }
@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto
     {
         public int zhCode { get; set; }
         /// <summary>
-        /// 账户性质 区分院内账户时使用
+        /// Tính chất tài khoản Dùng khi phân biệt tài khoản trong viện
         /// </summary>
         public int? zhxz { get; set; }
     }

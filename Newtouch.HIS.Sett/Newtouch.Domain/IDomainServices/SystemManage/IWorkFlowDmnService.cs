@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 工作流
+    /// Luồng công việc
     /// </summary>
     public interface IWorkFlowDmnService
     {

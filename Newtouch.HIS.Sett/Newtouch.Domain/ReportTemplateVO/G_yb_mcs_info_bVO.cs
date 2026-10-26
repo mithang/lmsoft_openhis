@@ -7,152 +7,152 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.ReportTemplateVO
 {
     /// <summary>
-    /// 耗材信息表
+    /// Bảng thông tin vật tư tiêu hao
     /// </summary>
     public class G_yb_mcs_info_bVO
     {
-        //	医疗目录编码				
+        //	Mã danh mục y tế				
         public string MED_LIST_CODG { get; set; }
-        //	耗材名称				
+        //	Tên vật tư tiêu hao				
         public string MCS_NAME { get; set; }
-        //	医疗器械唯一标识码				
+        //	Mã định danh duy nhất thiết bị y tế				
         public string UDI { get; set; }
-        //	医保通用名代码				
+        //	Mã tên chung BHYT				
         public string HI_GENNAME_CODE { get; set; }
-        //	医保通用名				
+        //	Tên chung BHYT				
         public string HI_GENNAME { get; set; }
-        //	产品型号				
+        //	Mẫu sản phẩm				
         public string PROD_MOL { get; set; }
-        //	规格代码				
+        //	Mã quy cách				
         public string SPEC_CODE { get; set; }
-        //	规格				
+        //	Quy cách				
         public string SPEC { get; set; }
-        //	耗材分类				
+        //	Phân loại vật tư tiêu hao				
         public string MCS_TYPE { get; set; }
-        //	规格型号				
+        //	Mẫu quy cách				
         public string SPEC_MOL { get; set; }
-        //	材质代码				
+        //	Mã chất liệu				
         public string MATL_CODE { get; set; }
-        //	耗材材质				
+        //	Chất liệu vật tư tiêu hao				
         public string MCS_MATL { get; set; }
-        //	包装规格				
+        //	Quy cách đóng gói				
         public string PACSPEC { get; set; }
-        //	包装数量				
+        //	Số lượng đóng gói				
         public string PAC_CNT { get; set; }
-        //	产品包装材质				
+        //	Chất liệu đóng gói sản phẩm				
         public string PROD_PACMATL { get; set; }
-        //	包装单位				
+        //	Đơn vị đóng gói				
         public string PACUNT { get; set; }
-        //	产品转换比				
+        //	Tỷ lệ chuyển đổi sản phẩm				
         public string PROD_CONVRAT { get; set; }
-        //	最小使用单位				
+        //	Đơn vị sử dụng nhỏ nhất				
         public string MIN_USEUNT { get; set; }
-        //	生产地类别				
+        //	Loại nơi sản xuất				
         public string PRODPLAC_TYPE { get; set; }
-        //	生产地类别名称				
+        //	Tên loại nơi sản xuất				
         public string PRODPLAC_TYPE_NAME { get; set; }
-        //	产品标准				
+        //	Tiêu chuẩn sản phẩm				
         public string PRODSTRD { get; set; }
-        //	产品有效期				
+        //	Hạn dùng sản phẩm				
         public string PRODEXPY { get; set; }
-        //	性能结构与组成				
+        //	Hiệu năng, cấu trúc và thành phần				
         public string PERF_STRU_COMP { get; set; }
-        //	适用范围				
+        //	Phạm vi áp dụng				
         public string APB_SCP { get; set; }
-        //	产品使用方法				
+        //	Cách dùng sản phẩm				
         public string PROD_ISTR { get; set; }
-        //	产品图片编号				
+        //	Số hình ảnh sản phẩm				
         public string PROD_IMG_NO { get; set; }
-        //	产品质量标准				
+        //	Tiêu chuẩn chất lượng sản phẩm				
         public string PROD_QLT_STD { get; set; }
-        //	说明书				
+        //	Hướng dẫn sử dụng				
         public string MANL { get; set; }
-        //	其他证明材料				
+        //	Tài liệu chứng minh khác				
         public string OTH_CERT_MATL { get; set; }
-        //	专机专用标志				
+        //	Cờ dùng riêng cho máy chuyên dụng				
         public string SPED_FLAG { get; set; }
-        //	专机名称				
+        //	Tên máy chuyên dụng				
         public string SPED_NAME { get; set; }
-        //	组套名称				
+        //	Tên bộ				
         public string COMB_NAME { get; set; }
-        //	机套标志				
+        //	Cờ bộ máy				
         public string CASE_FLAG { get; set; }
-        //	限制使用标志				
+        //	Cờ hạn chế sử dụng				
         public string LMT_USED_FLAG { get; set; }
-        //	医保限用范围				
+        //	Phạm vi giới hạn dùng BHYT				
         public string HI_LMT_SCP { get; set; }
-        //	最小销售单位				
+        //	Đơn vị bán nhỏ nhất				
         public string MIN_SALUNT { get; set; }
-        //	高值耗材标志				
+        //	Cờ vật tư tiêu hao giá trị cao				
         public string HIGHVAL_MCS_FLAG { get; set; }
-        //	医用材料分类代码				
+        //	Mã phân loại vật tư y tế				
         public string MATL_TYPE_CODE { get; set; }
-        //	植入材料和人体器官标志				
+        //	Cờ vật tư cấy ghép và cơ quan cơ thể người				
         public string IMPT_MATL_HMORGN_FLAG { get; set; }
-        //	灭菌标志				
+        //	Cờ tiệt trùng				
         public string STLZ_FLAG { get; set; }
-        //	灭菌标志名称				
+        //	Tên cờ tiệt trùng				
         public string STLZ_FLAG_NAME { get; set; }
-        //	植入或介入类标志				
+        //	Cờ loại cấy ghép hoặc can thiệp				
         public string IMPT_ITVT_CLSS_FLAG { get; set; }
-        //	植入或介入类名称				
+        //	Tên loại cấy ghép hoặc can thiệp				
         public string IMPT_ITVT_CLSS_NAME { get; set; }
-        //	一次性使用标志				
+        //	Cờ dùng một lần				
         public string DSPO_USED_FLAG { get; set; }
-        //	一次性使用标志名称				
+        //	Tên cờ dùng một lần				
         public string DSPO_USED_FLAG_NAME { get; set; }
-        //	注册备案人名称				
+        //	Tên người đăng ký lưu trữ				
         public string REGER_NAME { get; set; }
-        //	开始日期				
+        //	Ngày bắt đầu				
         public DateTime? BEGNDATE { get; set; }
-        //	结束日期				
+        //	Ngày kết thúc				
         public DateTime? ENDDATE { get; set; }
-        //	医疗器械管理类别				
+        //	Loại quản lý thiết bị y tế				
         public string MED_EQU_MGT_TYPE { get; set; }
-        //	医疗器械管理类别名称				
+        //	Tên loại quản lý thiết bị y tế				
         public string MED_EQU_MGT_TYPE_NAME { get; set; }
-        //	注册备案号				
+        //	Số đăng ký lưu trữ				
         public string REG_FIL_NO { get; set; }
-        //	注册备案产品名称				
+        //	Tên sản phẩm đăng ký lưu trữ				
         public string REG_FIL_PROD_NAME { get; set; }
-        //	结构及组成				
+        //	Cấu trúc và thành phần				
         public string STRU_COMP { get; set; }
-        //	其他内容				
+        //	Nội dung khác				
         public string OTH_CONT { get; set; }
-        //	批准日期				
+        //	Ngày phê duyệt				
         public DateTime? APRV_DATE { get; set; }
-        //	注册备案人住所				
+        //	Nơi ở người đăng ký lưu trữ				
         public string REGER_ADDR { get; set; }
-        //	注册证有效期开始时间				
+        //	Thời gian bắt đầu hiệu lực chứng nhận đăng ký				
         public DateTime? REGCERT_EXPY_BEGNTIME { get; set; }
-        //	注册证有效期结束时间				
+        //	Thời gian kết thúc hiệu lực chứng nhận đăng ký				
         public DateTime? REGCERT_EXPY_ENDTIME { get; set; }
-        //	生产企业代码				
+        //	Mã doanh nghiệp sản xuất				
         public string PRODENTP_CODE { get; set; }
-        //	生产企业名称				
+        //	Tên doanh nghiệp sản xuất				
         public string PRODENTP_NAME { get; set; }
-        //	生产地址				
+        //	Địa chỉ sản xuất				
         public string MANU_ADDR { get; set; }
-        //	代理人企业				
+        //	Doanh nghiệp đại lý				
         public string AGNT_ENTP { get; set; }
-        //	代理人企业地址				
+        //	Địa chỉ doanh nghiệp đại lý				
         public string AGNT_ENTP_ADDR { get; set; }
-        //	生产国或地区				
+        //	Nước hoặc khu vực sản xuất				
         public string MANU_NAT_REGN { get; set; }
-        //	售后服务机构				
+        //	Cơ sở dịch vụ sau bán hàng				
         public string AFTSAL_SERINS { get; set; }
-        //	注册或备案证电子档案				
+        //	Hồ sơ điện tử chứng nhận đăng ký hoặc lưu trữ				
         public string REG_FIL_ELEC_FILE { get; set; }
-        //	产品影像				
+        //	Hình ảnh sản phẩm				
         public string PROD_IMG { get; set; }
-        //	有效标志				
+        //	Cờ hiệu lực				
         public string VALI_FLAG { get; set; }
-        //	数据唯一记录号				
+        //	Số bản ghi duy nhất của dữ liệu				
         public string RID { get; set; }
        
-        //	版本号				
+        //	Số phiên bản				
         public string VER { get; set; }
-        //	版本名称				
+        //	Tên phiên bản				
         public string VER_NAME { get; set; }
         
 

@@ -5,7 +5,7 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects.TherapeutistCompleteManage
 {
     /// <summary>
-    /// 显示在治疗师工作列表的Grid
+    /// Hiển thị trong danh sách công việc của kỹ thuật viên điều trịGrid
     /// </summary>
     public class TherapeutistListGridVO
     {

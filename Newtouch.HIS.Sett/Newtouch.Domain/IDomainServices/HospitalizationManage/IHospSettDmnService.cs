@@ -6,18 +6,18 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 住院结算 接口
+    /// Quyết toán nội trú Giao diện
     /// </summary>
     public interface IHospSettDmnService
     {
         /// <summary>
-        /// 住院结算 保存至数据库
+        /// Quyết toán nội trú Lưu vào CSDL
         /// </summary>
         /// <param name="vo"></param>
         void SettSyncToDB(OutHospSettDBDataUpdateCollectVO vo, string orgId);
 
         /// <summary>
-        /// 住院结算 取消结算 保存至数据库
+        /// Quyết toán nội trú Hủy quyết toán Lưu vào CSDL
         /// </summary>
         /// <param name="vo"></param>
         void CancelSettSyncToDB(HospCancelSettDBDataUpdateCollectVO vo, string orgId);
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<HospSettlementInfoVO> GetPaginationSettlementList(Pagination pagination, string organizeId, string keyword, string fph, DateTime? jsksrq, DateTime? jsjsrq);
 
         /// <summary>
-        /// 待上传的自费结算病人信息
+        /// Thông tin bệnh nhân quyết toán tự chi trả chờ tải lên
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="organizeId"></param>
@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <param name="fph"></param>
         void UpdateSettInvoiceNo(string orgId, int jsnm, string fph);
         /// <summary>
-        /// 出院结算查询费用明细
+        /// Tra cứu chi tiết chi phí quyết toán xuất viện
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>

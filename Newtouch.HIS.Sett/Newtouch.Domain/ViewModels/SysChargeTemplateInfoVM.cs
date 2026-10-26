@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.ViewModels
     public class SysChargeTemplateInfoVM
     {
         /// <summary>
-        /// 模板实体
+        /// Thực thể mẫu
         /// </summary>
         public SysChargeTemplateEntity TemplateEntity { get; set; }
 

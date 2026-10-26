@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 作息时间
+    /// Giờ giấc sinh hoạt
     /// </summary>
     public class MzpbZxsjVO
     {

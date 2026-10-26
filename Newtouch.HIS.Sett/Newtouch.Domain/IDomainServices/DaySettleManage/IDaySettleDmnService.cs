@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 	public interface IDaySettleDmnService
 	{
 		/// <summary>
-		/// 门诊日结算查询
+		/// Tra cứu quyết toán ngày ngoại trú
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="keyword"></param>
@@ -29,25 +29,25 @@ namespace Newtouch.HIS.Domain.IDomainServices
 		IList<DaySettleDetailVO> GetOutPatientSettListJson(Pagination pagination, DateTime? kssj, DateTime? jssj, string orgId, string mzzybz);
 
 		/// <summary>
-		/// 门诊日结算保存
+		/// Lưu quyết toán ngày ngoại trú
 		/// </summary>
-		/// <param name="kssj">开始时间</param>
+		/// <param name="kssj">Thời gian bắt đầu</param>
 		void SaveOutpatientDaySettleInfo(DateTime? kssj, DateTime jssj, string CreatorCode, string orgId);
 
 		/// <summary>
-		/// 住院日结算保存
+		/// Lưu quyết toán ngày nội trú
 		/// </summary>
-		/// <param name="kssj">开始时间</param>
+		/// <param name="kssj">Thời gian bắt đầu</param>
 		void SaveInpatientDaySettleInfo(DateTime? kssj, DateTime jssj, string CreatorCode, string orgId);
 
 		/// <summary>
-		/// 获取上次日结算时间
+		/// Lấy thời gian quyết toán ngày lần trước
 		/// </summary>
 		/// <returns></returns>
 		string getLastSettDate(string mzzybz);
 
 		/// <summary>
-		/// 取消门诊日结算
+		/// Hủy quyết toán ngày ngoại trú
 		/// </summary>
 		/// <param name="Id"></param>
 		void CancleDaySettleInfo(string Id, string UserCode);
@@ -57,59 +57,59 @@ namespace Newtouch.HIS.Domain.IDomainServices
 		IList<ybzdinfo> Getinsutype();
 
 		/// <summary>
-		/// 获取清算对总帐
+		/// Lấy thanh toán đối chiếu sổ tổng
 		/// </summary>
-		/// <param name="organizeId">机构代码</param>
-		/// <param name="ksrq">开始日期</param>
-		/// <param name="jsrq">结束日期</param>
+		/// <param name="organizeId">Mã cơ sở</param>
+		/// <param name="ksrq">Ngày bắt đầu</param>
+		/// <param name="jsrq">Ngày kết thúc</param>
 		/// <returns></returns>
 		IList<Qsdzz> GetQsdzzs(string organizeId, string ksrq, string jsrq, string qslx, string xz);
 
 		int inserqssq(System.Xml.XmlDocument ybqssq, string orgid);
 
 		/// <summary>
-		/// 获取清算明细（上半部分）
+		/// Lấy chi tiết thanh toán(Nửa trên)
 		/// </summary>
-		/// <param name="organizeId">机构代码</param>
-		/// <param name="ksrq">开始日期</param>
-		/// <param name="jsrq">结束日期</param>
-		/// <param name="jslx">结算类型</param>
+		/// <param name="organizeId">Mã cơ sở</param>
+		/// <param name="ksrq">Ngày bắt đầu</param>
+		/// <param name="jsrq">Ngày kết thúc</param>
+		/// <param name="jslx">Loại quyết toán</param>
 		/// <returns></returns>
 		IList<Qsmx> GetQsmx(string organizeId, string ksrq, string jsrq, string jslx, string xzlx);
 
 		/// <summary>
-		/// 获取清算明细（下半部分）
+		/// Lấy chi tiết thanh toán(Nửa dưới)
 		/// </summary>
-		/// <param name="organizeId">机构代码</param>
-		/// <param name="ksrq">开始日期</param>
-		/// <param name="jsrq">结束日期</param>
-		/// <param name="jslx">结算类型</param>
+		/// <param name="organizeId">Mã cơ sở</param>
+		/// <param name="ksrq">Ngày bắt đầu</param>
+		/// <param name="jsrq">Ngày kết thúc</param>
+		/// <param name="jslx">Loại quyết toán</param>
 		/// <returns></returns>
 		IList<Qsmx_1> GetQsmx_1(string organizeId, string ksrq, string jsrq, string jslx, string xzlx);
 
 
 		/// <summary>
-		/// 获取清算申请
+		/// Lấy đơn thanh toán
 		/// </summary>
-		/// <param name="organizeId">机构代码</param>
-		/// <param name="ksrq">开始日期</param>
-		/// <param name="jsrq">结束日期</param>
-		/// <param name="sfyd">是否异地</param>
+		/// <param name="organizeId">Mã cơ sở</param>
+		/// <param name="ksrq">Ngày bắt đầu</param>
+		/// <param name="jsrq">Ngày kết thúc</param>
+		/// <param name="sfyd">Có phải khác địa phương hay không</param>
 		/// <returns></returns>
 		IList<Qssq> GetQssq(string organizeId, string ksrq, string jsrq, string sfyd);
 
 		///// <summary>
-		///// 清算回退
+		///// Quay lại thanh toán
 		///// </summary>
-		///// <param name="organizeId">机构代码</param>
-		///// <param name="ksrq">开始日期</param>
-		///// <param name="jsrq">结束日期</param>
+		///// <param name="organizeId">Mã cơ sở</param>
+		///// <param name="ksrq">Ngày bắt đầu</param>
+		///// <param name="jsrq">Ngày kết thúc</param>
 		///// <returns></returns>
 		IList<Qsht> GetQsht(string organizeId, string ksrq, string jsrq);
 
 
 		/// <summary>
-		/// 日对账历史数据
+		/// Dữ liệu lịch sử đối soát ngày
 		/// </summary>
 		/// <param name="orgid"></param>
 		/// <param name="ksrq"></param>
@@ -119,7 +119,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
 		IList<RdrNewList> Newdzfysj(string orgid, string rq);
         /// <summary>
-        /// 获取本地对账明细数据
+        /// Lấy dữ liệu chi tiết đối soát cục bộ
         /// </summary>
         /// <param name="orgid"></param>
         /// <param name="ksrq"></param>

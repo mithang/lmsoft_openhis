@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Domain.Entity.OutpatientManage
     public class OutBookRelEntity : IEntity<OutBookRelEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         /// <returns></returns>
         [Key]

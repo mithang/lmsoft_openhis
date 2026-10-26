@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 收费项目特殊标志
+    /// Cờ đặc biệt hạng mục thu phí
     /// </summary>
     [Table("xt_sfxmtsbz")]
     public class SysChargeItemSpecialMarkEntity : IEntity<SysChargeItemSpecialMarkEntity>
@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int sfxmtsbzbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 

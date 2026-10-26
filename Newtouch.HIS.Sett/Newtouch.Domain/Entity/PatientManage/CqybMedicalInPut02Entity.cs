@@ -10,133 +10,133 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.Entity.PatientManage
 {
     /// <summary>
-    /// 重庆医保_就诊登记02入参落地
+    /// BHYT Trùng Khánh_Đăng ký khám bệnh02Tham số đầu vào được ghi nhận
     /// </summary>
     [Table("cqyb_OutPutInPar02")]
     public class CqybMedicalInPut02Entity : IEntity<CqybMedicalInPut02Entity>
     {
         /// <summary>
-        /// 主键ID
+        /// Khóa chínhID
         /// </summary>
         [Key]
         public int Id { get; set; }
         
         /// <summary>
-        /// 交易类型 1:门诊 2：住院
+        /// Loại giao dịch 1:Khám ngoại trú 2:Nhập viện
         /// </summary>
         public string jytype { get; set; }
         /// <summary>
-        /// 门诊住院号
+        /// Số ngoại trú/nội trú
         /// </summary>
         public string zymzh { get; set; }
         /// <summary>
-        /// 医疗类别
+        /// Loại hình y tế
         /// </summary>
         public string yllb { get; set; }
        
         /// <summary>
-        /// 社会保障识别号
+        /// Số định danh BHXH
         /// </summary>
         public string shbzsbh { get; set; }
         /// <summary>
-        /// 入院科室编码
+        /// Mã khoa nhập viện
         /// </summary>
         public string ryksbm { get; set; }
         /// <summary>
-        /// 入院医师编码
+        /// Mã bác sĩ nhập viện
         /// </summary>
         public string ryysbm { get; set; }
         /// <summary>
-        /// 入院日期
+        /// Ngày nhập viện
         /// </summary>
         public string ryrq { get; set; }
         /// <summary>
-        /// 入院诊断
+        /// Chẩn đoán nhập viện
         /// </summary>
         public string ryzd { get; set; }
         /// <summary>
-        /// 经办人
+        /// Người xử lý
         /// </summary>
         public string jbr { get; set; }
         /// <summary>
-        /// 并发症
+        /// Biến chứng
         /// </summary>
         public string bfz { get; set; }
         /// <summary>
-        /// 急诊转住院发生时间
+        /// Thời gian cấp cứu chuyển nội trú phát sinh
         /// </summary>
         public DateTime? jzzzysj { get; set; }
         /// <summary>
-        /// 病案号
+        /// Số bệnh án
         /// </summary>
         public string bah { get; set; }
         /// <summary>
-        /// 生育证号码
+        /// Số giấy chứng sinh
         /// </summary>
         public string syzhm { get; set; }
         /// <summary>
-        /// 新生儿出生日期
+        /// Ngày sinh trẻ sơ sinh
         /// </summary>
         public DateTime? xsecsrq { get; set; }
         /// <summary>
-        /// 居民特殊就诊标记
+        /// Dấu khám đặc biệt cho cư dân
         /// </summary>
         public string jmtsjzbj { get; set; }
         /// <summary>
-        /// 险种类别
+        /// Loại hình bảo hiểm
         /// </summary>
         public string xzlb { get; set; }
         /// <summary>
-        /// 工伤个人编号
+        /// Mã cá nhân tai nạn lao động
         /// </summary>
         public string gsgrbh { get; set; }
         /// <summary>
-        /// 工伤单位编号
+        /// Mã đơn vị tai nạn lao động
         /// </summary>
         public string gsdwbh { get; set; }
         /// <summary>
-        /// 主诉
+        /// Lời khai chính
         /// </summary>
         public string zs { get; set; }
         /// <summary>
-        /// 症状描述
+        /// Mô tả triệu chứng
         /// </summary>
         public string zzms { get; set; }
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime? CreateTime { get; set; }
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int px { get; set; }
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// 认证方式 01：社保 02：电子凭证
+        /// Phương thức xác thực 01:BHXH 02:Chứng từ điện tử
         /// </summary>
 
         public string rzfs { get; set; }
         /// <summary>
-        /// 入院国家医师代码
+        /// Mã bác sĩ quốc gia khi nhập viện
         /// </summary>
         public string gjysbm { get; set; }
     }

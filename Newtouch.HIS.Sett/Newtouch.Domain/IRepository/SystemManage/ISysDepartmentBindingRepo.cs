@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.IRepository
     {
 
         /// <summary>
-        /// 获取所有发票列表
+        /// Lấy danh sách tất cả hóa đơn
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="organizeId"></param>
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<SysDepartmentBindingEntity> GetSysDepartmentBindingList(string keyValue, string organizeId);
 
         /// <summary>
-        /// 修改页面，根据主键获取实体
+        /// Trang sửa đổi,Lấy thực thể theo khóa chính
         /// </summary>
         /// <param name="bddm"></param>
         /// <param name="orgId"></param>
@@ -26,14 +26,14 @@ namespace Newtouch.HIS.Domain.IRepository
         SysDepartmentBindingEntity GetSysDepartmentBindingEntity(string bddm, string orgId);
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="SysDepartmentBindingEntity"></param>
         /// <param name="bddm"></param>
         void SubmitForm(SysDepartmentBindingEntity sysDepartmentBindingEntity, string bddm);
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="bddm"></param>
         /// <param name="orgId"></param>

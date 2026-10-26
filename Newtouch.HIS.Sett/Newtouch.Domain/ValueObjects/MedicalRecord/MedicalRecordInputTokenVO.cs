@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 住院项目计费 项目 的 详细信息
+    /// Tính phí hạng mục nội trú Hạng mục của Thông tin chi tiết
     /// </summary>
     public class MedicalRecordInputTokenVO
     {

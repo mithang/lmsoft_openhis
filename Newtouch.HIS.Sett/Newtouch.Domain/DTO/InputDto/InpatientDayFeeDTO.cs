@@ -7,28 +7,28 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 费用一日清
+    /// Bảng kê chi phí trong ngày
     /// </summary>
     public class InpatientDayFeeDTO
     {
         /// <summary>
-        /// 日期
+        /// Ngày tháng
         /// </summary>
         public string rq { get; set; }
         /// <summary>
-        /// 大类名称
+        /// Tên loại lớn
         /// </summary>
         public string dlmc { get; set; }
         /// <summary>
-        /// 大类金额
+        /// Số tiền loại lớn
         /// </summary>
         public decimal dlje { get; set; }
         /// <summary>
-        /// 当日金额
+        /// Số tiền trong ngày
         /// </summary>
         public decimal drje { get; set; }
         /// <summary>
-        /// 总金额
+        /// Tổng số tiền
         /// </summary>
         public decimal zje { get; set; }
     }
@@ -42,12 +42,12 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
     public class InpatientDayFeeRQ
     {
         /// <summary>
-        /// 日期
+        /// Ngày tháng
         /// </summary>
         public string rq { get; set; }
       
         /// <summary>
-        /// 当日金额
+        /// Số tiền trong ngày
         /// </summary>
         public decimal drzje { get; set; }
         public List<InpatientDayFeeDL> data { get; set; }
@@ -55,11 +55,11 @@ namespace Newtouch.HIS.Domain.DTO.InputDto
 
     public class InpatientDayFeeDL{
         /// <summary>
-        /// 大类名称
+        /// Tên loại lớn
         /// </summary>
         public string dlmc { get; set; }
         /// <summary>
-        /// 大类金额
+        /// Số tiền loại lớn
         /// </summary>
         public decimal dlje { get; set; }
     }

@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         public string Id { get; set; }
 
         /// <summary>
-        /// 本次结算金额
+        /// Số tiền quyết toán lần này
         /// </summary>
         public decimal bcje { get; set; }
 
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         public DateTime? LastJsTime { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 

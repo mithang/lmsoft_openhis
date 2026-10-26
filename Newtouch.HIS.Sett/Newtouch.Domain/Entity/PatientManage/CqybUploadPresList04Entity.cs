@@ -13,92 +13,92 @@ namespace Newtouch.HIS.Domain.Entity.PatientManage
 	public class CqybUploadPresList04Entity : IEntity<CqybUploadPresList04Entity>
 	{
 		/// <summary>
-		/// 主键ID
+		/// Khóa chínhID
 		/// </summary>
 		[Key]
 		public int Id { get; set; }
 		/// <summary>
-		/// 组织机构Id（有具体业务的医院）
+		/// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
 		/// </summary>
 		public string OrganizeId { get; set; }
 		/// <summary>
-		/// 住院门诊号
+		/// Số ngoại trú/nội trú
 		/// </summary>
 		public string zymzh { get; set; }
 		/// <summary>
-		/// 交易流水号
+		/// Số giao dịch
 		/// </summary> 
 		public string jylsh { get; set; }
 		/// <summary>
-		/// 上传类型1门诊，2住院
+		/// Loại tải lên1Khám ngoại trú,2Nhập viện
 		/// </summary>
 		public string jytype { get; set; }
 		/// <summary>
-		/// |项目单价
+		/// |Đơn giá hạng mục
 		/// </summary> 
 		public string dj { get; set; }
 		/// <summary>
-		/// 审批标记
+		/// Dấu phê duyệt
 		/// </summary> 
 		public string spbz { get; set; }
 		/// <summary>
-		/// 审批规则
+		/// Quy tắc phê duyệt
 		/// </summary> 
 		public string spgz { get; set; }
 		/// <summary>
-		/// 项目费用总额
+		/// Tổng chi phí hạng mục
 		/// </summary> 
 		public string xmfyze { get; set; }
 		/// <summary>
-		/// 项目等级
+		/// Cấp hạng mục
 		/// </summary> 
 		public string xmdj { get; set; }
 		/// <summary>
-		/// 自付比例
+		/// Tỷ lệ tự trả
 		/// </summary> 
 		public string zfbl { get; set; }
 		/// <summary>
-		/// 标准单价
+		/// Đơn giá tiêu chuẩn
 		/// </summary> 
 		public string bzdj { get; set; }
 		/// <summary>
-		/// 自付金额
+		/// Số tiền tự trả
 		/// </summary> 
 		public string zfje { get; set; }
 		/// <summary>
-		/// 自费金额
+		/// Số tiền tự chi trả
 		/// </summary> 
 		public string zfzje { get; set; }
 		/// <summary>
-		/// 创建用户ID
+		/// Người tạoID
 		/// </summary>
 		public string CreatorCode { get; set; }
 		/// <summary>
-		/// 创建时间
+		/// Thời gian tạo
 		/// </summary>
 		public DateTime? CreateTime { get; set; }
 		/// <summary>
-		/// 最后修改时间
+		/// Thời gian sửa đổi lần cuối
 		/// </summary>
 		public DateTime? LastModifyTime { get; set; }
 		/// <summary>
-		/// 最后修改用户ID
+		/// Người sửa đổi lần cuốiID
 		/// </summary>
 		public string LastModifierCode { get; set; }
 		/// <summary>
-		/// 排序
+		/// Sắp xếp
 		/// </summary>
 		public int px { get; set; }
 		/// <summary>
-		/// 状态
+		/// Trạng thái
 		/// </summary>
 		public string zt { get; set; }
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
         /// <summary>
-        /// 医院内码
+        /// Mã nội bộ bệnh viện
         /// </summary>
         public string yynm { get; set; }
     }

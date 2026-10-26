@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 系统病人账户 相关
+    /// Tài khoản bệnh nhân hệ thống Liên quan
     /// </summary>
     public interface ISysPatAccountDmnService
     {

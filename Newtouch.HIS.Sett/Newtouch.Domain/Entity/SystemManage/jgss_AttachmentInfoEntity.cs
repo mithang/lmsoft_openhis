@@ -12,15 +12,15 @@ namespace Newtouch.HIS.Domain.Entity.SystemManage
         public string Id { get; set; }
         public string srxxId { get; set; }
         /// <summary>
-        /// 附件名称
+        /// Tên tệp đính kèm
         /// </summary>
         public string fjmc { get; set; }
         /// <summary>
-        /// 附件类型
+        /// Loại tệp đính kèm
         /// </summary>
         public string ContentType { get; set; }
         /// <summary>
-        /// 附件类型
+        /// Loại tệp đính kèm
         /// </summary>
         public string fjPath { get; set; }
         public string CreatorCode { get; set; }

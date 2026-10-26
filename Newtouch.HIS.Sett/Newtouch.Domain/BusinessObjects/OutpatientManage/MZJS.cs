@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
 
     }
     /// <summary>
-    /// 包含医保和非医保
+    /// Bao gồm BHYT và không BHYT
     /// </summary>
     public class Brsfsf_ReturnValue_YBANDFYB
     {
@@ -74,22 +74,22 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 病人性质
+        /// Tính chất bệnh nhân
         /// </summary>
         public string brxz { get; set; }
 
         /// <summary>
-        /// 需要医保交易
+        /// Cần giao dịch BHYT
         /// </summary>
         public Brsfsf_ReturnValue YB { get; set; }
 
         /// <summary>
-        /// 不需要医保交易
+        /// Không cần giao dịch BHYT
         /// </summary>
         public Brsfsf_ReturnValue FYB { get; set; }
 
         /// <summary>
-        /// 交易费用总额
+        /// Tổng chi phí giao dịch
         /// </summary>
         public decimal jyze
         {
@@ -100,7 +100,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 医保结算范围费用总额
+        /// Tổng chi phí trong phạm vi quyết toán BHYT
         /// </summary>
         public decimal ybjsfwze
         {
@@ -111,7 +111,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 非医保结算范围个人自费
+        /// Cá nhân tự chi trả ngoài phạm vi quyết toán BHYT
         /// </summary>
         public decimal fybjsfwgrzf
         {
@@ -122,7 +122,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 分类自负
+        /// Tự chi trả theo phân loại
         /// </summary>
         public decimal flzfHj
         {
@@ -133,7 +133,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 自理
+        /// Tự lo
         /// </summary>
         public decimal zlHj
         {
@@ -144,7 +144,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 记账费用（如果是医保病人，为医保返回的结果）
+        /// Chi phí ghi sổ(Nếu là bệnh nhân BHYT,Kết quả BHYT trả về)
         /// </summary>
         public decimal jzfyHj
         {
@@ -155,7 +155,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 现金（未包含　医保返回的自负）
+        /// Tiền mặt(Chưa bao gồm　Số tiền tự chi trả BHYT trả về)
         /// </summary>
         public decimal xjHj
         {
@@ -166,7 +166,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 减免金额
+        /// Số tiền giảm miễn
         /// </summary>
         public decimal jmjeHj
         {
@@ -177,7 +177,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 算法自负（通过算法计算出的自负金额）
+        /// Tự chi trả theo thuật toán(Số tiền tự chi trả tính được qua thuật toán)
         /// </summary>
         public decimal sfzfHj
         {
@@ -189,7 +189,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
 
 
         /// <summary>
-        /// 算法自理（通过算法计算出的自理金额）
+        /// Tự lo theo thuật toán(Số tiền tự lo tính được qua thuật toán)
         /// </summary>
         public decimal sfzlHj
         {
@@ -200,7 +200,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 费用合计（自费病人需要要支付的现金）
+        /// Tổng chi phí(Tiền mặt bệnh nhân tự chi trả cần phải trả)
         /// </summary>
         public decimal totalHj
         {
@@ -211,7 +211,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 交易明细
+        /// Chi tiết giao dịch
         /// </summary>
         public List<HospTransactionSettlementDetailEntity> jsmxList { get; set; }
 
@@ -224,7 +224,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 交易费用总额
+        /// Tổng chi phí giao dịch
         /// </summary>
         public decimal jyze
         {
@@ -247,7 +247,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
 
                 foreach (KeyValuePair<string, decimal> pair in dlfy)
                 {
-                    //四舍五入
+                    //Làm tròn
                     fy += Math.Round(pair.Value, 2, MidpointRounding.AwayFromZero);
                 }
 
@@ -256,7 +256,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 医保结算范围费用总额
+        /// Tổng chi phí trong phạm vi quyết toán BHYT
         /// </summary>
         public decimal ybjsfwze
         {
@@ -279,7 +279,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
 
                 foreach (KeyValuePair<string, decimal> pair in dlfy)
                 {
-                    //四舍五入
+                    //Làm tròn
                     fy += Math.Round(pair.Value, 2, MidpointRounding.AwayFromZero);
                 }
 
@@ -288,7 +288,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 非医保结算范围个人自费
+        /// Cá nhân tự chi trả ngoài phạm vi quyết toán BHYT
         /// </summary>
         public decimal fybjsfwgrzf
         {
@@ -311,7 +311,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
 
                 foreach (KeyValuePair<string, decimal> pair in dlfy)
                 {
-                    //四舍五入
+                    //Làm tròn
                     fy += Math.Round(pair.Value, 2, MidpointRounding.AwayFromZero);
                 }
 
@@ -320,7 +320,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 分类自负
+        /// Tự chi trả theo phân loại
         /// </summary>
         public decimal flzfHj
         {
@@ -340,7 +340,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 自理
+        /// Tự lo
         /// </summary>
         public decimal zlHj
         {
@@ -360,7 +360,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 记账费用（如果是医保病人，为医保返回的结果）
+        /// Chi phí ghi sổ(Nếu là bệnh nhân BHYT,Kết quả BHYT trả về)
         /// </summary>
         public decimal jzfyHj
         {
@@ -375,9 +375,9 @@ namespace Newtouch.HIS.Domain.BusinessObjects
                     fy += fymx.jzfy;
                 }
 
-                //可记账费用减去超额部分
+                //Chi phí được ghi sổ trừ phần vượt mức
                 fy = fy - jzce;
-                //计算后的起付金额
+                //Số tiền khởi điểm sau khi tính toán
                 if (fy > qfje)
                 {
                     fy = fy - qfje;
@@ -392,7 +392,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 现金（未包含　医保返回的自负）
+        /// Tiền mặt(Chưa bao gồm　Số tiền tự chi trả BHYT trả về)
         /// </summary>
         public decimal xjHj
         {
@@ -412,7 +412,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 减免金额
+        /// Số tiền giảm miễn
         /// </summary>
         public decimal jmjeHj
         {
@@ -432,7 +432,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 算法自负（通过算法计算出的自负金额）
+        /// Tự chi trả theo thuật toán(Số tiền tự chi trả tính được qua thuật toán)
         /// </summary>
         public decimal sfzfHj
         {
@@ -447,9 +447,9 @@ namespace Newtouch.HIS.Domain.BusinessObjects
                     fy += fymx.sfzf;
                 }
 
-                //自负加上记账超额部分
+                //Tự chi trả cộng phần vượt mức ghi sổ
                 fy = fy + jzce;
-                //计算后的起付金额
+                //Số tiền khởi điểm sau khi tính toán
                 if (jzfyHj > qfje)
                 {
                     fy = fy + qfje;
@@ -460,7 +460,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 算法自理（通过算法计算出的自理金额）
+        /// Tự lo theo thuật toán(Số tiền tự lo tính được qua thuật toán)
         /// </summary>
         public decimal sfzlHj
         {
@@ -481,7 +481,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
 
 
         /// <summary>
-        /// 费用合计（自费病人需要要支付的现金）
+        /// Tổng chi phí(Tiền mặt bệnh nhân tự chi trả cần phải trả)
         /// </summary>
         public decimal totalHj
         {
@@ -496,9 +496,9 @@ namespace Newtouch.HIS.Domain.BusinessObjects
                     fy += fymx.total;
                 }
 
-                //现金加上记账超额部分
+                //Tiền mặt cộng phần vượt mức ghi sổ
                 fy = fy + jzce;
-                //计算后的起付金额
+                //Số tiền khởi điểm sau khi tính toán
                 if (jzfyHj > qfje)
                 {
                     fy = fy + qfje;
@@ -509,18 +509,18 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 大类费用明细
+        /// Chi tiết chi phí loại lớn
         /// </summary>
         public List<Brsfsf_Dl_Fymx> dlFymxList { get; set; }
 
         /// <summary>
-        /// 项目费用明细  ----fangyi
+        /// Chi tiết chi phí hạng mục  ----fangyi
         /// </summary>
         public List<SFXM_FYMX> fymxList { get; set; }
 
 
         /// <summary>
-        /// 获取收费大类医保结算范围费用总额
+        /// Lấy tổng chi phí trong phạm vi quyết toán BHYT của loại lớn thu phí
         /// </summary>
         /// <returns></returns>
         public decimal getDlJyje(string dl, bool flag)
@@ -542,7 +542,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
                 }
             }
 
-            //四舍五入
+            //Làm tròn
             amount = Math.Round(amount, 2, MidpointRounding.AwayFromZero);
 
             return amount;
@@ -550,7 +550,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
 
 
         /// <summary>
-        /// 获取收费大类医保结算范围费用总额
+        /// Lấy tổng chi phí trong phạm vi quyết toán BHYT của loại lớn thu phí
         /// </summary>
         /// <returns></returns>
         public decimal getDlJyje(string dl)
@@ -565,16 +565,16 @@ namespace Newtouch.HIS.Domain.BusinessObjects
                 }
             }
 
-            //四舍五入
+            //Làm tròn
             amount = Math.Round(amount, 2, MidpointRounding.AwayFromZero);
 
             return amount;
         }
 
         /// <summary>
-        /// 获取收费大类医保结算范围费用总额
+        /// Lấy tổng chi phí trong phạm vi quyết toán BHYT của loại lớn thu phí
         /// </summary>
-        /// <param name="yydlList">医院大类</param>
+        /// <param name="yydlList">Loại lớn bệnh viện</param>
         /// <returns></returns>
         public decimal getDlJyje(List<string> yydlList)
         {
@@ -587,119 +587,119 @@ namespace Newtouch.HIS.Domain.BusinessObjects
                 }
             }
 
-            //四舍五入
+            //Làm tròn
             amount = Math.Round(amount, 2, MidpointRounding.AwayFromZero);
 
             return amount;
         }
 
         /// <summary>
-        /// 记账超额部分（要转入自负）
+        /// Phần vượt mức ghi sổ(Cần chuyển sang tự chi trả)
         /// </summary>
         public decimal jzce { get; set; }
 
         /// <summary>
-        /// 计算后的起付金额（要转入自负）
+        /// Số tiền khởi điểm sau khi tính toán(Cần chuyển sang tự chi trả)
         /// </summary>
         public decimal qfje { get; set; }
     }
     /// <summary>
-    /// 病人收费算法计算出的大类费用明细
+    /// Chi tiết chi phí loại lớn do thuật toán tính phí bệnh nhân tính ra
     /// </summary>
     public class Brsfsf_Dl_Fymx
     {
         /// <summary>
-        /// 大类
+        /// Loại lớn
         /// </summary>
         public string dl { get; set; }
 
         /// <summary>
-        /// 明细编码（暂时仅供新农合使用）
+        /// Mã chi tiết(Tạm thời chỉ dùng cho Bảo hiểm nông thôn mới)
         /// </summary>
         //public string mxbm { get; set; }
 
         /// <summary>
-        /// 收费项目（暂时仅供新农合使用）
+        /// Hạng mục thu phí(Tạm thời chỉ dùng cho Bảo hiểm nông thôn mới)
         /// </summary>
         public string sfxm { get; set; }
 
         /// <summary>
-        /// 明细内码（暂时仅供新农合使用）
+        /// Mã nội bộ chi tiết(Tạm thời chỉ dùng cho Bảo hiểm nông thôn mới)
         /// </summary>
         public int mxnm { get; set; }
 
         /// <summary>
-        /// 处方明细内码（暂时仅供新农合使用）
+        /// Mã nội bộ chi tiết đơn thuốc(Tạm thời chỉ dùng cho Bảo hiểm nông thôn mới)
         /// </summary>
         public int cf_mxnm { get; set; }
 
         /// <summary>
-        /// 成组号（暂时仅供新农合使用）
+        /// Số nhóm(Tạm thời chỉ dùng cho Bảo hiểm nông thôn mới)
         /// </summary>
         public string czh { get; set; }
 
         /// <summary>
-        /// 分类自负
+        /// Tự chi trả theo phân loại
         /// </summary>
         public decimal flzf { get; set; }
 
         /// <summary>
-        /// 自理
+        /// Tự lo
         /// </summary>
         public decimal zl { get; set; }
 
         /// <summary>
-        /// 可记账费用
+        /// Chi phí được ghi sổ
         /// </summary>
         public decimal jzfy { get; set; }
 
         /// <summary>
-        /// 现金
+        /// Tiền mặt
         /// </summary>
         public decimal xj { get; set; }
 
         /// <summary>
-        /// 减免金额
+        /// Số tiền giảm miễn
         /// </summary>
         public decimal jmje { get; set; }
 
         /// <summary>
-        /// 算法自负（通过算法计算出的自负金额）
+        /// Tự chi trả theo thuật toán(Số tiền tự chi trả tính được qua thuật toán)
         /// </summary>
         public decimal sfzf { get; set; }
 
         /// <summary>
-        /// 算法自理（通过算法计算出的自负金额）
+        /// Tự lo theo thuật toán(Số tiền tự chi trả tính được qua thuật toán)
         /// </summary>
         public decimal sfzl { get; set; }
 
         /// <summary>
-        /// 费用合计（自费病人需要要支付的现金）
+        /// Tổng chi phí(Tiền mặt bệnh nhân tự chi trả cần phải trả)
         /// </summary>
         public decimal total { get; set; }
 
         /// <summary>
-        /// 住院项目计费表编号
+        /// Số bảng tính phí hạng mục nội trú
         /// </summary>
         public int xmjfbbh { get; set; }
 
         /// <summary>
-        /// 住院药品计费表编号
+        /// Số bảng tính phí thuốc nội trú
         /// </summary>
         public int ypjfbbh { get; set; }
 
         /// <summary>
-        /// 医保交易金额（计算之后得到的数据）
+        /// Số tiền giao dịch BHYT(Dữ liệu thu được sau khi tính toán)
         /// </summary>
         public decimal jyje { get; set; }
 
         /// <summary>
-        /// 医保交易范围金额（计算之后得到的数据）
+        /// Số tiền trong phạm vi giao dịch BHYT(Dữ liệu thu được sau khi tính toán)
         /// </summary>
         public decimal jyfwje { get; set; }
 
         /// <summary>
-        /// 医嘱类型1 药品 2 项目
+        /// Loại y lệnh1 Thuốc 2 Hạng mục
         /// </summary>
         public string yzlx { get; set; }
     }
@@ -716,62 +716,62 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         #endregion property
 
         /// <summary>
-        /// 大类
+        /// Loại lớn
         /// </summary>
         public string dl { get; set; }
 
         /// <summary>
-        /// 明细编码
+        /// Mã chi tiết
         /// </summary>
         //public string mxbm { get; set; }
 
         /// <summary>
-        /// 收费项目
+        /// Hạng mục thu phí
         /// </summary>
         public string sfxm { get; set; }
 
         /// <summary>
-        /// 明细内码
+        /// Mã nội bộ chi tiết
         /// </summary>
         public int mxnm { get; set; }
 
         /// <summary>
-        /// 处方明细内码
+        /// Mã nội bộ chi tiết đơn thuốc
         /// </summary>
         public int cf_mxnm { get; set; }
 
         /// <summary>
-        /// 成组号
+        /// Số nhóm
         /// </summary>
         public string czh { get; set; }
 
         /// <summary>
-        /// 住院项目计费表编号
+        /// Số bảng tính phí hạng mục nội trú
         /// </summary>
         public int xmjfbbh { get; set; }
 
         /// <summary>
-        /// 住院药品计费表编号
+        /// Số bảng tính phí thuốc nội trú
         /// </summary>
         public int ypjfbbh { get; set; }
 
         /// <summary>
-        /// 医嘱类型1 药品 2 项目
+        /// Loại y lệnh1 Thuốc 2 Hạng mục
         /// </summary>
         public string yzlx { get; set; }
 
         /// <summary>
-        /// 医保交易金额（计算之后得到的数据）
+        /// Số tiền giao dịch BHYT(Dữ liệu thu được sau khi tính toán)
         /// </summary>
         public decimal jyje { get; set; }
 
         /// <summary>
-        /// 医保交易范围金额（计算之后得到的数据）
+        /// Số tiền trong phạm vi giao dịch BHYT(Dữ liệu thu được sau khi tính toán)
         /// </summary>
         public decimal jyfwje { get; set; }
 
         /// <summary>
-        /// 可报金额
+        /// Số tiền được thanh toán
         /// </summary>
         public decimal Kbje
         {
@@ -780,7 +780,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 分类自负
+        /// Tự chi trả theo phân loại
         /// </summary>
         public decimal Flzf
         {
@@ -789,7 +789,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 自理费用
+        /// Chi phí tự lo
         /// </summary>
         public decimal Zlfy
         {
@@ -798,7 +798,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 减免金额
+        /// Số tiền giảm miễn
         /// </summary>
         public decimal Jmje
         {
@@ -824,7 +824,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         #endregion property
 
         /// <summary>
-        /// 大类
+        /// Loại lớn
         /// </summary>
         public string Dl
         {
@@ -833,7 +833,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 收费项目
+        /// Hạng mục thu phí
         /// </summary>
         public string Sfxm
         {
@@ -842,7 +842,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 数量，大类数量为1，收费项目为实际数量
+        /// Số lượng,Số lượng loại lớn là1,Hạng mục thu phí là số lượng thực tế
         /// </summary>
         public decimal Sl
         {
@@ -851,7 +851,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 可报金额
+        /// Số tiền được thanh toán
         /// </summary>
         public decimal Kbje
         {
@@ -860,7 +860,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 分类自负
+        /// Tự chi trả theo phân loại
         /// </summary>
         public decimal Flzf
         {
@@ -869,7 +869,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 自理费用
+        /// Chi phí tự lo
         /// </summary>
         public decimal Zlfy
         {
@@ -878,7 +878,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         }
 
         /// <summary>
-        /// 减免金额
+        /// Số tiền giảm miễn
         /// </summary>
         public decimal Jmje
         {
@@ -892,7 +892,7 @@ namespace Newtouch.HIS.Domain.BusinessObjects
     public class tbl_mz_jszffs_Ex : OutpatientSettlementPaymentModelEntity
     {
         /// <summary>
-        /// 现金支付方式名称
+        /// Tên phương thức thanh toán tiền mặt
         /// </summary>
      //   public string xjzffsmc { get; set; }
 
@@ -903,17 +903,17 @@ namespace Newtouch.HIS.Domain.BusinessObjects
     public class GET_CF_STATUS : InterfaceBase
     {
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string prescriptionNo { get; set; }
 
         /// <summary>
-        /// 处方状态
+        /// Trạng thái đơn thuốc
         /// </summary>
         public string status { get; set; }
 
         /// <summary>
-        /// 处方退药信息
+        /// Thông tin trả thuốc của đơn thuốc
         /// </summary>
         public List<returnDrugInfo> returnDrugInfo { get; set; }
     }
@@ -921,17 +921,17 @@ namespace Newtouch.HIS.Domain.BusinessObjects
     public class returnDrugInfo : InterfaceBase
     {
         /// <summary>
-        /// 药品编码
+        /// Mã thuốc
         /// </summary>
         public string drugCode { get; set; }
 
         /// <summary>
-        /// 三级退药数量
+        /// Số lượng trả thuốc cấp 3
         /// </summary>
         public int thirdLevelPkgQty { get; set; }
 
         /// <summary>
-        /// 四级退药数量
+        /// Số lượng trả thuốc cấp 4
         /// </summary>
         public int fourthLevelPkgQty { get; set; }
 
@@ -940,31 +940,31 @@ namespace Newtouch.HIS.Domain.BusinessObjects
     public class InterfaceRepParaBase<T>
     {
         /// <summary>
-        /// 操作成功的数据条数
+        /// Số bản ghi thao tác thành công
         /// </summary>
         [JsonProperty]
         public int successCount { get; set; }
 
         /// <summary>
-        /// 操作失败的数据条数
+        /// Số bản ghi thao tác thất bại
         /// </summary>
         [JsonProperty]
         public int failureCount { get; set; }
 
         /// <summary>
-        /// 操作成功的返回结果
+        /// Kết quả trả về khi thao tác thành công
         /// </summary>
         [JsonProperty]
         public List<T> result { get; set; }
 
         /// <summary>
-        /// 操作失败的消息列表
+        /// Danh sách thông báo thao tác thất bại
         /// </summary>
         [JsonProperty]
         public List<failureMessage> failureMessage { get; set; }
 
         /// <summary>
-        /// 操作成功的返回结果
+        /// Kết quả trả về khi thao tác thành công
         /// </summary>
         [JsonIgnore]
         public string failureMessageShow
@@ -986,19 +986,19 @@ namespace Newtouch.HIS.Domain.BusinessObjects
     public class failureMessage
     {
         /// <summary>
-        /// 出现异常的业务对象唯一标识
+        /// Định danh duy nhất của đối tượng nghiệp vụ phát sinh ngoại lệ
         /// </summary>
         [JsonProperty]
         public string id { get; set; }
 
         /// <summary>
-        /// 异常码
+        /// Mã bất thường
         /// </summary>
         [JsonProperty]
         public string errorCode { get; set; }
 
         /// <summary>
-        /// 异常描述
+        /// Mô tả bất thường
         /// </summary>
         [JsonProperty]
         public string errorMessage { get; set; }
@@ -1011,12 +1011,12 @@ namespace Newtouch.HIS.Domain.BusinessObjects
     public class ADD_CF_TFTZ : InterfaceBase
     {
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string pn { get; set; }
 
         /// <summary>
-        /// 处方退药信息
+        /// Thông tin trả thuốc của đơn thuốc
         /// </summary>
         public List<pd> pd { get; set; }
     }
@@ -1025,17 +1025,17 @@ namespace Newtouch.HIS.Domain.BusinessObjects
     public class pd : InterfaceBase
     {
         /// <summary>
-        /// 药品编码
+        /// Mã thuốc
         /// </summary>
         public string dc { get; set; }
 
         /// <summary>
-        /// 三级包装退费数量
+        /// Số lượng hoàn phí đóng gói cấp 3
         /// </summary>
         public int tq { get; set; }
 
         /// <summary>
-        /// 四级包装退费数量
+        /// Số lượng hoàn phí đóng gói cấp 4
         /// </summary>
         public int fq { get; set; }
     }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 月利润分成
+    /// Chia lợi nhuận tháng
     /// </summary>
     public interface IMonthProfitShareConfigDmnService
     {
@@ -24,13 +24,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
         TherapeutistProfitShareConfigVO GetTherapeutistPSConfig(string keyValue);
 
         /// <summary>
-        /// 提交治疗师提成配置
+        /// Gửi cấu hình hoa hồng kỹ thuật viên điều trị
         /// </summary>
         /// <param name="entity"></param>
         void SubmitTherapeutistPSConfig(TherapeutistMonthProfitShareConfigEntity entity, string keyValue);
 
         /// <summary>
-        /// 治疗师利润提成 固定报表
+        /// Hoa hồng lợi nhuận kỹ thuật viên điều trị Báo cáo cố định
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="curUserCode"></param>
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void DoGenerateTherapeutistPS(string orgId, string curUserCode, int year, int month, bool? isReGene);
 
         /// <summary>
-        /// Check报表是否已经生成过
+        /// CheckBáo cáo đã được tạo hay chưa
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="year"></param>
@@ -63,13 +63,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
         MedicalOrgProfitShareConfigVO GetMedicalOrgPSConfig(string keyValue);
 
         /// <summary>
-        /// 提交医疗机构提成配置
+        /// Gửi cấu hình hoa hồng cơ sở y tế
         /// </summary>
         /// <param name="entity"></param>
         void SubmitMedicalOrgPSConfig(MedicalOrgMonthProfitShareConfigEntity entity, string keyValue);
 
         /// <summary>
-        /// 医疗机构利润分成 固定报表
+        /// Chia lợi nhuận cơ sở y tế Báo cáo cố định
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="curUserCode"></param>
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void DoGenerateMedicalOrgPS(string orgId, string curUserCode, int year, int month, bool? isReGene);
 
         /// <summary>
-        /// Check报表是否已经生成过
+        /// CheckBáo cáo đã được tạo hay chưa
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="year"></param>

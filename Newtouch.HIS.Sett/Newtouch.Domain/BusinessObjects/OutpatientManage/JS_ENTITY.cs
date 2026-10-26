@@ -9,67 +9,67 @@ namespace Newtouch.HIS.Domain.BusinessObjects
     public class JS_ENTITY
     {
         /// <summary>
-        /// 病人内码
+        /// Mã nội bộ bệnh nhân
         /// </summary>
         public int patid { get; set; }
 
         /// <summary>
-        /// 挂号内码(作废)
+        /// Mã nội bộ đăng ký khám(Hủy)
         /// </summary>
         public int ghnm { get; set; }
 
         /// <summary>
-        /// 挂号内码
+        /// Mã nội bộ đăng ký khám
         /// </summary>
         public List<int> ghnmList { get; set; }
 
         /// <summary>
-        /// 是否自费
+        /// Có tự chi trả hay không
         /// </summary>
         public bool isZf { get; set; }
 
         /// <summary>
-        /// 是否医保与自费转换
+        /// Có chuyển đổi giữa BHYT và tự chi trả hay không
         /// </summary>
         public bool isZh { get; set; }
 
         /// <summary>
-        /// 是否挂号
+        /// Có đăng ký khám hay không
         /// </summary>
         public bool isGh { get; set; }
 
         /// <summary>
-        /// 结算项目列表
+        /// Danh sách hạng mục quyết toán
         /// </summary>
         public List<jsxm_entity> jsxmList { get; set; }
 
         /// <summary>
-        /// 结算类型
+        /// Loại quyết toán
         /// </summary>
         public string jslx { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 家床号
+        /// Số giường gia đình
         /// </summary>
         public int jch { get; set; }
 
         /// <summary>
-        /// 病人性质(作废)
+        /// Tính chất bệnh nhân(Hủy)
         /// </summary>
         public string brxz { get; set; }
 
         /// <summary>
-        /// 病人性质编号
+        /// Mã tính chất bệnh nhân
         /// </summary>
         public int brxzbh { get; set; }
 
         /// <summary>
-        /// 医生工号（如果是造口袋项目需要传该值）
+        /// Mã nhân viên bác sĩ(Nếu là hạng mục túi hậu môn nhân tạo thì cần truyền giá trị này)
         /// </summary>
         public string ysgh { get; set; }
 
@@ -78,190 +78,190 @@ namespace Newtouch.HIS.Domain.BusinessObjects
     public class jsxm_entity
     {
         /// <summary>
-        /// 大类
+        /// Loại lớn
         /// </summary>
         public string dl { get; set; }
 
         /// <summary>
-        /// 收费项目
+        /// Hạng mục thu phí
         /// </summary>
         public string sfxm { get; set; }
 
         /// <summary>
-        /// 单价
+        /// Đơn giá
         /// </summary>
         public decimal dj { get; set; }
 
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 金额 = (服务费单价+单价)*数量
+        /// Số tiền = (Đơn giá phí dịch vụ+Đơn giá)*Số lượng
         /// </summary>
         public decimal je { get; set; }
 
         /// <summary>
-        /// 自负比例
+        /// Tỷ lệ tự chi trả
         /// </summary>
         public decimal zfbl { get; set; }
 
         /// <summary>
-        /// 自负性质
+        /// Tính chất tự chi trả
         /// </summary>
         public string zfxz { get; set; }
 
         /// <summary>
-        /// 减免比例
+        /// Tỷ lệ giảm miễn
         /// </summary>
         public decimal jmbl { get; set; }
 
         /// <summary>
-        /// 减免金额
+        /// Số tiền giảm miễn
         /// </summary>
         public decimal jmje { get; set; }
 
         /// <summary>
-        /// 明细内码
+        /// Mã nội bộ chi tiết
         /// </summary>
         public int mxnm { get; set; }
 
         /// <summary>
-        /// 明细编码
+        /// Mã chi tiết
         /// </summary>
         //public string mxbm { get; set; }
 
         /// <summary>
-        /// 处方明细内码
+        /// Mã nội bộ chi tiết đơn thuốc
         /// </summary>
         public int cf_mxnm { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 成组号
+        /// Số nhóm
         /// </summary>
         public string czh { get; set; }
 
-        //----------农保使用字段------------------//
+        //----------Trường dùng cho Bảo hiểm nông nghiệp------------------//
         /// <summary>
-        /// His名称（药品或诊疗项目名称）
+        /// HisTên(Tên thuốc hoặc hạng mục khám chữa bệnh)
         /// </summary>
         public string Hismc { get; set; }
 
         /// <summary>
-        /// 用药中心项目编码（农保大类）
+        /// Mã hạng mục trung tâm dùng thuốc(Loại lớn Bảo hiểm nông nghiệp)
         /// </summary>
         public string Xmbm { get; set; }
 
         /// <summary>
-        /// 药品单位
+        /// Đơn vị thuốc
         /// </summary>
         public string Dw { get; set; }
 
         /// <summary>
-        /// 药品规格
+        /// Quy cách thuốc
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 药品剂型
+        /// Dạng bào chế thuốc
         /// </summary>
         public string Jx { get; set; }
 
         /// <summary>
-        /// 操作员名称
+        /// Tên nhân viên thao tác
         /// </summary>
         public string Czymc { get; set; }
 
         ///// <summary>
-        ///// 每次剂量
+        ///// Liều dùng mỗi lần
         ///// </summary>
         //public string Jl { get; set; }
 
         ///// <summary>
-        ///// 剂量单位
+        ///// Đơn vị liều dùng
         ///// </summary>
         //public string Jldw { get; set; }
 
         ///// <summary>
-        ///// 药品用法
+        ///// Cách dùng thuốc
         ///// </summary>
         //public string Ypyf { get; set; }
 
         ///// <summary>
-        ///// 频次
+        ///// Tần suất
         ///// </summary>
         //public string Pc { get; set; }
 
         ///// <summary>
-        ///// 天数
+        ///// Số ngày
         ///// </summary>
         //public string Ts { get; set; }
 
         /// <summary>
-        /// 开单医生
+        /// Bác sĩ kê đơn
         /// </summary>
         public string Kdys { get; set; }
 
         /// <summary>
-        /// 开单科室
+        /// Khoa kê đơn
         /// </summary>
         public string Kdks { get; set; }
 
         /// <summary>
-        /// 门诊诊断
+        /// Chẩn đoán ngoại trú
         /// </summary>
         public string mzzd { get; set; }
 
         /// <summary>
-        /// 就诊日期
+        /// Ngày khám
         /// </summary>
         public DateTime jzrq { get; set; }
 
 
-        //----------农保使用字段------------------//
+        //----------Trường dùng cho Bảo hiểm nông nghiệp------------------//
 
         /// <summary>
-        /// 服务费单价
+        /// Đơn giá phí dịch vụ
         /// </summary>
         public decimal fwfdj { get; set; }
 
         /// <summary>
-        /// 医保交易金额（计算之后得到的数据）
+        /// Số tiền giao dịch BHYT(Dữ liệu thu được sau khi tính toán)
         /// </summary>
         public decimal jyje { get; set; }
 
         /// <summary>
-        /// 医保交易范围金额（计算之后得到的数据）
+        /// Số tiền trong phạm vi giao dịch BHYT(Dữ liệu thu được sau khi tính toán)
         /// </summary>
         public decimal jyfwje { get; set; }
 
         /// <summary>
-        /// 可报金额（计算之后得到的数据）
+        /// Số tiền được thanh toán(Dữ liệu thu được sau khi tính toán)
         /// </summary>
         public decimal kbje { get; set; }
 
         /// <summary>
-        /// 分类自负（计算之后得到的数据）
+        /// Tự chi trả theo phân loại(Dữ liệu thu được sau khi tính toán)
         /// </summary>
         public decimal flzf { get; set; }
 
         /// <summary>
-        /// 自理费用（计算之后得到的数据）
+        /// Chi phí tự lo(Dữ liệu thu được sau khi tính toán)
         /// </summary>
         public decimal zlfy { get; set; }
 
-        //----------门诊医生站处方状态使用字段------------------//
+        //----------Trường trạng thái đơn thuốc dùng cho trạm bác sĩ ngoại trú------------------//
         /// <summary>
-        /// 医生站处方内码
+        /// Mã nội bộ đơn thuốc tại trạm bác sĩ
         /// </summary>
         public int pt_cfnm { get; set; }
-        //----------门诊医生站处方状态使用字段------------------//
+        //----------Trường trạng thái đơn thuốc dùng cho trạm bác sĩ ngoại trú------------------//
 
     }
 }

@@ -6,46 +6,46 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class PatientReportIndex  
     {
         /// <summary>
-        /// 申请单号
+        /// Số phiếu đăng ký
         /// </summary>
         public string sqdh { get; set; }
         /// <summary>
-        /// 项目名称
+        /// Tên hạng mục
         /// </summary>
         public string xmmc { get; set; }
         /// <summary>
-        /// 项目编号
+        /// Số hạng mục
         /// </summary>
         public string xmdm { get; set; }
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ksmc { get; set; }
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         public string ysmc { get; set; }
         /// <summary>
-        /// 申请单状态
+        /// Trạng thái phiếu đăng ký
         /// </summary>
         public string sqdzt { get; set; }
         /// <summary>
-        /// 申请单业务类型 1 门诊 2 住院
+        /// Loại nghiệp vụ phiếu đăng ký 1 Khám ngoại trú 2 Nhập viện
         /// </summary>
         public string ywlx { get; set; }
         /// <summary>
-        /// 申请时间
+        /// Thời gian đăng ký
         /// </summary>
         public DateTime? sqsj { get; set; }
     }
 
     public class PatLisReportDetail {
         /// <summary>
-        /// 患者信息
+        /// Thông tin bệnh nhân
         /// </summary>
         public LisPatInfo patInfo { get; set; }
         /// <summary>
-        /// 检验详情
+        /// Chi tiết xét nghiệm
         /// </summary>
         public List<LisReportBase> sqdInfo { get; set; }
     }
@@ -53,31 +53,31 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class LisPatInfo
     {
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string xb { get; set; }
         /// <summary>
-        /// 年龄
+        /// Tuổi
         /// </summary>
         public string nlshow { get; set; }
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ksmc { get; set; }
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         public string ysmc { get; set; }
         /// <summary>
-        /// 住院-病区
+        /// Nhập viện-Khu bệnh
         /// </summary>
         public string bq { get; set; }
         /// <summary>
-        /// 住院-床位
+        /// Nhập viện-Giường bệnh
         /// </summary>
         public string cwmc { get; set; }
         public string brxz { get; set; }
@@ -90,83 +90,83 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class LisReportBase
     {
         /// <summary>
-        /// 申请单号
+        /// Số phiếu đăng ký
         /// </summary>
         public string sqdh { get; set; }
         /// <summary>
-        /// 序号
+        /// Số thứ tự
         /// </summary>
         public int xh { get; set; }
         /// <summary>
-        /// 项目名称
+        /// Tên hạng mục
         /// </summary>
         public string xmzwmc { get; set; }
         /// <summary>
-        /// 英文简称
+        /// Tên viết tắt tiếng Anh
         /// </summary>
         public string xmywmc { get; set; }
         /// <summary>
-        /// 检验结果
+        /// Kết quả xét nghiệm
         /// </summary>
         public string jyjg { get; set; }
         /// <summary>
-        /// 结果提示
+        /// Nhắc kết quả
         /// </summary>
         public string gdbj { get; set; }
         /// <summary>
-        /// 单位
+        /// Đơn vị
         /// </summary>
         public string xmdw { get; set; }
         /// <summary>
-        /// 参考值范围最低值
+        /// Giá trị thấp nhất phạm vi tham khảo
         /// </summary>
         public string ckzdx { get; set; }
         /// <summary>
-        /// 参考值范围最高值
+        /// Giá trị cao nhất phạm vi tham khảo
         /// </summary>
         public string ckzgx { get; set; }
         /// <summary>
-        /// 参考值
+        /// Giá trị tham khảo
         /// </summary>
         public string ckz { get; set; }
         /// <summary>
-        /// 危急值最低值
+        /// Giá trị thấp nhất nguy kịch
         /// </summary>
         public string wjzdx { get; set; }
         /// <summary>
-        /// 危急值最高值
+        /// Giá trị cao nhất nguy kịch
         /// </summary>
         public string wjzgx { get; set; }
         /// <summary>
-        /// 业务类型 1 门诊 2 住院
+        /// Loại nghiệp vụ 1 Khám ngoại trú 2 Nhập viện
         /// </summary>
         public string ywlx { get; set; }
         /// <summary>
-        /// 录入人
+        /// Người nhập
         /// </summary>
         public string lrrxm { get; set; }
         /// <summary>
-        /// 校验人
+        /// Người kiểm tra
         /// </summary>
         public string jyrxm { get; set; }
         /// <summary>
-        /// 审核人
+        /// Người kiểm tra
         /// </summary>
         public string shrxm { get; set; }
         /// <summary>
-        /// 检验日期
+        /// Ngày xét nghiệm
         /// </summary>
         public DateTime? jyrq { get; set; }
         /// <summary>
-        /// 审核日期
+        /// Ngày kiểm tra
         /// </summary>
         public DateTime? shrq { get; set; }
         /// <summary>
-        /// 项目名称
+        /// Tên hạng mục
         /// </summary>
         public string xmmc { get; set; }
         /// <summary>
-        /// 项目代码
+        /// Mã hạng mục
         /// </summary>
         public string xmdm { get; set; }
 

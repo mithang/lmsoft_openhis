@@ -3,20 +3,20 @@
 namespace Newtouch.HIS.Domain.ValueObjects.SystemManage
 {
     /// <summary>
-    /// 站点收支统计表
+    /// Bảng thống kê thu chi của trạm
     /// </summary>
     public class SiteCostEarningVO
     {
         /// <summary>
-        /// 收入信息
+        /// Thông tin thu nhập
         /// </summary>
         public jgssEarningVO srxx { get; set; }
         /// <summary>
-        /// 收入信息的 gridlist
+        /// Của thông tin thu nhập gridlist
         /// </summary>
         public List<jgssEarningGridVO> srxxList { get; set; }
         /// <summary>
-        /// 成本信息
+        /// Thông tin chi phí
         /// </summary>
         public List<jgssCostVO> cbxxList { get; set; }
 

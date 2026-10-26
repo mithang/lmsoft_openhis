@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysNationalityRepo : IRepositoryBase<SysNationalityVEntity>
     {
         /// <summary>
-        /// 获取有效国籍
+        /// Lấy quốc tịch hiệu lực
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

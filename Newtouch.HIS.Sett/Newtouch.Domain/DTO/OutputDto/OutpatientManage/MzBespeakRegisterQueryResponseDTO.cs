@@ -3,92 +3,92 @@
 namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
 {
     /// <summary>
-    /// 门诊预约查询返回报文
+    /// Bản tin trả về tra cứu hẹn khám ngoại trú
     /// </summary>
     public class MzBespeakRegisterQueryResponseDTO
     {
         /// <summary>
-        /// 门诊预约挂号ID
+        /// Đăng ký khám hẹn trước ngoại trúID
         /// </summary>
         public string mzyyghId { get; set; }
 
         /// <summary>
-        /// 证件类型
+        /// Loại giấy tờ
         /// </summary>
         public int? zjlx { get; set; }
 
         /// <summary>
-        /// 证件号
+        /// Số giấy tờ
         /// </summary>
         public string zjh { get; set; }
 
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// 门诊住院标志 1：普通门诊  2：急诊   3：专家门诊
+        /// Cờ ngoại trú/nội trú 1:Khám ngoại trú thông thường  2:Cấp cứu   3:Khám chuyên gia
         /// </summary>
         public string mzlx { get; set; }
 
         /// <summary>
-        /// 挂号日期
+        /// Ngày đăng ký khám
         /// </summary>
         public DateTime regDate { get; set; }
 
         /// <summary>
-        /// 挂号时间
+        /// Thời gian đăng ký khám
         /// </summary>
         public string regTime { get; set; }
 
         /// <summary>
-        /// 科室代码
+        /// Mã khoa
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 医生工号
+        /// Mã nhân viên bác sĩ
         /// </summary>
         public string ysgh { get; set; }
 
         /// <summary>
-        /// 医生名称
+        /// Tên bác sĩ
         /// </summary>
         public string ysmc { get; set; }
 
         /// <summary>
-        /// 最大预约数
+        /// Số hẹn khám tối đa
         /// </summary>
         public int bespeakMaxCount { get; set; }
 
         /// <summary>
-        /// 预约号
+        /// Số hẹn khám
         /// </summary>
         public int bespeakNo { get; set; }
 
         /// <summary>
-        /// 赴约时间
+        /// Thời gian đến hẹn
         /// </summary>
         public DateTime? arrivalDate { get; set; }
 
         /// <summary>
-        /// 现场处理挂号人员
+        /// Nhân viên xử lý đăng ký khám tại chỗ
         /// </summary>
         public string arrivalOpereater { get; set; }
 
         /// <summary>
-        /// 预约操作时间
+        /// Thời gian thao tác hẹn khám
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 预约操作人员
+        /// Nhân viên thao tác hẹn khám
         /// </summary>
         public string CreatorCode { get; set; }
     }

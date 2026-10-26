@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// GRS收入信息详情表
+    /// GRSBảng chi tiết thông tin thu nhập
     /// </summary>
     public interface Ijgss_EarningDetailInfoRepo : IRepositoryBase<jgss_EarningDetailInfoEntity>
     {

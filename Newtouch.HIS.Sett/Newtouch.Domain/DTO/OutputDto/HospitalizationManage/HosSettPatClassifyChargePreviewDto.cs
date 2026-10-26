@@ -4,82 +4,82 @@ using System;
 namespace Newtouch.HIS.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// 住院结算 病人 分类收费 预览
+    /// Quyết toán nội trú Bệnh nhân Thu phí theo phân loại Xem trước
     /// </summary>
     public class HosSettPatClassifyChargePreviewDto
     {
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
         ///// <summary>
-        ///// 卡号
+        ///// Số thẻ
         ///// </summary>
         //public string kh { get; set; }
         /// <summary>
-        /// 记账
+        /// Ghi sổ
         /// </summary>
         public decimal jzfy { get; set; }
         /// <summary>
-        /// 分类自负
+        /// Tự chi trả theo phân loại
         /// </summary>
         public decimal flzf { get; set; }
         /// <summary>
-        /// 自费
+        /// Tự chi trả
         /// </summary>
         public decimal zifei { get; set; }
         /// <summary>
-        /// 自负
+        /// Tự chi trả
         /// </summary>
         public decimal zifu { get; set; }
         /// <summary>
-        /// 减免金额（其他）
+        /// Số tiền giảm miễn(Khác)
         /// </summary>
         public decimal jmje { get; set; }
         /// <summary>
-        /// 应收款
+        /// Khoản phải thu
         /// </summary>
         public decimal yingshoukuan { get; set; }
         /// <summary>
-        /// 找零
+        /// Tiền thối lại
         /// </summary>
         public decimal zhaoling { get; set; }
         /// <summary>
-        /// 舍入差额
+        /// Chênh lệch làm tròn
         /// </summary>
         public decimal srce { get; set; }
         /// <summary>
-        /// 实收款
+        /// Số tiền thực thu
         /// </summary>
         public decimal ssk { get; set; }
 
         /// <summary>
-        /// 账户余额（实收款）（还未扣项目/药品计费）
+        /// Số dư tài khoản(Số tiền thực thu)(Hạng mục chưa khấu trừ/Tính phí thuốc)
         /// </summary>
         public decimal zhye { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 发票日期
+        /// Ngày hóa đơn
         /// </summary>
         public string fprq { get; set; }
 
         /// <summary>
-        /// 住院病人基本信息
+        /// Thông tin cơ bản bệnh nhân nội trú
         /// </summary>
         public HospSettPatInfoVO HospSettPatInfo { get; set; }
 
         /// <summary>
-        /// 结算金额
+        /// Số tiền quyết toán
         /// </summary>
         public decimal expectedjsje { get; set; }
 
         /// <summary>
-        /// 出院日期
+        /// Ngày xuất viện
         /// </summary>
         public DateTime expectedcyrq { get; set; }
 

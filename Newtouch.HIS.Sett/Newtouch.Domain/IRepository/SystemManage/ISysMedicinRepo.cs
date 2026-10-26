@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 系统药品
+    /// Thuốc hệ thống
     /// </summary>
     public interface ISysMedicinRepo
     {
         /// <summary>
-        /// 根据药品Code获取dlCode
+        /// Theo thuốcCodeLấydlCode
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ypCode"></param>
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Domain.IRepository
         string GetdlCodeByYpCode(string orgId, string ypCode);
 
         /// <summary>
-        /// 获取药品实体
+        /// Lấy thực thể thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ypCode"></param>

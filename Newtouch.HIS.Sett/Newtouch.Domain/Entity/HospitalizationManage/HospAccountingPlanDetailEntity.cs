@@ -33,12 +33,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string zyh { get; set; }
 
         /// <summary>
-        /// 医嘱性质 1临时 2长期
+        /// Tính chất y lệnh 1Tạm thời 2Dài hạn
         /// </summary>
         public string yzxz { get; set; }
 
         /// <summary>
-        /// 医嘱类型 1药品 2治疗项目
+        /// Loại y lệnh 1Thuốc 2Hạng mục điều trị
         /// </summary>
         public string yzlx { get; set; }
 
@@ -53,12 +53,12 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime? EndDate { get; set; }
 
         /// <summary>
-        /// 收费项目Code
+        /// Hạng mục thu phíCode
         /// </summary>
         public string sfxmCode { get; set; }
 
         /// <summary>
-        /// 项目单位时长
+        /// Thời lượng đơn vị hạng mục
         /// </summary>
         public int? duration { get; set; }
 
@@ -73,7 +73,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int sl { get; set; }
 
         /// <summary>
-        /// 最后执行时间
+        /// Thời gian thực hiện lần cuối
         /// </summary>
         public DateTime? LastEexcutionTime { get; set; }
 
@@ -83,32 +83,32 @@ namespace Newtouch.HIS.Domain.Entity
         public int zxzt { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string bz { get; set; }
 
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         public string ys { get; set; }
 
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ysmc { get; set; }
 
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// 医生名称
+        /// Tên bác sĩ
         /// </summary>
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 团体标志（是否团体治疗）
+        /// Cờ đoàn thể(Có phải là điều trị tập thể hay không)
         /// </summary>
         public bool? ttbz { get; set; }
 
@@ -148,27 +148,27 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime? PreStopDate { get; set; }
 
         /// <summary>
-        /// 康复类别
+        /// Loại phục hồi chức năng
         /// </summary>
         public string kflb { get; set; }
 
         /// <summary>
-        /// 治疗量
+        /// Liều điều trị
         /// </summary>
         public int? zll { get; set; }
         /// <summary>
-        /// 总次数（但住院长期意每天的最大次数，长期计划必须手动停止）
+        /// Tổng số lần(Nhưng số lần tối đa mỗi ngày của y lệnh dài hạn nội trú,Kế hoạch dài hạn phải dừng thủ công)
         /// </summary>
         public int? zcs { get; set; }
 
         /// <summary>
-        /// 已执行次数
+        /// Số lần đã thực hiện
         /// </summary>
         public int? yzxcs { get; set; }
         public string yzId { get; set; }
 
         /// <summary>
-        /// 执行科室
+        /// Khoa thực hiện
         /// </summary>
         public string zxks { get; set; }
     }

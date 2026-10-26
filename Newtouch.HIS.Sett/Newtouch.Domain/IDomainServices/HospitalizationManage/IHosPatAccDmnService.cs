@@ -1,8 +1,8 @@
 ﻿/*********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description： 住院管理》账户管理》
-// Author：HLF
-// CreateDate： 2016/12/7 17:01:42 
+// Copyright (C) 2016 Newtouch Bảo lưu bản quyền. 
+// Description: Quản lý nội trú》Quản lý tài khoản》
+// Author:HLF
+// CreateDate: 2016/12/7 17:01:42 
 //**********************************************************/
 using Newtouch.HIS.Domain.Entity;
 using Newtouch.HIS.Domain.ValueObjects;
@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
     { 
 
         /// <summary>
-        /// 账户管理》获取病人信息
+        /// Quản lý tài khoản》Lấy thông tin bệnh nhân
         /// </summary>
         /// <param name="kh"></param>
         /// <returns></returns>
@@ -22,13 +22,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
 
         /// <summary>
-        /// 获取住院管理》账户管理》获取账户收支记录信息
+        /// Lấy quản lý nội trú》Quản lý tài khoản》Lấy thông tin bản ghi thu chi tài khoản
         /// </summary>
         /// <returns></returns>
         List<HosPatAccPayVO> GetAccPayInfo(int zh, string orgId, string zyh = null);
 
         /// <summary>
-        /// 住院结算 获取病人基本信息（基本信息、账户、科室等）
+        /// Quyết toán nội trú Lấy thông tin cơ bản bệnh nhân(Thông tin cơ bản,Tài khoản,Khoa v.v.)
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="kh"></param>
@@ -36,15 +36,15 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<HospSettPatInfoVO> GetHospSettPatInfo(string zyh, string orgId);
 
         /// <summary>
-        /// 事物保存账户信息
+        /// Sự vụ lưu thông tin tài khoản
         /// </summary>
         /// <param name="vo"></param>
         void HosPatAccDB(HosPatAccDataVO vo, SysPatientAccountEntity zh, FinanceReceiptEntity cwsj,string type);
 
         /// <summary>
-        /// 获取住院病人基本信息（基本信息、科室等） 在院状态验证
+        /// Lấy thông tin cơ bản bệnh nhân nội trú(Thông tin cơ bản,Khoa v.v.) Xác minh trạng thái đang nằm viện
         /// </summary>
-        /// <param name="zyh">住院号</param> 
+        /// <param name="zyh">Số nhập viện</param> 
         /// <returns></returns>
         IList<HospPatientInfoVO> GetHospPatientInfo(string zyh, string orgId);
     }

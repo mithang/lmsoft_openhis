@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 收费项目警示内容
+    /// Nội dung cảnh báo hạng mục thu phí
     /// </summary>
     [Table("xt_sfxmjsnr")]
     [Obsolete]
@@ -32,12 +32,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string zyjsnr { get; set; }
 
         /// <summary>
-        /// 0 不提示 1 普通提示 2 警示 3 禁止使用
+        /// 0 Không nhắc 1 Nhắc nhở thông thường 2 Cảnh báo 3 Cấm sử dụng
         /// </summary>
         public byte mzjsjb { get; set; }
 
         /// <summary>
-        /// 0 不提示 1 普通提示 2 警示 3 禁止使用
+        /// 0 Không nhắc 1 Nhắc nhở thông thường 2 Cảnh báo 3 Cấm sử dụng
         /// </summary>
         public byte zyjsjb { get; set; }
 

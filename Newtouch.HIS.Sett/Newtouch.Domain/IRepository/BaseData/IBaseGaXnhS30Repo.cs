@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 新农合目录下载
+    /// Tải xuống danh mục Bảo hiểm nông thôn mới
     /// </summary>
     public interface IBaseGaXnhS30Repo : IRepositoryBase<BaseGaXnhS30Entity>
     {

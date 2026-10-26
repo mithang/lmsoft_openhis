@@ -3,17 +3,17 @@
 namespace Newtouch.HIS.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// 住院计费项目Dto
+    /// Hạng mục tính phí nội trúDto
     /// </summary>
     public class HosFeeItemInfoDto
     {
         /// <summary>
-        /// 项目计费表编号
+        /// Mã bảng tính phí hạng mục
         /// </summary>
         public int? xmjfbbh { get; set; }
 
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
 
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 创建日期（执行日期）
+        /// Ngày tạo(Ngày thực hiện)
         /// </summary>
         public DateTime CreateTime { get; set; }
 

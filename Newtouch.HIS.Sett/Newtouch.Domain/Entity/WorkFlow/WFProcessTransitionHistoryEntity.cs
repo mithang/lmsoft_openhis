@@ -32,12 +32,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string ToNodeId { get; set; }
 
         /// <summary>
-        /// 转化状态 0正常，1不同意   2驳回
+        /// Trạng thái chuyển đổi 0Bình thường,1Không đồng ý   2Từ chối
         /// </summary>
         public int TransitionSate { get; set; }
 
         /// <summary>
-        /// 0运行中,1运行结束,2被召回,3不同意,4被驳回
+        /// 0Đang chạy,1Kết thúc chạy,2Bị thu hồi,3Không đồng ý,4Bị từ chối
         /// </summary>
         public int IsFinish { get; set; }
 

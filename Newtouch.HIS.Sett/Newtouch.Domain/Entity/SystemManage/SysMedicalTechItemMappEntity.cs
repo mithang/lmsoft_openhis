@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 医技项目对照
+    /// Đối chiếu hạng mục kỹ thuật y tế
     /// </summary>
     [Table("xt_yjxmdz")]
     public class SysMedicalTechItemMappEntity : IEntity<SysMedicalTechItemMappEntity>
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int yjxmdzbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string sfxm { get; set; }
 
         /// <summary>
-        /// 0 只允许确认不允许收费  1 允许确认和收费
+        /// 0 Chỉ cho phép xác nhận, không cho phép thu phí  1 Cho phép xác nhận và thu phí
         /// </summary>
         public string ksbz { get; set; }
 

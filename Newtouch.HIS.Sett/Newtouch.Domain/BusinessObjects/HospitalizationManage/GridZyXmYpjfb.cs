@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.BusinessObjects.HospitalizationManage
 {
     /// <summary>
-    /// 住院计费项目和药品列表
+    /// Danh sách hạng mục tính phí nội trú và thuốc
     /// </summary>
     public class GridZyXmYpjfb
     {
@@ -21,7 +21,7 @@
     }
 
     /// <summary>
-    /// 住院计费项目和药品明细
+    /// Chi tiết hạng mục tính phí nội trú và thuốc
     /// </summary>
     public class gridZyXmYpItemsjfb
     {
@@ -29,11 +29,11 @@
         public string CXZYJFBBH { get; set; }
         public string CreateTime { get; set; }
         /// <summary>
-        /// 编号
+        /// Số hiệu
         /// </summary>
         public string SFXMCode { get; set; }
         /// <summary>
-        /// 项目或药品名称
+        /// Tên hạng mục hoặc thuốc
         /// </summary>
         public string SFXMMC { get; set; }
         public string JFDW { get; set; }

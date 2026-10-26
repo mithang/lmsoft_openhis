@@ -6,9 +6,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 创 建：lixin
-    /// 日 期：2019-05-26 14:00
-    /// 描 述：住院结算-医保明细写入回传-贵安
+    /// Tạo:lixin
+    /// Ngày tháng:2019-05-26 14:00
+    /// Mô tả:Quyết toán nội trú-Ghi chi tiết BHYT và trả về-Quý An
     /// </summary>
     [Table("zy_mxxr_gayb")]
     public class HospSettlementGAYBZYMXXRFeeEntity : IEntity<HospSettlementGAYBZYMXXRFeeEntity>

@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
 {
-    //住院发药接口
+    //Giao diện phát thuốc nội trú
     public interface IDispenseIndexDmnService
     {
         #region PID 住院发药
 
 
         /// <summary>
-        /// 住院发药病区
+        /// Khu bệnh phát thuốc nội trú
         /// </summary>
         /// <param name="zyyf"></param>
         /// <param name="organizeId"></param>
@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
         IList<DispenseBQIndexVO> GetZYFYBQPagList(string zyyf, string organizeId);
 
         /// <summary>
-        /// 住院发药病人
+        /// Bệnh nhân phát thuốc nội trú
         /// </summary>
         /// <param name="zyyf"></param>
         /// <param name="bq"></param>
@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
 
 
         /// <summary>
-        /// 住院发药信息集合
+        /// Tập hợp thông tin phát thuốc nội trú
         /// </summary>
         /// <param name="bq"></param>
         /// <param name="Zyh"></param>
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
 
 
         /// <summary>
-        /// 住院病人病区配药
+        /// Pha thuốc khu bệnh cho bệnh nhân nội trú
         /// </summary>
         /// <param name="UserLogin"></param>
         /// <param name="Kssj"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
         IList<DispenseBQBRPYIndexVO> SetZYBRBQPY(WaitingDispenseBQBRPYMedicineDispenseRequest model);
 
         /// <summary>
-        /// 住院病区病人发药退药后修改发药备注状态
+        /// Sau khi bệnh nhân khu bệnh nội trú phát thuốc/trả thuốc thì sửa trạng thái ghi chú phát thuốc
         /// </summary>
         /// <param name="UserLogin"></param>
         /// <param name="Kssj"></param>
@@ -66,14 +66,14 @@ namespace Newtouch.HIS.Domain.IDomainServices.HospitalizationManage
         #endregion
 
         #region 住院发药查询
-        //住院发药查询
+        //Tra cứu phát thuốc nội trú
         IList<DispenseBQRYCXXXIndexVO> GetZYFYCXXXPagList(WaitingDispenseBRCXXXMedicineDispenseRequest model);
 
         #endregion
 
         #region 住院退药明细信息
         /// <summary>
-        /// 获取医生站医嘱ID ，医嘱表ID
+        /// Lấy y lệnh trạm bác sĩID ,Bảng y lệnhID
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>

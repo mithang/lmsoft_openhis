@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto
     {
         public int code { get; set; }
 
-        /// <summary>网关返回码描述</summary>
+        /// <summary>Mô tả mã trả về của gateway</summary>
         public string msg { get; set; }
         public int sub_code { get; set; }
         public object data { get; set; }

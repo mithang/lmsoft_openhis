@@ -5,27 +5,27 @@ using System;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-12-16 17:20
-    /// 描 述：预约
+    /// Tạo:chl
+    /// Ngày tháng:2019-12-16 17:20
+    /// Mô tả:Hẹn khám
     /// </summary>
     public interface IMzghbookRepo : IRepositoryBase<MzghbookEntity>
     {
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu(Thêm mới,Sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         int SubmitForm(MzghbookEntity entity, decimal? keyValue);
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         int DeleteForm(decimal keyValue);
 
         /// <summary>
-        /// 门诊预约挂号修改状态
+        /// Sửa trạng thái đăng ký khám hẹn trước ngoại trú
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="mzh"></param>

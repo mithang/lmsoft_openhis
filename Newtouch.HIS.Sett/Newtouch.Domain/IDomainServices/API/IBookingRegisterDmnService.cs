@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.API
         IList<CardInfoResp> GetCardInfo(CardInfoReq req);
 
         /// <summary>
-        /// 获取科室信息
+        /// Lấy thông tin khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ks"></param>
@@ -22,109 +22,109 @@ namespace Newtouch.HIS.Domain.IDomainServices.API
         /// <returns></returns>
         IList<DepartmentResp> GetDepartmentInfo(DepartmentDTO dto);
         /// <summary>
-        /// 门诊排班 schedule
+        /// Lịch trực ngoại trú schedule
         /// </summary>
         /// <returns></returns>
         IList<MzpbScheduleResponse> GetMzpbSchedule(DepartmentSchedulingDTO dto);
         /// <summary>
-        /// 科室排班信息
+        /// Thông tin lịch trực khoa
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
         IList<MzpbResponse> GetMzpb(MzKsPbDto dto);
         /// <summary>
-        /// 出诊科室排班详细
+        /// Chi tiết lịch trực khoa khám bệnh
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
         IList<MzpbScheduleResponse> GetMzpbDetail(MzKsPbDto dto);
         /// <summary>
-        /// 挂号预约
+        /// Hẹn đăng ký khám
         /// </summary>
         /// <param name="dto"></param>
         /// <param name="user"></param>
         /// <returns></returns>
         MzAppointmentResp OutAppointment(MzAppointmentReq dto);
         /// <summary>
-        /// 签到
+        /// Điểm danh
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
         RegSettResp OutpatRegSett(RegSettReq dto);
         /// <summary>
-        /// 预约号查询预约信息
+        /// Tra cứu thông tin hẹn khám theo số hẹn khám
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         MzAppointmentRecordResp QueryAppRecord(MzAppointmentRecordReq req);
 
         /// <summary>
-        /// 预约list
+        /// Hẹn khámlist
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         IList<MzAppointmentRecordListResp> QueryAppRecordList(MzAppointmentRecordListReq req);
         /// <summary>
-        /// 取消预约
+        /// Hủy hẹn khám
         /// </summary>
         /// <param name="req"></param>
         int CancelOutApp(MzAppointmentRecordReq req);
         /// <summary>
-        /// 获取医生/科室医生
+        /// Lấy bác sĩ/Bác sĩ khoa
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         IList<DeptDoctorResp> GetStaffInfo(DeptDoctorReq req);
         /// <summary>
-        /// 建卡
+        /// Lập thẻ
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         CardInfoResp SysPatInfoSet(RegisterReq req);
         /// <summary>
-        /// 取消结算
+        /// Hủy quyết toán
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         CancalSettResp CancalSett(CancalSettReq req);
         /// <summary>
-        /// 待缴费订单
+        /// Đơn hàng chờ nộp phí
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         IList<CostOrderResp> QueryCostOrder(CostOrderReq req);
         /// <summary>
-        /// 待缴费订单明细
+        /// Chi tiết đơn hàng chờ nộp phí
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         CostOrderDetailResp QueryCostOrderDetail(CostOrderDetailReq req);
         /// <summary>
-        /// 取消订单
+        /// Hủy đơn hàng
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         int CancalOrde(CancalOrderReq req);
         /// <summary>
-        /// 重置订单状态
+        /// Đặt lại trạng thái đơn hàng
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         int ErrOrderCancal(CancalOrderReq req);
         /// <summary>
-        /// 预结算
+        /// Quyết toán trước
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         PreSettResp OutPreSett(PreSettReq req);
         /// <summary>
-        /// 处方结算
+        /// Quyết toán đơn thuốc
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         void OutSett(SettReq req, int jsnm,string orgId);
         /// <summary>
-        /// 对账信息
+        /// Thông tin đối soát
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>

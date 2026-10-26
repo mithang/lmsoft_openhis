@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Domain.IRepository
         List<SysPatientNatureEntity> GetList(string orgId);
 
         /// <summary>
-        /// 根据病人性质名称获取病人性质信息
+        /// Lấy thông tin tính chất bệnh nhân theo tên tính chất bệnh nhân
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="ogrId"></param>
@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Domain.IRepository
         List<SysPatientNatureEntity> GetbxzcBySearch(string keyword, string ogrId);
 
         /// <summary>
-        /// 获取报销政策下拉框（自动提示）
+        /// Lấy hộp thả xuống chính sách hoàn trả(Tự động nhắc)
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

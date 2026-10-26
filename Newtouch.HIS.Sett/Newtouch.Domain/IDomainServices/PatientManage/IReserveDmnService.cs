@@ -5,19 +5,19 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 预交金
+    /// Tiền tạm ứng
     /// </summary>
     public interface IReserveDmnService
     {
 
         /// <summary>
-        /// 保存账户事务
+        /// Lưu giao dịch tài khoản
         /// </summary>
         /// <param name="vo"></param>
         void PatAccDB(PatAccDataVO vo, SysAccountEntity zh, FinanceReceiptEntity cwsj, string type);
 
         /// <summary>
-        /// 获取住院管理》账户管理》获取账户收支记录信息
+        /// Lấy quản lý nội trú》Quản lý tài khoản》Lấy thông tin bản ghi thu chi tài khoản
         /// </summary>
         /// <returns></returns>
         List<PatAccPayVO> GetAccPayInfo(int zh, string orgId, string zhxz);

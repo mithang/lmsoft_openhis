@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 待执行 住院记账 计划  VO
+    /// Chờ thực hiện Ghi sổ nội trú Kế hoạch  VO
     /// </summary>
     public class HospAccountingPlanWaitingExeVO
     {
@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string patientName { get; set; }
 
         /// <summary>
-        /// 医嘱性质 1临时 2长期
+        /// Tính chất y lệnh 1Tạm thời 2Dài hạn
         /// </summary>
         public string yzxz { get; set; }
 
@@ -51,7 +51,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public int? sl { get; set; }
 
         /// <summary>
-        /// 单价
+        /// Đơn giá
         /// </summary>
         public decimal? dj { get; set; }
 
@@ -71,7 +71,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string bz { get; set; }
 
         /// <summary>
-        /// 最后执行时间
+        /// Thời gian thực hiện lần cuối
         /// </summary>
         public DateTime? LastEexcutionTime { get; set; }
         public string kflb { get; set; }
@@ -82,11 +82,11 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public int? dtzxcs { get; set; }
 
         /// <summary>
-        /// 记录时间
+        /// Thời gian ghi
         /// </summary>
         public DateTime entryTime { get; set; }
 		/// <summary>
-		/// 执行科室
+		/// Khoa thực hiện
 		/// </summary>
 	    public string zxks { get; set; }
 	}

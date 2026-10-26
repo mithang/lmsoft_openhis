@@ -3,82 +3,82 @@
 namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
 {
     /// <summary>
-    /// 门诊预约挂号排班返回报文
+    /// Bản tin trả về lịch trực đăng ký khám hẹn trước ngoại trú
     /// </summary>
     public class MzBespeakRegisterSchedulingQueryResponseDTO
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织结构ID
+        /// Cơ cấu tổ chứcID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 科室代码
+        /// Mã khoa
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 门诊类型  1：普通门诊    2：急症     3：专家门诊
+        /// Loại ngoại trú  1:Khám ngoại trú thông thường    2:Cấp cứu     3:Khám chuyên gia
         /// </summary>
         public string mzlx { get; set; }
 
         /// <summary>
-        /// 预约日期
+        /// Ngày hẹn khám
         /// </summary>
         public DateTime regDate { get; set; }
 
         /// <summary>
-        /// 时段
+        /// Khoảng thời gian
         /// </summary>
         public string regTime { get; set; }
 
         /// <summary>
-        /// 专家工号
+        /// Mã nhân viên chuyên gia
         /// </summary>
         public string gh { get; set; }
 
         /// <summary>
-        /// 专家名称
+        /// Tên chuyên gia
         /// </summary>
         public string zjmc { get; set; }
 
         /// <summary>
-        /// 最大预约数
+        /// Số hẹn khám tối đa
         /// </summary>
         public int bespeakMaxCount { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa đổi
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改者
+        /// Người sửa đổi
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 状态     1:有效  0：无效
+        /// Trạng thái     1:Hiệu lực  0:Không hiệu lực
         /// </summary>
         public string zt { get; set; }
     }

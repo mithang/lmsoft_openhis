@@ -4,30 +4,30 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 病案首页Drg分组测算
+    /// Trang đầu bệnh ánDrgĐo lường theo nhóm
     /// </summary>
     public interface IMedicalRecordDmnService
     {
         /// <summary>
-        /// 根据住院获取住院病案首页的诊断数据
+        /// Lấy dữ liệu chẩn đoán trang đầu bệnh án nội trú theo số nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         List<MedicalRecordDiagnosisVO> GetAllMedicalRecordDiagnosisVOList(string zyh, string orgId);
         /// <summary>
-        /// 根据住院获取住院病案首页的手术数据
+        /// Lấy dữ liệu phẫu thuật trang đầu bệnh án nội trú theo số nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         List<MedicalRecordOperationVO> GetAllMedicalRecordOperationVOList(string zyh, string orgId);
         /// <summary>
-        /// 调整病案首页的诊断数据的顺序
+        /// Điều chỉnh thứ tự dữ liệu chẩn đoán trang đầu bệnh án
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         string UpdatePatDiagnosisOrder(string zdIds, string orgId);
         /// <summary>
-        /// 调整病案首页的手术数据的顺序
+        /// Điều chỉnh thứ tự dữ liệu phẫu thuật trang đầu bệnh án
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>

@@ -2,22 +2,22 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 当前科室门诊有效时长
+    /// Thời lượng ngoại trú hiệu lực của khoa hiện tại
     /// </summary>
     public class MzActiveDurationVO
     {
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// 门诊有效时长
+        /// Thời lượng ngoại trú hiệu lực
         /// </summary>
         public int mz { get; set; }
 
         /// <summary>
-        /// 急诊有效时长
+        /// Thời lượng cấp cứu hiệu lực
         /// </summary>
         public int jz { get; set; }
     }

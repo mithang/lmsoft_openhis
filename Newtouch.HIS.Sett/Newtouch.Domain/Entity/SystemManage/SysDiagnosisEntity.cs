@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统诊断
+    /// Chẩn đoán hệ thống
     /// </summary>
     [Table("xt_zd")]
     [Obsolete("please use the view")]
@@ -43,12 +43,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string py { get; set; }
 
         /// <summary>
-        /// 每次使用时＋1，可以使得常用的前置
+        /// Mỗi khi sử dụng＋1,Có thể làm cho tiền tố thường dùng
         /// </summary>
         public int orderid { get; set; }
 
         /// <summary>
-        /// 0 非常用   1 常用（显示时在排序号的基础上再加1000）
+        /// 0 Không thường dùng   1 Thường dùng(Khi hiển thị thì cộng thêm trên cơ sở số sắp xếp1000)
         /// </summary>
         public string cybz { get; set; }
 

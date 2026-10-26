@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2017-09-29 19:53
-    /// 描 述：错误提示配置
+    /// Tạo：张冬林
+    /// Ngày tháng:2017-09-29 19:53
+    /// Mô tả:Cấu hình nhắc lỗi
     /// </summary>
     [Table("Sys_FailedCodeMessageMapp")]
     public class SysFailedCodeMessageMappEntity : IEntity<SysFailedCodeMessageMappEntity>
@@ -20,12 +20,12 @@ namespace Newtouch.HIS.Domain.Entity
         [Key]
         public string Id { get; set; }
         /// <summary>
-        /// 顶级组织机构Id
+        /// Tổ chức cấp cao nhấtId
         /// </summary>
         /// <returns></returns>
         public string TopOrganizeId { get; set; }
         /// <summary>
-        /// 长测试超长长测试超长长测试超长长测试超长长测试超长长测试超长长测试超长长测试超长长测试超长长测试超长...
+        /// Dài kiểm tra siêu dài dài kiểm tra siêu dài dài kiểm tra siêu dài dài kiểm tra siêu dài dài kiểm tra siêu dài dài kiểm tra siêu dài dài kiểm tra siêu dài dài kiểm tra siêu dài dài kiểm tra siêu dài dài kiểm tra siêu dài...
         /// </summary>
         /// <returns></returns>
         public string OrganizeId { get; set; }

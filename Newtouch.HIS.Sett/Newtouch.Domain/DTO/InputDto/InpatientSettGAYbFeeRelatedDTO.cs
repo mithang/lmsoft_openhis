@@ -12,7 +12,7 @@ namespace Newtouch.HIS.Domain.DTO
     public class InpatientSettGAYbFeeRelatedDTO
     {
         /// <summary>
-        /// 费用总额（包括不和医保交易的全自费部分）
+        /// Tổng chi phí(Bao gồm phần tự chi trả toàn bộ không giao dịch với BHYT)
         /// </summary>
         public decimal his_hisfyze { get; set; }
         /// <summary>
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Domain.DTO
         /// <returns></returns>
         public string prm_ykb065 { get; set; }
         /// <summary>
-        /// prm_hisfyze 需要和医保交易的部分的费用总额
+        /// prm_hisfyze Tổng chi phí của phần cần giao dịch với BHYT
         /// </summary>
         /// <returns></returns>
         public decimal prm_hisfyze { get; set; }
@@ -282,7 +282,7 @@ namespace Newtouch.HIS.Domain.DTO
         public decimal? prm_yka345 { get; set; }
 
         /// <summary>
-        /// 经过计算后的现金支付
+        /// Thanh toán tiền mặt sau khi tính toán
         /// </summary>
         public decimal calc_xjzf
         {

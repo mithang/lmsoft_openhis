@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class SysModuleVO : SysModuleEntity
     {
         /// <summary>
-        /// 是否对Org开放
+        /// Có đối với hay khôngOrgMở
         /// </summary>
         public bool IsOpenToOrg { get; set; }
 

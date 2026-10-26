@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.OutpatientManage
     public interface IprintOutpatientChargeBillDmnService
     {
         /// <summary>
-        /// 获取门急诊票据报表的请求json数据
+        /// Lấy yêu cầu báo cáo phiếu ngoại trú/cấp cứujsonDữ liệu
         /// </summary>
         /// <param name="json"></param>
         /// <returns></returns>

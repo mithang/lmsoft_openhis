@@ -1,8 +1,8 @@
 ﻿/**********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description： 门诊收费结算数据
-// Author：HLF
-// CreateDate： 2016/12/29 13:38:52 
+// Copyright (C) 2016 Newtouch Bảo lưu bản quyền. 
+// Description: Dữ liệu quyết toán thu phí ngoại trú
+// Author:HLF
+// CreateDate: 2016/12/29 13:38:52 
 //**********************************************************/
 
 using Newtouch.HIS.Domain.Entity;
@@ -13,49 +13,49 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class OutPatChargeSettDataVo
     {
 
-        //新增  门诊处方、门诊处方明细、门诊项目、
-        //更新  当前发票号
-        //新增  门诊结算、门诊结算明细、 门诊结算支付方式、门诊结算大类
+        //Thêm mới  Đơn thuốc ngoại trú,Chi tiết đơn thuốc ngoại trú,Hạng mục ngoại trú,
+        //Cập nhật  Số hóa đơn hiện tại
+        //Thêm mới  Quyết toán ngoại trú,Chi tiết quyết toán ngoại trú, Phương thức thanh toán quyết toán ngoại trú,Loại lớn quyết toán ngoại trú
 
-        //门诊处方表 mz_cf
-        //如果换方  处方表需要List
+        //Bảng đơn thuốc ngoại trú mz_cf
+        //Nếu đổi đơn thuốc  Bảng đơn thuốc cầnList
         public List<OutpatientPrescriptionEntity> mz_cf { get; set; }
 
         /// <summary>
-        /// 门诊处方明细  mz_cfmx
+        /// Chi tiết đơn thuốc ngoại trú  mz_cfmx
         /// </summary>
         public List<OutpatientPrescriptionDetailEntity> mz_cfmxList { get; set; }
 
         //mz_xm
         /// <summary>
-        /// 门诊项目
+        /// Hạng mục ngoại trú
         /// </summary>
         public List<OutpatientItemEntity> mz_xmList { get; set; }
 
 
-        //update 财务发票 更新当前发票号 //cw_fp
+        //update Hóa đơn tài chính Cập nhật số hóa đơn hiện tại //cw_fp
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 门诊结算 mz_js
+        /// Quyết toán ngoại trú mz_js
         /// </summary>
         public OutpatientSettlementEntity mz_js { get; set; }
 
         /// <summary>
-        /// 门诊结算支付方式  mz_jszffs
+        /// Phương thức thanh toán quyết toán ngoại trú  mz_jszffs
         /// </summary>
         public OutpatientSettlementPaymentModelEntity mz_jszffs { get; set; }
 
         /// <summary>
-        /// 门诊结算明细 mz_jsmx
+        /// Chi tiết quyết toán ngoại trú mz_jsmx
         /// </summary>
         public List<OutpatientSettlementDetailEntity> mz_jsmxList { get; set; }
 
         /// <summary>
-        /// 门诊结算大类 mz_jsdl
+        /// Loại lớn quyết toán ngoại trú mz_jsdl
         /// </summary> 
         public List<OutpatientSettlementCategoryEntity> mz_jsdlList { get; set; }
 
@@ -64,41 +64,41 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class OutPatChargeSettInAccDataVo
     {
 
-        //新增  门诊结算、门诊结算明细、 门诊结算支付方式、门诊结算大类
+        //Thêm mới  Quyết toán ngoại trú,Chi tiết quyết toán ngoại trú, Phương thức thanh toán quyết toán ngoại trú,Loại lớn quyết toán ngoại trú
 
-        //门诊处方表 mz_cf
-        //如果换方  处方表需要List
+        //Bảng đơn thuốc ngoại trú mz_cf
+        //Nếu đổi đơn thuốc  Bảng đơn thuốc cầnList
         public List<OutpatientPrescriptionEntity> mz_cf { get; set; }
 
         /// <summary>
-        /// 门诊处方明细  mz_cfmx
+        /// Chi tiết đơn thuốc ngoại trú  mz_cfmx
         /// </summary>
         public List<OutpatientPrescriptionDetailEntity> mz_cfmxList { get; set; }
 
         //mz_xm
         /// <summary>
-        /// 门诊项目
+        /// Hạng mục ngoại trú
         /// </summary>
         public List<OutpatientItemEntity> mz_xmList { get; set; }
 
 
         /// <summary>
-        /// 门诊结算 mz_js
+        /// Quyết toán ngoại trú mz_js
         /// </summary>
         public List<OutpatientSettlementEntity> mz_js { get; set; }
 
         /// <summary>
-        /// 门诊结算支付方式  mz_jszffs
+        /// Phương thức thanh toán quyết toán ngoại trú  mz_jszffs
         /// </summary>
         public List<OutpatientSettlementPaymentModelEntity> mz_jszffs { get; set; }
 
         /// <summary>
-        /// 门诊结算明细 mz_jsmx
+        /// Chi tiết quyết toán ngoại trú mz_jsmx
         /// </summary>
         public List<OutpatientSettlementDetailEntity> mz_jsmxList { get; set; }
 
         /// <summary>
-        /// 门诊结算大类 mz_jsdl
+        /// Loại lớn quyết toán ngoại trú mz_jsdl
         /// </summary> 
         public List<OutpatientSettlementCategoryEntity> mz_jsdlList { get; set; }
 
@@ -108,31 +108,31 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class OutPatSettInAccDataVo
     {
 
-        //新增  门诊处方 门诊处方明细 门诊结算 门诊结算明细 门诊项目 门诊记账计划 门诊记账计划明细
+        //Thêm mới  Đơn thuốc ngoại trú Chi tiết đơn thuốc ngoại trú Quyết toán ngoại trú Chi tiết quyết toán ngoại trú Hạng mục ngoại trú Kế hoạch ghi sổ ngoại trú Chi tiết kế hoạch ghi sổ ngoại trú
 
-        //门诊处方表 mz_cf
-        //如果换方  处方表需要List
+        //Bảng đơn thuốc ngoại trú mz_cf
+        //Nếu đổi đơn thuốc  Bảng đơn thuốc cầnList
         public List<OutpatientPrescriptionEntity> mz_cf { get; set; }
 
         /// <summary>
-        /// 门诊处方明细  mz_cfmx
+        /// Chi tiết đơn thuốc ngoại trú  mz_cfmx
         /// </summary>
         public List<OutpatientPrescriptionDetailEntity> mz_cfmxList { get; set; }
 
         //mz_xm
         /// <summary>
-        /// 门诊项目
+        /// Hạng mục ngoại trú
         /// </summary>
         public List<OutpatientItemEntity> mz_xmList { get; set; }
 
 
         /// <summary>
-        /// 门诊结算 mz_js
+        /// Quyết toán ngoại trú mz_js
         /// </summary>
         public List<OutpatientSettlementEntity> mz_js { get; set; }
 
         /// <summary>
-        /// 门诊结算明细 mz_jsmx
+        /// Chi tiết quyết toán ngoại trú mz_jsmx
         /// </summary>
         public List<OutpatientSettlementDetailEntity> mz_jsmxList { get; set; }
         public OutpatientAccountEntity mz_jzjh { get; set; }
@@ -143,31 +143,31 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class updatePatSettInAccDataVo
     {
 
-        //更改  门诊处方 门诊处方明细 门诊结算 门诊结算明细 门诊项目 门诊记账计划 门诊记账计划明细
+        //Thay đổi  Đơn thuốc ngoại trú Chi tiết đơn thuốc ngoại trú Quyết toán ngoại trú Chi tiết quyết toán ngoại trú Hạng mục ngoại trú Kế hoạch ghi sổ ngoại trú Chi tiết kế hoạch ghi sổ ngoại trú
 
-        //门诊处方表 mz_cf
-        //如果换方  处方表需要List
+        //Bảng đơn thuốc ngoại trú mz_cf
+        //Nếu đổi đơn thuốc  Bảng đơn thuốc cầnList
         public Dictionary<OutpatientPrescriptionEntity, OutpatientPrescriptionEntity> mz_cf { get; set; }
 
         /// <summary>
-        /// 门诊处方明细  mz_cfmx
+        /// Chi tiết đơn thuốc ngoại trú  mz_cfmx
         /// </summary>
         public Dictionary<OutpatientPrescriptionDetailEntity, OutpatientPrescriptionDetailEntity> mz_cfmxList { get; set; }
 
         //mz_xm
         /// <summary>
-        /// 门诊项目
+        /// Hạng mục ngoại trú
         /// </summary>
         public Dictionary<OutpatientItemEntity, OutpatientItemEntity> mz_xmList { get; set; }
 
 
         /// <summary>
-        /// 门诊结算 mz_js
+        /// Quyết toán ngoại trú mz_js
         /// </summary>
         public Dictionary<OutpatientSettlementEntity, OutpatientSettlementEntity> mz_js { get; set; }
 
         /// <summary>
-        /// 门诊结算明细 mz_jsmx
+        /// Chi tiết quyết toán ngoại trú mz_jsmx
         /// </summary>
         public Dictionary<OutpatientSettlementDetailEntity, OutpatientSettlementDetailEntity> mz_jsmxList { get; set; }
         public Dictionary<OutpatientAccountEntity, OutpatientAccountEntity> mz_jzjh { get; set; }
@@ -177,31 +177,31 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class DelPatSettInAccDataVo
     {
 
-        //更改  门诊处方 门诊处方明细 门诊结算 门诊结算明细 门诊项目 门诊记账计划 门诊记账计划明细
+        //Thay đổi  Đơn thuốc ngoại trú Chi tiết đơn thuốc ngoại trú Quyết toán ngoại trú Chi tiết quyết toán ngoại trú Hạng mục ngoại trú Kế hoạch ghi sổ ngoại trú Chi tiết kế hoạch ghi sổ ngoại trú
 
-        //门诊处方表 mz_cf
-        //如果换方  处方表需要List
+        //Bảng đơn thuốc ngoại trú mz_cf
+        //Nếu đổi đơn thuốc  Bảng đơn thuốc cầnList
         public List<int> mz_cf { get; set; }
 
         /// <summary>
-        /// 门诊处方明细  mz_cfmx
+        /// Chi tiết đơn thuốc ngoại trú  mz_cfmx
         /// </summary>
         public List<int> mz_cfmxList { get; set; }
 
         //mz_xm
         /// <summary>
-        /// 门诊项目
+        /// Hạng mục ngoại trú
         /// </summary>
         public List<int> mz_xmList { get; set; }
 
 
         /// <summary>
-        /// 门诊结算 mz_js
+        /// Quyết toán ngoại trú mz_js
         /// </summary>
         public List<int> mz_js { get; set; }
 
         /// <summary>
-        /// 门诊结算明细 mz_jsmx
+        /// Chi tiết quyết toán ngoại trú mz_jsmx
         /// </summary>
         public List<int> mz_jsmxList { get; set; }
         public List<string> mz_jzjh { get; set; }
@@ -211,106 +211,106 @@ namespace Newtouch.HIS.Domain.ValueObjects
 
     #region  optima记账 Vision-1.2 门诊记账的第二个版本（包括门诊记账）
     /// <summary>
-    /// 门诊
+    /// Khám ngoại trú
     /// </summary>
     public class SettInAccOutpatDataVo
     {
         //mz_xm
         /// <summary>
-        /// 门诊项目
+        /// Hạng mục ngoại trú
         /// </summary>
         public List<OutpatientItemEntity> mz_xmList { get; set; }
 
         public List<OutpatientPrescriptionEntity> mz_cf { get; set; }
 
         /// <summary>
-        /// 门诊处方明细  mz_cfmx
+        /// Chi tiết đơn thuốc ngoại trú  mz_cfmx
         /// </summary>
         public List<OutpatientPrescriptionDetailEntity> mz_cfmxList { get; set; }
     }
 
     /// <summary>
-    /// 修改门诊记账
+    /// Sửa ghi sổ ngoại trú
     /// </summary>
     public class updateInAccOutpatVo
     {
         //mz_xm
         /// <summary>
-        /// 门诊项目
+        /// Hạng mục ngoại trú
         /// </summary>
         public Dictionary<OutpatientItemEntity, OutpatientItemEntity> mz_xmList { get; set; }
 
         public Dictionary<OutpatientPrescriptionEntity, OutpatientPrescriptionEntity> mz_cf { get; set; }
 
         /// <summary>
-        /// 门诊处方明细  mz_cfmx
+        /// Chi tiết đơn thuốc ngoại trú  mz_cfmx
         /// </summary>
         public Dictionary<OutpatientPrescriptionDetailEntity, OutpatientPrescriptionDetailEntity> mz_cfmxList { get; set; }
     }
 
     /// <summary>
-    /// 删除门诊
+    /// Xóa ngoại trú
     /// </summary>
     public class delInAccOutpatVo
     {
         //mz_xm
         /// <summary>
-        /// 门诊项目
+        /// Hạng mục ngoại trú
         /// </summary>
         public List<int> mz_xmList { get; set; }
 
         public List<int> mz_cf { get; set; }
 
         /// <summary>
-        /// 门诊处方明细  mz_cfmx
+        /// Chi tiết đơn thuốc ngoại trú  mz_cfmx
         /// </summary>
         public List<int> mz_cfmxList { get; set; }
     }
     /// <summary>
-    /// 住院
+    /// Nhập viện
     /// </summary>
     public class SettInAccHospatDataVo
     {
         /// <summary>
-        /// 项目计费表
+        /// Bảng tính phí hạng mục
         /// </summary>
         public List<HospItemBillingEntity> zy_xmjfbList { get; set; }
 
         /// <summary>
-        /// 药品计费表
+        /// Bảng tính phí thuốc
         /// </summary>
         public List<HospDrugBillingEntity> zy_ypjfbList { get; set; }
     }
 
 
     /// <summary>
-    /// 修改住院记账
+    /// Sửa ghi sổ nội trú
     /// </summary>
     public class updateInAccHospatVo
     {
         /// <summary>
-        /// 项目计费表
+        /// Bảng tính phí hạng mục
         /// </summary>
         public Dictionary<HospItemBillingEntity, HospItemBillingEntity> zy_xmjfbList { get; set; }
 
         /// <summary>
-        /// 药品计费表
+        /// Bảng tính phí thuốc
         /// </summary>
         public Dictionary<HospDrugBillingEntity, HospDrugBillingEntity> zy_ypjfbList { get; set; }
     }
 
     /// <summary>
-    /// 删除住院记账
+    /// Xóa ghi sổ nội trú
     /// </summary>
     public class delInAccHospatVo
     {
         /// <summary>
-        /// 项目计费表
+        /// Bảng tính phí hạng mục
         /// </summary>
         public List<string> zy_xmjfbList { get; set; }
 
         /// <summary>
-        /// 药品计费表
+        /// Bảng tính phí thuốc
         /// </summary>
         public List<string> zy_ypjfbList { get; set; }
     }
@@ -320,22 +320,22 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class OutPatSettInAccDataVo4
     {
 
-        //新增  门诊结算 门诊结算明细 门诊项目 门诊记账计划 门诊记账计划明细
+        //Thêm mới  Quyết toán ngoại trú Chi tiết quyết toán ngoại trú Hạng mục ngoại trú Kế hoạch ghi sổ ngoại trú Chi tiết kế hoạch ghi sổ ngoại trú
 
         //mz_xm
         /// <summary>
-        /// 门诊项目
+        /// Hạng mục ngoại trú
         /// </summary>
         public List<OutpatientItemEntity> mz_xmList { get; set; }
 
 
         /// <summary>
-        /// 门诊结算 mz_js
+        /// Quyết toán ngoại trú mz_js
         /// </summary>
         public List<OutpatientSettlementEntity> mz_js { get; set; }
 
         /// <summary>
-        /// 门诊结算明细 mz_jsmx
+        /// Chi tiết quyết toán ngoại trú mz_jsmx
         /// </summary>
         public List<OutpatientSettlementDetailEntity> mz_jsmxList { get; set; }
         public OutpatientAccountEntity mz_jzjh { get; set; }
@@ -346,22 +346,22 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class updatePatSettInAccDataVo4
     {
 
-        //更改 门诊结算 门诊结算明细 门诊项目 门诊记账计划 门诊记账计划明细
+        //Thay đổi Quyết toán ngoại trú Chi tiết quyết toán ngoại trú Hạng mục ngoại trú Kế hoạch ghi sổ ngoại trú Chi tiết kế hoạch ghi sổ ngoại trú
 
         //mz_xm
         /// <summary>
-        /// 门诊项目
+        /// Hạng mục ngoại trú
         /// </summary>
         public Dictionary<OutpatientItemEntity, OutpatientItemEntity> mz_xmList { get; set; }
 
 
         /// <summary>
-        /// 门诊结算 mz_js
+        /// Quyết toán ngoại trú mz_js
         /// </summary>
         public Dictionary<OutpatientSettlementEntity, OutpatientSettlementEntity> mz_js { get; set; }
 
         /// <summary>
-        /// 门诊结算明细 mz_jsmx
+        /// Chi tiết quyết toán ngoại trú mz_jsmx
         /// </summary>
         public Dictionary<OutpatientSettlementDetailEntity, OutpatientSettlementDetailEntity> mz_jsmxList { get; set; }
         public Dictionary<OutpatientAccountEntity, OutpatientAccountEntity> mz_jzjh { get; set; }

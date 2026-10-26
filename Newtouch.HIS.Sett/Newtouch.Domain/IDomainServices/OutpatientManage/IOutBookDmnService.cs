@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.OutpatientManage
         IList<string> getDateInfosjd(string orgId);
         IList<string> getDateInfosjdcount(int ghpbId,string orgId);
         /// <summary>
-        /// 获取排班门诊诊疗项目组合
+        /// Lấy tổ hợp hạng mục khám chữa bệnh ngoại trú lịch trực
         /// </summary>
         /// <param name="zhcode"></param>
         /// <param name="keyword"></param>
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.OutpatientManage
         /// <returns></returns>
         IList<MzpbZlxmzh> GetMzpbZlxmzh(string zhcode, string keyword, string orgId);
         /// <summary>
-        /// 获取排班门诊诊疗项目组合明细
+        /// Lấy chi tiết tổ hợp hạng mục khám chữa bệnh ngoại trú lịch trực
         /// </summary>
         /// <param name="zhcode"></param>
         /// <param name="keyword"></param>

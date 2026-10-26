@@ -9,68 +9,68 @@ namespace Newtouch.HIS.Domain.ValueObjects.API
     public class SysDrugVO
     {
         /// <summary>
-        /// 药品编号
+        /// Số thuốc
         /// </summary>
         public  int ypId { get; set; }
         /// <summary>
-        /// 药品通用名
+        /// Tên chung của thuốc
         /// </summary>
         public string ypmc { get; set; }
         /// <summary>
-        /// 药品商品名
+        /// Tên thương mại thuốc
         /// </summary>
         public string spm { get; set; }
         /// <summary>
-        /// 生产厂家名称
+        /// Tên nhà sản xuất
         /// </summary>
         public string ycmc { get; set; }
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string ypgg { get; set; }
         /// <summary>
-        /// 含量规格单位
+        /// Đơn vị quy cách hàm lượng
         /// </summary>
         public string jldw { get; set; }
         /// <summary>
-        /// 含量规格
+        /// Quy cách hàm lượng
         /// </summary>
         public decimal jl { get; set; }
 
         /// <summary>
-        /// 剂型编码
+        /// Mã dạng bào chế
         /// </summary>
         public string jxCode { get; set; }
         /// <summary>
-        /// 剂型
+        /// Dạng bào chế
         /// </summary>
         public string jx { get; set; }
         /// <summary>
-        /// 包装规格单位
+        /// Đơn vị quy cách đóng gói
         /// </summary>
         public string bzdw { get; set; }
         /// <summary>
-        /// 包装规格数量
+        /// Số lượng quy cách đóng gói
         /// </summary>
         public decimal bzs { get; set; }
         /// <summary>
-        /// 抗菌药物标记
+        /// Dấu thuốc kháng khuẩn
         /// </summary>
         public string isKss { get; set; }
         /// <summary>
-        /// 基本药物标记(固定值基本药物)
+        /// Dấu thuốc cơ bản(Thuốc cơ bản giá trị cố định)
         /// </summary>
         public string jbywbj { get; set; }
         /// <summary>
-        /// 药品单价
+        /// Đơn giá thuốc
         /// </summary>
         public decimal lsj { get; set; }
         /// <summary>
-        /// 医保等级
+        /// Cấp BHYT
         /// </summary>
         public string zfxz { get; set; }
         /// <summary>
-        /// 医保药品编码
+        /// Mã thuốc BHYT
         /// </summary>
         public string ypCode { get; set; }
     }

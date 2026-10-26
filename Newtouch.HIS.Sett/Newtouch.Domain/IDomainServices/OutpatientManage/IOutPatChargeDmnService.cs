@@ -1,8 +1,8 @@
 ﻿/**********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description： 
-// Author：
-// CreateDate： 2016/12/23 11:14:24 
+// Copyright (C) 2016 Newtouch Bảo lưu bản quyền. 
+// Description: 
+// Author:
+// CreateDate: 2016/12/23 11:14:24 
 //**********************************************************/
 using System;
 using System.Collections.Generic;
@@ -17,95 +17,95 @@ using Newtouch.HIS.Domain.ValueObjects.OutpatientManage;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 门诊结算
+    /// Quyết toán ngoại trú
     /// </summary>
     public interface IOutPatChargeDmnService
     {
         /// <summary>
-        /// 根据卡号获得收费病人信息
+        /// Lấy thông tin bệnh nhân thu phí theo số thẻ
         /// </summary>
-        /// <param name="kh">卡号</param>
+        /// <param name="kh">Số thẻ</param>
         /// <returns></returns>
         OutPatChargeInfoVO GetChargePatInfo(string kh, string brxz);
 
         /// <summary>
-        /// 挂号科室类型
+        /// Loại khoa đăng ký khám
         /// </summary>
-        /// <param name="patid">病人patid</param>
+        /// <param name="patid">Bệnh nhânpatid</param>
         /// <param name="brxz"></param>
-        /// <param name="startDate">开始日期</param>
-        /// <param name="endDate">结束日期</param>
+        /// <param name="startDate">Ngày bắt đầu</param>
+        /// <param name="endDate">Ngày kết thúc</param>
         /// <returns></returns>
         List<OutPatChargeItemVO> getOutPatItem_ghlx(int patid, string brxz, string startDate, string endDate);
 
         /// <summary>
-        /// 挂号科室类型
+        /// Loại khoa đăng ký khám
         /// </summary>
-        /// <param name="patid">病人patid</param>
+        /// <param name="patid">Bệnh nhânpatid</param>
         /// <param name="brxz"></param>
-        /// <param name="startDate">开始日期</param>
-        /// <param name="endDate">结束日期</param>
+        /// <param name="startDate">Ngày bắt đầu</param>
+        /// <param name="endDate">Ngày kết thúc</param>
         /// <returns></returns>
         List<OutPatChargeItemVO> GetOutPatGhlx(int patid, string brxz, string startDate, string endDate);
 
         /// <summary>
-        /// 科室是否有效
+        /// Khoa có hiệu lực hay không
         /// </summary>
-        /// <param name="ks">科室</param>
-        /// <param name="mjzbz">门急诊标志</param>
-        /// <param name="parmJdrq">建档日期</param>
+        /// <param name="ks">Khoa</param>
+        /// <param name="mjzbz">Cờ khám ngoại trú/cấp cứu</param>
+        /// <param name="parmJdrq">Ngày lập hồ sơ</param>
         /// <returns></returns>
         bool getActiveDuration(string ks, string mjzbz, object parmJdrq);
 
         /// <summary>
-        /// 获取当前挂号的医生信息
+        /// Lấy thông tin bác sĩ đăng ký khám hiện tại
         /// </summary>
-        /// <param name="ghnm">挂号内码</param>
-        /// <param name="parmKs">科室</param>
+        /// <param name="ghnm">Mã nội bộ đăng ký khám</param>
+        /// <param name="parmKs">Khoa</param>
         /// <param name="type">3</param>
-        /// <param name="mjzbz">门急诊标志</param>
-        /// <param name="Isyzybzz">医保标志</param>
-        /// <param name="Istxzzys">大病标志</param>
+        /// <param name="mjzbz">Cờ khám ngoại trú/cấp cứu</param>
+        /// <param name="Isyzybzz">Cờ BHYT</param>
+        /// <param name="Istxzzys">Cờ bệnh nặng</param>
         /// <returns></returns>
         OutPatChargeDoctorVO getDoctorInfo(int ghnm, string parmKs, int type, string mjzbz, bool Isyzybzz, bool Istxzzys);
 
         /// <summary>
-        /// 获取药品和收费项目
+        /// Lấy thuốc và hạng mục thu phí
         /// </summary>
-        /// <param name="keyword">查询关键字、py、mc</param>
+        /// <param name="keyword">Từ khóa tra cứu,py,mc</param>
         /// <returns></returns>
         List<ChargeItemDetailVO> getYpItemList(string keyword, string yfPz, string OrganizeId);
 
         /// <summary>
-        /// 获取处方号
+        /// Lấy số đơn thuốc
         /// </summary>
         /// <returns></returns>
         string getCflsh();
 
         /// <summary>
-        /// 获取附加费金额
+        /// Lấy số tiền phụ phí
         /// </summary>
-        /// <param name="parmBrxz">病人性质</param>
-        /// <param name="parmDl">大类</param>
-        /// <param name="parmSfxm">收费项目</param>
-        /// <param name="parmDJ">单价</param>
+        /// <param name="parmBrxz">Tính chất bệnh nhân</param>
+        /// <param name="parmDl">Loại lớn</param>
+        /// <param name="parmSfxm">Hạng mục thu phí</param>
+        /// <param name="parmDJ">Đơn giá</param>
         /// <returns></returns>
         decimal? Calcfwfjm(string parmBrxz, string parmDl, string parmSfxm, string parmDJ);
 
         /// <summary>
-        /// 门诊收费结算 事务
+        /// Quyết toán thu phí ngoại trú Giao dịch
         /// </summary>
         /// <param name="vo"></param>
         void OutPatChargeSettDB(OutPatChargeSettDataVo vo);
 
         /// <summary>
-        /// 计算出门诊结算信息 getMzJs
+        /// Tính ra thông tin quyết toán ngoại trú getMzJs
         /// </summary>
         void GetMzJsInfo(SettlementEntityVO jsEntity, SysPatientNatureEntity brxzEntity, out OutpatientSettlementEntity mzjs, out List<OutpatientSettlementCategoryEntity> jsdl);
 
 
         /// <summary>
-        /// 获取结算明细
+        /// Lấy chi tiết quyết toán
         /// </summary>
         /// <param name="mzjs"></param>
         /// <param name="jsEntity"></param>
@@ -115,17 +115,17 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<OutpatientSettlementDetailEntity> getJSMX(SettlementEntityVO jsEntity, string orgId);
 
         /// <summary>
-        /// 门诊结算支付方式
+        /// Phương thức thanh toán quyết toán ngoại trú
         /// </summary>
-        /// <param name="jsnm">结算内码</param>
-        /// <param name="xjzffs">支付方式</param>
+        /// <param name="jsnm">Mã nội bộ quyết toán</param>
+        /// <param name="xjzffs">Phương thức thanh toán</param>
         /// <param name="xjzffsbh"></param>
-        /// <param name="ysk">应收款</param>
+        /// <param name="ysk">Khoản phải thu</param>
         /// <returns></returns>
         OutpatientSettlementPaymentModelEntity GetMzJsZffs(int jsnm, string xjzffs, string xjzffsbh, decimal ysk);
 
         /// <summary>
-        /// 门诊记账 获取病人基本信息(住院记账引用主意年龄修改)
+        /// Ghi sổ ngoại trú Lấy thông tin cơ bản bệnh nhân(Ghi sổ nội trú trích dẫn sửa đổi tuổi chú ý chính)
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="blh"></param>
@@ -134,7 +134,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<OutpatAccInfoDto> GetChargePatInfoInAcc(string kh, string IsBlh, string mzh, string orgId);
 
         /// <summary>
-        /// 根据门诊号查询病人详细信息（门诊收费右上方病人信息）
+        /// Tra cứu thông tin chi tiết bệnh nhân theo số ngoại trú(Thông tin bệnh nhân ở góc trên bên phải thu phí ngoại trú)
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -142,7 +142,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<OutpatAccInfoDto> GetOutpatChargePatInfoInAcc(string mzh, string kh,string zjh, string cardType, string orgId);
 
         /// <summary>
-        /// 根据卡号和挂号时间查询病人详细信息（门诊收费右上方病人信息）
+        /// Tra cứu thông tin chi tiết bệnh nhân theo số thẻ và thời gian đăng ký khám(Thông tin bệnh nhân ở góc trên bên phải thu phí ngoại trú)
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -153,7 +153,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<OutpatAccInfoDto> GetpatientAccountList(DateTime kssj, DateTime jssj, string kh,string zjh, string cardType, string orgId);
 
         /// <summary>
-        /// 根据卡号,病历号和证件号获取病人基本信息
+        /// Theo số thẻ,Lấy thông tin cơ bản bệnh nhân theo số bệnh án và số giấy tờ
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="blh"></param>
@@ -165,27 +165,27 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
 
         /// <summary>
-        /// 门诊记账结算事务
+        /// Giao dịch quyết toán ghi sổ ngoại trú
         /// </summary>
         /// <param name="vo"></param>
-        /// <param name="jzjhEntity">记账计划</param>
-        /// <param name="jzmxlist">记账计划明细</param>
+        /// <param name="jzjhEntity">Kế hoạch ghi sổ</param>
+        /// <param name="jzmxlist">Chi tiết kế hoạch ghi sổ</param>
         void OutPatChargeSettDBInAcc(OutPatChargeSettInAccDataVo vo, OutpatientAccountEntity jzjhEntity,
            List<OutpatientAccountDetailEntity> jzmxlist, Dictionary<string, string> optimaId);
 
 
         #region optima记账
         /// <summary>
-        /// 根据门诊/住院号获取病人信息
+        /// Theo ngoại trú/Lấy thông tin bệnh nhân theo số nhập viện
         /// </summary>
         /// <param name="admsNum"></param>
         /// <param name="orgId"></param>
-        /// <param name="type">病人类型：门诊/住院</param>
+        /// <param name="type">Loại bệnh nhân:Khám ngoại trú/Nhập viện</param>
         /// <returns></returns>
         OutpatAccInfoDto GetPatInfoInOptima(string admsNum, string orgId, string type);
 
         /// <summary>
-        /// 根据门诊号获取历史门诊记账项目
+        /// Lấy hạng mục ghi sổ ngoại trú lịch sử theo số ngoại trú
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -193,21 +193,21 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<OptimAccInfoDto> GetOutAccountInfo(string mzh, string orgId, string kssj, string jssj, string rygh);
 
         /// <summary>
-        /// 根据住院号获取历史住院记账项目
+        /// Lấy hạng mục ghi sổ nội trú lịch sử theo số nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<OptimAccInfoDto> GetintAccountInfo(string zyh, string orgId, string kssj, string jssj, string rygh);
         /// <summary>
-        /// optima提交
+        /// optimaGửi
         /// </summary>
-        /// <param name="outaddvo">门诊新增记账</param>
-        /// <param name="outupdatevo">门诊修改记账</param>
-        /// <param name="outdelvo">门诊删除记账</param>
-        /// <param name="inaddvo">住院新增记账</param>
-        /// <param name="inupdatevo">住院修改记账</param>
-        /// <param name="indelvo">住院删除记账</param>
+        /// <param name="outaddvo">Thêm ghi sổ ngoại trú</param>
+        /// <param name="outupdatevo">Sửa ghi sổ ngoại trú</param>
+        /// <param name="outdelvo">Xóa ghi sổ ngoại trú</param>
+        /// <param name="inaddvo">Thêm ghi sổ nội trú</param>
+        /// <param name="inupdatevo">Sửa ghi sổ nội trú</param>
+        /// <param name="indelvo">Xóa ghi sổ nội trú</param>
         /// <param name="orgId"></param>
         void PatsettDBInOptima(SettInAccOutpatDataVo outaddvo,
            updateInAccOutpatVo outupdatevo,
@@ -222,12 +222,12 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
         #region 门诊收费 Vision-1.3 门诊记账的第三个版本
         /// <summary>
-        ///  获取所有病人挂号信息
+        ///  Lấy tất cả thông tin đăng ký khám bệnh nhân
         /// </summary>
         IList<OutPatAccountingDto> GetRegisterGridJson(string begindate, string enddate, string orgId, string usercode);
 
         /// <summary>
-        /// 根据门诊号获取历史收费项目
+        /// Lấy hạng mục thu phí lịch sử theo số khám ngoại trú
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -235,30 +235,30 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<OptimAccInfoDto> GetpatientAccountInfo(string mzh, string orgId);
 
         /// <summary>
-        /// 保存记账，数据库保存
+        /// Lưu ghi sổ,Lưu CSDL
         /// </summary>
-        /// <param name="vo">新增对象集合</param>
-        /// <param name="updatevo">修改对象集合</param>
-        /// <param name="jsnmList">修改和删除的结算内码集合</param>
-        /// <param name="delvo">删除对象集合</param>
+        /// <param name="vo">Tập hợp đối tượng thêm mới</param>
+        /// <param name="updatevo">Tập hợp đối tượng sửa đổi</param>
+        /// <param name="jsnmList">Tập hợp mã nội bộ quyết toán đã sửa và xóa</param>
+        /// <param name="delvo">Tập hợp đối tượng xóa</param>
         /// <param name="orgId"></param>
         void OutPatsettDBInCharge(OutPatSettInAccDataVo vo, updatePatSettInAccDataVo updatevo, List<int> jsnmList, DelPatSettInAccDataVo delvo, string orgId);
         #endregion
 
         #region 门诊记账，第四个版本，增加单位治疗量逻辑
         /// <summary>
-        /// 根据门诊号获取历史收费项目，不包含药品和已完成，已停止的记账计划
+        /// Lấy hạng mục thu phí lịch sử theo số khám ngoại trú,Không bao gồm thuốc và đã hoàn thành,Kế hoạch ghi sổ đã dừng
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<OptimAccInfoDto> GetpatientAccountInfoV4(string mzh, string orgId);
         /// <summary>
-        /// 保存记账，数据库保存
+        /// Lưu ghi sổ,Lưu CSDL
         /// </summary>
-        /// <param name="vo">新增对象集合</param>
-        /// <param name="updatevo">修改对象集合</param>
-        /// <param name="jsnmList">修改结算内码集合</param>
+        /// <param name="vo">Tập hợp đối tượng thêm mới</param>
+        /// <param name="updatevo">Tập hợp đối tượng sửa đổi</param>
+        /// <param name="jsnmList">Sửa tập hợp mã nội bộ quyết toán</param>
         /// <param name="orgId"></param>
         void OutPatsettDBInCharge(OutPatSettInAccDataVo4 vo, List<OutpatientItemExeEntity> tempVo, string orgId);
 
@@ -268,7 +268,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         object GetPatientGridJson(string orgId);
 
         /// <summary>
-        /// 获取欠费预结的结算记录
+        /// Lấy bản ghi quyết toán quyết toán trước khi nợ phí
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -276,7 +276,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<OutpatientSettArrearageVO> GetOutpatientSettArrearageVOList(string mzh, string orgId);
 
         /// <summary>
-        /// 根据jsnm 获取结算的明细列表
+        /// Theojsnm Lấy danh sách chi tiết quyết toán
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="orgId"></param>
@@ -284,7 +284,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<OutpatientSettDetailVO> GetOutpatientSettDetailList(int jsnm, string orgId);
 
         /// <summary>
-        /// 根据门诊号获取未收费的处方
+        /// Lấy đơn thuốc chưa thu phí theo số ngoại trú
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -295,7 +295,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<ChargeLeftDto> GetNewUnSettedPrescriptionByMzh(string mzh, string orgId);
 
         /// <summary>
-        /// 获取待结
+        /// Lấy chờ quyết toán
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -303,7 +303,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<ChargeRightDto> GetAllUnSettedListListByMzh(string mzh, string orgId);
         IList<ChargeRightDto> GetNewAllUnSettedListByMzh(string mzh, string cfnms, string orgId);
         /// <summary>
-        /// 退费时再上传明细获取
+        /// Khi hoàn phí thì tải lên lại để lấy chi tiết
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="orgId"></param>
@@ -311,7 +311,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<GuiAnChargeRightDto> GetAllUnSettedListListByJsnm(string jsnm, string orgId);
 
         /// <summary>
-        /// 获取待结项目（非处方）
+        /// Lấy hạng mục chờ quyết toán(Không kê đơn)
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -319,7 +319,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<ChargeRightDto> GetAllUnSettedSingleItemListByMzh(string mzh, string orgId);
 
         /// <summary>
-        /// 获取指定患者新农合未结算的所有outpId
+        /// Lấy tất cả chưa quyết toán Bảo hiểm nông thôn mới của bệnh nhân được chỉ địnhoutpId
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="organizeId"></param>
@@ -327,7 +327,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<string> SelectNotSettedXnhOutpId(int patid, string organizeId);
 
         /// <summary>
-        /// 贵安医保，获取门诊上传时数据（头信息）
+        /// BHYT Quý An,Lấy dữ liệu khi tải lên ngoại trú(Thông tin đầu)
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -349,7 +349,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region 结算查询
 
         /// <summary>
-        /// 结算查询
+        /// Tra cứu quyết toán
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -362,7 +362,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #endregion
 
         /// <summary>
-        /// 根据门诊号获取系统病人基本信息
+        /// Lấy thông tin cơ bản bệnh nhân hệ thống theo số ngoại trú
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>

@@ -4,7 +4,7 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
 {
     /// <summary>
-    /// 门诊结算查询 Result VO
+    /// Tra cứu quyết toán ngoại trú Result VO
     /// </summary>
     public class OutpatientSettlementVO : OutpatientSettYbFeeRelatedDTO
     {
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
         public int jszt { get; set; }
 
         /// <summary>
-        /// 结算日期
+        /// Ngày quyết toán
         /// </summary>
         public DateTime jsrq { get; set; }
 

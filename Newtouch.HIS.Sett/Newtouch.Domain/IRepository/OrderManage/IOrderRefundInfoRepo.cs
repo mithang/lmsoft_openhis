@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.IRepository
         void SubmitInfo(OrderRefundInfoEntity entity, string keyValue);
 
         /// <summary>
-        /// 获取已退金额（包括未知状态的）
+        /// Lấy số tiền đã trả lại(Bao gồm trạng thái chưa biết)
         /// </summary>
         /// <param name="outTradeNo"></param>
         /// <returns></returns>

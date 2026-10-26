@@ -18,22 +18,22 @@ namespace Newtouch.HIS.Domain.Entity
         public string CardId { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string CardNo { get; set; }
 
         /// <summary>
-        /// 卡类型
+        /// Loại thẻ
         /// </summary>
         public string CardType { get; set; }
 
         /// <summary>
-        /// 卡类型名称
+        /// Tên loại thẻ
         /// </summary>
         public string CardTypeName { get; set; }
 
@@ -48,20 +48,20 @@ namespace Newtouch.HIS.Domain.Entity
         public string hzxm { get; set; }
 
         /// <summary>
-        /// 个人医保号
+        /// Số BHYT cá nhân
         /// </summary>
         public string grbh { get; set; }
 
         /// <summary>
-        /// 参保类别
+        /// Loại tham gia bảo hiểm
         /// </summary>
         public string cblb { get; set; }
         /// <summary>
-        /// 参保地代码
+        /// Mã nơi tham gia bảo hiểm
         /// </summary>
         public string cbdbm { get; set; }
         /// <summary>
-        /// 险种类型
+        /// Loại hình bảo hiểm
         /// </summary>
         public string xzlx { get; set; }
         public string brxz { get; set; }

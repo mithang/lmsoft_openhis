@@ -5,32 +5,32 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// 住院结算 病人 当前状态详情（病人基本信息、项目计费、药品计费、账户收支）
+    /// Quyết toán nội trú Bệnh nhân Chi tiết trạng thái hiện tại(Thông tin cơ bản bệnh nhân,Tính phí hạng mục,Tính phí thuốc,Thu chi tài khoản)
     /// </summary>
     public class HosSettPatStatusDetailDto
     {
         /// <summary>
-        /// 住院病人基本信息
+        /// Thông tin cơ bản bệnh nhân nội trú
         /// </summary>
         public HospSettPatInfoVO HospSettPatInfo { get; set; }
 
         /// <summary>
-        /// 大类计费List
+        /// Tính phí loại lớnList
         /// </summary>
         public IList<HospFeeClassifyWithDLBO> DLFeeList { get; set; }
 
         /// <summary>
-        /// 交款历史（系统账户收支记录）
+        /// Lịch sử nộp tiền(Bản ghi thu chi tài khoản hệ thống)
         /// </summary>
         public IList<HosPatAccPayVO> ChargeList { get; set; }
         
         /// <summary>
-        /// 账户预交金
+        /// Tiền tạm ứng tài khoản
         /// </summary>
         public decimal zhyjj { get; set; }
 
         /// <summary>
-        /// 结算金额（未除去减免的）
+        /// Số tiền quyết toán(Chưa trừ phần giảm miễn)
         /// </summary>
         public decimal jsje { get; set; }
 

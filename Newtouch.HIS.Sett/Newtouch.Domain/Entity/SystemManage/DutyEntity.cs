@@ -12,53 +12,53 @@ namespace Newtouch.HIS.Domain.Entity
     public class DutyEntity : IEntity<DutyEntity>
     {
         /// <summary>
-        /// 角色主键
+        /// Khóa chính vai trò
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织主键
+        /// Khóa chính tổ chức
         /// </summary>
         public string F_OrganizeId { get; set; }
 
         /// <summary>
-        /// 编号
+        /// Số hiệu
         /// </summary>
         public string F_EnCode { get; set; }
 
         /// <summary>
-        /// 名称
+        /// Tên
         /// </summary>
         public string F_FullName { get; set; }
 
         /// <summary>
-        /// 排序码
+        /// Mã sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 描述
+        /// Mô tả
         /// </summary>
         public string F_Description { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// Người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 

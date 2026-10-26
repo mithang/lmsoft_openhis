@@ -1,8 +1,8 @@
 ﻿/**********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description： 门诊挂号收费病人有关信息 
-// Author：HLF
-// CreateDate： 2016/12/23 11:22:53 
+// Copyright (C) 2016 Newtouch Bảo lưu bản quyền. 
+// Description: Thông tin liên quan bệnh nhân thu phí đăng ký khám ngoại trú 
+// Author:HLF
+// CreateDate: 2016/12/23 11:22:53 
 //**********************************************************/
 
 using System;
@@ -14,135 +14,135 @@ namespace Newtouch.HIS.Domain.ValueObjects
     {
         //[xt_brjbxx]
         /// <summary>
-        /// 病人内码
+        /// Mã nội bộ bệnh nhân
         /// </summary>
         public int patid { get; set; }
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string xb { get; set; }
         /// <summary>
-        /// 出生年月
+        /// Năm tháng sinh
         /// </summary>
         public DateTime csny { get; set; }
         /// <summary>
-        /// 地址
+        /// Địa chỉ
         /// </summary>
         public string dz { get; set; }
         /// <summary>
-        /// 凭证号
+        /// Số chứng từ
         /// </summary>
         public string pzh { get; set; }
         /// <summary>
-        /// 医疗项目
+        /// Hạng mục y tế
         /// </summary>
         public string ylxm { get; set; }
         /// <summary>
-        /// 凭证开始日期
+        /// Ngày bắt đầu chứng từ
         /// </summary>
         public DateTime? pzksrq { get; set; }
         /// <summary>
-        /// 凭证终止日期
+        /// Ngày kết thúc chứng từ
         /// </summary>
         public DateTime? pzzzrq { get; set; }
         /// <summary>
-        /// 凭证诊断
+        /// Chẩn đoán chứng từ
         /// </summary>
         public string pzzd { get; set; }
         /// <summary>
-        /// 账户
+        /// Tài khoản
         /// </summary>
         public int? zh { get; set; }
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// 区县代码
+        /// Mã quận huyện
         /// </summary>
         public string qxdm { get; set; }
         /// <summary>
-        /// 单位名称
+        /// Tên đơn vị
         /// </summary>
         public string dwmc { get; set; }
         /// <summary>
-        /// 身份证--证件号
+        /// CMND/CCCD--Số giấy tờ
         /// </summary>
         public string zjh { get; set; }
         /// <summary>
-        /// 卡类型
+        /// Loại thẻ
         /// </summary>
         public string zjlx { get; set; }
 
 
-        // [xt_dy] 不用了
+        // [xt_dy] Không cần nữa
         /// <summary>
-        /// 地域编号
+        /// Mã khu vực
         /// </summary>
         public int? dybh { get; set; }
         /// <summary>
-        /// 地域
+        /// Khu vực
         /// </summary>
         public string dy { get; set; }
         ///// <summary>
-        ///// 地域名称
+        ///// Tên khu vực
         ///// </summary>
         //public string dymc { get; set; }
 
         //[mz_gh]
         /// <summary>
-        /// 挂号内码
+        /// Mã nội bộ đăng ký khám
         /// </summary>
         public int ghnm { get; set; }
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
         /// <summary>
-        /// 就诊序号
+        /// Số thứ tự khám
         /// </summary>
         public Int16 jzxh { get; set; }
 
         /// <summary>
-        /// 门诊号
+        /// Số khám ngoại trú
         /// </summary>
         public string mzh { get; set; }
 
         /// <summary>
-        /// 复诊标志
+        /// Cờ tái khám
         /// </summary>
         public Byte fzbz { get; set; }
         /// <summary>
-        /// 病人性质
+        /// Tính chất bệnh nhân
         /// </summary>
         public string brxz { get; set; }
 
         /// <summary>
-        /// 病人性质编号
+        /// Mã tính chất bệnh nhân
         /// </summary>
         public int brxzbh { get; set; }
 
         /// <summary>
-        /// 病人性质名称
+        /// Tên tính chất bệnh nhân
         /// </summary>
         public string brxzmc { get; set; }
         /// <summary>
-        /// 医保交易类型
+        /// Loại giao dịch BHYT
         /// </summary>
         public string ybjylx { get; set; }
 
 
 
         /// <summary>
-        /// 病人性质集合
+        /// Tập hợp tính chất bệnh nhân
         /// </summary>
         public List<OutPatChargeProperty> brxzList { get; set; }
 

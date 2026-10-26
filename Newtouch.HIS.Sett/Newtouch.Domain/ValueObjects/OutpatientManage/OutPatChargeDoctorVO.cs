@@ -1,8 +1,8 @@
 ﻿/**********************************************************/
-// Copyright (C) 2016 Newtouch 版权所有。 
-// Description： 
-// Author：
-// CreateDate： 2016/12/26 19:07:26 
+// Copyright (C) 2016 Newtouch Bảo lưu bản quyền. 
+// Description: 
+// Author:
+// CreateDate: 2016/12/26 19:07:26 
 //**********************************************************/
 
 using System;
@@ -12,32 +12,32 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class OutPatChargeDoctorVO
     {
         /// <summary>
-        /// 医生名称
+        /// Tên bác sĩ
         /// </summary>
         public string rymc { get; set; }
 
         /// <summary>
-        /// 工号
+        /// Mã nhân viên
         /// </summary>
         public string gh { get; set; }
 
         /// <summary>
-        /// 工号
+        /// Mã nhân viên
         /// </summary>
         public string ry { get; set; }
 
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// 科室编号
+        /// Mã khoa
         /// </summary>
         public Int32 ksbh { get; set; }
     }

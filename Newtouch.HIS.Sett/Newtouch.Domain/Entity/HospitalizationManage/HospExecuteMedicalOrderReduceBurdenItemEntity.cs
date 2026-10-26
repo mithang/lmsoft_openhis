@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 住院执行医嘱减负项目表
+    /// Bảng hạng mục giảm gánh nặng y lệnh thực hiện nội trú
     /// </summary>
     [Table("zy_zxyzjfxm")]
     public class HospExecuteMedicalOrderReduceBurdenItemEntity : IEntity<HospExecuteMedicalOrderReduceBurdenItemEntity>
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int jfxmbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 

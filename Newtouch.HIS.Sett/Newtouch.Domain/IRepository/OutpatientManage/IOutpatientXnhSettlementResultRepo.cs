@@ -4,13 +4,13 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 门诊新农合结算
+    /// Quyết toán Bảo hiểm nông thôn mới ngoại trú
     /// </summary>
     public interface IOutpatientXnhSettlementResultRepo : IRepositoryBase<OutpatientXnhSettlementResultEntity>
     {
 
         /// <summary>
-        /// 根据outpId获取数据
+        /// TheooutpIdLấy dữ liệu
         /// </summary>
         /// <param name="outpId"></param>
         /// <param name="organizeId"></param>
@@ -18,9 +18,9 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<OutpatientXnhSettlementResultEntity> SelectData(string outpId, string organizeId);
 
         /// <summary>
-        /// 修改结算标志
+        /// Sửa cờ quyết toán
         /// </summary>
-        /// <param name="jszt">结算状态 1-已结 2-已退   默认已结</param>
+        /// <param name="jszt">Trạng thái quyết toán 1-Đã quyết toán 2-Đã trả lại   Mặc định đã quyết toán</param>
         /// <param name="outpId"></param>
         /// <param name="userCode"></param>
         /// <param name="organizeId"></param>

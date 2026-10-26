@@ -6,36 +6,36 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity.PatientManage
 {
     /// <summary>
-    /// 住院病人账户
+    /// Tài khoản bệnh nhân nội trú
     /// </summary>
     [Table("zy_zh")]
     public class InpatientAccountEntity : IEntity<InpatientAccountEntity>
     {
 
         /// <summary>
-        /// 帐户编号
+        /// Mã tài khoản
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 帐户
+        /// Tài khoản
         /// </summary>
         public int zhCode { get; set; }
 
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 帐户余额
-        /// 该字段不存余额，如果要查询余额，则到表xt_brzhszjl查询最后一条记录   --------------------------------------      暂时用于处理慈善病人   -1 表示无需校验余额      
+        /// Số dư tài khoản
+        /// Trường này không lưu số dư,Nếu muốn tra cứu số dư,thì tra bảngxt_brzhszjlTra cứu bản ghi cuối cùng   --------------------------------------      Tạm dùng để xử lý bệnh nhân từ thiện   -1 Thể hiện không cần kiểm tra số dư      
         /// </summary>
         public decimal zhye { get; set; }
 
@@ -44,32 +44,32 @@ namespace Newtouch.HIS.Domain.Entity.PatientManage
         public int? zhxz { get; set; }
 
         /// <summary>
-        /// 状态
-        /// 0 无效 1 有效
+        /// Trạng thái
+        /// 0 Không hiệu lực 1 Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 病人内码
+        /// Mã nội bộ bệnh nhân
         /// </summary>
         public int? patid { get; set; }
         public string memo { get; set; }

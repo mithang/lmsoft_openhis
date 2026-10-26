@@ -7,113 +7,113 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.ReportTemplateVO
 {
     /// <summary>
-    /// 医保日间手术治疗目录表
+    /// Bảng danh mục điều trị phẫu thuật trong ngày của BHYT
     /// </summary>
     public class G_yb_daysrg_trt_list_bVO
     {
         /// <summary>
-        /// 日间手术治疗目录ID
+        /// Danh mục điều trị phẫu thuật trong ngàyID
         /// </summary>
         public string DAYSRG_TRT_LIST_ID { get; set; }
         /// <summary>
-        /// 日间手术病种目录代码
+        /// Mã danh mục loại bệnh phẫu thuật trong ngày
         /// </summary>
         public string DAYSRG_DISE_LIST_CODE { get; set; }
         /// <summary>
-        /// 日间手术病种名称
+        /// Tên loại bệnh phẫu thuật trong ngày
         /// </summary>
         public string DAYSRG_DISE_NAME { get; set; }
         /// <summary>
-        /// 有效标志
+        /// Cờ hiệu lực
         /// </summary>
         public string VALI_FLAG { get; set; }
         /// <summary>
-        /// 数据唯一记录号
+        /// Số bản ghi duy nhất của dữ liệu
         /// </summary>
         public string RID { get; set; }
 
         /// <summary>
-        /// 数据创建时间
+        /// Thời gian tạo dữ liệu
         /// </summary>
         public DateTime CRTE_TIME { get; set; }
         /// <summary>
-        ///  数据更新时间
+        ///  Thời gian cập nhật dữ liệu
         /// </summary>
         public DateTime UPDT_TIME { get; set; }
         ///// <summary>
-        ///// 创建人ID
+        ///// Người tạoID
         ///// </summary>
         //public string CRTER_ID { get; set; }
         ///// <summary>
-        ///// 创建人姓名
+        ///// Tên người tạo
         ///// </summary>
         //public string CRTER_NAME { get; set; }
         ///// <summary>
-        /////   创建机构编号
+        /////   Mã cơ sở tạo
         ///// </summary>
         //public string CRTE_OPTINS_NO { get; set; }
         ///// <summary>
-        ///// 经办人ID
+        ///// Người xử lýID
         ///// </summary>
         //public string OPTER_ID { get; set; }
         ///// <summary>
-        /////  经办人姓名
+        /////  Tên người xử lý
         ///// </summary>
         //public string OPTER_NAME { get; set; }
         ///// <summary>
-        /////  经办时间
+        /////  Thời gian xử lý
         ///// </summary>
         //public DateTime OPT_TIME { get; set; }
         ///// <summary>
-        /////  经办机构编号
+        /////  Mã cơ sở xử lý
         ///// </summary>
         //public string OPTINS_NO { get; set; }
         /// <summary>
-        ///  版本号
+        ///  Số phiên bản
         /// </summary>
         public string VER { get; set; }
         /// <summary>
-        ///  病种内涵
+        ///  Nội hàm loại bệnh
         /// </summary>
         public string DISE_CONT { get; set; }
         /// <summary>
-        ///  备注
+        ///  Ghi chú
         /// </summary>
         public string MEMO { get; set; }
         /// <summary>
-        ///  版本名称
+        ///  Tên phiên bản
         /// </summary>
         public string VER_NAME { get; set; }
         /// <summary>
-        ///  诊疗指南页码
+        ///  Số trang hướng dẫn khám chữa bệnh
         /// </summary>
         public string TRT_GUIDE_PAGEN { get; set; }
         /// <summary>
-        /// 诊疗指南电子档案
+        /// Hồ sơ điện tử hướng dẫn khám chữa bệnh
         /// </summary>
         public string TRT_GUIDE_ELECACS { get; set; }
         /// <summary>
-        ///  限定手术操作代码
+        ///  Mã phẫu thuật giới hạn
         /// </summary>
         public string QUA_OPRN_OPRT_CODE { get; set; }
         /// <summary>
-        ///  限定手术操作名称
+        ///  Tên phẫu thuật giới hạn
         /// </summary>
         public string QUA_OPRN_OPRT_NAME { get; set; }
         ///// <summary>
-        /////  下发标志
+        /////  Cờ ban hành
         ///// </summary>
         //public string ISU_FLAG { get; set; }
         ///// <summary>
-        /////  传输数据ID
+        /////  Truyền dữ liệuID
         ///// </summary>
         //public string TRAM_DATA_ID { get; set; }
         ///// <summary>
-        /////  生效时间
+        /////  Thời gian có hiệu lực
         ///// </summary>
         //public DateTime? EFFT_TIME { get; set; }
         ///// <summary>
-        /////  失效时间
+        /////  Thời gian hết hiệu lực
         ///// </summary>
         //public DateTime? INVD_TIME { get; set; }
     }

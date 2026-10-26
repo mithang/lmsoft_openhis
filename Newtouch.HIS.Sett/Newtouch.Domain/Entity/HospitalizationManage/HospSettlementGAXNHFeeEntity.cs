@@ -6,9 +6,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 创 建：李鑫
-    /// 日 期：2019-07-19 14:00
-    /// 描 述：住院结算-医保费用-贵安
+    /// Tạo：李鑫
+    /// Ngày tháng:2019-07-19 14:00
+    /// Mô tả:Quyết toán nội trú-Chi phí BHYT-Quý An
     /// </summary>
     [Table("zy_js_gaxnhjyfy")]
     public class HospSettlementGAXNHFeeEntity : IEntity<HospSettlementGAXNHFeeEntity>
@@ -28,328 +28,328 @@ namespace Newtouch.HIS.Domain.Entity
         public string inpId { get; set; }
         
         /// <summary>
-        /// 关联zy_js jsnm
+        /// Liên kếtzy_js jsnm
         /// </summary>
         public int jsnm { get; set; }
 
         /// <summary>
-        /// 总费用（四位小数精度）
+        /// Tổng chi phí(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public decimal? totalCost { get; set; }
         /// <summary>
-        /// 保内费用（四位小数精度）
+        /// Chi phí trong bảo hiểm(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public decimal? insuranceCost { get; set; }
         /// <summary>
-        /// 起伏线（四位小数精度）
+        /// Đường khởi điểm(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public decimal? undulatingLine { get; set; }
         /// <summary>
-        /// 统筹补偿（四位小数精度）
+        /// Bồi thường từ quỹ chung(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public decimal? generalRedeem { get; set; }
         /// <summary>
-        /// 意外伤害补偿（四位小数精度）
+        /// Bồi thường tổn thương bất ngờ(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public decimal? accidentRedeem { get; set; }
         /// <summary>
-        /// 家庭账户补偿（四位小数精度）
+        /// Bồi thường tài khoản gia đình(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public decimal? accRedeem { get; set; }
         /// <summary>
-        /// 补偿费用（四位小数精度）
+        /// Chi phí bồi thường(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public string compensateCost { get; set; }
         /// <summary>
-        /// 民政救助费用（四位小数精度）
+        /// Chi phí cứu trợ dân chính(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public string civilCost { get; set; }
         /// <summary>
-        /// 大病商保补偿（四位小数精度）
+        /// Bồi thường bảo hiểm thương mại bệnh nặng(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public string insureCost { get; set; }
         /// <summary>
-        /// 计生救助费用（四位小数精度）
+        /// Chi phí cứu trợ kế hoạch hóa gia đình(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public string salvaJSCost { get; set; }
         /// <summary>
-        /// 兜底补偿费用（四位小数精度）
+        /// Chi phí bồi thường đảm bảo mức tối thiểu(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public string bottomRedeem { get; set; }
         /// <summary>
-        /// 兜底二次补偿费用（四位小数精度）
+        /// Chi phí bồi thường lần hai đảm bảo mức tối thiểu(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public string bottomSecondRedeem { get; set; }
         /// <summary>
-        /// 精准目录补偿（四位小数精度）
+        /// Bồi thường danh mục chính xác(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public string medicineCost { get; set; }
         /// <summary>
-        /// 交通补贴补偿（四位小数精度）
+        /// Bồi thường trợ cấp đi lại(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public string trafficCost { get; set; }
         /// <summary>
-        /// 生活补贴补偿（四位小数精度）
+        /// Bồi thường trợ cấp sinh hoạt(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public string liveCost { get; set; }
         /// <summary>
-        /// 医疗补贴补偿（四位小数精度）
+        /// Bồi thường trợ cấp y tế(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public string medicalCost { get; set; }
         /// <summary>
-        /// 新精准优抚补偿（四位小数精度）
+        /// Bồi thường ưu đãi chính xác mới(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public string salvaYFCost { get; set; }
         /// <summary>
-        /// 新精准残联补偿（四位小数精度）
+        /// Bồi thường Hội người khuyết tật chính xác mới(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public string salvaCLCost { get; set; }
         /// <summary>
-        /// 新精准扶贫补偿（四位小数精度）
+        /// Bồi thường giảm nghèo chính xác mới(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public string salvaFPCost { get; set; }
         /// <summary>
-        /// 新精准疾控补偿（四位小数精度）
+        /// Bồi thường kiểm soát dịch bệnh chính xác mới(Độ chính xác 4 chữ số thập phân)
         /// </summary>
         public string salvaJKCost { get; set; }
         /// <summary>
-        /// 成员编码
+        /// Mã thành viên
         /// </summary>
         public string memberNo { get; set; }
         /// <summary>
-        /// 成员姓名
+        /// Tên thành viên
         /// </summary>
         public string name { get; set; }
         /// <summary>
-        /// 医疗证、卡号
+        /// Thẻ y tế,Số thẻ
         /// </summary>
         public string bookNo { get; set; }
         /// <summary>
-        /// 性别名称
+        /// Tên giới tính
         /// </summary>
         public string sexName { get; set; }
         /// <summary>
-        /// 出生年月日
+        /// Ngày tháng năm sinh
         /// </summary>
         public string birthday { get; set; }
         /// <summary>
-        /// 户主姓名
+        /// Tên chủ hộ
         /// </summary>
         public string masterName { get; set; }
         /// <summary>
-        /// 与户主关系名称
+        /// Tên quan hệ với chủ hộ
         /// </summary>
         public string relationName { get; set; }
         /// <summary>
-        /// 个人身份属性名称
+        /// Tên thuộc tính thân phận cá nhân
         /// </summary>
         public string identityName { get; set; }
         /// <summary>
-        /// 身份证号码
+        /// Số CMND/CCCD
         /// </summary>
         public string idCard { get; set; }
         /// <summary>
-        /// 当前年度成员住院已补偿次数
+        /// Số lần đã bồi thường nội trú thành viên trong năm hiện tại
         /// </summary>
         public string currYearRedeemCount { get; set; }
         /// <summary>
-        /// 当前年度成员住院已补偿总医疗费用（单位元，小数点后保留两位）
+        /// Tổng chi phí y tế đã bồi thường nội trú thành viên trong năm hiện tại(Đơn vị: đồng,Giữ lại hai chữ số sau dấu thập phân)
         /// </summary>
         public string currYearTotal { get; set; }
         /// <summary>
-        /// 当前年度成员住院已补偿总保内费用（单位元，小数点后保留两位）
+        /// Tổng chi phí trong bảo hiểm đã bồi thường nội trú thành viên trong năm hiện tại(Đơn vị: đồng,Giữ lại hai chữ số sau dấu thập phân)
         /// </summary>
         public string currYearEnableMoney { get; set; }
         /// <summary>
-        /// 当前年度成员住院已补偿金额（单位元，小数点后保留两位）
+        /// Số tiền đã bồi thường nội trú thành viên trong năm hiện tại(Đơn vị: đồng,Giữ lại hai chữ số sau dấu thập phân)
         /// </summary>
         public string currYearReddemMoney { get; set; }
         /// <summary>
-        /// 成员家庭编码
+        /// Mã gia đình thành viên
         /// </summary>
         public string familyNo { get; set; }
         /// <summary>
-        /// 成员家庭住址
+        /// Địa chỉ gia đình thành viên
         /// </summary>
         public string address { get; set; }
         /// <summary>
-        /// 参合属性名称
+        /// Tên thuộc tính tham gia hợp tác
         /// </summary>
         public string joinPropName { get; set; }
         /// <summary>
-        /// 当前年度家庭住院已补偿次数
+        /// Số lần đã bồi thường nội trú gia đình trong năm hiện tại
         /// </summary>
         public string currFamilyRedeemCount { get; set; }
         /// <summary>
-        /// 当前年度家庭住院已补偿总医疗费用（单位元，小数点后保留两位）
+        /// Tổng chi phí y tế đã bồi thường nội trú gia đình trong năm hiện tại(Đơn vị: đồng,Giữ lại hai chữ số sau dấu thập phân)
         /// </summary>
         public string currFamilyTotal { get; set; }
         /// <summary>
-        /// 当前年度家庭住院已补偿保内费用（单位元，小数点后保留两位）
+        /// Chi phí trong bảo hiểm đã bồi thường nội trú gia đình trong năm hiện tại(Đơn vị: đồng,Giữ lại hai chữ số sau dấu thập phân)
         /// </summary>
         public string currFamilyEnableMoney { get; set; }
         /// <summary>
-        /// 当前年度家庭住院已补偿金额（单位元，小数点后保留两位）
+        /// Số tiền đã bồi thường nội trú gia đình trong năm hiện tại(Đơn vị: đồng,Giữ lại hai chữ số sau dấu thập phân)
         /// </summary>
         public string currFamilyReddemMoney { get; set; }
         /// <summary>
-        /// 本次住院总医疗费用（单位元，小数点后保留两位）
+        /// Tổng chi phí y tế nội trú lần này(Đơn vị: đồng,Giữ lại hai chữ số sau dấu thập phân)
         /// </summary>
         public string totalCosts { get; set; }
         /// <summary>
-        /// 本次住院保内费用（单位元，小数点后保留两位）
+        /// Chi phí trong bảo hiểm nội trú lần này(Đơn vị: đồng,Giữ lại hai chữ số sau dấu thập phân)
         /// </summary>
         public string enableMoney { get; set; }
         /// <summary>
-        /// 本次住院费用中国定基本药品费用(单位元,小数点后保留两位)
+        /// Chi phí thuốc cơ bản quốc định trong chi phí nội trú lần này(Đơn vị: đồng,Giữ lại hai chữ số sau dấu thập phân)
         /// </summary>
         public string essentialMedicineMoney { get; set; }
         /// <summary>
-        /// 本次住院费用中省补基本药品费用(单位元,小数点后保留两位)
+        /// Chi phí thuốc cơ bản bổ sung cấp tỉnh trong chi phí nội trú lần này(Đơn vị: đồng,Giữ lại hai chữ số sau dấu thập phân)
         /// </summary>
         public string provinceMedicineMoney { get; set; }
         /// <summary>
-        /// 本次住院补偿扣除起付线金额（单位元，小数点后保留两位）
+        /// Số tiền bồi thường nội trú lần này trừ mức khởi điểm(Đơn vị: đồng,Giữ lại hai chữ số sau dấu thập phân)
         /// </summary>
         public string startMoney { get; set; }
         /// <summary>
-        /// 本次住院补偿金额（单位元，小数点后保留两位）
+        /// Số tiền bồi thường nội trú lần này(Đơn vị: đồng,Giữ lại hai chữ số sau dấu thập phân)
         /// </summary>
         public string calculateMoney { get; set; }
         /// <summary>
-        /// 补偿类型名称
+        /// Tên loại bồi thường
         /// </summary>
         public string redeemTypeName { get; set; }
         /// <summary>
-        /// 是否为单病种补偿
+        /// Có phải là bồi thường bệnh đơn lẻ hay không
         /// </summary>
         public string isSpecial { get; set; }
         /// <summary>
-        /// 是否实行保底补偿
+        /// Có thực hiện bồi thường đảm bảo mức tối thiểu hay không
         /// </summary>
         public string isPaul { get; set; }
         /// <summary>
-        /// 追补金额，中药和国定基本药品提高补偿额部分（单位元，小数点后保留两位）
+        /// Số tiền truy bổ,Phần tăng mức bồi thường thuốc Trung y và thuốc cơ bản quốc định(Đơn vị: đồng,Giữ lại hai chữ số sau dấu thập phân)
         /// </summary>
         public string anlagernMoney { get; set; }
         /// <summary>
-        /// 单病种费用定额（单位元，小数点后保留两位）
+        /// Định mức chi phí bệnh đơn lẻ(Đơn vị: đồng,Giữ lại hai chữ số sau dấu thập phân)
         /// </summary>
         public string fundPayMoney { get; set; }
         /// <summary>
-        /// 医疗机构承担费用(单位元，小数点后保留两位)
+        /// Chi phí cơ sở y tế chịu(Đơn vị: đồng,Giữ lại hai chữ số sau dấu thập phân)
         /// </summary>
         public string hospAssumeMoney { get; set; }
         /// <summary>
-        /// 个人自付费用（单位元，小数点后保留两位）
+        /// Chi phí cá nhân tự trả(Đơn vị: đồng,Giữ lại hai chữ số sau dấu thập phân)
         /// </summary>
         public string personalPayMoney { get; set; }
         /// <summary>
-        /// 民政优抚医疗补助
+        /// Trợ cấp y tế ưu đãi dân chính
         /// </summary>
         public string YFmedicalAid { get; set; }
         /// <summary>
-        /// 民政城乡医疗救助
+        /// Cứu trợ y tế thành thị và nông thôn dân chính
         /// </summary>
         public string CXmedicalAid { get; set; }
         /// <summary>
-        /// 高额材料限价超额费用（单位元，小数点后保留两位）
+        /// Chi phí vượt giá giới hạn vật tư giá cao(Đơn vị: đồng,Giữ lại hai chữ số sau dấu thập phân)
         /// </summary>
         public string materialMoney { get; set; }
         /// <summary>
-        /// 补偿分段信息列表
+        /// Danh sách thông tin bồi thường theo đoạn
         /// </summary>
         public string gradeList { get; set; }
         /// <summary>
-        /// 本次结算计算方法
+        /// Phương pháp tính toán quyết toán lần này
         /// </summary>
         public string calculationMethod { get; set; }
         /// <summary>
-        /// 慈善总会支付金额
+        /// Số tiền Hội từ thiện thanh toán
         /// </summary>
         public string ChinaCharityPay { get; set; }
         /// <summary>
-        /// 是否长周期定额付费
+        /// Có phải là trả phí cố định chu kỳ dài hay không
         /// </summary>
         public string isLongPeriod { get; set; }
         /// <summary>
-        /// 是否进入大病保险
+        /// Có vào bảo hiểm bệnh nặng hay không
         /// </summary>
         public string isCII { get; set; }
         /// <summary>
-        /// 大病保险合规费用
+        /// Chi phí hợp lệ bảo hiểm bệnh nặng
         /// </summary>
         public string CIIEligibleCosts { get; set; }
         /// <summary>
-        /// 本次大病保险起付线
+        /// Mức khởi điểm bảo hiểm bệnh nặng lần này
         /// </summary>
         public string CIIStartMoney { get; set; }
         /// <summary>
-        /// 本次大病保险补偿金额
+        /// Số tiền bồi thường bảo hiểm bệnh nặng lần này
         /// </summary>
         public string CIICalculateMoney { get; set; }
         /// <summary>
-        /// 累计大病保险补偿额
+        /// Lũy kế số tiền bồi thường bảo hiểm bệnh nặng
         /// </summary>
         public string CIICumulativePay { get; set; }
         /// <summary>
-        /// 累计大病保险扣除起付线金额
+        /// Lũy kế số tiền bảo hiểm bệnh nặng trừ mức khởi điểm
         /// </summary>
         public string CIICumulativeStart { get; set; }
         /// <summary>
-        /// 累计进入大病保险合规费用
+        /// Lũy kế chi phí hợp lệ vào bảo hiểm bệnh nặng
         /// </summary>
         public string CIICumulativeEligible { get; set; }
         /// <summary>
-        /// 计生两户减免费用金额
+        /// Số tiền giảm miễn chi phí hai hộ kế hoạch hóa gia đình
         /// </summary>
         public string FamilyPlanningWaiver { get; set; }
         /// <summary>
-        /// 其他补偿
+        /// Bồi thường khác
         /// </summary>
         public string OtherPay { get; set; }
         /// <summary>
-        /// 家庭账户支付
+        /// Thanh toán từ tài khoản gia đình
         /// </summary>
         public string familyAccount { get; set; }
         /// <summary>
-        /// 大地保险补偿金额
+        /// Số tiền bồi thường bảo hiểm Đại Địa
         /// </summary>
         public string continentInsuranceCost { get; set; }
         /// <summary>
-        /// 护理补贴
+        /// Trợ cấp điều dưỡng
         /// </summary>
         public string nurseCost { get; set; }
         /// <summary>
-        /// 床位包干补偿金额
+        /// Số tiền bồi thường khoán giường bệnh
         /// </summary>
         public string cwAccountCost { get; set; }
         /// <summary>
-        /// 特困供养补偿
+        /// Bồi thường nuôi dưỡng người đặc biệt khó khăn
         /// </summary>
         public string specialPovertyCost { get; set; }
         /// <summary>
-        /// 医疗扶助补偿
+        /// Bồi thường hỗ trợ y tế
         /// </summary>
         public string medicalAssistanceCost { get; set; }
         /// <summary>
-        /// 精准民政救助补偿（四位精准小数）
+        /// Bồi thường cứu trợ dân chính chính xác(Số thập phân chính xác 4 chữ số)
         /// </summary>
         public string salvaMZCost { get; set; }
         /// <summary>
-        /// 其他统筹金额
+        /// Số tiền quỹ chung khác
         /// </summary>
         public decimal? salvaQTCost { get; set; }
         /// <summary>
-        /// 农合总金额
+        /// Tổng số tiền Bảo hiểm nông thôn mới
         /// </summary>
         public decimal? nhzje { get; set; }
         /// <summary>
-        /// 农合现金支付
+        /// Thanh toán tiền mặt Bảo hiểm nông thôn mới
         /// </summary>
         public decimal? nhxjzf { get; set; }
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime? CreateTime { get; set; }
         /// <summary>

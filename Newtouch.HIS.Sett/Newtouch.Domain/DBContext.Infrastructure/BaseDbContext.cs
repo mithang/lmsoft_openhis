@@ -6,7 +6,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 namespace Newtouch.HIS.Domain.DBContext.Infrastructure
 {
     /// <summary>
-    /// base库DB上下文
+    /// basekhoDBNgữ cảnh
     /// </summary>
     public class BaseDbContext : DbContextBase
     {

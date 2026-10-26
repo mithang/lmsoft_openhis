@@ -9,52 +9,52 @@ namespace Newtouch.HIS.Domain.BusinessObjects
     public class NB_INTERFACE_MZSS_REP
     {
         /// <summary>
-        /// 发票总额
+        /// Tổng số tiền hóa đơn
         /// </summary>
         public string fpze { get; set; }
 
         /// <summary>
-        /// 可报总额
+        /// Tổng số tiền được thanh toán
         /// </summary>
         public string kbze { get; set; }
 
         /// <summary>
-        /// 自费金额
+        /// Số tiền tự chi trả
         /// </summary>
         public string zfje { get; set; }
 
         /// <summary>
-        /// 自付总额
+        /// Tổng số tiền tự trả
         /// </summary>
         public string zfze { get; set; }
 
         /// <summary>
-        /// 一次补偿总额
+        /// Tổng số tiền bồi thường một lần
         /// </summary>
         public string zbcze { get; set; }
 
         /// <summary>
-        /// 二次可报总额
+        /// Tổng số tiền được thanh toán lần hai
         /// </summary>
         public string qkbze { get; set; }
 
         /// <summary>
-        /// 二次补偿总额
+        /// Tổng số tiền bồi thường lần hai
         /// </summary>
         public string qbcze { get; set; }
 
         /// <summary>
-        /// 救助总额
+        /// Tổng số tiền cứu trợ
         /// </summary>
         public string jzze { get; set; }
 
         /// <summary>
-        /// 民政救助金额
+        /// Số tiền cứu trợ dân chính
         /// </summary>
         public string mzjzje { get; set; }
 
         /// <summary>
-        /// 总补偿额
+        /// Tổng số tiền bồi thường
         /// </summary>
         public string bcze { get; set; }
 

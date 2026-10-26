@@ -9,65 +9,65 @@ namespace Newtouch.HIS.Domain.DTO.PayDto
     public class MicroPayTradeInfoDTO
     {
         /// <summary>
-        /// 支付来源 支付宝1 微信2
+        /// Nguồn thanh toán Alipay1 WeChat2
         /// </summary>
         public int? PayType { get; set; }
 
         /// <summary>
-        /// 请求支付订单号
+        /// Số đơn hàng yêu cầu thanh toán
         /// </summary>
         public string OutTradeNo { get; set; }
 
         /// <summary>
-        /// 第三方交易号
+        /// Số giao dịch bên thứ ba
         /// </summary>
         public string TradeNo { get; set; }
 
         /// <summary>
-        /// 交易时间
+        /// Thời gian giao dịch
         /// </summary>
         public DateTime? OrderDate { get; set; }
 
         /// <summary>
-        /// 支付金额
+        /// Số tiền thanh toán
         /// </summary>
         public decimal? PayAmount { get; set; }
 
 
         /// <summary>
-        /// 是否支付成功 0 否 1 是
+        /// Thanh toán có thành công hay không 0 không 1 là
         /// </summary>
         public int? PayStatus { get; set; }
 
         public string PayMemo { get; set; }
 
         /// <summary>
-        /// 支付账户
+        /// Tài khoản thanh toán
         /// </summary>
         public string PayAccount { get; set; }
 
         /// <summary>
-        /// 交易描述
+        /// Mô tả giao dịch
         /// </summary>
         public string TradeDesc { get; set; }
 
         /// <summary>
-        /// 请求支付时间
+        /// Thời gian yêu cầu thanh toán
         /// </summary>
         public DateTime? OutTradeTime { get; set; }
 
         /// <summary>
-        /// 退款金额
+        /// Số tiền hoàn tiền
         /// </summary>
         public decimal? RefundAmount { get; set; }
 
         /// <summary>
-        /// 退款平台交易时间
+        /// Thời gian giao dịch hoàn tiền trên nền tảng
         /// </summary>
         public DateTime? RefundDate { get; set; }
 
         /// <summary>
-        /// 退款原因
+        /// Lý do hoàn tiền
         /// </summary>
         public string RefundReason { get; set; }
 
@@ -75,35 +75,35 @@ namespace Newtouch.HIS.Domain.DTO.PayDto
         public string RefundMemo { get; set; }
 
         /// <summary>
-        /// 请求退款时间
+        /// Thời gian yêu cầu hoàn tiền
         /// </summary>
         public DateTime? OutRefundTime { get; set; }
 
         /// <summary>
-        /// 退款请求号
+        /// Số yêu cầu hoàn tiền
         /// </summary>
         public string OutRequestNo { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
         /// <summary>
-        /// 门诊号/住院号
+        /// Số khám ngoại trú/Số nhập viện
         /// </summary>
         public string patno { get; set; }
         /// <summary>
-        /// 交易状态
+        /// Trạng thái giao dịch
         /// </summary>
         public string TradeStatus { get; set; }
     }

@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.API
     public interface IBookingDmnService
     {
         /// <summary>
-        /// 获取科室信息
+        /// Lấy thông tin khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ks"></param>
@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.API
         /// <returns></returns>
         IList<SysDepartmentInfo> GetDepartmentInfo(string orgId, string ks, string ksmc);
         /// <summary>
-        /// 获取医生人员信息
+        /// Lấy thông tin nhân viên bác sĩ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="gh"></param>
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.API
         /// <returns></returns>
         IList<SysStaffVO> GetStaffInfo(string orgId, string gh, string staffName);
         /// <summary>
-        /// 获取患者基本信息
+        /// Lấy thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="zjh"></param>
@@ -33,14 +33,14 @@ namespace Newtouch.HIS.Domain.IDomainServices.API
         /// <returns></returns>
         IList<SysPatInfoVO> GetPatInfo(string orgId, string kh, string zjh, string xm);
         /// <summary>
-        /// 获取Sys_Item
+        /// LấySys_Item
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cateCode"></param>
         /// <returns></returns>
         IList<SysItemDetailVO> SysItemDetail(string orgId, string cateCode);
         /// <summary>
-        /// 获取医院药品信息
+        /// Lấy thông tin thuốc bệnh viện
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ypId"></param>
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.API
         /// <returns></returns>
         IList<SysDrugVO> GetDrugInfo(string orgId, int ypId, string ypmc);
         /// <summary>
-        /// 获取医疗项目信息
+        /// Lấy thông tin hạng mục y tế
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="sfxmId"></param>
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.API
         /// <returns></returns>
         IList<SysMedicalVO> GetMedicalInfo(string orgId, int sfxmId, string sfxmCode, string sfxmmc);
         /// <summary>
-        /// 获取门诊疾病信息
+        /// Lấy thông tin bệnh ngoại trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zdCode"></param>
@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.API
         /// <returns></returns>
         IList<SysDiseaseVO> GetDiseaseInfo(string orgId, string zdCode, string zdmc, string icd10);
         /// <summary>
-        /// 门诊排班 schedule
+        /// Lịch trực ngoại trú schedule
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="OutDate"></param>
@@ -80,7 +80,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.API
         IList<MzpbScheduleVO> GetMzpbSchedule(string orgId, string OutDate, string czks, string ysgh, string RegType,
             string ghpbid, string ScheduId, string FromOutDate = null, int pblx = 1);
         /// <summary>
-        /// 获取门诊处方信息
+        /// Lấy thông tin đơn thuốc ngoại trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfnm"></param>
@@ -88,7 +88,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.API
         /// <returns></returns>
         IList<SysRecipeVO> GetRecipeInfo(string orgId, string cfnm, string mzh);
         /// <summary>
-        /// 获取门诊处方明细
+        /// Lấy chi tiết đơn thuốc ngoại trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfmxId"></param>
@@ -96,29 +96,29 @@ namespace Newtouch.HIS.Domain.IDomainServices.API
         /// <returns></returns>
         IList<SysRecipeDrugVO> GetRecipeDrugInfo(string orgId, string cfmxId, string cfnm);
         /// <summary>
-        /// 获取排班号源详情
+        /// Lấy chi tiết nguồn số lịch trực
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ScheduId"></param>
         /// <returns></returns>
         IList<MzpbScheduleVO> GetScheduleDetail(string orgId, string ScheduId);
         /// <summary>
-        /// 预约提交
+        /// Gửi hẹn khám
         /// </summary>
         /// <param name="req"></param>
         /// <param name="patvo"></param>
         /// <param name="pbvo"></param>
         decimal OutbookingApply(BookingRequestDto req,SysPatInfoVO patvo,MzpbScheduleVO pbvo);
         /// <summary>
-        /// 预约记录查询
+        /// Tra cứu bản ghi hẹn khám
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kh"></param>
         /// <param name="lxdh"></param>
-        /// <param name="BookId">预约号</param>
-        /// <param name="yyzt">预约状态</param>
-        /// <param name="ksrq">预约就诊开始日期</param>
-        /// <param name="jsrq">预约就诊结束日期</param>
+        /// <param name="BookId">Số hẹn khám</param>
+        /// <param name="yyzt">Trạng thái hẹn khám</param>
+        /// <param name="ksrq">Ngày bắt đầu khám hẹn</param>
+        /// <param name="jsrq">Ngày kết thúc khám hẹn</param>
         /// <param name="ks"></param>
         /// <param name="ysgh"></param>
         /// <returns></returns>
@@ -128,7 +128,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.API
         APIOutputDto OutpatRegApply(string bookId, string kh, string orgId,string payFee,string payLsh,string user);
         APIOutputDto OutPatRegCancel(string orgId, string user, string mzh, string kh, string appId);
         /// <summary>
-        /// 普通挂号
+        /// Đăng ký khám thông thường
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="orgId"></param>
@@ -140,7 +140,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.API
         /// <returns></returns>
         APIOutputDto OutpatReg(string kh, string orgId, string ghrq, string ghxz, string ks, string user, string AppId,string ghlybz);
         /// <summary>
-        /// 患者收费信息查询
+        /// Tra cứu thông tin thu phí bệnh nhân
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kh"></param>

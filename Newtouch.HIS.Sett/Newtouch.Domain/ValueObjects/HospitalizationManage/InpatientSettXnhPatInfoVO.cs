@@ -7,44 +7,44 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 住院新农合结算 患者信息
+    /// Quyết toán Bảo hiểm nông thôn mới nội trú Thông tin bệnh nhân
     /// </summary>
     public class InpatientSettXnhPatInfoVO
     {
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// 患者主键
+        /// Khóa chính bệnh nhân
         /// </summary>
         public int patid { get; set; }
         /// <summary>
-        /// 补偿序号
+        /// Số thứ tự bồi thường
         /// </summary>
         public string inpId { get; set; }
         /// <summary>
-        /// 住院医生
+        /// Bác sĩ nội trú
         /// </summary>
         public string doctor { get; set; }
         /// <summary>
-        /// 患者姓名
+        /// Tên bệnh nhân
         /// </summary>
         public string name { get; set; }
         /// <summary>
-        /// 医疗证卡号
+        /// Số thẻ y tế
         /// </summary>
         public string bookNo { get; set; }
         /// <summary>
-        /// 家庭编号
+        /// Mã gia đình
         /// </summary>
         public string familyNo { get; set; }
         /// <summary>
-        /// 个人编号
+        /// Số cá nhân
         /// </summary>
         public string memberNo { get; set; }
         /// <summary>
-        /// 住院标志
+        /// Cờ nội trú
         /// </summary>
         public string zybz { get; set; }
     }

@@ -10,51 +10,51 @@ namespace Newtouch.HIS.Domain
     public class QRBarPayOutput
     {
         /// <summary>
-        ///     结果
+        ///     Kết quả
         /// </summary>
         public string Result { get; set; }
 
         /// <summary>
-        ///     消息
+        ///     Tin nhắn
         /// </summary>
         public string Message { get; set; }
 
         /// <summary>
-        ///     返回值
+        ///     Giá trị trả về
         /// </summary>
         public string ReturnValue { get; set; }
 
         /// <summary>
-        /// 外部订单号
+        /// Số đơn hàng bên ngoài
         /// </summary>
         public string outTradeNo { get; set; }
 
         /// <summary>
-        /// 订单号 
+        /// Số đơn hàng 
         /// </summary>
         public string tradeNo { get; set; }
 
         /// <summary>
-        /// 买家ID
+        /// Người muaID
         /// </summary> 
         public string OpenId { get; set; }
 
         /// <summary>
-        /// 支付金额
+        /// Số tiền thanh toán
         /// </summary>
         public string TotalAmount { get; set; }
         /// <summary>
-        /// 支付金额
+        /// Số tiền thanh toán
         /// </summary>
         public string PaymentAmount { get; set; }
 
         /// <summary>
-        /// 订单状态
+        /// Trạng thái đơn hàng
         /// </summary>
         public string TradeStatus { get; set; }
 
         /// <summary>
-        /// 交易成功，交易失败
+        /// Giao dịch thành công,Giao dịch thất bại
         /// </summary>
         public bool TradeSuccess { get; set; }
     }
@@ -62,17 +62,17 @@ namespace Newtouch.HIS.Domain
     public class RefundFeeOut
     {
         /// <summary>
-        ///     结果
+        ///     Kết quả
         /// </summary>
         public string Result { get; set; }
 
         /// <summary>
-        ///     消息
+        ///     Tin nhắn
         /// </summary>
         public string Message { get; set; }
 
         /// <summary>
-        ///     返回值
+        ///     Giá trị trả về
         /// </summary>
         public string ReturnValue { get; set; }
     }

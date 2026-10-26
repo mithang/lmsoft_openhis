@@ -4,12 +4,12 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.BusinessObjects
 {
     /// <summary>
-    /// 住院记账 项目 提交FormBO
+    /// Ghi sổ nội trú Hạng mục GửiFormBO
     /// </summary>
     public class InpatientAccountingPlanItemDto
     {
         /// <summary>
-        /// 记账计划明细Id
+        /// Chi tiết kế hoạch ghi sổId
         /// </summary>
         public string jzjhmxId { get; set; }
 
@@ -44,32 +44,32 @@ namespace Newtouch.HIS.Domain.BusinessObjects
         public int? duration { get; set; }
 
         /// <summary>
-        /// 是否‘团体治疗’
+        /// Có hay không'Điều trị tập thể'
         /// </summary>
         public string ttbz { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string bz { get; set; }
 
         /// <summary>
-        /// 关联医生
+        /// Bác sĩ liên kết
         /// </summary>
         public IList<InpatientAccountingPlanItemDoctorDto> ysList { get; set; }
 
         /// <summary>
-        /// 医嘱类型 1药品 2项目
+        /// Loại y lệnh 1Thuốc 2Hạng mục
         /// </summary>
         public string yzlx { get; set; }
 
         /// <summary>
-        /// 单价（提交记账计划时的单价）
+        /// Đơn giá(Đơn giá khi gửi kế hoạch ghi sổ)
         /// </summary>
         public decimal? dj { get; set; }
 
         /// <summary>
-        /// 康复类别
+        /// Loại phục hồi chức năng
         /// </summary>
         public string kflb { get; set; }
         public int? zll { get; set; }

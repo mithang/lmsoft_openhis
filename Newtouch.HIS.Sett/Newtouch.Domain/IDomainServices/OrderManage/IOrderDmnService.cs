@@ -7,13 +7,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface IOrderDmnService
     {
         /// <summary>
-        /// 查询订单
+        /// Tra cứu đơn hàng
         /// </summary>
         /// <param name="vo"></param>
         /// <returns></returns>
         List<OrderInfoVO> OrderQuery(OrderInfoBaseVO vo, string orgId);
         /// <summary>
-        /// 订单明细查询
+        /// Tra cứu chi tiết đơn hàng
         /// </summary>
         /// <param name="orderNo"></param>
         /// <param name="orgId"></param>
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <returns></returns>
         OrderDetailVO OrderDetailQuery(string orderNo, string orgId, string appId);
         /// <summary>
-        /// 门诊订单明细
+        /// Chi tiết đơn hàng ngoại trú
         /// </summary>
         /// <param name="orderNo"></param>
         /// <param name="orgId"></param>
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <returns></returns>
         List<OrderMzVO> OrderDetailMzQuery(string orderNo, string orgId, string appId);
         /// <summary>
-        /// 住院订单明细
+        /// Chi tiết đơn hàng nội trú
         /// </summary>
         /// <param name="orderNo"></param>
         /// <param name="orgId"></param>
@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <returns></returns>
         List<OrderZyBaseVO> OrderDetailZyQuery(string orderNo, string orgId, string appId);
         /// <summary>
-        /// 创建门诊订单
+        /// Tạo đơn hàng ngoại trú
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="mzh"></param>
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <returns></returns>
         OrderInfoBaseVO OrderCreateMz(string kh, string mzh, string orgId, string appId,int patId,string dzId);
         /// <summary>
-        /// 创建住院结算订单
+        /// Tạo đơn hàng quyết toán nội trú
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="zyh"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <returns></returns>
         OrderInfoBaseVO OrderCreateZy(string kh, string zyh, string orgId, string appId);
         /// <summary>
-        /// 锁定订单
+        /// Khóa đơn hàng
         /// </summary>
         /// <param name="orderNo"></param>
         /// <param name="kh"></param>
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <returns></returns>
         OrderInfoBaseVO LockOrderApply(string orderNo, decimal? orderAmt, string kh, string appId, string orgId);
         /// <summary>
-        /// 申请锁定延时
+        /// Trì hoãn khóa đăng ký
         /// </summary>
         /// <param name="orderNo"></param>
         /// <param name="appId"></param>
@@ -72,7 +72,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <returns></returns>
         OrderInfoBaseVO LockOrderDelayedApply(string orderNo, string appId, string orgId);
         /// <summary>
-        /// 订单支付
+        /// Thanh toán đơn hàng
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="appId"></param>
@@ -80,20 +80,20 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <returns></returns>
         OrderInfoBaseVO OrderPaidSuccess(OrderInfoVO vo, string appId, string orgId);
         /// <summary>
-        /// 门诊订单支付step1：支付前订单校验
+        /// Thanh toán đơn hàng ngoại trústep1:Kiểm tra đơn hàng trước thanh toán
         /// </summary>
         /// <param name="vo"></param>
         /// <returns></returns>
         OutpOrderVO PayForOutpBillOrderBefore(OrderInfoVO vo, string appId);
         /// <summary>
-        /// 住院订单支付：支付前校验
+        /// Thanh toán đơn hàng nội trú:Kiểm tra trước thanh toán
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="appId"></param>
         /// <returns></returns>
         InHosOrderVO PayForInHosBillOrderBefore(OrderInfoVO vo, string appId);
         /// <summary>
-        /// 结算成功 业务系统同步推送
+        /// Quyết toán thành công Hệ thống nghiệp vụ đồng bộ đẩy
         /// </summary>
         /// <param name="cfnmList"></param>
         /// <param name="cfList"></param>

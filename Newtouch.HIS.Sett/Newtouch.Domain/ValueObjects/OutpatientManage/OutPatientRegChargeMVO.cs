@@ -5,50 +5,50 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 门诊挂号收费查询
+    /// Tra cứu thu phí đăng ký khám ngoại trú
     /// </summary>
     public class OutPatientRegChargeMVO : OutpatientSettYbFeeRelatedDTO
     {
         #region 挂号收费查询的主记录
 
         /// <summary>
-        /// 病例号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
         /// <summary>
-        /// 结算内码
+        /// Mã nội bộ quyết toán
         /// </summary>
         public int jsnm { get; set; }
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
         /// <summary>
-        /// 建档人员
+        /// Nhân viên lập hồ sơ
         /// </summary>
         public string CreatorCode { get; set; }
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
         /// <summary>
-        /// 挂号医生名称（有可能是后更新）
+        /// Tên bác sĩ đăng ký khám(Có thể là cập nhật sau)
         /// </summary>
         public string ghysmc { get; set; }
         /// <summary>
-        /// 挂号科室名称
+        /// Tên khoa đăng ký khám
         /// </summary>
         public string ghksmc { get; set; }
         /// <summary>
-        /// 老的发票号
+        /// Số hóa đơn cũ
         /// </summary>
         public string oldfph { get; set; }
         /// <summary>
@@ -61,51 +61,51 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string tCreatorCode { get; set; }
 
         /// <summary>
-        /// 收费员姓名
+        /// Tên nhân viên thu phí
         /// </summary>
         public string CreatorName { get; set; }
 
         /// <summary>
-        /// 结算类型
+        /// Loại quyết toán
         /// </summary>
         public string jslx { get; set; }
 
         #endregion
 
         /// <summary>
-        /// 收费总金额
+        /// Tổng số tiền thu phí
         /// </summary>
         public decimal jszje { get; set; }
         /// <summary>
-        /// 支付金额
+        /// Số tiền thanh toán
         /// </summary>
         public decimal? jsxjzf { get; set; }
 
         /// <summary>
-        /// 收费日期
+        /// Ngày thu phí
         /// </summary>
         public DateTime? sfrq { get; set; }
 
         /// <summary>
-        /// 病人性质名称
+        /// Tên tính chất bệnh nhân
         /// </summary>
         public string brxzmc { get; set; }
         /// <summary>
-        /// 结算对应挂号的门诊号
+        /// Số ngoại trú của lần đăng ký khám tương ứng với quyết toán
         /// </summary>
         public string mzh { get; set; }
         /// <summary>
-        /// 医保结算号
+        /// Số quyết toán BHYT
         /// </summary>
         public string ybjsh { get; set; }
 
         /// <summary>
-        /// 社保编号
+        /// Số BHXH
         /// </summary>
         public string sbbh { get; set; }
 
         /// <summary>
-        /// 现金部分支付方式
+        /// Phương thức thanh toán phần tiền mặt
         /// </summary>
         public string zffsmcstr { get; set; }
         public string xb { get; set; }
@@ -120,7 +120,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     }
 
     /// <summary>
-    /// 结算支付方式
+    /// Phương thức thanh toán quyết toán
     /// </summary>
     public class SettZffsResult
     {

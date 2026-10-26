@@ -15,22 +15,22 @@ namespace Newtouch.HIS.Domain.ValueObjects.SystemManage
         public string kflbmc { get; set; }
 
         /// <summary>
-        /// 治疗量
+        /// Liều điều trị
         /// </summary>
         public int? zll { get; set; }
 
         /// <summary>
-        /// 执行次数
+        /// Số lần thực hiện
         /// </summary>
         public int? zxcs { get; set; }
 
         /// <summary>
-        /// 医嘱频次
+        /// Tần suất y lệnh
         /// </summary>
         public string yzpc { get; set; }
 
         /// <summary>
-        /// 部位（康复治疗建议）
+        /// Vị trí(Đề xuất điều trị phục hồi chức năng)
         /// </summary>
         public string bw { get; set; }
         public string yfdm { get; set; }

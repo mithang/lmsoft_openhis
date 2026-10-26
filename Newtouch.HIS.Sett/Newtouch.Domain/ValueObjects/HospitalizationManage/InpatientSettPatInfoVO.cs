@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 住院天数
+        /// Số ngày nội trú
         /// </summary>
         public decimal? zyts { get; set; }
         /// <summary>
@@ -76,12 +76,12 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         /// </summary>
         public string ksCode { get; set; }
         /// <summary>
-        /// 出生年月
+        /// Năm tháng sinh
         /// </summary>
         public DateTime? csny { get; set; }
 
         /// <summary>
-        /// 年龄
+        /// Tuổi
         /// </summary>
         public int? nl
         {
@@ -95,9 +95,9 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
             }
         }
 
-        /***** 住院退费add *****/
+        /***** Hoàn phí nội trúadd *****/
         /// <summary>
-        /// 入院诊断
+        /// Chẩn đoán nhập viện
         /// </summary>
         public string ryzdmc { get; set; }
         /// <summary>
@@ -105,15 +105,15 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         /// </summary>
         public string ryzdicd10 { get; set; }
         /// <summary>
-        /// 出院诊断
+        /// Chẩn đoán xuất viện
         /// </summary>
         public string cyzd { get; set; }
         /// <summary>
-        /// 出院诊断ICD10
+        /// Chẩn đoán xuất việnICD10
         /// </summary>
         public string cyzdicd10 { get; set; }
         /// <summary>
-        /// 床位
+        /// Giường bệnh
         /// </summary>
         public string cw { get; set; }
 
@@ -127,11 +127,11 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         public string CardTypeName { get; set;}
 
 		/// <summary>
-		/// 账户余额
+		/// Số dư tài khoản
 		/// </summary>
 		public decimal? zhye { get; set; }
         /// <summary>
-        /// 参保类别 来区分上海医保和国家医保
+        /// Loại tham gia bảo hiểm Để phân biệt BHYT Thượng Hải và BHYT quốc gia
         /// </summary>
         public string cblb { get; set; }
     }

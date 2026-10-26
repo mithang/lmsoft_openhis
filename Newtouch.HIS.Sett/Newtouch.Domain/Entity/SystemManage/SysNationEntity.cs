@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 民族
+    /// Dân tộc
     /// </summary>
     [Table("xt_mz")]
     [Obsolete("please use the view")]

@@ -9,50 +9,50 @@ namespace Newtouch.HIS.Domain.Entity.DeanInquiryManage
     public class OutpatientCostEntiy
     {
         /// <summary>
-        /// 收入分类
+        /// Phân loại thu nhập
         /// </summary>
         public string srfl { get; set; }
         /// <summary>
-        /// 金额
+        /// Số tiền
         /// </summary>
         public decimal? je { get; set; }
     }
 
     /// <summary>
-    /// 门诊费用分类分析_图表（患者人均费用分析图表也用这个字段都是一样的）
+    /// Phân tích phân loại chi phí ngoại trú_Biểu đồ(Biểu đồ phân tích chi phí bình quân đầu người của bệnh nhân cũng dùng trường này, đều giống nhau)
     /// </summary>
     public class OutpatientCostEntiy_Mzfyflfx_tb
     {
         /// <summary>
-        /// 年份
+        /// Năm
         /// </summary>
         public string 年份 { get; set; }
         /// <summary>
-        /// 总费用
+        /// Tổng chi phí
         /// </summary>
         public decimal? 总费用 { get; set; }
         /// <summary>
-        /// 药品费
+        /// Phí thuốc
         /// </summary>
         public decimal? 药品费 { get; set; }
         /// <summary>
-        /// 耗材费
+        /// Phí vật tư tiêu hao
         /// </summary>
         public decimal? 耗材费 { get; set; }
         /// <summary>
-        /// 检验费
+        /// Phí xét nghiệm
         /// </summary>
         public decimal? 检验费 { get; set; }
         /// <summary>
-        /// 检查费
+        /// Phí kiểm tra
         /// </summary>
         public decimal? 检查费 { get; set; }
         /// <summary>
-        /// 资料费
+        /// Phí tài liệu
         /// </summary>
         public decimal? 资料费 { get; set; }
         /// <summary>
-        /// 其他
+        /// Khác
         /// </summary>
         public decimal? 其他 { get; set; }
     }
@@ -60,11 +60,11 @@ namespace Newtouch.HIS.Domain.Entity.DeanInquiryManage
     public class OutpatientCostEntiy_Hzrjfyfx
     {
         /// <summary>
-        /// 人均费用分类
+        /// Phân loại chi phí bình quân đầu người
         /// </summary>
         public string srfl { get; set; }
         /// <summary>
-        /// 金额
+        /// Số tiền
         /// </summary>
         public decimal? je { get; set; }
     }

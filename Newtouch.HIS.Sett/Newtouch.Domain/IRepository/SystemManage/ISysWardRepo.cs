@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysWardRepo : IRepositoryBase<SysWardVEntity>
     {
         /// <summary>
-        /// 获取有效
+        /// Lấy hiệu lực
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

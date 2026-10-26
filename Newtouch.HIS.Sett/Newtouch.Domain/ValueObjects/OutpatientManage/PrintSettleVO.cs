@@ -6,7 +6,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
     public class PrintSettleVO
     {
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
         /// <summary>
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
         /// </summary>
         public string ypmc { get; set; }
         /// <summary>
-        /// 单位
+        /// Đơn vị
         /// </summary>
         public string danwei { get; set; }
         /// <summary>
@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
         /// </summary>
         public decimal? fwfdj { get; set; }
         /// <summary>
-        /// 单价和服务费单价
+        /// Đơn giá và đơn giá phí dịch vụ
         /// </summary>
         public decimal? djandfwfdj { get; set; }
         /// <summary>

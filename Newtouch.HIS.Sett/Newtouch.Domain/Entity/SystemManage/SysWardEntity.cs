@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 病区
+    /// Khu bệnh
     /// </summary>
     [Table("xt_bq")]
     [Obsolete("please use the view")]

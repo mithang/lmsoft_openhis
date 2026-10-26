@@ -3,43 +3,43 @@
     public class PrintZYInfoVO
     {
 
-        public string xm { get; set; }          //姓名
-        public string xb { get; set; }          //性别
-        public int nl { get; set; }                   //年龄
-        public string csny { get; set; } //出生年月
-        public string blh { get; set; }         //病历号
-        public string hy { get; set; }          //婚姻 
-        public string zjh { get; set; }         //证件号
-        public string lxdz { get; set; }      //现住址
+        public string xm { get; set; }          //Họ tên
+        public string xb { get; set; }          //Giới tính
+        public int nl { get; set; }                   //Tuổi
+        public string csny { get; set; } //Năm tháng sinh
+        public string blh { get; set; }         //Số bệnh án
+        public string hy { get; set; }          //Hôn nhân 
+        public string zjh { get; set; }         //Số giấy tờ
+        public string lxdz { get; set; }      //Nơi ở hiện tại
 
-        public string phone { get; set; }       //联系电话
-        public string dh { get; set; }          //固话
-        public string lxr { get; set; }       //联系人姓名 
-        public string lxrjtdh { get; set; }     //联系人家庭电话
-        public string lxrdh { get; set; }     //联系人移动电话
-        public string lxrWebchat { get; set; }  //联系人微信 
-        public string lxrEmail { get; set; }    //联系人邮箱
-        public string lxrgx { get; set; }          //关系
-        public string lxrdz { get; set; }       //联系人地址
-        public string lxr2 { get; set; }      //联系人姓名2 
-        public string lxrjtdh2 { get; set; }    //联系人家庭电话2
-        public string lxryddh2 { get; set; }    //联系人移动电话2
-        public string lxrwebchat2 { get; set; } //联系人微信 2
-        public string lxrEmail2 { get; set; }   //联系人邮箱2
-        public string lxrgx2 { get; set; }         //关系2
-        public string lxrdz2 { get; set; }      //联系人地址2
-        public string ys { get; set; }          //饮食
-        public string zd { get; set; }          //诊断
-        public string bxmc { get; set; }        //保险名称
-        public string doctormc { get; set; }      //医生
-        public string jkjlmc { get; set; }        //健康教练
-        public string gms { get; set; }         //过敏史
-        public string zyh { get; set; }         //住院号
-        public string ryrq { get; set; }        //入院日期
-        public string type { get; set; }        //类型
-        public string webchat { get; set; }     //微信
-        public string email { get; set; }       //邮箱
-        public string zjlxfs { get; set; }      //最佳联系方式
-        public string cw { get; set; }          //床位
+        public string phone { get; set; }       //Điện thoại liên hệ
+        public string dh { get; set; }          //Điện thoại cố định
+        public string lxr { get; set; }       //Tên người liên hệ 
+        public string lxrjtdh { get; set; }     //Điện thoại gia đình người liên hệ
+        public string lxrdh { get; set; }     //Điện thoại di động người liên hệ
+        public string lxrWebchat { get; set; }  //WeChat người liên hệ 
+        public string lxrEmail { get; set; }    //Email người liên hệ
+        public string lxrgx { get; set; }          //Quan hệ
+        public string lxrdz { get; set; }       //Địa chỉ người liên hệ
+        public string lxr2 { get; set; }      //Tên người liên hệ2 
+        public string lxrjtdh2 { get; set; }    //Điện thoại gia đình người liên hệ2
+        public string lxryddh2 { get; set; }    //Điện thoại di động người liên hệ2
+        public string lxrwebchat2 { get; set; } //WeChat người liên hệ 2
+        public string lxrEmail2 { get; set; }   //Email người liên hệ2
+        public string lxrgx2 { get; set; }         //Quan hệ2
+        public string lxrdz2 { get; set; }      //Địa chỉ người liên hệ2
+        public string ys { get; set; }          //Ăn uống
+        public string zd { get; set; }          //Chẩn đoán
+        public string bxmc { get; set; }        //Tên bảo hiểm
+        public string doctormc { get; set; }      //Bác sĩ
+        public string jkjlmc { get; set; }        //Huấn luyện viên sức khỏe
+        public string gms { get; set; }         //Tiền sử dị ứng
+        public string zyh { get; set; }         //Số nhập viện
+        public string ryrq { get; set; }        //Ngày nhập viện
+        public string type { get; set; }        //Loại
+        public string webchat { get; set; }     //WeChat
+        public string email { get; set; }       //Email
+        public string zjlxfs { get; set; }      //Phương thức liên hệ tốt nhất
+        public string cw { get; set; }          //Giường bệnh
     }
 }

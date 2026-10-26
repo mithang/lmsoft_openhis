@@ -17,12 +17,12 @@ namespace Newtouch.HIS.Domain.ValueObjects.SystemManage
         public string zyjsnr { get; set; }
 
         /// <summary>
-        /// 0 不提示 1 普通提示 2 警示 3 禁止使用
+        /// 0 Không nhắc 1 Nhắc nhở thông thường 2 Cảnh báo 3 Cấm sử dụng
         /// </summary>
         public byte mzjsjb { get; set; }
 
         /// <summary>
-        /// 0 不提示 1 普通提示 2 警示 3 禁止使用
+        /// 0 Không nhắc 1 Nhắc nhở thông thường 2 Cảnh báo 3 Cấm sử dụng
         /// </summary>
         public byte zyjsjb { get; set; }
 

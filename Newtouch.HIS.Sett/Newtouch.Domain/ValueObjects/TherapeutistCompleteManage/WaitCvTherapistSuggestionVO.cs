@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 治疗建议（API用）
+    /// Đề xuất điều trị(APIdùng)
     /// </summary>
     public class TherapistSuggestionVO
     {
@@ -30,11 +30,11 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string zxksmc { get; set; }
 
         /// <summary>
-        /// 开立日期
+        /// Ngày lập
         /// </summary>
         public DateTime CreateTime { get; set; }
         /// <summary>
-        /// 开立人员
+        /// Nhân viên lập
         /// </summary>
         public string CreatorName { get; set; }
 
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string bz { get; set; }
 
         /// <summary>
-        /// 转换标志
+        /// Cờ chuyển đổi
         /// </summary>
         public string zhbz { get; set; }
     }

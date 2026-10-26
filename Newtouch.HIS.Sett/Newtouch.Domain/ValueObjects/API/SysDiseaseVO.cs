@@ -9,11 +9,11 @@ namespace Newtouch.HIS.Domain.ValueObjects.API
     public class SysDiseaseVO
     {
         /// <summary>
-        /// 疾病ID
+        /// BệnhID
         /// </summary>
         public string zdCode { get; set; }
         /// <summary>
-        /// 疾病名称
+        /// Tên bệnh
         /// </summary>
         public string zdmc { get; set; }
         /// <summary>

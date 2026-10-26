@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 门诊挂号作废
+    /// Hủy đăng ký khám ngoại trú
     /// </summary>
     [Table("mz_ghzf")]
     public class OutpatientRegistAbandonEntity : IEntity<OutpatientRegistAbandonEntity>

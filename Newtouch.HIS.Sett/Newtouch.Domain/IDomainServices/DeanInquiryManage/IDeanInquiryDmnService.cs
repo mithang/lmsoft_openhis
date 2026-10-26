@@ -10,93 +10,93 @@ namespace Newtouch.HIS.Domain.IDomainServices.DeanInquiryManage
     public interface IDeanInquiryDmnService
     {
         /// <summary>
-        /// 当日动态_全院收入概况 
+        /// Tin tức trong ngày_Tổng quan thu nhập toàn viện 
         /// </summary>
         List<DailyUpdatesEntiy> DailyUpdates_GetQysr();
         /// <summary>
-        /// 院长查询-今日动态-banner 
+        /// Tra cứu của viện trưởng-Tin tức hôm nay-banner 
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         JRDT_Banner GetJRDTBanner(string orgId);
         /// <summary>
-        /// 当日动态_今日动态门诊
+        /// Tin tức trong ngày_Tin tức ngoại trú hôm nay
         /// </summary>
         List<DailyUpdates_GetJrdtmz> DailyUpdates_GetJrdt(string orgid);
         /// <summary>
-        /// 当日动态_门诊处方
+        /// Tin tức trong ngày_Đơn thuốc ngoại trú
         /// </summary>
         List<DailyUpdates_GetMzcf> DailyUpdates_GetMzcf(string orgId);
         /// <summary>
-        /// 当日动态_门诊费用
+        /// Tin tức trong ngày_Chi phí ngoại trú
         /// </summary>
         List<DailyUpdates_GetMzfy> DailyUpdates_GetMzfy(string orgId);
         /// <summary>
-        /// 当日动态_住院占床率
+        /// Tin tức trong ngày_Tỷ lệ chiếm giường nội trú
         /// </summary>
         List<DailyUpdates_GetZyzcl> DailyUpdates_GetZyzcl(string orgId);
         /// <summary>
-        /// 当日动态_门诊挂号统计
+        /// Tin tức trong ngày_Thống kê đăng ký khám ngoại trú
         /// </summary>
         List<DailyUpdates_GetMzghtj> DailyUpdates_GetMzghtj(string orgId);
         /// <summary>
-        /// 当日动态_住院患者统计
+        /// Tin tức trong ngày_Thống kê bệnh nhân nội trú
         /// </summary>
         List<DailyUpdates_GetZyhztj> DailyUpdates_GetZyhztj(string orgId);
         /// <summary>
-        /// 业务排名_门诊医生工作量
+        /// Xếp hạng nghiệp vụ_Khối lượng công việc bác sĩ ngoại trú
         /// </summary>
         List<BusinessRankingEntiy> BusinessRankingEntiy_mzysgzl(string kssj, string jssj,string OrganizeId);
         /// <summary>
-        /// 业务排名_门诊科室收入排名
+        /// Xếp hạng nghiệp vụ_Xếp hạng thu nhập khoa ngoại trú
         /// </summary>
         List<BusinessRankingEntiy_mzkssr> BusinessRankingEntiy_mzkssr(string kssj, string jssj, string OrganizeId);
         /// <summary>
-        /// 业务排名_住院业务科室排名
+        /// Xếp hạng nghiệp vụ_Xếp hạng khoa nghiệp vụ nội trú
         /// </summary>
         List<BusinessRankingEntiy_zyywks>  BusinessRankingEntiy_zyywks(string kssj, string jssj, string orgId);
         /// <summary>
-        /// 业务排名_医生业务排名
+        /// Xếp hạng nghiệp vụ_Xếp hạng nghiệp vụ bác sĩ
         /// </summary>
         List<BusinessRankingEntiy_ysyw> BusinessRankingEntiy_ysyw(string kssj, string jssj, string orgId, string bqcode);
         /// <summary>
-        /// 门诊综合分析_抬头数据
+        /// Phân tích tổng hợp ngoại trú_Dữ liệu tiêu đề
         /// </summary>
         OutpatientComprehensiveAnalysisEntiy OutpatientComprehensiveAnalysisEntiy_TitleData(string orgId, string ksrq, string jsrq, string rtype);
         /// <summary>
-        /// 门诊综合分析_门诊患者分析
+        /// Phân tích tổng hợp ngoại trú_Phân tích bệnh nhân ngoại trú
         /// </summary>
         OutpatientComprehensiveAnalysisEntiy_Mzhzfx OutpatientComprehensiveAnalysisEntiy_Mzhzfx(string orgId, string ksrq, string jsrq);
         /// <summary>
-        /// 门诊工作量_门诊科室工作量
+        /// Khối lượng công việc ngoại trú_Khối lượng công việc khoa ngoại trú
         /// </summary>
         List<OutpatientWorkloadEntiy> OutpatientWorkloadEntiy_Mzksgzl(string ksrq, string jsrq, string OrganizeId);
         /// <summary>
-        /// 门诊工作量_门诊科室工作量
+        /// Khối lượng công việc ngoại trú_Khối lượng công việc khoa ngoại trú
         /// </summary>
         List<OutpatientWorkloadEntiy_ysgzl> OutpatientWorkloadEntiy_Ysgzl(string ksrq, string jsrq, string OrganizeId, string ks);
         /// <summary>
-        /// 门诊费用分析_门诊费用分类分析
+        /// Phân tích chi phí ngoại trú_Phân tích phân loại chi phí ngoại trú
         /// </summary>
         List<OutpatientCostEntiy> OutpatientCostEntiy_Mzfyflfx(string orgId, string ksrq, string jsrq);
         /// <summary>
-        /// 门诊费用分类分析_门诊费用分类分析_图表（患者人均费用分析图表也用这个字段都是一样的）
+        /// Phân tích phân loại chi phí ngoại trú_Phân tích phân loại chi phí ngoại trú_Biểu đồ(Biểu đồ phân tích chi phí bình quân đầu người của bệnh nhân cũng dùng trường này, đều giống nhau)
         /// </summary>
         List<OutpatientCostEntiy_Mzfyflfx_tb> OutpatientCostEntiy_Mzfyflfx_tb(string orgId, string ksrq, string jsrq, string rtype);
         /// <summary>
-        /// 门诊费用分析_患者人均费用分析
+        /// Phân tích chi phí ngoại trú_Phân tích chi phí bình quân đầu người của bệnh nhân
         /// </summary>
         List<OutpatientCostEntiy_Hzrjfyfx> OutpatientCostEntiy_Hzrjfyfx(string orgId, string ksrq, string jsrq);
         /// <summary>
-        /// 门诊费用分析_患者人均费用分析_图标
+        /// Phân tích chi phí ngoại trú_Phân tích chi phí bình quân đầu người của bệnh nhân_Biểu tượng
         /// </summary>
         List<OutpatientCostEntiy_Mzfyflfx_tb> OutpatientCostEntiy_Hzrjfyfx_tb(string orgId, string ksrq, string jsrq, string rtype);
         /// <summary>
-        /// 门诊效益_门诊效益明细
+        /// Hiệu quả ngoại trú_Chi tiết hiệu quả ngoại trú
         /// </summary>
         List<OutpatientBenefitsEntiy> OutpatientCostEntiy_Mzxymx(string orgId, string ksrq, string jsrq);
         /// <summary>
-        /// 门诊效益_医生效益
+        /// Hiệu quả ngoại trú_Hiệu quả bác sĩ
         /// </summary>
         List<OutpatientBenefitsEntiy_Ysxy> OutpatientCostEntiy_Ysxy(string orgId, string ksrq, string jsrq, string code);
         /// <summary>
@@ -106,7 +106,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.DeanInquiryManage
         List<KSXYPMDTO> GetKSXYPM(string orgId, string ksrq, string jsrq);
         List<KSXYPMBySJSRDTO> GetKSXYPMBySJSY(string orgId, string ksrq, string jsrq);
         /// <summary>
-        /// 药品top 50 排行
+        /// Thuốctop 50 Xếp hạng
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -116,7 +116,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.DeanInquiryManage
         List<DrugTrackingEntity> DrugTrackingEntity_Lsqs(string kssj, string jssj, string OrganizeId, string yptype);
 
         /// <summary>
-        /// 损益排行
+        /// Xếp hạng lãi lỗ
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -125,7 +125,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.DeanInquiryManage
         List<Profitandlossranking> Profitandlossranking_Lsqs(string kssj, string jssj, string OrganizeId);
 
         /// <summary>
-        /// 医生开单排行
+        /// Xếp hạng kê đơn của bác sĩ
         /// </summary>
         /// <param name="ypcode"></param>
         /// <param name="OrganizeId"></param>
@@ -133,7 +133,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.DeanInquiryManage
         List<DoctorBillingRanking> DoctorBillingRanking_Lsqs(string kssj, string jssj, string ypcode, string OrganizeId);
 
         /// <summary>
-        /// 耗材销量排名TOP50
+        /// Xếp hạng doanh số vật tư tiêu haoTOP50
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -142,7 +142,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.DeanInquiryManage
         List<ConsumablestatisticsEntity> Consumablestatistics_Lsqs(string kssj, string jssj, string OrganizeId);
 
         /// <summary>
-        /// 耗材医生排名
+        /// Xếp hạng bác sĩ vật tư tiêu hao
         /// </summary>
         /// <param name="sfxmdm"></param>
         /// <param name="OrganizeId"></param>
@@ -150,7 +150,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.DeanInquiryManage
         List<DoctorBillingRanking> DoctorBillingRankingHC_Lsqs(string kssj, string jssj, string sfxmdm, string OrganizeId);
 
         /// <summary>
-        /// 耗材统计
+        /// Thống kê vật tư tiêu hao
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -169,7 +169,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.DeanInquiryManage
         List<StaffNumberEntity> YSgzl_Lsqs(string kssj, string jssj, string bq, string OrganizeId);
         #region 住院费用分析
         /// <summary>
-        /// 住院费用分析_抬头数据
+        /// Phân tích chi phí nội trú_Dữ liệu tiêu đề
         /// </summary>
         ZYFYFXDTO ZYFYFX_TitleData(string orgId, string ksrq, string jsrq, string rtype);
         List<ZYFYFX_KSFYFXDTO> ZYFYFX_KSFYFXDTO(string orgId, string ksrq, string jsrq, string rtype);

@@ -17,41 +17,41 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string nlshow { get; set; }
         public string cwmc { get; set; }
         /// <summary>
-        /// 住院次序
+        /// Thứ tự nội trú
         /// </summary>
         public int zycx { get; set; }
         /// <summary>
-        /// 入院科室
+        /// Khoa nhập viện
         /// </summary>
         public string ryks { get; set; }
         public string ryksmc { get; set; }
         /// <summary>
-        /// 入院病区
+        /// Khu bệnh nhập viện
         /// </summary>
         public string ryward { get; set; }
         public string rywardname { get; set; }
         /// <summary>
-        /// 当前病区
+        /// Khu bệnh hiện tại
         /// </summary>
         public string ward { get; set; }
         public string wardname { get; set; }
         /// <summary>
-        /// 主治医生
+        /// Bác sĩ điều trị chính
         /// </summary>
         public string zzys { get; set; }
         public string zzysmc { get; set; }
         /// <summary>
-        /// 住院医生
+        /// Bác sĩ nội trú
         /// </summary>
         public string zyys { get; set; }
         public string zyysmc { get; set; }
         /// <summary>
-        /// 主任医生
+        /// Bác sĩ trưởng khoa
         /// </summary>
         public string zrys { get; set; }
         public string zrysmc { get; set; }
         /// <summary>
-        /// 过敏史
+        /// Tiền sử dị ứng
         /// </summary>
         public string gms { get; set; }
         public string rysj { get; set; }
@@ -59,16 +59,16 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string cysj { get; set; }
         public string cyjdrq2 { get; set; }
         /// <summary>
-        /// 账户余额
+        /// Số dư tài khoản
         /// </summary>
         public decimal? zhye { get; set; }
         public decimal? zfy { get; set; }
         /// <summary>
-        /// 待缴费用
+        /// Chi phí chờ nộp
         /// </summary>
         public decimal? djfy { get; set; }
         /// <summary>
-        /// 已结费用
+        /// Chi phí đã quyết toán
         /// </summary>
         public decimal? yjfy { get; set; }
         public string cyzddm { get; set; }
@@ -77,12 +77,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
 
 
     /// <summary>
-    /// 门诊患者视图
+    /// Khung nhìn bệnh nhân ngoại trú
     /// </summary>
     public class OutpatientVO
     {
         /// <summary>
-		/// 门诊号
+		/// Số khám ngoại trú
 		/// </summary>
 		public string mzh { get; set; }
         
@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string brxz { get; set; }
         public int? ghnm { get; set; }
         /// <summary>
-        /// 挂号来源
+        /// Nguồn đăng ký khám
         /// </summary>
         public string ghly { get; set; }
         public string mjzbz { get; set; }
@@ -103,54 +103,54 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public DateTime? ghrq { get; set; }
 
         /// <summary>
-        /// 结算内码
+        /// Mã nội bộ quyết toán
         /// </summary>
         public int? jsnm { get; set; }
         /// <summary>
-        /// 收费日期
+        /// Ngày thu phí
         /// </summary>
         public DateTime? sfrq { get; set; }
         /// <summary>
-        /// 结算人员
+        /// Nhân viên quyết toán
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 结算时间
+        /// Thời gian quyết toán
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 结算人员姓名
+        /// Tên nhân viên quyết toán
         /// </summary>
         public string CreatorUserName { get; set; }
 
         /// <summary>
-        /// 门诊挂号 或 门诊收费记账
+        /// Đăng ký khám ngoại trú hoặc Ghi sổ thu phí ngoại trú
         /// </summary>
         public string jslx { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 医保结算 医保结算号
+        /// Quyết toán BHYT Số quyết toán BHYT
         /// </summary>
         public string ybjsh { get; set; }
 
         /// <summary>
-        /// 总金额
+        /// Tổng số tiền
         /// </summary>
         public decimal jszje { get; set; }
 
         /// <summary>
-        /// 结算支付
+        /// Thanh toán quyết toán
         /// </summary>
         public decimal jsxjzf { get; set; }
         /// <summary>
-        /// 现金支付方式名称
+        /// Tên phương thức thanh toán tiền mặt
         /// </summary>
         public string xjzffsmc { get; set; }
 

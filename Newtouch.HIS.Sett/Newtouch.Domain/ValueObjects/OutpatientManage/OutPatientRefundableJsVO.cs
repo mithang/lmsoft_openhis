@@ -4,169 +4,169 @@ using Newtouch.HIS.Domain.DTO;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 门诊退费 结算 主记录 Query
+    /// Hoàn phí ngoại trú Quyết toán Bản ghi chính Query
     /// </summary>
     public class OutPatientRefundableJsVO : OutpatientSettYbFeeRelatedDTO
     {
         /// <summary>
-        /// 结算内码
+        /// Mã nội bộ quyết toán
         /// </summary>
         public int jsnm { get; set; }
 
         /// <summary>
-        /// 收费日期
+        /// Ngày thu phí
         /// </summary>
         public DateTime? sfrq { get; set; }
 
         /// <summary>
-        /// 结算人员
+        /// Nhân viên quyết toán
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 结算时间
+        /// Thời gian quyết toán
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 结算人员姓名
+        /// Tên nhân viên quyết toán
         /// </summary>
         public string CreatorUserName { get; set; }
 
         /// <summary>
-        /// 门诊挂号 或 门诊收费记账
+        /// Đăng ký khám ngoại trú hoặc Ghi sổ thu phí ngoại trú
         /// </summary>
         public string jslx { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 医保结算 医保结算号
+        /// Quyết toán BHYT Số quyết toán BHYT
         /// </summary>
         public string ybjsh { get; set; }
 
         /// <summary>
-        /// 总金额
+        /// Tổng số tiền
         /// </summary>
         public decimal jszje { get; set; }
 
         /// <summary>
-        /// 结算支付
+        /// Thanh toán quyết toán
         /// </summary>
         public decimal jsxjzf { get; set; }
 
         /// <summary>
-        /// 现金支付方式名称
+        /// Tên phương thức thanh toán tiền mặt
         /// </summary>
         public string xjzffsmc { get; set; }
 
     }
 
     /// <summary>
-    /// 退费信息
+    /// Thông tin hoàn phí
     /// </summary>
     public class OutPatientRefundableGuiAnJsVO
     {
         /// <summary>
-        /// 结算内码
+        /// Mã nội bộ quyết toán
         /// </summary>
         public int jsnm { get; set; }
 
         /// <summary>
-        /// 收费日期
+        /// Ngày thu phí
         /// </summary>
         public DateTime? sfrq { get; set; }
 
         /// <summary>
-        /// 结算人员
+        /// Nhân viên quyết toán
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 结算时间
+        /// Thời gian quyết toán
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 结算人员姓名
+        /// Tên nhân viên quyết toán
         /// </summary>
         public string CreatorUserName { get; set; }
 
         /// <summary>
-        /// 门诊挂号 或 门诊收费记账
+        /// Đăng ký khám ngoại trú hoặc Ghi sổ thu phí ngoại trú
         /// </summary>
         public string jslx { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 医保结算 医保结算号
+        /// Quyết toán BHYT Số quyết toán BHYT
         /// </summary>
         public string ybjsh { get; set; }
 
         /// <summary>
-        /// 总金额
+        /// Tổng số tiền
         /// </summary>
         public decimal jszje { get; set; }
 
         /// <summary>
-        /// 结算支付
+        /// Thanh toán quyết toán
         /// </summary>
         public decimal jsxjzf { get; set; }
 
         /// <summary>
-        /// 现金支付方式名称
+        /// Tên phương thức thanh toán tiền mặt
         /// </summary>
         public string xjzffsmc { get; set; }
         /// <summary>
-        /// 就诊编号
+        /// Số khám bệnh
         /// </summary>
         public string prm_akc190 { get; set; }
         /// <summary>
-        /// 分中心编号
+        /// Mã trung tâm chi nhánh
         /// </summary>
         public string prm_yab003 { get; set; }
         /// <summary>
-        /// 支付类别
+        /// Loại thanh toán
         /// </summary>
         public string prm_aka130 { get; set; }
         /// <summary>
-        /// 结算编号
+        /// Số quyết toán
         /// </summary>
         public string prm_yka103 { get; set; }
         /// <summary>
-        /// 经办人员编码
+        /// Mã nhân viên xử lý
         /// </summary>
         public string prm_aae011 { get; set; }
         /// <summary>
-        /// 经人人姓名
+        /// Tên người xử lý
         /// </summary>
         public string prm_ykc141 { get; set; }
         /// <summary>
-        /// 经办时间
+        /// Thời gian xử lý
         /// </summary>
         public string prm_aae036 { get; set; }
         /// <summary>
-        /// 退费原因
+        /// Lý do hoàn phí
         /// </summary>
         public string prm_aae013 { get; set; }
         /// <summary>
-        /// 社会保险办法
+        /// Phương pháp BHXH
         /// </summary>
         public string prm_ykb065 { get; set; }
         /// <summary>
-        /// 个人编号
+        /// Số cá nhân
         /// </summary>
         public string prm_aac001 { get; set; }
 
         /// <summary>
-        /// 门诊补偿序号
+        /// Số thứ tự bồi thường ngoại trú
         /// </summary>
         public string outpId { get; set; }
     }

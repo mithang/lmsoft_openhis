@@ -3,27 +3,27 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 结算明细
+    /// Chi tiết quyết toán
     /// </summary>
     public class OutpatientSettDetailVO
     {
         /// <summary>
-        /// 结算明细内码
+        /// Mã nội bộ chi tiết quyết toán
         /// </summary>
         public int jsmxnm { get; set; }
 
         /// <summary>
-        /// 名称
+        /// Tên
         /// </summary>
         public string mc { get; set; }
 
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 金额
+        /// Số tiền
         /// </summary>
         public decimal je { get; set; }
     }

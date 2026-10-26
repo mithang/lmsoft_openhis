@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string ScheduId { get; set; }
         public string ghpbId { get; set; }
         /// <summary>
-        /// 就诊日期
+        /// Ngày khám
         /// </summary>
         public string OutDate { get; set; }
         public string ysgh { get; set; }
@@ -19,41 +19,41 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string czks { get; set; }
         public string czksmc { get; set; }
         /// <summary>
-        /// mjzbz 门诊类型
+        /// mjzbz Loại ngoại trú
         /// </summary>
         public string RegType { get; set; }
         /// <summary>
-        /// 排班描述
+        /// Mô tả lịch trực
         /// </summary>
         public string Title { get; set; }
         /// <summary>
-        /// 时间段 0无 1全天 2上午 3下午
+        /// Khoảng thời gian 0không 1Cả ngày 2Buổi sáng 3Buổi chiều
         /// </summary>
         public string Period { get; set; }
         public string PeriodDesc { get; set; }
         /// <summary>
-        /// 号源总数
+        /// Tổng số đăng ký khám
         /// </summary>
         public int? TotalNum { get; set; }
         public string PeriodStart { get; set; }
         public string PeriodEnd { get; set; }
         public decimal? RegFee { get; set; }
         /// <summary>
-        /// 是否开放预约
+        /// Có mở hẹn khám hay không
         /// </summary>
         public string IsBook { get; set; }
         /// <summary>
-        /// 挂号项目
+        /// Hạng mục đăng ký khám
         /// </summary>
         public string ghlx { get; set; }
         public string ghxmmc { get; set; }
         /// <summary>
-        /// 诊疗项目
+        /// Hạng mục khám chữa bệnh
         /// </summary>
         public string zlxm { get; set; }
         public string zlxmmc { get; set; }
         /// <summary>
-        /// 星期
+        /// Thứ
         /// </summary>
         public int? weekdd { get; set; }
         public string IsCancel { get; set; }
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         
         public DateTime? CancelTime { get; set; }
         /// <summary>
-        /// 剩余号源
+        /// Số đăng ký khám còn lại
         /// </summary>
         public int? BookNum { get; set; }
     }

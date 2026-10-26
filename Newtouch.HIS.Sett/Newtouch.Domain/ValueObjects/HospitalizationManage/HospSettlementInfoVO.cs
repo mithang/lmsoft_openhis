@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     }
 
     /// <summary>
-    /// 分类费用
+    /// Chi phí phân loại
     /// </summary>
     public class HospSettlementClassificationFeeVO
     {

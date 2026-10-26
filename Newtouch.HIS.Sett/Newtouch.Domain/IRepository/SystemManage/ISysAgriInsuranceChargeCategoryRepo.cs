@@ -5,12 +5,12 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 农保收费大类
+    /// Loại lớn thu phí Bảo hiểm nông nghiệp
     /// </summary>
     public interface ISysAgriInsuranceChargeCategoryRepo : IRepositoryBase<SysAgriInsuranceChargeCategoryVEntity>
     {
         /// <summary>
-        /// 获取所有农保收费大类下拉框
+        /// Lấy hộp thả xuống tất cả loại lớn thu phí Bảo hiểm nông nghiệp
         /// </summary>
         /// <returns></returns>
         IList<SysAgriInsuranceChargeCategoryVEntity> GetnbdlSelect(string orgId);

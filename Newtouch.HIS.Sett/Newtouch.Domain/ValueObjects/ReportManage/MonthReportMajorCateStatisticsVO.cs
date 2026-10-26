@@ -1,47 +1,47 @@
 ﻿namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 月报表 按大类 统计 VO
+    /// Báo cáo tháng Theo loại lớn Thống kê VO
     /// </summary>
     public class MonthReportMajorCateStatisticsVO
     {
         /// <summary>
-        /// 病人类型 inpatient/outpatient
+        /// Loại bệnh nhân inpatient/outpatient
         /// </summary>
         public string patientType { get; set; }
 
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// 住院号/门诊号
+        /// Số nhập viện/Số khám ngoại trú
         /// </summary>
         public string zyhmzh { get; set; }
 
         /// <summary>
-        /// 病人姓名
+        /// Tên bệnh nhân
         /// </summary>
         public string brxm { get; set; }
 
         /// <summary>
-        /// 报表大类Code（收费大类）
+        /// Loại lớn báo cáoCode(Loại lớn thu phí)
         /// </summary>
         public string dl { get; set; }
 
         /// <summary>
-        /// 大类名称
+        /// Tên loại lớn
         /// </summary>
         public string dlmc { get; set; }
 
         /// <summary>
-        /// 大类 金额合计
+        /// Loại lớn Tổng số tiền
         /// </summary>
         public decimal dlje { get; set; }
 
         /// <summary>
-        /// 备注（补差说明）
+        /// Ghi chú(Giải thích bù chênh lệch)
         /// </summary>
         public string bz { get; set; }
 

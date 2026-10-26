@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string SchemeNodeId { get; set; }
 
         /// <summary>
-        /// 枚举：角色 用户 岗位 科室
+        /// Enum:Vai trò Người dùng Vị trí công việc Khoa
         /// </summary>
         public int ObjectType { get; set; }
 

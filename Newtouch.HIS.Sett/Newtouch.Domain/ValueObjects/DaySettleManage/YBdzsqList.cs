@@ -13,33 +13,33 @@ namespace Newtouch.HIS.Domain.ValueObjects.DaySettleManage
 	public class ybzdinfo
 	{
 		/// <summary>
-		/// 清算类型名称
+		/// Tên loại thanh toán
 		/// </summary>
 		public string label { get; set; }
 		/// <summary>
-		/// 清算类型编码
+		/// Mã loại thanh toán
 		/// </summary>
 		public string value { get; set; }
 	}
 
 	/// <summary>
-	/// 清算对总帐
+	/// Thanh toán đối chiếu sổ tổng
 	/// </summary>
 	public class Qsdzz
 	{
 		/// <summary>
-		/// 清算类别
+		/// Loại thanh toán
 		/// </summary>
 		public string qslb { get; set; }
 
 		public string qslbmc { get; set; }
 		/// <summary>
-		/// 险种
+		/// Loại hình bảo hiểm
 		/// </summary>
 		public string xz { get; set; }
 		public string xzmc { get; set; }
 		/// <summary>
-		/// 是否异地
+		/// Có phải khác địa phương hay không
 		/// </summary>
 		public string sfyd { get; set; }
 		public DateTime ksrq { get; set; }
@@ -51,175 +51,175 @@ namespace Newtouch.HIS.Domain.ValueObjects.DaySettleManage
 		public int jsbs { get; set; }
 		public string sftf { get; set; }
 
-		public decimal czzgtcjj { get; set; }/*城镇职工基本医疗保险统筹基金*/
-		public int czzgtcjjrc { get; set; }/*城镇职工基本医疗保险统筹基金人次*/
-		public decimal czzgzhjj { get; set; }/*城镇职工基本医疗保险个人账户基金*/
-		public int czzgzhjjrc { get; set; }/*城镇职工基本医疗保险个人账户基金*/
-		public decimal gywbzjj { get; set; }/*公务员医疗补助基金*/
-		public int gywbzjjrc { get; set; }/*公务员医疗补助基金*/
-		public decimal deylbzjj { get; set; }/*大额医疗费用补助基金*/
-		public int deylbzjjrc { get; set; }/*大额医疗费用补助基金*/
-		public decimal lxrybzjj { get; set; }/*离休人员医疗保障基金*/
-		public int lxrybzjjrc { get; set; }/*离休人员医疗保障基金*/
-		public decimal cjbzjj { get; set; }/*一至六级残疾军人医疗补助基金*/
-		public int cjbzjjrc { get; set; }/*一至六级残疾军人医疗补助基金*/
-		public decimal qybzyljj { get; set; }/*企业补充医疗保险基金*/
-		public int qybzyljjrc { get; set; }/*企业补充医疗保险基金*/
-		public decimal cxjmjbyljj { get; set; }/*城乡居民基本医疗保险基金*/
-		public int cxjmjbyljjrc { get; set; }/*城乡居民基本医疗保险基金*/
-		public decimal cxjmdbyljj { get; set; }/*城乡居民大病医疗保险基金*/
-		public int cxjmdbyljjrc { get; set; }/*城乡居民大病医疗保险基金*/
-		public decimal yljzjj { get; set; }/*医疗救助基金*/
-		public int yljzjjrc { get; set; }/*医疗救助基金人次*/
-		public decimal yfjj { get; set; }/*优抚基金*/
-		public int yfjjrc { get; set; }/*优抚基金人次*/
-		public decimal syjj { get; set; }/*生育基金*/
-		public int syjjrc { get; set; }/*生育基金人次*/
-		public decimal qtjj { get; set; }/*其他基金*/
-		public int qtjjrc { get; set; }/*其他基金人次*/
-		public decimal eyjj { get; set; }/*二乙基金*/
-		public int eyjjrc { get; set; }/*二乙基金人次*/
+		public decimal czzgtcjj { get; set; }/*Quỹ chung BHYT cơ bản cho cán bộ công nhân viên thành thị*/
+		public int czzgtcjjrc { get; set; }/*Lượt người quỹ chung BHYT cơ bản cho cán bộ công nhân viên thành thị*/
+		public decimal czzgzhjj { get; set; }/*Quỹ tài khoản cá nhân BHYT cho cán bộ công nhân viên thành thị*/
+		public int czzgzhjjrc { get; set; }/*Quỹ tài khoản cá nhân BHYT cho cán bộ công nhân viên thành thị*/
+		public decimal gywbzjj { get; set; }/*Quỹ trợ cấp y tế cho công chức*/
+		public int gywbzjjrc { get; set; }/*Quỹ trợ cấp y tế cho công chức*/
+		public decimal deylbzjj { get; set; }/*Quỹ trợ cấp chi phí y tế lớn*/
+		public int deylbzjjrc { get; set; }/*Quỹ trợ cấp chi phí y tế lớn*/
+		public decimal lxrybzjj { get; set; }/*Quỹ bảo đảm y tế cho cán bộ nghỉ hưu*/
+		public int lxrybzjjrc { get; set; }/*Quỹ bảo đảm y tế cho cán bộ nghỉ hưu*/
+		public decimal cjbzjj { get; set; }/*Quỹ trợ cấp y tế cho quân nhân khuyết tật hạng 1-6*/
+		public int cjbzjjrc { get; set; }/*Quỹ trợ cấp y tế cho quân nhân khuyết tật hạng 1-6*/
+		public decimal qybzyljj { get; set; }/*Quỹ BHYT bổ sung của doanh nghiệp*/
+		public int qybzyljjrc { get; set; }/*Quỹ BHYT bổ sung của doanh nghiệp*/
+		public decimal cxjmjbyljj { get; set; }/*Quỹ BHYT cơ bản cho cư dân thành thị và nông thôn*/
+		public int cxjmjbyljjrc { get; set; }/*Quỹ BHYT cơ bản cho cư dân thành thị và nông thôn*/
+		public decimal cxjmdbyljj { get; set; }/*Quỹ BHYT bệnh nặng cho cư dân thành thị và nông thôn*/
+		public int cxjmdbyljjrc { get; set; }/*Quỹ BHYT bệnh nặng cho cư dân thành thị và nông thôn*/
+		public decimal yljzjj { get; set; }/*Quỹ cứu trợ y tế*/
+		public int yljzjjrc { get; set; }/*Lượt người quỹ cứu trợ y tế*/
+		public decimal yfjj { get; set; }/*Quỹ ưu đãi*/
+		public int yfjjrc { get; set; }/*Lượt người quỹ ưu đãi*/
+		public decimal syjj { get; set; }/*Quỹ sinh đẻ*/
+		public int syjjrc { get; set; }/*Lượt người quỹ sinh đẻ*/
+		public decimal qtjj { get; set; }/*Quỹ khác*/
+		public int qtjjrc { get; set; }/*Lượt người quỹ khác*/
+		public decimal eyjj { get; set; }/*Quỹ hạng 2B*/
+		public int eyjjrc { get; set; }/*Lượt người quỹ hạng 2B*/
 	}
 
 	/// <summary>
-	/// 清算明细（上半部分）
+	/// Chi tiết thanh toán(Nửa trên)
 	/// </summary>
 	public class Qsmx
 	{
 		/// <summary>
-		/// 个人编码
+		/// Mã cá nhân
 		/// </summary>
 		public string grbm { get; set; }
 		/// <summary>
-		/// 就诊ID
+		/// Khám bệnhID
 		/// </summary>
 		public string jzid { get; set; }
 		/// <summary>
-		/// 结算ID
+		/// Quyết toánID
 		/// </summary>
 		public string jsid { get; set; }
 		/// <summary>
-		/// 姓名
+		/// Họ tên
 		/// </summary>
 		public string xm { get; set; }
 		/// <summary>
-		/// 医保结算日期
+		/// Ngày quyết toán BHYT
 		/// </summary>
 		public DateTime ybjsrq { get; set; }
 		/// <summary>
-		/// 总费用
+		/// Tổng chi phí
 		/// </summary>
 		public decimal zfy { get; set; }
 		/// <summary>
-		/// 基金支付金额
+		/// Số tiền quỹ chi trả
 		/// </summary>
 		public decimal jjzfje { get; set; }
 
 		/// <summary>
-		/// 个人账户支付
+		/// Thanh toán từ tài khoản cá nhân
 		/// </summary>
 		public decimal acct_pay { get; set; }
 		/// <summary>
-		/// 个人支付现金
+		/// Tiền mặt cá nhân thanh toán
 		/// </summary>
 		public decimal psn_cash_pay { get; set; }
 
 		/// <summary>
-		/// 共济支付金额
+		/// Số tiền thanh toán dùng chung
 		/// </summary>
 		public decimal gjje { get; set; }
 
 		/// <summary>
-		/// 是否退费
+		/// Có hoàn phí hay không
 		/// </summary>
 		public string sftf { get; set; }
 		/// <summary>
-		/// 报销类型
+		/// Loại hoàn trả
 		/// </summary>
 		public string bxlx { get; set; }
 		/// <summary>
-		/// 身份证
+		/// CMND/CCCD
 		/// </summary>
 		public string sfz { get; set; }
 		/// <summary>
-		/// 收据编号
+		/// Số biên lai
 		/// </summary>
 		public string sjh { get; set; }
 		/// <summary>
-		/// 清算类别
+		/// Loại thanh toán
 		/// </summary>
 		public string qslb { get; set; }
 		/// <summary>
-		/// 险种
+		/// Loại hình bảo hiểm
 		/// </summary>
 		public string xz { get; set; }
 		/// <summary>
-		/// 开始日期
+		/// Ngày bắt đầu
 		/// </summary>
 		public DateTime ksrq { get; set; }
 		/// <summary>
-		/// 结束日期
+		/// Ngày kết thúc
 		/// </summary>
 		public DateTime jsrq { get; set; }
 	}
 
 	/// <summary>
-	/// 清算明细(下半部分)
+	/// Chi tiết thanh toán(Nửa dưới)
 	/// </summary>
 	public class Qsmx_1
 	{
 		/// <summary>
-		/// 人员ID
+		/// Nhân viênID
 		/// </summary>
 		public string ryid { get; set; }
 		/// <summary>
-		/// 就诊ID
+		/// Khám bệnhID
 		/// </summary>
 		public string jzid { get; set; }
 		/// <summary>
-		/// 结算ID
+		/// Quyết toánID
 		/// </summary>
 		public string jsid { get; set; }
 		/// <summary>
-		/// 对账结果
+		/// Kết quả đối soát
 		/// </summary>
 		public string dzjg { get; set; }
 		/// <summary>
-		/// 备注
+		/// Ghi chú
 		/// </summary>
 		public string bz { get; set; }
 		/// <summary>
-		/// 医疗费总额
+		/// Tổng chi phí y tế
 		/// </summary>
 		public decimal ylfze { get; set; }
 		/// <summary>
-		/// 基金支付总额
+		/// Tổng số tiền quỹ chi trả
 		/// </summary>
 		public decimal jjzfze { get; set; }
 		/// <summary>
-		/// 个人账户支付总额
+		/// Tổng số tiền thanh toán từ tài khoản cá nhân
 		/// </summary>
 		public decimal grzhzfze { get; set; }
 		/// <summary>
-		/// 发送方报文ID
+		/// Bản tin bên gửiID
 		/// </summary>
 		public string fsfbwid { get; set; }
 		/// <summary>
-		/// 退费结算标志
+		/// Cờ quyết toán hoàn phí
 		/// </summary>
 		public string tfjsbz { get; set; }
 		/// <summary>
-		/// 开始日期
+		/// Ngày bắt đầu
 		/// </summary>
 		public DateTime ksrq { get; set; }
 		/// <summary>
-		/// 结束日期
+		/// Ngày kết thúc
 		/// </summary>
 		public DateTime jsrq { get; set; }
 	}
 
 	/// <summary>
-	/// 对账成功保存
+	/// Đối soát thành công thì lưu
 	/// </summary>
 	public class ybqssq
 	{
@@ -235,279 +235,279 @@ namespace Newtouch.HIS.Domain.ValueObjects.DaySettleManage
 		public decimal xjzfze { get; set; }
 		public int qsrc { get; set; }
 		public string qsny { get; set; }
-		public decimal czzgtcjj { get; set; }/*城镇职工基本医疗保险统筹基金*/
-		public int czzgtcjjrc { get; set; }/*城镇职工基本医疗保险统筹基金人次*/
-		public decimal czzgzhjj { get; set; }/*城镇职工基本医疗保险个人账户基金*/
-		public int czzgzhjjrc { get; set; }/*城镇职工基本医疗保险个人账户基金*/
-		public decimal gywbzjj { get; set; }/*公务员医疗补助基金*/
-		public int gywbzjjrc { get; set; }/*公务员医疗补助基金*/
-		public decimal deylbzjj { get; set; }/*大额医疗费用补助基金*/
-		public int deylbzjjrc { get; set; }/*大额医疗费用补助基金*/
-		public decimal lxrybzjj { get; set; }/*离休人员医疗保障基金*/
-		public int lxrybzjjrc { get; set; }/*离休人员医疗保障基金*/
-		public decimal cjbzjj { get; set; }/*一至六级残疾军人医疗补助基金*/
-		public int cjbzjjrc { get; set; }/*一至六级残疾军人医疗补助基金*/
-		public decimal qybzyljj { get; set; }/*企业补充医疗保险基金*/
-		public int qybzyljjrc { get; set; }/*企业补充医疗保险基金*/
-		public decimal cxjmjbyljj { get; set; }/*城乡居民基本医疗保险基金*/
-		public int cxjmjbyljjrc { get; set; }/*城乡居民基本医疗保险基金*/
-		public decimal cxjmdbyljj { get; set; }/*城乡居民大病医疗保险基金*/
-		public int cxjmdbyljjrc { get; set; }/*城乡居民大病医疗保险基金*/
-		public decimal yljzjj { get; set; }/*医疗救助基金*/
-		public int yljzjjrc { get; set; }/*医疗救助基金人次*/
-		public decimal yfjj { get; set; }/*优抚基金*/
-		public int yfjjrc { get; set; }/*优抚基金人次*/
-		public decimal syjj { get; set; }/*生育基金*/
-		public int syjjrc { get; set; }/*生育基金人次*/
-		public decimal qtjj { get; set; }/*其他基金*/
-		public int qtjjrc { get; set; }/*其他基金人次*/
-		public decimal eyjj { get; set; }/*二乙基金*/
-		public int eyjjrc { get; set; }/*二乙基金人次*/
+		public decimal czzgtcjj { get; set; }/*Quỹ chung BHYT cơ bản cho cán bộ công nhân viên thành thị*/
+		public int czzgtcjjrc { get; set; }/*Lượt người quỹ chung BHYT cơ bản cho cán bộ công nhân viên thành thị*/
+		public decimal czzgzhjj { get; set; }/*Quỹ tài khoản cá nhân BHYT cho cán bộ công nhân viên thành thị*/
+		public int czzgzhjjrc { get; set; }/*Quỹ tài khoản cá nhân BHYT cho cán bộ công nhân viên thành thị*/
+		public decimal gywbzjj { get; set; }/*Quỹ trợ cấp y tế cho công chức*/
+		public int gywbzjjrc { get; set; }/*Quỹ trợ cấp y tế cho công chức*/
+		public decimal deylbzjj { get; set; }/*Quỹ trợ cấp chi phí y tế lớn*/
+		public int deylbzjjrc { get; set; }/*Quỹ trợ cấp chi phí y tế lớn*/
+		public decimal lxrybzjj { get; set; }/*Quỹ bảo đảm y tế cho cán bộ nghỉ hưu*/
+		public int lxrybzjjrc { get; set; }/*Quỹ bảo đảm y tế cho cán bộ nghỉ hưu*/
+		public decimal cjbzjj { get; set; }/*Quỹ trợ cấp y tế cho quân nhân khuyết tật hạng 1-6*/
+		public int cjbzjjrc { get; set; }/*Quỹ trợ cấp y tế cho quân nhân khuyết tật hạng 1-6*/
+		public decimal qybzyljj { get; set; }/*Quỹ BHYT bổ sung của doanh nghiệp*/
+		public int qybzyljjrc { get; set; }/*Quỹ BHYT bổ sung của doanh nghiệp*/
+		public decimal cxjmjbyljj { get; set; }/*Quỹ BHYT cơ bản cho cư dân thành thị và nông thôn*/
+		public int cxjmjbyljjrc { get; set; }/*Quỹ BHYT cơ bản cho cư dân thành thị và nông thôn*/
+		public decimal cxjmdbyljj { get; set; }/*Quỹ BHYT bệnh nặng cho cư dân thành thị và nông thôn*/
+		public int cxjmdbyljjrc { get; set; }/*Quỹ BHYT bệnh nặng cho cư dân thành thị và nông thôn*/
+		public decimal yljzjj { get; set; }/*Quỹ cứu trợ y tế*/
+		public int yljzjjrc { get; set; }/*Lượt người quỹ cứu trợ y tế*/
+		public decimal yfjj { get; set; }/*Quỹ ưu đãi*/
+		public int yfjjrc { get; set; }/*Lượt người quỹ ưu đãi*/
+		public decimal syjj { get; set; }/*Quỹ sinh đẻ*/
+		public int syjjrc { get; set; }/*Lượt người quỹ sinh đẻ*/
+		public decimal qtjj { get; set; }/*Quỹ khác*/
+		public int qtjjrc { get; set; }/*Lượt người quỹ khác*/
+		public decimal eyjj { get; set; }/*Quỹ hạng 2B*/
+		public int eyjjrc { get; set; }/*Lượt người quỹ hạng 2B*/
 		public string create_user { get; set; }
 		public int sqzt { get; set; }
 
 	}
 
 	/// <summary>
-	/// 清算申请
+	/// Đơn thanh toán
 	/// </summary>
 	public class Qssq
 	{
 
 		/// <summary>
-		/// 申请状态
+		/// Trạng thái đăng ký
 		/// </summary>
 		public string sqzt { get; set; }
 		/// <summary>
-		/// 清算类别
+		/// Loại thanh toán
 		/// </summary>
 		public string qslb { get; set; }
 
 		public string qslbmc { get; set; }
 		/// <summary>
-		/// 险种类型
+		/// Loại hình bảo hiểm
 		/// </summary>
 		public string xzlx { get; set; }
 		/// <summary>
-		/// 是否异地
+		/// Có phải khác địa phương hay không
 		/// </summary>
 		public string sfyd { get; set; }
 		/// <summary>
-		/// 开始日期
+		/// Ngày bắt đầu
 		/// </summary>
 		public DateTime ksrq { get; set; }
 		/// <summary>
-		/// 结束日期
+		/// Ngày kết thúc
 		/// </summary>
 		public DateTime jsrq { get; set; }
 		/// <summary>
-		/// 总费用
+		/// Tổng chi phí
 		/// </summary>
 		public decimal zfy { get; set; }
 		/// <summary>
-		/// 基金支付总额
+		/// Tổng số tiền quỹ chi trả
 		/// </summary>
 		public decimal jjzfze { get; set; }
 		/// <summary>
-		/// 个账支付
+		/// Thanh toán từ tài khoản cá nhân
 		/// </summary>
 		public decimal gzzf { get; set; }
 		/// <summary>
-		/// 医保认可费用总额
+		/// Tổng chi phí BHYT công nhận
 		/// </summary>
 		public decimal ybrkfyze { get; set; }
 		/// <summary>
-		/// 现金支付总额
+		/// Tổng số tiền thanh toán tiền mặt
 		/// </summary>
 		public decimal xjzfze { get; set; }
 		/// <summary>
-		/// 清算人次
+		/// Lượt người thanh toán
 		/// </summary>
 		public int qsrc { get; set; }
 		/// <summary>
-		/// 清算年月
+		/// Năm tháng thanh toán
 		/// </summary>
 		public string qsny { get; set; }
 		/// <summary>
-		/// 门诊申报金额
+		/// Số tiền khai báo ngoại trú
 		/// </summary>
 		public decimal mzsbje { get; set; }
 		/// <summary>
-		/// 住院申报金额
+		/// Số tiền khai báo nội trú
 		/// </summary>
 		public decimal zysbje { get; set; }
 
 
 
-		public decimal czzgtcjj { get; set; }/*城镇职工基本医疗保险统筹基金*/
-		public int czzgtcjjrc { get; set; }/*城镇职工基本医疗保险统筹基金人次*/
-		public decimal czzgzhjj { get; set; }/*城镇职工基本医疗保险个人账户基金*/
-		public int czzgzhjjrc { get; set; }/*城镇职工基本医疗保险个人账户基金*/
-		public decimal gywbzjj { get; set; }/*公务员医疗补助基金*/
-		public int gywbzjjrc { get; set; }/*公务员医疗补助基金*/
-		public decimal deylbzjj { get; set; }/*大额医疗费用补助基金*/
-		public int deylbzjjrc { get; set; }/*大额医疗费用补助基金*/
-		public decimal lxrybzjj { get; set; }/*离休人员医疗保障基金*/
-		public int lxrybzjjrc { get; set; }/*离休人员医疗保障基金*/
-		public decimal cjbzjj { get; set; }/*一至六级残疾军人医疗补助基金*/
-		public int cjbzjjrc { get; set; }/*一至六级残疾军人医疗补助基金*/
-		public decimal qybzyljj { get; set; }/*企业补充医疗保险基金*/
-		public int qybzyljjrc { get; set; }/*企业补充医疗保险基金*/
-		public decimal cxjmjbyljj { get; set; }/*城乡居民基本医疗保险基金*/
-		public int cxjmjbyljjrc { get; set; }/*城乡居民基本医疗保险基金*/
-		public decimal cxjmdbyljj { get; set; }/*城乡居民大病医疗保险基金*/
-		public int cxjmdbyljjrc { get; set; }/*城乡居民大病医疗保险基金*/
-		public decimal yljzjj { get; set; }/*医疗救助基金*/
-		public int yljzjjrc { get; set; }/*医疗救助基金人次*/
-		public decimal yfjj { get; set; }/*优抚基金*/
-		public int yfjjrc { get; set; }/*优抚基金人次*/
-		public decimal syjj { get; set; }/*生育基金*/
-		public int syjjrc { get; set; }/*生育基金人次*/
-		public decimal qtjj { get; set; }/*其他基金*/
-		public int qtjjrc { get; set; }/*其他基金人次*/
-		public decimal eyjj { get; set; }/*二乙基金*/
-		public int eyjjrc { get; set; }/*二乙基金人次*/
+		public decimal czzgtcjj { get; set; }/*Quỹ chung BHYT cơ bản cho cán bộ công nhân viên thành thị*/
+		public int czzgtcjjrc { get; set; }/*Lượt người quỹ chung BHYT cơ bản cho cán bộ công nhân viên thành thị*/
+		public decimal czzgzhjj { get; set; }/*Quỹ tài khoản cá nhân BHYT cho cán bộ công nhân viên thành thị*/
+		public int czzgzhjjrc { get; set; }/*Quỹ tài khoản cá nhân BHYT cho cán bộ công nhân viên thành thị*/
+		public decimal gywbzjj { get; set; }/*Quỹ trợ cấp y tế cho công chức*/
+		public int gywbzjjrc { get; set; }/*Quỹ trợ cấp y tế cho công chức*/
+		public decimal deylbzjj { get; set; }/*Quỹ trợ cấp chi phí y tế lớn*/
+		public int deylbzjjrc { get; set; }/*Quỹ trợ cấp chi phí y tế lớn*/
+		public decimal lxrybzjj { get; set; }/*Quỹ bảo đảm y tế cho cán bộ nghỉ hưu*/
+		public int lxrybzjjrc { get; set; }/*Quỹ bảo đảm y tế cho cán bộ nghỉ hưu*/
+		public decimal cjbzjj { get; set; }/*Quỹ trợ cấp y tế cho quân nhân khuyết tật hạng 1-6*/
+		public int cjbzjjrc { get; set; }/*Quỹ trợ cấp y tế cho quân nhân khuyết tật hạng 1-6*/
+		public decimal qybzyljj { get; set; }/*Quỹ BHYT bổ sung của doanh nghiệp*/
+		public int qybzyljjrc { get; set; }/*Quỹ BHYT bổ sung của doanh nghiệp*/
+		public decimal cxjmjbyljj { get; set; }/*Quỹ BHYT cơ bản cho cư dân thành thị và nông thôn*/
+		public int cxjmjbyljjrc { get; set; }/*Quỹ BHYT cơ bản cho cư dân thành thị và nông thôn*/
+		public decimal cxjmdbyljj { get; set; }/*Quỹ BHYT bệnh nặng cho cư dân thành thị và nông thôn*/
+		public int cxjmdbyljjrc { get; set; }/*Quỹ BHYT bệnh nặng cho cư dân thành thị và nông thôn*/
+		public decimal yljzjj { get; set; }/*Quỹ cứu trợ y tế*/
+		public int yljzjjrc { get; set; }/*Lượt người quỹ cứu trợ y tế*/
+		public decimal yfjj { get; set; }/*Quỹ ưu đãi*/
+		public int yfjjrc { get; set; }/*Lượt người quỹ ưu đãi*/
+		public decimal syjj { get; set; }/*Quỹ sinh đẻ*/
+		public int syjjrc { get; set; }/*Lượt người quỹ sinh đẻ*/
+		public decimal qtjj { get; set; }/*Quỹ khác*/
+		public int qtjjrc { get; set; }/*Lượt người quỹ khác*/
+		public decimal eyjj { get; set; }/*Quỹ hạng 2B*/
+		public int eyjjrc { get; set; }/*Lượt người quỹ hạng 2B*/
 
 	}
 
 	/// <summary>
-	/// 清算回退
+	/// Quay lại thanh toán
 	/// </summary>
 	public class Qsht
 	{
 		/// <summary>
-		/// 清算期号
+		/// Số kỳ thanh toán
 		/// </summary>
 		public string qsqh { get; set; }
 		/// <summary>
-		/// 清算类别
+		/// Loại thanh toán
 		/// </summary>
 		public string qslb { get; set; }
 		/// <summary>
-		/// 清算类别名称
+		/// Tên loại thanh toán
 		/// </summary>
 		public string qslbmc { get; set; }
 		/// <summary>
-		/// 险种类型
+		/// Loại hình bảo hiểm
 		/// </summary>
 		public string xzlx { get; set; }
 		/// <summary>
-		/// 是否异地
+		/// Có phải khác địa phương hay không
 		/// </summary>
 		public string sfyd { get; set; }
 		/// <summary>
-		/// 清算流水号
+		/// Số giao dịch thanh toán
 		/// </summary>
 		public string qslsh { get; set; }
 		/// <summary>
-		/// 总费用
+		/// Tổng chi phí
 		/// </summary>
 		public decimal zfy { get; set; }
 		/// <summary>
-		/// 基金申报总额
+		/// Tổng số tiền quỹ khai báo
 		/// </summary>
 		public decimal jjsbze { get; set; }
 		/// <summary>
-		/// 个账支付总额
+		/// Tổng số tiền thanh toán từ tài khoản cá nhân
 		/// </summary>
 		public decimal gzzfze { get; set; }
 		/// <summary>
-		/// 个人现金支付总额
+		/// Tổng số tiền mặt cá nhân thanh toán
 		/// </summary>
 		public decimal grxjzfze { get; set; }
 		/// <summary>
-		/// 清算人次
+		/// Lượt người thanh toán
 		/// </summary>
 		public int qsrc { get; set; }
 		/// <summary>
-		/// 开始日期
+		/// Ngày bắt đầu
 		/// </summary>
 		public DateTime ksrq { get; set; }
 		/// <summary>
-		/// 结束日期
+		/// Ngày kết thúc
 		/// </summary>
 		public DateTime jsrq { get; set; }
 		/// <summary>
-		/// 清算申请日期
+		/// Ngày nộp đơn thanh toán
 		/// </summary>
 		public DateTime qssqrq { get; set; }
 		/// <summary>
-		/// 清算申请人
+		/// Người nộp đơn thanh toán
 		/// </summary>
 		public string qssqr { get; set; }
 		/// <summary>
-		/// 医疗机构代码
+		/// Mã cơ sở y tế
 		/// </summary>
 		public string yljgdm { get; set; }
 		/// <summary>
-		/// 医疗机构名称
+		/// Tên cơ sở y tế
 		/// </summary>
 		public string yljgmc { get; set; }
 		/// <summary>
-		/// 清算经办机构名称
+		/// Tên cơ sở xử lý thanh toán
 		/// </summary>
 		public string qsjbjgmc { get; set; }
 		/// <summary>
-		/// 清算经办机构编码
+		/// Mã cơ sở xử lý thanh toán
 		/// </summary>
 		public string qsjbjgbm { get; set; }
 		/// <summary>
-		/// 门诊人次
+		/// Lượt khám ngoại trú
 		/// </summary>
 		public int mzrc { get; set; }
 		/// <summary>
-		/// 住院人次
+		/// Lượt người nội trú
 		/// </summary>
 		public int zyrc { get; set; }
 		/// <summary>
-		/// 门诊总费用
+		/// Tổng chi phí ngoại trú
 		/// </summary>
 		public decimal mzzfy { get; set; }
 		/// <summary>
-		/// 住院总费用
+		/// Tổng chi phí nội trú
 		/// </summary>
 		public decimal zyzfy { get; set; }
 		/// <summary>
-		/// 门诊申报金额
+		/// Số tiền khai báo ngoại trú
 		/// </summary>
 		public decimal mzsbje { get; set; }
 		/// <summary>
-		/// 住院申报金额
+		/// Số tiền khai báo nội trú
 		/// </summary>
 		public decimal zysbje { get; set; }
 
 
 
-		public decimal czzgtcjj { get; set; }/*城镇职工基本医疗保险统筹基金*/
-		public int czzgtcjjrc { get; set; }/*城镇职工基本医疗保险统筹基金人次*/
-		public decimal czzgzhjj { get; set; }/*城镇职工基本医疗保险个人账户基金*/
-		public int czzgzhjjrc { get; set; }/*城镇职工基本医疗保险个人账户基金*/
-		public decimal gywbzjj { get; set; }/*公务员医疗补助基金*/
-		public int gywbzjjrc { get; set; }/*公务员医疗补助基金*/
-		public decimal deylbzjj { get; set; }/*大额医疗费用补助基金*/
-		public int deylbzjjrc { get; set; }/*大额医疗费用补助基金*/
-		public decimal lxrybzjj { get; set; }/*离休人员医疗保障基金*/
-		public int lxrybzjjrc { get; set; }/*离休人员医疗保障基金*/
-		public decimal cjbzjj { get; set; }/*一至六级残疾军人医疗补助基金*/
-		public int cjbzjjrc { get; set; }/*一至六级残疾军人医疗补助基金*/
-		public decimal qybzyljj { get; set; }/*企业补充医疗保险基金*/
-		public int qybzyljjrc { get; set; }/*企业补充医疗保险基金*/
-		public decimal cxjmjbyljj { get; set; }/*城乡居民基本医疗保险基金*/
-		public int cxjmjbyljjrc { get; set; }/*城乡居民基本医疗保险基金*/
-		public decimal cxjmdbyljj { get; set; }/*城乡居民大病医疗保险基金*/
-		public int cxjmdbyljjrc { get; set; }/*城乡居民大病医疗保险基金*/
-		public decimal yljzjj { get; set; }/*医疗救助基金*/
-		public int yljzjjrc { get; set; }/*医疗救助基金人次*/
-		public decimal yfjj { get; set; }/*优抚基金*/
-		public int yfjjrc { get; set; }/*优抚基金人次*/
-		public decimal syjj { get; set; }/*生育基金*/
-		public int syjjrc { get; set; }/*生育基金人次*/
-		public decimal qtjj { get; set; }/*其他基金*/
-		public int qtjjrc { get; set; }/*其他基金人次*/
-		public decimal eyjj { get; set; }/*二乙基金*/
-		public int eyjjrc { get; set; }/*二乙基金人次*/
+		public decimal czzgtcjj { get; set; }/*Quỹ chung BHYT cơ bản cho cán bộ công nhân viên thành thị*/
+		public int czzgtcjjrc { get; set; }/*Lượt người quỹ chung BHYT cơ bản cho cán bộ công nhân viên thành thị*/
+		public decimal czzgzhjj { get; set; }/*Quỹ tài khoản cá nhân BHYT cho cán bộ công nhân viên thành thị*/
+		public int czzgzhjjrc { get; set; }/*Quỹ tài khoản cá nhân BHYT cho cán bộ công nhân viên thành thị*/
+		public decimal gywbzjj { get; set; }/*Quỹ trợ cấp y tế cho công chức*/
+		public int gywbzjjrc { get; set; }/*Quỹ trợ cấp y tế cho công chức*/
+		public decimal deylbzjj { get; set; }/*Quỹ trợ cấp chi phí y tế lớn*/
+		public int deylbzjjrc { get; set; }/*Quỹ trợ cấp chi phí y tế lớn*/
+		public decimal lxrybzjj { get; set; }/*Quỹ bảo đảm y tế cho cán bộ nghỉ hưu*/
+		public int lxrybzjjrc { get; set; }/*Quỹ bảo đảm y tế cho cán bộ nghỉ hưu*/
+		public decimal cjbzjj { get; set; }/*Quỹ trợ cấp y tế cho quân nhân khuyết tật hạng 1-6*/
+		public int cjbzjjrc { get; set; }/*Quỹ trợ cấp y tế cho quân nhân khuyết tật hạng 1-6*/
+		public decimal qybzyljj { get; set; }/*Quỹ BHYT bổ sung của doanh nghiệp*/
+		public int qybzyljjrc { get; set; }/*Quỹ BHYT bổ sung của doanh nghiệp*/
+		public decimal cxjmjbyljj { get; set; }/*Quỹ BHYT cơ bản cho cư dân thành thị và nông thôn*/
+		public int cxjmjbyljjrc { get; set; }/*Quỹ BHYT cơ bản cho cư dân thành thị và nông thôn*/
+		public decimal cxjmdbyljj { get; set; }/*Quỹ BHYT bệnh nặng cho cư dân thành thị và nông thôn*/
+		public int cxjmdbyljjrc { get; set; }/*Quỹ BHYT bệnh nặng cho cư dân thành thị và nông thôn*/
+		public decimal yljzjj { get; set; }/*Quỹ cứu trợ y tế*/
+		public int yljzjjrc { get; set; }/*Lượt người quỹ cứu trợ y tế*/
+		public decimal yfjj { get; set; }/*Quỹ ưu đãi*/
+		public int yfjjrc { get; set; }/*Lượt người quỹ ưu đãi*/
+		public decimal syjj { get; set; }/*Quỹ sinh đẻ*/
+		public int syjjrc { get; set; }/*Lượt người quỹ sinh đẻ*/
+		public decimal qtjj { get; set; }/*Quỹ khác*/
+		public int qtjjrc { get; set; }/*Lượt người quỹ khác*/
+		public decimal eyjj { get; set; }/*Quỹ hạng 2B*/
+		public int eyjjrc { get; set; }/*Lượt người quỹ hạng 2B*/
 									   /// <summary>
-									   /// 各项基金总和
+									   /// Tổng các quỹ
 									   /// </summary>
 		public decimal gxjjzh { get; set; }
 	}
@@ -515,52 +515,52 @@ namespace Newtouch.HIS.Domain.ValueObjects.DaySettleManage
 	public class RdrlsList
 	{
 		/// <summary>
-		/// 对账时间
+		/// Thời gian đối soát
 		/// </summary>
 		public DateTime? czrq { get; set; }
 		/// <summary>
-		/// 对帐日 日期格式 8 非空
+		/// Ngày đối soát Định dạng ngày tháng 8 Không được để trống
 		/// </summary>
 		public string daycollate { get; set; }
 		/// <summary>
-		/// 对帐日中心流水号数量 数字格式 B 非空
+		/// Số giao dịch trung tâm ngày đối soát Định dạng số B Không được để trống
 		/// </summary>
 		public int daycount { get; set; }
 		/// <summary>
-		/// 当年帐户支付总额 数字格式 A 非空
+		/// Tổng số tiền chi từ tài khoản trong năm Định dạng số A Không được để trống
 		/// </summary>
 		public decimal totalcuraccpay { get; set; }
 		/// <summary>
-		/// 历年帐户支付总额 数字格式 A 非空
+		/// Tổng số tiền chi từ tài khoản các năm trước Định dạng số A Không được để trống
 		/// </summary>
 		public decimal totalhisaccpay { get; set; }
 		/// <summary>
-		/// 现金自负总额 数字格式 A 非空
+		/// Tổng số tiền mặt tự chi trả Định dạng số A Không được để trống
 		/// </summary>
 		public decimal totalcashpay { get; set; }
 		/// <summary>
-		/// 统筹支付总额 数字格式 A 非空
+		/// Tổng số tiền chi trả từ quỹ chung Định dạng số A Không được để trống
 		/// </summary>
 		public decimal totaltcpay { get; set; }
 		/// <summary>
-		/// 附加支付总额 数字格式 A 非空
+		/// Tổng số tiền thanh toán bổ sung Định dạng số A Không được để trống
 		/// </summary>
 		public decimal totaldffjpay { get; set; }
 		/// <summary>
-		/// 分类自负总额 数字格式 A 非空
+		/// Tổng số tiền tự chi trả theo phân loại Định dạng số A Không được để trống
 		/// </summary>
 		public decimal totalflzf { get; set; }
 		/// <summary>
-		/// 非医保结算范围费用总额总额
+		/// Tổng chi phí ngoài phạm vi quyết toán BHYT
 		/// </summary>
 		public decimal totalfybjsfw { get; set; }
 
 		/// <summary>
-		/// 返回对账结果
+		/// Trả về kết quả đối soát
 		/// </summary>
 		public string resultcollate { get; set; }
 		/// <summary>
-		/// 返回对账日
+		/// Trả về ngày đối soát
 		/// </summary>
 		public string outdaycollate { get; set; }
 	}
@@ -568,43 +568,43 @@ namespace Newtouch.HIS.Domain.ValueObjects.DaySettleManage
 	public class RdrNewList
 	{
 		/// <summary>
-		/// 类型 mz：门诊数据 zy：住院数据 all：全部合计数据
+		/// Loại mz:Dữ liệu ngoại trú zy:Dữ liệu nội trú all:Dữ liệu tổng hợp toàn bộ
 		/// </summary>
 		public string typetext { get; set; }
 		/// <summary>
-		/// 对帐日 日期格式 8 非空
+		/// Ngày đối soát Định dạng ngày tháng 8 Không được để trống
 		/// </summary>
 		public string daycollate { get; set; }
 		/// <summary>
-		/// 对帐日中心流水号数量 数字格式 B 非空
+		/// Số giao dịch trung tâm ngày đối soát Định dạng số B Không được để trống
 		/// </summary>
 		public int daycount { get; set; }
 		/// <summary>
-		/// 当年帐户支付总额 数字格式 A 非空
+		/// Tổng số tiền chi từ tài khoản trong năm Định dạng số A Không được để trống
 		/// </summary>
 		public decimal totalcuraccpay { get; set; }
 		/// <summary>
-		/// 历年帐户支付总额 数字格式 A 非空
+		/// Tổng số tiền chi từ tài khoản các năm trước Định dạng số A Không được để trống
 		/// </summary>
 		public decimal totalhisaccpay { get; set; }
 		/// <summary>
-		/// 现金自负总额 数字格式 A 非空
+		/// Tổng số tiền mặt tự chi trả Định dạng số A Không được để trống
 		/// </summary>
 		public decimal totalcashpay { get; set; }
 		/// <summary>
-		/// 统筹支付总额 数字格式 A 非空
+		/// Tổng số tiền chi trả từ quỹ chung Định dạng số A Không được để trống
 		/// </summary>
 		public decimal totaltcpay { get; set; }
 		/// <summary>
-		/// 附加支付总额 数字格式 A 非空
+		/// Tổng số tiền thanh toán bổ sung Định dạng số A Không được để trống
 		/// </summary>
 		public decimal totaldffjpay { get; set; }
 		/// <summary>
-		/// 分类自负总额 数字格式 A 非空
+		/// Tổng số tiền tự chi trả theo phân loại Định dạng số A Không được để trống
 		/// </summary>
 		public decimal totalflzf { get; set; }
 		/// <summary>
-		/// 非医保结算范围费用总额总额
+		/// Tổng chi phí ngoài phạm vi quyết toán BHYT
 		/// </summary>
 		public decimal totalfybjsfw { get; set; }
 	}

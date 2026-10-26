@@ -33,12 +33,12 @@ namespace Newtouch.HIS.Domain.Entity
         public decimal? je { get; set; }
 
         /// <summary>
-        /// 医嘱性质 1临时 2长期
+        /// Tính chất y lệnh 1Tạm thời 2Dài hạn
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 医嘱类型 1药品 2治疗项目
+        /// Loại y lệnh 1Thuốc 2Hạng mục điều trị
         /// </summary>
         public DateTime CreateTime { get; set; }
 

@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         OutpatientSettlementEntity GetMZJSFromMz_jsByJsnm(int jsnm);
 
         /// <summary>
-        /// 插入退费剩余部分 mz_js mz_jsmx mz_jszffs mz_jsdl 数据库操作
+        /// Chèn phần còn lại của hoàn phí mz_js mz_jsmx mz_jszffs mz_jsdl Thao tác CSDL
         /// </summary>
         /// <param name="js"></param>
         /// <param name="listMzJsMx"></param>
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         DataTable GetMz_cfmxRecords(int jsnm);
 
         /// <summary>
-        /// 全退  mz_js mz_jsmx mz_ghth
+        /// Trả lại toàn bộ  mz_js mz_jsmx mz_ghth
         /// </summary>
         /// <param name="mzJs"></param>
         /// <param name="mzJsmxList"></param>
@@ -61,17 +61,17 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region GRS门诊退费
 
         /// <summary>
-        /// 系统病人信息 分页数据
+        /// Thông tin bệnh nhân hệ thống Dữ liệu phân trang
         /// </summary>
-        /// <param name="pagination">分页信息</param>
-        /// <param name="blh">病历号</param>
-        /// <param name="xm">姓名</param>
+        /// <param name="pagination">Thông tin phân trang</param>
+        /// <param name="blh">Số bệnh án</param>
+        /// <param name="xm">Họ tên</param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         List<OutpatAccInfoDto> GetBasicInfoSearchList(Pagination pagination, string blh, string mzh, string xm,string kssj,string jssj, string orgId, string usercode, string jiuzhenbiaozhi);
 
         /// <summary>
-        /// 病人管理查询病人信息
+        /// Tra cứu thông tin bệnh nhân quản lý bệnh nhân
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<OutpatAccInfoDto> GetBasicInfoSearchListInRegister(Pagination pagination, string blh, string xm, string orgId,string zjh,string zjlx);
 
         /// <summary>
-        /// 病人门诊登记，浮层查询病人信息
+        /// Đăng ký ngoại trú bệnh nhân,Tra cứu thông tin bệnh nhân lớp nổi
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>
@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
         List<PatInfoQuery> Getjzjsxx(string type, string keyword, string grbh, string orgId);
         /// <summary>
-        /// 根据病历号获取结算信息
+        /// Lấy thông tin quyết toán theo số bệnh án
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="startTime"></param>
@@ -100,17 +100,17 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<MZJSInfo> GetjsInfoByblh(string blh, string startTime, string endTime, string orgId);
 
         /// <summary>
-        /// 按结算内码查门诊项目
+        /// Tra cứu hạng mục ngoại trú theo mã nội bộ quyết toán
         /// </summary>
-        /// <param name="jsnm">结算内码</param>
+        /// <param name="jsnm">Mã nội bộ quyết toán</param>
         /// <param name="orgId"></param>
         /// <returns></returns>
-        /// 门诊项目明细
+        /// Chi tiết hạng mục ngoại trú
         List<GridViewMx> GetMz_xmDetailByJsnm(int jsnm, string orgId);
 
 
         /// <summary>
-        /// 根据结算内码获取结算项目信息
+        /// Lấy thông tin hạng mục quyết toán theo mã nội bộ quyết toán
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="orgId"></param>
@@ -120,7 +120,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<GridViewMx> GetGridViewMx(int jsnm, string orgId);
 
         /// <summary>
-        /// 全退时更新医保次数
+        /// Khi trả lại toàn bộ thì cập nhật số lần BHYT
         /// </summary>
         /// <param name="jzrqList"></param>
         /// <param name="IsReturnAll"></param>
@@ -131,7 +131,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #endregion
 
         /// <summary>
-        /// 门诊退费 结算 主记录 Query
+        /// Hoàn phí ngoại trú Quyết toán Bản ghi chính Query
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>
@@ -140,7 +140,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <returns></returns>
         IList<OutPatientRefundableJsVO> RefundableJsQuery(string orgId, DateTime? kssj, DateTime? jssj, string mzh);
         /// <summary>
-        /// 贵安结算退费时查询结算信息
+        /// Khi quyết toán Quý An hoàn phí thì tra cứu thông tin quyết toán
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>
@@ -150,7 +150,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<OutPatientRefundableGuiAnJsVO> RefundableGuiAnJsQuery(string orgId, DateTime? kssj, DateTime? jssj, string mzh);
         
         /// <summary>
-        /// 门诊退费 Query
+        /// Hoàn phí ngoại trú Query
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>
@@ -160,7 +160,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<OutPatientRefundableVO> RefundableQuery(string orgId, int jsnm);
 
         /// <summary>
-        /// 门诊/住院计划录入 患者检索筛选
+        /// Khám ngoại trú/Nhập kế hoạch nội trú Lọc tìm kiếm bệnh nhân
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>

@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int syxh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string brxz { get; set; }
 
         /// <summary>
-        /// 枚举EnumZYBZ
+        /// EnumEnumZYBZ
         /// </summary>
         public string zybz { get; set; }
 
@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string ks { get; set; }
 
         /// <summary>
-        /// （入院登记时初步选择的病区）因为入院时不确定床位，所以先保存病区，以使本区护士可以操作此病人
+        /// (Khu bệnh được chọn sơ bộ khi đăng ký nhập viện)Vì khi nhập viện chưa xác định giường bệnh,Vì vậy lưu khu bệnh trước,Để y tá khu này có thể thao tác bệnh nhân này
         /// </summary>
         public string bq { get; set; }
 
@@ -59,7 +59,7 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime ryrq { get; set; }
 
         /// <summary>
-        /// 入院途径 枚举EnumRYTJ
+        /// Đường nhập viện EnumEnumRYTJ
         /// </summary>
         public string rytj { get; set; }
 
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string rqry { get; set; }
 
         /// <summary>
-        /// 病人进入病区的日期，入区时还更新在院状态＝2   床位费等费用也是从入区日???开始计算
+        /// Ngày bệnh nhân vào khu bệnh,Khi vào khu còn cập nhật trạng thái đang nằm viện＝2   Phí giường bệnh v.v. cũng tính từ ngày vào khu???Bắt đầu tính toán
         /// </summary>
         public DateTime? rqrq { get; set; }
 
@@ -145,7 +145,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string xian_dz { get; set; }
 
         /// <summary>
-        /// 婚否 枚举 EnumHF
+        /// Tình trạng hôn nhân Enum EnumHF
         /// </summary>
         public int? hy { get; set; }
 
@@ -190,12 +190,12 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime? cyrq { get; set; }
 
         /// <summary>
-        /// xt_cyzd 的编号
+        /// xt_cyzd Mã số của
         /// </summary>
         public string cyzd { get; set; }
 
         /// <summary>
-        /// 出院病情？出院病区？
+        /// Tình trạng bệnh khi xuất viện?Khu bệnh xuất viện?
         /// </summary>
         public string cybq { get; set; }
 
@@ -290,7 +290,7 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 原来卡号可以为空，且不是唯一索引。   2006.09.15将此字段定义为唯一索引，且不可为空，需要按此字段检索病人基本信息
+        /// Số thẻ ban đầu có thể để trống,Và không phải là chỉ mục duy nhất.   2006.09.15Định nghĩa trường này thành chỉ mục duy nhất,Và không được để trống,Cần tìm kiếm thông tin cơ bản bệnh nhân theo trường này
         /// </summary>
         public string kh { get; set; }
 
@@ -315,7 +315,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string cw { get; set; }
 
         /// <summary>
-        /// 入院病情
+        /// Tình trạng bệnh khi nhập viện
         /// </summary>
         public string rybq { get; set; }
 
@@ -360,18 +360,18 @@ namespace Newtouch.HIS.Domain.Entity
         public string zjlx { get; set; }
 
         /// <summary>
-        /// 年龄
+        /// Tuổi
         /// </summary>
         public short? nl{ get; set; }
 
         public string brly { get; set; }
 
         /// <summary>
-        /// 年龄文本显示
+        /// Hiển thị tuổi dạng văn bản
         /// </summary>
         public string nlshow { get; set; }
 		/// <summary>
-		/// 转出医院
+		/// Bệnh viện chuyển đi
 		/// </summary>
 		public string zcyy { get; set; }
         /// <summary>

@@ -4,7 +4,7 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
 {
     /// <summary>
-    /// 补打和重打发票  结算明细对象
+    /// In bổ sung và in lại hóa đơn  Đối tượng chi tiết quyết toán
     /// </summary>
     public class OutPatientReprintOrSuppPrintSettleDetailVO
     {
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
         /// </summary>
         public int ghnm { get; set; }
         /// <summary>
-        /// 单价和服务费单价
+        /// Đơn giá và đơn giá phí dịch vụ
         /// </summary>
         public decimal? djandfwfdj { get; set; }
         /// <summary>
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
         /// </summary>
         public DateTime CreateTime { get; set; }
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
         /// <summary>
@@ -81,27 +81,27 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
         /// </summary>
         public string ypmc { get; set; }
         /// <summary>
-        /// 单价单位
+        /// Đơn vị đơn giá
         /// </summary>
         public string djdw { get; set; }
         /// <summary>
-        /// 领药窗口
+        /// Cửa sổ lĩnh thuốc
         /// </summary>
         public string lyck { get; set; }
         /// <summary>
-        /// 拆零数
+        /// Số lẻ đã tách
         /// </summary>
-        public short? cls { get; set; }   //表是smallint
+        public short? cls { get; set; }   //Bảng làsmallint
         /// <summary>
-        /// 成组号
+        /// Số nhóm
         /// </summary>
         public string czh { get; set; }
         /// <summary>
-        /// 药品标志代码
+        /// Mã cờ thuốc
         /// </summary>
         public string ypbzdm { get; set; }
         /// <summary>
-        /// 处方内码
+        /// Mã nội bộ đơn thuốc
         /// </summary>
         public int cfnm { get; set; }
         /// <summary>

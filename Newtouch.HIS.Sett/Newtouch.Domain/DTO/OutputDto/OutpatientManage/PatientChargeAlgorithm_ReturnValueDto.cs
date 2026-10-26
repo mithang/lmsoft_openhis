@@ -13,12 +13,12 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
         }
 
         /// <summary>
-        /// 大类费用明细
+        /// Chi tiết chi phí loại lớn
         /// </summary>
         public List<PatientChargeAlgorythm_Category_FeesDetailVO> dlFymxList { get; set; }
 
         /// <summary>
-        /// 医保结算范围费用总额
+        /// Tổng chi phí trong phạm vi quyết toán BHYT
         /// </summary>
         public decimal ybjsfwze
         {
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
 
                 foreach (KeyValuePair<string, decimal> pair in dlfy)
                 {
-                    //四舍五入
+                    //Làm tròn
                     fy += Math.Round(pair.Value, 2, MidpointRounding.AwayFromZero);
                 }
 

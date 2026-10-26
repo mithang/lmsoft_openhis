@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.ValueObjects.SystemManage
 {
     /// <summary>
-    /// 站点收支统计表 收入信息的 gridlist
+    /// Bảng thống kê thu chi của trạm Của thông tin thu nhập gridlist
     /// </summary>
     public class jgssEarningGridVO
     {
@@ -13,7 +13,7 @@
         public string dlmc { get; set; }
         public string dlCode { get; set; }
         /// <summary>
-        /// 核实收入
+        /// Xác minh thu nhập
         /// </summary>
         public decimal hssr { get; set; }
         public decimal ce { get; set; }

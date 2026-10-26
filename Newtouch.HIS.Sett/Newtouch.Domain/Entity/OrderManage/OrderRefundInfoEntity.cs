@@ -15,36 +15,36 @@ namespace Newtouch.HIS.Domain.Entity
         [Key]
         public string Id { get; set; }
         /// <summary>
-        /// 请求支付订单号
+        /// Số đơn hàng yêu cầu thanh toán
         /// </summary>
         public string OutTradeNo { get; set; }
         /// <summary>
-        /// 第三方交易号
+        /// Số giao dịch bên thứ ba
         /// </summary>
         public string TradeNo { get; set; }
         /// <summary>
-        /// 退款金额
+        /// Số tiền hoàn tiền
         /// </summary>
         public decimal Amount { get; set; }
         public int RefundStatus { get; set; }
         public string Memo { get; set; }
         /// <summary>
-        /// 创建用户ID
+        /// Người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 
@@ -53,15 +53,15 @@ namespace Newtouch.HIS.Domain.Entity
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// 退款原因
+        /// Lý do hoàn tiền
         /// </summary>
         public string RefundReason { get; set; }
         /// <summary>
-        /// 退款平台交易时间
+        /// Thời gian giao dịch hoàn tiền trên nền tảng
         /// </summary>
         public DateTime? RefundDate { get; set; }
         /// <summary>
-        /// 退款请求号
+        /// Số yêu cầu hoàn tiền
         /// </summary>
         public string OutRequestNo { get; set; }
     }

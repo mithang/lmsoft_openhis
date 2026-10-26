@@ -10,22 +10,22 @@ namespace Newtouch.HIS.Domain.IDomainServices.NonTreatmentItemManage
     public interface INonTreatmentItemDmnService
     {
         /// <summary>
-        /// 根据卡号查patid和xm
+        /// Tra cứu theo số thẻpatidvàxm
         /// </summary>
         IList<PatientInfoVO> SelectPatientInfoByblhOrzyh(string orgId, string blh, string zyh, string xm);
 
         /// <summary>
-        /// 获取收费项目分类List
+        /// Lấy phân loại hạng mục thu phíList
         /// </summary>
         IList<SysChargeCategoryVEntity> GetChargeCategoryTreeList(string orgId);
 
         /// <summary>
-        /// 非治疗项目记账查询
+        /// Tra cứu ghi sổ hạng mục không điều trị
         /// </summary>
         IList<NonTreatmentItemBillingInfoVO> SelectNonTreatmentItemList(Pagination pagination, string sfdl, string keyword, string smry, string smks, DateTime? kssj, DateTime? jssj, string orgId, string kehu, string zyh, string blh);
 
         /// <summary>
-        /// 记账退费查询
+        /// Tra cứu hoàn phí ghi sổ
         /// </summary>
         IList<NonTreatmentItemBillingInfoVO> SelectRefundItemList(Pagination pagination, string zyh, string blh, string keyword, string smry, string kehu, DateTime? kssj, DateTime? jssj, string orgId);
     }

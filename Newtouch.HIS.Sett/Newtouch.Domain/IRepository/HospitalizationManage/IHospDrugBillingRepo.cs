@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IHospDrugBillingRepo : IRepositoryBase<HospDrugBillingEntity>
     {
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="hospItemFeeEntity"></param>
         /// <param name="keyValue"></param>

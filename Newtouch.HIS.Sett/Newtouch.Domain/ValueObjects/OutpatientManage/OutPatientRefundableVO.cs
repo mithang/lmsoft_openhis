@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 门诊退费 Query
+    /// Hoàn phí ngoại trú Query
     /// </summary>
     public class OutPatientRefundableVO
     {
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public decimal? sl { get; set; }
 
         /// <summary>
-        /// 可退数量
+        /// Số lượng có thể trả lại
         /// </summary>
         public decimal? ktsl { get; set; }
         public decimal? tsl { get; set; }
@@ -61,12 +61,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string dlmc { get; set; }
 
         /// <summary>
-        /// 计费类型 1药品 2项目
+        /// Loại tính phí 1Thuốc 2Hạng mục
         /// </summary>
         public int feeType { get; set; }
 
         /// <summary>
-        /// 药品的成组号
+        /// Số nhóm của thuốc
         /// </summary>
         public string czh { get; set; }
 
@@ -78,53 +78,53 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string zfxz { get; set; }
 
         /// <summary>
-        /// 项目内码（未关联处方）
+        /// Mã nội bộ hạng mục(Chưa liên kết đơn thuốc)
         /// </summary>
         public int? xmnm { get; set; }
 
         /// <summary>
-        /// 药品明细主键
+        /// Khóa chính chi tiết thuốc
         /// </summary>
         public int? cfmxId { get; set; }
 
         /// <summary>
-        /// 科室编码
+        /// Mã khoa
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// 医生编码
+        /// Mã bác sĩ
         /// </summary>
         public string ys { get; set; }
 
         /// <summary>
-        /// 医生姓名
+        /// Tên bác sĩ
         /// </summary>
         public string ysmc { get; set; }
 
         public DateTime klsj { get; set; }
 
         /// <summary>
-        /// 是治疗计划，且未执行状态
+        /// Là kế hoạch điều trị,Và trạng thái chưa thực hiện
         /// </summary>
         public bool? zljhwzx { get; set; }
 
         public string jslx { get; set; }
         public int ghnm { get; set; }
         /// <summary>
-        /// 收费组套ID
+        /// Bộ thu phíID
         /// </summary>
         public string ztId { get; set; }
         /// <summary>
-        /// 组套数量
+        /// Số lượng bộ
         /// </summary>
         public int? ztsl { get; set; }
         /// <summary>
-        /// 组套名称
+        /// Tên bộ
         /// </summary>
         public string ztmc { get; set; }
         /// <summary>
-        /// 收费模板编号
+        /// Mã mẫu thu phí
         /// </summary>
         public string sfmb { get; set; }
     }

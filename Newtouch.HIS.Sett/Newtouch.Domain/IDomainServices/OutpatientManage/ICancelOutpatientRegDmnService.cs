@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.OutpatientManage
     public interface ICancelOutpatientRegDmnService
     {
         /// <summary>
-        /// 查询可以取消挂号的列表
+        /// Tra cứu danh sách có thể hủy đăng ký khám
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.OutpatientManage
         IList<CancelRegisterSelectVO> SelectRegisterlist(Pagination pagination, string orgId, string blh, string xm, DateTime? kssj, DateTime? jssj);
 
         /// <summary>
-        /// 保存取消挂号
+        /// Lưu hủy đăng ký khám
         /// </summary>
         /// <param name="list"></param>
         void SaveCancelRegister(string orgId, List<SaveCancelRegisterGhnmVO> list);

@@ -37,12 +37,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string Name { get; set; }
 
         /// <summary>
-        /// 0所有人,1指定成员
+        /// 0Tất cả mọi người,1Chỉ định thành viên
         /// </summary>
         public bool AuthorizeType { get; set; }
 
         /// <summary>
-        /// 枚举 开始节点、发起节点、一般节点、或分节点、或并节点、结束节点
+        /// Enum Nút bắt đầu,Nút khởi tạo,Nút thông thường,Hoặc nút phân nhánh,Hoặc nút hợp nhất,Nút kết thúc
         /// </summary>
         public int Type { get; set; }
 
@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Domain.Entity
         public bool? zdzxbz { get; set; }
 
         /// <summary>
-        /// 枚举 1 不同意（流程结束） 2 驳回至上一步 3 驳回至发起节点
+        /// Enum 1 Không đồng ý(Kết thúc quy trình) 2 Từ chối về bước trước 3 Từ chối về nút khởi tạo
         /// </summary>
         public int? htlx { get; set; }
 

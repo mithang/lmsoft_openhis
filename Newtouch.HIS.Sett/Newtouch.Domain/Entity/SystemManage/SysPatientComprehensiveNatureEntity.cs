@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统病人性质组合表
+    /// Bảng tổ hợp tính chất bệnh nhân hệ thống
     /// </summary>
     [Table("xt_brxzzhb")]
     public class SysPatientComprehensiveNatureEntity : IEntity<SysPatientComprehensiveNatureEntity>
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int brxzzhbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -39,12 +39,12 @@ namespace Newtouch.HIS.Domain.Entity
         public int jssx { get; set; }
 
         /// <summary>
-        /// 是否排除已计算项目 1：排除 0 不排除
+        /// Có loại trừ hạng mục đã tính hay không 1:Loại trừ 0 Không loại trừ
         /// </summary>
         public string sfpc { get; set; }
 
         /// <summary>
-        /// 1：有效 0 无效
+        /// 1:Hiệu lực 0 Không hiệu lực
         /// </summary>
         public string zt { get; set; }
 

@@ -9,35 +9,35 @@ namespace Newtouch.HIS.Domain.Entity.DeanInquiryManage
     public class OutpatientBenefitsEntiy
     {
         /// <summary>
-        /// 门诊科室
+        /// Khoa ngoại trú
         /// </summary>
         public string mzks { get; set; }
         /// <summary>
-        /// 门诊人次
+        /// Lượt khám ngoại trú
         /// </summary>
         public int? mzzlrc { get; set; }
         /// <summary>
-        /// 门诊收入
+        /// Thu nhập ngoại trú
         /// </summary>
         public decimal? mzsr { get; set; }
         /// <summary>
-        /// 人均诊疗费用
+        /// Chi phí khám chữa bệnh bình quân đầu người
         /// </summary>
         public decimal? rjfy { get; set; }
         /// <summary>
-        /// 自费费用占比
+        /// Tỷ trọng chi phí tự chi trả
         /// </summary>
         public decimal? zffyzb { get; set; }
         /// <summary>
-        /// 医保费用占比
+        /// Tỷ trọng chi phí BHYT
         /// </summary>
         public decimal? ybfyzb { get; set; }
         /// <summary>
-        /// 平均诊疗时长
+        /// Thời gian khám chữa bệnh trung bình
         /// </summary>
         public int? pjzlsc { get; set; }
         /// <summary>
-        /// 复诊率
+        /// Tỷ lệ tái khám
         /// </summary>
         public decimal? fzl { get; set; }
         public string DeptmentCode { get; set; }
@@ -46,40 +46,40 @@ namespace Newtouch.HIS.Domain.Entity.DeanInquiryManage
     public class OutpatientBenefitsEntiy_Ysxy
     {
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         public string mzks { get; set; }
         /// <summary>
-        /// 门诊人次
+        /// Lượt khám ngoại trú
         /// </summary>
         public int? mzzlrc { get; set; }
         /// <summary>
-        /// 门诊收入
+        /// Thu nhập ngoại trú
         /// </summary>
         public decimal? mzsr { get; set; }
         /// <summary>
-        /// 人均诊疗费用
+        /// Chi phí khám chữa bệnh bình quân đầu người
         /// </summary>
         public decimal? rjzlfy { get; set; }
         /// <summary>
-        /// 自费费用占比
+        /// Tỷ trọng chi phí tự chi trả
         /// </summary>
         public decimal? zffyzb { get; set; }
         /// <summary>
-        /// 医保费用占比
+        /// Tỷ trọng chi phí BHYT
         /// </summary>
         public decimal? ybfyzb { get; set; }
         /// <summary>
-        /// 平均诊疗时长
+        /// Thời gian khám chữa bệnh trung bình
         /// </summary>
         public int? pjzlsc { get; set; }
         /// <summary>
-        /// 复诊率
+        /// Tỷ lệ tái khám
         /// </summary>
         public decimal? fzl { get; set; }
     }
     /// <summary>
-    /// 科室效益排名
+    /// Xếp hạng hiệu quả khoa
     /// </summary>
     public class KSXYPMDTO
     {
@@ -94,31 +94,31 @@ namespace Newtouch.HIS.Domain.Entity.DeanInquiryManage
     public class OutpatientBenefitsEntiy_Lsqs
     {
         /// <summary>
-        /// 周一
+        /// Thứ Hai
         /// </summary>
         public int mon { get; set; }
         /// <summary>
-        /// 周二
+        /// Thứ Ba
         /// </summary>
         public int tue { get; set; }
         /// <summary>
-        /// 周三
+        /// Thứ Tư
         /// </summary>
         public int wed { get; set; }
         /// <summary>
-        /// 周四
+        /// Thứ Năm
         /// </summary>
         public int thu { get; set; }
         /// <summary>
-        /// 周五
+        /// Thứ Sáu
         /// </summary>
         public int fri { get; set; }
         /// <summary>
-        /// 周六
+        /// Thứ Bảy
         /// </summary>
         public int sat { get; set; }
         /// <summary>
-        /// 周日
+        /// Chủ Nhật
         /// </summary>
         public int sun { get; set; }
     }

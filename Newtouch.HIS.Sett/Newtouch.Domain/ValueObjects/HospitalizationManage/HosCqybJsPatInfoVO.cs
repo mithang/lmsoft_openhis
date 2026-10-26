@@ -9,19 +9,19 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
 	public class HosCqybJsPatInfoVO
 	{
 		/// <summary>
-		/// 住院床日
+		/// Ngày giường nội trú
 		/// </summary>
 		public string zycr { get; set; }
 		/// <summary>
-		/// 出院科室
+		/// Khoa xuất viện
 		/// </summary>
 		public string cyks { get; set; }
 		/// <summary>
-		/// 出院医生
+		/// Bác sĩ xuất viện
 		/// </summary>
 		public string cyys { get; set; }
         /// <summary>
-        /// 出院医师国家编码
+        /// Mã bác sĩ quốc gia khi xuất viện
         /// </summary>
         public string cyysgjbm { get; set; }
         public string cyrq { get; set; }
@@ -30,23 +30,23 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
     public class HosCqybJsPatInfoVO_cr
     {
         /// <summary>
-        /// 入院日期
+        /// Ngày nhập viện
         /// </summary>
         public DateTime ryrq { get; set; }
         /// <summary>
-        /// 出院日期
+        /// Ngày xuất viện
         /// </summary>
         public DateTime? cyrq { get; set; }
         /// <summary>
-        /// 出院科室
+        /// Khoa xuất viện
         /// </summary>
         public string cyks { get; set; }
         /// <summary>
-        /// 出院医生
+        /// Bác sĩ xuất viện
         /// </summary>
         public string cyys { get; set; }
         /// <summary>
-        /// 出院医师国家编码
+        /// Mã bác sĩ quốc gia khi xuất viện
         /// </summary>
         public string cyysgjbm { get; set; }
 

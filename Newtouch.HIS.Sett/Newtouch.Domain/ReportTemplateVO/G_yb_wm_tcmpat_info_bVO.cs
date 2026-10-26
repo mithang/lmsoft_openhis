@@ -7,217 +7,217 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.ReportTemplateVO
 {
     /// <summary>
-    /// 西药中成药信息表
+    /// Bảng thông tin thuốc Tây y và thuốc thành phẩm Trung y
     /// </summary>
     public class G_yb_wm_tcmpat_info_bVO
     {
-        //	医疗目录编码				
+        //	Mã danh mục y tế				
         public string MED_LIST_CODG { get; set; }
-        //	药品商品名				
+        //	Tên thương mại thuốc				
         public string DRUG_PRODNAME { get; set; }
-        //	通用名编码				
+        //	Mã tên chung				
         public string GENNAME_CODG { get; set; }
-        //	药品通用名				
+        //	Tên chung của thuốc				
         public string DRUG_GENNAME { get; set; }
-        //	化学名称				
+        //	Tên hóa học				
         public string CHEMNAME { get; set; }
-        //	别名				
+        //	Tên khác				
         public string ALIS { get; set; }
-        //	英文名称				
+        //	Tên tiếng Anh				
         public string ENG_NAME { get; set; }
-        //	注册名称				
+        //	Tên đăng ký				
         public string REG_NAME { get; set; }
-        //	药品本位码				
+        //	Mã chuẩn thuốc				
         public string DRUGSTDCODE { get; set; }
-        //	药品剂型				
+        //	Dạng bào chế thuốc				
         public string DRUG_DOSFORM { get; set; }
-        //	药品剂型名称				
+        //	Tên dạng bào chế thuốc				
         public string DRUG_DOSFORM_NAME { get; set; }
-        //	药品类别				
+        //	Loại thuốc				
         public string DRUG_TYPE { get; set; }
-        //	药品类别名称				
+        //	Tên loại thuốc				
         public string DRUG_TYPE_NAME { get; set; }
-        //	药品规格				
+        //	Quy cách thuốc				
         public string DRUG_SPEC { get; set; }
-        //	药品规格代码				
+        //	Mã quy cách thuốc				
         public string DRUG_SPEC_CODE { get; set; }
-        //	注册剂型				
+        //	Dạng bào chế đã đăng ký				
         public string REG_DOSFORM { get; set; }
-        //	注册规格				
+        //	Quy cách đã đăng ký				
         public string REG_SPEC { get; set; }
-        //	注册规格代码				
+        //	Mã quy cách đã đăng ký				
         public string REG_SPEC_CODE { get; set; }
-        //	每次用量				
+        //	Liều lượng mỗi lần				
         public string EACH_DOS { get; set; }
-        //	使用频次				
+        //	Tần suất sử dụng				
         public string USED_FRQU { get; set; }
-        //	酸根盐基				
+        //	Gốc axit-bazơ				
         public string ACDBAS { get; set; }
-        //	国家药品编号				
+        //	Mã thuốc quốc gia				
         public string NAT_DRUG_NO { get; set; }
-        //	使用方法				
+        //	Cách dùng				
         public string USED_MTD { get; set; }
-        //	中成药标志				
+        //	Cờ thuốc thành phẩm Trung y				
         public string TCMPAT_FLAG { get; set; }
-        //	生产地类别				
+        //	Loại nơi sản xuất				
         public string PRODPLAC_TYPE { get; set; }
-        //	生产地类别名称				
+        //	Tên loại nơi sản xuất				
         public string PRODPLAC_TYPE_NAME { get; set; }
-        //	计价单位类型				
+        //	Loại đơn vị tính giá				
         public string PRCUNT_TYPE { get; set; }
-        //	非处方药标志				
+        //	Cờ thuốc không kê đơn				
         public string OTC_FLAG { get; set; }
-        //	非处方药标志名称				
+        //	Tên cờ thuốc không kê đơn				
         public string OTC_FLAG_NAME { get; set; }
-        //	包装材质				
+        //	Chất liệu đóng gói				
         public string PACMATL { get; set; }
-        //	包装材质名称				
+        //	Tên chất liệu đóng gói				
         public string PACMATL_NAME { get; set; }
-        //	包装规格				
+        //	Quy cách đóng gói				
         public string PACSPEC { get; set; }
-        //	包装数量				
+        //	Số lượng đóng gói				
         public string PAC_CNT { get; set; }
-        //	功能主治				
+        //	Chức năng và chỉ định				
         public string EFCC_ATD { get; set; }
-        //	给药途径				
+        //	Đường dùng thuốc				
         public string RUTE { get; set; }
-        //	说明书				
+        //	Hướng dẫn sử dụng				
         public string MANL { get; set; }
-        //	开始日期				
+        //	Ngày bắt đầu				
         public string BEGNDATE { get; set; }
-        //	结束日期				
+        //	Ngày kết thúc				
         public string ENDDATE { get; set; }
-        //	最小使用单位				
+        //	Đơn vị sử dụng nhỏ nhất				
         public string MIN_USEUNT { get; set; }
-        //	最小销售单位				
+        //	Đơn vị bán nhỏ nhất				
         public string MIN_SALUNT { get; set; }
-        //	最小计量单位				
+        //	Đơn vị đo nhỏ nhất				
         public string MIN_UNT { get; set; }
-        //	最小包装数量				
+        //	Số lượng đóng gói nhỏ nhất				
         public int? MIN_PAC_CNT { get; set; }
-        //	最小包装单位				
+        //	Đơn vị đóng gói nhỏ nhất				
         public string MIN_PACUNT { get; set; }
-        //	最小制剂单位				
+        //	Đơn vị chế phẩm nhỏ nhất				
         public string MIN_PREPUNT { get; set; }
-        //	最小包装单位名称				
+        //	Tên đơn vị đóng gói nhỏ nhất				
         public string MINPACUNT_NAME { get; set; }
-        //	最小制剂单位名称				
+        //	Tên đơn vị chế phẩm nhỏ nhất				
         public string MIN_PREPUNT_NAME { get; set; }
-        //	转换比				
+        //	Tỷ lệ chuyển đổi				
         public int? CONVRAT { get; set; }
-        //	药品有效期				
+        //	Hạn dùng thuốc				
         public string DRUG_EXPY { get; set; }
-        //	最小计价单位				
+        //	Đơn vị tính giá nhỏ nhất				
         public string MIN_PRCUNT { get; set; }
-        //	五笔助记码				
+        //	Mã ghi nhớ ngũ bút				
         public string WUBI { get; set; }
-        //	拼音助记码				
+        //	Mã ghi nhớ pinyin				
         public string PINYIN { get; set; }
-        //	分包装厂家				
+        //	Nhà sản xuất đóng gói riêng				
         public string SUBPCK_FCTY { get; set; }
-        //	生产企业代码				
+        //	Mã doanh nghiệp sản xuất				
         public string PRODENTP_CODE { get; set; }
-        //	生产企业名称				
+        //	Tên doanh nghiệp sản xuất				
         public string PRODENTP_NAME { get; set; }
-        //	特殊限价药品标志				
+        //	Cờ thuốc giới hạn đặc biệt				
         public string SP_LMTPRIC_DRUG_FLAG { get; set; }
-        //	特殊药品标志				
+        //	Cờ thuốc đặc biệt				
         public string SP_DRUG_FLAG { get; set; }
-        //	限制使用范围				
+        //	Phạm vi hạn chế sử dụng				
         public string LMT_USESCP { get; set; }
-        //	限制使用标志				
+        //	Cờ hạn chế sử dụng				
         public string LMT_USED_FLAG { get; set; }
-        //	药品注册证编号				
+        //	Số chứng nhận đăng ký thuốc				
         public string DRUG_REGNO { get; set; }
-        //	药品注册证号开始日期				
+        //	Ngày bắt đầu số chứng nhận đăng ký thuốc				
         public DateTime? DRUG_REGCERT_BEGNDATE { get; set; }
-        //	药品注册证号结束日期				
+        //	Ngày kết thúc số chứng nhận đăng ký thuốc				
         public DateTime? DRUG_REGCERT_ENDDATE { get; set; }
-        //	批准文号				
+        //	Số văn bản phê duyệt				
         public string APRVNO { get; set; }
-        //	批准文号开始日期				
+        //	Ngày bắt đầu số văn bản phê duyệt				
         public DateTime? APRVNO_BEGNDATE { get; set; }
-        //	批准文号结束日期				
+        //	Ngày kết thúc số văn bản phê duyệt				
         public DateTime? APRVNO_ENDDATE { get; set; }
-        //	市场状态				
+        //	Trạng thái thị trường				
         public string MKT_STAS { get; set; }
-        //	市场状态名称				
+        //	Tên trạng thái thị trường				
         public string MKT_STAS_NAME { get; set; }
-        //	药品注册批件电子档案				
+        //	Hồ sơ điện tử văn bản phê duyệt đăng ký thuốc				
         public string DRUG_REG_APPVLETR_ELECACS { get; set; }
-        //	药品补充申请批件电子档案				
+        //	Hồ sơ điện tử văn bản phê duyệt đăng ký bổ sung thuốc				
         public string SPLM_APPY_APPVLETR_FILE { get; set; }
-        //	国家医保药品目录备注				
+        //	Ghi chú danh mục thuốc BHYT quốc gia				
         public string NAT_HI_DRUGLIST_MEMO { get; set; }
-        //	基本药物标志名称				
+        //	Tên cờ thuốc cơ bản				
         public string BAS_MEDN_FLAG_NAME { get; set; }
-        //	基本药物标志				
+        //	Cờ thuốc cơ bản				
         public string BAS_MEDN_FLAG { get; set; }
-        //	增值税调整药品标志				
+        //	Cờ thuốc điều chỉnh thuế GTGT				
         public string ADVALTAX_ADJM_DRUG_FLAG { get; set; }
-        //	增值税调整药品名称				
+        //	Tên thuốc điều chỉnh thuế GTGT				
         public string ADVALTAX_ADJM_DRUG_NAME { get; set; }
-        //	上市药品目录集药品				
+        //	Thuốc trong danh mục thuốc đã lưu hành				
         public string LSTD_DRUGLIST_DRUG { get; set; }
-        //	医保谈判药品标志				
+        //	Cờ thuốc đàm phán BHYT				
         public string HI_NEGO_DRUG_FLAG { get; set; }
-        //	医保谈判药品名称				
+        //	Tên thuốc đàm phán BHYT				
         public string HI_NEGO_DRUG_NAME { get; set; }
-        //	卫健委药品编码				
+        //	Mã thuốc của Ủy ban Y tế				
         public string NHC_DRUG_CODG { get; set; }
-        //	备注				
+        //	Ghi chú				
         public string MEMO { get; set; }
-        //	有效标志				
+        //	Cờ hiệu lực				
         public string VALI_FLAG { get; set; }
-        //	数据唯一记录号				
+        //	Số bản ghi duy nhất của dữ liệu				
         public string RID { get; set; }
-        //	数据创建时间				
+        //	Thời gian tạo dữ liệu				
         public DateTime? CRTE_TIME { get; set; }
-        //	数据更新时间				
+        //	Thời gian cập nhật dữ liệu				
         public DateTime? UPDT_TIME { get; set; }
-        ////	创建人ID				
+        ////	Người tạoID				
         //public string CRTER_ID { get; set; }
-        ////	创建人姓名				
+        ////	Tên người tạo				
         //public string CRTER_NAME { get; set; }
-        ////	创建机构编号				
+        ////	Mã cơ sở tạo				
         //public string CRTE_OPTINS_NO { get; set; }
-        ////	经办人ID				
+        ////	Người xử lýID				
         //public string OPTER_ID { get; set; }
-        ////	经办人姓名				
+        ////	Tên người xử lý				
         //public string OPTER_NAME { get; set; }
-        ////	经办时间				
+        ////	Thời gian xử lý				
         //public DateTime? OPT_TIME { get; set; }
-        ////	经办机构编号				
+        ////	Mã cơ sở xử lý				
         //public string OPTINS_NO { get; set; }
-        //	版本号				
+        //	Số phiên bản				
         public string VER { get; set; }
-        //	版本名称				
+        //	Tên phiên bản				
         public string VER_NAME { get; set; }
-        //	儿童用药				
+        //	Thuốc dùng cho trẻ em				
         public string CHLD_MEDC { get; set; }
-        //	公司名称				
+        //	Tên công ty				
         public string CO_NAME { get; set; }
-        //	仿制药一致性评价药品				
+        //	Thuốc generic đánh giá tính nhất quán				
         public string CONSEVAL_DRUG { get; set; }
-        //	经销企业				
+        //	Doanh nghiệp phân phối				
         public string DSTR { get; set; }
-        //	经销企业联系人				
+        //	Người liên hệ doanh nghiệp phân phối				
         public string DSTR_CONER { get; set; }
-        //	经销企业授权书电子档案				
+        //	Hồ sơ điện tử giấy ủy quyền doanh nghiệp phân phối				
         public string DSTR_AUTH_FILE_ELECACS { get; set; }
-        //	国家医保药品目录剂型				
+        //	Dạng bào chế danh mục thuốc BHYT quốc gia				
         public string NAT_HI_DRUGLIST_DOSFORM { get; set; }
-        //	国家医保药品目录甲乙类标识				
+        //	Dấu loại Giáp/Ất danh mục thuốc BHYT quốc gia				
         public string NAT_HI_DRUGLIST_CHRGITM_LV { get; set; }
-        ////	上市许可证持有人				
+        ////	Người giữ giấy phép lưu hành				
         //public string LSTD_LIC_HOLDER { get; set; }
-        ////	下发标志				
+        ////	Cờ ban hành				
         //public string ISU_FLAG { get; set; }
-        ////	传输数据ID				
+        ////	Truyền dữ liệuID				
         //public string TRAM_DATA_ID { get; set; }
-        ////	生效时间				
+        ////	Thời gian có hiệu lực				
         //public DateTime? EFFT_TIME { get; set; }
-        ////	失效时间				
+        ////	Thời gian hết hiệu lực				
         //public DateTime? INVD_TIME { get; set; }
 
     }

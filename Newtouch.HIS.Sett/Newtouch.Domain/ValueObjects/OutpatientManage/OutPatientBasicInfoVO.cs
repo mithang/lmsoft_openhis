@@ -7,7 +7,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     {
         #region 系统基本信息
         /// <summary>
-        /// 病人id
+        /// Bệnh nhânid
         /// </summary>
         public int patid { get; set; }
         public string brxz { get; set; }
@@ -98,7 +98,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         #region 门诊挂号
         public byte? fzbz { get; set; }
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
         #endregion

@@ -3,72 +3,72 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 出院结算 获取病人基本信息（基本信息、账户、科室等）
+    /// Quyết toán xuất viện Lấy thông tin cơ bản bệnh nhân(Thông tin cơ bản,Tài khoản,Khoa v.v.)
     /// </summary>
     public class HospSettPatInfoVO
     {
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
 
         /// <summary>
-        /// 状态标志
+        /// Cờ trạng thái
         /// </summary>
         public string zybz { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string xb { get; set; }
 
         /// <summary>
-        /// 病人性质
+        /// Tính chất bệnh nhân
         /// </summary>
         public string brxz { get; set; }
 
         /// <summary>
-        /// 病人性质名称
+        /// Tên tính chất bệnh nhân
         /// </summary>
         public string brxzmc { get; set; }
 
         /// <summary>
-        /// 病人的医保交易类型
+        /// Loại giao dịch BHYT của bệnh nhân
         /// </summary>
         public string ybjylx { get; set; }
 
         /// <summary>
-        /// 入院日期
+        /// Ngày nhập viện
         /// </summary>
         public DateTime? ryrq { get; set; }
 
         /// <summary>
-        /// 出院日期
+        /// Ngày xuất viện
         /// </summary>
         public DateTime? cyrq { get; set; }
 
         /// <summary>
-        /// 凭证号
+        /// Số chứng từ
         /// </summary>
         public string pzh { get; set; }
 
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// patid，用xt_brjbxx表赋值
+        /// patid,dùngxt_brjbxxGán giá trị cho bảng
         /// </summary>
         public int? patid { get; set; }
 
@@ -83,42 +83,42 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 住院预交金 账户
+        /// Tiền tạm ứng nội trú Tài khoản
         /// </summary>
         public int? zyyjjzh { get; set; }
 
         /// <summary>
-        /// 住院预交金 账户编号
+        /// Tiền tạm ứng nội trú Mã tài khoản
         /// </summary>
         public int? zyyjjzhbh { get; set; }
 
         /// <summary>
-        /// 住院预交金 账户 帐户性质
+        /// Tiền tạm ứng nội trú Tài khoản Tính chất tài khoản
         /// </summary>
         public string zyyjjzhzhxz { get; set; }
 
         /// <summary>
-        /// 入院诊断 诊断编号
+        /// Chẩn đoán nhập viện Mã chẩn đoán
         /// </summary>
         public string ryzdCode { get; set; }
 
         /// <summary>
-        /// 入院诊断 icd10
+        /// Chẩn đoán nhập viện icd10
         /// </summary>
         public string ryzdicd10 { get; set; }
 
         /// <summary>
-        /// 住院天数
+        /// Số ngày nội trú
         /// </summary>
         public decimal? zyts { get; set; }
 
         /// <summary>
-        /// 出生年月
+        /// Năm tháng sinh
         /// </summary>
         public DateTime? csny { get; set; }
 
         /// <summary>
-        /// 年龄
+        /// Tuổi
         /// </summary>
         public int? nl
         {

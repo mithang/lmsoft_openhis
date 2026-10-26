@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.Entity
 {
 
     /// <summary>
-    /// 治疗项目组合
+    /// Tổ hợp hạng mục điều trị
     /// </summary>
     [Table("mz_gh_zlxmzh")]
     public class TreatmentportfolioEntity : IEntity<TreatmentportfolioEntity>

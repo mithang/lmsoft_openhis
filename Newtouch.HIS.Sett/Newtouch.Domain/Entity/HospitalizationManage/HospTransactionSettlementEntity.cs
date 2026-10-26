@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 住院交易结算
+    /// Quyết toán giao dịch nội trú
     /// </summary>
     [Table("zy_jyjs")]
     public class HospTransactionSettlementEntity : IEntity<HospTransactionSettlementEntity>
@@ -19,12 +19,12 @@ namespace Newtouch.HIS.Domain.Entity
         public int jsnm { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 业务上保证多病人性质结算，关联结算内码唯一。来自住院结算表结算内码
+        /// Về nghiệp vụ đảm bảo quyết toán nhiều tính chất bệnh nhân,Mã nội bộ quyết toán liên kết duy nhất.Đến từ mã nội bộ quyết toán bảng quyết toán nội trú
         /// </summary>
         public int gljsnm { get; set; }
 
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string zyh { get; set; }
 
         /// <summary>
-        /// 病人性质组合子病人性质
+        /// Tính chất bệnh nhân tổ hợp và tính chất bệnh nhân con
         /// </summary>
         public string sbrxz { get; set; }
 
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Domain.Entity
         public decimal xjwc { get; set; }
 
         /// <summary>
-        /// ########CS系统没用到
+        /// ########CSHệ thống không dùng đến
         /// </summary>
         public decimal zhjz { get; set; }
 
@@ -94,12 +94,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string fph { get; set; }
 
         /// <summary>
-        /// 1 已结 2 已退
+        /// 1 Đã quyết toán 2 Đã trả lại
         /// </summary>
         public string jszt { get; set; }
 
         /// <summary>
-        /// 撤销本次结算的结算（金额为负）所使用的内码
+        /// Hủy quyết toán lần này(Số tiền là số âm)Mã nội bộ đang sử dụng
         /// </summary>
         public int cxjsnm { get; set; }
 
@@ -109,27 +109,27 @@ namespace Newtouch.HIS.Domain.Entity
         public string cxjsyy { get; set; }
 
         /// <summary>
-        /// ########CS系统没用到
+        /// ########CSHệ thống không dùng đến
         /// </summary>
         public int? zh { get; set; }
 
         /// <summary>
-        /// 1 结算 2 中途结算
+        /// 1 Quyết toán 2 Quyết toán giữa chừng
         /// </summary>
         public string jsxz { get; set; }
 
         /// <summary>
-        /// 只对中途结算有意义
+        /// Chỉ có ý nghĩa đối với quyết toán giữa chừng
         /// </summary>
         public DateTime? jsksrq { get; set; }
 
         /// <summary>
-        /// 只对中途结算有意义
+        /// Chỉ có ý nghĩa đối với quyết toán giữa chừng
         /// </summary>
         public DateTime? jsjsrq { get; set; }
 
         /// <summary>
-        /// 地税、国税发票上的发票代码，由于需要导出发票上报，所以必须   2013-8-7 作废此字段：采用财务发票管理（cw_fp）的程序录入发票号码和发票代码的起始号，然后通过两个号码的差数来计算每张发票的发票编码，同时计算出作废发票清单
+        /// Thuế địa phương,Mã hóa đơn trên hóa đơn thuế quốc gia,Do cần xuất hóa đơn để báo cáo,Vì vậy phải   2013-8-7 Hủy trường này:Áp dụng quản lý hóa đơn tài chính(cw_fp)chương trình nhập số hóa đơn và số bắt đầu của mã hóa đơn,Sau đó tính mã hóa đơn của mỗi hóa đơn qua hiệu số của hai số này,Đồng thời tính ra danh sách hóa đơn đã hủy
         /// </summary>
         public string fpdm { get; set; }
 
@@ -139,7 +139,7 @@ namespace Newtouch.HIS.Domain.Entity
         public decimal jmje { get; set; }
 
         /// <summary>
-        ///             yb_deal_wjy = 0,//无医保交易               yb_deal_mzgh = 1,//门诊挂号               yb_deal_mzsf = 2,//门诊收费               yb_deal_dbgh = 3,//大病挂号               yb_deal_dbsf = 4,//大病收费               yb_deal_jcsf = 5,//家床收费                yb_deal_zysf = 6,    //住院收费               yb_deal_gsgh = 7,    //工伤挂号               yb_deal_gsmz = 8,   //工伤收费               yb_deal_sssf = 9 //明细项目实时收费              
+        ///             yb_deal_wjy = 0,//Không có giao dịch BHYT               yb_deal_mzgh = 1,//Đăng ký khám ngoại trú               yb_deal_mzsf = 2,//Thu phí ngoại trú               yb_deal_dbgh = 3,//Đăng ký khám bệnh nặng               yb_deal_dbsf = 4,//Thu phí bệnh nặng               yb_deal_jcsf = 5,//Thu phí giường gia đình                yb_deal_zysf = 6,    //Thu phí nội trú               yb_deal_gsgh = 7,    //Đăng ký khám tai nạn lao động               yb_deal_gsmz = 8,   //Thu phí tai nạn lao động               yb_deal_sssf = 9 //Thu phí thời gian thực đối với hạng mục chi tiết              
         /// </summary>
         public string jylx { get; set; }
 

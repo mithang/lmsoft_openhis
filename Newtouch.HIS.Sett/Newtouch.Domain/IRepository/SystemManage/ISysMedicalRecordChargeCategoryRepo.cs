@@ -5,12 +5,12 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 病案收费大类
+    /// Loại lớn thu phí bệnh án
     /// </summary>
     public interface ISysMedicalRecordChargeCategoryRepo : IRepositoryBase<SysMedicalRecordChargeCategoryVEntity>
     {
         /// <summary>
-        /// 获取所有病案收费大类下拉框
+        /// Lấy hộp thả xuống tất cả loại lớn thu phí bệnh án
         /// </summary>
         /// <returns></returns>
         IList<SysMedicalRecordChargeCategoryVEntity> GetdlSelect(string orgId);

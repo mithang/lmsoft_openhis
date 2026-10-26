@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
 {
     /// <summary>
-    /// 门诊排班治疗项目组合
+    /// Tổ hợp hạng mục điều trị lịch trực ngoại trú
     /// </summary>
     public class MzpbZlxmzh
     {
@@ -15,39 +15,39 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
         public string OrganizeId { get; set; }
         public string Id { get; set; }
         /// <summary>
-        /// 诊疗组合名称
+        /// Tên tổ hợp khám chữa bệnh
         /// </summary>
         public string zhmc { get; set; }
         /// <summary>
-        /// 诊疗组合编码
+        /// Mã tổ hợp khám chữa bệnh
         /// </summary>
         public string zhcode { get; set; }
         /// <summary>
-        /// 明细项目排序
+        /// Sắp xếp hạng mục chi tiết
         /// </summary>
         public string ord { get; set; }
         /// <summary>
-        /// 诊疗明细项目
+        /// Hạng mục chi tiết khám chữa bệnh
         /// </summary>
         public string zlxm { get; set; }
         /// <summary>
-        /// 诊疗明细项目名称
+        /// Tên hạng mục chi tiết khám chữa bệnh
         /// </summary>
         public string zlxmmc { get; set; }
         /// <summary>
-        /// 诊疗明细项目单价
+        /// Đơn giá hạng mục chi tiết khám chữa bệnh
         /// </summary>
         public decimal price { get; set; }
         /// <summary>
-        /// 诊疗明细项目拼音
+        /// Pinyin hạng mục chi tiết khám chữa bệnh
         /// </summary>
         public string zlxmpy { get; set; }
         /// <summary>
-        /// 组合金额
+        /// Số tiền tổ hợp
         /// </summary>
         public decimal zhje { get; set; }
         /// <summary>
-        /// 收费大类
+        /// Loại lớn thu phí
         /// </summary>
         public string sfdl { get; set; }
         public string CreatorCode { get; set; }

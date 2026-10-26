@@ -8,12 +8,12 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.HospitalizationManage
     public class InpatientSettPatStatusDetailDto
     {
         /// <summary>
-        /// 住院病人基本信息
+        /// Thông tin cơ bản bệnh nhân nội trú
         /// </summary>
         public InpatientSettPatInfoVO InpatientSettPatInfo { get; set; }
 
         /// <summary>
-        /// 住院计费项目明细（包括治疗项目和非治疗项目）
+        /// Chi tiết hạng mục tính phí nội trú(Bao gồm hạng mục điều trị và hạng mục không điều trị)
         /// </summary>
         public InpatientSettleItemBO InpatientSettleItemBO { get; set; }
 

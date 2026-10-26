@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.PayManage
 
         IList<OrderRefundInfoEntity> TradeRefundList(string OutTradeNo, string TradeNo);
         /// <summary>
-        /// 订单详情查询
+        /// Tra cứu chi tiết đơn hàng
         /// </summary>
         /// <param name="OutTradeNo"></param>
         /// <param name="TradeNo"></param>

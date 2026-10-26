@@ -3,59 +3,59 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 系统病人收费附加
+    /// Phụ thêm tính phí bệnh nhân hệ thống
     /// </summary>
     public class SysPatiChargeAddVo
     {
 
         /// <summary>
-        /// 病人收费附加编号（xt_brsffj）
+        /// Số phụ thêm tính phí bệnh nhân(xt_brsffj)
         /// </summary>
         public int brsffjbh { get; set; }
 
         /// <summary>
-        /// 病人性质（xt_brxz）
+        /// Tính chất bệnh nhân(xt_brxz)
         /// </summary>
         public string brxzmc { get; set; }
 
         public string brxz { get; set; }
 
         /// <summary>
-        /// 大类（xt_sfdl）
+        /// Loại lớn(xt_sfdl)
         /// </summary>
         public string dlmc { get; set; }
 
         public string dl { get; set; }
 
         /// <summary>
-        /// 附加显示大类名称（xt_fjsfdl）
+        /// Tên loại lớn hiển thị bổ sung(xt_fjsfdl)
         /// </summary>
         public string fjxsdlmc { get; set; }
 
         public string fjxsdl { get; set; }
 
         /// <summary>
-        /// 收费项目（xt_fjsfdl）
+        /// Hạng mục thu phí(xt_fjsfdl)
         /// </summary>
         public string sfxmmc { get; set; }
 
         public string sfxm { get; set; }
 
         /// <summary>
-        /// 服务费比例（xt_brsffj）
+        /// Tỷ lệ phí dịch vụ(xt_brsffj)
         /// </summary>
         public decimal fwfbl { get; set; }
 
         /// <summary>
-        /// 状态（xt_brsffj）
+        /// Trạng thái(xt_brsffj)
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// 建档人员（xt_brsffj）
+        /// Nhân viên lập hồ sơ(xt_brsffj)
         /// </summary>
         public string CreatorCode { get; set; }
         /// <summary>
-        /// 建档日期（xt_brsffj）
+        /// Ngày lập hồ sơ(xt_brsffj)
         /// </summary>
         public DateTime CreateTime { get; set; }
     }

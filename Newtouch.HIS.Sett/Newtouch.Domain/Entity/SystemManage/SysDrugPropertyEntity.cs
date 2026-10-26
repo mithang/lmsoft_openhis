@@ -29,17 +29,17 @@ namespace Newtouch.HIS.Domain.Entity
         public string ypCode { get; set; }
 
         /// <summary>
-        /// --0 无需审核 1 需要审核   －－一期暂时不做 2006.06.21
+        /// --0 Không cần kiểm tra 1 Cần kiểm tra   －－Giai đoạn 1 tạm thời chưa làm 2006.06.21
         /// </summary>
         public string shbz { get; set; }
 
         /// <summary>
-        /// 0 普通项目 1 特殊项目 refer xt_yptsbz   特殊药品说明是特定的病人性质才可使用的。
+        /// 0 Hạng mục thông thường 1 Hạng mục đặc biệt refer xt_yptsbz   Giải thích thuốc đặc biệt là chỉ tính chất bệnh nhân đặc biệt mới được dùng.
         /// </summary>
         public string tsbz { get; set; }
 
         /// <summary>
-        /// 包含了原来的“皮试标志”
+        /// Đã bao gồm bản gốc"Cờ thử da"
         /// </summary>
         public string jsbz { get; set; }
 
@@ -59,12 +59,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string yljsy { get; set; }
 
         /// <summary>
-        /// 0 无需招标   1 市招标   2 区招标   3 竞价   4 询价
+        /// 0 Không cần đấu thầu   1 Đấu thầu thành phố   2 Đấu thầu khu vực   3 Đấu giá   4 Hỏi giá
         /// </summary>
         public string zbbz { get; set; }
 
         /// <summary>
-        /// 默认用法来自xt_ypyf
+        /// Cách dùng mặc định đến từxt_ypyf
         /// </summary>
         public string zlff { get; set; }
 
@@ -94,27 +94,27 @@ namespace Newtouch.HIS.Domain.Entity
         public string ybdm { get; set; }
 
         /// <summary>
-        /// 医保控量设置字段
+        /// Trường cài đặt kiểm soát định mức BHYT
         /// </summary>
         public int? syts { get; set; }
 
         /// <summary>
-        /// 医保控量设置字段
+        /// Trường cài đặt kiểm soát định mức BHYT
         /// </summary>
         public decimal? dczdjl { get; set; }
 
         /// <summary>
-        /// 医保控量设置字段
+        /// Trường cài đặt kiểm soát định mức BHYT
         /// </summary>
         public decimal? dczdsl { get; set; }
 
         /// <summary>
-        /// 医保控量设置字段
+        /// Trường cài đặt kiểm soát định mức BHYT
         /// </summary>
         public decimal? ljzdjl { get; set; }
 
         /// <summary>
-        /// 医保控量设置字段
+        /// Trường cài đặt kiểm soát định mức BHYT
         /// </summary>
         public decimal? ljzdsl { get; set; }
 
@@ -124,17 +124,17 @@ namespace Newtouch.HIS.Domain.Entity
         public string pzwh { get; set; }
 
         /// <summary>
-        /// 来自系统药品特殊属性xt_ypxz
+        /// Đến từ thuộc tính đặc biệt thuốc hệ thốngxt_ypxz
         /// </summary>
         public string yptssx { get; set; }
 
         /// <summary>
-        /// 来自xt_ypfl
+        /// Đến từxt_ypfl
         /// </summary>
         public string ypflCode { get; set; }
 
         /// <summary>
-        /// 0：每顿取整收费1：每次取整收费
+        /// 0:Thu phí làm tròn mỗi bữa1:Thu phí làm tròn mỗi lần
         /// </summary>
         public string jzlx { get; set; }
 
@@ -149,7 +149,7 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime? zjtzsj { get; set; }
 
         /// <summary>
-        /// xg：修改,xz：新增,ty：停用,qy：启用,tj：调价
+        /// xg:Sửa đổi,xz:Thêm mới,ty:Ngừng sử dụng,qy:Kích hoạt,tj:Điều chỉnh giá
         /// </summary>
         public string xglx { get; set; }
 

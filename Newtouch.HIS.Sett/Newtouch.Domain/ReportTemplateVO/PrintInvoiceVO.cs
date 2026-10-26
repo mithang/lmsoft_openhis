@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.ReportTemplateVO
     public class PrintInvoiceVO
     {
         /// <summary>
-        /// 窗口 
+        /// Cửa sổ 
         /// </summary>
         public string Xwindow { get; set; }
         /// <summary>
@@ -102,23 +102,23 @@ namespace Newtouch.HIS.Domain.ReportTemplateVO
         public string Memo { get; set; }
 
         /// <summary>
-        /// 支付方式 如：现金:xx元，pos：yy元
+        /// Phương thức thanh toán như:Tiền mặt:xxđồng,pos:yyđồng
         /// </summary>
         public string PayFuc { get; set; }
         /// <summary>
-        /// 分币误差
+        /// Sai số tiền xu
         /// </summary>
         public string XjWc { get; set; }
         /// <summary>
-        /// 合计 如：应收xxx预收yyy找零zzz
+        /// Tổng cộng như:Phải thuxxxThu trướcyyyTiền thối lạizzz
         /// </summary>
         public string Account { get; set; }
         /// <summary>
-        /// 科室 如：疼痛科
+        /// Khoa như:Khoa đau
         /// </summary>
         public string Ks { get; set; }
         /// <summary>
-        /// True为打印：此收据部分项目名称，内容进行了简化。详细信息请在触摸屏等正式公示途径中查询。
+        /// TrueĐể in:Tên hạng mục của phần biên lai này,Nội dung đã được đơn giản hóa.Để biết thông tin chi tiết, vui lòng tra cứu qua các kênh công khai chính thức như màn hình cảm ứng.
         /// </summary>
         public string IsFull { get; set; }
 

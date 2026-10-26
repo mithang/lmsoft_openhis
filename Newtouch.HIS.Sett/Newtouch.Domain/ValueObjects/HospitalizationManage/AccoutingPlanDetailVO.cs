@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         public string dw { get; set; }
 
         /// <summary>
-        /// 门诊住院号
+        /// Số ngoại trú/nội trú
         /// </summary>
         public string mzzyh { get; set; }
 
@@ -43,28 +43,28 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
 
         public decimal sl { get; set; }
         /// <summary>
-        /// 执行时间
+        /// Thời gian thực hiện
         /// </summary>
         public DateTime? zxsj { get; set; }
         public string kflb { get; set; }
         public string zls { get; set; }
         public string zlsgh { get; set; }
         /// <summary>
-        /// 有效
+        /// Hiệu lực
         /// </summary>
         public string zt { get; set; }
         public decimal je { get; set; }
         /// <summary>
-        /// 自负性质
+        /// Tính chất tự chi trả
         /// </summary>
         public string zfxz { get; set; }
         /// <summary>
-        /// 治疗日期
+        /// Ngày điều trị
         /// </summary>
         public DateTime? zlrq { get; set; }
 
         /// <summary>
-        /// 创建时间（系统执行时间）
+        /// Thời gian tạo(Thời gian hệ thống thực hiện)
         /// </summary>
         public DateTime? CreateTime { get; set; }
 

@@ -22,12 +22,12 @@ namespace Newtouch.HIS.Domain.ValueObjects.NonTreatmentItemManage
         public int patId { get; set; }
 
         ///// <summary>
-        ///// 出生年月
+        ///// Năm tháng sinh
         ///// </summary>
         //public DateTime? csny { get; set; }
 
         ///// <summary>
-        ///// 年龄
+        ///// Tuổi
         ///// </summary>
         //public int? nl
         //{

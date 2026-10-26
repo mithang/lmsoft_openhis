@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.HospitalizationManage
         public int jsnm { get; set; }
 
         /// <summary>
-        /// 本次结算金额
+        /// Số tiền quyết toán lần này
         /// </summary>
         public decimal zje { get; set; }
 

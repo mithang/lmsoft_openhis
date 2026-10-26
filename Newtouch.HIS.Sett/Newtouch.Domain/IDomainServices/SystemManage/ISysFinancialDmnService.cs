@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface ISysFinancialDmnService
     {
         /// <summary>
-        /// 获取所有发票列表
+        /// Lấy danh sách tất cả hóa đơn
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="fpId"></param>

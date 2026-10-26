@@ -3,36 +3,36 @@
 namespace Newtouch.HIS.Domain.ValueObjects.PatientManage
 {
     /// <summary>
-    /// 记账待执行 病人 VO
+    /// Ghi sổ chờ thực hiện Bệnh nhân VO
     /// </summary>
     public class PendingExecutionPatientVO
     {
         /// <summary>
-        /// 病区Code
+        /// Khu bệnhCode
         /// </summary>
         public string bqCode { get; set; }
 
         /// <summary>
-        /// 病人id
+        /// Bệnh nhânid
         /// </summary>
         public int patid { get; set; }
 
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 病人姓名
+        /// Tên bệnh nhân
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 医保剩余次数
+        /// Số lần còn lại của BHYT
         /// </summary>
         public int? ybsycs { get; set; }
         /// <summary>
-        /// 执行状态
+        /// Trạng thái thực hiện
         /// </summary>
         public int? zxzt { get; set; }
         public string blh { get; set; }

@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// VO 门诊结算/退费 患者出院信息（医保结算号、社保编号、就诊原因、科室、医生、诊断）
+    /// VO Quyết toán ngoại trú/Hoàn phí Thông tin xuất viện của bệnh nhân(Số quyết toán BHYT,Số BHXH,Lý do khám,Khoa,Bác sĩ,Chẩn đoán)
     /// </summary>
     public class OutPatChargePatientInfoVO
     {

@@ -12,13 +12,13 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysDepartmentBindingEntity : IEntity<SysDepartmentBindingEntity>
     {
         /// <summary>
-        /// 绑定编码
+        /// Mã liên kết
         /// </summary>
         [Key]
         public string bddm { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Domain.Entity
 
 
         /// <summary>
-        /// 0:无效; 1:有效
+        /// 0:Không hiệu lực; 1:Hiệu lực
         /// </summary>
         public string zt { get; set; }
         

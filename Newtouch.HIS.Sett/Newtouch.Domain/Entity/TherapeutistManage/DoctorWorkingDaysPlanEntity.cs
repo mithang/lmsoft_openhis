@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 治疗师排班
+    /// Lịch trực của kỹ thuật viên điều trị
     /// </summary>
     [Table("jz_yspb")]
     public class DoctorWorkingDaysPlanEntity : IEntity<DoctorWorkingDaysPlanEntity>

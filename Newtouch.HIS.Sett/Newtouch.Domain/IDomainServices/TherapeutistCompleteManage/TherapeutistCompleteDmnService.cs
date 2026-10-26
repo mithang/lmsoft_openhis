@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
         #region 治疗师工作时间
         /// <summary>
-        /// 治疗师工作时间安排列表
+        /// Danh sách sắp xếp thời gian làm việc kỹ thuật viên điều trị
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="year"></param>
@@ -25,21 +25,21 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<TherapeutistWorkPlanGridVO> GetTherapeutistWorkPlanList(Pagination pagination, int? year, int? month, string ysgh, string orgId);
 
         /// <summary>
-        /// 获取所有治疗师和默认天数
+        /// Lấy tất cả kỹ thuật viên điều trị và số ngày mặc định
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         List<AddStaffPlanVO> GetAllRehabDoctor(string orgId);
 
         /// <summary>
-        /// 新增排班时，提交到数据库
+        /// Khi thêm lịch trực mới,Gửi vào CSDL
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="orgId"></param>
         void SubmitPlan(Dictionary<string, List<AddStaffPlanVO>> vo, string orgId);
 
         /// <summary>
-        /// 查看单个治疗师单月排班信息
+        /// Xem thông tin lịch trực một tháng của một kỹ thuật viên điều trị
         /// </summary>
         /// <param name="keyvalue"></param>
         /// <param name="orgId"></param>
@@ -47,13 +47,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
         EditPlanVO GetFormJson(string keyvalue, string orgId);
 
         /// <summary>
-        /// 编辑单个治疗师单个时间情况
+        /// Biên tập tình hình một thời gian của một kỹ thuật viên điều trị
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyvalue"></param>
         void EditRehabDoctorRange(DoctorWorkingDaysPlanEntity entity, string keyvalue, string orgId);
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyvalue"></param>
         void DelArrange(string keyvalue);
@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region 时长调整
 
         /// <summary>
-        /// 时长调整时，统计治疗师时长
+        /// Khi điều chỉnh thời lượng,Thống kê thời lượng kỹ thuật viên điều trị
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="gh"></param>
@@ -72,7 +72,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<AdjustStaffHourVO> GetStaffWorkedHour(string orgId, string gh, string year, string month);
 
         /// <summary>
-        /// 得到治疗师每月时长总和
+        /// Lấy tổng thời lượng hàng tháng của kỹ thuật viên điều trị
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         SCNumBO GetVisitSC(string orgId);
 
         /// <summary>
-        /// 获取治疗师工作效率详细
+        /// Lấy chi tiết hiệu suất làm việc kỹ thuật viên điều trị
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="type"></param>

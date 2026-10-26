@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 收费大类
+    /// Loại lớn thu phí
     /// </summary>
     [Table("xt_sfdl")]
     [Obsolete("please use the view")]
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string py { get; set; }
 
         /// <summary>
-        /// 0 通用 1 门诊 2住院
+        /// 0 Dùng chung 1 Khám ngoại trú 2Nhập viện
         /// </summary>
         public string mzzybz { get; set; }
 

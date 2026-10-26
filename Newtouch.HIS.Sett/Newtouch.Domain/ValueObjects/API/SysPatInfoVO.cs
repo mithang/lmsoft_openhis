@@ -10,17 +10,17 @@ namespace Newtouch.HIS.Domain.ValueObjects.API
     {
         public int patid { get; set; }
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 病人最近的性质xt_brxz.brxz
+        /// Tính chất gần nhất của bệnh nhânxt_brxz.brxz
         /// </summary>
         public string brxz { get; set; }
 
         /// <summary>
-        /// 本院磁卡号（包括医保离休病人），或者医保卡号
+        /// Số thẻ từ của bệnh viện(Bao gồm bệnh nhân BHYT nghỉ hưu),Hoặc số thẻ BHYT
         /// </summary>
         public string blh { get; set; }
 
@@ -51,7 +51,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.API
         public string dh { get; set; }
         public string kh { get; set; }
         /// <summary>
-        /// 卡类型
+        /// Loại thẻ
         /// </summary>
         public string klx { get; set; }
     }

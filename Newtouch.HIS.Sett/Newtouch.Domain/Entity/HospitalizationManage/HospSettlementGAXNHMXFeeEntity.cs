@@ -6,9 +6,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 创 建：李鑫
-    /// 日 期：2019-07-19 14:00
-    /// 描 述：住院结算-医保费用-贵安
+    /// Tạo：李鑫
+    /// Ngày tháng:2019-07-19 14:00
+    /// Mô tả:Quyết toán nội trú-Chi phí BHYT-Quý An
     /// </summary>
     [Table("zy_js_gaxnhjyfy_details")]
     public class HospSettlementGAXNHMXFeeEntity : IEntity<HospSettlementGAXNHMXFeeEntity>
@@ -27,24 +27,24 @@ namespace Newtouch.HIS.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 关联zy_js jsnm
+        /// Liên kếtzy_js jsnm
         /// </summary>
         public int jsnm { get; set; }
 
         /// <summary>
-        /// 计算名称
+        /// Tên tính toán
         /// </summary>
         public string calcName { get; set; }
         /// <summary>
-        /// 计算说明
+        /// Giải thích tính toán
         /// </summary>
         public string calcMemo { get; set; }
         /// <summary>
-        /// 本次计算
+        /// Tính toán lần này
         /// </summary>
         public string calcBefore { get; set; }
         /// <summary>
-        /// 结果
+        /// Kết quả
         /// </summary>
         public string calcAfter { get; set; }
         /// <summary>

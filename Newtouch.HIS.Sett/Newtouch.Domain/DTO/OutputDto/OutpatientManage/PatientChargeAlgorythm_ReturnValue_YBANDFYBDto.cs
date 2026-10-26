@@ -9,17 +9,17 @@ namespace Newtouch.HIS.Domain.DTO.OutputDto.OutpatientManage
             FYB = new PatientChargeAlgorithm_ReturnValueDto();
         }
         /// <summary>
-        /// 需要医保交易
+        /// Cần giao dịch BHYT
         /// </summary>
         public PatientChargeAlgorithm_ReturnValueDto YB { get; set; }
 
         /// <summary>
-        /// 不需要医保交易
+        /// Không cần giao dịch BHYT
         /// </summary>
         public PatientChargeAlgorithm_ReturnValueDto FYB { get; set; }
 
         /// <summary>
-        /// 医保结算范围费用总额
+        /// Tổng chi phí trong phạm vi quyết toán BHYT
         /// </summary>
         public decimal ybjsfwze
         {

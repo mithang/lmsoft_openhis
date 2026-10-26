@@ -6,7 +6,7 @@
     public interface ISysGloablConfigRepo
     {
         /// <summary>
-        /// 根据Code获取配置Value
+        /// TheoCodeLấy cấu hìnhValue
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
@@ -14,14 +14,14 @@
         string GetValueByCode(string code);
 
         /// <summary>
-        /// 根据Code获取配置Value
+        /// TheoCodeLấy cấu hìnhValue
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
         int GetIntValueByCode(string code, int defaultValue = 0);
 
         /// <summary>
-        /// 根据Code获取配置Value
+        /// TheoCodeLấy cấu hìnhValue
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>

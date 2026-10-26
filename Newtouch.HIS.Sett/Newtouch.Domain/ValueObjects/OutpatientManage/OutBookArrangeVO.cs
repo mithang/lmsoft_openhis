@@ -114,7 +114,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutpatientManage
         public int hy7 { get; set; }
         public string zt { get; set; }
         /// <summary>
-        /// 排班描述
+        /// Mô tả lịch trực
         /// </summary>
         public string pbdesc { get; set; }
         /// <summary>
