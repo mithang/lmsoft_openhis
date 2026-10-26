@@ -211,7 +211,7 @@
         this.options.onInitialized = $.proxy(this.options.onInitialized, this);
         this.options.onFiltering = $.proxy(this.options.onFiltering, this);
 
-        // 判断是否需要异步加载下拉选项
+        // Kiem tra xem co can tai bat dong bo cac tuy chon dropdown hay khong
         if (this.options.url) {
             this.buildAsyncDropdownOptions(this.options.url);
         }

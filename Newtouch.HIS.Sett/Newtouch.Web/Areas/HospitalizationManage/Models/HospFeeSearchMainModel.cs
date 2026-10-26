@@ -6,108 +6,108 @@ using System.Web;
 namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Models
 {
     /// <summary>
-    /// 费用查询主信息
+    /// Thong tin chinh tra cuu chi phi
     /// </summary>
     public class HospFeeSearchMainModel
     {
 
         /// <summary>
-        /// 收费日期
+        /// Ngay thu phi
         /// </summary>
         public string Sfrq { get; set; }
 
         /// <summary>
-        /// 床位费大类编码
+        /// Ma nhom lon phi giuong benh
         /// </summary>
         public string CWDlCode { get; set; }
 
         /// <summary>
-        /// 床位费
+        /// Phi giuong benh
         /// </summary>
         public decimal CWJe { get; set; }
 
         /// <summary>
-        /// 护理费大类编码
+        /// Ma nhom lon phi cham soc
         /// </summary>
         public string HLDlCode { get; set; }
 
         /// <summary>
-        /// 护理费
+        /// Phi cham soc
         /// </summary>
         public decimal HLJe { get; set; }
 
         /// <summary>
-        /// 治疗费大类编码
+        /// Ma nhom lon phi dieu tri
         /// </summary>
         public string ZLDlCode { get; set; }
 
         /// <summary>
-        /// 治疗费
+        /// Phi dieu tri
         /// </summary>
         public decimal ZLJe { get; set; }
 
         /// <summary>
-        /// 其他费大类编码
+        /// Ma nhom lon phi khac
         /// </summary>
         public string QTDlCode { get; set; }
 
         /// <summary>
-        /// 其他费
+        /// Phi khac
         /// </summary>
         public decimal QTJe { get; set; }
 
         /// <summary>
-        /// 西药费大类编码
+        /// Ma nhom lon phi thuoc Tay
         /// </summary>
         public string XYDlCode { get; set; }
 
         /// <summary>
-        /// 西药费
+        /// Phi thuoc Tay
         /// </summary>
         public decimal XYJe { get; set; }
 
         /// <summary>
-        ///中成药大类编码
+        ///Ma nhom lon thuoc thanh pham Dong y
         /// </summary>
         public string ZCYDlCode { get; set; }
 
         /// <summary>
-        /// 中成药
+        /// Thuoc thanh pham Dong y
         /// </summary>
         public decimal ZCYJe { get; set; }
 
         /// <summary>
-        /// 化验费大类编码
+        /// Ma nhom lon phi xet nghiem
         /// </summary>
         public string HYDlCode { get; set; }
 
         /// <summary>
-        /// 化验费
+        /// Phi xet nghiem
         /// </summary>
         public decimal HYJe { get; set; }
 
         /// <summary>
-        /// 检查费大类编码
+        /// Ma nhom lon phi kiem tra
         /// </summary>
         public string JCDlCode { get; set; }
 
         /// <summary>
-        /// 检查费
+        /// Phi kiem tra
         /// </summary>
         public decimal JCJe { get; set; }
 
         /// <summary>
-        /// 材料费大类编码
+        /// Ma nhom lon phi vat tu
         /// </summary>
         public string CLDlCode { get; set; }
 
         /// <summary>
-        /// 材料费
+        /// Phi vat tu
         /// </summary>
         public decimal CLJe { get; set; }
 
         /// <summary>
-        /// 合计
+        /// Tong cong
         /// </summary>
         public decimal HJ { get; set; }
 

@@ -1,20 +1,20 @@
-//根据单次治疗量算数量
+//Tinh so luong theo lieu luong dieu tri mot lan
 $.CalcSfxmSl = function (zll, dwjls, jjcl, throwExWhenZero) {
     if (!!!zll) {
-        throw new Error("缺少治疗量");
+        throw new Error("Thieu lieu luong dieu tri");
         return;
     }
     if (!!!dwjls) {
-        throw new Error("缺少单位计量数");
+        throw new Error("Thieu so luong don vi do");
         return;
     }
     if (!!!jjcl) {
-        throw new Error("缺少计价策略");
+        throw new Error("Thieu chien luoc tinh gia");
         return;
     }
     var res = Math.floor(zll / dwjls);
     if (res <= 0 && !(throwExWhenZero === false)) {
-        throw new Error("不允许0数量");
+        throw new Error("Khong cho phep so luong 0");
         return;
     }
     return res;

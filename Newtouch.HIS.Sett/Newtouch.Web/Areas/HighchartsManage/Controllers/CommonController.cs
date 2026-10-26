@@ -12,7 +12,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
     {
         private readonly IHighchartsDmnService _highchartsDmnService;
 
-        #region 页面初始化
+        #region Khởi tạo trang
         public ActionResult NumberofSalaryCompared()
         {
             return View();
