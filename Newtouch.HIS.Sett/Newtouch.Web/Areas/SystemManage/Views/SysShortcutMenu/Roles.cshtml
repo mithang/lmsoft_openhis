@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "Roles";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 <form id="form1">
@@ -10,26 +10,26 @@
 </form>
 
 @*<div style="position: fixed; bottom: 10px; right: 10px;">
-        <a class="btn btn-danger" onclick="btn_authcancelall()">撤销全部</a>
+        <a class="btn btn-danger" onclick="btn_authcancelall()">Hủy tất cả</a>
     </div>*@
 
 <script>
-    var keyValue = $.request("keyValue");
+    var keyValue = $.request("");
     $(function () {
-        $("#roleList").treeview({
+        $("").treeview({
             height: 400,
             slimscroll: false,
             showcheck: true,
-            url: "/SystemManage/SysShortcutMenu/GetAuthRoleList",
+            url: "",
             param: { keyValue: keyValue }
         });
     });
 
     function AcceptClick() {
         var postData = {};
-        postData["roleList"] = String($("#roleList").getCheckedNodes());
+        postData[""] = String($("").getCheckedNodes());
         $.submitForm({
-            url: "/SystemManage/SysShortcutMenu/UpdateAuthRoleList?keyValue=" + keyValue,
+            url: "" + keyValue,
             param: postData,
             success: function () {
                 $.modalClose();
@@ -38,11 +38,11 @@
     }
 
     //function btn_authcancelall() {
-    //    $.modalConfirm("撤销全部授权", function (flag) {
+    //    $.modalConfirm("", function (flag) {
     //        if (flag) {
     //            var postData = {};
     //            $.submitForm({
-    //                url: "/SystemManage/SysShortcutMenu/AuthCancelAllRole?keyValue=" + keyValue,
+    //                url: "" + keyValue,
     //                param: postData,
     //                success: function () {
     //                    $.modalClose();

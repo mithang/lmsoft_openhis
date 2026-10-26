@@ -184,7 +184,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         {
             var zjjfbh = "";
             var jfbh = _dischargeSettleDmnService.ValialUploadData(zyh, this.OrganizeId, jssj);
-            if (jsbz == "2")//中途结算
+            if (jsbz == "2")//Quyết toán giữa chừng
             {
                 zjjfbh = _dischargeSettleDmnService.ValialPartialUploadData(zyh, this.OrganizeId, jssj);
             }
@@ -197,7 +197,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
 
         }
         /// <summary>
-        /// 获取上海医保未上传的信息
+        /// thông tin lấy chưa tải lên bảo hiểm y tế Thượng Hải
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="jssj"></param>
@@ -216,7 +216,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
 
         }
         /// <summary>
-        /// 获取结算回退信息
+        /// Lấy thông tin trả lại lần quyết toán
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
@@ -228,7 +228,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 获取结算信息
+        /// Lấy thông tin quyết toán
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
@@ -287,11 +287,11 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                     if (isSuccess)
                     {
                         string delMsg = "";
-                        //每次上传之前，先删除历史上传的明细
+                        //每次上传之前，chi tiết của tải lên lịch sử xóa trước
                         if (GuiAnXnhDelFeeDetails(S10ReqDto.inpId, out delMsg))
                         {
 
-                            //住院费用明细上传
+                            //Nhập viện tải lên chi tiết chi phí
                             Response<S10ResponseDTO> S10ResDto = HospitalizationProxy.GetInstance(OrganizeId).S10(S10ReqDto);
                             if (S10ResDto.state)
                             {
@@ -420,10 +420,10 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                     string delMsg = "";
                     if (isSuccess)
                     {
-                        //每次上传之前，先删除历史上传的明细
+                        //每次上传之前，chi tiết của tải lên lịch sử xóa trước
                         if (GuiAnXnhDelFeeDetails(S10ReqDto.inpId, out delMsg))
                         {
-                            //住院费用明细上传
+                            //Nhập viện tải lên chi tiết chi phí
                             Response<S10ResponseDTO> S10ResDto = HospitalizationProxy.GetInstance(OrganizeId).S10(S10ReqDto);
                             if (S10ResDto.state)
                             {
@@ -431,7 +431,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                                     _dischargeSettleDmnService.GetXnhS07RequestDTO(zyh, this.OrganizeId);
                                 if (S07ReqDto != null && !string.IsNullOrEmpty(S07ReqDto.inpId) && !string.IsNullOrEmpty(S07ReqDto.dischargeDate) && !string.IsNullOrEmpty(S07ReqDto.dischargeDepartments) && !string.IsNullOrEmpty(S07ReqDto.dischargeStatus))
                                 {
-                                    //患者出院办理
+                                    //Làm thủ tục xuất viện bệnh nhân
                                     Response<S07ResponseDTO> S07ResDto = HospitalizationProxy.GetInstance(OrganizeId).S07(S07ReqDto);
                                     if (S07ResDto.state)
                                     {
@@ -547,7 +547,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 取消出院结算
+        /// Hủy quyết toán xuất viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -649,7 +649,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             }
         }
         /// <summary>
-        /// 出院回退
+        /// Xuất viện trả lại lần
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -718,7 +718,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
 
 
         /// <summary>
-        /// 删除住院患者已上传的费用明细信息
+        /// thông tin chi tiết chi phí xóa đã tải lên bệnh nhân nhập viện
         /// </summary>
         /// <param name="inpId"></param>
         /// <returns></returns>
@@ -768,10 +768,10 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             return true;
         }
         /// <summary>
-        /// 根据个人编码获取住院号（新农合）
+        /// Số nhập viện lấy mã người cái theo（Bảo hiểm y tế nông thôn mới）
         /// </summary>
-        /// <param name="xnhgrbm">个人编码</param>
-        /// <param name="sfjs">是否结算1已结 0 未结</param>
+        /// <param name="xnhgrbm">Mã người cái</param>
+        /// <param name="sfjs">是否结算1Đã kết 0 未结</param>
         /// <returns></returns>
         public ActionResult GetZyhByGrbm(string xnhgrbm, string sfjs)
         {
@@ -784,7 +784,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         #region 出院结算//（无医保算法）//20190408改为有医保算法
 
         /// <summary>
-        /// 住院号查询数据（包括病人信息和计费明细） zyh 或 kh +cardType 或 sfz +cardType
+        /// Dữ liệu tra cứu số nhập viện（Bao gồm thông tin bệnh nhân và Chi tiết tính phí） zyh Hoặc kh +cardType Hoặc sfz +cardType
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="sfz"></param>
@@ -796,8 +796,8 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         {
             if (!string.IsNullOrWhiteSpace(zyh))
             {
-                _hospFeeDmnService.SyncPatFee(OrganizeId, zyh, 0);//同步项目费用
-                _hospFeeDmnService.SyncPatFee(OrganizeId, zyh, 1);//同步药品费用
+                _hospFeeDmnService.SyncPatFee(OrganizeId, zyh, 0);//Đồng bộ chi phí hạng mục
+                _hospFeeDmnService.SyncPatFee(OrganizeId, zyh, 1);//Đồng bộ chi phí thuốc
             }
             var dto = _dischargeSettleApp.GetInpatientSettleStatusDetail(zyh, sfz, kh, cardType, jslx, ver);
             return Success("", dto);
@@ -836,7 +836,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 查询项目明细
+        /// Tra cứu chi tiết hạng mục
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
@@ -881,8 +881,8 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         {
             if (!string.IsNullOrWhiteSpace(zyh))
             {
-                _hospFeeDmnService.SyncPatFee(OrganizeId, zyh, 0);//同步项目费用
-                _hospFeeDmnService.SyncPatFee(OrganizeId, zyh, 1);//同步药品费用
+                _hospFeeDmnService.SyncPatFee(OrganizeId, zyh, 0);//Đồng bộ chi phí hạng mục
+                _hospFeeDmnService.SyncPatFee(OrganizeId, zyh, 1);//Đồng bộ chi phí thuốc
             }
             var dto = _dischargeSettleApp.GetZyUploadDetail(zyh, jslx);
             return Success("", dto);
@@ -922,7 +922,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
         #endregion
         /// <summary>
-        /// 选择出院日期
+        /// Chọn ngày xuất viện
         /// </summary>
         /// <returns></returns>
         public ActionResult SettSelectCyrq()
@@ -931,14 +931,14 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 保存结算
+        /// Lưu quyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="expectedcyrq"></param>
         /// <param name="fph"></param>
-        /// <param name="feeRelated">金额及支付信息</param>
-        /// <param name="ybfeeRelated">医保相关费用信息</param>
-        /// <param name="outTradeNo">支付交易号</param>
+        /// <param name="feeRelated">Thông tin thanh toán và số tiền</param>
+        /// <param name="ybfeeRelated">Thông tin chi phí liên quan bảo hiểm y tế</param>
+        /// <param name="outTradeNo">Số giao dịch thanh toán</param>
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -986,7 +986,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             _hospdrugbillingRepo.Updatezy_brxxexpand(this.OrganizeId, zyh);
             if (_sysConfigRepo.GetBoolValueByCode("HOSP_INTERFACE_WITH_CPOE", this.OrganizeId) == true)
             {
-                //同步zybz 已出院给CIS
+                //同步zybz Cho đã xuất việnCIS
                 SiteCISAPIHelper.UpdateInpatientBasicInfo(new InpatientPatientInfoDTO()
                 {
                     zyh = zyh,
@@ -1002,7 +1002,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 获取医保结算 构造入参
+        /// Lấy quyết toán bảo hiểm y tế 构造入参
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -1034,7 +1034,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 模拟结算 保存结果
+        /// Quyết toán mô phỏng Lưu kết quả
         /// </summary>
         /// <param name="feeEntity"></param>
         /// <returns></returns>
@@ -1052,7 +1052,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         #region 取消出院结算//（无医保算法）//20190408改为有医保算法
 
         /// <summary>
-        /// 取消结算查询
+        /// Hủy tra cứu quyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -1065,7 +1065,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 取消结算
+        /// Hủy quyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="expectedjsnm"></param>
@@ -1090,11 +1090,11 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             }
 
             bool? isTradeRefundError = null;
-            if (!string.IsNullOrWhiteSpace(outTradeNo) && refundAmount > 0)   //需要原路退回
+            if (!string.IsNullOrWhiteSpace(outTradeNo) && refundAmount > 0)   //Trả lại đường gốc cần
             {
                 string errorMsg;
                 var refundReuslt = _payApp.TradeRefund(outTradeNo, refundAmount, "门诊退费", "", out errorMsg);
-                isTradeRefundError = refundReuslt == (int)EnumRefundStatus.Failed || refundReuslt == (int)EnumRefundStatus.UnKnown;    //失败 或 未知
+                isTradeRefundError = refundReuslt == (int)EnumRefundStatus.Failed || refundReuslt == (int)EnumRefundStatus.UnKnown;    //Thất bại Hoặc Không rõ
             }
             _hospdrugbillingRepo.Updatezy_brxxexpand(this.OrganizeId, zyh);
             var msg = "取消结算成功";  
@@ -1116,7 +1116,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         #region 模拟结算（GA）
 
         /// <summary>
-        /// 模拟结算
+        /// Quyết toán mô phỏng
         /// </summary>
         /// <returns></returns>
         public ActionResult SimulateIndex()
@@ -1125,7 +1125,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 模拟结算 显示医保返回结果
+        /// Quyết toán mô phỏng Hiển thị kết quả trả về bảo hiểm y tế
         /// </summary>
         /// <returns></returns>
         public ActionResult SimulateForm()
@@ -1141,7 +1141,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             return View();
         }
         /// <summary>
-        /// 模拟结算 提交后台 落地结果
+        /// Quyết toán mô phỏng Gửi phía máy chủ 落地结果
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -1155,7 +1155,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         #region private methods
 
         /// <summary>
-        /// 获取返回内容中的flag值
+        /// Đang lấy nội dung trả vềflagGiá trị
         /// </summary>
         /// <param name="xml"></param>
         /// <returns></returns>
@@ -1174,7 +1174,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 从xml中提取tableName的DataTable
+        /// Từxml中提取tableNamecủaDataTable
         /// </summary>
         /// <param name="xml"></param>
         /// <returns></returns>
@@ -1213,7 +1213,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 中途结算
+        /// Quyết toán giữa chừng
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="startTime"></param>
@@ -1262,7 +1262,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             return Success();
         }
         /// <summary>
-        /// 住院号查询数据（包括病人信息和计费明细） zyh 或 kh +cardType 或 sfz +cardType
+        /// Dữ liệu tra cứu số nhập viện（Bao gồm thông tin bệnh nhân và Chi tiết tính phí） zyh Hoặc kh +cardType Hoặc sfz +cardType
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="sfz"></param>
@@ -1274,8 +1274,8 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         {
             if (!string.IsNullOrWhiteSpace(zyh))
             {
-                _hospFeeDmnService.SyncPatFee(OrganizeId, zyh, 0);//同步项目费用
-                _hospFeeDmnService.SyncPatFee(OrganizeId, zyh, 1);//同步药品费用
+                _hospFeeDmnService.SyncPatFee(OrganizeId, zyh, 0);//Đồng bộ chi phí hạng mục
+                _hospFeeDmnService.SyncPatFee(OrganizeId, zyh, 1);//Đồng bộ chi phí thuốc
             }
             var dto = _dischargeSettleApp.GetPartialInpatientSettleStatusDetail(zyh, sfz, kh, cardType, jslx, ver);
             return Success("", dto);
@@ -1304,7 +1304,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             return View();
         }
         /// <summary>
-        /// 获取退费金额
+        /// Lấy số tiền hoàn phí
         /// </summary>
         /// <returns></returns>
         public ActionResult Getrefunds_available(int jsnm)
@@ -1421,12 +1421,12 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
     class InpatientDischargeStatus
     {
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string admsNum { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string dischargeStatus { get; set; }
 

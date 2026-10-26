@@ -1,31 +1,31 @@
 ﻿@using Newtouch.Infrastructure
 
 @{
-    ViewBag.Title = "HosAccountDeposit";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 
 }
-<!--预交款充值退费-->
+<!--Nạp tiền tạm ứng và hoàn phí-->
 <div class="panel panel-default" style="margin-top:10px;">
     <div style="padding: 2px;padding-right:20px;">
         <table class="form">
             <tr>
-                <th class="formTitle">支付方式：</th>
+                <th class="formTitle">Phương thức thanh toán：</th>
                 <td class="formValue">
                     <select id="ddlzffs" name="zffs" class="form-control required"></select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>金额：</th>
+                <th class="formTitle"><span class="required">*</span>Số tiền：</th>
                 <td class="formValue">
-                    <input id="txtmoney" name="txtmoney" type="text" class="form-control required" placeholder="请输入金额" />
+                    <input id="txtmoney" name="txtmoney" type="text" class="form-control required" placeholder="Vui lòng nhập số tiền" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">凭证号：</th>
+                <th class="formTitle">Số chứng từ：</th>
                 <td class="formValue">
                     <input type="text" id="txtlpzh" class="form-control newtouch_Readonly" style="width: 49.5%;display: inline;" value="" />
-                    <a id="receipt" class="btn btn-primary" onclick=""><i class="fa"></i>凭证号</a>
+                    <a id="receipt" class="btn btn-primary" onclick=""><i class="fa"></i>Số chứng từ</a>
                 </td>
 
             </tr>
@@ -33,23 +33,23 @@
     </div>
 </div>
 <script>
-    var je = $.request("je");
+    var je = $.request("");
     $(function () {
 
         if (!!je) {
-            $("#txtmoney").val(je);
+            $("").val(je);
         } else {
-            $.modalAlert("无可充金额", 'warning');
+            $.modalAlert("", '');
         }
         GetSJPZH();
-        $("#ddlzffs").newtouchBindSelect({
-            id: "xjzffs",
-            text: "xjzffsmc",
+        $("").newtouchBindSelect({
+            id: "",
+            text: "",
             datasource: function () {
-                //遍历数据源
+                //Duyệt nguồn dữ liệu
                 var resultObjArr = new Array();
                 $.each(top.clients.SysForCashPayList, function (idx, val) {
-                    if (val.zhxz == 'a') {
+                    if (val.zhxz == '') {
                         resultObjArr.push(val);
                     }
                 });
@@ -58,20 +58,20 @@
         });
     });
 
-    //获取凭证号
+    //Lấy số chứng từ
     function GetSJPZH() {
         $.najax({
-            type: "POST",
-            url: "/PatientManage/AccountManage/GetReceipt",
+            type: "",
+            url: "",
             data: {},
-            dataType: "json",
+            dataType: "",
             cache: false,
             success: function (resdata) {
                 if (resdata != null && resdata.data != "") {
-                    $("#txtlpzh").val(resdata.data);
+                    $("").val(resdata.data);
                     return resdata.data;
                 } else {
-                    $("#txtlpzh").val("");
+                    $("").val("");
                     return "";
                 }
             }
@@ -83,46 +83,46 @@
         zffsmc,
         zfmoney,
         pzh;
-    //充值和退款判断
+    //Đánh giá nạp tiền và hoàn tiền
     function CheckDeposit() {
-        patid = $("#patid").val();
+        patid = $("").val();
 
 
         var reg = /^(-?\d+)(\.\d+)?$/;
-        zfmoney = $("#txtmoney").val();
-        var ddlzffs = $("#ddlzffs option:selected");//获取选中的项
-        zffsbh = ddlzffs.val();//拿到选中项的值
-        zffsmc = ddlzffs.text();//拿到选中项的文本
-        pzh = $("#txtlpzh").val();
+        zfmoney = $("").val();
+        var ddlzffs = $("");//Lấy mục đã chọn
+        zffsbh = ddlzffs.val();//Lấy giá trị của mục đã chọn
+        zffsmc = ddlzffs.text();//Lấy văn bản của mục đã chọn
+        pzh = $("").val();
         if (zffsbh == -1 || zffsmc == "") {
-            $.modalAlert("缺少支付方式", 'warning');
+            $.modalAlert("", '');
             return false;
         }
         if (zfmoney == "" || zfmoney == undefined) {
-            $.modalAlert("缺少支付金额", 'warning');
+            $.modalAlert("", '');
             return false;
         } else {
             if (!reg.test(zfmoney)) {
-                $.modalAlert("金额格式不正确", 'warning');
+                $.modalAlert("", '');
                 return false;
             }
         }
         if (pzh == "" || pzh == undefined) {
-            $.modalAlert("缺少凭证号", 'warning');
+            $.modalAlert("", '');
             return false;
         }
         return true;
     }
 
     function SubmitAccountDeposit(patid,xz,ye) {
-        var zfmoney = $("#txtmoney").val();
+        var zfmoney = $("").val();
         var newzhye = 0.00;
         if (parseFloat(zfmoney) < 0 || zfmoney == "" || isNaN(zfmoney) == true) {
-            $.modalAlert("缺少支付金额", 'warning');
+            $.modalAlert("", '');
             return ;
         }
         if (!!!patid) {
-            $.modalAlert("缺少病人基本信息", 'warning');
+            $.modalAlert("", '');
             return ;
         }
         PayDepositPost(patid, xz);
@@ -130,34 +130,34 @@
     }
 
 
-    //预交金充值
+    //Nạp tiền tạm ứng
     function PayDepositPost(patid, zhxz) {
-        var zffsbh = $("#ddlzffs option:selected").val();
-        var zffsmc = $("#ddlzffs option:selected").text();
-        var zfmoney = $("#txtmoney").val();
-        var pzh = $("#txtlpzh").val();
-        $.loading(true, "正在请求数据...");
+        var zffsbh = $("").val();
+        var zffsmc = $("").text();
+        var zfmoney = $("").val();
+        var pzh = $("").val();
+        $.loading(true, "");
         $.najax({
-            type: "POST",
-            url: "/PatientManage/AccountManage/PayDepositPostAcnt",
+            type: "",
+            url: "",
             data: {
                 zffsbh: zffsbh, zffsmc: zffsmc,
                 zfje: zfmoney, pzh: pzh, zh: -1,
                 zhxz: zhxz,patid: patid,szxz:@Html.Raw((int)EnumSZXZ.cz)
             },
-            dataType: "json",
+            dataType: "",
             cache: false,
             success: function (resdata) {
                 if (resdata != null && resdata.data.flag) {
                     $.loading(false);
-                    $.modalMsg("充值成功", 'success');
+                    $.modalMsg("", '');
                     $.modalClose();
                 }
             }, errorCallback: function (rtnval) {
-                if (rtnval.message == "当前收据号已使用！") {
+                if (rtnval.message == "") {
                     GetSJPZH();
                 }
-                $.modalAlert(rtnval.message, "warning");
+                $.modalAlert(rtnval.message, "");
             }
         });
 

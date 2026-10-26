@@ -1,18 +1,18 @@
 ﻿
 @{
-    ViewBag.Title = "SysDepartmentBindingIndex";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <div class="topPanel">
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改信息</a>
+            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa thông tin</a>
         </div>
         <div class="btn-group">
-            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除信息</a>
+            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa thông tin</a>
         </div>
     </div>
     <div class="search">
@@ -20,7 +20,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="医生名称" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên bác sĩ" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -40,31 +40,31 @@
         gridList();
     });
     function gridList() {
-        var $gridList = $("#gridList");
+        var $gridList = $("");
         $gridList.dataGrid({
-            url: "/SystemManage/SysDepartmentBinding/GetSysDepartmentBindingList",
+            url: "",
             height: 400,
             colModel: [
-                { label: 'bddm', name: 'bddm', hidden: true },
-                { label: '科室', name: 'ksmc', width: 100, algin: 'left' },
-                { label: '姓名', name: 'xm', width: 100, algin: 'left' },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', width: 100, algin: '' },
+                { label: '', name: '', width: 100, algin: '' },
                 {
-                    label: '性别', name: 'xb', width: 100, algin: 'left',
+                    label: '', name: '', width: 100, algin: '',
                     formatter: function (cellvalue) {
                         if (cellvalue) {
-                            return "男";
+                            return "";
                         } else {
-                            return "女";
+                            return "";
                         }
                     }
                 },
-                { label: '身份证', name: 'zjh', width: 100, algin: 'left' }
+                { label: '', name: '', width: 100, algin: '' }
             ]
         });
-        $("#btn_search").click(function () {
-            $gridList.jqGrid('setGridParam', {
-                postData: { keyword: $("#txt_keyword").val() }, url: "/SystemManage/SysDepartmentBinding/GetSysDepartmentBindingList"
-            }).trigger('reloadGrid');
+        $("").click(function () {
+            $gridList.jqGrid('', {
+                postData: { keyword: $("").val() }, url: ""
+            }).trigger('');
         })
     }
 
@@ -74,48 +74,48 @@
 
     function btn_add() {
         $.modalOpen({
-            id: "FormFIEdit",
-            title: "新增科室人员绑定",
-            url: "/SystemManage/SysDepartmentBinding/Form",
-            width: "700px",
-            height: "300px",
+            id: "",
+            title: "",
+            url: "",
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
         });
     }
-    //修改
+    //Sửa
     function btn_edit() {
-        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        var seleRowid = jQuery("").jqGrid("", "");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("", '');
             return;
         }
-        var bddm = $("#gridList").jqGridRowValue().bddm;
+        var bddm = $("").jqGridRowValue().bddm;
         $.modalOpen({
-            id: "FormFIEdit",
-            title: "修改科室人员绑定",
-            url: "/SystemManage/SysDepartmentBinding/Form?bddm=" + bddm,
-            width: "700px",
-            height: "300px",
+            id: "",
+            title: "",
+            url: "" + bddm,
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
         });
     }
-    //删除
+    //Xóa
     function btn_delete() {
-        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        var seleRowid = jQuery("").jqGrid("", "");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("", '');
             return;
         }
-        var bddm = $("#gridList").jqGridRowValue().bddm;
+        var bddm = $("").jqGridRowValue().bddm;
         $.deleteForm({
-            url: "/SystemManage/SysDepartmentBinding/DeleteForm",
+            url: "",
             param: { bddm: bddm },
             success: function () {
-                $("#gridList").trigger("reloadGrid");
+                $("").trigger("");
             }
         })
     }

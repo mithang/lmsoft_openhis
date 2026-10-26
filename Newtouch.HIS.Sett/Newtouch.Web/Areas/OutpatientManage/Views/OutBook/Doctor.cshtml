@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "预约挂号医生";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 <form id="form1">
@@ -9,29 +9,29 @@
 
 
 <script>
-    var keyValue = $.request("keyValue");
-    var ks = $.request("ks");
-    var ys = $.request("ys");
+    var keyValue = $.request("");
+    var ks = $.request("");
+    var ys = $.request("");
 
     $.ajax({
-        url: "/OutPatientManage/OutBook/GetStaffList",
+        url: "",
         //data: { keyValue: keyValue },
-        dataType: "json",
+        dataType: "",
         success: function (data) {
             var html = "";
             for ( i = 0; i < data.length; i++){
-                //html += "<p><input name='Staff' style='margin-left:70px' type='checkbox' value='" + data[i].gh + "' />" + data[i].Name + " </p>";
-                html += "<p style='font-size:18px;margin-left:50px;'><input name='Staff' style='width:20px;height:20px;' type='checkbox' value='" + data[i].gh + "' /><a style='margin-left:15px'>" + data[i].Name + " </a> </p>";
+                //html += "" + data[i].gh + "" + data[i].Name + "";
+                html += "" + data[i].gh + "" + data[i].Name + "";
             }
-            $("#form1").html(html);
-            //默认加载选中
+            $("").html(html);
+            //Mặc định tải đã chọn
             if (ys != null) {
-                if (ys.indexOf(",") == -1) {
-                    $(":checkbox[value='" + ys + "']").prop("checked", true);
+                if (ys.indexOf("") == -1) {
+                    $("" + ys + "").prop("", true);
                 } else {
-                    var ysList = ys.split(",");
+                    var ysList = ys.split("");
                     for (i = 0; i < ysList.length; i++) {
-                        $(":checkbox[value='" +ysList[i] + "']").prop("checked", true);
+                        $("" +ysList[i] + "").prop("", true);
                     }
                 }
             }
@@ -39,13 +39,13 @@
     });
 
     function AcceptClick(callBack) {
-        var checkId = $("input[name='Staff']:checked");
+        var checkId = $("");
         var ghList = [];
         for (i = 0; i < checkId.length; i++) {
             ghList.push(checkId[i].value);
         }
         $.submitForm({
-            url: "/OutPatientManage/OutBook/SubmitForm",
+            url: "",
             param: { ks: ks, ghList: ghList },
             success: function () {
                 callBack();

@@ -4,14 +4,14 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Web.Controllers
 {
     /// <summary>
-    /// （下拉）选择 数据源
+    /// （下拉）Chọn Nguồn dữ liệu
     /// </summary>
     public class SelectDataSourceController : ControllerBase
     {
         private readonly ISysPatientNatureRepo _sysPatiNatureRepo;
 
         /// <summary>
-        /// 获取病人性质有效列表
+        /// Lấy danh sách hiệu lực tính chất bệnh nhân
         /// </summary>
         /// <returns></returns>
         public ActionResult getEffectPatiNatureList()

@@ -1,38 +1,38 @@
 ﻿
 @{
-    ViewBag.Title = "UpdateExecForm";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 <script>
-    var keyValue = $.request("keyValue");
-    var f = $.request("from");
+    var keyValue = $.request("");
+    var f = $.request("");
     $(function () {
-        $("#zlsgh").bindSelect({
-            url: "/SystemManage/Staff/GetStaffByDutyCode?dutyCode=" + "RehabDoctor",
-            id: "StaffGh",
-            text: "StaffName"
+        $("").bindSelect({
+            url: "" + "",
+            id: "",
+            text: ""
         });
 
-        //加载康复类别
-        $("#kflb").bindSelect({
-            url: "/Com/GetSelectItemsDetailListByItemCode?code=RehabTreatmentMethod",
+        //Tải loại phục hồi chức năng
+        $("").bindSelect({
+            url: "",
         });
 
         if (!!keyValue) {
             $.najax({
-                type: "POST",
+                type: "",
                 async: false,
-                url: "@Url.Action("GetFormJson")",
+                url: ""GetFormJson"",
                 data: { keyValue: keyValue, from: f },
-                dataType: "json",
+                dataType: "",
                 cache: false,
                 success: function (data) {
                     if (data) {
-                        $("#form1").formSerialize(data);
-                        $('#zlsgh').val(data.zlsgh).trigger('change');
-                        $('#kflb').val(data.kflb).trigger('change');
-                        $('#zxrq').val(data.zlrq.substring(0, 10));
+                        $("").formSerialize(data);
+                        $('').val(data.zlsgh).trigger('');
+                        $('').val(data.kflb).trigger('');
+                        $('').val(data.zlrq.substring(0, 10));
                     }
                 }
             });
@@ -41,21 +41,21 @@
     });
 
     function submitForm(callback) {
-        if (!$('#form1').formValid()) {
+        if (!$('').formValid()) {
             return false;
         }
         var data = {};
         var zxitem = {};
-        var zxsj = $('#zxrq').val();
-        var zlsgh = $('#zlsgh').val();
-        var kflb = $('#kflb').val();
+        var zxsj = $('').val();
+        var zlsgh = $('').val();
+        var kflb = $('').val();
         if (keyValue && zxsj && zlsgh && kflb) {
             zxitem = { zxId: keyValue, zxsj: zxsj, zlsgh: zlsgh, kflb: kflb };
         }
-        data["zxitem"] = zxitem;
+        data[""] = zxitem;
         data.from = f;
         $.submitForm({
-            url: "@Url.Action("updateExc")",
+            url: ""updateExc"",
             param: data,
             success: function () {
                 callback();
@@ -66,46 +66,46 @@
 <form id="form1">
     <table class="form" style="margin-top: 10px; width: 95%">
         <tr>
-            <td class="formTitle">治疗日期：</td>
+            <td class="formTitle">Ngày điều trị：</td>
             <td class="formValue">
                 <input id="zxrq" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
             </td>
-            <th class="formTitle">治疗师：</th>
+            <th class="formTitle">Nhà trị liệu：</th>
             <td class="formValue formDdlSelectorTd">
                 <select id="zlsgh" name="zlsgh" class="form-control">
-                    <option value="">==请选择==</option>
+                    <option value="">==Vui lòng chọn==</option>
                 </select>
         </tr>
         <tr>
-            <th class="formTitle">康复类别：</th>
+            <th class="formTitle">Loại phục hồi chức năng：</th>
             <td class="formValue">
                 <select id="kflb" name="kflb" class="form-control">
-                    <option value="">==请选择==</option>
+                    <option value="">==Vui lòng chọn==</option>
                 </select>
             </td>
-            <th class="formTitle">收费项目：</th>
+            <th class="formTitle">Hạng mục thu phí：</th>
             <td class="formValue">
                 <input type="text" class="form-control newtouch_Readonly" id="sfxmmc" />
             </td>
 
         </tr>
         <tr>
-            <th class="formTitle">患者姓名：</th>
+            <th class="formTitle">Họ tên bệnh nhân：</th>
             <td class="formValue">
                 <input type="text" class="form-control newtouch_Readonly" id="xm" />
             </td>
-            <th class="formTitle">治疗量：</th>
+            <th class="formTitle">Điều trị lượng：</th>
             <td class="formValue">
                 <input type="text" class="form-control newtouch_Readonly" id="zll" />
             </td>
         </tr>
         <tr>
 
-            <th class="formTitle">数量：</th>
+            <th class="formTitle">Số lượng：</th>
             <td class="formValue">
                 <input type="text" class="form-control newtouch_Readonly" id="sl" />
             </td>
-            <th class="formTitle">单位：</th>
+            <th class="formTitle">Đơn vị：</th>
             <td class="formValue">
                 <input type="text" class="form-control newtouch_Readonly" id="dw" />
             </td>

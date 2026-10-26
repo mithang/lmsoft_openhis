@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "ChooseInvoiceNo";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 
     var from = (ViewBag.from as string) ?? "";
 }
@@ -10,7 +10,7 @@
     <div style="margin-top:40px;margin-right:40px;">
         <table class="form">
             <tr>
-                <th class="formTitle dialogText">发票号:</th>
+                <th class="formTitle dialogText">Số hóa đơn:</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="txtfph" name="txtfph" required value="">
                 </td>
@@ -20,10 +20,10 @@
 </form>
 
 <script>
-    //上一个window对象
+    //Cái trướcwindowĐối tượng
     var prevWindow;
-    if ('@(from)' != '') {
-        prevWindow = top.top.frames['@(from)'];
+    if ('' != '') {
+        prevWindow = top.top.frames[''];
         debugger
     }
     else {
@@ -31,32 +31,32 @@
     }
 
     $.ajax({
-        url: "/BusinessManage/OutPatient/GetInvoice",  //获取
-        dataType: "json",
+        url: "",  //Lấy
+        dataType: "",
         async: false,
         success: function (data) {
-            $("#txtfph").val(data);
-            prevWindow.$("#txtfph").val(data);
+            $("").val(data);
+            prevWindow.$("").val(data);
         }
     });
 
-    //确认验证发票号
+    //Xác nhận số hóa đơn xác minh
     function checkFPH() {
-        $.loading(true, '发票验证中...');
+        $.loading(true, '');
         $.ajax({
-            url: "/BusinessManage/OutPatient/CheckInvoice",
-            data: { inputFPH: $("#txtfph").val() },
-            type: "POST",
-            dataType: "json",
+            url: "",
+            data: { inputFPH: $("").val() },
+            type: "",
+            dataType: "",
             async: false,
             success: function (data) {
                 $.loading(false);
-                if (data.state == "success") {
-                    prevWindow.$("#txtfph").val($("#txtfph").val());
+                if (data.state == "") {
+                    prevWindow.$("").val($("").val());
                     $.modalClose();
                 }
                 else {
-                    prevWindow.$("#txtfph").val("");
+                    prevWindow.$("").val("");
                     $.modalMsg(data.message, data.state);
                 }
             },

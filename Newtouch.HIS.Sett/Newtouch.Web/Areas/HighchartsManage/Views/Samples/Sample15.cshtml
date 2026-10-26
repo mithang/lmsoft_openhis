@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width" />
     <title>蜡烛图</title>
     <link href="~/Content/css/framework-theme.css" rel="stylesheet" />
-    <script src="~/Content/js/jquery/jquery-2.1.1.min.js"></script>
-    <script src="~/Content/js/highcharts/highcharts.js"></script>
+    <script src=""></script>
+    <script src=""></script>
     <script>
         $(function () {
-            $('#container').highcharts({
+            $('').highcharts({
 
                 chart: {
-                    type: 'boxplot'
+                    type: ''
                 },
 
                 title: {
-                    text: '蜡烛图'
+                    text: ''
                 },
 
                 legend: {
@@ -24,32 +24,32 @@
                 },
 
                 xAxis: {
-                    categories: ['1', '2', '3', '4', '5'],
+                    categories: ['', '', '', '', ''],
                     title: {
-                        text: '横坐标'
+                        text: ''
                     }
                 },
 
                 yAxis: {
                     title: {
-                        text: '纵坐标'
+                        text: ''
                     },
                     plotLines: [{
                         value: 932,
-                        color: 'red',
+                        color: '',
                         width: 1,
                         label: {
-                            text: 'Theoretical mean: 932',
-                            align: 'center',
+                            text: '',
+                            align: '',
                             style: {
-                                color: 'gray'
+                                color: ''
                             }
                         }
                     }]
                 },
 
                 series: [{
-                    name: 'Observations',
+                    name: '',
                     data: [
                         [760, 801, 848, 895, 965],
                         [733, 853, 939, 980, 1080],
@@ -58,12 +58,12 @@
                         [834, 836, 864, 882, 910]
                     ],
                     tooltip: {
-                        headerFormat: '<em>Experiment No {point.key}</em><br/>'
+                        headerFormat: ''
                     }
                 }, {
-                    name: 'Outlier',
+                    name: '',
                     color: Highcharts.getOptions().colors[0],
-                    type: 'scatter',
+                    type: '',
                     data: [ // x, y positions where 0 is the first category
                         [0, 644],
                         [4, 718],
@@ -71,12 +71,12 @@
                         [4, 969]
                     ],
                     marker: {
-                        fillColor: 'white',
+                        fillColor: '',
                         lineWidth: 1,
                         lineColor: Highcharts.getOptions().colors[0]
                     },
                     tooltip: {
-                        pointFormat: 'Observation: {point.y}'
+                        pointFormat: ''
                     }
                 }]
 

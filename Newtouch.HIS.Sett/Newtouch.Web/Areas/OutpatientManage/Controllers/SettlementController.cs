@@ -76,11 +76,11 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             }
             var pagination = new Pagination();
             pagination.sidx = "jsrq desc"; //时间升序
-            pagination.rows = 65536 - 1;    //Excel最大行数
+            pagination.rows = 65536 - 1;    //ExcelTối đa số dòng
             pagination.page = 1;    //第一页把所有都查出来
             var list = _outChargeDmnService.GetSettlementList(pagination, orgId, keyword, kssj, jssj, containsTF.Value);
             
-            //长度限制？
+            //Giới hạn độ dài？
             var jsnms = string.Join(",", list.Select(p => p.jsnm).Distinct());
             if (!string.IsNullOrWhiteSpace(jsnms))
             {
@@ -137,7 +137,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             sheet.columns.ToList().ForEach(p =>
             {
                 p.WidthTimes = (double)p.Width / colStanWidth;
-                p.Width = 0;    //Width都置为0
+                p.Width = 0;    //WidthCho đặt đều0
             });
 
             var path = DateTime.Now.ToString("\\\\yyyyMMdd\\\\HHmmssfff") + ".xls";

@@ -1,25 +1,25 @@
 ﻿@{
-    ViewBag.Title = "Form";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <script>
     $(function () {
         initControl();
     });
     function initControl() {
-        $("#F_DbName").bindSelect()
-        $("#F_BackupType").bindSelect()
+        $("").bindSelect()
+        $("").bindSelect()
     }
     function submitForm() {
-        if (!$('#form1').formValid()) {
+        if (!$('').formValid()) {
             return false;
         }
         $.submitForm({
-            loading: "正在备份数据...",
-            url: "/SystemSecurity/DbBackup/SubmitForm",
-            param: $("#form1").formSerialize(),
+            loading: "",
+            url: "",
+            param: $("").formSerialize(),
             success: function () {
-                $.currentWindow().$("#gridList").trigger("reloadGrid");
+                $.currentWindow().$("").trigger("");
             }
         })
     }
@@ -27,7 +27,7 @@
 
 <form id="form1">
     <div style="margin-bottom: 0px; border-radius: 0px;" class="alert alert-warning alert-dismissable">
-        <strong>注意：</strong>&nbsp;备份成功后，请将备份文件下载到本地保存！
+        <strong>Chú ý：</strong>&nbsp;备份成功后，请将备份文件下载到本地保存！
     </div>
     <div style="padding-top: 20px; margin-right: 20px;">
         <table class="form">

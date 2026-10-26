@@ -1,10 +1,10 @@
 ﻿
 @{
-    ViewBag.Title = "PerformanceIndicator";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/highcharts/highcharts.js")"></script>
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/highcharts/modules/exporting.js")"></script>
+<script src=""~/js/highcharts/highcharts.js""></script>
+<script src=""~/js/highcharts/modules/exporting.js""></script>
 <style type="text/css">
     #perIndicatortable {
         width: 100%;
@@ -22,7 +22,7 @@
 </style>
 <table class="form">
     <tr>
-        <th class="formTitle">年份</th>
+        <th class="formTitle">Năm</th>
         <td class="formValue">
             <input id="year" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy")" onfocus="WdatePicker({ dateFmt: 'yyyy', onpicking: dateChange})" />
         </td>
@@ -30,7 +30,7 @@
     </tr>
 </table>
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-<input class="form-control btn btn-default" id="reset" type="button" value="重置" style="width: 50px;height: 25px;position: relative;top: -45px;right: -1050px;display:none">
+<input class="form-control btn btn-default" id="reset" type="button" value="Đặt lại" style="width: 50px;height: 25px;position: relative;top: -45px;right: -1050px;display:none">
 <table id="perIndicatortable" cellspacing="10">
     <thead>
         <tr>
@@ -64,12 +64,12 @@
                 perIndicatorObj.push({ zrc: 0, pjrc: 0 });
             }
             ShowChart();
-            $.modalAlert("请选择医疗机构", 'warning');
+            $.modalAlert("", '');
             return;
         }
         $.ajax({
-            url: "/Echarts/SelectPerformanceIndicator?r=" + Math.random() + "&orgId=" + orgId + "&year=" + year,
-            dataType: "json",
+            url: "" + Math.random() + "" + orgId + "" + year,
+            dataType: "",
             async: false,
             success: function (data) {
                 if (data) {
@@ -79,59 +79,59 @@
         });
     }
 
-    //请求
-    aaaaaa($('#OrganizeId').val(), $('#year').val());
+    //Yêu cầu
+    aaaaaa($('').val(), $('').val());
     //图表
     ShowChart();
 
     function dateChange(dp) {
         var year = dp.cal.getNewDateStr();
-        //请求
-        aaaaaa($('#OrganizeId').val(), year);
+        //Yêu cầu
+        aaaaaa($('').val(), year);
         //图表
         ShowChart();
     }
 
     function ShowChart() {
-        $('#container').highcharts({
+        $('').highcharts({
             credits: { enabled: false },
             chart: {
-                zoomType: 'xy'
+                zoomType: ''
             },
             title: {
-                text: 'Performance Indicator'
+                text: ''
             },
             subtitle: {
-                text: 'Source: GRS-Bainuo'
+                text: ''
             },
             xAxis: [{
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                categories: ['', '', '', '', '', '',
+                    '', '', '', '', '', ''],
                 crosshair: true,
             }],
             yAxis: [{ // Primary yAxis
                 crosshair: true,
                 labels: {
-                    format: '{value}',   //总人次
+                    format: '',   //Tổng lượt người
                     style: {
                         color: Highcharts.getOptions().colors[1]
                     }
                 },
                 title: {
-                    text: '总人次',
+                    text: '',
                     style: {
                         color: Highcharts.getOptions().colors[1]
                     }
                 }
             }, { // Secondary yAxis
                 title: {
-                    text: '平均人次',
+                    text: '',
                     style: {
                         color: Highcharts.getOptions().colors[1]
                     }
                 },
                 labels: {
-                    format: '{value}',   //平均人次
+                    format: '',   //Lượt người bình quân
                     style: {
                         color: Highcharts.getOptions().colors[1]
                     }
@@ -144,89 +144,89 @@
                 shadow: true,
             },
             legend: {
-                //layout: 'vertical',
-                //align: 'left',
+                //layout: '',
+                //align: '',
                 //x: 120,
-                //verticalAlign: 'top',
+                //verticalAlign: '',
                 //y: 100,
                 //floating: true,
-                //backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
-                align: 'center',
-                verticalAlign: 'bottom',
+                //backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || ''
+                align: '',
+                verticalAlign: '',
                 x: 0,
                 y: 0
             },
             series: [{
-                name: '总人次',  //总人次
-                type: 'column',
+                name: '',  //Tổng lượt người
+                type: '',
                 color: Highcharts.getOptions().colors[0],
                 data: [perIndicatorObj[0].zrc, perIndicatorObj[1].zrc, perIndicatorObj[2].zrc, perIndicatorObj[3].zrc, perIndicatorObj[4].zrc, perIndicatorObj[5].zrc, perIndicatorObj[6].zrc, perIndicatorObj[7].zrc, perIndicatorObj[8].zrc, perIndicatorObj[9].zrc, perIndicatorObj[10].zrc, perIndicatorObj[11].zrc],
                 tooltip: {
-                    valueSuffix: '' //单位
+                    valueSuffix: '' //Đơn vị
                 },
                 events: {
                     click: function (e) {
-                        //$('#container').css("display", "none");
-                        //$('#monthcontainer').css("display", "block");
-                        $('#reset').css("display", "block");
+                        //$('').css("", "");
+                        //$('').css("", "");
+                        $('').css("", "");
                         LoadMonthChart(e.point.x);
                     }
                 }
             },
             {
-                name: '平均人次',   //平均人次
-                type: 'spline',
+                name: '',   //Lượt người bình quân
+                type: '',
                 color: Highcharts.getOptions().colors[6],
                 yAxis: 1,
                 data: [perIndicatorObj[0].pjrc, perIndicatorObj[1].pjrc, perIndicatorObj[2].pjrc, perIndicatorObj[3].pjrc, perIndicatorObj[4].pjrc, perIndicatorObj[5].pjrc, perIndicatorObj[6].pjrc, perIndicatorObj[7].pjrc, perIndicatorObj[8].pjrc, perIndicatorObj[9].pjrc, perIndicatorObj[10].pjrc, perIndicatorObj[11].pjrc],
                 tooltip: {
-                    valueSuffix: '' //单位
+                    valueSuffix: '' //Đơn vị
                 },
                 events: {
                     click: function (e) {
-                        //$('#personcntchart').css("display", "none");
-                        //$('#monthcntchart').css("display", "block");
-                        $('#reset').css("display", "block");
+                        //$('').css("", "");
+                        //$('').css("", "");
+                        $('').css("", "");
                         LoadMonthChart(e.point.x);
                     }
                 }
             }],
 
         });
-        if ($('#tr_zrc').html()) {
-            $('#tr_zrc').remove();
+        if ($('').html()) {
+            $('').remove();
         }
-        if ($('#tr_pjrc').html()) {
-            $('#tr_pjrc').remove();
+        if ($('').html()) {
+            $('').remove();
         }
-        $('#thyear').html($('#year').val());
-        var str = "<tr id='tr_zrc'><td>总人次</td>";
+        $('').html($('').val());
+        var str = "";
         for (i = 0; i < 12; i++) {
-            str += "<td>" + perIndicatorObj[i].zrc + "</td>";
+            str += "" + perIndicatorObj[i].zrc + "";
         }
-        str += "</tr>";
-        $('#tbody').append(str);
+        str += "";
+        $('').append(str);
 
-        var str = "<tr id='tr_pjrc'><td>平均人次</td>";
+        var str = "";
         for (i = 0; i < 12; i++) {
-            str += "<td>" + perIndicatorObj[i].pjrc + "</td>";
+            str += "" + perIndicatorObj[i].pjrc + "";
         }
-        str += "</tr>";
-        $('#tbody').append(str);
+        str += "";
+        $('').append(str);
 
     }
 
     function LoadMonthChart(month) {
         month++;
-        var orgId = $('#OrganizeId').val();
-        var year = $('#year').val();
+        var orgId = $('').val();
+        var year = $('').val();
         if (orgId == "") {
-            $.modalAlert("请选择医疗机构", 'warning');
+            $.modalAlert("", '');
             return;
         }
         $.ajax({
-            url: "/Echarts/PerformanceMonthIndicator?r=" + Math.random() + "&orgId=" + orgId + "&year=" + year + "&month=" + month,
-            dataType: "json",
+            url: "" + Math.random() + "" + orgId + "" + year + "" + month,
+            dataType: "",
             async: false,
             success: function (data) {
                 if (data != null && data != null) {
@@ -238,16 +238,16 @@
 
     function GetMonthNumChart(data, month) {
         var rtnobj = mGetDate(data, month);
-        $('#container').highcharts({
+        $('').highcharts({
             credits: { enabled: false },
             chart: {
-                zoomType: 'none'
+                zoomType: ''
             },
             title: {
-                text: 'Performance Indicator'
+                text: ''
             },
             subtitle: {
-                text: new Date().getFullYear() + '年' + month + "月人次统计"
+                text: new Date().getFullYear() + '' + month + ""
             },
             xAxis: [{
                 categories: rtnobj.str,
@@ -256,26 +256,26 @@
             yAxis: [{ // Primary yAxis
                 crosshair: true,
                 labels: {
-                    format: '{value}',   //总人次
+                    format: '',   //Tổng lượt người
                     style: {
                         color: Highcharts.getOptions().colors[1]
                     }
                 },
                 title: {
-                    text: '总人次',
+                    text: '',
                     style: {
                         color: Highcharts.getOptions().colors[1]
                     }
                 }
             }, { // Secondary yAxis
                 title: {
-                    text: '平均人次',
+                    text: '',
                     style: {
                         color: Highcharts.getOptions().colors[1]
                     }
                 },
                 labels: {
-                    format: '{value}',   //平均人次
+                    format: '',   //Lượt người bình quân
                     style: {
                         color: Highcharts.getOptions().colors[1]
                     }
@@ -288,62 +288,62 @@
                 shadow: true,
             },
             legend: {
-                align: 'center',
-                verticalAlign: 'bottom',
+                align: '',
+                verticalAlign: '',
                 x: 0,
                 y: 0
             },
             series: [{
-                name: '总人次',  //总人次
-                type: 'column',
+                name: '',  //Tổng lượt người
+                type: '',
                 color: Highcharts.getOptions().colors[0],
                 data: rtnobj.zrc,
                 tooltip: {
-                    valueSuffix: '' //单位
+                    valueSuffix: '' //Đơn vị
                 }
             },
             {
-                name: '平均人次',   //平均人次
-                type: 'spline',
+                name: '',   //Lượt người bình quân
+                type: '',
                 color: Highcharts.getOptions().colors[6],
                 yAxis: 1,
                 data: rtnobj.pjrc,
                 tooltip: {
-                    valueSuffix: '' //单位
+                    valueSuffix: '' //Đơn vị
                 }
             }],
 
         });
-        if ($('#tr_zrc').html()) {
-            $('#tr_zrc').remove();
+        if ($('').html()) {
+            $('').remove();
         }
-        if ($('#tr_pjrc').html()) {
-            $('#tr_pjrc').remove();
+        if ($('').html()) {
+            $('').remove();
         }
-        $('#thyear').html($('#year').val());
-        var str = "<tr id='tr_zrc'><td>总人次</td>";
+        $('').html($('').val());
+        var str = "";
         for (i = 0; i < 12; i++) {
-            str += "<td>" + perIndicatorObj[i].zrc + "</td>";
+            str += "" + perIndicatorObj[i].zrc + "";
         }
-        str += "</tr>";
-        $('#tbody').append(str);
+        str += "";
+        $('').append(str);
 
-        var str = "<tr id='tr_pjrc'><td>平均人次</td>";
+        var str = "";
         for (i = 0; i < 12; i++) {
-            str += "<td>" + perIndicatorObj[i].pjrc + "</td>";
+            str += "" + perIndicatorObj[i].pjrc + "";
         }
-        str += "</tr>";
-        $('#tbody').append(str);
+        str += "";
+        $('').append(str);
     }
 
     var weekday = new Array(7)
-    weekday[0] = "日"
-    weekday[1] = "一"
-    weekday[2] = "二"
-    weekday[3] = "三"
-    weekday[4] = "四"
-    weekday[5] = "五"
-    weekday[6] = "六"
+    weekday[0] = ""
+    weekday[1] = ""
+    weekday[2] = ""
+    weekday[3] = ""
+    weekday[4] = ""
+    weekday[5] = ""
+    weekday[6] = ""
 
     function mGetDate(data, month) {
         var rtnobj = {};
@@ -354,10 +354,10 @@
         var year = date.getFullYear();
         var d = new Date(year, month, 0);
         var d = d.getDate();
-        var currentdate = year + '-' + (month < 10 ? ('0' + month) : month);
+        var currentdate = year + '' + (month < 10 ? ('' + month) : month);
         for (var i = 1; i < (d + 1); i++) {
-            var currenttime = currentdate + '-' + (i < 10 ? ('0' + i) : i);
-            rtnobj.str.push(i + " " + weekday[new Date(currenttime).getDay()]);
+            var currenttime = currentdate + '' + (i < 10 ? ('' + i) : i);
+            rtnobj.str.push(i + "" + weekday[new Date(currenttime).getDay()]);
             var isPush = false;
             $.each(data, function (i, v) {
                 if (v.col == currenttime) {
@@ -374,22 +374,22 @@
         return rtnobj;
     }
 
-    $('#reset').click(function () {
-        //$('#container').css("display", "block");
-        //$('#monthcontainer').css("display", "none");
-        $('#reset').css("display", "none");
-        aaaaaa($('#OrganizeId').val(), $('#year').val());
+    $('').click(function () {
+        //$('').css("", "");
+        //$('').css("", "");
+        $('').css("", "");
+        aaaaaa($('').val(), $('').val());
         ShowChart();
     });
 </script>
 
-<script type="text/javascript">
+<script type="">
     function funcOrganizeIdChange() {
-        //请求
-        aaaaaa($('#OrganizeId').val(), $('#year').val());
+        //Yêu cầu
+        aaaaaa($('').val(), $('').val());
         //图表
         ShowChart();
 
     }
 </script>
-@Html.Partial("_ReportOrganizeIdDDLSearchView")
+@Html.Partial("")

@@ -1,9 +1,9 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "Outform";
-    Layout = "~/Views/Shared/_Form.cshtml";
-    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
-    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
+    ViewBag.Title = "";
+    Layout = "";
+    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("");
+    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("");
     var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
 }
 
@@ -11,36 +11,36 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">开始日期：</th>
+                <th class="formTitle">Ngày bắt đầu：</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an" style="width: 140px;"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
                 </td>
 
-                <th class="formTitle" style="padding-right:5px;">结束日期：</th>
+                <th class="formTitle" style="padding-right:5px;">Ngày kết thúc：</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an" style="width:140px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
                 </td>
 
-                <th class="formTitle">挂号科室：</th>
+                <th class="formTitle">Khoa đăng ký khám：</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="txttjksmc" />
                 </td>
-                @*<th class="formTitle">操作员：</th>
+                @*<th class="formTitle">Nhân viên thao tác：</th>
                     <td class="formValue">
                         <div class="row">
                             <div class="col-md-9">
                                 <input type="text" class="form-control" id="txtsyy" value="" />
                             </div>
                             <div class="col-md-3" style="text-align:right;">
-                                <input type="button" class="btn btn-default btn-md" style="width:45px" id="btnsyy" value="查询" />
+                                <input type="button" class="btn btn-default btn-md" style="width:45px" id="btnsyy" value="Tra cứu" />
                             </div>
                         </div>
                     </td>*@
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:5px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
                 <th class="formTitle"></th>
                 <td></td>
@@ -58,73 +58,73 @@
 
 
 
-<script type="text/javascript">
-    var reportServerHOST = '@(ViewBag.ReportServerHOST)';
-    var orgId = '@(ViewBag.OrgId)';
-    var isHospAdministrator = '@(ViewBag.IsHospAdministrator)';
-    var curUserCode = '@(ViewBag.CurUserCode)';
+<script type="">
+    var reportServerHOST = '';
+    var orgId = '';
+    var isHospAdministrator = '';
+    var curUserCode = '';
 
     console.info(orgId);
 
-    //var uri = 'ReportServer/Pages/ReportViewer.aspx?%2FHIS.Report.1%2F%E9%97%A8%E8%AF%8A%E6%94%B6%E8%B4%B9%E5%91%98%E5%B7%A5%E4%BD%9C%E9%87%8F%E7%BB%9F%E8%AE%A1&rs:Command=Render';
+    //var uri = '';
 
 
-    var uri = 'ReportServer/Pages/ReportViewer.aspx?%2fHIS.Report.1%2f科室工作量统计表&rs:Command=Render';
+    var uri = '';
 
-    console.info("----" + uri.trim());
+    console.info("" + uri.trim());
 
     function submit() {
 
-        if ($('#kssj').val().length == 0) {
-            $.modalAlert("缺少开始时间", "error");
+        if ($('').val().length == 0) {
+            $.modalAlert("", "");
             return;
         }
-        if ($('#jssj').val().length == 0) {
-            $.modalAlert("缺少结束时间", "error");
+        if ($('').val().length == 0) {
+            $.modalAlert("", "");
             return;
         }
-        if ($('#kssj').val() > $('#jssj').val()) {
-            $.modalAlert("开始时间不能大于结束时间", "error");
+        if ($('').val() > $('').val()) {
+            $.modalAlert("", "");
             return;
         }
         var url = getUrl();
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
-        $("#iframerightiframerightiframerightttt").attr('src', url);
+        setTimeout("", 10);
+        $("").attr('', url);
        
     }
 
-    $("#iframerightiframerightiframerightttt").load(function () {
+    $("").load(function () {
         $.loading(false);
     });
 
     $(function () {
         var h = $(window).height() - 55
-        $('#layout iframe').css('height', h);
+        $('').css('', h);
         init();
 
         setTimeout(function () { submit(); }, 100);
     });
 
     function getUrl() {
-        var ksrq = $("#kssj").val() + " 00:00:00";
-        var jsrq = $("#jssj").val() + " 23:59:59";
-        var ks = $("#txttjksmc").val() != "" ? $("#txttjksmc").attr("data-label") : "";
-        var srcUrl2 = '@Html.Raw(reportUrl)' + "?tempCode=1249" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&orgId=" + '@(opr.OrganizeId)' + "&ksrq=" + ksrq + "&jsrq=" + jsrq + "&ks=" + ks;
+        var ksrq = $("").val() + "";
+        var jsrq = $("").val() + "";
+        var ks = $("").val() != "" ? $("").attr("") : "";
+        var srcUrl2 = '' + "" + "" + '' + "" + '' + "" + ksrq + "" + jsrq + "" + ks;
         return srcUrl2;
     }
 
 </script>
 
-<script type="text/javascript">
+<script type="">
     function init() {
-        //操作人
-        $("#btnsyy").click(function () {
+        //Người thao tác
+        $("").click(function () {
             $.modalOpen({
-                id: "FormUsers",
-                title: "选择操作员",
-                url: "/SystemManage/User/Selector?from=mzshoufeicaozuoyuan&organizeId=" + orgId + "&isExpand=true&callbackType=json&single=true",
-                width: "300px",
-                height: "400px",
+                id: "",
+                title: "",
+                url: "" + orgId + "",
+                width: "",
+                height: "",
                 callBack: function (iframeId) {
                     top.frames[iframeId].AcceptClick(function (data) {
                         userStaffTreeCallback(data);
@@ -132,31 +132,31 @@
                 }
             });
         });
-        //用户人员树回调方法
+        //Phương thức callback cây nhân viên người dùng
         function userStaffTreeCallback(data) {
-            $("#txtsyy").val(data[0].Code);
+            $("").val(data[0].Code);
         }
 
     }
     var kszdlist;
     $.ajax({
-        type: "POST",
-        url: "/PatientManage/HospiterRes/Getzdinfo",
-        dataType: "json",
+        type: "",
+        url: "",
+        dataType: "",
         async: false,
         success: function (data) {
             kszdlist = data;
 
         }
     });
-    //科室
-    $("#txttjksmc").newtouchBatchFloatingSelector({
+    //Khoa
+    $("").newtouchBatchFloatingSelector({
         height: 200,
         width: 300,
         clickautotrigger: true,
-        //url: '/OutpatientManage/OutpatientReg/GetCurrentDayRegListJson',
+        //url: '',
         filter: function (keyword) {
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(kszdlist, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -168,15 +168,15 @@
             return resultObjArr;
 
         },
-        caption: "科室",
+        caption: "",
         colModel: [
-            { label: '编号', name: 'code', widthratio: 30 },
-            { label: '名称', name: 'name', widthratio: 50 },
-            { label: '拼音', name: 'py', hidden: true }
+            { label: '', name: '', widthratio: 30 },
+            { label: '', name: '', widthratio: 50 },
+            { label: '', name: '', hidden: true }
         ],
         itemdbclickhandler: function ($thistr) {
-            $("#txttjksmc").attr("data-label", $thistr.find("td:eq(0)").html());
-            $("#txttjksmc").val($thistr.find('td:eq(1)').html());
+            $("").attr("", $thistr.find("").html());
+            $("").val($thistr.find('').html());
             return;
         },
     });

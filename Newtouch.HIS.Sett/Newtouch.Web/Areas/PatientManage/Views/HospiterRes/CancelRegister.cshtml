@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "CancelRegister";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <script>
     $(function () {
@@ -9,67 +9,67 @@
     });
 
     function gridList() {
-        var $gridList = $("#gridList");
+        var $gridList = $("");
         $gridList.dataGrid({
-            url: "/PatientManage/HospiterRes/GetRegisterGridJson",
+            url: "",
             height: $(window).height() - 195,
             colModel: [
-                { label: "主键", name: "patid", hidden: true, key: true },
-                { label: '卡号', name: 'CardNo', width: 100, align: 'left' },
-                { label: '病人性质', name: 'brxzmc', width: 100, align: 'left' },
-                { label: '病历号', name: 'blh', width: 100, align: 'left' },
-                { label: '姓名', name: 'xm', width: 50, align: 'left' },
-                { label: '学历', name: 'xl', width: 50, align: 'left' },
+                { label: "", name: "", hidden: true, key: true },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 50, align: '' },
+                { label: '', name: '', width: 50, align: '' },
                 {
-                    label: '性别', name: 'xb', width: 50, align: 'left',
+                    label: '', name: '', width: 50, align: '',
                     formatter: function (cellvalue) {
                         return $.getGender(cellvalue);
                     }
                 },
-                { label: '拼音', name: 'py', width: 100, align: 'left' },
+                { label: '', name: '', width: 100, align: '' },
                 {
-                    label: '出生年月', name: 'csny', width: 80, align: 'left',
-                    formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                    label: '', name: '', width: 80, align: '',
+                    formatter: "", formatoptions: { srcformat: '', newformat: '' }
                 },
                 {
-                    label: '证件类型', name: 'zjlx', width: 70, align: 'left',
+                    label: '', name: '', width: 70, align: '',
                     formatter: function (cellvalue) {
                         if (cellvalue) {
-                            if (cellvalue.trim() === "1") {
+                            if (cellvalue.trim() === "") {
                                 // EnumZJLX
-                                return "身份证";
-                            } else if (cellvalue.trim() === "2") {
-                                return "护照";
-                            } else if (cellvalue.trim() === "3") {
-                                return "军官证";
+                                return "";
+                            } else if (cellvalue.trim() === "") {
+                                return "";
+                            } else if (cellvalue.trim() === "") {
+                                return "";
                             } else {
-                                return "其他";
+                                return "";
                             }
                         }
                         return "";
                     }
                 },
-                 { label: '证件号', name: 'zjh', width: 150, align: 'left' },
+                 { label: '', name: '', width: 150, align: '' },
                  {
-                     label: '年龄', name: 'nlshow', width: 50, align: 'left', formatter: function (cellvalue, a, b) {
+                     label: '', name: '', width: 50, align: '', formatter: function (cellvalue, a, b) {
                          return getAgeFromBirthTime({ begin: b.csny }).text;
                      }
                  },
-                 { label: '电话', name: 'dh', width: 100, align: 'left' },
-                 { label: '紧急联系人', name: 'jjllr', width: 100, align: 'left' },
-                 { label: '联系人电话', name: 'jjlldh', width: 100, align: 'left' },
-                 { label: 'CreateTime', name: 'CreateTime', hidden: true },
+                 { label: '', name: '', width: 100, align: '' },
+                 { label: '', name: '', width: 100, align: '' },
+                 { label: '', name: '', width: 100, align: '' },
+                 { label: '', name: '', hidden: true },
 
             ],
-            pager: "#gridPager",
-            sortname: 'CreateTime desc',
-            rowNum: '10',
+            pager: "",
+            sortname: '',
+            rowNum: '',
             viewrecords: true
         });
-        $("#btn_search").click(function () {
-            $gridList.jqGrid('setGridParam', {
-                postData: { keyword: $("#xm").val(), kh: $("#searchkh").val(), blh: $("#blh").val() }
-            }).trigger('reloadGrid');
+        $("").click(function () {
+            $gridList.jqGrid('', {
+                postData: { keyword: $("").val(), kh: $("").val(), blh: $("").val() }
+            }).trigger('');
         });
     }
 </script>

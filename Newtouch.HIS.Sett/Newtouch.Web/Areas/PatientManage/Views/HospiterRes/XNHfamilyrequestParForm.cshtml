@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "新农合家庭参合列表";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 <form id="form1">
@@ -24,19 +24,19 @@
 </form>
 <script>
     function submitForm(callback) {
-        var year = $('#year').val();
+        var year = $('').val();
         if (!year) {
-            $.modalAlert("参合年度必填", "warning");
+            $.modalAlert("", "");
             return false;
         }
 
-        var medicalNo = $('#medicalNo').val();
+        var medicalNo = $('').val();
         if (!medicalNo) {
-            $.modalAlert("医疗证号必填", "warning");
+            $.modalAlert("", "");
             return false;
         }
         $.submitForm({
-            url: "@Url.Action("S03submit")",
+            url: ""S03submit"",
             param: { year: year, medicalNo: medicalNo },
             success: function (resp) {
                 var jresp = JSON.parse(resp.data);
@@ -45,10 +45,10 @@
                         callback(jresp.data);
                         $.modalClose();
                     } else {
-                        $.modalAlert("此家庭该年度无参合列表，请确认！", "warning");
+                        $.modalAlert("", "");
                     }
                 } else {
-                    $.modalAlert(jresp.message, "error");
+                    $.modalAlert(jresp.message, "");
                 }
             }
         });

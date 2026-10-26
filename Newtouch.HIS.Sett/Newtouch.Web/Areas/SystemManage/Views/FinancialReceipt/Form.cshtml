@@ -1,14 +1,14 @@
 ﻿@using Newtouch.Common.Operator;
 @{
-    ViewBag.Title = "Form";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 <form id="form1">
     <div style="padding: 20px 35px 0 2px;">
         <table class="form">
             <tr>
-                <th class="formTitle">首字母：</th>
+                <th class="formTitle">Chữ cái đầu：</th>
                 <td class="formValue">
                     <input name="szm" type="text" class="form-control" id="szm" />
                 </td>
@@ -18,7 +18,7 @@
                 <td class="formValue">
                     <input type="text" class="form-control" id="qssjh" name="qssjh" required />
                 </td>
-                <th class="formTitle"><span class="required">*</span>结束收据号：</th>
+                <th class="formTitle"><span class="required">*</span>Kết thúc số biên lai：</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="jssjh" name="jssjh" required />
                 </td>
@@ -28,7 +28,7 @@
                 <td class="formValue">
                     <input type="text" class="form-control" id="dqsjh" name="dqsjh" required />
                 </td>
-                <th class="formTitle">有效</th>
+                <th class="formTitle">Hiệu lực</th>
                 <td class="formValue">
                     <div class="ckbox">
                         <input id="zt" type="checkbox" checked="checked"><label for="zt"></label>
@@ -36,7 +36,7 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>领用人员：</th>
+                <th class="formTitle"><span class="required">*</span>Người lĩnh dùng：</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="ry" name="ry" required />
                 </td>
@@ -50,20 +50,20 @@
 </form>
 
 <script>
-    var Id = $.request("Id");
+    var Id = $.request("");
     $(function () {
         initControl();
         if (!!Id) {
             $.ajax({
-                url: "/SystemManage/FinancialReceipt/GetFormJson?r=" + Math.random(),
+                url: "" + Math.random(),
                 data: { Id: Id },
-                dataType: "json",
+                dataType: "",
                 async: false,
                 success: function (data) {
-                    $("#form1").formSerialize(data);
-                    //格式化UTC日期
-                    $("#CreateTime").val(new Date(data.CreateTime).format("yyyy-MM-dd hh:mm:ss"));
-                    $("#CreateTime").val(new Date(data.CreateTime).format("yyyy-MM-dd hh:mm:ss"));
+                    $("").formSerialize(data);
+                    //Định dạngUTCNgày
+                    $("").val(new Date(data.CreateTime).format(""));
+                    $("").val(new Date(data.CreateTime).format(""));
                 }
             });
         }
@@ -73,27 +73,27 @@
     }
 
     function submitForm() {
-        if (!$('#form1').formValid()) {
+        if (!$('').formValid()) {
             return false;
         }
-        var params = $("#form1").formSerialize();
+        var params = $("").formSerialize();
         $.submitForm({
-            url: "/SystemManage/FinancialReceipt/SubmitForm?Id=" + Id,
+            url: "" + Id,
             param: params,
             success: function () {
-                $.currentWindow().$("#gridList").trigger("reloadGrid");
+                $.currentWindow().$("").trigger("");
             }
         })
     }
 
-    //领用人员
-    $("#ry").click(function () {
+    //Người lĩnh dùng
+    $("").click(function () {
         $.modalOpen({
-            id: "FormSysFPPZUsers",
-            title: "选择操作员",
-            url: "/SystemManage/SysUser/Selector?isContansChildOrg=false&organizeId=" + '@(Newtouch.Common.Operator.OperatorProvider.GetCurrent().OrganizeId)' + "&isExpand=true&callbackType=json&single=true&fromDialog=FormFIEdit",
-            width: "650px",
-            height: "570px",
+            id: "",
+            title: "",
+            url: "" + '' + "",
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 top.frames[iframeId].AcceptClick(function (data) {
                     userStaffTreeCallback(data);
@@ -101,9 +101,9 @@
             }
         });
     });
-    //用户人员树回调方法
+    //Phương thức callback cây nhân viên người dùng
     function userStaffTreeCallback(data) {
-        $("#ry").val(data[0].Code);
+        $("").val(data[0].Code);
     }
 
 </script>

@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         private readonly ISysModuleDmnService _sysModuleDmnService;
 
         /// <summary>
-        /// 加载时，获取左边树节点
+        /// Tải giờ，获取左边树节点
         /// </summary>
         /// <returns></returns>
         [HttpGet]

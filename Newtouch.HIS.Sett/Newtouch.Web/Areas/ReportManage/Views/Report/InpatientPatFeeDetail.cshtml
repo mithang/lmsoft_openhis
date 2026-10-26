@@ -1,21 +1,21 @@
 ﻿@{
-    ViewBag.Title = "MonthReportIndex";
-    Layout = "~/Views/Shared/_Form.cshtml";
-    //报表链接
-    var reportUrl = SysConfigReader.OrgReportLink("InpatientPatFeeDetail");
+    ViewBag.Title = "";
+    Layout = "";
+    //Liên kết báo cáo
+    var reportUrl = SysConfigReader.OrgReportLink("");
 }
 
 <div class="rows">
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">住院号：</th>
+                <th class="formTitle">Số nhập viện：</th>
                 <td class="formValue">
                     <input id="zyh" name="zyh" type="text" class="form-control" />
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
                 <th></th>
                 <td></td>
@@ -31,48 +31,48 @@
             scrolling="auto" allowtransparency="true" frameborder="0"></iframe>
 </div>
 
-<script type="text/javascript">
+<script type="">
 
-    //治疗项目选择浮层绑定
-    $('#zyh').newtouchBatchFloatingSelector({
+    //Liên kết lớp nổi chọn hạng mục điều trị
+    $('').newtouchBatchFloatingSelector({
         width: 500,
         height: 200,
-        caption: "选择患者",
+        caption: "",
         clickautotrigger: true,
-        url: "/ReportManage/Report/GetInpatientcryrq",
+        url: "",
         ajaxparameters: function ($thisinput) {
             var keyword = $thisinput.val().trim();
-            var zyh = $("#zyh").val();
-            return "zyh=" + zyh;
+            var zyh = $("").val();
+            return "" + zyh;
         },
         itemdbclickhandler: function ($thistr, $thisinput) {
-            if (!!$thistr.attr('data-zyh')) {
-                if ($thistr.attr('data-ryrq') !== "" && $thistr.attr('data-ryrq') !== undefined && $thistr.attr('data-ryrq') !== null) {
-                    $('#ksrq').val($.getDate({ date: $thistr.attr('data-ryrq') }));
+            if (!!$thistr.attr('')) {
+                if ($thistr.attr('') !== "" && $thistr.attr('') !== undefined && $thistr.attr('') !== null) {
+                    $('').val($.getDate({ date: $thistr.attr('') }));
                 }
-                if ($thistr.attr('data-cyrq') !== "" && $thistr.attr('data-cyrq') !== undefined && $thistr.attr('data-cyrq') !== null) {
-                    $('#jsrq').val($.getDate({ date: $thistr.attr('data-cyrq') }));
+                if ($thistr.attr('') !== "" && $thistr.attr('') !== undefined && $thistr.attr('') !== null) {
+                    $('').val($.getDate({ date: $thistr.attr('') }));
                 } else {
-                    $('#jsrq').val($.getDate());
+                    $('').val($.getDate());
                 }
-                $('#zyh').val($thistr.attr('data-zyh'));
+                $('').val($thistr.attr(''));
                 submit();
             }
         },
         colModel: [
-            { label: '住院号', name: 'zyh', width: 100 },
-            { label: 'cyrq', name: 'cyrq', hidden: true },
-            { label: 'ryrq', name: 'ryrq', hidden: true },
-            { label: '在院标志', name: 'zybz', width: 100, align: 'left' },
-            { label: '姓名', name: 'xm', width: 120, align: 'left' },
-            { label: '出生年月', name: 'csny', hidden: true, width: 100, align: 'left' },
+            { label: '', name: '', width: 100 },
+            { label: '', name: '', hidden: true },
+            { label: '', name: '', hidden: true },
+            { label: '', name: '', width: 100, align: '' },
+            { label: '', name: '', width: 120, align: '' },
+            { label: '', name: '', hidden: true, width: 100, align: '' },
             {
-                label: '性别', name: 'xb', width: 50, align: 'left', formatter: function (cellvalue) {
+                label: '', name: '', width: 50, align: '', formatter: function (cellvalue) {
                     return $.getGender(cellvalue);
                 }
             },
             {
-                label: '年龄', name: 'nlshow', width: 50, align: 'left', formatter: function (cellvalue, a, b) {
+                label: '', name: '', width: 50, align: '', formatter: function (cellvalue, a, b) {
                     return getAgeFromBirthTime({ begin: b.csny }).text;
                 }
             }
@@ -81,41 +81,41 @@
 
     function submit() {
 
-        if ($('#zyh').val().length == 0) {
-            $.modalAlert("缺少住院号", "error");
+        if ($('').val().length == 0) {
+            $.modalAlert("", "");
             return;
         }
 
         var url = getUrl();
 
-        url += "&zyh=" + $('#zyh').val();// + "&ksrq=" + $('#ksrq').val() + "&jsrq=" + $('#jsrq').val();
+        url += "" + $('').val();// + "" + $('').val() + "" + $('').val();
 
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
-        $("#iframerightiframerightiframerightttt").attr('src', url);
+        setTimeout("", 10);
+        $("").attr('', url);
     }
 
-    $("#iframerightiframerightiframerightttt").load(function () {
+    $("").load(function () {
         $.loading(false);
     });
 
     $(function () {
         var h = $(window).height() - 55
-        $('#layout iframe').css('height', h);
+        $('').css('', h);
 
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
-        $("#btn_search").trigger('click');
+        $("").trigger('');
     }
 
     function getUrl() {
-        var srcUrl = '@Html.Raw(reportUrl)';
+        var srcUrl = '';
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
-            if (srcUrl.indexOf('&rc:Stylesheet') == -1) {
-                srcUrl += "&rc:Stylesheet=MyStyleSheet";
+            if (srcUrl.indexOf('') == -1) {
+                srcUrl += "";
             }
         }
 

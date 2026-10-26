@@ -1,21 +1,21 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 
 <div class="topPanel">
-    @Html.Partial("_OrganizeIdDDLToolbarSearchView")
+    @Html.Partial("")
     <div class="toolbar">
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_add()" id="bedata"><i class="fa fa-plus"></i>新建</a>
+            <a class="btn btn-primary" onclick="btn_add()" id="bedata"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
         </div>
     </div>
     <div class="search">
@@ -23,7 +23,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keywordcx" type="text" class="form-control" placeholder="名称/编码" style="width: 180px;">
+                        <input id="txt_keywordcx" type="text" class="form-control" placeholder="Tên/Mã" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_searchcx" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -38,101 +38,101 @@
     <div id="gridPager"></div>
 </div>
 
-@*, OrganizeId: $("#OrganizeId").val()*@
+@*, OrganizeId: $("").val()*@
 
 <script>
     $(function () {
         gridList();
     })
     function gridList() {
-        var $gridList = $("#gridList");
+        var $gridList = $("");
         $gridList.dataGrid({
-            url: "/Treatment/loginfy",
+            url: "",
             height: $(window).height() - 128,
-            postData: { keyword: $("#txt_keywordcx").val(),OrganizeId:$("#OrganizeId").val() },
+            postData: { keyword: $("").val(),OrganizeId:$("").val() },
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: '诊疗组合名称', name: 'zhmc', width: 150, align: 'left' },
-                { label: '诊疗组合编码', name: 'zhcode', width: 100, align: 'left' },
-                { label: '排序', name: 'ord', width: 60, align: 'center' },
-                { label: '明细项目名称', name: 'zlxmmc', width: 170, align: 'left' },
-                { label: '明细项目', name: 'zlxm', width: 100, align: 'center' },
-                { label: '单价', name: 'price', width: 100, align: 'center', formatter: 'number', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 } },
-                { label: '明细项目拼音', name: 'zlxmpy', width: 120, align: 'left' },
-                { label: '组合金额', name: 'zhje', width: 100, align: 'left', hidden: true },
-                { label: '收费大类', name: 'dlmc', width: 100, align: 'left' },
-                { label: '分组列', name: 'zhmccode', width: 100, align: 'left' },
+                { label: "", name: "", hidden: true, key: true },
+                { label: '', name: '', width: 150, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 60, align: '' },
+                { label: '', name: '', width: 170, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 100, align: '', formatter: '', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 } },
+                { label: '', name: '', width: 120, align: '' },
+                { label: '', name: '', width: 100, align: '', hidden: true },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 100, align: '' },
             ],
 
-            pager: "#gridPager",
+            pager: "",
             viewrecords: true,
-            sortname: 'zhcode',
+            sortname: '',
             gridview: true,
-            grouping: true,// 是否分组,默认为false
+            grouping: true,// 是否分组,Mặc định làfalse
             groupingView: {
-                groupField: ['zhmccode'], // 按照哪一列进行分组
-                //groupText: ['<b>{0}</b>'],
+                groupField: [''], // 按照哪一列进行分组
+                //groupText: [''],
                 groupColumnShow: [false],
             },
-            rowNum: '10',
+            rowNum: '',
             unwritten: false,
         });
-        $("#btn_searchcx").click(function () {
-            $("#gridList").jqGrid('setGridParam', {
-                postData: { keyword: $("#txt_keywordcx").val(), OrganizeId: $("#OrganizeId").val() },
-            }).trigger('reloadGrid');
+        $("").click(function () {
+            $("").jqGrid('', {
+                postData: { keyword: $("").val(), OrganizeId: $("").val() },
+            }).trigger('');
         });
     }
-    $('#txt_keywordcx').keydownEnterEvent(function () {
-        $('#btn_searchcx').trigger('click');
+    $('').keydownEnterEvent(function () {
+        $('').trigger('');
     })
 
     function btn_add() {
         $.modalOpen({
-            id: "AForm",
-            title: "添加项目信息",
-            url: "/Treatment/AForm?orgId=" + $('#OrganizeId').val(),
-            width: "550px",
-            height: "490px",
+            id: "",
+            title: "",
+            url: "" + $('').val(),
+            width: "",
+            height: "",
             btn: null
         });
     }
 
     function btn_edit() {
-        var keyValue = $("#gridList").jqGridRowValue().zhcode;
+        var keyValue = $("").jqGridRowValue().zhcode;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("", '');
             return;
         }
         $.modalOpen({
-            id: "Form",
-            title: "修改信息",
-            url: "/Treatment/AForm?keyValue=" + keyValue+"&orgId=" + $('#OrganizeId').val(),
-            width: "550px",
-            height: "590px",
+            id: "",
+            title: "",
+            url: "" + keyValue+"" + $('').val(),
+            width: "",
+            height: "",
             btn: null
         });
     }
 
     function btn_delete() {
 
-        var rowKey = $("#gridList").jqGrid('getGridParam', "selrow");
-        var rowData = $("#gridList").jqGrid("getRowData", rowKey);//根据上面的rowKey获得本行的所有数据
-        var zhcode = rowData.zhcode; //获得制定列的值 （ReservationTime为colModel的name）
+        var rowKey = $("").jqGrid('', "");
+        var rowData = $("").jqGrid("", rowKey);//Theo nội dung trênrowKeyLấy tất cả dữ liệu của dòng này
+        var zhcode = rowData.zhcode; //获得制定列的值 （ReservationTimeChocolModelcủaname）
 
 
-        var keyValue = $("#gridList").jqGridRowValue().Id;
+        var keyValue = $("").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("", '');
             return;
         }
         $.deleteForm({
-            url: "/Treatment/deleteid",
-            param: { keyValue: zhcode ,orgId:$('#OrganizeId').val()},
+            url: "",
+            param: { keyValue: zhcode ,orgId:$('').val()},
             success: function () {
-                $("#gridList").jqGrid('setGridParam', {
-                    postData: { keyword: $("#txt_keywordcx").val(), OrganizeId: $("#OrganizeId").val() },
-                }).trigger('reloadGrid');
+                $("").jqGrid('', {
+                    postData: { keyword: $("").val(), OrganizeId: $("").val() },
+                }).trigger('');
             }
         })
     }

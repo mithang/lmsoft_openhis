@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/_Index.cshtml";
+    Layout = "";
 }
 
 
@@ -32,35 +32,35 @@
 <form>
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">结算时间：</th>
+                <th class="formTitle">Thời gian quyết toán：</th>
                 <td class="formValue" style="width:150px;">
                     <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-6).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left">—</span>
                     <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
-                <th class="formTitle" style="width:70px;padding-right:12px;">上传情况：</th>
+                <th class="formTitle" style="width:70px;padding-right:12px;">Tình hình tải lên：</th>
                 <td class="formValue">
                     <select id="scqk" name="scqk" class="form-control">
-                        <option value="">==请选择==</option>
-                        <option value="0">已上传</option>
-                        <option value="1">上传失败</option>
-                        <option value="2">未上传</option>
+                        <option value="">==Vui lòng chọn==</option>
+                        <option value="0">Đã tải lên</option>
+                        <option value="1">Tải lên thất bại</option>
+                        <option value="2">Chưa tải lên</option>
                     </select>
                 </td>
-                <th class="formTitle">姓名：</th>
+                <th class="formTitle">Họ tên：</th>
                 <td class="formValue">
                     <input id="zyh" name="zyh" type="text" autocomplete="off" class="form-control" />
                 </td>
                 <td class="formValue">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="Tra cứu" />
 
                 </td>
                 <th class="formTitle" colspan="2">
-                    <input type="button" id="btn_upload" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="上传" />
+                    <input type="button" id="btn_upload" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="Tải lên" />
 
                 </th>
 
@@ -78,65 +78,65 @@
     $(function () {
         gridList();
 
-        $("#zyh").keyupEnterEvent(function () {
-            $("#btn_search").trigger("click");
+        $("").keyupEnterEvent(function () {
+            $("").trigger("");
         });
     });
 
     function gridList() {
-        var $gridList = $("#gridList");
+        var $gridList = $("");
         $gridList.dataGrid({
-            url: "/DRGManage/DRGUpload/GetGridJson",
+            url: "",
             postData: getSearchPostData(),
             height: $(window).height() - 128,
             colModel: [
-                { label: 'patId', name: 'patId', width: 100, align: 'left', hidden: true },
-                //{ label: '选择', name: 'patId', width: 160, align: 'left' },
-                { label: '上传情况', name: 'scqk', width: 160, align: 'left' },
-                { label: '上传日期', name: 'scrq', width: 160, align: 'left' },
-                { label: '错误信息', name: 'errorMsg', width: 160, align: 'left' },
-                { label: '住院号', name: 'zyh', width: 160, align: 'left' },
-                { label: '姓名', name: 'xm', width: 160, align: 'left' },
-                { label: '身份证号', name: 'sfzh', width: 160, align: 'left' },
-                { label: '医保就诊ID', name: 'mdtrt_id', width: 160, align: 'left' },
-                { label: '医保结算ID', name: 'setl_id', width: 160, align: 'left' },
-                { label: '入院日期', name: 'ryrq', width: 160, align: 'left' },
-                { label: '出院日期', name: 'cyrq', width: 160, align: 'left' },
-                { label: '病案首页日期', name: 'basyrq', width: 160, align: 'left' },
-                { label: '结算日期', name: 'jsrq', width: 160, align: 'left' },
-                { label: '科室', name: 'ksmc', width: 160, align: 'left' },
-                { label: '医生姓名', name: 'ysmc', width: 160, align: 'left' },
+                { label: '', name: '', width: 100, align: '', hidden: true },
+                //{ label: '', name: '', width: 160, align: '' },
+                { label: '', name: '', width: 160, align: '' },
+                { label: '', name: '', width: 160, align: '' },
+                { label: '', name: '', width: 160, align: '' },
+                { label: '', name: '', width: 160, align: '' },
+                { label: '', name: '', width: 160, align: '' },
+                { label: '', name: '', width: 160, align: '' },
+                { label: '', name: '', width: 160, align: '' },
+                { label: '', name: '', width: 160, align: '' },
+                { label: '', name: '', width: 160, align: '' },
+                { label: '', name: '', width: 160, align: '' },
+                { label: '', name: '', width: 160, align: '' },
+                { label: '', name: '', width: 160, align: '' },
+                { label: '', name: '', width: 160, align: '' },
+                { label: '', name: '', width: 160, align: '' },
 
             ],
-            pager: "#gridPager",
-            sortname: 'isnull(LastModifyTime, CreateTime) desc',
-            rowNum: '15',
+            pager: "",
+            sortname: '',
+            rowNum: '',
             viewrecords: true,
             multiselect: true,
             //onSelectRow: function (rowid) {
-            //    $("#" + $.jgrid.jqID(rowid) + "_mdtrt_id").focus();
+            //    $("" + $.jgrid.jqID(rowid) + "").focus();
             //},
         });
-        $("#btn_search").click(function () {
-            $gridList.jqGrid('setGridParam', {
+        $("").click(function () {
+            $gridList.jqGrid('', {
                 postData: getSearchPostData(),
                 page: 1,
-            }).trigger('reloadGrid');
+            }).trigger('');
         });
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
-        var kssj = $("#kssj").val();
-        var jssj = $("#jssj").val();
-        var scqk = $("#scqk option:selected").text();
-        var zyh = $("#zyh").val();
+        var kssj = $("").val();
+        var jssj = $("").val();
+        var scqk = $("").text();
+        var zyh = $("").val();
         return { kssj: kssj, jssj: jssj, scqk: scqk, zyh: zyh };
 
     }
 
-    //上传
-    $('#btn_upload').click(function () {
+    //Tải lên
+    $('').click(function () {
         var seleRow = check();
         if (!!!seleRow) {
             return;
@@ -144,80 +144,80 @@
 
         //console.log(seleRow);
         $.najax({
-            url: "/DRGManage/DRGUpload/DRGUpload",
-            dataType: "json",
+            url: "",
+            dataType: "",
             data: { list: seleRow },
-            type: "POST",
+            type: "",
             success: function (data) {
                 //callBack();
-                $.modalAlert("上传成功", 'success');
+                $.modalAlert("", '');
                 $.modalClose();
             }
         });
     });
 
     function check() {
-        //获取所选行
-        var seleRow = $("#gridList").jqGridRowValue();
+        //Lấy dòng đã chọn
+        var seleRow = $("").jqGridRowValue();
         var setl_id = seleRow.setl_id;
         if (seleRow.length == 0) {
-            $.modalAlert("尚未选择一条记录", "error");
+            $.modalAlert("", "");
             return;
         }
         return seleRow;
 
-        //var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
+        //var selRowIds = $("").jqGrid('', '');
         //if (selRowIds.length == 0) {
-        //    $.modalAlert("请先选中需上传的信息", 'warning');
+        //    $.modalAlert("", '');
         //    return;
         //}
 
-        ////获取所有行Id，遍历使编辑框处于保存状态
-        //var rowIds = $("#gridList").jqGrid('getDataIDs');
+        ////Lấy tất cả các dòngId，Duyệt để hộp chỉnh sửa ở trạng thái đã lưu
+        //var rowIds = $("").jqGrid('');
         //return selRowIds;
     }
 
 
-    //住院号选择浮层绑定
-    $('#zyh').newtouchBatchFloatingSelector({
+    //Liên kết lớp nổi chọn số nhập viện
+    $('').newtouchBatchFloatingSelector({
         width: 500,
         height: 200,
-        caption: "选择患者",
+        caption: "",
         clickautotrigger: true,
-        url: "/ReportManage/Report/GetInpatientcryrq",
+        url: "",
         ajaxparameters: function ($thisinput) {
             var keyword = $thisinput.val().trim();
-            var zyh = $("#zyh").val();
-            return "zyh=" + zyh;
+            var zyh = $("").val();
+            return "" + zyh;
         },
         itemdbclickhandler: function ($thistr, $thisinput) {
-            if (!!$thistr.attr('data-zyh')) {
-                //if ($thistr.attr('data-ryrq') !== "" && $thistr.attr('data-ryrq') !== undefined && $thistr.attr('data-ryrq') !== null) {
-                //    $('#ksrq').val($.getDate({ date: $thistr.attr('data-ryrq') }));
+            if (!!$thistr.attr('')) {
+                //if ($thistr.attr('') !== "" && $thistr.attr('') !== undefined && $thistr.attr('') !== null) {
+                //    $('').val($.getDate({ date: $thistr.attr('') }));
                 //}
-                //if ($thistr.attr('data-cyrq') !== "" && $thistr.attr('data-cyrq') !== undefined && $thistr.attr('data-cyrq') !== null) {
-                //    $('#jsrq').val($.getDate({ date: $thistr.attr('data-cyrq') }));
+                //if ($thistr.attr('') !== "" && $thistr.attr('') !== undefined && $thistr.attr('') !== null) {
+                //    $('').val($.getDate({ date: $thistr.attr('') }));
                 //} else {
-                //    $('#jsrq').val($.getDate());
+                //    $('').val($.getDate());
                 //}
-                $('#zyh').val($thistr.attr('data-zyh'));
+                $('').val($thistr.attr(''));
                 //submit();
             }
         },
         colModel: [
-            { label: '住院号', name: 'zyh', width: 100 },
-            { label: 'cyrq', name: 'cyrq', hidden: true },
-            { label: 'ryrq', name: 'ryrq', hidden: true },
-            { label: '在院标志', name: 'zybz', width: 100, align: 'left', formatter: function (cellvalue) { if (cellvalue == "病人出院") return 3; if (cellvalue == "病区中") return 1; } },
-            { label: '姓名', name: 'xm', width: 120, align: 'left' },
-            { label: '出生年月', name: 'csny', hidden: true, width: 100, align: 'left' },
+            { label: '', name: '', width: 100 },
+            { label: '', name: '', hidden: true },
+            { label: '', name: '', hidden: true },
+            { label: '', name: '', width: 100, align: '', formatter: function (cellvalue) { if (cellvalue == "") return 3; if (cellvalue == "") return 1; } },
+            { label: '', name: '', width: 120, align: '' },
+            { label: '', name: '', hidden: true, width: 100, align: '' },
             {
-                label: '性别', name: 'xb', width: 50, align: 'left', formatter: function (cellvalue) {
+                label: '', name: '', width: 50, align: '', formatter: function (cellvalue) {
                     return $.getGender(cellvalue);
                 }
             },
             {
-                label: '年龄', name: 'nlshow', width: 50, align: 'left', formatter: function (cellvalue, a, b) {
+                label: '', name: '', width: 50, align: '', formatter: function (cellvalue, a, b) {
                     return getAgeFromBirthTime({ begin: b.csny }).text;
                 }
             }

@@ -1,39 +1,39 @@
 ﻿@{
-    ViewBag.Title = "Form";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <script>
-    var keyValue = $.request("keyValue");
+    var keyValue = $.request("");
     $(function () {
         initControl();
         if (!!keyValue) {
             $.ajax({
-                url: "/SystemManage/Organize/GetFormJson?r=" + Math.random(),
+                url: "" + Math.random(),
                 data: { keyValue: keyValue },
-                dataType: "json",
+                dataType: "",
                 async: false,
                 success: function (data) {
-                    $("#form1").formSerialize(data);
+                    $("").formSerialize(data);
                 }
             });
         }
     });
     function initControl() {
-        $("#F_CategoryId").select2({ minimumResultsForSearch: -1 })
-        $("#F_ParentId").bindSelect({
-            url: "/SystemManage/Organize/GetTreeSelectJson?r=" + Math.random(),
+        $("").select2({ minimumResultsForSearch: -1 })
+        $("").bindSelect({
+            url: "" + Math.random(),
         });
     }
     function submitForm() {
-        if (!$('#form1').formValid()) {
+        if (!$('').formValid()) {
             return false;
         }
         $.submitForm({
-            url: "/SystemManage/Organize/SubmitForm?keyValue=" + keyValue,
-            param: $("#form1").formSerialize(),
+            url: "" + keyValue,
+            param: $("").formSerialize(),
             success: function () {
-                $.currentWindow().$("#gridList").resetSelection();
-                $.currentWindow().$("#gridList").trigger("reloadGrid");
+                $.currentWindow().$("").resetSelection();
+                $.currentWindow().$("").trigger("");
             }
         })
     }
@@ -41,37 +41,37 @@
 <form id="form1">
     <div style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
         <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#">基本信息</a></li>
+            <li role="presentation" class="active"><a href="#">Thông tin cơ bản</a></li>
             @*<li role="presentation"><a href="#">扩展信息</a></li>*@
         </ul>
         <div style="padding-top: 20px; margin-right: 30px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">上级</th>
+                    <th class="formTitle">Cấp trên</th>
                     <td class="formValue">
                         <select id="F_ParentId" name="F_ParentId" class="form-control required">
-                            <option value="0">父节点</option>
+                            <option value="0">Nút cha</option>
                         </select>
                     </td>
-                    <th class="formTitle">类型</th>
+                    <th class="formTitle">Loại</th>
                     <td class="formValue">
                         <select id="F_CategoryId" name="F_Target" class="form-control required">
-                            <option value="">==请选择==</option>
+                            <option value="">==Vui lòng chọn==</option>
                             <option value="Group">集团</option>
-                            <option value="Company">公司</option>
-                            <option value="Department">部门</option>
-                            <option value="WorkGroup">小组</option>
+                            <option value="Company">Công ty</option>
+                            <option value="Department">Phòng ban</option>
+                            <option value="WorkGroup">Nhóm nhỏ</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">名称</th>
+                    <th class="formTitle">Tên</th>
                     <td class="formValue">
-                        <input id="F_FullName" name="F_FullName" type="text" class="form-control required" placeholder="请输入名称" />
+                        <input id="F_FullName" name="F_FullName" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                     </td>
-                    <th class="formTitle">编号</th>
+                    <th class="formTitle">Số hiệu</th>
                     <td class="formValue">
-                        <input id="F_EnCode" name="F_EnCode" type="text" class="form-control required" placeholder="请输入编号" />
+                        <input id="F_EnCode" name="F_EnCode" type="text" class="form-control required" placeholder="Vui lòng nhập số hiệu" />
                     </td>
                 </tr>
                 <tr>
@@ -80,24 +80,24 @@
                     <td class="formValue">
                         <input id="F_ManagerId" name="F_ManagerId" type="text" class="form-control" />
                     </td>
-                    <th class="formTitle">手机</th>
+                    <th class="formTitle">Điện thoại di động</th>
                     <td class="formValue">
                         <input id="F_MobilePhone" name="F_MobilePhone" type="text" class="form-control" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">微信</th>
+                    <th class="formTitle">WeChat</th>
                     <td class="formValue">
                         <input id="F_WeChat" name="F_ManagerId" type="text" class="form-control" />
                     </td>
-                    <th class="formTitle">电话</th>
+                    <th class="formTitle">Điện thoại</th>
                     <td class="formValue">
                         <input id="F_TelePhone" name="F_TelePhone" type="text" class="form-control" />
                     </td>
                 </tr>
                 <tr>
 
-                    <th class="formTitle">邮箱</th>
+                    <th class="formTitle">Hộp thư</th>
                     <td class="formValue">
                         <input id="F_Email" name="F_MobilePhone" type="text" class="form-control" />
                     </td>
@@ -107,21 +107,21 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">地址</th>
+                    <th class="formTitle">Địa chỉ</th>
                     <td class="formValue" colspan="3">
                         <input id="F_Address" name="F_Address" type="text" class="form-control" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle" style="height: 35px;">选项</th>
+                    <th class="formTitle" style="height: 35px;">Tùy chọn</th>
                     <td class="formValue" colspan="3" style="padding-top: 1px;">
                         <div class="ckbox">
-                            <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                            <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle" valign="top" style="padding-top: 5px;">备注
+                    <th class="formTitle" valign="top" style="padding-top: 5px;">Ghi chú
                     </th>
                     <td class="formValue" colspan="3">
                         <textarea id="F_Description" name="F_Descriptions" class="form-control" style="height: 60px;"></textarea>

@@ -1,25 +1,25 @@
 ﻿@using Newtouch.Common.Operator;
 @{
-    ViewBag.Title = "Form";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <style>
     span {
         color: red;
     }
 </style>
-<script src="~/Content/js/SystemManage/SysChargeItem/Form.js" type="text/javascript"></script>
+<script src="" type=""></script>
 <form id="form1">
     <table class="form">
         <tr>
-            <td class="formTitle">有效<span>*</span></td>
+            <td class="formTitle">Hiệu lực<span>*</span></td>
             <td class="formValue">
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
-                        <input type="radio" name="zt" id="zt" value="1" class="form-control"> 是
+                        <input type="radio" name="zt" id="zt" value="1" class="form-control"> Có
                     </label>
                     <label class="btn btn-default">
-                        <input type="radio" name="zt" id="zt" value="0" class="form-control"> 否
+                        <input type="radio" name="zt" id="zt" value="0" class="form-control"> Không
                     </label>
                 </div>
             </td>
@@ -27,77 +27,77 @@
             <td class="formValue"></td>
         </tr>
         <tr>
-            <td class="formTitle">代码</td>
+            <td class="formTitle">Mã</td>
             <td class="formValue"><input type="text" class="form-control newtouch_Readonly" name="sfxm" id="sfxm" /></td>
-            <td class="formTitle">自负性质<span>*</span></td>
+            <td class="formTitle">Tính chất tự chi trả<span>*</span></td>
             <td class="formValue">
                 <select class="form-control" id="zfxz" name="zfxz">
-                    <option value="">==请选择==</option>
-                    <option value="0">可报</option>
-                    <option value="1">自费</option>
-                    <option value="2">分类自负</option>
-                    <option value="3">绝对自费</option>
+                    <option value="">==Vui lòng chọn==</option>
+                    <option value="0">Có thể báo cáo</option>
+                    <option value="1">Tự chi trả</option>
+                    <option value="2">Tự chi trả theo phân loại</option>
+                    <option value="3">Hoàn toàn tự chi trả</option>
                 </select>
             </td>
         </tr>
         <tr>
-            <td class="formTitle">收费项目<span>*</span></td>
+            <td class="formTitle">Hạng mục thu phí<span>*</span></td>
             <td class="formValue"><input type="text" class="form-control" name="sfxmmc" id="sfxmmc" /></td>
-            <td class="formTitle">拼音<span>*</span></td>
+            <td class="formTitle">Phiên âm<span>*</span></td>
             <td class="formValue"><input type="text" class="form-control" name="py" id="py" /></td>
         </tr>
         <tr>
-            <td class="formTitle">单位<span>*</span></td>
+            <td class="formTitle">Đơn vị<span>*</span></td>
             <td class="formValue"><input type="text" class="form-control" name="dw" id="dw" /></td>
-            <td class="formTitle">单价<span>*</span></td>
+            <td class="formTitle">Đơn giá<span>*</span></td>
             <td class="formValue"><input type="text" class="form-control" name="dj" id="dj" /></td>
         </tr>
         <tr>
-            <td class="formTitle">范围<span>*</span></td>
+            <td class="formTitle">Phạm vi<span>*</span></td>
             <td class="formValue">
                 <select class="form-control" id="mzzybz" name="mzzybz">
-                    <option value="">==请选择==</option>
-                    <option value="0">通用</option>
-                    <option value="1">门诊</option>
-                    <option value="2">住院</option>
+                    <option value="">==Vui lòng chọn==</option>
+                    <option value="0">Chung</option>
+                    <option value="1">Ngoại trú</option>
+                    <option value="2">Nhập viện</option>
                 </select>
             </td>
-            <td class="formTitle">自付比例<span>*</span></td>
+            <td class="formTitle">Tỷ lệ tự trả<span>*</span></td>
             <td class="formValue"><input type="text" class="form-control" id="zfbl" name="zfbl" /></td>
         </tr>
         <tr>
-            <td class="formTitle">特殊<span>*</span></td>
+            <td class="formTitle">Đặc biệt<span>*</span></td>
             <td class="formValue">
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
-                        <input type="radio" name="tsbz" id="tsbz" value="1" class="form-control"> 是
+                        <input type="radio" name="tsbz" id="tsbz" value="1" class="form-control"> Có
                     </label>
                     <label class="btn btn-default">
-                        <input type="radio" name="tsbz" id="tsbz" value="0" class="form-control"> 否
+                        <input type="radio" name="tsbz" id="tsbz" value="0" class="form-control"> Không
                     </label>
                 </div>
             </td>
-            <td class="formTitle">警示<span>*</span></td>
+            <td class="formTitle">Cảnh báo<span>*</span></td>
             <td class="formValue">
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
-                        <input type="radio" name="jsbz" id="jsbz" value="1" class="form-control"> 是
+                        <input type="radio" name="jsbz" id="jsbz" value="1" class="form-control"> Có
                     </label>
                     <label class="btn btn-default">
-                        <input type="radio" name="jsbz" id="jsbz" value="0" class="form-control"> 否
+                        <input type="radio" name="jsbz" id="jsbz" value="0" class="form-control"> Không
                     </label>
                 </div>
             </td>
         </tr>
         <tr>
-            <td class="formTitle">收费<span>*</span></td>
+            <td class="formTitle">Thu phí<span>*</span></td>
             <td class="formValue">
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
-                        <input type="radio" name="sfbz" id="sfbz" value="1" class="form-control"> 是
+                        <input type="radio" name="sfbz" id="sfbz" value="1" class="form-control"> Có
                     </label>
                     <label class="btn btn-default">
-                        <input type="radio" name="sfbz" id="sfbz" value="0" class="form-control"> 否
+                        <input type="radio" name="sfbz" id="sfbz" value="0" class="form-control"> Không
                     </label>
                 </div>
             </td>
@@ -105,42 +105,42 @@
             <td class="formValue">
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
-                        <input type="radio" name="ssbz" id="ssbz" value="1" class="form-control"> 是
+                        <input type="radio" name="ssbz" id="ssbz" value="1" class="form-control"> Có
                     </label>
                     <label class="btn btn-default">
-                        <input type="radio" name="ssbz" id="ssbz" value="0" class="form-control"> 否
+                        <input type="radio" name="ssbz" id="ssbz" value="0" class="form-control"> Không
                     </label>
                 </div>
             </td>
         </tr>
         <tr>
-            <td class="formTitle">大类<span>*</span></td>
+            <td class="formTitle">Nhóm lớn<span>*</span></td>
             <td class="formValue">
                 <input type="text" class="form-control" id="dlmc" name="dlmc" />
             </td>
-            <td class="formTitle">分类</td>
+            <td class="formTitle">Phân loại</td>
             <td class="formValue"><input type="text" class="form-control" id="flmc" name="flmc" /></td>
         </tr>
         <tr>
-            <td class="formTitle">医保代码</td>
+            <td class="formTitle">Mã bảo hiểm y tế</td>
             <td class="formValue">
                 <input type="text" class="form-control" id="ybdm" name="ybdm" />
             </td>
-            <td class="formTitle">物价代码</td>
+            <td class="formTitle">Mã giá</td>
             <td class="formValue"><input type="text" class="form-control newtouch_Readonly" id="wjdm" name="wjdm" /></td>
         </tr>
         <tr>
-            <td class="formTitle">农保大类</td>
+            <td class="formTitle">Nhóm lớn bảo hiểm nông nghiệp</td>
             <td class="formValue"><input type="text" class="form-control" id="nbdlmc" name="nbdlmc" /></td>
-            <td class="formTitle">病案大类</td>
+            <td class="formTitle">Nhóm lớn bệnh án</td>
             <td class="formValue"><input type="text" class="form-control" id="badlmc" name="badlmc" /></td>
         </tr>
         <tr>
-            <td class="formTitle">建档人员</td>
+            <td class="formTitle">Người lập hồ sơ</td>
             <td class="formValue">
                 <input class="form-control" id="CreatorCode newtouch_Readonly" name="CreatorCode" value=@OperatorProvider.GetCurrent().UserCode type="text" />
             </td>
-            <td class="formTitle">建档日期</td>
+            <td class="formTitle">Ngày lập hồ sơ</td>
             <td class="formValue">
                 <input class="form-control" id="CreateTime newtouch_Readonly" name="CreateTime" value=@DateTime.Now type="text" />
             </td>

@@ -1,43 +1,43 @@
 ﻿@using Newtouch.Common.Operator;
 @{
-    ViewBag.Title = "商保详细信息";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <script>
-    var keyValue = $.request("keyValue");
+    var keyValue = $.request("");
     var strdlList = true;
     var initIdSelected = "";
     $(function () {
         if (!!keyValue) {
             $.najax({
-                type: "POST",
+                type: "",
                 async: false,
-                url: "@Url.Action("GetFormJson")",
+                url: ""GetFormJson"",
                 data: { keyValue: keyValue },
-                dataType: "json",
+                dataType: "",
                 cache: false,
                 success: function (data) {
                     if (data) {
                         initIdSelected = data.kbxmmc;
                         strdlList = false;//选中大类已拼接字符串，后续不用再拼接
-                        $("#form1").formSerialize(data);
+                        $("").formSerialize(data);
                     }
                 }
             });
         }
-        //绑定 收费项目 树
-        $('#sfxmList').focus(function () {
+        //Liên kết Hạng mục thu phí Cây
+        $('').focus(function () {
             if (initIdSelected == "" && strdlList) {
                 $.each(Editing_ysList, function () {
-                    initIdSelected += this.gh + ",";
+                    initIdSelected += this.gh + "";
                 })
             }
             $.modalOpen({
-                id: "SFXMSelect",
-                title: "选择收费大类",
-                url: "/SystemManage/SysChargeItem/Selector?cacheTime=0&callbackType=json&fromDialog=Form&initIdSelected=" + initIdSelected,
-                width: "650px",
-                height: "570px",
+                id: "",
+                title: "",
+                url: "" + initIdSelected,
+                width: "",
+                height: "",
                 callBack: function (iframeId) {
                     top.frames[iframeId].submitForm();
                     strdlList = true;
@@ -48,22 +48,22 @@
     });
 
     function submitForm() {
-        if (!$('#form1').formValid()) {
+        if (!$('').formValid()) {
             return false;
         }
         if (initIdSelected == "" && strdlList) {
             $.each(Editing_ysList, function (idx, val) {
-                initIdSelected += val.gh + ",";
+                initIdSelected += val.gh + "";
             });
         }
-        var data = $("#form1").formSerialize();
-        data["kbxm"] = initIdSelected;
+        var data = $("").formSerialize();
+        data[""] = initIdSelected;
         $.submitForm({
-            url: "/InsuranceManage/CommercialInsurance/SubmitForm?keyValue=" + keyValue,
+            url: "" + keyValue,
             param: data,
             success: function () {
-                $.currentWindow().$("#gridCInsuranceList").resetSelection();
-                $.currentWindow().$("#gridCInsuranceList").trigger("reloadGrid");
+                $.currentWindow().$("").resetSelection();
+                $.currentWindow().$("").trigger("");
                 $.loading(false);
             }
         });
@@ -76,20 +76,20 @@
         var zlsNames = "";
         Editing_ysList = [];
         $.each(treeSeleData, function () {
-            zlsNames += this.text + ",";
+            zlsNames += this.text + "";
             Editing_ysList.push({ id: this.id, gh: this.value, Name: this.text, ks: this.Ex1, ksmc: this.Ex2 });
         })
         if (zlsNames.length > 0) {
             zlsNames = zlsNames.substring(0, zlsNames.length - 1);
         }
-        $('#sfxmList').val(zlsNames);
-        top.top.window.frames['SFXMSelect'].$.modalClose();   //关闭之
+        $('').val(zlsNames);
+        top.top.window.frames[''].$.modalClose();   //关闭之
     }
 </script>
 <form id="form1">
     <div class="container" style="margin-top: 10px; margin-left: -4%; ">
         <ul class="nav nav-tabs" role="tablist" id="myTab" style="margin-left: 4%;">
-            <li role="presentation"><a role="tab" data-toggle="tab">基本信息</a></li>
+            <li role="presentation"><a role="tab" data-toggle="tab">Thông tin cơ bản</a></li>
         </ul>
         <div class="tab-content">
             <div role="tabpanel" id="divPatInfo" class="tab-pane fade in active" style="padding-top: 20px; margin-right: 30px;">
@@ -109,7 +109,7 @@
                         <td class="formValue">
                             <input type="text" class="form-control form-an" id="bxbl" required />
                         </td>
-                        <th class="formTitle">备注：</th>
+                        <th class="formTitle">Ghi chú：</th>
                         <td class="formValue">
                             <input type="text" class="form-control form-an" id="remark" />
                         </td>
@@ -117,18 +117,18 @@
                     <tr>
                         <td class="formTitle">可报项目：</td>
                         <td class="formValue"> <input id="sfxmList" type="text" class="form-control form-an" /></td>
-                        <th class="formTitle">有效</th>
+                        <th class="formTitle">Hiệu lực</th>
                         <td class="formValue">
                             <div class="ckbox">
                                 <input id="zt" type="checkbox" checked="checked"><label for="zt"></label>
                             </div>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>建档人员：</th>
+                        <th class="formTitle"><span class="required">*</span>Người lập hồ sơ：</th>
                         <td class="formValue">
                             <input class="form-control newtouch_Readonly" id="CreatorCode" value=@OperatorProvider.GetCurrent().UserCode type="text" required />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>建档日期：</th>
+                        <th class="formTitle"><span class="required">*</span>Ngày lập hồ sơ：</th>
                         <td class="formValue">
                             <input class="form-control newtouch_Readonly" id="CreateTime" value=@DateTime.Now.ToString("yyyy-MM-dd") type="text" required />
                         </td>

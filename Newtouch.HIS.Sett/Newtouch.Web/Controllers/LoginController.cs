@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region 单点登录start
 
         /// <summary>
-        /// 1.单点登录的回调，接收token，访问单点登录的API以获得UserId
+        /// 1.单点登录的回调，接收token，đăng nhập điểm đơn truy cậpAPI以获得UserId
         /// </summary>
         /// <returns></returns>
         public ActionResult SSOCallback(string access_token, string returnUrl)
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 返回单点登录首页
+        /// Trả về trang đầu đăng nhập điểm đơn
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -94,7 +94,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region 统一授权登录
 
         /// <summary>
-        /// 统一授权登录
+        /// Đăng nhập ủy quyền thống nhất
         /// </summary>
         /// <param name="access_token"></param>
         /// <param name="returnUrl"></param>
@@ -121,9 +121,9 @@ namespace Newtouch.HIS.Web.Controllers
             var aaa = ConfigurationHelper.GetAppConfigValue("UAUserInfoGetAPI");
             if (string.IsNullOrWhiteSpace(aaa))
             {
-                return RedirectToAction("Index", "Login");  //未配置身份换取的API地址
+                return RedirectToAction("Index", "Login");  //Chưa cấu hình đổi lấy danh tínhAPIĐịa chỉ
             }
-            //向API请求换取身份
+            //TớiAPIYêu cầu danh tính đổi lấy
             var sw = new Stopwatch();
             sw.Start();
             var reqObj = new
@@ -138,7 +138,7 @@ namespace Newtouch.HIS.Web.Controllers
             sw.Reset();
             if (apiResp.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                return RedirectToAction("Index", "Login");  //身份换取失败
+                return RedirectToAction("Index", "Login");  //Đổi lấy danh tính thất bại
             }
             sw.Start();
             string account = "", organizeId = "";
@@ -200,7 +200,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 统一授权预热（预热打开CIS页面）
+        /// Làm nóng trước ủy quyền thống nhất（Mở làm nóng trướcCISTrang）
         /// </summary>
         /// <param name="opr"></param>
         public static void UALoginPre(OperatorModel opr)
@@ -268,7 +268,7 @@ namespace Newtouch.HIS.Web.Controllers
         [HttpGet]
         public override ActionResult Index()
         {
-            //移除SSO登录来源标记
+            //XóaSSO登录来源标记
             WebHelper.RemoveCookie(Constants.AppId + "_LoginFromFlag");
 
             return base.Index();
@@ -295,7 +295,7 @@ namespace Newtouch.HIS.Web.Controllers
             if (!string.IsNullOrWhiteSpace(loginFromFlag))
             {
                 WebHelper.RemoveCookie(Constants.AppId + "_LoginFromFlag");
-                //退出SSO登录
+                //退出SSOĐăng nhập
                 var url = ConfigurationHelper.GetAppConfigValue("SSOOutLogin");
                 return Redirect(url);
             }
@@ -311,17 +311,17 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="opr"></param>
         public override void OprBeforeSave(OperatorModel opr)
         {
-            //更新用户药房部分
+            //Cập nhật một phần nhà thuốc người dùng
             if (ConfigurationHelper.GetAppConfigBoolValue("Is_UserYfbmRelated") == true && opr.OrganizeId != null)
             {
-                //当前要操作的药房部门
+                //phòng ban nhà thuốc của thao tác cần hiện tại
                 if (!string.IsNullOrWhiteSpace(opr.UserId) && !string.IsNullOrWhiteSpace(opr.OrganizeId))
                 {
                     opr.yfbmCodeList = _sysUserDmnService.GetYfbmCodeListByUserId(opr.UserId, opr.OrganizeId);
                 }
                 if (opr.yfbmCodeList != null && opr.yfbmCodeList.Count > 0)
                 {
-                    //当前要操作的药房部门    //在OrgId关联了多个yfbm怎么办
+                    //phòng ban nhà thuốc của thao tác cần hiện tại    //ỞOrgId关联了多个yfbm怎么办
                     var curYfbmCode = opr.yfbmCodeList.FirstOrDefault();
                     Constants.SetCurrentYfbm(opr.UserId, new LoginUserCurrentYfbmModel()
                     {
@@ -332,7 +332,7 @@ namespace Newtouch.HIS.Web.Controllers
                 }
                 else
                 {
-                    Constants.SetCurrentYfbm(opr.UserId, null);  //移除
+                    Constants.SetCurrentYfbm(opr.UserId, null);  //Xóa
                 }
             }
 

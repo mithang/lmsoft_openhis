@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width" />
     <title>模拟时钟</title>
     <link href="~/Content/css/framework-theme.css" rel="stylesheet" />
-    <script src="~/Content/js/jquery/jquery-2.1.1.min.js"></script>
-    <script src="~/Content/js/highcharts/highcharts.js"></script>
+    <script src=""></script>
+    <script src=""></script>
     <script>
         $(function () {
             /**
@@ -33,10 +33,10 @@
             var now = getNow();
 
             // Create the chart
-            $('#container').highcharts({
+            $('').highcharts({
 
                 chart: {
-                    type: 'gauge',
+                    type: '',
                     plotBackgroundColor: null,
                     plotBackgroundImage: null,
                     plotBorderWidth: 0,
@@ -49,7 +49,7 @@
                 },
 
                 title: {
-                    text: '标题'
+                    text: ''
                 },
 
                 pane: {
@@ -64,8 +64,8 @@
                                 r: 1.9
                             },
                             stops: [
-                                [0.5, 'rgba(255, 255, 255, 0.2)'],
-                                [0.5, 'rgba(200, 200, 200, 0.2)']
+                                [0.5, ''],
+                                [0.5, '']
                             ]
                         } : null
                     }]
@@ -80,25 +80,25 @@
                     lineWidth: 0,
                     showFirstLabel: false,
 
-                    minorTickInterval: 'auto',
+                    minorTickInterval: '',
                     minorTickWidth: 1,
                     minorTickLength: 5,
-                    minorTickPosition: 'inside',
+                    minorTickPosition: '',
                     minorGridLineWidth: 0,
-                    minorTickColor: '#666',
+                    minorTickColor: '',
 
                     tickInterval: 1,
                     tickWidth: 2,
-                    tickPosition: 'inside',
+                    tickPosition: '',
                     tickLength: 10,
-                    tickColor: '#666',
+                    tickColor: '',
                     title: {
                         text: '',
                         style: {
-                            color: '#BBB',
-                            fontWeight: 'normal',
-                            fontSize: '8px',
-                            lineHeight: '10px'
+                            color: '',
+                            fontWeight: '',
+                            fontSize: '',
+                            lineHeight: ''
                         },
                         y: 10
                     }
@@ -112,28 +112,28 @@
 
                 series: [{
                     data: [{
-                        id: 'hour',
+                        id: '',
                         y: now.hours,
                         dial: {
-                            radius: '60%',
+                            radius: '',
                             baseWidth: 4,
-                            baseLength: '95%',
+                            baseLength: '',
                             rearLength: 0
                         }
                     }, {
-                        id: 'minute',
+                        id: '',
                         y: now.minutes,
                         dial: {
-                            baseLength: '95%',
+                            baseLength: '',
                             rearLength: 0
                         }
                     }, {
-                        id: 'second',
+                        id: '',
                         y: now.seconds,
                         dial: {
-                            radius: '100%',
+                            radius: '',
                             baseWidth: 1,
-                            rearLength: '20%'
+                            rearLength: ''
                         }
                     }],
                     animation: false,
@@ -146,21 +146,21 @@
             // Move
             function (chart) {
                 setInterval(function () {
-                    var hour = chart.get('hour'),
-                        minute = chart.get('minute'),
-                        second = chart.get('second'),
+                    var hour = chart.get(''),
+                        minute = chart.get(''),
+                        second = chart.get(''),
                         now = getNow(),
                         // run animation unless we're wrapping around from 59 to 0
                         animation = now.seconds == 0 ?
                             false :
 	                {
-	                    easing: 'easeOutElastic'
+	                    easing: ''
 	                };
 
                     // Cache the tooltip text
                     chart.tooltipText =
-                        pad(Math.floor(now.hours), 2) + ':' +
-                        pad(Math.floor(now.minutes * 5), 2) + ':' +
+                        pad(Math.floor(now.hours), 2) + '' +
+                        pad(Math.floor(now.minutes * 5), 2) + '' +
                         pad(now.seconds * 5, 2);
 
                     hour.update(now.hours, true, animation);

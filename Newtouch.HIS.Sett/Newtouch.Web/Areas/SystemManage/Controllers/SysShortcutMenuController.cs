@@ -12,7 +12,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
     /// 创 建：张冬林
-    /// 日 期：2017-10-16 11:07
+    /// Ngày Kỳ：2017-10-16 11:07
     /// 描 述：快捷菜单
     /// </summary>
     public class SysShortcutMenuController : ControllerBase
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         /// <summary>
         /// 获取实体
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult GetFormJson(string keyValue)
         {
@@ -44,10 +44,10 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu đơn bảng（Thêm mới、Sửa）
         /// </summary>
         /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult SubmitForm(SysShortcutMenuEntity entity, string keyValue)
         {
@@ -57,9 +57,9 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult DeleteForm(string keyValue)
         {
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 角色授权
+        /// Ủy quyền vai trò
         /// </summary>
         /// <returns></returns>
         public ActionResult Roles()

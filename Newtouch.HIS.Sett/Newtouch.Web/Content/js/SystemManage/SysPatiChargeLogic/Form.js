@@ -1,36 +1,36 @@
-﻿var keyValue = $.request("keyValue");
+﻿var keyValue = $.request("");
 $(function () {
     InitControl();
     if (!!keyValue) {
         $.ajax({
-            url: "/SystemManage/SysPatiChargeLogic/GetFormJson?r=" + Math.random(),
+            url: "" + Math.random(),
             data: { keyValue: keyValue },
-            dataType: "json",
+            dataType: "",
             async: false,
             success: function (data) {
                 if (data) {
-                    $("#form1").formSerialize(data);
-                    if (data["dlmc"]) {
-                        $("#dlmc").attr("data-label", data["dl"]);
+                    $("").formSerialize(data);
+                    if (data[""]) {
+                        $("").attr("", data[""]);
                     }
-                    if (data["brxzmc"]) {
-                        $("#brxzmc").attr("data-label", data["brxz"]);
+                    if (data[""]) {
+                        $("").attr("", data[""]);
                     }
-                    if (data["sfxmmc"]) {
-                        $("#sfxmmc").attr("data-label", data["sfxm"]);
+                    if (data[""]) {
+                        $("").attr("", data[""]);
                     }
                 }
             }
         });
     }
 
-    $("#dlmc").keyup(function () {
-        if ($(this).val().trim() === "*") {
-            $("#sfxmmc").attr("disabled", "disabled");
-            $("#sfxmmc").css("background-color", "#f1f4f6");
+    $("").keyup(function () {
+        if ($(this).val().trim() === "") {
+            $("").attr("", "");
+            $("").css("", "");
         } else {
-            $("#sfxmmc").removeAttr("disabled");
-            $("#sfxmmc").css("background-color", "#fff");
+            $("").removeAttr("");
+            $("").css("", "");
         }
     });
 });
@@ -39,20 +39,20 @@ function InitControl() {
     dlList();
     sfxmList();
 
-    $("#OrganizeId").bindSelect({
-        url: "/SystemManage/Organize/GetChildTreeSelectJson"
+    $("").bindSelect({
+        url: ""
     });
 }
 function brxzList() {
-    ///报销政策
-    $("#brxzmc").newtouchFloatingSelector({
+    ///Chính sách hoàn trả
+    $("").newtouchFloatingSelector({
         height: 200,
         width: 300,
         filter: function (keyword) {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -62,54 +62,54 @@ function brxzList() {
             return resultObjArr;
 
         },
-        caption: "病人性质",
+        caption: "",
         colModel: [
-            { label: "编号", name: 'brxzbh', widthratio: 25 },
-            { label: "代码", name: 'brxz', widthratio: 25 },
-            { label: "名称", name: 'brxzmc', widthratio: 25 },
-            { label: "拼音", name: 'py', widthratio: 25 }
+            { label: "", name: '', widthratio: 25 },
+            { label: "", name: '', widthratio: 25 },
+            { label: "", name: '', widthratio: 25 },
+            { label: "", name: '', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
-            $("#brxzmc").attr("data-label", $thistr.find("td:eq(1)").html());
-            $("#brxzmc").val($thistr.find("td:eq(2)").html());
+            $("").attr("", $thistr.find("").html());
+            $("").val($thistr.find("").html());
             return;
         }
     });
 }
 
 function dlList() {
-    $("#dlmc").newtouchFloatingSelector({
+    $("").newtouchFloatingSelector({
         height: 200,
         width: 300,
         filter: function (keyword) {
             
-            //请用ajax
+            //Vui lòng dùngajax
 
         },
-        caption: "大类",
+        caption: "",
         colModel: [
-            { label: "编号", name: "dlCode", widthratio: 25 },
-            { label: "名称", name: "dlmc", widthratio: 25 },
-            { label: "拼音", name: "py", widthratio: 25 }
+            { label: "", name: "", widthratio: 25 },
+            { label: "", name: "", widthratio: 25 },
+            { label: "", name: "", widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
-            $("#dlmc").attr("data-label", $thistr.find("td:eq(0)").html());
-            $("#dlmc").val($thistr.find('td:eq(1)').html());
+            $("").attr("", $thistr.find("").html());
+            $("").val($thistr.find('').html());
             return;
         }
     });
 }
 
 function sfxmList() {
-    ///收费项目
-    //$("#sfxmmc").newtouchFloatingSelector({
+    ///Hạng mục thu phí
+    //$("").newtouchFloatingSelector({
     //    height: 200,
     //    width: 300,
     //    filter: function (keyword) {
     //        if (!keyword) {
     //            return null;
     //        }
-    //        //遍历数据源，用keyword来筛选出结果
+    //        //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
     //        var resultObjArr = new Array();
     //        $.each(top.window.clients.sysChargeItemList, function (idx, val) {
     //            if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -118,53 +118,53 @@ function sfxmList() {
     //        });
     //        return resultObjArr;
     //    },
-    //    caption: "收费项目",
+    //    caption: "",
     //    colModel: [
-    //        { label: '编号', name: 'sfxmbh', widthratio: 25 },
-    //        { label: '代码', name: 'sfxm', widthratio: 25 },
-    //        { label: '名称', name: 'sfxmmc', widthratio: 25 },
-    //        { label: '拼音', name: 'py', widthratio: 25 }
+    //        { label: '', name: '', widthratio: 25 },
+    //        { label: '', name: '', widthratio: 25 },
+    //        { label: '', name: '', widthratio: 25 },
+    //        { label: '', name: '', widthratio: 25 }
     //    ],
     //    itemdbclickhandler: function ($thistr) {
-    //        $("#sfxmmc").attr("data-label", $thistr.find("td:eq(1)").html());
-    //        $("#sfxmmc").val($thistr.find('td:eq(2)').html());
+    //        $("").attr("", $thistr.find("").html());
+    //        $("").val($thistr.find('').html());
     //        return;
     //    }
     //});
 
-    $("#sfxmmc").newtouchFloatingSelector({
+    $("").newtouchFloatingSelector({
         height: 200,
         width: 400,
-        url: "/SystemManage/SysPatiChargeLogic/GetSFXMItemInfoByDlCode",
-        ajaxmethod: "POST",
+        url: "",
+        ajaxmethod: "",
         ajaxreqdata: function () {
             var reqData = {};
-            reqData.keyword = $.trim($("#sfxm").val());
-            reqData.dlCode = $.trim($("#dlmc").attr("data-label"));
+            reqData.keyword = $.trim($("").val());
+            reqData.dlCode = $.trim($("").attr(""));
             return reqData;
         },
-        caption: "收费项目",
+        caption: "",
         colModel: [
-            { label: "项目与否", name: "xmtype", widthratio: 25, hidden: true },
-            { label: "编码", name: "py", widthratio: 25 },
-            { label: "通用名", name: "xmmc", widthratio: 25 },
-            { label: "商品名", name: "spm", widthratio: 25, hidden: true },
-            { label: "单位", name: "dw", widthratio: 25, hidden: true },
-            { label: "单价", name: "dj", widthratio: 25, hidden: true },
-            { label: "规格", name: "ypgg", widthratio: 25, hidden: true },
-            { label: "医保代码", name: "ybdm", widthratio: 25 },
-            { label: "包装代码", name: "ypbzdm", widthratio: 25, hidden: true },
-            { label: "xmbh", name: "xmbh", widthratio: 25, hidden: true },
-            { label: "sfxm", name: "sfxm", widthratio: 25, hidden: true },
-            { label: "dl", name: "dl", widthratio: 25, hidden: true },
-            { label: "zfbl", name: "zfbl", widthratio: 25, hidden: true },
-            { label: "zfxz", name: "zfxz", widthratio: 25, hidden: true },
-            { label: "ybdm", name: "ybdm", widthratio: 25, hidden: true },
-            { label: "yfdm", name: "yfdm", widthratio: 25, hidden: true }
+            { label: "", name: "", widthratio: 25, hidden: true },
+            { label: "", name: "", widthratio: 25 },
+            { label: "", name: "", widthratio: 25 },
+            { label: "", name: "", widthratio: 25, hidden: true },
+            { label: "", name: "", widthratio: 25, hidden: true },
+            { label: "", name: "", widthratio: 25, hidden: true },
+            { label: "", name: "", widthratio: 25, hidden: true },
+            { label: "", name: "", widthratio: 25 },
+            { label: "", name: "", widthratio: 25, hidden: true },
+            { label: "", name: "", widthratio: 25, hidden: true },
+            { label: "", name: "", widthratio: 25, hidden: true },
+            { label: "", name: "", widthratio: 25, hidden: true },
+            { label: "", name: "", widthratio: 25, hidden: true },
+            { label: "", name: "", widthratio: 25, hidden: true },
+            { label: "", name: "", widthratio: 25, hidden: true },
+            { label: "", name: "", widthratio: 25, hidden: true }
         ],
         itemdbclickhandler: function ($thistr) {
-            $("#sfxmmc").attr("data-label", $thistr.find("td:eq(10)").html());
-            $("#sfxmmc").val($thistr.find('td:eq(2)').html());
+            $("").attr("", $thistr.find("").html());
+            $("").val($thistr.find('').html());
             return;
         }
     });
@@ -173,18 +173,18 @@ function sfxmList() {
 function submitForm() {
     var result = checkNotNull();
     if (result) {
-        var data = $("#form1").formSerialize();
-        data["sfxm"] = $("#sfxmmc").attr("data-label");
-        data["brxz"] = $("#brxzmc").attr("data-label");
-        data["dl"] = $("#dlmc").attr("data-label");
+        var data = $("").formSerialize();
+        data[""] = $("").attr("");
+        data[""] = $("").attr("");
+        data[""] = $("").attr("");
         $.submitForm({
-            url: "/SystemManage/SysPatiChargeLogic/SubmitForm?keyValue=" + keyValue,
+            url: "" + keyValue,
             param: data,
             success: function () {
-                $.currentWindow().$("#gridList").resetSelection();
-                $.currentWindow().$("#gridList").trigger("reloadGrid");
-                //$.currentWindow().window.frames['iframeExpenseManage'].$("#gridList").resetSelection();
-                //$.currentWindow().window.frames['iframeExpenseManage'].$("#gridList").trigger("reloadGrid");
+                $.currentWindow().$("").resetSelection();
+                $.currentWindow().$("").trigger("");
+                //$.currentWindow().window.frames[''].$("").resetSelection();
+                //$.currentWindow().window.frames[''].$("").trigger("");
                 $.loading(false);
             }
         });
@@ -192,7 +192,7 @@ function submitForm() {
 }
 
 function checkNotNull() {
-    var validator = $("#form1").validate();
+    var validator = $("").validate();
     validator.settings = {
         rules: {
             syfw: { required: true },
@@ -203,35 +203,35 @@ function checkNotNull() {
             fysx: { required: true }
         },
         messages: {
-            syfw: { required: "适用范围必须填写" },
-            sfjb: { required: "算法级别必须填写" },
-            zfbl: { required: "自付比例必须填写" },
-            zfxz: { required: "自付性质必须填写" },
-            fysx: { required: "费用上限必须填写" }
+            syfw: { required: "" },
+            sfjb: { required: "" },
+            zfbl: { required: "" },
+            zfxz: { required: "" },
+            fysx: { required: "" }
         },
         showErrors: function (errorMap, errorList) {
             if (!$.isEmptyObject(errorList)) {
                 if (Array.isArray(errorList) && errorList.length == 0) {
                     return;
                 }
-                $.modalAlert(errorList[0].message, 'warning');
+                $.modalAlert(errorList[0].message, '');
             }
         }
     }
     if (!validator.form()) {
         return false;
     }
-    ////状态
+    ////Trạng thái
     //var zt = false;
-    //$('input[name="zt"]').each(function () {
+    //$('').each(function () {
     //    var $this = $(this);
-    //    if ($this.parent().hasClass("active")) {
+    //    if ($this.parent().hasClass("")) {
     //        zt = true;
-    //        $("#zt").val();
+    //        $("").val();
     //    }
     //});
     //if (!zt) {
-    //    $.modalAlert("请选择是否有效！", "warning");
+    //    $.modalAlert("", "");
     //    return false;
     //}
     return true;

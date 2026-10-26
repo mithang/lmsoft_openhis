@@ -1,13 +1,13 @@
 ﻿@{
-    ViewBag.Title = "错误提示配置表单页";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 <form id="form1">
     <div style="padding-top: 20px; margin-right: 30px;">
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>编码：</th>
+                <th class="formTitle"><span class="required">*</span>Mã：</th>
                 <td class="formValue">
                     <input id="code" name="code" type="text" class="form-control required" />
                 </td>
@@ -23,16 +23,16 @@
 </form>
 
 <script>
-    var keyValue = $.request("keyValue");
+    var keyValue = $.request("");
     $(function () {
         initControl();
         if (!!keyValue) {
             $.ajax({
-                url: "/SystemManage/SysFailedCodeMessageMapp/GetFormJson",
+                url: "",
                 data: { keyValue: keyValue },
-                dataType: "json",
+                dataType: "",
                 success: function (data) {
-                    $("#form1").formSerialize(data);
+                    $("").formSerialize(data);
                 }
             });
         }
@@ -43,13 +43,13 @@
     }
 
     function AcceptClick(callBack) {
-        if (!$('#form1').formValid()) {
+        if (!$('').formValid()) {
             return false;
         }
-        var postData = $("#form1").formSerialize();
+        var postData = $("").formSerialize();
 
         $.submitForm({
-            url: "/SystemManage/SysFailedCodeMessageMapp/SubmitForm?keyValue=" + keyValue,
+            url: "" + keyValue,
             param: postData,
             success: function () {
                 callBack();

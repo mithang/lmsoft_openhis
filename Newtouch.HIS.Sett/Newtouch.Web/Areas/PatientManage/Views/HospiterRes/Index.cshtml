@@ -1,11 +1,11 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    Layout = "~/Views/Shared/_Index.cshtml";
+    Layout = "";
 
     var isEditPatientMedicalRecord = ViewBag.IsEditPatientMedicalRecord as bool?;
     var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
-    //医保所属地
-    var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
+    //Địa bàn bảo hiểm y tế
+    var medicalInsurance = SysConfigReader.String("");
 }
 <style>
     @@media screen and (min-width:600px) {
@@ -35,29 +35,29 @@
 <form>
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
-                @*<th class="formTitle">病历号：</th>
+                @*<th class="formTitle">Số bệnh án：</th>
         <td class="formValue">
             <input type="text" class="form-control form-an" id="blh" />
         </td>*@
-                <th class="formTitle">关键字：</th>
+                <th class="formTitle">Từ khóa：</th>
                 <td class="formValue">
-                    <input type="text" class="form-control form-an" id="zjh" placeholder="姓名/拼音/病历号/证件号"/>
+                    <input type="text" class="form-control form-an" id="zjh" placeholder="Họ tên/Phiên âm/Số bệnh án/Số giấy tờ"/>
                 </td>
                 <td class="formTitle">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an"  value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an"  value="Tra cứu" />
                 </td>
 
                 <td class="formValue">
-                     @Html.Partial("YibaoRedCardCommon")
+                     @Html.Partial("")
                     &nbsp;&nbsp;
                     
                 </td>
                 <th class="formTitle">
-                    <button type="button" class="btn btn-primary" id="noCardRes" value="一卡通办理" onclick="btn_NocardRes(1)">一卡通办理</button>
+                    <button type="button" class="btn btn-primary" id="noCardRes" value="Làm thẻ một thẻ thông" onclick="btn_NocardRes(1)">Làm thẻ một thẻ thông</button>
                    
                 </th>
                 <td class="formValue">
@@ -70,23 +70,23 @@
             </tr>
         </table>
         <div class="panel-heading navb-bg">
-            患者基本信息
+            Thông tin cơ bản bệnh nhân
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">姓名：</th>
+                <th class="formTitle">Họ tên：</th>
                 <td class="formValue" style="width:80px;">
                     <label id="xm"></label>
                 </td>
-                <th class="formTitle">性别：</th>
+                <th class="formTitle">Giới tính：</th>
                 <td class="formValue">
                     <label id="xb"></label>
                 </td>
-                <th class="formTitle">年龄：</th>
+                <th class="formTitle">Tuổi：</th>
                 <td class="formValue">
                     <label id="nl"></label>
                 </td>
-                <td class="formTitle">初复诊：</td>
+                <td class="formTitle">Khám lần đầu/tái khám：</td>
                 <td class="formValue">
                     <label id="cfz"></label>
                 </td>
@@ -94,25 +94,25 @@
             </tr>
             <tr>
                 <td class="formTitle">
-                    证件号：
+                    Số giấy tờ：
                 </td>
                 <td class="formValue">
                     <label id="lbzjh"></label>
                 </td>
                 <td class="formTitle">
-                    出生日期：
+                    Ngày sinh：
                 </td>
                 <td class="formValue">
                     <label id="csrq"></label>
                 </td>
                 <td class="formTitle">
-                    联系电话：
+                    Số điện thoại liên hệ：
                 </td>
                 <td class="formValue">
                     <label id="lxdh"></label>
                 </td>
                 <td class="formTitle">
-                    地址：
+                    Địa chỉ：
                 </td>
                 <td class="formValue">
                     <label id="dz"></label>
@@ -120,7 +120,7 @@
             </tr>
         </table>
         <div class="panel-heading navb-bg">
-            患者列表
+            Danh sách bệnh nhân
         </div>
         <div class="gridPanel">
             <table id="gridList"></table>
@@ -129,100 +129,100 @@
     </div>
 
 </form>
-@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+@Html.Partial("", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new int[] { 6 },
     F6Hidden = !(isEditPatientMedicalRecord.Value),
-    F6Text = "历史病历",
+    F6Text = "",
 })
 <script>
-    var medicalInsurance = '@medicalInsurance';//医保所属地配置:区分医院所属医保区域
+    var medicalInsurance = '';//Cấu hình địa bàn bảo hiểm y tế:Phân biệt khu vực bảo hiểm y tế của bệnh viện
     $(function () {
-        $("#readCard").show();
-        //$("#btkhsr").css('display', 'none');
+        $("").show();
+        //$("").css('', '');
         gridList();
 
-        $("#blh").keyupEnterEvent(function () {
-            $("#btn_search").trigger("click");
+        $("").keyupEnterEvent(function () {
+            $("").trigger("");
         });
     });
     function gridList() {
-        var $gridList = $("#gridList");
+        var $gridList = $("");
         $gridList.dataGrid({
-            url: "/PatientManage/HospiterRes/GetGridJson",
+            url: "",
             postData: getSearchPostData(),
-            height: $(window).height() - @(!(isEditPatientMedicalRecord.Value) ? "200" : "190"),
+            height: $(window).height() - @(!(isEditPatientMedicalRecord.Value) ? "" : ""),
             colModel: [
-                { label: 'patId', name: 'patId', width: 100, align: 'left', hidden: true },
-                { label: 'CardId', name: 'CardId', width: 100, align: 'left', hidden: true },
-                { label: '姓名', name: 'xm', width: 80, align: 'left' },
-                { label: '病历号', name: 'blh', width: 80, align: 'left' },
-                //{ label: '患者性质', name: 'brxzmc', width: 120, align: 'left' },
-                //{ label: '卡类型', name: 'cardTypeName', width: 120, align: 'left' },
+                { label: '', name: '', width: 100, align: '', hidden: true },
+                { label: '', name: '', width: 100, align: '', hidden: true },
+                { label: '', name: '', width: 80, align: '' },
+                { label: '', name: '', width: 80, align: '' },
+                //{ label: '', name: '', width: 120, align: '' },
+                //{ label: '', name: '', width: 120, align: '' },
                 {
-                    label: '性别', name: 'xb', width: 50, align: 'left',
+                    label: '', name: '', width: 50, align: '',
                     formatter: function (cellvalue) {
                         return $.getGender(cellvalue);
                     }
                 },
-                { label: '证件号', name: 'zjh', width: 160, align: 'left' },
+                { label: '', name: '', width: 160, align: '' },
 
-                 { label: 'cardType', name: 'cardType', width: 160, align: 'left', hidden: true  },
-                { label: '患者来源', name: 'brly', width: 80, align: 'left' },
+                 { label: '', name: '', width: 160, align: '', hidden: true  },
+                { label: '', name: '', width: 80, align: '' },
                 {
-                    label: '出生年月', name: 'csny', width: 100, align: 'left',
-                    formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                    label: '', name: '', width: 100, align: '',
+                    formatter: "", formatoptions: { srcformat: '', newformat: '' }
                 },
-                { label: '创建时间', name: 'CreateTime', width: 160, align: 'left',formatter: "date", formatoptions: {
-                    srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                { label: '', name: '', width: 160, align: '',formatter: "", formatoptions: {
+                    srcformat: '', newformat: '' }
                 },
-                { label: "有效", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: "", name: "", width: 60, align: "", formatter: function (cellvalue) { return cellvalue == "" ? "" : ""; } },
                 {
-                    label: "卡管理", name: "", width: 100, align: 'center', formatter(val, option, row) {
+                    label: "", name: "", width: 100, align: '', formatter(val, option, row) {
 
-                        return "<a class='btn btn-default' style='width:60px;font-weight:bold;textalign:center;' onclick='CardNoInfo(" + option.rowId + ")'>就诊卡管理</a>";
+                        return "" + option.rowId + "";
 
                     }
                 }
             ],
-            pager: "#gridPager",
-            sortname: 'createtime desc',
-            rowNum: '10',
+            pager: "",
+            sortname: '',
+            rowNum: '',
             viewrecords: true
         });
-        $("#btn_search").click(function () {
+        $("").click(function () {
             clear();
-            //if($("#zjh").val())
+            //if($("").val())
             //{
             //    GetQueryFphAjax({
             //        blh: null,
             //        kh: null,
-            //        zjh: $("#zjh").val(),
-            //        ly:'Y',
+            //        zjh: $("").val(),
+            //        ly:'',
             //    });
             //}
-            $gridList.jqGrid('setGridParam', {
+            $gridList.jqGrid('', {
                 postData: getSearchPostData(),
                 page: 1,
-            }).trigger('reloadGrid');
+            }).trigger('');
 
         });
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
-        var zjh=$("#zjh").val();
+        var zjh=$("").val();
         return {zjh: zjh};
 
     }
 
     function btn_add() {
         $.modalOpen({
-            id: "Form",
-            title: "住院登记",
-            url: "/PatientManage/HospiterRes/Register",
-            width: "700px",
-            height: "530px",
+            id: "",
+            title: "",
+            url: "",
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
@@ -230,63 +230,63 @@
     }
 
     function btn_edit() {
-        var patientform = JSON.parse(localStorage.getItem("patientform"));
+        var patientform = JSON.parse(localStorage.getItem(""));
         if (!!patientform) {
-            localStorage.removeItem("patientform");
+            localStorage.removeItem("");
         }
-        var keyValue = $("#gridList").jqGridRowValue().patId;
+        var keyValue = $("").jqGridRowValue().patId;
         if(!!!keyValue){
             return;
         }
         $.modalOpen({
-            id: "Details",
-            title: "查看/修改一卡通信息",
-            url: "/PatientManage/HospiterRes/PatientBasic?keyValue=" + keyValue+"&parent=patientlist"+"&fromly=yktmodify",
-            width: "1050px",
-            height: "550px",
+            id: "",
+            title: "",
+            url: "" + keyValue+""+"",
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
         });
     }
 
-    $('#btn_qy').click(function () {
+    $('').click(function () {
         var seleRow = check();
         if (!!!seleRow) {
             return;
         }
         var patId=seleRow.patId;
-        updateZt(patId,"1");
+        updateZt(patId,"");
     });
-    $('#btn_stop').click(function () {
+    $('').click(function () {
         var seleRow = check();
         if (!!!seleRow) {
             return;
         }
         var patId=seleRow.patId;
-        updateZt(patId,"0");
+        updateZt(patId,"");
     });
 
     function updateZt(patId,isqy)
     {
         $.ajax({
-            type: "POST",
-            url: "/PatientManage/HospiterRes/UpdateZt",
-            data: {"patId":patId,"isqy":isqy},
-            dataType: "json",
+            type: "",
+            url: "",
+            data: {"":patId,"":isqy},
+            dataType: "",
             async: true,
             success: function (resp) {
-                $("#btn_search").trigger("click");
-                $.modalAlert("修改成功", 'warning');
+                $("").trigger("");
+                $.modalAlert("", '');
             }
         });
     }
 
     function check() {
-        var seleRow = $("#gridList").jqGridRowValue();
+        var seleRow = $("").jqGridRowValue();
         var patId = seleRow.patId;
         if (!!!patId) {
-            $.modalAlert("尚未选择一条记录", "error");
+            $.modalAlert("", "");
             return;
         }
         return seleRow;
@@ -294,22 +294,22 @@
 
     function btn_NocardRes(t){
         
-        var patientform = JSON.parse(localStorage.getItem("patientform"));
+        var patientform = JSON.parse(localStorage.getItem(""));
         if(t!=null&&t===1)
         {
-            localStorage.removeItem("patientform");
+            localStorage.removeItem("");
         }
-        var url="/PatientManage/HospiterRes/PatientBasic?T=" + new Date()+ "&parent=patientlist"+"&fromly=yktregister";
+        var url="" + new Date()+ ""+"";
         if(t!=1)
         {
-            url+="&keyValue=" + t;
+            url+="" + t;
         }
         $.modalOpen({
-            id: "Form",
-            title: "一卡通办理",
+            id: "",
+            title: "",
             url: url,
-            width: "1050px",
-            height: "550px",
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
@@ -319,24 +319,24 @@
 
     function btn_selfPayCard()
     {
-        $.modalAlert("功能开发中", "warning");
+        $.modalAlert("", "");
     }
     function CallbackPatientQuery(blh) {
         //GetQueryFphAjax({ blh: blh });
     }
 
     function newtouch_event_f6(){
-        var keyValue = $("#gridList").jqGridRowValue().blh;
+        var keyValue = $("").jqGridRowValue().blh;
         if(!!!keyValue){
-            $.modalAlert("请选择一个患者", "warning");
+            $.modalAlert("", "");
             return;
         }
         $.modalOpen({
-            id: "PatientMedicalRecordList",
-            title: "患者历史病历",
-            url: "/PatientManage/SysPatientMedicalRecord/Index?blh=" + keyValue,
-            width: "900px",
-            height: "600px",
+            id: "",
+            title: "",
+            url: "" + keyValue,
+            width: "",
+            height: "",
             btn: null,
             callBack: function (iframeId) {
 
@@ -345,14 +345,14 @@
     }
     function clear()
     {
-        $("#xm").html("");
-        $("#xb").html("");
-        $("#cfz").html("");
-        $("#nl").html("");
-        $("#lbzjh").html("");
-        $("#csrq").html("");
-        $("#lxdh").html("");
-        $("#dz").html("");
+        $("").html("");
+        $("").html("");
+        $("").html("");
+        $("").html("");
+        $("").html("");
+        $("").html("");
+        $("").html("");
+        $("").html("");
     }
 
     ////医保业务
@@ -361,26 +361,26 @@
     function GetQueryFphAjax(obj, funcSuccCallback){
         
         $.najax({
-            url: "/PatientManage/HospiterRes/GetOutpatientBasicInfo",
+            url: "",
             data: obj,
-            dataType: "json",
+            dataType: "",
             async: false,
             success: function (rep) {
                 patModel = rep.data;
-                $("#xm").html(patModel.xm);
-                $("#xb").html($.getGender(patModel.xb));
-                $("#cfz").html(patModel.fzbz!==0 ? '复诊':'初诊');
-                $("#nl").html(getAgeFromBirthTime({ begin: patModel.csny.replace('T',' ') }).text);
-                $("#lbzjh").html(patModel.zjh);
-                $("#csrq").html(patModel.csny);
-                $("#lxdh").html(patModel.phone);
-                $("#dz").html(patModel.dz);
+                $("").html(patModel.xm);
+                $("").html($.getGender(patModel.xb));
+                $("").html(patModel.fzbz!==0 ? '':'');
+                $("").html(getAgeFromBirthTime({ begin: patModel.csny.replace('','') }).text);
+                $("").html(patModel.zjh);
+                $("").html(patModel.csny);
+                $("").html(patModel.phone);
+                $("").html(patModel.dz);
             },
             alertbierror: false,
             errorCallback: function (rep){
-                if(rep.code === 'OUTPAT_REGIST_ISINVALID')
+                if(rep.code === '')
                 {
-                    $.modalConfirm("一卡通尚未登记，是否办理", function (flag) {
+                    $.modalConfirm("", function (flag) {
                         if (flag) {
                             btn_NocardRes();
                         }
@@ -391,7 +391,7 @@
     }
     function ReadCardCall(readCardObj)
     {
-        localStorage.setItem("patientform", JSON.stringify(readCardObj.yibaoCardInfo));
+        localStorage.setItem("", JSON.stringify(readCardObj.yibaoCardInfo));
         GetQueryFphAjax({ blh: null, kh:  readCardObj.yibaoCardInfo.kh , zjh:  readCardObj.yibaoCardInfo.qtjz, cardType:readCardObj.ybkCardType },
                         function () {
                         });
@@ -399,13 +399,13 @@
     
 
     function CardNoInfo(rowid) {
-        var rowdata = $('#gridList').jqGrid('getRowData', rowid);
+        var rowdata = $('').jqGrid('', rowid);
         $.modalOpen({
-            id: "LogDetailsView",
-            title: "就诊卡管理",
-            url: "/PatientManage/HospiterRes/CardManagement?patId=" + rowdata.patId + "&xm=" + rowdata.xm,
-            width: "700px",
-            height: "530px",
+            id: "",
+            title: "",
+            url: "" + rowdata.patId + "" + rowdata.xm,
+            width: "",
+            height: "",
             btn: [],
             //callBack: function (iframeId) {
             //    top.frames[iframeId].$.modalClose();

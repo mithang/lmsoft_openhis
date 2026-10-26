@@ -15,19 +15,19 @@
     <title>收费管理系统</title>
     <link rel="shortcut icon" href="@SiteUrl.GetStaticResourceScriptUrl("~/img/newtouchcloud.ico")">
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
-    @Html.Partial("_FrontReference")
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.js")"></script>
+    @Html.Partial("")
+    <script src=""~/js/bootstrap/bootstrap.js""></script>
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.min.css")" rel="stylesheet" />
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/dialog/dialog.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/cookie/jquery.cookie.js")"></script>
+    <script src=""~/js/dialog/dialog.js""></script>
+    <script src=""~/js/cookie/jquery.cookie.js""></script>
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" id="color-skin" />
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/framework-clientdata.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/Newtouch-ui.js")"></script>
+    <script src=""~/js/framework-ui.js""></script>
+    <script src=""~/js/framework-clientdata.js""></script>
+    <script src=""~/js/Newtouch-ui.js""></script>
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/_all-skins.css")" rel="stylesheet" />
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/AdminLTE.min.css")" rel="stylesheet" />
-    @Html.Partial("_BrowseAdaptiveSupport")
-    @Html.Partial("_IndexHeadBehind")
+    @Html.Partial("")
+    @Html.Partial("")
 </head>
 <body style="overflow: hidden;" class="hold-transition skin-black sidebar-mini"
       onload="Onload()"
@@ -47,7 +47,7 @@
                             <li>
                                 <a class="btn btnshrink" id="make-small-nav"><i class="fa fa-dedent"></i></a>
                             </li>
-                            <li onclick="@(mediOrgList != null && mediOrgList.Count > 1 ? "showSwitchOrgPrompt();" : "return;")">
+                            <li onclick="@(mediOrgList != null && mediOrgList.Count > 1 ? "" : "")">
                                 <a>
                                     <b>@Html.Raw(ViewBag.OrgName)</b>
                                     @if (mediOrgList != null && mediOrgList.Count > 1)
@@ -58,253 +58,253 @@
                             </li>
                         </ul>
                     </div>
-                    @Html.Partial("_IndexHeaderNav")
+                    @Html.Partial("")
                 </div>
             </div>
         </header>
         <div id="page-wrapper" class="container">
             <div class="row">
-                @Html.Partial("_IndexNavCol")
-                @Html.Partial("_IndexContentWrapper")
+                @Html.Partial("")
+                @Html.Partial("")
             </div>
         </div>
     </div>
     <div id="loadingPage" style="display: none;">
         <div class="loading-shade"></div>
-        <div class="loading-content" onclick="$.loading(false)">数据加载中，请稍后…</div>
+        <div class="loading-content" onclick="$.loading(false)">Đang tải dữ liệu，Vui lòng chờ…</div>
     </div>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/index.common.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/Content/js/index.js", false)"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/indextab.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/loading/pace.min.js")"></script>
-    <script type="text/javascript">
+    <script src=""~/js/index.common.js""></script>
+    <script src=""~/Content/js/index.js""></script>
+    <script src=""~/js/indextab.js""></script>
+    <script src=""~/js/loading/pace.min.js""></script>
+    <script type="">
         var my_skins;
         $(document).ready(function () {
             my_skins = [
-    "skin-black",
-    "skin-red",
-    "skin-white",
-    "skin-purple",
-    "skin-green",
-    "skin-black-light",
-    "skin-red-light",
-    "skin-white-light",
-    "skin-purple-light",
-    "skin-green-light"
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
             ];
         });
         function Onload() {
             //Create the new tab
-            var tab_pane = $("<div />", {
-                "id": "control-sidebar-theme-demo-options-tab",
-                "class": "tab-pane active"
+            var tab_pane = $("", {
+                "": "",
+                "": ""
             });
 
             //Create the menu
-            var demo_settings = $("<div />");
-            var skins_list = $("<ul />", { "class": 'list-unstyled clearfix' });
+            var demo_settings = $("");
+            var skins_list = $("", { "": '' });
             //Dark sidebar skins
             var skin_black =
-                $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-                    .append("<a href='javascript:void(0);' data-skin='skin-black' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-                    + "<div><span style='display:block; width: 20%; float: left; height: 7px; background: #383d41;'></span><span class='bg-light-blue' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-                    + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-                    + "</a>"
-                    + "<p class='text-center no-margin'>Black</p>");
+                $("", { style: "" })
+                    .append(""
+                    + ""
+                    + ""
+                    + ""
+                    + "");
             skins_list.append(skin_black);
 
             var skin_black_light =
-              $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-                  .append("<a href='javascript:void(0);' data-skin='skin-black-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 7px; background: #383d41;'></span><span class='bg-light-blue' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-                  + "</a>"
-                  + "<p class='text-center no-margin' style='font-size: 12px'>Black Light</p>");
+              $("", { style: "" })
+                  .append(""
+                  + ""
+                  + ""
+                  + ""
+                  + "");
             skins_list.append(skin_black_light);
 
             var skin_white_light =
-                  $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-                  .append("<a href='javascript:void(0);' data-skin='skin-white-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-yellow-active'></span><span class='bg-yellow' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-                  + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #333743;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-                  + "</a>"
-                  + "<p class='text-center no-margin' style='font-size: 12px;'>White Light</p>");
+                  $("", { style: "" })
+                  .append(""
+                  + ""
+                  + ""
+                  + ""
+                  + "");
             skins_list.append(skin_white_light);
             //var skin_white =
-            //    $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-            //    .append("<a href='javascript:void(0);' data-skin='skin-white' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-            //    + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-yellow-active'></span><span class='bg-yellow' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-            //    + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-            //    + "</a>"
-            //    + "<p class='text-center no-margin'>White</p>");
+            //    $("", { style: "" })
+            //    .append(""
+            //    + ""
+            //    + ""
+            //    + ""
+            //    + "");
             //skins_list.append(skin_white);
 
             //var skin_purple =
-            // $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-            //     .append("<a href='javascript:void(0);' data-skin='skin-purple' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-            //     + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-purple-active'></span><span class='bg-purple' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-            //     + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-            //     + "</a>"
-            //     + "<p class='text-center no-margin'>Purple</p>");
+            // $("", { style: "" })
+            //     .append(""
+            //     + ""
+            //     + ""
+            //     + ""
+            //     + "");
             //skins_list.append(skin_purple);
             //var skin_green =
-            //    $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-            //        .append("<a href='javascript:void(0);' data-skin='skin-green' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-green-active'></span><span class='bg-green' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-            //        + "</a>"
-            //        + "<p class='text-center no-margin'>Green</p>");
+            //    $("", { style: "" })
+            //        .append(""
+            //        + ""
+            //        + ""
+            //        + ""
+            //        + "");
             //skins_list.append(skin_green);
             //var skin_red =
-            //    $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-            //        .append("<a href='javascript:void(0);' data-skin='skin-red' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-red-active'></span><span class='bg-red' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #222d32;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-            //        + "</a>"
-            //        + "<p class='text-center no-margin'>Red</p>");
+            //    $("", { style: "" })
+            //        .append(""
+            //        + ""
+            //        + ""
+            //        + ""
+            //        + "");
             //skins_list.append(skin_red);
 
             //var skin_purple_light =
-            //    $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-            //        .append("<a href='javascript:void(0);' data-skin='skin-purple-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-purple-active'></span><span class='bg-purple' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-            //        + "</a>"
-            //        + "<p class='text-center no-margin' style='font-size: 12px'>Purple Light</p>");
+            //    $("", { style: "" })
+            //        .append(""
+            //        + ""
+            //        + ""
+            //        + ""
+            //        + "");
             //skins_list.append(skin_purple_light);
             //var skin_green_light =
-            //    $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-            //        .append("<a href='javascript:void(0);' data-skin='skin-green-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-green-active'></span><span class='bg-green' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-            //        + "</a>"
-            //        + "<p class='text-center no-margin' style='font-size: 12px'>Green Light</p>");
+            //    $("", { style: "" })
+            //        .append(""
+            //        + ""
+            //        + ""
+            //        + ""
+            //        + "");
             //skins_list.append(skin_green_light);
             //var skin_red_light =
-            //    $("<li />", { style: "float:left; width: 33.33333%; padding: 5px;" })
-            //        .append("<a href='javascript:void(0);' data-skin='skin-red-light' style='display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)' class='clearfix full-opacity-hover'>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 7px;' class='bg-red-active'></span><span class='bg-red' style='display:block; width: 80%; float: left; height: 7px;'></span></div>"
-            //        + "<div><span style='display:block; width: 20%; float: left; height: 20px; background: #f9fafc;'></span><span style='display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;'></span></div>"
-            //        + "</a>"
-            //        + "<p class='text-center no-margin' style='font-size: 12px'>Red Light</p>");
+            //    $("", { style: "" })
+            //        .append(""
+            //        + ""
+            //        + ""
+            //        + ""
+            //        + "");
             //skins_list.append(skin_red_light);
 
             demo_settings.append(skins_list);
 
             tab_pane.append(demo_settings);
-            $("#control-sidebar-home-tab").after(tab_pane);
+            $("").after(tab_pane);
 
             setup();
         };
         function setup() {
-            var tmp = get('skin');
+            var tmp = get('');
             if (tmp && $.inArray(tmp, my_skins))
                 change_skin(tmp);
 
             //Add the change skin listener
-            $("[data-skin]").on('click', function (e) {
-                if ($(this).hasClass('knob'))
+            $("").on('', function (e) {
+                if ($(this).hasClass(''))
                     return;
                 e.preventDefault();
-                change_skin($(this).data('skin'));
+                change_skin($(this).data(''));
             });
 
             //Add the layout manager
-            $("[data-layout]").on('click', function () {
-                change_layout($(this).data('layout'));
+            $("").on('', function () {
+                change_layout($(this).data(''));
             });
 
-            $("[data-controlsidebar]").on('click', function () {
-                change_layout($(this).data('controlsidebar'));
+            $("").on('', function () {
+                change_layout($(this).data(''));
                 var slide = !AdminLTE.options.controlSidebarOptions.slide;
                 AdminLTE.options.controlSidebarOptions.slide = slide;
                 if (!slide)
-                    $('.control-sidebar').removeClass('control-sidebar-open');
+                    $('').removeClass('');
             });
 
-            $("[data-sidebarskin='toggle']").on('click', function () {
-                var sidebar = $(".control-sidebar");
-                if (sidebar.hasClass("control-sidebar-dark")) {
-                    sidebar.removeClass("control-sidebar-dark")
-                    sidebar.addClass("control-sidebar-light")
+            $("").on('', function () {
+                var sidebar = $("");
+                if (sidebar.hasClass("")) {
+                    sidebar.removeClass("")
+                    sidebar.addClass("")
                 } else {
-                    sidebar.removeClass("control-sidebar-light")
-                    sidebar.addClass("control-sidebar-dark")
+                    sidebar.removeClass("")
+                    sidebar.addClass("")
                 }
             });
 
-            $("[data-enable='expandOnHover']").on('click', function () {
-                $(this).attr('disabled', true);
+            $("").on('', function () {
+                $(this).attr('', true);
                 AdminLTE.pushMenu.expandOnHover();
-                if (!$('body').hasClass('sidebar-collapse'))
-                    $("[data-layout='sidebar-collapse']").click();
+                if (!$('').hasClass(''))
+                    $("").click();
             });
         };
         function change_skin(cls) {
             $.each(my_skins, function (i) {
-                $("body").removeClass(my_skins[i]);
+                $("").removeClass(my_skins[i]);
             });
 
-            $("body").addClass(cls);
-            store('skin', cls);
-            var pifu = "#1ABC9C";
-            var cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue.css")";  //~/Content/css/framework-theme.css
+            $("").addClass(cls);
+            store('', cls);
+            var pifu = "";
+            var cssURL = ""~/css/skins/framework-theme-blue.css"";  //~/Content/css/framework-theme.css
             switch (cls) {
-                case "skin-black": pifu = "#383d41"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue.css")"; break;
+                case "": pifu = ""; cssURL = ""~/css/skins/framework-theme-blue.css""; break;
 
-                case "skin-red": pifu = "#e98a7e"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-red.css")"; break;
-                    @*case "skin-white": pifu = "#f39c12"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-yellow_tab.css")"; break*@
-                case "skin-purple": pifu = "#9895c6"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-purple.css")"; break;
-                case "skin-green": pifu = "#1ABC9C"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue.css")"; break;
-                case "skin-black-light": pifu = "#383d41"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue-left.css")"; break;
-                case "skin-black-light": pifu = "#fff"; break;
-                case "skin-red-light": pifu = "#e98a7e"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-red-left.css")"; break;
-                case "skin-white-light": pifu = "#fff"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-yellow.css")"; break;
-                case "skin-purple-light": pifu = "#9895c6"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-purple-left.css")"; break;
-                case "skin-green-light": pifu = "#1ABC9C"; cssURL = "@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/framework-theme-green-left.css")"; break;
+                case "": pifu = ""; cssURL = ""~/css/skins/framework-theme-red.css""; break;
+                    @*case "": pifu = ""; cssURL = ""~/css/skins/framework-theme-yellow_tab.css""; break*@
+                case "": pifu = ""; cssURL = ""~/css/skins/framework-theme-purple.css""; break;
+                case "": pifu = ""; cssURL = ""~/css/skins/framework-theme-blue.css""; break;
+                case "": pifu = ""; cssURL = ""~/css/skins/framework-theme-blue-left.css""; break;
+                case "": pifu = ""; break;
+                case "": pifu = ""; cssURL = ""~/css/skins/framework-theme-red-left.css""; break;
+                case "": pifu = ""; cssURL = ""~/css/skins/framework-theme-yellow.css""; break;
+                case "": pifu = ""; cssURL = ""~/css/skins/framework-theme-purple-left.css""; break;
+                case "": pifu = ""; cssURL = ""~/css/skins/framework-theme-green-left.css""; break;
                 default: break;
             }
-            $("#header-navbar").css("background", pifu);
-            $("#color-skin").attr("href", cssURL);
-            setlocalStorage("cssPath", cssURL); //localstorage
+            $("").css("", pifu);
+            $("").attr("", cssURL);
+            setlocalStorage("", cssURL); //localstorage
             return false;
         };
         function change_layout(cls) {
-            $("body").toggleClass(cls);
+            $("").toggleClass(cls);
             AdminLTE.layout.fixSidebar();
             //Fix the problem with right sidebar and layout boxed
-            if (cls == "layout-boxed")
-                AdminLTE.controlSidebar._fix($(".control-sidebar-bg"));
-            if ($('body').hasClass('fixed') && cls == 'fixed') {
+            if (cls == "")
+                AdminLTE.controlSidebar._fix($(""));
+            if ($('').hasClass('') && cls == '') {
                 AdminLTE.pushMenu.expandOnHover();
                 AdminLTE.layout.activate();
             }
-            AdminLTE.controlSidebar._fix($(".control-sidebar-bg"));
-            AdminLTE.controlSidebar._fix($(".control-sidebar"));
+            AdminLTE.controlSidebar._fix($(""));
+            AdminLTE.controlSidebar._fix($(""));
         };
         function store(name, val) {
-            if (typeof (Storage) !== "undefined") {
+            if (typeof (Storage) !== "") {
                 localStorage.setItem(name, val);
             } else {
-                window.alert('Please use a modern browser to properly view this template!');
+                window.alert('');
             }
         };
         function get(name) {
-            if (typeof (Storage) !== "undefined") {
+            if (typeof (Storage) !== "") {
                 return localStorage.getItem(name);
             } else {
-                window.alert('Please use a modern browser to properly view this template!');
+                window.alert('');
             }
         }
     </script>
-    <script type="text/javascript">
+    <script type="">
         function showSwitchOrgPrompt(force) {
             $.modalOpen({
-                id: "FormSwitchOrg",
-                title: "切换医疗机构",
-                url: "/Home/UserOrgChoose",
-                width: "400px",
-                height: "260px",
+                id: "",
+                title: "",
+                url: "",
+                width: "",
+                height: "",
                 btn: null,
                 closeBtn: (!!force ? 0 : 1),
             });
@@ -312,15 +312,15 @@
 
         $(function () {
             //Home/Index加载时强制选择医疗机构
-            @Html.Raw(needChooseOrg ? "setTimeout('showSwitchOrgPrompt(true);', 1200)" : "")
+            @Html.Raw(needChooseOrg ? "" : "")
         });
     </script>
-    <script type="text/javascript">
-        //Home/Index页面加载完成之后 再加载iframe
+    <script type="">
+        //Home/Index页面加载完成之后 Tải lạiiframe
         $(window).load(function () {
-            $('.mainContent .Newtouch_iframe').each(function () {
-                if (!!!$(this).attr('src') && !!$(this).attr('data-id')) {
-                    $(this).attr('src', $(this).attr('data-id'));
+            $('').each(function () {
+                if (!!!$(this).attr('') && !!$(this).attr('')) {
+                    $(this).attr('', $(this).attr(''));
                 }
             });
         });

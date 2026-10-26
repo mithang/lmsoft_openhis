@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "Form";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 <form id="form1">
@@ -14,46 +14,46 @@
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>名称：</td>
+                <td class="formTitle"><span class="required">*</span>Tên：</td>
                 <td class="formValue">
-                    <input id="Name" name="Name" type="text" class="form-control required" placeholder="请输入名称" />
+                    <input id="Name" name="Name" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>编码：</td>
+                <td class="formTitle"><span class="required">*</span>Mã：</td>
                 <td class="formValue">
-                    <input id="Code" name="Code" type="text" class="form-control required" placeholder="请输入编码" />
+                    <input id="Code" name="Code" type="text" class="form-control required" placeholder="Vui lòng nhập mã" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>第三方名称：</td>
+                <td class="formTitle"><span class="required">*</span>Tên bên thứ ba：</td>
                 <td class="formValue">
-                    <input id="TTName" name="TTName" type="text" class="form-control required" placeholder="请输入第三方名称" />
+                    <input id="TTName" name="TTName" type="text" class="form-control required" placeholder="Vui lòng nhập tên bên thứ ba" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>第三方编码：</td>
+                <td class="formTitle"><span class="required">*</span>Mã bên thứ ba：</td>
                 <td class="formValue">
-                    <input id="TTCode" name="TTCode" type="text" class="form-control required" placeholder="请输入第三方编码" />
+                    <input id="TTCode" name="TTCode" type="text" class="form-control required" placeholder="Vui lòng nhập mã bên thứ ba" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">说明：</th>
+                <th class="formTitle">Giải thích：</th>
                 <td class="formValue">
                     <input id="TTExplain" name="TTExplain" type="text" class="form-control" placeholder="" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">排序：</th>
+                <th class="formTitle">Sắp xếp：</th>
                 <td class="formValue">
                     <input id="px" name="px" type="text" class="form-control" placeholder="" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle" style="height: 35px;">状态：</th>
+                <th class="formTitle" style="height: 35px;">Trạng thái：</th>
                 <td class="formValue" style="padding-top: 1px;">
                     <div class="ckbox">
-                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                     </div>
                 </td>
             </tr>
@@ -62,28 +62,28 @@
 </form>
 
 <script>
-    var MainTypeId = $.request("MainTypeId");
-    var MainTypeText = $.request("MainTypeText");
-    var keyValue = $.request("keyValue");
+    var MainTypeId = $.request("");
+    var MainTypeText = $.request("");
+    var keyValue = $.request("");
     $(function () {
         if (!!!MainTypeId || !!!MainTypeText) {
-            $.modalAlert("缺少分类", "error");
+            $.modalAlert("", "");
             $.modalClose();
             return;
         }
-        $('#MainId').val(MainTypeId);
-        $('#MainTypeText').html(MainTypeText);
+        $('').val(MainTypeId);
+        $('').html(MainTypeText);
 
         initControl();
 
         if (!!keyValue) {
             $.ajax({
-                url: "/SystemManage/TTCataloguesComparison/GetDetailFormJson",
+                url: "",
                 data: { keyValue: keyValue },
-                dataType: "json",
+                dataType: "",
                 async: false,
                 success: function (data) {
-                    $("#form1").formSerialize(data);
+                    $("").formSerialize(data);
                 }
             });
         }
@@ -94,14 +94,14 @@
     }
 
     function AcceptClick(callBack) {
-        if (!$('#form1').formValid()) {
+        if (!$('').formValid()) {
             return false;
         }
 
-        var postData = $("#form1").formSerialize();
+        var postData = $("").formSerialize();
 
         $.submitForm({
-            url: "/SystemManage/TTCataloguesComparison/DetailSubmitForm?keyValue=" + keyValue,
+            url: "" + keyValue,
             param: postData,
             success: function () {
                 callBack();

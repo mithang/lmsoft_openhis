@@ -1,12 +1,12 @@
 ﻿@{
-    ViewBag.Title = "SettSelectCyrq";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <form id="form1">
     <div style="padding-top: 20px; margin-right: 55px;">
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>出院日期：</th>
+                <th class="formTitle"><span class="required">*</span>Ngày xuất viện：</th>
                 <td class="formValue">
                     <input class="form-control input-wdatepicker required" id="cyrq" name="cyrq"
                            value=@DateTime.Now.ToString("yyyy-MM-dd") type="text"
@@ -18,18 +18,18 @@
 </form>
 
 <script>
-    var cyrq = $.request("cyrq");
+    var cyrq = $.request("");
     if (cyrq) {
-        $('#cyrq').val($.getDate({ date: cyrq }));
-        //$('#cyrq').attr('disabled', 'disabled');
+        $('').val($.getDate({ date: cyrq }));
+        //$('').attr('', '');
     }
     function submitForm() {
-        if (!$('#form1').formValid()) {
+        if (!$('').formValid()) {
             return false;
         }
-        var date = $('#cyrq').val();
+        var date = $('').val();
         if ($.getDate() < date) {   //一样的格式，可以直接比较大小
-            $.modalAlert("不能进行提前出院结算", 'warning');
+            $.modalAlert("", '');
             return false;
         }
         return date;

@@ -44,9 +44,9 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         /// <summary>
         /// 账户管理界面
         /// </summary>
-        /// <param name="zyh">住院号</param>
-        /// <param name="kh">卡号</param>
-        /// <param name="xm">姓名</param>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <param name="kh">Số thẻ</param>
+        /// <param name="xm">Họ tên</param>
         /// <returns></returns>
         public ActionResult PatAccountInfo(string zyh, string zhxz)
         {
@@ -69,9 +69,9 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             return Success("", dto);
         }
         /// <summary>
-        /// 获取病人账户信息
+        /// Lấy thông tin tài khoản bệnh nhân
         /// </summary>
-        /// <param name="zh">账户</param>
+        /// <param name="zh">Tài khoản</param>
         /// <returns></returns>
         public ActionResult GetBasicZhInfoJson(int zh)
         {
@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
 
 
         /// <summary>
-        /// 新增预交金账户
+        /// Thêm mới tài khoản tiền tạm ứng
         /// </summary>
         /// <param name="patid"></param>
         /// <returns></returns>
@@ -132,7 +132,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
 
         #region 账户操作
         /// <summary>
-        /// 充值
+        /// Nạp tiền
         /// </summary>
         /// <param name="depDto">充值数据集合</param>
         /// <returns></returns>
@@ -148,7 +148,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             return Success("", data);
         }
         /// <summary>
-        /// 退款
+        /// Hoàn tiền
         /// </summary>
         /// <param name="depDto">退款数据集合</param>
         /// <returns></returns>
@@ -158,7 +158,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             return Success("", flag);
         }
         /// <summary>
-        /// 余额全退
+        /// Hoàn trả toàn bộ số dư
         /// </summary>
         /// <param name="depDto"></param>
         /// <returns></returns>

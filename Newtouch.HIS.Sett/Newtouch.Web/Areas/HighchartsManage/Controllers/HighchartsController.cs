@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
         #region Samples
         #region 折线图
         /// <summary>
-        /// 折线图
+        /// Biểu đồ đường gấp
         /// </summary>
         /// <returns></returns>
         public ActionResult Sample1()

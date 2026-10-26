@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
     {
         private readonly IOutPatientDmnService _outPatientDmnService;
         private readonly IOutPatChargeApp _outPatChargeApp;
-        private readonly IOutPatChargeDmnService _outPatChargeDmSer; // 挂号收费Service 
+        private readonly IOutPatChargeDmnService _outPatChargeDmSer; // Đăng ký khám thu phíService 
         private readonly IRefundDmnService _refundService;
         private readonly ISysConfigRepo _sysConfigRepo;
         private readonly ISysUserDmnService _sysUserDmnService;
@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         #region 页面初始化
 
         /// <summary>
-        /// 新增登记
+        /// Thêm mới đăng ký
         /// </summary>
         /// <returns></returns>
 
@@ -67,7 +67,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 记账项目详情页面
+        /// Trang chi tiết hạng mục ghi sổ
         /// </summary>
         /// <returns></returns>
         public ActionResult OutpatientAccountingDetail()
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 门诊收费
+        /// Thu phí ngoại trú
         /// </summary>
         /// <returns></returns>
         public ActionResult OutpatCharge()
@@ -115,9 +115,9 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
         #region 门诊记账 Vision-1.1 门诊记账的第一个版本
         /// <summary>
-        /// 加载病人基本信息
+        /// Tải thông tin cơ bản bệnh nhân
         /// </summary>
-        /// <param name="blh">病历号</param>
+        /// <param name="blh">Số bệnh án</param>
         /// <returns></returns>
         public ActionResult GetOutpatientBasicInfo(string IsBlh, string mzh)
         {
@@ -135,7 +135,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 保存门诊记账
+        /// Lưu ghi sổ ngoại trú
         /// </summary>
         /// <param name="bacDto"></param>
         /// <param name="xmList"></param>
@@ -162,7 +162,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
         #region Optima记账 Vision-1.2 门诊记账的第二个版本（包括门诊记账和住院记账）
         /// <summary>
-        /// 获取所有病人治疗记录
+        /// Lấy bản ghi điều trị bệnh nhân tất cả
         /// </summary>
         /// <param name="begindate"></param>
         /// <param name="enddate"></param>
@@ -180,9 +180,9 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 加载病人基本信息
+        /// Tải thông tin cơ bản bệnh nhân
         /// </summary>
-        /// <param name="mzh">门诊号</param>
+        /// <param name="mzh">Số ngoại trú</param>
         /// <returns></returns>
         public ActionResult GetpatientInfoInOptima(string admsnum, string type, string kssj, string jssj)
         {
@@ -238,7 +238,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
         #region 门诊收费 Vision-1.3 门诊记账的第三个版本
         /// <summary>
-        /// 获取所有病人挂号信息
+        /// Lấy thông tin đăng ký khám bệnh nhân tất cả
         /// </summary>
         /// <param name="begindate"></param>
         /// <param name="enddate"></param>
@@ -251,7 +251,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 获取记账历史记录
+        /// Lấy bản ghi lịch sử ghi sổ
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -282,7 +282,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
 
         /// <summary>
-        /// 保存门诊记账
+        /// Lưu ghi sổ ngoại trú
         /// </summary>
         /// <param name="bacDto"></param>
         /// <param name="xmList"></param>
@@ -296,7 +296,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
         #region 门诊记账，第四个版本
         /// <summary>
-        /// 获取记账历史记录
+        /// Lấy bản ghi lịch sử ghi sổ
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>

@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 门诊科室工作量
+        /// Khối lượng công việc khoa ngoại trú
         /// </summary>
         public ActionResult GetMzksgzl(string ksrq, string jsrq)
         {
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 医生工作量
+        /// Khối lượng công việc bác sĩ
         /// </summary>
         public ActionResult GetYsgzl(string ksrq, string jsrq, string ks)
         {

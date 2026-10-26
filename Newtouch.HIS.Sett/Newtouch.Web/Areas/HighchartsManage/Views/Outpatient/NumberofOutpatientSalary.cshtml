@@ -1,10 +1,10 @@
 ﻿
 @{
-    ViewBag.Title = "门诊收入统计";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/highcharts/highcharts.js")"></script>
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/highcharts/modules/exporting.js")"></script>
+<script src=""~/js/highcharts/highcharts.js""></script>
+<script src=""~/js/highcharts/modules/exporting.js""></script>
 <script>
     $(function () {
         loadChart();
@@ -12,8 +12,8 @@
     function loadChart() {
         var OutpatientList = [];
         $.ajax({
-            url: "/HighchartsManage/Outpatient/GetOutpatientSalaryNum?r=" + Math.random(),
-            dataType: "json",
+            url: "" + Math.random(),
+            dataType: "",
             async: false,
             success: function (data) {
                 if (data.data) {
@@ -25,40 +25,40 @@
                 }
             }
         })
-        $('#salarychart').highcharts({
+        $('').highcharts({
             chart: {
-                type: 'column'
+                type: ''
             },
             title: {
-                text: '门诊收入统计'
+                text: ''
             },
             xAxis: {
                 categories: [
-                    '一月',
-                    '二月',
-                    '三月',
-                    '四月',
-                    '五月',
-                    '六月',
-                    '七月',
-                    '八月',
-                    '九月',
-                    '十月',
-                    '十一月',
-                    '十二月'
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    ''
                 ]
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: '单位 (元)'
+                    text: ''
                 }
             },
             tooltip: {
-                valueSuffix: '元',
-                headerFormat: "{point.key}:",
-                pointFormat: '<tr><td>{point.y:.2f}元<td></tr>',
-                footerFormat: '</table>',
+                valueSuffix: '',
+                headerFormat: "",
+                pointFormat: '',
+                footerFormat: '',
                 shared: true,
                 useHTML: true
             },

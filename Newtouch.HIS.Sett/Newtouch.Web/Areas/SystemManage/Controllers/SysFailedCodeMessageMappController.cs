@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
     /// 创 建：张冬林
-    /// 日 期：2017-09-30 14:54
+    /// Ngày Kỳ：2017-09-30 14:54
     /// 描 述：错误提示配置
     /// </summary>
     public class SysFailedCodeMessageMappController : ControllerBase
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         /// <summary>
         /// 获取实体
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult GetFormJson(string keyValue)
         {
@@ -45,10 +45,10 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu đơn bảng（Thêm mới、Sửa）
         /// </summary>
         /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult SubmitForm(SysFailedCodeMessageMappEntity entity, string keyValue)
         {
@@ -57,9 +57,9 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult DeleteForm(string keyValue)
         {

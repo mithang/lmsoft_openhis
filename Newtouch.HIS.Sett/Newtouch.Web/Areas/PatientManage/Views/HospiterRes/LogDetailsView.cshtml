@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/_Index.cshtml";
+    Layout = "";
 }
 
 <div class="gridPanel">
@@ -11,21 +11,21 @@
 
 <script>
     $(function () {
-        var Id = $.request("Id");
+        var Id = $.request("");
         pageInit();
         GetData(Id);
     });
     function pageInit() {
-        $("#gridList").dataGrid(
+        $("").dataGrid(
             {
-                //url: "/PatientManage/HospiterRes/GetModifyLog",
+                //url: "",
                 colModel: [
-                    { label: '名称', name: 'data_name', width: 100, align: 'left' },
-                    { label: '修改前内容', name: 'datavalue_old', width: 150, align: 'left' },
-                    { label: '修改后内容', name: 'datavalue_new', width: 120, align: 'left' },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 150, align: '' },
+                    { label: '', name: '', width: 120, align: '' },
                 ],
                 viewrecords: false,
-                width: "100%",
+                width: "",
                 autowidth: true,
                 height: $(window).height()-55,
             });
@@ -33,26 +33,26 @@
 
     function GetData(Id) {
         $.ajax({
-            url: "/PatientManage/HospiterRes/GetDetailsData",
-            dataType: "json",
+            url: "",
+            dataType: "",
             async: false,
-            data: { "Id": Id },
-            type: "POST",
+            data: { "": Id },
+            type: "",
             success: function (req) {
                 if (req.length>0) {
-                    var datanames = (req[0].datanames).split(',');
-                var datavalue_old = (req[0].datavalue_old).split(',');
-                var datavalue_new = (req[0].datavalue_new).split(',');
+                    var datanames = (req[0].datanames).split('');
+                var datavalue_old = (req[0].datavalue_old).split('');
+                var datavalue_new = (req[0].datavalue_new).split('');
                 for (var i = 0; i < datanames.length; i++) {
                     for (var j = i; j < datavalue_old.length; j++) {
                         for (var k = i; k < datavalue_new.length; k++) {
 
-                            $("#gridList").jqGrid("addRowData", i+1, {
-                                'data_name': datanames[i],
-                                'datavalue_old': datavalue_old[j] == "NULL" ? "" : datavalue_old[j],
-                                'datavalue_new': datavalue_new[k] == "NULL" ? "" : datavalue_new[k]
+                            $("").jqGrid("", i+1, {
+                                '': datanames[i],
+                                '': datavalue_old[j] == "" ? "" : datavalue_old[j],
+                                '': datavalue_new[k] == "" ? "" : datavalue_new[k]
                             });
-                            //$("#gridList").jqGrid("editRow", i + 1);
+                            //$("").jqGrid("", i + 1);
                             break;
                         }
                         break;

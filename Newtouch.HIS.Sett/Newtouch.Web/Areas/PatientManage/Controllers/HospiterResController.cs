@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         {
 
             ViewBag.zyhpz = _sysConfigRepo.GetBoolValueByCode("xt_zyh", OrganizeId, true).Value ? "ON" : "OFF";
-            //是否用卡号搜索，默认OFF，即默认要用病历号搜索
+            //是否用卡号搜索，Mặc địnhOFF，即默认要用病历号搜索
             ViewBag.searchpz = _sysConfigRepo.GetBoolValueByCode("register_search", OrganizeId, false).Value ? "ON" : "OFF";
             ViewBag.isDiagnosisRequired = _sysConfigRepo.GetBoolValueByCode("Inpatient_Registe_Diagnosis_Required", this.OrganizeId);
             ViewBag.CurUserCode = UserIdentity.UserCode;
@@ -110,13 +110,13 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             ViewBag.IsDefaultDepart = _sysConfigRepo.GetByCode("IsDefaultDepart", OrganizeId) == null ? "OFF" : _sysConfigRepo.GetByCode("IsDefaultDepart", OrganizeId).Value;
             ViewBag.IsDefaultDoc = _sysConfigRepo.GetByCode("IsDefaultDoc", OrganizeId) == null ? "OFF" : _sysConfigRepo.GetByCode("IsDefaultDoc", OrganizeId).Value;
             ViewBag.IsOpenSfqr = _sysConfigRepo.GetValueByCode("xt_isopen_sfqr", OrganizeId) == "ON";
-            //门诊登记完成后，跳转页面配置
+            //Sau hoàn thành đăng ký ngoại trú，跳转页面配置
             ViewBag.TZPZ_OutpatientRegister = _sysConfigRepo.GetByCode("TZPZ_OutpatientRegister", OrganizeId) == null ? "" : _sysConfigRepo.GetByCode("TZPZ_OutpatientRegister", OrganizeId).Value;
             return View();
         }
 
         /// <summary>
-        /// 取消挂号
+        /// Hủy đăng ký khám
         /// </summary>
         /// <returns></returns>
         public ActionResult CancelRegister()
@@ -124,7 +124,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             return View();
         }
         /// <summary>
-        /// 医保病人基本信息、账户信息
+        /// Thông tin cơ bản bệnh nhân bảo hiểm y tế、Thông tin tài khoản
         /// </summary>
         /// <returns></returns>
         public ActionResult YbPatientBasicInfo()
@@ -133,7 +133,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
         
         /// <summary>
-        /// 医保目录下载 查询 字典
+        /// Tải xuống danh mục bảo hiểm y tế Tra cứu Từ điển
         /// </summary>
         /// <returns></returns>
         public ActionResult MedicalInsuranceCatalogue()
@@ -141,7 +141,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             return View();
         }
 
-        //加载数据
+        //Tải dữ liệu
         public ActionResult CatalogueData(Pagination pagination, string tbname, string key)
         {
             var datapan = new
@@ -352,7 +352,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         //}
 
         /// <summary>
-        /// 新建登记 保存卡号和病人基本信息
+        /// 新建登记 Lưu số thẻ và Thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="PatientBasicAndCardInfoVO"></param>
         /// <returns></returns>
@@ -421,7 +421,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         public ActionResult CheckCardState(string kh, string zyh)
         {
             var blh = "";
-            //是否用卡号搜索，默认OFF，即默认要用病历号搜索
+            //是否用卡号搜索，Mặc địnhOFF，即默认要用病历号搜索
             var searchpz = _sysConfigRepo.GetBoolValueByCode("register_search", OrganizeId, false).Value ? "ON" : "OFF";
             if (searchpz == "ON" && !string.IsNullOrWhiteSpace(kh))
             {
@@ -465,7 +465,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 住院登记点击保存时操作
+        /// Nhập viện thao tác giờ lưu nhấn đăng ký
         /// </summary>
         /// <param name="vo"></param>
         /// <returns></returns>
@@ -491,7 +491,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 取消入院
+        /// Hủy nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -507,7 +507,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             }
             //if (_PatientBasicInfoDmnService.BoolRuQu(zyh, this.OrganizeId))
             //{
-            //    throw new FailedException("该病人已在病区中，不能取消入院！");
+            //    throw new FailedException("Trong khu bệnh ở đã bệnh nhân này，Không thể hủy nhập viện！");
             //}
             _PatientBasicInfoDmnService.CancelAdmission(zyh, this.OrganizeId);
             return Success("取消入院成功！");
@@ -524,12 +524,12 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
 		    }
             //if (_PatientBasicInfoDmnService.BoolRuQu(zyh, this.OrganizeId))
             //{
-            //    throw new FailedException("该病人已在病区中，不能取消入院！");
+            //    throw new FailedException("Trong khu bệnh ở đã bệnh nhân này，Không thể hủy nhập viện！");
             //}
             return Success("取消入院成功！");
 	    }
 		/// <summary>
-		/// 根据patid获取住院信息
+		/// TheopatidLấy thông tin nhập viện
 		/// </summary>
 		/// <param name="patid"></param>
 		/// <returns></returns>
@@ -553,7 +553,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         #region 打印
 
         /// <summary>
-        /// 住院基本信息打印
+        /// Nhập viện in thông tin cơ bản
         /// </summary>
         /// <param name="print"></param>
         /// <returns></returns>
@@ -696,7 +696,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 病人查询浮层
+        /// Lớp nổi tra cứu bệnh nhân
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -711,7 +711,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             return Content(list.ToJson());
         }
         /// <summary>
-        /// 门诊住院预交金患者浮层
+        /// Lớp nổi bệnh nhân tiền tạm ứng nhập viện ngoại trú
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -727,7 +727,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 判断是否重复挂号
+        /// Đánh giá có đăng ký khám lặp lại không
         /// </summary>
         /// <param name="patid"></param>
         /// <returns></returns>
@@ -744,12 +744,12 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
 
         }
         /// <summary>
-        /// 根据病历号 或 卡号 查询病人基本信息
+        /// Số bệnh án theo Hoặc Số thẻ Tra cứu thông tin cơ bản bệnh nhân
         /// </summary>
-        /// <param name="blh">病历号</param>
-        /// <param name="kh">卡号</param>
+        /// <param name="blh">Số bệnh án</param>
+        /// <param name="kh">Số thẻ</param>
         /// <param name="zjh"></param>
-        /// <param name="cardType">卡类型</param>
+        /// <param name="cardType">Loại thẻ</param>
         /// <returns></returns>
         public ActionResult GetOutpatientBasicInfo(string blh, string kh, string zjh, string cardType, string CardId, string ly=null)
         {
@@ -760,7 +760,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         public ActionResult valiPatZjh(string zjh)
         {
             //var patChargeInfo = _outPatChargeApp.GetOutPatBasicInfoInRegister(blh, kh, zjh, cardType, ly, CardId);
-            //return Success("提交成功", patChargeInfo);
+            //return Success("Gửi thành công", patChargeInfo);
             return null;
         }
 
@@ -804,7 +804,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 根据身份证号判断是否初诊
+        /// Đánh giá số chứng minh nhân dân theo có khám lần đầu không
         /// </summary>
         /// <param name="sfzh"></param>
         /// <returns></returns>
@@ -819,9 +819,9 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 根据个人编码获取患者基本信息
+        /// Thông tin cơ bản bệnh nhân lấy mã người cái theo
         /// </summary>
-        /// <param name="xnhgrbm">新农合个人编码</param>
+        /// <param name="xnhgrbm">Mã cá nhân bảo hiểm nông thôn mới</param>
         /// <returns></returns>
         //public ActionResult GetPatientBasicInfo(string xnhgrbm)
         //{
@@ -832,7 +832,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         //}
 
         /// <summary>
-        /// 获取卡号信息
+        /// Lấy thông tin số thẻ
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="brxz"></param>
@@ -850,11 +850,11 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             }
             switch (brxz)
             {
-                //医保
+                //Bảo hiểm y tế
                 case "1":
                     cardtype = ((int)EnumCardType.YBJYK).ToString();
                     break;
-                //新农合
+                //Bảo hiểm y tế nông thôn mới
                 case "8":
                     cardtype = ((int)EnumCardType.XNHJYK).ToString();
                     break;
@@ -868,7 +868,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
             return Success("", khentity);
         }
         /// <summary>
-        /// 新农合S04 入院办理
+        /// Bảo hiểm y tế nông thôn mớiS04 Làm thủ tục nhập viện
         /// </summary>
         /// <param name="VO"></param>
         /// <returns></returns>
@@ -1009,7 +1009,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 新农合S06 入院办理信息修改
+        /// Bảo hiểm y tế nông thôn mớiS06 Sửa thông tin làm thủ tục nhập viện
         /// </summary>
         /// <param name="VO"></param>
         /// <returns></returns>
@@ -1043,7 +1043,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 验证新农合接口对照
+        /// Xác minh đối chiếu giao diện bảo hiểm nông thôn mới mới
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
@@ -1081,7 +1081,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
 
         #region 病人性质
         /// <summary>
-        /// 根据险种类型获取病人性质
+        /// Tính chất bệnh nhân lấy loại loại hình bảo hiểm theo
         /// </summary>
         /// <param name="xzlx"></param>
         /// <returns></returns>

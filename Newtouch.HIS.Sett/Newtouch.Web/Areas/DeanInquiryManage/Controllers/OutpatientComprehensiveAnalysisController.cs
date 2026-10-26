@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 门诊综合分析_门诊患者分析
+        /// 门诊综合分析_Phân tích bệnh nhân ngoại trú
         /// </summary>
         public ActionResult GetMzhzfx(string ksrq, string jsrq,string rtype)
         {

@@ -1,7 +1,7 @@
 ﻿@using Newtouch.Common.Operator;
 @{
-    ViewBag.Title = "Form";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 <form id="form1">
@@ -9,9 +9,9 @@
         <table class="form">
             <tr>
                 <td class="formTitle" hidden="hidden"><input type="text" id="ks" name="ks" class="form-control form-an" /></td>
-                <td class="formTitle"><span class="rema">*</span>科室：</td>
+                <td class="formTitle"><span class="rema">*</span>Khoa：</td>
                 <td class="formValue"><input type="text" id="ksmc" name="ksmc" class="form-control form-an" /></td>
-                <td class="formTitle">医生：</td>
+                <td class="formTitle">Bác sĩ：</td>
                 <td class="formValue"><input type="text" id="doctor" class="form-control form-an" /></td>
                 <td class="formValue" hidden="hidden"><input type="text" id="gh" class="form-control form-an" /></td>
                 <td class="formValue" hidden="hidden"><input type="text" id="xm" class="form-control form-an" /></td>
@@ -21,70 +21,70 @@
 </form>
 
 <script>
-    var bddm = $.request("bddm");
+    var bddm = $.request("");
     $(function () {
         initControl();
         if (!!bddm) {
             $.ajax({
-                url: "/SystemManage/SysDepartmentBinding/GetFormJson?r=" + Math.random(),
+                url: "" + Math.random(),
                 data: { bddm: bddm },
-                dataType: "json",
+                dataType: "",
                 async: false,
                 success: function (data) {
-                    $("#form1").formSerialize(data);
-                    $("#doctor").val(data.xm);
+                    $("").formSerialize(data);
+                    $("").val(data.xm);
                 }
             });
         }
     })
 
     function initControl() {
-        ///医生
-        $("#doctor").newtouchFloatingSelector({
+        ///Bác sĩ
+        $("").newtouchFloatingSelector({
             height: 150,
             width: 250,
             clickautotrigger: true,
             filter: function (keyword) {
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
 
                 $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
                     if (((val.StaffPY && val.StaffPY.toLowerCase().indexOf(keyword.toLowerCase()) >= 0)
                         || (val.StaffName && val.StaffName.indexOf(keyword.toLowerCase()) >= 0)
                         || keyword.trim() == "")
-                        && val.DutyCode == "Doctor") {
+                        && val.DutyCode == "") {
                         resultObjArr.push(val);
                     }
                 });
                 return resultObjArr;
 
             },
-            caption: "医生",
+            caption: "",
             colModel: [
                 {
-                    label: '工号', name: 'StaffGh', widthratio: 33
+                    label: '', name: '', widthratio: 33
                 },
                 {
-                    label: '名称', name: 'StaffName', widthratio: 33
+                    label: '', name: '', widthratio: 33
                 },
-                { label: '拼音', name: 'StaffPY', widthratio: 33 }
+                { label: '', name: '', widthratio: 33 }
             ],
             itemdbclickhandler: function ($thistr) {
-                $("#doctor").attr("data-label", $thistr.find("td:eq(0)").html());
-                $("#doctor").val($thistr.find('td:eq(1)').html());
-                $("#gh").val($thistr.find("td:eq(0)").html());
-                $("#xm").val($thistr.find("td:eq(1)").html());
+                $("").attr("", $thistr.find("").html());
+                $("").val($thistr.find('').html());
+                $("").val($thistr.find("").html());
+                $("").val($thistr.find("").html());
                 return;
             }
         });
 
-        ///科室
-        $("#ksmc").newtouchBatchFloatingSelector({
+        ///Khoa
+        $("").newtouchBatchFloatingSelector({
             height: 150,
             width: 250,
             clickautotrigger: true,
             filter: function (keyword) {
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysDepartList, function (idx, val) {
                     if ((val.py && val.py.indexOf(keyword.toLowerCase()) >= 0)
@@ -96,31 +96,31 @@
                 return resultObjArr;
 
             },
-            caption: "科室",
+            caption: "",
             colModel: [
-                { label: '编号', name: 'Code', widthratio: 50 },
-                { label: '名称', name: 'Name', widthratio: 50 },
-                { label: '拼音', name: 'py', hidden: true }
+                { label: '', name: '', widthratio: 50 },
+                { label: '', name: '', widthratio: 50 },
+                { label: '', name: '', hidden: true }
             ],
             itemdbclickhandler: function ($thistr) {
-                $("#ks").val($thistr.find("td:eq(0)").html());
-                $("#ksmc").attr("data-label", $thistr.find("td:eq(0)").html());
-                $("#ksmc").val($thistr.find('td:eq(1)').html());
+                $("").val($thistr.find("").html());
+                $("").attr("", $thistr.find("").html());
+                $("").val($thistr.find('').html());
                 return;
             },
         });
     }
 
     function submitForm() {
-        if (!$('#form1').formValid()) {
+        if (!$('').formValid()) {
             return false;
         }
-        var params = $("#form1").formSerialize();
+        var params = $("").formSerialize();
         $.submitForm({
-            url: "/SystemManage/SysDepartmentBinding/SubmitForm?bddm=" + bddm,
+            url: "" + bddm,
             param: params,
             success: function () {
-                $.currentWindow().$("#gridList").trigger("reloadGrid");
+                $.currentWindow().$("").trigger("");
             }
         })
     }

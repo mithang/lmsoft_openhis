@@ -1,25 +1,25 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "Form";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <style>
     .required {
         color: red;
     }
 </style>
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/Content/js/SystemManage/SysPatiChargeLogic/Form.js",false)" type="text/javascript"></script>
+<script src=""~/Content/js/SystemManage/SysPatiChargeLogic/Form.js"" type=""></script>
 <form id="form1">
     <table class="form">
         <tr>
-            <td class="formTitle"><span class="required">*</span>组织机构：</td>
+            <td class="formTitle"><span class="required">*</span>Tổ chức：</td>
             <td class="formValue">
                 <select id="OrganizeId" name="OrganizeId" class="form-control required">
-                    <option value="">==请选择==</option>
+                    <option value="">==Vui lòng chọn==</option>
                 </select>
             </td>
             <td class="formTitle">
-                <span class="required">*</span>病人性质：
+                <span class="required">*</span>Tính chất bệnh nhân：
             </td>
             <td class="formValue">
                 <input type="text" id="brxzmc" name="brxzmc" class="form-control">
@@ -27,12 +27,12 @@
         </tr>
         <tr>
             <td class="formTitle">
-                大类：
+                Nhóm lớn：
             </td>
             <td class="formValue">
                 <input type="text" id="dlmc" name="dlmc" class="form-control">
             </td>
-            <td class="formTitle">收费项目：</td>
+            <td class="formTitle">Hạng mục thu phí：</td>
             <td class="formValue ">
                 <input type="text" id="sfxmmc" name="sfxmmc" class="form-control">
             </td>
@@ -40,12 +40,12 @@
         <tr>
             <td class="formTitle"><span class="required">*</span>适用范围：</td>
             <td class="formValue">
-               @*@Html.DropDownList("mzzybz", Enummzzybz.mzzybz0.ToDescSelectList(), "==请选择==", new { @class = "form-control" })*@
+               @*@Html.DropDownList("", Enummzzybz.mzzybz0.ToDescSelectList(), "", new { @class = "" })*@
                 @*<select class="form-control" id="mzzybz" name="mzzybz">
-                    <option value="0">通用</option>
-                    <option value="1">门诊</option>
-                    <option value="2">部门</option>
-                    <option value="3">住院</option>
+                    <option value="0">Chung</option>
+                    <option value="1">Ngoại trú</option>
+                    <option value="2">Phòng ban</option>
+                    <option value="3">Nhập viện</option>
                 </select>*@
             </td>
             <td class="formTitle"><span class="required">*</span>算法级别：</td>
@@ -67,24 +67,24 @@
             <td class="formTitle"><span class="required">*</span>费用范围：</td>
             <td class="formValue">
                 <select class="form-control" id="fyfw" name="fyfw">
-                    <option value="0">可报</option>
-                    <option value="1">可报+分类自付</option>
-                    <option value="2">可报+分类自付+自费</option>
-                    <option value="3">可报+分类自付+自费+绝对自费</option>
+                    <option value="0">Có thể báo cáo</option>
+                    <option value="1">Có thể báo cáo+Tự trả theo phân loại</option>
+                    <option value="2">Có thể báo cáo+Tự trả theo phân loại+Tự chi trả</option>
+                    <option value="3">Có thể báo cáo+Tự trả theo phân loại+Tự chi trả+Hoàn toàn tự chi trả</option>
                 </select>
             </td>
-            <td class="formTitle"><span class="required">*</span>自付比例：</td>
+            <td class="formTitle"><span class="required">*</span>Tỷ lệ tự trả：</td>
             <td class="formValue">
                 <input type="text" class="form-control" id="zfbl" name="zfbl" />
             </td>
         </tr>
         <tr>
-            <td class="formTitle"><span class="required">*</span>自付性质：</td>
+            <td class="formTitle"><span class="required">*</span>Tính chất tự trả：</td>
             <td class="formValue">
 
                 <select class="form-control" id="zfxz" name="zfxz">
-                    <option value="0">自付</option>
-                    <option value="1">自费</option>
+                    <option value="0">Tự trả</option>
+                    <option value="1">Tự chi trả</option>
                 </select>
             </td>
             <td class="formTitle"><span class="required">*</span>费用上限：</td>
@@ -111,21 +111,21 @@
             <div class="formValue col-xs-6">
                 <label>费用范围</label>
                 <select class="form-control" id="fyfw" name="fyfw">
-                    <option value="0">可报</option>
-                    <option value="1">可报+分类自付</option>
-                    <option value="2">可报+分类自付+自费</option>
-                    <option value="3">可报+分类自付+自费+绝对自费</option>
+                    <option value="0">Có thể báo cáo</option>
+                    <option value="1">Có thể báo cáo+Tự trả theo phân loại</option>
+                    <option value="2">Có thể báo cáo+Tự trả theo phân loại+Tự chi trả</option>
+                    <option value="3">Có thể báo cáo+Tự trả theo phân loại+Tự chi trả+Hoàn toàn tự chi trả</option>
                 </select>
             </div>
             <div class="formValue col-xs-6">
-                <label>自付比例</label>
+                <label>Tỷ lệ tự trả</label>
                 <input type="text" class="form-control" id="zfbl" name="zfbl" />
             </div>
             <div class="formValue col-xs-6">
-                <label>自付性质</label>
+                <label>Tính chất tự trả</label>
                 <select class="form-control" id="zfxz" name="zfxz">
-                    <option value="0">自付</option>
-                    <option value="1">自费</option>
+                    <option value="0">Tự trả</option>
+                    <option value="1">Tự chi trả</option>
                 </select>
             </div>
             <div class="formValue col-xs-6">
@@ -133,23 +133,23 @@
                 <input type="text" class="form-control" id="fysx" name="fysx" />
             </div>
             <div class="formValue col-xs-6">
-                <label>有效</label>
+                <label>Hiệu lực</label>
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
-                        <input type="radio" name="zt" id="zt" value="1"> 是
+                        <input type="radio" name="zt" id="zt" value="1"> Có
                     </label>
                     <label class="btn btn-default">
-                        <input type="radio" name="zt" id="zt" value="0"> 否
+                        <input type="radio" name="zt" id="zt" value="0"> Không
                     </label>
                 </div>
             </div>
             <div class="formValue col-xs-6" style="float:right">
-                <label>建档人员</label>
+                <label>Người lập hồ sơ</label>
                 @*<input class="form-control" id="jdry" name="jdry" value=@Newtouch.Tools.OperatorProvider.GetCurrent().UserCode type="text" readonly="readonly" />
         <input class="form-control" id="CreatorCode" name="CreatorCode" value=@OperatorProvider.GetCurrent().UserCode type="text" readonly="readonly" />
         </div>
         <div class="formValue col-xs-6">
-            <label>建档日期</label>
+            <label>Ngày lập hồ sơ</label>
             @*<input class="form-control" id="bgbz" name="bgbz" value="0" style="display:none" type="text" />
                 <input class="form-control" id="bgrq" name="bgrq" style="display:none" value=@DateTime.Now type="text" />
                 <input class="form-control" id="jdrq" name="jdrq" value=@DateTime.Now type="text" readonly="readonly" />

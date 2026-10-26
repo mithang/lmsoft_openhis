@@ -1,44 +1,44 @@
 ﻿
-var keyValue = $.request("keyValue");
+var keyValue = $.request("");
 $(function () {
     InitControl();
     if (!!keyValue) {
         $.ajax({
-            url: "/SystemManage/SysMSItemCompared/GetFormJson",
+            url: "",
             data: { keyValue: keyValue },
-            dataType: "json",
+            dataType: "",
             async: false,
             success: function (data) {
-                $("#form1").formSerialize(data);
+                $("").formSerialize(data);
             }
         });
     }
 })
 function InitControl() {
-    xmList();//收费项目
-    ksList();//病人性质
+    xmList();//Hạng mục thu phí
+    ksList();//Tính chất bệnh nhân
 }
 function xmList() {
-    $("#sfxm").bindSelect({
-        url: "/SystemManage/SysMSItemCompared/GetxmSelect",
+    $("").bindSelect({
+        url: "",
     });
 }
 
 function ksList() {
-    $("#ks").bindSelect({
-        url: "/SystemManage/SysMSItemCompared/GetksSelect"
+    $("").bindSelect({
+        url: ""
     });
 }
 function submitForm() {
-    if (!$('#form1').formValid()) {
+    if (!$('').formValid()) {
         return false;
     }
     $.submitForm({
-        url: "/SystemManage/SysMSItemCompared/SubmitForm?keyValue=" + keyValue,
-        param: $("#form1").formSerialize(),
+        url: "" + keyValue,
+        param: $("").formSerialize(),
         success: function () {
-            $.currentWindow().$("#gridList").resetSelection();
-            $.currentWindow().$("#gridList").trigger("reloadGrid");
+            $.currentWindow().$("").resetSelection();
+            $.currentWindow().$("").trigger("");
             $.loading(false);
         }
     })

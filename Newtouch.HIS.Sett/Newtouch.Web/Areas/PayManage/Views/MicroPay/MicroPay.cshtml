@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "MicroPay";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 <div id="form">
@@ -28,23 +28,23 @@
     </div>
 </div>
 <script>
-    var out_trade_no = $.request("out_trade_no");
-    var subject = $.request("subject");
-    var total_amount = $.request("total_amount");
-    var djjesszffs = $.request("djjesszffs");
-    var patid = $.request("patid");
+    var out_trade_no = $.request("");
+    var subject = $.request("");
+    var total_amount = $.request("");
+    var djjesszffs = $.request("");
+    var patid = $.request("");
     $(function () {
         initControl();
 
-        $('#subject').html(subject);
-        $('#total_amount').html(total_amount);
+        $('').html(subject);
+        $('').html(total_amount);
     });
 
     function initControl() {
-        $('#auth_code').trigger('focus');
+        $('').trigger('');
 
-        $('#auth_code').keyupEnterEvent(function (e) {
-            setTimeout("top.$('div#' + window.name + '').siblings('div.layui-layer-btn').find('a.layui-layer-btn0').trigger('click');", 200);
+        $('').keyupEnterEvent(function (e) {
+            setTimeout("", 200);
             return false;
         });
     }
@@ -52,10 +52,10 @@
     var func = null;
 
     function AcceptClick(callBack) {
-        //if (!$('#form').formValid()) {
+        //if (!$('').formValid()) {
         //    return false;
         //}
-        var auth_code = $('#auth_code').val();
+        var auth_code = $('').val();
         if (!out_trade_no || !subject || !total_amount || !auth_code) {
             return false;
         }
@@ -68,23 +68,23 @@
             patid: patid,
         };
         $.najax({
-            url: "/PayManage/MicroPay/MicroPaySubmit",
+            url: "",
             data: postData,
-            type: "post",
-            loadingtext: "收款中...",
+            type: "",
+            loadingtext: "",
             success: function (ajaxResp) {
-                //收款成功
-                $.modalMsg('收款成功', 'success', 800);
+                //Thu tiền thành công
+                $.modalMsg('', '', 800);
                 //
                 func = function () {
                     console.log(ajaxResp.data);
                     callBack(ajaxResp.data);
                     $.modalClose();
                 };
-                setTimeout('func();', 1000);
+                setTimeout('', 1000);
             },
             errorCallback: function () {
-                //收款失败
+                //Thu tiền thất bại
 
             }
         });

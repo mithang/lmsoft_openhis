@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "OutpatientReprintOrSupplementPrint";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 <style type="text/css">
@@ -14,36 +14,36 @@
 <form id="form1">
     <div class="panel panel-default" style="margin-top:10px;">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">开始日期：</th>
+                    <th class="formTitle">Ngày bắt đầu：</th>
                     <td class="formValue">
                         <input id="txtstartDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">结束日期：</th>
+                    <th class="formTitle">Ngày kết thúc：</th>
                     <td class="formValue">
                         <input id="txtendDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">结算内码：</th>
+                    <th class="formTitle">Mã nội bộ quyết toán：</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtjsnm" name="txtjsnm" />
                     </td>
                     <td class="formValue" rowspan="2">
-                        <input type="button" id="btn_search" class="btn btn-default btn-md" style="width:50px; height:45px; margin-left: 40px" value="查询" />
+                        <input type="button" id="btn_search" class="btn btn-default btn-md" style="width:50px; height:45px; margin-left: 40px" value="Tra cứu" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">卡号：</th>
+                    <th class="formTitle">Số thẻ：</th>
                     <td class="formValue">
                         <div class="row">
                             <div class="col-md-9">
                                 <input type="text" class="form-control" id="txtkh" name="txtkh" />
                             </div>
                             <div class="col-md-3" style="text-align:right;">
-                                <input type="button" class="btn btn-default btn-md" style="width:100%" value="刷卡" onclick="SK()" />
+                                <input type="button" class="btn btn-default btn-md" style="width:100%" value="Quẹt thẻ" onclick="SK()" />
                             </div>
                         </div>
                     </td>
@@ -70,62 +70,62 @@
     <input type="text" id="txtfph" name="txtfph" hidden="hidden">
 </form>
 
-@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
+@Html.Partial("", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 4, 6, 7, 8, 9, 10 },
-    F6Text= "打印明细",
-    F7Text= "打印发票",
-    F8Text= "补打",
-    F9Text= "重打"
+    F6Text= "",
+    F7Text= "",
+    F8Text= "",
+    F9Text= ""
 })
 
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGridchiều rộng của
         $(window).resize(function () {
-            initLayout("MyTabGrid");
+            initLayout("");
         });
-        //结算主记录
+        //Bản ghi chính quyết toán
         gridMzjsRecordsData();
-        //全选/全不选：找到Grid中 title的checkbox，注册一个onclick事件，当click时，加载明细
-        $("table input[type=checkbox]:eq(0)").bind("click", function () {
+        //Chọn tất cả/全不选：Đến tìmGridTrong titlecủacheckbox，Đăng ký cái mộtonclickSự kiện，KhiclickGiờ，Tải chi tiết
+        $("").bind("", function () {
            
             btn_selectrow();
         });
 
     })
 
-    //刷卡
+    //Quẹt thẻ
     function SK() {
-        $.modalAlert("功能正在开发中", 'warning');
+        $.modalAlert("", '');
         return false;
     }
 
-    //门诊发票信息List
+    //Thông tin hóa đơn ngoại trúList
     function gridMzjsRecordsData() {
-        var $gridMzjsRecords = $("#gridMzjsRecords");
+        var $gridMzjsRecords = $("");
         $gridMzjsRecords.dataGrid({
             postData: getSearchPostData(),
             height: 150,
             url: "",
             colModel: [
-                { label: '全选', name: '', width: 80, align: 'left' },
-                { label: '结算内码', name: 'jsnm', width: 120, align: 'left' },
-                { label: '姓名', name: 'xm', width: 120, align: 'left' },
-                { label: '卡号', name: 'kh', width: 120, align: 'left' },
-                { label: '发票号', name: 'xfph', width: 120, align: 'left' },
-                { label: '收费员', name: 'rymc', width: 120, align: 'left' },
-                { label: '结算日期', name: 'CreateTime', width: 130, align: 'left' },
+                { label: '', name: '', width: 80, align: '' },
+                { label: '', name: '', width: 120, align: '' },
+                { label: '', name: '', width: 120, align: '' },
+                { label: '', name: '', width: 120, align: '' },
+                { label: '', name: '', width: 120, align: '' },
+                { label: '', name: '', width: 120, align: '' },
+                { label: '', name: '', width: 130, align: '' },
                 {
-                    label: '总金额', name: 'zje', width: 120, align: 'left', formatter: function (cellvalue) {
-                        return cellvalue ? cellvalue.toFixed(2) : "0.00";
+                    label: '', name: '', width: 120, align: '', formatter: function (cellvalue) {
+                        return cellvalue ? cellvalue.toFixed(2) : "";
                     }
                 }
 
             ],
             multiselect: true,
-            pager: "#gridPager",
-            sortname: 'CreateTime desc',
+            pager: "",
+            sortname: '',
             viewrecords: true,
             onSelectRow_page: function (rowid) {
                 btn_selectrow();
@@ -133,38 +133,38 @@
 
         });
 
-        $("#btn_search").click(function () {
-            $gridMzjsRecords.jqGrid('setGridParam', {
-                postData: getSearchPostData(), url: '/OutpatientManage/OutpatientChargeQuery/LoadMzjsRecords'
-            }).trigger('reloadGrid');
+        $("").click(function () {
+            $gridMzjsRecords.jqGrid('', {
+                postData: getSearchPostData(), url: ''
+            }).trigger('');
         });
-        //$("#btn_search").trigger('click');
+        //$("").trigger('');
     }
     function getSearchPostData() {
-        var startDate = $("#txtstartDate").val();
-        var endDate = $("#txtendDate").val();
-        var jsnm = $("#txtjsnm").val();
-        var kh = $("#txtkh").val();
-        var yfph = $("#txtyfph").val();
+        var startDate = $("").val();
+        var endDate = $("").val();
+        var jsnm = $("").val();
+        var kh = $("").val();
+        var yfph = $("").val();
         return { startDate: startDate, endDate: endDate, jsnm: jsnm, kh: kh, yfph: yfph };
     };
 
-    //单击事件
+    //Sự kiện nhấn chuột
     function btn_selectrow()
     {
-        //每次单击，先清空明细 再重新加载所有选中行明细
-        $('#gridMzjsMXInfo').jqGrid("clearGridData");
-        var rowsData = $("#gridMzjsRecords").jqGrid("getRowData_AllLine", true);
+        //Mỗi lần nhấn chuột，Xóa trống chi tiết trước Chi tiết dòng đã chọn tất cả tải lại lại
+        $('').jqGrid("");
+        var rowsData = $("").jqGrid("", true);
         var rowsDataArray = JSON.parse(rowsData)
         var jsnmStr = "";
         for (var i = 0; i < rowsDataArray.length; i++) {
-            jsnmStr += rowsDataArray[i].jsnm+",";
+            jsnmStr += rowsDataArray[i].jsnm+"";
         }
         $.najax({
-            type: "POST",
-            url: "/OutpatientManage/OutpatientChargeQuery/LoadMzjsMXRecords",
+            type: "",
+            url: "",
             data: { jsnmStr: jsnmStr },
-            dataType: "json",
+            dataType: "",
             success: function (ajaxresp) {
                 ConvertObjectMethod(ajaxresp.data);
             }
@@ -184,7 +184,7 @@
             if (settleDetailDto.pzmzEntity.pz == settleDetailDto.mz_ghxmList[i].sfxm) {
                 obj.dj = settleDetailDto.mz_ghxmList[i].dj;
                 obj.zfbl = settleDetailDto.mz_ghxmList[i].zfbl;
-                obj.sl = "1.00";
+                obj.sl = "";
                 obj.je = settleDetailDto.mz_ghxmList[i].je;
             }
             else
@@ -208,7 +208,7 @@
             if (settleDetailDto.pzmzEntity.pz == settleDetailDto.mz_xmList[i].sfxm) {
                 obj.dj = settleDetailDto.mz_xmList[i].dj;
                 obj.zfbl = settleDetailDto.mz_xmList[i].zfbl;
-                obj.sl = "1.00";
+                obj.sl = "";
                 obj.je = settleDetailDto.mz_xmList[i].je;
             }
             else {
@@ -231,7 +231,7 @@
             if (settleDetailDto.pzmzEntity.pz == settleDetailDto.mz_cfmxList[i].sfxm) {
                 obj.dj = settleDetailDto.mz_cfmxList[i].dj;
                 obj.zfbl = settleDetailDto.mz_cfmxList[i].zfbl;
-                obj.sl = "1.00";
+                obj.sl = "";
                 obj.je = settleDetailDto.mz_cfmxList[i].je;
             }
             else {
@@ -243,52 +243,52 @@
             obj.isGh = settleDetailDto.IsGh;
             MXInfoList.push(obj);
         }
-        $('#gridMzjsMXInfo').newtouchLocalDataGrid(null, MXInfoList);
+        $('').newtouchLocalDataGrid(null, MXInfoList);
     }
 
-    //门诊发票明细 jGrid声明
-    $('#gridMzjsMXInfo').newtouchLocalDataGrid({
+    //Chi tiết hóa đơn ngoại trú jGridKhai báo
+    $('').newtouchLocalDataGrid({
         height: 110,
-        caption: "结算明细",
+        caption: "",
         unwritten: false,
         sortable: false,
         colModel: [
-            { label: '处方号', name: 'cfh', width: 140, key: true },
-            { label: '类型', name: 'lx', width: 140, align: 'left' },
-            { label: '项目名称', name: 'xmmc', width: 160, align: 'left' },
-            { label: '单位', name: 'dw', width: 120, align: 'left' },
-            { label: '单价', name: 'dj', width: 110, align: 'left' },
-            { label: '自负比例', name: 'zfbl', width: 110, align: 'left' },
-            { label: '数量', name: 'sl', width: 100, align: 'left' },
+            { label: '', name: '', width: 140, key: true },
+            { label: '', name: '', width: 140, align: '' },
+            { label: '', name: '', width: 160, align: '' },
+            { label: '', name: '', width: 120, align: '' },
+            { label: '', name: '', width: 110, align: '' },
+            { label: '', name: '', width: 110, align: '' },
+            { label: '', name: '', width: 100, align: '' },
             {
-                label: '金额', name: 'je', width: 100, align: 'left', formatter: function (cellvalue) {
-                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
+                label: '', name: '', width: 100, align: '', formatter: function (cellvalue) {
+                    return cellvalue ? cellvalue.toFixed(2) : "";
                 }
             },
-            { label: 'isGh', name: 'isGh', hidden: true, align: 'left' }
+            { label: '', name: '', hidden: true, align: '' }
 
         ]
     });
 
-    //打印明细
+    //In chi tiết
     function PrintMxData()
     {
-        $.modalAlert("功能正在开发中", 'warning');
+        $.modalAlert("", '');
         return false;
 
-        var reccount = $("#gridMzjsRecords").getGridParam("selarrrow").length;
+        var reccount = $("").getGridParam("").length;
         if (reccount > 0) {
-            var rowsData = $("#gridMzjsRecords").jqGrid("getRowData_AllLine", true);
+            var rowsData = $("").jqGrid("", true);
             var rowsDataArray = JSON.parse(rowsData)
             var jsnmStr = "";
             for (var i = 0; i < rowsDataArray.length; i++) {
-                jsnmStr += rowsDataArray[i].jsnm + ",";
+                jsnmStr += rowsDataArray[i].jsnm + "";
             }
             $.najax({
-                type: "POST",
-                url: "/OutpatientManage/OutpatientChargeQuery/PrintMxData",
+                type: "",
+                url: "",
                 data: { jsnmStr: jsnmStr },
-                dataType: "json",
+                dataType: "",
                 success: function (ajaxresp) {
 
                 }
@@ -296,114 +296,114 @@
 
 
         } else {
-            $.modalAlert("请选择要打印明细的结算记录", 'warning');
+            $.modalAlert("", '');
             return;
         }
         
     }
 
-    //打印发票
+    //In hóa đơn
     function InvoicePrint()
     {
-        $.modalAlert("功能正在开发中", 'warning');
+        $.modalAlert("", '');
         return false;
 
-        var reccount = $("#gridMzjsRecords").getGridParam("selarrrow").length;
+        var reccount = $("").getGridParam("").length;
         if (reccount == 0)
         {
-            $.modalAlert("请选择结算信息", 'warning');
+            $.modalAlert("", '');
             return;
         } else if (reccount > 1) {
-            $.modalAlert("只能打印一条结算信息的发票", 'warning');
+            $.modalAlert("", '');
             return;
 
         } else
         {
             //勾选的行
-            var rowsData = $("#gridMzjsRecords").jqGrid("getRowData_AllLine", true);
+            var rowsData = $("").jqGrid("", true);
             var rowsDataArray = JSON.parse(rowsData);
             var jsnm = rowsDataArray[0].jsnm;
-            var isGh = $("#gridMzjsMXInfo").jqGrid('getGridParam', 'data')[0].isGh;
+            var isGh = $("").jqGrid('', '')[0].isGh;
         }
         $.najax({
-            type: "POST",
-            url: "/OutpatientManage/OutpatientChargeQuery/CheckPintInfo",
+            type: "",
+            url: "",
             data: { jsnm: jsnm },
-            dataType: "json",
+            dataType: "",
             success: function (ajaxresp) {
-                //打印发票
+                //In hóa đơn
                 PrintInvoice(jsnm, isGh);
             }
         });
     }
 
-    //弹出发票号的窗口
+    //Cửa sổ bật lên số hóa đơn
     function ShowInvoicePanel() {
         $.modalOpen({
-            id: "InvoiceNoChoosePanel",
-            title: "选发票号",
-            url: "/OutpatientManage/OutpatientReg/ChooseInvoice",
-            width: "300px",
-            height: "200px",
+            id: "",
+            title: "",
+            url: "",
+            width: "",
+            height: "",
             callBack: function (iframeId) {
-                top.InvoiceNoChoosePanel.checkFPH();    //窗口点确定的回调函数
+                top.InvoiceNoChoosePanel.checkFPH();    //Hàm callback xác nhận khi nhấn cửa sổ
             }
         });
     }
 
-    //打印发票
+    //In hóa đơn
     function PrintInvoice(jsnm, isGh)
     {
         $.najax({
-            type: "POST",
-            url: "/OutpatientManage/OutpatientChargeQuery/PrintInvoice",
+            type: "",
+            url: "",
             data: { jsnm: jsnm, isGh: isGh },
-            dataType: "json",
+            dataType: "",
             success: function (ajaxresp) {
 
             }
         });
     }
 
-    //补打
+    //In bù
     function SupplementPrint() {
 
-        $.modalAlert("功能正在开发中", 'warning');
+        $.modalAlert("", '');
         return false;
 
-        var reccount = $("#gridMzjsRecords").getGridParam("selarrrow").length;
+        var reccount = $("").getGridParam("").length;
         if (reccount == 0) {
-            $.modalAlert("请选择结算信息", 'warning');
+            $.modalAlert("", '');
             return;
         } else if (reccount > 1) {
-            $.modalAlert("只能重打一条结算信息", 'warning');
+            $.modalAlert("", '');
             return;
         } else {
             //勾选的行
-            var rowsData = $("#gridMzjsRecords").jqGrid("getRowData_AllLine", true);
+            var rowsData = $("").jqGrid("", true);
             var rowsDataArray = JSON.parse(rowsData);
             var jsnm = rowsDataArray[0].jsnm;
-            var isGh = $("#gridMzjsMXInfo").jqGrid('getGridParam', 'data')[0].isGh;
+            var isGh = $("").jqGrid('', '')[0].isGh;
         }
         $.najax({
-            type: "POST",
-            url: "/OutpatientManage/OutpatientChargeQuery/CheckPintInfo",
+            type: "",
+            url: "",
             data: { jsnm: jsnm },
-            dataType: "json",
+            dataType: "",
             success: function (ajaxresp) {
-                //补打
+                //In bù
                 ExecSupplementPrint(jsnm, isGh);
             }
         });
     }
-    //补打
+    //In bù
     function ExecSupplementPrint(jsnm,isGh)
     {
         $.najax({
-            type: "POST",
-            url: "/OutpatientManage/OutpatientChargeQuery/SupplementPrint",
+            type: "",
+            url: "",
             data: { jsnm: jsnm, isGh: isGh },
-            dataType: "json",
+            dataType: "",
             success: function (ajaxresp) {
 
             }
@@ -411,34 +411,34 @@
 
     }
 
-    //重打
+    //In lại
     function RePrint() {
 
-        $.modalAlert("功能正在开发中", 'warning');
+        $.modalAlert("", '');
         return false;
 
-        var reccount = $("#gridMzjsRecords").getGridParam("selarrrow").length;
+        var reccount = $("").getGridParam("").length;
         if (reccount == 0) {
-            $.modalAlert("请选择结算信息", 'warning');
+            $.modalAlert("", '');
             return;
         }
         if (reccount > 1) {
-            $.modalAlert("只能重打一条结算信息", 'warning');
+            $.modalAlert("", '');
             return;
         } else
         {
             //勾选的行
-            var rowsData = $("#gridMzjsRecords").jqGrid("getRowData_AllLine", true);
+            var rowsData = $("").jqGrid("", true);
             var rowsDataArray = JSON.parse(rowsData);
             var jsnm = rowsDataArray[0].jsnm;
         }
         $.najax({
-            type: "POST",
-            url: "/OutpatientManage/OutpatientChargeQuery/CheckPintInfo",
+            type: "",
+            url: "",
             data: { jsnm: jsnm },
-            dataType: "json",
+            dataType: "",
             success: function (ajaxresp) {
-                //弹出发票号窗口
+                //Bật lên cửa sổ số hóa đơn
                 ShowInvoicePanel();
             }
         });
@@ -447,47 +447,47 @@
     //发票号窗口点击确定
     function chooseFPHSuccessCallback() {
         //勾选的行
-        var rowsData = $("#gridMzjsRecords").jqGrid("getRowData_AllLine", true);
+        var rowsData = $("").jqGrid("", true);
         var rowsDataArray = JSON.parse(rowsData);
         var jsnm = rowsDataArray[0].jsnm;
-        var isGh = $("#gridMzjsMXInfo").jqGrid('getGridParam', 'data')[0].isGh;
-        //重打
+        var isGh = $("").jqGrid('', '')[0].isGh;
+        //In lại
         ExecRePrint(jsnm, isGh);
     }
 
-    //重打
+    //In lại
     function ExecRePrint(jsnm,isGh)
     {
         $.najax({
-            type: "POST",
-            url: "/OutpatientManage/OutpatientChargeQuery/RePrint",
-            data: { jsnm: jsnm, pageFph: $("#txtfph").val(), isGh: isGh },
-            dataType: "json",
+            type: "",
+            url: "",
+            data: { jsnm: jsnm, pageFph: $("").val(), isGh: isGh },
+            dataType: "",
             success: function (ajaxresp) {
-                $("#btn_search").trigger('click');
+                $("").trigger('');
             }
         });
 
     }
-    //快捷键：清除
+    //Phím tắt：Xóa
     function newtouch_event_f4() {
-        //清空Grid 
-        $('#gridMzjsRecords').jqGrid("clearGridData");
-        $('#gridMzjsMXInfo').jqGrid("clearGridData");
+        //Xóa trốngGrid 
+        $('').jqGrid("");
+        $('').jqGrid("");
     }
-    //快捷键：打印明细
+    //Phím tắt：In chi tiết
     function newtouch_event_f6() {
         PrintMxData();
     }
-    //快捷键：打印发票
+    //Phím tắt：In hóa đơn
     function newtouch_event_f7() {
         InvoicePrint();
     }
-    //快捷键：补打
+    //Phím tắt：In bù
     function newtouch_event_f8() {
         SupplementPrint();
     }
-    //快捷键：重打
+    //Phím tắt：In lại
     function newtouch_event_f9() {
         RePrint();
     }

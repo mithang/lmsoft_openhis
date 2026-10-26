@@ -1,20 +1,20 @@
 ﻿
 @{
-    ViewBag.Title = "ViewChargeMoneyDetail";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <div class="gridPanel">
     <table id="gridList"></table>
     <div id="gridPager"></div>
 </div>
 
-<script lang="javascript">
-    var year = $.request("year");
-    var siteId = $.request("siteId");
-    var month = $.request("month");
-    var dlcode = $.request("dlcode");
-    var type = $.request("type");
-    var $gridList = $("#gridList");
+<script lang="">
+    var year = $.request("");
+    var siteId = $.request("");
+    var month = $.request("");
+    var dlcode = $.request("");
+    var type = $.request("");
+    var $gridList = $("");
 
     $(function () {
         gridList();
@@ -23,24 +23,24 @@
     //get data
     function gridList() {
         $gridList.dataGrid({
-            url: "/SiteManage/SiteStatistics/GetMoneyDetailGridJson",
+            url: "",
             height: window.$(window).height() - 45,
             postData: getSearchData(),
             colModel: [
-                { label: "主键", name: "sfxmCode", hidden: true, key: true },
-                { label: '患者名称', name: 'xm', width: 100, align: 'left' },
-                { label: '收费项目名称', name: 'sfxmmc', width: 180, align: 'left' },
+                { label: "", name: "", hidden: true, key: true },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 180, align: '' },
                 {
-                    label: '单价', name: 'dj', width: 90, align: 'left',
-                    formatter: 'currency', formatoptions: { decimalPlaces: 2 }
+                    label: '', name: '', width: 90, align: '',
+                    formatter: '', formatoptions: { decimalPlaces: 2 }
                 },
                 {
-                    label: '数量', name: 'sl', width: 90, align: 'left',
-                    formatter: 'currency', formatoptions: { decimalPlaces: 2 }
+                    label: '', name: '', width: 90, align: '',
+                    formatter: '', formatoptions: { decimalPlaces: 2 }
                 },
                 {
-                    label: '结算总额', name: 'zje', width: 120, align: 'left',
-                    formatter: 'currency', formatoptions: { decimalPlaces: 2 }
+                    label: '', name: '', width: 120, align: '',
+                    formatter: '', formatoptions: { decimalPlaces: 2 }
                 }
             ],
             viewrecords: true,

@@ -1,10 +1,10 @@
 ﻿@{
-    ViewBag.Title = "耗材跟踪";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <head>
     <meta charset="utf-8">
-    <script src="~/Content/js/echarts.min.js"></script>
+    <script src=""></script>
     <style>
 
         .content {
@@ -33,21 +33,21 @@
     <input type="hidden" id="jssj" />
     <table class="form">
         <tr>
-            <th class="formTitle" id="xzsjtext">类型：</th>
+            <th class="formTitle" id="xzsjtext">Loại：</th>
             <td class="formValue" style="width:150px">
                 <select id="dateType" class="form-control" onchange="updateSjType()">
-                    <option value="1">年</option>
-                    <option value="2">月</option>
-                    <option value="3">日</option>
+                    <option value="1">Năm</option>
+                    <option value="2">Tháng</option>
+                    <option value="3">Ngày</option>
                 </select>
             </td>
-            <th class="formTitle" id="xzsjtext">时间：</th>
+            <th class="formTitle" id="xzsjtext">Thời gian：</th>
             <td class="formValue" style="width:150px">
                 <input id="rSJ" type="text" class="form-control input-wdatepicker" @*onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"*@>
             </td>
 
             <td class="formValue" style="padding-left:20px;">
-                <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
             </td>
         </tr>
     </table>
@@ -62,7 +62,7 @@
         </div>
         <div style="width:49.8%" class="bk">
             <div class="panel-heading down_border">
-                <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>医生开单量
+                <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>Lượng đơn mở bác sĩ
             </div>
             <table id="gridJSListyskdl"></table>
         </div>
@@ -92,30 +92,30 @@
 <script>
     var myDate = new Date();
     $(function () {
-        $('#main_div').height($(window).height() - 60);
-        $('#main').height($(window).height() * 0.5 - 118);
-        $('#main1').height($(window).height() * 0.5 - 118);
+        $('').height($(window).height() - 60);
+        $('').height($(window).height() * 0.5 - 118);
+        $('').height($(window).height() * 0.5 - 118);
         init();
         gridJSListData();
         initEcharts();
     });
 
     function gridJSListData() {
-        var gridSort = 'CreateTime asc';
-        var $gridJsList = $("#gridJSListypxlpm");
+        var gridSort = '';
+        var $gridJsList = $("");
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 118,
-            postData: { kssj: $('#kssj').val(), jssj: $('#jssj').val()},
-            url: "/DeanInquiryManage/ConsumableTracking/Consumablestatistics",
-            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
-            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            postData: { kssj: $('').val(), jssj: $('').val()},
+            url: "",
+            autowidth: true,//NếushrinkToFitChotruevà đã thiết lậpwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidththu phóng theo tỷ lệ；
+            shrinkToFit: true, //Nếu đặt làtrue，ThìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             colModel: [
-                { label: '耗材名称', name: 'sfxmmc', align: 'left' },
-                { label: 'sfxmdm', name: 'sfxmCode', align: 'left', hidden: true },
-                { label: '规格', name: 'gg', align: 'left' },
-                { label: '单位', name: 'dw', align: 'left' },
-                { label: '数量', name: 'sl', align: 'left' },
-                { label: '金额（元）', name: 'zje', align: 'left' }
+                { label: '', name: '', align: '' },
+                { label: '', name: '', align: '', hidden: true },
+                { label: '', name: '', align: '' },
+                { label: '', name: '', align: '' },
+                { label: '', name: '', align: '' },
+                { label: '', name: '', align: '' }
             ],
             sortname: gridSort,
             viewrecords: true,
@@ -125,61 +125,61 @@
 
             },
             onCellSelect: function (row) {
-                var rowObj = $gridJsList.jqGrid('getRowData', row);
-                console.log("rowObj", rowObj)
-                console.log("sfxmCode", rowObj.sfxmCode)
-                var $gridysList = $("#gridJSListyskdl");
-                $gridysList.jqGrid('setGridParam', {
-                    postData: { kssj: $('#kssj').val(), jssj: $('#jssj').val(),sfxmdm: rowObj.sfxmCode },
+                var rowObj = $gridJsList.jqGrid('', row);
+                console.log("", rowObj)
+                console.log("", rowObj.sfxmCode)
+                var $gridysList = $("");
+                $gridysList.jqGrid('', {
+                    postData: { kssj: $('').val(), jssj: $('').val(),sfxmdm: rowObj.sfxmCode },
                     page: 1,
-                    url: "/DeanInquiryManage/ConsumableTracking/DoctorBillingJHCRanking",
-                }).trigger('reloadGrid');
+                    url: "",
+                }).trigger('');
 
             }, loadComplete: function (data) {
-                console.log("asdas", data)
+                console.log("", data)
                 if (data.length > 0) {
                     var firstRow = data[0];
-                    var $gridysList = $("#gridJSListyskdl");
-                    $gridysList.jqGrid('setGridParam', {
-                        postData: { kssj: $('#kssj').val(), jssj: $('#jssj').val(), sfxmdm: firstRow.sfxmCode },
+                    var $gridysList = $("");
+                    $gridysList.jqGrid('', {
+                        postData: { kssj: $('').val(), jssj: $('').val(), sfxmdm: firstRow.sfxmCode },
                         page: 1,
-                        url: "/DeanInquiryManage/ConsumableTracking/DoctorBillingJHCRanking",
-                    }).trigger('reloadGrid');
+                        url: "",
+                    }).trigger('');
                 } else
                 {
-                    $("#gridJSListyskdl").jqGrid("clearGridData", true);
+                    $("").jqGrid("", true);
                 }
             }
         });
 
-        var gridSort = 'CreateTime asc';
-        var $gridysList = $("#gridJSListyskdl");
+        var gridSort = '';
+        var $gridysList = $("");
         $gridysList.dataGrid({
             height: $(window).height() * 0.5 - 118,
             url: "",
-            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
-            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            autowidth: true,//NếushrinkToFitChotruevà đã thiết lậpwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidththu phóng theo tỷ lệ；
+            shrinkToFit: true, //Nếu đặt làtrue，ThìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             colModel: [
-                { label: '医生', name: 'Name', align: 'left' },
-                { label: '医嘱数/门诊数', name: 'sl', align: 'left' },
-                { label: '开单金额（元）', name: 'zje', align: 'left' }
+                { label: '', name: '', align: '' },
+                { label: '', name: '', align: '' },
+                { label: '', name: '', align: '' }
             ],
             sortname: gridSort,
             viewrecords: true,
         
         });
 
-        var gridSort = 'CreateTime asc';
-        var $gridsyList = $("#gridJSListypsyfx");
+        var gridSort = '';
+        var $gridsyList = $("");
         $gridsyList.dataGrid({
             height: $(window).height() * 0.5 - 118,
-            url: "/DeanInquiryManage/ConsumableTracking/ProfitandlossrankingHC",
-            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
-            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            url: "",
+            autowidth: true,//NếushrinkToFitChotruevà đã thiết lậpwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidththu phóng theo tỷ lệ；
+            shrinkToFit: true, //Nếu đặt làtrue，ThìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             colModel: [
-                { label: '损益原因', name: 'syyy', align: 'left' },
-                { label: '批发总额（元）', name: 'pfjze', align: 'left' },
-                { label: '零售总额（元）', name: 'lsjze', align: 'left' }
+                { label: '', name: '', align: '' },
+                { label: '', name: '', align: '' },
+                { label: '', name: '', align: '' }
             ],
             sortname: gridSort,
             viewrecords: true
@@ -188,32 +188,32 @@
     }
 
     function initEcharts(bs, by) {
-        var myChart = echarts.init(document.getElementById('main'));
-        var myChart1 = echarts.init(document.getElementById('main1'));
+        var myChart = echarts.init(document.getElementById(''));
+        var myChart1 = echarts.init(document.getElementById(''));
 
         var option = {
             tooltip: {
-                trigger: 'item'
+                trigger: ''
             },
             legend: {
-                top: '5%',
-                left: 'center'
+                top: '',
+                left: ''
             },
             series: [
                 {
-                    name: 'Access From',
-                    type: 'pie',
-                    radius: ['40%', '70%'],
+                    name: '',
+                    type: '',
+                    radius: ['', ''],
                     avoidLabelOverlap: false,
                     label: {
                         show: false,
-                        position: 'center'
+                        position: ''
                     },
                     emphasis: {
                         label: {
                             show: true,
                             fontSize: 40,
-                            fontWeight: 'bold'
+                            fontWeight: ''
                         }
                     },
                     labelLine: {
@@ -226,27 +226,27 @@
 
         var option1 = {
             tooltip: {
-                trigger: 'item'
+                trigger: ''
             },
             legend: {
-                top: '5%',
-                left: 'center'
+                top: '',
+                left: ''
             },
             series: [
                 {
-                    name: 'Access From',
-                    type: 'pie',
-                    radius: ['40%', '70%'],
+                    name: '',
+                    type: '',
+                    radius: ['', ''],
                     avoidLabelOverlap: false,
                     label: {
                         show: false,
-                        position: 'center'
+                        position: ''
                     },
                     emphasis: {
                         label: {
                             show: true,
                             fontSize: 40,
-                            fontWeight: 'bold'
+                            fontWeight: ''
                         }
                     },
                     labelLine: {
@@ -261,9 +261,9 @@
     };
 
     function init() {
-        $("#dateType").val("2");
-        $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM' })");
-        $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1));
+        $("").val("");
+        $('').attr('', "");
+        $('').val(myDate.getFullYear() + "" + (parseInt(myDate.getMonth()) + 1));
         getSearchData();
     }
 
@@ -271,10 +271,10 @@
         var bs = [];
         var by = [];
         $.ajax({
-            type: "POST",
-            url: "/DeanInquiryManage/ConsumableTracking/ProfitandlossrankingHC",
+            type: "",
+            url: "",
             data: {},
-            dataType: "json",
+            dataType: "",
             async: false,
             success: function (lastdata) {
                 if (lastdata != null) {
@@ -294,8 +294,8 @@
 
                     }
                     initEcharts(bs, by);
-                    console.log("bs", bs)
-                    console.log("by", by)
+                    console.log("", bs)
+                    console.log("", by)
                 }
             }
         });
@@ -304,58 +304,58 @@
     function submit() {
         getSearchData();
         GetMonthNumChart();
-        var $gridJsList = $("#gridJSListypxlpm");
-        $gridJsList.jqGrid('setGridParam', {
-            postData: { kssj: $('#kssj').val(), jssj: $('#jssj').val() },
-        }).trigger('reloadGrid');
+        var $gridJsList = $("");
+        $gridJsList.jqGrid('', {
+            postData: { kssj: $('').val(), jssj: $('').val() },
+        }).trigger('');
 
     }
 
-    //改变时间类型
+    //Thay đổi loại thời gian
     function updateSjType() {
-        $('#rSJ').val("");
-        let dateType = $("#dateType").val();
-        if (dateType == "1") {//年
-            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy' })");
-            $('#rSJ').val(myDate.getFullYear());
+        $('').val("");
+        let dateType = $("").val();
+        if (dateType == "") {//Năm
+            $('').attr('', "");
+            $('').val(myDate.getFullYear());
         }
-        if (dateType == "2") {//月
-            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM' })");
-            $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1));
+        if (dateType == "") {//Tháng
+            $('').attr('', "");
+            $('').val(myDate.getFullYear() + "" + (parseInt(myDate.getMonth()) + 1));
         }
-        if (dateType == "3") {//日
-            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM-dd' })");
-            $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1) + "-" + myDate.getDate());
+        if (dateType == "") {//Ngày
+            $('').attr('', "");
+            $('').val(myDate.getFullYear() + "" + (parseInt(myDate.getMonth()) + 1) + "" + myDate.getDate());
         }
         getSearchData();
     }
 
-    //组装请求参数
+    //Lắp ráp tham số yêu cầu
     function getSearchData() {
         let ksrq = '';
         let jsrq = '';
-        let dateType = $("#dateType").val();
-        let nowDate = $("#rSJ").val();
-        if (dateType == "1") {//年
-            ksrq = nowDate + "-" + "01-01 00:00:00";
-            jsrq = nowDate + "-" + "12-31 23:59:59";
+        let dateType = $("").val();
+        let nowDate = $("").val();
+        if (dateType == "") {//Năm
+            ksrq = nowDate + "" + "";
+            jsrq = nowDate + "" + "";
         }
-        if (dateType == "2") {//月
-            let array = nowDate.split("-");
-            ksrq = array[0] + "-" + array[1] + "-01 00:00:00";
+        if (dateType == "") {//Tháng
+            let array = nowDate.split("");
+            ksrq = array[0] + "" + array[1] + "";
             let days = getDaysInMonth(array[0], array[1]);
-            jsrq = array[0] + "-" + array[1] + "-" + days + " 23:59:59";
+            jsrq = array[0] + "" + array[1] + "" + days + "";
         }
-        if (dateType == "3") {//日
-            ksrq = nowDate + " 00:00:00";
-            jsrq = nowDate + " 23:59:59";
+        if (dateType == "") {//Ngày
+            ksrq = nowDate + "";
+            jsrq = nowDate + "";
         }
 
-        $('#kssj').val(ksrq);
-        $('#jssj').val(jsrq);
+        $('').val(ksrq);
+        $('').val(jsrq);
     }
 
-    //根据年月获取月天数
+    //Lấy số ngày trong tháng theo năm tháng
     function getDaysInMonth(year, month) {
         return new Date(year, month, 0).getDate();
     }

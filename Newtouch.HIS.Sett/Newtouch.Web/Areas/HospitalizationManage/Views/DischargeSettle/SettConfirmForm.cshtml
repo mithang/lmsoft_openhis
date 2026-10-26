@@ -1,47 +1,47 @@
 ﻿@using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "SettConfirmForm";
-    Layout = "~/Views/Shared/_Form.cshtml";
-    //住院结算可以用预交金
-    var withYjj = SysConfigReader.Bool("InpatientSettWithAdvanceAccount");
+    ViewBag.Title = "";
+    Layout = "";
+    //Quyết toán nhập viện có thể dùng tiền tạm ứng
+    var withYjj = SysConfigReader.Bool("");
     //
-    var relatedFPH = SysConfigReader.Bool("Inpatient_SettPage_RelatedFPH");
-    //有与CPOE互通接口
-    var interfaceWithCPOE = SysConfigReader.Bool("HOSP_INTERFACE_WITH_CPOE", false).Value;
+    var relatedFPH = SysConfigReader.Bool("");
+    //有与CPOEGiao diện tương thông
+    var interfaceWithCPOE = SysConfigReader.Bool("", false).Value;
     //是否移动支付
-    var needPay = SysConfigReader.Bool("Inpatient_Sett_NeedPay") ?? false;
-    //默认支付方式
-    var defaultPayMethod = SysConfigReader.String("Sett_PayMethod_Inp_Default");
+    var needPay = SysConfigReader.Bool("") ?? false;
+    //Mặc định phương thức thanh toán
+    var defaultPayMethod = SysConfigReader.String("");
     //是否允许多种支付
-    var sfyxdzzf = SysConfigReader.Bool("Intpatient_Sett_Open_Dzzf", false);
-    //医保所属地，区分系统将执行何处医保逻辑
-    var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
+    var sfyxdzzf = SysConfigReader.Bool("", false);
+    //Địa bàn bảo hiểm y tế，区分系统将执行何处医保逻辑
+    var medicalInsurance = SysConfigReader.String("");
     //结算金额分币误差控制
-    var SettPayBalance = SysConfigReader.Bool("SettPayBalance", false);
-    //默认是否退余额
-    var refundyjj = SysConfigReader.String("Sett_Inpatient_RefundAccount");
+    var SettPayBalance = SysConfigReader.Bool("", false);
+    //Mặc định có số dư trả lại không
+    var refundyjj = SysConfigReader.String("");
     var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
 }
 
 <!--贵安医保展示-->
 <div id="divGuiAnYbFee" class="panel panel-default" style="display:none;margin-top:10px;margin-left:10px;margin-right: 10px;">
     <div class="panel-heading navb-bg" style="height:13px;">
-        费用信息
+        Thông tin chi phí
     </div>
     <div style="height:auto;">
         <table class="form">
             <tr>
-                <th class="formTitle">费用总额：</th>
+                <th class="formTitle">Tổng chi phí：</th>
                 <td class="formValue">￥<label id="his_hisfyze">0.00</label></td>
-                <th class="formTitle">现金支付：</th>
+                <th class="formTitle">Thanh toán tiền mặt：</th>
                 <td class="formValue">￥<label id="calc_xjzf">0.00</label></td>
-                <th class="formTitle">账户支付：</th>
+                <th class="formTitle">Thanh toán tài khoản：</th>
                 <td class="formValue">￥<label id="prm_yka065">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">基本医疗报销：</th>
+                <th class="formTitle">Hoàn trả y tế cơ bản：</th>
                 <td class="formValue">￥<label id="prm_yka248">0.00</label></td>
-                <th class="formTitle">大病医疗报销：</th>
+                <th class="formTitle">Hoàn trả y tế bệnh nặng：</th>
                 <td class="formValue">￥<label id="prm_yka062">0.00</label></td>
                 <th class="formTitle">公务员补报销：</th>
                 <td class="formValue">￥<label id="prm_yke030">0.00</label></td>
@@ -55,83 +55,83 @@
                 <td class="formValue">￥<label id="prm_ake173">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">本次起付线：</th>
+                <th class="formTitle">Mức khởi trả lần quyển：</th>
                 <td class="formValue">￥<label id="prm_yka058">0.00</label></td>
             </tr>
         </table>
     </div>
 </div>
 
-<!--医保展示-->
+<!--Hiển thị bảo hiểm y tế-->
 <div id="divQHDYbFee" class="panel panel-default" style="display:none;margin-top:10px;margin-left:10px;margin-right: 10px;">
     <div class="panel-heading navb-bg" style="height:13px;">
-        费用信息
+        Thông tin chi phí
     </div>
     <div style="height:auto;">
         <table class="form">
             <tr>
-                <th class="formTitle">费用总额：</th>
+                <th class="formTitle">Tổng chi phí：</th>
                 <td class="formValue">￥<label id="cq_fyze">0.00</label></td>
-                <th class="formTitle">现金支付合计：</th>
+                <th class="formTitle">Tổng thanh toán tiền mặt：</th>
                 <td class="formValue">￥<label id="cq_xjzf">0.00</label></td>
-                <th class="formTitle">非医保现金计费：</th>
+                <th class="formTitle">Tính phí tiền mặt ngoài bảo hiểm y tế：</th>
                 <td class="formValue">￥<label id="zf_xjzf">0.00</label></td>
 
             </tr>
             <tr>
-                <th class="formTitle">医保现金计费：</th>
+                <th class="formTitle">Tính phí tiền mặt bảo hiểm y tế：</th>
                 <td class="formValue">￥<label id="yb_xjzf">0.00</label></td>
-                <th class="formTitle">统筹支付：</th>
+                <th class="formTitle">Thanh toán chung：</th>
                 <td class="formValue">￥<label id="cq_tczf">0.00</label></td>
-                <th class="formTitle">公务员补助：</th>
+                <th class="formTitle">Trợ cấp công chức：</th>
                 <td class="formValue">￥<label id="cq_gwybz">0.00</label></td>
 
 
             </tr>
             <tr>
-                <th class="formTitle">账户支付：</th>
+                <th class="formTitle">Thanh toán tài khoản：</th>
                 <td class="formValue">￥<label id="cq_zhzf">0.00</label></td>
-                <th class="formTitle">医院负担金额：</th>
+                <th class="formTitle">Số tiền bệnh viện chịu：</th>
                 <td class="formValue">￥<label id="dbzddyljgdz">0.00</label></td>
 
-                <th class="formTitle">大额理赔支付：</th>
+                <th class="formTitle">Thanh toán bồi thường lớn：</th>
                 <td class="formValue">￥<label id="cq_delp">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">企业医疗保险支出：</th>
+                <th class="formTitle">Chi bảo hiểm y tế doanh nghiệp：</th>
                 <td class="formValue">￥<label id="cq_qybxzc">0.00</label></td>
-                <th class="formTitle">居民大病支出：</th>
+                <th class="formTitle">Chi bệnh nặng dân cư：</th>
                 <td class="formValue">￥<label id="cq_jmdbzc">0.00</label></td>
-                <th class="formTitle">医疗救助基金支出：</th>
+                <th class="formTitle">Chi quỹ cứu trợ y tế：</th>
                 <td class="formValue">￥<label id="cq_mzbz">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">账户共济支付：</th>
+                <th class="formTitle">Thanh toán chung tài khoản：</th>
                 <td class="formValue">￥<label id="cq_zhgjzf">0.00</label></td>
-                <th class="formTitle">其他：</th>
+                <th class="formTitle">Khác：</th>
                 <td class="formValue">￥<label id="cq_qt">0.00</label></td>
             </tr>
         </table>
     </div>
 </div>
-<!-- 上海医保展示 -->
+<!-- Hiển thị bảo hiểm y tế Thượng Hải -->
 <div id="divShYbV5Fee" class="panel panel-default" style="display:none; margin-top:10px;margin-left:10px;margin-right: 10px;">
     <div class="panel-heading navb-bg" style="height:13px;">
-        费用信息
+        Thông tin chi phí
     </div>
     <div style="height:auto;">
         <table class="form">
             <tr>
-                <th class="formTitle">总费用：</th><!--使用-->
+                <th class="formTitle">Tổng chi phí：</th><!--Sử dụng-->
                 <td class="formValue">￥<label id="ZFY">0.00</label></td>
-                <th class="formTitle">现金支付合计：</th>
+                <th class="formTitle">Tổng thanh toán tiền mặt：</th>
                 <td class="formValue">￥<label id="XJZF">0.00</label></td>
-                <th class="formTitle">医保现金计费：</th><!--使用-->
+                <th class="formTitle">Tính phí tiền mặt bảo hiểm y tế：</th><!--Sử dụng-->
                 <td class="formValue">￥<label id="YBJF">0.00</label></td>
 
             </tr>
             <tr>
-                <th class="formTitle">非医保现金计费：</th><!--无医保代码金额-->
+                <th class="formTitle">Tính phí tiền mặt ngoài bảo hiểm y tế：</th><!--Số tiền không có mã bảo hiểm y tế-->
                 <td class="formValue">￥<label id="ZFJF">0.00</label></td>
                 <th class="formTitle">当年帐户支付数：</th>
                 <td class="formValue">￥<label id="curaccountpay">0.00</label></td>
@@ -150,7 +150,7 @@
             <tr>
                 <th class="formTitle">统筹段现金支付数：</th>
                 <td class="formValue">￥<label id="tcdxjzfs">0.00</label></td>
-                <th class="formTitle">统筹支付数：</th>
+                <th class="formTitle">Số thanh toán chung：</th>
                 <td class="formValue">￥<label id="tczfs">0.00</label></td>
                 <th class="formTitle">附加段帐户支付数：</th>
                 <td class="formValue">￥<label id="fjdzhzfs">0.00</label></td>
@@ -193,22 +193,22 @@
 
 <div class="panel panel-default" style="margin-top:10px;margin-left:10px;margin-right: 10px;">
     <div class="panel-heading navb-bg" style="height:13px;">
-        支付信息
+        Thông tin thanh toán
     </div>
     <div style="height:auto;">
         <table class="form" id="tablezf">
             <tr>
-                <th class="formTitle">住院号：</th>
+                <th class="formTitle">Số nhập viện：</th>
                 <td class="formValue">
                     <label id="lblZyh"></label>
                 </td>
                 @if (relatedFPH == true)
                 {
-                    <th class="formTitle"><span style="color:red">*</span>发票号：</th>
+                    <th class="formTitle"><span style="color:red">*</span>Số hóa đơn：</th>
                     <td class="formValue">
                         <label id="txtfph"></label>
                         <div style="position:absolute;top:5px;left:60px;">
-                            <input type="button" class="btn btn-default btn-md" style="margin-left:6px;" value="选发票号" onclick="ShowInvoicePanel()" />
+                            <input type="button" class="btn btn-default btn-md" style="margin-left:6px;" value="Chọn số hóa đơn" onclick="ShowInvoicePanel()" />
                         </div>
                     </td>
                 }
@@ -219,36 +219,36 @@
                 }
             </tr>
             <tr>
-                <th class="formTitle">入院日期：</th>
+                <th class="formTitle">Ngày nhập viện：</th>
                 <td class="formValue" colspan="2">
                     <label id="lblRyrq"></label>
                 </td>
-                <th class="formTitle"><p class="ztjsyc"><span style="color:red">*</span>出院日期：</p></th>
+                <th class="formTitle"><p class="ztjsyc"><span style="color:red">*</span>Ngày xuất viện：</p></th>
                 <td class="formValue" colspan="2">
                     <input id="cyrq" type="text" class="form-control  form-an input-wdatepicker ztjsyc" style="float: left; margin-left: 5px; width:90%" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">应收款：</th>
+                <th class="formTitle">Khoản phải thu：</th>
                 <td class="formValue">
                     ￥<label id="yingshoukuan"></label>
                 </td>
             </tr>
 
             <tr id="trYjjzf" style="display:none;">
-                <th class="formTitle">预交金余额：</th>
+                <th class="formTitle">Số dư tiền tạm ứng：</th>
                 <td class="formValue">
                     ￥<label id="yjjye"></label>
                 </td>
                 <td class="formValue" colspan="4">
                     <div class="ckbox ztjsyc">
-                        <input id="ckyjjzfuse" type="checkbox"><label for="ckyjjzfuse">预交金支付</label>
+                        <input id="ckyjjzfuse" type="checkbox"><label for="ckyjjzfuse">Thanh toán tiền tạm ứng</label>
                     </div>
                     <div id="dv_yjjtye">
                         <div class="ckbox ztjsyc">
-                            <input id="ckyjjzfyeqt" type="checkbox"><label for="ckyjjzfyeqt">余额全退</label>
+                            <input id="ckyjjzfyeqt" type="checkbox"><label for="ckyjjzfyeqt">Hoàn trả toàn bộ số dư</label>
                         </div>
-                        <span style="font-weight:bold;color:red;">可退余额:￥<label id="yeqtje">0.00</label></span>
+                        <span style="font-weight:bold;color:red;">Số dư trả lại có thể:￥<label id="yeqtje">0.00</label></span>
                     </div>
                 </td>
                 @*<td class="formValue" id="td_accountcharge">
@@ -256,21 +256,21 @@
             </td>*@
             </tr>
             <tr style="display:none;">
-                <th class="formTitle">支付方式：</th>
+                <th class="formTitle">Phương thức thanh toán：</th>
                 <td class="formValue" colspan="2">
                     <select id="zffs1" class="form-control  form-an" style="width:90%">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
             </tr>
             <tr class="isShowZFFS" style="display:none;">
-                <th class="formTitle">第二支付方式：</th>
+                <th class="formTitle">Phương thức thanh toán hai thứ：</th>
                 <td class="formValue">
                     <select id="zffs2" class="form-control form-an" style="width:90%">
-                        <option value="">==可选择==</option>
+                        <option value="">==Có thể chọn==</option>
                     </select>
                 </td>
-                <th class="formTitle">收款：</th>
+                <th class="formTitle">Thu tiền：</th>
                 <td class="formValue" colspan="2">
                     <input type="text" id="zfje2" class="form-control form-an" style="width:90%" />
                 </td>
@@ -281,7 +281,7 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle ztjsyc" style="color:red;">预交金抵扣：</th>
+                <th class="formTitle ztjsyc" style="color:red;">Khấu trừ tiền tạm ứng：</th>
                 <td class="formValue ztjsyc" style="font-size:large" colspan="2">￥<label id="yjjzfje">0.00</label></td>
             </tr>
             <tr>
@@ -289,13 +289,13 @@
                 <td class="formValue ztjsyc" style="font-size:large" colspan="2">￥<label id="djje">0.00</label></td>
             </tr>
             <tr class="trUseZk" style="display:none;">
-                <th class="formTitle" style="color:red;">折扣比例：</th>
+                <th class="formTitle" style="color:red;">Tỷ lệ chiết khấu：</th>
                 <td class="formValue">
                     <input id="zkbl" type="text" class="form-control  form-an" style="width:40%; float:left;" />
                     <span style="line-height:25px; color:red;">%</span>
                 </td>
 
-                <th class="formTitle" style="display:none;">折扣金额：</th>
+                <th class="formTitle" style="display:none;">Số tiền chiết khấu：</th>
                 <td class="formValue" style="display:none;">
                     <input id="zkje" type="text" class="form-control  form-an" />
                 </td>
@@ -303,15 +303,15 @@
             <tr>
                 <th class="formTitle" style="color:red;">
                     <i id="zffsCircle" class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>
-                    窗口实收：
+                    Thực thu tại cửa sổ：
                 </th>
                 <td class="formValue" style="font-size:large" colspan="2">
                     <input type="text" id="djjess" class="form-control required zffsinput" onfocus="clearnum()" autocomplete="off" onkeyup="setzfje('')" onchange="verifyZffs('')" style="width:90%" value="0.00" oninput="inputnum(this)" />
                 </td>
-                <th class="formTitle">支付方式：</th>
+                <th class="formTitle">Phương thức thanh toán：</th>
                 <td class="formValue" colspan="2">
                     <select id="djjesszffs" class="form-control  form-an" style="width:90%">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
             </tr>
@@ -323,7 +323,7 @@
             </td>
         </tr>*@
             <tr hidden>
-                <th class="formTitle" style="color:red;">收款（old）：</th>
+                <th class="formTitle" style="color:red;">Thu tiền（old）：</th>
                 <td class="formValue" style="font-size:large" colspan="2">
                     <input type="text" id="zfje1" class="form-control form-an" style="width:90%" />
                 </td>
@@ -340,19 +340,19 @@
                 <th></th>
                 <td></td>
                 <td></td>
-                <th class="formTitle" style="color:red;font-weight:bold;">合计实收款：</th>
+                <th class="formTitle" style="color:red;font-weight:bold;">Tổng số tiền thực thu：</th>
                 <td class="formValue" style="font-size:large" colspan="2">￥<label id="hjssk">0.00</label></td>
             </tr>
             <tr>
                 <th></th>
                 <td colspan="2"></td>
-                <th class="formTitle ztjsyc" style="color:red;font-weight:bold;">找零：</th>
+                <th class="formTitle ztjsyc" style="color:red;font-weight:bold;">Tiền thừa：</th>
                 <td class="formValue ztjsyc" style="font-size:large" colspan="2">￥<label id="zhaoling">0.00</label></td>
             </tr>
             <tr id="tr_yjjtye" hidden>
                 <th></th>
                 <td colspan="2"></td>
-                <th class="formTitle ztjsyc" style="color:red;font-weight:bold;">其中：含预交金退余额</th>
+                <th class="formTitle ztjsyc" style="color:red;font-weight:bold;">Trong của nó：含预交金退余额</th>
                 <td class="formValue ztjsyc" style="font-weight:bold;">（ ￥<label id="yjjtye">0.00</label> ）</td>
             </tr>
         </table>
@@ -360,67 +360,67 @@
 </div>
 
 <script>
-    var medicalInsurance = '@medicalInsurance';
-    var defaultPayMethod = "@(defaultPayMethod)";
-    var SettPayBalance='@(SettPayBalance)';
-    var sfyxdzzf = '@(sfyxdzzf)';
-    var zyh = $.request("zyh");
-    var ryrq = $.request("ryrq");
-    var cyrq = $.request("cyrq");
-    var ztjs = $.request("ztjs");
-    var patid = $.request("patid");
+    var medicalInsurance = '';
+    var defaultPayMethod = "";
+    var SettPayBalance='';
+    var sfyxdzzf = '';
+    var zyh = $.request("");
+    var ryrq = $.request("");
+    var cyrq = $.request("");
+    var ztjs = $.request("");
+    var patid = $.request("");
     if (!!cyrq) {
-        cyrq = $.getDate({ date: cyrq });   //格式化
+        cyrq = $.getDate({ date: cyrq });   //Định dạng
     }
 
-    ///中途结算
+    ///Quyết toán giữa chừng
     if (ztjs) {
-        //$('.ztjsyc').hide();
+        //$('').hide();
 
     }
-    var interfaceWithCPOE = '@(interfaceWithCPOE)';
-    //预交金余额
+    var interfaceWithCPOE = '';
+    //Số dư tiền tạm ứng
     var yjjye = 0;
-    var withYjj = '@(withYjj)';
+    var withYjj = '';
     var yjjzffs = "";
-    //结算总金额
-    var zje = ovpraseFloat($.request("zje"));
-    //支付应收 结算时应收（zje = 可报 + 结算时应收 + 等等）
-    var orglxjzfys = ovpraseFloat($.request("xjzfys"));
-    //有折扣时不等 original
-    var xjzfys = orglxjzfys;    //有折扣时会不等
+    //Tổng số tiền quyết toán
+    var zje = ovpraseFloat($.request(""));
+    //Thanh toán khoản phải thu Khoản phải thu khi quyết toán（zje = Có thể báo cáo + Khoản phải thu khi quyết toán + V.v.）
+    var orglxjzfys = ovpraseFloat($.request(""));
+    //Khi có chiết khấu không bằng original
+    var xjzfys = orglxjzfys;    //Khi có chiết khấu sẽ không bằng
 
-    //医保相关
+    //Liên quan bảo hiểm y tế
     var ybjyFeeReturn;
-    var isYbjy = $.request("isYbjy");
-    var brxz = $.request("brxz");
-    var brxzmc = $.request("brxzmc");
-    var strdyjylsh = "";//抵用账户流水号，重庆医保，为了更新抵用落地表的jsnm
+    var isYbjy = $.request("");
+    var brxz = $.request("");
+    var brxzmc = $.request("");
+    var strdyjylsh = "";//抵用账户流水号，Bảo hiểm y tế Trùng Khánh，为了更新抵用落地表的jsnm
     var xnhjyFeeReturn;
-    var isXnhjy = $.request("isXnhjy");
-    var cqPatInfo = JSON.parse(sessionStorage.getItem('cqPatInfo'));
+    var isXnhjy = $.request("");
+    var cqPatInfo = JSON.parse(sessionStorage.getItem(''));
     var zhdyList = "";
-    if (isYbjy == 'true') {
-        ybjyFeeReturn = JSON.parse(sessionStorage.getItem('ybjyFeeReturn'));
+    if (isYbjy == '') {
+        ybjyFeeReturn = JSON.parse(sessionStorage.getItem(''));
         if (!!ybjyFeeReturn) {
             if (!medicalInsurance) {
-                $.modalAlert("程序未动态配置医保地，请配置后重试", 'warning');
+                $.modalAlert("", '');
                 $.modalClose();
             }
-            if (cqPatInfo.ybVer === "gjyb")
+            if (cqPatInfo.ybVer === "")
 	        {
-                $('#divQHDYbFee').show();
-                $('#divShYbV5Fee').remove();
-	            var mzjzje = 0.000;//民政救助金额
-	            var xjzfje = 0.000;//医保的现金支付金额
-	            var zfxjzf = 0.000;//非医保现金支付金额
+                $('').show();
+                $('').remove();
+	            var mzjzje = 0.000;//Số tiền cứu trợ dân chính
+	            var xjzfje = 0.000;//Số tiền mặt thanh toán bảo hiểm y tế
+	            var zfxjzf = 0.000;//Số tiền thanh toán tiền mặt ngoài bảo hiểm y tế
 
-	            //医保的现金支付金额
+	            //Số tiền mặt thanh toán bảo hiểm y tế
 	            xjzfje = ovpraseFloat(ybjyFeeReturn.psn_cash_pay) ;
-	            //非医保现金金额
+	            //Số tiền mặt ngoài bảo hiểm y tế
 	            zfxjzf = ovpraseFloat(ybjyFeeReturn.his_hisfyze) -
 			        ovpraseFloat(ybjyFeeReturn.ybzje);
-	            //计算现金支付
+	            //Tính thanh toán tiền mặt
 	            var calc_xjzf = ovpraseFloat(ybjyFeeReturn.psn_cash_pay) +
 			        ovpraseFloat(ybjyFeeReturn.his_hisfyze) -
 			        ovpraseFloat(ybjyFeeReturn.ybzje);
@@ -428,165 +428,165 @@
 	            //
 	            zje = ovpraseFloat(ybjyFeeReturn.his_hisfyze);
 	            orglxjzfys = ovpraseFloat(ybjyFeeReturn.calc_xjzf);
-	            xjzfys = orglxjzfys;    //有折扣时会不等
+	            xjzfys = orglxjzfys;    //Khi có chiết khấu sẽ không bằng
 
 	            mzjzje = ovpraseFloat(ybjyFeeReturn.maf_pay);
-	            !!ybjyFeeReturn.his_hisfyze && $('#cq_fyze').html(ovpraseFloat(ybjyFeeReturn.his_hisfyze).toFixed(2));
-	            !!ybjyFeeReturn.calc_xjzf && $('#cq_xjzf').html(ovpraseFloat(ybjyFeeReturn.calc_xjzf).toFixed(2));//总现金支付
-	            !!zfxjzf && $('#zf_xjzf').html(zfxjzf.toFixed(2));//非医保现金支付
-	            !!xjzfje && $('#yb_xjzf').html(xjzfje.toFixed(2));//医保现金支付
-	            !!ybjyFeeReturn.acct_pay && $('#cq_zhzf').html(ovpraseFloat(ybjyFeeReturn.acct_pay).toFixed(2));
-	            !!ybjyFeeReturn.hifp_pay && $('#cq_tczf').html((ovpraseFloat(ybjyFeeReturn.hifp_pay)));
-	            !!ybjyFeeReturn.hifob_pay && $('#cq_delp').html(ovpraseFloat(ybjyFeeReturn.hifob_pay).toFixed(2));
-	            !!ybjyFeeReturn.cvlserv_pay && $('#cq_gwybz').html(ovpraseFloat(ybjyFeeReturn.cvlserv_pay).toFixed(2));
-	            !!ybjyFeeReturn.maf_pay && $('#cq_mzbz').html(mzjzje);
+	            !!ybjyFeeReturn.his_hisfyze && $('').html(ovpraseFloat(ybjyFeeReturn.his_hisfyze).toFixed(2));
+	            !!ybjyFeeReturn.calc_xjzf && $('').html(ovpraseFloat(ybjyFeeReturn.calc_xjzf).toFixed(2));//Tổng thanh toán tiền mặt
+	            !!zfxjzf && $('').html(zfxjzf.toFixed(2));//Thanh toán tiền mặt ngoài bảo hiểm y tế
+	            !!xjzfje && $('').html(xjzfje.toFixed(2));//Thanh toán tiền mặt bảo hiểm y tế
+	            !!ybjyFeeReturn.acct_pay && $('').html(ovpraseFloat(ybjyFeeReturn.acct_pay).toFixed(2));
+	            !!ybjyFeeReturn.hifp_pay && $('').html((ovpraseFloat(ybjyFeeReturn.hifp_pay)));
+	            !!ybjyFeeReturn.hifob_pay && $('').html(ovpraseFloat(ybjyFeeReturn.hifob_pay).toFixed(2));
+	            !!ybjyFeeReturn.cvlserv_pay && $('').html(ovpraseFloat(ybjyFeeReturn.cvlserv_pay).toFixed(2));
+	            !!ybjyFeeReturn.maf_pay && $('').html(mzjzje);
 
-	            !!ybjyFeeReturn.hosp_part_amt && $('#dbzddyljgdz').html((ovpraseFloat(ybjyFeeReturn.hosp_part_amt)));
+	            !!ybjyFeeReturn.hosp_part_amt && $('').html((ovpraseFloat(ybjyFeeReturn.hosp_part_amt)));
 
-	            !!ybjyFeeReturn.hifes_pay && $('#cq_qybxzc').html(ovpraseFloat(ybjyFeeReturn.hifes_pay).toFixed(2));
-	            !!ybjyFeeReturn.hifmi_pay && $('#cq_jmdbzc').html(ovpraseFloat(ybjyFeeReturn.hifmi_pay).toFixed(2));
-	            !!ybjyFeeReturn.oth_pay && $('#cq_qt').html(ovpraseFloat(ybjyFeeReturn.oth_pay).toFixed(2));
-	            !!ybjyFeeReturn.acct_mulaid_pay && $('#cq_zhgjzf').html(ovpraseFloat(ybjyFeeReturn.acct_mulaid_pay).toFixed(2));
+	            !!ybjyFeeReturn.hifes_pay && $('').html(ovpraseFloat(ybjyFeeReturn.hifes_pay).toFixed(2));
+	            !!ybjyFeeReturn.hifmi_pay && $('').html(ovpraseFloat(ybjyFeeReturn.hifmi_pay).toFixed(2));
+	            !!ybjyFeeReturn.oth_pay && $('').html(ovpraseFloat(ybjyFeeReturn.oth_pay).toFixed(2));
+	            !!ybjyFeeReturn.acct_mulaid_pay && $('').html(ovpraseFloat(ybjyFeeReturn.acct_mulaid_pay).toFixed(2));
             }
-            else if (cqPatInfo.ybVer === "shanghaiV5"){
-                $('#divQHDYbFee').remove();
-                $('#divShYbV5Fee').show();
-                var xjzfje = 0.000;//医保的现金支付金额
-                var zfxjzf = 0.000;//非医保现金支付金额
-                var yjs = 0.000;//预交金后账户余额
-                //医保的现金支付金额
+            else if (cqPatInfo.ybVer === ""){
+                $('').remove();
+                $('').show();
+                var xjzfje = 0.000;//Số tiền mặt thanh toán bảo hiểm y tế
+                var zfxjzf = 0.000;//Số tiền thanh toán tiền mặt ngoài bảo hiểm y tế
+                var yjs = 0.000;//Số dư tài khoản sau tiền tạm ứng
+                //Số tiền mặt thanh toán bảo hiểm y tế
                 xjzfje = ovpraseFloat(ybjyFeeReturn.qfdxjzfs) + ovpraseFloat(ybjyFeeReturn.tcdxjzfs)
                     + ovpraseFloat(ybjyFeeReturn.fjdxjzfs);
-                //非医保现金金额
+                //Số tiền mặt ngoài bảo hiểm y tế
                 zfxjzf = ovpraseFloat(ybjyFeeReturn.his_hisfyze) -
                     ovpraseFloat(ybjyFeeReturn.ybjsfwfyze);
-                //计算现金支付
+                //Tính thanh toán tiền mặt
                 var calc_xjzf = ovpraseFloat(zfxjzf) +
                     ovpraseFloat(xjzfje) ;
                 ybjyFeeReturn.calc_xjzf = calc_xjzf;
 
                 orglxjzfys = ovpraseFloat(ybjyFeeReturn.calc_xjzf);
-                xjzfys = orglxjzfys;    //有折扣时会不等
+                xjzfys = orglxjzfys;    //Khi có chiết khấu sẽ không bằng
 
-                //yjs = calc_xjzf - zhye;//计算预交金后账户余额
+                //yjs = calc_xjzf - zhye;//Tính số dư tài khoản sau tiền tạm ứng
 
-                !!ybjyFeeReturn.his_hisfyze && $('#ZFY').html(ovpraseFloat(ybjyFeeReturn.his_hisfyze).toFixed(2));
-                !!ybjyFeeReturn.calc_xjzf && $('#XJZF').html(ovpraseFloat(ybjyFeeReturn.calc_xjzf).toFixed(2));//总现金支付
-                !!zfxjzf && $('#ZFJF').html(zfxjzf.toFixed(2));//非医保现金支付
-                !!xjzfje && $('#YBJF').html(xjzfje.toFixed(2));//医保现金支付
+                !!ybjyFeeReturn.his_hisfyze && $('').html(ovpraseFloat(ybjyFeeReturn.his_hisfyze).toFixed(2));
+                !!ybjyFeeReturn.calc_xjzf && $('').html(ovpraseFloat(ybjyFeeReturn.calc_xjzf).toFixed(2));//Tổng thanh toán tiền mặt
+                !!zfxjzf && $('').html(zfxjzf.toFixed(2));//Thanh toán tiền mặt ngoài bảo hiểm y tế
+                !!xjzfje && $('').html(xjzfje.toFixed(2));//Thanh toán tiền mặt bảo hiểm y tế
 
-                !!ybjyFeeReturn.curaccountpay && $('#curaccountpay').html(ovpraseFloat(ybjyFeeReturn.curaccountpay).toFixed(2));
-                !!ybjyFeeReturn.hisaccountpay && $('#hisaccountpay').html(ovpraseFloat(ybjyFeeReturn.hisaccountpay).toFixed(2));
-                !!ybjyFeeReturn.zfdxjzfs && $('#zfdxjzfs').html(ovpraseFloat(ybjyFeeReturn.zfdxjzfs).toFixed(2));
-                !!ybjyFeeReturn.zfdlnzhzfs && $('#zfdlnzhzfs').html(ovpraseFloat(ybjyFeeReturn.zfdlnzhzfs).toFixed(2));
+                !!ybjyFeeReturn.curaccountpay && $('').html(ovpraseFloat(ybjyFeeReturn.curaccountpay).toFixed(2));
+                !!ybjyFeeReturn.hisaccountpay && $('').html(ovpraseFloat(ybjyFeeReturn.hisaccountpay).toFixed(2));
+                !!ybjyFeeReturn.zfdxjzfs && $('').html(ovpraseFloat(ybjyFeeReturn.zfdxjzfs).toFixed(2));
+                !!ybjyFeeReturn.zfdlnzhzfs && $('').html(ovpraseFloat(ybjyFeeReturn.zfdlnzhzfs).toFixed(2));
 
-                !!ybjyFeeReturn.tcdzhzfs && $('#tcdzhzfs').html(ovpraseFloat(ybjyFeeReturn.tcdzhzfs).toFixed(2));
-                !!ybjyFeeReturn.tcdxjzfs && $('#tcdxjzfs').html((ovpraseFloat(ybjyFeeReturn.tcdxjzfs)));
-                !!ybjyFeeReturn.tczfs && $('#tczfs').html(ovpraseFloat(ybjyFeeReturn.tczfs).toFixed(2));
-                !!ybjyFeeReturn.fjdzhzfs && $('#fjdzhzfs').html(ovpraseFloat(ybjyFeeReturn.fjdzhzfs).toFixed(2));
-                !!ybjyFeeReturn.fjdxjzfs && $('#fjdxjzfs').html(ovpraseFloat(ybjyFeeReturn.fjdxjzfs).toFixed(2));
+                !!ybjyFeeReturn.tcdzhzfs && $('').html(ovpraseFloat(ybjyFeeReturn.tcdzhzfs).toFixed(2));
+                !!ybjyFeeReturn.tcdxjzfs && $('').html((ovpraseFloat(ybjyFeeReturn.tcdxjzfs)));
+                !!ybjyFeeReturn.tczfs && $('').html(ovpraseFloat(ybjyFeeReturn.tczfs).toFixed(2));
+                !!ybjyFeeReturn.fjdzhzfs && $('').html(ovpraseFloat(ybjyFeeReturn.fjdzhzfs).toFixed(2));
+                !!ybjyFeeReturn.fjdxjzfs && $('').html(ovpraseFloat(ybjyFeeReturn.fjdxjzfs).toFixed(2));
 
-                !!ybjyFeeReturn.fjzfs && $('#fjzfs').html(ovpraseFloat(ybjyFeeReturn.fjzfs).toFixed(2));
+                !!ybjyFeeReturn.fjzfs && $('').html(ovpraseFloat(ybjyFeeReturn.fjzfs).toFixed(2));
 
-                !!ybjyFeeReturn.curaccountamt && $('#curaccountamt').html(ovpraseFloat(ybjyFeeReturn.curaccountamt).toFixed(2));
-                !!ybjyFeeReturn.hisaccountamt && $('#hisaccountamt').html(ovpraseFloat(ybjyFeeReturn.hisaccountamt).toFixed(2));
-                !!ybjyFeeReturn.ybjsfwfyze && $('#ybjsfwfyze').html(ovpraseFloat(ybjyFeeReturn.ybjsfwfyze).toFixed(2));
-                !!ybjyFeeReturn.fybjsfwfyze && $('#fybjsfwfyze').html(ovpraseFloat(ybjyFeeReturn.fybjsfwfyze).toFixed(2));
+                !!ybjyFeeReturn.curaccountamt && $('').html(ovpraseFloat(ybjyFeeReturn.curaccountamt).toFixed(2));
+                !!ybjyFeeReturn.hisaccountamt && $('').html(ovpraseFloat(ybjyFeeReturn.hisaccountamt).toFixed(2));
+                !!ybjyFeeReturn.ybjsfwfyze && $('').html(ovpraseFloat(ybjyFeeReturn.ybjsfwfyze).toFixed(2));
+                !!ybjyFeeReturn.fybjsfwfyze && $('').html(ovpraseFloat(ybjyFeeReturn.fybjsfwfyze).toFixed(2));
                 //共济账户
-                !!ybjyFeeReturn.fjdgjzhzfs && $('#fjdgjzhzfs').html(ovpraseFloat(ybjyFeeReturn.fjdgjzhzfs).toFixed(2));
-                //!!ybjyFeeReturn.zfdgjzhzfs && $('#zfdgjzhzfs').html(ovpraseFloat(ybjyFeeReturn.zfdgjzhzfs).toFixed(2));
-                !!ybjyFeeReturn.qfdgjzhzfs && $('#qfdgjzhzfs').html(ovpraseFloat(ybjyFeeReturn.qfdgjzhzfs).toFixed(2));
-                !!ybjyFeeReturn.tcdgjzhzfs && $('#tcdgjzhzfs').html(ovpraseFloat(ybjyFeeReturn.tcdgjzhzfs).toFixed(2));
+                !!ybjyFeeReturn.fjdgjzhzfs && $('').html(ovpraseFloat(ybjyFeeReturn.fjdgjzhzfs).toFixed(2));
+                //!!ybjyFeeReturn.zfdgjzhzfs && $('').html(ovpraseFloat(ybjyFeeReturn.zfdgjzhzfs).toFixed(2));
+                !!ybjyFeeReturn.qfdgjzhzfs && $('').html(ovpraseFloat(ybjyFeeReturn.qfdgjzhzfs).toFixed(2));
+                !!ybjyFeeReturn.tcdgjzhzfs && $('').html(ovpraseFloat(ybjyFeeReturn.tcdgjzhzfs).toFixed(2));
             }
         }
         else {
-            //异常
+            //Bất thường
             orglxjzfys = xjzfys = zje = 0;
-            $.modalAlert("医保支付异常，请重试", "error");
+            $.modalAlert("", "");
             $.modalClose();
         }
     }
 
-    if (isXnhjy == 'true') {
-        xnhjyFeeReturn = JSON.parse(sessionStorage.getItem('xnhjyFeeReturn'));
+    if (isXnhjy == '') {
+        xnhjyFeeReturn = JSON.parse(sessionStorage.getItem(''));
         if (!!xnhjyFeeReturn) {
             if (!medicalInsurance) {
-                $.modalAlert("程序未动态配置医保地，请配置后重试", 'warning');
+                $.modalAlert("", '');
                 $.modalClose();
             }
             //如果走贵安医保逻辑
-            if (medicalInsurance === "guian") {
-                $('#divGuiAnXnhFee').show();
-                $('#divGuiAnYbFee').remove();
-                $('#divzhdy').remove();
+            if (medicalInsurance === "") {
+                $('').show();
+                $('').remove();
+                $('').remove();
                 //zje = ovpraseFloat(xnhjyFeeReturn.his_hisfyze);
                 orglxjzfys = xnhjyFeeReturn.nhxjzf + ovpraseFloat(zje) - xnhjyFeeReturn.totalCost;
-                xjzfys = orglxjzfys;    //有折扣时会不等
+                xjzfys = orglxjzfys;    //Khi có chiết khấu sẽ không bằng
                 //
-                //!!xnhjyFeeReturn.totalCost && $('#totalCost').html(ovpraseFloat(xnhjyFeeReturn.totalCost).toFixed(2));
-                !!xnhjyFeeReturn.undulatingLine && $('#undulatingLine').html(ovpraseFloat(xnhjyFeeReturn.undulatingLine).toFixed(2));
-                !!xnhjyFeeReturn.accRedeem && $('#accRedeem').html(ovpraseFloat(xnhjyFeeReturn.accRedeem).toFixed(2));
-                !!xnhjyFeeReturn.compensateCost && $('#compensateCost').html(ovpraseFloat(xnhjyFeeReturn.compensateCost).toFixed(2));
-                !!xnhjyFeeReturn.civilCost && $('#civilCost').html(ovpraseFloat(xnhjyFeeReturn.civilCost).toFixed(2));
-                !!xnhjyFeeReturn.insureCost && $('#insureCost').html(ovpraseFloat(xnhjyFeeReturn.insureCost).toFixed(2));
-                !!xnhjyFeeReturn.salvaJSCost && $('#salvaJSCost').html(ovpraseFloat(xnhjyFeeReturn.salvaJSCost).toFixed(2));
-                !!xnhjyFeeReturn.bottomRedeem && $('#bottomRedeem').html(ovpraseFloat(xnhjyFeeReturn.bottomRedeem).toFixed(2));
-                !!xnhjyFeeReturn.salvaFPCost && $('#salvaFPCost').html(ovpraseFloat(xnhjyFeeReturn.salvaFPCost).toFixed(2));
-                !!xnhjyFeeReturn.salvaQTCost && $('#salvaQTCost').html(ovpraseFloat(xnhjyFeeReturn.salvaQTCost).toFixed(2));
-                !!xnhjyFeeReturn.totalCost && $('#nhzje').html(ovpraseFloat(xnhjyFeeReturn.totalCost).toFixed(2));
-                !!xnhjyFeeReturn.nhxjzf && $('#nhxjzf').html(ovpraseFloat(xnhjyFeeReturn.nhxjzf).toFixed(2));
-                $('#hisfyze').html(ovpraseFloat(zje).toFixed(2));
-                $('#zfze').html(ovpraseFloat(ovpraseFloat(zje).toFixed(2) - ovpraseFloat(xnhjyFeeReturn.totalCost).toFixed(2)).toFixed(2));
+                //!!xnhjyFeeReturn.totalCost && $('').html(ovpraseFloat(xnhjyFeeReturn.totalCost).toFixed(2));
+                !!xnhjyFeeReturn.undulatingLine && $('').html(ovpraseFloat(xnhjyFeeReturn.undulatingLine).toFixed(2));
+                !!xnhjyFeeReturn.accRedeem && $('').html(ovpraseFloat(xnhjyFeeReturn.accRedeem).toFixed(2));
+                !!xnhjyFeeReturn.compensateCost && $('').html(ovpraseFloat(xnhjyFeeReturn.compensateCost).toFixed(2));
+                !!xnhjyFeeReturn.civilCost && $('').html(ovpraseFloat(xnhjyFeeReturn.civilCost).toFixed(2));
+                !!xnhjyFeeReturn.insureCost && $('').html(ovpraseFloat(xnhjyFeeReturn.insureCost).toFixed(2));
+                !!xnhjyFeeReturn.salvaJSCost && $('').html(ovpraseFloat(xnhjyFeeReturn.salvaJSCost).toFixed(2));
+                !!xnhjyFeeReturn.bottomRedeem && $('').html(ovpraseFloat(xnhjyFeeReturn.bottomRedeem).toFixed(2));
+                !!xnhjyFeeReturn.salvaFPCost && $('').html(ovpraseFloat(xnhjyFeeReturn.salvaFPCost).toFixed(2));
+                !!xnhjyFeeReturn.salvaQTCost && $('').html(ovpraseFloat(xnhjyFeeReturn.salvaQTCost).toFixed(2));
+                !!xnhjyFeeReturn.totalCost && $('').html(ovpraseFloat(xnhjyFeeReturn.totalCost).toFixed(2));
+                !!xnhjyFeeReturn.nhxjzf && $('').html(ovpraseFloat(xnhjyFeeReturn.nhxjzf).toFixed(2));
+                $('').html(ovpraseFloat(zje).toFixed(2));
+                $('').html(ovpraseFloat(ovpraseFloat(zje).toFixed(2) - ovpraseFloat(xnhjyFeeReturn.totalCost).toFixed(2)).toFixed(2));
             }
         }
         else {
-            //异常
+            //Bất thường
             orglxjzfys = xjzfys = zje = 0;
-            $.modalAlert("医保支付异常，请重试", "error");
+            $.modalAlert("", "");
             $.modalClose();
         }
     }
-    if (brxz == 0 || brxzmc == "自费") {
-        $('.trUseZk').show();
+    if (brxz == 0 || brxzmc == "") {
+        $('').show();
     } else {
-        $(".trUseZk").hide();
+        $("").hide();
     }
     $(function (){
         if (!!zyh) {
-            $('#lblZyh').html(zyh);
+            $('').html(zyh);
         }
         if (!!ryrq) {
-            $('#lblRyrq').html(ryrq);
+            $('').html(ryrq);
         }
         if (!!cyrq) {
-            $('#cyrq').val(cyrq);
-            if (interfaceWithCPOE == 'True') {
-                $('#cyrq').attr("disabled", "disabled");
+            $('').val(cyrq);
+            if (interfaceWithCPOE == '') {
+                $('').attr("", "");
             }
         }
         else {
-            //否则默认赋值当天
-            $('#cyrq').val($.getDate());
+            //Ngày khi gán giá trị mặc định nếu không
+            $('').val($.getDate());
         }
 
-        //应收款
+        //Khoản phải thu
         if (!!xjzfys || xjzfys == 0) {
-            $('#yingshoukuan').html(xjzfys.toFixed(2));
-            //$('#zhysk').html(xjzfys.toFixed(2));
-            //$('#zfje1').val(xjzfys.toFixed(2));
-            //if (!((defaultPayMethod == '0') || $('#ckyjjzfyeqt').is(':checked'))) {
-            //    $('#zfje1').val(xjzfys.toFixed(2));
+            $('').html(xjzfys.toFixed(2));
+            //$('').html(xjzfys.toFixed(2));
+            //$('').val(xjzfys.toFixed(2));
+            //if (!((defaultPayMethod == '') || $('').is(''))) {
+            //    $('').val(xjzfys.toFixed(2));
             //}
-            $('#hjssk').html(xjzfys.toFixed(2));
-            $('#zhaoling').html('0.00');
-            $('#djje').html('0.00');
-            $('#yjjtye').html('0.00');
+            $('').html(xjzfys.toFixed(2));
+            $('').html('');
+            $('').html('');
+            $('').html('');
         }
 
-        if (withYjj == 'True') {
-            var yjjUrl = "/SystemManage/InpatientAccountManage/GetZyAccount?zyh=" + zyh;
-            //if (medicalInsurance === "qinhuangdao") {
-                yjjUrl += '&zhxz='+@((int)EnumXTZHXZ.ZYYJKZH);
+        if (withYjj == '') {
+            var yjjUrl = "" + zyh;
+            //if (medicalInsurance === "") {
+                yjjUrl += ''+@((int)EnumXTZHXZ.ZYYJKZH);
             //}
             $.najax({
                 url: yjjUrl,
@@ -601,25 +601,25 @@
             });
         }
         if (yjjye) {
-            $('#trYjjzf').show();
-            $('#yjjye').html(ovpraseFloat(yjjye).toFixed(2));
+            $('').show();
+            $('').html(ovpraseFloat(yjjye).toFixed(2));
             if (ovpraseFloat(yjjye) > 0) {
-                $('#ckyjjzfuse').attr("checked", "checked");
+                $('').attr("", "");
             }
             yjjReset();
             
         }
         else {
-            $('#yjjzfje').html(ovpraseFloat(0).toFixed(2));
+            $('').html(ovpraseFloat(0).toFixed(2));
             hjsskZhaolingCalNew();
         }
 
-        //取消预交金支付时 同时取消余额全退
-        $("#ckyjjzfuse").click(function () {
+        //Hủy giờ thanh toán tiền tạm ứng Trả lại toàn bộ số dư hủy đồng thời
+        $("").click(function () {
             czzfje();
-            if ($('#ckyjjzfuse').is(':checked')) {
-                if ($('#ckyjjzfyeqt').is(':checked')) {
-                    $('#ckyjjzfyeqt').trigger('click');
+            if ($('').is('')) {
+                if ($('').is('')) {
+                    $('').trigger('');
                 }
                 else {
                     yjjReset();
@@ -627,32 +627,32 @@
                 yjjyetq();
             }
             else {
-                $('#yjjzfje').html(ovpraseFloat(0).toFixed(2));
-                if ($('#ckyjjzfyeqt').is(':checked')) {
-                    $('#ckyjjzfyeqt').trigger('click');
+                $('').html(ovpraseFloat(0).toFixed(2));
+                if ($('').is('')) {
+                    $('').trigger('');
                 }
                 hjsskZhaolingCalNew();
             }
         });
-        $("#ckyjjzfyeqt").click(function () {
+        $("").click(function () {
             yjjyetq();
         });
        
 
-        //现场窗口缴费支付方式-except预交金
-        $("#djjesszffs").newtouchBindSelect({
+        //现场窗口缴费支付方式-exceptTiền tạm ứng
+        $("").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
                 $.each(top.clients.SysForCashPayList, function (key, value) {
-                    if (value.xjzffs == '3') {
-                        return; //不显示该支付方式
+                    if (value.xjzffs == '') {
+                        return; //Không hiển thị phương thức thanh toán này
                     }
-                    if (value.xjzffs == "0") {
-                        $('#djjesszffs').append('<option value="' + value.xjzffs + '" selected >' + value.xjzffsmc + '</option>');
+                    if (value.xjzffs == "") {
+                        $('').append('' + value.xjzffs + '' + value.xjzffsmc + '');
 
                     }
                     else {
-                        $('#djjesszffs').append('<option value="' + value.xjzffs + '">' + value.xjzffsmc + '</option>');
+                        $('').append('' + value.xjzffs + '' + value.xjzffsmc + '');
                     }
                 });
                 return resultObjArr;
@@ -666,42 +666,42 @@
 
     function yjjyetq()
     {
-        if ($('#ckyjjzfyeqt').is(':checked')) {
-            if (!($('#ckyjjzfuse').is(':checked'))) {
-                $("#ckyjjzfuse").trigger('click');
+        if ($('').is('')) {
+            if (!($('').is(''))) {
+                $("").trigger('');
             }
-            $("#tr_yjjtye").show();
-            //预交金支付方式，‘余额全退’
+            $("").show();
+            //Phương thức thanh toán tiền tạm ứng，‘Hoàn trả toàn bộ số dư’
             if (!!yjjye && yjjye >= xjzfys) {
-                $('#yeqtje').html((yjjye - xjzfys).toFixed(2));
-                $('#yjjtye').html((yjjye - xjzfys).toFixed(2));
-                $('#yjjzfje').html(ovpraseFloat(xjzfys).toFixed(2));
+                $('').html((yjjye - xjzfys).toFixed(2));
+                $('').html((yjjye - xjzfys).toFixed(2));
+                $('').html(ovpraseFloat(xjzfys).toFixed(2));
                 hjsskZhaolingCalNew();
             }
             else if (!!yjjye)
             {
-                $('#yeqtje').html((0).toFixed(2));
-                $('#yjjtye').html((0).toFixed(2));
-                $('#yjjzfje').html(ovpraseFloat(yjjye).toFixed(2));
+                $('').html((0).toFixed(2));
+                $('').html((0).toFixed(2));
+                $('').html(ovpraseFloat(yjjye).toFixed(2));
                 hjsskZhaolingCalNew();
             }
         }
         else {
-            $("#tr_yjjtye").hide();
-            $('#yjjtye').html(ovpraseFloat(0).toFixed(2));
+            $("").hide();
+            $('').html(ovpraseFloat(0).toFixed(2));
             hjsskZhaolingCalNew();
         }
     }
-    $("#cardType").click(function() {
-        if ($("#cardType").prop("checked")) {
-            $("#zhdy").removeAttr("disabled");
+    $("").click(function() {
+        if ($("").prop("")) {
+            $("").removeAttr("");
         } else {
-            $("#zhdy").attr("disabled", "disabled");
+            $("").attr("", "");
         }
     })
     function initPage() {
         if (sfyxdzzf == true) {
-            $(".isShowZFFS").show();
+            $("").show();
         }
     }
 
@@ -709,10 +709,10 @@
     function AcceptClick(callBack) {
         theAcceptClickCallBack = callBack;
 
-        //填写的收费日期 等
+        //Ngày thu phí đã điền V.v.
         var obj = getPostData();
         if (obj) {
-            //190328add移动支付
+            //190328addThanh toán di động
             if (!CheckPayOK(obj)) {
                 return;
             }
@@ -723,66 +723,66 @@
     function getPostData() {
         var isSuccsee = true;
         if (ryrq == "" || !ryrq) {
-            $.modalAlert('缺少入院日期', 'warning');
+            $.modalAlert('', '');
             return false;
         }
-        var cyrq = $('#cyrq').val();
+        var cyrq = $('').val();
         if (cyrq == "" || !cyrq) {
-            $.modalAlert('缺少出院日期', 'warning');
+            $.modalAlert('', '');
             return false;
         }
         if (cyrq < ryrq) {
-            $.modalAlert("出院日期小于入院日期,请确认。", 'warning');
+            $.modalAlert("", '');
             return;
         }
         if ($.getDate() < cyrq) {
-            $.modalAlert('出院日期错误', 'warning');
+            $.modalAlert('', '');
             return false;
         }
-        var fph = $('#txtfph').html();
-        var djjesszffs = $('#djjesszffs option:selected').val();
-        var djjess = $('#djjess').val();
+        var fph = $('').html();
+        var djjesszffs = $('').val();
+        var djjess = $('').val();
         if (djjesszffs == "" && ovpraseFloat(djjess) > 0) {
-            $.modalAlert('请选择支付方式', 'error');
-            return false;    //支付方式选择错误
+            $.modalAlert('', '');
+            return false;    //Lựa chọn phương thức thanh toán sai
         }
         else if (ovpraseFloat(djjess) < 0) {
-            $.modalAlert('窗口实收金额异常', 'error');
+            $.modalAlert('', '');
             return false;
         }
         //
-        var hjssk = $('#hjssk').html();
+        var hjssk = $('').html();
         hjssk = !!ovpraseFloat(hjssk) ? ovpraseFloat(hjssk) : 0;
-        var zhaoling = $('#zhaoling').html();
+        var zhaoling = $('').html();
         zhaoling = !!ovpraseFloat(zhaoling) ? ovpraseFloat(zhaoling) : 0;
-        var yjjtye = $('#yjjtye').text();
-        var djjess = $('#djjess').val();
-        var zkbl = $('#zkbl').val();
+        var yjjtye = $('').text();
+        var djjess = $('').val();
+        var zkbl = $('').val();
         zkbl = !!parseInt(zkbl) ? (parseInt(zkbl) / 100).toFixed(2) : 0;
         //
-        if ($('#txtfph').length == 0) {
+        if ($('').length == 0) {
             fph = null;
         }
         else {
             if (!fph) {
-                $.modalAlert('请选择发票号', 'warning');
+                $.modalAlert('', '');
                 return false;
             }
         }
-        var yjjzfje = $("#yjjzfje").text().trim();
+        var yjjzfje = $("").text().trim();
         if ((ovpraseFloat(hjssk) + ovpraseFloat(yjjtye)).toFixed(2) != $.addNum(xjzfys, zhaoling).toFixed(2) || zhaoling < 0) {
-            $.modalAlert("找零金额异常", "error");
+            $.modalAlert("", "");
             return false;
         }
         var PatZfList=getzfArrayData();
-        var xjwc=(ovpraseFloat($("#yingshoukuan").html())-(ovpraseFloat($("#djje").html())+ovpraseFloat(yjjzfje))).toFixed(2);
+        var xjwc=(ovpraseFloat($("").html())-(ovpraseFloat($("").html())+ovpraseFloat(yjjzfje))).toFixed(2);
         return {
             fph: fph, cyrq: cyrq
             //, zffs1: zffs1, zfje1: zfje1, zffs2: zffs2, zfje2: zfje2
             , zje: ovpraseFloat(zje).toFixed(2), orglxjzfys: orglxjzfys, xjzfys: ovpraseFloat(xjzfys).toFixed(2)
             , ssk: hjssk, zhaoling: zhaoling, dyjylsh: strdyjylsh
             , yjjzfje: ovpraseFloat(yjjzfje).toFixed(2), yjjtye: ovpraseFloat(yjjtye).toFixed(2)
-            ,PatZfList:PatZfList,xjwc:xjwc,jmje:ovpraseFloat($("#zkje").val()).toFixed(2)
+            ,PatZfList:PatZfList,xjwc:xjwc,jmje:ovpraseFloat($("").val()).toFixed(2)
             , djjesszffs: djjesszffs, djjess: ovpraseFloat(djjess).toFixed(2), zkbl: ovpraseFloat(zkbl).toFixed(2)
         };
     }
@@ -790,69 +790,69 @@
     function getPostDatabak() {
         var isSuccsee = true;
         if (ryrq == "" || !ryrq) {
-            $.modalAlert('缺少入院日期', 'warning');
+            $.modalAlert('', '');
             return false;
         }
-        var cyrq = $('#cyrq').val();
+        var cyrq = $('').val();
         if (cyrq == "" || !cyrq) {
-            $.modalAlert('缺少出院日期', 'warning');
+            $.modalAlert('', '');
             return false;
         }
         if (cyrq < ryrq) {
-            $.modalAlert("出院日期小于入院日期,请确认。", 'warning');
+            $.modalAlert("", '');
             return;
         }
         if ($.getDate() < cyrq) {
-            $.modalAlert('出院日期错误', 'warning');
+            $.modalAlert('', '');
             return false;
         }
-        var fph = $('#txtfph').html();
-        var zffs1 = $('#zffs1').val();
-        !(!!zffs1 || zffs1 == '0') ? $('#zfje1').val('') : undefined;
-        var zfje1 = $('#zfje1').val();
-        zfje1 = (!!zffs1 || zffs1 == '0') && !!ovpraseFloat(zfje1) ? ovpraseFloat(zfje1) : 0;
-        if (zffs1 == '3' && yjjye) {
+        var fph = $('').html();
+        var zffs1 = $('').val();
+        !(!!zffs1 || zffs1 == '') ? $('').val('') : undefined;
+        var zfje1 = $('').val();
+        zfje1 = (!!zffs1 || zffs1 == '') && !!ovpraseFloat(zfje1) ? ovpraseFloat(zfje1) : 0;
+        if (zffs1 == '' && yjjye) {
             if (!(parseFloat(zfje1) <= parseFloat(yjjye) || parseFloat(zfje1) <= parseFloat(xjzfys))) {
-                $.modalAlert("预交金不足，不能进行结算，请充值预交金或选择其它支付方式", "error");
+                $.modalAlert("", "");
                 return false;
             }
         }
         //
-        var zffs2 = $('#zffs2').val();
-        !(!!zffs2 || zffs2 == '0') ? $('#zfje2').val('') : undefined;
-        var zfje2 = $('#zfje2').val();
-        zfje2 = (!!zffs2 || zffs2 == '0') && !!ovpraseFloat(zfje2) ? ovpraseFloat(zfje2) : 0;
+        var zffs2 = $('').val();
+        !(!!zffs2 || zffs2 == '') ? $('').val('') : undefined;
+        var zfje2 = $('').val();
+        zfje2 = (!!zffs2 || zffs2 == '') && !!ovpraseFloat(zfje2) ? ovpraseFloat(zfje2) : 0;
         //
         if (zffs1 === zffs2 && !!zffs2) {
-            $.modalAlert('支付方式选择错误', 'error');
-            return false;    //支付方式选择错误
+            $.modalAlert('', '');
+            return false;    //Lựa chọn phương thức thanh toán sai
         }
         if (!!!zffs1 && !!zffs2) {
-            $.modalAlert('支付方式选择错误', 'error');
-            return false;    //支付方式选择错误
+            $.modalAlert('', '');
+            return false;    //Lựa chọn phương thức thanh toán sai
         }
         //
-        var hjssk = $('#hjssk').html();
+        var hjssk = $('').html();
         hjssk = !!ovpraseFloat(hjssk) ? ovpraseFloat(hjssk) : 0;
-        var zhaoling = $('#zhaoling').html();
+        var zhaoling = $('').html();
         zhaoling = !!ovpraseFloat(zhaoling) ? ovpraseFloat(zhaoling) : 0;
         //
-        if ($('#txtfph').length == 0) {
+        if ($('').length == 0) {
             fph = null;
         }
         else {
             if (!fph) {
-                $.modalAlert('请选择发票号', 'warning');
+                $.modalAlert('', '');
                 return false;
             }
         }
         //
         if (ovpraseFloat(hjssk).toFixed(2) != ovpraseFloat(ovpraseFloat(zfje1) + ovpraseFloat(zfje2)).toFixed(2)) {
-            $.modalAlert("收款金额异常", "error");
+            $.modalAlert("", "");
             return false;
         }
         if (ovpraseFloat(hjssk).toFixed(2) != $.addNum(xjzfys, zhaoling).toFixed(2) || zhaoling < 0) {
-            $.modalAlert("找零金额异常", "error");
+            $.modalAlert("", "");
             return false;
         }
         return {
@@ -870,108 +870,108 @@
         }
         return parseFloat(val);
     }
-    //页面进来，加载发票号
+    //Vào trang，Tải số hóa đơn
     function initFPH() {
-        if (!($("#txtfph").length == 1)) {
+        if (!($("").length == 1)) {
             return;
         }
         $.najax({
-            url: "/OutpatientManage/OutpatientReg/GetInvoice?r=" + Math.random(),
-            dataType: "text",
+            url: "" + Math.random(),
+            dataType: "",
             cache: false,
             success: function (data) {
-                $("#txtfph").html(data);
+                $("").html(data);
             }
         });
     }
 
-    //弹出发票号的窗口
+    //Cửa sổ bật lên số hóa đơn
     function ShowInvoicePanel() {
         $.modalOpen({
-            id: "InvoiceNoPanel",
-            title: "选发票号",
-            url: "/OutpatientManage/OutpatientReg/ChooseInvoice?from=ConfirmFeeForm",
-            width: "300px",
-            height: "200px",
+            id: "",
+            title: "",
+            url: "",
+            width: "",
+            height: "",
             callBack: function (iframeId) {
-                top.frames[iframeId].checkFPH();//窗口点确定的回调函数
+                top.frames[iframeId].checkFPH();//Hàm callback xác nhận khi nhấn cửa sổ
             }
         });
     }
 
     //
-    $('#zfje1').keyup(function () {
+    $('').keyup(function () {
         hjsskZhaolingCalNew();
-        //if ($('#ckyjjzfyeqt').is(':checked')) {
-        //    $('#ckyjjzfyeqt').trigger('click');
+        //if ($('').is('')) {
+        //    $('').trigger('');
         //}
-        //if ($("#djjesszffs option:selected").val() == "" && ovpraseFloat($("#djjess").val())!=0) {
-        //    $.modalAlert('请选择支付方式', 'error');
+        //if ($("").val() == "" && ovpraseFloat($("").val())!=0) {
+        //    $.modalAlert('', '');
         //}
     });
-    $('#zfje1').change(function () {
+    $('').change(function () {
         hjsskZhaolingCalNew();
-        //if ($('#ckyjjzfyeqt').is(':checked')) {
-        //    $('#ckyjjzfyeqt').trigger('click');
+        //if ($('').is('')) {
+        //    $('').trigger('');
         //}
-        if ($("#djjesszffs option:selected").val() == "" && ovpraseFloat($("#djjess").val()) != 0) {
-            $.modalAlert('请选择支付方式', 'error');
+        if ($("").val() == "" && ovpraseFloat($("").val()) != 0) {
+            $.modalAlert('', '');
         }
     });
 
-    $('#zkje,#zkbl').keyup(function () {
+    $('').keyup(function () {
         discountCal();
     });
-    //折扣比例，折扣金额 计算折扣
+    //Tỷ lệ chiết khấu，Số tiền chiết khấu Tính chiết khấu
     function discountCal() {
-        var zkje = ovpraseFloat(0).toFixed(2);//$('#zkje').val();
-        var zkbl = $('#zkbl').val();
+        var zkje = ovpraseFloat(0).toFixed(2);//$('').val();
+        var zkbl = $('').val();
 
         var je = calZkhMoney(ovpraseFloat(orglxjzfys).toFixed(2), zkje, zkbl);
         if (je === false) {
-            //折扣计算失败 只能重置折扣
-            $('#zkje').val('');
-            $('#zkbl').val('');
+            //Tính chiết khấu thất bại 只能重置折扣
+            $('').val('');
+            $('').val('');
             xjzfys = orglxjzfys;
         }
         else {
             xjzfys = je;
         }
-        $("#zkje").val((ovpraseFloat(orglxjzfys) - ovpraseFloat(xjzfys)).toFixed(2));
-        $("#djjess").val(ovpraseFloat(0).toFixed(2));
+        $("").val((ovpraseFloat(orglxjzfys) - ovpraseFloat(xjzfys)).toFixed(2));
+        $("").val(ovpraseFloat(0).toFixed(2));
         //
-        //$('#zhysk').html(xjzfys);
-        if ($('#ckyjjzfuse').is(':checked')) {
+        //$('').html(xjzfys);
+        if ($('').is('')) {
             xjzfys=sswrjeCz();
-            $('#yjjzfje').text(xjzfys);
+            $('').text(xjzfys);
             if(yjjye>xjzfys){
-                $('#yeqtje').html((yjjye - xjzfys).toFixed(2));
+                $('').html((yjjye - xjzfys).toFixed(2));
             }
             else{
-                $('#yeqtje').html((0).toFixed(2));
+                $('').html((0).toFixed(2));
             }
            
         }
         hjsskZhaolingCalNew();
         yjjyetq();
     }
-    //根据折扣比例和折扣金额计算 折后金额
+    //根据折扣比例和折扣金额计算 Số tiền sau chiết khấu
     function calZkhMoney(je, zkje, zkbl) {
         if (je == 0) {
             return 0;
         }
         if (validMoney(je, zkje, zkbl)) {
             if (zkbl) {
-                //折扣比例
+                //Tỷ lệ chiết khấu
                 var decimalbl = (parseInt(zkbl) / 100).toFixed(2);
                 je = roundingBy4she6ru5chengshuang(ovpraseFloat(ovpraseFloat(je) * decimalbl), 2);
             }
             if (zkje) {
                 if (ovpraseFloat(zkje) > ovpraseFloat(je)) {
-                    $.modalAlert('折扣异常，产生负应收', 'warning');
+                    $.modalAlert('', '');
                     return false;
                 }
-                //折扣金额
+                //Số tiền chiết khấu
                 je = roundingBy4she6ru5chengshuang(ovpraseFloat((ovpraseFloat(je) - ovpraseFloat(zkje))), 2);
             }
             return ovpraseFloat(je);
@@ -981,123 +981,123 @@
         }
     }
 
-    //验证金额格式是否正确
+    //Xác minh định dạng số tiền có đúng không
     function validMoney(zqje, zkje, zkbl) {
-        if (zqje == '' || zqje == '0.00') {
-            $.modalAlert('费用无效', 'warning');
+        if (zqje == '' || zqje == '') {
+            $.modalAlert('', '');
             return false;
         }
-        //折扣金额
+        //Số tiền chiết khấu
         var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
         if (!!zkje) {
             if (!reg.test(zkje) || zkje == '') {
-                $.modalAlert('折扣金额格式有误', 'warning');
+                $.modalAlert('', '');
                 return false;
             }
         }
 
         if (ovpraseFloat(zkje) > ovpraseFloat(zqje)) {
-            $.modalAlert('折扣金额不能大于折前金额', 'warning');
+            $.modalAlert('', '');
             return false;
         }
 
-        //折扣比例
+        //Tỷ lệ chiết khấu
         var blreg = /(^[1-9][0-9]$)|(^100&)|(^[1-9]$)$/;
         if (!!zkbl) {
             if (!reg.test(zkbl)) {
-                $.modalAlert('折扣比例格式有误', 'warning');
+                $.modalAlert('', '');
                 return false;
             }
         }
         if (parseInt(zkbl) > 100) {
-            $.modalAlert('折扣比例不能大于100', 'warning');
+            $.modalAlert('', '');
             return false;
         }
         return true;
     }
-    //计算 根据 支付应收、支付方式 计算合计实收款、找零  不支持多种支付方式
+    //Tính toán Theo Thanh toán khoản phải thu、Phương thức thanh toán Tính tổng số tiền thực thu、Tiền thừa  不支持多种支付方式
     function hjsskZhaolingCal() {
         var djje = 0.00; //代缴金额
-        if (!$('#zffs1').val() && $('#zfje1').val() != 0) {
-            //未选择支付方式，对应金额要置为0.00
-            $('#zfje1').val('0.00');
+        if (!$('').val() && $('').val() != 0) {
+            //Chưa chọn phương thức thanh toán，Số tiền tương ứng phải đặt thành0.00
+            $('').val('');
             djje = xjzfys.toFixed(2);
         }
-        var zfje1 = $('#zfje1').val();
+        var zfje1 = $('').val();
         if (!zfje1) {
-            zfje1 = '0.00';
+            zfje1 = '';
         }
 
-        var hjssk = ovpraseFloat(zfje1);  //多种支付方式合计实收
+        var hjssk = ovpraseFloat(zfje1);  //Tổng thực thu nhiều phương thức thanh toán
         djje = ovpraseFloat(xjzfys - hjssk).toFixed(2);
         if (djje < 0) {
             djje = 0.00;
         }
-        $('#djje').html(ovpraseFloat(djje).toFixed(2));  //待缴
-        $('#hjssk').html(hjssk + ovpraseFloat(djje));
+        $('').html(ovpraseFloat(djje).toFixed(2));  //待缴
+        $('').html(hjssk + ovpraseFloat(djje));
         var zhaoling = ovpraseFloat(hjssk - xjzfys);
         if (zhaoling < 0) {
             zhaoling = 0.00;
         }
-        $('#zhaoling').html(zhaoling.toFixed(2));
+        $('').html(zhaoling.toFixed(2));
     }
 
     function hjsskZhaolingCalNew() {
-        var yjjzf = ovpraseFloat($("#yjjzfje").text().trim()).toFixed(2);//预交金抵扣
+        var yjjzf = ovpraseFloat($("").text().trim()).toFixed(2);//Khấu trừ tiền tạm ứng
         var djje = 0.00; //代缴金额
-        //var djjess = ovpraseFloat($("#djjess").val());  //窗口实收
+        //var djjess = ovpraseFloat($("").val());  //Thực thu tại cửa sổ
         var djjess=CalculatedAmount();//窗口实收合计
         var zhaoling = 0.00;
         var hjssk = 0.00;
-        var yjjtye = ovpraseFloat($("#yjjtye").text().trim()).toFixed(2);
+        var yjjtye = ovpraseFloat($("").text().trim()).toFixed(2);
         if (!!yjjzf && ovpraseFloat(yjjzf)>=0) {
             xjzfys=sswrjeCz();
             djje = (ovpraseFloat(xjzfys) - ovpraseFloat(yjjzf)).toFixed(2);
             if (ovpraseFloat(djje) < 0) {
                 //djje = 0.00;
-                $("#djje").html(ovpraseFloat(0).toFixed(2));
+                $("").html(ovpraseFloat(0).toFixed(2));
                
                 if (djjess<=0) {
-                    $("#djjess").val(ovpraseFloat(djje).toFixed(2));
-                    djjess = ovpraseFloat($("#djjess").val());
+                    $("").val(ovpraseFloat(djje).toFixed(2));
+                    djjess = ovpraseFloat($("").val());
                 }
 
-                $('#hjssk').html((ovpraseFloat(yjjzf) + ovpraseFloat(djjess)).toFixed(2));
+                $('').html((ovpraseFloat(yjjzf) + ovpraseFloat(djjess)).toFixed(2));
                 zhaoling = (Math.abs(ovpraseFloat(djje)) + djjess + ovpraseFloat(yjjtye)).toFixed(2);
-                $('#zhaoling').html(zhaoling);
+                $('').html(zhaoling);
             }
             else {
-                $("#djje").html(ovpraseFloat(djje).toFixed(2));
+                $("").html(ovpraseFloat(djje).toFixed(2));
                 if (djjess <= 0) {
-                    $("#djjess").val(ovpraseFloat(djje).toFixed(2));
-                    djjess = ovpraseFloat($("#djjess").val());
+                    $("").val(ovpraseFloat(djje).toFixed(2));
+                    djjess = ovpraseFloat($("").val());
                 }
 
                 hjssk = (ovpraseFloat(yjjzf) + ovpraseFloat(djjess)).toFixed(2);
-                $('#hjssk').html(hjssk);
+                $('').html(hjssk);
                 zhaoling = (ovpraseFloat(hjssk) - ovpraseFloat(xjzfys) + ovpraseFloat(yjjtye)).toFixed(2);
-                $('#zhaoling').html(zhaoling);
+                $('').html(zhaoling);
             }
         }
     }
     //多支付方式金额合计
     function CalculatedAmount()
     {
-        var cksshj=ovpraseFloat($("#djjess").val());
-        var number = $('#tablezf .zffsinput').length;
+        var cksshj=ovpraseFloat($("").val());
+        var number = $('').length;
         for (var i = 1; i <= number-1; i++){
-            cksshj=cksshj+ovpraseFloat($("#djjess"+i).val());
+            cksshj=cksshj+ovpraseFloat($(""+i).val());
         }
         return cksshj.toFixed(2);
     }
     //common end
 </script>
-<script type="text/javascript">
-    //移动支付
-    var payingOrFailed = null;  //true支付中或支付失败
+<script type="">
+    //Thanh toán di động
+    var payingOrFailed = null;  //trueĐang thanh toán hoặc thanh toán thất bại
     function CheckPayOK(settInfo) {
-        //&&需要支付
-        var needPay = '@(needPay)' == 'True';
+        //&&Thanh toán cần
+        var needPay = '' == '';
         if (!needPay) {
             return true;
         }
@@ -1105,84 +1105,84 @@
         var alipayMoney = 0;
         var wechatMoney = 0;
         //if (settInfo.zfje1 > 0) {
-        //    if (settInfo.zffs1 == '10') {
+        //    if (settInfo.zffs1 == '') {
         //        alipayMoney = settInfo.zfje1;
         //    }
-        //    else if (settInfo.zffs1 == '11') {
+        //    else if (settInfo.zffs1 == '') {
         //        wechatMoney = settInfo.zfje1;
         //    }
         //}
         //if (settInfo.zfje2 > 0) {
-        //    if (settInfo.zffs2 == '10') {
+        //    if (settInfo.zffs2 == '') {
         //        alipayMoney = settInfo.zfje2;
         //    }
-        //    else if (settInfo.zffs2 == '11') {
+        //    else if (settInfo.zffs2 == '') {
         //        wechatMoney = settInfo.zfje2;
         //    }
         //}
-        var djjesszffs = $('#djjesszffs option:selected').val()
+        var djjesszffs = $('').val()
 
         if (djjesszffs == 13) {
             alipayMoney = settInfo.djjess;
         } else {
             if (settInfo.zfje1 > 0) {
-                if (settInfo.zffs1 == '10') {
+                if (settInfo.zffs1 == '') {
                     alipayMoney = settInfo.zfje1;
                 }
-                else if (settInfo.zffs1 == '11') {
+                else if (settInfo.zffs1 == '') {
                     wechatMoney = settInfo.zfje1;
                 }
             }
             if (settInfo.zfje2 > 0) {
-                if (settInfo.zffs2 == '10') {
+                if (settInfo.zffs2 == '') {
                     alipayMoney = settInfo.zfje2;
                 }
-                else if (settInfo.zffs2 == '11') {
+                else if (settInfo.zffs2 == '') {
                     wechatMoney = settInfo.zfje2;
                 }
             }
         }
         if (alipayMoney > 0 && wechatMoney > 0) {
-            $.modalAlert('支付方式选择错误', 'error');
-            return false;    //支付方式选择错误
+            $.modalAlert('', '');
+            return false;    //Lựa chọn phương thức thanh toán sai
         }
         payMoney = alipayMoney + wechatMoney;
         if (payMoney <= 0) {
-            //不需要移动支付
+            //Không cần thanh toán di động
             payingOrFailed = null;
             return true;
         }
         if (payMoney > 0 && !!settInfo.zffs1 && !!settInfo.zffs2) {
-            $.modalAlert('移动支付<br/>不支持选择多种支付方式', 'error');
-            return false;    //支付方式选择错误
+            $.modalAlert('', '');
+            return false;    //Lựa chọn phương thức thanh toán sai
         }
         if (payMoney > 0 && settInfo.zhaoling != 0) {
-            $.modalAlert('移动支付不能有找零', 'error');
+            $.modalAlert('', '');
             return false;
         }
         if ((payingOrFailed === null || payingOrFailed === true) && needPay && payMoney > 0) {
             payMoney = ovpraseFloat(payMoney).toFixed(2);
-            var out_trade_no = (new Date()).getTime().toString();   //是否有问题？
-            ToPay(out_trade_no, '出院结算', payMoney, djjesszffs);
+            var out_trade_no = (new Date()).getTime().toString();   //Có vấn đề không？
+            ToPay(out_trade_no, '', payMoney, djjesszffs);
             payingOrFailed = true;
         }
-        return !(payingOrFailed === true); //支付中 返回true，否则返回false
+        return !(payingOrFailed === true); //Đang thanh toán Trả vềtrue，Nếu không trả vềfalse
     }
-    //发起支付
+    //Khởi tạo thanh toán
     function ToPay(out_trade_no, subject, total_amount, djjesszffs) {
-        var title = '付款码支付-' + (subject.length <= 15 ? subject : subject.substring(0, 12) + "...");
-        var url = "/PayManage/MicroPay/MicroPay";
-        url += '?out_trade_no=' + out_trade_no;
-        url += '&subject=' + subject;
-        url += '&total_amount=' + total_amount;
-        url += '&djjesszffs=' + djjesszffs;
-        url += '&patid=' + $.request("patid");
+        var title = '' + (subject.length <= 15 ? subject : subject.substring(0, 12) + "");
+        var url = "";
+        url += '' + out_trade_no;
+        url += '' + subject;
+        url += '' + total_amount;
+        url += '' + djjesszffs;
+        url += '' + $.request("");
         $.modalOpen({
-            id: "ToPay",
+            id: "",
             title: title,
             url: url,
-            width: "400px",
-            height: "210px",
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 top.frames[iframeId].AcceptClick(function (data) {
                     //pay success callback
@@ -1191,18 +1191,18 @@
             }
         });
     }
-    //支付成功-继续提交结算
+    //Thanh toán thành công-Tiếp tục gửi quyết toán
     var outTradeNo;
     function PaySuccessHandle(data) {
         payingOrFailed = false;
 
         outTradeNo = data.outTradeNo;
-        //移动支付方式纠正
-        if (data.payType == 1 && $('#zffs1').val() == '11') {
-            $('#zffs1').val("10").trigger('change');
+        //Di động sửa chữa phương thức thanh toán
+        if (data.payType == 1 && $('').val() == '') {
+            $('').val("").trigger('');
         }
-        if (data.payType == 2 && $('#zffs1').val() == '10') {
-            $('#zffs1').val("11").trigger('change');
+        if (data.payType == 2 && $('').val() == '') {
+            $('').val("").trigger('');
         }
         AcceptClick(theAcceptClickCallBack);
     }
@@ -1211,39 +1211,39 @@
     function InpAccountDeposit() {
         var czje = (ovpraseFloat(xjzfys) - ovpraseFloat(yjjye)).toFixed(2);
         $.modalOpen({
-            id: "YjjDeposit",
-            title: "预交金补充值",
-            url: "/HospitalizationManage/DischargeSettle/HosAccountDeposit?je="+czje,
-            width: "350px",
-            height: "240px",
+            id: "",
+            title: "",
+            url: ""+czje,
+            width: "",
+            height: "",
             callBack: function (iframeId) {
-                var xz = '@((int)EnumXTZHXZ.ZYYJKZH)';
-                top.frames[iframeId].SubmitAccountDeposit(patid, xz); //在弹出窗口事件
+                var xz = '';
+                top.frames[iframeId].SubmitAccountDeposit(patid, xz); //Trong sự kiện cửa sổ bật lên
                 $.reload();
             }
         });
     }
 
     function yjjRefresh() {
-        //预交金处理
-        if (!!yjjye && yjjye >= xjzfys && $("#zffs1 option:selected").val() == "3") {
-            //$("#td_accountcharge").hide();
-            if ($('#ckyjjzfyeqt').is(':checked')) {
-                $('#zfje1').val(ovpraseFloat(yjjye).toFixed(2));
+        //Xử lý tiền tạm ứng
+        if (!!yjjye && yjjye >= xjzfys && $("").val() == "") {
+            //$("").hide();
+            if ($('').is('')) {
+                $('').val(ovpraseFloat(yjjye).toFixed(2));
             }
 
             hjsskZhaolingCal();
 
         }
-        else if (!!yjjye && yjjye < xjzfys && $("#zffs1 option:selected").val() == "3") {
-            //$("#yjjczje").html(ovpraseFloat(xjzfys - yjjye).toFixed(2));
-            //$("#td_accountcharge").show();
+        else if (!!yjjye && yjjye < xjzfys && $("").val() == "") {
+            //$("").html(ovpraseFloat(xjzfys - yjjye).toFixed(2));
+            //$("").show();
             hjsskZhaolingCal();
         }
     }
     function sswrjeCz()
     {
-        if(SettPayBalance==="True")
+        if(SettPayBalance==="")
         {
             var lastVal=xjzfys+"";
             lastVal =lastVal.substring(lastVal.length-1);
@@ -1253,74 +1253,74 @@
         }
         return xjzfys;
     }
-    //预交金支付
+    //Thanh toán tiền tạm ứng
     function yjjReset() {
         xjzfys=sswrjeCz();
         if (ovpraseFloat(yjjye) > xjzfys) {
-            $("#dv_yjjtye").show();
-            $("#yeqtje").html(ovpraseFloat(yjjye - xjzfys).toFixed(2));
-            $('#yjjzfje').html(ovpraseFloat(xjzfys).toFixed(2));
+            $("").show();
+            $("").html(ovpraseFloat(yjjye - xjzfys).toFixed(2));
+            $('').html(ovpraseFloat(xjzfys).toFixed(2));
         }
         else {
-            $('#yjjzfje').html(ovpraseFloat(yjjye).toFixed(2));
-            $("#dv_yjjtye").hide();
+            $('').html(ovpraseFloat(yjjye).toFixed(2));
+            $("").hide();
         }
-        if ('@refundyjj' == "1" && !ztjs) {
-            $('#ckyjjzfyeqt').attr("checked", "checked");//.attr("disabled", "disabled");
+        if ('' == "" && !ztjs) {
+            $('').attr("", "");//.attr("", "");
             yjjyetq();
         }
         hjsskZhaolingCalNew();
     }
     //输入框控制
     function inputnum(obj, val) {
-        obj.value = obj.value.replace(/[^\d.]/g, ""); //清除"数字"和"."以外的字符
-        obj.value = obj.value.replace(/^\./g, ""); //验证第一个字符是数字
+        obj.value = obj.value.replace(/[^\d.]/g, ""); //Xóa""Và""以外的字符
+        obj.value = obj.value.replace(/^\./g, ""); //Xác minh ký tự cái một thứ là số
         obj.value = obj.value.replace(/\.{2,}/g, ""); //只保留第一个, 清除多余的
-        obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
-        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'); //只能输入两个小数
+        obj.value = obj.value.replace("", "").replace(/\./g, "").replace("", "");
+        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/, ''); //只能输入两个小数
     }
-    ///////////多种支付方式//////////////// 
+    ///////////Phương thức thanh toán loại nhiều//////////////// 
     function clearnum(num) {
         if(!num)
             num="";
-        $('#djjess'+num).select();
+        $(''+num).select();
     }
 
-    $('#tablezf .plusToggleCircle').click(function (){
+    $('').click(function (){
         
         var isAdd=verifyZfje();
         if(isAdd==false)
         {
-            $.modalAlert("当前窗口实收合计大于等于待缴金额，不可添加新支付方式", 'error');
+            $.modalAlert("", '');
             return;
         }
         var vcn = 0;
         $.each(top.clients.SysForCashPayList, function (key, value) {
-            if (value.xjzffs != '3') {
+            if (value.xjzffs != '') {
                 vcn ++;
             }
         });
-        var number = $('#tablezf .zffsinput').length;
+        var number = $('').length;
         if (number >= vcn) {
             return;
         }
-        var $newTr= $('<tr><th class="formTitle" style="color:red;"><i class="fa fa-minus minusToggleCircle" aria-hidden="true"  name="idjjess' + number + '" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>窗口实收： </th><td class="formValue" style="font-size:large" colspan="2"> <input type="text" id="djjess' + number + '" name="djjess' + number + '" class="form-control required zffsinput" autocomplete="off" onkeyup="setzfje(' + number + ')" onfocus="clearnum(' + number + ')" onchange="verifyZffs('+number+')" style="width:90%" value="0.00" oninput="inputnum(this)" /></td><th class="formTitle">支付方式：</th> <td class="formValue" colspan="2"><select id="djjesszffs' + number + '" class="form-control  form-an" style="width:90%"><option value="">==请选择==</option></select></td></tr>');
+        var $newTr= $('' + number + '' + number + '' + number + '' + number + '' + number + ''+number+'' + number + '');
         
-        $newTr.appendTo($(this).closest('table'));  
+        $newTr.appendTo($(this).closest(''));  
         binddzffsFloatingSelector(number);
-        var djje= ovpraseFloat($("#djje").html()) ;
-        var hjssk= ovpraseFloat($('#hjssk').html());
-        var yjjzf=ovpraseFloat($("#yjjzfje").html());
-        $("#djjess"+number).val(ovpraseFloat(djje+yjjzf-hjssk).toFixed(2));
+        var djje= ovpraseFloat($("").html()) ;
+        var hjssk= ovpraseFloat($('').html());
+        var yjjzf=ovpraseFloat($("").html());
+        $(""+number).val(ovpraseFloat(djje+yjjzf-hjssk).toFixed(2));
         setzfje();
     });
-    //重置窗口支付金额
+    //Đặt lại số tiền thanh toán cửa sổ
     function czzfje()
     {
-        $("#djjess").val(ovpraseFloat(0).toFixed(2));
-        var number = $('#tablezf .zffsinput').length;
+        $("").val(ovpraseFloat(0).toFixed(2));
+        var number = $('').length;
         for (var i = 1; i <= number-1; i++) {
-            $("#djjess"+i).val(ovpraseFloat(0).toFixed(2));
+            $(""+i).val(ovpraseFloat(0).toFixed(2));
         }
         
     }
@@ -1328,37 +1328,37 @@
     //是否可添加新支付方式
     function verifyZfje(num)
     {
-        var djje= ovpraseFloat($("#djje").html())+ ovpraseFloat($("#yjjzfje").html());
-        var hjssk= ovpraseFloat($('#hjssk').html());
+        var djje= ovpraseFloat($("").html())+ ovpraseFloat($("").html());
+        var hjssk= ovpraseFloat($('').html());
         if(hjssk>=djje)
         {
             return false;
         }
         return true;
     }
-    //删除icon
-    $('#tablezf').on('click', '.minusToggleCircle', function (e) {
+    //Xóaicon
+    $('').on('', '', function (e) {
         
-        var number = $('#tablezf .zffsinput').length;
+        var number = $('').length;
 
-        var removeTr=$(this).attr('name');
-        var lastTr ="i"+$('#tablezf .zffsinput')[number-1].id;
+        var removeTr=$(this).attr('');
+        var lastTr =""+$('')[number-1].id;
         if(removeTr!=lastTr)
         {
-            $.modalAlert('仅支持按最后一种支付方式开始删除', 'error');
+            $.modalAlert('', '');
             return;
         }
-        $(this).closest('tr').remove();
+        $(this).closest('').remove();
         hjsskZhaolingCalNew();
     })
-    //计算输入金额
+    //Tính số tiền nhập
     function setzfje(){
         hjsskZhaolingCalNew();
     }
     //change
     function verifyZffs(num){
-        if ($("#djjesszffs"+num+" option:selected").val() == "" && ovpraseFloat($("#djjess"+num).val()) != 0) {
-            $.modalAlert('请选择支付方式', 'error');
+        if ($(""+num+"").val() == "" && ovpraseFloat($(""+num).val()) != 0) {
+            $.modalAlert('', '');
         }
     }
     function binddzffsFloatingSelector(num)
@@ -1366,12 +1366,12 @@
         var zfdata = getzfArrayData();
         zfdata.pop();
 
-        $("#djjesszffs"+num).newtouchBindSelect({
+        $(""+num).newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
                 $.each(top.clients.SysForCashPayList, function (key, value) {
-                    if (value.xjzffs == '3') {
-                        return; //不显示该支付方式
+                    if (value.xjzffs == '') {
+                        return; //Không hiển thị phương thức thanh toán này
                     }
                     var hasSelected = false;
                     for (var i = 0; i < zfdata.length; i ++) {
@@ -1381,10 +1381,10 @@
                         }
                     }
                     if (!hasSelected) {
-                        $('#djjesszffs'+num).append('<option value="' + value.xjzffs + '" selected >' + value.xjzffsmc + '</option>');
+                        $(''+num).append('' + value.xjzffs + '' + value.xjzffsmc + '');
                     }
                     else {
-                        $('#djjesszffs'+num).append('<option value="' + value.xjzffs + '">' + value.xjzffsmc + '</option>');
+                        $(''+num).append('' + value.xjzffs + '' + value.xjzffsmc + '');
                     }
                 });
                 return resultObjArr;
@@ -1395,15 +1395,15 @@
     {
         var PatZfList = [];
         var PatZfObj = {
-            zfje:  $('#djjess').val(),
-            zffsmc:  $('#djjesszffs option:selected').val()
+            zfje:  $('').val(),
+            zffsmc:  $('').val()
         }
         PatZfList.push(PatZfObj);
-        var number = $('#tablezf .zffsinput').length;
+        var number = $('').length;
         for (var i = 1; i <= number-1; i++) {
             PatZfObj = {
-                zfje:ovpraseFloat($("#djjess" + i).val()).toFixed(2),
-                zffsmc:$("#djjesszffs"+i+" option:selected").val()
+                zfje:ovpraseFloat($("" + i).val()).toFixed(2),
+                zffsmc:$(""+i+"").val()
             }
             PatZfList.push(PatZfObj);
         }

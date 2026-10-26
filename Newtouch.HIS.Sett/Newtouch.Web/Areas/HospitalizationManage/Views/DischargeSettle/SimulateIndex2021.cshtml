@@ -1,23 +1,23 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Index.cshtml";
-    //是否可结算 病区中的患者
-    var isSettContainsBQZ = SysConfigReader.Bool("HOSP_Sett_Contains_BQZ", false).Value;
+    ViewBag.Title = "";
+    Layout = "";
+    //是否可结算 bệnh nhân của trong khu bệnh
+    var isSettContainsBQZ = SysConfigReader.Bool("", false).Value;
     var brzybzType = ((int)EnumZYBZ.Djz).ToString();
     //if (isSettContainsBQZ)
     //{
-    brzybzType += "," + ((int)EnumZYBZ.Bqz).ToString();
+    brzybzType += "" + ((int)EnumZYBZ.Bqz).ToString();
     //}
-    //有与CPOE互通接口
-    //var interfaceWithCPOE = SysConfigReader.Bool("HOSP_INTERFACE_WITH_CPOE", false).Value;
+    //有与CPOEGiao diện tương thông
+    //var interfaceWithCPOE = SysConfigReader.Bool("", false).Value;
 
-    //是否和医保交易
-    var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
-    //是否和新农合交易
-    var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
-    //医保所属地，区分系统将执行何处医保逻辑
-    var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
+    //Có giao dịch bảo hiểm y tế không
+    var openYbSett = SysConfigReader.Bool("");
+    //Có giao dịch bảo hiểm nông thôn mới không
+    var openXnhSett = SysConfigReader.Bool("");
+    //Địa bàn bảo hiểm y tế，区分系统将执行何处医保逻辑
+    var medicalInsurance = SysConfigReader.String("");
 
     var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
 }
@@ -25,31 +25,31 @@
 <div class="rows" style="margin-bottom: 1%;">
     <div class="panel panel-default" style="margin-bottom:0;">
         <div class="panel-heading navb-bg">
-            住院患者信息
+            Thông tin bệnh nhân nhập viện
         </div>
         <table class="form" style="width:96%;">
             <tbody>
                 <tr>
-                    <th class="formTitle">住院号：</th>
+                    <th class="formTitle">Số nhập viện：</th>
                     <td class="formValue">
                         <input class="form-control" type="text" id="zyh" value="" />
                     </td>
                     <td class="formValue">
-                        <input type="button" class="btn btn-default btn-md btn-default-color" title="选择住院患者" id="zy_btnsyy" value="查询" onclick="GetPatSerarchView();">
+                        <input type="button" class="btn btn-default btn-md btn-default-color" title="Chọn bệnh nhân nhập viện" id="zy_btnsyy" value="Tra cứu" onclick="GetPatSerarchView();">
                     </td>
-                    <th class="formTitle">姓名：</th>
+                    <th class="formTitle">Họ tên：</th>
                     <td class="formValue">
                         <label id="xm"></label>
                     </td>
-                    <th class="formTitle">性别：</th>
+                    <th class="formTitle">Giới tính：</th>
                     <td class="formValue">
                         <label id="xb"></label>
                     </td>
-                    <th class="formTitle">年龄：</th>
+                    <th class="formTitle">Tuổi：</th>
                     <td class="formValue">
                         <label id="nlshow"></label>
                     </td>
-                    <th class="formTitle">出院诊断：</th>
+                    <th class="formTitle">Chẩn đoán xuất viện：</th>
                     <td class="formValue">
                         <label id="cyzd"></label>
                     </td>
@@ -58,23 +58,23 @@
             <tbody>
                 <tr>
 
-                    <th class="formTitle">费用性质：</th>
+                    <th class="formTitle">Tính chất chi phí：</th>
                     <td class="formValue" colspan="2">
                         <label id="zyxz"></label>
                     </td>
-                    <th class="formTitle">住院天数：</th>
+                    <th class="formTitle">Số ngày nhập viện：</th>
                     <td class="formValue">
                         <label id="zyts"></label>
                     </td>
-                    <th class="formTitle">出生日期：</th>
+                    <th class="formTitle">Ngày sinh：</th>
                     <td class="formValue">
                         <label id="csny"></label>
                     </td>
-                    <th class="formTitle">入院日期：</th>
+                    <th class="formTitle">Ngày nhập viện：</th>
                     <td class="formValue">
                         <label id="ryrq"></label>
                     </td>
-                    <th class="formTitle">出院日期：</th>
+                    <th class="formTitle">Ngày xuất viện：</th>
                     <td class="formValue">
                         <label id="cyrq"></label>
                     </td>
@@ -88,51 +88,51 @@
     <div id="gridPager"></div>
 </div>
 
-@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
+@Html.Partial("", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 4, 8 },
-    F8Text = "结算"
+    F8Text = ""
 })
 
 <script>
-    var openYbSett = '@openYbSett' === 'True'; //开关配置：医保患者是否使用医保交易流程
-    var openXnhSett = '@openXnhSett' === 'True'; //开关配置：新农合患者是否使用新农合医保交易流程
-    var isYbjyjz; //当前是否走医保交易的就诊
+    var openYbSett = '' === ''; //Cấu hình công tắc：Bệnh nhân bảo hiểm y tế có sử dụng quy trình giao dịch bảo hiểm y tế không
+    var openXnhSett = '' === ''; //Cấu hình công tắc：Bệnh nhân bảo hiểm nông thôn mới có sử dụng quy trình giao dịch bảo hiểm nông thôn mới không
+    var isYbjyjz; //Lần khám hiện tại có đi theo giao dịch bảo hiểm y tế không
     var isXnhjyjz;
-    var medicalInsurance = '@medicalInsurance';
+    var medicalInsurance = '';
 
     $(function () {
         gridListData();
     });
 
-    //病人查询(住院)
+    //Tra cứu bệnh nhân(Nhập viện)
     function GetPatSerarchView() {
         $.modalOpen({
-            id: "patSearch",
-            title: "患者查询",
-            url: "/PatientManage/AccountManage/PatSearchView?brzybzType=" + '@(brzybzType)' + "&t=" + Math.random() + "&zyh=" + $("#zyh").val(),
-            width: "700px",
-            height: "600px",
+            id: "",
+            title: "",
+            url: "" + '' + "" + Math.random() + "" + $("").val(),
+            width: "",
+            height: "",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //在弹出窗口事件
-                //调用查询卡号和住院号
-            }//窗口点确定的回调函数
+                top.frames[iframeId].PatDbGrid(); //Trong sự kiện cửa sổ bật lên
+                //Gọi tra cứu số thẻ và số nhập viện
+            }//Hàm callback xác nhận khi nhấn cửa sổ
         });
     }
 
-    //选择的病人 callback
+    //Bệnh nhân đã chọn callback
     function getPatInfoAjax(selePatInfo) {
-        //清一下
+        //Xóa một chút
         newtouch_globalevent_f4();
         //
         patModel = null;
         jszje = 0.00;
         if (selePatInfo && selePatInfo.zyh) {
-            $('#zyh').val(selePatInfo.zyh);
+            $('').val(selePatInfo.zyh);
             ajaxLoadDataResult(selePatInfo.zyh);
         }
         else {
-            $('#zyh').val('');
+            $('').val('');
         }
     }
 
@@ -141,51 +141,51 @@
     //
     var jszje = 0.00;
 
-    //根据zyh 病人基本信息、计费信息
+    //Theozyh Thông tin cơ bản bệnh nhân、Thông tin tính phí
     function ajaxLoadDataResult(zyh) {
         $.najax({
-            type: "POST",
-            url: "/HospitalizationManage/DischargeSettle/GetInpatientSettleStatusDetail",
-            data: { zyh: zyh, jslx: 'mnjs' },
-            dataType: "json",
+            type: "",
+            url: "",
+            data: { zyh: zyh, jslx: '' },
+            dataType: "",
             success: function (ajaxresp) {
-                //住院病人信息
+                //Thông tin bệnh nhân nhập viện
                 patModel = ajaxresp.data.InpatientSettPatInfo;
 
-                isYbjyjz = openYbSett && patModel.brxz == '1' && patModel.CardType == "@((int)Newtouch.Infrastructure.EnumCardType.YBJYK)";
-                isXnhjyjz = openXnhSett && patModel.brxz == '8' && patModel.CardType == "@((int)Newtouch.Infrastructure.EnumCardType.XNHJYK)";
+                isYbjyjz = openYbSett && patModel.brxz == '' && patModel.CardType == "";
+                isXnhjyjz = openXnhSett && patModel.brxz == '' && patModel.CardType == "";
 
-                $('#xm').html(patModel.xm);
-                $('#xb').html($.getGender(patModel.xb));
-                $("#nlshow").html(getAgeFromBirthTime({ begin: patModel.csny }).text);
-                //$('#ryzd').html(patModel.ryzdmc);
-                $('#cyzd').html(patModel.cyzd);
-                $('#zyxz').html(patModel.brxzmc);
-                $('#zyts').html(patModel.zyts);
-                $('#csny').html(patModel.csny ? patModel.csny.substring(0, 10) : '');
-                $('#ryrq').html(patModel.ryrq ? patModel.ryrq.substring(0, 10) : '');
-                $('#cyrq').html(patModel.cyrq ? patModel.cyrq.substring(0, 10) : '');
+                $('').html(patModel.xm);
+                $('').html($.getGender(patModel.xb));
+                $("").html(getAgeFromBirthTime({ begin: patModel.csny }).text);
+                //$('').html(patModel.ryzdmc);
+                $('').html(patModel.cyzd);
+                $('').html(patModel.brxzmc);
+                $('').html(patModel.zyts);
+                $('').html(patModel.csny ? patModel.csny.substring(0, 10) : '');
+                $('').html(patModel.ryrq ? patModel.ryrq.substring(0, 10) : '');
+                $('').html(patModel.cyrq ? patModel.cyrq.substring(0, 10) : '');
 
                 if (ajaxresp.data.GroupFeeVOList && ajaxresp.data.GroupFeeVOList.length) {
                     loadJfmxByZyh(ajaxresp.data.GroupFeeVOList);
                 }
                 else {
-                    $.modalAlert("尚未产生费用，不能结算", 'warning');
+                    $.modalAlert("", '');
                     return false;
                 }
             },
             errorCallback: function (data) {
                 newtouch_globalevent_f4();
-                $('#zyh').trigger('focus');
+                $('').trigger('');
             }
         });
     }
 
-    //总金额合计
+    //Tổng cộng số tiền
     function loadJfmxByZyh(data) {
-        //$('#gridList').jqGrid("clearGridData");   //早F4过了
-        $("#gridList").newtouchLocalDataGrid(null, data);
-        //总金额
+        //$('').jqGrid("");   //早F4
+        $("").newtouchLocalDataGrid(null, data);
+        //Tổng số tiền
         var zje = 0;
         $.each(data, function () {
             if (this.je) {
@@ -194,41 +194,41 @@
         });
         if (zje) {
             jszje = zje.toFixed(2);;
-            $("#yeCon").text(zje.toFixed(2));
+            $("").text(zje.toFixed(2));
         }
     }
 
     function newtouch_event_f4() {
-        $('#xm').html('');
-        $('#xb').html('');
-        $('#nlshow').html('');
-        //$('#ryzd').html('');
-        $('#cyzd').html('');
-        $('#zyxz').html('');
-        $('#zyts').html('');
-        $('#csny').html('');
-        $('#ryrq').html('');
-        $('#cyrq').html('');
+        $('').html('');
+        $('').html('');
+        $('').html('');
+        //$('').html('');
+        $('').html('');
+        $('').html('');
+        $('').html('');
+        $('').html('');
+        $('').html('');
+        $('').html('');
         patModel = null;
         jszje = 0.00;
-        $('#yeCon').text('0.00');
-        $('#gridList').jqGrid("clearGridData");
+        $('').text('');
+        $('').jqGrid("");
     }
 
-    //绑定grid
+    //Liên kếtgrid
     function gridListData() {
-        var captionCon = "计费明细&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总金额：<label style='color:red;'>￥</label></span>&nbsp;<span id='yeCon' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>元";
-        var $gridList = $("#gridList");
+        var captionCon = "" + "" + "";
+        var $gridList = $("");
         $gridList.newtouchLocalDataGrid({
             height: $(window).height() - 225,
             unwritten: false,
             caption: captionCon,
             colModel: [
-                { label: 'dlCode', name: 'dlCode', hidden: true },
-                { label: '费用类别', name: 'dlmc', width: 100, align: 'left' },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', width: 100, align: '' },
                 {
-                    label: '金额', name: 'je', width: 500, align: 'left', formatter: "number"
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+                    label: '', name: '', width: 500, align: '', formatter: ""
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '' }
                 },
             ],
             onSelectRow: function (rowIndex, s) {
@@ -237,23 +237,23 @@
         });
     }
 
-    //保存结算
+    //Lưu quyết toán
     function newtouch_event_f8() {
         //if (isXnhjyjz) {
-        //    $.modalAlert("新农合患者不能模拟结算！", 'warning');
+        //    $.modalAlert("", '');
         //    return;
         //}
         if (!patModel || !patModel.zyh) {
-            $.modalAlert("住院号为空", 'warning');
+            $.modalAlert("", '');
             return;
         }
-        var data = $("#gridList").jqGrid('getRowData_AllLine');
+        var data = $("").jqGrid('');
         if (!(data && data.length)) {
-            $.modalAlert("尚未产生费用，不能结算.", 'warning')
+            $.modalAlert("", '')
             return;
         }
         if (!patModel.ryrq) {
-            $.modalAlert("入院日期为空", 'warning');
+            $.modalAlert("", '');
             return;
         }
 
@@ -267,19 +267,19 @@
         var ryrq = $.getDate({ date: patModel.ryrq });
         var zje = jszje;
         //
-        var openUrl = "/HospitalizationManage/DischargeSettle/SimulateForm?zyh=" + zyh;
-        openUrl += "&ryrq=" + (!!ryrq ? ryrq : '');
-        openUrl += "&hisfyze=" + zje;
-        openUrl += "&isYbjyjz=" + isYbjyjz;
-        openUrl += "&isXnhjyjz=" + isXnhjyjz; 
-        openUrl += "&medicalInsurance=" + medicalInsurance;
+        var openUrl = "" + zyh;
+        openUrl += "" + (!!ryrq ? ryrq : '');
+        openUrl += "" + zje;
+        openUrl += "" + isYbjyjz;
+        openUrl += "" + isXnhjyjz; 
+        openUrl += "" + medicalInsurance;
         $.modalOpen({
-            id: "FormSimulateSettConfirm",
-            title: "模拟结算-结果查看",
+            id: "",
+            title: "",
             url: openUrl,
-            width: "600px",
-            height: "400px",
-            btn: ['确定'],
+            width: "",
+            height: "",
+            btn: [''],
             callBack: function (iframeId) {
                 $.modalClose(iframeId);
                 return;
@@ -287,15 +287,15 @@
         });
     }
     function getItemsbySfdl(id) {
-        var rowData = $("#gridList").jqGrid('getRowData', id);
+        var rowData = $("").jqGrid('', id);
         if (!!rowData) {
             var sfdl = rowData.dlCode;
             $.modalOpen({
-                id: "Sfdlfeedetail",
-                title: "明细项目查询",
-                url: "/HospitalizationManage/DischargeSettle/SimulateFeeItems?dlCode=" + sfdl + "&zyh=" + $("#zyh").val(),
-                width: "800px",
-                height: "600px",
+                id: "",
+                title: "",
+                url: "" + sfdl + "" + $("").val(),
+                width: "",
+                height: "",
                 btn: null,
                 callBack: function (iframeId) {
                 }

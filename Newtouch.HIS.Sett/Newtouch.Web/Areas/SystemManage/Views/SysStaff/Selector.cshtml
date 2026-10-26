@@ -1,38 +1,38 @@
 ﻿@{
-    ViewBag.Title = "Selector";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 <script>
-    var from = $.request("from");
-    var organizeId = $.request("organizeId");
-    var keyValue = $.request("keyValue");
-    var isExpand = $.request("isExpand");
-    var callbackType = $.request("callbackType");
-    var single = $.request("single");
-    var isShowEmpty = $.request("isShowEmpty");
-    var initIdSelected = $.request("initIdSelected");
-    var isContansChildOrg = $.request("isContansChildOrg");
-    var dutyCode = $.request("dutyCode");
+    var from = $.request("");
+    var organizeId = $.request("");
+    var keyValue = $.request("");
+    var isExpand = $.request("");
+    var callbackType = $.request("");
+    var single = $.request("");
+    var isShowEmpty = $.request("");
+    var initIdSelected = $.request("");
+    var isContansChildOrg = $.request("");
+    var dutyCode = $.request("");
     $(function () {
         initControl();
     })
 
     function initControl() {
-        $("#staffTree").treeview({
+        $("").treeview({
             height: 440,
             slimscroll: false,
             showcheck: true,
-            url: "/SystemManage/SysStaff/GetStaffSelecotrTree",
+            url: "",
             param: { from: from, organizeId: organizeId, keyValue: keyValue, isExpand: isExpand, initIdSelected: initIdSelected, isContansChildOrg: isContansChildOrg, dutyCode: dutyCode, isShowEmpty: isShowEmpty },
             oncheckboxclick: function (a, ck) {
                 window.treeaid = a.id;
-                if (single == 'true' && ck == 1 && !a.hasChildren) {
+                if (single == '' && ck == 1 && !a.hasChildren) {
                     //让其他的都不选中，但不包括其父级的
-                    $.each($('img.bbit-tree-node-cb'), function () {
-                        if ($(this).attr('id').indexOf(window.treeaid) == -1
-                            && $(this).attr('src').indexOf('checkbox_1') != -1) {
-                            $(this).trigger('click');
+                    $.each($(''), function () {
+                        if ($(this).attr('').indexOf(window.treeaid) == -1
+                            && $(this).attr('').indexOf('') != -1) {
+                            $(this).trigger('');
                         }
                     });
                 }
@@ -43,17 +43,17 @@
 
     function AcceptClick(callBack) {
         var treeSeleData;
-        if (callbackType == 'json') {
-            treeSeleData = $("#staffTree").getCheckedNodeObjArray();
-            if (single == 'true' && treeSeleData.length > 1) {
-                $.modalAlert('最多选中一条', 'warning');
+        if (callbackType == '') {
+            treeSeleData = $("").getCheckedNodeObjArray();
+            if (single == '' && treeSeleData.length > 1) {
+                $.modalAlert('', '');
                 return;
             }
         }
         else {
-            treeSeleData = $("#staffTree").getCheckedNodes();
-            if (single == 'true' && treeSeleData.length > 1) {
-                $.modalAlert('最多选中一条', 'warning');
+            treeSeleData = $("").getCheckedNodes();
+            if (single == '' && treeSeleData.length > 1) {
+                $.modalAlert('', '');
                 return;
             }
             treeSeleData = String(treeSeleData);

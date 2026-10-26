@@ -1,24 +1,24 @@
 ﻿
 @{
-    ViewBag.Title = "TatisticWorkload";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <script>
-    var Editing_ysList = []; //编辑域中的人员
+    var Editing_ysList = []; //Nhân viên trong vùng chỉnh sửa
     $(function () {
-        $('#zls').click(function () {
+        $('').click(function () {
             var initIdSelected = "";
             $.each(Editing_ysList,
                 function () {
-                    initIdSelected += this.id + ",";
+                    initIdSelected += this.id + "";
                 });
             $.modalOpen({
-                id: "StaffCorrelation",
-                title: "选择治疗师",
-                url: "/SystemManage/SysStaff/Selector?single=true&isContansChildOrg=false&callbackType=json&dutyCode=RehabDoctor&initIdSelected=" + initIdSelected,
+                id: "",
+                title: "",
+                url: "" + initIdSelected,
                 showleftlalbel: false,
-                width: "650px",
-                height: "570px",
+                width: "",
+                height: "",
                 callBack: function (iframeId) {
                     top.frames[iframeId].AcceptClick(function (data) {
                         staffTreeCallback(data);
@@ -31,25 +31,25 @@
         gridList();
     });
 
-    //人员树 选择 回调
+    //Cây nhân viên Chọn Callback
     function staffTreeCallback(treeSeleData) {
         Editing_ysList = [];
         var zlsNames = "";
         $.each(treeSeleData, function () {
-            zlsNames += this.text + ",";
+            zlsNames += this.text + "";
             Editing_ysList.push({ id: this.id, gh: this.value, Name: this.text, ks: this.Ex1, ksmc: this.Ex2 });
         })
         if (zlsNames.length > 0) {
             zlsNames = zlsNames.substring(0, zlsNames.length - 1);
         }
 
-        $('#zls').val(zlsNames);
+        $('').val(zlsNames);
     }
 
     function init() {
         var date = new Date;
-        //年份
-        $("#Year").newtouchBindSelect({
+        //Năm
+        $("").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
                 if (top.clients.yearArr && top.clients.yearArr.length) {
@@ -61,13 +61,13 @@
             },
             selectedValue: 1900 + date.getYear(),
         });
-        //月份
-        $("#Month").newtouchBindSelect({
+        //Tháng
+        $("").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
                 if (top.clients.monthArr && top.clients.monthArr.length) {
                     $.each(top.clients.monthArr, function () {
-                        resultObjArr.push({ id: this, text: parseInt(this) < 10 ? "0" + this : this });
+                        resultObjArr.push({ id: this, text: parseInt(this) < 10 ? "" + this : this });
                     });
                 }
                 return resultObjArr;
@@ -75,7 +75,7 @@
             selectedValue: date.getMonth() + 1,
         });
 
-        $("#ks").newtouchBindSelect({
+        $("").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysDepartList, function (idx, val) {
@@ -87,60 +87,60 @@
     }
 
     function gridList() {
-        var $gridList = $("#HisgridList");
+        var $gridList = $("");
         $gridList.dataGrid({
             height: $(window).height() - 165,
-            url: "/TherapeutistManage/TherapeutistCompleteList/GetStaffReport",
+            url: "",
             postData: getSearchPostData(),
             colModel: [
-                { label: "主键", name: "id", hidden: true, key: true },
-                { label: '工号', name: 'ysgh', width: 80, align: 'left' },
-                { label: '姓名', name: 'NAME', width: 150, align: 'left' },
+                { label: "", name: "", hidden: true, key: true },
+                { label: '', name: '', width: 80, align: '' },
+                { label: '', name: '', width: 150, align: '' },
                 {
-                    label: '治疗工时(H)', name: 'zlgs', width: 100, align: 'left', formatter: function (cellvalue) {
+                    label: '', name: '', width: 100, align: '', formatter: function (cellvalue) {
                         return (cellvalue / 60).toFixed(2);
                     }
                 },
                 {
-                    label: '非治疗工时(H)', name: 'fzlgs', width: 100, align: 'left', formatter: function (cellvalue) {
+                    label: '', name: '', width: 100, align: '', formatter: function (cellvalue) {
                         return (cellvalue / 60).toFixed(2);
                     }
                 },
                 {
-                    label: '总工时(H)', name: 'zgs', width: 100, align: 'left', formatter: function (cellvalue) {
+                    label: '', name: '', width: 100, align: '', formatter: function (cellvalue) {
                         return (cellvalue / 60).toFixed(2);
                     }
                 },
                 {
-                    label: '治疗占比(非治疗/治疗)', name: 'zlzb1', width: 150, align: 'left', formatter: function (cellvalue) {
-                        return (cellvalue* 100).toFixed(2)+ "%";
+                    label: '', name: '', width: 150, align: '', formatter: function (cellvalue) {
+                        return (cellvalue* 100).toFixed(2)+ "";
                     }
                 },
                 {
-                    label: '治疗占比(治疗/总工时)', name: 'zlzb2', width: 150, align: 'left', formatter: function (cellvalue) {
-                        return (cellvalue * 100).toFixed(2) + "%";
+                    label: '', name: '', width: 150, align: '', formatter: function (cellvalue) {
+                        return (cellvalue * 100).toFixed(2) + "";
                     }
                 }
             ],
-            //pager: "#gridPager",
-            //sortname: 'desc',
-            //rowNum: '10',
+            //pager: "",
+            //sortname: '',
+            //rowNum: '',
             viewrecords: true
         });
 
-        $("#btn_search").click(function () {
-            $gridList.jqGrid('setGridParam',
+        $("").click(function () {
+            $gridList.jqGrid('',
                 {
                     postData: getSearchPostData(),
-                    url: "/TherapeutistManage/TherapeutistCompleteList/GetStaffReport"
-                }).trigger('reloadGrid');
+                    url: ""
+                }).trigger('');
         });
     }
 
     function getSearchPostData() {
         var postData = {};
-        postData.year = $('#Year').val();
-        postData.month = $('#Month').val();
+        postData.year = $('').val();
+        postData.month = $('').val();
         postData.ysgh = "";
         if (!postData.year || !postData.month) {
             return;
@@ -154,29 +154,29 @@
 <form id="form1">
     <div class="panel panel-default" style="margin-top:5px;">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <div style="padding: 2px;">
             <table class="form">
                 <tr>
-                    <td class="formTitle">年份：</td>
+                    <td class="formTitle">Năm：</td>
                     <td class="formValue">
                         <select id="Year" class="form-control">
-                            <option value="-1">===请选择===</option>
+                            <option value="-1">===Vui lòng chọn===</option>
                         </select>
                     </td>
-                    <td class="formTitle">月份：</td>
+                    <td class="formTitle">Tháng：</td>
                     <td class="formValue">
                         <select id="Month" class="form-control">
-                            <option value="-1">===请选择===</option>
+                            <option value="-1">===Vui lòng chọn===</option>
                         </select>
                     </td>
-                    <th class="formTitle">治疗师：</th>
+                    <th class="formTitle">Nhà trị liệu：</th>
                     <td class="formValue">
                         <input id="zls" type="text" class="form-control" />
                     </td>
                     <td class="formValue" colspan="2">
-                        <input type="button" id="btn_search" class="btn btn-primary" style="width: 50px; margin-left: 40px;" value="查询" />
+                        <input type="button" id="btn_search" class="btn btn-primary" style="width: 50px; margin-left: 40px;" value="Tra cứu" />
                     </td>
                 </tr>
             </table>
@@ -187,10 +187,10 @@
     <table id="HisgridList"></table>
     @*<div id="gridPager"></div>*@
 </div>
-@*@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+@*@Html.Partial("", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
     {
         ShowKeyList = new int[] { 9 },
-        F9Text = "导出"
+        F9Text = ""
     })*@
 
 

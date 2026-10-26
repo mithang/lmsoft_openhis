@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 患者人均费用分析_图标
+        /// 患者人均费用分析_Biểu tượng
         /// </summary>
         public ActionResult GetHzrjfyfx_tb(string ksrq, string jsrq, string rtype)
         {

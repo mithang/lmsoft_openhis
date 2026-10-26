@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
         #region 页面初始化
         /// <summary>
-        /// 住院就诊人次人数分析
+        /// Nhập viện phân tích số người lần người khám bệnh
         /// </summary>
         /// <returns></returns>
         public ActionResult NumberofInpatientVisits()
@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
             return View();
         }
         /// <summary>
-        /// 住院收入分析
+        /// Nhập viện phân tích thu nhập
         /// </summary>
         /// <returns></returns>
         public ActionResult NumberofInpatientSalary()
@@ -42,16 +42,16 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
         #endregion
 
         /// <summary>
-        ///获取住院就诊人数
+        ///Lấy số người khám nhập viện
         /// </summary>
         /// <returns></returns>
         public ActionResult GetInpatientVisitNum()
         {
-            //获取住院新增人数
+            //Lấy số người thêm mới nhập viện
             List<OutpatientVisitNumVO> outpatientlist = _highchartsDmnService.GetInpatientVisitNum(OrganizeId);
-            //获取出院人数
+            //Lấy số người xuất viện
             List<InpatientVisitNumVO> inpatientList = _highchartsDmnService.GetInpatientDischargeNum(OrganizeId);
-            //放在一个对象，返回到页面
+            //Đặt đối tượng cái một ở，Trả về trang đến
             var data = new VisitNumBO
             {
                 OutpatientList = outpatientlist,
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
         }
 
         /// <summary>
-        /// 获取住院收入统计
+        /// Lấy thống kê thu nhập nhập viện
         /// </summary>
         /// <returns></returns>
         public ActionResult GetInpatientSalaryNum()
@@ -72,7 +72,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
         #region 住院费用报表
         /// <summary>
-        /// 获取就诊费用
+        /// Lấy chi phí khám bệnh
         /// </summary>
         public ActionResult GetVisitNum(string year, string datatype, string orgId)
         {

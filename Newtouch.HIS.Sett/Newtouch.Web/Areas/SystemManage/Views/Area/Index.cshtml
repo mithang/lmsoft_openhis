@@ -1,61 +1,61 @@
 ﻿@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <script>
     $(function () {
         gridList();
     })
     function gridList() {
-        var $gridList = $("#gridList");
+        var $gridList = $("");
         $gridList.dataGrid({
             treeGrid: true,
-            treeGridModel: "adjacency",
-            ExpandColumn: "CreatorTime",
-            url: "/SystemManage/Area/GetTreeGridJson",
+            treeGridModel: "",
+            ExpandColumn: "",
+            url: "",
             height: $(window).height() - 96,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: '名称', name: 'F_FullName', width: 200, align: 'left' },
+                { label: "", name: "", hidden: true, key: true },
+                { label: '', name: '', width: 200, align: '' },
                 {
-                    label: '创建时间', name: 'CreatorTime', width: 80, align: 'left',
-                    formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                    label: '', name: '', width: 80, align: '',
+                    formatter: "", formatoptions: { srcformat: '', newformat: '' }
                 },
                 {
-                    label: "有效", name: "F_EnabledMark", width: 60, align: "center",
+                    label: "", name: "", width: 60, align: "",
                     formatter: function (cellvalue) {
-                        return cellvalue == true ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>";
+                        return cellvalue == true ? "" : "";
                     }
                 },
-                { label: '备注', name: 'F_Description', width: 300, align: 'left' }
+                { label: '', name: '', width: 300, align: '' }
             ]
         });
-        $("#btn_search").click(function () {
-            $gridList.jqGrid('setGridParam', {
-                postData: { keyword: $("#txt_keyword").val() },
-            }).trigger('reloadGrid');
+        $("").click(function () {
+            $gridList.jqGrid('', {
+                postData: { keyword: $("").val() },
+            }).trigger('');
         });
     }
     function btn_add() {
         $.modalOpen({
-            id: "Form",
-            title: "新增区域",
-            url: "/SystemManage/Area/Form",
-            width: "450px",
-            height: "340px",
+            id: "",
+            title: "",
+            url: "",
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
         });
     }
     function btn_edit() {
-        var keyValue = $("#gridList").jqGridRowValue().Id;
+        var keyValue = $("").jqGridRowValue().Id;
         $.modalOpen({
-            id: "Form",
-            title: "修改区域",
-            url: "/SystemManage/Area/Form?keyValue=" + keyValue,
-            width: "450px",
-            height: "340px",
+            id: "",
+            title: "",
+            url: "" + keyValue,
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
@@ -63,11 +63,11 @@
     }
     function btn_delete() {
         $.deleteForm({
-            url: "/SystemManage/Area/DeleteForm",
-            param: { keyValue: $("#gridList").jqGridRowValue().Id },
+            url: "",
+            param: { keyValue: $("").jqGridRowValue().Id },
             success: function () {
-                $.currentWindow().$("#gridList").resetSelection();
-                $.currentWindow().$("#gridList").trigger("reloadGrid");
+                $.currentWindow().$("").resetSelection();
+                $.currentWindow().$("").trigger("");
             }
         })
     }
@@ -79,7 +79,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="请输入要查询关键字" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Vui lòng nhập từ khóa cần tra cứu" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -97,13 +97,13 @@
         </div>
         <div class="operate">
             <ul class="nav nav-pills">
-                <li class="first">已选中<span>1</span>项</li>
-                <li><a id="NF-edit" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改区域</a></li>
-                <li><a id="NF-delete" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除区域</a></li>
+                <li class="first">Đã chọn<span>1</span>Mục</li>
+                <li><a id="NF-edit" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa miền quận</a></li>
+                <li><a id="NF-delete" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa miền quận</a></li>
             </ul>
             <a href="javascript:;" class="close"></a>
         </div>
-             @*<script>$('.toolbar').authorizeButton()</script>*@
+             @*<script>$('').authorizeButton()</script>*@
     </div>
 </div>
 <div class="gridPanel">

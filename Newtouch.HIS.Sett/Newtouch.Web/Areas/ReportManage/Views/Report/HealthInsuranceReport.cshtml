@@ -1,39 +1,39 @@
 ﻿
 @{
     ViewBag.Title = "";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    Layout = "";
 }
 
 <div class="rows">
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">开始日期：</th>
+                <th class="formTitle">Ngày bắt đầu：</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
                 </td>
-                <th class="formTitle">结束日期：</th>
+                <th class="formTitle">Ngày kết thúc：</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
                 </td>
-                <th class="formTitle" style="left: 20px;">科室名称：</th>
+                <th class="formTitle" style="left: 20px;">Tên khoa：</th>
                 <td class="formValue">
                     <select id="depa" class="form-control">
-                        <option value="">全部</option>
+                        <option value="">Tất cả</option>
                     </select>
                 </td>
-                @*<th class="formTitle">大类名称：</th>
+                @*<th class="formTitle">Tên nhóm lớn：</th>
                 <td class="formValue">
                     <select id="dlmc" class="form-control">
-                        <option value="">全部</option>
+                        <option value="">Tất cả</option>
                     </select>
                 </td>*@
-                <th class="formTitle">病区：</th>
+                <th class="formTitle">Khu bệnh：</th>
                 <td class="formValue" style="width:100px;">
                     <select class="form-control" id="bq" name="bq" multiple="multiple">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
             </tr>
@@ -42,18 +42,18 @@
                 <td class="formValue">
                     <input id="dj" name="dj"  type="number" autocomplete="off" class="form-control"/>
                 </td>
-                <th class="formTitle">住院号：</th>
+                <th class="formTitle">Số nhập viện：</th>
                 <td class="formValue">
                     <input id="zyh" name="zyh" type="text" autocomplete="off" class="form-control" />
                 </td>
 
 
-                <th class="formTitle">项目：</th>
+                <th class="formTitle">Hạng mục：</th>
                 <td class="formValue"><input type="text" id="sfxmmc" class="form-control formClearIgnore" /></td>
                 <th class="formTitle"></th>
 
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
                 <td class="formValue"></td>
             </tr>
@@ -70,140 +70,140 @@
             scrolling="auto" allowtransparency="true" frameborder="0"></iframe>
 </div>
 
-<script type="text/javascript">
-	var reportServerHOST = '@(ViewBag.ReportServerHOST)';
-    var organId = '@(ViewBag.OrgId)';
+<script type="">
+	var reportServerHOST = '';
+    var organId = '';
 
 
  
 
 	function submit() {
-		if ($('#kssj').val().length == 0) {
-			$.modalAlert("缺少开始时间", "error");
+		if ($('').val().length == 0) {
+			$.modalAlert("", "");
 			return;
 		}
-		if ($('#jssj').val().length == 0) {
-			$.modalAlert("缺少结束时间", "error");
+		if ($('').val().length == 0) {
+			$.modalAlert("", "");
 			return;
 		}
-		if ($('#kssj').val() > $('#jssj').val()) {
-			$.modalAlert("开始时间不能大于结束时间", "error");
+		if ($('').val() > $('').val()) {
+			$.modalAlert("", "");
 			return;
 		}
 		var url = getUrl();
-		url += "&OrganizeId=" + organId;
-		url += "&kssj=" + $('#kssj').val();
-		url += "&jssj=" + $.getDate({ date: $('#jssj').val() }) + ' 23:59:59';
-		//url += "&ksmc=" + $('#depa').val();
-		//url += "&dlmc=" + $('#dlmc').val();
-		//url += "&xm=" + $('#xm').val();
-        url += "&zyh=" + $('#zyh').val();
-        url += "&ks=" + $('#depa').val();
-        var dj = $('#dj').val();
+		url += "" + organId;
+		url += "" + $('').val();
+		url += "" + $.getDate({ date: $('').val() }) + '';
+		//url += "" + $('').val();
+		//url += "" + $('').val();
+		//url += "" + $('').val();
+        url += "" + $('').val();
+        url += "" + $('').val();
+        var dj = $('').val();
         if (dj=="") {
           dj = 0;
 
         }
   
 
-        url += "&dj=" + dj;
-        var bq = $('#bq').val();
+        url += "" + dj;
+        var bq = $('').val();
         if (bq == null) {
        
-            url += "&bq=" +"";
+            url += "" +"";
         } else {
-            url += "&bq=" + $('#bq').val();
+            url += "" + $('').val();
         } 
-		url += "&xmmc=" + $('#sfxmmc').val();
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
-        $("#iframerightiframerightiframerightttt").attr('src', url);
+		url += "" + $('').val();
+        setTimeout("", 10);
+        $("").attr('', url);
     }
 
-    $("#iframerightiframerightiframerightttt").load(function () {
+    $("").load(function () {
         $.loading(false);
 	});
 
     $(function () {
         var h = $(window).height() - 65
-        $('#layout iframe').css('height', h);
+        $('').css('', h);
 		init();
     });
-    $("#bq").bindSelect({
-        url: "/SystemManage/BaseData/GetAuthedWardSelectJson",
+    $("").bindSelect({
+        url: "",
     });
 
-    $("#bq").change(function () {
-        $("#btn_search").trigger('click');
+    $("").change(function () {
+        $("").trigger('');
     });
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
-        $("#btn_search").trigger('click');
+        $("").trigger('');
     }
 
     function getUrl() {
-        var reportServerHOST = '@(ViewBag.ReportServerHOST)';
-        reportServerHOST += "/ReportServer/Pages/ReportViewer.aspx?%2fHIS.Report.1%2f项目使用查询报表&rs:Command=Render";
+        var reportServerHOST = '';
+        reportServerHOST += "";
         console.log(reportServerHOST);
 		//ReportServer/Pages/ReportViewer.aspx?%2fHIS.Report.1%2f医院垫支明细&rs:Command=Render
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
-            if (reportServerHOST.indexOf('&rc:Stylesheet') == -1) {
-                reportServerHOST += "&rc:Stylesheet=MyStyleSheet";
+            if (reportServerHOST.indexOf('') == -1) {
+                reportServerHOST += "";
             }
         }
         return reportServerHOST;
     }
 </script>
 
-<script type="text/javascript">
+<script type="">
     function init() {
-        //治疗师绑定下拉框
-        $("#depa").bindSelect({
-            id: "ybksbm",
-            text: "Name",
-            url: "/ReportManage/Report/GetKsMc",
+        //Hộp thả xuống liên kết nhà trị liệu
+        $("").bindSelect({
+            id: "",
+            text: "",
+            url: "",
             dropdownAutoWidth: true
         });
 
-        $('#depa').change(function () {
+        $('').change(function () {
             submit();
         });
         //大类名称绑定下拉框
-        $("#dlmc").bindSelect({
-            id: "dlcode",
-            text: "dlmc",
-            url: "/ReportManage/Report/GetDlMc",
+        $("").bindSelect({
+            id: "",
+            text: "",
+            url: "",
             dropdownAutoWidth: true
         });
 
-        $('#dlmc').change(function () {
+        $('').change(function () {
             submit();
         });
     }
-    $('#sfxmmc').sfxmFloatingSelector({
+    $('').sfxmFloatingSelector({
         djDecimalPlaces: 4,
-        searchType: "sfxm.yp",
-        leftshift: 150, //整体左偏移
+        searchType: "",
+        leftshift: 150, //Lệch trái tổng thể
         ajaxparameters: function ($thisinput) {
-            return "dllb=1,2&mzzybz=2&keyword=" + $.trim($thisinput.val());
+            return "" + $.trim($thisinput.val());
         },
         itemdbclickhandler: function ($thistr) {
-            $('#sfxmmc').val($thistr.attr('data-sfxmmc'));
-            $("#sfxmmc").attr("data-sfxmmc", $thistr.find("td:eq(0)").html());
+            $('').val($thistr.attr(''));
+            $("").attr("", $thistr.find("").html());
         }
     });
 </script>
-<script type="text/javascript">
+<script type="">
     function init() {
-        //治疗师绑定下拉框
-        $("#depa").bindSelect({
-            id: "Code",
-            text: "Name",
-            url: "/OutpatientManage/OutpatientRegSchedule/GetSysDepartmentList",
+        //Hộp thả xuống liên kết nhà trị liệu
+        $("").bindSelect({
+            id: "",
+            text: "",
+            url: "",
             dropdownAutoWidth: true
         });
 
-        $('#depa').change(function () {
+        $('').change(function () {
             submit();
         });
     }

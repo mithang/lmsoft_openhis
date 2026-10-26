@@ -1,24 +1,24 @@
 ﻿@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <div>
-    请为医疗机构维护一个<span style="color:red;">医院管理员</span>角色，编码<span style="color:red;">HospAdministrator</span>，有需要根据<span style="color:red;">该特殊角色编码</span>判断是否为医院管理员
+    请为医疗机构维护一个<span style="color:red;">医院管理员</span>Vai trò，Mã<span style="color:red;">HospAdministrator</span>，Theo cần có<span style="color:red;">Mã vai trò đặc biệt này</span>判断是否为医院管理员
 </div>
 <div class="topPanel">
-    @Html.Partial("_OrganizeIdDDLToolbarSearchView")
+    @Html.Partial("")
     <div class="toolbar">
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_users()"><i class="fa fa-pencil-square-o"></i>角色用户</a>
+            <a class="btn btn-primary" onclick="btn_users()"><i class="fa fa-pencil-square-o"></i>Người dùng vai trò</a>
         </div>
     </div>
     <div class="search">
@@ -26,7 +26,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="名称/编码" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Mã" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -46,93 +46,93 @@
         gridList();
     })
     function gridList() {
-        var $gridList = $("#gridList");
+        var $gridList = $("");
         $gridList.dataGrid({
-            url: "/SystemManage/SysRole/GetGridJson",
+            url: "",
             height: $(window).height() - 128,
-            postData: { keyword: $("#txt_keyword").val(), OrganizeId: $("#OrganizeId").val() },
+            postData: { keyword: $("").val(), OrganizeId: $("").val() },
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: "有效", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: '名称', name: 'Name', width: 150, align: 'left' },
-                { label: '编码', name: 'Code', width: 100, align: 'left' },
-                { label: '备注', name: 'Description', width: 300, align: 'left' },
-                    { label: '排序', name: 'px', width: 40, align: 'left' },
-                { label: '创建人', name: 'CreatorCode', width: 100, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '最后修改', name: 'LastModifierCode', width: 100, align: 'left' },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: "", name: "", hidden: true, key: true },
+                { label: "", name: "", width: 80, align: "", formatter: function (cellvalue) { return cellvalue == "" ? "" : ""; } },
+                { label: '', name: '', width: 150, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 300, align: '' },
+                    { label: '', name: '', width: 40, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 130, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 130, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
             ],
-            pager: "#gridPager",
-            sortname: 'CreateTime desc',
+            pager: "",
+            sortname: '',
             viewrecords: true,
-            rowNum: '10',
+            rowNum: '',
         });
-        $("#btn_search").click(function () {
-            $gridList.jqGrid('setGridParam', {
-                postData: { keyword: $("#txt_keyword").val(), OrganizeId: $("#OrganizeId").val() },
-            }).trigger('reloadGrid');
+        $("").click(function () {
+            $gridList.jqGrid('', {
+                postData: { keyword: $("").val(), OrganizeId: $("").val() },
+            }).trigger('');
         });
     }
 
-    //回车事件
-    $('#txt_keyword').keydownEnterEvent(function () {
-        $('#btn_search').trigger('click');
+    //Sự kiện nhấn Enter
+    $('').keydownEnterEvent(function () {
+        $('').trigger('');
     })
 
     function btn_add() {
         $.modalOpen({
-            id: "Form",
-            title: "新增角色",
-            url: "/SystemManage/SysRole/Form?orgId=" + $('#OrganizeId').val(),
-            width: "550px",
-            height: "570px",
+            id: "",
+            title: "",
+            url: "" + $('').val(),
+            width: "",
+            height: "",
             btn: null
         });
     }
 
     function btn_edit() {
-        var keyValue = $("#gridList").jqGridRowValue().Id;
+        var keyValue = $("").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("", '');
             return;
         }
         $.modalOpen({
-            id: "Form",
-            title: "修改角色",
-            url: "/SystemManage/SysRole/Form?keyValue=" + keyValue,
-            width: "550px",
-            height: "570px",
+            id: "",
+            title: "",
+            url: "" + keyValue,
+            width: "",
+            height: "",
             btn: null
         });
     }
 
     function btn_delete() {
-        var keyValue = $("#gridList").jqGridRowValue().Id;
+        var keyValue = $("").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("", '');
             return;
         }
         $.deleteForm({
-            url: "/SystemManage/SysRole/DeleteForm",
-            param: { keyValue: $("#gridList").jqGridRowValue().Id },
+            url: "",
+            param: { keyValue: $("").jqGridRowValue().Id },
             success: function () {
-                $.currentWindow().$("#gridList").trigger("reloadGrid");
+                $.currentWindow().$("").trigger("");
             }
         })
     }
     function btn_users() {
-        var keyValue = $("#gridList").jqGridRowValue().Id;
+        var keyValue = $("").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("", '');
             return;
         }
         $.modalOpen({
-            id: "FormRoleUsers",
-            title: "角色用户",
-            url: "/SystemManage/SysUser/Selector?from=rolerelatioinuser&callbackType=json&keyValue=" + keyValue + "&isContansChildOrg=false&organizeId=" + $('#OrganizeId').val(),
-            width: "650px",
-            height: "570px",
+            id: "",
+            title: "",
+            url: "" + keyValue + "" + $('').val(),
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function (data) {
                     userStaffTreeCallback(data);
@@ -141,9 +141,9 @@
         });
     }
 
-    //用户人员树回调方法
+    //Phương thức callback cây nhân viên người dùng
     function userStaffTreeCallback(data) {
-        var keyValue = $("#gridList").jqGridRowValue().Id;
+        var keyValue = $("").jqGridRowValue().Id;
         if (!!!keyValue) {
             return;
         }
@@ -153,10 +153,10 @@
         });
         if (keyValue) {
             $.submitForm({
-                url: "/SystemManage/SysRole/SubmitRoleUser?roleId=" + keyValue,
+                url: "" + keyValue,
                 param: { userList: arr },
                 success: function () {
-                    $("#gridList").trigger("reloadGrid");
+                    $("").trigger("");
                 }
             });
         }

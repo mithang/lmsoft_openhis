@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "ChooseCf";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 <script>
@@ -13,7 +13,7 @@
 
     function selectGridAll()
     {
-        var jqGrid = $("#chooseCfGrid");
+        var jqGrid = $("");
         // 拿到所有行id
         var jqGridIDs = jqGrid.getDataIDs();
         for (var i = 0; i < jqGridIDs.length; i++) {
@@ -23,30 +23,30 @@
 
     function GetCfInfo()
     {
-        var PrescriptionInfo = sessionStorage.getItem("CfInfo");
+        var PrescriptionInfo = sessionStorage.getItem("");
         if (PrescriptionInfo)
         {
-            sessionStorage.removeItem("CfInfo")
+            sessionStorage.removeItem("")
             return $.parseJSON(PrescriptionInfo);
         }
     }
 
     function gridList()
     {
-        var $gridList = $("#chooseCfGrid");
+        var $gridList = $("");
         $gridList.newtouchLocalDataGrid(
         {
             multiselect: true,
             unwritten: false,
             height: 150,
             colModel: [
-                { label: "cfnm", name: "cfnm", key: true, hidden: true },
-                { label: "处方号", name: "cfh", width: 130, align: 'left' },
-                { label: '总金额', name: 'zje', width: 80, align: 'left' },
-                { label: '处方类型', name: 'cflxmc', width: 50, align: 'left' },
-                { label: '科室名称', name: 'ksmc', width: 100, align: 'left' },
-                { label: '医生名称', name: 'ysmc', width: 50, align: 'left' },
-                { label: '开立时间', name: 'klsj', width: 50, align: 'left' }
+                { label: "", name: "", key: true, hidden: true },
+                { label: "", name: "", width: 130, align: '' },
+                { label: '', name: '', width: 80, align: '' },
+                { label: '', name: '', width: 50, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 50, align: '' },
+                { label: '', name: '', width: 50, align: '' }
             ]
         });
         $gridList.newtouchLocalDataGrid(null, GetCfInfo());
@@ -54,17 +54,17 @@
 
     function submitForm(callback)
     {
-        //获取选中行Id
-        var selRowIds = $("#chooseCfGrid").jqGrid('getGridParam', 'selarrrow');
+        //Lấy dòng đã chọnId
+        var selRowIds = $("").jqGrid('', '');
         if (selRowIds.length == 0) {
-            $.modalAlert("请勾选一个或多个处方", 'warning');
+            $.modalAlert("", '');
             return;
         }
 
         //cflist
         var cflist = [];//查询处方详情
         for (var i = 0; i < selRowIds.length; i++) {
-            var rowData = $("#chooseCfGrid").jqGrid('getRowData', selRowIds[i]);
+            var rowData = $("").jqGrid('', selRowIds[i]);
             if (!rowData) {
                 break;
             }

@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "AddArrange";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <script>
     $(function () {
@@ -11,8 +11,8 @@
 
     function init() {
         var date = new Date();
-        //年份
-        $("#Year").newtouchBindSelect({
+        //Năm
+        $("").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
                 if (top.clients.yearArr && top.clients.yearArr.length) {
@@ -24,13 +24,13 @@
             },
             selectedValue: 1900 + date.getYear(),
         });
-        //月份
-        $("#Month").newtouchBindSelect({
+        //Tháng
+        $("").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
                 if (top.clients.monthArr && top.clients.monthArr.length) {
                     $.each(top.clients.monthArr, function () {
-                        resultObjArr.push({ id: this, text: parseInt(this) < 10 ? "0" + this : this });
+                        resultObjArr.push({ id: this, text: parseInt(this) < 10 ? "" + this : this });
                     });
                 }
                 return resultObjArr;
@@ -40,95 +40,95 @@
     }
     function gridList() {
         var lastRowId;
-        var $gridList = $("#gridList");
+        var $gridList = $("");
         $gridList.dataGrid({
-            url: "/TherapeutistManage/TherapeutistCompleteList/GetAllRehabDoctor",
+            url: "",
             shrinkToFit: true,
             height: $(window).height() - 130,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: '姓名', name: 'Name', width: 150, align: 'left' },
-                { label: '工号', name: 'gh', width: 150, align: 'left' },
-                { label: '天数', name: 'ts', width: 90, editable: true, align: "left" }
+                { label: "", name: "", hidden: true, key: true },
+                { label: '', name: '', width: 150, align: '' },
+                { label: '', name: '', width: 150, align: '' },
+                { label: '', name: '', width: 90, editable: true, align: "" }
             ],
             viewrecords: true,
             onSelectRow_page: function (rowid, status) {
                 if (rowid && lastRowId && rowid !== lastRowId) {   //&&: 相当于true/fase(判断是否有值)
                     $gridList.saveRow(lastRowId, function (result) {
-                        // return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
+                        // return false;   //Xác minh nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //Không hiệu lực V.v. sửa chữa
                     }); //先保存处于编辑状态的那一行    //function checksave
                 }
                 lastRowId = rowid;
-                $gridList.jqGrid('editRow', rowid, true, null, function (result) {
-                    return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
+                $gridList.jqGrid('', rowid, true, null, function (result) {
+                    return false;   //Xác minh nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //Không hiệu lực V.v. sửa chữa
                 }, null, null, function () {
                 });
             },
             gridComplete: function () {
-                //启用行内编辑框
+                //Bật hộp chỉnh sửa trong dòng
                 EnableInlineEditBox();
             }
         });
     }
 
-    //启用行内编辑框
+    //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox() {
-        //Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
-        var rowIds = $("#gridList").jqGrid('getDataIDs');
+        //GridTải xong bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Gọi duyệteditRowPhương thức
+        var rowIds = $("").jqGrid('');
         for (var i = 0; i < rowIds.length; i++) {
 
-            $("#gridList").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+            $("").jqGrid('', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
             });
         }
     }
 
     function submitForm() {
-        var year = $("#Year").val();
-        var month = $("#Month").val();
-        if (year == '-1' || month == '-1') {
-            $.modalAlert("请选择年月", "warning");
+        var year = $("").val();
+        var month = $("").val();
+        if (year == '' || month == '') {
+            $.modalAlert("", "");
             return;
         }
         var par = {};
         var dic = [];
-        var rowIds = $("#gridList").jqGrid('getDataIDs');
+        var rowIds = $("").jqGrid('');
         for (var i = 0; i < rowIds.length; i++) {
-            //遍历使编辑框处于保存状态
-            $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
-            var rowData = $("#gridList").jqGrid('getRowData', rowIds[i]);
+            //Duyệt để hộp chỉnh sửa ở trạng thái đã lưu
+            $("").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
+            var rowData = $("").jqGrid('', rowIds[i]);
             if (!rowData) {
                 break;
             }
             if (!(/^(\+|-)?\d+$/.test(rowData.ts))) {
-                $.modalAlert("工号（" + rowData.gh + "）天数不是数字，请确认。", 'warning');
+                $.modalAlert("" + rowData.gh + "", '');
                 return;
             }
             if ((rowData.ts > 31)) {
-                $.modalAlert("不能大于31天，请确认。", 'warning');
+                $.modalAlert("", '');
                 return;
             }
         }
-        var data = $("#gridList").jqGrid('getRowData_AllLine', undefined, false);
-        var key = year + "," + month;
-        dic.push({ 'key': key, 'value': data });
-        par["vo"] = dic;
+        var data = $("").jqGrid('', undefined, false);
+        var key = year + "" + month;
+        dic.push({ '': key, '': data });
+        par[""] = dic;
         $.najax({
-            type: "POST",
-            url: "/TherapeutistManage/TherapeutistCompleteList/AddRehabDoctorRange",
+            type: "",
+            url: "",
             data: par,
-            dataType: "json",
+            dataType: "",
             success: function () {
                 $.loading(false);
                 $.modalClose();
-                $.modalMsg("操作成功", 'success');
+                $.modalMsg("", '');
             }
         })
     }
 
     function getSearchPostData() {
         var postData = {};
-        postData.year = $('#Year').val();
-        postData.month = $('#Month').val();
+        postData.year = $('').val();
+        postData.month = $('').val();
 
         if (!postData.year || !postData.month) {
             return;
@@ -140,16 +140,16 @@
     <div class="topPanel" style="border-bottom:1px solid rgb(221, 221, 221);margin-bottom: -1%;">
         <table class="form">
             <tr>
-                <td class="formTitle"><span style="color:red">*</span>年份</td>
+                <td class="formTitle"><span style="color:red">*</span>Năm</td>
                 <td class="formValue">
                     <select id="Year" class="form-control">
-                        <option value="-1">==请选择==</option>
+                        <option value="-1">==Vui lòng chọn==</option>
                     </select>
                 </td>
-                <td class="formTitle"><span style="color:red">*</span>月份：</td>
+                <td class="formTitle"><span style="color:red">*</span>Tháng：</td>
                 <td class="formValue">
                     <select id="Month" class="form-control">
-                        <option value="-1">==请选择==</option>
+                        <option value="-1">==Vui lòng chọn==</option>
                     </select>
                 </td>
                 <td class="formValue"></td>

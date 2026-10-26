@@ -11,7 +11,7 @@ using FrameworkBase.MultiOrg.Domain.IRepository;
 namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
-    /// 系统参数设置
+    /// Đặt tham số hệ thống
     /// </summary>
     public class SysParameterConfigController : ControllerBase
     {
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         #region 收费模板
 
         /// <summary>
-        /// 收费模板 Index
+        /// Thu phí mẫu Index
         /// </summary>
         /// <returns></returns>
         public ActionResult ChargeTemplateIndex()
@@ -82,7 +82,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存操作
+        /// Lưu thao tác
         /// </summary>
         /// <param name="moduleEntity"></param>
         /// <param name="keyValue"></param>

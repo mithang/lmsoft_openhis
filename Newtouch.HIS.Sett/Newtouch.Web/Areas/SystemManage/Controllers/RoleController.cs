@@ -14,7 +14,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
-    /// 角色Controller
+    /// Vai tròController
     /// </summary>
     public class RoleController : ControllerBase
     {
@@ -50,7 +50,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             this._sysUserRoleRepo = sysUserRoleRepo;
         }
 
-        //角色列表 gridjson
+        //Danh sách vai trò gridjson
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetGridJson(Pagination pagination, string keyword, string OrganizeId)
@@ -111,7 +111,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 角色（树）   （用户主动关联角色）
+        /// Vai trò（Cây）   （用户主动关联角色）
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="organizeId"></param>

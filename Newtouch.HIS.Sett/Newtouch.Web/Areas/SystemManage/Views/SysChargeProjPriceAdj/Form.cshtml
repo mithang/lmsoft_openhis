@@ -1,41 +1,41 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "Form";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 <link href="@SiteUrl.GetStaticResourceScriptUrl("~/Content/css/Shared/Form.css",false)" rel="stylesheet" />
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/Content/js/SystemManage/SysChargeProjPriceAdj/Form.js",false)" type="text/javascript"></script>
+<script src=""~/Content/js/SystemManage/SysChargeProjPriceAdj/Form.js"" type=""></script>
 
 <form id="form1">
     <div style="padding: 20px 35px 0 2px;">
         <table class="form">
             <tr>
-                <th class="formTitle">收费项目</th>
+                <th class="formTitle">Hạng mục thu phí</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="sfxmmc" name="sfxmmc" required />
                 </td>
-                <th class="formTitle">单价</th>
+                <th class="formTitle">Đơn giá</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="dj" name="dj" required />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">自负比例</th>
+                <th class="formTitle">Tỷ lệ tự chi trả</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="zfbl" name="zfbl" required />
                 </td>
-                <th class="formTitle">自负性质</th>
+                <th class="formTitle">Tính chất tự chi trả</th>
                 <td class="formValue">
-                    @Html.DropDownList("zfxz", EnumZiFuXingZhi.KB.ToSomeDescSelectList("0,1,2"), new { @class = "form-control" })
+                    @Html.DropDownList("", EnumZiFuXingZhi.KB.ToSomeDescSelectList(""), new { @class = "" })
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">生效标志</th>
+                <th class="formTitle">Cờ có hiệu lực</th>
                 <td class="formValue">
-                    @Html.DropDownList("sxbz", EnumSXBZ.Jssx.ToDescSelectList(), new { @class = "form-control" })
+                    @Html.DropDownList("", EnumSXBZ.Jssx.ToDescSelectList(), new { @class = "" })
                 </td>
-                <th class="formTitle">有效</th>
+                <th class="formTitle">Hiệu lực</th>
                 <td class="formValue">
                     <div class="ckbox">
                         <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt"></label>
@@ -53,17 +53,17 @@
 </form>
 
 <script>
-    var keyValue = $.request("keyValue");
+    var keyValue = $.request("");
     $(function () {
         if (!!keyValue) {
             $.ajax({
-                url: "/SystemManage/SysChargeProjPriceAdj/GetFormJson?r=" + Math.random(),
+                url: "" + Math.random(),
                 data: { keyValue: keyValue },
-                dataType: "json",
+                dataType: "",
                 async: false,
                 success: function (data) {
-                    $("#form1").formSerialize(data);
-                    $('#sfxmmc').attr('data-sfxm', data.sfxm)
+                    $("").formSerialize(data);
+                    $('').attr('', data.sfxm)
                       .val(data.sfxmmc);
                 }
             });
@@ -72,45 +72,45 @@
 
 
 
-    //收费项目
-    $('#sfxmmc').newtouchFloatingSelector({
+    //Hạng mục thu phí
+    $('').newtouchFloatingSelector({
         width: 600,
         height: 280,
-        caption: "收费项目",
-        url: '/SystemManage/SysChargeItem/GetChargeItemSelectData',
+        caption: "",
+        url: '',
         ajaxparameters: function () {
-            if ($.trim($('#sfxmmc').val()).length == 0) {
+            if ($.trim($('').val()).length == 0) {
                 return;
             }
-            return "keyword=" + $.trim($('#sfxmmc').val());
+            return "" + $.trim($('').val());
         },
         itemdbclickhandler: function ($thistr) {
-            $('#sfxmmc').attr('data-sfxm', $thistr.attr('data-sfxm'))
-                .val($thistr.attr('data-sfxmmc'));
+            $('').attr('', $thistr.attr(''))
+                .val($thistr.attr(''));
         },
-        colModel: [{ label: '收费项目', name: 'sfxm', widthratio: 10 },
-            { label: '收费项目名称', name: 'sfxmmc', widthratio: 15 },
-            { label: '拼音', name: 'py', widthratio: 10 },
-            { label: '单位', name: 'dw', widthratio: 7 },
-            { label: '单价', name: 'dj', widthratio: 8 },
-            { label: '大类', name: 'dl', widthratio: 10 },
-            { label: '门诊住院标志', name: 'mzzybz', widthratio: 13 }
+        colModel: [{ label: '', name: '', widthratio: 10 },
+            { label: '', name: '', widthratio: 15 },
+            { label: '', name: '', widthratio: 10 },
+            { label: '', name: '', widthratio: 7 },
+            { label: '', name: '', widthratio: 8 },
+            { label: '', name: '', widthratio: 10 },
+            { label: '', name: '', widthratio: 13 }
         ]
     });
 
 
-    $("#btn_search").click(function () {
-        $gridList.jqGrid('setGridParam', {
-            postData: { keyword: $("#txt_keyword").val() }
-        }).trigger('reloadGrid');
+    $("").click(function () {
+        $gridList.jqGrid('', {
+            postData: { keyword: $("").val() }
+        }).trigger('');
     })
     function btn_add() {
         $.modalOpen({
-            id: "Form",
-            title: "系统收费项目调价维护",
-            url: "/SystemManage/SysChargeProjPriceAdj/Form",
-            width: "700px",
-            height: "520px",
+            id: "",
+            title: "",
+            url: "",
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
@@ -118,13 +118,13 @@
     }
 
     function btn_edit() {
-        var keyValue = $("#gridList").jqGridRowValue().brsfjmbh;
+        var keyValue = $("").jqGridRowValue().brsfjmbh;
         $.modalOpen({
-            id: "Form",
-            title: "修改信息",
-            url: "/SystemManage/SysChargeProjPriceAdj/Form?keyValue=" + keyValue,
-            width: "700px",
-            height: "520px",
+            id: "",
+            title: "",
+            url: "" + keyValue,
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
@@ -132,37 +132,37 @@
     }
     function btn_delete() {
         $.deleteForm({
-            url: "/SystemManage/SysChargeProjPriceAdj/DeleteForm",
-            param: { keyValue: $("#gridList").jqGridRowValue().brsfjmbh },
+            url: "",
+            param: { keyValue: $("").jqGridRowValue().brsfjmbh },
             success: function () {
-                $.currentWindow().$("#gridList").resetSelection();
-                $.currentWindow().$("#gridList").trigger("reloadGrid");
+                $.currentWindow().$("").resetSelection();
+                $.currentWindow().$("").trigger("");
             }
         })
     }
     function btn_details() {
-        var keyValue = $("#gridList").jqGridRowValue().brsfjmbh;
+        var keyValue = $("").jqGridRowValue().brsfjmbh;
         $.modalOpen({
-            id: "Details",
-            title: "查看机构",
-            url: "/SystemManage/SysChargeProjPriceAdj/Form?keyValue=" + keyValue,
-            width: "700px",
-            height: "520px",
+            id: "",
+            title: "",
+            url: "" + keyValue,
+            width: "",
+            height: "",
             btn: null,
         });
     }
 
     function submitForm() {
-        if (!$('#form1').formValid()) {
+        if (!$('').formValid()) {
             return false;
         }
-        var params = $("#form1").formSerialize();
-        params['sfxm'] = $('#sfxmmc').attr('data-sfxm');
+        var params = $("").formSerialize();
+        params[''] = $('').attr('');
         $.submitForm({
-            url: "/SystemManage/SysChargeProjPriceAdj/SubmitForm?keyValue=" + keyValue,
+            url: "" + keyValue,
             param: params,
             success: function () {
-                $.currentWindow().window.frames['iframeExpenseManage'].$("#gridList").trigger("reloadGrid");
+                $.currentWindow().window.frames[''].$("").trigger("");
             }
         })
     }

@@ -1,9 +1,9 @@
 ﻿@{
-    ViewBag.Title = "输入患者社保卡号";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
     var from = (ViewBag.from as string) ?? "";
-    //医保所属地
-    var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
+    //Địa bàn bảo hiểm y tế
+    var medicalInsurance = SysConfigReader.String("");
 }
 <style>
     .formTitle span {
@@ -23,7 +23,7 @@
         <table id="patSbkh" rel="formPatSer">
             <tr>
                 <td class="formTitle">
-                    <span>*</span>卡号：
+                    <span>*</span>Số thẻ：
                 </td>
                 <td class="formValue" style="text-align:left">
                     <input type="text" id="sbkhId" class="form-control form-an"  autocomplete="off" style="height:15px">
@@ -35,14 +35,14 @@
 </form>
 
 <script>
-    var topform = $.request('topform');
-    var medicalInsurance = '@medicalInsurance';//医保所属地配置:区分医院所属医保区域
-    //var medicalInsurance = $.request("medicalInsurance");
+    var topform = $.request('');
+    var medicalInsurance = '';//Cấu hình địa bàn bảo hiểm y tế:Phân biệt khu vực bảo hiểm y tế của bệnh viện
+    //var medicalInsurance = $.request("");
     $(function () {
-        $('#sbkhId').focus();
+        $('').focus();
     });
-    $("#formPatsbkh").bind("keydown", function (e) {
-        // 兼容FF和IE和Opera
+    $("").bind("", function (e) {
+        // 兼容FFVàIEVàOpera
         var theEvent = e || window.event;
         var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
         if (code == 13) {
@@ -50,49 +50,49 @@
         }
     });
     var prevWindow;
-   if ('@(from)' !== '') {
-        prevWindow = top.top.frames['@(from)'];
+   if ('' !== '') {
+        prevWindow = top.top.frames[''];
     }
     else {
         prevWindow = $.currentWindow();
     }
-    if (topform=="1") {
-        prevWindow =top.frames['dqfsxz'];
+    if (topform=="") {
+        prevWindow =top.frames[''];
     }
-    //jqGrid 双击选中某行
+    //jqGrid Nhấp đúp để chọn một dòng
     function btn_edit() {
         PatSearchConfirm();
     }
 
     function PatSbkhData()
     {
-         //上一个window对象
-        var sbkhVal = $("#sbkhId").val();
+         //Cái trướcwindowĐối tượng
+        var sbkhVal = $("").val();
         //alert(sbkhVal);
         //return;
         if (!(sbkhVal)) {
-            $.modalAlert("请填写社保卡号", 'warning');
+            $.modalAlert("", '');
             return;
         }
         
         var sbkobj = new Object();
         sbkobj.sbkh = sbkhVal;
-        if (medicalInsurance == "shanghai") {
+        if (medicalInsurance == "") {
             prevWindow.readCard(sbkobj);
         } else {
             prevWindow.GetReadCardInfo(sbkobj);
         }
-        //关闭窗口
+        //Đóng cửa sổ
         ReceiptCancle();
     }
 
-    //确定 主页面调用
+    //Xác nhận Gọi từ trang chính
     function PatSearchConfirm() {
         debugger;
         PatSbkhData();
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() {
             $.modalClose();
     }

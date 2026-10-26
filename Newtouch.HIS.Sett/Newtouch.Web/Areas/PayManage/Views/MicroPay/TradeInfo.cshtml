@@ -1,7 +1,7 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "TradeInfo";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <style>
     .ui-jqgrid tr.jqgrow td {
@@ -16,31 +16,31 @@
     <div>
         <table class="form">
             <tr>
-                <th class="formTitle">订单号：</th>
+                <th class="formTitle">Số đơn hàng：</th>
                 <td class="formValue">
                     <input type="text" class="form-control" style="border: none;" readonly="readonly" id="OutTradeNo"/>
                 </td>
-                <th class="formTitle">交易状态：</th>
+                <th class="formTitle">Trạng thái giao dịch：</th>
                 <td class="formValue">
                     <input type="text" class="form-control" style="border: none;" readonly="readonly" id="TradeStatus"/>
                 </td>
                 <th class="formTitle" ></th>
                 <td class="formValue"  rowspan="2">
-                    <input type="button" class="btn btn-default btn-md" style="width:100px; " value="刷新" id="btn_refresh" onclick="traderefresh()"  />
+                    <input type="button" class="btn btn-default btn-md" style="width:100px; " value="Làm mới" id="btn_refresh" onclick="traderefresh()"  />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">总金额：</th>
+                <th class="formTitle">Tổng số tiền：</th>
                 <td class="formValue">
                     <input type="text" class="form-control" style="border: none;" readonly="readonly" id="TotalAmount" />
                 </td>
-                <th class="formTitle">交易时间：</th>
+                <th class="formTitle">Thời gian giao dịch：</th>
                 <td class="formValue">
                     <input type="text" class="form-control" style="border: none;" readonly="readonly" id="SendPayDate"/>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">已退金额：</th>
+                <th class="formTitle">Đã số tiền trả lại：</th>
                 <td class="formValue">
                     <input type="text" class="form-control" style="border: none;" readonly="readonly" id="ytje" />
                 </td>
@@ -48,7 +48,7 @@
                 <td class="formValue"></td>
                 <th class="formTitle"></th>
                 <td class="formValue">
-                    <input type="button" class="btn btn-default btn-md" style="width:100px; " value="申请退款" id="btn_refund" onclick="tradeRefund()"  />
+                    <input type="button" class="btn btn-default btn-md" style="width:100px; " value="Đăng ký hoàn tiền" id="btn_refund" onclick="tradeRefund()"  />
                 </td>
             </tr>
             <tr>
@@ -66,43 +66,43 @@
 
 </from>
 <script>
-    var keyValue = $.request('outtradeno');
+    var keyValue = $.request('');
     var maxrfd = 0.00;
     $(function() {
         RefundGrid();
         $.najax({
-            type: "GET",
-            url: "/PayManage/MicroPay/GetTradeInfo?outTradeNo=" + keyValue,
+            type: "",
+            url: "" + keyValue,
             loading: true,
-            loadingtext: "正在查询下最新交易信息，请稍后...",
+            loadingtext: "",
             success: function (ajaxresp) {
                 maxrfd = (parseFloat(ajaxresp.PayAmount) - parseFloat(ajaxresp.RefundAmount)).toFixed(2);
                 if (ajaxresp != null && ajaxresp != undefined) {
-                    $("#OutTradeNo").val(ajaxresp.OutTradeNo);
-                    $("#TotalAmount").val(ajaxresp.PayAmount +" (元)");
-                    $("#SendPayDate").val(ajaxresp.OrderDate.replace("T"," "));
-                    $("#ytje").val(ajaxresp.RefundAmount.toFixed(2) + " (元)");
-                    $("#maxrfd").val(maxrfd + " (元)");
+                    $("").val(ajaxresp.OutTradeNo);
+                    $("").val(ajaxresp.PayAmount +"");
+                    $("").val(ajaxresp.OrderDate.replace("",""));
+                    $("").val(ajaxresp.RefundAmount.toFixed(2) + "");
+                    $("").val(maxrfd + "");
 
-                    $("#TradeStatus").val(ajaxresp.TradeStatus);
+                    $("").val(ajaxresp.TradeStatus);
                     var stu = "";
-                    if (ajaxresp.TradeStatus == "TRADE_SUCCESS") {
-                        stu = "交易成功";
+                    if (ajaxresp.TradeStatus == "") {
+                        stu = "";
                     }
-                    else if (ajaxresp.TradeStatus == "TRADE_FINISHED") {
-                        stu = "交易完成";
+                    else if (ajaxresp.TradeStatus == "") {
+                        stu = "";
                     }
-                    else if (ajaxresp.TradeStatus == "TRADE_CLOSED") {
-                        stu = "交易关闭";
+                    else if (ajaxresp.TradeStatus == "") {
+                        stu = "";
                     } else {
-                        stu = "交易进行中";
+                        stu = "";
                     }
-                    $("#TradeStatus").val(stu);
-                    if (maxrfd > 0 && ajaxresp.TradeStatus != "TRADE_CLOSED") {
+                    $("").val(stu);
+                    if (maxrfd > 0 && ajaxresp.TradeStatus != "") {
 
-                        $("#btn_refund").show();
+                        $("").show();
                     } else {
-                        $("#btn_refund").hide();
+                        $("").hide();
                     }
                 };
             }
@@ -112,61 +112,61 @@
 
 
     function RefundGrid() {
-        var $gridJsList = $("#gridListRefd");
+        var $gridJsList = $("");
         $gridJsList.dataGrid({
-            url: '/PayManage/MicroPay/TradeRefundList',
+            url: '',
             height: 200,
             postData: { outTradeNo: keyValue, tradeNo: "" },
             colModel: [
-                //{ label: '支付方式', name: 'PayType', width: 60, align: 'left' },
+                //{ label: '', name: '', width: 60, align: '' },
                 {
-                    label: '订单号',
-                    name: 'OutTradeNo',
+                    label: '',
+                    name: '',
                     width: 100,
-                    align: "left"
+                    align: ""
                 },
                 {
-                    label: '退款状态',
-                    name: 'RefundStatus',
+                    label: '',
+                    name: '',
                     width: 60,
-                    align: 'left',
+                    align: '',
                     formatter: function(cellvalue) {
-                        return $.enum.getDescByValue("EnumRefundStatus", cellvalue);
+                        return $.enum.getDescByValue("", cellvalue);
                     }
                 },
-                { label: '退款说明', name: 'RefundReason', width: 60, align: 'left' },
+                { label: '', name: '', width: 60, align: '' },
                 {
-                    label: '退款金额',
-                    name: 'Amount',
+                    label: '',
+                    name: '',
                     width: 80,
-                    align: 'left',
+                    align: '',
                     formatter: function(cellvalue) {
-                        return cellvalue ? cellvalue.toFixed(2) : "0.00";
+                        return cellvalue ? cellvalue.toFixed(2) : "";
                     }
                 },
-                { label: '备注', name: 'Memo', width: 160, align: 'left' },
+                { label: '', name: '', width: 160, align: '' },
                 {
-                    label: '退款时间',
-                    name: 'RefundDate',
+                    label: '',
+                    name: '',
                     width: 150,
-                    formatter: "date",
-                    formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                    formatter: "",
+                    formatoptions: { srcformat: '', newformat: '' }
                 },
                 {
-                    label: '退款请求号',
-                    name: 'OutRequestNo',
+                    label: '',
+                    name: '',
                     hidden: true,
-                    align: "left"
+                    align: ""
                 },
                 {
-                    label: '操作',
-                    name: 'Action',
+                    label: '',
+                    name: '',
                     width: 60,
-                    align: "center",
+                    align: "",
                     formatter: function (cellvalue, option, row) {
                         
-                        if (row.RefundStatus == "@((int) EnumRefundStatus.UnKnown)") {
-                            return "<a onclick='refundRetry(" + option.rowId + ")'>重试</a>";
+                        if (row.RefundStatus == "") {
+                            return "" + option.rowId + "";
                         } else {
                             return "";
                         }
@@ -174,26 +174,26 @@
                     }
                 }
             ],
-            //pager: "#gridRefdPager",
-            sortname: "OutRequestNo",
+            //pager: "",
+            sortname: "",
             viewrecords: true,
-            caption: "退费记录"
+            caption: ""
         });
     }
 
     function tradeRefund() {
-        var total = $("#TotalAmount").val();
+        var total = $("").val();
         $.modalOpen({
-            id: "FormRfd",
-            title: "交易详情",
-            url: "/PayManage/MicroPay/TradeRefund?outtradeno=" + keyValue + "&maxrfd=" + maxrfd + "&total=" + total,
-            width: "300px",
-            height: "200px",
+            id: "",
+            title: "",
+            url: "" + keyValue + "" + maxrfd + "" + total,
+            width: "",
+            height: "",
             callBack: function(iframeId) {
                 top.frames[iframeId].submitForm(function() {
-                    setTimeout("window.location.reload()", 100);
+                    setTimeout("", 100);
                     //window.location.reload();
-                }); //窗口点确定的回调函数
+                }); //Hàm callback xác nhận khi nhấn cửa sổ
 
             }
         });
@@ -202,12 +202,12 @@
     }
 
     function refundRetry(rowId) {
-        var row = $('#gridListRefd').jqGrid("getRowData", rowId);
+        var row = $('').jqGrid("", rowId);
         $.najax({
-            type: "GET",
-            url: "/PayManage/MicroPay/Opr_TradeRefund?outTradeNo=" + row.OutTradeNo + "&refundAmount=" + row.Amount + "&Reason=未知退款重试&OutRequestNo=" + row.OutRequestNo,
+            type: "",
+            url: "" + row.OutTradeNo + "" + row.Amount + "" + row.OutRequestNo,
             loading: true,
-            loadingtext: "申请退费中，请稍后...",
+            loadingtext: "",
             success: function (ajaxresp) {
             }
         });

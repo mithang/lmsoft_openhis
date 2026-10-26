@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "ChooseInvoiceNo";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 
     var from = (ViewBag.from as string) ?? "";
 }
@@ -9,7 +9,7 @@
     <div style="margin-top:40px;margin-right:40px;">
         <table class="form">
             <tr>
-                <th class="formTitle dialogText">发票号:</th>
+                <th class="formTitle dialogText">Số hóa đơn:</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="txtfph" name="txtfph" required value="">
                 </td>
@@ -19,51 +19,51 @@
 </form>
 
 <script>
-    //上一个window对象
+    //Cái trướcwindowĐối tượng
     var prevWindow;
-    if ('@(from)' !== '') {
-        prevWindow = top.top.frames['@(from)'];
+    if ('' !== '') {
+        prevWindow = top.top.frames[''];
     }
     else {
         prevWindow = $.currentWindow();
     }
 
     $.najax({
-        url: "/OutpatientManage/OutpatientReg/GetInvoice",  //获取
-        dataType: "text",
+        url: "",  //Lấy
+        dataType: "",
         async: false,
         success: function (data) {
-            $("#txtfph").val(data);
-            prevWindow.$("#txtfph").val(data);
-            prevWindow.$("label#txtfph").html(data);    //text or label
+            $("").val(data);
+            prevWindow.$("").val(data);
+            prevWindow.$("").html(data);    //text or label
         }
     });
 
-    //确认验证发票号
+    //Xác nhận số hóa đơn xác minh
     function checkFPH() {
-        var ttheFph = $("#txtfph").val();
+        var ttheFph = $("").val();
         if (!!!ttheFph) {
-            $.modalMsg('请输入发票号', 'warning');
+            $.modalMsg('', '');
             return;
         }
         $.najax({
-            url: "/OutpatientManage/OutpatientReg/CheckInvoice",
+            url: "",
             data: { inputFPH: ttheFph },
-            type: "POST",
-            dataType: "json",
+            type: "",
+            dataType: "",
             async: false,
             success: function (data) {
-                if (data.state === "success") {
-                    prevWindow.$("#txtfph").val(ttheFph);
-                    prevWindow.$("label#txtfph").html(ttheFph);
+                if (data.state === "") {
+                    prevWindow.$("").val(ttheFph);
+                    prevWindow.$("").html(ttheFph);
                     if (prevWindow.chooseFPHSuccessCallback) {
                         prevWindow.chooseFPHSuccessCallback(ttheFph);
                     }
                     $.modalClose();
                 }
                 else {
-                    prevWindow.$("#txtfph").val("");
-                    prevWindow.$("label#txtfph").html("");
+                    prevWindow.$("").val("");
+                    prevWindow.$("").html("");
                     $.newtouchAlert(data);
                 }
             },

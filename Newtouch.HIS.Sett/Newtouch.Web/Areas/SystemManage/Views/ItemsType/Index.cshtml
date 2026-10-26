@@ -1,53 +1,53 @@
 ﻿@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <script>
     $(function () {
         gridList();
     })
     function gridList() {
-        $("#gridList").dataGrid({
+        $("").dataGrid({
             treeGrid: true,
-            treeGridModel: "adjacency",
-            ExpandColumn: "F_EnCode",
-            url: "/SystemManage/ItemsType/GetTreeGridJson?r=" + Math.random(),
+            treeGridModel: "",
+            ExpandColumn: "",
+            url: "" + Math.random(),
             height: $(window).height() - 90,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: '名称', name: 'F_FullName', width: 200, align: 'left' },
-                { label: '编号', name: 'F_EnCode', width: 150, align: 'left' },
-                { label: '排序', name: 'px', width: 80, align: 'center' },
+                { label: "", name: "", hidden: true, key: true },
+                { label: '', name: '', width: 200, align: '' },
+                { label: '', name: '', width: 150, align: '' },
+                { label: '', name: '', width: 80, align: '' },
                 {
-                    label: "有效", name: "zt", width: 60, align: "center",
+                    label: "", name: "", width: 60, align: "",
                     formatter: function (cellvalue) {
-                        return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>";
+                        return cellvalue == "" ? "" : "";
                     }
                 },
-                { label: "备注", name: "F_Description", index: "F_Description", width: 200, align: "left" }
+                { label: "", name: "", index: "", width: 200, align: "" }
             ]
         });
     }
     function btn_add() {
         $.modalOpen({
-            id: "Form",
-            title: "新增分类",
-            url: "/SystemManage/ItemsType/Form?r=" + Math.random(),
-            width: "450px",
-            height: "380px",
+            id: "",
+            title: "",
+            url: "" + Math.random(),
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
         });
     }
     function btn_edit() {
-        var keyValue = $("#gridList").jqGridRowValue().Id;
+        var keyValue = $("").jqGridRowValue().Id;
         $.modalOpen({
-            id: "Form",
-            title: "修改分类",
-            url: "/SystemManage/ItemsType/Form?keyValue=" + keyValue + "&r=" + Math.random(),
-            width: "450px",
-            height: "380px",
+            id: "",
+            title: "",
+            url: "" + keyValue + "" + Math.random(),
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
@@ -55,22 +55,22 @@
     }
     function btn_delete() {
         $.deleteForm({
-            url: "/SystemManage/ItemsType/DeleteForm",
-            param: { keyValue: $("#gridList").jqGridRowValue().Id },
+            url: "",
+            param: { keyValue: $("").jqGridRowValue().Id },
             success: function () {
-                $("#gridList").resetSelection();
-                $("#gridList").trigger("reloadGrid");
+                $("").resetSelection();
+                $("").trigger("");
             }
         })
     }
     function btn_details() {
-        var keyValue = $("#gridList").jqGridRowValue().Id;
+        var keyValue = $("").jqGridRowValue().Id;
         $.modalOpen({
-            id: "Details",
-            title: "查看分类",
-            url: "/SystemManage/ItemsType/Details?keyValue=" + keyValue + "&r=" + Math.random(),
-            width: "450px",
-            height: "510px",
+            id: "",
+            title: "",
+            url: "" + keyValue + "" + Math.random(),
+            width: "",
+            height: "",
             btn: null,
         });
     }
@@ -81,7 +81,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="请输入要查询关键字" style="width: 200px;">
+                        <input type="text" class="form-control" placeholder="Vui lòng nhập từ khóa cần tra cứu" style="width: 200px;">
                         <span class="input-group-btn">
                             <button type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -99,7 +99,7 @@
         </div>
         <div class="operate">
             <ul class="nav nav-pills">
-                <li class="first">已选中<span>1</span>项</li>
+                <li class="first">Đã chọn<span>1</span>Mục</li>
                 <li><a onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改分类</a></li>
                 <li><a onclick="btn_details()"><i class="fa fa-search-plus"></i>查看分类</a></li>
             </ul>

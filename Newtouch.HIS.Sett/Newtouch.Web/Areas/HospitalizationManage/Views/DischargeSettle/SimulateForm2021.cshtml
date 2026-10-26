@@ -1,61 +1,61 @@
 ﻿
 @{
-	ViewBag.Title = "SimulateForm2021";
-	Layout = "~/Views/Shared/_Form.cshtml";
+	ViewBag.Title = "";
+	Layout = "";
 }
-@Html.Partial("_YibaoCommonView")
+@Html.Partial("")
 
-<!-- 重庆医保展示 -->
+<!-- Hiển thị bảo hiểm y tế Trùng Khánh -->
 <div id="divCQYbFee" class="panel panel-default" style="margin-top:10px;margin-left:10px;margin-right: 10px;">
 	<div class="panel-heading navb-bg" style="height:13px;">
-		费用信息
+		Thông tin chi phí
 	</div>
 	<div style="height:auto;">
 		<table class="form">
 			<tr>
-				<th class="formTitle">费用总额：</th>
+				<th class="formTitle">Tổng chi phí：</th>
 				<td class="formValue">￥<label id="cq_fyze">0.00</label></td>
-				<th class="formTitle">现金支付合计：</th>
+				<th class="formTitle">Tổng thanh toán tiền mặt：</th>
 				<td class="formValue">￥<label id="cq_xjzf">0.00</label></td>
-				<th class="formTitle">非医保现金计费：</th>
+				<th class="formTitle">Tính phí tiền mặt ngoài bảo hiểm y tế：</th>
 				<td class="formValue">￥<label id="zf_xjzf">0.00</label></td>
 
 			</tr>
 			<tr>
-				<th class="formTitle">医保现金计费：</th>
+				<th class="formTitle">Tính phí tiền mặt bảo hiểm y tế：</th>
 				<td class="formValue">￥<label id="yb_xjzf">0.00</label></td>
-				<th class="formTitle">统筹支付：</th>
+				<th class="formTitle">Thanh toán chung：</th>
 				<td class="formValue">￥<label id="cq_tczf">0.00</label></td>
-				<th class="formTitle">公务员补助：</th>
+				<th class="formTitle">Trợ cấp công chức：</th>
 				<td class="formValue">￥<label id="cq_gwybz">0.00</label></td>
 			</tr>
 			<tr>
-				<th class="formTitle">账户支付：</th>
+				<th class="formTitle">Thanh toán tài khoản：</th>
 				<td class="formValue">￥<label id="cq_zhzf">0.00</label></td>
 				<th class="formTitle">单病种医疗垫支：</th>
 				<td class="formValue">￥<label id="dbzddyljgdz">0.00</label></td>
 
-				<th class="formTitle">大额理赔支付：</th>
+				<th class="formTitle">Thanh toán bồi thường lớn：</th>
 				<td class="formValue">￥<label id="cq_delp">0.00</label></td>
 			</tr>
 			<tr>
-				<th class="formTitle">企业医疗保险支出：</th>
+				<th class="formTitle">Chi bảo hiểm y tế doanh nghiệp：</th>
 				<td class="formValue">￥<label id="cq_qybxzc">0.00</label></td>
-				<th class="formTitle">居民大病支出：</th>
+				<th class="formTitle">Chi bệnh nặng dân cư：</th>
 				<td class="formValue">￥<label id="cq_jmdbzc">0.00</label></td>
-				<th class="formTitle">医疗救助基金支出：</th>
+				<th class="formTitle">Chi quỹ cứu trợ y tế：</th>
 				<td class="formValue">￥<label id="cq_mzbz">0.00</label></td>
 			</tr>
 			<tr>
-				<th class="formTitle">账户共济支付：</th>
+				<th class="formTitle">Thanh toán chung tài khoản：</th>
 				<td class="formValue">￥<label id="cq_zhgjzf">0.00</label></td>
-				<th class="formTitle">其他：</th>
+				<th class="formTitle">Khác：</th>
 				<td class="formValue">￥<label id="cq_qt">0.00</label></td>
-				<th class="formTitle">符合政策范围金额：</th>
+				<th class="formTitle">Số tiền phù hợp phạm vi chính sách：</th>
 				<td class="formValue">￥<label id="cq_hszjfw">0.00</label></td>
 			</tr>
 			<tr>
-				<th class="formTitle">实际支付起付线：</th>
+				<th class="formTitle">Mức khởi trả thanh toán thực tế：</th>
 				<td class="formValue">￥<label id="cq_zfqfx">0.00</label></td>
 				<th class="formTitle">预结算账户余额：</th>
 				<td class="formValue">￥<label id="yjs">0.00</label></td>
@@ -63,68 +63,68 @@
 		</table>
 	</div>
 </div>
-@Html.Partial("_YibaoCommonView")
+@Html.Partial("")
 
 
 
-<script type="text/javascript">
-	var hisfyze = $.request("hisfyze");
+<script type="">
+	var hisfyze = $.request("");
 	var ybjyFeeReturn;
-	var zhye = $.request("zhye");
+	var zhye = $.request("");
 
 	$(function () {
 		init();
 	});
 
 	function init() {
-		ybjyFeeReturn = JSON.parse(sessionStorage.getItem('ybjyPreFeeReturn'));
+		ybjyFeeReturn = JSON.parse(sessionStorage.getItem(''));
 		if (!!ybjyFeeReturn) {
 			var ybjyFeeReturn = ybjyFeeReturn.output.setlinfo;
-			var mzjzje = 0.000;//民政救助金额
-			var xjzfje = 0.000;//医保的现金支付金额
-			var zfxjzf = 0.000;//非医保现金支付金额
-			var yjs = 0.000;//预交金后账户余额
-			//医保的现金支付金额
+			var mzjzje = 0.000;//Số tiền cứu trợ dân chính
+			var xjzfje = 0.000;//Số tiền mặt thanh toán bảo hiểm y tế
+			var zfxjzf = 0.000;//Số tiền thanh toán tiền mặt ngoài bảo hiểm y tế
+			var yjs = 0.000;//Số dư tài khoản sau tiền tạm ứng
+			//Số tiền mặt thanh toán bảo hiểm y tế
 			xjzfje = ovpraseFloat(ybjyFeeReturn.psn_cash_pay);
-			//非医保现金金额
+			//Số tiền mặt ngoài bảo hiểm y tế
 			zfxjzf = ovpraseFloat(hisfyze) -
 				ovpraseFloat(ybjyFeeReturn.medfee_sumamt);
-			//计算现金支付
+			//Tính thanh toán tiền mặt
 			var calc_xjzf = ovpraseFloat(ybjyFeeReturn.psn_cash_pay) +
 				ovpraseFloat(hisfyze) -
 				ovpraseFloat(ybjyFeeReturn.medfee_sumamt);
 			ybjyFeeReturn.calc_xjzf = calc_xjzf;
 
 			orglxjzfys = ovpraseFloat(ybjyFeeReturn.calc_xjzf);
-			xjzfys = orglxjzfys;    //有折扣时会不等
+			xjzfys = orglxjzfys;    //Khi có chiết khấu sẽ không bằng
 
 			mzjzje = ovpraseFloat(ybjyFeeReturn.maf_pay);
 
-			yjs = calc_xjzf - zhye;//计算预交金后账户余额
+			yjs = calc_xjzf - zhye;//Tính số dư tài khoản sau tiền tạm ứng
 
-			!!hisfyze && $('#cq_fyze').html(ovpraseFloat(hisfyze).toFixed(2));
-			!!ybjyFeeReturn.calc_xjzf && $('#cq_xjzf').html(ovpraseFloat(ybjyFeeReturn.calc_xjzf).toFixed(2));//总现金支付
-			!!zfxjzf && $('#zf_xjzf').html(zfxjzf.toFixed(2));//非医保现金支付
-			!!xjzfje && $('#yb_xjzf').html(xjzfje.toFixed(2));//医保现金支付
-			!!ybjyFeeReturn.acct_pay && $('#cq_zhzf').html(ovpraseFloat(ybjyFeeReturn.acct_pay).toFixed(2));
-			!!ybjyFeeReturn.hifp_pay && $('#cq_tczf').html((ovpraseFloat(ybjyFeeReturn.hifp_pay)));
-			!!ybjyFeeReturn.hifob_pay && $('#cq_delp').html(ovpraseFloat(ybjyFeeReturn.hifob_pay).toFixed(2));
-			!!ybjyFeeReturn.cvlserv_pay && $('#cq_gwybz').html(ovpraseFloat(ybjyFeeReturn.cvlserv_pay).toFixed(2));
-			!!ybjyFeeReturn.maf_pay && $('#cq_mzbz').html(mzjzje);
+			!!hisfyze && $('').html(ovpraseFloat(hisfyze).toFixed(2));
+			!!ybjyFeeReturn.calc_xjzf && $('').html(ovpraseFloat(ybjyFeeReturn.calc_xjzf).toFixed(2));//Tổng thanh toán tiền mặt
+			!!zfxjzf && $('').html(zfxjzf.toFixed(2));//Thanh toán tiền mặt ngoài bảo hiểm y tế
+			!!xjzfje && $('').html(xjzfje.toFixed(2));//Thanh toán tiền mặt bảo hiểm y tế
+			!!ybjyFeeReturn.acct_pay && $('').html(ovpraseFloat(ybjyFeeReturn.acct_pay).toFixed(2));
+			!!ybjyFeeReturn.hifp_pay && $('').html((ovpraseFloat(ybjyFeeReturn.hifp_pay)));
+			!!ybjyFeeReturn.hifob_pay && $('').html(ovpraseFloat(ybjyFeeReturn.hifob_pay).toFixed(2));
+			!!ybjyFeeReturn.cvlserv_pay && $('').html(ovpraseFloat(ybjyFeeReturn.cvlserv_pay).toFixed(2));
+			!!ybjyFeeReturn.maf_pay && $('').html(mzjzje);
 
-			!!ybjyFeeReturn.hosp_part_amt && $('#dbzddyljgdz').html((ovpraseFloat(ybjyFeeReturn.hosp_part_amt)));
+			!!ybjyFeeReturn.hosp_part_amt && $('').html((ovpraseFloat(ybjyFeeReturn.hosp_part_amt)));
 
-			!!ybjyFeeReturn.hifes_pay && $('#cq_qybxzc').html(ovpraseFloat(ybjyFeeReturn.hifes_pay).toFixed(2));
-			!!ybjyFeeReturn.hifmi_pay && $('#cq_jmdbzc').html(ovpraseFloat(ybjyFeeReturn.hifmi_pay).toFixed(2));
-			!!ybjyFeeReturn.oth_pay && $('#cq_qt').html(ovpraseFloat(ybjyFeeReturn.oth_pay).toFixed(2));
-			!!ybjyFeeReturn.acct_mulaid_pay && $('#cq_zhgjzf').html(ovpraseFloat(ybjyFeeReturn.acct_mulaid_pay).toFixed(2));
+			!!ybjyFeeReturn.hifes_pay && $('').html(ovpraseFloat(ybjyFeeReturn.hifes_pay).toFixed(2));
+			!!ybjyFeeReturn.hifmi_pay && $('').html(ovpraseFloat(ybjyFeeReturn.hifmi_pay).toFixed(2));
+			!!ybjyFeeReturn.oth_pay && $('').html(ovpraseFloat(ybjyFeeReturn.oth_pay).toFixed(2));
+			!!ybjyFeeReturn.acct_mulaid_pay && $('').html(ovpraseFloat(ybjyFeeReturn.acct_mulaid_pay).toFixed(2));
 
-			!!ybjyFeeReturn.inscp_scp_amt && $('#cq_hszjfw').html(ovpraseFloat(ybjyFeeReturn.inscp_scp_amt).toFixed(2));
-			!!ybjyFeeReturn.act_pay_dedc && $('#cq_zfqfx').html(ovpraseFloat(ybjyFeeReturn.act_pay_dedc).toFixed(2));
-			!!yjs && $('#yjs').html(yjs.toFixed(2));//预交金
+			!!ybjyFeeReturn.inscp_scp_amt && $('').html(ovpraseFloat(ybjyFeeReturn.inscp_scp_amt).toFixed(2));
+			!!ybjyFeeReturn.act_pay_dedc && $('').html(ovpraseFloat(ybjyFeeReturn.act_pay_dedc).toFixed(2));
+			!!yjs && $('').html(yjs.toFixed(2));//Tiền tạm ứng
 		}
 		else {
-			$.modalAlert("预结算结果显示异常，请重试", "error");
+			$.modalAlert("", "");
 		}
 	}
 	function ovpraseFloat(val) {

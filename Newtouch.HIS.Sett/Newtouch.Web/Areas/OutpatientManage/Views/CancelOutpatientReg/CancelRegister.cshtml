@@ -1,31 +1,31 @@
 ﻿
 @{
-    ViewBag.Title = "CancelRegister";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <form>
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">病历号：</th>
+                <th class="formTitle">Số bệnh án：</th>
                 <td class="formValue">
                     <input type="text" class="form-control form-an" id="blh" />
                 </td>
-                <th class="formTitle">姓名/拼音：</th>
+                <th class="formTitle">Họ tên/Phiên âm：</th>
                 <td class="formValue">
                     <input type="text" class="form-control form-an" id="xm" />
                 </td>
-                <th class="formTitle">登记时间：</th>
+                <th class="formTitle">Đăng ký thời gian：</th>
                 <td class="formValue" colspan="2">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left;">—</span>
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an" style="width :42%;float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
                 <td class="formValue">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="Tra cứu" />
                 </td>
             </tr>
         </table>
@@ -35,10 +35,10 @@
         <div id="gridPager"></div>
     </div>
 </form>
-@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
+@Html.Partial("", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 4, 8 },
-    F8Text = "取消登记"
+    F8Text = ""
 })
 <script>
     $(function () {
@@ -46,89 +46,89 @@
     });
 
     function gridList() {
-        var $gridList = $("#gridList");
+        var $gridList = $("");
         $gridList.dataGrid({
-            url: "/OutpatientManage/CancelOutpatientReg/SelectRegisterlist",
+            url: "",
             postData: getSearchPostData(),
             height: $(window).height() - 195,
             colModel: [
-                { label: 'ghnm', name: 'ghnm', width: 120, align: 'left', hidden: true },
-                { label: '病历号', name: 'blh', width: 90, align: 'left' },
-                { label: '姓名', name: 'xm', width: 90, align: 'left' },
-                { label: '患者性质', name: 'brxzmc', width: 90, align: 'left' },
+                { label: '', name: '', width: 120, align: '', hidden: true },
+                { label: '', name: '', width: 90, align: '' },
+                { label: '', name: '', width: 90, align: '' },
+                { label: '', name: '', width: 90, align: '' },
                 {
-                    label: '性别', name: 'xb', width: 80, align: 'left',
+                    label: '', name: '', width: 80, align: '',
                     formatter: function (cellvalue) {
                         return $.getGender(cellvalue);
                     }
                 },
                 {
-                    label: '出生年月', name: 'csny', width: 100, align: 'left',
-                    formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                    label: '', name: '', width: 100, align: '',
+                    formatter: "", formatoptions: { srcformat: '', newformat: '' }
                 },
-                { label: '科室', name: 'ksmc', width: 100, align: 'left' },
-                { label: '医生', name: 'ysmc', width: 100, align: 'left' },
-                { label: '患者来源', name: 'brly', width: 100, align: 'left' },
-                { label: '门诊号', name: 'mzh', width: 160, align: 'left' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 160, align: '' },
                 {
-                    label: '登记日期', name: 'ghrq', width: 140, align: 'left',
-                    formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                    label: '', name: '', width: 140, align: '',
+                    formatter: "", formatoptions: { srcformat: '', newformat: '' }
                 },
 
             ],
-            pager: "#gridPager",
-            sortname: 'ghrq desc',
+            pager: "",
+            sortname: '',
             multiselect: true,
             viewrecords: true,
         });
-        $("#btn_search").click(function () {
-            if ($('#kssj').val() && $('#jssj').val() && ($('#kssj').val() > $('#jssj').val())) {
-                $.modalAlert("开始日期不能大于结束日期", 'warning');
+        $("").click(function () {
+            if ($('').val() && $('').val() && ($('').val() > $('').val())) {
+                $.modalAlert("", '');
                 return;
             }
-            $gridList.jqGrid('setGridParam', {
+            $gridList.jqGrid('', {
                 postData: getSearchPostData(),
-            }).trigger('reloadGrid');
+            }).trigger('');
         });
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
-        var blh = $("#blh").val();
-        var xm = $("#xm").val();
-        var kssj = $("#kssj").val();
-        var jssj = $("#jssj").val();
+        var blh = $("").val();
+        var xm = $("").val();
+        var kssj = $("").val();
+        var jssj = $("").val();
         return { blh: blh, xm: xm, kssj: kssj, jssj: jssj };
 
     }
 
-    //取消登记
+    //Hủy đăng ký
     function newtouch_event_f8() {
-        var data = $("#gridList").jqGrid('getRowData_AllLine', undefined, false);
-        if (data == "[]") {
+        var data = $("").jqGrid('', undefined, false);
+        if (data == "") {
             return;
         }
-        var ids = $("#gridList").jqGrid("getGridParam", "selarrrow");
+        var ids = $("").jqGrid("", "");
         if (!ids || ids.length == 0) {
-            $.modalAlert("请先在列表勾选需要取消的登记信息", 'warning');
+            $.modalAlert("", '');
             return false;
         }
         var arraryData = [];
         for (var i = 0; i < ids.length; i++) {
-            var rowData = $("#gridList").jqGrid('getRowData', ids[i]);
+            var rowData = $("").jqGrid('', ids[i]);
             arraryData.push({ ghnm: rowData.ghnm });
         }
         $.najax({
-            url: "/OutpatientManage/CancelOutpatientReg/SaveCancelRegister",
-            dataType: "json",
+            url: "",
+            dataType: "",
             data: { list: arraryData },
-            type: "POST",
+            type: "",
             async: false,
             success: function (data) {
                 $.loading(false);
                 //刷新未回收列表
-                $('#btn_search').trigger('click');
-                $.modalAlert('取消成功', 'success');
+                $('').trigger('');
+                $.modalAlert('', '');
             },
             errCallback: function (err) {
                 $.loading(false);

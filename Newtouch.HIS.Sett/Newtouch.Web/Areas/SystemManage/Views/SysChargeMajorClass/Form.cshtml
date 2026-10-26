@@ -1,61 +1,61 @@
 ﻿@using Newtouch.Common.Operator;
 @{
-    ViewBag.Title = "Form";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <style>
     span {
         color: red;
     }
 </style>
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/Content/js/SystemManage/SysChargeMajorClass/Form.js",false)" type="text/javascript"></script>
+<script src=""~/Content/js/SystemManage/SysChargeMajorClass/Form.js"" type=""></script>
 <form id="form1">
     <table class="form">
         <tr>
-            <td class="formTitle">代码</td>
+            <td class="formTitle">Mã</td>
             <td class="formValue"><input type="text" class="form-control newtouch_Readonly" name="dlCode" id="dlCode" /></td>
-            <td class="formTitle">大类<span>*</span></td>
+            <td class="formTitle">Nhóm lớn<span>*</span></td>
             <td class="formValue"><input type="text" class="form-control" name="dlmc" id="dlmc" /></td>
         </tr>
         <tr>
-            <td class="formTitle">门诊报表大类<span>*</span></td>
+            <td class="formTitle">Nhóm lớn báo cáo ngoại trú<span>*</span></td>
             <td class="formValue"><input type="text" class="form-control" name="mzprintreportcode" id="mzprintreportcode" /></td>
             <td class="formTitle">门诊账单大类<span>*</span></td>
             <td class="formValue"><input type="text" class="form-control" name="mzprintbillcode" id="mzprintbillcode" /></td>
         </tr>
         <tr>
-            <td class="formTitle">拼音<span>*</span></td>
+            <td class="formTitle">Phiên âm<span>*</span></td>
             <td class="formValue"><input type="text" class="form-control" name="py" id="py" /></td>
-            <td class="formTitle">有效<span>*</span></td>
+            <td class="formTitle">Hiệu lực<span>*</span></td>
             <td class="formValue">
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
-                        <input type="radio" name="zt" id="zt" value="1"> 是
+                        <input type="radio" name="zt" id="zt" value="1"> Có
                     </label>
                     <label class="btn btn-default">
-                        <input type="radio" name="zt" id="zt" value="0"> 否
+                        <input type="radio" name="zt" id="zt" value="0"> Không
                     </label>
                 </div>
             </td>
         </tr>
         <tr>
-            <td class="formTitle">范围<span>*</span></td>
+            <td class="formTitle">Phạm vi<span>*</span></td>
             <td class="formValue">
                 <select class="form-control" id="mzzybz" name="mzzybz">
-                    <option value="">==请选择==</option>
-                    <option value="0">通用</option>
-                    <option value="1">门诊</option>
-                    <option value="2">住院</option>
+                    <option value="">==Vui lòng chọn==</option>
+                    <option value="0">Chung</option>
+                    <option value="1">Ngoại trú</option>
+                    <option value="2">Nhập viện</option>
                 </select>
             </td>
-            <td class="formTitle">排序</td>
+            <td class="formTitle">Sắp xếp</td>
             <td class="formValue"><input type="text" class="form-control" name="px" id="px" /></td>
         <tr>
-            <td class="formTitle">建档人员</td>
+            <td class="formTitle">Người lập hồ sơ</td>
             <td class="formValue">
                 <input class="form-control newtouch_Readonly" id="CreatorCode" name="CreatorCode" value=@OperatorProvider.GetCurrent().UserCode type="text" />
             </td>
-            <td class="formTitle">建档日期</td>
+            <td class="formTitle">Ngày lập hồ sơ</td>
             <td class="formValue"><input class="form-control newtouch_Readonly" id="CreateTime" name="CreateTime" value=@DateTime.Now type="text" /></td>
         </tr>
         </tr>

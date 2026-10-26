@@ -49,17 +49,17 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="opr"></param>
         public override void SwithOrgSuccessOprBeforeSave(OperatorModel opr)
         {
-            //更新用户药房部分
+            //Cập nhật một phần nhà thuốc người dùng
             if (ConfigurationHelper.GetAppConfigBoolValue("Is_UserYfbmRelated") == true && opr.OrganizeId != null)
             {
-                //当前要操作的药房部门
+                //phòng ban nhà thuốc của thao tác cần hiện tại
                 if (!string.IsNullOrWhiteSpace(opr.UserId) && !string.IsNullOrWhiteSpace(opr.OrganizeId))
                 {
                     opr.yfbmCodeList = _sysUserDmnService.GetYfbmCodeListByUserId(opr.UserId, opr.OrganizeId);
                 }
                 if (opr.yfbmCodeList != null && opr.yfbmCodeList.Count > 0)
                 {
-                    //当前要操作的药房部门    //在OrgId关联了多个yfbm怎么办
+                    //phòng ban nhà thuốc của thao tác cần hiện tại    //ỞOrgId关联了多个yfbm怎么办
                     var curYfbmCode = opr.yfbmCodeList.FirstOrDefault();
                     Constants.SetCurrentYfbm(opr.UserId, new LoginUserCurrentYfbmModel()
                     {
@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Web.Controllers
                 }
                 else
                 {
-                    Constants.SetCurrentYfbm(opr.UserId, null);  //移除
+                    Constants.SetCurrentYfbm(opr.UserId, null);  //Xóa
                 }
             }
 
@@ -102,7 +102,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取就诊人数（门诊记账、住院记账）
+        /// Lấy số người khám（Ghi sổ ngoại trú、Ghi sổ nhập viện）
         /// </summary>
         public ActionResult GetVisitNum()
         {
@@ -163,7 +163,7 @@ namespace Newtouch.HIS.Web.Controllers
             var sysConfigBaseEntities = _sysConfigRepo.GetList("", "*").ToList();
             //组织机构自带数据
             var sysConfigEntities = _sysConfigRepo.GetList("", orgId).ToList();
-            //根据code 去重
+            //Theocode 去重
             var sysConfigCodes = new HashSet<string>(sysConfigEntities.Select(entity => entity.Code));
             var filteredEntities = sysConfigBaseEntities
                 .Where(baseEntity => !sysConfigCodes.Contains(baseEntity.Code))

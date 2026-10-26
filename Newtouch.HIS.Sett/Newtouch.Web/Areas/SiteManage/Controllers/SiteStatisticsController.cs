@@ -16,7 +16,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.Web.Areas.SiteManage.Controllers
 {
     /// <summary>
-    /// 站点统计
+    /// Thống kê trạm
     /// </summary>
     public class SiteStatisticsController : ControllerBase
     {
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// 审核 统计 视图
+        /// Kiểm duyệt Thống kê Chế độ xem
         /// </summary>
         /// <returns></returns>
         public ActionResult VerifySiteStatistics()
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// 审核 统计明细 视图
+        /// Kiểm duyệt Thống kê chi tiết Chế độ xem
         /// </summary>
         /// <returns></returns>
         public ActionResult VerifySiteStatisticsDetail()
@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// 统计录入 视图
+        /// Thống kê nhập Chế độ xem
         /// </summary>
         /// <returns></returns>
         public override ActionResult Form()
@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// 统计录入 视图
+        /// Thống kê nhập Chế độ xem
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -299,7 +299,7 @@ namespace Newtouch.HIS.Web.Areas.SiteManage.Controllers
         #region 收支统计  highCharts
 
         /// <summary>
-        /// 站点收支统计图标 视图
+        /// Biểu tượng thống kê thu chi trạm Chế độ xem
         /// </summary>
         /// <returns></returns>
         public ActionResult SiteStatisticsHighCharts()
@@ -310,7 +310,7 @@ namespace Newtouch.HIS.Web.Areas.SiteManage.Controllers
         #endregion
 
         /// <summary>
-        /// 审核操作
+        /// Kiểm duyệt thao tác
         /// </summary>
         /// <param name="id"></param>
         /// <param name="shzt"></param>
@@ -324,7 +324,7 @@ namespace Newtouch.HIS.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// 当前登录人的组织机构
+        /// cơ quan tổ chức của người đăng nhập hiện tại
         /// </summary>
         /// <returns></returns>
         public ActionResult getCurrentOrgIds()
@@ -362,7 +362,7 @@ namespace Newtouch.HIS.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// 当前组织机构当前时间是否已存在过
+        /// Thời gian hiện tại cơ quan tổ chức hiện tại có đã tồn tại không
         /// </summary>
         /// <param name="siteId"></param>
         /// <param name="year"></param>
@@ -380,7 +380,7 @@ namespace Newtouch.HIS.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// 获取上个月的成本信息
+        /// thông tin chi phí lấy tháng cái trên
         /// </summary>
         /// <param name="site"></param>
         /// <param name="year"></param>

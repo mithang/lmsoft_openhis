@@ -1,34 +1,34 @@
 ﻿
-var keyValue = $.request("keyValue");
+var keyValue = $.request("");
 $(function () {
     InitControl();
     //if (!!keyValue) {
     $.ajax({
-        url: "/SystemManage/SysCIRemindContent/GetFormJson?r=" + Math.random(),
+        url: "" + Math.random(),
         data: { keyValue: keyValue },
-        dataType: "json",
+        dataType: "",
         async: false,
         success: function (data) {
-            $("#form1").formSerialize(data);
-            if (data["sfxmmc"]) {
-                $("#sfxmmc").attr("data-label", data["sfxmmc"]);
+            $("").formSerialize(data);
+            if (data[""]) {
+                $("").attr("", data[""]);
             }
         }
     });
     //}
 })
 function InitControl() {
-    dlList();//收费项目
+    dlList();//Hạng mục thu phí
 }
 function dlList() {
-    $("#sfxmmc").newtouchFloatingSelector({
+    $("").newtouchFloatingSelector({
         height: 200,
         width: 300,
         filter: function (keyword) {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysChargeItemList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -38,32 +38,32 @@ function dlList() {
             return resultObjArr;
 
         },
-        caption: "收费项目",
+        caption: "",
         colModel: [
-            { label: '编号', name: 'sfxmbh', widthratio: 25 },
-            { label: '代码', name: 'sfxm', widthratio: 25 },
-            { label: '名称', name: 'sfxmmc', widthratio: 25 },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: '', name: '', widthratio: 25 },
+            { label: '', name: '', widthratio: 25 },
+            { label: '', name: '', widthratio: 25 },
+            { label: '', name: '', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
-            $("#sfxmmc").attr("data-label", $thistr.find("td:eq(1)").html());
-            $("#sfxmmc").val($thistr.find('td:eq(2)').html());
+            $("").attr("", $thistr.find("").html());
+            $("").val($thistr.find('').html());
             return;
         }
     });
 }
 function submitForm() {
     if (checkNotNull()) {
-        var data = $("#form1").formSerialize();
-        data["sfxm"] = $("#sfxmmc").attr("data-label");
+        var data = $("").formSerialize();
+        data[""] = $("").attr("");
         $.submitForm({
-            url: "/SystemManage/SysCIRemindContent/SubmitForm?keyValue=" + keyValue,
+            url: "" + keyValue,
             param: data,
             success: function () {
-                //$.currentWindow().$("#gridList").resetSelection();
-                //$.currentWindow().$("#gridList").trigger("reloadGrid");
-                $.currentWindow().window.frames['iframeExpenseManage'].$("#gridList").resetSelection();
-                $.currentWindow().window.frames['iframeExpenseManage'].$("#gridList").trigger("reloadGrid");
+                //$.currentWindow().$("").resetSelection();
+                //$.currentWindow().$("").trigger("");
+                $.currentWindow().window.frames[''].$("").resetSelection();
+                $.currentWindow().window.frames[''].$("").trigger("");
                 $.loading(false);
             }
         })
@@ -71,7 +71,7 @@ function submitForm() {
 }
 
 function checkNotNull() {
-    var validator = $('#form1').validate();
+    var validator = $('').validate();
     validator.settings = {
         rules: {
             mzjsnr: { required: true },
@@ -81,35 +81,35 @@ function checkNotNull() {
             zt: { required: true }
         },
         messages: {
-            mzjsnr: { required: "门诊警示内容必须填写" },
-            zyjsnr: { required: "住院警示内容必须填写" },
-            mzjsjb: { required: "门诊警示级别必须选择" },
-            zyjsjb: { required: "住院警示级别必须选择" },
-            zt: { required: "状态必须选择" }
+            mzjsnr: { required: "" },
+            zyjsnr: { required: "" },
+            mzjsjb: { required: "" },
+            zyjsjb: { required: "" },
+            zt: { required: "" }
         },
         showErrors: function (errorMap, errorList) {
             if (!$.isEmptyObject(errorList)) {
                 if (Array.isArray(errorList) && errorList.length == 0) {
                     return;
                 }
-                $.modalAlert(errorList[0].message, 'warning');
+                $.modalAlert(errorList[0].message, '');
             }
         }
     }
     if (!validator.form()) {
         return false;
     }
-    ////状态
+    ////Trạng thái
     //var zt = false;
-    //$('input[name="zt"]').each(function () {
+    //$('').each(function () {
     //    var $this = $(this);
-    //    if ($this.parent().hasClass("active")) {
+    //    if ($this.parent().hasClass("")) {
     //        zt = true;
-    //        $("#zt").val()
+    //        $("").val()
     //    }
     //});
     //if (!zt) {
-    //    $.modalAlert("请选择是否有效！", 'warning');
+    //    $.modalAlert("", '');
     //    return false;
     //}
     return true;

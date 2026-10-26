@@ -1,80 +1,80 @@
 ﻿
 @{
-    ViewBag.Title = "ConfirmPatient";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <script>
-    var patientData = localStorage.getItem("patientData");
+    var patientData = localStorage.getItem("");
     var patientdataJson = JSON.parse(patientData);
     $(function () {
         if (!!patientdataJson) {
-            var $gridList = $("#gridList");
+            var $gridList = $("");
             $gridList.dataNewGrid({
                 height: $(window).height() - 128,
                 colModel: [
-                    { label: "主键", name: "patid", hidden: true, key: true },
-                    { label: '卡号', name: 'CardNo', width: 100, align: 'left' },
-                    { label: '病人性质', name: 'brxzmc', width: 100, align: 'left' },
-                    { label: '病历号', name: 'blh', width: 100, align: 'left' },
-                    { label: '姓名', name: 'xm', width: 50, align: 'left' },
-                    { label: '学历', name: 'xl', width: 50, align: 'left' },
+                    { label: "", name: "", hidden: true, key: true },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 50, align: '' },
+                    { label: '', name: '', width: 50, align: '' },
                     {
-                        label: '性别', name: 'xb', width: 50, align: 'left',
+                        label: '', name: '', width: 50, align: '',
                         formatter: function (cellvalue) {
                             return $.getGender(cellvalue);
                         }
                     },
-                    { label: '拼音', name: 'py', width: 100, align: 'left' },
+                    { label: '', name: '', width: 100, align: '' },
                     {
-                        label: '出生年月', name: 'csny', width: 80, align: 'left',
-                        formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                        label: '', name: '', width: 80, align: '',
+                        formatter: "", formatoptions: { srcformat: '', newformat: '' }
                     },
                     {
-                        label: '证件类型', name: 'zjlx', width: 50, align: 'left',
+                        label: '', name: '', width: 50, align: '',
                         formatter: function (cellvalue) {
                             if (cellvalue) {
-                                if (cellvalue.trim() == "1") {
-                                    return "身份证";
-                                } else if (cellvalue.trim() == "2") {
-                                    return "护照";
-                                } else if (cellvalue.trim() == "3") {
-                                    return "军官证";
+                                if (cellvalue.trim() == "") {
+                                    return "";
+                                } else if (cellvalue.trim() == "") {
+                                    return "";
+                                } else if (cellvalue.trim() == "") {
+                                    return "";
                                 } else {
-                                    return "其他";
+                                    return "";
                                 }
                             }
                             return "";
                         }
                     },
-                     { label: '证件号', name: 'zjh', width: 150, align: 'left' },
-                     { label: '年龄', name: 'nl', width: 50, align: 'left' },
-                     { label: '电话', name: 'dh', width: 100, align: 'left' },
-                     { label: '紧急联系人', name: 'jjllr', width: 100, align: 'left' },
-                     { label: '联系人电话', name: 'jjlrdh', width: 100, align: 'left' },
-                     { label: 'CreateTime', name: 'CreateTime', hidden: true },
+                     { label: '', name: '', width: 150, align: '' },
+                     { label: '', name: '', width: 50, align: '' },
+                     { label: '', name: '', width: 100, align: '' },
+                     { label: '', name: '', width: 100, align: '' },
+                     { label: '', name: '', width: 100, align: '' },
+                     { label: '', name: '', hidden: true },
 
                 ],
-                pager: "#gridPager",
-                sortname: 'CreateTime desc',
-                rowNum: '10',
+                pager: "",
+                sortname: '',
+                rowNum: '',
                 viewrecords: true
             }, patientdataJson);
             if (patientdataJson.length > 0) {
-                $('.ui-jqgrid-bdiv').find(".unwritten").remove();
+                $('').find("").remove();
             }
         }
     });
 
     function btn_edit() {
-        var rowid = $("#gridList").jqGrid("getGridParam", "selrow");
+        var rowid = $("").jqGrid("", "");
         var obj = new Object();
         if (rowid != "" && rowid != undefined) {
-            obj = $('#gridList').jqGrid('getRowData', rowid);
+            obj = $('').jqGrid('', rowid);
             if (obj && obj.patid) {
                 $.ajax({
-                    url: "/PatientManage/HospiterRes/CheckCardState",
-                    data: { "patid": obj.patid },
-                    dataType: 'json',
+                    url: "",
+                    data: { "": obj.patid },
+                    dataType: '',
                     async: false,
                     success: function (rep) {
                         $.currentWindow().fillInfo(rep);

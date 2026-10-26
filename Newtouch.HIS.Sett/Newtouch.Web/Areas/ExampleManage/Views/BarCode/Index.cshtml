@@ -1,43 +1,43 @@
 ﻿@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
-<script src="~/Content/js/qrcode/jquery.qrcode.js"></script>
-<script src="~/Content/js/qrcode/qrcode.js"></script>
+<script src=""></script>
+<script src=""></script>
 <script>
     $(function () {
-        $('#qrcodeTable').qrcode({
-            render: "table",
+        $('').qrcode({
+            render: "",
             text: "",
-            width: "265",
-            height: "265"
+            width: "",
+            height: ""
         });
     });
     function createqrcode() {
-        if (!$('#form1').formValid()) {
+        if (!$('').formValid()) {
             return false;
         }
-        $("#qrcodeTable").html("");
-        $('#qrcodeTable').qrcode({
-            render: "table",
-            text: $("#txt_barcod").val(),
-            width: "265",
-            height: "265"
+        $("").html("");
+        $('').qrcode({
+            render: "",
+            text: $("").val(),
+            width: "",
+            height: ""
         });
     }
 </script>
 <form id="form1">
     <div class="mail-box">
-        <div class="mail-header">生成二维码</div>
+        <div class="mail-header">Tạo mã QR</div>
         <div class="mail-body">
             <table class="form">
                 <tr>
-                    <th class="formTitle">二维码内容</th>
+                    <th class="formTitle">Nội dung mã QR</th>
                     <td class="formValue">
                         <div class="input-group">
-                            <input id="txt_barcod" name="txt_barcod" type="text" class="form-control required" placeholder="请输入要生成二维码的字符串">
+                            <input id="txt_barcod" name="txt_barcod" type="text" class="form-control required" placeholder="chuỗi của Vui lòng nhập mã QR tạo cần">
                             <span class="input-group-btn">
-                                <a onclick="createqrcode()" class="btn  btn-primary" style="padding-left:10px;padding-right:10px;font-size:12px;line-height: 20px;">生成</a>
+                                <a onclick="createqrcode()" class="btn  btn-primary" style="padding-left:10px;padding-right:10px;font-size:12px;line-height: 20px;">Tạo</a>
                             </span>
                         </div>
                     </td>

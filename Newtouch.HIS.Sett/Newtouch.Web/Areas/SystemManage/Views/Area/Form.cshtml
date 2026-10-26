@@ -1,38 +1,38 @@
 ﻿@{
-    ViewBag.Title = "Form";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <script>
-    var keyValue = $.request("keyValue");
+    var keyValue = $.request("");
     $(function () {
         initControl();
         if (!!keyValue) {
             $.ajax({
-                url: "/SystemManage/Area/GetFormJson",
+                url: "",
                 data: { keyValue: keyValue },
-                dataType: "json",
+                dataType: "",
                 async: false,
                 success: function (data) {
-                    $("#form1").formSerialize(data);
+                    $("").formSerialize(data);
                 }
             });
         }
     });
     function initControl() {
-        $("#F_ParentId").bindSelect({
-            url: "/SystemManage/Area/GetTreeSelectJson"
+        $("").bindSelect({
+            url: ""
         });
     }
     function submitForm() {
-        if (!$('#form1').formValid()) {
+        if (!$('').formValid()) {
             return false;
         }
         $.submitForm({
-            url: "/SystemManage/Area/SubmitForm?keyValue=" + keyValue,
-            param: $("#form1").formSerialize(),
+            url: "" + keyValue,
+            param: $("").formSerialize(),
             success: function () {
-                $.currentWindow().$("#gridList").resetSelection();
-                $.currentWindow().$("#gridList").trigger("reloadGrid");
+                $.currentWindow().$("").resetSelection();
+                $.currentWindow().$("").trigger("");
             }
         })
     }
@@ -42,35 +42,35 @@
     <div style="padding-top: 20px; margin-right: 20px;">
         <table class="form">
             <tr>
-                <th class="formTitle">上级</th>
+                <th class="formTitle">Cấp trên</th>
                 <td class="formValue">
                     <select id="F_ParentId" name="F_ParentId" class="form-control required">
-                        <option value="0">父节点</option>
+                        <option value="0">Nút cha</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">名称</th>
+                <th class="formTitle">Tên</th>
                 <td class="formValue">
-                    <input id="F_FullName" name="F_FullName" type="text" class="form-control required" placeholder="请输入名称" />
+                    <input id="F_FullName" name="F_FullName" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">排序</th>
+                <th class="formTitle">Sắp xếp</th>
                 <td class="formValue">
                     <input id="F_SortCode" name="F_SortCode" type="text" class="form-control required" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle" style="height: 35px;">选项</th>
+                <th class="formTitle" style="height: 35px;">Tùy chọn</th>
                 <td class="formValue" style="padding-top: 1px;">
                     <div class="ckbox">
-                        <input id="F_EnabledMark" name="F_EnabledMark" type="checkbox" checked="checked"><label for="F_EnabledMark">有效</label>
+                        <input id="F_EnabledMark" name="F_EnabledMark" type="checkbox" checked="checked"><label for="F_EnabledMark">Hiệu lực</label>
                     </div>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle" valign="top" style="padding-top: 5px;">备注
+                <th class="formTitle" valign="top" style="padding-top: 5px;">Ghi chú
                 </th>
                 <td class="formValue">
                     <textarea id="F_Description" name="F_Description" class="form-control" style="height: 60px;"></textarea>

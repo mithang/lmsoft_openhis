@@ -1,13 +1,13 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "预约挂号管理";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
     //开启治疗项目组合
-    var zlxmzhconf = SysConfigReader.String("EnableZlxmGroup");
+    var zlxmzhconf = SysConfigReader.String("");
 }
 <ul id="myTab" class="nav nav-tabs">
-    <li class="active"><a href="#BookTab" data-toggle="tab">预约列表</a></li>
-    <li><a href="#onlineBook" data-toggle="tab">在线预约</a></li>
+    <li class="active"><a href="#BookTab" data-toggle="tab">Danh sách đặt trước</a></li>
+    <li><a href="#onlineBook" data-toggle="tab">Đặt trước trực tuyến</a></li>
 </ul>
 <div class="tab-content" style="margin-top:1%">
     <div class="tab-pane fade in active" id="BookTab">
@@ -16,23 +16,23 @@
                 <table class="form">
                     <tr>
 
-                        <th class="formTitle"> 关键字</th>
+                        <th class="formTitle"> Từ khóa</th>
                         <td class="formValue">
-                            <input type="text" class="form-control" id="keyValue" name="KeyValue" placeholder="姓名或证件号" />
+                            <input type="text" class="form-control" id="keyValue" name="KeyValue" placeholder="Họ tên hoặc Số giấy tờ" />
                         </td>
-                        <th class="formTitle">预约状态</th>
+                        <th class="formTitle">Trạng thái đặt trước</th>
                         <td class="formValue">
                             <select id="sel_yyzt" class="form-control required" data-EnumType="EnumMzyyzt">
-                                <option value="">请选择</option>
+                                <option value="">Vui lòng chọn</option>
                             </select>
                         </td>
                         <th class="formTitle">预约来源</th>
                         <td class="formValue">
                             <select id="sel_yyly" class="form-control required" data-EnumType="EnumMzghly">
-                                <option value="">请选择</option>
+                                <option value="">Vui lòng chọn</option>
                             </select>
                         </td>
-                        <th class="formTitle">预约日期：</th>
+                        <th class="formTitle">Ngày đặt trước：</th>
                         <td class="formValue" colspan="2">
                             <input id="txtyykssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                             <span style="margin-left:2%;float:left;">—</span>
@@ -43,21 +43,21 @@
                     </tr>
                     <tr>
                         <th class="formTitle">
-                            <span class="required">*</span>科室：
+                            <span class="required">*</span>Khoa：
                         </th>
                         <td class="formValue">
                             <input type="text" class="form-control" id="txtkschoose" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>门诊类型：</th>
+                        <th class="formTitle"><span class="required">*</span>Loại ngoại trú：</th>
                         <td class="formValue formDdlSelectorTd">
                             <select id="sel_mzlx" class="form-control required" data-EnumType="EnumOutPatientType">
-                                <option value="">请选择</option>
+                                <option value="">Vui lòng chọn</option>
                             </select>
 
                         </td>
                         <td class="formValue" colspan="2">
-                            <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;" value="查询" />
-                            <input type="button" id="btn_CancalYy" class="btn btn-primary btn-md" style="margin-left:10px;" value="取消预约" />
+                            <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;" value="Tra cứu" />
+                            <input type="button" id="btn_CancalYy" class="btn btn-primary btn-md" style="margin-left:10px;" value="Hủy đặt trước" />
                         </td>
                     </tr>
                 </table>
@@ -72,27 +72,27 @@
             <div class="panel panel-default">
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>病例号/姓名：</th>
+                        <th class="formTitle"><span class="required">*</span>Số bệnh án/Họ tên：</th>
                         <td class="formValue">
                             <input type="hidden" id="patid" />
-                            <input type="text" class="form-control" id="blh" placeholder="最少1位字符" />
+                            <input type="text" class="form-control" id="blh" placeholder="Ít nhất1ký tự vị" />
                         </td>
                         <th class="formTitle">
-                            <input type="button" class="btn btn-default btn-md btn-default-color" id="btnsyy" value="查询" onclick="GetPatSerarchView($('#blh').val());" />
+                            <input type="button" class="btn btn-default btn-md btn-default-color" id="btnsyy" value="Tra cứu" onclick="GetPatSerarchView($('#blh').val());" />
                         </th>
-                        <th class="formTitle">姓名：</th>
+                        <th class="formTitle">Họ tên：</th>
                         <td class="formValue" style="width:80px;">
                             <label id="xm"></label>
                         </td>
-                        <th class="formTitle">性别：</th>
+                        <th class="formTitle">Giới tính：</th>
                         <td class="formValue">
                             <label id="xb"></label>
                         </td>
-                        <th class="formTitle">年龄：</th>
+                        <th class="formTitle">Tuổi：</th>
                         <td class="formValue">
                             <label id="nlshow"></label>
                         </td>
-                        <td class="formTitle">卡号：</td>
+                        <td class="formTitle">Số thẻ：</td>
                         <td class="formValue">
                             <label id="CardTypeName"></label>
                             <label id="kh"></label>
@@ -100,13 +100,13 @@
                     </tr>
                     <tr>
                         <td class="formTitle">
-                            <label id="zjlx">证件号：</label>
+                            <label id="zjlx">Số giấy tờ：</label>
                         </td>
                         <td class="formValue">
                             <label id="zjh"></label>
                             <input type="text" style="display:none;" id="hiddenzjlx" />
                         </td>
-                        <th class="formTitle">初复诊：</th>
+                        <th class="formTitle">Khám lần đầu/tái khám：</th>
                         <td class="formValue">
                             <label id="txtcfz"></label>
                         </td>
@@ -119,30 +119,30 @@
                     </tr>
                 </table>
                 <div class="panel-heading navb-bg">
-                    排班筛选
+                    Lọc lịch trực
                 </div>
                 <table class="form">
                     <tr>
-                        <th class="formTitle">时间 ：</th>
+                        <th class="formTitle">Thời gian ：</th>
                         <td class="formValue">
                             <input type="text" id="czrq" class="form-control input-wdatepicker formClearIgnore" style="height:20px;width:100px" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' });xzsj()" />
                         </td>
-                        <th class="formTitle">门诊类型：</th>
+                        <th class="formTitle">Loại ngoại trú：</th>
                         <td class="formValue">
                             <select id="mjzbz" class="form-control required" data-EnumType="EnumOutPatientType">
-                                <option value="">请选择</option>
+                                <option value="">Vui lòng chọn</option>
                             </select>
                         </td>
-                        <th class="formTitle">科室：</th>
+                        <th class="formTitle">Khoa：</th>
                         <td class="formValue">
                             <input type="text" class="form-control" id="txtyykschoose" />
                         </td>
 
-                        <th class="formTitle">排班医生：</th>
+                        <th class="formTitle">Bác sĩ lịch trực：</th>
                         <td class="formValue"><input type="text" id="doctormc2" name="doctormc2" class="form-control form-an" /></td>
                         <td class="formValue" colspan="2">
-                            <input type="button" id="btn_searchrl" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;" value="查询" />
-                            <input type="button" id="btn_yy" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;" value="预约" />
+                            <input type="button" id="btn_searchrl" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;" value="Tra cứu" />
+                            <input type="button" id="btn_yy" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;" value="Đặt trước" />
                         </td>
                         <th class="formTitle"></th>
                     </tr>
@@ -160,7 +160,7 @@
 <script>
     $(function () {
         $(window).resize(function () {
-            initLayout("MyTabGrid");
+            initLayout("");
         });
 
         InitBindSel();
@@ -169,13 +169,13 @@
     });
     function InitBindSel()
     {
-        //科室
-        $("#txtkschoose").newtouchBatchFloatingSelector({
+        //Khoa
+        $("").newtouchBatchFloatingSelector({
             height: 200,
             width: 300,
             clickautotrigger: true,
             filter: function (keyword) {
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysDepartList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -187,26 +187,26 @@
                 return resultObjArr;
 
             },
-            caption: "科室",
+            caption: "",
             colModel: [
-                { label: '编号', name: 'Code', widthratio: 30 },
-                { label: '名称', name: 'Name', widthratio: 50 },
-                { label: '拼音', name: 'py', hidden: true }
+                { label: '', name: '', widthratio: 30 },
+                { label: '', name: '', widthratio: 50 },
+                { label: '', name: '', hidden: true }
             ],
             itemdbclickhandler: function ($thistr) {
-                $("#txtkschoose").attr("data-label", $thistr.find("td:eq(0)").html());
-                $("#txtkschoose").val($thistr.find('td:eq(1)').html());
-                $("#btn_search").trigger("click");
+                $("").attr("", $thistr.find("").html());
+                $("").val($thistr.find('').html());
+                $("").trigger("");
                 return;
             },
         });
-        //科室
-        $("#txtyykschoose").newtouchBatchFloatingSelector({
+        //Khoa
+        $("").newtouchBatchFloatingSelector({
             height: 200,
             width: 300,
             clickautotrigger: true,
             filter: function (keyword) {
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysDepartList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -218,53 +218,53 @@
                 return resultObjArr;
 
             },
-            caption: "科室",
+            caption: "",
             colModel: [
-                { label: '编号', name: 'Code', widthratio: 30 },
-                { label: '名称', name: 'Name', widthratio: 50 },
-                { label: '拼音', name: 'py', hidden: true }
+                { label: '', name: '', widthratio: 30 },
+                { label: '', name: '', widthratio: 50 },
+                { label: '', name: '', hidden: true }
             ],
             itemdbclickhandler: function ($thistr) {
-                $("#txtyykschoose").attr("data-label", $thistr.find("td:eq(0)").html());
-                $("#txtyykschoose").val($thistr.find('td:eq(1)').html());
-                $("#btn_searchrl").trigger("click");
+                $("").attr("", $thistr.find("").html());
+                $("").val($thistr.find('').html());
+                $("").trigger("");
                 return;
             },
         });
-        ///医生
-        $("#doctormc2").newtouchFloatingSelector({
+        ///Bác sĩ
+        $("").newtouchFloatingSelector({
             height: 200,
             width: 480,
             clickautotrigger: true,
             filter: function (keyword) {
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
 
                 $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
                     if (((val.StaffPY && val.StaffPY.toLowerCase().indexOf(keyword.toLowerCase()) >= 0)
                         || (val.StaffName && val.StaffName.indexOf(keyword.toLowerCase()) >= 0)
                         || keyword.trim() == "")
-                        && val.DutyCode == "Doctor") {
+                        && val.DutyCode == "") {
                         resultObjArr.push(val);
                     }
                 });
                 return resultObjArr;
 
             },
-            caption: "医生",
+            caption: "",
             colModel: [
                 {
-                    label: '工号', name: 'StaffGh', widthratio: 25
+                    label: '', name: '', widthratio: 25
                 },
                 {
-                    label: '名称', name: 'StaffName', widthratio: 25
+                    label: '', name: '', widthratio: 25
                 },
-                { label: '拼音', name: 'StaffPY', widthratio: 25 }
+                { label: '', name: '', widthratio: 25 }
             ],
             itemdbclickhandler: function ($thistr) {
-                $("#doctormc2").attr("data-label", $thistr.find("td:eq(0)").html());
-                $("#doctormc2").val($thistr.find('td:eq(1)').html());
-                $("#btn_searchrl").trigger("click");
+                $("").attr("", $thistr.find("").html());
+                $("").val($thistr.find('').html());
+                $("").trigger("");
                 return;
             }
         });
@@ -272,156 +272,156 @@
 
     function gridList()
     {
-        var $gridList = $("#patGridList");
+        var $gridList = $("");
         $gridList.dataGrid({
-            width:"100%",
+            width:"",
             height: $(window).height() - 225,
-            url: "/OutPatientManage/OutpatientReg/GetIsMzghBook",
+            url: "",
             postData: getSearchPostData(),
             autowidth: true,
-            caption: '预约列表',
+            caption: '',
             colModel: [
-                { label: 'ghpbId', name: 'ScheduId', hidden: true, },
+                { label: '', name: '', hidden: true, },
                 {
-                    label: '预约日期', name: 'OutDate', width: 60, align: 'left',
-                    formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                    label: '', name: '', width: 60, align: '',
+                    formatter: "", formatoptions: { srcformat: '', newformat: '' }
                 },
-                { label: '姓名', name: 'xm', width: 50, align: 'left' },
+                { label: '', name: '', width: 50, align: '' },
                 {
-                    label: '性别', name: 'xb', width: 30, align: 'left', formatter: function (val) {
-                        return val == "1" ? "男" : "女";
+                    label: '', name: '', width: 30, align: '', formatter: function (val) {
+                        return val == "" ? "" : "";
                     }
                 },
-                { label: '就诊序号', name: 'QueueNo', width: 50, align: 'left' },
-                { label: '证件号', name: 'zjh', width: 100, align: 'left' },
-                { label: 'ysgh', name: 'ysgh', width: 120, align: 'left', hidden: true },
-                { label: '预约医生', name: 'ysxm', width: 55, align: 'left', },
-                { label: 'BookId', name: 'BookId', hidden: true },
-                { label: 'zlxm', name: 'zlxm', width: 100, align: 'left', hidden: true },
-                { label: 'ghlx', name: 'ghlx', width: 120, align: 'left', hidden: true },
+                { label: '', name: '', width: 50, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 120, align: '', hidden: true },
+                { label: '', name: '', width: 55, align: '', },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', width: 100, align: '', hidden: true },
+                { label: '', name: '', width: 120, align: '', hidden: true },
                 {
-                    label: '门诊类型', name: 'Regtype', width: 60, align: 'left', formatter: function (val) {
-                        return $.enum.getDescByValue("EnumOutPatientType", val);
+                    label: '', name: '', width: 60, align: '', formatter: function (val) {
+                        return $.enum.getDescByValue("", val);
                     }
                 },
-                { label: 'Title', name: 'Title', width: 120, align: 'left', hidden: true },
+                { label: '', name: '', width: 120, align: '', hidden: true },
                 {
-                    label: '预约来源', name: 'AppId', width: 60, align: 'left', formatter: function (val) {
-                        return $.enum.getDescByName("EnumMzghly", val);
+                    label: '', name: '', width: 60, align: '', formatter: function (val) {
+                        return $.enum.getDescByName("", val);
                     }
                 },
                 {
-                    label: '预约状态', name: 'yyzt', width: 60, align: 'left', formatter: function (val) {
-                        return $.enum.getDescByValue("EnumMzyyzt", val);
+                    label: '', name: '', width: 60, align: '', formatter: function (val) {
+                        return $.enum.getDescByValue("", val);
                     }
                 },
-                { label: 'ks', name: 'ks', hidden: true, width: 120, align: 'left', hidden: true },
-                { label: '挂号科室', name: 'ksmc', width: 80, align: 'left' },
-                { label: '挂号项目', name: 'sfxmmc', width: 120, align: 'left' },
-                { label: '诊疗项目', name: 'zlxmmc', width: 120, align: 'left' },
-                { label: '时间段', name: 'PeriodDesc', width: 80, align: 'left' },
-                { label: '费用', name: 'RegFee', width: 40, align: 'left' }
+                { label: '', name: '', hidden: true, width: 120, align: '', hidden: true },
+                { label: '', name: '', width: 80, align: '' },
+                { label: '', name: '', width: 120, align: '' },
+                { label: '', name: '', width: 120, align: '' },
+                { label: '', name: '', width: 80, align: '' },
+                { label: '', name: '', width: 40, align: '' }
             ],
-            pager: "#gridPager",
-            sortname: 'OutDate desc,ksmc,QueueNo',
+            pager: "",
+            sortname: '',
             multiselect: false,
             viewrecords: true
         });
-        $("#btn_search").click(function () {
-            $gridList.jqGrid('setGridParam', {
+        $("").click(function () {
+            $gridList.jqGrid('', {
                 postData: getSearchPostData(),
-            }).trigger('reloadGrid');
+            }).trigger('');
         });
-        $("#sel_yyzt,#sel_yyly, #keyValue, #sel_mzlx").change(function () {
-            $gridList.jqGrid('setGridParam', {
+        $("").change(function () {
+            $gridList.jqGrid('', {
                 postData: getSearchPostData(),
-            }).trigger('reloadGrid');
+            }).trigger('');
         });
 
-        var $gridList2 = $("#patGridList2");
+        var $gridList2 = $("");
         $gridList2.dataGrid({
             autowidth: false,
             height: $(window).height() - 225,
-            url: "/OutpatientManage/OutpatientReg/GetNewRegSchedulebyGroupList",
+            url: "",
             postData: getyySearchPostData(),
-            caption: '排班列表',
+            caption: '',
             colModel: [
-                { label: '排班描述', name: 'Title', width: 120 },
+                { label: '', name: '', width: 120 },
                 {
-                    label: '出诊日期', name: 'OutDate', width: 100, formatter: "date",
-                    formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                    label: '', name: '', width: 100, formatter: "",
+                    formatoptions: { srcformat: '', newformat: '' }
                 },
                 {
-                    label: '门诊类型', name: 'RegType', width: 80, formatter: function (val) {
-                        return $.enum.getDescByValue("EnumOutPatientType", val);
+                    label: '', name: '', width: 80, formatter: function (val) {
+                        return $.enum.getDescByValue("", val);
                     }
                 },
-                { label: '挂号科室', name: 'ksmc', width: 105 },
-                { label: '挂号项目', name: 'sfxmmc', width: 120 },
-                { label: '诊疗项目组合', name: 'zlxmmc', width: 120 },
-                { label: '医生', name: 'rymc', width: 70 },
+                { label: '', name: '', width: 105 },
+                { label: '', name: '', width: 120 },
+                { label: '', name: '', width: 120 },
+                { label: '', name: '', width: 70 },
                 
-                { label: '费用', name: 'RegFee', width: 60 },
-                { label: '号源', name: 'TotalNum', width: 50 },
+                { label: '', name: '', width: 60 },
+                { label: '', name: '', width: 50 },
                 {
-                    label: '剩余号源', name: 'YYNum', width: 50, formatter: function (cellvalue, options, rowobject) {
+                    label: '', name: '', width: 50, formatter: function (cellvalue, options, rowobject) {
                         return (rowobject.TotalNum - rowobject.YYNum)
                     }
                 },
                 {
-                    label: '开放预约', name: 'IsBook', width: 60, formatter: function (val) {
-                        return $.enum.getDescByValue("EnumMzpbBook", val);
+                    label: '', name: '', width: 60, formatter: function (val) {
+                        return $.enum.getDescByValue("", val);
                     }
                 },
-                { label: '时间段', name: 'PeriodDesc', width: 120 },
-                { label: 'RegType', name: 'RegType', hidden: true },
-                { label: 'ks', name: 'ks', hidden: true },
-                { label: 'gh', name: 'gh', hidden: true },
-                { label: 'ghlx', name: 'ghlx', hidden: true },
-                { label: 'zlxm', name: 'zlxm', hidden: true },
-                { label: 'ghpbId', name: 'ghpbId', hidden: true },
+                { label: '', name: '', width: 120 },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true },
             ],
-            //pager: "#gridPager2",
-            //sortname: 'RegType desc,ksmc',
+            //pager: "",
+            //sortname: '',
             viewrecords: true,
         });
-        $("#btn_searchrl").click(function () {
-            $gridList2.jqGrid('setGridParam', {
+        $("").click(function () {
+            $gridList2.jqGrid('', {
                 postData: getyySearchPostData(),
-            }).trigger('reloadGrid');
+            }).trigger('');
         });
-        $("#btn_searchrl, #mjzbz").change(function () {
-            $gridList2.jqGrid('setGridParam', {
+        $("").change(function () {
+            $gridList2.jqGrid('', {
                 postData: getyySearchPostData(),
-            }).trigger('reloadGrid');
+            }).trigger('');
         });
     }
     function getSearchPostData()
     {
         return {
-            yykssj: $("#txtyykssj").val(), yyjssj: $("#txtyyjssj").val(), yyzt: $("#sel_yyzt").val(), ghly: $("#sel_yyly").val(),
-            keyValue: $("#keyValue").val(), isfeegroup: '@zlxmzhconf', mzlx: $("#sel_mzlx").val(), ks: $("#txtkschoose").val()//attr("data-label")
+            yykssj: $("").val(), yyjssj: $("").val(), yyzt: $("").val(), ghly: $("").val(),
+            keyValue: $("").val(), isfeegroup: '', mzlx: $("").val(), ks: $("").val()//attr("")
         };
     }
     function getyySearchPostData()
     {
         return {
-            pbks: $("#txtyykschoose").val(), mzlx: $("#mjzbz").val(), ys: $("#doctormc2").val(),
-            OutDate: $("#czrq").val()
+            pbks: $("").val(), mzlx: $("").val(), ys: $("").val(),
+            OutDate: $("").val()
         };
     }
 
 
-    //患者查询弹出
+    //Bật lên tra cứu bệnh nhân
     function GetPatSerarchView(blh) {
         $.modalOpen({
-            id: "patSearch",
-            title: "患者查询",
-            url: "/OutpatientManage/OutpatientAccounting/SysPatEntitiesblhView?t=" + Math.random() + "&blh=" + blh,
-            width: "700px",
-            height: "600px",
+            id: "",
+            title: "",
+            url: "" + Math.random() + "" + blh,
+            width: "",
+            height: "",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //在弹出窗口事件
+                top.frames[iframeId].PatDbGrid(); //Trong sự kiện cửa sổ bật lên
             }
         });
     }
@@ -429,41 +429,41 @@
     function GetQueryFphAjax(obj, funcSuccCallback) {
         newtouch_event_f4();
         $.najax({
-            url: "/PatientManage/HospiterRes/GetOutpatientBasicInfo",
+            url: "",
             data: obj,
-            dataType: "json",
+            dataType: "",
             async: false,
             success: function (rep) {
                 if (rep.data && !!!rep.data.brxz) {
-                    $.modalAlert("患者信息异常，缺少费用性质", 'warning');
+                    $.modalAlert("", '');
                     return false;
                 }
                 if (rep.data && !!!rep.data.CardTypeName) {
-                    $.modalAlert("患者卡类型异常", 'warning');
+                    $.modalAlert("", '');
                     return false;
                 }
                 patModel = rep.data;
-                $("#xb").html($.getGender(patModel.xb));
-                $("#zjh").html(patModel.zjh);
-                $("#xm").html(patModel.xm);
-                $("#blh").val(patModel.blh);
-                $("#nlshow").html(getAgeFromBirthTime({ begin: patModel.csny.replace('T', ' ') }).text);
-                $("#kh").html(patModel.kh);
-                $("#patid").val(patModel.patid);
-                $("#CardTypeName").html('（' + patModel.CardTypeName + '）');
+                $("").html($.getGender(patModel.xb));
+                $("").html(patModel.zjh);
+                $("").html(patModel.xm);
+                $("").val(patModel.blh);
+                $("").html(getAgeFromBirthTime({ begin: patModel.csny.replace('', '') }).text);
+                $("").html(patModel.kh);
+                $("").val(patModel.patid);
+                $("").html('' + patModel.CardTypeName + '');
                 if (patModel.fzbz === 0) {
-                    $("#txtcfz").html("初诊");
+                    $("").html("");
                 }
                 else {
-                    $("#txtcfz").html("复诊");
+                    $("").html("");
                 }
             }
         });
     }
-    //预约
-    $("#btn_yy").click(function () {
+    //Đặt trước
+    $("").click(function () {
         if (!patModel) {
-            $.modalAlert("尚未选择患者", "warning");
+            $.modalAlert("", "");
             return;
         }
         var seleRow = check();
@@ -471,67 +471,67 @@
             return;
         }
         $.najax({
-            url: "/OutpatientManage/OutBook/PatBookGh",
-            dataType: "json",
-            loadingtext: "正在预约，请稍后…",
+            url: "",
+            dataType: "",
+            loadingtext: "",
             data: { OutDate: seleRow.OutDate, cardNo: patModel.kh, ScheduId: seleRow.ghpbId, brxz: patModel.brxz },
-            type: "POST",
+            type: "",
             success: function (ajaxresp) {
-                $.modalAlert("预约成功", "success");
-                $("#btn_searchrl").trigger("click");
+                $.modalAlert("", "");
+                $("").trigger("");
             }
         });
        
     });
     function check()
     {
-        var seleRow = $("#patGridList2").jqGridRowValue();
+        var seleRow = $("").jqGridRowValue();
         if (!!!seleRow.ghpbId)
         {
-            $.modalAlert("尚未选择一条记录", "warning");
+            $.modalAlert("", "");
             return;
         }
-        if (seleRow.TotalNum==='0') {
-            $.modalAlert("该排班无号源", "warning");
+        if (seleRow.TotalNum==='') {
+            $.modalAlert("", "");
             return;
         }
-        if (seleRow.YYNum === '0') {
-            $.modalAlert("该排班无号源", "warning");
+        if (seleRow.YYNum === '') {
+            $.modalAlert("", "");
             return;
         }
-        if (seleRow.IsBook === '否') {
-            $.modalAlert("该排班未开放预约", "warning");
+        if (seleRow.IsBook === '') {
+            $.modalAlert("", "");
             return;
         }
         if (seleRow.OutDate < $.getDate()) {
-            $.modalAlert("只能预约当日之后的日期", "warning");
+            $.modalAlert("", "");
             return;
         }
         return seleRow;
     }
 
 
-    //取消预约
-    $("#btn_CancalYy").click(function () {
-        var seleRow = $("#patGridList").jqGridRowValue();
+    //Hủy đặt trước
+    $("").click(function () {
+        var seleRow = $("").jqGridRowValue();
         if (!!!seleRow.BookId) {
-            $.modalAlert("尚未选择一条记录", "warning");
+            $.modalAlert("", "");
             return;
         }
-        if (seleRow.AppId!="His")
+        if (seleRow.AppId!="")
         {
-            $.modalAlert("非HIS端预约请至第三方预约平台取消", "warning");
+            $.modalAlert("", "");
             return;
         }
         $.najax({
-            url: "/OutpatientManage/OutBook/CancalBook",
-            dataType: "json",
-            loadingtext: "正在预约，请稍后…",
+            url: "",
+            dataType: "",
+            loadingtext: "",
             data: { BookId: seleRow.BookId },
-            type: "POST",
+            type: "",
             success: function (ajaxresp) {
-                $.modalAlert("取消预约成功", "success");
-                $("#btn_search").trigger("click");
+                $.modalAlert("", "");
+                $("").trigger("");
             }
         });
      
@@ -539,15 +539,15 @@
 
     function newtouch_event_f4() {
         patModel = null;
-        $("#patid").val("");
-        $("#blh").val("");
-        $("#xm").html("");
-        $("#xb").html("");
-        $("#nlshow").html("");
-        $("#CardTypeName").html('');
-        $("#kh").html("");
-        $("#zjh").html("");
-        $("#txtcfz").html("");
+        $("").val("");
+        $("").val("");
+        $("").html("");
+        $("").html("");
+        $("").html("");
+        $("").html('');
+        $("").html("");
+        $("").html("");
+        $("").html("");
     }
 
 </script>

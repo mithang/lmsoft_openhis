@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "ChargeIndex";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <div class="topPanel">
     <div class="toolbar">
@@ -14,12 +14,12 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control form-control-focus" placeholder="请输入卡号" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control form-control-focus" placeholder="Vui lòng nhập số thẻ" style="width: 200px;">
                     </div>
                 </td>
                 <td style="padding-left:12px;">
                     <div class="btn-group" id="btnKeywordTypeGourp" style="margin-top:0;">
-                        <button type="button" data-keywordtype="kh" class="btn active btn-restore">&nbsp;卡&nbsp;&nbsp;号&nbsp;</button>
+                        <button type="button" data-keywordtype="kh" class="btn active btn-restore">&nbsp;Thẻ&nbsp;&nbsp;Số&nbsp;</button>
                     </div>
                 </td>
             </tr>
@@ -29,27 +29,27 @@
 <form name="form1" id="formPat1">
     <div class="panel panel-default" style="margin-top:10px;">
         <div class="panel-heading navb-bg">
-            收费
+            Thu phí
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>卡号：</th>
+                    <th class="formTitle"><span class="required">*</span>Số thẻ：</th>
                     <td class="formValue">
                         <input type="text" class="form-control newtouch_Readonly" id="kh" name="kh" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>门诊号：</th>
+                    <th class="formTitle"><span class="required">*</span>Số ngoại trú：</th>
                     <td class="formValue">
                         <input type="text" class="form-control newtouch_Readonly" id="mzh" name="mzh" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>病历号：</th>
+                    <th class="formTitle"><span class="required">*</span>Số bệnh án：</th>
                     <td class="formValue">
                         <input type="text" class="form-control newtouch_Readonly" id="blh" name="blh" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>发票号：</th>
+                    <th class="formTitle"><span class="required">*</span>Số hóa đơn：</th>
                     <td class="formValue">
                         <input type="text" id="txtfph" class="form-control  formClearIgnore newtouch_Readonly" style="width: 50%;display: inline;" />
-                        <input type="button" class="btn btn-default btn-md" value="发票号 " onclick="ShowInvoicePanel()" />
+                        <input type="button" class="btn btn-default btn-md" value="Số hóa đơn " onclick="ShowInvoicePanel()" />
                     </td>
                 </tr>
             </table>
@@ -58,25 +58,25 @@
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>姓名：</th>
+                    <th class="formTitle"><span class="required">*</span>Họ tên：</th>
                     <td class="formValue">
                         <input type="text" class="form-control newtouch_Readonly" id="xm" name="xm" />
                     </td>
-                    <th class="formTitle">性别：</th>
+                    <th class="formTitle">Giới tính：</th>
                     <td class="formValue">
                         <input type="text" class="form-control newtouch_Readonly" id="xb" name="xb" />
                     </td>
-                    <th class="formTitle">出生日期：</th>
+                    <th class="formTitle">Ngày sinh：</th>
                     <td class="formValue">
                         <input type="text" class="form-control newtouch_Readonly" id="csny" name="csny" />
                     </td>
-                    <th class="formTitle">初复诊：</th>
+                    <th class="formTitle">Khám lần đầu/tái khám：</th>
                     <td class="formValue">
                         <input type="text" class="form-control newtouch_Readonly" id="fzbz" name="fzbz" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>病人性质：</th>
+                    <th class="formTitle"><span class="required">*</span>Tính chất bệnh nhân：</th>
                     <td class="formValue">
                         <input type="text" class="form-control newtouch_Readonly" id="brxzmc" name="brxzmc" />
                     </td>
@@ -87,37 +87,37 @@
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>挂号：</th>
+                    <th class="formTitle"><span class="required">*</span>Đăng ký khám：</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="mzgh" name="mzgh" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>医生：</th>
+                    <th class="formTitle"><span class="required">*</span>Bác sĩ：</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="ys" name="ys" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>科室：</th>
+                    <th class="formTitle"><span class="required">*</span>Khoa：</th>
                     <td class="formValue">
                         <input type="text" class="form-control newtouch_Readonly" id="ks" name="ks" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>单价：</th>
+                    <th class="formTitle"><span class="required">*</span>Đơn giá：</th>
                     <td class="formValue">
                         <input type="text" class="form-control newtouch_Readonly" id="dj" name="dj" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>收费项目：</th>
+                    <th class="formTitle"><span class="required">*</span>Hạng mục thu phí：</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="sfxm" name="sfxm" placeholder="请输入精确查询条件" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>数量：</th>
+                    <th class="formTitle"><span class="required">*</span>Số lượng：</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="sl" name="sl" />
                     </td>
-                    <th class="formTitle">组号：</th>
+                    <th class="formTitle">Số nhóm：</th>
                     <td class="formValue">
                         <input type="text" class="form-control formClearIgnore" id="czh" name="czh" />
                     </td>
-                    <th class="formTitle">单位：</th>
+                    <th class="formTitle">Đơn vị：</th>
                     <td class="formValue">
                         <input type="text" class="form-control newtouch_Readonly" id="dw" name="dw" />
                     </td>
@@ -147,51 +147,51 @@
                     <th class="formTitle">
                         当前处方金额：
                     </th>
-                    <td class="formValue"><label id="lbldqxmje">0.00</label>元</td>
+                    <td class="formValue"><label id="lbldqxmje">0.00</label>đồng</td>
                     <th class="formTitle">
                         处方总金额：
                     </th>
-                    <td class="formValue"><label id="lblzje">0.00</label>元</td>
+                    <td class="formValue"><label id="lblzje">0.00</label>đồng</td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
-<!--门诊收费-->
-@Html.Partial("ChargeAddPay")
+<!--Thu phí ngoại trú-->
+@Html.Partial("")
 <div style="clear:both;"></div>
-<!--按钮工具条-->
+<!--Thanh công cụ nút-->
 <div class="toolbar toolbarfloat">
-    <a class="btn btn-primary" onclick="newtouch_globalevent_f4()"><i class="fa fa-close"></i> F4:清除</a>
+    <a class="btn btn-primary" onclick="newtouch_globalevent_f4()"><i class="fa fa-close"></i> F4:Xóa</a>
     <a class="btn btn-primary" onclick="ChangeCF()"><i class="fa fa-edit"></i>换方</a>
-    <a class="btn btn-primary" onclick="newtouch_globalevent_f8()"><i class="fa fa-save"></i> F8:保存</a>
+    <a class="btn btn-primary" onclick="newtouch_globalevent_f8()"><i class="fa fa-save"></i> F8:Lưu</a>
     <a class="btn btn-primary" onclick="ItemPlate()"><i class="fa "></i>模版</a>
-    <a class="btn btn-primary" onclick="DeleteGrid()"><i class="fa fa-delete"></i>删除</a>
+    <a class="btn btn-primary" onclick="DeleteGrid()"><i class="fa fa-delete"></i>Xóa</a>
 </div>
 
 <script>
     $(function () {
         localStorage.clear();
         loadPage();
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGridchiều rộng của
         $(window).resize(function () {
-            initLayout("tabGrid");
+            initLayout("");
         });
-        var txtKeyword = document.getElementById('txt_keyword');
-        txtKeyword.addEventListener('keydown', function (event) {
+        var txtKeyword = document.getElementById('');
+        txtKeyword.addEventListener('', function (event) {
             event = event || window.event;
             if (event.keyCode === 13) {
-                var keyword = $.trim($("#txt_keyword").val());
+                var keyword = $.trim($("").val());
                 searchPatInfo(keyword);
             }
         });
 
         //卡号回车
-        $("#kh").keyup(function (event) {
-            var keyword = $.trim($("#kh").val());
+        $("").keyup(function (event) {
+            var keyword = $.trim($("").val());
             if (event.keyCode === 13) {
                 if (keyword == null) {
-                    $.modalAlert("请输入有效卡号", 'warning');
+                    $.modalAlert("", '');
                     return false;
                 } else {
                     searchPatInfo(keyword);
@@ -199,58 +199,58 @@
             }
         });
 
-        //收费项目bind浮层
+        //Hạng mục thu phíbindLớp nổi
         loadYpItemData();
 
         //挂号回车
         bindGHSource(mzghData);
 
-        //医生bing浮层
+        //Bác sĩbingLớp nổi
         bindDoctors();
 
         GetNewCFH(); //获取新处方号
 
         //科室回车
-        $("#ks").keyup(function (event) {
-            var ks = $("#ks").val();
+        $("").keyup(function (event) {
+            var ks = $("").val();
             if (event.keyCode === 13) {
                 if (ks == null) {
-                    $.modalAlert("科室不能为空", 'warning');
+                    $.modalAlert("", '');
                     return false;
                 } else {
-                    //添加录入信息的判断
+                    //đánh giá thêm thông tin nhập
                     AddData_Check();
                 }
             }
         });
 
         //组号回车
-        $("#czh").keyup(function (event) {
-            if ($(this).hasClass('form-an-cur')) {
+        $("").keyup(function (event) {
+            if ($(this).hasClass('')) {
                 return; //刚从上一个节点自动跳过来的
             }
             if (event.keyCode == 13) {
-                //添加录入信息的判断
+                //đánh giá thêm thông tin nhập
                 AddData_Check();
             }
         });
 
         //支付金额回车
-        $("#txtmoney").keyup(function (event) {
+        $("").keyup(function (event) {
             if (event.keyCode == 13) {
-                zfje = $("#txtmoney").val();  //支付金额
-                ysk = $("#txtysk").val(); //应收款
+                zfje = $("").val();  //Số tiền thanh toán
+                ysk = $("").val(); //Khoản phải thu
                 zl = parseFloat(zfje) - parseFloat(ysk);
                 zl = zl.toFixed(2);
-                $("#txtzl").val(zl);
+                $("").val(zl);
             }
         });
 
-        //全选
-        $("#tabGrid input[type=checkbox]:eq(0)").bind("click", function () {
+        //Chọn tất cả
+        $("").bind("", function () {
             grid_checkedit();
             if ($(this)[0].checked == true) {
-                //选中
+                //Đã chọn
             }
         });
 
@@ -258,29 +258,29 @@
 
     //初始化页面txtysk
     function loadPage() {
-        GetInvoiceListByEmpCode(); //获取发票号
-        $('#listGrid').jqGrid("clearGridData");//先清空数据
-        gridListData([]); //加载jqGrid
+        GetInvoiceListByEmpCode(); //Lấy số hóa đơn
+        $('').jqGrid("");//Dữ liệu xóa trống trước
+        gridListData([]); //TảijqGrid
 
-        //成组号
-        $("#czh").val(0);
-        //获取日期
-        $("#txtzfrq").val($.getDate);
+        //Số nhóm thành
+        $("").val(0);
+        //Lấy ngày
+        $("").val($.getDate);
         //金额初始化为0
-        $("#lbldqxmje,#lblzje").text("0.00");
-        $("#lbldqcfh").text("");
-        $("#txtysk,#txtzl").val("0.00");
-        $("#mzgh,#ys").removeAttr("disabled").css("background-color", "white");
+        $("").text("");
+        $("").text("");
+        $("").val("");
+        $("").removeAttr("").css("", "");
         myCFData = [];
         myCFCount = 0;
-        localStorage.removeItem("brxzData");
+        localStorage.removeItem("");
     }
 
-    var mzghData = [], //门诊挂号数据
-        mzghDocVo = null, //门诊挂号-专家科室
+    var mzghData = [], //Dữ liệu đăng ký khám ngoại trú
+        mzghDocVo = null, //Đăng ký khám ngoại trú-Khoa chuyên gia
         myCFData = [],    //处方列表数据集合
         myCFCount = 0,   //处方列表行数
-        iszhbrxz = false, //判断病人性质是否组合病人性质
+        iszhbrxz = false, //Đánh giá tính chất bệnh nhân có tính chất bệnh nhân kết hợp không
         zh_sbrxz = "", //首、末病人性质
         zh_sbrxzmc = "",
         zh_mbrxz = "",
@@ -288,160 +288,160 @@
         zh_sbrxzbh = 0,
         zh_mbrxzbh = 0,
         lsCfh = "",     //临时处方号
-        sfxmbh = "",   //收费项目int型编号
-        sfxmcbh = "",   //收费项目char型编号
+        sfxmbh = "",   //Hạng mục thu phíint型编号
+        sfxmcbh = "",   //Hạng mục thu phíchar型编号
         sfxmzfbl = "",  //收费项目自负比例
-        sfxmdlmc = "",  //收费项目大类名称
-        sfxmdl = "",    //收费项目大类
+        sfxmdlmc = "",  //Thu phí tên nhóm lớn hạng mục
+        sfxmdl = "",    //Thu phí nhóm lớn hạng mục
         sfxmzfxz = "",  //收费项目自负性质
-        sfxmtype = "",  //收费项目类别（例如：挂号项目、药品处方类项目、检验、检查）
-        sfxmypgg = "", //药品规格
-        sfxmNbdl = "", //农保大类
-        sfxmYbdm = "", //医保代码
+        sfxmtype = "",  //Thu phí loại hạng mục（Ví dụ：Hạng mục đăng ký khám、药品处方类项目、Kiểm nghiệm、Kiểm tra）
+        sfxmypgg = "", //Quy cách thuốc
+        sfxmNbdl = "", //Nhóm lớn bảo hiểm nông nghiệp
+        sfxmYbdm = "", //Mã bảo hiểm y tế
         sfxmkeyword = "", //存取收费项目输入条件
-        //ysksbh = "", //医生科室编号
-        mzgh = "", //挂号
-        ks = "", //科室CODE
-        ysbh = "", //医生编号
-        ys = "", //医生CODE
-        lsysbh = "", //当挂号为专家号时使用
-        ghnm = "", //挂号内码
-        brxz = "", //病人性质
-        patInfoObj = {}, //个人信息Object对象
-        mzYbjylx = 0,//医保交易类型
+        //ysksbh = "", //Số hiệu khoa bác sĩ
+        mzgh = "", //Đăng ký khám
+        ks = "", //KhoaCODE
+        ysbh = "", //Số hiệu bác sĩ
+        ys = "", //Bác sĩCODE
+        lsysbh = "", //Sử dụng giờ số chuyên gia cho đăng ký khám khi
+        ghnm = "", //Mã nội bộ đăng ký khám
+        brxz = "", //Tính chất bệnh nhân
+        patInfoObj = {}, //Thông tin cá nhânObjectĐối tượng
+        mzYbjylx = 0,//Loại giao dịch bảo hiểm y tế
         mjzbz = "", //门急诊标识
-        stateSave = true,//判断数据是否变更
+        stateSave = true,//Đánh giá dữ liệu có thay đổi không
         isYbbr = false,//是否医保病人
         isNdzdbxm = false,//是否尿毒症大病项目
         isPtdbxz = false,//是否普通大病
-        lsCzh = "",//成组号
-        yfCode = "",//药房代码
+        lsCzh = "",//Số nhóm thành
+        yfCode = "",//Mã nhà thuốc
         ypbzdm = "",//包装代码
-        sfxmfwf = "", //收费项目服务费
+        sfxmfwf = "", //Thu phí phí dịch vụ hạng mục
         cffwf = new Object(),  //处方收费项目服务费后台返回数据
-        jeNum = 0, //当前项目金额 （包括服务费）
-        dqzje = 0, //当前总金额
+        jeNum = 0, //Số tiền hạng mục hiện tại （Bao gồm phí dịch vụ）
+        dqzje = 0, //Số tiền tổng hiện tại
         cfzje = 0, //处方总金额
         dqcfhList = [], //存放当前处方号
         messCFXM = "", //相同药品的错误信息
-        kh = "";//卡号
+        kh = "";//Số thẻ
 
-    //获取发票号
+    //Lấy số hóa đơn
     function GetInvoiceListByEmpCode() {
         $.najax({
-            url: "/OutpatientManage/OutpatientReg/GetInvoice?r=" + Math.random(),  //注意
-            dataType: "text",
+            url: "" + Math.random(),  //Chú ý
+            dataType: "",
             async: false,
             success: function (data) {
-                $("#txtfph").val(data);
+                $("").val(data);
                 fph = data;
             }
         });
     }
 
-    //弹出发票号的窗口
+    //Cửa sổ bật lên số hóa đơn
     function ShowInvoicePanel() {
         $.modalOpen({
-            id: "InvoiceNoPanel",
-            title: "选发票号",
-            url: "/OutpatientManage/OutpatientReg/ChooseInvoice?r=" + Math.random(),
-            width: "300px",
-            height: "200px",
+            id: "",
+            title: "",
+            url: "" + Math.random(),
+            width: "",
+            height: "",
             callBack: function (iframeId) {
-                top.frames[iframeId].checkFPH();//窗口点确定的回调函数
+                top.frames[iframeId].checkFPH();//Hàm callback xác nhận khi nhấn cửa sổ
             }
         });
     }
 
-    //根据卡号获取病人基本信息
+    //Thông tin cơ bản bệnh nhân lấy số thẻ theo
     function searchPatInfo(keyword) {
         if (keyword === '') {
             return false;
         }
         kh = keyword;
         $.najax({
-            type: "POST",
-            url: "/OutpatientManage/OutpatCharge/ChargeIndex",
+            type: "",
+            url: "",
             data: { kh: keyword, brxz: "" },
-            dataType: "json",
+            dataType: "",
             success: function (ajaxresp) {
-                funcDoPageClear();//清除
+                funcDoPageClear();//Xóa
                 var mzghbrxzData = ajaxresp.data.patInfo.brxzList;
                 if (mzghbrxzData && mzghbrxzData.length && mzghbrxzData.length > 1) {
-                    //弹出 多个病人性质的窗口
+                    //Bật lên cửa sổ của tính chất bệnh nhân cái nhiều
                     bindBrxz();
                 }
-                else if (mzghbrxzData == null)//只有一个病人性质
+                else if (mzghbrxzData == null)//Tính chất bệnh nhân cái một có chỉ
                 {
-                    setPatInfoModel(ajaxresp.data.patInfo); //个人基本信息赋值
-                    mzghData = ajaxresp.data.ghItemList; //绑定挂号信息
-                    mzghDocVo = ajaxresp.data.ghDocVo; //专家信息
+                    setPatInfoModel(ajaxresp.data.patInfo); //Gán thông tin cơ bản cá nhân
+                    mzghData = ajaxresp.data.ghItemList; //Liên kết thông tin đăng ký khám
+                    mzghDocVo = ajaxresp.data.ghDocVo; //Thông tin chuyên gia
                 }
             },
             errorCallback: function (ajaxresp) {
-                window.newtouch_globalevent_f4(); //清除
+                window.newtouch_globalevent_f4(); //Xóa
             }
         });
     };
 
-    //清除操作
+    //Xóa thao tác
     var funcDoPageClear = function () {
         loadPage();
     };
 
-    //初始化病人信息
+    //Khởi tạo thông tin bệnh nhân
     function setPatInfoModel(patModel) {
-        $('#formPat1').formSerialize(patModel);
-        $("#xb").val($.getGender(patModel.xb));
-        $("#csny").val((patModel.csny && patModel.csny.length >= 10 ? patModel.csny.substring(0, 10) : ""));
-        $("#fzbz").val(patModel.fzbz == "1" ? "复诊" : "首诊");
+        $('').formSerialize(patModel);
+        $("").val($.getGender(patModel.xb));
+        $("").val((patModel.csny && patModel.csny.length >= 10 ? patModel.csny.substring(0, 10) : ""));
+        $("").val(patModel.fzbz == "" ? "" : "");
         brxz = patModel.brxz;
-        //加载病人信息
-        patInfoObj.kh = patModel.kh;  //病人卡号
-        patInfoObj.xm = patModel.xm; //姓名
-        patInfoObj.xb = patModel.xb; //性别
+        //Tải thông tin bệnh nhân
+        patInfoObj.kh = patModel.kh;  //Số thẻ bệnh nhân
+        patInfoObj.xm = patModel.xm; //Họ tên
+        patInfoObj.xb = patModel.xb; //Giới tính
         patInfoObj.csny = patModel.csny;
-        patInfoObj.patid = patModel.patid; //病人内码
-        patInfoObj.brxz = patModel.brxz;  //病人性质
-        patInfoObj.brxzbh = patModel.brxzbh; //病人性质编号
-        patInfoObj.brxzmc = $("#brxzmc").val();
-        patInfoObj.blh = patModel.blh; //病历号
-        patInfoObj.zjh = patModel.zjh; //证件号
-        patInfoObj.zjlx = patModel.zjlx; //证件类型
+        patInfoObj.patid = patModel.patid; //Mã nội bộ bệnh nhân
+        patInfoObj.brxz = patModel.brxz;  //Tính chất bệnh nhân
+        patInfoObj.brxzbh = patModel.brxzbh; //Số hiệu tính chất bệnh nhân
+        patInfoObj.brxzmc = $("").val();
+        patInfoObj.blh = patModel.blh; //Số bệnh án
+        patInfoObj.zjh = patModel.zjh; //Số giấy tờ
+        patInfoObj.zjlx = patModel.zjlx; //Loại giấy tờ
     }
 
-    //加载病人性质
+    //Tải tính chất bệnh nhân
     function bindBrxz() {
-        localStorage.setItem("brxzData", JSON.stringify(mzghbrxzData));
+        localStorage.setItem("", JSON.stringify(mzghbrxzData));
         $.modalOpen({
-            id: "BrxzForm",
-            title: "病人性质窗口",
-            url: "/OutpatientManage/OutpatCharge/ChargeBrxzDialog?r=" + Math.random(),
-            width: "300px",
-            height: "350px",
+            id: "",
+            title: "",
+            url: "" + Math.random(),
+            width: "",
+            height: "",
             callBack: function (iframeId) {
 
             }
         });
     }
 
-    //后台根据病人性质和卡号ajax查询人员数据
+    //Tính chất bệnh nhân theo phía máy chủ và Số thẻajaxTra cứu dữ liệu nhân viên
     function getChargeInfoAjax(patobj) {
-        var cardNo = $("#txt_keyword").val();
+        var cardNo = $("").val();
         $.najax({
-            type: "POST",
-            url: "/OutpatientManage/OutpatCharge/ChargeIndex?r=" + Math.random(),
+            type: "",
+            url: "" + Math.random(),
             data: { kh: cardNo, brxz: patobj.brxz },
-            dataType: "json",
+            dataType: "",
             success: function (ajaxresp) {
-                funcDoPageClear();//清除
-                setPatInfoModel(ajaxresp.data.patInfo); //个人基本信息赋值
-                mzghData = ajaxresp.data.ghItemList; //绑定挂号信息
-                mzghDocVo = ajaxresp.data.ghDocVo; //专家信息
+                funcDoPageClear();//Xóa
+                setPatInfoModel(ajaxresp.data.patInfo); //Gán thông tin cơ bản cá nhân
+                mzghData = ajaxresp.data.ghItemList; //Liên kết thông tin đăng ký khám
+                mzghDocVo = ajaxresp.data.ghDocVo; //Thông tin chuyên gia
             },
             errorCallback: function (err) {
                 $.loading(false);
-                newtouch_globalevent_f4(); //清除
+                newtouch_globalevent_f4(); //Xóa
             },
             complete: function () {
                 $.loading(false);
@@ -450,51 +450,51 @@
     }
 
 
-    //加载挂号数据
+    //Tải dữ liệu đăng ký khám
     function bindGHSource() {
-        $("#mzgh").newtouchBatchFloatingSelector({
+        $("").newtouchBatchFloatingSelector({
             clickautotrigger: true,
             height: 200,
             width: 600,
             filter: function () {
                 return mzghData;
             },
-            caption: "选择挂号",
+            caption: "",
             colModel: [
-                { label: '资源', name: 'gh_ks', widthratio: 25 },
-                { label: 'ghnm', name: 'ghnm', widthratio: 25, hidden: true },
-                { label: 'ks', name: 'ks', widthratio: 25, hidden: true },
-                { label: 'ts', name: 'ys', widthratio: 25, hidden: true },
-                { label: 'mjzbz', name: 'mjzbz', widthratio: 25, hidden: true },
-                { label: 'dbxm', name: 'dbxm', widthratio: 25, hidden: true },
-                { label: 'fzbz', name: 'fzbz', widthratio: 25, hidden: true },
-                { label: '挂号', name: 'ghName', widthratio: 25 },
-                { label: '科室', name: 'ksName', widthratio: 15 },
-                { label: '挂号日期', name: 'CreateTime', widthratio: 35 }
+                { label: '', name: '', widthratio: 25 },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25 },
+                { label: '', name: '', widthratio: 15 },
+                { label: '', name: '', widthratio: 35 }
             ],
             itemdbclickhandler: function ($thistr) {
-                //赋值
-                $("#mzgh").val($thistr.attr("data-ghName"));
-                $("#ks").val($thistr.attr("data-ksName"));
-                $("#fzbz").val($thistr.attr("data-fzbz") === "1" ? "复诊" : "首诊");
+                //Gán giá trị
+                $("").val($thistr.attr(""));
+                $("").val($thistr.attr(""));
+                $("").val($thistr.attr("") === "" ? "" : "");
 
-                ghnm = $thistr.attr("data-ghnm");
-                //ysksbh = $thistr.attr("data-ksbh");
-                mzgh = $thistr.attr("data-ghName");
-                ks = $thistr.attr("data-ks");
-                mjzbz = $thistr.attr("data-mjzbz");
-                var lsys = $thistr.attr("data-ys");
+                ghnm = $thistr.attr("");
+                //ysksbh = $thistr.attr("");
+                mzgh = $thistr.attr("");
+                ks = $thistr.attr("");
+                mjzbz = $thistr.attr("");
+                var lsys = $thistr.attr("");
 
                 $.each(top.window.clients.doctorInHosBookkeep, function (idx, val) {
                     if (val.ks === ks && val.StaffGh === lsys) {
                         ys = val.StaffGh;
-                        $("#ys").val(val.StaffName);
+                        $("").val(val.StaffName);
                     }
                 });
                 if (mzghDocVo != null && mzghDocVo.ry) {
-                    $("#ys").val(mzghDocVo.rymc);
+                    $("").val(mzghDocVo.rymc);
                     ys = mzghDocVo.gh;
-                    if (mjzbz !== "2") {
+                    if (mjzbz !== "") {
                         //ysksbh = mzghDocVo.ksbh;
                         ks = mzghDocVo.ks;
                     }
@@ -503,21 +503,21 @@
         });
     }
 
-    //加载医生信息
+    //Tải thông tin bác sĩ
     function bindDoctors() {
-        ///医生
-        $("#ys").newtouchFloatingSelector({
+        ///Bác sĩ
+        $("").newtouchFloatingSelector({
             height: 300,
             width: 500,
             filter: function (keyword) {
                 if (ghnm == "") {
-                    $modelAlert("挂号不能为空", "warning");
+                    $modelAlert("", "");
                     return false;
                 }
                 if (!keyword) {
                     return false;
                 }
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();//
                 $.each(top.window.clients.doctorInHosBookkeep, function (idx, val) {
                     if ($.trim(keyword).length == 0 || (val.py && val.py.toUpperCase().indexOf(keyword.toUpperCase()) >= 0) || (val.rymc && val.rymc.indexOf(keyword.toLowerCase()) >= 0) || (val.gh && val.gh.indexOf(keyword.toLowerCase()) >= 0) || (val.kspy && val.kspy.indexOf(keyword.toUpperCase()) >= 0)) {
@@ -529,23 +529,23 @@
                 return resultObjArr;
 
             },
-            caption: "医生科室对照",
+            caption: "",
             colModel: [
-                { label: '人员名称', name: 'rymc', widthratio: 25 },
-                { label: 'rygh', name: 'rygh', widthratio: 25, hidden: true },
-                { label: 'ry', name: 'ry', widthratio: 25, hidden: true },
-                { label: '科室名称', name: 'ksmc', widthratio: 25 },
-                //{ label: 'ksbh', name: 'ksbh', widthratio: 25, hidden: true },
-                { label: 'ks', name: 'ks', widthratio: 25, hidden: true }
+                { label: '', name: '', widthratio: 25 },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25 },
+                //{ label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true }
 
             ],
             itemdbclickhandler: function ($thistr) {
-                $("#ys").val($thistr.attr("data-rymc"));
-                $("#ks").val($thistr.attr("data-ksmc"));
-                ys = $thistr.attr("data-rygh");
-                if (mjzbz != "2") {
-                    //ysksbh = $thistr.attr("data-ksbh");
-                    ks = $thistr.attr("data-ks");
+                $("").val($thistr.attr(""));
+                $("").val($thistr.attr(""));
+                ys = $thistr.attr("");
+                if (mjzbz != "") {
+                    //ysksbh = $thistr.attr("");
+                    ks = $thistr.attr("");
                 }
             },
         });
@@ -554,60 +554,60 @@
 
 
 
-    //录入信息判断
+    //Nhập đánh giá thông tin
     function AddData_Check() {
-        kh = $("#kh").val();
+        kh = $("").val();
         if (kh == null || kh == undefined) {
-            $.modalAlert("请选择挂号类型", 'warning');
-            $("#kh").focus();
+            $.modalAlert("", '');
+            $("").focus();
             return false;
         }
         else {
-            var txtczh = $("#czh").val();
+            var txtczh = $("").val();
             //if (lsCzh != "") {
             if (txtczh == "") {
-                $.modalAlert("请设置成组号", 'warning');
-                $("#czh").focus();
+                $.modalAlert("", '');
+                $("").focus();
                 return false;
             }
             //} else {
-            //$("#czh").val(0);
+            //$("").val(0);
             //}
         }
-        var sfxm = $("#sfxm").val();
+        var sfxm = $("").val();
         if (sfxm == null || sfxm === "" || sfxm == undefined) {
-            $.modalAlert("收费项目不能为空", 'warning');
-            $("#sfxm").focus();
+            $.modalAlert("", '');
+            $("").focus();
             return false;
         }
-        var sl = $("#sl").val();
+        var sl = $("").val();
         if (sl == null || sl == "" || sl == undefined) {
-            $.modalAlert("数量不能为空", 'warning');
-            $("#sl").focus();
+            $.modalAlert("", '');
+            $("").focus();
             return false;
         }
-        var dj = $("#dj").val();
+        var dj = $("").val();
         if (dj == null || dj === "" || dj == undefined) {
-            $.modalAlert("单价不能为空，请录入正确的收费项目！", 'warning');
-            $("#sfxm").focus();
+            $.modalAlert("", '');
+            $("").focus();
             return false;
         }
-        mzgh = $("#mzgh").val();
+        mzgh = $("").val();
         if (mzgh == null || mzgh === "" || mzgh == undefined) {
-            $.modalAlert("请选择挂号项目", 'warning');
-            $("#mzgh").focus();
+            $.modalAlert("", '');
+            $("").focus();
             return false;
         }
-        var ys = $("#ys").val();
+        var ys = $("").val();
         if (ys == null || ys === "" || ys == undefined) {
-            $.modalAlert("请选择医生", 'warning');
-            $("#ys").focus();
+            $.modalAlert("", '');
+            $("").focus();
             return false;
         }
-        var ks = $("#ks").val();
+        var ks = $("").val();
         if (ks == null || ks == "" || ks == undefined) {
-            $.modalAlert("请选择挂号项目", 'warning');
-            $("#ks").focus();
+            $.modalAlert("", '');
+            $("").focus();
             return false;
         }
         loadCFHAndInfo(); //后台调取处方号和服务费
@@ -617,29 +617,29 @@
     function AddCFData() {
         var obj = new Object();
         var messCfxm = "";
-        if (sfxmtype === "1")//项目
+        if (sfxmtype === "")//Hạng mục
         {
             obj.cfh = "";
         }
-        if (sfxmtype == "2")//药品
+        if (sfxmtype == "")//Thuốc
         {
             obj.cfh = lsCfh;
             //同一处方不能录入相同的药品
             messCfxm = cheYPEqual(sfxmcbh, yfCode);
         }
 
-        obj.xmmc = $("#sfxm").val(); //项目
-        obj.dj = $("#dj").val();
-        obj.dw = $("#dw").val();
-        obj.sl = $("#sl").val();
+        obj.xmmc = $("").val(); //Hạng mục
+        obj.dj = $("").val();
+        obj.dw = $("").val();
+        obj.sl = $("").val();
         obj.sfxm = sfxmcbh;
         obj.sfxmdlmc = sfxmdlmc;
         obj.xmbh = sfxmbh;
         obj.sfxmzfbl = parseFloat(sfxmzfbl);
         obj.sfxmypgg = sfxmypgg;
         obj.je = jeNum;
-        obj.ksmc = $("#ks").val();
-        obj.ysmc = $("#ys").val();
+        obj.ksmc = $("").val();
+        obj.ysmc = $("").val();
         obj.xmnm = 0;
         obj.ghnm = ghnm;
         obj.mjzbz = mjzbz;
@@ -651,29 +651,29 @@
         obj.xmtype = sfxmtype;
         obj.pt_nm = 0;
         obj.pt_zdmxnm = 0;
-        obj.czh = $("#czh").val(); //组号
+        obj.czh = $("").val(); //Số nhóm
         obj.yfdm = yfCode;
         obj.ypbzdm = ypbzdm;
-        obj.fwfdj = sfxmfwf; //收费项目服务费
+        obj.fwfdj = sfxmfwf; //Thu phí phí dịch vụ hạng mục
         obj.nbdl = sfxmNbdl;
         obj.ybdm = sfxmYbdm;
-        //如果已经添加项目或药品  判断 当前编号是否已经存在
+        //Hạng mục thêm đã nếu hoặc Thuốc  Đánh giá Số hiệu hiện tại có tồn tại đã không
         if (myCFData) {
             for (var i = 0; i < myCFData.length; i++) {
                 if (myCFData[i].sfxmbh === sfxmbh) {
-                    $.modalAlert("当前药品已经存在，或当前项目已经存在", 'warning');
+                    $.modalAlert("", '');
                     clearItem();
                     return false;
                 }
             }
         }
-        obj = $.extend(obj, patInfoObj); //把patInfoObj对象中的值 补充到 obj对象里面
+        obj = $.extend(obj, patInfoObj); //patInfoObj对象中的值 补充到 obj对象里面
         myCFData.push(obj);
         myCFCount++;
-        $('#listGrid').jqGrid("clearGridData");//先清空数据
+        $('').jqGrid("");//Dữ liệu xóa trống trước
         gridListData(myCFData);
         jeNum = jeNum.toFixed(2);
-        $("#lbldqxmje").text(jeNum);//当前项目金额
+        $("").text(jeNum);//Số tiền hạng mục hiện tại
         if (dqzje !== 0) {
             dqzje = parseFloat(dqzje) + parseFloat(jeNum);
         } else {
@@ -681,9 +681,9 @@
         }
 
         dqzje = dqzje.toFixed(2);
-        $("#txtysk").val(dqzje);
+        $("").val(dqzje);
 
-        if (sfxmtype === "2")//药品
+        if (sfxmtype === "")//Thuốc
         {
             if (cfzje !== 0) {
                 cfzje = parseFloat(cfzje) + parseFloat(jeNum);
@@ -692,7 +692,7 @@
             }
             cfzje = cfzje.toFixed(2);
         }
-        $("#lblzje").text(cfzje); //总金额
+        $("").text(cfzje); //Tổng số tiền
 
         checkedAll();
         clearItemXM();
@@ -705,21 +705,21 @@
         if (cflength > 0) {
             for (var i = 0; i < cflength; i++) {
                 var obj = myCFData[i];
-                if (obj.cfh !== "") { //药品
+                if (obj.cfh !== "") { //Thuốc
                     if (lsCfh !== "" && lsCfh === obj.cfh) {
                         if (yfCode === obj.yfdm) {
                             if (sfxmcbh === obj.sfxmcbh) {
-                                res = "当前处方已存在所选药品，确认再添加吗？";
+                                res = "";
                             }
                         }
                         else {
-                            res = "error";
+                            res = "";
                         }
                     }
                 }
                 else {
                     if (sfxmcbh === obj.sfxmcbh) {
-                        res = "当前已存在所选项目，确认再添加吗？";
+                        res = "";
                     }
                 }
             }
@@ -729,164 +729,164 @@
 
     //加载处方信息
     function gridListData(mydata) {
-        var $gridList = $("#listGrid");
+        var $gridList = $("");
         $gridList.dataNewGrid({
             height: 150,
             autowidth: false,
-            width: $("#tabGrid").width() - 18,
-            caption: "处方列表",
+            width: $("").width() - 18,
+            caption: "",
             sortable: false,
             colModel: [
-                { label: '序号', name: 'xh', hidden: true, key: true },
-                { label: '处方号', name: 'cfh', width: 140, align: 'left' },
-                { label: '类型', name: 'sfxmdlmc', width: 80, align: 'left' },
-                { label: '项目名称', name: 'xmmc', width: 150, align: 'left' },
-                { label: '规格', name: 'sfxmypgg', width: 150, align: 'left' },
-                { label: '单位', name: 'dw', width: 60, align: 'left' },
+                { label: '', name: '', hidden: true, key: true },
+                { label: '', name: '', width: 140, align: '' },
+                { label: '', name: '', width: 80, align: '' },
+                { label: '', name: '', width: 150, align: '' },
+                { label: '', name: '', width: 150, align: '' },
+                { label: '', name: '', width: 60, align: '' },
                 {
-                    label: '单价', name: 'dj', width: 100, align: 'left'
+                    label: '', name: '', width: 100, align: ''
                 },
                 {
-                    label: '自负比例', name: 'sfxmzfbl', width: 60, align: 'left', formatter: function (cellvalue) {
-                        return cellvalue ? cellvalue.toFixed(2) : "0.00";
+                    label: '', name: '', width: 60, align: '', formatter: function (cellvalue) {
+                        return cellvalue ? cellvalue.toFixed(2) : "";
                     }
                 },
-                { label: '数量', name: 'sl', width: 60, align: 'left' },
-                { label: '金额', name: 'je', width: 60, align: 'left' },
-                { label: '病人性质', name: 'brxzmc', width: 100, align: 'left' },
-                { label: 'brxz', name: 'brxz', hidden: true },
-                { label: 'xm', name: 'xm', hidden: true },
-                { label: 'xb', name: 'xb', hidden: true },
-                { label: 'xb', name: 'xb', hidden: true },
-                { label: 'csny', name: 'csny', hidden: true },
-                { label: 'blh', name: 'blh', hidden: true },
-                { label: 'zjh', name: 'zjh', hidden: true },
-                { label: 'zjlx', name: 'zjlx', hidden: true },
-                { label: 'brxz', name: 'brxz', widthratio: 25, hidden: true },
-                { label: 'brxzbh', name: 'brxzbh', widthratio: 25, hidden: true },
-                { label: 'ghnm', name: 'ghnm', widthratio: 25, hidden: true },
-                { label: 'patid', name: 'patid', widthratio: 25, hidden: true },
-                { label: 'sfxm', name: 'sfxm', widthratio: 25, hidden: true },
-                { label: 'ksmc', name: 'ksmc', widthratio: 25, hidden: true },
-                { label: 'ysmc', name: 'ysmc', widthratio: 25, hidden: true },
-                { label: 'xmtype', name: 'xmtype', widthratio: 25, hidden: true },
-                { label: 'xmbh', name: 'xmbh', widthratio: 25, hidden: true },
-                { label: 'xmnm', name: 'xmnm', widthratio: 25, hidden: true },
-                { label: 'mjzbz', name: 'mjzbz', widthratio: 25, hidden: true },
-                //{ label: 'ksbh', name: 'ksbh', widthratio: 25, hidden: true },
-                { label: 'ks', name: 'ks', widthratio: 25, hidden: true },
-                { label: 'ys', name: 'ys', widthratio: 25, hidden: true },
-                { label: 'dl', name: 'dl', widthratio: 25, hidden: true },
-                { label: 'zfxz', name: 'zfxz', widthratio: 25, hidden: true },
-                { label: 'pt_nm', name: 'pt_nm', widthratio: 25, hidden: true },
-                { label: 'pt_zdmxnm', name: 'pt_zdmxnm', widthratio: 25, hidden: true },
-                { label: 'pt_zdmxxz', name: 'pt_zdmxxz', widthratio: 25, hidden: true },
-                { label: 'czh', name: 'czh', widthratio: 25, hidden: true },
-                { label: 'yfdm', name: 'yfdm', widthratio: 25, hidden: true },
-                { label: 'ypbzdm', name: 'ypbzdm', widthratio: 25, hidden: true },
-                { label: 'fwfdj', name: 'fwfdj', widthratio: 25, hidden: true },
-                { label: 'nbdl', name: 'nbdl', widthratio: 25, hidden: true },
-                { label: 'ybdm', name: 'ybdm', widthratio: 25, hidden: true },
-                { label: 'sfxmcbh', name: 'sfxmcbh', widthratio: 25, hidden: true }
+                { label: '', name: '', width: 60, align: '' },
+                { label: '', name: '', width: 60, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                //{ label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true },
+                { label: '', name: '', widthratio: 25, hidden: true }
             ],
             multiselect: true
         }, mydata);
 
         if (mydata.length > 0) {
-            $('.ui-jqgrid-bdiv').find(".unwritten").remove();
+            $('').find("").remove();
         }
     }
 
 
     //as项目回车
-    //ajax获取药品和项目信息
+    //ajaxLấy thuốc và Thông tin hạng mục
     function loadYpItemData() {
-        //收费项目
-        $("#sfxm").newtouchBatchFloatingSelector({
+        //Hạng mục thu phí
+        $("").newtouchBatchFloatingSelector({
             clickautotrigger: true,
             height: 260,
             width: 800,
             tableWidth: 1400,
-            id: 'chargeItem',
-            url: "/OutpatientManage/OutpatCharge/GetYPItemInfo?r=" + Math.random(),
-            ajaxmethod: 'POST',
+            id: '',
+            url: "" + Math.random(),
+            ajaxmethod: '',
             ajaxreqdata: function () {
                 var reqData = {};
-                reqData.keyword = $.trim($("#sfxm").val());
+                reqData.keyword = $.trim($("").val());
                 //sfxmkeyword = reqData.keyword;
                 //if (sfxmkeyword == "" || sfxmkeyword.length < 2) {
-                //    $.modalAlert("请输入精确查询条件,至少两位", 'warning');
+                //    $.modalAlert("", '');
                 //    return false;
                 //} else {
                 return reqData;
                 //}
             },
-            caption: "收费项目",
+            caption: "",
             colModel: [
-                { label: '项目与否', name: 'xmtype', width: 100, align: 'center', hiden: true },
-                { label: '拼音', name: 'py', width: 110, align: "center" },
-                { label: '通用名', name: 'xmmc', width: 200, align: "center" },
-                { label: '商品名', name: 'spm', width: 200, align: "center" },
-                { label: '单位', name: 'dw', width: 60, align: 'center' },
+                { label: '', name: '', width: 100, align: '', hiden: true },
+                { label: '', name: '', width: 110, align: "" },
+                { label: '', name: '', width: 200, align: "" },
+                { label: '', name: '', width: 200, align: "" },
+                { label: '', name: '', width: 60, align: '' },
                 {
-                    label: '单价', name: 'dj', width: 60, align: 'center', formatter: function (cellvalue) {
-                        return cellvalue ? cellvalue.toFixed(4) : "0.0000";
+                    label: '', name: '', width: 60, align: '', formatter: function (cellvalue) {
+                        return cellvalue ? cellvalue.toFixed(4) : "";
                     }
                 },
-                { label: '规格', name: 'ypgg', width: 80, align: 'center' },
-                { label: '医保代码', name: 'ybdm', width: 100, align: 'center' },
-                { label: '包装数', name: 'bzs', width: 60, align: 'center' },
-                { label: '包装单位', name: 'bzdw', width: 100, align: 'center' },
+                { label: '', name: '', width: 80, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 60, align: '' },
+                { label: '', name: '', width: 100, align: '' },
                 {
-                    label: '剂量', name: 'jl', width: 60, align: 'center', formatter: function (cellvalue) {
-                        return cellvalue ? cellvalue.toFixed(2) : "0.00";
+                    label: '', name: '', width: 60, align: '', formatter: function (cellvalue) {
+                        return cellvalue ? cellvalue.toFixed(2) : "";
                     }
                 },
-                { label: '剂量单位', name: 'jldw', width: 80, align: 'center' },
-                { label: '药厂名称', name: 'ycmc', width: 150, align: 'center' },
-                { label: 'xmbh', name: 'xmbh', hidden: true },
-                { label: 'sfxm', name: 'sfxm', hidden: true },
-                { label: 'dl', name: 'dl', hidden: true },
-                { label: 'dlmc', name: 'dlmc', hidden: true },
+                { label: '', name: '', width: 80, align: '' },
+                { label: '', name: '', width: 150, align: '' },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true },
                 {
-                    label: 'zfbl', name: 'zfbl', hidden: true, formatter: function (cellvalue) {
-                        return cellvalue ? cellvalue.toFixed(2) : "0.00";
+                    label: '', name: '', hidden: true, formatter: function (cellvalue) {
+                        return cellvalue ? cellvalue.toFixed(2) : "";
                     }
                 },
-                { label: 'zfxz', name: 'zfxz', hidden: true },
-                { label: 'yfdm', name: 'yfdm', hidden: true },
-                { label: 'xmtype', name: 'xmtype', hidden: true },
-                { label: 'ypbzdm', name: 'ypbzdm', hidden: true },
-                { label: 'nbdl', name: 'nbdl', hidden: true }
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true },
+                { label: '', name: '', hidden: true }
             ],
             itemdbclickhandler: function ($thistr) {
-                var sfxmmc = $thistr.attr("data-xmmc");
-                var dj = $thistr.attr("data-dj");
-                $("#sfxm").val(sfxmmc);
-                $("#dj").val(dj);
-                $("#dw").val($thistr.attr("data-dw"));
-                sfxmtype = $thistr.attr("data-xmtype");
-                if (sfxmtype == "2") {
-                    yfCode = $thistr.attr("data-yfdm");
-                    ypbzdm = $thistr.attr("data-ypbzdm");
-                    sfxmypgg = $thistr.attr("data-ypgg");
+                var sfxmmc = $thistr.attr("");
+                var dj = $thistr.attr("");
+                $("").val(sfxmmc);
+                $("").val(dj);
+                $("").val($thistr.attr(""));
+                sfxmtype = $thistr.attr("");
+                if (sfxmtype == "") {
+                    yfCode = $thistr.attr("");
+                    ypbzdm = $thistr.attr("");
+                    sfxmypgg = $thistr.attr("");
                 }
                 else {
                     yfCode = "";
                     ypbzdm = "";
                     sfxmypgg = "";
                 }
-                sfxmcbh = $thistr.attr("data-sfxm");
-                sfxmbh = $thistr.attr("data-xmbh");
-                sfxmzfbl = parseFloat($thistr.attr("data-zfbl"));
-                sfxmdlmc = $thistr.attr("data-dlmc");
-                sfxmdl = $thistr.attr("data-dl");
-                sfxmzfxz = $thistr.attr("data-zfxz");
-                sfxmNbdl = $thistr.attr("data-nbdl");
-                //药品  同一处方不允许录入相同药品
+                sfxmcbh = $thistr.attr("");
+                sfxmbh = $thistr.attr("");
+                sfxmzfbl = parseFloat($thistr.attr(""));
+                sfxmdlmc = $thistr.attr("");
+                sfxmdl = $thistr.attr("");
+                sfxmzfxz = $thistr.attr("");
+                sfxmNbdl = $thistr.attr("");
+                //Thuốc  同一处方不允许录入相同药品
                 messCFXM = "";
-                if (sfxmtype == "2") {
-                    //判断是否已录入该药品或项目
+                if (sfxmtype == "") {
+                    //Đánh giá có đã nhập thuốc này hoặc Hạng mục không
                     messCFXM = cheYPEqual(sfxmcbh, yfCode);
                 }
                 if (sfxmkeyword != sfxmmc) { //说明从列表中选取了收费项目或药品
@@ -895,32 +895,32 @@
                         if (sfxmbh != "") {
                             lsCzh = "";
                             if (parseFloat(dj) == 0) {
-                                $("#dj").attr("readonly", false);
+                                $("").attr("", false);
                             }
                             else {
-                                $("#dj").attr("readonly", true);
+                                $("").attr("", true);
                             }
                         }
                         else {
-                            $("#sfxm").focus();
-                            $("#sfxm").val("");
+                            $("").focus();
+                            $("").val("");
                             return false;
                         }
                     } else {
-                        if (messCFXM == "error") {
-                            messCFXM = "不同药房药品不可在一张处方单上下达，是否换方？";
+                        if (messCFXM == "") {
+                            messCFXM = "";
                             $.modalConfirm(messCFXM, function (flag) {
                                 if (flag) {//换方
                                     GetNewCFH(); //获取新的处方号
-                                    $("#sl").focus();
+                                    $("").focus();
                                     if (parseFloat(obj.dj) == 0) {
-                                        $("#dj").attr("readonly", false);
+                                        $("").attr("", false);
                                     }
                                     else {
-                                        $("#dj").attr("readonly", true);
+                                        $("").attr("", true);
                                     }
                                 }
-                                else {//否
+                                else {//Không
                                     clearHfItem();
                                 }
                             });
@@ -932,12 +932,12 @@
                                     return false;
                                 } else {
                                     lsCzh = sfxmcbh;
-                                    $("#sl").focus();
+                                    $("").focus();
                                     if (parseFloat(obj.dj) == 0) {
-                                        $("#dj").attr("readonly", false);
+                                        $("").attr("", false);
                                     }
                                     else {
-                                        $("#dj").attr("readonly", true);
+                                        $("").attr("", true);
                                     }
                                 }
                             });
@@ -954,14 +954,14 @@
         //如果是药品需要处方号，项目不需要处方号
         //从后台获取服务费和处方号信息
         $.najax({
-            type: "POST",
-            url: "/OutpatientManage/OutpatCharge/GetCfAndSfInfo?r=" + Math.random(),
-            data: { sfxmtype: sfxmtype, lscfh: lsCfh, brxz: brxz, dl: sfxmdl, sfxm: sfxmcbh, dj: $("#dj").val(), sl: $("#sl").val() },
-            dataType: "json",
+            type: "",
+            url: "" + Math.random(),
+            data: { sfxmtype: sfxmtype, lscfh: lsCfh, brxz: brxz, dl: sfxmdl, sfxm: sfxmcbh, dj: $("").val(), sl: $("").val() },
+            dataType: "",
             success: function (ajaxresp) {
                 cffwf = ajaxresp.data;
                 lsCfh = cffwf.cfh; //临时处方号
-                $("#lbldqcfh").text(lsCfh);
+                $("").text(lsCfh);
                 sfxmfwf = cffwf.sfxmfwf;
                 jeNum = cffwf.jeNum;
                 //添加处方数据
@@ -976,87 +976,87 @@
         })
     }
 
-    //删除
+    //Xóa
     function DeleteGrid() {
-        //获得选中行
-        var gridIds = $("#listGrid").jqGrid('getGridParam', 'selarrrow');
+        //Dòng đã chọn lấy
+        var gridIds = $("").jqGrid('', '');
         console.log(gridIds);
         if (gridIds.length > 0) {
-            $.modalConfirm("确定要删除所选处方数据吗？", function (flag) {
+            $.modalConfirm("", function (flag) {
                 if (flag) {
-                    //获取选中行的id
+                    //lấy dòng đã chọnid
                     //遍历
                     for (var i = gridIds.length - 1; i >= 0; i--) {
-                        $("#listGrid").jqGrid('delRowData', gridIds[i]);
+                        $("").jqGrid('', gridIds[i]);
                     }
                 }
             });
         } else {
-            $.modalAlert("暂无需要删除的处方信息！", 'warning');
+            $.modalAlert("", '');
         }
     }
 
-    //模板
+    //Mẫu
     function ItemPlate() {
         if (patInfoObj.patid != "" && patInfoObj.brxz !== "")
-            LoadSfXMmb(); //加载收费项目模板
+            LoadSfXMmb(); //Tải mẫu hạng mục thu phí
         else {
-            $("#kh").focus();
-            $.modalAlert("请确保病人有效！", 'warning');
+            $("").focus();
+            $.modalAlert("", '');
             return false;
         }
     }
 
     //加载收费项目模版
     function LoadSfXMmb() {
-        if ($("#mzgh").val() == "" || mzgh == "") {
-            $("#mzgh").focus();
-            $.modalAlert("请选择挂号！", 'warning');
+        if ($("").val() == "" || mzgh == "") {
+            $("").focus();
+            $.modalAlert("", '');
             return false;
         }
-        else if ($("#ys") == "" || ys == "") {
-            $("#ys").focus();
-            $.modalAlert("请选择医生！", 'error');
+        else if ($("") == "" || ys == "") {
+            $("").focus();
+            $.modalAlert("", '');
             return false;
         }
-        else if ($("#ks").Text == "" || ks == "") {
-            $("#mzgh").focus();
-            $.modalAlert("请选择挂号！", 'warning');
+        else if ($("").Text == "" || ks == "") {
+            $("").focus();
+            $.modalAlert("", '');
             return false;
         }
         // 加载收费模版窗口，传入科室
         getSfxmMbAjax();
     }
 
-    //后台获取收费模板
+    //Mẫu thu phí lấy phía máy chủ
     function getSfxmMbAjax() {
         if (ys && ks) {
             $.modalOpen({
-                id: "TemplateForm",
-                title: "收费项目模板窗口",
-                url: "/OutpatientManage/OutpatCharge/ItemTemplate?r=" + Math.random() + "&ks=" + ks,
-                width: "700px",
-                height: "530px",
+                id: "",
+                title: "",
+                url: "" + Math.random() + "" + ks,
+                width: "",
+                height: "",
                 callBack: function (iframeId) {
-                    var tempDetailData = top.frames[iframeId].submitForm();  //弹出页面的方法
+                    var tempDetailData = top.frames[iframeId].submitForm();  //phương thức bật lên trang
                     if (tempDetailData) {
-                        loadTempDetail(tempDetailData); //加载模板项目
+                        loadTempDetail(tempDetailData); //Tải hạng mục mẫu
                     }
                 }
             });
         } else {
-            $.modalAlert("请选择医生！", 'warning');
+            $.modalAlert("", '');
         }
     }
 
-    //加载选中的模板项目
+    //hạng mục mẫu tải đã chọn
     function loadTempDetail(tempDetailData) {
         var tempData = [];
         var tempJe = 0;
         for (var i = 0; i < tempDetailData.length; i++) {
             var obj = new Object();
             obj.cfh = "";
-            obj.xmmc = tempDetailData[i].sfxmmc; //项目
+            obj.xmmc = tempDetailData[i].sfxmmc; //Hạng mục
             obj.dj = tempDetailData[i].dj;
             obj.dw = tempDetailData[i].dw;
             obj.sl = tempDetailData[i].sl;
@@ -1069,13 +1069,13 @@
             obj.zfxz = tempDetailData[i].zfxz;
             var sfxmfwf = 0;
             var je = ((parseFloat(obj.dj) + parseFloat(sfxmfwf)) * (parseFloat(obj.sl))).toFixed(2);
-            //金额 = （单价 + 附加服务费）* 数量
+            //Số tiền = （Đơn giá + 附加服务费）* Số lượng
 
-            obj.fwfdj = sfxmfwf; //收费项目服务费
+            obj.fwfdj = sfxmfwf; //Thu phí phí dịch vụ hạng mục
             obj.je = je;
-            obj.brxzmc = $("#brxzmc").val();
-            obj.ksmc = $("#ks").val();
-            obj.ysmc = $("#ys").val();
+            obj.brxzmc = $("").val();
+            obj.ksmc = $("").val();
+            obj.ysmc = $("").val();
             obj.xmnm = 0;
             obj.ghnm = ghnm;
             obj.mjzbz = mjzbz;
@@ -1083,10 +1083,10 @@
             obj.ysbh = ysbh;
             obj.ks = ks;
             obj.ys = ys;
-            obj.xmtype = 4; //模板项目
+            obj.xmtype = 4; //Hạng mục mẫu
             obj.pt_nm = 0;
             obj.pt_zdmxnm = 0;
-            obj.czh = 0; //组号
+            obj.czh = 0; //Số nhóm
             obj.yfdm = "";
             obj.ypbzdm = "";
             obj.nbdl = tempDetailData[i].nbdl;
@@ -1105,26 +1105,26 @@
         //两个数组合并
         myCFData.push.apply(myCFData, tempData);
         myCFCount++;
-        $('#listGrid').jqGrid("clearGridData");//先清空数据
+        $('').jqGrid("");//Dữ liệu xóa trống trước
         gridListData(myCFData);
 
-        $("#lbldqxmje").text(tempJe);//当前项目金额
+        $("").text(tempJe);//Số tiền hạng mục hiện tại
         if (dqzje != 0) {
             dqzje = parseFloat(dqzje) + parseFloat(tempJe);
         } else {
             dqzje = parseFloat(tempJe);
         }
         dqzje = dqzje.toFixed(2);
-        //$("#lblzje").text(dqzje); //总金额
-        $("#txtysk").val(dqzje);
+        //$("").text(dqzje); //Tổng số tiền
+        $("").val(dqzje);
 
         checkedAll();
 
-        clearItemXM(); //清空项目
+        clearItemXM(); //Xóa trống hạng mục
     }
 
 
-    //清除 F4
+    //Xóa F4
     function newtouch_event_f4() {
         funcDoPageClear();
     }
@@ -1133,53 +1133,53 @@
     //换方 F6
     function ChangeCF() {
         if (myCFData.length > 0) {
-            //判断数据是否已变更 stateSave=false
+            //Đánh giá dữ liệu có đã thay đổi không stateSave=false
             clearHfItem();
         } else {
-            $("#kh").focus();
+            $("").focus();
             return false;
         }
     }
 
     //换方清空
     function clearHfItem() {
-        clearItemXM(); //清空项目，不清除挂号和医生、科室
+        clearItemXM(); //Xóa trống hạng mục，Không xóa đăng ký khám và Bác sĩ、Khoa
         GetNewCFH(); //获取新的处方号
     }
 
 
     //添加一个处方后清空之前项目数据
     function clearItem() {
-        $("#sfxm").val("");
-        $("#sl").val("");
-        $("#dw").val("");
-        $("#dj").val("");
-        $("#ys").val("");
-        $("#ks").val("");
-        $("#mzgh").val("");
-        $("#sfxm").focus();
+        $("").val("");
+        $("").val("");
+        $("").val("");
+        $("").val("");
+        $("").val("");
+        $("").val("");
+        $("").val("");
+        $("").focus();
     }
 
     function clearItemXM() {
-        $("#sfxm").val("");
-        $("#sl").val("");
-        $("#dw").val("");
-        $("#dj").val("");
-        $("#sfxm").focus();
-        $("#mzgh,#ys,#ks").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
+        $("").val("");
+        $("").val("");
+        $("").val("");
+        $("").val("");
+        $("").focus();
+        $("").attr("", "").css("", "");
     }
 
     //换方获取新的处方号
     function GetNewCFH() {
         $.loading(true);
         $.najax({
-            type: "POST",
-            url: "/OutpatientManage/OutpatCharge/GetCfh?r=" + Math.random(),
+            type: "",
+            url: "" + Math.random(),
             data: { sfxmtype: sfxmtype },
-            dataType: "json",
+            dataType: "",
             success: function (ajaxresp) {
                 lsCfh = ajaxresp.data; //临时处方号
-                $("#lbldqcfh").text(lsCfh);
+                $("").text(lsCfh);
             },
             errorCallback: function (err) {
                 $.loading(false);
@@ -1191,28 +1191,28 @@
 
     }
 
-    var ysk = 0, //应收款
-        zfje = 0, //支付金额
-        zl = 0, //找零
-        xjzffs, //现金支付方式
-        xjzffsbh, //编号
+    var ysk = 0, //Khoản phải thu
+        zfje = 0, //Số tiền thanh toán
+        zl = 0, //Tiền thừa
+        xjzffs, //Phương thức thanh toán tiền mặt
+        xjzffsbh, //Số hiệu
         zffsmc,
-        gridIds, //选中行id
-        fph; //发票号
+        gridIds, //Dòng đã chọnid
+        fph; //Số hóa đơn
 
-    //保存 判断
+    //Lưu Đánh giá
     function CheckSave() {
         if (kh === "" || patInfoObj == null || patInfoObj.patid == "" || patInfoObj.brxz === "") {
-            $.modalAlert("病人基本信息为空", 'warning');
+            $.modalAlert("", '');
             return false;
         }
         if (fph == "") {
-            $.modalAlert("请选择发票号", 'warning');
+            $.modalAlert("", '');
             return false;
         }
 
         if (gridIds == "" || gridIds == undefined) {
-            $.modalAlert("没有需要保存和结算的数据", 'warning');
+            $.modalAlert("", '');
             return false;
         }
 
@@ -1221,80 +1221,80 @@
         }
 
         var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
-        zfje = $("#txtmoney").val();  //支付金额
-        var ddlzffs = $("#ddlzffs option:selected");//获取选中的项
-        xjzffs = ddlzffs.val();//拿到选中项的值
-        zffsmc = ddlzffs.text();//拿到选中项的文本
-        xjzffsbh = ddlzffs.attr("data-xjzffsbh"); //获取data-*自定义属性
+        zfje = $("").val();  //Số tiền thanh toán
+        var ddlzffs = $("");//Lấy mục đã chọn
+        xjzffs = ddlzffs.val();//Lấy giá trị của mục đã chọn
+        zffsmc = ddlzffs.text();//Lấy văn bản của mục đã chọn
+        xjzffsbh = ddlzffs.attr(""); //Lấydata-*自定义属性
 
-        fph = $("#txtfph").val();
+        fph = $("").val();
         if (xjzffs == -1 || zffsmc == "") {
-            $.modalAlert("支付方式必选", 'warning');
+            $.modalAlert("", '');
             return false;
         }
         if (zfje == "" || zfje == undefined) {
-            $.modalAlert("支付金额必填", 'warning');
+            $.modalAlert("", '');
             return false;
         } else {
             if (!reg.test(zfje)) {
-                $.modalAlert("请输入正确的金额格式", 'warning');
+                $.modalAlert("", '');
                 return false;
             }
         }
         if (parseFloat(zfje) < parseFloat(ysk)) {
-            $.modalAlert("实付金额必须不能小于应支付金额", 'warning');
+            $.modalAlert("", '');
             return false;
         } else {
             zl = parseFloat(zfje) - parseFloat(ysk);
             zl = zl.toFixed(2);
-            $("#txtzl").val(zl);
+            $("").val(zl);
             //结算窗体
             showBillSuccessDialog(ysk, zfje, 0, zl);
         }
     }
 
-    //弹出金额确认窗口
+    //Cửa sổ bật lên xác nhận số tiền
     function showBillSuccessDialog(ysk, ssk, srce, zl) {
-        var url = "/HospitalizationManage/Settlement/SettSuccessDialog?r=" + Math.random() + "&yingshoukuan=" + ysk
-            + "&ssk=" + ssk
-            + "&srce=" + srce
-            + "&zhaoling=" + zl;
+        var url = "" + Math.random() + "" + ysk
+            + "" + ssk
+            + "" + srce
+            + "" + zl;
         $.modalOpen({
-            id: "FormShowBillSuccessDialog",
-            title: "结算确认",
+            id: "",
+            title: "",
             url: url,
-            width: "320px",
-            height: "260px",
+            width: "",
+            height: "",
             callBack: function (iframeId) {
-                $.modalClose("FormShowBillSuccessDialog");   //关闭结算金额的窗体
-                var allJson = $("#listGrid").jqGrid('getRowData_AllLine', true); //获取选中行的Json数据
+                $.modalClose("");   //Đóng biểu mẫu số tiền quyết toán
+                var allJson = $("").jqGrid('', true); //lấy dòng đã chọnJsonDữ liệu
                 SaveAjax(JSON.parse(allJson));
             }
         });
     }
 
-    //保存 F8
+    //Lưu F8
     function newtouch_event_f8() {
-        //先判断是否选择处方、支付方式、金额
+        //先判断是否选择处方、Phương thức thanh toán、Số tiền
         CheckSave();
         //弹出框
     }
 
-    //保存 ajax 后台添加处方和项目、结算
+    //Lưu ajax 后台添加处方和项目、Quyết toán
     function SaveAjax(allJson) {
         //把处方数据传到后台
         $.najax({
-            type: "POST",
-            url: "/OutpatientManage/OutpatCharge/AddCfInfo",
+            type: "",
+            url: "",
             data: { chargeDto: allJson, kh: kh, fph: fph, xjzffs: xjzffs, xjzffsbh: xjzffsbh, zfje: zfje, ysk: ysk, zl: zl },
-            dataType: "json",
-            cache: false, //修复ie缓存
+            dataType: "",
+            cache: false, //修复ieBộ nhớ đệm
             success: function (ajaxresp) {
-                $.modalAlert("保存成功", 'success');
-                newtouch_globalevent_f4();//清除
+                $.modalAlert("", '');
+                newtouch_globalevent_f4();//Xóa
             },
             errorCallback: function (err) {
-                newtouch_globalevent_f4();//清除
+                newtouch_globalevent_f4();//Xóa
                 $.loading(false);
             },
             complete: function () {
@@ -1308,10 +1308,10 @@
     //jqGrid多选框 单选后改变应收款金额
     function grid_checkedit() {
         ysk = 0;
-        gridIds = $("#listGrid").jqGrid('getGridParam', 'selarrrow'); //获取选中行的id
+        gridIds = $("").jqGrid('', ''); //lấy dòng đã chọnid
         //同样可以
         //var zzzzzfje = 0;
-        //var allJson = $("#listGrid").jqGrid('getRowData_AllLine', true); //获取选中行的Json数据
+        //var allJson = $("").jqGrid('', true); //lấy dòng đã chọnJsonDữ liệu
         //var allArr = JSON.parse(allJson);
         //for (var i = 0; i < allArr.length; i++) {
         //    var skje = allArr[i].je;
@@ -1322,20 +1322,20 @@
 
         if (gridIds != "" && gridIds != undefined) {
             for (var i = 0; i < gridIds.length; i++) {
-                var rowData = $("#listGrid").jqGrid("getRowData", gridIds[i]);//根据上面的id获得本行的所有数据
-                var xmje = rowData.je; //获得指定列的值 （auditStatus 为colModel的name）
+                var rowData = $("").jqGrid("", gridIds[i]);//Theo nội dung trênidLấy tất cả dữ liệu của dòng này
+                var xmje = rowData.je; //获得指定列的值 （auditStatus ChocolModelcủaname）
                 ysk = parseFloat(ysk) + parseFloat(xmje);
             }
         }
         ysk = ysk.toFixed(2);
-        $("#txtysk").val(ysk); //应收款随着选择改变
+        $("").val(ysk); //应收款随着选择改变
 
-        //当前选中行的cfh 如果不为空是药品，如果为空是收费项目
-        var gr = $("#listGrid").jqGrid('getGridParam', 'selrow');//当前点击行
-        var dqcfobj = $("#listGrid").jqGrid("getRowData", gr);
+        //dòng đã chọn hiện tạicfh Không nếu trống là thuốc，Nếu trống là hạng mục thu phí
+        var gr = $("").jqGrid('', '');//Dòng nhấn hiện tại
+        var dqcfobj = $("").jqGrid("", gr);
         var dqcfje = 0;
         if (dqcfobj != "") {
-            //药品
+            //Thuốc
             for (var i = 0; i < myCFData.length; i++) {
                 if (myCFData[i].cfh == dqcfobj.cfh) {
                     if (dqcfje != 0) {
@@ -1346,26 +1346,26 @@
                 }
             }
 
-        } else {//项目
-            dqcfje = $("#listGrid").jqGridRowValue()[0].je;
+        } else {//Hạng mục
+            dqcfje = $("").jqGridRowValue()[0].je;
         }
 
         dqcfje = dqcfje.toFixed(2);
-        $("#lbldqxmje").text(dqcfje); //当前处方金额
+        $("").text(dqcfje); //当前处方金额
     }
 
 
     //默认全选
     function checkedAll() {
-        $("#tabGrid input[type=checkbox]").attr("checked", true);
-        $("#tabGrid tbody input[type=checkbox]").each(function (i) {
-            $("#listGrid").jqGrid('setSelection', i + 1); //设置jqGrid选中
+        $("").attr("", true);
+        $("").each(function (i) {
+            $("").jqGrid('', i + 1); //ĐặtjqGridĐã chọn
         });
         //全选框
-        var $checkAll = $("#tabGrid table thead").find("input");
-        //body 各行的checkbox框
-        var $tbr = $("#tabGrid table tbody").find("input");
-        $checkAll.prop('checked', $tbr.find('input:checked').length == $tbr.length ? true : false);
+        var $checkAll = $("").find("");
+        //body dòng mỗicheckbox框
+        var $tbr = $("").find("");
+        $checkAll.prop('', $tbr.find('').length == $tbr.length ? true : false);
     }
 
 

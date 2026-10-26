@@ -1,13 +1,13 @@
 ﻿@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 <div class="topPanel">
-    @Html.Partial("_OrganizeIdDDLToolbarSearchView")
+    @Html.Partial("")
     <div class="toolbar">
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_roles()"><i class="fa fa-pencil-square-o"></i>用户角色</a>
+            <a class="btn btn-primary" onclick="btn_roles()"><i class="fa fa-pencil-square-o"></i>Vai trò người dùng</a>
         </div>
     </div>
     <div class="search">
@@ -15,7 +15,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="姓名/账户/工号" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Họ tên/Tài khoản/Mã nhân viên" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -37,51 +37,51 @@
     })
 
     function gridList() {
-        var $gridList = $("#gridList");
+        var $gridList = $("");
         $gridList.dataGrid({
-            url: "/SystemManage/User/GetPagintionGridJson",
+            url: "",
             height: $(window).height() - 128,
-            postData: { keyword: $("#txt_keyword").val(), OrganizeId: $("#OrganizeId").val() },
+            postData: { keyword: $("").val(), OrganizeId: $("").val() },
             colModel: [
-               { label: '主键', name: 'Id', hidden: true },
-               { label: "有效", name: "zt", width: 60, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: '账户', name: 'Account', width: 100, align: 'left' },
-                { label: '工号', name: 'gh', width: 80, align: 'left' },
-                { label: '姓名', name: 'Name', width: 100, align: 'left' },
-                { label: 'OrganizeId', name: 'OrganizeId', hidden: true },
+               { label: '', name: '', hidden: true },
+               { label: "", name: "", width: 60, align: "", formatter: function (cellvalue) { return cellvalue == "" ? "" : ""; } },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 80, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', hidden: true },
                 {
-                    label: '机构名称', name: 'OrganizeName', width: 120, align: 'left',
+                    label: '', name: '', width: 120, align: '',
                 },
                 {
-                    label: '科室名称', name: 'DepartmentName', width: 80, align: 'left',
+                    label: '', name: '', width: 80, align: '',
                 },
                 {
-                    label: "允许登录", name: "Locked", width: 100, align: "center",
+                    label: "", name: "", width: 100, align: "",
                     formatter: function (cellvalue, options, rowObject) {
                         if (cellvalue === true) {
-                            return '<span class=\"label label-default\">停用</span>';
+                            return '';
                         }
                         else {
-                            return '<span class=\"label label-success\">正常</span>';
+                            return '';
                         }
                     }
                 },
             ],
-            pager: "#gridPager",
-            sortname: 'zt desc, Account',
+            pager: "",
+            sortname: '',
             viewrecords: true
         });
-        $("#btn_search").click(function () {
-            $gridList.jqGrid('setGridParam', {
-                postData: { keyword: $("#txt_keyword").val(), OrganizeId: $("#OrganizeId").val() },
+        $("").click(function () {
+            $gridList.jqGrid('', {
+                postData: { keyword: $("").val(), OrganizeId: $("").val() },
                 page: 1,
-            }).trigger('reloadGrid');
+            }).trigger('');
         });
     }
 
-    //回车事件
-    $('#txt_keyword').keydownEnterEvent(function () {
-        $('#btn_search').trigger('click');
+    //Sự kiện nhấn Enter
+    $('').keydownEnterEvent(function () {
+        $('').trigger('');
     })
 
     function initControl() {
@@ -89,23 +89,23 @@
     }
 
     function btn_roles() {
-        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        var seleRowid = jQuery("").jqGrid("", "");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("", '');
             return;
         }
-        var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
+        var thisOrgId = $("").jqGridRowValue().OrganizeId;
         if (!!!thisOrgId) {
-            $.modalAlert("请先为用户关联人员", 'warning');
+            $.modalAlert("", '');
             return;
         }
-        var keyValue = $("#gridList").jqGridRowValue().Id;
+        var keyValue = $("").jqGridRowValue().Id;
         $.modalOpen({
-            id: "Form",
-            title: "用户角色",
-            url: "/SystemManage/User/Roles?keyValue=" + keyValue + '&orgId=' + thisOrgId,
-            width: "750px",
-            height: "700px",
+            id: "",
+            title: "",
+            url: "" + keyValue + '' + thisOrgId,
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function () {
 

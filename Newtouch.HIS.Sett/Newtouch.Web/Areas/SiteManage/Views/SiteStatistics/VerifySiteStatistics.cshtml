@@ -3,8 +3,8 @@
 @model dynamic
 
 @{
-    ViewBag.Title = "站点统计";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <style>
     .form .formTitle {
@@ -17,39 +17,39 @@
     }
 </style>
 <link rel="stylesheet" type="text/css" href="~/Content/css/bootstrap-multiselect.css">
-<script type="text/javascript" src="~/Content/js/bootstrap-multiselect.js"></script>
+<script type="" src=""></script>
 <form>
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
                 <td class="formTitle">
-                    机构：
+                    Cơ quan：
                 </td>
                 <td class="formValue" style="width:125px;">
                     <select id="siteId" name="siteId" class="form-control" multiple="multiple">
                     </select>
                 </td>
-                <th class="formTitle">年份：</th>
+                <th class="formTitle">Năm：</th>
                 <td class="formValue" style="width:75px;">
                     <select id="year" name="year" class="form-control" style="width:65px">
-                        <option value="-1">全部</option>
+                        <option value="-1">Tất cả</option>
                     </select>
                 </td>
-                <th class="formTitle">月份：</th>
+                <th class="formTitle">Tháng：</th>
                 <td class="formValue" style="width:75px;">
                     <select id="month" name="month" class="form-control" style="width:65px">
-                        <option value="-1">全部</option>
+                        <option value="-1">Tất cả</option>
                     </select>
                 </td>
-                <th class="formTitle">审核状态：</th>
+                <th class="formTitle">Kiểm duyệt trạng thái：</th>
                 <td class="formValue" style="width:65px;">
-                    @Html.DropDownList("shzt", Newtouch.Infrastructure.EnumOrgshzt.DS.ToDescSelectList(), "全部", new { @class = "newform-control form-control required", @style = "width: 100%;" })
+                    @Html.DropDownList("", Newtouch.Infrastructure.EnumOrgshzt.DS.ToDescSelectList(), "", new { @class = "", @style = "" })
                 </td>
                 <td>
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" value="查询" style="margin-left:35px;width:50px" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" value="Tra cứu" style="margin-left:35px;width:50px" />
                 </td>
             </tr>
         </table>
@@ -59,19 +59,19 @@
         <div id="gridPager"></div>
     </div>
 </form>
-<script lang="javascript">
-        //年月下拉初始化
+<script lang="">
+        //Khởi tạo hộp thả xuống năm tháng
         (function initYearMonthSelect() {
             var date = new Date;
-            //默认选择上个月
+            //Mặc định chọn tháng trước
             var defaultSelYear = 1900 + date.getYear();
             var defaultSelMonth = date.getMonth();
             if (defaultSelMonth == 0) {
                 defaultSelYear--;
                 defaultSelMonth = 12;
             }
-            //年份
-            $("#year").newtouchBindSelect({
+            //Năm
+            $("").newtouchBindSelect({
                 datasource: function () {
                     var resultObjArr = new Array();
                     if (top.clients.yearArr && top.clients.yearArr.length) {
@@ -83,13 +83,13 @@
                 },
                 selectedValue: defaultSelYear,
             });
-            //月份
-            $("#month").newtouchBindSelect({
+            //Tháng
+            $("").newtouchBindSelect({
                 datasource: function () {
                     var resultObjArr = new Array();
                     if (top.clients.monthArr && top.clients.monthArr.length) {
                         $.each(top.clients.monthArr, function () {
-                            resultObjArr.push({ id: this, text: parseInt(this) < 10 ? "0" + this : this });
+                            resultObjArr.push({ id: this, text: parseInt(this) < 10 ? "" + this : this });
                         });
                     }
                     return resultObjArr;
@@ -100,79 +100,79 @@
         })();
 
     $(function () {
-            $("#siteId").multiselect("destroy").multiselect({
-            url: "@Url.Action("getAllOrgIds")",
-            selectedValue: 'all',
+            $("").multiselect("").multiselect({
+            url: ""getAllOrgIds"",
+            selectedValue: '',
             includeSelectAllOption: false,
             enableClickableOptGroups: true,
             enableCollapsibleOptGroups: true,
-            selectAllText: "全选",
-            nonSelectedText: "未选中",
-            allSelectedText: "全选",
-            nSelectedText:"已选",
+            selectAllText: "",
+            nonSelectedText: "",
+            allSelectedText: "",
+            nSelectedText:"",
             onBuiltAsyncOptions: function (res) {
-                // 这里的代码是ajax创建完成options之后执行
-                $("#siteId").trigger("change");
+                // 这里的代码是ajaxTạo hoàn thànhoptions之后执行
+                $("").trigger("");
                 gridList();
             },
         });
-            $('#siteId,#year,#month,#shzt').change(function () {
-                $("#btn_search").trigger("click");
+            $('').change(function () {
+                $("").trigger("");
             });
             //隐藏未提交选项
-            $("#shzt option[value='@Html.Raw(((int)EnumOrgshzt.WTJ).ToString())']").hide();
-            $("#shzt").val('@Html.Raw(((int)EnumOrgshzt.DS).ToString())').trigger("change");
+            $("").hide();
+            $("").val('').trigger("");
         });
 
         //get data
         function gridList() {
-            var $gridList = $("#gridList");
+            var $gridList = $("");
             $gridList.dataGrid({
-                url: "/SiteManage/SiteStatistics/GetIndexGridJson",
+                url: "",
                 height: window.$(window).height() - 150,
                 postData: getSearchData(),
                 colModel: [
-                    { label: "主键", name: "Id", hidden: true, key: true },
-                    { label: '站点', name: 'zdmc', width: 150, align: 'left' },
-                    { label: '统计年份', name: 'year', width: 60, align: 'center' },
-                    { label: '统计月份', name: 'month', width: 50, align: 'center' },
+                    { label: "", name: "", hidden: true, key: true },
+                    { label: '', name: '', width: 150, align: '' },
+                    { label: '', name: '', width: 60, align: '' },
+                    { label: '', name: '', width: 50, align: '' },
                     {
-                        label: '系统中收入(元)', name: 'zsr', width: 110, align: 'right',
-                        formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 }
+                        label: '', name: '', width: 110, align: '',
+                        formatter: '', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 }
                     },
                     {
-                        label: '核实收入(元)', name: 'hssr', width: 90, align: 'right',
-                        formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 }
+                        label: '', name: '', width: 90, align: '',
+                        formatter: '', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 }
                     },
                     {
-                        label: '差额(元)', name: 'ce', width: 80, align: 'right',
-                        formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 }
+                        label: '', name: '', width: 80, align: '',
+                        formatter: '', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 }
                     },
                     {
-                        label: '共担成本(元)', name: 'gdcb', width: 90, align: 'right',
-                        formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 }
+                        label: '', name: '', width: 90, align: '',
+                        formatter: '', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 }
                     },
                     {
-                        label: 'GRS成本(元)', name: 'grscb', width: 90, align: 'right',
-                        formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 }
+                        label: '', name: '', width: 90, align: '',
+                        formatter: '', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 }
                     },
                     {
-                        label: '机构收入(元)', name: 'jgss', width: 90, align: 'right',
-                        formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 }
+                        label: '', name: '', width: 90, align: '',
+                        formatter: '', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 }
                     },
                     {
-                        label: 'GRS收入(元)', name: 'grsss', width: 90, align: 'right',
-                        formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 }
+                        label: '', name: '', width: 90, align: '',
+                        formatter: '', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 }
                     },
                     {
-                        label: '审核状态', name: 'shzt', width: 80, align: 'center',
+                        label: '', name: '', width: 80, align: '',
                         formatter: function (cellvalue) {
-                            return $.enum.getDescByValue("EnumOrgshzt", cellvalue);
+                            return $.enum.getDescByValue("", cellvalue);
                         }
                     }
                 ],
-                pager: "#gridPager",
-                sortname: 'Id',
+                pager: "",
+                sortname: '',
                 viewrecords: true,
                 unwritten: false,
                 ondblClickRow: function (rowid) {
@@ -180,35 +180,35 @@
                 }
             });
 
-            //查询
-            $("#btn_search").click(function () {
-                $("#gridList").jqGrid('setGridParam', {
+            //Tra cứu
+            $("").click(function () {
+                $("").jqGrid('', {
                     postData: getSearchData(),
-                }).trigger('reloadGrid');
+                }).trigger('');
             });
         }
 
         function getSearchData() {
-            var siteId = $('#siteId').val();
-            var year = $('#year').val();
-            var month = $('#month').val();
-            var shzt = $('#shzt').val();
-            return { siteId: siteId.join(','), year: year, month: month, shzt: shzt, verify: true };
+            var siteId = $('').val();
+            var year = $('').val();
+            var month = $('').val();
+            var shzt = $('').val();
+            return { siteId: siteId.join(''), year: year, month: month, shzt: shzt, verify: true };
         }
 
-        //修改
+        //Sửa
         function ShowDetail() {
-            var keyValue = $("#gridList").jqGridRowValue().Id;
+            var keyValue = $("").jqGridRowValue().Id;
             if (!!!keyValue) {
-                $.modalAlert("请选中一条信息", 'warning');
+                $.modalAlert("", '');
                 return;
             }
             $.modalOpen({
-                id: "Form",
-                title: "收支统计明细",
-                url: "/SiteManage/SiteStatistics/VerifySiteStatisticsDetail?keyValue=" + keyValue,
-                width: "1000px",
-                height: "580px",
+                id: "",
+                title: "",
+                url: "" + keyValue,
+                width: "",
+                height: "",
                 btn: null
             });
         }

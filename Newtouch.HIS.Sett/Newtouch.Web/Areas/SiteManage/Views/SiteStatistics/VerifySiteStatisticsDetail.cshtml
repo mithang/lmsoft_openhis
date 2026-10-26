@@ -2,56 +2,56 @@
 @model dynamic
 
 @{
-    ViewBag.Title = "审核明细";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
-<script type="text/javascript" src="~/Content/js/jquery.formatCurrency.js"></script>
-<script type="text/javascript">
-    var keyValue = $.request("keyValue");
-    var from = $.request("from");
+<script type="" src=""></script>
+<script type="">
+    var keyValue = $.request("");
+    var from = $.request("");
     $(function () {
         if (!!keyValue) {
             $.najax({
-                url: "/SiteManage/SiteStatistics/GetFormJson?keyWord=" + keyValue,
-                dataType: "json",
-                type: "POST",
+                url: "" + keyValue,
+                dataType: "",
+                type: "",
                 success: function (data) {
                     var rtndata = JSON.parse(data.message);
-                    $("#form1").formSerialize(rtndata.srxx);
-                    //收入信息
+                    $("").formSerialize(rtndata.srxx);
+                    //Thông tin thu nhập
                     initsrxxtable(rtndata.srxxList, rtndata.srxx.siteId);
-                    //成本详情
+                    //Chi tiết chi phí
                     initcbxxtable(rtndata.cbxxList);
-                    $('#jgss').html(rtndata.srxx.jgss).formatCurrency();
-                    $('#grsss').html(rtndata.srxx.grsss).formatCurrency();
-                    $('#year').html(rtndata.srxx.year);
-                    $('#month').html(rtndata.srxx.month);
-                    $('#zdmc').html(rtndata.srxx.zdmc);
-                    $('#cjr').html(rtndata.srxx.cjr);
-                    $('#shr').html(rtndata.srxx.shr);
-                    //附件信息
+                    $('').html(rtndata.srxx.jgss).formatCurrency();
+                    $('').html(rtndata.srxx.grsss).formatCurrency();
+                    $('').html(rtndata.srxx.year);
+                    $('').html(rtndata.srxx.month);
+                    $('').html(rtndata.srxx.zdmc);
+                    $('').html(rtndata.srxx.cjr);
+                    $('').html(rtndata.srxx.shr);
+                    //Thông tin tệp đính kèm
                     var fjhtml = "";
                     if (rtndata.fjxx != null && rtndata.fjxx.length > 0)
                     {
                         for (var i = 0; i < rtndata.fjxx.length; i++) {
-                            fjhtml += "<a id='file" + i + "' href='/SiteManage/SiteStatistics/download?id=" + rtndata.fjxx[i].Id+"'>" + rtndata.fjxx[i].fjmc + "</a><br/>";
-                            $('file' + i).attr("href", "/SiteManage/SiteStatistics/download?id=" + rtndata.fjxx[i].Id);
+                            fjhtml += "" + i + "" + rtndata.fjxx[i].Id+"" + rtndata.fjxx[i].fjmc + "";
+                            $('' + i).attr("", "" + rtndata.fjxx[i].Id);
                         }
 
                     }
-                    $('#fjcontent').html(fjhtml);
-                    $('.money').formatCurrency();
-                    //$('#fjcontent').attr("href", "/SiteManage/SiteStatistics/download?id=" + keyValue);
-                    $('#btn_cxsh').attr("style", "display:none");
-                    if (rtndata.srxx.shzt == '@Html.Raw(((int)EnumOrgshzt.DS).ToString())' && from !== "index") {
-                        $('#shr').html('@ViewBag.currentUserName');
+                    $('').html(fjhtml);
+                    $('').formatCurrency();
+                    //$('').attr("", "" + keyValue);
+                    $('').attr("", "");
+                    if (rtndata.srxx.shzt == '' && from !== "") {
+                        $('').html('');
                     }
-                    if (rtndata.srxx.shzt !== '@Html.Raw(((int)EnumOrgshzt.DS).ToString())' || from=="index") {
-                        $('#btn_shtg').attr("style", "display:none");
-                        $('#btn_shbtg').attr("style", "display:none");
+                    if (rtndata.srxx.shzt !== '' || from=="") {
+                        $('').attr("", "");
+                        $('').attr("", "");
                     }
-                    if (rtndata.srxx.shzt=='@Html.Raw(((int)EnumOrgshzt.TG).ToString())'&&from!="index") {
-                        $('#btn_cxsh').attr("style", "float: right;margin-right:10px;");
+                    if (rtndata.srxx.shzt==''&&from!="") {
+                        $('').attr("", "");
                     }
                 }
             });
@@ -69,36 +69,36 @@
             zhssr += this.hssr;
             zsr += this.zsr;
             fczsr += this.hssr * this.fcbl / 100;
-            html += "<tr><td class='title-content'>" + this.dlmc + "</td>";
-            html += "<td class='money' style='text-decoration:underline;cursor:pointer' onclick=\"btn_detail('" + this.dlCode + "','outpatient','" + siteId + "')\">" + this.mzsfje + "</td > ";
-            html += "<td class='money'>" + this.mzzxje + "</td>";
-            html += "<td class='money' style='text-decoration:underline;cursor:pointer' onclick=\"btn_detail('" + this.dlCode + "','inpatient','" + siteId + "')\">" + this.zysfje + "</td>";
-            html += "<td class='money'>" + this.zyzxje + "</td>";
-            html += "<td class='money'>" + this.zsr + "</td>";
-            html += "<td class='money'>" + (this.hssr || "0.00") + "</td>";
-            html += "<td class='monright'>" + (this.fcbl || "0") + "%</td>";
-            html += "<td class='money'>" + (this.ce || "0.00")  + "</td>";
-            html += "<td style=\"max-width: 200px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;\"><a title=" + (this.tzsm || "")+">" + (this.tzsm || "") + "</a></td>";
-            html += "</tr > ";
+            html += "" + this.dlmc + "";
+            html += "" + this.dlCode + "" + siteId + "" + this.mzsfje + "";
+            html += "" + this.mzzxje + "";
+            html += "" + this.dlCode + "" + siteId + "" + this.zysfje + "";
+            html += "" + this.zyzxje + "";
+            html += "" + this.zsr + "";
+            html += "" + (this.hssr || "") + "";
+            html += "" + (this.fcbl || "") + "";
+            html += "" + (this.ce || "")  + "";
+            html += "" + (this.tzsm || "")+"" + (this.tzsm || "") + "";
+            html += "";
         });
-        html += "<tr><td class='title-content' colspan='5'>合计(元)</td>";
-        html += "<td class='money' > " + zsr + "</td >";
-        html += "<td class='money' > " + zhssr + "</td >";
-        html += "<td class='money' >" + fczsr + "</td >";
-        html += "<td class='money' > " + zce + "</td >";
-        html += "<td class='money' ></td >";
-        html += "</tr > ";
-        $('#srcol').after(html);
+        html += "";
+        html += "" + zsr + "";
+        html += "" + zhssr + "";
+        html += "" + fczsr + "";
+        html += "" + zce + "";
+        html += "";
+        html += "";
+        $('').after(html);
     }
 
     //查看收费金额详情
     function btn_detail(dlcode, type, siteId) {
         $.modalOpen({
-            id: "ViewChargeMoneyDetail",
-            title: "查看收费详情",
-            url: "/SiteManage/SiteStatistics/ViewChargeMoneyDetail?year=" + $('#year').val() + "&siteId=" + siteId + "&month=" + $('#month').val() + "&dlcode=" + dlcode + "&type=" + type,
-            width: "1000px",
-            height: "580px",
+            id: "",
+            title: "",
+            url: "" + $('').val() + "" + siteId + "" + $('').val() + "" + dlcode + "" + type,
+            width: "",
+            height: "",
             btn: null
         });
     }
@@ -108,7 +108,7 @@
         var fd = [];
         for (var i = 0; i < cbxxList.length; i++) {
             var item = cbxxList[i];
-            if (item.cblb === 'GRSbillObj') {
+            if (item.cblb === '') {
                 fd.push(item);
             } else {
                 gd.push(item);
@@ -117,70 +117,70 @@
 
         var len = fd.length > gd.length ? fd.length : gd.length;
         if (len > 0) {
-            var html = " <tr><th class='th2' colspan='10'>支出统计</th></tr>"+
-                 "<tr>" +
-                "<td rowspan='" + len + 1 + "'>共担成本</td>" +
-                "<td colspan='2'>科目类别</td>" +
-                "<td colspan='2'>金额(元)</td>" +
-                "<td rowspan='" + len + 1 + "'>GRS负担成本</td>" +
-                "<td colspan='2'>科目类别</td>" +
-                "<td colspan='2'>金额(元)</td>" +
-                "</tr > ";
+            var html = ""+
+                 "" +
+                "" + len + 1 + "" +
+                "" +
+                "" +
+                "" + len + 1 + "" +
+                "" +
+                "" +
+                "";
 
             for (var i = 0; i < len; i++) {
                 var gdObj = gd[i] || null;
                 var fdObj = fd[i] || null;
 
                 if (gdObj && fdObj) {
-                    html += "<tr>" +
-                        "<td colspan='2'>" + gdObj.kmmc + "</td>" +
-                        "<td class='money' colspan='2'>" + gdObj.je + "</td>" +
+                    html += "" +
+                        "" + gdObj.kmmc + "" +
+                        "" + gdObj.je + "" +
 
-                        "<td colspan='2'>" + fdObj.kmmc + "</td>" +
-                        "<td class='money' colspan='2'>" + fdObj.je + "</td>" +
-                        "</tr>";
+                        "" + fdObj.kmmc + "" +
+                        "" + fdObj.je + "" +
+                        "";
 
                 } else if (gdObj && !fdObj) {
-                    html += "<tr>" +
-                        "<td colspan='2'>" + gdObj.kmmc + "</td>" +
-                        "<td class='money' colspan='2'>" + gdObj.je + "</td>" +
+                    html += "" +
+                        "" + gdObj.kmmc + "" +
+                        "" + gdObj.je + "" +
 
-                        "<td colspan='2'></td>" +
-                        "<td colspan='2'></td>" +
-                        "</tr>";
+                        "" +
+                        "" +
+                        "";
                 } else if (!gdObj && fdObj) {
-                    html += "<tr>" +
-                        "<td colspan='2'></td>" +
-                        "<td colspan='2'></td>" +
+                    html += "" +
+                        "" +
+                        "" +
 
-                        "<td colspan='2'>" + fdObj.kmmc + "</td>" +
-                        "<td class='money' colspan='2'>" + fdObj.je + "</td>" +
-                        "</tr>";
+                        "" + fdObj.kmmc + "" +
+                        "" + fdObj.je + "" +
+                        "";
                 }
             }
         }
       
-        $('#cbcol').after(html);
+        $('').after(html);
     }
 
     function btnclick(shzt) {
         $.najax({
-            url: "/SiteManage/SiteStatistics/updateshzt?id=" + keyValue + "&shzt=" + shzt,
-            dataType: "json",
+            url: "" + keyValue + "" + shzt,
+            dataType: "",
             success: function () {
-                $.modalMsg("操作成功", "success");
-                $.currentWindow().$('#gridList').jqGrid("clearGridData"); //清除明细的grid
-                $.currentWindow().$("#btn_search").trigger("click");
+                $.modalMsg("", "");
+                $.currentWindow().$('').jqGrid(""); //xóa chi tiếtgrid
+                $.currentWindow().$("").trigger("");
                 $.modalClose();
             }
         });
     }
 
     function cxsh() {
-        window.$.modalConfirm("确定要撤销审核吗？", function (flag) {
+        window.$.modalConfirm("", function (flag) {
             if (flag) {
                
-                btnclick('@Html.Raw(((int)EnumOrgshzt.WTG).ToString())');
+                btnclick('');
             }
         });
     }
@@ -236,49 +236,49 @@
 <div class="dv-panel">
     <table align="center" id="form1">
         <tr>
-            <th class="th1" colspan="10">站点收支统计</th>
+            <th class="th1" colspan="10">Thống kê thu chi trạm</th>
         </tr>
         <tr>
             <td colspan="10" style="text-align: left;">
-                <span class="sp-content">统计时间：<label id="year"></label>年<label id="month"></label>月</span>
-                <span class="sp-content">所属站点：<label id="zdmc"></label></span>
+                <span class="sp-content">Thống kê thời gian：<label id="year"></label>Năm<label id="month"></label>Tháng</span>
+                <span class="sp-content">Trạm thuộc：<label id="zdmc"></label></span>
             </td>
         </tr>
-        <tr><th class="th2" colspan="10">收入统计</th></tr>
+        <tr><th class="th2" colspan="10">Thống kê thu nhập</th></tr>
         <tr>
-            <td rowspan="2" class="title-content" style="min-width: 53px;">科室</td>
-            <td colspan="2" class="title-content">门诊收入</td>
-            <td colspan="2" class="title-content">住院收入</td>
-            <td class="title-content" rowspan="2">总收入</td>
-            <td class="title-content" rowspan="2">核实收入</td>
+            <td rowspan="2" class="title-content" style="min-width: 53px;">Khoa</td>
+            <td colspan="2" class="title-content">Thu nhập ngoại trú</td>
+            <td colspan="2" class="title-content">Thu nhập nhập viện</td>
+            <td class="title-content" rowspan="2">Tổng thu nhập</td>
+            <td class="title-content" rowspan="2">Xác minh thu nhập</td>
             <td class="title-content" rowspan="2">分成比例</td>
-            <td class="title-content" rowspan="2">差额</td>
+            <td class="title-content" rowspan="2">Chênh lệch</td>
             <td class="title-content" rowspan="2">调整说明</td>
         </tr>
         <tr>
 
-            <td class="title-content">收费金额(元)</td>
-            <td class="title-content">执行金额(元)</td>
-            <td class="title-content">收费金额(元)</td>
-            <td class="title-content">执行金额(元)</td>
+            <td class="title-content">Thu phí số tiền(đồng)</td>
+            <td class="title-content">Thực hiện số tiền(đồng)</td>
+            <td class="title-content">Thu phí số tiền(đồng)</td>
+            <td class="title-content">Thực hiện số tiền(đồng)</td>
         </tr>
         <tbody id="srcol"></tbody>
         <tbody id="cbcol"></tbody>
 
         <tr>
-            <td class="title-content">机构实收(元)</td>
+            <td class="title-content">机构实收(đồng)</td>
             <td colspan="9" style="text-align: left;">
                 <span id="jgss"></span>
                 <span style="float:right">
-                    (每个收费大类核实收入*(每个收费大类分成比例))之和减(共担成本之和*(1-共担成本分担比例))
+                    (Thu nhập xác minh nhóm lớn thu phí cái mỗi*(每个收费大类分成比例))之和减(共担成本之和*(1-共担成本分担比例))
                 </span>
             </td>
         </tr>
         <tr>
-            <td class="title-content">GRS实收(元)</td>
+            <td class="title-content">GRSThực thu(đồng)</td>
             <td colspan="9" style="text-align: left;">
                 <span id="grsss"></span>   <span style="float:right">
-    (每个收费大类核实收入*(1-每个收费大类分成比例))之和减(共担成本之和*共担成本分担比例)-GRS成本
+    (Thu nhập xác minh nhóm lớn thu phí cái mỗi*(1-每个收费大类分成比例))之和减(共担成本之和*共担成本分担比例)-GRSChi phí
 </span>
             </td>
         </tr>
@@ -286,7 +286,7 @@
         <tr>
             <td class="title-content">制表人</td>
             <td style="text-align: left;"><label id="cjr"></label></td>
-            <td class="title-content">审核人</td>
+            <td class="title-content">Kiểm duyệt người</td>
             <td colspan="7" style="text-align: left;"><label id="shr"></label></td>
         </tr>
         <tr>
@@ -296,6 +296,6 @@
 
     </table>
 </div>
-<input type="button" id="btn_shtg" onclick="btnclick('@Html.Raw(((int)EnumOrgshzt.TG).ToString())')" class="btn btn-primary btn-md" value="审核通过" style="float: right;margin-top: 10px;margin-bottom: 10px;margin-right: 10px;" />
-<input type="button" id="btn_shbtg" onclick="btnclick('@Html.Raw(((int)EnumOrgshzt.WTG).ToString())')" class="btn btn-primary btn-md" value="审核不通过" style="float: right;margin-top: 10px;margin-bottom: 10px;margin-right: 10px;" />
-<input type="button" hidden id="btn_cxsh" onclick="cxsh()" class="btn btn-primary btn-md" value="撤销审核" style="float: right;margin-top: 10px;margin-bottom: 10px;margin-right: 20px;" />
+<input type="button" id="btn_shtg" onclick="btnclick('@Html.Raw(((int)EnumOrgshzt.TG).ToString())')" class="btn btn-primary btn-md" value="Kiểm duyệt thông qua" style="float: right;margin-top: 10px;margin-bottom: 10px;margin-right: 10px;" />
+<input type="button" id="btn_shbtg" onclick="btnclick('@Html.Raw(((int)EnumOrgshzt.WTG).ToString())')" class="btn btn-primary btn-md" value="Kiểm duyệt thông qua không" style="float: right;margin-top: 10px;margin-bottom: 10px;margin-right: 10px;" />
+<input type="button" hidden id="btn_cxsh" onclick="cxsh()" class="btn btn-primary btn-md" value="Hủy kiểm duyệt" style="float: right;margin-top: 10px;margin-bottom: 10px;margin-right: 20px;" />

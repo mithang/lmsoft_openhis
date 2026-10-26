@@ -1,38 +1,38 @@
 ﻿
-var keyValue = $.request("keyValue");
+var keyValue = $.request("");
 $(function () {
     InitControl();
     //if (!!keyValue) {
     $.ajax({
-        url: "/SystemManage/SysCISpecialMark/GetFormJson?r=" + Math.random(),
+        url: "" + Math.random(),
         data: { keyValue: keyValue },
-        dataType: "json",
+        dataType: "",
         async: false,
         success: function (data) {
-            $("#form1").formSerialize(data);
-            if (data["sfxm"]) {
-                $("#sfxmmc").attr("data-label", data["sfxm"]);
+            $("").formSerialize(data);
+            if (data[""]) {
+                $("").attr("", data[""]);
             }
-            if (data["brxz"]) {
-                $("#brxzmc").attr("data-label", data["brxz"]);
+            if (data[""]) {
+                $("").attr("", data[""]);
             }
         }
     });
     //}
 })
 function InitControl() {
-    xmList();//收费项目
-    xzList();//病人性质
+    xmList();//Hạng mục thu phí
+    xzList();//Tính chất bệnh nhân
 }
 function xmList() {
-    $("#sfxmmc").newtouchFloatingSelector({
+    $("").newtouchFloatingSelector({
         height: 200,
         width: 300,
         filter: function (keyword) {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysChargeItemList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -42,30 +42,30 @@ function xmList() {
             return resultObjArr;
 
         },
-        caption: "收费项目",
+        caption: "",
         colModel: [
-            { label: '编号', name: 'sfxmbh', widthratio: 25 },
-            { label: '代码', name: 'sfxm', widthratio: 25 },
-            { label: '名称', name: 'sfxmmc', widthratio: 25 },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: '', name: '', widthratio: 25 },
+            { label: '', name: '', widthratio: 25 },
+            { label: '', name: '', widthratio: 25 },
+            { label: '', name: '', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
-            $("#sfxmmc").attr("data-label", $thistr.find("td:eq(1)").html());
-            $("#sfxmmc").val($thistr.find('td:eq(2)').html());
+            $("").attr("", $thistr.find("").html());
+            $("").val($thistr.find('').html());
             return;
         }
     });
 }
 
 function xzList() {
-    $("#brxzmc").newtouchFloatingSelector({
+    $("").newtouchFloatingSelector({
         height: 200,
         width: 300,
         filter: function (keyword) {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -75,34 +75,34 @@ function xzList() {
             return resultObjArr;
 
         },
-        caption: "病人性质",
+        caption: "",
         colModel: [
-            { label: '编号', name: 'brxzbh', widthratio: 25 },
-            { label: '代码', name: 'brxz', widthratio: 25 },
-            { label: '名称', name: 'brxzmc', widthratio: 25 },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: '', name: '', widthratio: 25 },
+            { label: '', name: '', widthratio: 25 },
+            { label: '', name: '', widthratio: 25 },
+            { label: '', name: '', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
-            $("#brxzmc").attr("data-label", $thistr.find("td:eq(1)").html());
-            $("#brxzmc").val($thistr.find('td:eq(2)').html());
+            $("").attr("", $thistr.find("").html());
+            $("").val($thistr.find('').html());
             return;
         }
     });
 }
 function submitForm() {
     if (checkNotNull()) {
-        var data = $("#form1").formSerialize();
-        data["sfxm"] = $("#sfxmmc").attr("data-label");
-        data["brxz"] = $("#brxzmc").attr("data-label");
+        var data = $("").formSerialize();
+        data[""] = $("").attr("");
+        data[""] = $("").attr("");
         $.submitForm({
-            url: "/SystemManage/SysCISpecialMark/SubmitForm?keyValue=" + keyValue,
+            url: "" + keyValue,
             param: data,
             success: function () {
-                //$.currentWindow().$("#gridList").resetSelection();
-                //$.currentWindow().$("#gridList").trigger("reloadGrid");
+                //$.currentWindow().$("").resetSelection();
+                //$.currentWindow().$("").trigger("");
                 //$.loading(false);
-                $.currentWindow().window.frames['iframeExpenseManage'].$("#gridList").resetSelection();
-                $.currentWindow().window.frames['iframeExpenseManage'].$("#gridList").trigger("reloadGrid");
+                $.currentWindow().window.frames[''].$("").resetSelection();
+                $.currentWindow().window.frames[''].$("").trigger("");
                 $.loading(false);
             }
         })
@@ -110,22 +110,22 @@ function submitForm() {
 }
 
 function checkNotNull() {
-    var validator = $('#form1').validate();
+    var validator = $('').validate();
     validator.settings = {
         rules: {
             brxzmc: { required: true },
             zt: { required: true }
         },
         messages: {
-            brxzmc: { required: "病人性质必须填写" },
-            zt: { required: "状态必须选择" }
+            brxzmc: { required: "" },
+            zt: { required: "" }
         },
         showErrors: function (errorMap, errorList) {
             if (!$.isEmptyObject(errorList)) {
                 if (Array.isArray(errorList) && errorList.length == 0) {
                     return;
                 }
-                $.modalAlert(errorList[0].message, 'warning');
+                $.modalAlert(errorList[0].message, '');
             }
         }
     }

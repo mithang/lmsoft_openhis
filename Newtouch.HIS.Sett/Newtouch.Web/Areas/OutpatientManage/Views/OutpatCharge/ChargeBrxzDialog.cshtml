@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "ChargeBrxzDialog";  
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";  
+    Layout = "";
 }
 
 <div class="gridPanel" > 
@@ -13,37 +13,37 @@
 </style>
  
 <script>   
-    var brxzdata =localStorage.getItem("brxzData");
+    var brxzdata =localStorage.getItem("");
     var brxzdataJson = JSON.parse(brxzdata); 
     $(function () {
         gridList(brxzdataJson);
-        localStorage.removeItem("brxzData");
+        localStorage.removeItem("");
     });
 
     function gridList(tempList) {
-        var $gridList = $("#brxzGridList");
+        var $gridList = $("");
         $gridList.dataNewGrid({
             height: 100, 
             colModel: [
-                { label: 'brxz', name: 'brxz', width: 10, hidden: true },
-                { label: '病人性质', name: 'brxzmc', width: 100},
-                { label: 'brxzbh', name: 'brxzbh', width: 10, hidden: true },
-                { label: 'ybjylx', name: 'ybjylx', width: 10, hidden: true }
+                { label: '', name: '', width: 10, hidden: true },
+                { label: '', name: '', width: 100},
+                { label: '', name: '', width: 10, hidden: true },
+                { label: '', name: '', width: 10, hidden: true }
             ],
         }, tempList);
 
         if (tempList.length > 0) {
-            $('.ui-jqgrid-bdiv').find(".unwritten").remove();
+            $('').find("").remove();
         }
     }
 
-    //jqGrid 双击选中某行
+    //jqGrid Nhấp đúp để chọn một dòng
     function btn_edit() {
         PatSearchConfirm();
     }
 
     function PatDbGrid() {
-        var $gridList = $("#brxzGridList");
+        var $gridList = $("");
         var brxz = $gridList.jqGridRowValue().brxz;
         var brxzmc = $gridList.jqGridRowValue().brxzmc;
         var brxzbh = $gridList.jqGridRowValue().brxzbh;
@@ -52,16 +52,16 @@
         obj.brxzmc = brxzmc;
         obj.brxzbh = brxzbh;
         $.currentWindow().getChargeInfoAjax(obj);
-        //关闭窗口
+        //Đóng cửa sổ
         ReceiptCancle();
     }
 
-    //确定 主页面调用
+    //Xác nhận Gọi từ trang chính
     function PatSearchConfirm() {
         PatDbGrid();
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() {
         $.modalClose();
     }

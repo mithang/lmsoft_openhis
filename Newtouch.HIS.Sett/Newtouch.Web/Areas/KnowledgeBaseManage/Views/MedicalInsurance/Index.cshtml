@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <div class="topPanel">
     <div class="toolbar">
@@ -9,13 +9,13 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
+            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
         </div>
     </div>
     <div class="search">
@@ -23,7 +23,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="请输入病历号" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Vui lòng nhập số bệnh án" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -43,104 +43,104 @@
         gridList();
     })
 
-    //回车
-    $('#txt_keyword').keydownEnterEvent(function () {
-        $("#btn_search").trigger('click');
+    //Enter
+    $('').keydownEnterEvent(function () {
+        $("").trigger('');
     })
 
-    //明细
+    //Chi tiết
     function gridList() {
-        var $gridList = $("#gridList");
+        var $gridList = $("");
         $gridList.dataGrid({
-            treeGridModel: "adjacency",
-            url: "/KnowledgeBaseManage/MedicalInsurance/SelectMedicalInsuranceFilingList",
+            treeGridModel: "",
+            url: "",
             postData: getSearchPostData(),
             height: $(window).height() - 130,
             colModel: [
-            { label: "ybbabId", name: "ybbabId", width: 120, align: "left", hidden: true },
-            { label: "病历号", name: "blh", width: 120, align: "left" },
-            { label: "姓名", name: "xm", width: 120, align: "left" },
+            { label: "", name: "", width: 120, align: "", hidden: true },
+            { label: "", name: "", width: 120, align: "" },
+            { label: "", name: "", width: 120, align: "" },
             {
-                label: "年龄", name: "nlshow", width: 120, align: "left", formatter: function (cellvalue, a, b) {
+                label: "", name: "", width: 120, align: "", formatter: function (cellvalue, a, b) {
                     return getAgeFromBirthTime({ begin: b.csny }).text;
                 }
             },
-            { label: "证件号", name: "zjh", width: 140, align: "left" },
-            { label: "病人内码", name: "patId", width: 120, align: "left", hidden: true },
+            { label: "", name: "", width: 140, align: "" },
+            { label: "", name: "", width: 120, align: "", hidden: true },
             {
-                label: "开始日期", name: "ksrq", width: 120, align: "left",
-                formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                label: "", name: "", width: 120, align: "",
+                formatter: "", formatoptions: { srcformat: '', newformat: '' }
             },
             {
-                label: "结束日期", name: "jsrq", width: 120, align: "left",
-                formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                label: "", name: "", width: 120, align: "",
+                formatter: "", formatoptions: { srcformat: '', newformat: '' }
             },
-            { label: "总次数", name: "zcs", width: 110, align: "left" },
-            { label: "剩余次数", name: "sycs", width: 110, align: "left" }
+            { label: "", name: "", width: 110, align: "" },
+            { label: "", name: "", width: 110, align: "" }
             ],
-            pager: "#gridPager",
-            sortname: 'CreateTime desc',
+            pager: "",
+            sortname: '',
             viewrecords: true
         });
-        $("#btn_search").click(function () {
-            $gridList.jqGrid('setGridParam',
+        $("").click(function () {
+            $gridList.jqGrid('',
                 {
                     postData: getSearchPostData(),
                     page: 1,
-                }).trigger('reloadGrid');
+                }).trigger('');
         });
     }
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
-        var keyword = $("#txt_keyword").val();
+        var keyword = $("").val();
         return { keyword: keyword};
     };
 
-    //新建
+    //Tạo mới
     function btn_add(){
         $.modalOpen({
-            id: "PatSerarchView",
-            title: "新增医保备案",
-            url: "/KnowledgeBaseManage/MedicalInsurance/Form",
-            width: "550px",
-            height: "500px",
+            id: "",
+            title: "",
+            url: "",
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
         });
     }
-    //修改
+    //Sửa
     function btn_edit() {
-        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        var seleRowid = jQuery("").jqGrid("", "");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("", '');
             return;
         }
-        var ybbabId = $("#gridList").jqGridRowValue().ybbabId;
+        var ybbabId = $("").jqGridRowValue().ybbabId;
         $.modalOpen({
-            id: "PatSerarchView",
-            title: "修改信息",
-            url: "/KnowledgeBaseManage/MedicalInsurance/Form?ybbabId=" + ybbabId,
-            width: "550px",
-            height: "500px",
+            id: "",
+            title: "",
+            url: "" + ybbabId,
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
         });
     }
-    //删除
+    //Xóa
     function btn_delete() {
-        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
+        var seleRowid = jQuery("").jqGrid("", "");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("", '');
             return;
         }
-        var ybbabId = $("#gridList").jqGridRowValue().ybbabId;
+        var ybbabId = $("").jqGridRowValue().ybbabId;
         $.deleteForm({
-            url: "/KnowledgeBaseManage/MedicalInsurance/DeleteForm",
+            url: "",
             param: { ybbabId: ybbabId },
             success: function () {
-                $("#gridList").trigger("reloadGrid");
+                $("").trigger("");
             }
         })
     }

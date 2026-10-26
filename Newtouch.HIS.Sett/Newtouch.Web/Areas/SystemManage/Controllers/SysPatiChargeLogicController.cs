@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         #region 病人收费算法
 
         /// <summary>
-        /// 获取病人收费算法grid值
+        /// 获取病人收费算法gridGiá trị
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 修改信息时，把选中行对象带到新页面
+        /// Khi sửa thông tin，đối tượng trang mới đến mang dòng đã chọn
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         /// <summary>
         /// 病人性质下拉框 
         /// 病人收费算法病人性质下拉框已不再使用，
-        /// 该方法在收费减免处也使用到，如果减免修改了病人性质展现方式，不再使用该方法，请记得清除
+        /// 该方法在收费减免处也使用到，如果减免修改了病人性质展现方式，Không phương thức này sử dụng lại，请记得清除
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -112,7 +112,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 根据大类获取项目code
+        /// Hạng mục lấy nhóm lớn theocode
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="dlCode"></param>

@@ -1,23 +1,23 @@
 ﻿
 @{
-    ViewBag.Title = "YBSBSC_YDQuery";
-    Layout = "~/Views/Shared/_Form.cshtml";
-    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
-    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
+    ViewBag.Title = "";
+    Layout = "";
+    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("");
+    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("");
 }
 
 <div class="rows">
 	<div class="panel panel-default">
 		<table class="form">
 			<tr>
-				<th class="formTitle">开始日期：</th>
+				<th class="formTitle">Ngày bắt đầu：</th>
 				<td class="formValue">
 					<input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
 						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
 						   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
 						   value="@DateTime.Now.ToString("yyyy-MM-01")" />
 				</td>
-				<th class="formTitle">结束日期：</th>
+				<th class="formTitle">Ngày kết thúc：</th>
 				<td class="formValue">
 					<input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
 						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -26,7 +26,7 @@
 				</td>
 				<th class="formTitle"></th>
 				<td class="formValue" style="padding-left:20px;">
-					<input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+					<input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
 				</td>
 			</tr>
 		</table>
@@ -49,14 +49,14 @@
 </div>
 
 <script>
-	var tabaction = "W";//切换卡片 默认门诊
-	 var isHospAdministrator = '@(ViewBag.IsHospAdministrator)';
-    var curUserCode = '@(ViewBag.CurUserCode)';
-    var OrgId = '@(ViewBag.OrgId)';
-	var reportServerHOST = '@(ViewBag.ReportServerHOST)';
+	var tabaction = "";//Chuyển thẻ Ngoại trú mặc định
+	 var isHospAdministrator = '';
+    var curUserCode = '';
+    var OrgId = '';
+	var reportServerHOST = '';
 	$(function () {
 		var h = $(window).height() - 100;
-		$('#layout iframe').css('height', h);
+		$('').css('', h);
 	});
 
 
@@ -65,23 +65,23 @@
 		submit();
 	}
 	function submit() {
-		if ($('#ksrq').val().length == 0 || $('#jsrq').val().length == 0) {
-			$.modalAlert("请选择时间范围", "error");
+		if ($('').val().length == 0 || $('').val().length == 0) {
+			$.modalAlert("", "");
 			return;
 		}
 
 		switch (tabaction) {
-			case "W":
-				$("#mjz").show();
-				$("#zy").hide();
-				var uri = '@Html.Raw(reportUrl)' + "?tempCode=1241" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&orgId=" + OrgId + "&ksrq=" + $('#ksrq').val() + "&jsrq=" + $('#jsrq').val();
-				$("#iframerightiframerightiframerightttt").attr('src', uri);
+			case "":
+				$("").show();
+				$("").hide();
+				var uri = '' + "" + "" + '' + "" + OrgId + "" + $('').val() + "" + $('').val();
+				$("").attr('', uri);
 				break;
-			case "E":
-				$("#mjz").hide();
-				$("#zy").show();
-				var uri = '@Html.Raw(reportUrl)' + "?tempCode=1242" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&orgId=" + OrgId + "&ksrq=" + $('#ksrq').val() + "&jsrq=" + $('#jsrq').val();
-				$("#iframerightiframerightiframerighttttsc").attr('src', uri);
+			case "":
+				$("").hide();
+				$("").show();
+				var uri = '' + "" + "" + '' + "" + OrgId + "" + $('').val() + "" + $('').val();
+				$("").attr('', uri);
 				break;
 			default:
 
@@ -91,27 +91,27 @@
 	}
 
 	function DCQuery(type) {
-		if ($('#ksrq').val().length == 0 || $('#jsrq').val().length == 0) {
-			$.modalAlert("请选择时间范围", "error");
+		if ($('').val().length == 0 || $('').val().length == 0) {
+			$.modalAlert("", "");
 			return;
 		}
 		var predata = {
 			types: type,
-			ksrq: $('#ksrq').val(),
-			jsrq: $('#jsrq').val(),
+			ksrq: $('').val(),
+			jsrq: $('').val(),
 		};
 		$.ajax({
-			type: "POST",
-			url: "/Report/DCQuery_dbf",
+			type: "",
+			url: "",
 			data: predata,
-			dataType: "json",
+			dataType: "",
 			async: false,
 			success: function (data) {
 				var refinfo = data;
 				console.log(data);
 
 				if (refinfo.path != "") {
-					window.location.target = "_blank";
+					window.location.target = "";
 					window.location.href = refinfo.path;
 					//window.open(refinfo.path);
 				}
@@ -122,10 +122,10 @@
 		});
 	}
 
-	$("#iframerightiframerightiframerightttt").load(function () {
+	$("").load(function () {
 		$.loading(false);
 	});
-	$("#iframerightiframerightiframerighttttsc").load(function () {
+	$("").load(function () {
 		$.loading(false);
 	});
 

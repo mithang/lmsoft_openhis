@@ -1,20 +1,20 @@
 ﻿@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <script>
     $(function () {
     });
     function submitForm() {
-        if (!$('#form1').formValid()) {
+        if (!$('').formValid()) {
             return false;
         }
         //$.submitForm({
-        //    url: "/SystemManage/Area/SubmitForm?keyValue=" + keyValue,
-        //    param: $("#form1").formSerialize(),
+        //    url: "" + keyValue,
+        //    param: $("").formSerialize(),
         //    success: function () {
-        //        $.currentWindow().$("#gridList").resetSelection();
-        //        $.currentWindow().$("#gridList").trigger("reloadGrid");
+        //        $.currentWindow().$("").resetSelection();
+        //        $.currentWindow().$("").trigger("");
         //    }
         //})
     }
@@ -25,7 +25,7 @@
         <div class="mail-body">
             <table class="form">
                 <tr>
-                    <th class="formTitle">发送到 </th>
+                    <th class="formTitle">Gửi đến gửi </th>
                     <td class="formValue">
                         <input id="txtPphone" name="txt_Account" type="text" class="form-control required" placeholder="输入多个手机号码请用英文符号,隔开" />
                     </td>
@@ -39,7 +39,7 @@
             </table>
         </div>
         <div class="mail-body" style="text-align: right;">
-            <a href="javascript:void()" onclick="submitForm()" class="btn btn-primary" style="margin-right: 5px;"><i class="fa fa-reply"></i>发送</a>
+            <a href="javascript:void()" onclick="submitForm()" class="btn btn-primary" style="margin-right: 5px;"><i class="fa fa-reply"></i>Gửi gửi</a>
         </div>
     </div>
 </form>

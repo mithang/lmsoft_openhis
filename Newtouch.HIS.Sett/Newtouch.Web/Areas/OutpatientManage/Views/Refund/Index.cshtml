@@ -1,7 +1,7 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "";
 
-    Layout = "~/Views/Shared/_Index.cshtml";
+    Layout = "";
 }
 
 <style>
@@ -27,30 +27,30 @@
 </style>
 <div class="panel panel-default" style="margin-bottom:0;">
     <div class="panel-heading navb-bg">
-        门诊退费查询
+        Tra cứu hoàn phí ngoại trú
     </div>
     <div style="padding: 2px;padding-right:20px;">
         <table class="form" style="width:96%;">
             <tr>
-                <td class="formTitle">卡号：</td>
+                <td class="formTitle">Số thẻ：</td>
                 <td class="formValue">
-                    <input id="kh" type="text" class="form-control form-control-focus" placeholder="请输入卡号">
+                    <input id="kh" type="text" class="form-control form-control-focus" placeholder="Vui lòng nhập số thẻ">
 
                 </td>
-                <td class="formTitle">从：</td>
+                <td class="formTitle">Từ：</td>
                 <td class="formValue">
 
                     <input class="form-control input-wdatepicker" type="text" onfocus="WdatePicker({
                                 onpicked: function () {getAge($(this).val());return true;}})" id="ks" value="@DateTime.Now.AddMonths(-1).ToString("yyy-MM-dd")" />
                 </td>
-                <td class="formTitle">至：</td>
+                <td class="formTitle">Đến：</td>
                 <td class="formValue">
                     <input class="form-control input-wdatepicker" type="text" onfocus="WdatePicker({
                                 onpicked: function () {getAge($(this).val());return true;}})" id="js" value="@DateTime.Now.AddDays(1).ToString("yyy-MM-dd")" />
                 </td>
                 <td class="formTitle"></td>
                 <td class="formValue">
-                    <button id="BtnQuery" class="btn btn btn-default btn-md dropdown-text">查询</button>
+                    <button id="BtnQuery" class="btn btn btn-default btn-md dropdown-text">Tra cứu</button>
                 </td>
             </tr>
         </table>
@@ -61,14 +61,14 @@
     <table class="form" style="border:solid 1px #ddd;" id="tableStyle">
         <thead>
             <tr>
-                <th>病人类型</th>
-                <th>挂号科室</th>
-                <th>医生</th>
-                <th>发票号</th>
-                <th>记账</th>
-                <th>自费</th>
-                <th>分类自负</th>
-                <th>自负</th>
+                <th>Loại bệnh nhân</th>
+                <th>Khoa đăng ký khám</th>
+                <th>Bác sĩ</th>
+                <th>Số hóa đơn</th>
+                <th>Ghi sổ</th>
+                <th>Tự chi trả</th>
+                <th>Tự chi trả theo phân loại</th>
+                <th>Tự chi trả</th>
             </tr>
         </thead>
         <tbody>
@@ -93,12 +93,12 @@
 <br />
 <div class="panel panel-default" style="margin-bottom:0;">
     <div class="panel-heading navb-bg">
-        退费
+        Hoàn phí
     </div>
     <div style="padding: 2px;padding-right:20px;">
         <table class="form" style="width:96%;">
             <tr>
-                <td class="formTitle">自负：</td>
+                <td class="formTitle">Tự chi trả：</td>
                 <td class="formValue">
                     <input class="form-control newtouch_Readonly" type="text" id="zifu" value="" />
                 </td>
@@ -115,22 +115,22 @@
     </div>
 </div>
 
-@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
+@Html.Partial("", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 4, 6 },
-    F6Text = "退费"
+    F6Text = ""
 })
 
 <script>
 
     $(function() {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGridchiều rộng của
         $(window).resize(function() {
-            initLayout("tabGrid");
+            initLayout("");
         });
 
-        var txt_keyword = document.getElementById('kh');
-        txt_keyword.addEventListener('keydown',
+        var txt_keyword = document.getElementById('');
+        txt_keyword.addEventListener('',
             function(event) {
                 event = event || window.event;
                 if (event.keyCode === 13) {
@@ -139,18 +139,18 @@
                 }
             });
 
-        //清空
+        //Xóa trống
         newtouch_event_f4();
 
-        $("#brlx").html("<font color='red'>暂无信息</font>");
-        gridListTuifei([]); //退费列表
+        $("").html("");
+        gridListTuifei([]); //Danh sách hoàn phí
 
 
-        //查询
-        $("#BtnQuery").click(function() {
+        //Tra cứu
+        $("").click(function() {
             clearFPYSInfo();
-            if ($("#kh").val() === "") {
-                $.modalAlert("请输入卡号", "warning");
+            if ($("").val() === "") {
+                $.modalAlert("", "");
                 return;
             }
             btnQueryFph();
@@ -160,51 +160,51 @@
 
     var jsnm; //获取从弹出窗口中得到的结算内码
 
-    //清空发票医生信息
+    //Xóa trống thông tin bác sĩ hóa đơn
     function clearFPYSInfo() {
-        $("#brlx").html("<font color='red'>暂无信息</font>");
-        $("#ghks").html("");
-        $("#ys").html("");
-        $("#fph").html("");
-        $("#flzf").html("");
-        $("#zf").html("");
-        $("#jz").html("");
-        $("#zifei").html("");
+        $("").html("");
+        $("").html("");
+        $("").html("");
+        $("").html("");
+        $("").html("");
+        $("").html("");
+        $("").html("");
+        $("").html("");
     }
 
     function btnQueryFph() {
         var obj = new Object;
-        obj.kh = $.trim($("#kh").val());
-        obj.startTime = $.trim($("#ks").val());
-        obj.endTime = $.trim($("#js").val());
+        obj.kh = $.trim($("").val());
+        obj.startTime = $.trim($("").val());
+        obj.endTime = $.trim($("").val());
         GetQueryFphAjax(obj);
     }
 
-    //查询发票
+    //Tra cứu hóa đơn
     function GetQueryFphAjax(obj) {
-        $.loading(true, "正在请求数据..."); 
+        $.loading(true, ""); 
         $.najax({
-            type: "POST",
-            url: "@Url.Action("btnQueryFph")",
+            type: "",
+            url: ""btnQueryFph"",
             data: obj,
-        dataType: "json",
+        dataType: "",
         cache: false,
         success: function (ajaxresp) {
-            localStorage.setItem("fapiaodata", JSON.stringify(ajaxresp.data));
-            $('#gridListFPH').jqGrid("clearGridData");
-            $('#gridListTuifei').jqGrid("clearGridData");
-            //弹出发票列表窗口
+            localStorage.setItem("", JSON.stringify(ajaxresp.data));
+            $('').jqGrid("");
+            $('').jqGrid("");
+            //Bật lên cửa sổ danh sách hóa đơn
             $.modalOpen({
-                id: "QueFPList",
-                title: "门诊退费查询",
-                url: "/OutpatientManage/Refund/QueFpList?r=" + Math.random(),
-                width: "700px",
-                height: "600px",
+                id: "",
+                title: "",
+                url: "" + Math.random(),
+                width: "",
+                height: "",
                 callBack: function (iframeId) {
-                    top.frames[iframeId].PatSearchConfirm(); //在弹出窗口事件
-                    //调用查询发票结算信息
+                    top.frames[iframeId].PatSearchConfirm(); //Trong sự kiện cửa sổ bật lên
+                    //Gọi thông tin quyết toán hóa đơn tra cứu
 
-                }//窗口点确定的回调函数
+                }//Hàm callback xác nhận khi nhấn cửa sổ
             });
             
         },
@@ -220,23 +220,23 @@
 
     function getDetail(jsnm) {
         $.najax({
-            type: "POST",
-            url: "@Url.Action("GetGridViewMxByJsnm")",
+            type: "",
+            url: ""GetGridViewMxByJsnm"",
             data: { jsnm: jsnm },
             cache: false,
-            dataType: "json",
+            dataType: "",
             success: function (ajaxresp) {
-                $('#gridListTuifei').jqGrid("clearGridData");
+                $('').jqGrid("");
                 gridListTuifei(ajaxresp.data);
-                $(".IS_RETURN").click(function () {
-                    var czh = $(this).attr("name");
-                    if (czh != "0") {
-                        var isTrue = $(this).is(':checked');
+                $("").click(function () {
+                    var czh = $(this).attr("");
+                    if (czh != "") {
+                        var isTrue = $(this).is('');
                         if (isTrue) {
-                            $("[name ='" + czh + "' ]:checkbox").prop("checked", "checked");
+                            $("" + czh + "").prop("", "");
 
                         } else {
-                            $("[name ='" + czh + "' ]:checkbox").attr("checked", false);
+                            $("" + czh + "").attr("", false);
                         }
                     }
                 });
@@ -251,60 +251,60 @@
         });
     }
 
-    //退费列表
+    //Danh sách hoàn phí
     function gridListTuifei(mydata) {
-        var $gridList = $("#gridListTuifei");
+        var $gridList = $("");
         $gridList.dataNewGrid({
             height: 180,
             autowidth: false,
-            width: $("#tabGrid").width() - 2,
-            caption: "退费列表",
+            width: $("").width() - 2,
+            caption: "",
             colModel: [
-                    { label: 'id', name: 'id', hidden: true },
-                    { label: 'CF_MXNM', name: 'CF_MXNM', hidden: true },
-                    { label: 'InfoSet', name: 'InfoSet', hidden: true },
-                    { label: 'DL', name: 'DL', hidden: true },
-                    { label: 'czh', name: 'czh', hidden: true },
-                    { label: '处方号', name: 'CHUFANGHAO', width: 150, align: 'left' },
-                    { label: '类型', name: 'DLMC', width: 80, align: 'left' },
-                    { label: 'sfxm', name: 'SFXM', hidden: true },
-                    { label: 'xmnm', name: 'XMNM', hidden: true },
-                    { label: 'zfxz', name: 'ZFXZ', hidden: true },
-                    { label: 'nbdl', name: 'NBDL', hidden: true },
-                    { label: 'ghnm', name: 'GHNM', hidden: true },
-                    { label: '项目名称', name: 'YPMC', width: 150, align: 'left' },
-                    { label: '单位', name: 'DANWEI', width: 80, align: 'left' },
-                    { label: '单价', name: 'DJ', width: 80, align: 'left' },
-                    { label: '自负比例', name: 'ZFBL', width: 80, align: 'left' },
-                    { label: '数量', name: 'SL', width: 80, align: 'left' },
+                    { label: '', name: '', hidden: true },
+                    { label: '', name: '', hidden: true },
+                    { label: '', name: '', hidden: true },
+                    { label: '', name: '', hidden: true },
+                    { label: '', name: '', hidden: true },
+                    { label: '', name: '', width: 150, align: '' },
+                    { label: '', name: '', width: 80, align: '' },
+                    { label: '', name: '', hidden: true },
+                    { label: '', name: '', hidden: true },
+                    { label: '', name: '', hidden: true },
+                    { label: '', name: '', hidden: true },
+                    { label: '', name: '', hidden: true },
+                    { label: '', name: '', width: 150, align: '' },
+                    { label: '', name: '', width: 80, align: '' },
+                    { label: '', name: '', width: 80, align: '' },
+                    { label: '', name: '', width: 80, align: '' },
+                    { label: '', name: '', width: 80, align: '' },
                     {
-                        label: '退数量', name: 'RETURNS_SL', width: 80, align: 'left',
+                        label: '', name: '', width: 80, align: '',
                         formatter: function (cellvalue) {
-                            return "<input name='IS_RETURN' type='text' class='tuishuliang' style='height: 30px; width: 35px;line-height: 30px;' checked value='" +
+                            return "" +
                                 cellvalue +
-                                "' />";
+                                "";
                         }
                     },
-                    { label: '金额', name: 'JE', width: 80, align: 'left' },
+                    { label: '', name: '', width: 80, align: '' },
                     {
-                        label: '退', name: 'IS_RETURN', width: 80, align: 'left', editable: true, edittype: 'checkbox', formatter: function (cellvalue) {
-                            var IS_RETURNAndCzh = cellvalue.split(",");
-                            return IS_RETURNAndCzh[0] == '1' ? "<input name='" + IS_RETURNAndCzh[1] + "' class='IS_RETURN' type='checkbox' checked='checked' value='' />" : "<input name='" + IS_RETURNAndCzh[0] + "' type='checkbox'    value='' />"
+                        label: '', name: '', width: 80, align: '', editable: true, edittype: '', formatter: function (cellvalue) {
+                            var IS_RETURNAndCzh = cellvalue.split("");
+                            return IS_RETURNAndCzh[0] == '' ? "" + IS_RETURNAndCzh[1] + "" : "" + IS_RETURNAndCzh[0] + ""
                         }
                     }
             ]
         }, mydata);
         if (mydata.length > 0) {
-            $('.ui-jqgrid-bdiv').find(".unwritten").remove();
+            $('').find("").remove();
         }
     }
 
-    //退费
+    //Hoàn phí
     function Refund() {
         var flag = true;
-        var tuifei = $("#gridListTuifei").jqGrid('getGridParam', 'data');
-        var IS_RETURN = $("#gridListTuifei").find(".IS_RETURN");
-        var RETURNS_SL = $("#gridListTuifei").find(".tuishuliang");
+        var tuifei = $("").jqGrid('', '');
+        var IS_RETURN = $("").find("");
+        var RETURNS_SL = $("").find("");
 
         var refund = 0;
         var count = 0;
@@ -312,8 +312,8 @@
             RETURNS_SL.each(function () {
                 var tsl = $(this).val();
                 if (tuifei[count].SL < tsl) {
-                    $.modalAlert("退数量不能大于数量！", "error");
-                    $(this).addClass("redBord");
+                    $.modalAlert("", "");
+                    $(this).addClass("");
                     flag = false;
 
                 } else {
@@ -325,7 +325,7 @@
         count = 0;
         if (IS_RETURN.length > 0) {
             IS_RETURN.each(function () {
-                var isTrue = $(this).is(':checked');
+                var isTrue = $(this).is('');
                 if (isTrue) {
                     tuifei[count].IS_RETURN = true;
 
@@ -336,7 +336,7 @@
                 count++;
             });
         } else {
-            $.modalAlert("没有选中的退费项目！", "error");
+            $.modalAlert("", "");
             flag = false;
         }
 
@@ -348,32 +348,32 @@
         }
 
         if (flag) {
-            var kh = $("#kh").val();
+            var kh = $("").val();
             var refundData = JSON.stringify(tuifei).toString();
-            $.modalConfirm("您确定要退费吗？", function (flag) {
+            $.modalConfirm("", function (flag) {
                 if (flag) {
-                    $.loading(true, "正在请求数据...");
+                    $.loading(true, "");
 
                     if (jsnm && kh) {
                         $.najax({
-                            type: "POST",
+                            type: "",
                             async: false,
-                            url: "@Url.Action("btnReturn")",
+                            url: ""btnReturn"",
                             data: { kh: kh, jsnm: jsnm, refundData: refundData },
-                            dataType: "json",
+                            dataType: "",
                             cache: false,
                             success: function (ajaxresp) {
-                                var msg = "退费成功！应退金额为：";
+                                var msg = "";
                                 if (ajaxresp.data) {
-                                    msg = msg + $("#yingtui").val();
+                                    msg = msg + $("").val();
                                 } else {
                                     msg = msg + refund;
                                 }
                                 $.modalAlert(msg, ajaxresp.state);
-                                $("#zifu").val("");
-                                $("#yingtui").val("");
-                                $('#gridListTuifei').jqGrid("clearGridData");
-                                clearFPYSInfo();//清除数据
+                                $("").val("");
+                                $("").val("");
+                                $('').jqGrid("");
+                                clearFPYSInfo();//Xóa dữ liệu
                             },
                             errorCallback: function (err) {
                                 $.loading(false);
@@ -383,7 +383,7 @@
                             }
                         });
                     } else {
-                        $.modalAlert("数据不全，请检查卡号或联系管理员！", "error");
+                        $.modalAlert("", "");
                     }
                 }
             }, false);
@@ -392,21 +392,21 @@
     }
 
 
-    //查询结算记录
+    //Tra cứu bản ghi quyết toán
     function chajilu(jsnm) {
-        $.loading(true, "正在请求数据...");
+        $.loading(true, "");
         $.najax({
-            type: "POST",
-            url: "@Url.Action("GetMZJSByJsnm")",
+            type: "",
+            url: ""GetMZJSByJsnm"",
             data: { jsnm: jsnm },
-            dataType: "json",
+            dataType: "",
             cache: false,
             success: function (ajaxresp) {
-                if (ajaxresp.state === 'success' && ajaxresp.data != null && ajaxresp.data.length>0) {
+                if (ajaxresp.state === '' && ajaxresp.data != null && ajaxresp.data.length>0) {
                     var result = ajaxresp.data[0];
-                    $("#brlx").html(result.BRXZMC);
-                    $("#ghks").html(result.KSMC);
-                    $("#ys").html(result.RYMC);
+                    $("").html(result.BRXZMC);
+                    $("").html(result.KSMC);
+                    $("").html(result.RYMC);
                     getDetail(jsnm);
 
                 }
@@ -420,26 +420,26 @@
         });
     }
 
-    ///加载发票和其他费用信息
+    ///Tải hóa đơn và Thông tin chi phí khác
     function loadFpData(data) {
         jsnm = data.jsnm;
-        $("#fph").html(data.fph);
-        $("#flzf").html(data.flzffy);
-        $("#zf").html(data.zffy);
-        $("#jz").html(data.jzfy);
-        $("#zifei").html(data.zlfy);
-        $("#zifu").val(data.zffy);
-        $("#yingtui").val(data.zje);
+        $("").html(data.fph);
+        $("").html(data.flzffy);
+        $("").html(data.zffy);
+        $("").html(data.jzfy);
+        $("").html(data.zlfy);
+        $("").val(data.zffy);
+        $("").val(data.zje);
         chajilu(data.jsnm);
     }
 
-    //快捷键：清除
+    //Phím tắt：Xóa
     function newtouch_event_f4() {
         clearFPYSInfo();
-        $('#gridListTuifei').jqGrid("clearGridData");
+        $('').jqGrid("");
     }
 
-    //快捷键：F6：退费
+    //Phím tắt：F6：Hoàn phí
     function newtouch_event_f6() {
         Refund();
     }

@@ -35,7 +35,7 @@
 <body>
     <div class="text">
         <img src="@SiteUrl.GetStaticResourceScriptUrl("~/img/error_170503.png")" />
-        <div class="Prompt">程序员开小差了，请联系管理员&nbsp;&nbsp;&nbsp;<a style="cursor:pointer;" title="查看异常详情" onclick="showException(); return false;">异常详情</a></div>
+        <div class="Prompt">程序员开小差了，请联系管理员&nbsp;&nbsp;&nbsp;<a style="cursor:pointer;" title="查看异常详情" onclick="showException(); return false;">Bất thường chi tiết</a></div>
     </div>
 
     <div style="display: none">
@@ -44,9 +44,9 @@
             <h2><strong>页面访问时抛出异常： @Model.Exception.GetType().Name</strong></h2>
             <br />
             <p>
-                在执行 @Model.ControllerName 控制器的 @Model.ActionName 操作的时候抛出该异常。
+                Thực hiện ở @Model.ControllerName 控制器的 @Model.ActionName 操作的时候抛出该异常。
             </p>
-            <p>错误详情:</p>
+            <p>Lỗi chi tiết:</p>
             <p>@Model.Exception.Message</p>
             <div class="ep-info-holder ep-intro closed J_ExpanHolder">
                 <h4>调用堆栈</h4>
@@ -61,48 +61,48 @@
     </div>
 
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
-    @Html.Partial("_FrontReference")
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.js")"></script>
+    @Html.Partial("")
+    <script src=""~/js/bootstrap/bootstrap.js""></script>
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.min.css")" rel="stylesheet" />
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/dialog/dialog.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/cookie/jquery.cookie.js")"></script>
+    <script src=""~/js/dialog/dialog.js""></script>
+    <script src=""~/js/cookie/jquery.cookie.js""></script>
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" id="color-skin" />
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/Newtouch-ui.js")"></script>
+    <script src=""~/js/framework-ui.js""></script>
+    <script src=""~/js/Newtouch-ui.js""></script>
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/skins/_all-skins.css")" rel="stylesheet" />
 
     @if (Model != null && Model.Exception != null)
     {
-        <script type="text/javascript">
+        <script type="">
             function showException() {
                 @*var data = {
-                state: 'error',
-                code: 'code',
-                message: '@(Model.Exception.Message)'
+                state: '',
+                code: '',
+                message: ''
             };
-            data.exStackTrace = $('.ep-info-holder .info').html();
+            data.exStackTrace = $('').html();
             $.xhrSuccessDataExCheckHandle(data);*@
 
-                var exStackTrace = $('.ep-info-holder .info').html();
+                var exStackTrace = $('').html();
                 exStackTrace = $.htmlEncode(exStackTrace);
-                //exStackTrace = exStackTrace.replace('\\r\\n', '<br/>');
+                //exStackTrace = exStackTrace.replace('', '');
                 top.layer.open({
                     type: 1,
-                    title: '异常详情',
-                    area: ['700px', '500px'],
+                    title: '',
+                    area: ['', ''],
                     closeBtn: 1,
                     shadeClose: true,
-                    skin: 'divSysExceptionDetail',
-                    content: '<h3>' + '@(Model.Exception.Message)' + '</h3><div>' + exStackTrace + '</div>'
+                    skin: '',
+                    content: '' + '' + '' + exStackTrace + ''
                 });
             }
         </script>
     }
     else
     {
-        <script type="text/javascript">
+        <script type="">
             function showException() {
-                alert('未知异常');
+                alert('');
             }
         </script>
     }

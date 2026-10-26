@@ -4,36 +4,36 @@
 
 function notSettledRegList() {
     var isJz = false;
-    if ($("#sel_mzlx").val() == 3)
+    if ($("").val() == 3)
     {
-        isJz = true;    //急诊
+        isJz = true;    //Cấp cứu
     }
 
     var isJs = false;  //表示未结算请求
-    var $notSettledRegList = $("#notSettledRegList");
+    var $notSettledRegList = $("");
     $notSettledRegList.dataGrid({
         treeGrid: true,
-        treeGridModel: "adjacency",
-        url: "/OutpatientManage/OutpatientReg/GetSettledFeesList",
+        treeGridModel: "",
+        url: "",
         height: 142,
         colModel: [
-            { label: '序号', name: '', algin: 'left' },
-            { label: '挂号内码', name: 'ghnm', hidden:true, algin: 'left' },
-            { label: '挂号类型', name: 'sfxmmc', algin: 'left' },
-            { label: '病人类型', name: 'brxzmc', algin: 'left' },
-            { label: '大病项目', name: 'dbxmmc', algin: 'left' },
-            { label: '总金额', name: 'zje', algin: 'left' },
-            { label: '是否已作废', name: 'iszf', algin: 'left' }
+            { label: '', name: '', algin: '' },
+            { label: '', name: '', hidden:true, algin: '' },
+            { label: '', name: '', algin: '' },
+            { label: '', name: '', algin: '' },
+            { label: '', name: '', algin: '' },
+            { label: '', name: '', algin: '' },
+            { label: '', name: '', algin: '' }
         ]
     });
 
-    $("#linknotSettledReg").click(function () {
-        //每次点击tab页，调整Grid宽度
-        initLayout("MyTabGrid");
+    $("").click(function () {
+        //Mỗi lần nhấntabTrang，Điều chỉnhGridChiều rộng
+        initLayout("");
 
-        $notSettledRegList.jqGrid('setGridParam', {
-            postData: { kh: $("#txtkh").val(),isJz:isJz,isJs:isJs },
-        }).trigger('reloadGrid');
+        $notSettledRegList.jqGrid('', {
+            postData: { kh: $("").val(),isJz:isJz,isJs:isJs },
+        }).trigger('');
     });
     
 }

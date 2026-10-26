@@ -1,63 +1,63 @@
 ﻿@{
-    ViewBag.Title = "Form";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <script>
-    var keyValue = $.request("keyValue");
+    var keyValue = $.request("");
     $(function () {
         initControl();
-        $('#myTab a:first').tab('show');
+        $('').tab('');
 
-        $("#roleList").treeview({
+        $("").treeview({
             height: 300,
             showcheck: true,
-            url: "/SystemManage/User/GetRoleList?r=" + Math.random(),
+            url: "" + Math.random(),
             param: { userId: keyValue }
         });
 
-        $("#dutyList").treeview({
+        $("").treeview({
             height: 444,
             showcheck: true,
-            url: "/SystemManage/User/GetDutyList?r=" + Math.random(),
+            url: "" + Math.random(),
             param: { userId: keyValue }
         });
 
         $.ajax({
-            url: "/SystemManage/User/GetFormJson?r=" + Math.random(),
+            url: "" + Math.random(),
             data: { keyValue: keyValue },
-            dataType: "json",
+            dataType: "",
             async: false,
             success: function (data) {
-                $("#form1").formSerialize(data);
-                $("#form1").find('.form-control,select,input').attr('readonly', 'readonly');
-                $("#form1").find('div.ckbox label').attr('for', '');
-                $("#F_UserPassword").val("******");
+                $("").formSerialize(data);
+                $("").find('').attr('', '');
+                $("").find('').attr('', '');
+                $("").val("");
             }
         });
     });
     function initControl() {
-        $("#F_Gender").bindSelect()
-        $("#F_IsAdministrator").bindSelect()
-        $("#zt").bindSelect();
-        $("#F_OrganizeId").bindSelect({
-            url: "/SystemManage/Organize/GetTreeSelectJson?r=" + Math.random(),
+        $("").bindSelect()
+        $("").bindSelect()
+        $("").bindSelect();
+        $("").bindSelect({
+            url: "" + Math.random(),
         });
-        $("#F_DepartmentId").bindSelect({
-            url: "/SystemManage/Organize/GetTreeSelectJson?r=" + Math.random(),
+        $("").bindSelect({
+            url: "" + Math.random(),
         });
     }
 </script>
 <form id="form1">
     <div style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
         <ul class="nav nav-tabs" role="tablist" id="myTab">
-            <li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab">基本信息</a></li>
-            <li role="presentation"><a href="#userRole" role="tab" data-toggle="tab">用户角色</a></li>
-            <li role="presentation"><a href="#userDuty" role="tab" data-toggle="tab">用户岗位</a></li>
+            <li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab">Thông tin cơ bản</a></li>
+            <li role="presentation"><a href="#userRole" role="tab" data-toggle="tab">Vai trò người dùng</a></li>
+            <li role="presentation"><a href="#userDuty" role="tab" data-toggle="tab">Vị trí công tác người dùng</a></li>
         </ul><div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" style="padding-top: 20px; margin-right: 30px;" id="basicInfo">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">账户</th>
+                        <th class="formTitle">Tài khoản</th>
                         <td class="formValue">
                             <input id="F_Account" name="F_Account" type="text" class="form-control" />
                         </td>
@@ -67,32 +67,32 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">公司</th>
+                        <th class="formTitle">Công ty</th>
                         <td class="formValue">
                             <select id="F_OrganizeId" name="F_OrganizeId" class="form-control"></select>
                         </td>
-                        <th class="formTitle">部门</th>
+                        <th class="formTitle">Phòng ban</th>
                         <td class="formValue">
                             <select id="F_DepartmentId" name="F_DepartmentId" class="form-control">
-                                <option value="">==请选择==</option>
+                                <option value="">==Vui lòng chọn==</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">姓名</th>
+                        <th class="formTitle">Họ tên</th>
                         <td class="formValue">
                             <input id="F_RealName" name="F_RealName" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">性别</th>
+                        <th class="formTitle">Giới tính</th>
                         <td class="formValue">
                             <select id="F_Gender" name="F_Gender" class="form-control">
-                                <option value="true">男</option>
-                                <option value="false">女</option>
+                                <option value="true">Nam</option>
+                                <option value="false">Nữ</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">手机</th>
+                        <th class="formTitle">Điện thoại di động</th>
                         <td class="formValue">
                             <input id="F_MobilePhone" name="F_MobilePhone" type="text" class="form-control" />
                         </td>
@@ -102,55 +102,55 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">微信</th>
+                        <th class="formTitle">WeChat</th>
                         <td class="formValue">
                             <input id="F_WeChat" name="F_WeChat" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">邮箱</th>
+                        <th class="formTitle">Hộp thư</th>
                         <td class="formValue">
                             <input id="F_Email" name="F_Email" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">类型</th>
+                        <th class="formTitle">Loại</th>
                         <td class="formValue">
                             <select id="F_IsAdministrator" name="F_IsAdministrator" class="form-control">
-                                <option value="false">普通用户</option>
+                                <option value="false">Người dùng thông thường</option>
                                 <option value="true">系统管理员</option>
                             </select>
                         </td>
                         <th class="formTitle">允许登录</th>
                         <td class="formValue">
                             <select id="zt" name="zt" class="form-control">
-                                <option value="1">是</option>
-                                <option value="0">否</option>
+                                <option value="1">Có</option>
+                                <option value="0">Không</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <th class="formTitle" valign="top" style="padding-top: 5px;">
-                            备注
+                            Ghi chú
                         </th>
                         <td class="formValue" colspan="3">
                             <textarea id="F_Description" name="F_Description" class="form-control" style="height: 60px;"></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">创建人员</th>
+                        <th class="formTitle">Người tạo</th>
                         <td class="formValue">
                             <input id="CreatorCode" name="CreatorCode" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">创建时间</th>
+                        <th class="formTitle">Thời gian tạo</th>
                         <td class="formValue">
                             <input id="CreateTime" name="CreateTime" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">修改人员</th>
+                        <th class="formTitle">Người sửa</th>
                         <td class="formValue">
                             <input id="LastModifierCode" name="LastModifierCode" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">修改时间</th>
+                        <th class="formTitle">Thời gian sửa</th>
                         <td class="formValue">
                             <input id="LastModifyTime" name="LastModifyTime" type="text" class="form-control" />
                         </td>

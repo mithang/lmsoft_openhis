@@ -2,69 +2,69 @@
     gridList();
 })
 function gridList() {
-    var $gridList = $("#gridList");
+    var $gridList = $("");
     $gridList.dataGrid({
         treeGrid: true,
-        treeGridModel: "adjacency",
-        url: "/SystemManage/SysMSItemCompared/GetdzGridJson",
+        treeGridModel: "",
+        url: "",
         height: $(window).height() - 96,
         colModel: [
-            { label: "主键", name: "id", hidden: true, key: true },
-            { label: '科室', name: 'ksmc', width: 100, align: 'left' },
-            { label: '收费项目', name: 'sfxmmc', width: 220, align: 'left' },
+            { label: "", name: "", hidden: true, key: true },
+            { label: '', name: '', width: 100, align: '' },
+            { label: '', name: '', width: 220, align: '' },
             {
-                label: '可收费', name: 'ksbz', width: 50, align: 'left',
+                label: '', name: '', width: 50, align: '',
                 formatter: function (cellvalue) {
                     if (cellvalue == 0) {
-                        return "只允许确认不允许收费  "
+                        return ""
                     } else {
-                        return "允许确认和收费"
+                        return ""
                     }
                 }
             },
             {
-                label: '有效', name: 'zt', width: 50, align: 'left',
+                label: '', name: '', width: 50, align: '',
                 formatter: function (cellvalue) {
                     if (cellvalue == 0) {
-                        return "无效"
+                        return ""
                     } else {
-                        return "有效"
+                        return ""
                     }
                 }
             },
-            { label: '建档人员', name: 'jdry', width: 100, align: 'left' },
+            { label: '', name: '', width: 100, align: '' },
             {
-                label: '建档日期', name: 'jdrq', width: 100, align: 'left',
-                formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                label: '', name: '', width: 100, align: '',
+                formatter: "", formatoptions: { srcformat: '', newformat: '' }
             }
         ]
     });
-    $("#btn_search").click(function () {
-        $gridList.jqGrid('setGridParam', {
-            postData: { keyword: $("#txt_keyword").val() },
-        }).trigger('reloadGrid');
+    $("").click(function () {
+        $gridList.jqGrid('', {
+            postData: { keyword: $("").val() },
+        }).trigger('');
     });
 }
 function btn_add() {
     $.modalOpen({
-        id: "Form",
-        title: "系统医技项目对照维护",
-        url: "/SystemManage/SysMSItemCompared/Form",
-        width: "500px",
-        height: "300px",
+        id: "",
+        title: "",
+        url: "",
+        width: "",
+        height: "",
         callBack: function (iframeId) {
             top.frames[iframeId].submitForm();
         }
     });
 }
 function btn_edit() {
-    var keyValue = $("#gridList").jqGridRowValue().id;
+    var keyValue = $("").jqGridRowValue().id;
     $.modalOpen({
-        id: "Form",
-        title: "修改信息",
-        url: "/SystemManage/SysMSItemCompared/Form?keyValue=" + keyValue,
-        width: "500px",
-        height: "300px",
+        id: "",
+        title: "",
+        url: "" + keyValue,
+        width: "",
+        height: "",
         callBack: function (iframeId) {
             top.frames[iframeId].submitForm();
         }
@@ -72,35 +72,35 @@ function btn_edit() {
 }
 function btn_delete() {
     $.deleteForm({
-        url: "/SystemManage/SysMSItemCompared/DeleteForm",
-        param: { keyValue: $("#gridList").jqGridRowValue().id },
+        url: "",
+        param: { keyValue: $("").jqGridRowValue().id },
         success: function () {
-            $.currentWindow().$("#gridList").resetSelection();
-            $.currentWindow().$("#gridList").trigger("reloadGrid");
+            $.currentWindow().$("").resetSelection();
+            $.currentWindow().$("").trigger("");
         }
     })
 }
 function btn_details() {
-    var keyValue = $("#gridList").jqGridRowValue().id;
+    var keyValue = $("").jqGridRowValue().id;
     $.modalOpen({
-        id: "Details",
-        title: "查看机构",
-        url: "/SystemManage/SysMSItemCompared/Form?keyValue=" + keyValue,
-        width: "500px",
-        height: "300px",
+        id: "",
+        title: "",
+        url: "" + keyValue,
+        width: "",
+        height: "",
         btn: null,
     });
 }
 function submitForm() {
-    if (!$('#form1').formValid()) {
+    if (!$('').formValid()) {
         return false;
     }
     $.submitForm({
-        url: "/SystemManage/SysMSItemCompared/SubmitForm?keyValue=" + keyValue,
-        param: $("#form1").formSerialize(),
+        url: "" + keyValue,
+        param: $("").formSerialize(),
         success: function () {
-            $.currentWindow().$("#gridList").resetSelection();
-            $.currentWindow().$("#gridList").trigger("reloadGrid");
+            $.currentWindow().$("").resetSelection();
+            $.currentWindow().$("").trigger("");
             $.loading(false);
         }
     })

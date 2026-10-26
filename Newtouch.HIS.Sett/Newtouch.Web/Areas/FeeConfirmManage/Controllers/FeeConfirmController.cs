@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Web.Areas.FeeConfirmManage.Controllers
     {
         // GET: FeeConfirmManage/FeeConfirm
         /// <summary>
-        /// 收费确认
+        /// Thu phí xác nhận
         /// </summary>
         /// <returns></returns>
         public ActionResult Index()

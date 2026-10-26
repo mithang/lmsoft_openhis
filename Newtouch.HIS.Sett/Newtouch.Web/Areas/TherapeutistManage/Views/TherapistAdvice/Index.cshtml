@@ -1,7 +1,7 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/_Index.cshtml";
-    //var isWithRehabSuggestion = SysConfigReader.Bool("IS_WithRehabSuggestion", false).Value;
+    Layout = "";
+    //var isWithRehabSuggestion = SysConfigReader.Bool("", false).Value;
 }
 <style>
     .dv-lable {
@@ -11,45 +11,45 @@
         width: 60px;
     }
 </style>
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/Content/js/floatingselector.js", false)"></script>
+<script src=""~/Content/js/floatingselector.js""></script>
 <link href="@SiteUrl.GetStaticResourceScriptUrl("~/Content/css/floatingselector.css", false)" rel="stylesheet" />
 <form id="form1" autocomplete="off">
     <div >
         <div class="panel panel-default">
             <div class="panel-heading navb-bg">
-                基本信息
+                Thông tin cơ bản
             </div>
             <table class="form" style="width:96%;">
                 <tbody>
                     <tr>
-                        <th class="formTitle">病人类型：</th>
+                        <th class="formTitle">Loại bệnh nhân：</th>
                         <td class="formValue" style="width:60px;">
                             <select id="kflb" name="kflb" class="form-control">
-                                <option value="2">&nbsp;&nbsp;住院</option>
-                                <option value="1">&nbsp;&nbsp;门诊</option>
+                                <option value="2">&nbsp;&nbsp;Nhập viện</option>
+                                <option value="1">&nbsp;&nbsp;Ngoại trú</option>
                             </select>
                         </td>
-                        <th class="formTitle dv-lable" id="brlxSearch">住院号：</th>
+                        <th class="formTitle dv-lable" id="brlxSearch">Số nhập viện：</th>
                         <td class="formValue" style="width:80px;">
                             <input class="form-control" type="text" id="mzzyh"  value="" />
                         </td> 
                         <td class="formValue" style="z-index:1">
-                            <input type="button" class="btn btn-default btn-md btn-default-color" title="选择住院患者" id="zy_btnsyy" value="查询" onclick="GetPatSerarchView($('#mzzyh').val());">
+                            <input type="button" class="btn btn-default btn-md btn-default-color" title="Chọn bệnh nhân nhập viện" id="zy_btnsyy" value="Tra cứu" onclick="GetPatSerarchView($('#mzzyh').val());">
                             <input hidden="hidden" id="btn_search" />
                         </td>
-                        <th class="formTitle dv-lable">姓名：</th>
+                        <th class="formTitle dv-lable">Họ tên：</th>
                         <td class="formValue" style="width:120px;">
                             <label id="xm" ></label>
                         </td>
-                        <th class="formTitle dv-lable">性别：</th>
+                        <th class="formTitle dv-lable">Giới tính：</th>
                         <td class="formValue">
                             <label id="xb"></label>
                         </td>
-                        <th class="formTitle dv-lable">年龄：</th>
+                        <th class="formTitle dv-lable">Tuổi：</th>
                         <td class="formValue" style="width:30px;">
                             <label id="nlshow"></label>
                         </td>
-                        <th class="formTitle dv-lable">证件号：</th>
+                        <th class="formTitle dv-lable">Số giấy tờ：</th>
                         <td class="formValue" style="width:120px;">
                             <label id="zjh"></label>
                         </td>
@@ -58,19 +58,19 @@
                 <tbody class="dispTbody" style="display:none;">
                     <tr>
                         
-                        <th class="formTitle dv-lable">手机号：</th>
+                        <th class="formTitle dv-lable">Số điện thoại di động：</th>
                         <td class="formValue" colspan="2">
                             <label id="phone"></label>
                         </td>
-                        <th class="formTitle dv-lable">出生日期：</th>
+                        <th class="formTitle dv-lable">Ngày sinh：</th>
                         <td class="formValue" colspan="2">
                             <label id="csny"></label>
                         </td>
-                        <th class="formTitle zy dv-lable">入院日期：</th>
+                        <th class="formTitle zy dv-lable">Ngày nhập viện：</th>
                         <td class="formValue zy " >
                             <label id="ryrq"></label>
                         </td>
-                        <th class="formTitle zy dv-lable">入院诊断：</th>
+                        <th class="formTitle zy dv-lable">Chẩn đoán nhập viện：</th>
                         <td class="formValue zy" colspan="2">
                             <label id="ryzd"></label>
                         </td>
@@ -89,125 +89,125 @@
         <div><table id="gridzljy"></table></div>
         <div id="gridzljyPager"></div>
     </div>
-    @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+    @Html.Partial("", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new int[] { 2, 7, 8 },
-    F2Text = "新增",
-    F7Text = "模板",
-    F8Text = "保存"
+    F2Text = "",
+    F7Text = "",
+    F8Text = ""
 })
 </form>
-<script src="~/Content/js/floatingselector.js"></script>
+<script src=""></script>
 <link href="~/Content/css/floatingselector.css" rel="stylesheet" />
-<script type="text/javascript">
+<script type="">
     var zljyflag = 0;
     var isLoadingIIII = false;  //是否正在从后台加载数据
-    var brlx = 2; //1门诊 2住院
+    var brlx = 2; //1Ngoại trú 2Nhập viện
     var delRowDataIds = [];
     var kflocaldata = "";
     var xmjf = [];
     var brxz = "";
     $(function ()  {
         gridzljy();
-        $("#kflb").change(function () {
-            var options = $("#kflb option:selected");
-            $("#brlxSearch").html(options.text() + "号：");
+        $("").change(function () {
+            var options = $("");
+            $("").html(options.text() + "");
             brlx = options.val();
-            if (brlx=="1") {
-                $(".zy").hide();
+            if (brlx=="") {
+                $("").hide();
                 clearHtmlData();
-                $("#gridzljy").setGridParam().showCol("sl");
-                $("#gridzljy").setGridWidth($(window).height() + 600);
+                $("").setGridParam().showCol("");
+                $("").setGridWidth($(window).height() + 600);
             }
             else {
-                $(".zy").show();
+                $("").show();
                 clearHtmlData();
-                $("#gridzljy").setGridParam().hideCol("sl");
-                $("#gridzljy").setGridWidth($(window).height() + 600);
+                $("").setGridParam().hideCol("");
+                $("").setGridWidth($(window).height() + 600);
             }
             
         });
     })
     function clearHtmlData() {
-        $('#gridzljy').jqGrid("clearGridData");
-        $('#xm').html("");
-        $('#xb').html("");
-        $('#nlshow').html("");
-        $('#zjh').html("");
-        $('#phone').html("");
-        $('#csny').html("");
-        $('#hidblh').val("");
-        $('#hidmzzyh').val("");
-        $('#ryrq').html("");
-        $('#ryzd').html("");
-        $('#mzzyh').val("");
+        $('').jqGrid("");
+        $('').html("");
+        $('').html("");
+        $('').html("");
+        $('').html("");
+        $('').html("");
+        $('').html("");
+        $('').val("");
+        $('').val("");
+        $('').html("");
+        $('').html("");
+        $('').val("");
     }
 
-    //住院病人查询
+    //Nhập viện tra cứu bệnh nhân
     function GetPatSerarchView(mzzyh) {
         if (!!!mzzyh) {
             mzzyh = '';
         }
-        //1门诊  2住院
-        if (brlx=="1") {
+        //1Ngoại trú  2Nhập viện
+        if (brlx=="") {
             $.modalOpen({
-                id: "patSearch",
-                title: "患者查询",
-                url: "/OutpatientManage/OutpatientRefund/SysPatEntitiesReView?jiuzhenbiaozhi=1,2&t=" + Math.random() + "&mzh=" + mzzyh + "&blh=",
-                width: "700px",
-                height: "600px",
+                id: "",
+                title: "",
+                url: "" + Math.random() + "" + mzzyh + "",
+                width: "",
+                height: "",
                 callBack: function (iframeId) {
-                    top.frames[iframeId].PatDbGrid(); //在弹出窗口事件
+                    top.frames[iframeId].PatDbGrid(); //Trong sự kiện cửa sổ bật lên
                 }
             });
         }
         else {
             $.modalOpen({
-                id: "patSearch",
-                title: "患者查询",
-                url: "/PatientManage/AccountManage/PatSearchView?t=" + Math.random() + "&zyh=" + mzzyh + "&brzybzType=1",
-                width: "700px",
-                height: "600px",
+                id: "",
+                title: "",
+                url: "" + Math.random() + "" + mzzyh + "",
+                width: "",
+                height: "",
                 callBack: function (iframeId) {
-                    top.frames[iframeId].PatDbGrid(); //在弹出窗口事件
-                }//窗口点确定的回调函数
+                    top.frames[iframeId].PatDbGrid(); //Trong sự kiện cửa sổ bật lên
+                }//Hàm callback xác nhận khi nhấn cửa sổ
             });
         }
        
     }
     //门诊病人回调
     function GetQueryFphAjax(selePatInfo) {
-        $('#mzzyh').val(selePatInfo.mzh);
+        $('').val(selePatInfo.mzh);
         brxz = selePatInfo.brxz;
         GetPatZLJYAjax(selePatInfo.mzh);
     }
 
-    //住院选择的病人 callback
+    //bệnh nhân nhập viện chọn callback
     function getPatInfoAjax(selePatInfo) {
-        $('#mzzyh').val(selePatInfo.zyh);
+        $('').val(selePatInfo.zyh);
         brxz = selePatInfo.brxz;
         GetPatZLJYAjax(selePatInfo.zyh)
     }
     //根据选择的病人加载病人信息及治疗建议列表
     function GetPatZLJYAjax(mzzyh) {
-        //$.loading(true, "正在请求数据...");
+        //$.loading(true, "");
         $.ajax({
-            type: "POST",
-            url: "@Url.Action("GetPatZLJYInfo")",
+            type: "",
+            url: ""GetPatZLJYInfo"",
             data: { mzzyh: mzzyh, brlx: brlx },
-        dataType: "json",
+        dataType: "",
         cache: true,
         async: true,
         success: function (ajaxresp) {
-            if (ajaxresp.state === 'success') {
-                setPatInfoModel(ajaxresp.data.MzZyPatInfoDto); //个人基本信息赋值
-                $('#gridzljy').jqGrid("clearGridData");
+            if (ajaxresp.state === '') {
+                setPatInfoModel(ajaxresp.data.MzZyPatInfoDto); //Gán thông tin cơ bản cá nhân
+                $('').jqGrid("");
                 $.each(ajaxresp.data.TherapistAdviceDto, function () {
                     this.action = getRehbActionStr();
                 })
-                $("#gridzljy").newtouchLocalDataGrid(null, ajaxresp.data.TherapistAdviceDto);
-            } else if (ajaxresp.state === 'error') {
-                $.modalAlert("查询失败", 'error');
+                $("").newtouchLocalDataGrid(null, ajaxresp.data.TherapistAdviceDto);
+            } else if (ajaxresp.state === '') {
+                $.modalAlert("", '');
             }
         },
         complete: function () {
@@ -216,48 +216,48 @@
     });
     }
 
-    //初始化病人信息
+    //Khởi tạo thông tin bệnh nhân
     function setPatInfoModel(patModel) {
-        $('#xm').html(patModel.xm);
-        $('#xb').html($.getGender(patModel.xb));
-        $("#nlshow").html(getAgeFromBirthTime({ begin: patModel.csny }).text);
-        $('#zjh').html(patModel.zjh);
-        $('#phone').html(patModel.phone);
-        $('#csny').html(patModel.csny ? patModel.csny.substring(0, 10) : '');
-        $('#hidblh').val(patModel.blh);
-        $('#hidmzzyh').val(patModel.mzzyh);
-        $('#ryrq').html(patModel.ryrq ? patModel.ryrq.substring(0, 10) : '');
-        $('#ryzd').html(patModel.ryzd);
+        $('').html(patModel.xm);
+        $('').html($.getGender(patModel.xb));
+        $("").html(getAgeFromBirthTime({ begin: patModel.csny }).text);
+        $('').html(patModel.zjh);
+        $('').html(patModel.phone);
+        $('').html(patModel.csny ? patModel.csny.substring(0, 10) : '');
+        $('').val(patModel.blh);
+        $('').val(patModel.mzzyh);
+        $('').html(patModel.ryrq ? patModel.ryrq.substring(0, 10) : '');
+        $('').html(patModel.ryzd);
     }
    
-    //住院患者信息赋值
+    //Nhập viện gán giá trị thông tin bệnh nhân
     //function ajaxLoadDataResult() {
     //    if (!isLoadingIIII) {
     //        isLoadingIIII = true;
-    //        var mzzyh = $.trim($("#mzzyh").val());
+    //        var mzzyh = $.trim($("").val());
     //        if (mzzyh == '') {
     //            isLoadingIIII = false;
     //            return false;
     //        }
-    //        $('#gridList').jqGrid("clearGridData");
+    //        $('').jqGrid("");
     //        $.najax({
-    //            type: "GET",
-    //            url: "/HospitalizationManage/BookkeepInHos/GetAccountingStatusDetail?zyh=" + mzzyh,
+    //            type: "",
+    //            url: "" + mzzyh,
     //            loading: true,
     //            success: function (ajaxresp) {
     //                var patModel = ajaxresp.data.patInfo;
-    //                $('#xm').html(patModel.xm);
-    //                $('#xb').html($.getGender(patModel.xb));
-    //                $('#nl').html(patModel.nl);
-    //                $('#ryzd').html(patModel.ryzdmc);
-    //                $('#zjh').html(patModel.zjh);
-    //                $('#phone').html(patModel.phone);
-    //                $('#csny').html(patModel.csny ? patModel.csny.substring(0, 10) : '');
-    //                $('#ryrq').html(patModel.ryrq ? patModel.ryrq.substring(0, 10) : '');
-    //                //$('#gridzljy').jqGrid("clearGridData");
+    //                $('').html(patModel.xm);
+    //                $('').html($.getGender(patModel.xb));
+    //                $('').html(patModel.nl);
+    //                $('').html(patModel.ryzdmc);
+    //                $('').html(patModel.zjh);
+    //                $('').html(patModel.phone);
+    //                $('').html(patModel.csny ? patModel.csny.substring(0, 10) : '');
+    //                $('').html(patModel.ryrq ? patModel.ryrq.substring(0, 10) : '');
+    //                //$('').jqGrid("");
     //            },
     //            errorCallback: function (err) {
-    //                $('#mzzyh').trigger('focus');
+    //                $('').trigger('');
     //            }
     //        });
     //    }
@@ -265,80 +265,80 @@
 
     //治疗建议列表
     function gridzljy() {
-        var $gridzljy = $("#gridzljy");
+        var $gridzljy = $("");
         $gridzljy.jqGrid({
-            datatype: 'local',
+            datatype: '',
             data: kflocaldata,
             height: $(window).height() - 230,
             //altRows: true,//隔行换色
-            shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
+            shrinkToFit: true,   //true:按比例初始化列宽度 false:Sử dụngcolModel指定的宽度
             autowidth: true,
             rownumbers: true,  //是否显示序号
             multiselect: true,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "",  //Dữ liệu gửi máy chủ tới không chỉnh sửa dòng
             unwritten: false,
             colModel: [
-                { label: 'jyId', name: 'jyId', width: 120, align: 'center', hidden: true },
+                { label: '', name: '', width: 120, align: '', hidden: true },
                 {
-                    label: 'itemCode', name: 'itemCode', width: 120, editwidth: '100%', align: 'center', editable: true, hidden: true
+                    label: '', name: '', width: 120, editwidth: '', align: '', editable: true, hidden: true
                 },
                 {
-                    label: '<span class="required">*</span>项目名称', name: 'itemName', width: 400, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true, autocomplete: 'off'
+                    label: '', name: '', width: 400, editwidth: '', align: '', editrules: { required: true }, editable: true, autocomplete: ''
                 },
-                { label: '<span class="required">*</span>频次', name: 'pcmc', width: 100, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
-                { label: '<span class="required"></span>部位', name: 'bw', width: 100, editwidth: '100%', align: 'center', editable: true },
-                { label: 'pc', name: 'pc', editwidth: '100%', align: 'center', editable: true, hidden: true },
+                { label: '', name: '', width: 100, editwidth: '', align: '', editrules: { required: true }, editable: true },
+                { label: '', name: '', width: 100, editwidth: '', align: '', editable: true },
+                { label: '', name: '', editwidth: '', align: '', editable: true, hidden: true },
                 {
-                    label: '<span class="required">*</span>每次治疗量', name: 'mczll', width: 100, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true, editrules: { integer: true, minValue: 1 }, editoptions: {
+                    label: '', name: '', width: 100, editwidth: '', align: '', editrules: { required: true }, editable: true, editrules: { integer: true, minValue: 1 }, editoptions: {
                         dataEvents: [
                                 {
-                                    type: 'change',
+                                    type: '',
                                     fn: function (e) {
                                         var cellval = $(this).val();
                                         if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                            $.modalAlert("数量为空，请确认。", 'warning');
+                                            $.modalAlert("", '');
                                             return;
                                         }
                                         if (isNaN(cellval)) {
-                                            $.modalAlert("数量：请填写数字", 'warning');
+                                            $.modalAlert("", '');
                                             $(this).val('')
                                             return;
                                         }
-                                        var row = $(e.target).closest('tr.jqgrow');
-                                        var rowid = row.attr('id');
+                                        var row = $(e.target).closest('');
+                                        var rowid = row.attr('');
                                     }
                                 }
                                 ,
                                 {
-                                    type: 'keyup',
+                                    type: '',
                                     fn: function (e) {
                                         var cellval = $(this).val();
                                         if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                            $.modalAlert("数量为空，请确认。", 'warning');
+                                            $.modalAlert("", '');
                                             return;
                                         }
                                         if (isNaN(cellval)) {
-                                            $.modalAlert("数量：请填写数字", 'warning');
+                                            $.modalAlert("", '');
                                             $(this).val('')
                                             return;
                                         }
-                                        var row = $(e.target).closest('tr.jqgrow');
-                                        var rowid = row.attr('id');
+                                        var row = $(e.target).closest('');
+                                        var rowid = row.attr('');
 
                                     }
                                 }
                         ]
                     }
                 },
-                { label: '<span class="required"></span>数量', name: 'sl', width: 100, editwidth: '100%', align: 'center', editable: true, hidden: true },
-                { label: '<span class="required">*</span>执行科室', name: 'zxksmc', width: 100, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
-                { label: 'zxksdm', name: 'zxksdm', editwidth: '100%', align: 'center', editable: true, hidden: true },
-                { label: '<span class="required"></span>嘱托', name: 'bz', width: 400, editwidth: '100%', align: 'center', editable: true },
-                { label: '操作', name: 'action', width: 100, align: 'center' }
+                { label: '', name: '', width: 100, editwidth: '', align: '', editable: true, hidden: true },
+                { label: '', name: '', width: 100, editwidth: '', align: '', editrules: { required: true }, editable: true },
+                { label: '', name: '', editwidth: '', align: '', editable: true, hidden: true },
+                { label: '', name: '', width: 400, editwidth: '', align: '', editable: true },
+                { label: '', name: '', width: 100, align: '' }
             ],
-            editinputwidthborder: false,    //是否需要边框 默认为true
-            editinputborderradius: false,   //是否需要边框圆角 默认true（有圆角）
-            pager: "#gridzljyPager",
+            editinputwidthborder: false,    //是否需要边框 Mặc định làtrue
+            editinputborderradius: false,   //是否需要边框圆角 Mặc địnhtrue（有圆角）
+            pager: "",
             loadComplete: function () {
                 ////自动触发新治疗建议
                 //if (kflocaldata && kflocaldata.length == 0) {
@@ -352,63 +352,63 @@
 
     }
 
-    //启用行内编辑
+    //Bật chỉnh sửa trong dòng
     function EnableRehabInlineEditBox(){
-        var ids = $("#gridzljy").getDataIDs();
+        var ids = $("").getDataIDs();
         $.each(ids, function () {
             //打开编辑模式
-            $("#gridzljy").jqGrid('editRow', String(this), false, initRehabInlineFunc);
+            $("").jqGrid('', String(this), false, initRehabInlineFunc);
 
             //标识治疗建议颜色
             @*//var cfColor = getCfColor(@Html.Raw(((int)EnumCflx.RehabPres).ToString()),cfh);
-            //$('#gridzljy tr[id="' +  String(this) + '"]').css('border-left-color',cfColor);*@
-            //$('#gridzljy tr[id="' +  String(this) + '"]').css('border-left-style','solid');
-            $('#gridzljy tr[id="' +  String(this) + '"]').css('border-left-width','5px');
+            //$('' +  String(this) + '').css('',cfColor);*@
+            //$('' +  String(this) + '').css('','');
+            $('' +  String(this) + '').css('','');
 
         });
 
     }
-    //初始化 浮层
+    //Khởi tạo Lớp nổi
     function initRehabInlineFunc(rowid) {
         //部分列只读
-        //$("#" + rowid + "_pcmc").attr('readonly','true');
+        //$("" + rowid + "").attr('','');
 
-        //var currlineCfh = $("#gridzljy").getRowData(rowid).cfh;
+        //var currlineCfh = $("").getRowData(rowid).cfh;
       
-        ////项目浮层
-        $("#" + rowid + "_itemName").sfxmFloatingSelector({
+        ////Lớp nổi hạng mục
+        $("" + rowid + "").sfxmFloatingSelector({
             djDecimalPlaces: 4,
-            searchType: "sfxm ",
+            searchType: "",
             leftshift:200,
             ajaxparameters: function ($thisinput) {
-            	return "&mzzybz=" + brlx + "&sfdllx=Rehab&dllb=2&keyword=" + $.trim($thisinput.val());
+            	return "" + brlx + "" + $.trim($thisinput.val());
             },
             itemdbclickhandler: function ($this) {
-                $("#" + rowid + "_itemName").val($this.attr('data-sfxmmc'))
-                $("#" + rowid + "_itemCode").val($this.attr('data-sfxmCode'))
-                $("#" + rowid + "_zxksmc").val($this.attr('data-zxksmc'))
-                $("#" + rowid + "_zxksdm").val($this.attr('data-zxks'))
+                $("" + rowid + "").val($this.attr(''))
+                $("" + rowid + "").val($this.attr(''))
+                $("" + rowid + "").val($this.attr(''))
+                $("" + rowid + "").val($this.attr(''))
             },
         });
-        //频次浮层
-        $("#" + rowid + "_pcmc").pcFloatingSelector({
-            showtext: 'yzpcmc',
-            attrcols: ['yzpcmc', 'yzpcCode'],
+        //Lớp nổi tần suất
+        $("" + rowid + "").pcFloatingSelector({
+            showtext: '',
+            attrcols: ['', ''],
             itemdbclickhandler: function ($this) {
-                $("#" + rowid + "_pcmc").val($this.attr('data-yzpcmc'));
-                $("#" + rowid + "_pc").val($this.attr('data-yzpcCode'));
+                $("" + rowid + "").val($this.attr(''));
+                $("" + rowid + "").val($this.attr(''));
             }
         });
 
         //部位浮层
-        $("#" + rowid + "_bw").bwFloatingSelector({
-            showtext: 'Name',
-            attrcols: ['Name', 'Code'],
+        $("" + rowid + "").bwFloatingSelector({
+            showtext: '',
+            attrcols: ['', ''],
             checkItemActivity: function ($li, $thisinput) {
                 var selected = false;//默认没有选中当前值
                 var selectval = $thisinput.val();
                 if (selectval) {
-                    selectval = selectval.split(',');
+                    selectval = selectval.split('');
                     $.each(selectval, function () {
                         if (this == $li.html()) {
                             selected = true;
@@ -419,35 +419,35 @@
             },
             itemdbclickhandler: function ($this) {
                 var mcval = "";
-                if (typeof ($this) !== "undefined") {
+                if (typeof ($this) !== "") {
                     $.each($this, function () {
-                        mcval += this.attr('data-Name') + ",";
+                        mcval += this.attr('') + "";
 
                     });
                     if (mcval.length > 0) {
                         mcval = mcval.substring(0, mcval.length - 1);
                     };
                 }
-                $("#" + rowid + "_bw").val(mcval);
+                $("" + rowid + "").val(mcval);
             },
         });
-        $("#" + rowid + "_zxksmc").newtouchBatchFloatingSelector({
+        $("" + rowid + "").newtouchBatchFloatingSelector({
             height: 170,
             width: 300,
-            caption: "选择科室",
-            url: '/basedata/GetSfxmZxksSelectJson',
+            caption: "",
+            url: '',
             clickautotrigger: true,
             ajaxparameters: function ($thisinput) {
-                return 'sfxmCode=' + $("#" + rowid + "_itemCode").val();
+                return '' + $("" + rowid + "").val();
             },
             colModel: [
-                { label: '编号', name: 'Code', widthratio: 40 },
-                { label: '名称', name: 'Name', widthratio: 60 },
-                { label: '拼音', name: 'py', hidden: true }
+                { label: '', name: '', widthratio: 40 },
+                { label: '', name: '', widthratio: 60 },
+                { label: '', name: '', hidden: true }
             ],
             itemdbclickhandler: function ($thistr) {
-                $("#" + rowid + "_zxksdm").val($thistr.find("td:eq(0)").html());
-                $("#" + rowid + "_zxksmc").val($thistr.find('td:eq(1)').html());
+                $("" + rowid + "").val($thistr.find("").html());
+                $("" + rowid + "").val($thistr.find('').html());
                 return;
             },
         });
@@ -458,7 +458,7 @@
         var selected = false;//默认没有选中当前值
         var selectval = $thisinput.val();
         if (selectval) {
-            selectval = selectval.split(',');
+            selectval = selectval.split('');
             $.each(selectval, function () {
                 if (this == $li.html()) {
                     selected = true;
@@ -467,50 +467,50 @@
         }
         return selected;
     }
-    //新治疗建议 按钮
+    //新治疗建议 Nút
     function newZljyRowData() {
         var dataRow = {
-            jyId: null, //尚未保存到数据库
+            jyId: null, //Chưa lưu cơ sở dữ liệu đến
             action: getRehbActionStr()
         };
-        $("#gridzljy").jqGrid("addRowData", undefined, dataRow, "last");
+        $("").jqGrid("", undefined, dataRow, "");
     }
 
     function newZljyAfterRowData(selRowId) {
         //获取当前添加的处方号
-        var selRowData = $("#gridzljy").getRowData(selRowId);
+        var selRowData = $("").getRowData(selRowId);
 
         //新加一行
         var dataRow = {
-            jyId: null, //尚未保存到数据库
+            jyId: null, //Chưa lưu cơ sở dữ liệu đến
             action: getRehbActionStr()
         };
-        $("#gridzljy").jqGrid("addRowData", undefined, dataRow, "after", selRowId);
+        $("").jqGrid("", undefined, dataRow, "", selRowId);
     }
 
     function getRehbActionStr() {
-        return "<i class='fa fa-plus-square-o' style='font-size: large; color: #09a3ea;' onclick='newZljyAfterRowData($(this).parent().parent().attr(\"id\"));return false;'></i>&nbsp;&nbsp;&nbsp;<i class='fa fa-minus-square-o' style='font-size: large; color: #09a3ea;' onclick='deleteRehRowData($(this).parent().parent().attr(\"id\"));return false;'></i>";
+        return "";
     }
-    //删除明细
+    //Xóa chi tiết
     function deleteRehRowData(selRowId, recalc) {
         if (!!selRowId) {
-            var rowData = $("#gridzljy").jqGrid('getRowData', selRowId);
+            var rowData = $("").jqGrid('', selRowId);
             if (rowData.jyId != null && rowData.jyId.length > 0) {
                 delRowDataIds.push(rowData.jyId);
             }
-            $("#gridzljy").jqGrid("delRowData", selRowId);
+            $("").jqGrid("", selRowId);
         }
     }
 
-    //选择模板
+    //Chọn mẫu
     function GetTemplate() {
         xmjf = [];
         $.modalOpen({
-            id: "Form",
-            title: "收费项目模板窗口",
-            url: "/HospitalizationManage/BookkeepInHos/ChargeItemTemplate",
-            width: "700px",
-            height: "530px",
+            id: "",
+            title: "",
+            url: "",
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 var data = top.frames[iframeId].submitForm();
                 $.each(data, function () {
@@ -528,91 +528,91 @@
                         bz: "",
                         action: getRehbActionStr()
                     };
-                    xmjf.unshift(newRowData);   //作为新项添加 //”数组最前端“
+                    xmjf.unshift(newRowData);   //Thêm dưới dạng mục mới //”Đầu mảng“
                 });
-                //重新将xm数组呈现至grid
-                //$('#gridzljy').jqGrid("clearGridData");
-                $("#gridzljy").newtouchLocalDataGrid(null, xmjf);
+                //Lại đưaxmMảng hiển thị tớigrid
+                //$('').jqGrid("");
+                $("").newtouchLocalDataGrid(null, xmjf);
             }
         });
     }
 
-    //新增
+    //Thêm mới
     function newtouch_event_f2() {
-        if ($('#hidmzzyh').val() == "" || $('#hidmzzyh').val().length == 0) {
-            $.modalAlert("请先选择患者", 'warning');
+        if ($('').val() == "" || $('').val().length == 0) {
+            $.modalAlert("", '');
             return;
         }
         newZljyRowData();
     }
     function newtouch_event_f7() {
-        if ($('#hidmzzyh').val() == "" || $('#hidmzzyh').val().length == 0) {
-            $.modalAlert("请先选择患者", 'warning');
+        if ($('').val() == "" || $('').val().length == 0) {
+            $.modalAlert("", '');
             return;
         }
         GetTemplate();
     }
-    ////删除
+    ////Xóa
     //function newtouch_event_f6() {
-    //    var selRowIds = $("#gridzljy").jqGrid('getGridParam', 'selarrrow');
+    //    var selRowIds = $("").jqGrid('', '');
     //    if (selRowIds.length == 0) {
-    //        $.modalAlert("请先选中需删除的建议", 'warning');
+    //        $.modalAlert("", '');
     //        return;
     //    }
     //    for (var i = 0; i < selRowIds.length; i++) {
-    //        var rowData = $("#gridzljy").jqGrid('getRowData', selRowIds[i]);
+    //        var rowData = $("").jqGrid('', selRowIds[i]);
     //        if (rowData.jyId != null && rowData.jyId.length>0) {
     //            delRowDataIds.push({ jyId: rowData.jyId });
     //        }
-    //        $("#gridzljy").jqGrid("delRowData", selRowId);
+    //        $("").jqGrid("", selRowId);
     //    }
     //}
-    //保存
+    //Lưu
     function newtouch_event_f8() {
-        if ($('#hidmzzyh').val()=="" || $('#hidmzzyh').val().length==0) {
-            $.modalAlert("请先选择患者", 'warning');
+        if ($('').val()=="" || $('').val().length==0) {
+            $.modalAlert("", '');
             return;
         }
        
-        //获取所有行Id，遍历使编辑框处于保存状态
-        var rowIds = $("#gridzljy").jqGrid('getDataIDs');
+        //Lấy tất cả các dòngId，Duyệt để hộp chỉnh sửa ở trạng thái đã lưu
+        var rowIds = $("").jqGrid('');
         //alert(rowIds.length);
         if (rowIds.length == 0) {
-            $.modalAlert("治疗建议不能为空", 'warning');
+            $.modalAlert("", '');
             return;
         }
         for (var i = 0; i < rowIds.length; i++) {
-            var saveResult = $("#gridzljy").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
+            var saveResult = $("").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
             if (!saveResult) {
-                EnableRehabInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-                return;   //保存失败，则return
+                EnableRehabInlineEditBox();    //Khởi động lại và bật chỉnh sửa Nếu không lần sauSavekhi đó sẽ trả vềfalse
+                return;   //Lưu thất bại，Thìreturn
             }
         }
-        var gridzljyData = $("#gridzljy").jqGrid('getRowData');
-        gridzljyData.push($("#gridzljy").jqGrid('getRowData', rowIds[rowIds.length - 1]));
+        var gridzljyData = $("").jqGrid('');
+        gridzljyData.push($("").jqGrid('', rowIds[rowIds.length - 1]));
         if (!gridzljyData || gridzljyData.length == 0) {
-            EnableRehabInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-            $.modalAlert("治疗建议不能为空", 'warning');
+            EnableRehabInlineEditBox();    //Khởi động lại và bật chỉnh sửa Nếu không lần sauSavekhi đó sẽ trả vềfalse
+            $.modalAlert("", '');
             return;
         }
-        $.each(gridzljyData, function () {    //去掉action
+        $.each(gridzljyData, function () {    //Loại bỏaction
             for (var i = 0; i < $(this).length; i++) {
                 delete $(this)[i].action;
             }
         });
         $.najax({
-            url: "/TherapeutistManage/TherapistAdvice/SaveData",
-            dataType: "json",
-            data: { mxList: gridzljyData, blh: $('#hidblh').val(), delRowIds:JSON.stringify(delRowDataIds), brlx: brlx, mzzyh: $('#hidmzzyh').val() },
-            type: "POST",
+            url: "",
+            dataType: "",
+            data: { mxList: gridzljyData, blh: $('').val(), delRowIds:JSON.stringify(delRowDataIds), brlx: brlx, mzzyh: $('').val() },
+            type: "",
             success: function (data) {
-                $.modalAlert("保存成功", 'warning');
-                GetPatZLJYAjax($('#hidmzzyh').val());
-                window.$('#current').trigger('click');
+                $.modalAlert("", '');
+                GetPatZLJYAjax($('').val());
+                window.$('').trigger('');
             },
             complete: function () {
-                EnableRehabInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
+                EnableRehabInlineEditBox();    //Khởi động lại và bật chỉnh sửa Nếu không lần sauSavekhi đó sẽ trả vềfalse
             }
         });
     }

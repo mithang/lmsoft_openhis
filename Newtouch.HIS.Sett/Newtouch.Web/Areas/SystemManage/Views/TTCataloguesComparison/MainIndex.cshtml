@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 <div class="topPanel">
@@ -9,13 +9,13 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>删除</a>
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
         </div>
     </div>
     <div class="search">
@@ -44,69 +44,69 @@
 
     function gridList()
     {
-        var $gridList = $("#gridList");
+        var $gridList = $("");
         $gridList.dataGrid({
-            postData: { keyword: $("#txt_keyword").val() },
-            url: "/SystemManage/TTCataloguesComparison/GetMainGridJson",
+            postData: { keyword: $("").val() },
+            url: "",
             height: $(window).height() - 128,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: "有效", name: "zt", width: 50, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: '编码', name: 'Code', width: 80, align: 'left' },
-                { label: '第三方编码', name: 'TTCode', width: 100, align: 'left' },
-                { label: '第三方标示', name: 'TTMark', width: 100, align: 'left' },
-                { label: "说明", name: "Description", width: 100, align: 'left' },
-                { label: '排序', name: 'px', width: 40, align: 'left' },
-                { label: '创建人', name: 'CreatorCode', width: 80, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '最后修改', name: 'LastModifierCode', width: 80, align: 'left' },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: "", name: "", hidden: true, key: true },
+                { label: "", name: "", width: 50, align: "", formatter: function (cellvalue) { return cellvalue == "" ? "" : ""; } },
+                { label: '', name: '', width: 80, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: "", name: "", width: 100, align: '' },
+                { label: '', name: '', width: 40, align: '' },
+                { label: '', name: '', width: 80, align: '' },
+                { label: '', name: '', width: 130, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
+                { label: '', name: '', width: 80, align: '' },
+                { label: '', name: '', width: 130, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
             ],
             ondblClickRow: function (rowid) { btn_edit(); }
         });
-        $("#btn_search").click(function () {
-            $("#gridList").jqGrid('setGridParam', {
-                postData: { keyword: $("#txt_keyword").val() },
-            }).trigger('reloadGrid');
+        $("").click(function () {
+            $("").jqGrid('', {
+                postData: { keyword: $("").val() },
+            }).trigger('');
         });
     }
 
     function btn_add() {
         $.modalOpen({
-            id: "Form",
-            title: "新增对照分类",
-            url: "/SystemManage/TTCataloguesComparison/MainFrom",
-            width: "450px",
-            height: "370px",
+            id: "",
+            title: "",
+            url: "",
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function () {
-                    $("#gridList").resetSelection();
-                    $("#gridList").trigger("reloadGrid");
-                    $.currentWindow().$("#gridList").resetSelection();
-                    $.currentWindow().$("#gridList").trigger("reloadGrid");
+                    $("").resetSelection();
+                    $("").trigger("");
+                    $.currentWindow().$("").resetSelection();
+                    $.currentWindow().$("").trigger("");
                 });
             }
         });
     }
 
     function btn_edit() {
-        var keyValue = $("#gridList").jqGridRowValue().Id;
+        var keyValue = $("").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("", '');
             return;
         }
         $.modalOpen({
-            id: "Form",
-            title: "修改对照分类",
-            url: "/SystemManage/TTCataloguesComparison/MainFrom?keyValue=" + keyValue,
-            width: "550px",
-            height: "570px",
+            id: "",
+            title: "",
+            url: "" + keyValue,
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function () {
-                    $("#gridList").resetSelection();
-                    $("#gridList").trigger("reloadGrid");
-                    $.currentWindow().$("#gridList").resetSelection();
-                    $.currentWindow().$("#gridList").trigger("reloadGrid");
+                    $("").resetSelection();
+                    $("").trigger("");
+                    $.currentWindow().$("").resetSelection();
+                    $.currentWindow().$("").trigger("");
 
                 });
 
@@ -116,19 +116,19 @@
 
     function btn_delete()
     {
-        var keyValue = $("#gridList").jqGridRowValue().Id;
+        var keyValue = $("").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("", '');
             return;
         }
         $.deleteForm({
-            url: "/SystemManage/TTCataloguesComparison/MainDeleteForm",
+            url: "",
             param: { keyValue: keyValue },
             success: function () {
-                $("#gridList").resetSelection();
-                $("#gridList").trigger("reloadGrid");
-                $.currentWindow().$("#gridList").resetSelection();
-                $.currentWindow().$("#gridList").trigger("reloadGrid");
+                $("").resetSelection();
+                $("").trigger("");
+                $.currentWindow().$("").resetSelection();
+                $.currentWindow().$("").trigger("");
             }
         });
     }

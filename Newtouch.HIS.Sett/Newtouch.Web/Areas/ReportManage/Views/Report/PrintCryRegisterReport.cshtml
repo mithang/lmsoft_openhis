@@ -1,34 +1,34 @@
 ﻿
 @{
-    ViewBag.Title = "出入院登记单";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <div class="rows">
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">开始日期：</th>
+                <th class="formTitle">Ngày bắt đầu：</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
                 </td>
-                <th class="formTitle">结束日期：</th>
+                <th class="formTitle">Ngày kết thúc：</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
                 </td>
-                <th class="formTitle">类型：</th>
+                <th class="formTitle">Loại：</th>
                 <td class="formValue">
                     <select id="type" name="type" class="form-control form-an">
-                        <option value="">==请选择==</option>
-                        <option value="ry" selected>入院</option>
-                        <option value="cy">出院</option>
+                        <option value="">==Vui lòng chọn==</option>
+                        <option value="ry" selected>Nhập viện</option>
+                        <option value="cy">Xuất viện</option>
                     </select>
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue"></td>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
             </tr>
         </table>
@@ -38,33 +38,33 @@
     <iframe class="ui-layout-center" style="width:100%;" id="iframerightiframerightiframerightttt" name="iframerightiframerightiframerightttt"
             scrolling="auto" allowtransparency="true" frameborder="0"></iframe>
 </div>
-<script type="text/javascript">
-    var reportServerHOST = '@(ViewBag.ReportServerHOST)';
-    var orgId = '@(ViewBag.OrgId)';
-    var thisorgId = '@(ViewBag.OrgId)';
-    var curUsergh = '@(ViewBag.curUsergh)';
+<script type="">
+    var reportServerHOST = '';
+    var orgId = '';
+    var thisorgId = '';
+    var curUsergh = '';
    
-    var uri = '/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f出入院登记表&rs:Command=Render';
+    var uri = '';
 
     $(function () {
         var h = $(window).height() - 55
-        $('#layout iframe').css('height', h);
+        $('').css('', h);
         setTimeout(function () { submit(); }, 100);
     });
     function submit() {
         var url = getUrl();
 
-        var t = $('#type').val();
+        var t = $('').val();
         if (t) {
-            var kssj = $('#kssj').val();
-            var jssj = $('#jssj').val();
-            if (t == "ry") {
-                url += "&rykssj=" + kssj;
-                url += "&ryjssj=" + jssj;
+            var kssj = $('').val();
+            var jssj = $('').val();
+            if (t == "") {
+                url += "" + kssj;
+                url += "" + jssj;
             }
             else {
-                url += "&cykssj=" + kssj;
-                url += "&cyjssj=" + jssj;
+                url += "" + kssj;
+                url += "" + jssj;
             }
         }
 
@@ -72,43 +72,43 @@
         //location.href = url;
         //return;
         console.log(url);
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
-        $("#iframerightiframerightiframerightttt").attr('src', url);
+        setTimeout("", 10);
+        $("").attr('', url);
     }
 
-    $("#iframerightiframerightiframerightttt").load(function () {
+    $("").load(function () {
         $.loading(false);
     });
 
     function getUrl() {
-        if (uri.StartWith('/')) {
+        if (uri.StartWith('')) {
             uri = uri.substr(1);
         }
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
-            if (srcUrl.indexOf('&rc:') == -1) {
-                srcUrl += "&rc:Stylesheet=MyStyleSheetBlankPage";
+            if (srcUrl.indexOf('') == -1) {
+                srcUrl += "";
             }
         }
         if (true) {
-            if (srcUrl.indexOf('&rs:') == -1) {
-                srcUrl += "&rs:";
+            if (srcUrl.indexOf('') == -1) {
+                srcUrl += "";
             }
             else {
-                srcUrl += "&";
+                srcUrl += "";
             }
-            srcUrl += "orgId=";
+            srcUrl += "";
             srcUrl += orgId;
         }
         //if (true) {
-        //    if (srcUrl.indexOf('&rs:') == -1) {
-        //        srcUrl += "&rs:";
+        //    if (srcUrl.indexOf('') == -1) {
+        //        srcUrl += "";
         //    }
         //    else {
-        //        srcUrl += "&";
+        //        srcUrl += "";
         //    }
         //}
         return srcUrl;

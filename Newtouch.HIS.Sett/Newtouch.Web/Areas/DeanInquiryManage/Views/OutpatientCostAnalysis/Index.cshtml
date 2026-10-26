@@ -1,10 +1,10 @@
 ﻿@{
-    ViewBag.Title = "门诊费用分析";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 <head>
     <meta charset="utf-8">
-    <script src="~/Content/js/echarts.min.js"></script>
+    <script src=""></script>
     <style>
         .content {
             height: 49.5%;
@@ -26,20 +26,20 @@
 <div class="panel panel-default">
     <table class="form">
         <tr>
-            <th class="formTitle" id="xzsjtext">类型：</th>
+            <th class="formTitle" id="xzsjtext">Loại：</th>
             <td class="formValue" style="width:150px">
                 <select id="dateType" class="form-control" onchange="updateSjType()">
-                    <option value="1">年</option>
-                    <option value="2">月</option>
-                    <option value="3">日</option>
+                    <option value="1">Năm</option>
+                    <option value="2">Tháng</option>
+                    <option value="3">Ngày</option>
                 </select>
             </td>
-            <th class="formTitle" id="xzsjtext">时间：</th>
+            <th class="formTitle" id="xzsjtext">Thời gian：</th>
             <td class="formValue" style="width:150px">
                 <input id="rSJ" type="text" class="form-control input-wdatepicker" />
             </td>
             <td class="formValue" style="padding-left:20px;">
-                <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
             </td>
         </tr>
     </table>
@@ -71,56 +71,56 @@
 
     var myDate = new Date();
     $(function () {
-        $('#main_div').height($(window).height() - 60);
-        //默认设置时间类型为月
-        $("#dateType").val("2");
-        $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM' })");
-        $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1));
+        $('').height($(window).height() - 60);
+        //Mặc định đặt loại thời gian là tháng
+        $("").val("");
+        $('').attr('', "");
+        $('').val(myDate.getFullYear() + "" + (parseInt(myDate.getMonth()) + 1));
 
         gridJSListData();
         getData();
     });
 
-    //根据年月获取月天数
+    //Lấy số ngày trong tháng theo năm tháng
     function getDaysInMonth(year, month) {
         return new Date(year, month, 0).getDate();
     }
-    //改变时间类型
+    //Thay đổi loại thời gian
     function updateSjType() {
-        $('#rSJ').val("");
-        let dateType = $("#dateType").val();
-        if (dateType == "1") {//年
-            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy' })");
-            $('#rSJ').val(myDate.getFullYear());
+        $('').val("");
+        let dateType = $("").val();
+        if (dateType == "") {//Năm
+            $('').attr('', "");
+            $('').val(myDate.getFullYear());
         }
-        if (dateType == "2") {//月
-            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM' })");
-            $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1));
+        if (dateType == "") {//Tháng
+            $('').attr('', "");
+            $('').val(myDate.getFullYear() + "" + (parseInt(myDate.getMonth()) + 1));
         }
-        if (dateType == "3") {//日
-            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM-dd' })");
-            $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1) + "-" + myDate.getDate());
+        if (dateType == "") {//Ngày
+            $('').attr('', "");
+            $('').val(myDate.getFullYear() + "" + (parseInt(myDate.getMonth()) + 1) + "" + myDate.getDate());
         }
     }
-    //组装请求参数
+    //Lắp ráp tham số yêu cầu
     function getSearchData() {
         let ksrq = '';
         let jsrq = '';
-        let dateType = $("#dateType").val();
-        let nowDate = $("#rSJ").val();
-        if (dateType == "1") {//年
-            ksrq = nowDate + "-" + "01-01 00:00:00";
-            jsrq = nowDate + "-" + "12-31 23:59:59";
+        let dateType = $("").val();
+        let nowDate = $("").val();
+        if (dateType == "") {//Năm
+            ksrq = nowDate + "" + "";
+            jsrq = nowDate + "" + "";
         }
-        if (dateType == "2") {//月
-            let array = nowDate.split("-");
-            ksrq = array[0] + "-" + array[1] + "-01 00:00:00";
+        if (dateType == "") {//Tháng
+            let array = nowDate.split("");
+            ksrq = array[0] + "" + array[1] + "";
             let days = getDaysInMonth(array[0], array[1]);
-            jsrq = array[0] + "-" + array[1] + "-" + days + " 23:59:59";
+            jsrq = array[0] + "" + array[1] + "" + days + "";
         }
-        if (dateType == "3") {//日
-            ksrq = nowDate + " 00:00:00";
-            jsrq = nowDate + " 23:59:59";
+        if (dateType == "") {//Ngày
+            ksrq = nowDate + "";
+            jsrq = nowDate + "";
         }
         return { ksrq: ksrq, jsrq: jsrq, rtype: dateType };
     }
@@ -128,120 +128,120 @@
     function getData()
     {
         $.ajax({
-            type: "Post",
-            url: "/DeanInquiryManage/OutpatientCostAnalysis/GetMzfyflfx_tb",
+            type: "",
+            url: "",
             data: getSearchData(),
-            dataType: "json",
+            dataType: "",
             success: function (ajaxresp) {
-                var Titledata = ['product'];
+                var Titledata = [''];
                 var valuedata = ajaxresp;
                 for (var i = 0; i < ajaxresp.length; i++) {
                     Titledata.push(ajaxresp[i].年份);
                 }
                 setTimeout(function initEcharts1() {
                     var option;
-                    var chartDom = document.getElementById('main1');
+                    var chartDom = document.getElementById('');
                     var myChart = echarts.init(chartDom);
-                    window.addEventListener('resize', function () {
+                    window.addEventListener('', function () {
                         myChart.resize();
                     });
                     option = {
                         legend: {
-                            orient: 'vertical',
-                            bottom: 'bottom'
+                            orient: '',
+                            bottom: ''
                         },
                         tooltip: {
-                            trigger: 'axis',
+                            trigger: '',
                             showContent: false
                         },
                         dataset: {
                             source: [
                                 Titledata,
-                                ['总费用', valuedata[0].总费用, valuedata[1].总费用, valuedata[2].总费用, valuedata[3].总费用, valuedata[4].总费用, valuedata[5].总费用, valuedata[6].总费用],
-                                ['药品费', valuedata[0].药品费, valuedata[1].药品费, valuedata[2].药品费, valuedata[3].药品费, valuedata[4].药品费, valuedata[5].药品费, valuedata[6].药品费],
-                                ['耗材费', valuedata[0].耗材费, valuedata[1].耗材费, valuedata[2].耗材费, valuedata[3].耗材费, valuedata[4].耗材费, valuedata[5].耗材费, valuedata[6].耗材费],
-                                ['检验费', valuedata[0].检验费, valuedata[1].检验费, valuedata[2].检验费, valuedata[3].检验费, valuedata[4].检验费, valuedata[5].检验费, valuedata[6].检验费],
-                                ['检查费', valuedata[0].检查费, valuedata[1].检查费, valuedata[2].检查费, valuedata[3].检查费, valuedata[4].检查费, valuedata[5].检查费, valuedata[6].检查费],
-                                ['资料费', valuedata[0].资料费, valuedata[1].资料费, valuedata[2].资料费, valuedata[3].资料费, valuedata[4].资料费, valuedata[5].资料费, valuedata[6].资料费],
-                                ['其他', valuedata[0].其他, valuedata[1].其他, valuedata[2].其他, valuedata[3].其他, valuedata[4].其他, valuedata[5].其他, valuedata[6].其他]
+                                ['', valuedata[0].总费用, valuedata[1].总费用, valuedata[2].总费用, valuedata[3].总费用, valuedata[4].总费用, valuedata[5].总费用, valuedata[6].总费用],
+                                ['', valuedata[0].药品费, valuedata[1].药品费, valuedata[2].药品费, valuedata[3].药品费, valuedata[4].药品费, valuedata[5].药品费, valuedata[6].药品费],
+                                ['', valuedata[0].耗材费, valuedata[1].耗材费, valuedata[2].耗材费, valuedata[3].耗材费, valuedata[4].耗材费, valuedata[5].耗材费, valuedata[6].耗材费],
+                                ['', valuedata[0].检验费, valuedata[1].检验费, valuedata[2].检验费, valuedata[3].检验费, valuedata[4].检验费, valuedata[5].检验费, valuedata[6].检验费],
+                                ['', valuedata[0].检查费, valuedata[1].检查费, valuedata[2].检查费, valuedata[3].检查费, valuedata[4].检查费, valuedata[5].检查费, valuedata[6].检查费],
+                                ['', valuedata[0].资料费, valuedata[1].资料费, valuedata[2].资料费, valuedata[3].资料费, valuedata[4].资料费, valuedata[5].资料费, valuedata[6].资料费],
+                                ['', valuedata[0].其他, valuedata[1].其他, valuedata[2].其他, valuedata[3].其他, valuedata[4].其他, valuedata[5].其他, valuedata[6].其他]
                             ]
                         },
-                        xAxis: { type: 'category' },
+                        xAxis: { type: '' },
                         yAxis: { gridIndex: 0 },
-                        grid: { top: '55%' },
+                        grid: { top: '' },
                         series: [
                             {
-                                type: 'line',
+                                type: '',
                                 smooth: true,
-                                seriesLayoutBy: 'row',
-                                emphasis: { focus: 'series' }
+                                seriesLayoutBy: '',
+                                emphasis: { focus: '' }
                             },
                             {
-                                type: 'line',
+                                type: '',
                                 smooth: true,
-                                seriesLayoutBy: 'row',
-                                emphasis: { focus: 'series' }
+                                seriesLayoutBy: '',
+                                emphasis: { focus: '' }
                             },
                             {
-                                type: 'line',
+                                type: '',
                                 smooth: true,
-                                seriesLayoutBy: 'row',
-                                emphasis: { focus: 'series' }
+                                seriesLayoutBy: '',
+                                emphasis: { focus: '' }
                             },
                             {
-                                type: 'line',
+                                type: '',
                                 smooth: true,
-                                seriesLayoutBy: 'row',
-                                emphasis: { focus: 'series' }
+                                seriesLayoutBy: '',
+                                emphasis: { focus: '' }
                             },
                             {
-                                type: 'line',
+                                type: '',
                                 smooth: true,
-                                seriesLayoutBy: 'row',
-                                emphasis: { focus: 'series' }
+                                seriesLayoutBy: '',
+                                emphasis: { focus: '' }
                             },
                             {
-                                type: 'line',
+                                type: '',
                                 smooth: true,
-                                seriesLayoutBy: 'row',
-                                emphasis: { focus: 'series' }
+                                seriesLayoutBy: '',
+                                emphasis: { focus: '' }
                             },
                             {
-                                type: 'line',
+                                type: '',
                                 smooth: true,
-                                seriesLayoutBy: 'row',
-                                emphasis: { focus: 'series' }
+                                seriesLayoutBy: '',
+                                emphasis: { focus: '' }
                             },
                             {
-                                type: 'pie',
-                                id: 'pie',
-                                radius: '30%',
-                                center: ['50%', '25%'],
+                                type: '',
+                                id: '',
+                                radius: '',
+                                center: ['', ''],
                                 emphasis: {
-                                    focus: 'self'
+                                    focus: ''
                                 },
                                 label: {
-                                    formatter: "{b}: {@('@')" + ajaxresp[0].年份 + "} ({d}%)"
-                                    //formatter: '{b}:({d}%)'
+                                    formatter: "" + ajaxresp[0].年份 + ""
+                                    //formatter: ''
                                 },
                                 encode: {
-                                    itemName: 'product',
+                                    itemName: '',
                                     value: ajaxresp[0].年份 ,
                                     tooltip: ajaxresp[0].年份
                                 }
                             }
                         ]
                     };
-                    myChart.on('updateAxisPointer', function (event) {
+                    myChart.on('', function (event) {
                         const xAxisInfo = event.axesInfo[0];
                         if (xAxisInfo) {
                             const dimension = xAxisInfo.value + 1;
                             myChart.setOption({
                                 series: {
-                                    id: 'pie',
+                                    id: '',
                                     label: {
-                                        //formatter: '{b}:({d}%)'
-                                        formatter: '{b}: {@("@")[' + dimension + ']} ({d}%)'
+                                        //formatter: ''
+                                        formatter: '' + dimension + ''
                                     },
                                     encode: {
                                         value: dimension,
@@ -257,103 +257,103 @@
         });
         
         $.ajax({
-            type: "Post",
-            url: "/DeanInquiryManage/OutpatientCostAnalysis/GetHzrjfyfx_tb",
+            type: "",
+            url: "",
             data: getSearchData(),
-            dataType: "json",
+            dataType: "",
             success: function (ajaxresp) {
-                var Titledata = ['product'];
+                var Titledata = [''];
                 var valuedata = ajaxresp;
                 for (var i = 0; i < ajaxresp.length; i++) {
                     Titledata.push(ajaxresp[i].年份);
                 }
                 setTimeout(function initEcharts2() {
                     var option;
-                    var chartDom = document.getElementById('main2');
+                    var chartDom = document.getElementById('');
                     var myChart = echarts.init(chartDom);
-                    window.addEventListener('resize', function () {
+                    window.addEventListener('', function () {
                         myChart.resize();
                     });
                     option = {
                         legend: {
-                            orient: 'vertical',
-                            bottom: 'bottom'
+                            orient: '',
+                            bottom: ''
                         },
                         tooltip: {
-                            trigger: 'axis',
+                            trigger: '',
                             showContent: false
                         },
                         dataset: {
                             source: [
                                 Titledata,
-                                ['人均总费用', valuedata[0].总费用, valuedata[1].总费用, valuedata[2].总费用, valuedata[3].总费用, valuedata[4].总费用, valuedata[5].总费用, valuedata[6].总费用],
-                                ['人均药品费', valuedata[0].药品费, valuedata[1].药品费, valuedata[2].药品费, valuedata[3].药品费, valuedata[4].药品费, valuedata[5].药品费, valuedata[6].药品费],
-                                ['人均耗材费', valuedata[0].耗材费, valuedata[1].耗材费, valuedata[2].耗材费, valuedata[3].耗材费, valuedata[4].耗材费, valuedata[5].耗材费, valuedata[6].耗材费],
-                                ['人均检验费', valuedata[0].检验费, valuedata[1].检验费, valuedata[2].检验费, valuedata[3].检验费, valuedata[4].检验费, valuedata[5].检验费, valuedata[6].检验费],
-                                ['人均检查费', valuedata[0].检查费, valuedata[1].检查费, valuedata[2].检查费, valuedata[3].检查费, valuedata[4].检查费, valuedata[5].检查费, valuedata[6].检查费],
-                                ['人均资料费', valuedata[0].资料费, valuedata[1].资料费, valuedata[2].资料费, valuedata[3].资料费, valuedata[4].资料费, valuedata[5].资料费, valuedata[6].资料费],
-                                ['人均其他', valuedata[0].其他, valuedata[1].其他, valuedata[2].其他, valuedata[3].其他, valuedata[4].其他, valuedata[5].其他, valuedata[6].其他]
+                                ['', valuedata[0].总费用, valuedata[1].总费用, valuedata[2].总费用, valuedata[3].总费用, valuedata[4].总费用, valuedata[5].总费用, valuedata[6].总费用],
+                                ['', valuedata[0].药品费, valuedata[1].药品费, valuedata[2].药品费, valuedata[3].药品费, valuedata[4].药品费, valuedata[5].药品费, valuedata[6].药品费],
+                                ['', valuedata[0].耗材费, valuedata[1].耗材费, valuedata[2].耗材费, valuedata[3].耗材费, valuedata[4].耗材费, valuedata[5].耗材费, valuedata[6].耗材费],
+                                ['', valuedata[0].检验费, valuedata[1].检验费, valuedata[2].检验费, valuedata[3].检验费, valuedata[4].检验费, valuedata[5].检验费, valuedata[6].检验费],
+                                ['', valuedata[0].检查费, valuedata[1].检查费, valuedata[2].检查费, valuedata[3].检查费, valuedata[4].检查费, valuedata[5].检查费, valuedata[6].检查费],
+                                ['', valuedata[0].资料费, valuedata[1].资料费, valuedata[2].资料费, valuedata[3].资料费, valuedata[4].资料费, valuedata[5].资料费, valuedata[6].资料费],
+                                ['', valuedata[0].其他, valuedata[1].其他, valuedata[2].其他, valuedata[3].其他, valuedata[4].其他, valuedata[5].其他, valuedata[6].其他]
                             ]
                         },
-                        xAxis: { type: 'category' },
+                        xAxis: { type: '' },
                         yAxis: { gridIndex: 0 },
-                        grid: { top: '55%' },
+                        grid: { top: '' },
                         series: [
                             {
-                                type: 'line',
+                                type: '',
                                 smooth: true,
-                                seriesLayoutBy: 'row',
-                                emphasis: { focus: 'series' }
+                                seriesLayoutBy: '',
+                                emphasis: { focus: '' }
                             },
                             {
-                                type: 'line',
+                                type: '',
                                 smooth: true,
-                                seriesLayoutBy: 'row',
-                                emphasis: { focus: 'series' }
+                                seriesLayoutBy: '',
+                                emphasis: { focus: '' }
                             },
                             {
-                                type: 'line',
+                                type: '',
                                 smooth: true,
-                                seriesLayoutBy: 'row',
-                                emphasis: { focus: 'series' }
+                                seriesLayoutBy: '',
+                                emphasis: { focus: '' }
                             },
                             {
-                                type: 'line',
+                                type: '',
                                 smooth: true,
-                                seriesLayoutBy: 'row',
-                                emphasis: { focus: 'series' }
+                                seriesLayoutBy: '',
+                                emphasis: { focus: '' }
                             },
                             {
-                                type: 'line',
+                                type: '',
                                 smooth: true,
-                                seriesLayoutBy: 'row',
-                                emphasis: { focus: 'series' }
+                                seriesLayoutBy: '',
+                                emphasis: { focus: '' }
                             },
                             {
-                                type: 'line',
+                                type: '',
                                 smooth: true,
-                                seriesLayoutBy: 'row',
-                                emphasis: { focus: 'series' }
+                                seriesLayoutBy: '',
+                                emphasis: { focus: '' }
                             },
                             {
-                                type: 'line',
+                                type: '',
                                 smooth: true,
-                                seriesLayoutBy: 'row',
-                                emphasis: { focus: 'series' }
+                                seriesLayoutBy: '',
+                                emphasis: { focus: '' }
                             },
                             {
-                                type: 'pie',
-                                id: 'pie',
-                                radius: '30%',
-                                center: ['50%', '25%'],
+                                type: '',
+                                id: '',
+                                radius: '',
+                                center: ['', ''],
                                 emphasis: {
-                                    focus: 'self'
+                                    focus: ''
                                 },
                                 label: {
-                                     formatter: "{b}: {@('@')" + ajaxresp[0].nf+"} ({d}%)"
+                                     formatter: "" + ajaxresp[0].nf+""
                                 },
                                 encode: {
-                                    itemName: 'product',
+                                    itemName: '',
                                     value: ajaxresp[0].年份,
                                     tooltip: ajaxresp[0].年份
                                 }
@@ -361,15 +361,15 @@
                         ]
                     };
 
-                    myChart.on('updateAxisPointer', function (event) {
+                    myChart.on('', function (event) {
                         const xAxisInfo = event.axesInfo[0];
                         if (xAxisInfo) {
                             const dimension = xAxisInfo.value + 1;
                             myChart.setOption({
                                 series: {
-                                    id: 'pie',
+                                    id: '',
                                     label: {
-                                        formatter: '{b}: {@("@")[' + dimension + ']} ({d}%)'
+                                        formatter: '' + dimension + ''
                                     },
                                     encode: {
                                         value: dimension,
@@ -387,42 +387,42 @@
     }
     function submit() {
         getData();//banner
-        $("#gridJSListmzfyflfx").jqGrid('setGridParam', {
+        $("").jqGrid('', {
             postData: getSearchData(),
-        }).trigger('reloadGrid');
-        $("#gridJSListhzrjfyfx").jqGrid('setGridParam', {
+        }).trigger('');
+        $("").jqGrid('', {
             postData: getSearchData(),
-        }).trigger('reloadGrid');
+        }).trigger('');
         gridJSListData();
     }
     function gridJSListData() {
-        var gridSort = 'CreateTime asc';
-        var $gridJsList = $("#gridJSListmzfyflfx");
+        var gridSort = '';
+        var $gridJsList = $("");
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 140,
-            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
-            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
-            url: "/DeanInquiryManage/OutpatientCostAnalysis/GetMzfyflfx",
+            autowidth: true,//NếushrinkToFitChotruevà đã thiết lậpwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidththu phóng theo tỷ lệ；
+            shrinkToFit: true, //Nếu đặt làtrue，ThìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            url: "",
             postData: getSearchData(),
             colModel: [
-                { label: '收入分类', name: 'srfl', align: 'left' },
-                { label: '金额', name: 'je', align: 'left' }
+                { label: '', name: '', align: '' },
+                { label: '', name: '', align: '' }
             ],
             sortname: gridSort,
             viewrecords: true
         });
 
-        var gridSort = 'CreateTime asc';
-        var $gridJsList = $("#gridJSListhzrjfyfx");
+        var gridSort = '';
+        var $gridJsList = $("");
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 140,
-            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
-            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
-            url: "/DeanInquiryManage/OutpatientCostAnalysis/GetHzrjfyfx",
+            autowidth: true,//NếushrinkToFitChotruevà đã thiết lậpwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidththu phóng theo tỷ lệ；
+            shrinkToFit: true, //Nếu đặt làtrue，ThìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            url: "",
             postData: getSearchData(),
             colModel: [
-                { label: '人均费用分类', name: 'srfl', align: 'left' },
-                { label: '金额', name: 'je', align: 'left' }
+                { label: '', name: '', align: '' },
+                { label: '', name: '', align: '' }
             ],
             sortname: gridSort,
             viewrecords: true
@@ -431,7 +431,7 @@
     }
 
     function initEcharts() {
-        var myChart1 = echarts.init(document.getElementById('main1'));
+        var myChart1 = echarts.init(document.getElementById(''));
 
         myChart1.setOption(option1);
     };

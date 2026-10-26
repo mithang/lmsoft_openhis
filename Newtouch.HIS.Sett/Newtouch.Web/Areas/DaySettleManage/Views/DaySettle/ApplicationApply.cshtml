@@ -1,7 +1,7 @@
 ﻿
 @{
-	ViewBag.Title = "ApplicationApply";
-	Layout = "~/Views/Shared/_Index.cshtml";
+	ViewBag.Title = "";
+	Layout = "";
 	var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
 }
 
@@ -9,21 +9,21 @@
 	<div class="panel panel-default">
 		<table class="form">
 			<tr>
-				<th class="formTitle" id="thCZRQ">结算日期：</th>
+				<th class="formTitle" id="thCZRQ">Ngày quyết toán：</th>
 				<td class="formValue" colspan="2">
 					<input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:20%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
 					<span style="margin-left:2%;float:left;">—</span>
 					<input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :20%;float:left;margin-left:2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
 
-					<text style="margin-left:2%">是否异地：</text>
+					<text style="margin-left:2%">Có phải nơi khác không：</text>
 					<text></text>
-					<input type="radio" name="sfyd" value="否" checked />
-					<label>本地</label>
-					<input type="radio" name="sfyd" value="是" />
+					<input type="radio" name="sfyd" value="Không" checked />
+					<label>Cục bộ</label>
+					<input type="radio" name="sfyd" value="Có" />
 					<label>异地</label>
-					<input type="button" id="btn_tj" class="btn btn-primary btn-md" style="margin-right:10px;width:40px;" value="统计" />
-					<input type="button" id="btn_sq" class="btn btn-primary btn-md" style="margin-right:10px;width:40px;" value="申请" />
-					@*<input type="button" id="btn_gb" class="btn btn-primary btn-md" style="margin-right:10px;width:80px;" value="申请撤销" />*@
+					<input type="button" id="btn_tj" class="btn btn-primary btn-md" style="margin-right:10px;width:40px;" value="Thống kê" />
+					<input type="button" id="btn_sq" class="btn btn-primary btn-md" style="margin-right:10px;width:40px;" value="Đăng ký" />
+					@*<input type="button" id="btn_gb" class="btn btn-primary btn-md" style="margin-right:10px;width:80px;" value="Đăng ký hủy" />*@
 				</td>
 				<td class="formValue"></td>
 			</tr>
@@ -64,9 +64,9 @@
 
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGridchiều rộng của
         $(window).resize(function () {
-            initLayout("MyTabGrid");
+            initLayout("");
         });
 
         gridJSListData();
@@ -74,57 +74,57 @@
     });
 
     function gridJSListData() {
-        var gridSort = 'CreateTime asc';
-        var $gridJsList = $("#gridJSList");
+        var gridSort = '';
+        var $gridJsList = $("");
         $gridJsList.dataGrid({
             //postData: getSearchPostData(),
             height: 500,
             url: "",
             colModel: [
 				{
-					label: '申请状态', name: 'sqzt', width: 100, align: 'left', formatter: function (val, a, b) {
-						if (val == "1") {
-							return "已申请"
+					label: '', name: '', width: 100, align: '', formatter: function (val, a, b) {
+						if (val == "") {
+							return ""
 						} else {
-							return "未申请"
+							return ""
 						}
 					} },
-				{ label: '清算类别', name: 'qslb', hidden: true, align: 'left' },
-				{ label: '清算类别', name: 'qslbmc', width: 100, align: 'left' },
-                { label: '险种类型', name: 'xzlx', width: 100, align: 'left' },
-                { label: '是否异地', name: 'sfyd', width: 100, align: 'left' },
-				{ label: '开始日期', name: 'ksrq', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-				{ label: '结束日期', name: 'jsrq', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '总费用', name: 'zfy', width: 100, align: 'left' },
-                { label: '基金支付总额', name: 'jjzfze', width: 100, align: 'left' },
-                { label: '个账支付', name: 'gzzf', width: 100, align: 'left' },
-                { label: '医保认可费用总额', name: 'ybrkfyze', width: 100, align: 'left' },
-                { label: '现金支付总额', name: 'xjzfze', width: 100, align: 'left' },
-                { label: '清算人次', name: 'qsrc', width: 100, align: 'left' },
-                { label: '清算年月', name: 'qsny', width: 100, align: 'left' },
-                { label: '门诊申报金额', name: 'mzsbje', width: 100, align: 'left' },
-                { label: '住院申报金额', name: 'zysbje', width: 100, align: 'left' },
-				{ label: '城镇职工基本医疗保险统筹基金', name: 'czzgtcjj', width: 100, align: 'left' },
-				{ label: '城镇职工基本医疗保险个人账户基金', name: 'czzgzhjj', width: 100, align: 'left' },
-				{ label: '公务员医疗补助基金', name: 'gywbzjj', width: 100, align: 'left' },
-				{ label: '大额医疗费用补助基金', name: 'deylbzjj', width: 100, align: 'left' },
-				{ label: '离休人员医疗保障基金', name: 'lxrybzjj', width: 100, align: 'left' },
-				{ label: '一至六级残疾军人医疗补助基金', name: 'cjbzjj', width: 100, align: 'left' },
-				{ label: '企业补充医疗保险基金', name: 'qybzyljj', width: 100, align: 'left' },
-				{ label: '城乡居民基本医疗保险基金', name: 'cxjmjbyljj', width: 100, align: 'left' },
-				{ label: '城乡居民大病医疗保险基金', name: 'cxjmdbyljj', width: 100, align: 'left' },
-				{ label: '医疗救助基金', name: 'yljzjj', width: 100, align: 'left' },
+				{ label: '', name: '', hidden: true, align: '' },
+				{ label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+				{ label: '', name: '', width: 100, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
+				{ label: '', name: '', width: 100, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+                { label: '', name: '', width: 100, align: '' },
+				{ label: '', name: '', width: 100, align: '' },
+				{ label: '', name: '', width: 100, align: '' },
+				{ label: '', name: '', width: 100, align: '' },
+				{ label: '', name: '', width: 100, align: '' },
+				{ label: '', name: '', width: 100, align: '' },
+				{ label: '', name: '', width: 100, align: '' },
+				{ label: '', name: '', width: 100, align: '' },
+				{ label: '', name: '', width: 100, align: '' },
+				{ label: '', name: '', width: 100, align: '' },
+				{ label: '', name: '', width: 100, align: '' },
             ],
-            //pager: "#gridPager",
+            //pager: "",
             //sortname: gridSort,
 			viewrecords: true,
 			footerrow: true,
 			userDataOnFooter: true,
 			loadComplete: function () {
 
-				var gridData = $("#gridJSList").jqGrid('getGridParam', 'data');
+				var gridData = $("").jqGrid('', '');
 
-				$("#gridJSList").jqGrid('footerData', 'set', { name: "count", count: gridData.length });
+				$("").jqGrid('', '', { name: "", count: gridData.length });
 
 			},
             onSelectRow_page: function (rowid) {
@@ -138,33 +138,33 @@
             }
         });
 
-        //查询事件
-        $("#btn_tj").click(function () {
-			$('#gridJSList').jqGrid("clearGridData");//先清空明细
-            $gridJsList.jqGrid('setGridParam', {
-				postData: { ksrq: $("#ksrq").val(), jsrq: $("#jsrq").val(), sfyd: $('input:radio[name="sfyd"]:checked').val() },
-                url: '/MedicalInsuranceLiquidation/LiquidationApplication/GetQssq',
+        //Sự kiện tra cứu
+        $("").click(function () {
+			$('').jqGrid("");//Xóa trống chi tiết trước
+            $gridJsList.jqGrid('', {
+				postData: { ksrq: $("").val(), jsrq: $("").val(), sfyd: $('').val() },
+                url: '',
                 //page: 1,
-            }).trigger('reloadGrid');
+            }).trigger('');
         });
 	}
 
-	$("#btn_sq").click(function () {
+	$("").click(function () {
 
-		var seleRowid = $("#gridJSList").jqGrid("getGridParam", "selrow");
+		var seleRowid = $("").jqGrid("", "");
 		if (!(seleRowid)) {
-			$.modalAlert("请选中一条信息", 'warning');
+			$.modalAlert("", '');
 			return;
 		}
 
-		var rowData = $("#gridJSList").jqGrid('getRowData', seleRowid);
-		var ksrq = $("#ksrq").val();
-		var jsrq = $("#jsrq").val();
+		var rowData = $("").jqGrid('', seleRowid);
+		var ksrq = $("").val();
+		var jsrq = $("").val();
 
 		var predata = {
-			hisId: "0",
-			operatorId: '@(opr.rygh)',
-			operatorName:'@(opr.UserName)',
+			hisId: "",
+			operatorId: '',
+			operatorName:'',
 			clr_type: rowData.qslb,
 			clr_way: "",
 			setlym: rowData.qsny,
@@ -180,19 +180,19 @@
 		};
 
 		$.ajax({
-			type: "POST",
-			url: "http://127.0.0.1:33333/api/YiBao/ReconciliationDetail_3203",
+			type: "",
+			url: "",
 			data: predata,
-			dataType: "json",
+			dataType: "",
 			async: false,
 			success: function (data) {
-				var refinfo = eval('(' + data + ')');
+				var refinfo = eval('' + data + '');
 				console.log(refinfo);
-				if (refinfo.infcode == "0") {
-					$.modalAlert("提交清算成功！", 'warning');
-					$("#btn_tj").click();
+				if (refinfo.infcode == "") {
+					$.modalAlert("", '');
+					$("").click();
 				} else {
-					$.modalAlert(refinfo.err_msg,'warning');
+					$.modalAlert(refinfo.err_msg,'');
 				}
 
 			}

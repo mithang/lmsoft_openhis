@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Index.cshtml";
+    Layout = "";
 
     //是否页面加载时就必须选择Org
     var mediOrgList = ViewBag.MediOrgList as IList<FrameworkBase.MultiOrg.Domain.Entity.SysOrganizeVEntity>;
@@ -14,21 +14,21 @@
     }
 </ul>
 
-<script type="text/javascript">
-    $('li.list-group-item a').click(function () {
-        var orgId = $(this).attr('data-id');
+<script type="">
+    $('').click(function () {
+        var orgId = $(this).attr('');
 
         SwithOrg(orgId);
     });
 
     function SwithOrg(dstnOrgId) {
         $.najax({
-            url: "/Home/SwithOrg",
+            url: "",
             data: { dstnOrgId: dstnOrgId },
-            type: "post",
-            dataType: "json",
+            type: "",
+            dataType: "",
             success: function (data) {
-                cookieRemove(); //必须选择医疗机构
+                cookieRemove(); //Cơ quan y tế chọn phải
 
                 top.top.location.href = top.top.location.href;
             }
@@ -36,15 +36,15 @@
     }
 
     function cookieRemove() {
-        var chooseOrgKey = "CookieKey_ChooseOrg";
-        var appId = '@(Newtouch.Infrastructure.Constants.AppId)';
+        var chooseOrgKey = "";
+        var appId = '';
         if (appId) {
-            chooseOrgKey = appId + "_" + chooseOrgKey;
+            chooseOrgKey = appId + "" + chooseOrgKey;
         }
         var chooseOrgVal = top.$.cookie(chooseOrgKey);
         if (chooseOrgVal != null) {
             //用完立remove
-            top.$.cookie(chooseOrgKey, '', { path: "/", expires: -1 });
+            top.$.cookie(chooseOrgKey, '', { path: "", expires: -1 });
         }
     }
 

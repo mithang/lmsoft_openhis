@@ -1,10 +1,10 @@
 ﻿
 @{
-    ViewBag.Title = "门诊就诊人次人数分析";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/highcharts/highcharts.js")"></script>
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/highcharts/modules/exporting.js")"></script>
+<script src=""~/js/highcharts/highcharts.js""></script>
+<script src=""~/js/highcharts/modules/exporting.js""></script>
 <script>
     $(function () {
         GetOutpatientVisitNum();
@@ -13,10 +13,10 @@
 
     function GetOutpatientVisitNum() {
         var OutpatientList = [];
-        //折线图 获取就诊人数
+        //Biểu đồ đường gấp Lấy số người khám
         $.ajax({
-            url: "/HighchartsManage/Outpatient/GetOutpatientVisitNum?r=" + Math.random(),
-            dataType: "json",
+            url: "" + Math.random(),
+            dataType: "",
             async: false,
             success: function (data) {
                 if (data.data) {
@@ -28,32 +28,32 @@
                 }
             }
         });
-        $('#salarychart').highcharts({
+        $('').highcharts({
             chart: {
-                zoomType: 'x'
+                zoomType: ''
             },
             title: {
-                text: '就诊人数',
+                text: '',
             },
             xAxis: {
-                categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+                categories: ['', '', '', '', '', '', '', '', '', '', '', '']
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: '单位：人'
+                    text: ''
                 },
                 plotLines: [{
                     value: 0,
                     width: 1,
-                    color: '#808080'
+                    color: ''
                 }]
             },
             tooltip: {
-                valueSuffix: '人',
-                headerFormat: "{point.key}:",
-                pointFormat: '<tr><td>{point.y}<td></tr>',
-                footerFormat: '</table>',
+                valueSuffix: '',
+                headerFormat: "",
+                pointFormat: '',
+                footerFormat: '',
             },
             series: [{
                 showInLegend: false,
@@ -67,10 +67,10 @@
 
     function GetOutpatientVisitPerNum() {
         var OutpatientList = [];
-        //折线图 获取就诊人次
+        //Biểu đồ đường gấp Lấy lần người khám bệnh
         $.ajax({
-            url: "/HighchartsManage/Outpatient/GetOutpatientVisitPerNum?r=" + Math.random(),
-            dataType: "json",
+            url: "" + Math.random(),
+            dataType: "",
             async: false,
             success: function (data) {
                 if (data.data) {
@@ -82,32 +82,32 @@
                 }
             }
         });
-        $('#PerNumchart').highcharts({
+        $('').highcharts({
             chart: {
-                zoomType: 'x'
+                zoomType: ''
             },
             title: {
-                text: '就诊人次',
+                text: '',
             },
             xAxis: {
-                categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+                categories: ['', '', '', '', '', '', '', '', '', '', '', '']
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: '单位：人次'
+                    text: ''
                 },
                 plotLines: [{
                     value: 0,
                     width: 1,
-                    color: '#808080'
+                    color: ''
                 }]
             },
             tooltip: {
-                valueSuffix: '人次',
-                headerFormat: "{point.key}:",
-                pointFormat: '<tr><td>{point.y}<td></tr>',
-                footerFormat: '</table>',
+                valueSuffix: '',
+                headerFormat: "",
+                pointFormat: '',
+                footerFormat: '',
             },
             series: [{
                 showInLegend: false,

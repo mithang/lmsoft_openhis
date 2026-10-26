@@ -1,10 +1,10 @@
 ﻿
 @{
-    ViewBag.Title = "入院出院人数对比";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/highcharts/highcharts.js")"></script>
-<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/highcharts/modules/exporting.js")"></script>
+<script src=""~/js/highcharts/highcharts.js""></script>
+<script src=""~/js/highcharts/modules/exporting.js""></script>
 <script>
     $(function () {
         loadChart();
@@ -14,8 +14,8 @@
         var OutpatientList = [];
         var InpatientList = [];
         $.ajax({
-            url: "/HighchartsManage/Inpatient/GetInpatientVisitNum?r=" + Math.random(),
-            dataType: "json",
+            url: "" + Math.random(),
+            dataType: "",
             async: false,
             success: function (data) {
                 if (data.data) {
@@ -29,39 +29,39 @@
                 }
             }
         })
-        $('#salarychart').highcharts({
+        $('').highcharts({
             chart: {
-                type: 'column'
+                type: ''
             },
             title: {
-                text: '入院出院人数对比'
+                text: ''
             },
             xAxis: {
                 categories: [
-                    '一月',
-                    '二月',
-                    '三月',
-                    '四月',
-                    '五月',
-                    '六月',
-                    '七月',
-                    '八月',
-                    '九月',
-                    '十月',
-                    '十一月',
-                    '十二月'
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    ''
                 ]
             },
             yAxis: {
                 title: {
-                    text: '单位 (人)'
+                    text: ''
                 }
             },
             tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y}人</b></td></tr>',
-                footerFormat: '</table>',
+                headerFormat: '',
+                pointFormat: '' +
+                '',
+                footerFormat: '',
                 shared: true,
                 useHTML: true
             },
@@ -72,12 +72,12 @@
                 }
             },
             series: [{
-                name: "新增人数",
+                name: "",
                 data: [
                         OutpatientList[0].num, OutpatientList[1].num, OutpatientList[2].num, OutpatientList[3].num, OutpatientList[4].num, OutpatientList[5].num, OutpatientList[6].num, OutpatientList[7].num, OutpatientList[8].num, OutpatientList[9].num, OutpatientList[10].num, OutpatientList[11].num
                 ]
             }, {
-                name: "出院人数",
+                name: "",
                 data: [
                            InpatientList[0].num, InpatientList[1].num, InpatientList[2].num, InpatientList[3].num, InpatientList[4].num, InpatientList[5].num, InpatientList[6].num, InpatientList[7].num, InpatientList[8].num, InpatientList[9].num, InpatientList[10].num, InpatientList[11].num
                 ]

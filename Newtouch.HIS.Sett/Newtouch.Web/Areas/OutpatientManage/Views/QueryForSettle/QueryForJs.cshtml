@@ -1,8 +1,8 @@
 ﻿@{
-    ViewBag.Title = "查询结算信息";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
-@Html.Partial("_YibaoCommonView")
+@Html.Partial("")
 <style>
     table tr td span {
         font-size:25px;
@@ -13,19 +13,19 @@
     <div style="border-bottom:1px solid rgb(221, 221, 221);">
         <table class="form">
             <tr>
-                <th class="formTitle">查询类型：</th>
+                <th class="formTitle">Tra cứu loại：</th>
                 <td class="formValue">
                     <select id="jslx" class="form-control">
-                        <option value="0">未结算</option>
-                        <option value="1">已结算</option>
+                        <option value="0">Chưa quyết toán</option>
+                        <option value="1">Đã quyết toán</option>
                     </select>
                 </td>
-                <th class="formTitle">社保编号：</th>
+                <th class="formTitle">Số bảo hiểm xã hội：</th>
                 <td class="formValue">
-                    <input id="sbbh" name="sbbh" type="text" class="form-control" placeholder="请输入社保编号" />
+                    <input id="sbbh" name="sbbh" type="text" class="form-control" placeholder="Vui lòng nhập số hiệu bảo hiểm xã hội" />
                 </td>
                 <td>
-                    <input type="button" id="btn_search" class="btn btn-primary form-an" style="width:40%;margin-left:10%;" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-primary form-an" style="width:40%;margin-left:10%;" value="Tra cứu" />
                 </td>
                 <td></td>
                 <td></td>
@@ -35,11 +35,11 @@
     <div id="wjs" style="border-bottom:1px solid rgb(221, 221, 221);margin-top:20px;">
         <table class="table" id="tb1">
             <tr>
-                <th class="formTitle">社保编号</th>
-                <th class="formTitle">医院编码</th>
-                <th class="formTitle">结算号</th>
-                <th class="formTitle">费用性质名称</th>
-                <th class="formTitle">是否自费</th>
+                <th class="formTitle">Số bảo hiểm xã hội</th>
+                <th class="formTitle">Mã bệnh viện</th>
+                <th class="formTitle">Số quyết toán</th>
+                <th class="formTitle">Tên tính chất chi phí</th>
+                <th class="formTitle">Có tự chi trả không</th>
             </tr>
             <tr>                
                 <td><span id="DAC001"></span></td>
@@ -49,10 +49,10 @@
                 <td><span id="DKE164"></span></td>
             </tr>
             <tr>
-                <th class="formTitle">医保性质名称</th>
-                <th class="formTitle">医保类别名称</th> 
-                <th class="formTitle">总费用</th>
-                <th class="formTitle">现金支付</th>
+                <th class="formTitle">Tên tính chất bảo hiểm y tế</th>
+                <th class="formTitle">Tên loại bảo hiểm y tế</th> 
+                <th class="formTitle">Tổng chi phí</th>
+                <th class="formTitle">Thanh toán tiền mặt</th>
                 <th class="formTitle">一般可报费用</th>
             </tr>
             <tr>
@@ -63,11 +63,11 @@
                 <td><span id="YBFY"></span></td>
             </tr>
             <tr>
-                <th class="formTitle">特殊总费用</th>
+                <th class="formTitle">Chi phí tổng đặc biệt</th>
                 <th class="formTitle">特殊自理费用</th>
                 <th class="formTitle">基本帐户支付</th>
                 <th class="formTitle">公补帐户支付</th>
-                <th class="formTitle">结算时间</th>
+                <th class="formTitle">Thời gian quyết toán</th>
             </tr>
             <tr>
                 <td><span id="TSFY"></span></td>
@@ -81,18 +81,18 @@
     <div id="yjs" style="border-bottom:1px solid rgb(221, 221, 221);margin-top:20px;display:none;height:500px;overflow-y:auto">
         <table class="table" id="tb2">
             <tr>
-                <th>社保编号</th>
-                <th>医院编码</th>
-                <th>结算号</th>
-                <th>费用性质</th>
-                <th>是否自费</th>
-                <th>医保性质</th>
-                <th>医保类别</th>
-                <th>结算时间</th>
-                <th>总费用</th>
-                <th>现金支付</th>
+                <th>Số bảo hiểm xã hội</th>
+                <th>Mã bệnh viện</th>
+                <th>Số quyết toán</th>
+                <th>Tính chất chi phí</th>
+                <th>Có tự chi trả không</th>
+                <th>Tính chất bảo hiểm y tế</th>
+                <th>Loại bảo hiểm y tế</th>
+                <th>Thời gian quyết toán</th>
+                <th>Tổng chi phí</th>
+                <th>Thanh toán tiền mặt</th>
                 <th>一般可报费用</th>
-                <th>特殊总费用</th>
+                <th>Chi phí tổng đặc biệt</th>
                 <th>特殊自理费用</th>
                 <th>基本帐户支付</th>
                 <th>公补帐户支付</th>
@@ -100,67 +100,67 @@
         </table>
     </div>
 </div>
-<script type="text/javascript">
-    $("#btn_search").click(function () {  
-        var jslx = $("#jslx").val();//结算类型
-        var sbbh = $("#sbbh").val();//社保编号
+<script type="">
+    $("").click(function () {  
+        var jslx = $("").val();//Loại quyết toán
+        var sbbh = $("").val();//Số bảo hiểm xã hội
         if (sbbh == "") {
-            $.modalAlert("社保编号不能为空", 'warning');
+            $.modalAlert("", '');
             return false;
         }
         $.loading(true);
         setTimeout(function () {
-            if (jslx == "0") {
-                $("#wjs").show()
-                $("#yjs").hide();
+            if (jslx == "") {
+                $("").show()
+                $("").hide();
                 var wjsobj = $.yibao.QUnSettleFee(sbbh);
                 $.loading(false);
                 if (wjsobj && wjsobj.Code == 0) {
-                    $("#DAC001").html(wjsobj.Data.DAC001);
-                    $("#AAZ107").html(wjsobj.Data.AAZ107);
-                    $("#DKE005").html(wjsobj.Data.DKE005);
-                    $("#AKE556_C").html(wjsobj.Data.AKE556_C);
-                    $("#DKE164").html(wjsobj.Data.DKE164);
-                    $("#DKC003_C").html(wjsobj.Data.DKC003_C);
-                    $("#DKC002_C").html(wjsobj.Data.DKC002_C);
-                    $("#AKE293").html(wjsobj.Data.AKE293);
-                    $("#ZFY").html(wjsobj.Data.ZFY);
-                    $("#XJZF").html(wjsobj.Data.XJZF);
-                    $("#YBFY").html(wjsobj.Data.YBFY);
-                    $("#TSFY").html(wjsobj.Data.TSFY);
-                    $("#TSFYZL").html(wjsobj.Data.TSFYZL);
-                    $("#JBZF").html(wjsobj.Data.JBZF);
-                    $("#GBZF").html(wjsobj.Data.GBZF);
+                    $("").html(wjsobj.Data.DAC001);
+                    $("").html(wjsobj.Data.AAZ107);
+                    $("").html(wjsobj.Data.DKE005);
+                    $("").html(wjsobj.Data.AKE556_C);
+                    $("").html(wjsobj.Data.DKE164);
+                    $("").html(wjsobj.Data.DKC003_C);
+                    $("").html(wjsobj.Data.DKC002_C);
+                    $("").html(wjsobj.Data.AKE293);
+                    $("").html(wjsobj.Data.ZFY);
+                    $("").html(wjsobj.Data.XJZF);
+                    $("").html(wjsobj.Data.YBFY);
+                    $("").html(wjsobj.Data.TSFY);
+                    $("").html(wjsobj.Data.TSFYZL);
+                    $("").html(wjsobj.Data.JBZF);
+                    $("").html(wjsobj.Data.GBZF);
                 }
                 else {
-                    $("#DAC001").html("无");
-                    $("#AAZ107").html("无");
-                    $("#DKE005").html("无");
-                    $("#AKE556_C").html("无");
-                    $("#DKE164").html("无");
-                    $("#DKC003_C").html("无");
-                    $("#DKC002_C").html("无");
-                    $("#AKE293").html("无");
-                    $("#ZFY").html("无");
-                    $("#XJZF").html("无");
-                    $("#YBFY").html("无");
-                    $("#TSFY").html("无");
-                    $("#TSFYZL").html("无");
-                    $("#JBZF").html("无");
-                    $("#GBZF").html("无");
+                    $("").html("");
+                    $("").html("");
+                    $("").html("");
+                    $("").html("");
+                    $("").html("");
+                    $("").html("");
+                    $("").html("");
+                    $("").html("");
+                    $("").html("");
+                    $("").html("");
+                    $("").html("");
+                    $("").html("");
+                    $("").html("");
+                    $("").html("");
+                    $("").html("");
                 }
             }
             else {
-                $("#wjs").hide()
-                $("#yjs").show();
-                $("#tb2  tr:not(:first)").empty("");
+                $("").hide()
+                $("").show();
+                $("").empty("");
                 var jsobj = $.yibao.QSettleFee(sbbh);
                 $.loading(false);
                 if (jsobj && jsobj.Code == 0) {
-                    var tb = document.getElementById("tb2");
+                    var tb = document.getElementById("");
                     var td;
                     for (var i = 0; i < jsobj.Data.length; i++) {
-                        var tr = tb.insertRow(i + 1);//添加新行，i就是要添加的位置
+                        var tr = tb.insertRow(i + 1);//Thêm dòng mới，iThì là vị trí của thêm cần
                         td = tr.insertCell();
                         td.innerHTML = jsobj.Data[i].DAC001;
                         td = tr.insertCell();

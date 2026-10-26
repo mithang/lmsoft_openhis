@@ -11,8 +11,8 @@
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.min.css")" rel="stylesheet" />
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" />
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/common.css")" rel="stylesheet" />
-    @Html.Partial("_FrontReference")
-    <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/highcharts/highcharts.js")"></script>
+    @Html.Partial("")
+    <script src=""~/js/highcharts/highcharts.js""></script>
     <style>
         #copyrightcontent {
             height: 30px;
@@ -206,27 +206,27 @@
     <script>
         $(function () {
             LoadChart();
-            $('.menuItem').on('click', window.parent.$.Newtouchtab.addTab);
+            $('').on('', window.parent.$.Newtouchtab.addTab);
         });
 
-        $('#reset').click(function () {
+        $('').click(function () {
             var $this = $(this).val();
-            if ($this == "按周") {
-                $('#personcntchart').css("display", "none");
-                $('#monthcntchart').css("display", "block");
+            if ($this == "") {
+                $('').css("", "");
+                $('').css("", "");
                 LoadMonthChart();
-                $(this).val("按年");
+                $(this).val("");
             } else {
-                $('#personcntchart').css("display", "block");
-                $('#monthcntchart').css("display", "none");
-                $(this).val("按周");
+                $('').css("", "");
+                $('').css("", "");
+                $(this).val("");
             }
         });
 
         function LoadChart() {
             $.ajax({
-                url: "/Home/GetVisitNum?r=" + Math.random(),
-                dataType: "json",
+                url: "" + Math.random(),
+                dataType: "",
                 async: false,
                 success: function (data) {
                     if (data != null && data.data != null
@@ -243,7 +243,7 @@
             //var randomScalingFactor = function () { return Math.round(Math.random() * 100) };
             var OutpatientList = [];
             var InpatientList = [];
-            //折线图 获取就诊人数
+            //Biểu đồ đường gấp Lấy số người khám
             if (data) {
                 OutpatientList = data.OutpatientList;
                 InpatientList = data.InpatientList
@@ -253,39 +253,39 @@
                     InpatientList.push([0]);
                 }
             }
-            $('#personcntchart').highcharts({
+            $('').highcharts({
                 chart: {
-                    zoomType: 'none'
+                    zoomType: ''
                 },
                 title: {
-                    text: '就诊人数/在院人数'
+                    text: ''
                 },
                 xAxis: {
                     categories: [
-                        '一月',
-                        '二月',
-                        '三月',
-                        '四月',
-                        '五月',
-                        '六月',
-                        '七月',
-                        '八月',
-                        '九月',
-                        '十月',
-                        '十一月',
-                        '十二月'
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        ''
                     ]
                 },
                 yAxis: {
                     title: {
-                        text: '单位 (人)'
+                        text: ''
                     }
                 },
                 tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y}人</b></td></tr>',
-                    footerFormat: '</table>',
+                    headerFormat: '',
+                    pointFormat: '' +
+                    '',
+                    footerFormat: '',
                     shared: true,
                     useHTML: true
                 },
@@ -296,14 +296,14 @@
                     }
                 },
                 series: [{
-                    name: "门诊",
-                    color: '#999EFF',
+                    name: "",
+                    color: '',
                     data: [
                             OutpatientList[0].num, OutpatientList[1].num, OutpatientList[2].num, OutpatientList[3].num, OutpatientList[4].num, OutpatientList[5].num, OutpatientList[6].num, OutpatientList[7].num, OutpatientList[8].num, OutpatientList[9].num, OutpatientList[10].num, OutpatientList[11].num
                     ]
                 }, {
-                    name: "住院",
-                    color: '#FFBC75',
+                    name: "",
+                    color: '',
                     data: [
                                InpatientList[0].num, InpatientList[1].num, InpatientList[2].num, InpatientList[3].num, InpatientList[4].num, InpatientList[5].num, InpatientList[6].num, InpatientList[7].num, InpatientList[8].num, InpatientList[9].num, InpatientList[10].num, InpatientList[11].num
                         ]
@@ -313,7 +313,7 @@
 
         function GetLeaveChart(data) {
             //var randomScalingFactor = function () { return Math.round(Math.random() * 100) };
-            //饼状图 获取就诊人数
+            //饼状图 Lấy số người khám
             var outpatientCount = 0;
             var inpatientCount = 0;
             if (data.OutpatientList != null) {
@@ -325,36 +325,36 @@
                 inpatientCount = data.zyrs;
             }
 
-            $('#leavechart').highcharts({
+            $('').highcharts({
                 chart: {
-                    type: 'pie'
+                    type: ''
                 },
-                colors: ['#999EFF', '#FFBC75'],
+                colors: ['', ''],
                 title: {
-                    text: '就诊类别统计'
+                    text: ''
                 },
                 tooltip: {
                     headerFormat: '',
-                    pointFormat: '{point.name}: <b>{point.y}人</b>'
+                    pointFormat: ''
                 },
                 plotOptions: {
                     pie: {
                         allowPointSelect: true,
-                        cursor: 'pointer',
+                        cursor: '',
                         dataLabels: {
                             enabled: true,
-                            format: '<b>{point.name}</b>: {point.y}人',
+                            format: '',
                             style: {
-                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || ''
                             }
                         }
                     }
                 },
                 series: [{
-                    type: 'pie',
+                    type: '',
                     data: [
-                        ['门诊', outpatientCount],
-                        ['住院', inpatientCount]
+                        ['', outpatientCount],
+                        ['', inpatientCount]
                     ]
                 }]
             });
@@ -363,8 +363,8 @@
 
         function LoadMonthChart() {
             $.ajax({
-                url: "/Home/GetWeekNum?r=" + Math.random(),
-                dataType: "json",
+                url: "" + Math.random(),
+                dataType: "",
                 async: false,
                 success: function (data) {
                     if (data != null && data.data != null
@@ -382,13 +382,13 @@
             rtnobj.dataoutpatient = [];
             rtnobj.datainpatient = [];
             $.ajax({
-                url: "/Home/GetLastWeek?r=" + Math.random(),
-                dataType: "json",
+                url: "" + Math.random(),
+                dataType: "",
                 async: false,
                 success: function (lastdata) {
                     if (lastdata != null) {
                         for (var i = 0; i < lastdata.length; i++) {
-                            rtnobj.str.push(lastdata[i].wbegin.substring(5, 10) + "至" + (lastdata[i].wend).substring(5, 10));
+                            rtnobj.str.push(lastdata[i].wbegin.substring(5, 10) + "" + (lastdata[i].wend).substring(5, 10));
                             var isOutpatientPush = false;
                             $.each(data.OutpatientList, function (ii, v) {
                                 if (v.wbegin == lastdata[i].wbegin && v.wend == lastdata[i].wend) {
@@ -412,15 +412,15 @@
         }
 
         function loadmonthcharts(rtnobj) {
-            $('#monthcntchart').highcharts({
+            $('').highcharts({
                 chart: {
-                    zoomType: 'none'
+                    zoomType: ''
                 },
                 title: {
-                    text: '就诊人数/在院人数'
+                    text: ''
                 },
                 subtitle: {
-                    text: new Date().getFullYear() + "年最近10周人数统计",
+                    text: new Date().getFullYear() + "",
                 },
                 xAxis: {
                     categories: rtnobj.str,
@@ -430,14 +430,14 @@
                 },
                 yAxis: {
                     title: {
-                        text: '单位 (人)'
+                        text: ''
                     }
                 },
                 tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                        '<td style="padding:0"><b>{point.y}人</b></td></tr>',
-                    footerFormat: '</table>',
+                    headerFormat: '',
+                    pointFormat: '' +
+                        '',
+                    footerFormat: '',
                     shared: true,
                     useHTML: true
                 },
@@ -448,12 +448,12 @@
                     }
                 },
                 series: [{
-                    name: "门诊",
-                    color: '#999EFF',
+                    name: "",
+                    color: '',
                     data: rtnobj.dataoutpatient
                 }, {
-                    name: "住院",
-                    color: '#FFBC75',
+                    name: "",
+                    color: '',
                     data: rtnobj.datainpatient
                 }
                 ]

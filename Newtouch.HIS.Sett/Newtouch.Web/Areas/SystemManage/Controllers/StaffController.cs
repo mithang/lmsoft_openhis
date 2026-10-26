@@ -8,7 +8,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
-    /// 系统人员 扩展
+    /// Nhân viên hệ thống 扩展
     /// </summary>
     [AutoResolveIgnore]
     public class StaffController : FrameworkBase.MultiOrg.Web.Areas.SystemManage.Controllers.SysStaffController
@@ -22,12 +22,12 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取岗位人员
+        /// Lấy nhân viên vị trí công tác
         /// </summary>
-        /// <param name="orgId">组织机构Id</param>
-        /// <param name="dutyCode">岗位Code</param>
-        /// <param name="ks">科室</param>
-        /// <param name="keyword">关键字 匹配人员名称或工号</param>
+        /// <param name="orgId">Tổ chứcId</param>
+        /// <param name="dutyCode">Vị trí công tácCode</param>
+        /// <param name="ks">Khoa</param>
+        /// <param name="keyword">Từ khóa 匹配人员名称或工号</param>
         /// <returns></returns>
         [HandlerAjaxOnly]
         public ActionResult GetStaffByDutyCode(string orgId, string dutyCode, string ks, string keyword)

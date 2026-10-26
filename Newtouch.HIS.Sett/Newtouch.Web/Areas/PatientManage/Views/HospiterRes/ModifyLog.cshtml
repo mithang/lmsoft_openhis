@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/_Index.cshtml";
+    Layout = "";
 }
 
 <style>
@@ -9,20 +9,20 @@
 <form>
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">关键字：</th>
+                <th class="formTitle">Từ khóa：</th>
                 <td class="formValue">
-                    <input type="text" class="form-control form-an" id="xm" placeholder="姓名/拼音/病历号/证件号" />
+                    <input type="text" class="form-control form-an" id="xm" placeholder="Họ tên/Phiên âm/Số bệnh án/Số giấy tờ" />
                 </td>
-                @*<th class="formTitle">卡号：</th>
+                @*<th class="formTitle">Số thẻ：</th>
         <td class="formValue" width="120">
             <input type="text" class="form-control form-an" id="kh" />
         </td>*@
                 <td class="formTitle">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" value="Tra cứu" />
 
                 </td>
 
@@ -50,32 +50,32 @@
         pageInit();
     });
     function pageInit() {
-        $("#gridList").dataGrid(
+        $("").dataGrid(
             {
-                url: "/PatientManage/HospiterRes/GetModifyLog",
+                url: "",
                 postData: getSearchPostData(),
                 colModel: [
-                    { label: 'Id', name: 'Id', width: 100, align: 'left', hidden: true },
-                    { label: 'patid', name: 'patid', width: 100, align: 'left', hidden: true },
-                    { label: '姓名', name: 'xm', width: 100, align: 'left' },
+                    { label: '', name: '', width: 100, align: '', hidden: true },
+                    { label: '', name: '', width: 100, align: '', hidden: true },
+                    { label: '', name: '', width: 100, align: '' },
                     {
-                        label: '性别', name: 'xb', width: 70, align: 'left',
+                        label: '', name: '', width: 70, align: '',
                         formatter: function (cellvalue) {
                             return $.getGender(cellvalue);
                         }
                     },
-                    { label: '出生年月', name: 'csny', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                    { label: '病历号', name: 'blh', width: 100, align: 'left' },
-                    { label: '联系电话', name: 'phone', width: 120, align: 'left' },
-                    { label: '地址', name: 'xian_dz', width: 150, align: 'left' },
-                    { label: '更新时间', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                    { label: '', name: '', width: 100, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 120, align: '' },
+                    { label: '', name: '', width: 150, align: '' },
+                    { label: '', name: '', width: 100, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
                 ],
                 rowNum: 15,
                 rowList: [10, 20, 30],
-                pager: '#gridPager',
-                sortname: 'CreateTime desc',
+                pager: '',
+                sortname: '',
                 viewrecords: true,
-                sortorder: "desc",
+                sortorder: "",
                 height: $(window).height() - 175,
                 ondblClickRow: function (rowid) {
                     XiangQin(rowid);
@@ -85,29 +85,29 @@
     }
 
     function XiangQin(rowData) {
-        var rowData = $('#gridList').jqGrid('getRowData', rowData);
+        var rowData = $('').jqGrid('', rowData);
         $.modalOpen({
-            id: "LogDetailsView",
-            title: "日志详情",
-            url: "/PatientManage/HospiterRes/LogDetailsView?Id=" + rowData.Id,
-            width: "500px",
-            height: "530px",
+            id: "",
+            title: "",
+            url: "" + rowData.Id,
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 top.frames[iframeId].$.modalClose();
             }
         });
         
     }
-    $("#btn_search").click(function () {
-        $("#gridList").jqGrid('setGridParam', {
+    $("").click(function () {
+        $("").jqGrid('', {
             postData: getSearchPostData(),
             page: 1,
-        }).trigger('reloadGrid');
+        }).trigger('');
 
     });
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
-        var xm = $("#xm").val();
+        var xm = $("").val();
         return { xm: xm };
 
     }

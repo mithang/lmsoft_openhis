@@ -1,18 +1,18 @@
 ﻿@{
     ViewBag.Title = "";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    Layout = "";
 }
 
 <div class="rows">
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">开始日期：</th>
+                <th class="formTitle">Ngày bắt đầu：</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
                 </td>
-                <th class="formTitle">结束日期：</th>
+                <th class="formTitle">Ngày kết thúc：</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
@@ -20,19 +20,19 @@
                 <th class="formTitle">项目分类：</th>
                 <td class="formValue">
                     <select id="xmfl" class="form-control">
-                        <option value="">==全部==</option>
+                        <option value="">==Tất cả==</option>
                     </select>
                 </td>
-                <th class="formTitle">结算类型：</th>
+                <th class="formTitle">Loại quyết toán：</th>
                 <td class="formValue">
                     <select id="jslx" class="form-control">
-                        <option value="0">==全部==</option>
-                        <option value="1">门诊</option>
-                        <option value="2">住院</option>
+                        <option value="0">==Tất cả==</option>
+                        <option value="1">Ngoại trú</option>
+                        <option value="2">Nhập viện</option>
                     </select>
                 </td>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
                 <td class="formValue"></td>
             </tr>
@@ -45,97 +45,97 @@
             scrolling="auto" allowtransparency="true" frameborder="0"></iframe>
 </div>
 
-<script type="text/javascript">
-    var reportServerHOST = '@(ViewBag.ReportServerHOST)';
-    var orgId = '@(ViewBag.OrgId)';
-    var isHospAdministrator = '@(ViewBag.IsHospAdministrator)';
-    var curUserCode = '@(ViewBag.CurUserCode)';
+<script type="">
+    var reportServerHOST = '';
+    var orgId = '';
+    var isHospAdministrator = '';
+    var curUserCode = '';
 
-    var uri = 'ReportServer/Pages/ReportViewer.aspx?%2FHIS.Report.1%2F%E5%B7%B2%E7%BB%93%E9%A1%B9%E7%9B%AE%E5%88%86%E7%B1%BB%E7%BB%9F%E8%AE%A1%E8%A1%A8&rs:Command=Render';
+    var uri = '';
 
 
     function submit() {
 
-        if ($('#kssj').val().length == 0) {
-            $.modalAlert("缺少开始时间", "error");
+        if ($('').val().length == 0) {
+            $.modalAlert("", "");
             return;
         }
-        if ($('#jssj').val().length == 0) {
-            $.modalAlert("缺少结束时间", "error");
+        if ($('').val().length == 0) {
+            $.modalAlert("", "");
             return;
         }
-        if ($('#kssj').val() > $('#jssj').val()) {
-            $.modalAlert("开始时间不能大于结束时间", "error");
+        if ($('').val() > $('').val()) {
+            $.modalAlert("", "");
             return;
         }
         var url = getUrl();
 
-        url += "&kssj=" + $('#kssj').val();
-        url += "&jssj=" + $.getDate({ date: $('#jssj').val() }) + ' 23:59:59';
-        url += "&xmfl=" + $('#xmfl').val();
-        url += "&jslx=" + $('#jslx').val();
+        url += "" + $('').val();
+        url += "" + $.getDate({ date: $('').val() }) + '';
+        url += "" + $('').val();
+        url += "" + $('').val();
 
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
-        $("#iframerightiframerightiframerightttt").attr('src', url);
+        setTimeout("", 10);
+        $("").attr('', url);
     }
 
-    $("#iframerightiframerightiframerightttt").load(function () {
+    $("").load(function () {
         $.loading(false);
     });
 
     $(function () {
         var h = $(window).height() - 55
-        $('#layout iframe').css('height', h);
+        $('').css('', h);
         init();
 
         setTimeout(function () { submit(); }, 100);
     });
 
     function getUrl() {
-        if (uri.StartWith('/')) {
+        if (uri.StartWith('')) {
             uri = uri.substr(1);
         }
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
-            if (srcUrl.indexOf('&rc:') == -1) {
-                srcUrl += "&rc:Stylesheet=MyStyleSheet";
+            if (srcUrl.indexOf('') == -1) {
+                srcUrl += "";
             }
         }
         if (true) {
-            if (srcUrl.indexOf('&rs:') == -1) {
-                srcUrl += "&rs:";
+            if (srcUrl.indexOf('') == -1) {
+                srcUrl += "";
             }
             else {
-                srcUrl += "&";
+                srcUrl += "";
             }
-            srcUrl += "orgId=";
+            srcUrl += "";
             srcUrl += orgId;
         }
         return srcUrl;
     }
 
 </script>
-<script type="text/javascript">
+<script type="">
     function init() {
 
-        $('#jslx').bindSelect();
+        $('').bindSelect();
 
-        $('#jslx').change(function () {
+        $('').change(function () {
             submit();
         });
 
-        $("#xmfl").bindSelect({
-            id: "dlCode",
-            text: "dlmc",
-            url: "/Com/GetChargetItemClassificationList",
+        $("").bindSelect({
+            id: "",
+            text: "",
+            url: "",
             dropdownAutoWidth: true,
             minimumResultsForSearch: 1,
         });
 
-        $('#xmfl').change(function () {
+        $('').change(function () {
             submit();
         });
     }

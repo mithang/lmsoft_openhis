@@ -1,57 +1,57 @@
 ﻿@{
     ViewBag.Title = "";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    Layout = "";
 }
 
 <div class="rows">
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">开始日期：</th>
+                <th class="formTitle">Ngày bắt đầu：</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
                 </td>
-                <th class="formTitle">结束日期：</th>
+                <th class="formTitle">Ngày kết thúc：</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
                 </td>
-                <th class="formTitle">科室：</th>
+                <th class="formTitle">Khoa：</th>
                 <td class="formValue">
                     <select id="depa" class="form-control">
-                        <option value="">全部</option>
+                        <option value="">Tất cả</option>
                     </select>
                 </td>
-                <th class="formTitle">病人性质：</th>
+                <th class="formTitle">Tính chất bệnh nhân：</th>
                 <td class="formValue">
                     <input type="text" id="brxzmc" name="brxzmc" class="form-control form-an">
                 </td>
                 <td class="formValue"></td>
             </tr>
             <tr>
-                <th class="formTitle">操作员：</th>
+                <th class="formTitle">Nhân viên thao tác：</th>
                 <td class="formValue">
                     <div class="row">
                         <div class="col-md-9">
                             <input type="text" class="form-control" id="txtsyy" value="" />
                         </div>
                         <div class="col-md-3" style="text-align:right;">
-                            <input type="button" class="btn btn-default btn-md" style="width:45px" id="btnsyy" value="查询" />
+                            <input type="button" class="btn btn-default btn-md" style="width:45px" id="btnsyy" value="Tra cứu" />
                         </div>
                     </div>
                 </td>
-                <th class="formTitle">结算类型：</th>
+                <th class="formTitle">Loại quyết toán：</th>
                 <td class="formValue">
                     <select id="jslx" class="form-control">
-                        <option value="0">==全部==</option>
-                        <option value="1">门诊</option>
-                        <option value="2">住院</option>
+                        <option value="0">==Tất cả==</option>
+                        <option value="1">Ngoại trú</option>
+                        <option value="2">Nhập viện</option>
                     </select>
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
             </tr>
         </table>
@@ -63,129 +63,129 @@
             scrolling="auto" allowtransparency="true" frameborder="0"></iframe>
 </div>
 
-<script type="text/javascript">
-    var reportServerHOST = '@(ViewBag.ReportServerHOST)';
-    var orgId = '@(ViewBag.OrgId)';
-    var isHospAdministrator = '@(ViewBag.IsHospAdministrator)';
-    var curUserCode = '@(ViewBag.CurUserCode)';
+<script type="">
+    var reportServerHOST = '';
+    var orgId = '';
+    var isHospAdministrator = '';
+    var curUserCode = '';
 
-    var uri = 'ReportServer/Pages/ReportViewer.aspx?%2FHIS.Report.1%2F%E7%A7%91%E5%AE%A4%E8%B4%A2%E5%8A%A1%E6%A0%B8%E7%AE%97%E6%B1%87%E6%80%BB%E8%A1%A8&rs:Command=Render';
+    var uri = '';
 
 
     function submit() {
 
-        if ($('#kssj').val().length == 0) {
-            $.modalAlert("缺少开始时间", "error");
+        if ($('').val().length == 0) {
+            $.modalAlert("", "");
             return;
         }
-        if ($('#jssj').val().length == 0) {
-            $.modalAlert("缺少结束时间", "error");
+        if ($('').val().length == 0) {
+            $.modalAlert("", "");
             return;
         }
-        if ($('#kssj').val() > $('#jssj').val()) {
-            $.modalAlert("开始时间不能大于结束时间", "error");
+        if ($('').val() > $('').val()) {
+            $.modalAlert("", "");
             return;
         }
         var url = getUrl();
 
-        url += "&kssj=" + $('#kssj').val();
-        url += "&jssj=" + $.getDate({ date: $('#jssj').val() }) + ' 23:59:59';
-        url += "&dept=" + $('#depa').val();
-        url += "&czy=" + $("#txtsyy").val();
-        url += "&jslx=" + $('#jslx').val();
+        url += "" + $('').val();
+        url += "" + $.getDate({ date: $('').val() }) + '';
+        url += "" + $('').val();
+        url += "" + $("").val();
+        url += "" + $('').val();
         var brxz = '';
-        if ($('#brxzmc').attr('data-brxzmc') == $('#brxzmc').val()) {
-            brxz = $('#brxzmc').attr('data-brxz');
+        if ($('').attr('') == $('').val()) {
+            brxz = $('').attr('');
         }
-        url += "&brxz=" + brxz;
+        url += "" + brxz;
 
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
-        $("#iframerightiframerightiframerightttt").attr('src', url);
+        setTimeout("", 10);
+        $("").attr('', url);
     }
 
-    $("#iframerightiframerightiframerightttt").load(function () {
+    $("").load(function () {
         $.loading(false);
     });
 
     $(function () {
         var h = $(window).height() - 55
-        $('#layout iframe').css('height', h);
+        $('').css('', h);
         init();
 
         setTimeout(function () { submit(); }, 100);
     });
 
     function getUrl() {
-        if (uri.StartWith('/')) {
+        if (uri.StartWith('')) {
             uri = uri.substr(1);
         }
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
-            if (srcUrl.indexOf('&rc:') == -1) {
-                srcUrl += "&rc:Stylesheet=MyStyleSheet";
+            if (srcUrl.indexOf('') == -1) {
+                srcUrl += "";
             }
         }
         if (true) {
-            if (srcUrl.indexOf('&rs:') == -1) {
-                srcUrl += "&rs:";
+            if (srcUrl.indexOf('') == -1) {
+                srcUrl += "";
             }
             else {
-                srcUrl += "&";
+                srcUrl += "";
             }
-            srcUrl += "orgId=";
+            srcUrl += "";
             srcUrl += orgId;
         }
         return srcUrl;
     }
 
 </script>
-<script type="text/javascript">
+<script type="">
     function init() {
-        //治疗师绑定下拉框
-        $("#depa").bindSelect({
-            id: "Code",
-            text: "Name",
-            url: "/OutpatientManage/OutpatientRegSchedule/GetSysDepartmentList",
+        //Hộp thả xuống liên kết nhà trị liệu
+        $("").bindSelect({
+            id: "",
+            text: "",
+            url: "",
             dropdownAutoWidth: true
         });
 
-        $('#depa').change(function () {
+        $('').change(function () {
             submit();
         });
 
-        $('#jslx').bindSelect();
+        $('').bindSelect();
 
-        $('#jslx').change(function () {
+        $('').change(function () {
             submit();
         });
 
-        //费用性质
-        $("#brxzmc").newtouchBatchFloatingSelector({
+        //Tính chất chi phí
+        $("").newtouchBatchFloatingSelector({
             height: 250,
             width: 400,
             clickautotrigger: true,
             filter: function (keyword) {
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                     resultObjArr.push(val);
                 });
                 return resultObjArr;
             },
-            caption: "费用性质",
+            caption: "",
             colModel: [
-                { label: '编号', name: 'brxzbh', widthratio: 25 },
-                { label: '代码', name: 'brxz', widthratio: 25 },
-                { label: '名称', name: 'brxzmc', widthratio: 25 },
-                { label: '拼音', name: 'py', widthratio: 25 }
+                { label: '', name: '', widthratio: 25 },
+                { label: '', name: '', widthratio: 25 },
+                { label: '', name: '', widthratio: 25 },
+                { label: '', name: '', widthratio: 25 }
             ],
             itemdbclickhandler: function ($thistr) {
-                $("#brxzmc").attr("data-brxzmc", $thistr.attr('data-brxzmc'))
-                    .attr("data-brxz", $thistr.attr('data-brxz'));
-                $("#brxzmc").val($thistr.attr('data-brxzmc'));
+                $("").attr("", $thistr.attr(''))
+                    .attr("", $thistr.attr(''));
+                $("").val($thistr.attr(''));
 
                 submit();
                 return;
@@ -194,14 +194,14 @@
 
     }
 
-    //操作人
-    $("#btnsyy").click(function () {
+    //Người thao tác
+    $("").click(function () {
         $.modalOpen({
-            id: "FormUsers",
-            title: "选择操作员",
-            url: "/SystemManage/User/Selector?from=mzshoufeicaozuoyuan&organizeId=" + orgId + "&isExpand=true&callbackType=json&single=true",
-            width: "300px",
-            height: "400px",
+            id: "",
+            title: "",
+            url: "" + orgId + "",
+            width: "",
+            height: "",
             callBack: function (iframeId) {
                 top.frames[iframeId].AcceptClick(function (data) {
                     userStaffTreeCallback(data);
@@ -209,9 +209,9 @@
             }
         });
     });
-    //用户人员树回调方法
+    //Phương thức callback cây nhân viên người dùng
     function userStaffTreeCallback(data) {
-        $("#txtsyy").val(data[0].Code);
+        $("").val(data[0].Code);
     }
 
 </script>

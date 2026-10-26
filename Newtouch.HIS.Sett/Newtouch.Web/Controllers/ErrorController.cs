@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Web.Controllers
     public class ErrorController : Controller
     {
         /// <summary>
-        /// 异常发送 错误页面
+        /// Bất thường gửi gửi Lỗi trang
         /// </summary>
         /// <returns></returns>
         public ActionResult HttpError()

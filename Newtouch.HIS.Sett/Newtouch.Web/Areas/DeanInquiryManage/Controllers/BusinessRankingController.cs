@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 门诊医生工作量
+        /// Khối lượng công việc bác sĩ ngoại trú
         /// </summary>
         public ActionResult GetMzysgzl(string kssj, string jssj)
         {
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 门诊科室收入
+        /// Thu nhập khoa ngoại trú
         /// </summary>
         public ActionResult GetMzkssr(string kssj, string jssj)
         {

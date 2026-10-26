@@ -17,8 +17,8 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         /// <summary>
         /// 加载新生儿 
         /// </summary>
-        /// <param name="zyh">住院号</param>
-        /// <returns>姓名 婴儿号</returns>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <returns>Họ tên 婴儿号</returns>
         //public DataTable GetYehByZyh(string zyh)
         //{
 
@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         //    return yeh;
         //}
         /// <summary>
-        /// 根据住院号获取病人信息
+        /// Thông tin bệnh nhân lấy số nhập viện theo
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 查询
+        /// Tra cứu
         /// </summary>
 
         public ActionResult BtnQuery( string zyh, string brxm, string yrh, string sfks, string zxks, string xmmc)
@@ -49,12 +49,12 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                 throw new FailedCodeException("HOSP_ZYH_IS_EMPTY");
               
             }
-            data = _hospitalRefundApp.GetZyXmjfbGroup(zyh, zxks, xmmc, yrh);        //项目
+            data = _hospitalRefundApp.GetZyXmjfbGroup(zyh, zxks, xmmc, yrh);        //Hạng mục
 
-            //住院退费配置：是否包含药品 0 不包含药品
+            //Nhập viện cấu hình hoàn phí：是否包含药品 0 Không bao gồm thuốc
 
 
-            /// 根据代码获取配置信息
+            /// Thông tin cấu hình lấy mã theo
 
             var pzInfo = _hospitalRefundApp.GetPZInfo();
             if (pzInfo == null)
@@ -63,10 +63,10 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                 return Error(msg);  
             }
 
-            if (pzInfo.ToString() != "0")//0 不包含药品
+            if (pzInfo.ToString() != "0")//0 Không bao gồm thuốc
             {
                 var ypdata = new List<GridZyXmYpjfb>();
-                ypdata = _hospitalRefundApp.GetZyYpjfbGroup(zyh, zxks, xmmc, yrh);        //药品
+                ypdata = _hospitalRefundApp.GetZyYpjfbGroup(zyh, zxks, xmmc, yrh);        //Thuốc
                 data.AddRange(ypdata);
             }
              
@@ -94,21 +94,21 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             var data = new List<gridZyXmYpItemsjfb>();
             if (is_sfxm == "0")
             {
-                data = _hospitalRefundApp.GetZyYpjfbList(zyh, xsebh, sfxm, CreateTime); //药品收费
+                data = _hospitalRefundApp.GetZyYpjfbList(zyh, xsebh, sfxm, CreateTime); //Thu phí thuốc
             }
             else
             {
-                data = _hospitalRefundApp.GetZyXmjfbList(zyh, xsebh, sfxm, CreateTime); //项目收费
+                data = _hospitalRefundApp.GetZyXmjfbList(zyh, xsebh, sfxm, CreateTime); //Thu phí hạng mục
             }
 
             return data;
         }
         /// <summary>
-        /// 退费
+        /// Hoàn phí
         /// </summary>
-        /// <param name="cxzyjfbbh">编号</param>
+        /// <param name="cxzyjfbbh">Số hiệu</param>
         /// <param name="is_sfxm">是否是药品</param>
-        /// <param name="refundNum">退数量</param>
+        /// <param name="refundNum">Số lượng trả lại</param>
         /// <returns></returns>
         public ActionResult btnTuiFei(string cxzyjfbbh, string is_sfxm,int refundNum)
         {
@@ -117,12 +117,12 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             returnDict.Add(cxzyjfbbh, refundNum);
             if (is_sfxm == "0")
             {
-                //药品收费                            
+                //Thu phí thuốc                            
                 result = _hospitalRefundApp.SaveReturnZyyp(returnDict);
             }
             else
             {
-                //项目收费
+                //Thu phí hạng mục
                 result = _hospitalRefundApp.SaveReturnZyxm(returnDict);
             }
          return Success("", result) ;

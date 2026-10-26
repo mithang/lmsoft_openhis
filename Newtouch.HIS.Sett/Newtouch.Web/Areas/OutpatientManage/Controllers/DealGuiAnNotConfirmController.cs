@@ -6,7 +6,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
     public class DealGuiAnNotConfirmController : ControllerBase
     {
         private readonly ICommonDmnService _commonDmnService;
-        // 处理不确定交易视图
+        // Xử lý chế độ xem giao dịch không chắc chắn
         public ActionResult DealGuiAnNotConfirm()
         {
             return View();

@@ -1,25 +1,25 @@
 ﻿@{
-    ViewBag.Title = "快捷菜单表单页";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 <form id="form1">
     <div style="padding-top: 20px; margin-right: 30px;">
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>名称：</th>
+                <th class="formTitle"><span class="required">*</span>Tên：</th>
                 <td class="formValue">
                     <input id="Name" name="Name" type="text" class="form-control required" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">编码：</th>
+                <th class="formTitle">Mã：</th>
                 <td class="formValue">
                     <input id="Code" name="Code" type="text" class="form-control" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>地址：</th>
+                <th class="formTitle"><span class="required">*</span>Địa chỉ：</th>
                 <td class="formValue">
                     <input id="UrlAddress" name="UrlAddress" type="text" class="form-control required" />
                 </td>
@@ -31,16 +31,16 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">排序：</th>
+                <th class="formTitle">Sắp xếp：</th>
                 <td class="formValue">
                     <input id="px" name="px" type="text" class="form-control" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">选项：</th>
+                <th class="formTitle">Tùy chọn：</th>
                 <td class="formValue">
                     <div class="ckbox">
-                        <input id="zt" name="zt" type="checkbox" class="" /><label for="zt">有效</label>
+                        <input id="zt" name="zt" type="checkbox" class="" /><label for="zt">Hiệu lực</label>
                     </div>
                 </td>
             </tr>
@@ -49,16 +49,16 @@
 </form>
 
 <script>
-    var keyValue = $.request("keyValue");
+    var keyValue = $.request("");
     $(function () {
         initControl();
         if (!!keyValue) {
             $.ajax({
-                url: "/SystemManage/SysShortcutMenu/GetFormJson",
+                url: "",
                 data: { keyValue: keyValue },
-                dataType: "json",
+                dataType: "",
                 success: function (data) {
-                    $("#form1").formSerialize(data);
+                    $("").formSerialize(data);
                 }
             });
         }
@@ -69,13 +69,13 @@
     }
 
     function AcceptClick(callBack) {
-        if (!$('#form1').formValid()) {
+        if (!$('').formValid()) {
             return false;
         }
-        var postData = $("#form1").formSerialize();
+        var postData = $("").formSerialize();
 
         $.submitForm({
-            url: "/SystemManage/SysShortcutMenu/SubmitForm?keyValue=" + keyValue,
+            url: "" + keyValue,
             param: postData,
             success: function () {
                 callBack();

@@ -1,43 +1,43 @@
 ﻿
 @{
-    ViewBag.Title = "Form";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 <form id="form1">
     <div style="padding-top: 30px; margin-right: 30px;">
         <table class="form">
             <tr>
-                <th class="formTitle">名称</th>
+                <th class="formTitle">Tên</th>
                 <td class="formValue">
-                    <input id="Name" name="Name" type="text" class="form-control required" placeholder="请输入名称" />
+                    <input id="Name" name="Name" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                 </td>
-                <th class="formTitle">编号</th>
+                <th class="formTitle">Số hiệu</th>
                 <td class="formValue">
-                    <input id="Code" name="Code" type="text" class="form-control required" placeholder="请输入编号" />
+                    <input id="Code" name="Code" type="text" class="form-control required" placeholder="Vui lòng nhập số hiệu" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">连接</th>
+                <th class="formTitle">Kết nối</th>
                 <td class="formValue">
                     <input id="UrlAddress" name="UrlAddress" type="text" class="form-control" />
                 </td>
-                <th class="formTitle">排序</th>
+                <th class="formTitle">Sắp xếp</th>
                 <td class="formValue">
                     <input id="px" name="px" type="text" class="form-control" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle" style="height: 35px;">选项</th>
+                <th class="formTitle" style="height: 35px;">Tùy chọn</th>
                 <td class="formValue" style="padding-top: 1px;">
                     <div class="ckbox">
-                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                     </div>
                 </td>
             </tr>
             <tr>
                 <th class="formTitle" valign="top" style="padding-top: 5px;">
-                    描述
+                    Mô tả
                 </th>
                 <td class="formValue" colspan="3">
                     <textarea id="Description" name="Description" class="form-control" style="height: 100px;"></textarea>
@@ -47,18 +47,18 @@
     </div>
 </form>
 <script>
-    var keyValue = $.request("keyValue");
-    var moduleId = $.request("moduleId");
+    var keyValue = $.request("");
+    var moduleId = $.request("");
     $(function () {
         initControl();
         if (!!keyValue) {
             $.ajax({
-                url: "/SystemManage/ModuleButton/GetFormJson",
+                url: "",
                 data: { keyValue: keyValue },
-                dataType: "json",
+                dataType: "",
                 async: false,
                 success: function (data) {
-                    $("#form1").formSerialize(data);
+                    $("").formSerialize(data);
                 }
             });
         }
@@ -67,17 +67,17 @@
 
     }
     function submitForm() {
-        if (!$('#form1').formValid()) {
+        if (!$('').formValid()) {
             return false;
         }
-        var postData = $("#form1").formSerialize();
-        postData["ModuleId"] = moduleId;
+        var postData = $("").formSerialize();
+        postData[""] = moduleId;
         $.submitForm({
-            url: "/ModuleButton/SubmitForm?keyValue=" + keyValue,
+            url: "" + keyValue,
             param: postData,
             success: function () {
-                top.modulebutton.$("#gridList").resetSelection();
-                top.modulebutton.$("#gridList").trigger("reloadGrid");
+                top.modulebutton.$("").resetSelection();
+                top.modulebutton.$("").trigger("");
             }
         })
     }

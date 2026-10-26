@@ -1,44 +1,44 @@
 ﻿
 @{
-    ViewBag.Title = "Selector";
-    Layout = "~/Views/Shared/_Form.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 
 <script>
-    var organizeId = $.request("organizeId");
-    var keyValue = $.request("keyValue");
-    var isShowEmpty = $.request("isShowEmpty");
-    var isExpand = $.request("isExpand");
-    var callbackType = $.request("callbackType");
-    var single = $.request("single");
-    var fromDialog = $.request("fromDialog");
-    var cacheTime = $.request("cacheTime");
-    var initIdSelected = $.request("initIdSelected");
+    var organizeId = $.request("");
+    var keyValue = $.request("");
+    var isShowEmpty = $.request("");
+    var isExpand = $.request("");
+    var callbackType = $.request("");
+    var single = $.request("");
+    var fromDialog = $.request("");
+    var cacheTime = $.request("");
+    var initIdSelected = $.request("");
     $(function () {
         initControl();
     })
     function initControl() {
-        $("#staffTree").treeview({
+        $("").treeview({
             height: 400,
             slimscroll: false,
             showcheck: true,
-            url: "/SystemManage/SysChargeItem/GetChargeItemSelecotrTree",
+            url: "",
             param: { organizeId: organizeId, isExpand: isExpand, callbackType: callbackType, single: single, fromDialog: fromDialog, cacheTime: cacheTime, initIdSelected: initIdSelected }
         });
     }
     function submitForm() {
         var treeSeleData;
-        if (callbackType == 'json') {
-            treeSeleData = $("#staffTree").getCheckedNodeObjArray();
-            if (single == 'true' && treeSeleData.length != 1) {
-                $.modalAlert('请选中一条', 'warning');
+        if (callbackType == '') {
+            treeSeleData = $("").getCheckedNodeObjArray();
+            if (single == '' && treeSeleData.length != 1) {
+                $.modalAlert('', '');
                 return;
             }
         }
         else {
-            treeSeleData = $("#staffTree").getCheckedNodes();
-            if (single == 'true' && treeSeleData.length != 1) {
-                $.modalAlert('请选中一条', 'warning');
+            treeSeleData = $("").getCheckedNodes();
+            if (single == '' && treeSeleData.length != 1) {
+                $.modalAlert('', '');
                 return;
             }
             treeSeleData = String(treeSeleData);
@@ -48,11 +48,11 @@
 
         }
         else if (fromDialog) {
-            //默认行为，callback上一Dialog的方法
+            //Mặc định hành vi，callbackMột trênDialogphương thức
             top.top.window.frames[fromDialog].staffTreeCallback(treeSeleData);
         }
         else {
-            //默认行为，callback上一页面的方法
+            //Mặc định hành vi，callbackphương thức của trang một trên
             $.currentWindow().window.staffTreeCallback(treeSeleData);
         }
     }

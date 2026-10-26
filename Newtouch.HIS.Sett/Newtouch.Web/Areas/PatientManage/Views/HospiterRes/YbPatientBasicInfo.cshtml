@@ -1,19 +1,19 @@
 ﻿@using Newtouch.Common.Operator
 @using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "医保病人信息";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "";
+    Layout = "";
 }
 @{
-    //是否和新农合交易
-    var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
-    //是否和医保交易
-    var openYbSett = SysConfigReader.Bool("Outpatient_ChargeFee_OpenYbSett");
+    //Có giao dịch bảo hiểm nông thôn mới không
+    var openXnhSett = SysConfigReader.Bool("");
+    //Có giao dịch bảo hiểm y tế không
+    var openYbSett = SysConfigReader.Bool("");
     //医保患者必须一次结掉
-    bool? ybSettOnce = (openYbSett ?? false) && (SysConfigReader.Bool("Outpatient_ChargeFee_yb_SettOnce") ?? false);
+    bool? ybSettOnce = (openYbSett ?? false) && (SysConfigReader.Bool("") ?? false);
     var opr = OperatorProvider.GetCurrent();
-    //医保所属地
-    var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
+    //Địa bàn bảo hiểm y tế
+    var medicalInsurance = SysConfigReader.String("");
 }
 <style type="text/css">
     .form .formTitleTh {
@@ -46,72 +46,72 @@
 
 <ul id="myTab" class="nav nav-tabs">
     <li class="active">
-        <a href="#jzxxcx" data-toggle="tab">就诊信息查询</a>
+        <a href="#jzxxcx" data-toggle="tab">Khám bệnh tra cứu thông tin</a>
     </li>
     <li>
-        <a href="#yljgxxcx" data-toggle="tab">医疗机构信息查询</a>
+        <a href="#yljgxxcx" data-toggle="tab">Tra cứu thông tin cơ quan y tế</a>
     </li>
 </ul>
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade in active" id="jzxxcx">
         <div class="panel panel-default" style="margin-bottom: 4px;">
             <div class="panel-heading navb-bg">
-                筛选条件
+                Điều kiện lọc
             </div>
 
             <div style="padding-right:20px;">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">类型：</th>
+                        <th class="formTitle">Loại：</th>
                         <td class="formValue" style="width:180px">
-                            @Html.DropDownList("sel_rptype", EnumYbQuery.rydyxs.ToDescSelectList(), new { @class = "form-control form-an" })
+                            @Html.DropDownList("", EnumYbQuery.rydyxs.ToDescSelectList(), new { @class = "" })
                         </td>
-                        <th class="formTitle">开始日期：</th>
+                        <th class="formTitle">Ngày bắt đầu：</th>
                         <td class="formValue">
                             <input id="kssj" type="text" class="form-control input-wdatepicker form-an"
                                    onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
                         </td>
-                        <th class="formTitle">结束日期：</th>
+                        <th class="formTitle">Ngày kết thúc：</th>
                         <td class="formValue">
                             <input id="jssj" type="text" class="form-control input-wdatepicker form-an"
                                    onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
                         </td>
                         <td class="formTitle" style="width:50px">
-                            <input type="button" class="btn btn-default btn-md btn-default-color" id="btkhsr" value="查询" onclick="GetYbInfo()" />
+                            <input type="button" class="btn btn-default btn-md btn-default-color" id="btkhsr" value="Tra cứu" onclick="GetYbInfo()" />
                         </td>
                         <td class="formValue">
-                            @Html.Partial("YibaoRedCardCommon")
+                            @Html.Partial("")
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">医疗类别：</th>
+                        <th class="formTitle">Loại y tế：</th>
                         <td class="formValue" style="width: 180px">
-                            @Html.DropDownList("sel_yllb", Enumyllb.ptmz.ToDescSelectList(), new { @class = "form-control form-an" })
+                            @Html.DropDownList("", Enumyllb.ptmz.ToDescSelectList(), new { @class = "" })
 
                         </td>
-                        <th class="formTitle">结算ID：</th>
+                        <th class="formTitle">Quyết toánID：</th>
                         <td class="formValue">
                             <input type="text" id="settId" name="settId" class="form-control" style="width:150px" />
                         </td>
-                        <th class="formTitle">就诊ID：</th>
+                        <th class="formTitle">Khám bệnhID：</th>
                         <td class="formValue">
                             <input type="text" id="jzId" name="jzId" class="form-control" style="width:150px" />
                         </td>
-                        <th class="formTitle">报告单号：</th>
+                        <th class="formTitle">Số báo cáo：</th>
                         <td class="formValue">
-                            <input type="text" id="rpotc_no" name="rpotc_no" class="form-control" placeholder="在5401中获取" style="width:150px" />
+                            <input type="text" id="rpotc_no" name="rpotc_no" class="form-control" placeholder="Ở5401Lấy trong" style="width:150px" />
                         </td>
                         <td class="formValue">
                             <input type="button" class="btn btn-default btn-md btn-default-color" id="btkhsr" value="签退" onclick="SiginOut()" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle 420-show">当前页数:</th>
+                        <th class="formTitle 420-show">Số trang hiện tại:</th>
                         <td class="formValue 420-show style=' width:150px'">
                             <input type="text" id="jzxx_page_num" class="form-control" style="height:26px;width:90px;display:inline" value="" />
-                            <input type="button" id="btn_jzxx_next" class="btn btn-primary btn-md" value="下一页" />
+                            <input type="button" id="btn_jzxx_next" class="btn btn-primary btn-md" value="Trang một dưới" />
                         </td>
-                        <th class="formTitle 420-show">本页数据量:</th>
+                        <th class="formTitle 420-show">Lượng dữ liệu trang quyển:</th>
                         <td class="formTitle 420-show">
                             <input type="text" id="jzxx_page_size" class="form-control" style="height:16px" value="" />
                         </td>
@@ -122,39 +122,39 @@
         </div>
         <div class="panel panel-default" style="margin-bottom: 4px;">
             <div class="panel-heading navb-bg">
-                基本信息
+                Thông tin cơ bản
             </div>
             <div style="padding-right:0px; text-align:center">
                 <table class="form">
                     <tr>
-                        <th class="formTitleTh">人员编号：</th>
+                        <th class="formTitleTh">Mã nhân viên：</th>
                         <td class="formValueYb" style="width: 120px;">
                             <label id="rybh"></label>
                         </td>
-                        <th class="formTitleTh">证件号码：</th>
+                        <th class="formTitleTh">Số giấy tờ：</th>
                         <td class="formValueYb" style="width: 120px;">
                             <label id="zjhm"></label>
                         </td>
-                        <td class="formTitleTh">姓名：</td>
+                        <td class="formTitleTh">Họ tên：</td>
                         <td class="formValueYb">
                             <label id="xm"></label>
                         </td>
-                        <td class="formTitleTh">性别：</td>
+                        <td class="formTitleTh">Giới tính：</td>
                         <td class="formValueYb">
                             <label id="xb"></label>
                         </td>
-                        @*<th class="formTitleTh">民族：</th>
+                        @*<th class="formTitleTh">Dân tộc：</th>
                             <td class="formValueYb">
                                 <label id="mz"></label>
                             </td>*@
 
                     </tr>
                     <tr>
-                        <th class="formTitleTh">出生日期：</th>
+                        <th class="formTitleTh">Ngày sinh：</th>
                         <td class="formValueYb">
                             <label id="csny"></label>
                         </td>
-                        <th class="formTitleTh">年龄：</th>
+                        <th class="formTitleTh">Tuổi：</th>
                         <td class="formValueYb">
                             <label id="nl"></label>
                         </td>
@@ -166,7 +166,7 @@
         </div>
         <div class="panel panel-default" style="margin-bottom: 4px;">
             <div class="panel-heading navb-bg">
-                信息列表
+                Danh sách thông tin
             </div>
             <div style="padding-right:20px;">
                 <form id="formPat2">
@@ -181,15 +181,15 @@
     <div class="tab-pane fade" id="yljgxxcx">
         <div class="panel panel-default" style="margin-bottom: 4px;">
             <div class="panel-heading navb-bg">
-                筛选条件
+                Điều kiện lọc
             </div>
 
             <div style="padding-right:20px;">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">类型：</th>
+                        <th class="formTitle">Loại：</th>
                         <td class="formValue" style="width:180px">
-                            @Html.DropDownList("sel_jgcxtype", EnumYbJGQuery.jgxx.ToDescSelectList(), new { @class = "form-control form-an" })
+                            @Html.DropDownList("", EnumYbJGQuery.jgxx.ToDescSelectList(), new { @class = "" })
                         </td>
                         <th class="formTitle 1201-show">医药机构名称：</th>
                         <td class="formValue 1201-show" style="width: 180px">
@@ -199,51 +199,51 @@
                         <td class="formValue  1201-show">
                             <input type="text" id="fixmedins_code" name="fixmedins_code" class="form-control" style="width:150px" />
                         </td>
-                        <th class="formTitle time-show">开始日期：</th>
+                        <th class="formTitle time-show">Ngày bắt đầu：</th>
                         <td class="formValue  time-show">
                             <input id="jg_kssj" type="text" class="form-control input-wdatepicker form-an" style="width:150px"
                                    onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
                         </td>
-                        <th class="formTitle  time-show">结束日期：</th>
+                        <th class="formTitle  time-show">Ngày kết thúc：</th>
                         <td class="formValue  time-show">
                             <input id="jg_jssj" type="text" class="form-control input-wdatepicker form-an" style="width:150px"
                                    onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
                         </td>
-                        <td class="formTitle 3607-show">*当前页数:</td>
+                        <td class="formTitle 3607-show">*Số trang hiện tại:</td>
                         <td class="formValue 3607-show  style='width:150px'">
                             <input type="text" id="page_num" class="form-control" style="height:26px;width:90px;display:inline" value="" />
-                            <input type="button" id="btn_yljgxxcx_next" class="btn btn-primary btn-md" value="下一页" />
+                            <input type="button" id="btn_yljgxxcx_next" class="btn btn-primary btn-md" value="Trang một dưới" />
                         </td>
-                        <td class="formTitle 3607-show">*本页数据量:</td>
+                        <td class="formTitle 3607-show">*Lượng dữ liệu trang quyển:</td>
                         <td class="formTitle 3607-show">
                             <input type="text" id="page_size" class="form-control" style="height:16px" value="" />
                         </td>
                         <td class="formTitle" style="width:50px">
-                            <input type="button" class="btn btn-default btn-md btn-default-color" id="jg_btkhsr" value="查询" onclick="GetYbJGInfo()" />
+                            <input type="button" class="btn btn-default btn-md btn-default-color" id="jg_btkhsr" value="Tra cứu" onclick="GetYbJGInfo()" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle 35-show">医药机构目录编码：</th>
+                        <th class="formTitle 35-show">Mã danh mục cơ sở y dược：</th>
                         <td class="formValue 35-show" style="width: 180px">
                             <input type="text" id="medins_list_codg" name="medins_list_codg" class="form-control" style="width:150px" />
                         </td>
-                        <th class="formTitle 35-show">定点医药机构批次流水号：</th>
+                        <th class="formTitle 35-show">Số giao dịch theo lô của cơ sở y dược chỉ định：</th>
                         <td class="formValue 35-show">
                             <input type="text" id="fixmedins_bchno" name="fixmedins_bchno" class="form-control" style="width:150px" />
                         </td>
-                        <th class="formTitle 35-show">医疗目录编码：</th>
+                        <th class="formTitle 35-show">Mã danh mục y tế：</th>
                         <td class="formValue 35-show">
                             <input type="text" id="med_list_codg" name="med_list_codg" class="form-control" style="width:150px" />
                         </td>
-                        <th class="formTitle 35-show">就诊ID：</th>
+                        <th class="formTitle 35-show">Khám bệnhID：</th>
                         <td class="formValue 35-show">
                             <input type="text" id="mdtrt_id" name="mdtrt_id" class="form-control" style="width:150px" />
                         </td>
-                        <td class="formTitle 3607-show">*结算年月:</td>
+                        <td class="formTitle 3607-show">*Năm tháng quyết toán:</td>
                         <td class="formValue 3607-show">
                             <input id="setl_ym" type="text" class="form-control input-wdatepicker" style="width:120px; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyyMM")" onfocus="WdatePicker({ dateFmt: 'yyyyMM' })" />
                         </td>
-                        <th class="formTitle 3607-show">结算ID：</th>
+                        <th class="formTitle 3607-show">Quyết toánID：</th>
                         <td class="formValue 3607-show">
                             <input type="text" id="setl_id" name="setl_id" class="form-control" style="width:150px" />
                         </td>
@@ -265,499 +265,499 @@
 </div>
 
 
-<script type="text/javascript">
-    var openYbSett = '@openYbSett' === 'True'; //开关配置：医保患者是否使用医保交易流程
-    var ybSettOnce = '@ybSettOnce' === 'True'; //开关配置：医保患者是否一次结
-    var medicalInsurance = '@medicalInsurance';//医保所属地配置:区分医院所属医保区域
-    var cqPatInfo = {};                       //患者读卡信息
+<script type="">
+    var openYbSett = '' === ''; //Cấu hình công tắc：Bệnh nhân bảo hiểm y tế có sử dụng quy trình giao dịch bảo hiểm y tế không
+    var ybSettOnce = '' === ''; //Cấu hình công tắc：医保患者是否一次结
+    var medicalInsurance = '';//Cấu hình địa bàn bảo hiểm y tế:Phân biệt khu vực bảo hiểm y tế của bệnh viện
+    var cqPatInfo = {};                       //Thông tin đọc thẻ bệnh nhân
 
-    $('#jzId').newtouchBatchFloatingSelector({
+    $('').newtouchBatchFloatingSelector({
         width: 700,
         height: 200,
-        caption: "选择就诊",
+        caption: "",
         clickautotrigger: true,
-        url: "/PatientManage/HospiterRes/Getjzjsxx",
+        url: "",
         ajaxparameters: function ($thisinput) {
             var jzid = $thisinput.val().trim();
-            return "keyword=" + jzid + "&grbh=" + cqPatInfo.grbh + "&type=1";
+            return "" + jzid + "" + cqPatInfo.grbh + "";
         },
         itemdbclickhandler: function ($thistr, $thisinput) {
-            $("#jzId").val($thistr.attr("data-jzid"));
+            $("").val($thistr.attr(""));
         },
         colModel: [
-            { label: '门诊住院号', name: 'zymzh', width: 120, align: 'left' },
-            { label: '类型', name: 'type', width: 50, align: 'center' },
-            { label: '就诊ID', name: 'jzid', width: 150, align: 'center' },
-            { label: '就诊时间', name: 'jzsj', width: 200, align: 'center' }
+            { label: '', name: '', width: 120, align: '' },
+            { label: '', name: '', width: 50, align: '' },
+            { label: '', name: '', width: 150, align: '' },
+            { label: '', name: '', width: 200, align: '' }
         ]
     });
-    $('#settId').newtouchBatchFloatingSelector({
+    $('').newtouchBatchFloatingSelector({
         width: 700,
         height: 200,
-        caption: "选择就诊",
+        caption: "",
         clickautotrigger: true,
-        url: "/PatientManage/HospiterRes/Getjzjsxx",
+        url: "",
         ajaxparameters: function ($thisinput) {
             var jsid = $thisinput.val().trim();
-            return "keyword=" + jsid + "&grbh=" + cqPatInfo.grbh + "&type=2";
+            return "" + jsid + "" + cqPatInfo.grbh + "";
         },
         itemdbclickhandler: function ($thistr, $thisinput) {
-            $("#settId").val($thistr.attr("data-jylsh"));
+            $("").val($thistr.attr(""));
         },
         colModel: [
-            { label: '门诊住院号', name: 'zymzh', width: 120, align: 'left' },
-            { label: '类型', name: 'type', width: 50, align: 'center' },
-            { label: '结算ID', name: 'jylsh', width: 150, align: 'center' },
-            { label: '就诊ID', name: 'jzid', width: 150, align: 'center' },
-            { label: '结算时间', name: 'jssj', width: 200, align: 'center' }
+            { label: '', name: '', width: 120, align: '' },
+            { label: '', name: '', width: 50, align: '' },
+            { label: '', name: '', width: 150, align: '' },
+            { label: '', name: '', width: 150, align: '' },
+            { label: '', name: '', width: 200, align: '' }
         ]
     });
 
     function SiginOut()
     {
-        var siginout = { operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', sign_no:"" };
+        var siginout = { operatorId: '', operatorName: '', sign_no:"" };
 
         $.ajax({
-            type: "POST",
-            url: "http://127.0.0.1:33333/api/YiBao/DoSigin9002",
-            dataType: "json",
+            type: "",
+            url: "",
+            dataType: "",
             data: siginout,
             async: false,
             success: function (data) {
-                var qtReg = eval('(' + data + ')');
+                var qtReg = eval('' + data + '');
                 if (qtReg) {
-                    if (qtReg.infcode == "0" && !!qtReg.output.signoutoutb.sign_time) {
-                        $.modalAlert("签退成功", 'success');
+                    if (qtReg.infcode == "" && !!qtReg.output.signoutoutb.sign_time) {
+                        $.modalAlert("", '');
                     }
                 }
             },
             error: function () {
-                $.modalAlert("服务不可访问", 'warning');
+                $.modalAlert("", '');
             }
         });
     }
 
-    //-----------------------------就诊信息查询页面 start-----------------------------//
+    //-----------------------------Khám bệnh trang tra cứu thông tin start-----------------------------//
     function GetYbInfo()
     {
-        var type = $('#sel_rptype').val();
-        if (type=="1")
+        var type = $('').val();
+        if (type=="")
         {
-            var dyxsData = { begntime: $('#kssj').val(),psn_no: cqPatInfo.grbh, insutype:cqPatInfo.xzlx,med_type: $('#sel_yllb').val(), operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            var dyxsData = { begntime: $('').val(),psn_no: cqPatInfo.grbh, insutype:cqPatInfo.xzlx,med_type: $('').val(), operatorId: '', operatorName: '', insuplc_admdvs: cqPatInfo.xzqh };
 
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetPersonnelTreatment_2001",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: dyxsData,
                 async: false,
                 success: function (data) {
-                    var TbMzReg = eval('(' + data + ')');
+                    var TbMzReg = eval('' + data + '');
                     if (TbMzReg) {
-                        if (TbMzReg.infcode == "0" && !!TbMzReg.output.trtinfo) {
+                        if (TbMzReg.infcode == "" && !!TbMzReg.output.trtinfo) {
                             gridListData(TbMzReg.output.trtinfo,type);
                         }
                         else {
                             gridListData("", type);
-                            $.modalAlert(TbMzReg.err_msg, 'error');
+                            $.modalAlert(TbMzReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
 
         }
-        else if(type=="2")
+        else if(type=="")
         {
-            var rcData = { begntime: $('#kssj').val(), endtime: $('#jssj').val(), med_type:'21', mdtrt_id: $('#jzId').val(), psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            var rcData = { begntime: $('').val(), endtime: $('').val(), med_type:'', mdtrt_id: $('').val(), psn_no: cqPatInfo.grbh, operatorId: '', operatorName: '', insuplc_admdvs: cqPatInfo.xzqh };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetRegistration_5201",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0" && !!refReg.output.mdtrtinfo) {
+                        if (refReg.infcode == "" && !!refReg.output.mdtrtinfo) {
                             gridListData(refReg.output.mdtrtinfo, type);
                         }
                         else {
                             gridListData("", type);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
         }
-        else if (type == "3")
+        else if (type == "")
         {
-            var rcData = { setl_id: $('#settId').val(), mdtrt_id: $('#jzId').val(), psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            var rcData = { setl_id: $('').val(), mdtrt_id: $('').val(), psn_no: cqPatInfo.grbh, operatorId: '', operatorName: '', insuplc_admdvs: cqPatInfo.xzqh };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetDiagnosis_5202",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0" && !!refReg.output.diseinfo) {
+                        if (refReg.infcode == "" && !!refReg.output.diseinfo) {
                             gridListData(refReg.output.diseinfo, type);
                         }
                         else {
                             gridListData("", type);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
         }
-        else if (type == "4")
+        else if (type == "")
         {
-            var rcData = { setl_id: $('#settId').val(), mdtrt_id: $('#jzId').val(), psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            var rcData = { setl_id: $('').val(), mdtrt_id: $('').val(), psn_no: cqPatInfo.grbh, operatorId: '', operatorName: '', insuplc_admdvs: cqPatInfo.xzqh };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetHospitaSettlement_5203",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
                     debugger;
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0" && !!refReg.output.setlinfo) {
+                        if (refReg.infcode == "" && !!refReg.output.setlinfo) {
                             gridListData(refReg.output.setlinfo, type);
                         }
                         else {
                             gridListData("", type);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
         }
-        else if (type == "5")
+        else if (type == "")
         {
-            var rcData = { setl_id: $('#settId').val(), mdtrt_id: $('#jzId').val(), psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            var rcData = { setl_id: $('').val(), mdtrt_id: $('').val(), psn_no: cqPatInfo.grbh, operatorId: '', operatorName: '', insuplc_admdvs: cqPatInfo.xzqh };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetHospitaSettlement_5204",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0" && !!refReg.output) {
+                        if (refReg.infcode == "" && !!refReg.output) {
                             gridListData(refReg.output, type);
                         }
                         else {
                             gridListData("", type);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
         }
-        else if (type == "6")
+        else if (type == "")
         {
-            var rcData = { begntime: $('#kssj').val(), endtime: $('#jssj').val(), psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            var rcData = { begntime: $('').val(), endtime: $('').val(), psn_no: cqPatInfo.grbh, operatorId: '', operatorName: '', insuplc_admdvs: cqPatInfo.xzqh };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetSpecialDisease_5205",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0" && !!refReg.output.feedetail) {
+                        if (refReg.infcode == "" && !!refReg.output.feedetail) {
                             gridListData(refReg.output.feedetail, type);
                         }
                         else {
                             gridListData("", type);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
         }
-        else if (type == "7")
+        else if (type == "")
         {
-            var rcData = { psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            var rcData = { psn_no: cqPatInfo.grbh, operatorId: '', operatorName: '', insuplc_admdvs: cqPatInfo.xzqh };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetPeopleTotalInfo_5206",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0" && !!refReg.output.cuminfo) {
+                        if (refReg.infcode == "" && !!refReg.output.cuminfo) {
                             gridListData(refReg.output.cuminfo, type);
                         }
                         else {
                             gridListData("", type);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
         }
-        else if (type == "8")
+        else if (type == "")
         {
-            var tsbData = { psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            var tsbData = { psn_no: cqPatInfo.grbh, operatorId: '', operatorName: '', insuplc_admdvs: cqPatInfo.xzqh };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/SlowDisease_5301",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: tsbData,
                 async: false,
                 success: function (data) {
-                    var TbMzReg = eval('(' + data + ')');
+                    var TbMzReg = eval('' + data + '');
                     if (TbMzReg) {
-                        if (TbMzReg.infcode == "0" && !!TbMzReg.output.feedetail) {
+                        if (TbMzReg.infcode == "" && !!TbMzReg.output.feedetail) {
                             gridListData(TbMzReg.output.feedetail, type);
                         }
                         else {
                             gridListData("", type);
-                            $.modalAlert(TbMzReg.err_msg, 'error');
+                            $.modalAlert(TbMzReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
 
         }
-        else if (type == "9")
+        else if (type == "")
         {
-            var rcData = { biz_appy_type:"01", psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            var rcData = { biz_appy_type:"", psn_no: cqPatInfo.grbh, operatorId: '', operatorName: '', insuplc_admdvs: cqPatInfo.xzqh };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetPersonnel_5302",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0" && !!refReg.output.psnfixmedin) {
+                        if (refReg.infcode == "" && !!refReg.output.psnfixmedin) {
                             gridListData(refReg.output.psnfixmedin, type);
                         }
                         else {
                             gridListData("", type);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
         }
-        else if (type == "10")
+        else if (type == "")
         {
-            var rcData = { begntime: $('#kssj').val(), endtime: $('#jssj').val(), psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            var rcData = { begntime: $('').val(), endtime: $('').val(), psn_no: cqPatInfo.grbh, operatorId: '', operatorName: '', insuplc_admdvs: cqPatInfo.xzqh };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetInHospital_5303",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0" && !!refReg.output.data) {
+                        if (refReg.infcode == "" && !!refReg.output.data) {
                             gridListData(refReg.output.data, type);
                         }
                         else {
                             gridListData("", type);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
         }
-        else if (type == "11")
+        else if (type == "")
         {
-            var rcData = { begntime: $('#kssj').val(), psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            var rcData = { begntime: $('').val(), psn_no: cqPatInfo.grbh, operatorId: '', operatorName: '', insuplc_admdvs: cqPatInfo.xzqh };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetTurnHospital_5304",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0" && !!refReg.output.refmedin) {
+                        if (refReg.infcode == "" && !!refReg.output.refmedin) {
                             gridListData(refReg.output.refmedin, type);
                         }
                         else {
                             gridListData("", type);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
         }
-        else if (type == "5401")
+        else if (type == "")
         {
-            var rcData = { psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            var rcData = { psn_no: cqPatInfo.grbh, operatorId: '', operatorName: '', insuplc_admdvs: cqPatInfo.xzqh };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetBilgiteminfo_5401",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0" && !!refReg.output.bilgiteminfo) {
+                        if (refReg.infcode == "" && !!refReg.output.bilgiteminfo) {
                             gridListData(refReg.output.bilgiteminfo, type);
                         }
                         else {
                             gridListData("", type);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
         }
-        else if (type == "5402")
+        else if (type == "")
         {
-            var rcData = { rpotc_no: $('#rpotc_no').val(), psn_no: cqPatInfo.grbh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', insuplc_admdvs: cqPatInfo.xzqh };
+            var rcData = { rpotc_no: $('').val(), psn_no: cqPatInfo.grbh, operatorId: '', operatorName: '', insuplc_admdvs: cqPatInfo.xzqh };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetCheckreportdetails_5402",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0" && !!refReg.output) {
+                        if (refReg.infcode == "" && !!refReg.output) {
                             gridListData5402(refReg.output. type);
                         }
                         else {
                             gridListData5402("", type);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
         }
-        else if (type == "4207")
+        else if (type == "")
         {
-            var rcData = { page_num: $('#jzxx_page_num').val(), page_size: $('#jzxx_page_size').val(), operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)' };
+            var rcData = { page_num: $('').val(), page_size: $('').val(), operatorId: '', operatorName: '' };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetSelfPayPatientsFsiOwnpayPatnFeeListDDTO_4207",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0" && !!refReg.output.data) {
+                        if (refReg.infcode == "" && !!refReg.output.data) {
                             gridListData(refReg.output.data, type);
                         }
                         else {
                             gridListData("", type);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');  
+                    $.modalAlert("", '');  
                 }
             });
         }
-        else if (type == "4208")
+        else if (type == "")
         {
-            var rcData = { page_num: $('#jzxx_page_num').val(), page_size: $('#jzxx_page_size').val(), begntime: $('#kssj').val(), endtime: $('#jssj').val(), operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)'};
+            var rcData = { page_num: $('').val(), page_size: $('').val(), begntime: $('').val(), endtime: $('').val(), operatorId: '', operatorName: ''};
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetSelfPayPatientsMdtrtinfo_4208",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0" && !!refReg.output.data) {
+                        if (refReg.infcode == "" && !!refReg.output.data) {
                             gridListData(refReg.output.data, type);
                         }
                         else {
                             gridListData("", type);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
         }
-        else if (type == "4209")
+        else if (type == "")
         {
-            var rcData = { page_num: $('#jzxx_page_num').val(), page_size: $('#jzxx_page_size').val(), operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)' };
+            var rcData = { page_num: $('').val(), page_size: $('').val(), operatorId: '', operatorName: '' };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetSelfPayPatientsDiseinfo_4209",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0" && !!refReg.output.data) {
+                        if (refReg.infcode == "" && !!refReg.output.data) {
                             gridListData(refReg.output.data, type);
                         }
                         else {
                             gridListData("", type);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
         }
@@ -769,407 +769,407 @@
 
         var captionCon = "";
         switch (type) {
-            case '1':
-                captionCon = "待遇享受列表";
+            case '':
+                captionCon = "";
                 colModel = [
-                    { label: '人员编号', name: 'psn_no', width: 105,align: 'center' },
+                    { label: '', name: '', width: 105,align: '' },
                     {
-                        label: '待遇检查类型', name: "trt_chk_type", width: 105, align: 'center', formatter: function (val) {
-                            return $.enum.getDescByValue("Enumdyjclx", val);
+                        label: '', name: "", width: 105, align: '', formatter: function (val) {
+                            return $.enum.getDescByValue("", val);
                         }
                     },
                      {
-                         label: '基金支付类型编码', name: 'fund_pay_type', width: 105, align: 'center'
+                         label: '', name: '', width: 105, align: ''
                      },
-                    { label: '基金支付类型', name: 'fund_pay_type', width: 105, align: 'center', formatter: function (val) {
-                        return $.enum.getDescByValue("Enumjjzflx", val);
+                    { label: '', name: '', width: 105, align: '', formatter: function (val) {
+                        return $.enum.getDescByValue("", val);
                     }
                     },
 
                     {
-                        label: '基金款项待遇享受标志', name: 'trt_enjymnt_flag', width: 105, align: 'center', formatter: function (val) {
-                            return $.enum.getDescByValue("Enumdyxsbz", val);
+                        label: '', name: '', width: 105, align: '', formatter: function (val) {
+                            return $.enum.getDescByValue("", val);
                         }
                     },
-                    { label: '开始日期', name: 'begndate', width: 105, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                    { label: '结束日期', name: 'enddate', width: 125, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                    { label: '待遇检查结果', name: 'trt_chk_rslt', width: 105, align: 'center' },
+                    { label: '', name: '', width: 105, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
+                    { label: '', name: '', width: 125, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
+                    { label: '', name: '', width: 105, align: '' },
                 ];
                 break;
-            case "2":
-                captionCon = "就诊信息";
+            case "":
+                captionCon = "";
                 colModel = [
-                   { label: '就诊ID', name: 'mdtrt_id', width: 55,  align: 'center' },
-                   { label: '开始时间', name: 'begntime', width: 105, formatter: "number", align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                   { label: '结束时间', name: 'endtime', width: 105, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                   { label: '住院/门诊号', name: 'ipt_otp_no', width: 105, align: 'center' },
-                   { label: '主治医生编码', name: 'atddr_no', width: 105, align: 'center' },
-                   { label: '主诊医师姓名', name: 'chfpdr_name', width: 105, align: 'center'},
-                   { label: '科室编码', name: 'adm_dept_codg', width: 85, align: 'center' },
-                   { label: '科室名称', name: 'adm_dept_name', width: 85, align: 'center' },
-                   { label: '病种编码', name: 'dise_codg', width: 85, align: 'center' },
-                    { label: '病种名称', name: 'dise_name', width: 85, align: 'center' },
+                   { label: '', name: '', width: 55,  align: '' },
+                   { label: '', name: '', width: 105, formatter: "", align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
+                   { label: '', name: '', width: 105, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
+                   { label: '', name: '', width: 105, align: '' },
+                   { label: '', name: '', width: 105, align: '' },
+                   { label: '', name: '', width: 105, align: ''},
+                   { label: '', name: '', width: 85, align: '' },
+                   { label: '', name: '', width: 85, align: '' },
+                   { label: '', name: '', width: 85, align: '' },
+                    { label: '', name: '', width: 85, align: '' },
                 ];
                 break;
-            case "3":
-                captionCon = "诊断信息";
+            case "":
+                captionCon = "";
                 colModel = [
-                  { label: '就诊ID', name: 'mdtrt_id', width: 55, align: 'center' },
+                  { label: '', name: '', width: 55, align: '' },
                   {
-                      label: '诊断类别', name: 'diag_type', width: 105, formatter: function (val) {
-                          return $.enum.getDescByValue("Enumzdlx", val);
+                      label: '', name: '', width: 105, formatter: function (val) {
+                          return $.enum.getDescByValue("", val);
                       }
                   },
                   {
-                      label: '主诊断标志', name: 'maindiag_flag', width: 105, align: 'center', formatter: function (val) {
-                          return $.enum.getDescByValue("Enumdyxsbz", val);
+                      label: '', name: '', width: 105, align: '', formatter: function (val) {
+                          return $.enum.getDescByValue("", val);
                       }
                   },
-                  { label: '诊断代码', name: 'diag_code', width: 60, align: 'center' },
-                  { label: '诊断名称', name: 'diag_name', width: 105, align: 'center' },
-                  { label: '诊断科室', name: 'diag_dept', width: 105, align: 'center' },
-                  { label: '诊断医生编码', name: 'dise_dor_no', width: 85, align: 'center' },
-                  { label: '诊断医生姓名', name: 'dise_dor_name', width: 105, align: 'center' },
-                  { label: '诊断时间', name: 'diag_time', width: 105, align: 'center',formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
+                  { label: '', name: '', width: 60, align: '' },
+                  { label: '', name: '', width: 105, align: '' },
+                  { label: '', name: '', width: 105, align: '' },
+                  { label: '', name: '', width: 85, align: '' },
+                  { label: '', name: '', width: 105, align: '' },
+                  { label: '', name: '', width: 105, align: '',formatter: "", formatoptions: { srcformat: '', newformat: '' } }
                 ];
                 break;
-            case "4":
-                captionCon = "结算信息";
+            case "":
+                captionCon = "";
                 colModel = [
-                     { label: '结算ID', name: 'setl_id', width: 85, align: 'center' },
-                     { label: '就诊 ID', name: 'mdtrt_id', width: 85 },
-                     { label: '开始日期', name: 'begndate', width: 105, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                     { label: '结束日期', name: 'enddate', width: 105, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                     { label: '结算时间', name: 'setl_time', width: 105, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                     { label: '医疗费总额', name: 'medfee_sumamt', width: 85, align: 'center' },
-                     { label: '统筹基金', name: 'hifp_pay', width: 85, align: 'center' },
-                     { label: '公务补助', name: 'cvlserv_pay', width: 85, align: 'center' },
-                     { label: '企业补助', name: 'hifes_pay', width: 85, align: 'center' },
-                     { label: '居民大病', name: 'hifmi_pay', width: 85, align: 'center' },
-                     { label: '职工大额', name: 'hifob_pay', width: 85, align: 'center' },
-                     { label: '医疗救助', name: 'maf_pay', width: 85, align: 'center' },
-                     { label: '个人支付', name: 'psn_pay', width: 85, align: 'center' },
-                     { label: '个人账户', name: 'acct_pay', width: 85, align: 'center' }
+                     { label: '', name: '', width: 85, align: '' },
+                     { label: '', name: '', width: 85 },
+                     { label: '', name: '', width: 105, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
+                     { label: '', name: '', width: 105, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
+                     { label: '', name: '', width: 105, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
+                     { label: '', name: '', width: 85, align: '' },
+                     { label: '', name: '', width: 85, align: '' },
+                     { label: '', name: '', width: 85, align: '' },
+                     { label: '', name: '', width: 85, align: '' },
+                     { label: '', name: '', width: 85, align: '' },
+                     { label: '', name: '', width: 85, align: '' },
+                     { label: '', name: '', width: 85, align: '' },
+                     { label: '', name: '', width: 85, align: '' },
+                     { label: '', name: '', width: 85, align: '' }
                 ];
                 break;
-            case "5":
-                captionCon = "费用明细";
+            case "":
+                captionCon = "";
                 colModel = [
-                     { label: '结算ID', name: 'setl_id', width: 65, align: 'center' },
-                     { label: '就诊ID', name: 'mdtrt_id', width: 65 },
-                     { label: '费用流水号', name: 'feedetl_sn', width: 65, align: 'center' },
-                     { label: '数量', name: 'cnt', width: 55, align: 'center'},
-                     { label: '单价', name: 'pric', width: 55, align: 'center' },
-                     { label: '总额', name: 'det_item_fee_sumamt', width: 60, align: 'center' },
-                     { label: '全自费金额', name: 'fulamt_ownpay_amt', width: 60, align: 'center' },
-                     { label: '超限价金额', name: 'overlmt_amt', width: 60, align: 'center' },
-                     { label: '先行自付金额', name: 'preselfpay_amt', width: 60, align: 'center' },
-                     { label: '符合政策范围', name: 'inscp_scp_amt', width: 60, align: 'center' },
-                     { label: '医保目录编码', name: 'hilist_code', width: 80, align: 'center' },
-                     { label: '医保目录名称', name: 'hilist_name', width: 100, align: 'center' },
-                     { label: '医疗目录编码', name: 'med_list_codg', width: 100, align: 'center' },
-                     { label: '开单科室编码', name: 'bilg_dept_codg', width: 70, align: 'center' },
-                     { label: '开单科室名称', name: 'bilg_dept_name', width: 100, align: 'center' }
+                     { label: '', name: '', width: 65, align: '' },
+                     { label: '', name: '', width: 65 },
+                     { label: '', name: '', width: 65, align: '' },
+                     { label: '', name: '', width: 55, align: ''},
+                     { label: '', name: '', width: 55, align: '' },
+                     { label: '', name: '', width: 60, align: '' },
+                     { label: '', name: '', width: 60, align: '' },
+                     { label: '', name: '', width: 60, align: '' },
+                     { label: '', name: '', width: 60, align: '' },
+                     { label: '', name: '', width: 60, align: '' },
+                     { label: '', name: '', width: 80, align: '' },
+                     { label: '', name: '', width: 100, align: '' },
+                     { label: '', name: '', width: 100, align: '' },
+                     { label: '', name: '', width: 70, align: '' },
+                     { label: '', name: '', width: 100, align: '' }
                 ];
                 break;
-            case "6":
-                captionCon = "人员慢特病用药记录";
+            case "":
+                captionCon = "";
                 colModel = [
-     { label: '费用流水号', name: 'feedetl_sn', width: 105, align: 'center' },
-     { label: '数量', name: 'cnt', width: 105, align: 'center' },
-     { label: '单价', name: 'pric', width: 105, align: 'center' },
-     { label: '费用发生时间', name: 'fee_ocur_time', width: 125, align: 'center' },
-      { label: '医保目录编码', name: 'hilist_code', width: 105, align: 'center' },
-     { label: '医保目录名称', name: 'hilist_name', width: 105, align: 'center' },
-     { label: '医疗目录编码', name: 'med_list_codg', width: 105, align: 'center' },
-     { label: '医药机构目录编码', name: 'medins_list_codg', width: 105, align: 'center' },
-     { label: '医药机构目录名称', name: 'medins_list_name', width: 105, align: 'center' }
+     { label: '', name: '', width: 105, align: '' },
+     { label: '', name: '', width: 105, align: '' },
+     { label: '', name: '', width: 105, align: '' },
+     { label: '', name: '', width: 125, align: '' },
+      { label: '', name: '', width: 105, align: '' },
+     { label: '', name: '', width: 105, align: '' },
+     { label: '', name: '', width: 105, align: '' },
+     { label: '', name: '', width: 105, align: '' },
+     { label: '', name: '', width: 105, align: '' }
 
                 ];
                 break;
-            case "7":
-                captionCon = "人员累计信息";
+            case "":
+                captionCon = "";
                 colModel = [
                      {
-                         label: '险种类型', name: 'insutype', width: 105, align: 'center', formatter: function (val) {
-                             return $.enum.getDescByValue("Enumxzlx", val);
+                         label: '', name: '', width: 105, align: '', formatter: function (val) {
+                             return $.enum.getDescByValue("", val);
                          }
                      },
-                     { label: '年度', name: 'year', width: 105, align: 'center' },
-                     { label: '累计年月', name: 'cum_ym', width: 105, align: 'center' },
-                     { label: '累计类别代码', name: 'cum_type_code', width: 125, align: 'center' },
-                     { label: '累计值', name: 'cum', width: 105, align: 'center' }
+                     { label: '', name: '', width: 105, align: '' },
+                     { label: '', name: '', width: 105, align: '' },
+                     { label: '', name: '', width: 125, align: '' },
+                     { label: '', name: '', width: 105, align: '' }
                 ];
                 break;
-            case "8":
-                captionCon = "人员特殊病备案查询";
+            case "":
+                captionCon = "";
                 colModel = [
-                     { label: '门慢门特病种目录代码', name: 'opsp_dise_code', width: 105, align: 'center' },
-                     { label: '门慢门特病种名称', name: 'opsp_dise_name', width: 405, align: 'center' },
-                     { label: '开始日期', name: 'begndate', width: 105, align: 'center' },
-                     { label: '结束日期', name: 'enddate', width: 105, align: 'center' }
+                     { label: '', name: '', width: 105, align: '' },
+                     { label: '', name: '', width: 405, align: '' },
+                     { label: '', name: '', width: 105, align: '' },
+                     { label: '', name: '', width: 105, align: '' }
                 ];
                 break;
-            case "9":
-                captionCon = "人员定点信息查询";
+            case "":
+                captionCon = "";
                 colModel = [
                      {
-                         label: '险种类型', name: 'insutype', width: 105, align: 'center', formatter: function (val) {
-                             return $.enum.getDescByValue("Enumxzlx", val);
+                         label: '', name: '', width: 105, align: '', formatter: function (val) {
+                             return $.enum.getDescByValue("", val);
                          }
                      },
-                     { label: '定点排序号', name: 'fix_srt_no', width: 105, align: 'center' },
-                     { label: '定点医药机构编号', name: 'fixmedins_code', width: 105, align: 'center' },
-                     { label: '定点医药机构名称', name: 'fixmedins_name', width: 125, align: 'center' },
-                     { label: '开始日期', name: 'begndate', width: 105, align: 'center' },
-                     { label: '结束日期', name: 'enddate', width: 125, align: 'center' }
+                     { label: '', name: '', width: 105, align: '' },
+                     { label: '', name: '', width: 105, align: '' },
+                     { label: '', name: '', width: 125, align: '' },
+                     { label: '', name: '', width: 105, align: '' },
+                     { label: '', name: '', width: 125, align: '' }
                 ];
                 break;
-            case "10":
-                captionCon = "在院信息查询";
+            case "":
+                captionCon = "";
                 colModel = [
-                     { label: '就诊ID', name: 'mdtrt_id', width: 105, align: 'center' },
+                     { label: '', name: '', width: 105, align: '' },
                      {
-                         label: '险种类型', name: 'insutype', width: 105, align: 'center', formatter: function (val) {
-                             return $.enum.getDescByValue("Enumxzlx", val);
+                         label: '', name: '', width: 105, align: '', formatter: function (val) {
+                             return $.enum.getDescByValue("", val);
                          }
                      },
-                     { label: '开始日期', name: 'begndate', width: 105, align: 'center' },
+                     { label: '', name: '', width: 105, align: '' },
                      {
-                         label: '医疗类别', name: 'med_type', width: 125, align: 'center', formatter: function (val) {
-                             return $.enum.getDescByValue("Enumyllb", val);
+                         label: '', name: '', width: 125, align: '', formatter: function (val) {
+                             return $.enum.getDescByValue("", val);
                          }
                      },
-                     { label: '住院/门诊号', name: 'ipt_otp_no', width: 105, align: 'center' },
-                     { label: '异地标志', name: 'out_flag', width: 125, align: 'center' }
+                     { label: '', name: '', width: 105, align: '' },
+                     { label: '', name: '', width: 125, align: '' }
                 ];
                 break;
-            case "11":
-                captionCon = "转院信息查询";
+            case "":
+                captionCon = "";
                 colModel = [
                      {
-                         label: '险种类型', name: 'insutype', width: 105, align: 'center', formatter: function (val) {
-                             return $.enum.getDescByValue("Enumxzlx", val);
+                         label: '', name: '', width: 105, align: '', formatter: function (val) {
+                             return $.enum.getDescByValue("", val);
                          }
                      },
                      {
-                         label: '申报来源', name: 'dcla_souc', width: 105, align: 'center', formatter: function (val) {
-                             return $.enum.getDescByValue("Enumsbly", val);
+                         label: '', name: '', width: 105, align: '', formatter: function (val) {
+                             return $.enum.getDescByValue("", val);
                          }
                      },
-                     { label: '诊断代码', name: 'diag_code', width: 105, align: 'center' },
-                     { label: '诊断名称', name: 'diag_name', width: 125, align: 'center' },
-                     { label: '转往定点医药机构编号', name: 'reflin_medins_no', width: 105, align: 'center' },
-                     { label: '转往医院名称', name: 'reflin_medins_name', width: 125, align: 'center' },
+                     { label: '', name: '', width: 105, align: '' },
+                     { label: '', name: '', width: 125, align: '' },
+                     { label: '', name: '', width: 105, align: '' },
+                     { label: '', name: '', width: 125, align: '' },
                      {
-                         label: '异地标志', name: 'out_flag', width: 105, align: 'center', formatter: function (val) {
-                             return $.enum.getDescByValue("Enumdyxsbz", val);
+                         label: '', name: '', width: 105, align: '', formatter: function (val) {
+                             return $.enum.getDescByValue("", val);
                          }
                      },
-                     { label: '转院日期', name: 'refl_date', width: 125, align: 'center' },
-                     { label: '开始时间', name: 'begndate', width: 105, align: 'center' },
-                     { label: '结束时间', name: 'enddate', width: 125, align: 'center' },
+                     { label: '', name: '', width: 125, align: '' },
+                     { label: '', name: '', width: 105, align: '' },
+                     { label: '', name: '', width: 125, align: '' },
                      {
-                         label: '医院同意转院标志', name: 'hosp_agre_refl_flag', width: 125, align: 'center', formatter: function (val) {
-                             return $.enum.getDescByValue("Enumdyxsbz", val);
+                         label: '', name: '', width: 125, align: '', formatter: function (val) {
+                             return $.enum.getDescByValue("", val);
                          }
                      }
                 ];
                 break;
-            case "5401":
-                captionCon = "项目互认信息";
+            case "":
+                captionCon = "";
                 colModel = [
-                    { label: '人员编号', name: 'psn_no', width: 180, align: 'center' },
-                    { label: '报告单号', name: 'rpotc_no', width: 130, align: 'center' },
-                    { label: '报告日期', name: 'rpt_date', width: 80, align: 'center' },
-                    { label: '报告单类别代码', name: 'rpotc_type_code', width: 100, align: 'center' },
-                    { label: '机构编号', name: 'fixmedins_code', width: 80, align: 'center' },
-                    { label: '检查报告单名称', name: 'exam_rpotc_name', width: 120, align: 'center' },
-                    { label: '报告日期', name: 'rpt_date', width: 60, align: 'center' },
-                    { label: '检查结果阳性标志', name: 'exam_rslt_poit_flag', width: 120, align: 'center' },
-                    { label: '检查结果异常标志', name: 'exam_rslt_abn', width: 120, align: 'center' },
-                    { label: '检查报告单名称', name: 'exam_rpotc_name', width: 120, align: 'center' },
-                    { label: '检查结论', name: 'examCcls', width: 150, align: 'center' }
+                    { label: '', name: '', width: 180, align: '' },
+                    { label: '', name: '', width: 130, align: '' },
+                    { label: '', name: '', width: 80, align: '' },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 80, align: '' },
+                    { label: '', name: '', width: 120, align: '' },
+                    { label: '', name: '', width: 60, align: '' },
+                    { label: '', name: '', width: 120, align: '' },
+                    { label: '', name: '', width: 120, align: '' },
+                    { label: '', name: '', width: 120, align: '' },
+                    { label: '', name: '', width: 150, align: '' }
                 ];
                 break;
-            case "4207":
-                captionCon = "自费病人就医费用明细";
+            case "":
+                captionCon = "";
                 colModel = [
-                    { label: '医药机构就诊ID', name: 'fixmedinsMdtrtId', width: 90, align: 'center' },
-                    { label: '费用发生时间', name: 'feeOcurTime', width: 120, align: 'center' },
-                    { label: '定点医药机构名称', name: 'fixmedinsName', width: 120, align: 'center' },
-                    { label: '数量', name: 'cnt', width: 60, align: 'center' },
-                    { label: '单价', name: 'pric', width: 60, align: 'center' },
-                    { label: '明细项目费用总额', name: 'detItemFeeSumamt', width: 100, align: 'center' },
-                    { label: '医药机构目录名称', name: 'medinsListName', width: 120, align: 'center' },
-                    { label: '开单科室名称', name: 'bilgDeptName', width: 100, align: 'center' },
-                    { label: '开单医师姓名', name: 'bilgDrName', width: 100, align: 'center' },
-                    { label: '全自费金额', name: 'fulamtOwnpayAmt', width: 100, align: 'center' },
-                    { label: '超限价自费金额', name: 'overlmtSelfpay', width: 100, align: 'center' },
-                    { label: '经办人姓名', name: 'opterName', width: 100, align: 'center' },
-                    { label: '经办时间', name: 'optTime', width: 100, align: 'center' }
+                    { label: '', name: '', width: 90, align: '' },
+                    { label: '', name: '', width: 120, align: '' },
+                    { label: '', name: '', width: 120, align: '' },
+                    { label: '', name: '', width: 60, align: '' },
+                    { label: '', name: '', width: 60, align: '' },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 120, align: '' },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 100, align: '' }
 
 
-                    //{ label: '记账流水号', name: 'bkkpSn', width: 90, align: 'center' },
-                    //{ label: '定点医药机构编号', name: 'fixmedinsCode', width: 90, align: 'center' },
-                    //{ label: '医疗目录编码', name: 'medListCodg', width: 150, align: 'center' },
-                    //{ label: '医药机构目录编码', name: 'medinsListCodg', width: 450, align: 'center' },
-                    //{ label: '医疗收费项目类别', name: 'medChrgitmType', width: 18, align: 'center' },
-                    //{ label: '商品名', name: 'prodname', width: 600, align: 'center' },
-                    //{ label: '开单科室编码', name: 'bilgDeptCodg', width: 90, align: 'center' },
-                    //{ label: '开单医生编码', name: 'bilgDrCode', width: 90, align: 'center' },
-                    //{ label: '受单科室编码', name: 'acordDeptCodg', width: 90, align: 'center' },
-                    //{ label: '受单科室名称', name: 'acordDeptName', width: 300, align: 'center' },
-                    //{ label: '受单医生编码', name: 'acordDrCode', width: 90, align: 'center' },
-                    //{ label: '受单医生姓名', name: 'acordDrName', width: 150, align: 'center' },
-                    //{ label: '中药使用方式', name: 'tcmdrugUsedWay', width: 18, align: 'center' },
-                    //{ label: '外检标志', name: 'etipFlag', width: 9, align: 'center' },
-                    //{ label: '外检医院编码', name: 'etipHospCode', width: 90, align: 'center' },
-                    //{ label: '出院带药标志', name: 'dscgTkdrugFlag', width: 9, align: 'center' },
-                    //{ label: '单次剂量描述', name: 'sinDosDscr', width: 600, align: 'center' },
-                    //{ label: '使用频次描述', name: 'usedFrquDscr', width: 600, align: 'center' },
-                    //{ label: '周期天数', name: 'prdDays', width: 12, align: 'center' },
-                    //{ label: '用药途径描述', name: 'medcWayDscr', width: 600, align: 'center' },
-                    //{ label: '备注', name: 'memo', width: 1500, align: 'center' },
-                    //{ label: '先行自付金额', name: 'preselfpayAmt', width: 48, align: 'center' },
-                    //{ label: '符合政策范围金额', name: 'inscpAmt', width: 48, align: 'center' },
-                    //{ label: '有效标志', name: 'valiFlag', width: 9, align: 'center' },
-                    //{ label: '唯一记录号', name: 'rid', width: 90, align: 'center' },
-                    //{ label: '更新时间', name: 'updtTime', width: 180, align: 'center' },
-                    //{ label: '创建人', name: 'crterId', width: 60, align: 'center' },
-                    //{ label: '创建人姓名', name: 'crterName', width: 150, align: 'center' },
-                    //{ label: '创建时间', name: 'crteTime', width: 180, align: 'center' },
-                    //{ label: '创建机构', name: 'crteOptinsNo', width: 60, align: 'center' },
-                    //{ label: '经办人ID', name: 'opterId', width: 60, align: 'center' },
-                    //{ label: '经办机构', name: 'optinsNo', width: 60, align: 'center' },
-                    //{ label: '统筹区编码', name: 'poolareaNo', width: 30, align: 'center' },
-                    //{ label: '审核通过标识', name: 'chkPassFlag', width: 9, align: 'center' },
-                    //{ label: '处方号', name: 'rxno', width: 90, align: 'center' }
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 150, align: '' },
+                    //{ label: '', name: '', width: 450, align: '' },
+                    //{ label: '', name: '', width: 18, align: '' },
+                    //{ label: '', name: '', width: 600, align: '' },
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 300, align: '' },
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 150, align: '' },
+                    //{ label: '', name: '', width: 18, align: '' },
+                    //{ label: '', name: '', width: 9, align: '' },
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 9, align: '' },
+                    //{ label: '', name: '', width: 600, align: '' },
+                    //{ label: '', name: '', width: 600, align: '' },
+                    //{ label: '', name: '', width: 12, align: '' },
+                    //{ label: '', name: '', width: 600, align: '' },
+                    //{ label: '', name: '', width: 1500, align: '' },
+                    //{ label: '', name: '', width: 48, align: '' },
+                    //{ label: '', name: '', width: 48, align: '' },
+                    //{ label: '', name: '', width: 9, align: '' },
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 180, align: '' },
+                    //{ label: '', name: '', width: 60, align: '' },
+                    //{ label: '', name: '', width: 150, align: '' },
+                    //{ label: '', name: '', width: 180, align: '' },
+                    //{ label: '', name: '', width: 60, align: '' },
+                    //{ label: '', name: '', width: 60, align: '' },
+                    //{ label: '', name: '', width: 60, align: '' },
+                    //{ label: '', name: '', width: 30, align: '' },
+                    //{ label: '', name: '', width: 9, align: '' },
+                    //{ label: '', name: '', width: 90, align: '' }
                 ];
                 break;
-            case "4208":
-                captionCon = "自费病人就医就诊信息";
+            case "":
+                captionCon = "";
                 colModel = [
-                    { label: '医药机构就诊ID', name: 'fixmedinsMdtrtId', width: 120, align: 'center' },
-                    { label: '定点医药机构名称', name: 'fixmedinsName', width: 120, align: 'center' },
-                    { label: '证件号码', name: 'certno', width: 150, align: 'center' },
-                    { label: '人员姓名', name: 'psnName', width: 100, align: 'center' },
-                    { label: '性别', name: 'gend', width: 50, align: 'center' },
-                    { label: '开始时间', name: 'begntime', width: 100, align: 'center' },
-                    { label: '结束时间', name: 'endtime', width: 100, align: 'center' },
-                    { label: '医疗类别', name: 'medType', width: 50, align: 'center' },
-                    { label: '住院/门诊号', name: 'iptOtpNo', width: 90, align: 'center' },
-                    { label: '病历号', name: 'medrcdno', width: 90, align: 'center' },
-                    { label: '入院诊断描述', name: 'admDiagDscr', width: 150, align: 'center' },
-                    { label: '主要病情描述', name: 'mainCondDscr', width: 150, align: 'center' },
-                    { label: '门诊诊断信息', name: 'otpDiagInfo', width: 150, align: 'center' },
-                    { label: '主诊医师姓名', name: 'chfpdrName', width: 100, align: 'center' },
-                    { label: '医疗总费用', name: 'medfeeSumamt', width: 60, align: 'center' },
-                    { label: '完成标志', name: 'cpltFlag', width: 60, align: 'center' },
+                    { label: '', name: '', width: 120, align: '' },
+                    { label: '', name: '', width: 120, align: '' },
+                    { label: '', name: '', width: 150, align: '' },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 50, align: '' },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 50, align: '' },
+                    { label: '', name: '', width: 90, align: '' },
+                    { label: '', name: '', width: 90, align: '' },
+                    { label: '', name: '', width: 150, align: '' },
+                    { label: '', name: '', width: 150, align: '' },
+                    { label: '', name: '', width: 150, align: '' },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 60, align: '' },
+                    { label: '', name: '', width: 60, align: '' },
 
-                    //{ label: '定点医药机构编号', name: 'fixmedinsCode', width: 90, align: 'center' },
-                    //{ label: '人员证件类型', name: 'psnCertType', width: 18, align: 'center' },
-                    //{ label: '民族', name: 'naty', width: 9, align: 'center' },
-                    //{ label: '出生日期', name: 'brdy', width: 180, align: 'center' },
-                    //{ label: '年龄', name: 'age', width: 12, align: 'center' },
-                    //{ label: '联系人姓名', name: 'conerName', width: 150, align: 'center' },
-                    //{ label: '联系电话', name: 'tel', width: 150, align: 'center' },
-                    //{ label: '联系地址', name: 'addr', width: 1500, align: 'center' },
-                    //{ label: '主诊医师代码', name: 'chfpdrCode', width: 90, align: 'center' },
-                    //{ label: '入院科室编码', name: 'admDeptCodg', width: 90, align: 'center' },
-                    //{ label: '入院科室名称', name: 'admDeptName', width: 300, align: 'center' },
-                    //{ label: '入院床位', name: 'admBed', width: 90, align: 'center' },
-                    //{ label: '病区床位', name: 'wardareaBed', width: 150, align: 'center' },
-                    //{ label: '转科室标志', name: 'trafDeptFlag', width: 18, align: 'center' },
-                    //{ label: '出院主诊断代码', name: 'dscgMaindiagCode', width: 60, align: 'center' },
-                    //{ label: '出院科室编码', name: 'dscgDeptCodg', width: 90, align: 'center' },
-                    //{ label: '出院科室名称', name: 'dscgDeptName', width: 300, align: 'center' },
-                    //{ label: '出院床位', name: 'dscgBed', width: 90, align: 'center' },
-                    //{ label: '离院方式', name: 'dscgWay', width: 9, align: 'center' },
-                    //{ label: '病种编号', name: 'diseNo', width: 90, align: 'center' },
-                    //{ label: '病种名称', name: 'diseName', width: 1500, align: 'center' },
-                    //{ label: '手术操作代码', name: 'oprnOprtCode', width: 90, align: 'center' },
-                    //{ label: '手术操作名称', name: 'oprnOprtName', width: 1500, align: 'center' },
-                    //{ label: '在院状态', name: 'inhospStas', width: 9, align: 'center' },
-                    //{ label: '死亡日期', name: 'dieDate', width: 180, align: 'center' },
-                    //{ label: '住院天数', name: 'iptDays', width: 48, align: 'center' },
-                    //{ label: '计划生育服务证号', name: 'fpscNo', width: 150, align: 'center' },
-                    //{ label: '生育类别', name: 'matnType', width: 18, align: 'center' },
-                    //{ label: '计划生育手术类别', name: 'birctrlType', width: 18, align: 'center' },
-                    //{ label: '晚育标志', name: 'latechbFlag', width: 9, align: 'center' },
-                    //{ label: '孕周数', name: 'gesoVal', width: 6, align: 'center' },
-                    //{ label: '胎次', name: 'fetts', width: 9, align: 'center' },
-                    //{ label: '胎儿数', name: 'fetusCnt', width: 9, align: 'center' },
-                    //{ label: '早产标志', name: 'pretFlag', width: 9, align: 'center' },
-                    //{ label: '妊娠时间', name: 'preyTime', width: 180, align: 'center' },
-                    //{ label: '计划生育手术或生育日期', name: 'birctrlMatnDate', width: 180, align: 'center' },
-                    //{ label: '伴有并发症标志', name: 'copFlag', width: 9, align: 'center' },
-                    //{ label: '有效标志', name: 'valiFlag', width: 9, align: 'center' },
-                    //{ label: '备注', name: 'memo', width: 1500, align: 'center' },
-                    //{ label: '经办人ID', name: 'opterId', width: 60, align: 'center' },
-                    //{ label: '经办人姓名', name: 'opterName', width: 150, align: 'center' },
-                    //{ label: '经办时间', name: 'optTime', width: 180, align: 'center' },
-                    //{ label: '唯一记录号', name: 'rid', width: 90, align: 'center' },
-                    //{ label: '更新时间', name: 'updtTime', width: 180, align: 'center' },
-                    //{ label: '创建人ID', name: 'crterId', width: 60, align: 'center' },
-                    //{ label: '创建人姓名', name: 'crterName', width: 150, align: 'center' },
-                    //{ label: '创建时间', name: 'crteTime', width: 180, align: 'center' },
-                    //{ label: '创建机构', name: 'crteOptinsNo', width: 60, align: 'center' },
-                    //{ label: '经办机构', name: 'optinsNo', width: 60, align: 'center' },
-                    //{ label: '统筹区编码', name: 'poolareaNo', width: 30, align: 'center' },
-                    //{ label: '住院主诊断名称', name: 'dscgMaindiagName', width: 900, align: 'center' },
-                    //{ label: '电子票据代码', name: 'elecBillCode', width: 150, align: 'center' },
-                    //{ label: '电子票据号码', name: 'elecBillnoCode', width: 150, align: 'center' },
-                    //{ label: '电子票据校验码', name: 'elecBillChkcode', width: 18, align: 'center' },
-                    //{ label: '扩展字段', name: 'expContent', width: 12000, align: 'center' }
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 18, align: '' },
+                    //{ label: '', name: '', width: 9, align: '' },
+                    //{ label: '', name: '', width: 180, align: '' },
+                    //{ label: '', name: '', width: 12, align: '' },
+                    //{ label: '', name: '', width: 150, align: '' },
+                    //{ label: '', name: '', width: 150, align: '' },
+                    //{ label: '', name: '', width: 1500, align: '' },
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 300, align: '' },
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 150, align: '' },
+                    //{ label: '', name: '', width: 18, align: '' },
+                    //{ label: '', name: '', width: 60, align: '' },
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 300, align: '' },
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 9, align: '' },
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 1500, align: '' },
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 1500, align: '' },
+                    //{ label: '', name: '', width: 9, align: '' },
+                    //{ label: '', name: '', width: 180, align: '' },
+                    //{ label: '', name: '', width: 48, align: '' },
+                    //{ label: '', name: '', width: 150, align: '' },
+                    //{ label: '', name: '', width: 18, align: '' },
+                    //{ label: '', name: '', width: 18, align: '' },
+                    //{ label: '', name: '', width: 9, align: '' },
+                    //{ label: '', name: '', width: 6, align: '' },
+                    //{ label: '', name: '', width: 9, align: '' },
+                    //{ label: '', name: '', width: 9, align: '' },
+                    //{ label: '', name: '', width: 9, align: '' },
+                    //{ label: '', name: '', width: 180, align: '' },
+                    //{ label: '', name: '', width: 180, align: '' },
+                    //{ label: '', name: '', width: 9, align: '' },
+                    //{ label: '', name: '', width: 9, align: '' },
+                    //{ label: '', name: '', width: 1500, align: '' },
+                    //{ label: '', name: '', width: 60, align: '' },
+                    //{ label: '', name: '', width: 150, align: '' },
+                    //{ label: '', name: '', width: 180, align: '' },
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 180, align: '' },
+                    //{ label: '', name: '', width: 60, align: '' },
+                    //{ label: '', name: '', width: 150, align: '' },
+                    //{ label: '', name: '', width: 180, align: '' },
+                    //{ label: '', name: '', width: 60, align: '' },
+                    //{ label: '', name: '', width: 60, align: '' },
+                    //{ label: '', name: '', width: 30, align: '' },
+                    //{ label: '', name: '', width: 900, align: '' },
+                    //{ label: '', name: '', width: 150, align: '' },
+                    //{ label: '', name: '', width: 150, align: '' },
+                    //{ label: '', name: '', width: 18, align: '' },
+                    //{ label: '', name: '', width: 12000, align: '' }
                 ];
                 break;
-            case "4209":
-                captionCon = "自费病人就医费用明细";
+            case "":
+                captionCon = "";
                 colModel = [
-                    { label: '诊断信息ID', name: 'diagInfoId', width: 90, align: 'center' },
-                    { label: '医药机构就诊ID', name: 'fixmedinsMdtrtId', width: 120, align: 'center' },
-                    { label: '出入院诊断类别', name: 'inoutDiagType', width: 120, align: 'center' },
-                    { label: '诊断类别', name: 'diagType', width: 60, align: 'center' },
-                    { label: '诊断代码', name: 'diagCode', width: 60, align: 'center' },
-                    { label: '诊断名称', name: 'diagName', width: 100, align: 'center' },
-                    { label: '诊断科室', name: 'diagDept', width: 100, align: 'center' },
-                    { label: '诊断医师姓名', name: 'diagDrName', width: 100, align: 'center' },
-                    { label: '诊断时间', name: 'diagTime', width: 180, align: 'center' },
-                    { label: '入院病情', name: 'admCond', width: 200, align: 'center' },
-                    { label: '经办人姓名', name: 'opterName', width: 150, align: 'center' },
-                    { label: '经办时间', name: 'optTime', width: 180, align: 'center' }
+                    { label: '', name: '', width: 90, align: '' },
+                    { label: '', name: '', width: 120, align: '' },
+                    { label: '', name: '', width: 120, align: '' },
+                    { label: '', name: '', width: 60, align: '' },
+                    { label: '', name: '', width: 60, align: '' },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 100, align: '' },
+                    { label: '', name: '', width: 180, align: '' },
+                    { label: '', name: '', width: 200, align: '' },
+                    { label: '', name: '', width: 150, align: '' },
+                    { label: '', name: '', width: 180, align: '' }
 
                    
-                    //{ label: '定点医药机构编号', name: 'fixmedinsCode', width: 90, align: 'center' },
-                    //{ label: '主诊断标志', name: 'maindiagFlag', width: 9, align: 'center' },
-                    //{ label: '诊断排序号', name: 'diagSrtNo', width: 6, align: 'center' },
-                    //{ label: '诊断医师代码', name: 'diagDrCode', width: 90, align: 'center' },
-                    //{ label: '有效标志', name: 'valiFlag', width: 9, align: 'center' },
-                    //{ label: '经办人ID', name: 'opterId', width: 60, align: 'center' },
-                    //{ label: '唯一记录号', name: 'rid', width: 90, align: 'center' },
-                    //{ label: '更新时间', name: 'updtTime', width: 180, align: 'center' },
-                    //{ label: '创建人ID', name: 'crterId', width: 60, align: 'center' },
-                    //{ label: '创建人姓名', name: 'crterName', width: 150, align: 'center' },
-                    //{ label: '创建时间', name: 'crteTime', width: 180, align: 'center' },
-                    //{ label: '创建机构', name: 'crteOptinsNo', width: 60, align: 'center' },
-                    //{ label: '经办机构', name: 'optinsNo', width: 60, align: 'center' },
-                    //{ label: '统筹区编码', name: 'poolareaNo', width: 30, align: 'center' }
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 9, align: '' },
+                    //{ label: '', name: '', width: 6, align: '' },
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 9, align: '' },
+                    //{ label: '', name: '', width: 60, align: '' },
+                    //{ label: '', name: '', width: 90, align: '' },
+                    //{ label: '', name: '', width: 180, align: '' },
+                    //{ label: '', name: '', width: 60, align: '' },
+                    //{ label: '', name: '', width: 150, align: '' },
+                    //{ label: '', name: '', width: 180, align: '' },
+                    //{ label: '', name: '', width: 60, align: '' },
+                    //{ label: '', name: '', width: 60, align: '' },
+                    //{ label: '', name: '', width: 30, align: '' }
                 ];
                 break;
         }
-        $("#gbox_gridList").remove();
-        $("#gbox_gridList2").remove();
-        $("#gbox_gridList3").remove();
-        $(".gridPanel").append('<table id="gridList"></table>');
-        $('#gridList').jqGrid("clearGridData");
-        var $gridList = $("#gridList");
+        $("").remove();
+        $("").remove();
+        $("").remove();
+        $("").append('');
+        $('').jqGrid("");
+        var $gridList = $("");
 
         $gridList.newtouchLocalDataGrid({
             height: $(window).height() - 330,
             autowidth: false,
             unwritten: false,
-            width: $("#formPat2").width() - 10,
+            width: $("").width() - 10,
             caption: captionCon,
             colModel: colModel,
         }, mydata);
@@ -1189,496 +1189,496 @@
             inspectiondetails = "";
         }
 
-        $("#gbox_gridList").remove();
-        $("#gbox_gridList2").remove();
-        $("#gbox_gridList3").remove();
+        $("").remove();
+        $("").remove();
+        $("").remove();
 
-        var checkreportdetailsCaptionCon = "检查报告明细信息";
+        var checkreportdetailsCaptionCon = "";
         var checkreportdetailsColModel = [
-            { label: '人员编号', name: 'psn_no', width: 180, align: 'center' },
-            { label: '报告单号', name: 'rpotc_no', width: 130, align: 'center' },
-            { label: '报告日期', name: 'rpt_date', width: 120, align: 'center' },
-            { label: '报告单类别代码', name: 'rpotc_type_code', width: 150, align: 'center' },
-            { label: '检查报告单名称', name: 'exam_rpotc_name', width: 150, align: 'center' },
-            { label: '检查结果阳性标志', name: 'exam_rslt_poit_flag', width: 150, align: 'center' },
-            { label: '检查异常标志', name: 'exam_rslt_abn', width: 120, align: 'center' },
-            { label: '报告医师', name: 'bilgDrName', width: 150, align: 'center' },
-            { label: '检查结论', name: 'exam_ccls', width: 300, align: 'center' }
+            { label: '', name: '', width: 180, align: '' },
+            { label: '', name: '', width: 130, align: '' },
+            { label: '', name: '', width: 120, align: '' },
+            { label: '', name: '', width: 150, align: '' },
+            { label: '', name: '', width: 150, align: '' },
+            { label: '', name: '', width: 150, align: '' },
+            { label: '', name: '', width: 120, align: '' },
+            { label: '', name: '', width: 150, align: '' },
+            { label: '', name: '', width: 300, align: '' }
         ];
-        $(".gridPanel").append('<table id="gridList"></table>');
-        $('#gridList').jqGrid("clearGridData");
-        var $gridList = $("#gridList");
+        $("").append('');
+        $('').jqGrid("");
+        var $gridList = $("");
 
         $gridList.newtouchLocalDataGrid({
             height: $(window).height() - 330,
             autowidth: false,
             unwritten: false,
-            width: $("#formPat2").width() - 10,
+            width: $("").width() - 10,
             caption: checkreportdetailsCaptionCon,
             colModel: checkreportdetailsColModel,
         }, checkreportdetails);
 
-        var inspectionreportinformationCaptionCon = "检验报告信息";
+        var inspectionreportinformationCaptionCon = "";
         var inspectionreportinformationColModel = [
-            { label: '人员编号', name: 'psn_no', width: 180, align: 'center' },
-            { label: '报告单号', name: 'rpotc_no', width: 150, align: 'center' },
-            { label: '检验-项目代码', name: 'exam_item_code', width: 150, align: 'center' },
-            { label: '检验-项目名称', name: 'exam_item_name', width: 150, align: 'center' },
-            { label: '报告日期', name: 'rpt_date', width: 150, align: 'center' },
-            { label: '报告医师', name: 'rpot_doc', width: 150, align: 'center' }
+            { label: '', name: '', width: 180, align: '' },
+            { label: '', name: '', width: 150, align: '' },
+            { label: '', name: '', width: 150, align: '' },
+            { label: '', name: '', width: 150, align: '' },
+            { label: '', name: '', width: 150, align: '' },
+            { label: '', name: '', width: 150, align: '' }
         ];
 ;
-        $(".gridPanel").append('<table id="gridList2"></table>');
-        $('#gridList2').jqGrid("clearGridData");
-        var $gridList2 = $("#gridList2");
+        $("").append('');
+        $('').jqGrid("");
+        var $gridList2 = $("");
 
         $gridList2.newtouchLocalDataGrid({
             height: $(window).height() - 330,
             autowidth: false,
             unwritten: false,
-            width: $("#formPat2").width() - 10,
+            width: $("").width() - 10,
             caption: inspectionreportinformationCaptionCon,
             colModel: inspectionreportinformationColModel,
         }, inspectionreportinformation);
 
-        var inspectiondetailsCaptionCon = "检验明细信息";
+        var inspectiondetailsCaptionCon = "";
         var inspectiondetailsColModel = [
-            { label: '报告单号', name: 'rpotc_no', width: 150, align: 'center' },
-            { label: '检验方法', name: 'exam_mtd', width: 120, align: 'center' },
-            { label: '参考值', name: 'ref_val', width: 60, align: 'center' },
-            { label: '检验-计量单位', name: 'exam_unt', width: 120, align: 'center' },
-            { label: '检验-结果(数值)', name: 'exam_rslt_val', width: 120, align: 'center' },
-            { label: '检验-结果(定性)', name: 'exam_rslt_qual', width: 200, align: 'center' },
-            { label: '检验-项目明细代码', name: 'exam_item_detl_code', width: 150, align: 'center' },
-            { label: '检验-项目明细名称', name: 'exam_item_detl_name', width: 150, align: 'center' },
-            { label: '检查/检验结果异常标识', name: 'exam_rslt_abn', width: 150, align: 'center' }
+            { label: '', name: '', width: 150, align: '' },
+            { label: '', name: '', width: 120, align: '' },
+            { label: '', name: '', width: 60, align: '' },
+            { label: '', name: '', width: 120, align: '' },
+            { label: '', name: '', width: 120, align: '' },
+            { label: '', name: '', width: 200, align: '' },
+            { label: '', name: '', width: 150, align: '' },
+            { label: '', name: '', width: 150, align: '' },
+            { label: '', name: '', width: 150, align: '' }
         ];
 
-        $(".gridPanel").append('<table id="gridList3"></table>');
-        $('#gridList3').jqGrid("clearGridData");
-        var $gridList3 = $("#gridList3");
+        $("").append('');
+        $('').jqGrid("");
+        var $gridList3 = $("");
 
         $gridList3.newtouchLocalDataGrid({
             height: $(window).height() - 330,
             autowidth: false,
             unwritten: false,
-            width: $("#formPat2").width() - 10,
+            width: $("").width() - 10,
             caption: inspectiondetailsCaptionCon,
             colModel: inspectiondetailsColModel,
         }, inspectiondetails);
     }
 
     function ReadCardCall(readCardObj) {
-        $("#rybh").html(cqPatInfo.grbh);
-        $("#zjhm").html(cqPatInfo.sfzh);
-        $("#xm").html(cqPatInfo.xm);
-        $("#xb").html(readCardObj.cardInfo1.gend == "1" ? "男" : "女");
-        //$("#mz").html(cardInfo1.naty);
-        $("#csny").html(readCardObj.cardInfo1.brdy);
-        $("#nl").html(readCardObj.cardInfo1.age + "岁");
+        $("").html(cqPatInfo.grbh);
+        $("").html(cqPatInfo.sfzh);
+        $("").html(cqPatInfo.xm);
+        $("").html(readCardObj.cardInfo1.gend == "" ? "" : "");
+        //$("").html(cardInfo1.naty);
+        $("").html(readCardObj.cardInfo1.brdy);
+        $("").html(readCardObj.cardInfo1.age + "");
         $.loading(false);
     }
 
-    $("#btn_yljgxxcx_next").click(function () {
-        $("#jzxx_page_num").val($("#jzxx_page_num").val() + 1);
+    $("").click(function () {
+        $("").val($("").val() + 1);
         GetYbInfo();
     });
 
     showJZXXQuery();
 
     function showJZXXQuery() {
-        var type = $('#sel_rptype').val();
-        if (type.startsWith("420")) {
-            $('.420-show').show();
-            $("#jzxx_page_num").val(1);
-            $("#jzxx_page_size").val(20);
+        var type = $('').val();
+        if (type.startsWith("")) {
+            $('').show();
+            $("").val(1);
+            $("").val(20);
         } else {
-            $('.420-show').hide();
+            $('').hide();
         }
     }
 
-    $('#sel_rptype').change(function () {
+    $('').change(function () {
         showJZXXQuery();
     });
 
-    //-----------------------------就诊信息查询页面 end-----------------------------//
+    //-----------------------------Khám bệnh trang tra cứu thông tin end-----------------------------//
 
 
-    //-----------------------------医疗机构信息查询页面 start---------------------------//
+    //-----------------------------Trang tra cứu thông tin cơ quan y tế start---------------------------//
     function GetYbJGInfo() {
         $.loading(true);
-        var type = $('#sel_jgcxtype').val();
-        if (type === "1201") {
-            if (!$('#fixmedins_name').val() && !$('#fixmedins_code').val()) {
+        var type = $('').val();
+        if (type === "") {
+            if (!$('').val() && !$('').val()) {
                 $.loading(false);
-                $.modalAlert("医药机构名称和医药机构编号必须填写一个", 'error');
+                $.modalAlert("", '');
                 return;
             }
-            var rcData = { hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", fixmedins_type: "1", fixmedins_name: $('#fixmedins_name').val(), fixmedins_code: $('#fixmedins_code').val() };
+            var rcData = { hisId: "", operatorId: "", operatorName: "", orgId: "", fixmedins_type: "", fixmedins_name: $('').val(), fixmedins_code: $('').val() };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetfixmedinsInfo1201",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0" && !!refReg.output.medinsinfo) {
+                        if (refReg.infcode == "" && !!refReg.output.medinsinfo) {
                             jgGridListData(refReg.output.medinsinfo, type);
                         }
                         else {
                             jgGridListData("", type);
                             $.loading(false);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
-        } else if (type === "3508") {
-            if (!$('#medins_list_codg').val() && !$('#fixmedins_bchno').val()) {
+        } else if (type === "") {
+            if (!$('').val() && !$('').val()) {
                 $.loading(false);
-                $.modalAlert("医药机构目录编码和定点医药机构批次流水号必须填写一个", 'error');
+                $.modalAlert("", '');
                 return;
             }
-            if (!$('#jg_kssj').val()) {
+            if (!$('').val()) {
                 $.loading(false);
-                $.modalAlert("请填写开始时间", 'error');
+                $.modalAlert("", '');
                 return;
             }
-            if (!$('#jg_jssj').val()) {
+            if (!$('').val()) {
                 $.loading(false);
-                $.modalAlert("请填写结算时间", 'error');
+                $.modalAlert("", '');
                 return;
             }
             var rcData = {
-                hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", fixmedins_type: "1",
-                medins_list_codg: $('#medins_list_codg').val(), fixmedins_bchno: $('#fixmedins_bchno').val(),
-                begndate: $('#jg_kssj').val(), enddate: $('#jg_jssj').val()
+                hisId: "", operatorId: "", operatorName: "", orgId: "", fixmedins_type: "",
+                medins_list_codg: $('').val(), fixmedins_bchno: $('').val(),
+                begndate: $('').val(), enddate: $('').val()
             };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetProductInventoryInfo_3508",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0") {
+                        if (refReg.infcode == "") {
                             jgGridListData(refReg.output, type);
                         }
                         else {
                             jgGridListData("", type);
                             $.loading(false);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
-        } else if (type === "3509") {
-            if (!$('#medins_list_codg').val() && !$('#fixmedins_bchno').val()) {
+        } else if (type === "") {
+            if (!$('').val() && !$('').val()) {
                 $.loading(false);
-                $.modalAlert("医药机构目录编码和定点医药机构批次流水号必须填写一个", 'error');
+                $.modalAlert("", '');
                 return;
             }
-            if (!$('#jg_kssj').val()) {
+            if (!$('').val()) {
                 $.loading(false);
-                $.modalAlert("请填写开始时间", 'error');
+                $.modalAlert("", '');
                 return;
             }
-            if (!$('#jg_jssj').val()) {
+            if (!$('').val()) {
                 $.loading(false);
-                $.modalAlert("请填写结算时间", 'error');
+                $.modalAlert("", '');
                 return;
             }
             var rcData = {
-                hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", fixmedins_type: "1",
-                medins_list_codg: $('#medins_list_codg').val(), fixmedins_bchno: $('#fixmedins_bchno').val(),
-                begndate: $('#jg_kssj').val(), enddate: $('#jg_jssj').val()
+                hisId: "", operatorId: "", operatorName: "", orgId: "", fixmedins_type: "",
+                medins_list_codg: $('').val(), fixmedins_bchno: $('').val(),
+                begndate: $('').val(), enddate: $('').val()
             };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetProductInventoryChangeRecord_3509",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0") {
+                        if (refReg.infcode == "") {
                             jgGridListData(refReg.output, type);
                         }
                         else {
                             jgGridListData("", type);
                             $.loading(false);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
-        }else if (type === "3510") {
-            if (!$('#medins_list_codg').val() && !$('#fixmedins_bchno').val()) {
+        }else if (type === "") {
+            if (!$('').val() && !$('').val()) {
                 $.loading(false);
-                $.modalAlert("医药机构目录编码和定点医药机构批次流水号必须填写一个", 'error');
+                $.modalAlert("", '');
                 return;
             }
-            if (!$('#jg_kssj').val()) {
+            if (!$('').val()) {
                 $.loading(false);
-                $.modalAlert("请填写开始时间", 'error');
+                $.modalAlert("", '');
                 return;
             }
-            if (!$('#jg_jssj').val()) {
+            if (!$('').val()) {
                 $.loading(false);
-                $.modalAlert("请填写结算时间", 'error');
+                $.modalAlert("", '');
                 return;
             }
             var rcData = {
-                hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", fixmedins_type: "1",
-                medins_list_codg: $('#medins_list_codg').val(), fixmedins_bchno: $('#fixmedins_bchno').val(),
-                begndate: $('#jg_kssj').val(), enddate: $('#jg_jssj').val()
+                hisId: "", operatorId: "", operatorName: "", orgId: "", fixmedins_type: "",
+                medins_list_codg: $('').val(), fixmedins_bchno: $('').val(),
+                begndate: $('').val(), enddate: $('').val()
             };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetProductSourcingInfo_3510",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0") {
+                        if (refReg.infcode == "") {
                             jgGridListData(refReg.output, type);
                         }
                         else {
                             jgGridListData("", type);
                             $.loading(false);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
-        }else if (type === "3511") {
-            if (!$('#medins_list_codg').val() && !$('#fixmedins_bchno').val()) {
+        }else if (type === "") {
+            if (!$('').val() && !$('').val()) {
                 $.loading(false);
-                $.modalAlert("医药机构目录编码和定点医药机构批次流水号必须填写一个", 'error');
+                $.modalAlert("", '');
                 return;
             }
-            if (!$('#jg_kssj').val()) {
+            if (!$('').val()) {
                 $.loading(false);
-                $.modalAlert("请填写开始时间", 'error');
+                $.modalAlert("", '');
                 return;
             }
-            if (!$('#jg_jssj').val()) {
+            if (!$('').val()) {
                 $.loading(false);
-                $.modalAlert("请填写结算时间", 'error');
+                $.modalAlert("", '');
                 return;
             }
             var rcData = {
-                hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", fixmedins_type: "1",
-                medins_list_codg: $('#medins_list_codg').val(), fixmedins_bchno: $('#fixmedins_bchno').val(),
-                begndate: $('#jg_kssj').val(), enddate: $('#jg_jssj').val()
+                hisId: "", operatorId: "", operatorName: "", orgId: "", fixmedins_type: "",
+                medins_list_codg: $('').val(), fixmedins_bchno: $('').val(),
+                begndate: $('').val(), enddate: $('').val()
             };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetProductSalesInfo_3511",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0") {
+                        if (refReg.infcode == "") {
                             jgGridListData(refReg.output, type);
                         }
                         else {
                             jgGridListData("", type);
                             $.loading(false);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
-        } else if (type === "3512") {
-            if (!$('#medins_list_codg').val() && !$('#fixmedins_bchno').val() && !$('#med_list_codg').val()) {
+        } else if (type === "") {
+            if (!$('').val() && !$('').val() && !$('').val()) {
                 $.loading(false);
-                $.modalAlert("医药机构目录编码和定点医药机构批次流水号和医疗目录编码必须填写一个", 'error');
+                $.modalAlert("", '');
                 return;
             }
-            if (!$('#jg_kssj').val()) {
+            if (!$('').val()) {
                 $.loading(false);
-                $.modalAlert("请填写开始时间", 'error');
+                $.modalAlert("", '');
                 return;
             }
-            if (!$('#jg_jssj').val()) {
+            if (!$('').val()) {
                 $.loading(false);
-                $.modalAlert("请填写结算时间", 'error');
+                $.modalAlert("", '');
                 return;
             }
             var rcData = {
-                hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", fixmedins_type: "1",
-                medins_list_codg: $('#medins_list_codg').val(), fixmedins_bchno: $('#fixmedins_bchno').val(), med_list_codg: $('#med_list_codg').val(),
-                begndate: $('#jg_kssj').val(), enddate: $('#jg_jssj').val()
+                hisId: "", operatorId: "", operatorName: "", orgId: "", fixmedins_type: "",
+                medins_list_codg: $('').val(), fixmedins_bchno: $('').val(), med_list_codg: $('').val(),
+                begndate: $('').val(), enddate: $('').val()
             };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetProductTraceabilityInfo_3512",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0") {
+                        if (refReg.infcode == "") {
                             jgGridListData(refReg.output, type);
                         }
                         else {
                             jgGridListData("", type);
                             $.loading(false);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
-        } else if (type === "3513") {
-            if (!$('#medins_list_codg').val() && !$('#fixmedins_bchno').val() && !$('#med_list_codg').val() && !$('#mdtrt_id').val()) {
+        } else if (type === "") {
+            if (!$('').val() && !$('').val() && !$('').val() && !$('').val()) {
                 $.loading(false);
-                $.modalAlert("医药机构目录编码和定点医药机构批次流水号和医疗目录编码和结算id必须填写一个", 'error');
+                $.modalAlert("", '');
                 return;
             }
-            if (!$('#jg_kssj').val()) {
+            if (!$('').val()) {
                 $.loading(false);
-                $.modalAlert("请填写开始时间", 'error');
+                $.modalAlert("", '');
                 return;
             }
-            if (!$('#jg_jssj').val()) {
+            if (!$('').val()) {
                 $.loading(false);
-                $.modalAlert("请填写结算时间", 'error');
+                $.modalAlert("", '');
                 return;
             }
             var rcData = {
-                hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", fixmedins_type: "1",
-                medins_list_codg: $('#medins_list_codg').val(), fixmedins_bchno: $('#fixmedins_bchno').val(), med_list_codg: $('#med_list_codg').val(),
-                begndate: $('#jg_kssj').val(), enddate: $('#jg_jssj').val(), mdtrt_id: $('#mdtrt_id').val()
+                hisId: "", operatorId: "", operatorName: "", orgId: "", fixmedins_type: "",
+                medins_list_codg: $('').val(), fixmedins_bchno: $('').val(), med_list_codg: $('').val(),
+                begndate: $('').val(), enddate: $('').val(), mdtrt_id: $('').val()
             };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetProductSaleTraceabilityInfo_3513",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0") {
+                        if (refReg.infcode == "") {
                             jgGridListData(refReg.output, type);
                         }
                         else {
                             jgGridListData("", type);
                             $.loading(false);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
-        } else if (type === "3607") {
-            if (!$('#setl_ym').val()) {
+        } else if (type === "") {
+            if (!$('').val()) {
                 $.loading(false);
-                $.modalAlert("请填写结算年月", 'error');
+                $.modalAlert("", '');
                 return;
             }
-            if (!$('#page_num').val()) {
+            if (!$('').val()) {
                 $.loading(false);
-                $.modalAlert("请填写分页页码", 'error');
+                $.modalAlert("", '');
                 return;
             }
-            if (!$('#page_size').val()) {
+            if (!$('').val()) {
                 $.loading(false);
-                $.modalAlert("请填写分页数量", 'error');
+                $.modalAlert("", '');
                 return;
             }
             var rcData = {
-                hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId",
-                setl_ym: $('#setl_ym').val(), page_num: $('#page_num').val(), page_size: $('#page_size').val(),
-                setl_id: $('#setl_id').val()
+                hisId: "", operatorId: "", operatorName: "", orgId: "",
+                setl_ym: $('').val(), page_num: $('').val(), page_size: $('').val(),
+                setl_id: $('').val()
             };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetSettlementQualityControlResults_3607",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0") {
+                        if (refReg.infcode == "") {
                             jgGridListData(refReg.output.data, type);
                         }
                         else {
                             jgGridListData("", type);
                             $.loading(false);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
-        } else if (type === "5101") {
+        } else if (type === "") {
 
             var rcData = {
-                hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId"
+                hisId: "", operatorId: "", operatorName: "", orgId: ""
             };
             $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:33333/api/YiBao/GetDepartmentInfo_5101",
-                dataType: "json",
+                type: "",
+                url: "",
+                dataType: "",
                 data: rcData,
                 async: false,
                 success: function (data) {
-                    var refReg = eval('(' + data + ')');
+                    var refReg = eval('' + data + '');
                     if (refReg) {
-                        if (refReg.infcode == "0") {
+                        if (refReg.infcode == "") {
                             jgGridListData(refReg.output.feedetail, type);
                         }
                         else {
                             jgGridListData("", type);
                             $.loading(false);
-                            $.modalAlert(refReg.err_msg, 'error');
+                            $.modalAlert(refReg.err_msg, '');
                         }
                     }
                 },
                 error: function () {
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("", '');
                 }
             });
         }
     }
 
-    $("#btn_yljgxxcx_next").click(function () {
-        $("#page_num").val($("#page_num").val() + 1);
+    $("").click(function () {
+        $("").val($("").val() + 1);
         GetYbJGInfo();
     });
 
@@ -1686,312 +1686,312 @@
         var colModel;
         var captionCon = "";
         switch (type) {
-            case "1201":
-                captionCon = "医药机构信息";
+            case "":
+                captionCon = "";
                 colModel = [
-                    { label: '定点医药机构编号', name: 'fixmedins_code', width: 105, align: 'center' },
-                    { label: '定点医药机构名称', name: 'fixmedins_name', width: 160, align: 'center' },
-                    { label: '统一社会信用代码', name: 'uscc', width: 200, align: 'center' },
-                    { label: '定点医疗服务机构类型', name: 'fixmedins_type', width: 120, align: 'center' },
-                    { label: '医院等级', name: 'hosp_lv', width: 100, align: 'center' }
+                    { label: '', name: '', width: 105, align: '' },
+                    { label: '', name: '', width: 160, align: '' },
+                    { label: '', name: '', width: 200, align: '' },
+                    { label: '', name: '', width: 120, align: '' },
+                    { label: '', name: '', width: 100, align: '' }
                 ];
                 break;
-            case "3508":
-                captionCon = "定点医药机构商品库存信息";
+            case "":
+                captionCon = "";
                 colModel = [
-                    { label: '有效期止', name: 'expyEnd', width: 80, align: 'center' },
-                    { label: '医疗目录编码', name: 'medListCodg', width: 80, align: 'center' },
-                    { label: '统筹区编号', name: 'poolareaNo', width: 80, align: 'center' },
-                    { label: '库存数量', name: 'invCnt', width: 50, align: 'center' },
-                    { label: '医药机构目录编码', name: 'medinsListCodg', width: 80, align: 'center' },
-                    { label: '备注', name: 'memo', width: 50, align: 'center' },
-                    { label: '数据更新时间', name: 'updtTime', width: 80, align: 'center' },
-                    { label : "生产日期", name : "manuDate", width : 80, align : "center" },
-                    { label : "经办人姓名", name : "opterName", width : 50, align : "center" },
-                    { label : "数据唯一记录号", name : "rid", width : 40, align : "center" },
-                    { label : "数据创建时间", name : "crteTime", width : 80, align : "center" },
-                    { label : "库存日期", name : "invdate", width : 80, align : "center" },
-                    { label : "有效标志", name : "valiFlag", width : 3, align : "center" },
-                    { label : "定点医药机构编号", name : "fixmedinsCode", width : 30, align : "center" },
-                    { label : "处方药标志", name : "rxFlag", width : 3, align : "center" },
-                    { label : "目录特项标志", name : "listSpItemFlag", width : 3, align : "center" },
-                    { label : "定点医药机构批次流水号", name : "fixmedinsBchno", width : 30, align : "center" },
-                    { label : "经办时间", name : "optTime", width : 80, align : "center" },
-                    { label : "经办人 ID", name : "opterId", width : 20, align : "center" },
-                    { label : "生产批号", name : "manuLotnum", width : 30, align : "center" },
-                    { label : "医药机构目录名称", name : "medinsListName", width : 100, align : "center" },
-                    { label : "创建人姓名", name : "crterName", width : 50, align : "center" },
-                    { label : "定点医药机构商品库存流水号", name : "medinsProdInvNo", width : 30, align : "center" },
-                    { label : "创建人 ID", name : "crterId", width : 20, align : "center" },
-                    { label : "经办机构编号", name : "optinsNo", width : 20, align : "center" },
-                    { label : "拆零标志", name : "trdnFlag", width : 3, align : "center" }
+                    { label: '', name: '', width: 80, align: '' },
+                    { label: '', name: '', width: 80, align: '' },
+                    { label: '', name: '', width: 80, align: '' },
+                    { label: '', name: '', width: 50, align: '' },
+                    { label: '', name: '', width: 80, align: '' },
+                    { label: '', name: '', width: 50, align: '' },
+                    { label: '', name: '', width: 80, align: '' },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 40, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 3, align : "" },
+                    { label : "", name : "", width : 30, align : "" },
+                    { label : "", name : "", width : 3, align : "" },
+                    { label : "", name : "", width : 3, align : "" },
+                    { label : "", name : "", width : 30, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 20, align : "" },
+                    { label : "", name : "", width : 30, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 30, align : "" },
+                    { label : "", name : "", width : 20, align : "" },
+                    { label : "", name : "", width : 20, align : "" },
+                    { label : "", name : "", width : 3, align : "" }
                 ];
                 break;
-            case "3509":
-                captionCon = "定点医药机构商品库存变更记录";
+            case "":
+                captionCon = "";
                 colModel = [
-                    { label : "库存变更时间", name : "invChgTime", width : 80, align : "center" },
-                    { label : "医疗目录编码", name : "medListCodg", width : 50, align : "center" },
-                    { label : "统筹区编号", name : "poolareaNo", width : 6, align : "center" },
-                    { label : "库存变更经办人姓名", name : "invChgOpterName", width : 50, align : "center" },
-                    { label : "创建机构编号", name : "crteOptinsNo", width : 20, align : "center" },
-                    { label : "医药机构目录编码", name : "medinsListCodg", width : 150, align : "center" },
-                    { label : "备注", name : "memo", width : 50, align : "center" },
-                    { label : "数据更新时间", name : "updtTime", width : 80, align : "center" },
-                    { label : "经办人姓名", name : "opterName", width : 50, align : "center" },
-                    { label : "数据唯一记录号", name : "rid", width : 40, align : "center" },
-                    { label : "数据创建时间", name : "crteTime", width : 50, align : "center" },
-                    { label : "有效标志", name : "valiFlag", width : 3, align : "center" },
-                    { label : "定点医药机构编号", name : "fixmedinsCode", width : 30, align : "center" },
-                    { label : "库存变更类型", name : "invChgType", width : 6, align : "center" },
-                    { label : "处方药标志", name : "rxFlag", width : 3, align : "center" },
-                    { label : "定点医药机构商品库存变更流水号", name : "medinsProdInvChgNo", width : 30, align : "center" },
-                    { label : "目录特项标志", name : "listSpItemFlag", width : 3, align : "center" },
-                    { label : "定点医药机构批次流水号", name : "fixmedinsBchno", width : 30, align : "center" },
-                    { label : "经办时间", name : "optTime", width : 80, align : "center" },
-                    { label : "经办人 ID", name : "opterId", width : 20, align : "center" },
-                    { label : "医药机构目录名称", name : "medinsListName", width : 100, align : "center" },
-                    { label : "数量", name : "cnt", width : 50, align : "center" },
-                    { label : "单价", name : "pric", width : 50, align : "center" },
-                    { label : "创建人姓名", name : "crterName", width : 50, align : "center" },
-                    { label : "创建人 ID", name : "crterId", width : 20, align : "center" },
-                    { label : "经办机构编号", name : "optinsNo", width : 20, align : "center" },
-                    { label : "拆零标志", name : "trdnFlag", width : 3, align : "center" }
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 6, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 20, align : "" },
+                    { label : "", name : "", width : 150, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 40, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 3, align : "" },
+                    { label : "", name : "", width : 30, align : "" },
+                    { label : "", name : "", width : 6, align : "" },
+                    { label : "", name : "", width : 3, align : "" },
+                    { label : "", name : "", width : 30, align : "" },
+                    { label : "", name : "", width : 3, align : "" },
+                    { label : "", name : "", width : 30, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 20, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 20, align : "" },
+                    { label : "", name : "", width : 20, align : "" },
+                    { label : "", name : "", width : 3, align : "" }
                 ];
                 break;
-            case "3510":
-                captionCon = "定点医药机构商品采购信息";
+            case "":
+                captionCon = "";
                 colModel = [
-                    { label : "有效期止", name : "expyEnd", width : 80, align : "center" },
-                    { label : "医疗目录编码", name : "medListCodg", width : 50, align : "center" },
-                    { label : "统筹区编号", name : "poolareaNo", width : 6, align : "center" },
-                    { label : "创建机构编号", name : "crteOptinsNo", width : 20, align : "center" },
-                    { label : "医药机构目录编码", name : "medinsListCodg", width : 150, align : "center" },
-                    { label : "备注", name : "memo", width : 50, align : "center" },
-                    { label : "商品退货标志", name : "prodRetnFlag", width : 6, align : "center" },
-                    { label : "数据更新时间", name : "updtTime", width : 80, align : "center" },
-                    { label : "生产日期", name : "manuDate", width : 80, align : "center" },
-                    { label : "经办人姓名", name : "opterName", width : 50, align : "center" },
-                    { label : "数据唯一记录号", name : "rid", width : 40, align : "center" },
-                    { label : "数据创建时间", name : "crteTime", width : 80, align : "center" },
-                    { label : "生产企业名称", name : "prodentpName", width : 80, align : "center" },
-                    { label : "有效标志", name : "valiFlag", width : 3, align : "center" },
-                    { label : "批准文号", name : "aprvno", width : 100, align : "center" },
-                    { label : "定点医药机构编号", name : "fixmedinsCode", width : 30, align : "center" },
-                    { label : "定点医药机构商品采购流水号", name : "medinsProdPurcNo", width : 30, align : "center" },
-                    { label : "处方药标志", name : "rxFlag", width : 3, align : "center" },
-                    { label : "目录特项标志", name : "listSpItemFlag", width : 3, align : "center" },
-                    { label : "采购发票号", name : "purcInvoNo", width : 50, align : "center" },
-                    { label : "定点医药机构批次流水号", name : "fixmedinsBchno", width : 30, align : "center" },
-                    { label : "经办时间", name : "optTime", width : 100, align : "center" },
-                    { label : "经办人 ID", name : "opterId", width : 20, align : "center" },
-                    { label : "采购/退货入库时间", name : "purcRetnStoinTime", width : 100, align : "center" },
-                    { label : "生产批号", name : "manuLotnum", width : 30, align : "center" },
-                    { label : "医药机构目录名称", name : "medinsListName", width : 100, align : "center" },
-                    { label : "供货商名称", name : "splerName", width : 200, align : "center" },
-                    { label : "商品赠送标志", name : "prodGeayFlag", width : 3, align : "center" },
-                    { label : "采购/退货经办人姓名", name : "purcRetnOpterName", width : 50, align : "center" },
-                    { label : "采购发票编码", name : "purcInvoCodg", width : 50, align : "center" },
-                    { label : "创建人姓名", name : "crterName", width : 50, align : "center" },
-                    { label : "创建人 ID", name : "crterId", width : 20, align : "center" },
-                    { label : "经办机构编号", name : "optinsNo", width : 20, align : "center" },
-                    { label : "供应商许可证号", name : "splerPmtno", width : 50, align : "center" },
-                    { label : "最终成交单价", name : "finlTrnsPric", width : 100, align : "center" },
-                    { label : "采购/退货数量", name : "purcRetnCnt", width : 100, align : "center" },
-                    { label : "随货单号", name : "dyntNo", width : 50, align : "center" }
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 6, align : "" },
+                    { label : "", name : "", width : 20, align : "" },
+                    { label : "", name : "", width : 150, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 6, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 40, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 3, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 30, align : "" },
+                    { label : "", name : "", width : 30, align : "" },
+                    { label : "", name : "", width : 3, align : "" },
+                    { label : "", name : "", width : 3, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 30, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 20, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 30, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 200, align : "" },
+                    { label : "", name : "", width : 3, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 20, align : "" },
+                    { label : "", name : "", width : 20, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 50, align : "" }
 
                 ];
                 break;
-            case "3511":
-                captionCon = "定点医药机构商品销售信息";
+            case "":
+                captionCon = "";
                 colModel = [
-                    { label : "有效期止", name : "expyEnd", width : 100, align : "center" },
-                    { label : "药师证件类型", name : "pharCertType", width : 3, align : "center" },
-                    { label : "销售/退货经办人姓名", name : "selRetnOpterName", width : 50, align : "center" },
-                    { label : "医疗目录编码", name : "medListCodg", width : 50, align : "center" },
-                    { label : "统筹区编号", name : "poolareaNo", width : 6, align : "center" },
-                    { label : "结算 ID", name : "setlId", width : 30, align : "center" },
-                    { label : "创建机构编号", name : "crteOptinsNo", width : 20, align : "center" },
-                    { label : "医药机构目录编码", name : "medinsListCodg", width : 150, align : "center" },
-                    { label : "备注", name : "memo", width : 50, align : "center" },
-                    { label : "数据更新时间", name : "updtTime", width : 100, align : "center" },
-                    { label : "医保费用结算类型", name : "hiFeesetlType", width : 6, align : "center" },
-                    { label : "生产日期", name : "manuDate", width : 100, align : "center" },
-                    { label : "经办人姓名", name : "opterName", width : 50, align : "center" },
-                    { label : "人员编号", name : "psnNo", width : 30, align : "center" },
-                    { label : "数据唯一记录号", name : "rid", width : 40, align : "center" },
-                    { label : "数据创建时间", name : "crteTime", width : 100, align : "center" },
-                    { label : "药师证件号码", name : "pharCertno", width : 50, align : "center" },
-                    { label : "有效标志", name : "valiFlag", width : 3, align : "center" },
-                    { label : "证件号码", name : "certno", width : 80, align : "center" },
-                    { label : "定点医药机构编号", name : "fixmedinsCode", width : 30, align : "center" },
-                    { label : "处方药标志", name : "rxFlag", width : 3, align : "center" },
-                    { label : "药师执业资格证号", name : "pharPracCertNo", width : 50, align : "center" },
-                    { label : "目录特项标志", name : "listSpItemFlag", width : 3, align : "center" },
-                    { label : "定点医药机构批次流水号", name : "fixmedinsBchno", width : 30, align : "center" },
-                    { label : "经办时间", name : "optTime", width : 80, align : "center" },
-                    { label : "人员姓名", name : "psnName", width : 50, align : "center" },
-                    { label : "电子监管编码", name : "elecSupnCodg", width : 20, align : "center" },
-                    { label : "开单医师姓名", name : "bilgDrName", width : 50, align : "center" },
-                    { label : "经办人 ID", name : "opterId", width : 20, align : "center" },
-                    { label : "生产批号", name : "manuLotnum", width : 30, align : "center" },
-                    { label : "医药机构目录名称", name : "medinsListName", width : 100, align : "center" },
-                    { label : "人员证件类型", name : "psnCertType", width : 6, align : "center" },
-                    { label : "销售/退货时间", name : "selRetnTime", width : 100, align : "center" },
-                    { label : "销售/退货数量", name : "selRetnCnt", width : 100, align : "center" },
-                    { label : "创建人姓名", name : "crterName", width : 50, align : "center" },
-                    { label : "药师姓名", name : "pharName", width : 50, align : "center" },
-                    { label : "开单医师证件类型", name : "prscDrCertType", width : 3, align : "center" },
-                    { label : "创建人 ID", name : "crterId", width : 20, align : "center" },
-                    { label : "开单医师证件号码", name : "prscDrCertno", width : 50, align : "center" },
-                    { label : "经办机构编号", name : "optinsNo", width : 20, align : "center" },
-                    { label : "拆零标志", name : "trdnFlag", width : 3, align : "center" },
-                    { label : "最终成交单价", name : "finlTrnsPric", width : 50, align : "center" },
-                    { label : "定点医药机构商品销售流水号", name : "medinsProdSelNo", width : 30, align : "center" }
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 3, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 6, align : "" },
+                    { label : "", name : "", width : 30, align : "" },
+                    { label : "", name : "", width : 20, align : "" },
+                    { label : "", name : "", width : 150, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 6, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 30, align : "" },
+                    { label : "", name : "", width : 40, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 3, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 30, align : "" },
+                    { label : "", name : "", width : 3, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 3, align : "" },
+                    { label : "", name : "", width : 30, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 20, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 20, align : "" },
+                    { label : "", name : "", width : 30, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 6, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 3, align : "" },
+                    { label : "", name : "", width : 20, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 20, align : "" },
+                    { label : "", name : "", width : 3, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 30, align : "" }
                 ];
                 break;
-            case "3512":
-                captionCon = "定点医药机构入库商品追溯信息";
+            case "":
+                captionCon = "";
                 colModel = [
-                    { label : "定点医药机构编号", name : "fixmedinsCode", width : 100, align : "center" },
-                    { label : "医药机构目录编码", name : "medinsListCodg", width : 150, align : "center" },
-                    { label : "定点医药机构批次流水号", name : "fixmedinsBchno", width : 30, align : "center" },
-                    { label : "医药机构目录编码", name : "medinsListCodg", width : 150, align : "center" },
-                    { label : "医疗目录编码", name : "medListCodg", width : 50, align : "center" },
-                    { label : "医药机构目录名称", name : "medinsListName", width : 150, align : "center" },
-                    { label : "药品追溯码", name : "drugTracCodg", width : 100, align : "center" },
-                    { label : "有效标志", name : "valiFlag", width : 50, align : "center" },
-                    { label : "经办人 ID", name : "opterId", width : 20, align : "center" },
-                    { label : "创建人姓名", name : "crterName", width : 100, align : "center" },
-                    { label : "创建人 ID", name : "crterId", width : 100, align : "center" },
-                    { label : "经办机构编号", name : "optinsNo", width : 100, align : "center" }
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 150, align : "" },
+                    { label : "", name : "", width : 30, align : "" },
+                    { label : "", name : "", width : 150, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 150, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 20, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 100, align : "" }
 
                 ];
                 break;
-            case "3513":
-                captionCon = "定点医药机构商品销售追溯信息";
+            case "":
+                captionCon = "";
                 colModel = [
-                    { label : "定点医药机构编号", name : "fixmedinsCode", width : 100, align : "center" },
-                    { label : "医疗目录编码", name : "medListCodg", width : 72, align : "center" },
-                    { label : "医药机构目录编码", name : "medinsListCodg", width : 100, align : "center" },
-                    { label : "医药机构目录名称", name : "medinsListName", width : 100, align : "center" },
-                    { label : "定点医药机构批次流水号", name : "fixmedinsBchno", width : 100, align : "center" },
-                    { label : "就诊 ID", name : "mdtrtId", width : 100, align : "center" },
-                    { label : "就诊结算类型", name : "mdtrtSetlType", width : 50, align : "center" },
-                    { label : "记账流水号", name : "bkkpSn", width : 80, align : "center" },
-                    { label : "药品追溯码", name : "drugTracCodg", width : 80, align : "center" },
-                    { label : "人员编号", name : "psnNo", width : 80, align : "center" },
-                    { label : "人员证件类型", name : "psnCertType", width : 72, align : "center" },
-                    { label : "证件号码", name : "certno", width : 80, align : "center" },
-                    { label : "人员姓名", name : "psnName", width : 80, align : "center" },
-                    { label : "备注", name : "memo", width : 50, align : "center" },
-                    { label : "拆零标志", name : "trdnFlag", width : 36, align : "center" },
-                    { label : "数据更新时间", name : "updtTime", width : 80, align : "center" },
-                    { label : "经办人姓名", name : "opterName", width : 100, align : "center" },
-                    { label : "数据唯一记录号", name : "rid", width : 100, align : "center" },
-                    { label : "数据创建时间", name : "crteTime", width : 80, align : "center" },
-                    { label : "经办时间", name : "optTime", width : 80, align : "center" },
-                    { label : "经办人 ID", name : "opterId", width : 80, align : "center" },
-                    { label : "创建人姓名", name : "crterName", width : 80, align : "center" },
-                    { label : "创建人 ID", name : "crterId", width : 80, align : "center" },
-                    { label : "经办机构编号", name : "optinsNo", width : 80, align : "center" }
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 72, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 72, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 50, align : "" },
+                    { label : "", name : "", width : 36, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 100, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 80, align : "" },
+                    { label : "", name : "", width : 80, align : "" }
 
                 ];
                 break;
-            case "3607":
-                captionCon = "结算清单质控结果";
+            case "":
+                captionCon = "";
                 colModel = [
-                    { label: "定点医药机构编号", name: "fixmedins_code", width: 100, align: "center" },
-                    { label: "定点医药机构名称", name: "fixmedins_name", width: 120, align: "center" },
-                    { label: "结算年月", name: "setl_ym", width: 100, align: "center" },
-                    { label: "结算 ID", name: "setl_id", width: 100, align: "center" },
-                    { label: "人员编号", name: "psn_no", width: 100, align: "center" },
-                    { label: "人员姓名", name: "psn_name", width: 100, align: "center" },
-                    { label: "人员证件类型", name: "psn_cert_type", width: 80, align: "center" },
-                    { label: "证件号码", name: "cert_no", width: 100, align: "center" },
-                    { label: "质控结果", name: "qltctrl_rslt", width: 50, align: "center" },
-                    { label: "错误等级", name: "err_lv", width: 50, align: "center" },
-                    { label: "回退标志", name: "retn_flag", width: 50, align: "center" },
-                    { label: "质控版本号", name: "qltctrl_ver", width: 80, align: "center" },
-                    { label: "分组状态", name: "grp_stas", width: 50, align: "center" },
-                    { label: "质控结算清单结果详情信息", name: "detl_list", width: 200, align: "center" }
+                    { label: "", name: "", width: 100, align: "" },
+                    { label: "", name: "", width: 120, align: "" },
+                    { label: "", name: "", width: 100, align: "" },
+                    { label: "", name: "", width: 100, align: "" },
+                    { label: "", name: "", width: 100, align: "" },
+                    { label: "", name: "", width: 100, align: "" },
+                    { label: "", name: "", width: 80, align: "" },
+                    { label: "", name: "", width: 100, align: "" },
+                    { label: "", name: "", width: 50, align: "" },
+                    { label: "", name: "", width: 50, align: "" },
+                    { label: "", name: "", width: 50, align: "" },
+                    { label: "", name: "", width: 80, align: "" },
+                    { label: "", name: "", width: 50, align: "" },
+                    { label: "", name: "", width: 200, align: "" }
                 ];
                 break;
-            case "5101":
-                captionCon = "科室信息";
+            case "":
+                captionCon = "";
                 colModel = [
-                    { label: "医院科室编码", name: "hosp_dept_codg", width: 80, align: "center" },
-                    { label: "医院科室名称", name: "hosp_dept_name", width: 80, align: "center" },
-                    { label: "开始时间", name: "begntime", width: 110, align: "center" },
-                    { label: "结束时间", name: "endtime", width: 100, align: "center" },
-                    { label: "简介", name: "itro", width: 80, align: "center" },
-                    { label: "科室负责人姓名", name: "dept_resper_name", width: 100, align: "center" },
-                    { label: "科室负责人电话", name: "dept_resper_tel", width: 100, align: "center" },
-                    { label: "科室医疗服务范围", name: "dept_med_serv_scp", width: 150, align: "center" },
-                    { label: "科别", name: "caty", width: 100, align: "center" },
-                    { label: "科室成立日期", name: "dept_estbdat", width: 100, align: "center", formatter: "date", formatoptions: { newformat: "Y-m-d" } },
-                    { label: "批准床位数量", name: "aprv_bed_cnt", width: 80, align: "center" },
-                    { label: "医保认可床位数", name: "hi_crtf_bed_cnt", width: 80, align: "center" },
-                    { label: "统筹区编号", name: "poolarea_no", width: 80, align: "center" },
-                    { label: "医师人数", name: "dr_psncnt", width: 80, align: "center" },
-                    { label: "药师人数", name: "phar_psncnt", width: 80, align: "center" },
-                    { label: "护士人数", name: "nurs_psncnt", width: 80, align: "center" },
-                    { label: "技师人数", name: "tecn_psncnt", width: 80, align: "center" },
-                    { label: "备注", name: "memo", width: 80, align: "center" }
+                    { label: "", name: "", width: 80, align: "" },
+                    { label: "", name: "", width: 80, align: "" },
+                    { label: "", name: "", width: 110, align: "" },
+                    { label: "", name: "", width: 100, align: "" },
+                    { label: "", name: "", width: 80, align: "" },
+                    { label: "", name: "", width: 100, align: "" },
+                    { label: "", name: "", width: 100, align: "" },
+                    { label: "", name: "", width: 150, align: "" },
+                    { label: "", name: "", width: 100, align: "" },
+                    { label: "", name: "", width: 100, align: "", formatter: "", formatoptions: { newformat: "" } },
+                    { label: "", name: "", width: 80, align: "" },
+                    { label: "", name: "", width: 80, align: "" },
+                    { label: "", name: "", width: 80, align: "" },
+                    { label: "", name: "", width: 80, align: "" },
+                    { label: "", name: "", width: 80, align: "" },
+                    { label: "", name: "", width: 80, align: "" },
+                    { label: "", name: "", width: 80, align: "" },
+                    { label: "", name: "", width: 80, align: "" }
                 ];
                 break;
         }
-        $("#gbox_gridList").remove();
-        $(".jg_gridPanel").append('<table id="jg_gridList"></table>');
-        $('#jg_gridList').jqGrid("clearGridData");
-        var $gridList = $("#jg_gridList");
+        $("").remove();
+        $("").append('');
+        $('').jqGrid("");
+        var $gridList = $("");
 
         $gridList.newtouchLocalDataGrid({
             height: $(window).height() - 330,
             autowidth: false,
             unwritten: false,
-            width: $("#jg_formPat").width() - 10,
+            width: $("").width() - 10,
             caption: captionCon,
             colModel: colModel,
         }, mydata);
         $.loading(false);
     }
 
-    //页面加载时执行
+    //Thực hiện giờ tải trang
     showTH();
     //判断医疗机构信息展示什么搜索条件
     function showTH() {
-        var type = $('#sel_jgcxtype').val();
-        if (type === '1201') {
-            $('.1201-show').show(); // 显示医药机构信息
-            $('.time-show').hide();
-            $('.35-show').hide();
-            $('.3607-show').hide();
-        } else if (type === '3607') {
-            $('.3607-show').show();
-            $('.1201-show').hide();
-            $('.time-show').hide();
-            $('.35-show').hide();
-            $("#page_num").val(1);
-            $("#page_size").val(100);
-        } else if (type.startsWith("35")) {
-            $('.1201-show').hide(); // 隐藏医药机构信息
-            $('.time-show').show();
-            $('.35-show').show();
-            $('.3607-show').hide();
-        } else if (type === "5101") {
-            $('.3607-show').hide();
-            $('.1201-show').hide();
-            $('.time-show').hide();
-            $('.35-show').hide();
+        var type = $('').val();
+        if (type === '') {
+            $('').show(); // 显示医药机构信息
+            $('').hide();
+            $('').hide();
+            $('').hide();
+        } else if (type === '') {
+            $('').show();
+            $('').hide();
+            $('').hide();
+            $('').hide();
+            $("").val(1);
+            $("").val(100);
+        } else if (type.startsWith("")) {
+            $('').hide(); // 隐藏医药机构信息
+            $('').show();
+            $('').show();
+            $('').hide();
+        } else if (type === "") {
+            $('').hide();
+            $('').hide();
+            $('').hide();
+            $('').hide();
         } else {
-            $.modalAlert("不能识别的类型", 'error');
+            $.modalAlert("", '');
         }
     }
 
-    $('#sel_jgcxtype').change(function () {
+    $('').change(function () {
         showTH();
     });
 
-    //-----------------------------医疗机构信息查询页面 end---------------------------//
+    //-----------------------------Trang tra cứu thông tin cơ quan y tế end---------------------------//
 </script>

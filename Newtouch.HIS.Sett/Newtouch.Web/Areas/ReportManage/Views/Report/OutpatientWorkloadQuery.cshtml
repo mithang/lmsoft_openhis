@@ -1,9 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "OutpatientWorkloadQuery";
-    Layout = "~/Views/Shared/_Form.cshtml";
-    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
-    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
+    ViewBag.Title = "";
+    Layout = "";
+    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("");
+    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("");
 }
 
 <div class="rows">
@@ -14,21 +14,21 @@
                 <td class="formValue">
                     <select id="querytype" class="form-control">
                         <option value="0">按照主治医生统计</option>
-                        <option value="1">根据病人统计</option>
+                        <option value="1">Thống kê bệnh nhân theo</option>
                     </select>
                 </td>
-                <th class="formTitle">收费类型</th>
+                <th class="formTitle">Thu phí loại</th>
                 <td class="formValue">
                     <select id="sfdl" name="sfdl" class="form-control required"></select>
                 </td>*@
-                <th class="formTitle">开始日期：</th>
+                <th class="formTitle">Ngày bắt đầu：</th>
                 <td class="formValue">
                     <input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            value="@DateTime.Now.ToString("yyyy-MM-01")" />
                 </td>
-                <th class="formTitle">结束日期：</th>
+                <th class="formTitle">Ngày kết thúc：</th>
                 <td class="formValue">
                     <input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -37,7 +37,7 @@
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
             </tr>
         </table>
@@ -53,42 +53,42 @@
 
 
 
-<script type="text/javascript">
-    var isHospAdministrator = '@(ViewBag.IsHospAdministrator)';
-    var curUserCode = '@(ViewBag.CurUserCode)';
-    var OrgId = '@(ViewBag.OrgId)';
-    var reportServerHOST = '@(ViewBag.ReportServerHOST)';
-    //$("#sfdl").bindSelect({
-    //    url: "/Report/GetSFDLCodeSelectJson",
+<script type="">
+    var isHospAdministrator = '';
+    var curUserCode = '';
+    var OrgId = '';
+    var reportServerHOST = '';
+    //$("").bindSelect({
+    //    url: "",
     //    param: {},
-    //    dataType: "json",
+    //    dataType: "",
     //});
     function submit() {
-        if ($('#ksrq').val().length == 0 || $('#jsrq').val().length == 0) {
-            $.modalAlert("请选择时间范围", "error");
+        if ($('').val().length == 0 || $('').val().length == 0) {
+            $.modalAlert("", "");
             return;
         }
         var url = getUrl();
-        $("#iframerightiframerightiframerightttt").attr('src', url);
+        $("").attr('', url);
     }
 
-    $("#iframerightiframerightiframerightttt").load(function () {
+    $("").load(function () {
         $.loading(false);
     });
 
     $(function () {
         var h = $(window).height() - 55
-        $('#layout iframe').css('height', h);
+        $('').css('', h);
 
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
-        $("#btn_search").trigger('click');
+        $("").trigger('');
     }
 
     function getUrl() {
-        var srcUrl2 = '@Html.Raw(reportUrl)' + "?tempCode=1221" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&orgId=" + OrgId + "&kssj=" + $('#ksrq').val() + "&jssj=" + $('#jsrq').val();
+        var srcUrl2 = '' + "" + "" + '' + "" + OrgId + "" + $('').val() + "" + $('').val();
         return srcUrl2;
     }
 

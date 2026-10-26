@@ -2,24 +2,24 @@
     lastSettleInfoList();
 })
 function lastSettleInfoList() {
-    var $lastSettleInfoList = $("#lastSettleInfoList");
+    var $lastSettleInfoList = $("");
     $lastSettleInfoList.dataGrid({
         treeGrid: true,
-        treeGridModel: "adjacency",
-        url: "/BusinessManage/OutPatient/GetLastSettleInfo", 
+        treeGridModel: "",
+        url: "", 
         height: 142,
         colModel: [
-            { label: '姓名', name: 'xm', width: 100, algin: 'left' },
-            { label: '应收', name: 'ysk', width: 100, algin: 'left' },
-            { label: '实收', name: 'xjzf', width: 100, algin: 'left' },
-            { label: '找零', name: 'zl', width: 100, algin: 'left' }
+            { label: '', name: '', width: 100, algin: '' },
+            { label: '', name: '', width: 100, algin: '' },
+            { label: '', name: '', width: 100, algin: '' },
+            { label: '', name: '', width: 100, algin: '' }
         ]
     });
-    $("#linkLastSettledInfo").click(function () {
-        //每次点击tab页，调整Grid宽度
-        initLayout("MyTabGrid");
+    $("").click(function () {
+        //Mỗi lần nhấntabTrang，Điều chỉnhGridChiều rộng
+        initLayout("");
 
-        $lastSettleInfoList.jqGrid('setGridParam', {
-        }).trigger('reloadGrid');
+        $lastSettleInfoList.jqGrid('', {
+        }).trigger('');
     });
 }
