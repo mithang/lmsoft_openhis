@@ -3,12 +3,12 @@
 namespace Newtouch.MRQC.Infrastructure
 {
     /// <summary>
-    /// 系统常量
+    /// hằng số hệ thống
     /// </summary>
     public class Constants
     {
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// tổ chứcId（cấp cao nhất，cấu hình hệ thống）
         /// </summary>
         public static string TopOrganizeId
         {
@@ -18,7 +18,7 @@ namespace Newtouch.MRQC.Infrastructure
             }
         }
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// tổ chứcId（cấp cao nhất，cấu hình hệ thống）
         /// </summary>
         public static string AppId
         {

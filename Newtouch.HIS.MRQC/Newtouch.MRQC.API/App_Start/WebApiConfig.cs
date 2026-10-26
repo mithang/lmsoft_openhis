@@ -15,11 +15,11 @@ namespace Newtouch.MRQC.API.App_Start
         /// <param name="config"></param>
         public static void Register(HttpConfiguration config)
         {
-            //启用跨域
+            //bật chia sẻ tài nguyên khác miền
             var cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);
 
-            // Web API routes
+            // WebAPI routes
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
@@ -28,16 +28,16 @@ namespace Newtouch.MRQC.API.App_Start
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            //默认返回 json
+            //trả về mặc định json
             //GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings.Add(
             //  new QueryStringMapping("datatype", "json", "application/json")
             //  );
             config.Formatters.JsonFormatter.SupportedMediaTypes.Clear();
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json"));
 
-            //全局注册Filters
+            //đăng ký toàn cụcFilters
 
-            //依赖注入
+            //tiêm phụ thuộc
             DependencyResolver.RegisteWebApiComponent();
 
         }

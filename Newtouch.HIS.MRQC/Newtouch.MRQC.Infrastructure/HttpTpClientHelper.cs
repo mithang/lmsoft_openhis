@@ -10,7 +10,7 @@ namespace Newtouch.MRQC.Infrastructure
     public class HttpTpClientHelper
     {
         /// <summary>
-        /// 获取第三方 jwt token 身份认证
+        /// lấy bên thứ ba jwt token xác thực danh tính
         /// </summary>
         /// <param name="data"></param>
         /// <param name="uri"></param>

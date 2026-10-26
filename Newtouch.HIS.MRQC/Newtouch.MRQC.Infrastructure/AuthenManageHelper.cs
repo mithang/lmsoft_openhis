@@ -12,15 +12,15 @@ namespace Newtouch.MRQC.Infrastructure
 {
     public class AuthenManageHelper
     {
-        public readonly static string SiteTokenAPIHost = ConfigurationManager.AppSettings["SiteAuthCenterHost"];//token站点
-        public readonly static string SiteConmonAPIHost = ConfigurationManager.AppSettings["SiteApiManageHost"]; //api中心站点
-        public readonly static string appId = ConfigurationManager.AppSettings["AppId"];//api中心站点访问appid
+        public readonly static string SiteTokenAPIHost = ConfigurationManager.AppSettings["SiteAuthCenterHost"];//token trang
+        public readonly static string SiteConmonAPIHost = ConfigurationManager.AppSettings["SiteApiManageHost"]; //api trang trung tâm
+        public readonly static string appId = ConfigurationManager.AppSettings["AppId"];//api truy cập trang trung tâm appid
         public readonly static string accessAppId = ConfigurationManager.AppSettings["Token_ApiManage"];//Apimanage AppId
-        //用户登陆缓存token
+        //bộ nhớ đệm đăng nhập của người dùng token
         public static string userCacheToken = "";
 
         /// <summary>
-        /// 获取中心接口api token
+        /// lấy giao diện trung tâmapi token
         /// </summary>
         /// <returns></returns>
         public static string GetToken()
@@ -57,8 +57,8 @@ namespace Newtouch.MRQC.Infrastructure
         }
 
         /// <summary>
-        /// Post 请求
-        /// 鉴权失败自动刷新
+        /// Post yêu cầu
+        /// xác thực thất bại thì tự động làm mới
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="data"></param>
@@ -80,9 +80,9 @@ namespace Newtouch.MRQC.Infrastructure
                 ApiManageResponse<T> apiResp = JsonConvert.DeserializeObject<ApiManageResponse<T>>(response);
                 if (apiResp.HttpStatus == (int)HttpStatusCode.Unauthorized)
                 {
-                    //鉴权失败 刷新token
+                    //xác thực thất bại làm mới token
                     token = GetUserTokenRefesh(user, token);
-                    //重新请求接口
+                    //yêu cầu lại giao diện
                     response = HttpMethods.HttpPostWithToken(uri, data, token);
                     apiResp = JsonConvert.DeserializeObject<ApiManageResponse<T>>(response);
                 }
@@ -98,7 +98,7 @@ namespace Newtouch.MRQC.Infrastructure
             }
         }
         /// <summary>
-        /// token 过期 强制刷新
+        /// token hết hạn buộc làm mới
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
@@ -125,7 +125,7 @@ namespace Newtouch.MRQC.Infrastructure
             return Token.BusData.data.Token;
         }
         /// <summary>
-        /// 用户登陆后获取api通用 token
+        /// lấy sau khi người dùng đăng nhậpapichung token
         /// </summary>
         /// <returns></returns>
         public static string GetUserToken(OperatorModel user)
@@ -174,9 +174,9 @@ namespace Newtouch.MRQC.Infrastructure
             return userCacheToken;
         }
 
-        #region 暂不启用
+        #region Tạm thời chưa bật
         ///// <summary>
-        ///// 接口请求
+        ///// yêu cầu giao diện
         ///// </summary>
         ///// <param name="data"></param>
         ///// <param name="uri"></param>
@@ -184,11 +184,11 @@ namespace Newtouch.MRQC.Infrastructure
         ///// <returns></returns>
         //public static string HttpPost(string data, string uri, string token)
         //{
-        //    //先根据用户请求的uri构造请求地址
+        //    //trước tiên căn cứ vào yêu cầu của người dùngurixây dựng địa chỉ yêu cầu
         //    string serviceUrl = string.Format(uri);
-        //    //创建Web访问对象
+        //    //tạo Web đối tượng truy cập
         //    HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(serviceUrl);
-        //    //把用户传过来的数据转成“UTF-8”的字节流
+        //    //chuyển dữ liệu người dùng truyền tới thành“UTF-8”luồng byte của
         //    byte[] buf = System.Text.Encoding.GetEncoding("UTF-8").GetBytes(data);
 
         //    myRequest.Method = "POST";
@@ -200,18 +200,18 @@ namespace Newtouch.MRQC.Infrastructure
         //    {
         //        myRequest.Headers.Add("Authorization", "Bearer " + token);
         //    }
-        //    //发送请求
+        //    //gửi yêu cầu
         //    Stream stream = myRequest.GetRequestStream();
         //    stream.Write(buf, 0, buf.Length);
         //    stream.Close();
 
-        //    //获取接口返回值
-        //    //通过Web访问对象获取响应内容
+        //    //lấy giá trị trả về của giao diện
+        //    //thông qua Web đối tượng truy cập lấy nội dung phản hồi
         //    HttpWebResponse myResponse = (HttpWebResponse)myRequest.GetResponse();
-        //    //通过响应内容流创建StreamReader对象，因为StreamReader更高级更快
+        //    //tạo qua luồng nội dung phản hồiStreamReaderđối tượng，vìStreamReadercao cấp hơn và nhanh hơn
         //    StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.UTF8);
-        //    //string returnXml = HttpUtility.UrlDecode(reader.ReadToEnd());//如果有编码问题就用这个方法
-        //    string result = reader.ReadToEnd();//利用StreamReader就可以从响应内容从头读到尾
+        //    //string returnXml = HttpUtility.UrlDecode(reader.ReadToEnd());//nếu có vấn đề về mã hóa thì dùng phương thức này
+        //    string result = reader.ReadToEnd();//tận dụngStreamReaderlà có thể đọc nội dung phản hồi từ đầu đến cuối
         //    reader.Close();
         //    myResponse.Close();
         //    return result;

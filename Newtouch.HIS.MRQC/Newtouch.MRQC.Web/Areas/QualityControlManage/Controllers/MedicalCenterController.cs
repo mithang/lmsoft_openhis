@@ -31,7 +31,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
         {
             DCwriterServer dcControl = new DCwriterServer();
             dcControl.Init();
-            WebWriterControlEngine eng = dcControl.DCWControl;//这是上一步创建的引擎 
+            WebWriterControlEngine eng = dcControl.DCWControl;//đây là công cụ được tạo ở bước trước 
             //eng.Options.ContentRenderMode = WebWriterControlRenderMode.PagePreviewHtml;
             ViewBag.WriterControlHtml = eng.GetAllContentHtml();
             eng.Dispose();
@@ -55,7 +55,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
         {
             return View();
         }
-        #region DC病历文书
+        #region DCvăn bản bệnh án
 
         [ValidateInput(false)]
         public ActionResult MoreHandleDCWriterServicePage()
@@ -71,8 +71,8 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
             public override void ExecuteResult(ControllerContext context)
             {
                 WebWriterControlServicePageExecuter executer = new WebWriterControlServicePageExecuter();
-                executer.CrossDomainSettings.Enabled = true;//是否跨域
-                                                            // executer.EventSaveFileContent = new DCSoft.Writer.WriterSaveFileContentEventHandler(My_SaveFileContent);//事件
+                executer.CrossDomainSettings.Enabled = true;//có khác miền hay không
+                                                            // executer.EventSaveFileContent = new DCSoft.Writer.WriterSaveFileContentEventHandler(My_SaveFileContent);//Sự kiện
                 executer.EventReadFileContent = new DCSoft.Writer.WriterReadFileContentEventHandler(My_ReadFileContent);
               
                 if (executer.HandleService())
@@ -81,7 +81,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
                 }
             }
             /// <summary>
-            /// 加载模板
+            /// tải mẫu
             /// </summary>
             /// <param name="eventSender"></param>
             /// <param name="args"></param>
@@ -106,7 +106,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
 
                     }
                     catch (Exception e) {
-                        args.Message = "未找到病历";//传递给前端的信息 
+                        args.Message = "未找到病历";//thông tin truyền cho giao diện 
                     }
                     args.Handled = true;
                 }
@@ -116,7 +116,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
 
         #endregion
 
-        #region 质控中心接口调用
+        #region Gọi giao diện trung tâm kiểm soát chất lượng
         public ActionResult GetPatList(string brbz,DateTime ksrq,DateTime jsrq,string srz)
         {
             string token = AuthenManageHelper.GetToken();
@@ -140,7 +140,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 诊断列表
+        /// danh sách chẩn đoán
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -161,7 +161,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 病历文书tree 
+        /// văn bản bệnh ántree 
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -211,7 +211,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
             return Content(outstr.data.ToJson());
         }
         /// <summary>
-        /// 门诊住院检验检查申请单
+        /// đơn đề nghị khám ngoại trú, nội trú, xét nghiệm và kiểm tra
         /// </summary>
         /// <param name="jzh"></param>
         /// <param name="ksrq"></param>
@@ -234,7 +234,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
 
         #endregion
 
-        #region 质控消息
+        #region Tin nhắn kiểm soát chất lượng
         public ActionResult GetTyzkxm(string bllx,string keyword)
         {
             var data = _qcitemdataRepo.IQueryable(p => p.BlmbId == bllx && p.OrganizeId == this.OrganizeId && p.zt == "1" && p.Name.Contains(keyword)).ToList();
@@ -243,7 +243,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
         }
         public ActionResult SendMsg(MsgSendVo sendvo,string zyysgh)
         {
-            var blwszk = "ZKNoticeBl"+ this.UserIdentity.UserCode;//病历质控消息发送组模板
+            var blwszk = "ZKNoticeBl"+ this.UserIdentity.UserCode;//mẫu nhóm gửi tin nhắn kiểm soát chất lượng bệnh án
             var defaultNoticeContent = "姓名:{0},住院号:{1},床号:{2}，科室:{3},医生:{4},的病历质控异常,病历类型:{5},病历文书:{6},反馈内容:{7},问题等级:{8},请及时处理,限期处理时间:{9}";
             var noticeGroup = new
             {
@@ -347,14 +347,14 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
         }
         #endregion
 
-        #region 评分
+        #region Chấm điểm
         public ActionResult Getybbxbldata(string bllx,string zyh)
         {
             var list = _qcblzkDmn.Getybbxbldata(bllx, this.OrganizeId, zyh);
             return Content(list.ToJson());
         }
         /// <summary>
-        /// 保存评分
+        /// lưu điểm số
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="blId"></param>

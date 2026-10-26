@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Newtouch.MRQC.Domain.Entity.QcItemManage
 {
     /// <summary>
-    /// 质控病历申请
+    /// đề nghị bệnh án kiểm soát chất lượng
     /// </summary>
     [Table("Mr_Apply")]
     public class MrApplyEntity : IEntity<MrApplyEntity>
@@ -17,75 +17,75 @@ namespace Newtouch.MRQC.Domain.Entity.QcItemManage
         public string Id { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 申请科室
+        /// Khoa đề nghị
         /// </summary>
         public string ApplyDept { get; set; }
         /// <summary>
-        /// 床位
+        /// giường bệnh
         /// </summary>
         public string Bed { get; set; }
         /// <summary>
-        /// 患者姓名
+        /// tên bệnh nhân
         /// </summary>
         public string PatName { get; set; }
         /// <summary>
-        /// 申请医师
+        /// Bác sĩ đề nghị
         /// </summary>
         public string ApplyDoctor { get; set; }
         /// <summary>
-        /// 申请类型 0：新建病历 1：修改病历
+        /// Loại đề nghị 0：tạo bệnh án mới 1：sửa bệnh án
         /// </summary>
         public int ApplyType { get; set; }
         /// <summary>
-        /// 病历名称
+        /// Tên bệnh án
         /// </summary>
         public string MedicalName { get; set; }
         /// <summary>
-        /// 质控完成时间
+        /// thời gian hoàn thành kiểm soát chất lượng
         /// </summary>
         public DateTime CompletionDate { get; set; }
         /// <summary>
-        /// 申请时间
+        /// Thời gian đề nghị
         /// </summary>
         public DateTime ApplyDate { get; set; }
         /// <summary>
-        /// 申请完成时间
+        /// Thời gian hoàn thành đề nghị
         /// </summary>
         public DateTime ApplyCompletionDate { get; set; }
         /// <summary>
-        /// 申请原因
+        /// Lý do đề nghị
         /// </summary>
         public string ApplyReason { get; set; }
         /// <summary>
-        /// 申请状态 0：未批准 1：已审批
+        /// Trạng thái đề nghị 0：chưa phê duyệt 1：Đã phê duyệt
         /// </summary>
         public int ApplyStatus { get; set; }
         /// <summary>
-        /// 批准人
+        /// Người phê duyệt
         /// </summary>
         public string Approver { get; set; }
         /// <summary>
-        /// 批准科室
+        /// Khoa phê duyệt
         /// </summary>
         public string ApproverDept { get; set; }
         /// <summary>
-        /// 批准日期
+        /// Ngày phê duyệt
         /// </summary>
         public string ApprovalDate { get; set; }
         /// <summary>
-        /// 入院日期
+        /// Ngày nhập viện
         /// </summary>
         public DateTime? Ryrq { get; set; }
         /// <summary>
-        /// 出院日期
+        /// Ngày xuất viện
         /// </summary>
         public DateTime? Cyrq { get; set; }
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? Px { get; set; }
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 

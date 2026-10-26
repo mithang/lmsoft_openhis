@@ -1,7 +1,7 @@
 ﻿@using Newtouch.MRQC.Infrastructure;
 @using Newtouch.Common.Operator;
 @{
-    ViewBag.Title = "质控评分";
+    ViewBag.Title = "điểm kiểm soát chất lượng";
     Layout = "~/Views/Shared/_Form.cshtml";
     var opeator = OperatorProvider.GetCurrent();
 }
@@ -15,14 +15,14 @@
     </div>
     <div>
         <div style="width:40%; float:left;margin-left:5px">
-            <label>得分：</label>
+            <label>Điểm số：</label>
             <input type="text"  class="fui-input" id="total" style="width:50px" value="100" readonly="readonly"/>
             <input type="text"  class="fui-input" id="dj" style="width:50px" value="甲" readonly="readonly"/>
         </div>
         <div style="width:17%; float:right;margin-right:30px">
-            <input type="button" class="btn btn-primary" onclick="btnPinfen()" value="评分" />
-            <input type="button" class="btn btn-primary" onclick="btnSave()" value="保存" />
-            <input type="button" class="btn btn-primary" onclick="btnClose()" value="关闭" />
+            <input type="button" class="btn btn-primary" onclick="btnPinfen()" value="Chấm điểm" />
+            <input type="button" class="btn btn-primary" onclick="btnSave()" value="Lưu" />
+            <input type="button" class="btn btn-primary" onclick="btnClose()" value="Đóng" />
         </div>
     </div>
     
@@ -49,10 +49,10 @@
                  },
                 { label: "BlmbId", name: "BlmbId", hidden: true },
                 { label: "Code", name: "Code", hidden: true },
-                { label: "评分项目", name: "Name", width: 300, align: "left", },
-                { label: "评分说明", name: "Remark", width: 150, align: "left", },
+                { label: "Hạng mục chấm điểm", name: "Name", width: 300, align: "left", },
+                { label: "Giải thích chấm điểm", name: "Remark", width: 150, align: "left", },
                 {
-                    label: "缺陷数", name: "qxs", width: 80, align: "left", editable: true, editrules: { numeric: true, minValue: 0.0, maxValue: 100 },
+                    label: "Số lỗi", name: "qxs", width: 80, align: "left", editable: true, editrules: { numeric: true, minValue: 0.0, maxValue: 100 },
                     editoptions: {
                         dataEvents: [
                                 {
@@ -62,11 +62,11 @@
                                         var rowid = row.attr('id');
                                         var cellval = $(this).val();
                                         if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                            $.modalAlert("数值为空，请确认。", 'warning');
+                                            $.modalAlert("Giá trị trống,Vui lòng xác nhận.", 'warning');
                                             return;
                                         }
                                         if (cellval < 0 || cellval > 20) {
-                                            $.modalAlert("缺陷数：填写数值必须为0~20之间", 'warning');
+                                            $.modalAlert("Số lỗi：Giá trị điền vào phải là 0~20 giữa", 'warning');
                                             $(this).val('0')
                                             return;
                                         }
@@ -77,11 +77,11 @@
                         ]
                     }
                 },
-                { label: "已审查", name: "ysc", width: 80, align: "left" },
+                { label: "Đã kiểm tra", name: "ysc", width: 80, align: "left" },
             ],
             //multiselect: true,
             gridComplete: function (e) {
-                //启用行内编辑框
+                //Bật hộp chỉnh sửa trong dòng
                 EnableInlineEditBox();
                 btnPinfen();
             },
@@ -106,9 +106,9 @@
             }
         });
     }
-      //启用行内编辑框
+      //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox() {
-        //Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        //GridSau khi tải xong thì bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt và gọieditRowphương thức
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {    
@@ -121,7 +121,7 @@
     {
         debugger;
         var res = true;
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấy tất cả các dòngId,Duyệt để đưa hộp chỉnh sửa về trạng thái đã lưu
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) {
@@ -149,7 +149,7 @@
     {
         debugger;
         var res = true;
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấy tất cả các dòngId,Duyệt để đưa hộp chỉnh sửa về trạng thái đã lưu
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) {
@@ -159,7 +159,7 @@
         //if (!res) {
         //    return;
         //}
-        //获取所有选中行数据
+        //Lấy dữ liệu của tất cả các dòng đã chọn
         var data = $("#gridList").jqGrid('getRowData_AllLine', false);
         $.najax({
             url: "/QualityControlManage/MedicalCenter/SaveScoreDate",
@@ -167,11 +167,11 @@
             data: { entity: data, bllx: bllx,  blmc: blmc, zyh:zyh },
             type: "POST",
             success: function (data) {
-                $.modalAlert("保存成功", 'success');
+                $.modalAlert("Lưu thành công", 'success');
                 $.loading(false);
             },
             error: function (request, error, ex) {
-                $.modalAlert("服务不可访问", 'error');
+                $.modalAlert("Dịch vụ không thể truy cập", 'error');
             }
         });
     }

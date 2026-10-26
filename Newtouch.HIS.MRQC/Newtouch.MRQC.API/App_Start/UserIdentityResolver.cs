@@ -6,7 +6,7 @@ using Newtouch.HIS.API.Common.Models;
 namespace Newtouch.MRQC.API.App_Start
 {
     /// <summary>
-    /// 用户身份解析
+    /// phân tích danh tính người dùng
     /// </summary>
     public class UserIdentityResolver : IUserIdentityResolver<Identity>
     {

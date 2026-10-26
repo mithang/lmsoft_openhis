@@ -1,7 +1,7 @@
 ﻿@using Newtouch.MRQC.Infrastructure;
 @using Newtouch.Common.Operator;
 @{
-    ViewBag.Title = "质控消息";
+    ViewBag.Title = "Tin nhắn kiểm soát chất lượng";
     Layout = "~/Views/Shared/_Form.cshtml";
     var opeator = OperatorProvider.GetCurrent();
 }
@@ -19,10 +19,10 @@
 </style>
 <ul class="nav nav-tabs navb-bg" role="tablist">
     <li class="active">
-        <a href="#div_msgsend" role="tab" data-toggle="tab">环节质控消息发送</a>
+        <a href="#div_msgsend" role="tab" data-toggle="tab">Gửi tin nhắn kiểm soát chất lượng theo khâu</a>
     </li>
     <li>
-        <a href="#div_msgquery" role="tab" data-toggle="tab">未处理环节质控消息查询</a>
+        <a href="#div_msgquery" role="tab" data-toggle="tab">Tra cứu tin nhắn kiểm soát chất lượng khâu chưa xử lý</a>
     </li>
 </ul>
 <div class="tab-content" style="width:100%">
@@ -32,25 +32,25 @@
                 <table class="form" style="width:100%">
                     <tbody>
                         <tr>
-                            <th class="formTitle" style="width:40px;padding-right:0px">姓名：</th>
+                            <th class="formTitle" style="width:40px;padding-right:0px">Họ tên：</th>
                             <td class="formValue" style="width:80px">
                                 <input id="xm" type="text" class="form-control" readonly="readonly" />
                             </td>
-                            <th class="formTitle" style="width:60px;padding-right:0px">住院号：</th>
+                            <th class="formTitle" style="width:60px;padding-right:0px">Số nội trú：</th>
                             <td class="formValue" style="width:80px">
                                 <input id="jzh" type="text" class="form-control" readonly="readonly" />
                             </td>
-                            <th class="formTitle" style="width:40px;padding-right:0px">床号：</th>
+                            <th class="formTitle" style="width:40px;padding-right:0px">Số giường：</th>
                             <td class="formValue" style="width:80px">
                                 <input id="ch" type="text" class="form-control" readonly="readonly" />
                             </td>
                         </tr>
                         <tr>
-                            <th class="formTitle">病人科室：</th>
+                            <th class="formTitle">Khoa của bệnh nhân：</th>
                             <td class="formValue">
                                 <input id="ks" type="text" class="form-control" readonly="readonly" />
                             </td>
-                            <th class="formTitle"><span class="required">*</span>住院医生：</th>
+                            <th class="formTitle"><span class="required">*</span>Bác sĩ nội trú：</th>
                             <td class="formValue">
                                 <input id="zyys" name="zyys" type="text" class="form-control required"  />
                             </td>
@@ -58,32 +58,32 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <th class="formTitle">质控类型：</th>
+                            <th class="formTitle">loại kiểm soát chất lượng：</th>
                             <td class="formValue">
                                 <input id="zklx" type="text" class="form-control" readonly="readonly" />
                             </td>
-                            <th class="formTitle">患者文档：</th>
+                            <th class="formTitle">Tài liệu bệnh nhân：</th>
                             <td class="formValue">
                                 <input id="hzwd" type="text" class="form-control" readonly="readonly" />
                             </td>
                         </tr>
                         <tr>
-                            <th class="formTitle"><span class="required">*</span>反馈内容：</th>
+                            <th class="formTitle"><span class="required">*</span>Nội dung phản hồi：</th>
                             <td class="formValue" colspan="3">
                                 <textarea id="fknr" class="form-control required" style="width:100%;height:60px"></textarea>
                             </td>
                         </tr>
                         <tr>
-                            <th class="formTitle">问题等级：</th>
+                            <th class="formTitle">Mức độ vấn đề：</th>
                             <td class="formValue">
                                 <select id="wtdj">
-                                    <option value="0">一般</option>
-                                    <option value="1">严重</option>
-                                    <option value="2">特别严重</option>
-                                    <option value="3">事故</option>
+                                    <option value="0">Bình thường</option>
+                                    <option value="1">Nghiêm trọng</option>
+                                    <option value="2">Đặc biệt nghiêm trọng</option>
+                                    <option value="3">Sự cố</option>
                                 </select>
                             </td>
-                            <th class="formTitle">限期处理时间：</th>
+                            <th class="formTitle">Thời gian xử lý có hạn：</th>
                             <td class="formValue" colspan="2">
                                 <input id="qxclsj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                             </td>
@@ -92,18 +92,18 @@
                 </table>
             </form>
             <div style="float:right;margin-top:130px">
-                <input type="button" class="btn btn-primary" onclick="btnMsgSent()" value="确定发送" />
-                <input type="button" class="btn btn-primary" onclick="btnClose()" value="关闭" />
+                <input type="button" class="btn btn-primary" onclick="btnMsgSent()" value="Xác nhận gửi" />
+                <input type="button" class="btn btn-primary" onclick="btnClose()" value="Đóng" />
             </div>
         </div>
 
         <div class="dv-right">
             <ul class="nav nav-tabs navb-bg" role="tablist">
                 <li class="active">
-                    <a href="#div_tyzkxm" role="tab" data-toggle="tab">通用质控项目</a>
+                    <a href="#div_tyzkxm" role="tab" data-toggle="tab">Hạng mục kiểm soát chất lượng chung</a>
                 </li>
                 <li>
-                    <a href="#div_mbzkxm" role="tab" data-toggle="tab">模板质控项目</a>
+                    <a href="#div_mbzkxm" role="tab" data-toggle="tab">Hạng mục kiểm soát chất lượng theo mẫu</a>
                 </li>
             </ul>
             <div class="tab-content" style="width:100%">
@@ -111,7 +111,7 @@
                     <table class="form">
                         <tr>
                             <td class="formValue">
-                                <input id="tyxmKeyword" type="text" class="form-control" placeholder="输入质控名称/简拼按回车键盘" />
+                                <input id="tyxmKeyword" type="text" class="form-control" placeholder="Nhập tên kiểm soát chất lượng/Nhập mã giản thể rồi nhấn phím Enter" />
                             </td>
                         </tr>
                     </table>
@@ -121,7 +121,7 @@
                     <table class="form">
                         <tr>
                             <td class="formValue">
-                                <input id="mbxmKeyword" type="text" class="form-control" placeholder="输入质控名称/简拼按回车键盘" />
+                                <input id="mbxmKeyword" type="text" class="form-control" placeholder="Nhập tên kiểm soát chất lượng/Nhập mã giản thể rồi nhấn phím Enter" />
                             </td>
                         </tr>
                     </table>
@@ -169,8 +169,8 @@
             height: $(window).height() - 183,
             colModel: [
                 { label: "Id", name: "Id", hidden: true, key: true },
-                { label: "质控编码", name: "Code", width: 100, align: "center", hidden: true },
-                { label: "质控名称", name: "Name", width: 200, align: "center", },
+                { label: "Mã kiểm soát chất lượng", name: "Code", width: 100, align: "center", hidden: true },
+                { label: "Tên kiểm soát chất lượng", name: "Name", width: 200, align: "center", },
 
             ],
             unwritten: false,
@@ -190,8 +190,8 @@
             height: $(window).height() - 183,
             colModel: [
                 { label: "Id", name: "Id", hidden: true, key: true },
-                { label: "质控编码", name: "Code", width: 100, align: "center", hidden: true },
-                { label: "质控名称", name: "Name", width: 200, align: "center", },
+                { label: "Mã kiểm soát chất lượng", name: "Code", width: 100, align: "center", hidden: true },
+                { label: "Tên kiểm soát chất lượng", name: "Name", width: 200, align: "center", },
 
             ],
             unwritten: false,
@@ -217,14 +217,14 @@
             rownumbers: false,
             height: $(window).height() - 123,
             colModel: [
-                { label: "科室", name: "ks", width: 80, align: "center", },
-                { label: "姓名", name: "xm", width: 60, align: "center", },
-                { label: "住院号", name: "jzh", width: 60, align: "center", },
-                { label: "经管医生", name: "zyys", width: 60, align: "center", },
-                { label: "质控日期", name: "zkrq", width: 110, align: "center",formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }  },
-                { label: "限定日期", name: "qxclsj", width: 110, align: "center", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: "质控类型", name: "zklx", width: 100, align: "center", },
-                { label: "反馈环节质控信息", name: "fknr", width: 120, align: "center", },
+                { label: "Khoa", name: "ks", width: 80, align: "center", },
+                { label: "Họ tên", name: "xm", width: 60, align: "center", },
+                { label: "Số nội trú", name: "jzh", width: 60, align: "center", },
+                { label: "Bác sĩ quản lý", name: "zyys", width: 60, align: "center", },
+                { label: "Ngày kiểm soát chất lượng", name: "zkrq", width: 110, align: "center",formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }  },
+                { label: "Ngày giới hạn", name: "qxclsj", width: 110, align: "center", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: "loại kiểm soát chất lượng", name: "zklx", width: 100, align: "center", },
+                { label: "Thông tin kiểm soát chất lượng khâu phản hồi", name: "fknr", width: 120, align: "center", },
             ],
         })
         $("#zyys").dutyStaffFloatingSelector({

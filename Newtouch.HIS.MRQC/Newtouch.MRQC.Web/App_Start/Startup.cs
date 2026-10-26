@@ -12,7 +12,7 @@ namespace Newtouch.MRQC.Web.App_Start
     {
         public void Configuration(IAppBuilder app)
         {
-            // 有关如何配置应用程序的详细信息，请访问 https://go.microsoft.com/fwlink/?LinkID=316888
+            // thông tin chi tiết về cách cấu hình ứng dụng，vui lòng truy cập https://go.microsoft.com/fwlink/?LinkID=316888
             app.MapSignalR();
         }
     }

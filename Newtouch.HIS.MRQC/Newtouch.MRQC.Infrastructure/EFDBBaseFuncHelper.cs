@@ -5,8 +5,8 @@ using Newtouch.Infrastructure;
 namespace Newtouch.MRQC.Infrastructure
 {
     /// <summary>
-    /// 常用到的（放Repo、DmnService都不合适的，但又要请求数据库的）
-    /// 比如获取唯一编号（自增，但有不能重复）
+    /// thường dùng đến（đặtRepo、DmnServiceđều không phù hợp，nhưng lại phải yêu cầu cơ sở dữ liệu）
+    /// ví dụ như lấy số hiệu duy nhất（tự tăng，nhưng có trường hợp không được trùng lặp）
     /// </summary>
     public class EFDBBaseFuncHelper
     {
@@ -18,7 +18,7 @@ namespace Newtouch.MRQC.Infrastructure
         private IDatabaseFactory _databaseFactory;
 
         /// <summary>
-        /// 默认DB上下文
+        /// mặc địnhDBngữ cảnh
         /// </summary>
         public static EFDBBaseFuncHelper Instance
         {
@@ -31,7 +31,7 @@ namespace Newtouch.MRQC.Infrastructure
         }
 
         /// <summary>
-        /// 指定DB上下文
+        /// chỉ địnhDBngữ cảnh
         /// </summary>
         /// <param name="dbType"></param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ namespace Newtouch.MRQC.Infrastructure
         {
             if (!dbType.HasValue)
             {
-                dbType = EnumDBFactoryType.DefaultDB;  //默认
+                dbType = EnumDBFactoryType.DefaultDB;  //mặc định
             }
             IDatabaseFactory databaseFactory = null;
             switch (dbType)
@@ -51,11 +51,11 @@ namespace Newtouch.MRQC.Infrastructure
             return new EFDBBaseFuncHelper(databaseFactory);
         }
 
-        #region 方法
+        #region phương thức
 
-        //-------------------------------------示例------------------------------------------------
+        //-------------------------------------ví dụ------------------------------------------------
         ///// <summary>
-        ///// 获取主键字段唯一Id
+        ///// lấy duy nhất trường khóa chínhId
         ///// </summary>
         ///// <param name="tableName"></param>
         ///// <returns></returns>
@@ -78,7 +78,7 @@ namespace Newtouch.MRQC.Infrastructure
     }
 
     /// <summary>
-    /// 上下文 类型
+    /// ngữ cảnh loại
     /// </summary>
     public enum EnumDBFactoryType
     {

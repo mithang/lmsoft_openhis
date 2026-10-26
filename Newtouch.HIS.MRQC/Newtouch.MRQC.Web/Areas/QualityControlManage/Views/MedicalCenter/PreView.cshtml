@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "病历预览";
+    ViewBag.Title = "Xem trước bệnh án";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -22,27 +22,27 @@
         var ctl = document.getElementById("myWriterControl");
         ctl.style.height = "800px";
         ctl.Options.workspacebackcolorstring = "#66CCCC"
-        //打开文档
+        //Mở tài liệu
         function FileOpen(fileUrl) {
             var ctl = document.getElementById("myWriterControl");
             var doc = ctl.GetContentDocument();
             $(doc).find("[dctype='XTextDocumentHeaderElement'],[dctype='XTextDocumentFooterElement'],[dctype='XTextDocumentHeaderForFirstPageElement'],[dctype='XTextDocumentFooterForFirstPageElement']").html("");
             ctl.ClearDocumentBody();
             ctl.preserveScrollPosition = true;
-            var fileName = fileUrl;//"//File//住院病历//2023//12//01//03245//011028患者告知书.xml";
-            //在服务器端响应控件的EventReadFileContent事件，即可使用AJAX模式加载文档。
+            var fileName = fileUrl;//"//File//Bệnh án nội trú//2023//12//01//03245//011028Giấy thông báo cho bệnh nhân.xml";
+            //của điều khiển phản hồi phía máy chủEventReadFileContent Sự kiện,là có thể dùng đượcAJAX Tải tài liệu theo chế độ.
             var result = ctl.LoadDocumentFromFile(fileName, null);
-            //ctl.ServerMessage 服务端错误返回
+            //ctl.ServerMessage Máy chủ trả về lỗi
             setTimeout(function () { PrintPreview(); }, 300)
             
         }
-        //打印
+        //In
         function print() {
             var ctl = document.getElementById("myWriterControl");
             ctl.PrintDocument();
 
         }
-        //打印预览
+        //Xem trước khi in
         function PrintPreview() {
             var ctl = document.getElementById("myWriterControl");
             ctl.LoadPrintPreview();
@@ -53,7 +53,7 @@
                 BindingDCWriterClientControl(ctl);
                 ctl.EventAfterPrintPreview = function (PrintPreviewDoc) {
                     var styleDom = document.createElement("style");
-                    // 解决宋体打印问题
+                    // Khắc phục vấn đề in phông Song
                     var cssStr = "@@font-face {font-family: 宋体;src: local('宋体');}";
                     styleDom.innerHTML = cssStr;
                     var page = PrintPreviewDoc.querySelector("div[pageindex]");

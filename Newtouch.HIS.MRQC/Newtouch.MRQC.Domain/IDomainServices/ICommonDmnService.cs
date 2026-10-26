@@ -10,7 +10,7 @@ namespace Newtouch.MRQC.Domain.IDomainServices
     public interface ICommonDmnService
     {
         /// <summary>
-        /// 人员（岗位）
+        /// nhân sự（vị trí công tác）
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="dutyCode"></param>

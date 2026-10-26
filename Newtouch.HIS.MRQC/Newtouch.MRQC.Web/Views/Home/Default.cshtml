@@ -17,7 +17,7 @@
         function GetSalaryChart() {
             var randomScalingFactor = function () { return Math.round(Math.random() * 100) };
             var lineChartData = {
-                labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "8月", "10月", "11月", "12月"],
+                labels: ["1 tháng", "2 tháng", "3 tháng", "4 tháng", "5 tháng", "6 tháng", "7 tháng", "8 tháng", "8 tháng", "10 tháng", "11 tháng", "12 tháng"],
                 datasets: [
                     {
                         label: "My First dataset",
@@ -58,33 +58,33 @@
 	                value: a_value,
 	                color: "#F7464A",
 	                highlight: "#FF5A5E",
-	                label: "急诊"
+	                label: "Cấp cứu"
 	            },
 	            {
 	                value: b_value,
 	                color: "#46BFBD",
 	                highlight: "#5AD3D1",
-	                label: "普通"
+	                label: "Bình thường"
 	            },
 	            {
 	                value: c_value,
 	                color: "#FDB45C",
 	                highlight: "#FFC870",
-	                label: "专家"
+	                label: "Chuyên gia"
 	            },
 	            {
 	                value: d_value,
 	                color: "#949FB1",
 	                highlight: "#A8B3C5",
-	                label: "专病"
+	                label: "Bệnh chuyên khoa"
 	            }
             ];
             var ctx = document.getElementById("leavechart").getContext("2d");
             window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, { responsive: false });
-            $("#a_value").html(a_value + "人");
-            $("#b_value").html(b_value + "人");
-            $("#c_value").html(c_value + "人");
-            $("#d_value").html(d_value + "人");
+            $("#a_value").html(a_value + "người");
+            $("#b_value").html(b_value + "người");
+            $("#c_value").html(c_value + "người");
+            $("#d_value").html(d_value + "người");
         }
     </script>
 </head>
@@ -93,7 +93,7 @@
         <div class="rows" style="margin-bottom: 1%; border: 1px solid #e6e6e6; overflow: hidden; padding-left: 1px;">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-line-chart fa-lg" style="padding-right: 5px;"></i>关键数据实时指标
+                    <i class="fa fa-line-chart fa-lg" style="padding-right: 5px;"></i>Chỉ số thời gian thực của dữ liệu quan trọng
                     @*<div style="float: right; position: relative; top: -4px; right: 0px;">
                             <iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=1" width="330" height="35" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
                         </div>*@
@@ -102,7 +102,7 @@
                     <div class="dashboard-stats">
                         <div class="dashboard-stats-item" style="background-color: #fc8675;">
                             <h2 class="m-top-none">8</h2>
-                            <h5>门诊挂号</h5>
+                            <h5>Đăng ký khám ngoại trú</h5>
                             <div class="stat-icon">
                                 <i class="fa fa-user fa-3x"></i>
                             </div>
@@ -111,7 +111,7 @@
                     <div class="dashboard-stats">
                         <div class="dashboard-stats-item" style="background-color: #6bafbd;">
                             <h2 class="m-top-none">12</h2>
-                            <h5>门诊收费</h5>
+                            <h5>Thu phí ngoại trú</h5>
                             <div class="stat-icon">
                                 <i class="fa fa-hdd-o fa-3x"></i>
                             </div>
@@ -120,7 +120,7 @@
                     <div class="dashboard-stats">
                         <div class="dashboard-stats-item" style="background-color: #f3ce85;">
                             <h2 class="m-top-none">2</h2>
-                            <h5>住院收费</h5>
+                            <h5>Thu phí nội trú</h5>
                             <div class="stat-icon">
                                 <i class="fa fa-shopping-cart fa-3x"></i>
                             </div>
@@ -129,7 +129,7 @@
                     <div class="dashboard-stats">
                         <div class="dashboard-stats-item" style="background-color: #949FB1;">
                             <h2 class="m-top-none">6</h2>
-                            <h5>出院结算</h5>
+                            <h5>Quyết toán xuất viện</h5>
                             <div class="stat-icon">
                                 <i class="fa fa-gavel fa-3x"></i>
                             </div>
@@ -138,7 +138,7 @@
                     <div class="dashboard-stats">
                         <div class="dashboard-stats-item" style="background-color: #65cea7; margin-right: 0px;">
                             <h2 class="m-top-none">268</h2>
-                            <h5>患者管理</h5>
+                            <h5>Quản lý bệnh nhân</h5>
                             <div class="stat-icon">
                                 <i class="fa fa-truck fa-3x"></i>
                             </div>
@@ -152,10 +152,10 @@
                 <div style="height: 350px; border: 1px solid #e6e6e6; background-color: #fff;">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-area-chart fa-lg" style="padding-right: 5px;"></i>挂号统计
+                            <i class="fa fa-area-chart fa-lg" style="padding-right: 5px;"></i>Thống kê đăng ký khám
                             <div style="float: right">
-                                <span style="font-weight: 500;"><i class="fa fa-square" style="color: #dcdcdc; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>普通</span>
-                                <span style="margin-left: 10px; font-weight: 500;"><i class="fa fa-square" style="color: #97bbcd; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>专家</span>
+                                <span style="font-weight: 500;"><i class="fa fa-square" style="color: #dcdcdc; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>Bình thường</span>
+                                <span style="margin-left: 10px; font-weight: 500;"><i class="fa fa-square" style="color: #97bbcd; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>Chuyên gia</span>
                             </div>
                         </div>
                         <div class="panel-body" style="padding-bottom: 0px;">
@@ -167,31 +167,31 @@
             <div style="float: right; width: 30%;">
                 <div style="height: 350px; border: 1px solid #e6e6e6; background-color: #fff;">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><i class="fa fa-pie-chart fa-lg" style="padding-right: 5px;"></i>挂号类别统计</div>
+                        <div class="panel-heading"><i class="fa fa-pie-chart fa-lg" style="padding-right: 5px;"></i>Thống kê theo loại đăng ký khám</div>
                         <div class="panel-body" style="padding-top: 20px;">
                             <canvas id="leavechart" style="height: 160px; width: 100%;"></canvas>
                             <div style="text-align: center; padding-top: 20px;">
-                                <span><i class="fa fa-square" style="color: #F7464A; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>急诊</span>
-                                <span style="margin-left: 10px;"><i class="fa fa-square" style="color: #46BFBD; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>普通</span>
-                                <span style="margin-left: 10px;"><i class="fa fa-square" style="color: #FDB45C; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>专家</span>
-                                <span style="margin-left: 10px;"><i class="fa fa-square" style="color: #949FB1; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>专病</span>
+                                <span><i class="fa fa-square" style="color: #F7464A; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>Cấp cứu</span>
+                                <span style="margin-left: 10px;"><i class="fa fa-square" style="color: #46BFBD; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>Bình thường</span>
+                                <span style="margin-left: 10px;"><i class="fa fa-square" style="color: #FDB45C; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>Chuyên gia</span>
+                                <span style="margin-left: 10px;"><i class="fa fa-square" style="color: #949FB1; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>Bệnh chuyên khoa</span>
                             </div>
                             <div style="margin-top: 20px; padding-top: 18px; height: 60px; border-top: 1px solid #e6e6e6;">
                                 <div style="width: 25%; text-align: center; float: left;">
-                                    <span id="a_value">3小时</span>
-                                    <p style="color: #a1a1a1">急诊</p>
+                                    <span id="a_value">3 giờ</span>
+                                    <p style="color: #a1a1a1">Cấp cứu</p>
                                 </div>
                                 <div style="width: 25%; text-align: center; float: left;">
-                                    <span id="b_value">6小时</span>
-                                    <p style="color: #a1a1a1">普通</p>
+                                    <span id="b_value">6 giờ</span>
+                                    <p style="color: #a1a1a1">Bình thường</p>
                                 </div>
                                 <div style="width: 25%; text-align: center; float: left;">
-                                    <span id="c_value">3小时</span>
-                                    <p style="color: #a1a1a1">专家</p>
+                                    <span id="c_value">3 giờ</span>
+                                    <p style="color: #a1a1a1">Chuyên gia</p>
                                 </div>
                                 <div style="width: 25%; text-align: center; float: left;">
-                                    <span id="d_value">2小时</span>
-                                    <p style="color: #a1a1a1">专病</p>
+                                    <span id="d_value">2 giờ</span>
+                                    <p style="color: #a1a1a1">Bệnh chuyên khoa</p>
                                 </div>
                             </div>
                         </div>
@@ -203,17 +203,17 @@
             <div style="float: left; width: 34%; margin-right: 1%;">
                 <div style="height: 265px; border: 1px solid #e6e6e6; background-color: #fff;">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><i class="fa fa-thumbs-o-up fa-lg" style="padding-right: 5px;"></i>系统更新</div>
+                        <div class="panel-heading"><i class="fa fa-thumbs-o-up fa-lg" style="padding-right: 5px;"></i>Cập nhật hệ thống</div>
                         <div class="panel-body">
                             <ul>
-                                <li><a href="#">系统版本发布V1.7</a><span class="time">2016-12-21</span></li>
-                                <li><a href="#">系统版本发布V1.6</a><span class="time">2016-12-20</span></li>
-                                <li><a href="#">系统版本发布V1.5</a><span class="time">2016-12-19</span></li>
-                                <li><a href="#">系统版本发布V1.4</a><span class="time">2016-12-17</span></li>
-                                <li><a href="#">系统版本发布V1.3</a><span class="time">2016-12-17</span></li>
-                                <li><a href="#">系统版本发布V1.2</a><span class="time">2016-12-13</span></li>
-                                <li><a href="#">系统版本升级V1.1</a><span class="time">2016-12-12</span></li>
-                                <li><a href="#">系统版本发布V1.0</a><span class="time">2016-12-12</span></li>
+                                <li><a href="#">Phát hành phiên bản hệ thốngV1.7</a><span class="time">2016-12-21</span></li>
+                                <li><a href="#">Phát hành phiên bản hệ thốngV1.6</a><span class="time">2016-12-20</span></li>
+                                <li><a href="#">Phát hành phiên bản hệ thốngV1.5</a><span class="time">2016-12-19</span></li>
+                                <li><a href="#">Phát hành phiên bản hệ thốngV1.4</a><span class="time">2016-12-17</span></li>
+                                <li><a href="#">Phát hành phiên bản hệ thốngV1.3</a><span class="time">2016-12-17</span></li>
+                                <li><a href="#">Phát hành phiên bản hệ thốngV1.2</a><span class="time">2016-12-13</span></li>
+                                <li><a href="#">Nâng cấp phiên bản hệ thốngV1.1</a><span class="time">2016-12-12</span></li>
+                                <li><a href="#">Phát hành phiên bản hệ thốngV1.0</a><span class="time">2016-12-12</span></li>
                             </ul>
                         </div>
                     </div>
@@ -222,17 +222,17 @@
             <div style="float: left; width: 34%; margin-right: 1%;">
                 <div style="height: 265px; border: 1px solid #e6e6e6; background-color: #fff;">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><i class="fa fa-rss fa-lg" style="padding-right: 5px;"></i>通知公告</div>
+                        <div class="panel-heading"><i class="fa fa-rss fa-lg" style="padding-right: 5px;"></i>Thông báo chung</div>
                         <div class="panel-body">
                             <ul>
-                                <li><a href="#">【通知】新版员工守则，即日执行</a><span class="time">2016-12-21</span></li>
-                                <li><a href="#">【公告】OA办公使用指南</a><span class="time">2016-12-21</span></li>
-                                <li><a href="#">【公告】劳动节集体出游指南</a><span class="time">2016-12-21</span></li>
-                                <li><a href="#">【通知】2016年G20财长和央行行</a><span class="time">2016-12-21</span></li>
-                                <li><a href="#">【通知】2016年G20财长和央行行</a><span class="time">2016-12-21</span></li>
-                                <li><a href="#">【通知】品牌价值的最佳选择</a><span class="time">2016-12-21</span></li>
-                                <li><a href="#">【公告】采购商城全新升级自营业正品</a><span class="time">2016-12-21</span></li>
-                                <li><a href="#">【公告】采购商城全新升级自营业正品</a><span class="time">2016-12-21</span></li>
+                                <li><a href="#">【Thông báo】Nội quy nhân viên bản mới,Thực hiện ngay trong ngày</a><span class="time">2016-12-21</span></li>
+                                <li><a href="#">【Thông báo】OAHướng dẫn sử dụng văn phòng</a><span class="time">2016-12-21</span></li>
+                                <li><a href="#">【Thông báo】Hướng dẫn đi chơi tập thể dịp Lễ Lao động</a><span class="time">2016-12-21</span></li>
+                                <li><a href="#">【Thông báo】2016nămG20Bộ trưởng Tài chính và Thống đốc Ngân hàng Trung ương</a><span class="time">2016-12-21</span></li>
+                                <li><a href="#">【Thông báo】2016nămG20Bộ trưởng Tài chính và Thống đốc Ngân hàng Trung ương</a><span class="time">2016-12-21</span></li>
+                                <li><a href="#">【Thông báo】Lựa chọn tốt nhất về giá trị thương hiệu</a><span class="time">2016-12-21</span></li>
+                                <li><a href="#">【Thông báo】Trung tâm mua sắm nâng cấp toàn diện, tự kinh doanh hàng chính hãng</a><span class="time">2016-12-21</span></li>
+                                <li><a href="#">【Thông báo】Trung tâm mua sắm nâng cấp toàn diện, tự kinh doanh hàng chính hãng</a><span class="time">2016-12-21</span></li>
                             </ul>
                         </div>
                     </div>
@@ -241,17 +241,17 @@
             <div style="float: right; width: 30%;">
                 <div style="height: 265px; border: 1px solid #e6e6e6; background-color: #fff;">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><i class="fa fa-send fa-lg" style="padding-right: 5px;"></i>企业文化</div>
+                        <div class="panel-heading"><i class="fa fa-send fa-lg" style="padding-right: 5px;"></i>Văn hóa doanh nghiệp</div>
                         <div class="panel-body">
                             <ul>
-                                <li><a href="#">创新企业党建思想政治工作</a><span class="time">2016-12-02</span></li>
-                                <li><a href="#">现代国有企业道德体系初构</a><span class="time">2016-12-18</span></li>
-                                <li><a href="#">国有企业文化问题根源及文化重塑任务分析</a><span class="time">2016-12-26</span></li>
-                                <li><a href="#">国有企业文化建设必须突出员工文化</a><span class="time">2016-12-20</span></li>
-                                <li><a href="#">加强企业公民建设 推进企业和谐发展</a><span class="time">2016-12-08</span></li>
-                                <li><a href="#">不断提升大庆精神 实现企业持续发展</a><span class="time">2016-12-22</span></li>
-                                <li><a href="#">科学发展作指导 人水和谐路更宽</a><span class="time">2016-12-15</span></li>
-                                <li><a href="#">科学发展作指导 人水和谐路更宽</a><span class="time">2016-12-15</span></li>
+                                <li><a href="#">Đổi mới công tác xây dựng Đảng và tư tưởng chính trị trong doanh nghiệp</a><span class="time">2016-12-02</span></li>
+                                <li><a href="#">Phác thảo ban đầu hệ thống đạo đức của doanh nghiệp nhà nước hiện đại</a><span class="time">2016-12-18</span></li>
+                                <li><a href="#">Phân tích nguồn gốc vấn đề văn hóa doanh nghiệp nhà nước và nhiệm vụ tái tạo văn hóa</a><span class="time">2016-12-26</span></li>
+                                <li><a href="#">Xây dựng văn hóa doanh nghiệp nhà nước phải nổi bật văn hóa nhân viên</a><span class="time">2016-12-20</span></li>
+                                <li><a href="#">Tăng cường xây dựng doanh nghiệp công dân Thúc đẩy phát triển hài hòa của doanh nghiệp</a><span class="time">2016-12-08</span></li>
+                                <li><a href="#">Không ngừng nâng cao tinh thần Đại Khánh Thực hiện phát triển bền vững cho doanh nghiệp</a><span class="time">2016-12-22</span></li>
+                                <li><a href="#">Lấy phát triển khoa học làm định hướng Người và nước hài hòa, đường càng rộng</a><span class="time">2016-12-15</span></li>
+                                <li><a href="#">Lấy phát triển khoa học làm định hướng Người và nước hài hòa, đường càng rộng</a><span class="time">2016-12-15</span></li>
                             </ul>
                         </div>
                     </div>

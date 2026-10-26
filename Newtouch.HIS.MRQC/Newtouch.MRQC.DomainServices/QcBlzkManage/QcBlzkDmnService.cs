@@ -20,7 +20,7 @@ namespace Newtouch.MRQC.DomainServices.QcBlzkManage
         {
         }
         /// <summary>
-        /// 质控项目维护
+        /// bảo trì hạng mục kiểm soát chất lượng
         /// </summary>
         /// <param name="entityvo"></param>
         public void SubmitForm(ZkxmEntityVo entityvo)

@@ -30,7 +30,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
             return base.Form();
         }
         /// <summary>
-        /// 质控项目:病历模板类型树
+        /// Hạng mục kiểm soát chất lượng:cây loại mẫu bệnh án
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -63,7 +63,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
             return Content(treeList.TreeGridJson(null));
         }
         /// <summary>
-        /// 质控项目维护
+        /// bảo trì hạng mục kiểm soát chất lượng
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

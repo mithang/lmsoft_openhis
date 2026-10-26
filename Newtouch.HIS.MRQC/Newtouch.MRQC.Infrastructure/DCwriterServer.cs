@@ -27,12 +27,12 @@ namespace Newtouch.MRQC.Infrastructure
         {
             DCWControl = new WebWriterControlEngine();
             DCWControl.SetRegisterCode(EditorRegCode);
-            DCWControl.Options.ControlName = "myWriterControl";//生成前端标签时的ID
+            DCWControl.Options.ControlName = "myWriterControl";//khi tạo nhãn giao diệnID
             DCWControl.Options.ContentRenderMode = WebWriterControlRenderMode.NormalHtmlEditable;
             DCWControl.Options.ServicePageURL = "/MedicalCenter/MoreHandleDCWriterServicePage";
-            DCWControl.Options.ImageDataEmbedInHtml = true;//图片与表达式显示    
-            DCWControl.BorderStyle = "1px solid black";//边框样式
-            DCWControl.Options.WorkspaceBackColor = ColorTranslator.FromHtml("#7cb9e8");//背景色  
+            DCWControl.Options.ImageDataEmbedInHtml = true;//hiển thị hình ảnh và biểu thức    
+            DCWControl.BorderStyle = "1px solid black";//kiểu viền
+            DCWControl.Options.WorkspaceBackColor = ColorTranslator.FromHtml("#7cb9e8");//màu nền  
             DCWControl.DocumentOptions.ViewOptions.FieldBackColor = Color.Transparent;
             DCWControl.DocumentOptions.ViewOptions.FieldFocusedBackColor = Color.White;
             return DCWControl;

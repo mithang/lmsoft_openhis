@@ -1,7 +1,7 @@
 ﻿@using Newtouch.Common.Operator;
 @using Newtouch.MRQC.Infrastructure;
 @{
-    ViewBag.Title = "质控中心";
+    ViewBag.Title = "Trung tâm kiểm soát chất lượng";
     Layout = "~/Views/Shared/_Index.cshtml";
     var opeator = OperatorProvider.GetCurrent();
 }
@@ -22,18 +22,18 @@
     <div class="dv-left">
         <div class="panel panel-default">
             @*<div class="panel-heading navb-bg">
-                    筛选条件
+                    Điều kiện lọc
                 </div>*@
             <table class="form" style="width:95%">
                 <tbody>
                     <tr>
                         <td class="formValue" colspan="2">
                             <input type="radio" name="brlx" class="ribbon-group" value="1" checked>
-                            <label>在院病人</label>
+                            <label>Bệnh nhân đang nằm viện</label>
                             <input type="radio" name="brlx" class="ribbon-group" value="2">
-                            <label>出院病人</label>
+                            <label>Bệnh nhân xuất viện</label>
                             <input type="radio" name="brlx" class="ribbon-group" value="3">
-                            <label>门诊</label>
+                            <label>Ngoại trú</label>
                         </td>
                     </tr>
                 </tbody>
@@ -41,20 +41,20 @@
             <table class="form" style="width:95%">
                 <tbody>
                     <tr>
-                        <th class="formTitle" style="width:50px" id="thksrq">入院起日期：</th>
+                        <th class="formTitle" style="width:50px" id="thksrq">Ngày nhập viện từ：</th>
                         <td class="formValue">
                             <input id="txt_kssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.AddMonths(-2).ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle" id="thjsrq">入院止日期：</th>
+                        <th class="formTitle" id="thjsrq">Ngày nhập viện đến：</th>
                         <td class="formValue">
                             <input id="txt_jssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                         </td>
                     </tr>
                     <tr>
                         <td class="formValue" colspan="2">
-                            <input id="txt_srz" type="text" class="form-control" placeholder="姓名/住院号" style="width:84%;float:left;">
+                            <input id="txt_srz" type="text" class="form-control" placeholder="Họ tên/Số nội trú" style="width:84%;float:left;">
                             <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         </td>
                     </tr>
@@ -68,43 +68,43 @@
     </div>
     <div class="dv-right">
         <div class="panel-heading navb-bg">
-            病人信息
+            Thông tin bệnh nhân
         </div>
         <form name="form1">
             <div class="panel panel-default">
                 <table class="form">
                     <tr>
-                        <th class="formTitle" style="width:50px">姓名：</th>
+                        <th class="formTitle" style="width:50px">Họ tên：</th>
                         <td class="formValue">
                             <label id="xm"></label>
                         </td>
-                        <th class="formTitle" style="width:50px">性别：</th>
+                        <th class="formTitle" style="width:50px">Giới tính：</th>
                         <td class="formValue">
                             <label id="xb"></label>
                         </td>
-                        <th class="formTitle" style="width:50px">出生日期：</th>
+                        <th class="formTitle" style="width:50px">Ngày sinh：</th>
                         <td class="formValue">
                             <label id="csrq"></label>
                         </td>
-                        <th class="formTitle" style="width:50px">住院/就诊号：</th>
+                        <th class="formTitle" style="width:50px">Nội trú/Số khám bệnh：</th>
                         <td class="formValue">
                             <label id="jzh"></label>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle" style="width:50px">科室：</th>
+                        <th class="formTitle" style="width:50px">Khoa：</th>
                         <td class="formValue">
                             <label id="ks"></label>
                         </td>
-                        <th class="formTitle" style="width:50px">床号：</th>
+                        <th class="formTitle" style="width:50px">Số giường：</th>
                         <td class="formValue">
                             <label id="ch"></label>
                         </td>
-                        <th class="formTitle" style="width:50px">入院日期：</th>
+                        <th class="formTitle" style="width:50px">Ngày nhập viện：</th>
                         <td class="formValue">
                             <label id="ryrq"></label>
                         </td>
-                        <th class="formTitle" style="width:50px">出院日期：</th>
+                        <th class="formTitle" style="width:50px">Ngày xuất viện：</th>
                         <td class="formValue">
                             <label id="cyrq"></label>
                             <input type="hidden" id="jzys"/>
@@ -116,25 +116,25 @@
         </form>
         <ul class="nav nav-tabs navb-bg" role="tablist" id="beveltabs">
             <li id="linkInfo" name="linkInfo" class="active">
-                <a href="#div_zd" role="tab" data-toggle="tab">诊断</a>
+                <a href="#div_zd" role="tab" data-toggle="tab">Chẩn đoán</a>
             </li>
             <li id="linkycq" name="linkycq">
-                <a href="#div_bl" role="tab" data-toggle="tab">病历</a>
+                <a href="#div_bl" role="tab" data-toggle="tab">Bệnh án</a>
             </li>
             <li id="linkyz" name="linkyz">
-                <a href="#div_yz" role="tab" data-toggle="tab">医嘱</a>
+                <a href="#div_yz" role="tab" data-toggle="tab">Y lệnh</a>
             </li>
             <li id="linkcf" style="display:none">
-                <a href="#div_cf" role="tab" data-toggle="tab">门诊处方</a>
+                <a href="#div_cf" role="tab" data-toggle="tab">Đơn thuốc ngoại trú</a>
             </li>
             <li id="linkjybg">
-                <a href="#div_jybg" role="tab" data-toggle="tab">检验报告</a>
+                <a href="#div_jybg" role="tab" data-toggle="tab">Báo cáo xét nghiệm</a>
             </li>
             <li id="linkjcbg">
-                <a href="#div_jcbg" role="tab" data-toggle="tab">检查报告</a>
+                <a href="#div_jcbg" role="tab" data-toggle="tab">Báo cáo kiểm tra</a>
             </li>
             <li id="linkscd" style="display:none">
-                <a href="#div_scd" role="tab" data-toggle="tab">三测单</a>
+                <a href="#div_scd" role="tab" data-toggle="tab">Phiếu đo ba chỉ số</a>
             </li>
         </ul>
         <div class="tab-content" style="width:100%">
@@ -147,13 +147,13 @@
                         <tbody>
                             <tr>
                                 <td class="formTitle">
-                                    <input id="btn_zmpf" type="button" class="fui-button" value="病历质量终末评分" onclick="btn_zlpf()"/>
+                                    <input id="btn_zmpf" type="button" class="fui-button" value="Chấm điểm chất lượng bệnh án cuối cùng" onclick="btn_zlpf()"/>
                                 </td>
                                 <td class="formTitle">
-                                    <input id="btn_zkxx" type="button" class="fui-button" value="质控消息" onclick="btn_zkxx()" />
+                                    <input id="btn_zkxx" type="button" class="fui-button" value="Tin nhắn kiểm soát chất lượng" onclick="btn_zkxx()" />
                                 </td>
                                 <td class="formTitle">
-                                    <input id="txt_zmpf" type="button" class="fui-button" value="表单护理记录" style="display:none"/>
+                                    <input id="txt_zmpf" type="button" class="fui-button" value="Phiếu ghi chép điều dưỡng" style="display:none"/>
                                 </td>
                                 <td></td>
                                 <td></td>
@@ -181,15 +181,15 @@
                         <tr>
                             <td class="formValue" colspan="4">
                                 <input type="radio" name="yzlx" class="ribbon-group" value="qb" checked>
-                                <label>全部</label>
+                                <label>Tất cả</label>
                                 <input type="radio" name="yzlx" class="ribbon-group" value="zx">
-                                <label>查执行</label>
+                                <label>Tra cứu thực hiện</label>
                                 <input type="radio" name="yzlx" class="ribbon-group" value="dr">
-                                <label>查今天</label>
+                                <label>Tra cứu hôm nay</label>
                                 <input type="radio" name="yzlx" class="ribbon-group" value="ls">
-                                <label>查临时</label>
+                                <label>Tra cứu tạm thời</label>
                                 <input type="radio" name="yzlx" class="ribbon-group" value="cq">
-                                <label>查长期</label>
+                                <label>Tra cứu dài hạn</label>
                             </td>
                         </tr>
 
@@ -198,17 +198,17 @@
                 <table id="gridYzList"></table>
             </div>
             <div class="tab-pane fade" id="div_cf">
-                处方
+                Đơn thuốc
             </div>
             <div class="tab-pane fade" id="div_jybg">
                 <table class="form" style="width:95%">
                     <tbody>
                         <tr>
-                            <th class="formTitle" style="width:50px" id="thksrq">开始时间：</th>
+                            <th class="formTitle" style="width:50px" id="thksrq">Thời gian bắt đầu：</th>
                             <td class="formValue">
                                 <input id="txt_Jykssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                             </td>
-                            <th class="formTitle" id="thjsrq">结束时间：</th>
+                            <th class="formTitle" id="thjsrq">Thời gian kết thúc：</th>
                             <td class="formValue">
                                 <input id="txt_Jyjssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                             </td>
@@ -225,11 +225,11 @@
                 <table class="form" style="width:95%">
                     <tbody>
                         <tr>
-                            <th class="formTitle" style="width:50px" id="thksrq">开始时间：</th>
+                            <th class="formTitle" style="width:50px" id="thksrq">Thời gian bắt đầu：</th>
                             <td class="formValue">
                                 <input id="txt_Jckssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                             </td>
-                            <th class="formTitle" id="thjsrq">结束时间：</th>
+                            <th class="formTitle" id="thjsrq">Thời gian kết thúc：</th>
                             <td class="formValue">
                                 <input id="txt_Jcjssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                             </td>
@@ -243,7 +243,7 @@
                 <table id="gridJcList"></table>
             </div>
             <div class="tab-pane fade" id="div_scd">
-                三测单
+                Phiếu đo ba chỉ số
 
             </div>
         </div>
@@ -253,9 +253,9 @@
 <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
 <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/jqgrid/grid.locale-cn.js")"></script>
 <script>
-    var last = "";//上一个组号
+    var last = "";//Số nhóm trước
     $(function () {
-        $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+        $(window).resize(function () {//Tính lại chiều rộng và chiều cao khi thay đổi kích thước cửa sổ trình duyệt
             $(".dv-body").height($(window).height());
             $(".dv-body").width($(window).width());
         });
@@ -271,22 +271,22 @@
     $('input[type=radio][name=brlx]').change(function(){
         var chektype = $('input:radio[name="brlx"]:checked').val();
         if (chektype == "3") {
-            $("#thksrq").html("就诊起日期");
-            $("#thjsrq").html("就诊止日期");
+            $("#thksrq").html("Ngày khám từ");
+            $("#thjsrq").html("Ngày khám đến");
             $("#linkyz").hide();
             //$("#linkcf").show();
            // $("#linkscd").hide();
         }
         else if (chektype == "2") {
-            $("#thksrq").html("出院起日期");
-            $("#thjsrq").html("出院止日期");
+            $("#thksrq").html("Ngày xuất viện từ");
+            $("#thjsrq").html("Ngày xuất viện đến");
             //$("#linkcf").hide();
             $("#linkyz").show();
             //$("#linkscd").show();
         }
         else {
-            $("#thksrq").html("入院起日期");
-            $("#thjsrq").html("入院止日期");
+            $("#thksrq").html("Ngày nhập viện từ");
+            $("#thjsrq").html("Ngày nhập viện đến");
             //$("#linkcf").hide();
             $("#linkyz").show();
             //$("#linkscd").show();
@@ -312,35 +312,35 @@
             unwritten: false,
             colModel: [
                 //{ label: 'ID', name: 'Id', hidden: true, key: true },
-                { label: '科室', name: 'DeptName', width: 60, align: 'left' },
-                { label: '床号', name: 'BedName', width: 50, align: 'left' },
-                { label: '姓名', name: 'Xm', width: 80, align: 'left' },
+                { label: 'Khoa', name: 'DeptName', width: 60, align: 'left' },
+                { label: 'Số giường', name: 'BedName', width: 50, align: 'left' },
+                { label: 'Họ tên', name: 'Xm', width: 80, align: 'left' },
                 {
-                    label: '性别', name: 'Sex', width: 40, align: 'left', formatter: function (val) {
+                    label: 'Giới tính', name: 'Sex', width: 40, align: 'left', formatter: function (val) {
                         return $.enum.getDescByValue("EnumSex", val);
                     }
                  },
-                { label: '年龄', name: 'Age', width: 60, align: 'left' },
-                { label: '入院日期', name: 'Ryrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '出院日期', name: 'Cyrq', width: 120, align: 'left' ,formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }  },
-                { label: "入院医生", name: 'RyysGh', width: 60, align: 'left',hidden:true },
-                { label: '健康卡号', name: 'HealthCardNo', width: 80, align: 'left' },
-                { label: '(门诊)住院号', name: 'Zyh', width: 60, align: 'left' },
-                { label: '费用类别', name: 'Fylb', width: 60, align: 'left' },
-                { label: '总费用', name: 'TotalFee', width: 60, align: 'left' },
-                { label: '主诊(住院医师)', name: 'ZYYS', width: 60, align: 'left' },
-                { label: '主治医师', name: 'ZZYS1', width: 60, align: 'left' },
-                { label: '(副)主任医师', name: 'ZRYS', width: 60, align: 'left' },
-                { label: '身份证', name: 'Sfzh', width: 60, align: 'left' },
-                { label: '出生日期', name: 'Csrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '出生地', name: 'Csd', width: 100, align: 'left' },
-                { label: '联系人', name: 'Lxrxm', width: 60, align: 'left' },
-                { label: '联系电话', name: 'Lxrdh', width: 60, align: 'left' },
-                { label: '联系地址', name: 'Lxrdz', width: 100, align: 'left' },
-                { label: '单位地址', name: 'Gzdwjdz', width: 100, align: 'left' },
-                { label: '归档标志', name: 'Bazt', width: 60, align: 'left' },
-                { label: '医疗证号', name: 'Ylzh', width: 60, align: 'left' },
-                { label: '社保卡号', name: 'Sbkh', width: 60, align: 'left' },
+                { label: 'Tuổi', name: 'Age', width: 60, align: 'left' },
+                { label: 'Ngày nhập viện', name: 'Ryrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Ngày xuất viện', name: 'Cyrq', width: 120, align: 'left' ,formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }  },
+                { label: "Bác sĩ tiếp nhận", name: 'RyysGh', width: 60, align: 'left',hidden:true },
+                { label: 'Số thẻ sức khỏe', name: 'HealthCardNo', width: 80, align: 'left' },
+                { label: '(Ngoại trú)Số nội trú', name: 'Zyh', width: 60, align: 'left' },
+                { label: 'Loại chi phí', name: 'Fylb', width: 60, align: 'left' },
+                { label: 'Tổng chi phí', name: 'TotalFee', width: 60, align: 'left' },
+                { label: 'Bác sĩ chính(Bác sĩ nội trú)', name: 'ZYYS', width: 60, align: 'left' },
+                { label: 'Bác sĩ điều trị chính', name: 'ZZYS1', width: 60, align: 'left' },
+                { label: '(Phó)Bác sĩ trưởng khoa', name: 'ZRYS', width: 60, align: 'left' },
+                { label: 'Chứng minh nhân dân', name: 'Sfzh', width: 60, align: 'left' },
+                { label: 'Ngày sinh', name: 'Csrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Nơi sinh', name: 'Csd', width: 100, align: 'left' },
+                { label: 'Người liên hệ', name: 'Lxrxm', width: 60, align: 'left' },
+                { label: 'Số điện thoại liên hệ', name: 'Lxrdh', width: 60, align: 'left' },
+                { label: 'Địa chỉ liên hệ', name: 'Lxrdz', width: 100, align: 'left' },
+                { label: 'Địa chỉ đơn vị', name: 'Gzdwjdz', width: 100, align: 'left' },
+                { label: 'Cờ lưu trữ', name: 'Bazt', width: 60, align: 'left' },
+                { label: 'Số chứng nhận y tế', name: 'Ylzh', width: 60, align: 'left' },
+                { label: 'Số thẻ bảo hiểm xã hội', name: 'Sbkh', width: 60, align: 'left' },
             ],
             onSelectRow: function (rowid, status) {
                 var rowData = $("#gridListPat").jqGrid('getRowData', rowid);
@@ -381,14 +381,14 @@
             async: true,
             colModel: [
                 {
-                    label: '诊断类型', name: 'ZdType', width: 100, align: 'left', formatter: function (val) {
+                    label: 'Loại chẩn đoán', name: 'ZdType', width: 100, align: 'left', formatter: function (val) {
                         return $.enum.getDescByValue("EnumDiagType", val);
                     }
                 },
-                { label: '诊断编码', name: 'Zddm', width: 120, align: 'left' },
-                { label: '诊断名称', name: 'Zdmc', width: 200, align: 'left' },
-                { label: '录入人', name: 'Zdys', width: 100, align: 'left' },
-                { label: '录入日期', name: 'Zdrq', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Mã chẩn đoán', name: 'Zddm', width: 120, align: 'left' },
+                { label: 'Tên chẩn đoán', name: 'Zdmc', width: 200, align: 'left' },
+                { label: 'Người nhập', name: 'Zdys', width: 100, align: 'left' },
+                { label: 'Ngày nhập', name: 'Zdrq', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
 
             ]
         });
@@ -404,9 +404,9 @@
             height: $(window).height() - 96,
             rownumbers: false,
             colModel: [
-                { label: "病历关系ID", name: "Id", hidden: true, key: true },
+                { label: "Quan hệ bệnh ánID", name: "Id", hidden: true, key: true },
                 {
-                    label: '病历名称', name: 'Blmc', width: 120, align: 'center', formatter: function (cellvalue, options, rowobject) {
+                    label: 'Tên bệnh án', name: 'Blmc', width: 120, align: 'center', formatter: function (cellvalue, options, rowobject) {
                         if (rowobject.IsRoot!=1) {
                             return '<span class="glyphicon glyphicon-file" style="color:#6ff3ad; font-size: 13px;"></span> ' + rowobject.Blmc;
                         }
@@ -416,17 +416,17 @@
                     }
                 },
                 {
-                    label: '病历名称', name: 'Blmc1', width: 80, align: 'center', hidden: true, formatter: function (cellvalue, options, rowobject) {
+                    label: 'Tên bệnh án', name: 'Blmc1', width: 80, align: 'center', hidden: true, formatter: function (cellvalue, options, rowobject) {
                         return rowobject.Blmc;
                     }
                 },
                 { label: 'Zyh', name: 'Zyh', width: 80, align: 'center', hidden: true },
                 { label: 'BlId', name: 'BlId', width: 80, align: 'center', hidden: true },
                 { label: 'Bllx', name: 'Bllx', width: 80, align: 'center',hidden:true },
-                { label: '书写者', name: 'Docname', width: 80, align: 'center' },
-                { label: '病历日期', name: 'Blrq', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Người viết', name: 'Docname', width: 80, align: 'center' },
+                { label: 'Ngày bệnh án', name: 'Blrq', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
                 {
-                    label: '状态', name: 'Blzt', width: 100, align: 'center', formatter: function (val) {
+                    label: 'Trạng thái', name: 'Blzt', width: 100, align: 'center', formatter: function (val) {
                         return $.enum.getDescByValue("EnumRecordStu", val);
                     }
                 },
@@ -446,29 +446,29 @@
             height: $(window).height() - 75,
             async: true,
             colModel: [
-                { label: '医嘱类别', name: 'Yzlb', align: 'center', width: 50 },
+                { label: 'Loại y lệnh', name: 'Yzlb', align: 'center', width: 50 },
                 {
-                    label: '医嘱类型', name: 'Yzlx', align: 'center', width: 50, formatter: function (val) {
+                    label: 'Kiểu y lệnh', name: 'Yzlx', align: 'center', width: 50, formatter: function (val) {
                         return $.enum.getDescByValue("EnumYzlx", val)
                     }
                 },
-                { label: '开始时间', name: 'Kssj', align: 'center', width: 109, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '医生', name: 'Ysmc', align: 'center', width: 40 },
-                { label: '医嘱名称', name: 'Yzmc', align: 'center', width: 150 },
-                { label: '剂量', name: 'Yzjl', align: 'center', width: 30 },
-                { label: '用法', name: 'Yfmc', align: 'center', width: 30 },
-                { label: '频次', name: 'Yzpcmc', align: 'center', width: 30 },
-                { label: '同组', name: 'Zh', align: 'center', width: 30 },
+                { label: 'Thời gian bắt đầu', name: 'Kssj', align: 'center', width: 109, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Bác sĩ', name: 'Ysmc', align: 'center', width: 40 },
+                { label: 'Tên y lệnh', name: 'Yzmc', align: 'center', width: 150 },
+                { label: 'Liều lượng', name: 'Yzjl', align: 'center', width: 30 },
+                { label: 'Cách dùng', name: 'Yfmc', align: 'center', width: 30 },
+                { label: 'Tần suất', name: 'Yzpcmc', align: 'center', width: 30 },
+                { label: 'Cùng nhóm', name: 'Zh', align: 'center', width: 30 },
                 {
-                    label: '停止时间', name: 'Tzsj', align: 'center', width: 110, formatter: "date",
+                    label: 'Thời gian dừng', name: 'Tzsj', align: 'center', width: 110, formatter: "date",
                     formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: '停止医生', name: 'Tzr', align: 'center', width: 50 },
-                { label: '执行者', name: 'Zxr', align: 'center', width: 50 },
-                { label: '执行科室', name: 'DeptName', align: 'center', width: 100 },
-                { label: '最后执行时间', name: 'Zxsj', align: 'center', width: 100, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }  },
+                { label: 'Dừng bác sĩ', name: 'Tzr', align: 'center', width: 50 },
+                { label: 'Người thực hiện', name: 'Zxr', align: 'center', width: 50 },
+                { label: 'Khoa thực hiện', name: 'DeptName', align: 'center', width: 100 },
+                { label: 'Thời gian thực hiện lần cuối', name: 'Zxsj', align: 'center', width: 100, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }  },
                 {
-                    label: '状态', name: 'Yzzt', align: 'center', width: 60, formatter: function (val) {
+                    label: 'Trạng thái', name: 'Yzzt', align: 'center', width: 60, formatter: function (val) {
                         return $.enum.getDescByValue("EnumYzzt", val)
                     }
                 },
@@ -478,22 +478,22 @@
                 var ids = $("#gridYzList").jqGrid('getDataIDs');
                 for (i = 0; i < ids.length; i++) {
                     var rowData = $("#gridYzList").jqGrid('getRowData', ids[i]);
-                    //组号生成特殊符号
+                    //Ký tự đặc biệt khi tạo số nhóm
                     var returnval = "";
                     if (rowData.Zh != typeof (undefined) && rowData.Zh !== "" && rowData.Zh !== null) {
                         if (last == rowData.Zh) {
-                            returnval = "中间";
-                            if (i == (ids.length - 1)) {//最后一个
-                                returnval = "结束";
+                            returnval = "Ở giữa";
+                            if (i == (ids.length - 1)) {//Cái cuối cùng
+                                returnval = "Kết thúc";
                                 last = "";
                             }
                         } else if (last !== rowData.Zh) {
                             if (last !== "") {
                                 setlastrowzuhao(ids[i]);
                             }
-                            returnval = "开始";
+                            returnval = "Bắt đầu";
                         }
-                        $("#gridYzList").setCell(ids[i], "Zh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell 设置单元格样式 值 或属性
+                        $("#gridYzList").setCell(ids[i], "Zh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell Đặt kiểu cho ô Giá trị hoặc thuộc tính
                     } else if (last !== rowData.Zh && last !== "") {
                         setlastrowzuhao(ids[i]);
                     }
@@ -510,12 +510,12 @@
             async: true,
             colModel: [
                 {
-                    label: '申请日期', name: 'Sqsj', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                    label: 'Ngày đề nghị', name: 'Sqsj', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: '送检项目', name: 'Sqxm', width: 150, align: 'left' },
-                { label: '申请医生', name: 'Sqys', width: 100, align: 'left' },
-                { label: '报告日期', name: 'Bgrq', width: 100, align: 'left' },
-                { label: '申请单号', name: 'Sqdh', width: 100, align: 'left' },
+                { label: 'Hạng mục gửi xét nghiệm', name: 'Sqxm', width: 150, align: 'left' },
+                { label: 'Bác sĩ đề nghị', name: 'Sqys', width: 100, align: 'left' },
+                { label: 'Ngày báo cáo', name: 'Bgrq', width: 100, align: 'left' },
+                { label: 'Số đơn đề nghị', name: 'Sqdh', width: 100, align: 'left' },
 
             ],
         });
@@ -527,19 +527,19 @@
             async: true,
             colModel: [
                  {
-                     label: '申请日期', name: 'Sqsj', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                     label: 'Ngày đề nghị', name: 'Sqsj', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                  },
-                { label: '送检部位', name: 'Sqxm', width: 150, align: 'left' },
-                { label: '申请医生', name: 'Sqys', width: 100, align: 'left' },
-                { label: '报告日期', name: 'Bgrq', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '申请单号', name: 'Sqdh', width: 100, align: 'left' },
+                { label: 'Vị trí gửi xét nghiệm', name: 'Sqxm', width: 150, align: 'left' },
+                { label: 'Bác sĩ đề nghị', name: 'Sqys', width: 100, align: 'left' },
+                { label: 'Ngày báo cáo', name: 'Bgrq', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Số đơn đề nghị', name: 'Sqdh', width: 100, align: 'left' },
             ],
         });
     }
-    //设置上一行组号
+    //Đặt số nhóm của dòng trên
     function setlastrowzuhao(rowid) {
         var lastrow = parseInt(rowid) - 1;
-        $("#gridYzList").setCell(lastrow, "Zh", '<img src="../../../../Content/img/结束.png" />');//setCell 设置单元格样式 值 或属性
+        $("#gridYzList").setCell(lastrow, "Zh", '<img src="../../../../Content/img/Kết thúc.png" />');//setCell Đặt kiểu cho ô Giá trị hoặc thuộc tính
     }
 
     function loadRightData(jzh) {
@@ -601,12 +601,12 @@
     {
         var seleRow = $("#gridbltreeList").jqGridRowValue();
         if (!!!seleRow) {
-            $.modalAlert("请选中一种病历类型进行评分", "error");
+            $.modalAlert("Vui lòng chọn một loại bệnh án để chấm điểm", "error");
             return;
         }
         $.modalOpen({
             id: "ScoreFrom",
-            title: "质控评分",
+            title: "điểm kiểm soát chất lượng",
             url: "/QualityControlManage/MedicalCenter/ScoreFrom?bllx=" + seleRow.Bllx + "&blmc=" + seleRow.Blmc1
                 + "&zyh=" + $("#jzh").text(),
             width: "750px",
@@ -623,7 +623,7 @@
         debugger;
         var seleRow = $("#gridbltreeList").jqGridRowValue();
         if (seleRow.Bllx == "5")
-            top.top.$.Newtouchtab.addTabWithOutMenu({ name: "病案首页", enName: "", url: "/MRHomePage/MRHomePage/Main?keyValue=" + seleRow.BlId + "&zyh=" + seleRow.Zyh + "&justshow=" + "true", AppId: "EMR" });
+            top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Trang đầu bệnh án", enName: "", url: "/MRHomePage/MRHomePage/Main?keyValue=" + seleRow.BlId + "&zyh=" + seleRow.Zyh + "&justshow=" + "true", AppId: "EMR" });
         if (!!seleRow.Mblj)
         {
             FileOpen(seleRow.Mblj);
@@ -633,7 +633,7 @@
     {
         var seleRow = $("#gridbltreeList").jqGridRowValue();
         if (!!!seleRow.Mblj) {
-            $.modalAlert("请选中一份病历文书", "error");
+            $.modalAlert("Vui lòng chọn một văn bản bệnh án", "error");
             return;
         }
         var treedata = $("#gridbltreeList").getRowData();
@@ -655,7 +655,7 @@
         }
         $.modalOpen({
             id: "QcMessageManage",
-            title: "反馈质控消息",
+            title: "Tin nhắn kiểm soát chất lượng phản hồi",
             url: "/QualityControlManage/MedicalCenter/QcMessageManage?xm=" + $("#xm").text() + "&jzh=" + $("#jzh").text()
                 + "&ks=" + $("#ks").text() + "&ch=" + $("#ch").text() + "&ys=" + $("#jzys").val() + "&Blmc=" + seleRow.Blmc1
                 + "&parentBllx=" + parentbllx + "&parentbllxmc=" + parentbllxmc + "&childrenBllx=" + childrenBllx + "&ryysGh=" + $("#ryysGh").val(),

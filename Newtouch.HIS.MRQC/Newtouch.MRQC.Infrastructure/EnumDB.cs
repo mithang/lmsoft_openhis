@@ -3,7 +3,7 @@
 namespace Newtouch.MRQC.Infrastructure
 {
     /// <summary>
-    /// 登录标志
+    /// cờ đăng nhập
     /// </summary>
     public enum EnumLoginFlag
     {
@@ -46,32 +46,32 @@ namespace Newtouch.MRQC.Infrastructure
         bagd = 4
     }
     /// <summary>
-    /// 医嘱状态
+    /// trạng thái y lệnh
     /// </summary>
     public enum EnumYzzt
     {
         /// <summary>
-        /// 待审 
+        /// chờ duyệt 
         /// </summary>
         [Description("待审")]
         Ds = 0,
         /// <summary>
-        /// 审核
+        /// Duyệt
         /// </summary>
         [Description("审核")]
         Sh = 1,
         /// <summary>
-        /// 执行
+        /// thực hiện
         /// </summary>
         [Description("执行")]
         Zx = 2,
         /// <summary>
-        /// 撤DC
+        /// rút lạiDC
         /// </summary>
         [Description("DC")]
         DC = 3,
         /// <summary>
-        /// 停止或作废
+        /// dừng hoặc hủy bỏ
         /// </summary>
         [Description("停止")]
         TZ = 4
@@ -79,57 +79,57 @@ namespace Newtouch.MRQC.Infrastructure
     public enum EnumYzlx
     {
         ///// <summary>
-        ///// 通用
+        ///// chung
         ///// </summary>
-        //[Description("通用")]
+        //[Description("chung")]
         //Ty = 1,
         /// <summary>
-        /// 药品
+        /// thuốc
         /// </summary>
         [Description("药品")]
         Yp = 2,
         /// <summary>
-        /// 文字
+        /// văn bản
         /// </summary>
         [Description("文字")]
         Wz = 3,
         /// <summary>
-        /// 出院带药
+        /// thuốc mang về khi xuất viện
         /// </summary>
         [Description("出院带药")]
         Cydy = 4,
         /// <summary>
-        /// 项目
+        /// hạng mục
         /// </summary>
         [Description("项目")]
         sfxm = 5,
         /// <summary>
-        /// 项目
+        /// hạng mục
         /// </summary>
         [Description("检验")]
         jy = 6,
         /// <summary>
-        /// 项目
+        /// hạng mục
         /// </summary>
         [Description("检查")]
         jc = 7,
         /// <summary>
-        /// 项目
+        /// hạng mục
         /// </summary>
         [Description("膳食医嘱")]
         ssyz = 8,
         /// <summary>
-        /// 手术
+        /// phẫu thuật
         /// </summary>
         [Description("手术")]
         oper = 9,
         /// <summary>
-        /// 中草药
+        /// thuốc Đông y
         /// </summary>
         [Description("中草药")]
         zcy = 10,
         /// <summary>
-        /// 康复
+        /// phục hồi chức năng
         /// </summary>
         [Description("康复")]
         rehab = 11
@@ -144,7 +144,7 @@ namespace Newtouch.MRQC.Infrastructure
         usergroup = 2,
     }
     /// <summary>
-    /// 消息组业务类型
+    /// Loại nghiệp vụ của nhóm tin nhắn
     /// </summary>
     [Description("消息组业务类型")]
     public enum GroupYwlxEnum
@@ -157,7 +157,7 @@ namespace Newtouch.MRQC.Infrastructure
         Zy = 2,
     }
     /// <summary>
-    /// 队列执行类型
+    /// Loại thực thi hàng đợi
     /// </summary>
     [Description("队列执行类型")]
     public enum MsgQueueExecTypeEnum
@@ -170,7 +170,7 @@ namespace Newtouch.MRQC.Infrastructure
         Fixedtime = 3,
     }
     /// <summary>
-    /// 消息适用范围限制
+    /// giới hạn phạm vi áp dụng của tin nhắn
     /// </summary>
     [Description("消息组适用范围")]
     public enum MsgNoticeRangeEnum
@@ -193,7 +193,7 @@ namespace Newtouch.MRQC.Infrastructure
         AreaGroup = 31,
     }
     /// <summary>
-    /// 消息状态
+    /// Trạng thái tin nhắn
     /// </summary>
     [Description("消息状态")]
     public enum NoticeStuEnum
@@ -215,22 +215,22 @@ namespace Newtouch.MRQC.Infrastructure
         xgbl = 1
     }
     /// <summary>
-    /// 病历申请审批状态
+    /// trạng thái phê duyệt đề nghị bệnh án
     /// </summary>
     public enum ApplyStatusEnum
     {
         /// <summary>
-        /// 未批准
+        /// chưa phê duyệt
         /// </summary>
         [Description("未批准")]
         wpz = 0,
         /// <summary>
-        /// 已审批
+        /// Đã phê duyệt
         /// </summary>
         [Description("已审批")]
         ysp = 1,
         /// <summary>
-        /// 退回
+        /// trả lại
         /// </summary>
         [Description("退回")]
         th = 2

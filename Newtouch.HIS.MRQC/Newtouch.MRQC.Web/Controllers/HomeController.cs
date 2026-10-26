@@ -3,7 +3,7 @@
 namespace Newtouch.MRQC.Web.Controllers
 {
     /// <summary>
-    /// 首页
+    /// Trang chủ
     /// </summary>
     public class HomeController : FrameworkBase.MultiOrg.Web.Controllers.HomeController
     {

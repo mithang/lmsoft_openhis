@@ -11,7 +11,7 @@ namespace Newtouch.MRQC.Domain.IDomainServices.Apply
     public interface IMrApplyDmnService
     {
         /// <summary>
-        /// 申请列表
+        /// danh sách đề nghị
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="OrganizeId"></param>
@@ -21,7 +21,7 @@ namespace Newtouch.MRQC.Domain.IDomainServices.Apply
         /// <returns></returns>
         IList<MedicalApplyVo> GetBlApplyList(Pagination pagination, string OrganizeId, string status, DateTime ksrq, DateTime jsrq);
         /// <summary>
-        /// 更新审批状态
+        /// cập nhật trạng thái phê duyệt
         /// </summary>
         /// <param name="shbhlist"></param>
         /// <param name="OrganizeId"></param>

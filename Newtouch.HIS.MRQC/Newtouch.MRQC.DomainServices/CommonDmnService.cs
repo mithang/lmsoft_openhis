@@ -20,7 +20,7 @@ namespace Newtouch.MRQC.Domain.IDomainServices
             _sysConfigRepo = SysConfigRepo;
         }
         /// <summary>
-        /// 根据DutyCode（职位）查询员工列表
+        /// căn cứ vàoDutyCode（chức vụ）tra cứu danh sách nhân viên
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="dutyCode"></param>

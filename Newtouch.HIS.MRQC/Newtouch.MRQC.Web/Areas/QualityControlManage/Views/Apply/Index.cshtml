@@ -1,18 +1,18 @@
 ﻿@using Newtouch.Common.Operator;
 @using Newtouch.MRQC.Infrastructure;
 @{
-    ViewBag.Title = "质控病历申请";
+    ViewBag.Title = "đề nghị bệnh án kiểm soát chất lượng";
     Layout = "~/Views/Shared/_Index.cshtml";
     var opeator = OperatorProvider.GetCurrent();
 }
 <form name="form1">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">申请日期：</th>
+                <th class="formTitle">Ngày đề nghị：</th>
                 <td class="formValue" colspan="3">
                     <input id="ksrq" type="text" class="form-control input-wdatepicker" style="width: 42%; float: left;" value="@DateTime.Now.ToString("yyyy-MM-01 ")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left: 2%; float: left;">—</span>
@@ -20,15 +20,15 @@
                 </td>
                 <td class="formValue" colspan="2">
                     <input type="radio" name="spzt" class="ribbon-group" value="" checked>
-                    <label>全部</label>
+                    <label>Tất cả</label>
                     <input type="radio" name="spzt" class="ribbon-group" value="0">
-                    <label>未审批</label>
+                    <label>Chưa phê duyệt</label>
                     <input type="radio" name="spzt" class="ribbon-group" value="1">
-                    <label>已审批</label>
+                    <label>Đã phê duyệt</label>
                 </td>
                 <td class="formValue" colspan="2">
-                    <input type="button" id="btn_sh" class="btn btn-primary btn-md" style="margin-left: 10px;display:none; width: 40px;" value="审核" />
-                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="查询" />
+                    <input type="button" id="btn_sh" class="btn btn-primary btn-md" style="margin-left: 10px;display:none; width: 40px;" value="Duyệt" />
+                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="Tra cứu" />
                 </td>
                 <td></td>
                 <td></td>
@@ -44,7 +44,7 @@
 </form>
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGridchiều rộng của
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
@@ -59,35 +59,35 @@
             multiselect: true,
             colModel: [
                 { label: "Id", name: "Id", hidden: true, key: true },
-                { label: "申请科室", name: "ApplyDeptName", width: 100, align: "left", },
-                { label: "床号", name: "Bed", width: 60, align: "left", },
-                { label: "姓名", name: "PatName", width: 80, align: "left", },
-                { label: "申请医师", name: "ApplyDoctorName", width: 80, align: "left", },
+                { label: "Khoa đề nghị", name: "ApplyDeptName", width: 100, align: "left", },
+                { label: "Số giường", name: "Bed", width: 60, align: "left", },
+                { label: "Họ tên", name: "PatName", width: 80, align: "left", },
+                { label: "Bác sĩ đề nghị", name: "ApplyDoctorName", width: 80, align: "left", },
                 {
-                    label: "申请类型", name: "ApplyType", width: 80, align: "left", formatter: function (val) {
+                    label: "Loại đề nghị", name: "ApplyType", width: 80, align: "left", formatter: function (val) {
                         return $.enum.getDescByValue("ApplyTypeEnum", val);
                     }
                 },
-                { label: "申请病历名称", name: "MedicalName", width: 120, align: "left", },
-                { label: "病历质控完成时间", name: "CompletionDate", width: 120, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: "申请时间", name: "ApplyDate", width: 120, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: "申请完成时间", name: "ApplyCompletionDate", width: 120, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: "申请原因", name: "ApplyReason", width: 80, align: "left", },
+                { label: "Tên bệnh án đề nghị", name: "MedicalName", width: 120, align: "left", },
+                { label: "Thời gian hoàn thành kiểm soát chất lượng bệnh án", name: "CompletionDate", width: 120, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: "Thời gian đề nghị", name: "ApplyDate", width: 120, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: "Thời gian hoàn thành đề nghị", name: "ApplyCompletionDate", width: 120, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: "Lý do đề nghị", name: "ApplyReason", width: 80, align: "left", },
                 {
-                    label: "申请状态", name: "ApplyStatus", width: 80, align: "left", formatter: function (val) {
+                    label: "Trạng thái đề nghị", name: "ApplyStatus", width: 80, align: "left", formatter: function (val) {
                         return $.enum.getDescByValue("ApplyStatusEnum", val);
                     }
                 },
-                { label: "批准科室", name: "ApproverDeptName", width: 80, align: "left", },
-                { label: "批准人", name: "ApproverName", width: 80, align: "left", },
+                { label: "Khoa phê duyệt", name: "ApproverDeptName", width: 80, align: "left", },
+                { label: "Người phê duyệt", name: "ApproverName", width: 80, align: "left", },
                 {
-                    label: "批准时间", name: "ApprovalDate", width: 120, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                    label: "Thời gian phê duyệt", name: "ApprovalDate", width: 120, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
                 {
-                    label: "入院时间", name: "Ryrq", width: 120, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                    label: "Thời gian nhập viện", name: "Ryrq", width: 120, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
                 {
-                    label: "出院时间", name: "Cyrq", width: 120, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                    label: "Thời gian xuất viện", name: "Cyrq", width: 120, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 }
             ],
             pager: "#gridPager",
@@ -102,7 +102,7 @@
     }
     function reload()
     {
-        $('#gridList').jqGrid("clearGridData");//先清空明细
+        $('#gridList').jqGrid("clearGridData");//Xóa chi tiết trước
         $('#gridList').jqGrid('setGridParam', {
             postData: getSearchPostData(),
             url: "/QualityControlManage/Apply/GetBlApplyList",
@@ -130,7 +130,7 @@
         var shbhlist = [];
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds.length == 0) {
-            $.modalAlert("请先选中需审核的申请", 'warning');
+            $.modalAlert("Vui lòng chọn đơn đề nghị cần duyệt trước", 'warning');
             return;
         }
         $.each(selRowIds, function (i, item) {
@@ -151,7 +151,7 @@
             },
             error: function (request, error, ex) {
                 $.loading(false);
-                $.modalAlert("审批失败：[" + ex + "]", 'error');
+                $.modalAlert("Phê duyệt thất bại：[" + ex + "]", 'error');
                 return;
             }
         });

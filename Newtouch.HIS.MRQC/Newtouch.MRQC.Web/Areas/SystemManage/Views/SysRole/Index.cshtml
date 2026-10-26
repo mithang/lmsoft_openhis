@@ -3,22 +3,22 @@
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <div>
-    请为医疗机构维护一个<span style="color:red;">医院管理员</span>角色，编码<span style="color:red;">HospAdministrator</span>，有需要根据<span style="color:red;">该特殊角色编码</span>判断是否为医院管理员
+    Vui lòng duy trì một cơ sở y tế<span style="color:red;">Quản trị viên bệnh viện</span>Vai trò,Mã<span style="color:red;">HospAdministrator</span>,khi cần thì căn cứ vào<span style="color:red;">Mã vai trò đặc biệt này</span>Kiểm tra có phải quản trị viên bệnh viện hay không
 </div>
 <div class="topPanel">
     @Html.Partial("_OrganizeIdDDLToolbarSearchView")
     <div class="toolbar">
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_users()"><i class="fa fa-pencil-square-o"></i>角色用户</a>
+            <a class="btn btn-primary" onclick="btn_users()"><i class="fa fa-pencil-square-o"></i>Người dùng theo vai trò</a>
         </div>
     </div>
     <div class="search">
@@ -26,7 +26,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="名称/编码" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Mã" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -52,16 +52,16 @@
             height: $(window).height() - 128,
             postData: { keyword: $("#txt_keyword").val(), OrganizeId: $("#OrganizeId").val() },
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: "有效", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: '名称', name: 'Name', width: 150, align: 'left' },
-                { label: '编码', name: 'Code', width: 100, align: 'left' },
-                { label: '备注', name: 'Description', width: 300, align: 'left' },
-                    { label: '排序', name: 'px', width: 40, align: 'left' },
-                { label: '创建人', name: 'CreatorCode', width: 100, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '最后修改', name: 'LastModifierCode', width: 100, align: 'left' },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: "Hiệu lực", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Tên', name: 'Name', width: 150, align: 'left' },
+                { label: 'Mã', name: 'Code', width: 100, align: 'left' },
+                { label: 'Ghi chú', name: 'Description', width: 300, align: 'left' },
+                    { label: 'Sắp xếp', name: 'px', width: 40, align: 'left' },
+                { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Sửa lần cuối', name: 'LastModifierCode', width: 100, align: 'left' },
+                { label: 'Thời gian sửa lần cuối', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
             ],
             pager: "#gridPager",
             sortname: 'CreateTime desc',
@@ -75,7 +75,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -83,7 +83,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增角色",
+            title: "Thêm vai trò",
             url: "/SystemManage/SysRole/Form?orgId=" + $('#OrganizeId').val(),
             width: "550px",
             height: "570px",
@@ -94,12 +94,12 @@
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "修改角色",
+            title: "Sửa vai trò",
             url: "/SystemManage/SysRole/Form?keyValue=" + keyValue,
             width: "550px",
             height: "570px",
@@ -110,7 +110,7 @@
     function btn_delete() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         $.deleteForm({
@@ -124,12 +124,12 @@
     function btn_users() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         $.modalOpen({
             id: "FormRoleUsers",
-            title: "角色用户",
+            title: "Người dùng theo vai trò",
             url: "/SystemManage/SysUser/Selector?from=rolerelatioinuser&callbackType=json&keyValue=" + keyValue + "&isContansChildOrg=false&organizeId=" + $('#OrganizeId').val(),
             width: "650px",
             height: "570px",
@@ -141,7 +141,7 @@
         });
     }
 
-    //用户人员树回调方法
+    //Phương thức gọi lại cây nhân sự người dùng
     function userStaffTreeCallback(data) {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {

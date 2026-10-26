@@ -12,31 +12,31 @@ using System.Web;
 namespace Newtouch.MRQC.Web.App_Start
 {
     /// <summary>
-    /// 依赖注入配置
+    /// cấu hình tiêm phụ thuộc
     /// </summary>
     public class DependencyResolver
     {
         /// <summary>
-        /// 依赖注入配置
+        /// cấu hình tiêm phụ thuộc
         /// </summary>
         public static void RegisteWebApiComponent()
         {
             var builder = new ContainerBuilder();
 
-            //注册默认EF上下文
+            //đăng ký mặc địnhEFngữ cảnh
             builder.RegisterType<DefaultDatabaseFactory>().As<IDefaultDatabaseFactory>().InstancePerLifetimeScope();
 
-            //注册控制器
+            //đăng ký bộ điều khiển
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             builder.RegisterControllers(Assembly.Load("FrameworkBase.MultiOrg.Web"));
 
-            //日志注册
+            //đăng ký nhật ký
             builder.RegisterType<NLogger>().As<ILogger>().InstancePerLifetimeScope();
 
-            //缓存
+            //bộ nhớ đệm
             builder.RegisterType<SERedisCache>().As<ICache>().InstancePerLifetimeScope();
 
-            #region IOC注册底层
+            #region IOCĐăng ký tầng dưới
             builder.RegisterAssemblyTypes(typeof(FrameworkBase.MultiOrg.Repository.RepositoryBase<>).Assembly)
                 .Where(t => t.Name.EndsWith("Repo"))
                 .AsImplementedInterfaces().InstancePerLifetimeScope();
@@ -50,7 +50,7 @@ namespace Newtouch.MRQC.Web.App_Start
             #endregion
 
             #region IOC, then registe yours
-            //DLL所在的绝对路径
+            //DLLđường dẫn tuyệt đối nơi đặt
             var repoAssembly = Assembly.Load("Newtouch.MRQC.Repository");
             builder.RegisterAssemblyTypes(repoAssembly)
                 .Where(t => t.Name.EndsWith("Repo"))

@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- * Copyright © 2016 Newtouch 版权所有
+ * Copyright © 2016 Newtouch Bản quyền thuộc về
  * Author: Newtouch
  * Description: 
 *********************************************************************************/
@@ -9,17 +9,17 @@ using Newtouch.HIS.API.Common.Models;
 namespace Newtouch.MRQC.API.Models
 {
     /// <summary>
-    /// 用户身份（根据项目需要 扩展用户身份的字段）
+    /// danh tính người dùng（theo nhu cầu của dự án trường mở rộng của danh tính người dùng）
     /// </summary>
     public class UserIdentity : Identity
     {
         /// <summary>
-        /// 医疗机构Id
+        /// cơ sở y tếId
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 顶级医疗机构Id
+        /// cơ sở y tế cấp cao nhấtId
         /// </summary>
         public string TopOrganizeId { get; set; }
 

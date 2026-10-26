@@ -15,7 +15,7 @@ namespace Newtouch.MRQC.Web.Areas.SystemManage.Controllers
         private readonly ICommonDmnService _CommonDmnService;
 
         /// <summary>
-        /// 岗位人员列表
+        /// danh sách nhân sự theo vị trí
         /// </summary>
         /// <param name="dutyCode"></param>
         /// <param name="keyword"></param>

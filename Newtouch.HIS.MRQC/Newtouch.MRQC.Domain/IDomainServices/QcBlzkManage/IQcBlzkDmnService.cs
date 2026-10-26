@@ -11,7 +11,7 @@ namespace Newtouch.MRQC.Domain.IDomainServices.QcBlzkManage
     {
         void SubmitForm(ZkxmEntityVo entity);
         /// <summary>
-        /// 项目评分列表
+        /// danh sách điểm hạng mục
         /// </summary>
         /// <param name="bllx"></param>
         /// <param name="orgId"></param>

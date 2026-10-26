@@ -10,12 +10,12 @@
         colModel: [
             { label: 'StaffGh', name: 'StaffGh', hidden: true },
             { label: 'ks', name: 'ks', hidden: true },
-            { label: '医生名称', name: 'StaffName', widthratio: 38 },
-            { label: '助记码', name: 'StaffPY', widthratio: 20 },
-            { label: '科室名称', name: 'ksmc', widthratio: 40 },
+            { label: 'Tên bác sĩ', name: 'StaffName', widthratio: 38 },
+            { label: 'Mã gợi nhớ', name: 'StaffPY', widthratio: 20 },
+            { label: 'Tên khoa', name: 'ksmc', widthratio: 40 },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
-            //保存时验证val和data-Name一致
+            //Khi lưu thì xác minh val và data-Name nhất quán
             $thisinput.attr('data-label', $thistr.attr('data-StaffGh'));
             $thisinput.attr('data-ks', $thistr.attr('data-ks'));
             $thisinput.attr('data-ksmc', $thistr.attr('data-ksmc'));

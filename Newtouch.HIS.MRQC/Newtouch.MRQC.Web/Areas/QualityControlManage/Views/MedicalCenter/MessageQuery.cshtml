@@ -1,33 +1,33 @@
 ﻿@using Newtouch.Common.Operator;
 @using Newtouch.MRQC.Infrastructure;
 @{
-    ViewBag.Title = "质控消息查询";
+    ViewBag.Title = "Tra cứu tin nhắn kiểm soát chất lượng";
     Layout = "~/Views/Shared/_Index.cshtml";
     var opeator = OperatorProvider.GetCurrent();
 }
 <form name="form1">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">日期：</th>
+                <th class="formTitle">Ngày：</th>
                 <td class="formValue" colspan="3">
                     <input id="ksrq" type="text" class="form-control input-wdatepicker" style="width: 42%; float: left;" value="@DateTime.Now.ToString("yyyy-MM-01 ")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left: 2%; float: left;">—</span>
                     <input id="jsrq" type="text" class="form-control input-wdatepicker" style="width: 41%; float: left; margin-left: 2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
-                <th class="formTitle">状态：</th>
+                <th class="formTitle">Trạng thái：</th>
 
                 <td class="formValue" colspan="2">
                     <select id="sel_RecordStu" name="sel_RecordStu" data-enumtype="NoticeStuEnum">
-                        <option value="">全部</option>
+                        <option value="">Tất cả</option>
                     </select>
 
                 </td>
                 <td class="formValue" colspan="2">
-                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="Tra cứu" />
                 </td>
                 <td></td>
                 <td></td>
@@ -44,7 +44,7 @@
 </form>
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGridchiều rộng của
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
@@ -58,36 +58,36 @@
             url: "/QualityControlManage/MedicalCenter/MessageSendQuery",
             colModel:[
                 { label: "Id", name: "Id", hidden: true, key: true },
-                { label: "主题", name: "Title", width: 150, align: "left", },
-                { label: "发送人", name: "SendFrom", width: 80, align: "left", },
-                { label: "发送时间", name: "CreateTime", width: 120, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: "收信人", name: "Recipient", width: 80, align: "left", },
-                { label: "收件人类型", name: "RecipientType", width: 80, align: "left", formatter: function (val) {
+                { label: "Chủ đề", name: "Title", width: 150, align: "left", },
+                { label: "Người gửi", name: "SendFrom", width: 80, align: "left", },
+                { label: "Thời gian gửi", name: "CreateTime", width: 120, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: "Người nhận thư", name: "Recipient", width: 80, align: "left", },
+                { label: "Loại người nhận", name: "RecipientType", width: 80, align: "left", formatter: function (val) {
                     return $.enum.getDescByValue("RecipientTypeEnum", val);
                 } },
-                { label: "详细内容", name: "Content", width: 200, align: "left", },
-                { label: "内容关联数据", name: "ContentData", width: 200, align: "left", },
+                { label: "Nội dung chi tiết", name: "Content", width: 200, align: "left", },
+                { label: "Dữ liệu liên quan đến nội dung", name: "ContentData", width: 200, align: "left", },
                 {
-                    label: "消息状态", name: "NoticeStu", width: 80, align: "left", formatter: function (val) {
+                    label: "Trạng thái tin nhắn", name: "NoticeStu", width: 80, align: "left", formatter: function (val) {
                         return $.enum.getDescByValue("NoticeStuEnum",val);
                     }
                 },
                 {
-                    label: "消息组业务类型", name: "GroupYwlx", width: 80, align: "left", formatter: function (val) {
+                    label: "Loại nghiệp vụ của nhóm tin nhắn", name: "GroupYwlx", width: 80, align: "left", formatter: function (val) {
                         return $.enum.getDescByValue("GroupYwlxEnum", val);
                     }
                 },
                 {
-                    label: "消息通知范围", name: "NoticeRange", width: 80, align: "left", formatter: function (val) {
+                    label: "Phạm vi thông báo tin nhắn", name: "NoticeRange", width: 80, align: "left", formatter: function (val) {
                         return $.enum.getDescByValue("MsgNoticeRangeEnum", val);
                     }
                 },
                 {
-                    label: "队列执行类型", name: "QueueExecType", width: 80, align: "left", formatter: function (val) {
+                    label: "Loại thực thi hàng đợi", name: "QueueExecType", width: 80, align: "left", formatter: function (val) {
                         return $.enum.getDescByValue("MsgQueueExecTypeEnum", val);
                     }
                 },
-                { label: "执行表达式", name: "ExecCron", width: 100, align: "left", },
+                { label: "Biểu thức thực hiện", name: "ExecCron", width: 100, align: "left", },
             ],
             pager: "#gridPager",
             sortname: " CreateTime desc",
@@ -95,7 +95,7 @@
     });
 
     $("#btn_search").click(function () {
-        $('#gridList').jqGrid("clearGridData");//先清空明细
+        $('#gridList').jqGrid("clearGridData");//Xóa chi tiết trước
         $gridList.jqGrid('setGridParam', {
             postData: getSearchPostData(),
             url: "/QualityControlManage/MedicalCenter/MessageSendQuery",

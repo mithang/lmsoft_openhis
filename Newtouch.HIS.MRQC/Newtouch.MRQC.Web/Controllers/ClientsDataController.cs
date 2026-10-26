@@ -4,7 +4,7 @@ using System.Web.Mvc;
 namespace Newtouch.MRQC.Web.Controllers
 {
     /// <summary>
-    /// Home/Index加载时 默认加载的 缓存数据
+    /// Home/Indexkhi tải được tải mặc định dữ liệu bộ nhớ đệm
     /// </summary>
     public class ClientsDataController : FrameworkBase.MultiOrg.Web.Controllers.ClientsDataController
     {
@@ -24,7 +24,7 @@ namespace Newtouch.MRQC.Web.Controllers
         }
 
         /// <summary>
-        /// 获取同步的部分
+        /// lấy phần đồng bộ
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -38,7 +38,7 @@ namespace Newtouch.MRQC.Web.Controllers
         }
 
         /// <summary>
-        /// 获取异步的部分
+        /// lấy phần không đồng bộ
         /// </summary>
         /// <returns></returns>
         [HttpGet]

@@ -1,13 +1,13 @@
 ﻿namespace Newtouch.MRQC.Infrastructure
 {
     /// <summary>
-    /// 缓存Key
+    /// bộ nhớ đệmKey
     /// </summary>
     public class CacheKey
     {
         /// <summary>
-        /// 用户登陆第三方授权token {0} 当前系统AppId {1} 机构代码 {2} 用户
+        /// người dùng đăng nhập ủy quyền bên thứ ba token {0} hệ thống hiện tạiAppId {1} mã cơ sở {2} người dùng
         /// </summary>
-        public static string AccessToken = "${0}${1}:accesstoken_{2}";
+        public static string AccessToken = "${0}${1}:access token_{2}";
     }
 }

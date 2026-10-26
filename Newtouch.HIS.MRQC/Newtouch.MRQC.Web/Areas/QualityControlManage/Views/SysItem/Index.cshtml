@@ -33,9 +33,9 @@
     @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new[] { 2,3,4},
-    F2Text = "新增",
-    F3Text = "修改",
-    F4Text = "删除",
+    F2Text = "Thêm mới",
+    F3Text = "Sửa",
+    F4Text = "Xóa",
 })
 </div>
     <script>
@@ -56,8 +56,8 @@
             width: $(".dv-left").width(),
             colModel: [
                 { label: "Id", name: "Id", hidden: true, key: true },
-                { label: "质控项目", name: "bllxmc", width: 155, align: 'left' },
-                { label: "质控代码", name: "bllx", width: 60, align: 'left' },
+                { label: "Hạng mục kiểm soát chất lượng", name: "bllxmc", width: 155, align: 'left' },
+                { label: "mã kiểm soát chất lượng", name: "bllx", width: 60, align: 'left' },
                 { label: "ly", name: "ly", width: 60, align: 'left', hidden: true, },
             ],
             onSelectRow: function (rowid, status) {
@@ -74,7 +74,7 @@
     function gridRightList() {
         var $gridrightList = $("#gridRightList");
         $gridrightList.dataGrid({
-            caption: "质控明细项",
+            caption: "Hạng mục chi tiết kiểm soát chất lượng",
             url: "/SysItem/GetZkxmList",
             postData: { keyword: "" },
             rownumbers: false,
@@ -83,12 +83,12 @@
                 { label: "Id", name: "Id", hidden: true, key: true },
                 { label: "BlmbId", name: "BlmbId", hidden: true, },
                 { label: "zklx", name: "zklx", hidden: true, },
-                { label: "质控项目", name: "Bllmbmc", width: 100, align: "center", },
-                { label: "质控编码", name: "Code", width: 100, align: "center", },
-                { label: "质控名称", name: "Name", width: 200, align: "center",},
-                { label: "质控评分", name: "Score", width: 95, align: "center", },
-                { label: "评分说明", name: "Remark", width: 165, align: "left" },
-                { label: "显示顺序", name: "Px", width: 80, align: "left" },
+                { label: "Hạng mục kiểm soát chất lượng", name: "Bllmbmc", width: 100, align: "center", },
+                { label: "Mã kiểm soát chất lượng", name: "Code", width: 100, align: "center", },
+                { label: "Tên kiểm soát chất lượng", name: "Name", width: 200, align: "center",},
+                { label: "điểm kiểm soát chất lượng", name: "Score", width: 95, align: "center", },
+                { label: "Giải thích chấm điểm", name: "Remark", width: 165, align: "left" },
+                { label: "Thứ tự hiển thị", name: "Px", width: 80, align: "left" },
             ],
             unwritten: false,
             viewrecords: true,
@@ -98,12 +98,12 @@
     function newtouch_event_f2() {
         var seleRow = $("#gridList").jqGridRowValue();
         if (!!!seleRow.bllx) {
-            $.modalAlert("请选中一条质控项目", "error");
+            $.modalAlert("Vui lòng chọn một hạng mục kiểm soát chất lượng", "error");
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "新增质控项",
+            title: "Thêm hạng mục kiểm soát chất lượng",
             url: "/QualityControlManage/SysItem/Form?" + "bllx=" + seleRow.bllx + "&bllxmc=" + seleRow.bllxmc + "&Type=" + seleRow.ly + "&czlx=" + "insert",
             width: "640px",
             height: "350px",
@@ -119,12 +119,12 @@
     function btn_edit() {
         var seleRow = $("#gridRightList").jqGridRowValue();
         if (!!!seleRow.BlmbId) {
-            $.modalAlert("请选中一条质控明细", "error");
+            $.modalAlert("Vui lòng chọn một chi tiết kiểm soát chất lượng", "error");
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "修改质控项",
+            title: "Sửa hạng mục kiểm soát chất lượng",
             url: "/QualityControlManage/SysItem/Form?" + "Id=" + seleRow.Id + "&czlx=" + "update",
             width: "640px",
             height: "350px",
@@ -136,17 +136,17 @@
     function newtouch_event_f4() {
         var seleRow = $("#gridRightList").jqGridRowValue();
         if (!!!seleRow.Id) {
-            $.modalAlert("请选中一条要删除的质控明细", "error");
+            $.modalAlert("Vui lòng chọn một chi tiết kiểm soát chất lượng cần xóa", "error");
             return;
         }
-        $.modalConfirm("是否删除"+seleRow.Name, function (flag) {
+        $.modalConfirm("Có xóa hay không"+seleRow.Name, function (flag) {
             if (flag) {
                 $.najax({
                     url: "/QualityControlManage/SysItem/ZkDetailDel",
                     data: { Id: seleRow.Id },
                     dataType: "json",
                     success: function (res) {
-                        $.modalAlert("删除成功", 'warning');
+                        $.modalAlert("Xóa thành công", 'warning');
                         $("#gridRightList").jqGrid('setGridParam', {
                             postData: { keyword: seleRow.BlmbId },
                         }).trigger('reloadGrid');

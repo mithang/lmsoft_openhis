@@ -10,19 +10,19 @@ namespace Newtouch.MRQC.Domain.DBContext.Infrastructure
     public class DefaultDbContextTBRegister
     {
         /// <summary>
-        /// 注册表（底层已经注册了一部分）
+        /// bảng đăng ký（tầng dưới đã đăng ký một phần）
         /// </summary>
         /// <param name="modelBuilder"></param>
         public static void Registe(DbModelBuilder modelBuilder)
         {
-            //注册新表
+            //đăng ký bảng mới
             //modelBuilder.Entity<SysUserEntity>().RegisterTable().HasKey(p => p.Id);
 
-            //质控项
+            //hạng mục kiểm soát chất lượng
             modelBuilder.Entity<QcItemDataEntity>().RegisterTable().HasKey(p => p.Id);
-            //病历申请
+            //đề nghị bệnh án
             modelBuilder.Entity<MrApplyEntity>().RegisterTable().HasKey(p => p.Id);
-            //病历评分
+            //chấm điểm bệnh án
             modelBuilder.Entity<MrQcScoreEntity>().RegisterTable().HasKey(p => p.Id);
         }
 

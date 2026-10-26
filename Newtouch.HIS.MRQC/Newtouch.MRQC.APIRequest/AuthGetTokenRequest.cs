@@ -3,7 +3,7 @@
 namespace Newtouch.MRQC.APIRequest
 {
     /// <summary>
-    /// 以关键信息（用户名、密码等）换取访问令牌
+    /// bằng thông tin quan trọng（tên người dùng、mật khẩu, v.v.）đổi lấy mã truy cập
     /// </summary>
     public class AuthGetTokenRequest : RequestBase
     {

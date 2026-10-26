@@ -22,7 +22,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
             return View();
         }
         /// <summary>
-        /// emr病历申请列表
+        /// emrdanh sách đề nghị bệnh án
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="applyStutas"></param>
@@ -41,7 +41,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 申请审批
+        /// phê duyệt đề nghị
         /// </summary>
         /// <param name="shbhlist"></param>
         /// <returns></returns>

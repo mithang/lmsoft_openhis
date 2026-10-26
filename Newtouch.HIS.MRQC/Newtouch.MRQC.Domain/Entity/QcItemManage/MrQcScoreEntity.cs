@@ -24,46 +24,46 @@ namespace Newtouch.MRQC.Domain.Entity.QcItemManage
         public string Zyh { get; set; }
 
         /// <summary>
-        /// 病历ID
+        /// Bệnh ánID
         /// </summary>
         //public string WritId { get; set; }
 
         /// <summary>
-        /// 质控类型 
+        /// loại kiểm soát chất lượng 
         /// </summary>
         public string BllxId { get; set; }
 
         /// <summary>
-        /// 病历模板Id
+        /// Mẫu bệnh ánId
         /// </summary>
         //public string BlmbId { get; set; }
 
         /// <summary>
-        /// 病历名称
+        /// Tên bệnh án
         /// </summary>
         public string Blmc { get; set; }
         /// <summary>
-        /// 项目CODE
+        /// hạng mụcCODE
         /// </summary>
         public string ScoreCode { get; set; }
         /// <summary>
-        /// 项目名称
+        /// tên hạng mục
         /// </summary>
         public string ScoreMc { get; set; }
         /// <summary>
-        /// 分数
+        /// điểm số
         /// </summary>
         public decimal? ScoreMcValue { get; set; }
         /// <summary>
-        /// 缺陷数量
+        /// số lượng lỗi
         /// </summary>
         public int? sl { get; set; }
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? Px { get; set; }
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 

@@ -2,9 +2,9 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// 有关程序集的常规信息通过下列特性集
-// 控制。更改这些特性值可修改
-// 与程序集关联的信息。
+// Thông tin chung về assembly được kiểm soát bằng tập hợp các thuộc tính sau đây
+// điều khiển。thay đổi các giá trị thuộc tính này sẽ sửa đổi
+// thông tin liên quan đến assembly。
 [assembly: AssemblyTitle("Newtouch.MRQC.API")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
@@ -14,22 +14,22 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// 将 ComVisible 设置为 false 会使此程序集中的类型
-// 对 COM 组件不可见。如果需要
-// 从 COM 访问此程序集中的某个类型，请针对该类型将 ComVisible 特性设置为 true。
+// sẽ ComVisible đặt thành false sẽ làm cho các kiểu trong assembly này
+// đối với COM thành phần không hiển thị。nếu cần
+// từ COM truy cập một kiểu trong assembly này，vui lòng đặt cho kiểu đó ComVisible thuộc tính được đặt thành true。
 [assembly: ComVisible(false)]
 
-// 如果此项目向 COM 公开，则下列 GUID 用于 typelib 的 ID
+// nếu dự án này hướng tới COM công khai，thì các mục sau đây GUID dùng để typelib của ID
 [assembly: Guid("549738c0-2057-429b-9ecf-a5683321780b")]
 
-// 程序集的版本信息由下列四个值组成:
+// Thông tin phiên bản của assembly gồm bốn giá trị sau:
 //
-//      主版本
-//      次版本
-//      内部版本号
-//      修订版本
+//      Phiên bản chính
+//      phiên bản phụ
+//      số bản dựng
+//      Phiên bản sửa đổi
 //
-// 可以指定所有值，也可以使用“修订号”和“内部版本号”的默认值，
-// 方法是按如下所示使用 "*":
+// có thể chỉ định mọi giá trị，cũng có thể dùng“số sửa đổi”và“số bản dựng”giá trị mặc định của，
+// cách làm là sử dụng như sau "*":
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

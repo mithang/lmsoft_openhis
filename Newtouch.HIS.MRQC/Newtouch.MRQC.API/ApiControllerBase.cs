@@ -4,7 +4,7 @@ using Newtouch.MRQC.API.Models;
 namespace Newtouch.MRQC.API
 {
     /// <summary>
-    /// API Controll 基类
+    /// API Controll lớp cơ sở
     /// </summary>
     public class ApiControllerBase<TControllerType> : FrameworkBase.API.ApiControllerBase<TControllerType>
     {
@@ -14,7 +14,7 @@ namespace Newtouch.MRQC.API
         }
 
         /// <summary>
-        /// 用户身份
+        /// danh tính người dùng
         /// </summary>
         public UserIdentity UserIdentity
         {
