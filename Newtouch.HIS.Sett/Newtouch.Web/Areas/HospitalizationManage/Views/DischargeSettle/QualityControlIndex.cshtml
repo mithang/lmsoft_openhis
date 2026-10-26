@@ -9,24 +9,24 @@
 <div class="rows" style="margin-bottom: 1%;">
     <div class="panel panel-default" style="margin-bottom:0;">
         @*<div class="panel-heading navb-bg">
-                住院患者信息
+                Thông tin bệnh nhân nội trú
             </div>*@
         <table class="form" style="width:96%;">
             <tbody>
                 <tr>
-                    <th class="formTitle">住院号：</th>
+                    <th class="formTitle">Số nhập viện：</th>
                     <td class="formValue">
                         <input class="form-control" type="text" id="zyh" value="" style="width:49%;float:left;" />
-                        &nbsp;&nbsp; <input type="button" class="btn btn-default btn-md btn-default-color" style="width: 25%;" title="选择住院患者" id="zy_btnsyy" value="查询" onclick="GetPatSerarchView();">
+                        &nbsp;&nbsp; <input type="button" class="btn btn-default btn-md btn-default-color" style="width: 25%;" title="Chọn bệnh nhân nội trú" id="zy_btnsyy" value="Tra cứu" onclick="GetPatSerarchView();">
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">姓名：</th>
+                    <th class="formTitle">Họ tên：</th>
                     <td class="formValue" colspan="7">
-                        <label id="xm"></label><label style="width:15%"></label><span>性质:</span> <label id="brxz"></label>
-                        <label style="width:15%"></label> <span>性别:</span> <label id="xb"></label>
-                        <label style="width:15%"></label><span>入院日期:</span> <label id="ryrq"></label>
-                        <label style="width:15%"></label><span>出院日期:</span> <label id="cyrq"></label>
+                        <label id="xm"></label><label style="width:15%"></label><span>Tính chất:</span> <label id="brxz"></label>
+                        <label style="width:15%"></label> <span>Giới tính:</span> <label id="xb"></label>
+                        <label style="width:15%"></label><span>Ngày nhập viện:</span> <label id="ryrq"></label>
+                        <label style="width:15%"></label><span>Ngày xuất viện:</span> <label id="cyrq"></label>
 
                     </td>
                 </tr>
@@ -47,24 +47,24 @@
 
     });
 
-    //病人查询(住院)
+    //Tra cứu bệnh nhân(Nhập viện)
     function GetPatSerarchView() {
         $.modalOpen({
             id: "patSearch",
-            title: "患者查询",
+            title: "Tra cứu bệnh nhân",
             url: "/PatientManage/AccountManage/PatSearchView?brzybzType=" + '@(brzybzType)' + "&t=" + Math.random() + "&zyh=" + $("#zyh").val(),
             width: "700px",
             height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //在弹出窗口事件
-                //调用查询卡号和住院号
-            }//窗口点确定的回调函数
+                top.frames[iframeId].PatDbGrid(); //Trong sự kiện cửa sổ bật lên
+                //Gọi tra cứu số thẻ và số nhập viện
+            }//Hàm callback khi nhấn xác nhận trên cửa sổ
         });
     }
 
-    //选择的病人 callback
+    //Bệnh nhân đã chọn callback
     function getPatInfoAjax(selePatInfo) {
-        //清一下
+        //Xóa một chút
         newtouch_event_f4();
         //
         patModel = null;
@@ -100,9 +100,9 @@
     var patModel = null;
     //
     var jszje = 0.00;
-    var scbz = false;//true上传全部 false"上传选中
+    var scbz = false;//trueTải lên tất cả false"Tải lên mục đã chọn
 
-    //根据zyh 病人基本信息、计费信息
+    //Theozyh Thông tin cơ bản bệnh nhân、Thông tin tính phí
     function ajaxLoadDataResult(zyh) {
         $.najax({
             type: "POST",
@@ -110,14 +110,14 @@
             data: { zyh: zyh,jslx: 'mnjs' },
             dataType: "json",
             success: function (ajaxresp) {
-                //住院病人信息
+                //Thông tin bệnh nhân nội trú
                 patModel = ajaxresp.data.InpatientSettPatInfo;
 
                 //isYbjyjz = openYbSett && patModel.brxz != '0' && patModel.CardType == "@((int)Newtouch.Infrastructure.EnumCardType.YBJYK)";
 
                 $('#xm').html(patModel.xm);
                 $('#xb').html($.getGender(patModel.xb));
-                $('#brxz').html($.getGender(patModel.brxz == '0' ? '自费' : '医保'));
+                $('#brxz').html($.getGender(patModel.brxz == '0' ? 'Tự chi trả' : 'BHYT'));
                 $('#cybz').val(patModel.zybz);
                 $("#nlshow").html(getAgeFromBirthTime({ begin: patModel.csny }).text);
                 //$('#ryzd').html(patModel.ryzdmc);
@@ -131,7 +131,7 @@
                     bindGridList();
                 }
                 else {
-                    $.modalAlert("尚未产生费用，不能结算", 'warning');
+                    $.modalAlert("Chưa phát sinh chi phí，Không thể quyết toán", 'warning');
                     return false;
                 }
             },
@@ -151,7 +151,7 @@
 
     function gridListData() {
         var $gridList = $("#gridList");
-        var captionCon = "质控结果";
+        var captionCon = "Kết quả kiểm soát chất lượng";
         $gridList.dataGrid({
             height: $(window).height() - 80,
             caption: captionCon,
@@ -159,19 +159,19 @@
             unwritten: false,
             colModel: [
                 {
-                    label: '定点医药机构编号', name: 'fixmedins_code', align: 'center', width: 50, key: true },
-                {label: '定点医药机构名称', name: 'fixmedins_name', align: 'center', width: 50 },
-                { label: '结算年月', name: 'setl_ym', align: 'center', width: 150 },
-                { label: '结算 ID', name: 'setl_id', align: 'left', width: 60 },
-                { label: '人员编号', name: 'psn_no', align: 'left', width: 170 },
-                { label: '人员姓名', name: 'psn_name', align: 'center', width: 30 },
-                { label: '质控结果', name: 'qltctrl_rslt', align: 'center', width: 50 },
-                { label: ' 错误等级', name: 'err_lv', align: 'center', width: 50 },
-                { label: '回退标志', name: 'retn_flag', align: 'center', width: 50 },
-                { label: '质控版本号', name: 'qltctrl_ver', align: 'center', width: 50},
-                { label: '人员证件类型', name: 'psn_cert_type', align: 'center', width: 50 },
-                { label: '证件号码', name: 'cert_no', align: 'center', width: 50 },
-                //{ label: '质控结算清单结果详情信息', name: 'detailinfo', align: 'center', width: 50 },
+                    label: 'Mã cơ sở y tế chỉ định', name: 'fixmedins_code', align: 'center', width: 50, key: true },
+                {label: 'Tên cơ sở y tế chỉ định', name: 'fixmedins_name', align: 'center', width: 50 },
+                { label: 'Năm tháng quyết toán', name: 'setl_ym', align: 'center', width: 150 },
+                { label: 'Quyết toán ID', name: 'setl_id', align: 'left', width: 60 },
+                { label: 'Mã nhân viên', name: 'psn_no', align: 'left', width: 170 },
+                { label: 'Tên nhân viên', name: 'psn_name', align: 'center', width: 30 },
+                { label: 'Kết quả kiểm soát chất lượng', name: 'qltctrl_rslt', align: 'center', width: 50 },
+                { label: ' Mức độ lỗi', name: 'err_lv', align: 'center', width: 50 },
+                { label: 'Cờ quay lại', name: 'retn_flag', align: 'center', width: 50 },
+                { label: 'Số phiên bản kiểm soát chất lượng', name: 'qltctrl_ver', align: 'center', width: 50},
+                { label: 'Loại giấy tờ nhân viên', name: 'psn_cert_type', align: 'center', width: 50 },
+                { label: 'Số giấy tờ', name: 'cert_no', align: 'center', width: 50 },
+                //{ label: 'Thông tin chi tiết kết quả bảng kê quyết toán kiểm soát chất lượng', name: 'detailinfo', align: 'center', width: 50 },
                
             ],
             pager: "#gridPager",

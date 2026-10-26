@@ -11,13 +11,13 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         @*<div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>删除</a>
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
         </div>*@
     </div>
     <div class="search">
@@ -25,7 +25,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="附件名称" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên tệp đính kèm" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -54,14 +54,14 @@
             url: "/PatientManage/SysPatientMedicalRecord/GetTreeGridJson?blh=" + blh,
             height: $(window).height() - 96,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: "有效", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: "Hiệu lực", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
                 { label: "blh", name: "blh", hidden: true },
                 { label: "ParentId", name: "ParentId", hidden: true },
-                { label: '病历日期', name: 'rq', width: 120, align: 'left' },
+                { label: 'Ngày hồ sơ bệnh án', name: 'rq', width: 120, align: 'left' },
                 { label: 'attachType', name: 'attachType', width: 40, align: 'left', hidden: true },
                 {
-                    label: '附件名称', name: 'attachName', width: 120, align: 'left',
+                    label: 'Tên tệp đính kèm', name: 'attachName', width: 120, align: 'left',
                     formatter: function (cellvalue, a, rowdata) {
                         if (!!cellvalue) {
                             return '<a href="' + rowdata.attachUrl + '&fileDownloadName=' + encodeURIComponent(cellvalue) + '">' + cellvalue + '</a>';
@@ -73,9 +73,9 @@
                 },
                 { label: 'attachPath', name: 'attachPath', width: 130, align: 'left', hidden: true },
                 { label: 'attachUrl', name: 'attachUrl', width: 130, align: 'left', hidden: true },
-                { label: '上传用户', name: 'DetailCreatorUserName', width: 80, align: 'left' },
-                { label: '上传时间', name: 'DetailCreateTime', width: 120, align: 'left' },
-                { label: '备注', name: 'bz', width: 260, align: 'left' },
+                { label: 'Người dùng tải lên', name: 'DetailCreatorUserName', width: 80, align: 'left' },
+                { label: 'Thời gian tải lên', name: 'DetailCreateTime', width: 120, align: 'left' },
+                { label: 'Ghi chú', name: 'bz', width: 260, align: 'left' },
             ]
         });
         $("#btn_search").click(function () {
@@ -85,16 +85,16 @@
         });
     }
 
-    //回车触发查询事件
+    //Nhấn Enter kích hoạt sự kiện tra cứu
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
 
-    //新增
+    //Thêm mới
     function btn_add() {
         $.modalOpen({
             id: "FormEdit",
-            title: "新增病历",
+            title: "Thêm hồ sơ bệnh án mới",
             url: "/PatientManage/SysPatientMedicalRecord/Form?blh=" + blh,
             width: "700px",
             height: "440px",
@@ -107,11 +107,11 @@
         });
     }
 
-    //修改
+    //Sửa
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         if (!!$("#gridList").jqGridRowValue().ParentId) {
@@ -119,7 +119,7 @@
         }
         $.modalOpen({
             id: "FormEdit",
-            title: "修改病历",
+            title: "Sửa hồ sơ bệnh án",
             url: "/PatientManage/SysPatientMedicalRecord/Form?blh=blh&keyValue=" + keyValue,
             width: "700px",
             height: "440px",
@@ -134,20 +134,20 @@
 
     function cabck(msg) {
         $.modalClose("FormEdit");
-        $.modalAlert((!!msg ? msg : "操作成功"), 'success');
+        $.modalAlert((!!msg ? msg : "Thao tác thành công"), 'success');
         $('#btn_search').trigger('click');
     }
 
-    //删除
+    //Xóa
     function btn_delete() {
         return;
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         if (!!!$("#gridList").jqGridRowValue().ParentId) {
-            //这是父级
+            //Đây là cấp cha
             $.deleteForm({
                 url: "/PatientManage/SysPatientMedicalRecord/DeleteForm",
                 param: { keyValue: keyValue },
@@ -158,7 +158,7 @@
             });
         }
         else {
-            //这是子级
+            //Đây là cấp con
 
         }
     }

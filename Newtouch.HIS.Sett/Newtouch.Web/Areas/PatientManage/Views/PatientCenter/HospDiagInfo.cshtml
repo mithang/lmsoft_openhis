@@ -16,7 +16,7 @@
 
 
 <script>
-    //住院号span标签内容改变事件
+    //Số nhập việnspanSự kiện thay đổi nội dung nhãn
     //$("#zyh").on('DOMNodeInserted', function () {
     //    ZdListGrid($("#zyh").text());
     //    $("#gridZDList").jqGrid('setGridParam', {
@@ -45,38 +45,38 @@
             url: "/PatientManage/PatientCenter/GetZdGridList",
             height: $(window).height() - 130,
             colModel: [
-                { label: "住院号", name: "zyh", width: 60, align: 'center', editor: "text" },
-                { label: "诊断编码", name: "zdCode", width: 80, align: 'center', editor: "text" },
-                { label: "诊断名称", name: "zdmc", width: 180, align: 'center', editor: "text" },
-                { label: "诊断类别", name: "zdlb", width: 70, align: 'center', editor: "text" },
-                { label: "诊断时间", name: "zdsj", width: 100, align: 'center', editor: "text" },
-                { label: "入院病情", name: "rybq", width: 80, align: 'center', editor: "text" },
+                { label: "Số nhập viện", name: "zyh", width: 60, align: 'center', editor: "text" },
+                { label: "Mã chẩn đoán", name: "zdCode", width: 80, align: 'center', editor: "text" },
+                { label: "Tên chẩn đoán", name: "zdmc", width: 180, align: 'center', editor: "text" },
+                { label: "Loại chẩn đoán", name: "zdlb", width: 70, align: 'center', editor: "text" },
+                { label: "Thời gian chẩn đoán", name: "zdsj", width: 100, align: 'center', editor: "text" },
+                { label: "Tình trạng bệnh khi nhập viện", name: "rybq", width: 80, align: 'center', editor: "text" },
                 {
-                    label: "出院情况", name: "cyqk", width: 60, align: 'center', editor: "text", formatter: function (row, option, data) {
+                    label: "Tình hình xuất viện", name: "cyqk", width: 60, align: 'center', editor: "text", formatter: function (row, option, data) {
                         if (data.cyqk == "1") {
-                            return "治愈";
+                            return "Khỏi bệnh";
                         }
                         else if (data.cyqk == "2") {
-                            return "好转";
+                            return "Đỡ hơn";
                         }
                         else if (data.cyqk == "3") {
-                            return "未愈";
+                            return "Chưa khỏi";
                         }
                         else if (data.cyqk == "4") {
-                            return "死亡";
+                            return "Tử vong";
                         }
                         else if (data.cyqk == "5") {
-                            return "其他";
+                            return "Khác";
                         }
                         else if (data.cyqk == "6") {
-                            return "转院";
+                            return "Chuyển viện";
                         }
                         else
-                            return "在院";
+                            return "Đang nằm viện";
                     } },
-                { label: "诊断类型", name: "zdlx", width: 80, align: 'center', editor: "text" },
-                { label: "诊断来源", name: "zdly", width: 60, align: 'center', editor: "text" },
-                { label: "上传", name: "sfsc", width: 30, align: 'center', editor: "text" },
+                { label: "Loại chẩn đoán", name: "zdlx", width: 80, align: 'center', editor: "text" },
+                { label: "Nguồn chẩn đoán", name: "zdly", width: 60, align: 'center', editor: "text" },
+                { label: "Tải lên", name: "sfsc", width: 30, align: 'center', editor: "text" },
                 
             ],
             viewrecords: false,

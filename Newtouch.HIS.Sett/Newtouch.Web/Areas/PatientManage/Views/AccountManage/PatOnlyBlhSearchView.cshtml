@@ -21,22 +21,22 @@
                         </div>
                     </div>
                 </td>
-                <th class="formTitle">病历号：</th>
+                <th class="formTitle">Số hồ sơ bệnh án：</th>
                 <td class="formValue">
-                    <input id="txt_blh" name="txt_blh" type="text" class="form-control" placeholder="请输入病历号" />
+                    <input id="txt_blh" name="txt_blh" type="text" class="form-control" placeholder="Vui lòng nhập số hồ sơ bệnh án" />
                 </td>
-                <th class="formTitle">姓名：</th>
+                <th class="formTitle">Họ tên：</th>
                 <td class="formValue">
-                    <input id="txt_xm" name="txt_xm" type="text" class="form-control" placeholder="请输入姓名" />
+                    <input id="txt_xm" name="txt_xm" type="text" class="form-control" placeholder="Vui lòng nhập họ tên" />
 
                 </td>
                 <td style="padding-left:20px;" class="formValue">
-                    <input type="button" id="btn_search" style="margin-left:3%; width:35%; margin-top:-2%;" class="btn btn-primary" value="查询" />
+                    <input type="button" id="btn_search" style="margin-left:3%; width:35%; margin-top:-2%;" class="btn btn-primary" value="Tra cứu" />
                 </td>
             </tr>
         </table>
     </div>
-    <!--患者信息 包括卡号 病历号 姓名 -->
+    <!--Thông tin bệnh nhân Bao gồm số thẻ Số hồ sơ bệnh án Họ tên -->
     <div id="formPatSer" class="gridPanel" style="margin-top:1%; margin-left:1%">
         <table id="patGridList"></table>
         <div id="gridPager"></div>
@@ -45,7 +45,7 @@
 
 <script>
 
-    //上一个window对象
+    //Mục trướcwindowĐối tượng
     var prevWindow;
 
     var from = $.request("from");
@@ -61,10 +61,10 @@
         obj.blh = $.request("blh");
         obj.xm = $.request("xm");
         var searInfo = new PatSearchInfo();
-        //加载数据
+        //Tải dữ liệu
         searInfo.init(obj);
 
-        //查询
+        //Tra cứu
         $("#btn_search").click(function () {
             $("#patGridList").jqGrid('setGridParam', {
                 postData: { blh: $("#txt_blh").val(), xm: $("#txt_xm").val(), r: Math.random() },
@@ -72,13 +72,13 @@
         });
     });
 
-    //回车
+    //Enter
     $('#txt_blh,#txt_xm').keydownEnterEvent(function () {
         $("#btn_search").trigger('click');
     })
 
     var PatSearchInfo = (function () {
-        //加载列表
+        //Tải danh sách
         var loadGrid = function (data) {
             var $gridList = $("#patGridList");
             $gridList.dataGrid({
@@ -87,18 +87,18 @@
                 width: $("#formPatSer").width() - 2,
                 url: "/PatientManage/AccountManage/PatOnlyBlhSearchInfo?"+ Math.random(),
                 postData: { blh: $("#txt_blh").val(), xm: $("#txt_xm").val() },
-                caption: '患者信息列表',
+                caption: 'Danh sách thông tin bệnh nhân',
                 colModel: [
                     { label: 'patId', name: 'patId', width: 130, align: 'left',hidden:true },
-                    { label: '病历号', name: 'blh', width: 150, align: 'left' },
-                    { label: '姓名', name: 'xm', width: 140, align: 'left' },
+                    { label: 'Số hồ sơ bệnh án', name: 'blh', width: 150, align: 'left' },
+                    { label: 'Họ tên', name: 'xm', width: 140, align: 'left' },
                     {
-                        label: '性别', name: 'xb', width:70, align: 'left', formatter: function (cellvalue) {
+                        label: 'Giới tính', name: 'xb', width:70, align: 'left', formatter: function (cellvalue) {
                             return $.getGender(cellvalue);
                         }
                     },
                     {
-                        label: '年龄', name: 'nlshow', width: 100, align: 'left', formatter: function (cellvalue, a, b) {
+                        label: 'Tuổi', name: 'nlshow', width: 100, align: 'left', formatter: function (cellvalue, a, b) {
                             //return getAgeFromBirthTime({ begin: b.csny }).text;
                             return '123';
                         }
@@ -112,7 +112,7 @@
         var myPatSearchInfo = function (data) {
 
         }
-        //加载事件
+        //Sự kiện tải
         myPatSearchInfo.prototype.init = function (data) {
             if (!data.blh || data.blh === "null") {
                 $("#txt_blh").val("");
@@ -131,17 +131,17 @@
         return myPatSearchInfo;
     }());
 
-    //jqGrid 双击选中某行
+    //jqGrid Nhấp đúp để chọn một dòng
     function btn_edit() {
         PatSearchConfirm();
     }
 
-    //确定 主页面调用
+    //Xác nhận Trang chính gọi
     function PatSearchConfirm() {
         PatDbGrid();
     }
 
-    //双击
+    //Nhấp đúp
     function PatDbGrid() {
         var $gridList = $("#patGridList");
         var patId = $gridList.jqGridRowValue().patId;
@@ -154,16 +154,16 @@
         obj.xm = xm;
         obj.nlshow = nlshow;
         if (!!!obj.blh) {
-            $.modalMsg("请选择一个病人", "warning");
+            $.modalMsg("Vui lòng chọn một bệnh nhân", "warning");
             return;
         }
         prevWindow.getPatInfoAjax(obj);
 
-        //关闭窗口
+        //Đóng cửa sổ
         ReceiptCancle();
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() {
         $.modalClose();
     }

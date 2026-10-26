@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "已预约挂号列表";
+    ViewBag.Title = "Danh sách đăng ký khám đã hẹn";
     Layout = "~/Views/Shared/_Form.cshtml";
     var from = (ViewBag.from as string) ?? "";
 }
@@ -13,7 +13,7 @@
     }
 </style>
 
-<!--患者信息 包括病历号  姓名 -->
+<!--Thông tin bệnh nhân Bao gồm số hồ sơ bệnh án  Họ tên -->
 <form id="formPatSer" style="margin:2px;margin-top:10px;">
     <div class="gridPanel">
         <table id="patGridList" rel="formPatSer"></table>
@@ -21,7 +21,7 @@
     </div>
 </form>
 <script>
-    //上一个window对象
+    //Mục trướcwindowĐối tượng
     var prevWindow;
     if ('@(from)' !== '') {
         prevWindow = top.top.frames['@(from)'];
@@ -35,15 +35,15 @@
         var obj = new Object;
         obj.mzlx = $.request("mzlx");
         obj.patid = $.request("patid");
-        //收费组合
+        //Tổ hợp thu phí
         obj.isfeegroup = $.request("isfeegroup");
         var searInfo = new PatSearchInfo();
-        //加载数据
+        //Tải dữ liệu
         searInfo.init(obj);
 
     });
     var PatSearchInfo = (function () {
-        //加载列表
+        //Tải danh sách
         var loadGrid = function (data) {
             var $gridList = $("#patGridList");
             $gridList.dataGrid({
@@ -52,7 +52,7 @@
                 width: $("#formPatSer").width() - 10,
                 url: "@Url.Action("GetIsMzghBook")",
                 postData: { mzlx: data.mzlx, patid: data.patid, isfeegroup: data.isfeegroup },
-                caption: '已预约挂号科室',
+                caption: 'Khoa đăng ký khám đã hẹn',
                 colModel: [
                     { label: 'ghpbId', name: 'ScheduId', hidden: true, key: true },
                     { label: 'BookId', name: 'BookId', hidden: true },
@@ -66,10 +66,10 @@
                     { label: 'Title', name: 'Title', width: 120, align: 'left', hidden: true },
                     { label: 'AppId', name: 'AppId', width: 120, align: 'left', hidden: true },
                     { label: 'ks', name: 'ks', hidden: true, width: 120, align: 'left', hidden: true },
-                    { label: '挂号科室', name: 'ksmc', width: 120, align: 'left' },
-                    { label: '挂号项目', name: 'sfxmmc', width: 120, align: 'left' },
-                    { label: '诊疗项目', name: 'zlxmmc', width: 120, align: 'left' },
-                    { label: '时间段', name: 'PeriodDesc', width: 100, align: 'left' }
+                    { label: 'Khoa đăng ký khám', name: 'ksmc', width: 120, align: 'left' },
+                    { label: 'Hạng mục đăng ký khám', name: 'sfxmmc', width: 120, align: 'left' },
+                    { label: 'Hạng mục khám chữa bệnh', name: 'zlxmmc', width: 120, align: 'left' },
+                    { label: 'Khoảng thời gian', name: 'PeriodDesc', width: 100, align: 'left' }
                 ],
                 pager: "#gridPager",
                 sortname: 'OutDate desc',
@@ -81,14 +81,14 @@
 
         }
 
-        //加载事件
+        //Sự kiện tải
         myPatSearchInfo.prototype.init = function (data) {
             loadGrid(data);
         };
         return myPatSearchInfo;
     }());
 
-    //jqGrid 双击选中某行
+    //jqGrid Nhấp đúp để chọn một dòng
     function btn_edit() {
         PatSearchConfirm();
     }
@@ -97,7 +97,7 @@
         var $gridList = $("#patGridList");
         var seleRowid = jQuery("#patGridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var obj = new Object();
@@ -117,15 +117,15 @@
         obj.ghly = $gridList.jqGridRowValue().AppId;
         obj.BookId = $gridList.jqGridRowValue().BookId;
         prevWindow.GetQueryghyy(obj,null);
-        //关闭窗口
+        //Đóng cửa sổ
         ReceiptCancle();
     }
-    //确定 主页面调用
+    //Xác nhận Trang chính gọi
     function PatSearchConfirm() {
         PatDbGrid();
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() {
         $.modalClose();
     }

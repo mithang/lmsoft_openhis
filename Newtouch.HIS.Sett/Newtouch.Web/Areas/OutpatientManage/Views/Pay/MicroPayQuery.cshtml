@@ -1,35 +1,35 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "扫码付交易";
+    ViewBag.Title = "Giao dịch thanh toán quét mã";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
 <div class="panel panel-default">
     <table class="form">
         <tr>
-            <th class="formTitle">开始日期：</th>
+            <th class="formTitle">Ngày bắt đầu：</th>
             <td class="formValue">
                 <input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                        onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                        onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refReport(); } })"
                        value="@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")" />
             </td>
-            <th class="formTitle">结束日期：</th>
+            <th class="formTitle">Ngày kết thúc：</th>
             <td class="formValue">
                 <input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                        onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                        onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refReport(); } })"
                        value="@DateTime.Now.ToString("yyyy-MM-dd")" />
             </td>
-            <th class="formTitle">支付方式：</th>
+            <th class="formTitle">Phương thức thanh toán：</th>
             <td class="formValue">
                 <select id="payType" data-EnumType="EnumPayStatus">
-                    <option value="">==全部==</option>
+                    <option value="">==Tất cả==</option>
                 </select>
             </td>
             <th class="formTitle"></th>
             <td class="formValue" style="padding-left:20px;">
-                <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
             </td>
         </tr>
     </table>
@@ -55,21 +55,21 @@
             url: "/PayManage/MicroPay/MicroTradeQuery",
             postData: { ksrq: $("#ksrq").val(), jsrq: $("#jsrq").val(), payType: 1 },
             colModel: [
-                { label: '姓名', name: 'xm', width: 110, align: 'left' },
-                { label: '卡号', name: 'kh', width: 100, align: 'left' },
-                { label: '支付方式', name: 'PayType', width: 60, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 110, align: 'left' },
+                { label: 'Số thẻ', name: 'kh', width: 100, align: 'left' },
+                { label: 'Phương thức thanh toán', name: 'PayType', width: 60, align: 'left' },
                  {
-                     label: '订单号', name: 'OutTradeNo', width: 160, align: "left"
+                     label: 'Số đơn hàng', name: 'OutTradeNo', width: 160, align: "left"
                  },
-                { label: '支付宝交易号', name: 'TradeNo', width: 200, align: 'left' },
-                { label: '支付时间', name: 'OutTradeTime', width: 150, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
+                { label: 'Số giao dịch Alipay', name: 'TradeNo', width: 200, align: 'left' },
+                { label: 'Thời gian thanh toán', name: 'OutTradeTime', width: 150, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
                 {
-                    label: '支付金额', name: 'PayAmount', width: 150, align: 'left', formatter: function (cellvalue) {
+                    label: 'Số tiền thanh toán', name: 'PayAmount', width: 150, align: 'left', formatter: function (cellvalue) {
                         return cellvalue ? cellvalue.toFixed(2) : "0.00";
                     }
                 },
                 {
-                    label: '退款金额', name: 'RefundAmount', width: 150, align: 'left', formatter: function (cellvalue) {
+                    label: 'Số tiền hoàn lại', name: 'RefundAmount', width: 150, align: 'left', formatter: function (cellvalue) {
                         return cellvalue ? cellvalue.toFixed(2) : "0.00";
                     }
                 },
@@ -78,7 +78,7 @@
             pager: "#gridPager",
             sortname: "OutTradeNo",
             viewrecords: true,
-            //caption:"交易记录"
+            //caption:"Bản ghi giao dịch"
             onSelectRow: function (rowid) {
                 btn_selectrow(rowid);
             },
@@ -90,7 +90,7 @@
             //}
         });
         $("#btn_search").click(function () {
-            $('#gridList').jqGrid("clearGridData");//先清空明细
+            $('#gridList').jqGrid("clearGridData");//Xóa trống chi tiết trước
             $gridJsList.jqGrid('setGridParam', {
                 postData: { ksrq: $("#ksrq").val(), jsrq: $("#jsrq").val(), payType: 1 } ,
                 url: '/PayManage/MicroPay/MicroTradeQuery',
@@ -106,27 +106,27 @@
             height: 200,
             postData: { outTradeNo: "", tradeNo: ""},
             colModel: [                                   
-                //{ label: '支付方式', name: 'PayType', width: 60, align: 'left' },
+                //{ label: 'Phương thức thanh toán', name: 'PayType', width: 60, align: 'left' },
                 {
-                    label: '订单号', name: 'OutTradeNo', width: 160, align: "left"
+                    label: 'Số đơn hàng', name: 'OutTradeNo', width: 160, align: "left"
                 },
-                { label: '支付宝交易号', name: 'RefundStatus', width: 50, align: 'left' },
+                { label: 'Số giao dịch Alipay', name: 'RefundStatus', width: 50, align: 'left' },
                 {
-                    label: '退款金额', name: 'Amount', width: 150, align: 'left', formatter: function (cellvalue) {
+                    label: 'Số tiền hoàn lại', name: 'Amount', width: 150, align: 'left', formatter: function (cellvalue) {
                         return cellvalue ? cellvalue.toFixed(2) : "0.00";
                     }
                 },
-                { label: '退款说明', name: 'RefundReason', width: 100, align: 'left' },
-                { label: '退款时间', name: 'RefundDate', width: 150, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
+                { label: 'Giải thích hoàn tiền', name: 'RefundReason', width: 100, align: 'left' },
+                { label: 'Thời gian hoàn tiền', name: 'RefundDate', width: 150, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
                 {
-                    label: '退款请求号', name: 'OutRequestNo', width: 160, align: "left"
+                    label: 'Số yêu cầu hoàn tiền', name: 'OutRequestNo', width: 160, align: "left"
                 },
-                { label: '备注', name: 'Memo', width: 110, align: 'left' }
+                { label: 'Ghi chú', name: 'Memo', width: 110, align: 'left' }
             ],
             //pager: "#gridPager",
             sortname: "OutRequestNo",
             //viewrecords: true,
-            caption:"退费记录"
+            caption:"Bản ghi hoàn phí"
         });
     }
 
@@ -134,7 +134,7 @@
         if (rowid != null && rowid != undefined) {
             var row = $('#gridList').jqGrid("getRowData", rowid);
             if (row != null) {
-                $('#gridListRefd').jqGrid("clearGridData");//先清空明细
+                $('#gridListRefd').jqGrid("clearGridData");//Xóa trống chi tiết trước
                 $('#gridListRefd').jqGrid('setGridParam', {
                     postData: { outTradeNo: row.OutTradeNo, tradeNo: ""} ,
                     url: '/PayManage/MicroPay/TradeRefundList',

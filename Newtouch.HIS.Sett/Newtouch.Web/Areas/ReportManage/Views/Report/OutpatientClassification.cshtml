@@ -9,13 +9,13 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">病历号：</th>
+                <th class="formTitle">Số hồ sơ bệnh án：</th>
                 <td class="formValue">
                     <input id="blh" name="blh" type="text" class="form-control" />
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
                 <th></th>
                 <td></td>
@@ -44,7 +44,7 @@
     function submit() {
 
         if ($('#blh').val().length == 0) {
-            $.modalAlert("缺少病历号", "error");
+            $.modalAlert("Thiếu số hồ sơ bệnh án", "error");
             return;
         }
 
@@ -52,7 +52,7 @@
 
         url += "&blh=" + $('#blh').val();
 
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'Đang tải trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
     }
 

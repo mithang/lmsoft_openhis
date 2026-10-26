@@ -7,14 +7,14 @@
         <table class="form">
             <tr>
 
-                <th class="formTitle">结账日期：</th>
+                <th class="formTitle">Ngày chốt sổ：</th>
                 <td class="formValue" style="width:200px">
                     <input id="jzrq" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
                 </td>
 
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
                 <td class="formValue"></td>
             </tr>
@@ -38,7 +38,7 @@
     function submit() {
 
         if ($('#jzrq').val().length == 0) {
-            $.modalAlert("缺少时间", "error");
+            $.modalAlert("Thiếu thời gian", "error");
             return;
         }
 
@@ -48,7 +48,7 @@
         url += "&jzrq=" + $('#jzrq').val();
         url += "&doctor=" + usercode;
 
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'Đang tải trang báo cáo...');", 10);
 
         $("#iframerightiframerightiframerightttt").attr('src', url);
 
@@ -73,7 +73,7 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";

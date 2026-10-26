@@ -1,7 +1,7 @@
 ﻿@using Newtouch.Infrastructure;
 @{
 
-    ViewBag.Title = "编辑排班";
+    ViewBag.Title = "Chỉnh sửa lịch trực";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -11,50 +11,50 @@
     <div style="padding: 20px 35px 0 2px;">
         <table class="form" id="timetable">
             <tr>
-                <th class="formTitle"><span class="required">*</span>组织机构：</th>
+                <th class="formTitle"><span class="required">*</span>Cơ quan tổ chức：</th>
                 <td class="formValue" colspan="3">
                     <select id="OrganizeId" name="OrganizeId" class="form-control required">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>门诊类型：</th>
+                <th class="formTitle"><span class="required">*</span>Loại ngoại trú：</th>
                 <td class="formValue" colspan="3">
                     <select id="mjzbz" name="mjzbz" class="form-control required" data-EnumType="EnumOutPatientType">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">排班描述 ：</th>
+                <th class="formTitle">Mô tả lịch trực ：</th>
                 <td class="formValue" colspan="3">
                     <input type="text" class="form-control" id="pbdesc" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">挂号项目 ：</th>
+                <th class="formTitle">Hạng mục đăng ký khám ：</th>
                 <td class="formValue" colspan="3">
                     <input type="hidden" class="form-control" id="ghlx" />
                     <input type="text" class="form-control" id="sfxmmc" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">诊疗项目 ：</th>
+                <th class="formTitle">Hạng mục khám chữa bệnh ：</th>
                 <td class="formValue" colspan="3">
                     <input type="hidden" class="form-control" id="zlxm" />
                     <input type="text" class="form-control" id="zlxmmc" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>科室 ：</th>
+                <th class="formTitle"><span class="required">*</span>Khoa ：</th>
                 <td class="formValue" colspan="3">
                     <input type="hidden" class="form-control" id="ks" />
                     <input type="text" class="form-control required" id="ksmz" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">专家医生 ：</th>
+                <th class="formTitle">Bác sĩ chuyên gia ：</th>
                 <td class="formValue" colspan="3">
                     <input type="hidden" class="form-control" id="ys" />
                     <input type="text" class="form-control" id="ysxm" />
@@ -62,50 +62,50 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle" style="padding-left:10px;">开放网络预约 ：</th>
+                <th class="formTitle" style="padding-left:10px;">Mở hẹn trước qua mạng ：</th>
                 <td class="formValue" style="padding-left:10px;">
-                    <input name='isBook' id="isBook1" type='radio' value='1' />是
-                    <input name='isBook' id="isBook2" type='radio' value='0' checked="checked" />否
+                    <input name='isBook' id="isBook1" type='radio' value='1' />Có
+                    <input name='isBook' id="isBook2" type='radio' value='0' checked="checked" />Không
                 </td>
-                <th class="formTitle" style="padding-left:10px;">时段类型 ：</th>
+                <th class="formTitle" style="padding-left:10px;">Loại khung giờ ：</th>
                 <td class="formValue" colspan="2">
-                    <input name='issjd' id="issjd1" type='radio' value='1' onclick="xzsd(true)" />时间区间
-                    <input name='issjd' id="issjd2" type='radio' value='0' checked="checked" onclick="xzsd(false)" />上下午
+                    <input name='issjd' id="issjd1" type='radio' value='1' onclick="xzsd(true)" />Khoảng thời gian
+                    <input name='issjd' id="issjd2" type='radio' value='0' checked="checked" onclick="xzsd(false)" />Buổi sáng/chiều
                 </td>
-                <th class="formTitle" style="padding-left:10px;">默认号源数 ：</th>
+                <th class="formTitle" style="padding-left:10px;">Số nguồn số khám mặc định ：</th>
                 <td class="formValue" style="padding-left:10px;">
-                    <input type="text" value="0" class="form-control required" placeholder="默认号源数" id="mrhys" />
+                    <input type="text" value="0" class="form-control required" placeholder="Số nguồn số khám mặc định" id="mrhys" />
                 </td>
                 <td class="formValue">
                     <div class="ckbox">
-                        <input id="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                        <input id="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                     </div>
                 </td>
             </tr>
             <tr style="border-bottom: 1px solid #e5e5e5;border-top: 1px solid #e5e5e5;">
                 <td class="formValue" id="timetd">
-                    &nbsp;&nbsp;&nbsp;&nbsp;时间区间
+                    &nbsp;&nbsp;&nbsp;&nbsp;Khoảng thời gian
                 </td>
                 <td class="formValue">
-                    周一
+                    Thứ Hai
                 </td>
                 <td class="formValue">
-                    周二
+                    Thứ Ba
                 </td>
                 <td class="formValue">
-                    周三
+                    Thứ Tư
                 </td>
                 <td class="formValue">
-                    周四
+                    Thứ Năm
                 </td>
                 <td class="formValue">
-                    周五
+                    Thứ Sáu
                 </td>
                 <td class="formValue">
-                    周六
+                    Thứ Bảy
                 </td>
                 <td class="formValue">
-                    周日
+                    Chủ Nhật
                 </td>
             </tr>
         </table>  
@@ -137,17 +137,17 @@
     });
     function getstrhtml() {
         for (var j = 1; j < 3; j++) {
-            var strhtml = '<tr id="strtr' + j + '" ><td class="formValue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上午</td>';
+            var strhtml = '<tr id="strtr' + j + '" ><td class="formValue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Buổi sáng</td>';
             if (j==2) {
-                strhtml = '<tr id="strtr' + j + '" ><td class="formValue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下午</td>';
+                strhtml = '<tr id="strtr' + j + '" ><td class="formValue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Buổi chiều</td>';
             }
             if (j == 2) {
                 for (var i = 1; i < 8; i++) {
-                    strhtml += '<td class="formValue"><input  style="border-top:0px;border-left:0px;border-right:0px;" type = "text"class="form-control required" placeholder = "号源" value="' + $('#mrhys').val() + '" id = "hy' + j+ i + '" /></td >';
+                    strhtml += '<td class="formValue"><input  style="border-top:0px;border-left:0px;border-right:0px;" type = "text"class="form-control required" placeholder = "Nguồn số khám" value="' + $('#mrhys').val() + '" id = "hy' + j+ i + '" /></td >';
                 }
             } else {
                 for (var i = 1; i < 8; i++) {
-                    strhtml += '<td class="formValue"><input  style="border-top:0px;border-left:0px;border-right:0px;" type = "text"class="form-control required" placeholdsser = "号源" value="' + $('#mrhys').val() + '" id = "hy' + i + '" /></td >';
+                    strhtml += '<td class="formValue"><input  style="border-top:0px;border-left:0px;border-right:0px;" type = "text"class="form-control required" placeholdsser = "Nguồn số khám" value="' + $('#mrhys').val() + '" id = "hy' + i + '" /></td >';
                 }
             }
             strhtml += '</tr>';
@@ -155,7 +155,7 @@
         }
     }
     function jzsjd() {
-        $('#timetd').html('&nbsp;&nbsp;&nbsp;&nbsp;时间区间');
+        $('#timetd').html('&nbsp;&nbsp;&nbsp;&nbsp;Khoảng thời gian');
         $('#strtr1').remove();
         $('#strtr2').remove();
         $('#strtr3').remove();
@@ -171,9 +171,9 @@
                 $('#sjd').val('');
                 inttime = 1;
                 for (var i = 0; i < data.length; i++) {
-                    var strhtml = '<tr id="strtr' + inttime + '" ><td class="formValue"><input name="timestr" type = "text" style="border-top:0px;border-left:0px;border-right:0px;border-bottom:0px;"  readonly="readonly"  class="form-control required" placeholder = "时间区间" value="' + data[i] + '" id = "sjd' + inttime + '" /></td>';
+                    var strhtml = '<tr id="strtr' + inttime + '" ><td class="formValue"><input name="timestr" type = "text" style="border-top:0px;border-left:0px;border-right:0px;border-bottom:0px;"  readonly="readonly"  class="form-control required" placeholder = "Khoảng thời gian" value="' + data[i] + '" id = "sjd' + inttime + '" /></td>';
                     for (var j = 1; j < 8; j++) {
-                        strhtml += '<td class="formValue"><input name="hy' + inttime + '"  style="border-top:0px;border-left:0px;border-right:0px;" type = "text"  class="form-control required" placeholder = "号源" value="' + $('#mrhys').val() + '" id = "hy' + j + '" /></td >';
+                        strhtml += '<td class="formValue"><input name="hy' + inttime + '"  style="border-top:0px;border-left:0px;border-right:0px;" type = "text"  class="form-control required" placeholder = "Nguồn số khám" value="' + $('#mrhys').val() + '" id = "hy' + j + '" /></td >';
                     }
                     strhtml += '</tr>';
                     $('#timetable').append(strhtml);
@@ -186,7 +186,7 @@
         if (isxz == true) {
             getDateInfo(false);
         } else {
-            $('#timetd').html('&nbsp;&nbsp;&nbsp;&nbsp;上下午');
+            $('#timetd').html('&nbsp;&nbsp;&nbsp;&nbsp;Buổi sáng/chiều');
             for (var i = 1; i <= inttime; i++) {
                 $('#strtr'+i).remove();
             }
@@ -204,7 +204,7 @@
             inttime += 1;
             var strhtml = '<tr id="strtr' + inttime + '"><td class="formValue" ></td ><td class="formValue"><select class="form-control" id="sjxz' + inttime + '" ></select></td>';
             for (var i = 1; i < 8; i++) {
-                strhtml += '<td class="formValue"><input type = "text" style = "height:16px;width:35px;" class="form-control required" placeholder = "号源" value="' + $('#mrhys').val() + '" id = "hy' + i + '" /></td >';
+                strhtml += '<td class="formValue"><input type = "text" style = "height:16px;width:35px;" class="form-control required" placeholder = "Nguồn số khám" value="' + $('#mrhys').val() + '" id = "hy' + i + '" /></td >';
             }
             strhtml += '</tr>';
             $('#timetable').append(strhtml);
@@ -226,21 +226,21 @@
         }
     }
     function initControl() {
-        //组织机构下拉框
+        //Hộp thả xuống cơ quan tổ chức
         $("#OrganizeId").bindSelect({
             url: "/SystemManage/Organize/GetChildTreeSelectJson",
         });
-        //组织机构是否可选
-        if (type == "update") {//更新不可改
+        //Cơ quan tổ chức có thể chọn hay không
+        if (type == "update") {//Cập nhật không thể sửa
             $('#OrganizeId').attr("disabled", true);
-        } else {//新增可改
+        } else {//Mới thêm có thể sửa
             $('#OrganizeId').attr("disabled", false);
         }
 
 
     }
 
-    //获取排班信息
+    //Lấy thông tin lịch trực
     function getArrangeInfo(){
         if (!!ghpbId) {
             $.ajax({
@@ -268,7 +268,7 @@
             });
         }
     }
-    //获取每天开放号源数
+    //Lấy số nguồn số khám mở mỗi ngày
     function getDateInfo(pdsj) {
         if (!!ghpbId) {
             $.ajax({
@@ -324,7 +324,7 @@
             });
         }
     }
-    //获取每天开放号源数
+    //Lấy số nguồn số khám mở mỗi ngày
     function getDatemoren(pdsj) {
         if (!!ghpbId) {
             $.ajax({
@@ -362,7 +362,7 @@
             });
         }
     }
-    //确定按钮点击事件
+    //Sự kiện nhấp nút Xác nhận
     function AcceptClick(callBack) {
         debugger;
         if (!$('#form1').formValid()) {
@@ -380,7 +380,7 @@
             postData.ks = "";
         }
         if (postData.mjzbz == '3' && (postData.ys == '' || postData.ysxm == '')) {
-            $.modalAlert("专家门诊必须选择专家医生", 'warning');
+            $.modalAlert("Khám chuyên gia phải chọn bác sĩ chuyên gia", 'warning');
             return false;
         }
         if (postData.ysxm=="") {
@@ -487,11 +487,11 @@
     }
 
 
-    //挂号项目
+    //Hạng mục đăng ký khám
     $('#sfxmmc').newtouchFloatingSelector({
         width: 600,
         height: 220,
-        caption: "收费项目",
+        caption: "Hạng mục thu phí",
         clickautotrigger: true,
         url: '/SystemManage/BaseData/SelectSfxmYp',
         ajaxparameters: function () {
@@ -505,19 +505,19 @@
                 .attr('data-sfxmmc', $thistr.attr('data-sfxmmc'))
                 .val($thistr.attr('data-sfxmCode'));
         },
-        colModel: [{ label: '编码', name: 'sfxmCode', widthratio: 15 },
-        { label: '名称', name: 'sfxmmc', widthratio: 25 },
-        { label: '拼音', name: 'py', widthratio: 15 },
-        { label: '单位', name: 'dw', widthratio: 8 },
-        { label: '单价', name: 'dj', widthratio: 10 },
-        { label: '收费大类', name: 'sfdlmc', widthratio: 15 },
+        colModel: [{ label: 'Mã', name: 'sfxmCode', widthratio: 15 },
+        { label: 'Tên', name: 'sfxmmc', widthratio: 25 },
+        { label: 'Phiên âm', name: 'py', widthratio: 15 },
+        { label: 'Đơn vị', name: 'dw', widthratio: 8 },
+        { label: 'Đơn giá', name: 'dj', widthratio: 10 },
+        { label: 'Nhóm thu phí lớn', name: 'sfdlmc', widthratio: 15 },
         ]
     });
 
     $('#zlxmmc').newtouchFloatingSelector({
         width: 600,
         height: 180,
-        caption: "诊疗项目",
+        caption: "Hạng mục khám chữa bệnh",
         clickautotrigger: true,
             url: '/OutpatientManage/OutBook/GetMzpbZlxmzhList',
         ajaxparameters: function () {
@@ -531,18 +531,18 @@
                 .attr('data-zhmc', $thistr.attr('data-zhmc'))
                 .val($thistr.attr('data-zhcode'));
         },
-        colModel: [{ label: '编码', name: 'zhcode', widthratio: 15 },
-            { label: '名称', name: 'zhmc', widthratio: 55 },
-            { label: '金额', name: 'zhje', widthratio: 10 },
-            //{ label: '收费大类', name: 'sfdl', widthratio: 15 },
+        colModel: [{ label: 'Mã', name: 'zhcode', widthratio: 15 },
+            { label: 'Tên', name: 'zhmc', widthratio: 55 },
+            { label: 'Số tiền', name: 'zhje', widthratio: 10 },
+            //{ label: 'Nhóm thu phí lớn', name: 'sfdl', widthratio: 15 },
         ]
     });
 
-    //诊疗项目
+    //Hạng mục khám chữa bệnh
     //$('#zlxmmc').newtouchFloatingSelector({
     //    width: 600,
     //    height: 180,
-    //    caption: "诊疗项目",
+    //    caption: "Hạng mục khám chữa bệnh",
     //    clickautotrigger: true,
     //    url: '/SystemManage/BaseData/SelectSfxmYp',
     //    ajaxparameters: function () {
@@ -556,20 +556,20 @@
     //            .attr('data-sfxmmc', $thistr.attr('data-sfxmmc'))
     //            .val($thistr.attr('data-sfxmCode'));
     //    },
-    //    colModel: [{ label: '编码', name: 'sfxmCode', widthratio: 15 },
-    //    { label: '名称', name: 'sfxmmc', widthratio: 25 },
-    //    { label: '拼音', name: 'py', widthratio: 15 },
-    //    { label: '单位', name: 'dw', widthratio: 8 },
-    //    { label: '单价', name: 'dj', widthratio: 10 },
-    //    { label: '收费大类', name: 'sfdlmc', widthratio: 15 },
+    //    colModel: [{ label: 'Mã', name: 'sfxmCode', widthratio: 15 },
+    //    { label: 'Tên', name: 'sfxmmc', widthratio: 25 },
+    //    { label: 'Phiên âm', name: 'py', widthratio: 15 },
+    //    { label: 'Đơn vị', name: 'dw', widthratio: 8 },
+    //    { label: 'Đơn giá', name: 'dj', widthratio: 10 },
+    //    { label: 'Nhóm thu phí lớn', name: 'sfdlmc', widthratio: 15 },
     //    ]
     //});
 
-    //科室
+    //Khoa
     $('#ksmz').newtouchFloatingSelector({
         width: 400,
         height: 180,
-        caption: "科室",
+        caption: "Khoa",
         clickautotrigger: true,
         /*
         url: '/OutpatientManage/OutpatientRegSchedule/GetSysDepartmentList',
@@ -596,7 +596,7 @@
                 .val($thistr.attr('data-Name'));
             $('#ks').attr('data-ks', $thistr.attr('data-code'))
                 .val($thistr.attr('data-code'));
-            ////根据科室编号获取医生姓名
+            ////Lấy tên bác sĩ theo mã khoa
             //var ks = $thistr.attr('data-code');
 
             //$.ajax({
@@ -615,19 +615,19 @@
             //    }
             //});
         },
-        colModel: [{ label: '代码', name: 'Code', widthratio: 30 },
-        { label: '科室名称', name: 'Name', widthratio: 30 },
-        { label: '拼音', name: 'py', widthratio: 30 }
+        colModel: [{ label: 'Mã', name: 'Code', widthratio: 30 },
+        { label: 'Tên khoa', name: 'Name', widthratio: 30 },
+        { label: 'Phiên âm', name: 'py', widthratio: 30 }
         ]
     });
 
-    ///医生
+    ///Bác sĩ
     $("#ysxm").newtouchFloatingSelector({
         height: 200,
         width: 300,
         clickautotrigger: true,
         filter: function (keyword) {
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
 
             $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
@@ -641,15 +641,15 @@
             return resultObjArr;
 
         },
-        caption: "医生",
+        caption: "Bác sĩ",
         colModel: [
             {
-                label: '工号', name: 'StaffGh', widthratio: 25
+                label: 'Mã nhân viên', name: 'StaffGh', widthratio: 25
             },
             {
-                label: '名称', name: 'StaffName', widthratio: 25
+                label: 'Tên', name: 'StaffName', widthratio: 25
             },
-            { label: '拼音', name: 'StaffPY', widthratio: 25 }
+            { label: 'Phiên âm', name: 'StaffPY', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#ysxm").attr("data-label", $thistr.find("td:eq(0)").html());
@@ -658,12 +658,12 @@
             return;
         }
     });
-    //新增时段选择
+    //Thêm lựa chọn khung giờ mới
     function btn_add(inttimede) {
         var sjd = $('#sjd').val();
         $.modalOpen({
             id: "TimeForm",
-            title: "编辑排班时间",
+            title: "Chỉnh sửa thời gian lịch trực",
             url: "/OutPatientManage/OutBook/TimeForm?type=add&sjd=" + sjd,
             width: "600px",
             height: "600px",

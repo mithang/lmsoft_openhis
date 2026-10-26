@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Common.Operator;
 @{
-    ViewBag.Title = "商保详细信息";
+    ViewBag.Title = "Thông tin chi tiết bảo hiểm thương mại";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <script>
@@ -19,13 +19,13 @@
                 success: function (data) {
                     if (data) {
                         initIdSelected = data.kbxmmc;
-                        strdlList = false;//选中大类已拼接字符串，后续不用再拼接
+                        strdlList = false;//Chuỗi đã nối của nhóm lớn đã chọn，Sau đó không cần nối nữa
                         $("#form1").formSerialize(data);
                     }
                 }
             });
         }
-        //绑定 收费项目 树
+        //Liên kết Hạng mục thu phí Cây
         $('#sfxmList').focus(function () {
             if (initIdSelected == "" && strdlList) {
                 $.each(Editing_ysList, function () {
@@ -34,7 +34,7 @@
             }
             $.modalOpen({
                 id: "SFXMSelect",
-                title: "选择收费大类",
+                title: "Chọn nhóm thu phí lớn",
                 url: "/SystemManage/SysChargeItem/Selector?cacheTime=0&callbackType=json&fromDialog=Form&initIdSelected=" + initIdSelected,
                 width: "650px",
                 height: "570px",
@@ -83,52 +83,52 @@
             zlsNames = zlsNames.substring(0, zlsNames.length - 1);
         }
         $('#sfxmList').val(zlsNames);
-        top.top.window.frames['SFXMSelect'].$.modalClose();   //关闭之
+        top.top.window.frames['SFXMSelect'].$.modalClose();   //đóng
     }
 </script>
 <form id="form1">
     <div class="container" style="margin-top: 10px; margin-left: -4%; ">
         <ul class="nav nav-tabs" role="tablist" id="myTab" style="margin-left: 4%;">
-            <li role="presentation"><a role="tab" data-toggle="tab">基本信息</a></li>
+            <li role="presentation"><a role="tab" data-toggle="tab">Thông tin cơ bản</a></li>
         </ul>
         <div class="tab-content">
             <div role="tabpanel" id="divPatInfo" class="tab-pane fade in active" style="padding-top: 20px; margin-right: 30px;">
                 <table class="form" style="margin-top: 10px; width: 95%">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>公司名称：</th>
+                        <th class="formTitle"><span class="required">*</span>Tên công ty：</th>
                         <td class="formValue">
                             <input type="text" class="form-control form-an" id="Name" required />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>英文：</th>
+                        <th class="formTitle"><span class="required">*</span>Tiếng Anh：</th>
                         <td class="formValue">
                             <input type="text" class="form-control form-an" id="EnglishName" required />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>报销比例：</th>
+                        <th class="formTitle"><span class="required">*</span>Tỷ lệ thanh toán bảo hiểm：</th>
                         <td class="formValue">
                             <input type="text" class="form-control form-an" id="bxbl" required />
                         </td>
-                        <th class="formTitle">备注：</th>
+                        <th class="formTitle">Ghi chú：</th>
                         <td class="formValue">
                             <input type="text" class="form-control form-an" id="remark" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="formTitle">可报项目：</td>
+                        <td class="formTitle">Hạng mục có thể thanh toán bảo hiểm：</td>
                         <td class="formValue"> <input id="sfxmList" type="text" class="form-control form-an" /></td>
-                        <th class="formTitle">有效</th>
+                        <th class="formTitle">Hiệu lực</th>
                         <td class="formValue">
                             <div class="ckbox">
                                 <input id="zt" type="checkbox" checked="checked"><label for="zt"></label>
                             </div>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>建档人员：</th>
+                        <th class="formTitle"><span class="required">*</span>Nhân viên lập hồ sơ：</th>
                         <td class="formValue">
                             <input class="form-control newtouch_Readonly" id="CreatorCode" value=@OperatorProvider.GetCurrent().UserCode type="text" required />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>建档日期：</th>
+                        <th class="formTitle"><span class="required">*</span>Ngày lập hồ sơ：</th>
                         <td class="formValue">
                             <input class="form-control newtouch_Readonly" id="CreateTime" value=@DateTime.Now.ToString("yyyy-MM-dd") type="text" required />
                         </td>

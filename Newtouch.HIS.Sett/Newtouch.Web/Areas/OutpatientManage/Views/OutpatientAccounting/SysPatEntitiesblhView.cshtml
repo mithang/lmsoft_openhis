@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "住院登记时查询病人信息";
+    ViewBag.Title = "Tra cứu thông tin bệnh nhân khi đăng ký nhập viện";
     Layout = "~/Views/Shared/_Form.cshtml";
     var from = (ViewBag.from as string) ?? "";
 }
@@ -18,26 +18,26 @@
     <div class="search">
         <table class="form">
             <tr>
-                <th class="formTitle" style="width:50px">病历号：</th>
+                <th class="formTitle" style="width:50px">Số hồ sơ bệnh án：</th>
                 <td class="formValue">
-                    <input id="txt_blh" name="txt_blh" type="text" class="form-control form-an" placeholder="请输入病历号" />
+                    <input id="txt_blh" name="txt_blh" type="text" class="form-control form-an" placeholder="Vui lòng nhập số hồ sơ bệnh án" />
                 </td>
-                <th class="formTitle" style="width:50px">姓名：</th>
+                <th class="formTitle" style="width:50px">Họ tên：</th>
                 <td class="formValue">
-                    <input id="txt_xm" name="txt_xm" type="text" class="form-control form-an form-an-end" placeholder="请输入姓名或首拼" />
+                    <input id="txt_xm" name="txt_xm" type="text" class="form-control form-an form-an-end" placeholder="Vui lòng nhập họ tên hoặc phiên âm đầu" />
                 </td>
-                <th class="formTitle" style="width:50px">证件号：</th>
+                <th class="formTitle" style="width:50px">Số giấy tờ：</th>
                 <td class="formValue" style="width:150px">
-                    <input id="txt_zjh" name="txt_zjh" type="text" class="form-control form-an form-an-end" placeholder="请输入身份证" />
+                    <input id="txt_zjh" name="txt_zjh" type="text" class="form-control form-an form-an-end" placeholder="Vui lòng nhập CMND/CCCD" />
                 </td>
                 <td style="padding-left: 10px;">
-                    <button type="button" id="btn_search" class="btn btn-primary btn-md">&nbsp;查询&nbsp;</button>
+                    <button type="button" id="btn_search" class="btn btn-primary btn-md">&nbsp;Tra cứu&nbsp;</button>
                 </td>
             </tr>
         </table>
     </div>
 </div>
-<!--患者信息 包括病历号  姓名 -->
+<!--Thông tin bệnh nhân Bao gồm số hồ sơ bệnh án  Họ tên -->
 <form id="formPatSer" style="margin:2px;margin-top:10px;">
     <div class="gridPanel">
         <table id="patGridList" rel="formPatSer"></table>
@@ -46,7 +46,7 @@
 </form>
 
 <script>
-    //上一个window对象
+    //Mục trướcwindowĐối tượng
     var prevWindow;
     if ('@(from)' !== '') {
         prevWindow = top.top.frames['@(from)'];
@@ -60,14 +60,14 @@
         var obj = new Object;
         obj.blh = $.request("blh");
         var searInfo = new PatSearchInfo();
-        //加载数据
+        //Tải dữ liệu
         searInfo.init(obj);
 
         $('#txt_xm').keyupEnterEvent(function () {
             $('#btn_search').trigger('click');
         });
 
-        //查询
+        //Tra cứu
         $("#btn_search").click(function () {
             $("#patGridList").jqGrid('setGridParam', {
                 postData: {
@@ -79,7 +79,7 @@
         });
     });
     var PatSearchInfo = (function () {
-        //加载列表
+        //Tải danh sách
         var loadGrid = function (data) {
             var $gridList = $("#patGridList");
             $gridList.dataGrid({
@@ -88,26 +88,26 @@
                 width: $("#formPatSer").width() - 2,
                 url: "@Url.Action("PatSearchInfo")",
                 postData: { blh: $("#txt_blh").val(), xm: $("#txt_xm").val(), zjh: $("#txt_zjh").val() },
-                caption: '患者信息列表',
+                caption: 'Danh sách thông tin bệnh nhân',
                 colModel: [
-                    { label: '主键', name: 'patid', hidden: true },
-                    { label: '病历号', name: 'blh', width: 50, align: 'left' },
-                    { label: '姓名', name: 'xm', width: 70, align: 'left' },
-                    { label: '出生年月', name: 'csny', hidden: true, width: 120, align: 'left' },
+                    { label: 'Khóa chính', name: 'patid', hidden: true },
+                    { label: 'Số hồ sơ bệnh án', name: 'blh', width: 50, align: 'left' },
+                    { label: 'Họ tên', name: 'xm', width: 70, align: 'left' },
+                    { label: 'Năm sinh', name: 'csny', hidden: true, width: 120, align: 'left' },
                     {
-                        label: '性别', name: 'xb', width: 45, align: 'left', formatter: function (cellvalue) {
+                        label: 'Giới tính', name: 'xb', width: 45, align: 'left', formatter: function (cellvalue) {
                             return $.getGender(cellvalue);
                         }
                     },
                     {
-                        label: '年龄', name: 'nlshow', width: 45, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        label: 'Tuổi', name: 'nlshow', width: 45, align: 'left', formatter: function (cellvalue, options, rowObject) {
                             return getAgeFromBirthTime({ begin: rowObject.csny }).text;
                         }
                     },
-                    { label: '证件号', name: 'zjh', width: 150, align: 'left' },
-                    { label: '卡号', name: 'kh', width: 80, align: 'left' },
-                    { label: '卡类型', name: 'CardTypeName', width: 80, align: 'left' },
-                    { label: '病人性质', name: 'brxzmc', width: 60, align: 'left' },
+                    { label: 'Số giấy tờ', name: 'zjh', width: 150, align: 'left' },
+                    { label: 'Số thẻ', name: 'kh', width: 80, align: 'left' },
+                    { label: 'Loại thẻ', name: 'CardTypeName', width: 80, align: 'left' },
+                    { label: 'Tính chất bệnh nhân', name: 'brxzmc', width: 60, align: 'left' },
                     { label: 'CardType', name: 'CardType', width: 80, align: 'left', hidden: true, },
                     { label: 'CardId', name: 'CardId', width: 80, align: 'left', hidden: true, },
                      { label: '', name: 'CreateTime', hidden: true }
@@ -122,7 +122,7 @@
 
         }
 
-        //加载事件
+        //Sự kiện tải
         myPatSearchInfo.prototype.init = function (data) {
             if (data.blh === "null") {
                 $("#txt_xm").val("");
@@ -134,7 +134,7 @@
         return myPatSearchInfo;
     }());
 
-    //jqGrid 双击选中某行
+    //jqGrid Nhấp đúp để chọn một dòng
     function btn_edit() {
         PatSearchConfirm();
     }
@@ -151,15 +151,15 @@
         obj.endTime = $.currentWindow().$("#js").val();
         obj.CardId = $gridList.jqGridRowValue().CardId;
         prevWindow.GetQueryFphAjax(obj);
-        //关闭窗口
+        //Đóng cửa sổ
         ReceiptCancle();
     }
-    //确定 主页面调用
+    //Xác nhận Trang chính gọi
     function PatSearchConfirm() {
         PatDbGrid();
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() {
         $.modalClose();
     }

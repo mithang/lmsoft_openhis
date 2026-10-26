@@ -2,7 +2,7 @@
     ViewBag.Title = "QueJsList2018";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
-<!--结算列表-->
+<!--Danh sách quyết toán-->
 <form style="margin:2px;margin-top:10px;">
     <div class="gridPanel" style="margin: 5px 10px;">
         <table id="gridList"></table>
@@ -15,7 +15,7 @@
         gridList(jsondata);
     });
 
-    //加载结算列表
+    //Tải danh sách quyết toán
     function gridList(mydata) {
         var $gridList = $("#gridList");
         $gridList.newtouchLocalDataGrid({
@@ -26,17 +26,17 @@
                 { label: 'jsnm', name: 'jsnm', key: true, hidden: true },
                 { label: 'ghly', name: 'ghly', hidden:true},
                 {
-                    label: '结算类型', name: 'jslx', width: 80, align: "left",
+                    label: 'Loại quyết toán', name: 'jslx', width: 80, align: "left",
                     formatter: function (val) {
                         return $.enum.getDescByValue("EnumJslx", val);
                     }
                 },
                 {
-                    label: '结算时间', name: 'CreateTime', width: 130, align: "left"
+                    label: 'Thời gian quyết toán', name: 'CreateTime', width: 130, align: "left"
                     , formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
                 {
-                    label: '结算金额', name: 'jszje', width: 80, align: "left",
+                    label: 'Số tiền quyết toán', name: 'jszje', width: 80, align: "left",
                     formatter: function (val) {
                         if (val || val == 0) {
                             return val.toFixed(2);
@@ -45,9 +45,9 @@
                         }
                     }
                 },
-                { label: '发票号', name: 'fph', width: 100, align: "left"},
-                { label: '收费日期', name: 'sfrq', width: 100, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '结算人员', name: 'CreatorUserName', width: 80, align: "left" },
+                { label: 'Số hóa đơn', name: 'fph', width: 100, align: "left"},
+                { label: 'Ngày thu phí', name: 'sfrq', width: 100, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Nhân viên quyết toán', name: 'CreatorUserName', width: 80, align: "left" },
             ]
             , ondblClickRow: function (rowid) {
                 var frameId = window.name;
@@ -59,14 +59,14 @@
     function AcceptClick(callBack) {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var rowData = $("#gridList").jqGrid('getRowData', seleRowid);
         if (rowData.jslx == '挂号收费') {
             if (rowData.ghly!='0')
             {
-                $.modalAlert('非HIS窗口挂号,不能退费', 'warning');
+                $.modalAlert('Không phảiHISĐăng ký khám tại cửa sổ,Không thể hoàn phí', 'warning');
                 return;
             }
             var allData = $("#gridList").jqGrid("getRowData_AllLine");
@@ -74,13 +74,13 @@
                 if (allData[i].jsnm != rowData.jsnm
                     && !(allData[i].jslx == '挂号收费')
                     && (!!allData[i].jszje && parseFloat(allData[i].jszje) != 0)) {
-                    $.modalAlert('有收费，不能退挂号', 'warning');
+                    $.modalAlert('Có thu phí，Không thể trả đăng ký khám', 'warning');
                     return;
                 }
             }
         }
         if (!(!!rowData.jszje && parseFloat(rowData.jszje) != 0)) {
-            $.modalAlert('已无可退金额', 'warning');
+            $.modalAlert('Không còn số tiền có thể hoàn trả', 'warning');
             return;
         }
         callBack(rowData.jsnm);

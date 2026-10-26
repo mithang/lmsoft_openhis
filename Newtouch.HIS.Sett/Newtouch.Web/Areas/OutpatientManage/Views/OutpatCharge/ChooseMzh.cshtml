@@ -14,7 +14,7 @@
     function selectGridAll()
     {
         var jqGrid = $("#chooseMzhGrid");
-        // 拿到所有行id
+        // Lấy tất cả các dòngid
         var jqGridIDs = jqGrid.getDataIDs();
         for (var i = 0; i < jqGridIDs.length; i++) {
             jqGrid.setSelection(jqGridIDs[i], true);
@@ -40,12 +40,12 @@
             unwritten: false,
             height: 150,
                 colModel: [
-                    { label: '挂号日期', name: 'ghrq', width: 120, align: 'left' },
-                    { label: '门诊号', name: 'mzh', width: 120, align: 'left' },
-                    { label: "姓名", name: "xm", width: 130, align: 'left' },
-                    { label: '科室名称', name: 'ksmc', width: 80, align: 'left' },
-                    { label: '医生名称', name: 'ysmc', width: 50, align: 'left' },
-                    { label: '病人性质', name: 'brxzmc', width: 50, align: 'left' },
+                    { label: 'Ngày đăng ký khám', name: 'ghrq', width: 120, align: 'left' },
+                    { label: 'Số khám ngoại trú', name: 'mzh', width: 120, align: 'left' },
+                    { label: "Họ tên", name: "xm", width: 130, align: 'left' },
+                    { label: 'Tên khoa', name: 'ksmc', width: 80, align: 'left' },
+                    { label: 'Tên bác sĩ', name: 'ysmc', width: 50, align: 'left' },
+                    { label: 'Tính chất bệnh nhân', name: 'brxzmc', width: 50, align: 'left' },
             ]
         });
         $gridList.newtouchLocalDataGrid(null, GetMzhInfo());
@@ -56,7 +56,7 @@
         var seleRow = $("#chooseMzhGrid").jqGridRowValue();
         var mzh = seleRow.mzh;
         if (!!!mzh) {
-            $.modalAlert("尚未选择一条记录", "error");
+            $.modalAlert("Chưa chọn bản ghi nào", "error");
             return;
         }
         callback(mzh);

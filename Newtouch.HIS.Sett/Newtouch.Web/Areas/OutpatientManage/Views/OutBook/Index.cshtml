@@ -1,7 +1,7 @@
 ﻿@using Newtouch.Infrastructure
 
 @{
-    ViewBag.Title = "预约挂号";
+    ViewBag.Title = "Đăng ký khám hẹn trước";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -11,7 +11,7 @@
         <tr>
             <td>
                 <div class="input-group">
-                    <input id="txt_keyword" type="text" class="form-control" placeholder="科室" style="width: 180px;">
+                    <input id="txt_keyword" type="text" class="form-control" placeholder="Khoa" style="width: 180px;">
                     <span class="input-group-btn">
                         <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                     </span>
@@ -25,19 +25,19 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>医生</a>
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Bác sĩ</a>
         </div>
         <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_set()"><i class="fa fa-pencil-square-o"></i>排班设置</a>
+            <a class="btn btn-primary" onclick="btn_set()"><i class="fa fa-pencil-square-o"></i>Thiết lập lịch trực</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_create()"><i class="fa fa-pencil-square-o"></i>生成排班</a>
+            <a class="btn btn-primary" onclick="btn_create()"><i class="fa fa-pencil-square-o"></i>Tạo lịch trực</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_createtime()"><i class="fa fa-pencil-square-o"></i>维护排班时间</a>
+            <a class="btn btn-primary" onclick="btn_createtime()"><i class="fa fa-pencil-square-o"></i>Bảo trì thời gian lịch trực</a>
         </div>
     </div>
     
@@ -63,22 +63,22 @@
             colModel: [
                 { label: "ghpbId", name: "ghpbId", hidden: true },
                 {
-                    label: "门诊类型", name: "mjzbz", width: 130, align: 'left', formatter: function (val) {
+                    label: "Loại ngoại trú", name: "mjzbz", width: 130, align: 'left', formatter: function (val) {
                         return $.enum.getDescByValue("EnumOutPatientType", val);
                     }
                 },
-                { label: "排班描述", name: "pbdesc", width: 130, align: 'left' },
-                { label: "挂号项目", name: "sfxmmc", width: 130, align: 'left' },
-                { label: "诊疗项目", name: "zlxmmc", width: 130, align: 'left' },
-                { label: "科室", name: "ksmz", width: 130, align: 'left' },
-                { label: "医生", name: "ysxm", width: 130, align: 'left' },
+                { label: "Mô tả lịch trực", name: "pbdesc", width: 130, align: 'left' },
+                { label: "Hạng mục đăng ký khám", name: "sfxmmc", width: 130, align: 'left' },
+                { label: "Hạng mục khám chữa bệnh", name: "zlxmmc", width: 130, align: 'left' },
+                { label: "Khoa", name: "ksmz", width: 130, align: 'left' },
+                { label: "Bác sĩ", name: "ysxm", width: 130, align: 'left' },
                 {
-                    label: "有效", name: "zt", width: 130, align: 'left', formatter: function (val) {
+                    label: "Hiệu lực", name: "zt", width: 130, align: 'left', formatter: function (val) {
                         if (val == "1") {
-                            return "是";
+                            return "Có";
                         }
                         else if (val == "0") {
-                            return "否";
+                            return "Không";
                         }
                     }
                 },
@@ -113,12 +113,12 @@
         var ks = $("#gridList").jqGridRowValue().ks;
         var ys = $("#gridList").jqGridRowValue().ys;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return false;
         }
         $.modalOpen({
             id: "editDoctor",
-            title: "修改医生",
+            title: "Sửa bác sĩ",
             url: "/OutPatientManage/OutBook/Doctor?keyValue=" + keyValue + "&ks=" + ks+"&ys="+ys,
             width: "500px",
             height: "500px",
@@ -135,12 +135,12 @@
         var ghpbId = $("#gridList").jqGridRowValue().ghpbId;
         //var OrganizeId = $("#gridList").jqGridRowValue().OrganizeId;
         if (!!!ghpbId) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return false; 
         }
         $.modalOpen({
             id: "updateForm",
-            title: "编辑排班",
+            title: "Chỉnh sửa lịch trực",
             url: "/OutPatientManage/OutBook/Form?ghpbId=" + ghpbId + "&orgId=" + OrganizeId+"&type=update",
             width: "800px",
             height: "900px",
@@ -153,13 +153,13 @@
         });
     }
 
-    //新增排班
+    //Thêm lịch trực mới
     function btn_add() {
         var ghpbId = 0;
         //var OrganizeId = $("#gridList").jqGridRowValue().OrganizeId;
         $.modalOpen({
             id: "updateForm",
-            title: "编辑排班",
+            title: "Chỉnh sửa lịch trực",
             url: "/OutPatientManage/OutBook/Form?ghpbId=" + ghpbId + "&orgId=" + OrganizeId+"&type=add",
             width: "800px",
             height: "900px",
@@ -172,11 +172,11 @@
         });
     }
 
-    //生成排班
+    //Tạo lịch trực
     function btn_create() {
         $.modalOpen({
             id: "updateForm",
-            title: "生成排班",
+            title: "Tạo lịch trực",
             url: "/OutPatientManage/OutBook/Create",
             width: "800px",
             height: "800px",
@@ -189,11 +189,11 @@
             }
         });
     }
-    //生成排班时间
+    //Tạo thời gian lịch trực
     function btn_createtime() {
         $.modalOpen({
             id: "TimeForm",
-            title: "编辑排班时间",
+            title: "Chỉnh sửa thời gian lịch trực",
             url: "/OutPatientManage/OutBook/TimeForm?type=add",
             width: "600px",
             height: "600px",

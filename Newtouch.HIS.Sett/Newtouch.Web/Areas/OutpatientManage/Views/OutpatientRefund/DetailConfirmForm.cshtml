@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "门诊退费确认";
+    ViewBag.Title = "Xác nhận hoàn phí ngoại trú";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -29,34 +29,34 @@
     <div id="divTmx">
         <div class="panel panel-default" style="margin: 20px;">
             <div class="panel-heading navb-bg">
-                <span>结算时间：<span id="settTime"></span></span>
-                <span>结算金额：<span id="zje"></span></span>
-                <span>支付金额：<span id="xjzf"></span></span>
+                <span>Thời gian quyết toán：<span id="settTime"></span></span>
+                <span>Số tiền quyết toán：<span id="zje"></span></span>
+                <span>Số tiền thanh toán：<span id="xjzf"></span></span>
                 <br />
-                <span>支付方式：<span id="xjzffsmc"></span></span>
-                <span>收费日期：<span id="sfrq"></span></span>
+                <span>Phương thức thanh toán：<span id="xjzffsmc"></span></span>
+                <span>Ngày thu phí：<span id="sfrq"></span></span>
             </div>
             <div style="padding-right:20px;">
                 <table class="form">
                     <thead>
                         <tr>
                             <td class="formValue" style="padding-left:10px;">
-                                退费明细
+                                Chi tiết hoàn phí
                             </td>
                             <td class="formValue" style="width:160px;">
-                                名称
+                                Tên
                             </td>
                             <td class="formValue">
-                                单价
+                                Đơn giá
                             </td>
                             <td class="formValue">
-                                数量
+                                Số lượng
                             </td>
                             <td class="formValue">
-                                退数量
+                                Số lượng hoàn trả
                             </td>
                             <td class="formValue">
-                                退金额
+                                Số tiền hoàn trả
                             </td>
                         </tr>
                     </thead>
@@ -66,10 +66,10 @@
         </div>
         <div style="margin: 20px;">
             <ul class="nav nav-pills" style="position: fixed;right: 80px;bottom: 20px;">
-                <li>退费人员：<span>@(Newtouch.Common.Operator.OperatorProvider.GetCurrent().UserName)</span></li>
-                <li>退费日期：<span>@(DateTime.Now.ToString("yyyy-MM-dd"))</span></li>
-                <li>退费时间：<span>@(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))</span></li>
-                <li>合计退费：<span id="tje"></span>&nbsp;&nbsp;&nbsp;<span id="mzyjj"  style="display:none;"><input type="checkbox" checked="checked" id="yjjth" name="yjjth" /> 退回预交账户 </span>
+                <li>Nhân viên hoàn phí：<span>@(Newtouch.Common.Operator.OperatorProvider.GetCurrent().UserName)</span></li>
+                <li>Ngày hoàn phí：<span>@(DateTime.Now.ToString("yyyy-MM-dd"))</span></li>
+                <li>Thời gian hoàn phí：<span>@(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))</span></li>
+                <li>Tổng hoàn phí：<span id="tje"></span>&nbsp;&nbsp;&nbsp;<span id="mzyjj"  style="display:none;"><input type="checkbox" checked="checked" id="yjjth" name="yjjth" /> Hoàn trả về tài khoản tạm ứng </span>
                 </li>
             </ul>
         </div>
@@ -83,7 +83,7 @@
         var thisJszb = JSON.parse(thisJszb);
         var data = JSON.parse(data);
     }
-    //if (thisJszb.xjzffsmc.indexOf("预交账户")!==-1)
+    //if (thisJszb.xjzffsmc.indexOf("Tài khoản tạm ứng")!==-1)
     //    $("#mzyjj").show();
     $(function () {
         if (!!!thisJszb || !!!data) {
@@ -104,13 +104,13 @@
         });
         var strTje = roundingBy4she6ru5chengshuang(tmxZje, 2);
         if (thisJszb.jszje == tmxZje && thisJszb.jsxjzf != thisJszb.jszje) {
-            //非全自费结算记录
-            strTje += '（实退' + thisJszb.jsxjzf.toFixed(2) + '）';
+            //Bản ghi quyết toán không hoàn toàn tự chi trả
+            strTje += '（Thực hoàn trả' + thisJszb.jsxjzf.toFixed(2) + '）';
         }
         if (thisJszb.xjzffsmc.split(":").length - 1 == 1 && (thisJszb.xjzffsmc.indexOf("支付宝") !== -1 || thisJszb.xjzffsmc.indexOf("微信") !== -1 || (thisJszb.xjzffsmc.indexOf("预交账户") !== -1))) {
-            strTje += '（原路退回）';
+            strTje += '（Hoàn trả theo đường cũ）';
         } else {
-            strTje += '（退现金）';
+            strTje += '（Hoàn trả tiền mặt）';
         }
         $('#tje').html(strTje);
     });
@@ -120,10 +120,10 @@
         postData.mzh = mzh;
         postData.jsnm = thisJszb.jsnm;
         var tjsxmDictObj = {};
-        var tjsxmDictZtObj = {};//收费组套
+        var tjsxmDictZtObj = {};//Bộ thu phí
         var expectedTmxZje = 0;
-        var expectedTmxZtZje = 0;//收费组套金额
-        var cfnmlist = ""; //组套所属处方
+        var expectedTmxZtZje = 0;//Số tiền bộ thu phí
+        var cfnmlist = ""; //Đơn thuốc thuộc bộ
         debugger
         $.each(data, function () {
             if (this.ztId) {

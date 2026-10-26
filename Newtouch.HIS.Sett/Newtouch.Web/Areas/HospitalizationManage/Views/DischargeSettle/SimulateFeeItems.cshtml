@@ -21,24 +21,24 @@
 			url: "/HospitalizationManage/DischargeSettle/GetInpatientSettleStatusDetailbySfdl",
 			height: $(window).height() - 80,
 			colModel: [
-				{ label: '收费大类', name: 'dlmc', align: 'center', width: 60 },
-				{ label: '属性', name: 'zfxz', align: 'center', width: 40 },
-				{ label: '药品名称', name: 'sfxmmc', align: 'left', width: 150 },
-				{ label: '规格', name: 'gg', align: 'center', width: 60 },
-				{ label: '单位', name: 'jfdw', align: 'center', width: 60 },
+				{ label: 'Nhóm thu phí lớn', name: 'dlmc', align: 'center', width: 60 },
+				{ label: 'Thuộc tính', name: 'zfxz', align: 'center', width: 40 },
+				{ label: 'Tên thuốc', name: 'sfxmmc', align: 'left', width: 150 },
+				{ label: 'Quy cách', name: 'gg', align: 'center', width: 60 },
+				{ label: 'Đơn vị', name: 'jfdw', align: 'center', width: 60 },
 				{
-					label: '单价', name: 'dj', align: 'center', width: 60, formatter: "number"
+					label: 'Đơn giá', name: 'dj', align: 'center', width: 60, formatter: "number"
 					, formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
 				},
-				{ label: '数量', name: 'sl', align: 'center', width: 30 },
+				{ label: 'Số lượng', name: 'sl', align: 'center', width: 30 },
 				{ label: 'zyh', name: 'zyh', align: 'center', hidden: true, },
 				{
-					label: '费用', name: 'je', align: 'center', width: 60, formatter: "number"
+					label: 'Chi phí', name: 'je', align: 'center', width: 60, formatter: "number"
 					, formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
 				},
-				{ label: '是否自费', name: 'zzfbz', align: 'center', width: 50 },
+				{ label: 'Có tự chi trả hay không', name: 'zzfbz', align: 'center', width: 50 },
 				{ label: 'sfxm', name: 'sfxm', align: 'center', hidden: true, },
-				//{ label: '计价日期', name: 'tdrq', align: 'center', width: 100 },
+				//{ label: 'Ngày tính giá', name: 'tdrq', align: 'center', width: 100 },
 
 			],
 			pager: "#gridPager",
@@ -59,7 +59,7 @@
 		if (!!rowData) {
 			$.modalOpen({
 				id: "mxcx",
-				title: "明细项目查询",
+				title: "Tra cứu hạng mục chi tiết",
 				url: "/HospitalizationManage/DischargeSettle/DetailedQuery?sfxmCode=" + smxmCode + "&zyh=" + zyh + "&zzfbz=" + zzfbz + "&dj=" + dj,
 				width: "800px",
 				height: "600px",

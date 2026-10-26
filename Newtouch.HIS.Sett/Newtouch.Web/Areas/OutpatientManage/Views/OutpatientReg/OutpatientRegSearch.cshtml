@@ -9,28 +9,28 @@
 <form name="form1" autocomplete="off">
     <div class="panel panel-default" style="">
         <ul id="myTab" class="nav nav-tabs">
-            <li class="active"><a href="#ghmx" data-toggle="tab">病人挂号明细</a></li>
-            <li><a href="#ghtj" data-toggle="tab">科室医生统计</a></li>
+            <li class="active"><a href="#ghmx" data-toggle="tab">Chi tiết đăng ký khám bệnh nhân</a></li>
+            <li><a href="#ghtj" data-toggle="tab">Thống kê bác sĩ khoa</a></li>
         </ul>
         <div class="tab-content" style="margin-top:0%">
             <div style="padding: 2px;padding-right:20px;" class="tab-pane fade in active" id="ghmx">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">挂号日期：</th>
+                        <th class="formTitle">Ngày đăng ký khám：</th>
                         <td class="formValue" colspan="2">
                             <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddDays(-3).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                             <span style="margin-left:1%;float:left">—</span>
                             <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         </td>
-                        <th class="formTitle">挂号科室：</th>
+                        <th class="formTitle">Khoa đăng ký khám：</th>
                         <td class="formValue">
                             <input type="text" class="form-control" id="txtksmc" />
                         </td>
 
                         <th class="formTitle"></th>
                         <td class="formValue" colspan="2">
-                            <input type="button" class="btn btn-primary btn-md" id="btnsyy" value="查询" />
-                            <input type="button" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;margin-left:10px;" onclick="Excelbuttion()" value="导出" />
+                            <input type="button" class="btn btn-primary btn-md" id="btnsyy" value="Tra cứu" />
+                            <input type="button" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;margin-left:10px;" onclick="Excelbuttion()" value="Xuất ra" />
                         </td>
 
                     </tr>
@@ -45,18 +45,18 @@
             <div class="tab-pane fade" ;style="background-color: #fff; height:100%;width:100%" id="ghtj">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">挂号日期：</th>
+                        <th class="formTitle">Ngày đăng ký khám：</th>
                         <td class="formValue" colspan="2">
                             <input id="tjkssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddDays(-3).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                             <span style="margin-left:1%;float:left">—</span>
                             <input id="tjjssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         </td>
-                        <th class="formTitle">挂号科室：</th>
+                        <th class="formTitle">Khoa đăng ký khám：</th>
                         <td class="formValue">
                             <input type="text" class="form-control" id="txttjksmc" />
                         </td>
                         <th class="formTitle">
-                            <input type="button" class="btn btn-primary btn-md" id="btncx" onclick="bntcxClick();" value="查询" />
+                            <input type="button" class="btn btn-primary btn-md" id="btncx" onclick="bntcxClick();" value="Tra cứu" />
                         </th>
                         <td class="formValue"></td>
                         <th></th>
@@ -100,14 +100,14 @@
 		});
 
 
-		//科室
+		//Khoa
 		$("#txtksmc").newtouchBatchFloatingSelector({
 			height: 200,
 			width: 300,
 			clickautotrigger: true,
 			//url: '/OutpatientManage/OutpatientReg/GetCurrentDayRegListJson',
 			filter: function (keyword) {
-				//遍历数据源，用keyword来筛选出结果
+				//Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
 				var resultObjArr = new Array();
 				$.each(kszdlist, function (idx, val) {
 					if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -119,11 +119,11 @@
 				return resultObjArr;
 
 			},
-			caption: "科室",
+			caption: "Khoa",
 			colModel: [
-				{ label: '编号', name: 'code', widthratio: 30 },
-				{ label: '名称', name: 'name', widthratio: 50 },
-				{ label: '拼音', name: 'py', hidden: true }
+				{ label: 'Số hiệu', name: 'code', widthratio: 30 },
+				{ label: 'Tên', name: 'name', widthratio: 50 },
+				{ label: 'Phiên âm', name: 'py', hidden: true }
 			],
 			itemdbclickhandler: function ($thistr) {
 				$("#txtksmc").attr("data-label", $thistr.find("td:eq(0)").html());
@@ -131,14 +131,14 @@
 				return;
 			},
 		});
-	    //科室
+	    //Khoa
 		$("#txttjksmc").newtouchBatchFloatingSelector({
 		    height: 200,
 		    width: 300,
 		    clickautotrigger: true,
 		    //url: '/OutpatientManage/OutpatientReg/GetCurrentDayRegListJson',
 		    filter: function (keyword) {
-		        //遍历数据源，用keyword来筛选出结果
+		        //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
 		        var resultObjArr = new Array();
 		        $.each(kszdlist, function (idx, val) {
 		            if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -150,11 +150,11 @@
 		        return resultObjArr;
 
 		    },
-		    caption: "科室",
+		    caption: "Khoa",
 		    colModel: [
-				{ label: '编号', name: 'code', widthratio: 30 },
-				{ label: '名称', name: 'name', widthratio: 50 },
-				{ label: '拼音', name: 'py', hidden: true }
+				{ label: 'Số hiệu', name: 'code', widthratio: 30 },
+				{ label: 'Tên', name: 'name', widthratio: 50 },
+				{ label: 'Phiên âm', name: 'py', hidden: true }
 		    ],
 		    itemdbclickhandler: function ($thistr) {
 		        $("#txttjksmc").attr("data-label", $thistr.find("td:eq(0)").html());
@@ -178,45 +178,45 @@
 		 colModel = [
 			{ label: 'ghnm', name: 'ghnm', key: true, hidden: true },
 
-			{ label: '病历号', name: 'blh', width: 80, align: 'left' },
-			{ label: '门诊号', name: 'mzh', width: 100, align: 'left' },
-			{ label: '姓名', name: 'xm', width: 70, align: 'left' },
-			{ label: '证件号', name: 'zjh', width: 130, align: 'left' },
+			{ label: 'Số hồ sơ bệnh án', name: 'blh', width: 80, align: 'left' },
+			{ label: 'Số khám ngoại trú', name: 'mzh', width: 100, align: 'left' },
+			{ label: 'Họ tên', name: 'xm', width: 70, align: 'left' },
+			{ label: 'Số giấy tờ', name: 'zjh', width: 130, align: 'left' },
 			{
-				label: '性别', name: 'xb', width: 40, align: 'left',
+				label: 'Giới tính', name: 'xb', width: 40, align: 'left',
 				formatter: function (val) {
 					return $.getGender(val);
 				}
 			},
 			{
-				label: '费用性质', name: 'brxz', width: 50, align: 'left',
+				label: 'Tính chất chi phí', name: 'brxz', width: 50, align: 'left',
 				formatter: function (val) {
 					if (val == '0') {
-						return '自费';
+						return 'Tự chi trả';
 					}
 					else if (val == '1') {
-						return '医保';
+						return 'BHYT';
 					}
 					else {
 						return '';
 					}
 				}
 			},
-			{ label: '挂号科室', name: 'ghksmc', width: 100, align: 'left' },
+			{ label: 'Khoa đăng ký khám', name: 'ghksmc', width: 100, align: 'left' },
 			{ label: 'ghks', name: 'ghks', hidden: true },
 			{ label: 'ghys', name: 'ghys', hidden: true },
-			{ label: '挂号医生', name: 'ghysmc', width: 50, align: 'left' },
+			{ label: 'Bác sĩ đăng ký khám', name: 'ghysmc', width: 50, align: 'left' },
 			{
-				label: '挂号状态', name: 'ghzt', width: 50, align: 'left',
+				label: 'Trạng thái đăng ký khám', name: 'ghzt', width: 50, align: 'left',
 				formatter: function (val) {
 					if (val == '0') {
-						return '待结';
+						return 'Chờ quyết toán';
 					}
 					else if (val == '1') {
-						return '已结';
+						return 'Đã quyết toán';
 					}
 					else if (val == '2') {
-						return '已退';
+						return 'Đã hoàn trả';
 					}
 					else {
 						return '';
@@ -224,34 +224,34 @@
 				}
 			},
 			{
-				label: '挂号日期', name: 'ghrq', width: 100, align: 'left',
+				label: 'Ngày đăng ký khám', name: 'ghrq', width: 100, align: 'left',
 				formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
 			},
 			{
-				label: '就诊状态', name: 'jzzt', width: 60, align: 'left',
+				label: 'Trạng thái khám bệnh', name: 'jzzt', width: 60, align: 'left',
 				formatter: function (cellvalue) {
 					return $.enum.getDescByValue("EnumOutpatientJzbz", cellvalue);
 				}
 			},
-			{ label: '就诊科室', name: 'jzksmc', width: 100, align: 'left' },
+			{ label: 'Khoa khám bệnh', name: 'jzksmc', width: 100, align: 'left' },
 			{ label: 'ghks', name: 'jzks', hidden: true },
 			{ label: 'ghys', name: 'jzys', hidden: true },
-			{ label: '就诊医生', name: 'jzysmc', width: 50, align: 'left' },
+			{ label: 'Bác sĩ khám bệnh', name: 'jzysmc', width: 50, align: 'left' },
 			{
-				label: '就诊日期', name: 'jzrq', width: 120, align: 'left',
+				label: 'Ngày khám bệnh', name: 'jzrq', width: 120, align: 'left',
 				formatter: "date", formatoptions: { srcformat: 'Y-m-d h:i:s', newformat: 'Y-m-d H:i:s' }
 			 },
-			 { label: '票据号', name: 'fph', width: 80, align: 'left' },
-			 { label: '是否退号', name: 'syth', width: 60, align: 'left' },
-			 { label: '退号医生', name: 'thys', width: 70, align: 'left' },
-			 { label: '退号时间', name: 'thrq', width: 120, align: 'left',},
+			 { label: 'Số chứng từ', name: 'fph', width: 80, align: 'left' },
+			 { label: 'Có trả số khám hay không', name: 'syth', width: 60, align: 'left' },
+			 { label: 'Bác sĩ trả số khám', name: 'thys', width: 70, align: 'left' },
+			 { label: 'Thời gian trả số khám', name: 'thrq', width: 120, align: 'left',},
 		];
 
 		var $gridList = $("#registedList");
 		$gridList.dataGrid({
 			url: "/OutpatientManage/OutpatientReg/GetRegListJson",
 			height: $(window).height() - 165,
-			caption: "挂号数据 &nbsp; &nbsp;&nbsp;&nbsp;<span id='ghrc'></span> &nbsp;&nbsp;&nbsp;(<span id='thrc'></span>)",
+			caption: "Dữ liệu đăng ký khám &nbsp; &nbsp;&nbsp;&nbsp;<span id='ghrc'></span> &nbsp;&nbsp;&nbsp;(<span id='thrc'></span>)",
 			postData: postdata(),
 			colModel: colModel,
 			gridComplete: function () {
@@ -264,8 +264,8 @@
 						thrc += 1;
 					}
 				}
-				$("#ghrc").html("挂号人次：" + ids.length + "次");
-				$("#thrc").html("其中退号人次：" + thrc + "次");
+				$("#ghrc").html("Số lượt đăng ký khám：" + ids.length + "lần");
+				$("#thrc").html("Trong đó số lượt trả số khám：" + thrc + "lần");
 				//console.log(ids);
 			},
 		});
@@ -291,19 +291,19 @@
 		url += "?cols=" + cols;
 		$.modalOpen({
 			id: "ExcelExportChooseColumns",
-			title: "导出Excel",
+			title: "Xuất raExcel",
 			url: url,
 			width: "600px",
 			height: "350px",
 			callBack: function (iframeId) {
-				//结果
+				//Kết quả
 				var restArr = top.frames[iframeId].GetChoosedCols();
 				if (!!!restArr || !!!restArr.length || restArr.length == 0) {
-					$.modalAlert("请选择导出列", 'error');
+					$.modalAlert("Vui lòng chọn cột xuất ra", 'error');
 					return false;
 				}
 				var isContainFilter = top.frames[iframeId].GetIsContainFilter();
-				//关闭选择窗口
+				//Đóng cửa sổ chọn
 				$.modalClose("ExcelExportChooseColumns");
 				//
 				exportCols = $.jsonWhere(exportCols, function (v) {
@@ -315,7 +315,7 @@
 					}
 					return matched;
 				});
-				//导出
+				//Xuất ra
 				Export(isContainFilter);
 			}
 		});
@@ -329,7 +329,7 @@
 		url += "&keywordo=" + $("#txtksmc").attr("data-label");
 		url += "&keywordt=" + $("#txtksmc").val();
 		url += "&isContainFilter=" + isContainFilter;
-		url += "&colStanWidth=" + "70";  //列宽度标准列
+		url += "&colStanWidth=" + "70";  //Cột tiêu chuẩn độ rộng cột
 		var cols = JSON.stringify(exportCols);
 		top.$.cookie('ExportExcelCols', cols, { path: "/" });
 		//url += "&cols=" + encodeURIComponent(cols);
@@ -338,7 +338,7 @@
 	}
 	function bntcxClick() {
 	    if ($('#tjkssj').val().length == 0 || $('#tjjssj').val().length == 0) {
-	        $.modalAlert("请选择时间范围", "error");
+	        $.modalAlert("Vui lòng chọn khoảng thời gian", "error");
 	        return;
 	    }
 	    var url = getUrl();

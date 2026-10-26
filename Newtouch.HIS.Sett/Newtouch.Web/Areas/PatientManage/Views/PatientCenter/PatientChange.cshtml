@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "患者切换";
+    ViewBag.Title = "Chuyển bệnh nhân";
     Layout = "~/Views/Shared/_Form.cshtml";
     var from = (ViewBag.from as string) ?? "";
 }
@@ -18,24 +18,24 @@
     <div class="search">
         <table class="form">
             <tr>
-                <th class="formTitle">病历号/姓名：</th>
+                <th class="formTitle">Số hồ sơ bệnh án/Họ tên：</th>
                 <td class="formValue" colspan="2">
-                    <input id="txt_keyword" name="txt_keyword" type="text" class="form-control form-an" placeholder="请输入病历号/姓名/首拼" />
+                    <input id="txt_keyword" name="txt_keyword" type="text" class="form-control form-an" placeholder="Vui lòng nhập số hồ sơ bệnh án/Họ tên/Phiên âm đầu" />
                 </td>
-                <th class="formTitle">门诊号：</th>
+                <th class="formTitle">Số khám ngoại trú：</th>
                 <td class="formValue">
-                    <input id="txt_mzh" name="txt_mzh" type="text" class="form-control form-an" placeholder="请输入门诊号" />
+                    <input id="txt_mzh" name="txt_mzh" type="text" class="form-control form-an" placeholder="Vui lòng nhập số khám ngoại trú" />
                 </td>
-                <th class="formTitle">住院号：</th>
+                <th class="formTitle">Số nhập viện：</th>
                 <td class="formValue">
-                    <input id="txt_zyh" name="txt_zyh" type="text" class="form-control form-an" placeholder="请输入住院号" />
+                    <input id="txt_zyh" name="txt_zyh" type="text" class="form-control form-an" placeholder="Vui lòng nhập số nhập viện" />
                 </td>
-                @*<th class="formTitle">姓名：</th>
+                @*<th class="formTitle">Họ tên：</th>
                 <td class="formValue">
-                    <input id="txt_xm" name="txt_xm" type="text" class="form-control form-an form-an-end" placeholder="请输入姓名或首拼" />
+                    <input id="txt_xm" name="txt_xm" type="text" class="form-control form-an form-an-end" placeholder="Vui lòng nhập họ tên hoặc phiên âm đầu" />
                 </td>*@
                 <td style="padding-left: 20px;">
-                    <button type="button" id="btn_search" class="btn btn-primary btn-md">&nbsp;查询&nbsp;</button>
+                    <button type="button" id="btn_search" class="btn btn-primary btn-md">&nbsp;Tra cứu&nbsp;</button>
                 </td>
             </tr>
             <tr>
@@ -44,7 +44,7 @@
         </table>
     </div>
 </div>
-<!--患者信息 包括病历号  姓名 -->
+<!--Thông tin bệnh nhân Bao gồm số hồ sơ bệnh án  Họ tên -->
 <form id="formPatSer" style="margin:2px;margin-top:10px;">
     <div class="gridPanel">
         <table id="patGridList" rel="formPatSer"></table>
@@ -56,7 +56,7 @@
     var ywlx = $.request("ywlx");
     var zyh = "";
     var mzh = "";
-    //上一个window对象
+    //Mục trướcwindowĐối tượng
     var prevWindow;
     var patcenter;
     if ('@(from)' !== '') {
@@ -72,7 +72,7 @@
         obj.blh = $.request("blh");
         obj.ywlx = ywlx;
         var searInfo = new PatSearchInfo();
-        //加载数据
+        //Tải dữ liệu
         searInfo.init(obj);
 
         //$('#txt_xm').keyupEnterEvent(function () {
@@ -82,7 +82,7 @@
             zyh = $("#txt_zyh").val();
         }
         getPatientlist();
-        //查询
+        //Tra cứu
         $("#btn_search").click(function () {
             getPatientlist();
             //$("#patGridList").jqGrid('setGridParam', {
@@ -93,7 +93,7 @@
         });
     });
     var PatSearchInfo = (function () {
-        //加载列表
+        //Tải danh sách
         var loadGrid = function (data) {
             var $gridList = $("#patGridList");
             $gridList.dataGrid({
@@ -104,28 +104,28 @@
                 width: $("#formPatSer").width() - 10,
                 //url: "/PatientManage/PatientCenter/PatSearchInfo",
                 postData: getPostdata(),
-                caption: '患者信息列表',
+                caption: 'Danh sách thông tin bệnh nhân',
                 colModel: [
-                    { label: '主键', name: 'patid', hidden: true, key: true },
-                    { label: '病历号', name: 'blh', width: 60, align: 'center' },
-                    { label: '住院号', name: 'zyh', width: 60, align: 'center' },
-                    { label: '病人性质', name: 'brxzmc', width: 60, align: 'center' },
+                    { label: 'Khóa chính', name: 'patid', hidden: true, key: true },
+                    { label: 'Số hồ sơ bệnh án', name: 'blh', width: 60, align: 'center' },
+                    { label: 'Số nhập viện', name: 'zyh', width: 60, align: 'center' },
+                    { label: 'Tính chất bệnh nhân', name: 'brxzmc', width: 60, align: 'center' },
                     {
-                        label: '状态', name: 'zybz', width: 60, align: 'center', formatter: function (cellvalue) {
+                        label: 'Trạng thái', name: 'zybz', width: 60, align: 'center', formatter: function (cellvalue) {
                             return $.enum.getDescByValue("EnumZYBZ", cellvalue);
                         }
                     },
-                    { label: '姓名', name: 'xm', width: 120, align: 'left' },
-                    { label: '出生年月', name: 'csny', hidden: true, width: 120, align: 'center' },
+                    { label: 'Họ tên', name: 'xm', width: 120, align: 'left' },
+                    { label: 'Năm sinh', name: 'csny', hidden: true, width: 120, align: 'center' },
                     {
-                        label: '性别', name: 'xb', width: 70, align: 'left', formatter: function (cellvalue) {
+                        label: 'Giới tính', name: 'xb', width: 70, align: 'left', formatter: function (cellvalue) {
                             return $.getGender(cellvalue);
                         }
                     },
                     {
-                        label: '年龄', name: 'nlshow', width: 50, align: 'center'
+                        label: 'Tuổi', name: 'nlshow', width: 50, align: 'center'
                     },
-                    { label: '证件号', name: 'zjh', width: 100, align: 'left' },
+                    { label: 'Số giấy tờ', name: 'zjh', width: 100, align: 'left' },
                      { label: '', name: 'CreateTime', hidden: true }
                 ],
                 pager: "#gridPagerpat",
@@ -142,7 +142,7 @@
 
         }
 
-        //加载事件
+        //Sự kiện tải
         myPatSearchInfo.prototype.init = function (data) {
             if (data.blh === "null") {
                 $("#txt_blh").val("");
@@ -154,7 +154,7 @@
         return myPatSearchInfo;
     }());
 
-    //jqGrid 双击选中某行
+    //jqGrid Nhấp đúp để chọn một dòng
     function btn_edit() {
         PatSearchConfirm();
     }
@@ -172,15 +172,15 @@
         obj.endTime = $.currentWindow().$("#js").val();
         var pat = patcenter.find(p => p.zyh == obj.zyh);
         prevWindow.GetPatQueryAjax(pat);
-        //关闭窗口
+        //Đóng cửa sổ
         ReceiptCancle();
     }
-    //确定 主页面调用
+    //Xác nhận Trang chính gọi
     function PatSearchConfirm() {
         PatDbGrid();
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() {
         $.modalClose();
     }

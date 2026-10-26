@@ -7,7 +7,7 @@
 <form name="form1">
     <div class="panel panel-default" style="margin-bottom: 0%;background-color:lavender">
         <div class="panel-heading navb-bg">
-            住院医保患者结算回退
+            Hoàn trả quyết toán bệnh nhân BHYT nội trú
         </div>
         <div style="padding-top:1%;padding-bottom:1%; padding-left:7%;" id="divInpatientBasicInfo">
             <table class="form">
@@ -16,12 +16,12 @@
                     <td class="formValue">
                         <input type="text" class="form-control" id="yka103" style="float:left;" />
                     </td>
-                    <th class="formTitle">住院号：</th>
+                    <th class="formTitle">Số nhập viện：</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="zyh" style="float:left;" />
                     </td>
                     <td class="formValue">
-                        <input type="button" id="btn_jsht" class="btn btn-primary" style="width:40%;margin-left:10px;" value="结算回退" />
+                        <input type="button" id="btn_jsht" class="btn btn-primary" style="width:40%;margin-left:10px;" value="Hoàn trả quyết toán" />
                     </td>
                 </tr>
             </table>
@@ -29,7 +29,7 @@
     </div>
     <div class="panel panel-default" style="margin-bottom: 0%;">
         <div class="panel-heading navb-bg">
-            不确定交易筛选条件
+            Điều kiện lọc giao dịch chưa xác định
         </div>
         <div style="padding-top:1%;padding-bottom:1%; padding-left:7%;" id="divInpatientBasicInfo">
             <table class="form">
@@ -39,9 +39,9 @@
                         <input type="text" class="form-control" id="jybh" style="float:left;" />
                     </td>
                     <td class="formValue" colspan="2">
-                        <input type="button" id="btn_search" class="btn btn-primary" style="width:15%; margin-left:10px;" value="查询" />
-                        <input type="button" id="btn_confirm" class="btn btn-primary" style="width:15%;margin-left:10px;" value="执行" />
-                        <input type="button" id="btn_cancel" class="btn btn-primary" style="width:15%;margin-left:10px;" value="撤销" />
+                        <input type="button" id="btn_search" class="btn btn-primary" style="width:15%; margin-left:10px;" value="Tra cứu" />
+                        <input type="button" id="btn_confirm" class="btn btn-primary" style="width:15%;margin-left:10px;" value="Thực hiện" />
+                        <input type="button" id="btn_cancel" class="btn btn-primary" style="width:15%;margin-left:10px;" value="Hủy" />
                     </td>
                 </tr>
             </table>
@@ -53,15 +53,15 @@
     </div>
 </form>
 <script>
-    //查询
+    //Tra cứu
     $('#btn_search').click(function() {
         loadDataResult();
     });
-    //执行
+    //Thực hiện
     $('#btn_confirm').click(function() {
         confirm_yb();
     });
-    //撤销
+    //Hủy
     $('#btn_cancel').click(function() {
         cancel_yb();
     });
@@ -73,16 +73,16 @@
         var yka103 = $("#yka103").val();
         var zyh = $("#zyh").val();
         if (!yka103) {
-            $.modalAlert("请输入医保结算返回值prm_yka103", 'warning');
+            $.modalAlert("Vui lòng nhập giá trị trả về quyết toán BHYTprm_yka103", 'warning');
             return;
         }
         if (!zyh) {
-            $.modalAlert("请输入住院号", 'warning');
+            $.modalAlert("Vui lòng nhập số nhập viện", 'warning');
             return;
         }
         $.najax({
             url: '/HospitalizationManage/DischargeSettle/GetInpatientSettYbPatInfo?zyh=' + zyh,
-            loadingtext: "正在请求患者出院信息，请稍后...",
+            loadingtext: "Đang tải thông tin xuất viện của bệnh nhân，Vui lòng chờ...",
             type: 'POST',
             success: function (ybPreSettleReq) {
                 var ybjshtReturn;
@@ -94,7 +94,7 @@
                     prm_yka103: yka103,
                     prm_aae011: "",
                     prm_aae036: $.getTime(),
-                    prm_aae013: "重新计费",
+                    prm_aae013: "Tính phí lại",
                     prm_ykb065: ybPreSettleReq.data.sbbf,
                     prm_ykc141: "GF001"
                 };
@@ -110,7 +110,7 @@
                     }
                 });
                 if (ybjshtReturn.Code == 0) {
-                    $.modalAlert("结算回退成功！", 'success');
+                    $.modalAlert("Hoàn trả quyết toán thành công！", 'success');
                     var parameter1 = { "astr_jylsh": ybjshtReturn.jylsh, "astr_jyyzm": ybjshtReturn.jyyzm };
                     $.ajax({
                         url: "http://127.0.0.1:12345/api/YiBao/YibaoConfirm",
@@ -147,7 +147,7 @@
                 });
 
                 if (ybReturn.Code == 0) {
-                    $.modalAlert("取消成功！", 'success');
+                    $.modalAlert("Hủy thành công！", 'success');
                     var parameter = { "astr_jylsh": ybReturn.jylsh, "astr_jyyzm": ybReturn.jyyzm };
                     $.ajax({
                         url: "http://127.0.0.1:12345/api/YiBao/YibaoConfirm",
@@ -165,9 +165,9 @@
     }
 
 
-    //ajax加载数据
+    //ajaxTải dữ liệu
     function loadDataResult() {
-        //清空Grid
+        //Xóa trốngGrid
         $('#gridList').jqGrid("clearGridData");
         /*
         var str = '{"output": {"sqldata": {"row": [{"yke014": "2000000001","yke015": "48"},' +
@@ -196,7 +196,7 @@
         if (yb_getuncertaintytradeInfo && yb_getuncertaintytradeInfo.Code == 0) {
             var yb_getuncertaintytrade = yb_getuncertaintytradeInfo.Data;
             if (!yb_getuncertaintytrade) {
-                $.modalAlert("还没有不确定交易情况", 'succsee');
+                $.modalAlert("Chưa có tình hình giao dịch chưa xác định", 'succsee');
                 return;
             }
             var nullobj= {
@@ -209,42 +209,42 @@
                     data: yb_getuncertaintytrade
                 }).trigger("reloadGrid");
         } else
-            $.modalAlert("获取医保不确定交易数据失败", 'error');
+            $.modalAlert("Lấy dữ liệu giao dịch BHYT chưa xác định thất bại", 'error');
     }
 
     window.newtouch_globalconfig.f4opions = {
         container: "#divInpatientBasicInfo,#divPatInfo"
     };
 
-    //不确定交易
+    //Giao dịch chưa xác định
     $('#gridList').newtouchLocalDataGrid({
-        caption: '不确定交易',
+        caption: 'Giao dịch chưa xác định',
         height: $(window).height() - 180,
         unwritten: false,
         editurl: "clientArray",
         colModel: [
-            { label: "交易编号", name: "yke015", width: 100, align: "left" },
-            { label: "交易流水号", name: "yke014", width: 180, align: "left" }
+            { label: "Số giao dịch", name: "yke015", width: 100, align: "left" },
+            { label: "Số thứ tự giao dịch", name: "yke014", width: 180, align: "left" }
         ],
         multiselect: true
     });
 
     function confirm_yb() {
-        //获取选中行Id
+        //Lấy dòng đã chọnId
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds.length == 0) {
-            $.modalAlert("请先选中需处理的信息", 'warning');
+            $.modalAlert("Vui lòng chọn thông tin cần xử lý trước", 'warning');
             return;
         }
-        if (!confirm("是否确认处理选中的信息?")) {
+        if (!confirm("Có xác nhận xử lý thông tin đã chọn hay không?")) {
             return;
         }
         var IsSuccess = true;
-        //判断退数量
+        //Xét số lượng hoàn trả
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
             if (!rowData) {
-                $.modalAlert("获取信息失败，请重新操作", 'error');
+                $.modalAlert("Lấy thông tin thất bại，Vui lòng thao tác lại", 'error');
                 break;
             }
             $.najax({
@@ -255,7 +255,7 @@
                 success: function (rep) {
                     if (rep == "") {
                         IsSuccess = false;
-                        $.modalAlert("系统中不存在流水号【" + rowData["yke014"] + "】的交易记录，请确认。", 'warning');
+                        $.modalAlert("Hệ thống không tồn tại số thứ tự【" + rowData["yke014"] + "】bản ghi giao dịch，Vui lòng xác nhận。", 'warning');
                     } else {
                         alert(rep);
                         try {
@@ -271,12 +271,12 @@
                                 }
                             });
                             if (!ybjySettReturn || !(ybjySettReturn.Code == 0)) {
-                                $.modalAlert("流水号【" + jylsh + "】提交失败，请重新操作", 'error');
+                                $.modalAlert("Số thứ tự giao dịch【" + jylsh + "】Gửi thất bại，Vui lòng thao tác lại", 'error');
                                 IsSuccess = false;
                             }
                         } catch (err) {
                             IsSuccess = false;
-                            $.modalAlert("医保提交失败，请重新操作" + err, 'error');
+                            $.modalAlert("Gửi BHYT thất bại，Vui lòng thao tác lại" + err, 'error');
                         }
                     }
                 }
@@ -286,26 +286,26 @@
                 return;
             }
         }
-        $.modalAlert("处理完成", 'success');
+        $.modalAlert("Xử lý hoàn thành", 'success');
         loadDataResult();
     }
 
     function cancel_yb() {
-        //获取选中行Id
+        //Lấy dòng đã chọnId
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds.length == 0) {
-            $.modalAlert("请先选中需处理的信息", 'warning');
+            $.modalAlert("Vui lòng chọn thông tin cần xử lý trước", 'warning');
             return;
         }
-        if (!confirm("是否确认撤销选中的信息?")) {
+        if (!confirm("Có xác nhận hủy thông tin đã chọn hay không?")) {
             return;
         }
 
-        //判断退数量
+        //Xét số lượng hoàn trả
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
             if (!rowData) {
-                $.modalAlert("获取信息失败，请重新操作", 'error');
+                $.modalAlert("Lấy thông tin thất bại，Vui lòng thao tác lại", 'error');
                 break;
             }
             var ybjySettReturn;// = $.guianyibao.YibaoCancle(rowData["yke014"]);
@@ -320,12 +320,12 @@
                 }
             });
             if (!(ybjySettReturn.Code == 0)) {
-                $.modalAlert("流水号【" + jylsh + "】撤销失败，请重新操作", 'error');
+                $.modalAlert("Số thứ tự giao dịch【" + jylsh + "】Hủy thất bại，Vui lòng thao tác lại", 'error');
                 loadDataResult();
                 return;
             }
         }
-        $.modalAlert("处理完成", 'success');
+        $.modalAlert("Xử lý hoàn thành", 'success');
         loadDataResult();
     }
 

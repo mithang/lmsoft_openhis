@@ -1,7 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_Index.cshtml";
 
-    //医保所属地，区分系统将执行何处医保逻辑
+    //Nơi tham gia BHYT，Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
     var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
 }
@@ -13,36 +13,36 @@
 
 <ul id="myTab" class="nav nav-tabs">
     <li class="active">
-        <a href="#ybbrsjsc" data-toggle="tab">医保病人数据上传</a>
+        <a href="#ybbrsjsc" data-toggle="tab">Tải lên dữ liệu bệnh nhân BHYT</a>
     </li>
     <li>
-        <a href="#zfbrsjsc" data-toggle="tab">自费病人数据上传</a>
+        <a href="#zfbrsjsc" data-toggle="tab">Tải lên dữ liệu bệnh nhân tự chi trả</a>
     </li>
 </ul>
 
 <div id="myTabContent" class="tab-content">
-    @*医保病人数据上传  *@
+    @*Tải lên dữ liệu bệnh nhân BHYT  *@
     <div class="tab-pane fade in active" id="ybbrsjsc">
         <div class="panel panel-default">
             <div class="panel-heading navb-bg">
-                筛选条件
+                Điều kiện lọc
             </div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">在院状态：</th>
+                    <th class="formTitle">Trạng thái đang nằm viện：</th>
                     <td class="formValue">
                         <select id="zybz" name="zybz" class="form-control">
-                            <option value="">==请选择==</option>
-                            <option value="0,1,2,7">在院</option>
-                            <option value="3" selected="selected">已出院</option>
-                            <option value="9">已作废</option>
+                            <option value="">==Vui lòng chọn==</option>
+                            <option value="0,1,2,7">Đang nằm viện</option>
+                            <option value="3" selected="selected">Đã xuất viện</option>
+                            <option value="9">Đã hủy</option>
                         </select>
                     </td>
-                    <th class="formTitle">关键字：</th>
+                    <th class="formTitle">Từ khóa：</th>
                     <td class="formValue">
-                        <input id="txt_keyword" type="text" class="form-control form-an" placeholder="姓名/病历号/住院号">
+                        <input id="txt_keyword" type="text" class="form-control form-an" placeholder="Họ tên/Số hồ sơ bệnh án/Số nhập viện">
                     </td>
-                    <th class="formTitle">入院日期：</th>
+                    <th class="formTitle">Ngày nhập viện：</th>
                     <td class="formValue" colspan="2">
                         <input id="ryrqkssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         <span style="margin-left:1%;float:left">—</span>
@@ -51,35 +51,35 @@
 
                 </tr>
                 <tr>
-                    <th class="formTitle" style="width:70px;padding-right:12px;">入院科室：</th>
+                    <th class="formTitle" style="width:70px;padding-right:12px;">Khoa nhập viện：</th>
                     <td class="formValue">
                         <input type="text" id="ksmc" name="ksmc" class="form-control form-an" />
                     </td>
-                    <th class="formTitle" style="width:70px;padding-right:12px;">入院病区：</th>
+                    <th class="formTitle" style="width:70px;padding-right:12px;">Khu bệnh nhập viện：</th>
                     <td class="formValue">
                         <input type="text" id="bqmc" name="bqmc" class="form-control form-an" />
                     </td>
-                    <th class="formTitle">上传类型：</th>
+                    <th class="formTitle">Loại tải lên：</th>
                     <td class="formValue" style="width:70%;" colspan="2">
                         <select class="form-control" id="ybscsel">
-                            <option value="4101">【4101】结算清单上传</option>
-                            <option value="4401">【4401】病案首页上传</option>
-                            <option value="4402">【4402】住院医嘱上传</option>
-                            <option value="4501">【4501】临床检查上传</option>
-                            <option value="4502">【4502】临床检验报告上传</option>
-                            <option value="4503">【4503】细菌培养报告上传</option>
-                            <option value="4504">【4504】药敏记录报告上传</option>
-                            <option value="4505">【4505】非结构化报告上传</option>
-                            <option value="4506">【4506】电子病历上传</option>
-                            <option value="4601">【4601】输血信息上传</option>
-                            <option value="4602">【4601】护理体征记录上传</option>
-                            <option value="4701">【4701】电子病历上传</option>
+                            <option value="4101">【4101】Tải lên bảng kê quyết toán</option>
+                            <option value="4401">【4401】Tải lên trang đầu hồ sơ bệnh án</option>
+                            <option value="4402">【4402】Tải lên y lệnh nội trú</option>
+                            <option value="4501">【4501】Tải lên kiểm tra lâm sàng</option>
+                            <option value="4502">【4502】Tải lên báo cáo xét nghiệm lâm sàng</option>
+                            <option value="4503">【4503】Tải lên báo cáo nuôi cấy vi khuẩn</option>
+                            <option value="4504">【4504】Tải lên báo cáo ghi nhạy cảm thuốc</option>
+                            <option value="4505">【4505】Tải lên báo cáo không có cấu trúc</option>
+                            <option value="4506">【4506】Tải lên hồ sơ bệnh án điện tử</option>
+                            <option value="4601">【4601】Tải lên thông tin truyền máu</option>
+                            <option value="4602">【4601】Tải lên bản ghi dấu hiệu sinh tồn điều dưỡng</option>
+                            <option value="4701">【4701】Tải lên hồ sơ bệnh án điện tử</option>
                         </select>
                     </td>
 
                     <td class="formTitle" colspan="2">
-                        <input type="button" id="btn_ybsc" class="btn btn-primary" style="width:36%;" value="上传" />
-                        <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="查询" />
+                        <input type="button" id="btn_ybsc" class="btn btn-primary" style="width:36%;" value="Tải lên" />
+                        <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tra cứu" />
                     </td>
                 </tr>
             </table>
@@ -89,38 +89,38 @@
             <div id="gridPager"></div>
         </div>
     </div>
-    @*自费病人数据上传  *@
+    @*Tải lên dữ liệu bệnh nhân tự chi trả  *@
 <div class="tab-pane fade" id="zfbrsjsc">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
                 <td class="formValue" style="width:100px;">
                     <select class="form-control" id="zflxscsel">
-                        <option value="mz">门诊</option>
-                        <option value="zy">住院</option>
+                        <option value="mz">Ngoại trú</option>
+                        <option value="zy">Nhập viện</option>
                     </select>
                 </td>
-                <th class="formTitle">关键字：</th>
+                <th class="formTitle">Từ khóa：</th>
                 <td class="formValue" style="width:12%;">
-                    <input id="txt_zfkeyword" type="text" class="form-control form-an" placeholder="姓名/病历号/住院号">
+                    <input id="txt_zfkeyword" type="text" class="form-control form-an" placeholder="Họ tên/Số hồ sơ bệnh án/Số nhập viện">
                 </td>
-                <th class="formTitle">结算日期：</th>
+                <th class="formTitle">Ngày quyết toán：</th>
                 <td class="formValue" colspan="1">
                     <input id="zfjskssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left">—</span>
                     <input id="zfjsjssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
-                <th class="formTitle">上传类型：</th>
+                <th class="formTitle">Loại tải lên：</th>
                 <td class="formValue" colspan="1">
                     <select class="form-control" style="width:90%;" id="zfscsel">
                     </select>
                 </td>
                 <td class="formTitle" style="width:20%;" colspan="1">
-                    <input type="button" id="btn_zfsc" class="btn btn-primary" style="width:60%;" value="上传/删除/提交" />
-                    <input type="button" id="btn_zfsearch" class="btn btn-primary" style="width:30%;margin-left: 10%;" value="查询" />
+                    <input type="button" id="btn_zfsc" class="btn btn-primary" style="width:60%;" value="Tải lên/Xóa/Gửi" />
+                    <input type="button" id="btn_zfsearch" class="btn btn-primary" style="width:30%;margin-left: 10%;" value="Tra cứu" />
                 </td>
             </tr>
             <tr>
@@ -160,47 +160,47 @@
                 yrqjssj: $("#ryrqjssj").val(), ksmc: $("#ksmc").attr("data-label"), bqmc: $("#bqmc").attr("data-label")
             },
             colModel: [
-                { label: '住院号', name: 'zyh', width: 50, align: 'left', key: true },
+                { label: 'Số nhập viện', name: 'zyh', width: 50, align: 'left', key: true },
                 {
-                    label: '在院标志', name: 'zybz', width: 60, align: 'left', formatter: function (cellvalue) {
+                    label: 'Cờ đang nằm viện', name: 'zybz', width: 60, align: 'left', formatter: function (cellvalue) {
                         return $.enum.getDescByValue("EnumZYBZ", cellvalue);
                     }
                 },
-                { label: '病历号', name: 'blh', hidden: true },
-                { label: '是否上传', name: 'issc', width: 60, align: 'left' },
-                { label: '姓名', name: 'xm', width: 60, align: 'left' },
-                { label: '性别', name: 'sexValue', width: 40, align: 'left' },
+                { label: 'Số hồ sơ bệnh án', name: 'blh', hidden: true },
+                { label: 'Có tải lên hay không', name: 'issc', width: 60, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 60, align: 'left' },
+                { label: 'Giới tính', name: 'sexValue', width: 40, align: 'left' },
                 {
-                    label: '年龄', name: 'nlshow', width: 40, align: 'left', formatter: function (cellvalue, a, b) {
+                    label: 'Tuổi', name: 'nlshow', width: 40, align: 'left', formatter: function (cellvalue, a, b) {
                         return getAgeFromBirthTime({ begin: b.csny }).text;
                     }
                 },
-                { label: '病区', name: 'bqmc', width: 80, align: 'left' },
-                { label: '民族', name: 'mzmc', width: 50, align: 'left', hidden: true },
-                { label: '电话', name: 'lxrdh', width: 80, align: 'left', hidden: true },
-                { label: '出生年月', name: 'csny', width: 80, align: 'left', hidden: true },
-                { label: '证件号', name: 'zjh', width: 120, align: 'left' },
+                { label: 'Khu bệnh', name: 'bqmc', width: 80, align: 'left' },
+                { label: 'Dân tộc', name: 'mzmc', width: 50, align: 'left', hidden: true },
+                { label: 'Điện thoại', name: 'lxrdh', width: 80, align: 'left', hidden: true },
+                { label: 'Năm sinh', name: 'csny', width: 80, align: 'left', hidden: true },
+                { label: 'Số giấy tờ', name: 'zjh', width: 120, align: 'left' },
                 { label: 'brxz', name: 'brxz', width: 80, align: 'left', hidden: true },
                 { label: 'CardType', name: 'CardType', width: 80, align: 'left', hidden: true },
                 { label: 'cbdbm', name: 'cbdbm', width: 80, align: 'left', hidden: true },
-                { label: '费用性质', name: 'brxzmc', width: 80, align: 'left' },
+                { label: 'Tính chất chi phí', name: 'brxzmc', width: 80, align: 'left' },
                 {
-                    label: '入院状态', name: 'rybq', width: 50, align: 'left', hidden: true, formatter: function (cellvalue) {
+                    label: 'Trạng thái nhập viện', name: 'rybq', width: 50, align: 'left', hidden: true, formatter: function (cellvalue) {
                         return $.enum.getDescByValue("EnumWzjb", cellvalue);
                     }
                 },
-                { label: '第一诊断', name: 'zzdmc', width: 100, align: 'left' },
-                { label: '入院日期', name: 'ryrq', width: 80, align: 'left' },
-                { label: '出院日期', name: 'cyrq', width: 80, align: 'left' },
-                { label: '已产生费用', name: 'zyfy', width: 80, align: 'left' },
+                { label: 'Chẩn đoán thứ nhất', name: 'zzdmc', width: 100, align: 'left' },
+                { label: 'Ngày nhập viện', name: 'ryrq', width: 80, align: 'left' },
+                { label: 'Ngày xuất viện', name: 'cyrq', width: 80, align: 'left' },
+                { label: 'Đã phát sinh chi phí', name: 'zyfy', width: 80, align: 'left' },
                 { label: 'setl_id', name: 'setl_id', hidden: true },
                 { label: 'psn_no', name: 'psn_no', hidden: true },
                 { label: 'mdtrt_id', name: 'mdtrt_id', hidden: true },
-                { label: '预交费', name: 'yjj', width: 50, align: 'left' },
+                { label: 'Phí tạm ứng', name: 'yjj', width: 50, align: 'left' },
                 { label: 'jzh', name: 'jzh', width: 80, align: 'left', hidden: true },
 
                 {
-                    label: '最后更新时间', name: 'UpdateTime', width: 80, align: 'left',
+                    label: 'Thời gian cập nhật lần cuối', name: 'UpdateTime', width: 80, align: 'left',
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
             ],
@@ -224,7 +224,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -253,7 +253,7 @@
         }
         var isBrxzOk = seleRow.brxz == '0';
         if (isBrxzOk) {
-            $.modalAlert("错误：选择的是非医保", "warning");
+            $.modalAlert("Lỗi：Đã chọn loại ngoài BHYT", "warning");
             return;
         }
         var zyh = seleRow.zyh;
@@ -299,7 +299,7 @@
                 upUrl = "http://127.0.0.1:33333/api/YiBao/PostMedicalRecords_4701";
                 break;
         }
-        $.loading("数据上传中，请稍等");
+        $.loading("Đang tải lên dữ liệu，Vui lòng chờ một chút");
         $.ajax({
             type: "POST",
             url: upUrl,
@@ -311,16 +311,16 @@
                 if (tfReturn) {
                     if (tfReturn.infcode == "0") {
                         $.loading(false);
-                        $.modalAlert("住院号为:" + zyh + "，上传成功", 'warning');
+                        $.modalAlert("Số nhập viện là:" + zyh + "，Tải lên thành công", 'warning');
                     }
                     else {
                         $.loading(false);
-                        $.modalAlert("住院号-"+zyh+"上传失败：" + tfReturn.err_msg, 'error');
+                        $.modalAlert("Số nhập viện-"+zyh+"Tải lên thất bại：" + tfReturn.err_msg, 'error');
                     }
                 }
             }, error: function (request, error, ex) {
                 $.loading(false);
-                $.modalAlert("医保服务【" + upobj + "】不可访问：[" + ex + "]", 'error');
+                $.modalAlert("Dịch vụ BHYT【" + upobj + "】Không thể truy cập：[" + ex + "]", 'error');
             }
         });
     }
@@ -329,32 +329,32 @@
         var seleRow = $("#gridList").jqGridRowValue();
         var zyh = seleRow.zyh;
         if (!!!zyh) {
-            $.modalAlert("尚未选择一条记录", "warning");
+            $.modalAlert("Chưa chọn bản ghi nào", "warning");
             return;
         }
-        //if (seleRow.zybz == '已出院') {
-        //    $.modalAlert("患者已出院", "error");
+        //if (seleRow.zybz == 'Đã xuất viện') {
+        //    $.modalAlert("Bệnh nhân đã xuất viện", "error");
         //    return;
         //}
         else if (seleRow.zybz == '作废记录') {
-            $.modalAlert("已作废记录", "error");
+            $.modalAlert("Bản ghi đã hủy", "error");
             return;
         }
         if (!medicalInsurance) {
-            $.modalAlert("缺少配置医保就医地", "error");
+            $.modalAlert("Thiếu cấu hình nơi khám chữa bệnh BHYT", "error");
             return;
         }
         return seleRow;
     }
 
-    ///科室
+    ///Khoa
     $("#ksmc").newtouchBatchFloatingSelector({
         height: 200,
         width: 300,
         clickautotrigger: true,
         filter: function (keyword) {
 
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysDepartList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -366,11 +366,11 @@
             return resultObjArr;
 
         },
-        caption: "科室",
+        caption: "Khoa",
         colModel: [
-            { label: '编号', name: 'Code', widthratio: 30 },
-            { label: '名称', name: 'Name', widthratio: 50 },
-            { label: '拼音', name: 'py', hidden: true }
+            { label: 'Số hiệu', name: 'Code', widthratio: 30 },
+            { label: 'Tên', name: 'Name', widthratio: 50 },
+            { label: 'Phiên âm', name: 'py', hidden: true }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#ksmc").attr("data-label", $thistr.find("td:eq(0)").html());
@@ -378,13 +378,13 @@
             return;
         },
     });
-    ///病区
+    ///Khu bệnh
     $("#bqmc").newtouchBatchFloatingSelector({
         height: 200,
         width: 300,
         clickautotrigger: true,
         filter: function (keyword) {
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             var ks = $("#ksmc").attr("data-label");
             var bqlist = top.window.clients.sysWardDeptRelation.filter((item) => item.ks == ks);
@@ -398,13 +398,13 @@
             return resultObjArr;
 
         },
-        caption: "病区",
+        caption: "Khu bệnh",
         colModel: [
             {
-                label: '编号', name: 'bq', widthratio: 25
+                label: 'Số hiệu', name: 'bq', widthratio: 25
             },
             {
-                label: '名称', name: 'bqmc', widthratio: 50
+                label: 'Tên', name: 'bqmc', widthratio: 50
             }
         ],
         itemdbclickhandler: function ($thistr) {
@@ -414,27 +414,27 @@
         },
     });
 
-    /*自费病人上传的逻辑*/
+    /*Logic tải lên bệnh nhân tự chi trả*/
 
-    // 门诊和住院对应的选项
+    // Tùy chọn tương ứng ngoại trú và nội trú
     var mzOptions = [
-        { value: '4205', text: '【4205】自费病人门诊就医信息上传' },
-        { value: '4206', text: '【4206】自费病人门诊就医信息删除' },
-        { value: '4203', text: '【4203】自费病人就诊以及费用明细上传完成' },
-        { value: '4201', text: '【4201】自费病人费用明细信息上传(废弃)' }
+        { value: '4205', text: '【4205】Tải lên thông tin khám chữa bệnh ngoại trú bệnh nhân tự chi trả' },
+        { value: '4206', text: '【4206】Xóa thông tin khám chữa bệnh ngoại trú bệnh nhân tự chi trả' },
+        { value: '4203', text: '【4203】Đã tải lên xong thông tin khám bệnh và chi tiết chi phí của bệnh nhân tự chi trả' },
+        { value: '4201', text: '【4201】Tải lên thông tin chi tiết chi phí bệnh nhân tự chi trả(Bỏ đi)' }
     ];
 
     var zyOptions = [
-        //{ value: '4201A', text: '【4201A】自费病人住院费用明细信息上传' },
-        { value: '4202', text: '【4202】自费病人住院就诊和诊断信息上传' },
-        { value: '4204', text: '【4204】自费病人住院费用明细删除' },
-        { value: '4203', text: '【4203】自费病人就诊以及费用明细上传完成' },
-        { value: '4201', text: '【4201】自费病人费用明细信息上传(废弃)' }
+        //{ value: '4201A', text: '【4201A】Tải lên thông tin chi tiết chi phí nội trú bệnh nhân tự chi trả' },
+        { value: '4202', text: '【4202】Tải lên thông tin khám bệnh và chẩn đoán nội trú bệnh nhân tự chi trả' },
+        { value: '4204', text: '【4204】Xóa thông tin chi tiết chi phí nội trú bệnh nhân tự chi trả' },
+        { value: '4203', text: '【4203】Đã tải lên xong thông tin khám bệnh và chi tiết chi phí của bệnh nhân tự chi trả' },
+        { value: '4201', text: '【4201】Tải lên thông tin chi tiết chi phí bệnh nhân tự chi trả(Bỏ đi)' }
     ];
-    // 根据选中的值动态更新选项
+    // Cập nhật động tùy chọn theo giá trị đã chọn
     function updateZfscselOptions(options) {
         var zfscsel = document.getElementById('zfscsel');
-        zfscsel.innerHTML = ''; // 清空现有选项
+        zfscsel.innerHTML = ''; // Xóa trống tùy chọn hiện có
 
         options.forEach(function (option) {
             var opt = document.createElement('option');
@@ -444,7 +444,7 @@
         });
     }
 
-    // 监听门诊/住院选择框的变化
+    // Lắng nghe ngoại trú/Thay đổi hộp chọn nhập viện
     document.getElementById('zflxscsel').addEventListener('change', function () {
         var selectedValue = this.value;
         if (selectedValue === 'mz') {
@@ -456,13 +456,13 @@
     });
 
     $(function () {
-        // 初始默认选择门诊
+        // Ban đầu mặc định chọn ngoại trú
         updateZfscselOptions(mzOptions);
         gridJSListData()
     })
 
 
-    //获取列表的查询条件
+    //Lấy điều kiện tra cứu danh sách
     function getSearchPostData() {
         var zflx = $("#zflxscsel").val();
         var xm = $("#txtxm").val();
@@ -476,12 +476,12 @@
 
     };
 
-    //查询结算信息列表
+    //Tra cứu danh sách thông tin quyết toán
     function gridJSListData() {
         var zflx = $("#zflxscsel").val();
         var gridSort = 'CreateTime asc';
         if (zflx === 'mz') {
-            $('.zyzfgridPanel').hide();  // 隐藏 zyzfgridPanel
+            $('.zyzfgridPanel').hide();  // Ẩn zyzfgridPanel
             $('.mzzfgridPanel').show();
             var $gridJsList = $("#mzzfgridList");
             $gridJsList.dataGrid({
@@ -491,34 +491,34 @@
                 colModel: [
                     { label: 'jsnm', name: 'jsnm', hidden: true, align: 'left' },
                     {
-                        label: '结算类型', name: 'jslx', width: 120, align: "left",
+                        label: 'Loại quyết toán', name: 'jslx', width: 120, align: "left",
                         formatter: function (val) {
                             return $.enum.getDescByValue("EnumJslx", val);
                         }
                     },
-                    { label: '病例号', name: 'blh', width: 100, align: 'left' },
-                    { label: '姓名', name: 'xm', width: 120, align: 'left' },
-                    { label: '门诊号', name: 'mzh', width: 140, align: 'left' },
-                    { label: '费用性质', name: 'brxzmc', width: 120, align: 'left' },
-                    { label: '发票号', name: 'fph', width: 100, align: 'left' },
+                    { label: 'Số hồ sơ bệnh án', name: 'blh', width: 100, align: 'left' },
+                    { label: 'Họ tên', name: 'xm', width: 120, align: 'left' },
+                    { label: 'Số khám ngoại trú', name: 'mzh', width: 140, align: 'left' },
+                    { label: 'Tính chất chi phí', name: 'brxzmc', width: 120, align: 'left' },
+                    { label: 'Số hóa đơn', name: 'fph', width: 100, align: 'left' },
                     {
-                        label: '结算金额', name: 'jszje', width: 100, align: 'left', formatter: function (cellvalue) {
+                        label: 'Số tiền quyết toán', name: 'jszje', width: 100, align: 'left', formatter: function (cellvalue) {
                             return cellvalue ? cellvalue.toFixed(2) : "0.00";
                         }
                     },
                     {
-                        label: '支付金额', name: 'jsxjzf', width: 100, align: 'left', formatter: function (cellvalue) {
+                        label: 'Số tiền thanh toán', name: 'jsxjzf', width: 100, align: 'left', formatter: function (cellvalue) {
                             return cellvalue ? cellvalue.toFixed(2) : "0.00";
                         }
                     },
-                    { label: '上传', name: 'sfyb', width: 80, align: 'left' },
+                    { label: 'Tải lên', name: 'sfyb', width: 80, align: 'left' },
                     {
-                        label: '费用日期', name: 'sfrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                        label: 'Ngày chi phí', name: 'sfrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                     },
-                    { label: '收费人员', name: 'CreatorName', width: 120, align: 'left' },
-                    { label: '医生', name: 'jzys', width: 120, align: 'left' },
+                    { label: 'Nhân viên thu phí', name: 'CreatorName', width: 120, align: 'left' },
+                    { label: 'Bác sĩ', name: 'jzys', width: 120, align: 'left' },
                     {
-                        label: '操作时间', name: 'CreateTime', width: 160, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                        label: 'Thời gian thao tác', name: 'CreateTime', width: 160, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                     }
                 ],
                 pager: "#mzzfgridPager",
@@ -526,7 +526,7 @@
                 viewrecords: true,
             });
         } else if (zflx === 'zy') {
-            $('.mzzfgridPanel').hide();  // 隐藏 mzzfgridPanel
+            $('.mzzfgridPanel').hide();  // Ẩn mzzfgridPanel
             $('.zyzfgridPanel').show();
             var $gridJsList = $("#zyzfgridList");
             $gridJsList.dataGrid({
@@ -535,28 +535,28 @@
                 height: $(window).height() - 188,
                 colModel: [
                     { label: 'jsnm', name: 'jsnm', key: true, hidden: true },
-                    { label: '住院号', name: 'zyh', width: 40, align: 'left' },
-                    { label: '姓名', name: 'xm', width: 60, align: 'left' },
-                    { label: '性别', name: 'xb', width: 30, align: 'left' },
-                    { label: '身份证', name: 'zjh', width: 115, align: 'left' },
-                    { label: '出生日期', name: 'csrq', width: 60, align: 'left' },
-                    { label: '新生儿', name: 'isxsr', width: 40, align: 'left' },
-                    { label: '民族', name: 'mz', width: 25, align: 'left' },
-                    { label: '主治医生', name: 'zzys', width: 50, align: 'left' },
-                    { label: '归转', name: 'gz', width: 25, align: 'left' },
-                    { label: '离院方式', name: 'lyfs', width: 50, align: 'left' },
-                    { label: '出院诊断', name: 'cyzd', width: 50, align: 'left' },
-                    { label: '家庭地址', name: 'jtdz', width: 50, align: 'left' },
-                    { label: '费用性质', name: 'brxzmc', width: 50, align: 'left' },
-                    { label: '入院日期', name: 'ryrq', width: 60, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                    { label: '出院日期', name: 'cyrq', width: 60, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                    { label: '发票号', name: 'fph', width: 60, align: 'left' },
-                    { label: '上传', name: 'sfyb', width: 80, align: 'left' },
-                    { label: '总金额', name: 'zje', width: 80, align: 'left', formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 } },
-                    { label: '现金支付', name: 'xjzf', width: 80, align: 'left', formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 } },
-                    { label: '结算人员', name: 'CreatorCode', width: 60, align: 'left' },
-                    { label: '医保结算号', name: 'zxlsh', width: 60, align: 'left' },
-                    { label: '结算时间', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }    }
+                    { label: 'Số nhập viện', name: 'zyh', width: 40, align: 'left' },
+                    { label: 'Họ tên', name: 'xm', width: 60, align: 'left' },
+                    { label: 'Giới tính', name: 'xb', width: 30, align: 'left' },
+                    { label: 'CMND/CCCD', name: 'zjh', width: 115, align: 'left' },
+                    { label: 'Ngày sinh', name: 'csrq', width: 60, align: 'left' },
+                    { label: 'Trẻ sơ sinh', name: 'isxsr', width: 40, align: 'left' },
+                    { label: 'Dân tộc', name: 'mz', width: 25, align: 'left' },
+                    { label: 'Bác sĩ điều trị chính', name: 'zzys', width: 50, align: 'left' },
+                    { label: 'Chuyển về', name: 'gz', width: 25, align: 'left' },
+                    { label: 'Cách rời viện', name: 'lyfs', width: 50, align: 'left' },
+                    { label: 'Chẩn đoán xuất viện', name: 'cyzd', width: 50, align: 'left' },
+                    { label: 'Địa chỉ gia đình', name: 'jtdz', width: 50, align: 'left' },
+                    { label: 'Tính chất chi phí', name: 'brxzmc', width: 50, align: 'left' },
+                    { label: 'Ngày nhập viện', name: 'ryrq', width: 60, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                    { label: 'Ngày xuất viện', name: 'cyrq', width: 60, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                    { label: 'Số hóa đơn', name: 'fph', width: 60, align: 'left' },
+                    { label: 'Tải lên', name: 'sfyb', width: 80, align: 'left' },
+                    { label: 'Tổng số tiền', name: 'zje', width: 80, align: 'left', formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 } },
+                    { label: 'Thanh toán tiền mặt', name: 'xjzf', width: 80, align: 'left', formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 } },
+                    { label: 'Nhân viên quyết toán', name: 'CreatorCode', width: 60, align: 'left' },
+                    { label: 'Số quyết toán BHYT', name: 'zxlsh', width: 60, align: 'left' },
+                    { label: 'Thời gian quyết toán', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }    }
                 ],
                 pager: "#zyzfgridPager",
                 sortname: gridSort,
@@ -583,7 +583,7 @@
         }
     }
 
-    //查询
+    //Tra cứu
     $("#btn_zfsearch").click(function () {
         sxGridJSListData()
     });
@@ -605,12 +605,12 @@
             hisId = seleRow.zyh;
         }
         if (!!!seleRow) {
-            $.modalAlert("侵犯选择一条数据", "warning");
+            $.modalAlert("Xâm phạm chọn một dữ liệu", "warning");
             return;
         }
         var isBrxzOk = seleRow.brxzmc !== '自费';
         if (isBrxzOk) {
-            $.modalAlert("错误：选择的是非自费", "warning");
+            $.modalAlert("Lỗi：Đã chọn loại không tự chi trả", "warning");
             return;
         }
         var dbscobj = { jsnm: seleRow.jsnm, hisId: hisId, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', orgId: '@(opr.OrganizeId)', cplt_flag: "1" };
@@ -618,53 +618,53 @@
          switch (upobj) {
             case '4201':
                  upUrl = "http://127.0.0.1:33333/api/YiBao/PostSelfPayPatientFee_4201";
-                 $.modalAlert("该接口暂时无用", "warning");
+                 $.modalAlert("Giao diện này tạm thời không dùng", "warning");
                  return
                 break;
             case '4201A':
                  upUrl = "http://127.0.0.1:33333/api/YiBao/PostSelfPayPatientFee_4201A";
                  if (seleRow.sfyb == '已上传') {
-                     $.modalAlert("该数据已经上传，无需重复上传", "warning");
+                     $.modalAlert("Dữ liệu này đã được tải lên，Không cần tải lên trùng lặp", "warning");
                      return;
                  }
                 break;
             case '4202':
                  upUrl = "http://127.0.0.1:33333/api/YiBao/PostSelfPayPatientFee_4202";
                  if (seleRow.sfyb == '已上传') {
-                     $.modalAlert("该数据已经上传，无需重复上传", "warning");
+                     $.modalAlert("Dữ liệu này đã được tải lên，Không cần tải lên trùng lặp", "warning");
                      return;
                  }
                 break;
             case '4203':
                  upUrl = "http://127.0.0.1:33333/api/YiBao/PostSelfPayPatientFee_4203";
                  if (seleRow.sfyb !== '已上传') {
-                     $.modalAlert("该数据暂未上传，请上传后再提交", "warning");
+                     $.modalAlert("Dữ liệu này tạm thời chưa tải lên，Vui lòng tải lên rồi mới gửi", "warning");
                      return;
                  }
                 break;
             case '4204':
                  upUrl = "http://127.0.0.1:33333/api/YiBao/PostSelfPayPatientFee_4204";
                  if (seleRow.sfyb !== '已上传') {
-                     $.modalAlert("该数据暂未上传无法删除", "warning");
+                     $.modalAlert("Dữ liệu này chưa tải lên nên không thể xóa", "warning");
                      return;
                  }
                 break;
             case '4205':
                  upUrl = "http://127.0.0.1:33333/api/YiBao/PostSelfPayPatientFee_4205";
                  if (seleRow.sfyb == '已上传') {
-                     $.modalAlert("该数据已经上传，无需重复上传", "warning");
+                     $.modalAlert("Dữ liệu này đã được tải lên，Không cần tải lên trùng lặp", "warning");
                      return;
                  }
                 break;
             case '4206':
                  upUrl = "http://127.0.0.1:33333/api/YiBao/PostSelfPayPatientFee_4206";
                  if (seleRow.sfyb !== '已上传') {
-                     $.modalAlert("该数据暂未上传无法删除", "warning");
+                     $.modalAlert("Dữ liệu này chưa tải lên nên không thể xóa", "warning");
                      return;
                  }
                 break;
         }
-        $.loading("数据上传中，请稍等");
+        $.loading("Đang tải lên dữ liệu，Vui lòng chờ một chút");
         $.ajax({
             type: "POST",
             url: upUrl,
@@ -677,24 +677,24 @@
                     if (tfReturn.infcode == "0") {
                         if (upobj == "4202") {
                             if (seleRow.sfyb == '已上传') {
-                                $.modalAlert("该数据已经上传，无需重复上传", "warning");
+                                $.modalAlert("Dữ liệu này đã được tải lên，Không cần tải lên trùng lặp", "warning");
                                 return;
                             }
                             PostSelfPayPatientFee_4201A(dbscobj)
                         } else {
                             $.loading(false);
-                            $.modalAlert("住院号/门诊号为:" + hisId + "，上传成功", 'warning');
+                            $.modalAlert("Số nhập viện/Số khám ngoại trú là:" + hisId + "，Tải lên thành công", 'warning');
                         }
                        
                     }
                     else {
                         $.loading(false);
-                        $.modalAlert("住院号/门诊号-" + hisId +"上传失败：" + tfReturn.err_msg, 'error');
+                        $.modalAlert("Số nhập viện/Số khám ngoại trú-" + hisId +"Tải lên thất bại：" + tfReturn.err_msg, 'error');
                     }
                 }
             }, error: function (request, error, ex) {
                 $.loading(false);
-                $.modalAlert("医保服务【" + upobj + "】不可访问：[" + ex + "]", 'error');
+                $.modalAlert("Dịch vụ BHYT【" + upobj + "】Không thể truy cập：[" + ex + "]", 'error');
             }
         });
         sxGridJSListData()
@@ -712,16 +712,16 @@
                 if (tfReturn) {
                     if (tfReturn.infcode == "0") {
                         $.loading(false);
-                        $.modalAlert("住院号/门诊号为:" + dbscobj.hisId + "，上传成功", 'warning');
+                        $.modalAlert("Số nhập viện/Số khám ngoại trú là:" + dbscobj.hisId + "，Tải lên thành công", 'warning');
                     }
                     else {
                         $.loading(false);
-                        $.modalAlert("住院号/门诊号-" + dbscobj.hisId + "上传失败：" + tfReturn.err_msg, 'error');
+                        $.modalAlert("Số nhập viện/Số khám ngoại trú-" + dbscobj.hisId + "Tải lên thất bại：" + tfReturn.err_msg, 'error');
                     }
                 }
             }, error: function (request, error, ex) {
                 $.loading(false);
-                $.modalAlert("医保服务【4201A】不可访问：[" + ex + "]", 'error');
+                $.modalAlert("Dịch vụ BHYT【4201A】Không thể truy cập：[" + ex + "]", 'error');
             }
         });
     }

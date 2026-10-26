@@ -4,11 +4,11 @@
     var isZFtoYB = SysConfigReader.Bool("Inpatient_Open_ZF_to_YB", false).Value;
     var isYBtoZF = SysConfigReader.Bool("Inpatient_Open_YB_to_ZF", false).Value;
 
-    //是否和医保交易
+    //Có giao dịch với BHYT hay không
     var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
-    //医保所属地，区分系统将执行何处医保逻辑
+    //Nơi tham gia BHYT，Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
-    //HIS厂商编号
+    //HISMã nhà sản xuất
     var his_manufacturerID = SysConfigReader.String("HIS_ManufacturerID");
 
     var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
@@ -38,14 +38,14 @@
 </style>
 
 <ol>
-    <li><span>住院患者信息初步判断</span></li>
-    <li><span>医保环境检查</span></li>
-    <li><span>HIS唯一身份验证</span></li>
-    <li><span>医保交互.入院办理回退</span></li>
-    <li><span>更新HIS.医保转自费</span></li>
-    <li><span>医保交互.入院办理回退确认</span></li>
-    <li><span>同步数据至医生站</span></li>
-    <li><span>成功</span></li>
+    <li><span>Đánh giá sơ bộ thông tin bệnh nhân nội trú</span></li>
+    <li><span>Kiểm tra môi trường BHYT</span></li>
+    <li><span>HISXác thực danh tính duy nhất</span></li>
+    <li><span>Tương tác BHYT.Hoàn trả làm thủ tục nhập viện</span></li>
+    <li><span>Cập nhậtHIS.Chuyển BHYT sang tự chi trả</span></li>
+    <li><span>Tương tác BHYT.Xác nhận hoàn trả làm thủ tục nhập viện</span></li>
+    <li><span>Đồng bộ dữ liệu tới trạm bác sĩ</span></li>
+    <li><span>Thành công</span></li>
 </ol>
 
 <script type="text/javascript">
@@ -54,7 +54,7 @@
 
     });
 
-    //递归调用each step
+    //Gọi đệ quyeach step
     function go(stepFuncName) {
         if (!!!stepFuncName) {
             stepFuncName = "funcStep" + 1;
@@ -73,7 +73,7 @@
                 $iTemp.remove();
                 if (isStepSuccess === true) {
                     $('ol li:eq(' + (indx - 1) + ')').append('<i class="fa fa-check passing"></i>');
-                    //继续调用下一step function
+                    //Tiếp tục gọi tiếp theostep function
                     if ($('ol li').length > indx) {
                         go("funcStep" + (indx + 1));
                     }
@@ -84,11 +84,11 @@
             };
             var flag = func(callback);
             if (flag === true || flag === false) {
-                //同步返回模式
+                //Chế độ trả về đồng bộ
                 callback(flag);
             }
             else {
-                //回调模式
+                //Chế độ callback
             }
         }, 50);
     }
@@ -96,25 +96,25 @@
 </script>
 <script type="text/javascript">
 
-    var openYbSett = '@openYbSett' === 'True'; //开关配置：医保患者是否使用医保交易流程
+    var openYbSett = '@openYbSett' === 'True'; //Cấu hình công tắc：Bệnh nhân BHYT có sử dụng quy trình giao dịch BHYT hay không
     var medicalInsurance = '@medicalInsurance';
 
     var zyh = $.request('zyh');
-    //医保卡信息
+    //Thông tin thẻ BHYT
     var cardInfo;
-    //系统病人主键
+    //Khóa chính bệnh nhân hệ thống
     var patid;
     var zybrxx;
     var xtbrxx;
     var cardxx;
     var garybl21;
     var medicalreg;
-    //入院办理回退信息（医保接口返回）
+    //Thông tin hoàn trả làm thủ tục nhập viện（Giao diện BHYT trả về）
     var ryblht;
 
     function funcStep1(nextStepCallback) {
         if (!!!zyh) {
-            $.modalAlert('缺少参数：zyh', 'error');
+            $.modalAlert('Thiếu tham số：zyh', 'error');
             return false;
         }
         $.najax({
@@ -134,7 +134,7 @@
     }
 
     function funcStep2(nextStepCallback) {
-        $.loading(true, '正在读卡...');
+        $.loading(true, 'Đang đọc thẻ...');
         setTimeout(function () {
             nextStepCallback(true);
         })
@@ -150,7 +150,7 @@
                     xtbrxx = data.data.xtbrxx;
                     cardxx = data.data.cardxx;
 				    if (!medicalreg) {
-					    $.modalAlert("入院办理对应的医保数据落地记录未找到", "error");
+					    $.modalAlert("Không tìm thấy bản ghi lưu trữ dữ liệu BHYT tương ứng với làm thủ tục nhập viện", "error");
 					    nextStepCallback(false);
 					    return;
 				    }
@@ -168,16 +168,16 @@
 
     function funcStep4(nextStepCallback) {
         
-	    $.loading(true, '正在医保入院办理回退...');
+	    $.loading(true, 'Đang hoàn trả làm thủ tục nhập viện BHYT...');
 	    var bkbz =cardxx.accountattr ? cardxx.accountattr.substr(11, 1):"";
-	    var gbbz =cardxx.accountattr ? cardxx.accountattr.substr(1, 1):"";//干保 1
+	    var gbbz =cardxx.accountattr ? cardxx.accountattr.substr(1, 1):"";//Bảo hiểm cán bộ 1
        
         if (bkbz == "G" || bkbz == "A" || gbbz == "1") {
             var jzlx = "1";
             var payoptype = {
                 cardtype: jzlx,
                 carddata: cardxx.cardno,
-                hisId: zyh,//住院号
+                hisId: zyh,//Số nhập viện
                 operatorId: '@(opr.rygh)',
                 operatorName:  '@(opr.UserName)',
                 insuplc_admdvs: xtbrxx.cbdbm
@@ -195,7 +195,7 @@
                             nextStepCallback(true);
                         }
                         else {
-                            $.modalAlert("医保取消住院登记失败：" + medicalReg.err_msg, 'error');
+                            $.modalAlert("Hủy đăng ký nhập viện BHYT thất bại：" + medicalReg.err_msg, 'error');
                             $.loading(false);
                             nextStepCallback(false);
                         }
@@ -219,7 +219,7 @@
 		    if (cqybjyDenySettleReturn.infcode == "0") {
 			    nextStepCallback(true);
 		    } else {
-		        $.modalAlert("医保取消住院登记失败：" + cqybjyDenySettleReturn.err_msg, 'error');
+		        $.modalAlert("Hủy đăng ký nhập viện BHYT thất bại：" + cqybjyDenySettleReturn.err_msg, 'error');
 			    nextStepCallback(false);
 		    }
         }

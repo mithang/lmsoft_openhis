@@ -12,34 +12,34 @@
 <form>
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">病历号：</th>
+                <th class="formTitle">Số hồ sơ bệnh án：</th>
                 <td class="formValue">
                     <input type="text" class="form-control form-an" id="blh" />
                 </td>
-                <th class="formTitle">姓名：</th>
+                <th class="formTitle">Họ tên：</th>
                 <td class="formValue">
                     <input type="text" class="form-control form-an" id="xm" />
                 </td>
-                <th class="formTitle">病人类型：</th>
+                <th class="formTitle">Loại bệnh nhân：</th>
                 <td class="formValue">
                     <select id="brlx" class="form-control form-an">
-                        <option value="-1">全部</option>
-                        <option value="Outpatient">门诊</option>
-                        <option value="Inpatient">住院</option>
+                        <option value="-1">Tất cả</option>
+                        <option value="Outpatient">Ngoại trú</option>
+                        <option value="Inpatient">Nhập viện</option>
                     </select>
                 </td>
-                <th class="formTitle">创建时间：</th>
+                <th class="formTitle">Thời gian tạo：</th>
                 <td class="formValue" colspan="2">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left;">—</span>
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an" style="width :42%;float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
                 <td class="formValue">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="Tra cứu" />
                 </td>
             </tr>
         </table>
@@ -62,28 +62,28 @@
             height: $(window).height() - 155,
             colModel: [
                 { label: 'Id', name: 'Id', align: 'left', hidden: true },
-                { label: '收费项目', name: 'serviceDescription', width: 120, align: 'left' },
-                { label: '姓名', name: 'patientName', width: 120, align: 'left' },
-                { label: '病历号', name: 'patientId', width: 120, align: 'left' },
-                { label: '住院/门诊号', name: 'admsNum', width: 120, align: 'left' },
-                { label: '治疗师', name: 'therapistName', width: 120, align: 'left' },
-                { label: '康复类别', name: 'disciplineTrack', width: 120, align: 'left' },
+                { label: 'Hạng mục thu phí', name: 'serviceDescription', width: 120, align: 'left' },
+                { label: 'Họ tên', name: 'patientName', width: 120, align: 'left' },
+                { label: 'Số hồ sơ bệnh án', name: 'patientId', width: 120, align: 'left' },
+                { label: 'Nhập viện/Số khám ngoại trú', name: 'admsNum', width: 120, align: 'left' },
+                { label: 'Kỹ thuật viên trị liệu', name: 'therapistName', width: 120, align: 'left' },
+                { label: 'Loại phục hồi chức năng', name: 'disciplineTrack', width: 120, align: 'left' },
                 { label: 'wtjlbz', name: 'wtjlbz', hidden: true, formatter: "bool", align: 'left' },
                 {
-                    label: '病人类型', name: 'patientType', width: 120, align: 'left', formatter: function (val) {
+                    label: 'Loại bệnh nhân', name: 'patientType', width: 120, align: 'left', formatter: function (val) {
                         switch (val) {
                             case "outpatient":
-                                return "门诊"
+                                return "Ngoại trú"
                                 break;
                             case "inpatient":
-                                return "住院"
+                                return "Nhập viện"
                                 break;
                             default:
                                 break;
                         }
                     }
                 },
-                { label: '创建时间', name: 'CreatedDate', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
+                { label: 'Thời gian tạo', name: 'CreatedDate', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
 
             ],
             pager: "#gridPager",
@@ -111,7 +111,7 @@
         });
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var blh = $("#blh").val();
         var xm = $("#xm").val();
@@ -139,7 +139,7 @@
             }
         }
     }
-    //作废
+    //Hủy
     function newtouch_event_f8() {
         var data = $("#gridList").jqGrid('getRowData_AllLine', undefined, false);
         if (data == "[]") {
@@ -147,7 +147,7 @@
         }
         var ids = $("#gridList").jqGrid("getGridParam", "selarrrow");
         if (!ids || ids.length == 0) {
-            $.modalAlert("请先在列表勾选需要作废的治疗记录", 'warning');
+            $.modalAlert("Vui lòng chọn trong danh sách bản ghi trị liệu cần hủy trước", 'warning');
             return false;
         }
         var arraryData = [];
@@ -163,9 +163,9 @@
             async: false,
             success: function (data) {
                 $.loading(false);
-                //刷新未确认列表
+                //Làm mới danh sách chưa xác nhận
                 $('#btn_search').trigger('click');
-                $.modalMsg("操作成功", 'success');
+                $.modalMsg("Thao tác thành công", 'success');
             },
             errCallback: function (err) {
                 $.loading(false);

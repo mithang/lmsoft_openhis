@@ -33,11 +33,11 @@
     //        }
     //    });
     //}
-    //总金额合计
+    //Tổng cộng số tiền
     //function loadJfmxByZyh2(data) {
-    //    //$('#gridFeeList').jqGrid("clearGridData");   //早F4过了
+    //    //$('#gridFeeList').jqGrid("clearGridData");   //SớmF4Đã qua
     //    $("#gridFeeList").newtouchLocalDataGrid(null, data);
-    //    //总金额
+    //    //Tổng số tiền
     //    var zje = 0;
     //    $.each(data, function () {
     //        if (this.je) {
@@ -62,7 +62,7 @@
     //})
     function FeeListGrid(zyh,group) {
         var gridFeeList = $("#gridFeeInfoList");
-        var captionCon = "计费明细&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总金额：<label style='color:red;'>￥</label></span>&nbsp;<span id='sp_billje' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>元";
+        var captionCon = "Chi tiết tính phí&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền：<label style='color:red;'>￥</label></span>&nbsp;<span id='sp_billje' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>đồng";
         gridFeeList.dataGrid({
             postData: {
                 zyh: zyh, group: group              
@@ -70,7 +70,7 @@
             url: "/PatientManage/PatientCenter/GetFeeInfoGridList",
             autowidth: false,
             height: $(window).height() - 180,
-            colModel: [                { label: 'dlCode', name: 'dlCode', hidden: true },                { label: '费用类别', name: 'dlmc', width: 200, align: 'left' },                {                    label: '金额', name: 'je', width: 900, align: 'left', formatter: "number"                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }                },            ],  
+            colModel: [                { label: 'dlCode', name: 'dlCode', hidden: true },                { label: 'Loại chi phí', name: 'dlmc', width: 200, align: 'left' },                {                    label: 'Số tiền', name: 'je', width: 900, align: 'left', formatter: "number"                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }                },            ],  
             viewrecords: false,
             ondblClickRow: function (rowIndex, s) {
                 getItemsbySfdl(rowIndex);
@@ -93,7 +93,7 @@
             var sfxm = rowData.dlmc;
             $.modalOpen({
                 id: "SfdlfeeGroup",
-                title: sfxm+"项目汇总",
+                title: sfxm+"Tổng hợp hạng mục",
                 url: "/PatientManage/PatientCenter/HospFeeItemShow?dlCode=" + sfdl + "&zyh=" + zyh,
                 width: "800px",
                 height: "600px",
@@ -105,9 +105,9 @@
     }
 
     function getFeeZje() {
-        //总金额
+        //Tổng số tiền
         var zje = 0;
-        var ids = $("#gridFeeInfoList").getDataIDs();//返回数据表的ID数组["66","39"..] 
+        var ids = $("#gridFeeInfoList").getDataIDs();//của bảng dữ liệu trả vềIDMảng["66","39"..] 
         for (var i = 0; i < ids.length; i++) {
             var rowData = $("#gridFeeInfoList").getRowData(ids[i]);
             if (!!rowData.je) {

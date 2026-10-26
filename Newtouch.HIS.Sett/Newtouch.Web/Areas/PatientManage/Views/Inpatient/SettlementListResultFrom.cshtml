@@ -25,19 +25,19 @@
     function bindGridList() {
         colModel = [
             {
-                label: '机构编号', name: 'fixmedins_code', align: 'center', width: 90, key: true
+                label: 'Mã cơ quan', name: 'fixmedins_code', align: 'center', width: 90, key: true
             },
-            { label: '机构名称', name: 'fixmedins_name', align: 'center', width: 120 },
-            { label: '结算年月', name: 'setl_ym', align: 'center', width: 50 },
-            { label: '结算 ID', name: 'setl_id', align: 'left', width: 60 },
-            { label: '人员编号', name: 'psn_no', align: 'left', width: 130 },
-            { label: '人员姓名', name: 'psn_name', align: 'center', width: 50 },
-            { label: '质控结果', name: 'qltctrl_rslt', align: 'center', width: 60 },
-            { label: ' 错误等级', name: 'err_lv', align: 'center', width: 50 },
-            { label: '回退标志', name: 'retn_flag', align: 'center', width: 50 },
-            { label: '质控版本号', name: 'qltctrl_ver', align: 'center', width: 50 },
-            { label: '人员证件类型', name: 'psn_cert_type', align: 'center', width: 80 },
-            { label: '证件号码', name: 'cert_no', align: 'center', width: 100 },
+            { label: 'Tên cơ quan', name: 'fixmedins_name', align: 'center', width: 120 },
+            { label: 'Năm tháng quyết toán', name: 'setl_ym', align: 'center', width: 50 },
+            { label: 'Quyết toán ID', name: 'setl_id', align: 'left', width: 60 },
+            { label: 'Mã nhân viên', name: 'psn_no', align: 'left', width: 130 },
+            { label: 'Tên nhân viên', name: 'psn_name', align: 'center', width: 50 },
+            { label: 'Kết quả kiểm soát chất lượng', name: 'qltctrl_rslt', align: 'center', width: 60 },
+            { label: ' Mức độ lỗi', name: 'err_lv', align: 'center', width: 50 },
+            { label: 'Cờ quay lại', name: 'retn_flag', align: 'center', width: 50 },
+            { label: 'Số phiên bản kiểm soát chất lượng', name: 'qltctrl_ver', align: 'center', width: 50 },
+            { label: 'Loại giấy tờ nhân viên', name: 'psn_cert_type', align: 'center', width: 80 },
+            { label: 'Số giấy tờ', name: 'cert_no', align: 'center', width: 100 },
 
         ];
         $.ajax({
@@ -54,20 +54,20 @@
                         $gridList.newtouchLocalDataGrid({
                             autowidth: false,
                             unwritten: false,
-                            caption: "结算清单质控查询",
+                            caption: "Tra cứu kiểm soát chất lượng bảng kê quyết toán",
                             colModel: colModel,
                         }, tfReturn.output.data);
-                        // 调用显示详情信息表格的函数
+                        // Gọi hàm hiển thị bảng thông tin chi tiết
                         displayDetailInfo(tfReturn.output.data[0].detailinfo);
                     }
                     else {
-                        $.modalAlert("结算清单质控查询失败：" + tfReturn.err_msg, 'error');
+                        $.modalAlert("Tra cứu kiểm soát chất lượng bảng kê quyết toán thất bại：" + tfReturn.err_msg, 'error');
                         return;
                     }
                 }
             }, error: function () {
                 $.loading(false);
-                $.modalAlert("服务异常：", 'error');
+                $.modalAlert("Dịch vụ bất thường：", 'error');
                 return;
             }
         });
@@ -75,7 +75,7 @@
     }
     function gridListData() {
         var $gridList = $("#gridList");
-        var captionCon = "质控结果";
+        var captionCon = "Kết quả kiểm soát chất lượng";
         $gridList.dataGrid({
             height: $(window).height() - 300,
             caption: captionCon,
@@ -83,19 +83,19 @@
             unwritten: false,
             colModel: [
                 {
-                    label: '机构编号', name: 'fixmedins_code', align: 'center', width: 90, key: true
+                    label: 'Mã cơ quan', name: 'fixmedins_code', align: 'center', width: 90, key: true
                 },
-                { label: '机构名称', name: 'fixmedins_name', align: 'center', width: 120 },
-                { label: '结算年月', name: 'setl_ym', align: 'center', width: 50 },
-                { label: '结算 ID', name: 'setl_id', align: 'left', width: 60 },
-                { label: '人员编号', name: 'psn_no', align: 'left', width: 130 },
-                { label: '人员姓名', name: 'psn_name', align: 'center', width: 50 },
-                { label: '质控结果', name: 'qltctrl_rslt', align: 'center', width: 60 },
-                { label: ' 错误等级', name: 'err_lv', align: 'center', width: 50 },
-                { label: '回退标志', name: 'retn_flag', align: 'center', width: 50 },
-                { label: '质控版本号', name: 'qltctrl_ver', align: 'center', width: 50 },
-                { label: '人员证件类型', name: 'psn_cert_type', align: 'center', width: 80 },
-                { label: '证件号码', name: 'cert_no', align: 'center', width: 100 },
+                { label: 'Tên cơ quan', name: 'fixmedins_name', align: 'center', width: 120 },
+                { label: 'Năm tháng quyết toán', name: 'setl_ym', align: 'center', width: 50 },
+                { label: 'Quyết toán ID', name: 'setl_id', align: 'left', width: 60 },
+                { label: 'Mã nhân viên', name: 'psn_no', align: 'left', width: 130 },
+                { label: 'Tên nhân viên', name: 'psn_name', align: 'center', width: 50 },
+                { label: 'Kết quả kiểm soát chất lượng', name: 'qltctrl_rslt', align: 'center', width: 60 },
+                { label: ' Mức độ lỗi', name: 'err_lv', align: 'center', width: 50 },
+                { label: 'Cờ quay lại', name: 'retn_flag', align: 'center', width: 50 },
+                { label: 'Số phiên bản kiểm soát chất lượng', name: 'qltctrl_ver', align: 'center', width: 50 },
+                { label: 'Loại giấy tờ nhân viên', name: 'psn_cert_type', align: 'center', width: 80 },
+                { label: 'Số giấy tờ', name: 'cert_no', align: 'center', width: 100 },
 
             ],
             //pager: "#gridPager",
@@ -103,22 +103,22 @@
         });
     }
 
-    // 显示详情信息的函数
+    // Hàm hiển thị thông tin chi tiết
     function displayDetailInfo(detailData) {
         var $detailGrid = $("#detailGrid");
         var detailColModel = [
-            { label: '错误等级', name: 'err_lv', align: 'center', width: 50 },
-            { label: '质控检查结果', name: 'qltctrl_chk_rslt', align: 'center', width: 150 },
-            { label: '初始值', name: 'init_val', align: 'center', width: 50 },
-            { label: '检查数据字段', name: 'exam_data_fld', align: 'center', width: 150 },
-            { label: '回退标志', name: 'retn_flag', align: 'center', width: 50 }
+            { label: 'Mức độ lỗi', name: 'err_lv', align: 'center', width: 50 },
+            { label: 'Kết quả kiểm tra kiểm soát chất lượng', name: 'qltctrl_chk_rslt', align: 'center', width: 150 },
+            { label: 'Giá trị ban đầu', name: 'init_val', align: 'center', width: 50 },
+            { label: 'Kiểm tra trường dữ liệu', name: 'exam_data_fld', align: 'center', width: 150 },
+            { label: 'Cờ quay lại', name: 'retn_flag', align: 'center', width: 50 }
         ];
 
-        // 创建并填充detailGrid表格
+        // Tạo và điềndetailGridBảng
         $detailGrid.newtouchLocalDataGrid({
             autowidth: true,
             unwritten: false,
-            caption: "质控详情",
+            caption: "Chi tiết kiểm soát chất lượng",
             colModel: detailColModel,
         }, detailData.length > 0 ? detailData : [{/* Empty row to show column headers */ }]);
     }

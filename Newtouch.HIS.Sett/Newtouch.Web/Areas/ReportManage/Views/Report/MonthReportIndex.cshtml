@@ -7,24 +7,24 @@
 <div class="rows">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">年份：</th>
+                <th class="formTitle">Năm：</th>
                 <td class="formValue">
                     <select id="year" name="year">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
-                <th class="formTitle">月份：</th>
+                <th class="formTitle">Tháng：</th>
                 <td class="formValue">
                     <select id="month" name="month">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
                 <td class="formValue"></td>
                 <td class="formValue"></td>
@@ -36,7 +36,7 @@
 <div id="divNavNew" class="rows hide">
     <div class="panel panel-default">
         <div class="panel-body">
-            <span id="span"></span>固定报表尚未生成，点击<a id="btnToNewReport" class="text-primary">生成新报表</a>
+            <span id="span"></span>Báo cáo cố định chưa được tạo，Nhấp<a id="btnToNewReport" class="text-primary">Tạo báo cáo mới</a>
         </div>
         <div></div>
     </div>
@@ -49,9 +49,9 @@
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new[] { 6, 7, 9 },
-    F6Text = "生成报表",
-    F7Text = "导出Excel",
-    F9Text = "重新生成",
+    F6Text = "Tạo báo cáo",
+    F7Text = "Xuất raExcel",
+    F9Text = "Tạo lại",
 })
 
 <script type="text/javascript">
@@ -68,29 +68,29 @@
     function initGridList(dlColArr) {
         var colModelArr = [
                 {
-                    label: "病人类型", name: "patientType", width: 60, align: "left", formatter: function (cellvalue) {
-                        return cellvalue == "outpatient" ? "门诊" : (cellvalue == "inpatient" ? "住院" : "");
+                    label: "Loại bệnh nhân", name: "patientType", width: 60, align: "left", formatter: function (cellvalue) {
+                        return cellvalue == "outpatient" ? "Ngoại trú" : (cellvalue == "inpatient" ? "Nhập viện" : "");
                     }
                 },
-                { label: "病历号", name: "blh", width: 80, align: "left" },
+                { label: "Số hồ sơ bệnh án", name: "blh", width: 80, align: "left" },
                 {
-                    label: "住院号/门诊号", name: "zyhmzh", width: 120, align: "left", formatter: function (cellvalue) {
+                    label: "Số nhập viện/Số khám ngoại trú", name: "zyhmzh", width: 120, align: "left", formatter: function (cellvalue) {
                         return cellvalue === "0" ? "" : cellvalue;
                     }
                 },
-                { label: "病人姓名", name: "brxm", width: 80, align: "left" },
+                { label: "Tên bệnh nhân", name: "brxm", width: 80, align: "left" },
         ];
         if (dlColArr && dlColArr.length && dlColArr.length > 0) {
             $.each(dlColArr, function () {
                 colModelArr.push(this);
             });
         }
-        //声明 项目明细 grid
+        //Khai báo Chi tiết hạng mục grid
         $("#gridList").newtouchLocalDataGrid({
             height: $(window).height() - 190,
             unwritten: false,
             colModel: colModelArr,
-            caption: '月报表',
+            caption: 'Báo cáo tháng',
         });
     }
     initGridList();
@@ -107,21 +107,21 @@
                 success: function (ajaxresp) {
                     if (!!ajaxresp.data && ajaxresp.data && ajaxresp.data.length > 0) {
                         $('#divNavNew').addClass('hide');
-                        //报表已生成过 呈现之
+                        //Báo cáo đã từng được tạo hiển thị
                         formatRespData(ajaxresp.data);
-                        //报表生成日期
-                        var caption = year + '年' + $.zeroPrefixInteger(month, 2) + '月月报表';
-                        caption += '（报表已固定 生成日期：' + $.getDate({ date: new Date(ajaxresp.data[0].CreateTime) });
-                        caption += ' 费用合计：';
+                        //Ngày tạo báo cáo
+                        var caption = year + 'Năm' + $.zeroPrefixInteger(month, 2) + 'Báo cáo tháng';
+                        caption += '（Báo cáo đã cố định Ngày tạo：' + $.getDate({ date: new Date(ajaxresp.data[0].CreateTime) });
+                        caption += ' Tổng chi phí：';
                         caption += getFeeTotal(ajaxresp.data).toFixed(2);
                         caption += '）';
                         $("#gridList").setCaption(caption);
 
-                        $('#btn_bottombutton_f9').removeAttr('disabled');   //重新生成 按钮 可操作
-                        $('#btn_bottombutton_f7').removeAttr('disabled');   //导出Excel 可操作
+                        $('#btn_bottombutton_f9').removeAttr('disabled');   //Tạo lại Nút Có thể thao tác
+                        $('#btn_bottombutton_f7').removeAttr('disabled');   //Xuất raExcel Có thể thao tác
                     }
                     else {
-                        $('#span').html(year + '年' + $.zeroPrefixInteger(month, 2) + '月');
+                        $('#span').html(year + 'Năm' + $.zeroPrefixInteger(month, 2) + 'Tháng');
                         $('#divNavNew').removeClass('hide');
                     }
                 }
@@ -155,22 +155,22 @@
                     if (!!ajaxresp.data && ajaxresp.data.length && ajaxresp.data.length > 0) {
                         formatRespData(ajaxresp.data);
 
-                        var caption = year + '年' + $.zeroPrefixInteger(month, 2) + '月月报表';
-                        caption += '（尚未固定 费用合计：';
+                        var caption = year + 'Năm' + $.zeroPrefixInteger(month, 2) + 'Báo cáo tháng';
+                        caption += '（Chưa cố định Tổng chi phí：';
                         caption += getFeeTotal(ajaxresp.data).toFixed(2);
                         caption += '）';
                         $("#gridList").setCaption(caption);
 
-                        $('#btn_bottombutton_f6').removeAttr('disabled');   //生成报表 按钮 可操作
+                        $('#btn_bottombutton_f6').removeAttr('disabled');   //Tạo báo cáo Nút Có thể thao tác
                     }
                     else {
-                        //获取数据失败
-                        $.modalAlert("未能提取到当月任何费用<br/>报表生成失败", 'error');
+                        //Lấy dữ liệu thất bại
+                        $.modalAlert("Không trích xuất được bất kỳ chi phí nào trong tháng<br/>Tạo báo cáo thất bại", 'error');
                     }
                 },
                 error: function () {
-                    //获取数据失败
-                    $.modalAlert("程序发生异常<br/>报表生成失败", 'error');
+                    //Lấy dữ liệu thất bại
+                    $.modalAlert("Chương trình xảy ra bất thường<br/>Tạo báo cáo thất bại", 'error');
                 }
             });
         }
@@ -180,7 +180,7 @@
         details = null;
         isregenerate = false;
         $('#divNavNew').addClass('hide');
-        $('.gridPanel').html('<table id="gridList"></table>');  //先清除掉grid的内容
+        $('.gridPanel').html('<table id="gridList"></table>');  //Xóa bỏ trướcgridnội dung
         initGridList();
         $('#btn_bottombutton_f6').attr('disabled', 'disabled');
         $('#btn_bottombutton_f9').attr('disabled', 'disabled');
@@ -209,29 +209,29 @@
                 }
             }
         });
-        $('.gridPanel').html('<table id="gridList"></table>');  //先清除掉grid的内容
+        $('.gridPanel').html('<table id="gridList"></table>');  //Xóa bỏ trướcgridnội dung
         initGridList(dlColArr);
-        //呈现数据
-        //处理data 至 目标格式（有大类列）
+        //Hiển thị dữ liệu
+        //Xử lýdata đến Định dạng đích（Có cột nhóm lớn）
         $("#gridList").newtouchLocalDataGrid({ posttofirst: false, actions: 'addRowData' }, formatDlData(data));
-        //呈现data中补差哪一行
+        //Hiển thịdataBù chênh lệch dòng nào trong
         var buchaRow = $.jsonWhere(data, function (v) {
-            return !!v.bz && !!v.dlje;    //这是一补差记录
+            return !!v.bz && !!v.dlje;    //Đây là bản ghi bù chênh lệch
         });
         if (buchaRow && buchaRow.length && buchaRow.length == 1) {
             buchaRow = buchaRow[0];
-            //插入到gridList最后一行
+            //Chèn vàogridListDòng cuối cùng
             $("#gridList").newtouchLocalDataGrid({ posttofirst: false, actions: 'addRowData' }, [
-                { zyhmzh: '补差：' + buchaRow.dlje.toFixed(2), brxm: '调整原因：' + buchaRow.bz }]);
+                { zyhmzh: 'Bù chênh lệch：' + buchaRow.dlje.toFixed(2), brxm: 'Lý do điều chỉnh：' + buchaRow.bz }]);
             var $tds = $('#gridList tr:last td:visible:gt(3)').not(':first');
             var tdslength = $tds.length;
             $('#gridList tr:last td:visible:eq(4)').attr('colspan', (tdslength + 1));
             $tds.remove();
         }
-        //本月合计：
-        //插入到gridList最后一行
+        //Tổng cộng tháng này：
+        //Chèn vàogridListDòng cuối cùng
         $("#gridList").newtouchLocalDataGrid({ posttofirst: false, actions: 'addRowData' }, [
-            { zyhmzh: '本月费用合计：' + getFeeTotal(data).toFixed(2) }]);
+            { zyhmzh: 'Tổng chi phí tháng này：' + getFeeTotal(data).toFixed(2) }]);
         var $tds = $('#gridList tr:last td:visible:gt(2)').not(':first');
         var tdslength = $tds.length;
         $('#gridList tr:last td:visible:eq(3)').attr('colspan', (tdslength + 1));
@@ -239,7 +239,7 @@
     }
 
     //resp data to data
-    //处理data 至 目标格式（有大类列）
+    //Xử lýdata đến Định dạng đích（Có cột nhóm lớn）
     function formatDlData(data) {
         var respData = [];
         $.each(data, function () {
@@ -250,7 +250,7 @@
                         && respData[iiii].zyhmzh === this.zyhmzh
                         && respData[iiii].brxm === this.brxm) {
                         respData[iiii][this.dl] = this.dlje;
-                        return; //return， 而不是continue
+                        return; //return， Mà không phảicontinue
                     }
                 }
                 var newPatientData = { patientType: this.patientType, blh: this.blh, zyhmzh: this.zyhmzh, brxm: this.brxm };
@@ -261,17 +261,17 @@
         return respData;
     }
 
-    //F6生成报表 固化 调整 浮层页面
+    //F6Tạo báo cáo Cố định hóa Điều chỉnh Trang lớp nổi
     function newtouch_event_f6() {
         var year = $('#year').val();
         var month = $('#month').val();
         if (!details || !details.length || details.length == 0) {
-            $.modalAlert("未获取到费用", 'error');
+            $.modalAlert("Chưa lấy được chi phí", 'error');
             return;
         }
         $.modalOpen({
             id: "MonthReportDataConfirmPreview",
-            title: year + '年' + $.zeroPrefixInteger(month, 2) + '月' + '报表确认',
+            title: year + 'Năm' + $.zeroPrefixInteger(month, 2) + 'Tháng' + 'Xác nhận báo cáo',
             url: '/ReportManage/Report/MonthReportDataConfirmPreview?year=' + year + '&month=' + month + '&isregenerate=' + isregenerate + '&calcZje='
                 + getFeeTotal(details),
             width: "450px",
@@ -282,13 +282,13 @@
         });
     };
 
-    //F9 请求重新生成报表
+    //F9 Yêu cầu tạo lại báo cáo
     function newtouch_event_f9() {
-        $.modalConfirm("确定重新生成", function (flag) {
+        $.modalConfirm("Xác nhận tạo lại", function (flag) {
             if (flag) {
                 isregenerate = true;
-                $('#btn_bottombutton_f9').attr('disabled', 'disabled');   //先让其disabled
-                $('#btn_bottombutton_f7').attr('disabled', 'disabled');    //先让其disabled
+                $('#btn_bottombutton_f9').attr('disabled', 'disabled');   //Trước tiên để nódisabled
+                $('#btn_bottombutton_f7').attr('disabled', 'disabled');    //Trước tiên để nódisabled
                 loadRealTimeData();
             }
         });
@@ -303,9 +303,9 @@
     }
 
     function init() {
-        //年月下拉初始化
+        //Khởi tạo hộp thả xuống năm tháng
         var date = new Date;
-        //年份
+        //Năm
         $("#year").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -318,7 +318,7 @@
             },
             selectedValue: 1900 + date.getYear(),
         });
-        //月份
+        //Tháng
         $("#month").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();

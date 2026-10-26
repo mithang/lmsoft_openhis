@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "预约挂号医生";
+    ViewBag.Title = "Bác sĩ đăng ký khám hẹn trước";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -24,7 +24,7 @@
                 html += "<p style='font-size:18px;margin-left:50px;'><input name='Staff' style='width:20px;height:20px;' type='checkbox' value='" + data[i].gh + "' /><a style='margin-left:15px'>" + data[i].Name + " </a> </p>";
             }
             $("#form1").html(html);
-            //默认加载选中
+            //Mặc định tải và chọn
             if (ys != null) {
                 if (ys.indexOf(",") == -1) {
                     $(":checkbox[value='" + ys + "']").prop("checked", true);

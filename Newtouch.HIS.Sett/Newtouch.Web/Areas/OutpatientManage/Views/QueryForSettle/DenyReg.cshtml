@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "取消挂号";
+    ViewBag.Title = "Hủy đăng ký khám";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 @Html.Partial("_YibaoCommonView")
@@ -12,7 +12,7 @@
 <div style="display: flex;flex-direction:row;">
     <section class="panel" style="width:50%;">
         <header class="panel-heading">
-            查询卡信息
+            Tra cứu thông tin thẻ
         </header>
         <div class="panel-body" style="width:100%">
             <div style="display: flex;flex-direction:column;align-items:center;">
@@ -20,19 +20,19 @@
                     <i class="fa fa-address-card-o" style="font-size:40px"></i>
                 </div>
                 <div style="text-align:center;margin-bottom:20px;">
-                    <span id="btn_getcard" class="btn btn-primary" style="height:50px;font-size:25px;">查询卡信息</span>
+                    <span id="btn_getcard" class="btn btn-primary" style="height:50px;font-size:25px;">Tra cứu thông tin thẻ</span>
                 </div>
                 <div style="text-align:center;margin-bottom:10px;width:100%">
                     <div id="cardinfo" style="border-bottom:1px solid rgb(221, 221, 221);overflow:auto">
                         <table class="table">
                             <tr>
-                                <th>证件类型</th>
-                                <th>证件号码</th>
-                                <th>姓名</th>
-                                <th>手机号码</th>
-                                <th>居住地</th>
-                                <th>社保编号</th>
-                                <th>基本帐户余额</th>
+                                <th>Loại giấy tờ</th>
+                                <th>Số giấy tờ</th>
+                                <th>Họ tên</th>
+                                <th>Số điện thoại di động</th>
+                                <th>Nơi cư trú</th>
+                                <th>Số BHXH</th>
+                                <th>Số dư tài khoản cơ bản</th>
                             </tr>
                             <tr>
                                 <td id="AAA029_C"></td>
@@ -51,7 +51,7 @@
     </section>
     <section class="panel" style="width:50%;">
         <header class="panel-heading">
-            取消医保挂号
+            Hủy đăng ký khám BHYT
         </header>
         <div class="panel-body" style="width:100%">
             <div style="display: flex;flex-direction:column;align-items:center;">
@@ -59,10 +59,10 @@
                     <i class="fa fa-user-times" style="font-size:40px"></i>
                 </div>
                 <div style="width:70%;margin-bottom:20px;">
-                    <input id="jsh" name="jsh" type="text" class="form-control" placeholder="请输入结算号" />
+                    <input id="jsh" name="jsh" type="text" class="form-control" placeholder="Vui lòng nhập số quyết toán" />
                 </div>
                 <div style="text-align:center;margin-bottom:10px;">
-                    <span id="btn_denyreg" class="btn btn-primary" style="height:50px;font-size:25px;">取消医保挂号</span>
+                    <span id="btn_denyreg" class="btn btn-primary" style="height:50px;font-size:25px;">Hủy đăng ký khám BHYT</span>
                 </div>
                 <div style="text-align:center;margin-bottom:10px;">
                     <span id="message" class="btn" style="font-size:15px;color:coral;display:inline-block;width:80%;word-wrap:break-word;white-space:normal;"></span>
@@ -74,7 +74,7 @@
 <div style="display: flex;flex-direction:row;">
     <section class="panel" style="width:50%;">
         <header class="panel-heading">
-            查询医保目录
+            Tra cứu danh mục BHYT
         </header>
         <div class="panel-body" style="width:100%">
             <div style="display: flex;flex-direction:column;align-items:center;">
@@ -82,22 +82,22 @@
                     <i class="fa fa-folder-open-o" style="font-size:30px"></i>
                 </div>
                 <div style="width:100%;margin-bottom:10px;display: flex;flex-direction:row;align-items:center;">
-                    <input id="DKE085" type="text" class="form-control" placeholder="请输入项目类别" />&nbsp;&nbsp;&nbsp;
-                    <input id="DKE166" type="text" class="form-control" placeholder="请输入社保端编码" />
+                    <input id="DKE085" type="text" class="form-control" placeholder="Vui lòng nhập loại hạng mục" />&nbsp;&nbsp;&nbsp;
+                    <input id="DKE166" type="text" class="form-control" placeholder="Vui lòng nhập mã phía BHXH" />
                 </div>
                 <div style="width:100%;margin-bottom:20px;display: flex;flex-direction:row;align-items:center;">
-                    <input id="DKE012" type="text" class="form-control" placeholder="请输入医院端编码" />&nbsp;&nbsp;&nbsp;
-                    <input id="AKE002" type="text" class="form-control" placeholder="请输入项目名称" />
+                    <input id="DKE012" type="text" class="form-control" placeholder="Vui lòng nhập mã phía bệnh viện" />&nbsp;&nbsp;&nbsp;
+                    <input id="AKE002" type="text" class="form-control" placeholder="Vui lòng nhập tên hạng mục" />
                 </div>
                 <div style="text-align:center;margin-bottom:10px;">
-                    <span id="btn_qcatalog" class="btn btn-primary" style="height:50px;font-size:25px;">查询医保目录</span>
+                    <span id="btn_qcatalog" class="btn btn-primary" style="height:50px;font-size:25px;">Tra cứu danh mục BHYT</span>
                 </div>
             </div>
         </div>
     </section>
     <section class="panel" style="width:50%;">
         <header class="panel-heading">
-            医保目录
+            Danh mục BHYT
             <i class="fa fa-copy" style="font-size:20px" onclick="Copy(document.getElementById('catalog'));"></i>
         </header>
         <div class="panel-body" style="width:100%">
@@ -112,7 +112,7 @@
 <div style="display: flex;flex-direction:row;">
     <section class="panel" style="width:50%;">
         <header class="panel-heading">
-            取消HIS挂号
+            HủyHISĐăng ký khám
         </header>
         <div class="panel-body" style="width:100%">
             <div style="display: flex;flex-direction:column;align-items:center;">
@@ -120,29 +120,29 @@
                     <i class="fa fa-user-times" style="font-size:40px"></i>
                 </div>
                 <div style="width:70%;margin-bottom:20px;">
-                    <input id="ghmzh" name="ghmzh" type="text" class="form-control" placeholder="请输入HIS门诊号" />
+                    <input id="ghmzh" name="ghmzh" type="text" class="form-control" placeholder="Vui lòng nhậpHISSố khám ngoại trú" />
                 </div>
                 <div style="text-align:center;margin-bottom:10px;">
-                    <span id="btn_denyhisreg" class="btn btn-primary" style="height:50px;font-size:25px;">取消HIS挂号</span>
+                    <span id="btn_denyhisreg" class="btn btn-primary" style="height:50px;font-size:25px;">HủyHISĐăng ký khám</span>
                 </div>
             </div>
         </div>
     </section>
     <section class="panel" style="width:50%;">
         <header class="panel-heading">
-            医保连通性测试
+            Kiểm tra kết nối BHYT
         </header>
         <div class="panel-body" style="width:100%">
             <div style="display: flex;flex-direction:column;align-items:center;">
                 <div style="text-align:center;margin-bottom:10px;">
-                    <span id="btn_YibaoConnectedTest" class="btn btn-primary" style="height:50px;font-size:25px;">医保连通性测试</span>
+                    <span id="btn_YibaoConnectedTest" class="btn btn-primary" style="height:50px;font-size:25px;">Kiểm tra kết nối BHYT</span>
                 </div>
             </div>
         </div>
     </section>
 </div>
 <script type="text/javascript">
-    //查询卡信息
+    //Tra cứu thông tin thẻ
     $("#btn_getcard").click(function () {
         $.loading(true);
         setTimeout(function () {
@@ -157,22 +157,22 @@
                 $("#DAC001").html(card.Data.DAC001);
                 $("#JBZHYE").html(card.Data.JBZHYE);
             } else {
-                $("#AAA029_C").html("无");
-                $("#AAE135").html("无");
-                $("#AAC003").html("无");
-                $("#DAC304").html("无");
-                $("#AAE006").html("无");
-                $("#DAC001").html("无");
-                $("#JBZHYE").html("无");
+                $("#AAA029_C").html("Không");
+                $("#AAE135").html("Không");
+                $("#AAC003").html("Không");
+                $("#DAC304").html("Không");
+                $("#AAE006").html("Không");
+                $("#DAC001").html("Không");
+                $("#JBZHYE").html("Không");
             }
         }, 1000);
     });
-    //挂号取消
+    //Hủy đăng ký khám
     $("#btn_denyreg").click(function () {
         $("#message").html("");
-        var jsh = $("#jsh").val();//结算号
+        var jsh = $("#jsh").val();//Số quyết toán
         if (jsh == "") {
-            $.modalAlert("结算号不能为空", 'warning');
+            $.modalAlert("Số quyết toán không được trống", 'warning');
             return false;
         } else {
             $.loading(true);
@@ -180,25 +180,25 @@
                 var denyreg = $.yibao.DenyReg(jsh);
                 $.loading(false);
                 if (denyreg && denyreg.Code == 0) {
-                    $("#message").html("操作成功");
+                    $("#message").html("Thao tác thành công");
                 } else {
                     $("#message").html(denyreg.ErrorMsg);
                 }
             }, 1000);
         }
     });
-    //查询医保目录
+    //Tra cứu danh mục BHYT
     $("#btn_qcatalog").click(function () {
-        var DKE085 = $("#DKE085").val();//项目类别
-        var DKE166 = $("#DKE166").val();//社保端编码
-        var DKE012 = $("#DKE012").val();//医院端编码
-        var AKE002 = $("#AKE002").val();//项目名称
+        var DKE085 = $("#DKE085").val();//Loại hạng mục
+        var DKE166 = $("#DKE166").val();//Mã phía BHXH
+        var DKE012 = $("#DKE012").val();//Mã phía bệnh viện
+        var AKE002 = $("#AKE002").val();//Tên hạng mục
         if (DKE085 == "") {
-            $.modalAlert("项目类别不能为空", 'warning');
+            $.modalAlert("Loại hạng mục không được trống", 'warning');
             return false;
         }
         if (DKE166 == "" && DKE012 == "" && AKE002 == "") {
-            $.modalAlert("社保端编码/医院端编码/项目名称至少有一项", 'warning');
+            $.modalAlert("Mã phía BHXH/Mã phía bệnh viện/Tên hạng mục ít nhất có một mục", 'warning');
             return false;
         }
         $.loading(true);
@@ -210,7 +210,7 @@
             }
         }, 1000);
     });
-    //拷贝到剪切板
+    //Sao chép vào bảng tạm
     function Copy(obj) {
         var rng = document.body.createTextRange();
         rng.moveToElementText(obj);
@@ -219,11 +219,11 @@
         rng.execCommand("Copy");
         rng.collapse(false);
     }
-    //取消HIS挂号
+    //HủyHISĐăng ký khám
     $('#btn_denyhisreg').click(function () {
-        var ghmzh = $("#ghmzh").val();//挂号门诊号
+        var ghmzh = $("#ghmzh").val();//Số khám ngoại trú đăng ký khám
         if (!!!ghmzh) {
-            $.modalAlert("门诊号不能为空", 'warning');
+            $.modalAlert("Số khám ngoại trú không được trống", 'warning');
             return false;
         } else {
             $.najax({
@@ -233,22 +233,22 @@
                 },
                 url: "/OutpatientManage/OutpatientReg/UnSettedRegBackNum",
                 dataType: "json",
-                loadingtext: "正在请求HIS取消挂号，请稍后…",
+                loadingtext: "Đang yêu cầuHISHủy đăng ký khám，Vui lòng chờ…",
                 success: function (ajaxresp) {
-                    $.modalAlert('门诊HIS退号成功', 'success');
+                    $.modalAlert('Ngoại trúHISTrả số khám thành công', 'success');
                     $("#ghmzh").val('');
                     return;
                 }
             });
         }
     });
-    //医保连通性测试
+    //Kiểm tra kết nối BHYT
     $('#btn_YibaoConnectedTest').click(function () {
         $.najax({
             type: "POST",
             url: "/OutpatientManage/OutpatCharge/YibaoConnectedTest",
             dataType: "json",
-            loadingtext: "正在请求医保连通性测试，请稍后…",
+            loadingtext: "Đang yêu cầu kiểm tra kết nối BHYT，Vui lòng chờ…",
             success: function (ajaxresp) {
                 $.modalAlert('' + JSON.stringify(ajaxresp));
                 return;

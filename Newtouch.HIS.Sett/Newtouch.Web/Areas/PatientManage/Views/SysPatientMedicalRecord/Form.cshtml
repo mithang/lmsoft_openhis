@@ -11,7 +11,7 @@
     <div style="padding-top: 20px; margin-right: 30px;">
         <table class="form">
             <tr>
-                <th class="formTitle">病历日期：</th>
+                <th class="formTitle">Ngày hồ sơ bệnh án：</th>
                 <td class="formValue">
                     <input type="hidden" name="blh" id="blh" />
                     <input type="hidden" name="keyValue" id="keyValue" />
@@ -21,16 +21,16 @@
                 <td class="formValue"></td>
             </tr>
             <tr>
-                <th class="formTitle" style="height: 35px;">选项：</th>
+                <th class="formTitle" style="height: 35px;">Tùy chọn：</th>
                 <td class="formValue" style="padding-top: 1px;">
                     <div class="ckbox">
-                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                     </div>
                 </td>
             </tr>
             <tr>
                 <th class="formTitle" valign="top" style="padding-top: 5px;">
-                    备注：
+                    Ghi chú：
                 </th>
                 <td class="formValue" colspan="3">
                     <textarea id="bz" name="bz" class="form-control" style="height: 60px;"></textarea>
@@ -110,7 +110,7 @@
                 }
             }
             if (iIndex == -1) {
-                $.modalAlert("已达附件上线", 'warning');
+                $.modalAlert("Đã đạt giới hạn tệp đính kèm", 'warning');
                 return;
             }
             insertFile(iIndex);
@@ -121,7 +121,7 @@
     function insertFile(iIndex, keyIdVal, fileNameVal) {
         var shtml = '<tr> <td class="formValue"> <input value="' + (!!keyIdVal ? keyIdVal : '') + '" type="hidden" name="dbKeyId_' + iIndex + '" id="dbKeyId_' + iIndex + '" />';
         shtml += '<input type="file" id="file_' + iIndex + '" name="file_' + iIndex + '" /></td><td class="formValue">';
-        shtml += '<input value="' + (!!fileNameVal ? fileNameVal : '') + '" class="form-control" type="text" id="fileName_' + iIndex + '" name="fileName_' + iIndex + '" placeholder="附件名称" /> </td> <td class="formValue"> <i class="fa fa-minus-circle fa-lg" style="cursor:pointer;"></i> </td> </tr>';
+        shtml += '<input value="' + (!!fileNameVal ? fileNameVal : '') + '" class="form-control" type="text" id="fileName_' + iIndex + '" name="fileName_' + iIndex + '" placeholder="Tên tệp đính kèm" /> </td> <td class="formValue"> <i class="fa fa-minus-circle fa-lg" style="cursor:pointer;"></i> </td> </tr>';
         $(shtml).insertBefore($('#tblFile .fa-plus-circle').closest('tr'));
     }
 

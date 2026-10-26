@@ -7,36 +7,36 @@
 <form name="form1" autocomplete="off">
     <div class="panel panel-default" style="">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <div style="padding: 0px;padding-right:0px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">上传日期：</th>
+                    <th class="formTitle">Ngày tải lên：</th>
                     <td class="formValue">
                         <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd  00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                         <span style="margin-left:0;float:left">—</span>
                         <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd  HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
 
-                    <th class="formTitle">上传类型：</th>
+                    <th class="formTitle">Loại tải lên：</th>
                     <td class="formValue">
                         <select id="selsclx">
-                            <option value="">全部</option>
-                            <option value="TB_YL_MZ_Medical_Record">门诊就诊记录表</option>
-                            <option value="TB_CIS_Prescription_Detail">门诊处方明细表</option>
-                            <option value="TB_HIS_MZ_Fee_Detail">门诊收费明细表</option>
-                            <option value="TB_YL_ZY_Medical_Record">住院就诊记录表</option>
-                            <option value="TB_CIS_DrAdvice_Detail">住院医嘱明细表</option>
-                            <option value="TB_HIS_ZY_Fee_Detail">住院收费明细表</option>
-                            <option value="TB_RIS_Report">医学影像检查报告表</option>
-                            <option value="TB_Operation_Detail">手术明细表</option>
-                            <option value="TB_DIC_Department">医院的科室字典表</option>
-                            <option value="TB_DIC_Practitioner">医护人员字典表</option>
-                            <option value="TB_DIC_MEDICINES">药品目录字典表</option>
-                            <option value="TB_DIC_Materials">非药品目录字典表</option>
+                            <option value="">Tất cả</option>
+                            <option value="TB_YL_MZ_Medical_Record">Bảng ghi khám bệnh ngoại trú</option>
+                            <option value="TB_CIS_Prescription_Detail">Bảng chi tiết đơn thuốc ngoại trú</option>
+                            <option value="TB_HIS_MZ_Fee_Detail">Bảng chi tiết thu phí ngoại trú</option>
+                            <option value="TB_YL_ZY_Medical_Record">Bảng ghi khám bệnh nội trú</option>
+                            <option value="TB_CIS_DrAdvice_Detail">Bảng chi tiết y lệnh nội trú</option>
+                            <option value="TB_HIS_ZY_Fee_Detail">Bảng chi tiết thu phí nội trú</option>
+                            <option value="TB_RIS_Report">Bảng báo cáo kiểm tra hình ảnh y học</option>
+                            <option value="TB_Operation_Detail">Bảng chi tiết phẫu thuật</option>
+                            <option value="TB_DIC_Department">Bảng từ điển khoa của bệnh viện</option>
+                            <option value="TB_DIC_Practitioner">Bảng từ điển nhân viên y tế</option>
+                            <option value="TB_DIC_MEDICINES">Bảng từ điển danh mục thuốc</option>
+                            <option value="TB_DIC_Materials">Bảng từ điển danh mục không phải thuốc</option>
                         </select>&nbsp;&nbsp;&nbsp;
-                        <input type="button" class="btn btn-primary btn-md" id="btnsyy" value="查询" />
+                        <input type="button" class="btn btn-primary btn-md" id="btnsyy" value="Tra cứu" />
                     </td>
                     <th class="formTitle"></th>
                     <th class="formValue"></th>
@@ -71,19 +71,19 @@
         $gridList.dataGrid({
             url: "/PatientManage/SysPatientMedicalRecord/GetHealthUpload",
             height: $(window).height() - 205,
-            caption: "列表",
+            caption: "Danh sách",
             postData: postdata(),
             colModel:  [
 			{ label: 'Id', name: 'Id', key: true, hidden: true },
 
-			{ label: '表名', name: 'TabName', width: 160, align: 'left' },
-			{ label: '表名名称', name: 'TabNameDesc', width: 160, align: 'left' },
-			{ label: '传输状态', name: 'statusName', width: 100, align: 'left' },
+			{ label: 'Tên bảng', name: 'TabName', width: 160, align: 'left' },
+			{ label: 'Tên bảng', name: 'TabNameDesc', width: 160, align: 'left' },
+			{ label: 'Trạng thái truyền', name: 'statusName', width: 100, align: 'left' },
             {
-                label: '传输日期', name: 'createtime', width: 120, align: 'left',
+                label: 'Ngày truyền', name: 'createtime', width: 120, align: 'left',
                 formatter: "date", formatoptions: { srcformat: 'Y-m-d H:m:s', newformat: 'Y-m-d H:m:s' }
             },
-            { label: '传输失败原因', name: 'err_msg', width: 100, align: 'left' }
+            { label: 'Nguyên nhân truyền thất bại', name: 'err_msg', width: 100, align: 'left' }
 			
             ],
             pager: "#gridPager",

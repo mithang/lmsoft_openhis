@@ -7,24 +7,24 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">年份：</th>
+                <th class="formTitle">Năm：</th>
                 <td class="formValue">
                     <select id="year" name="year" class="formClearIgnore">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
-                <th class="formTitle">月份：</th>
+                <th class="formTitle">Tháng：</th>
                 <td class="formValue">
                     <select id="month" name="month" class="formClearIgnore">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
                 <td class="formValue" colspan="2">
-                    <input type="button" id="btn_gene" class="btn btn-primary btn-md" value="生成" style="width:55px;display:inline-block;display:none;" />
-                    <input type="button" id="btn_regene" class="btn btn-warning btn-md" value="重新生成" style="display:inline-block;display:none;" />
+                    <input type="button" id="btn_gene" class="btn btn-primary btn-md" value="Tạo" style="width:55px;display:inline-block;display:none;" />
+                    <input type="button" id="btn_regene" class="btn btn-warning btn-md" value="Tạo lại" style="display:inline-block;display:none;" />
                 </td>
                 <td class="formValue"></td>
             </tr>
@@ -36,7 +36,7 @@
             scrolling="auto" allowtransparency="true" frameborder="0"></iframe>
 </div>
 <script type="text/javascript">
-    //全局变量
+    //Biến toàn cục
     var orgId = '@(ViewBag.OrgId)';
     //ReportingService Host
     var reportServerHOST = '@(ViewBag.ReportServerHOST)';
@@ -44,17 +44,17 @@
 
 </script>
 <script type="text/javascript">
-    //年月下拉初始化
+    //Khởi tạo hộp thả xuống năm tháng
     (function initYearMonthSelect() {
         var date = new Date;
-        //默认选择上个月
+        //Mặc định chọn tháng trước
         var defaultSelYear = 1900 + date.getYear();
         var defaultSelMonth = date.getMonth();
         if (defaultSelMonth == 0) {
             defaultSelYear--;
             defaultSelMonth = 12;
         }
-        //年份
+        //Năm
         $("#year").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -67,7 +67,7 @@
             },
             selectedValue: defaultSelYear,
         });
-        //月份
+        //Tháng
         $("#month").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -91,16 +91,16 @@
             url: "/KPI/MedicalOrg/CheckIsGenerated?year=" + $('#year').val()
                 + "&month=" + $('#month').val(),
             loading: true,
-            loadingtext: '正在请求报表状态...',
+            loadingtext: 'Đang tải trạng thái báo cáo...',
             cache: false,
             success: function (ajaxresp) {
                 if (ajaxresp.flag === false) {
-                    showType = "2"  //未生成过
+                    showType = "2"  //Chưa từng tạo
                 }
                 else {
-                    showType = "1"  //当月已生成过固定报表
+                    showType = "1"  //Tháng hiện tại đã tạo báo cáo cố định
                 }
-                searchReport(); //查询报表
+                searchReport(); //Tra cứu báo cáo
             }
         });
     };
@@ -122,34 +122,34 @@
     });
 </script>
 <script type="text/javascript">
-    //查询报表
+    //Tra cứu báo cáo
     function searchReport() {
         var url = reportServerHOST + "ReportServer/Pages/ReportViewer.aspx?%2FHIS.Report.1%2FKPI.%E5%8C%BB%E7%96%97%E6%9C%BA%E6%9E%84%E6%9C%88%E5%9B%BA%E5%AE%9A%E6%8A%A5%E8%A1%A8&rs:Command=Render";
 
-        //var url = reportServerHOST + "ReportServer/Pages/ReportViewer.aspx?%2FHIS.Report.1%2FKPI.治疗师月报表.已固定&rs:Command=Render";
+        //var url = reportServerHOST + "ReportServer/Pages/ReportViewer.aspx?%2FHIS.Report.1%2FKPI.Báo cáo tháng kỹ thuật viên trị liệu.Đã cố định&rs:Command=Render";
         url += "&rc:Stylesheet=MyStyleSheet";
         url += "&orgId=" + orgId;
         url += "&year=" + $('#year').val();
         url += "&month=" + $('#month').val();
 
         if (showType == "1") {
-            setTimeout("$.loading(true, '当月报表已生成过，正在呈现...');", 10);
+            setTimeout("$.loading(true, 'Báo cáo tháng hiện tại đã được tạo，Đang hiển thị...');", 10);
         }
         else {
-            setTimeout("$.loading(true, '当月报表尚未生成过，正在计算...');", 10);
+            setTimeout("$.loading(true, 'Báo cáo tháng hiện tại chưa từng được tạo，Đang tính toán...');", 10);
         }
 
         $("#iframerightiframerightiframerightttt").attr('src', url);
     }
 </script>
 <script type="text/javascript">
-    //生成报表
+    //Tạo báo cáo
     $("#btn_gene").click(function () {
         ReqDoGenerate();
     });
-    //重新生成报表
+    //Tạo lại báo cáo
     $("#btn_regene").click(function () {
-        $.modalConfirm("重新生成报表，确认继续？", function (flag) {
+        $.modalConfirm("Tạo lại báo cáo，Xác nhận tiếp tục？", function (flag) {
             if (flag) {
                 ReqDoGenerate(true);
             }
@@ -162,10 +162,10 @@
             url: "/KPI/MedicalOrg/DoGenerate",
             data: { year: $('#year').val(), month: $('#month').val(), isReGene: isReGene },
             dataType: "json",
-            loadingtext: "报表生成中，请稍后...",
+            loadingtext: "Đang tạo báo cáo，Vui lòng chờ...",
             success: function (ajaxResp) {
-                $.modalMsg('报表生成成功', 'success');
-                setTimeout("$('#btn_search').trigger('click');", 1000); //重新查询报表
+                $.modalMsg('Tạo báo cáo thành công', 'success');
+                setTimeout("$('#btn_search').trigger('click');", 1000); //Tra cứu lại báo cáo
             }
         });
     }

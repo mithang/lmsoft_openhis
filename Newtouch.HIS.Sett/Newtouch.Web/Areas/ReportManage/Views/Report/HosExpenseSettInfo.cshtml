@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "医嘱执行表";
+    ViewBag.Title = "Bảng thực hiện y lệnh";
     Layout = "~/Views/Shared/_Form.cshtml";
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
     var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
@@ -9,32 +9,32 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">住院号：</th>
+                <th class="formTitle">Số nhập viện：</th>
                 <td class="formValue">
                     <input id="zyh" name="zyh" type="text" autocomplete="off" class="form-control" />
                 </td>
-                <th class="formTitle">开始日期：</th>
+                <th class="formTitle">Ngày bắt đầu：</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
                 </td>
-                <th class="formTitle">结束日期：</th>
+                <th class="formTitle">Ngày kết thúc：</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
                 </td>
                 <td class="formTitle">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
                 <td colspan="3"></td>
-                @*<th class="formTitle">科室：</th>
+                @*<th class="formTitle">Khoa：</th>
                     <td class="formValue">
                         <select id="depa" class="form-control">
-                            <option value="">全部</option>
+                            <option value="">Tất cả</option>
                         </select>
                     </td>
                     <td class="formValue" style="padding-left:20px;">
-                        <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                        <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                     </td>
                     <td class="formValue"></td>*@
             </tr>
@@ -57,15 +57,15 @@
     function submit() {
 
         if ($('#kssj').val().length == 0) {
-            $.modalAlert("缺少开始时间", "error");
+            $.modalAlert("Thiếu thời gian bắt đầu", "error");
             return;
         }
         if ($('#jssj').val().length == 0) {
-            $.modalAlert("缺少结束时间", "error");
+            $.modalAlert("Thiếu thời gian kết thúc", "error");
             return;
         }
         if ($('#kssj').val() > $('#jssj').val()) {
-            $.modalAlert("开始时间不能大于结束时间", "error");
+            $.modalAlert("Thời gian bắt đầu không được lớn hơn thời gian kết thúc", "error");
             return;
         }
 
@@ -75,7 +75,7 @@
         url += "&zyh=" + $('#zyh').val();
         url += "&orgId=" + '@Html.Raw(opr.OrganizeId)';
 
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'Đang tải trang báo cáo...');", 10);
 
         $("#iframerightiframerightiframerightttt").attr('src', url);
 
@@ -100,7 +100,7 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";
@@ -122,7 +122,7 @@
 </script>
 <script type="text/javascript">
     function init() {
-        //治疗师绑定下拉框
+        //Hộp thả xuống liên kết kỹ thuật viên trị liệu
         $("#depa").bindSelect({
             id: "Code",
             text: "Name",
@@ -137,7 +137,7 @@
     $('#zyh').newtouchBatchFloatingSelector({
         width: 520,
         height: 200,
-        caption: "选择患者",
+        caption: "Chọn bệnh nhân",
         clickautotrigger: true,
         url: "/ReportManage/Report/GetInpatientcryrq",
         ajaxparameters: function ($thisinput) {
@@ -152,24 +152,24 @@
             }
         },
         colModel: [
-            { label: '住院号', name: 'zyh', width: 100 },
+            { label: 'Số nhập viện', name: 'zyh', width: 100 },
             { label: 'cyrq', name: 'cyrq', hidden: true },
             { label: 'ryrq', name: 'ryrq', hidden: true },
-            { label: '在院标志', name: 'zybz', width: 100, align: 'Center' },
-            { label: '姓名', name: 'xm', width: 120, align: 'Center' },
-            { label: '出生年月', name: 'csny', hidden: true, width: 100, align: 'Center' },
+            { label: 'Cờ đang nằm viện', name: 'zybz', width: 100, align: 'Center' },
+            { label: 'Họ tên', name: 'xm', width: 120, align: 'Center' },
+            { label: 'Năm sinh', name: 'csny', hidden: true, width: 100, align: 'Center' },
             {
-                label: '性别', name: 'xb', width: 50, align: 'Center', formatter: function (cellvalue) {
+                label: 'Giới tính', name: 'xb', width: 50, align: 'Center', formatter: function (cellvalue) {
                     return $.getGender(cellvalue);
                 }
             },
             {
-                label: '年龄', name: 'nlshow', width: 50, align: 'Center', formatter: function (cellvalue, a, b) {
+                label: 'Tuổi', name: 'nlshow', width: 50, align: 'Center', formatter: function (cellvalue, a, b) {
                     return getAgeFromBirthTime({ begin: b.csny }).text;
                 }
             },
-            { label: '床号', name: 'cw', width: 50, align: 'Center' },
-            { label: '入院日期', name: 'ryrq', hidden: true, width: 100, align: 'Center' }
+            { label: 'Số giường', name: 'cw', width: 50, align: 'Center' },
+            { label: 'Ngày nhập viện', name: 'ryrq', hidden: true, width: 100, align: 'Center' }
         ]
     });
 </script>

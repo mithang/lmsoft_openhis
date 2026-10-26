@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "物资库存表";
+    ViewBag.Title = "Bảng tồn kho vật tư";
     Layout = "~/Views/Shared/_Form.cshtml";
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
     var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
@@ -10,34 +10,34 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">开始日期：</th>
+                <th class="formTitle">Ngày bắt đầu：</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
                 </td>
-                <th class="formTitle">结束日期：</th>
+                <th class="formTitle">Ngày kết thúc：</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
                 </td>
-                @*<th class="formTitle">科室：</th>
+                @*<th class="formTitle">Khoa：</th>
                 <td class="formValue">
                     <select id="depa" class="form-control">
-                        <option value="">全部</option>
+                        <option value="">Tất cả</option>
                     </select>
                 </td>*@
-                <th class="formTitle">药房/药库：</th>
+                <th class="formTitle">Nhà thuốc/Kho thuốc：</th>
                 <td class="formValue">
                     <select id="yfbm" class="form-control">
-                        <option value="">全部</option>
-                        <option value="00000020">西药库</option>
-                        <option value="00000021">中药库</option>
-                        <option value="00000019">西药房</option>
-                        <option value="00000018">中药房</option>
+                        <option value="">Tất cả</option>
+                        <option value="00000020">Kho thuốc tây</option>
+                        <option value="00000021">Kho thuốc y học cổ truyền</option>
+                        <option value="00000019">Nhà thuốc tây</option>
+                        <option value="00000018">Nhà thuốc y học cổ truyền</option>
                     </select>
                 </td>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
                 <td class="formValue"></td>
             </tr>
@@ -60,15 +60,15 @@
     function submit() {
 
         if ($('#kssj').val().length == 0) {
-            $.modalAlert("缺少开始时间", "error");
+            $.modalAlert("Thiếu thời gian bắt đầu", "error");
             return;
         }
         if ($('#jssj').val().length == 0) {
-            $.modalAlert("缺少结束时间", "error");
+            $.modalAlert("Thiếu thời gian kết thúc", "error");
             return;
         }
         if ($('#kssj').val() > $('#jssj').val()) {
-            $.modalAlert("开始时间不能大于结束时间", "error");
+            $.modalAlert("Thời gian bắt đầu không được lớn hơn thời gian kết thúc", "error");
             return;
         }
         var url = '@Html.Raw(reportUrl)' + "?tempCode=1324" + "&systemCode=" + '@Html.Raw(ReportSystemCode)';
@@ -77,7 +77,7 @@
         url += "&yfbm=" + $('#yfbm').val();
         url += "&orgId=" + '@Html.Raw(opr.OrganizeId)';
 
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'Đang tải trang báo cáo...');", 10);
 
         $("#iframerightiframerightiframerightttt").attr('src', url);
 
@@ -102,7 +102,7 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";
@@ -124,7 +124,7 @@
 </script>
 <script type="text/javascript">
     function init() {
-        //治疗师绑定下拉框
+        //Hộp thả xuống liên kết kỹ thuật viên trị liệu
         $("#depa").bindSelect({
             id: "Code",
             text: "Name",

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "新农合家庭参合列表";
+    ViewBag.Title = "Danh sách hộ gia đình tham gia bảo hiểm nông thôn mới";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -8,13 +8,13 @@
     <div style="padding-top: 20px; margin-right: 55px;">
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>参合年度：</th>
+                <th class="formTitle"><span class="required">*</span>Năm tham gia hợp tác：</th>
                 <td class="formValue formDdlSelectorTd">
                     <input type="text" id="year" class="form-control required" placeholder="" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>医疗证号：</th>
+                <th class="formTitle"><span class="required">*</span>Số chứng nhận y tế：</th>
                 <td class="formValue">
                     <input type="text" id="medicalNo" class="form-control required" placeholder="" />
                 </td>
@@ -26,13 +26,13 @@
     function submitForm(callback) {
         var year = $('#year').val();
         if (!year) {
-            $.modalAlert("参合年度必填", "warning");
+            $.modalAlert("Năm tham gia hợp tác là bắt buộc", "warning");
             return false;
         }
 
         var medicalNo = $('#medicalNo').val();
         if (!medicalNo) {
-            $.modalAlert("医疗证号必填", "warning");
+            $.modalAlert("Số chứng nhận y tế là bắt buộc", "warning");
             return false;
         }
         $.submitForm({
@@ -45,7 +45,7 @@
                         callback(jresp.data);
                         $.modalClose();
                     } else {
-                        $.modalAlert("此家庭该年度无参合列表，请确认！", "warning");
+                        $.modalAlert("Hộ gia đình này năm đó không có danh sách tham gia hợp tác，Vui lòng xác nhận！", "warning");
                     }
                 } else {
                     $.modalAlert(jresp.message, "error");

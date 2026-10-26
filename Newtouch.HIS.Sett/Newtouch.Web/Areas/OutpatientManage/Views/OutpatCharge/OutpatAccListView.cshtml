@@ -1,7 +1,7 @@
 ﻿@using System.Web.Mvc.Html
 @using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "就诊记录选择";
+    ViewBag.Title = "Chọn bản ghi khám bệnh";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
@@ -16,22 +16,22 @@
 <div class="topPanel">
     <table class="form">
         <tr>
-            <th class="formTitle" style="width:50px;">卡号：</th>
+            <th class="formTitle" style="width:50px;">Số thẻ：</th>
             <td class="formValue" style="width: 80px;">
-                <input id="txt_kh" name="txt_blh" type="text" class="form-control newtouch_Readonly" placeholder="卡号" />
+                <input id="txt_kh" name="txt_blh" type="text" class="form-control newtouch_Readonly" placeholder="Số thẻ" />
             </td>
-            <th class="formTitle" style="width:55px;">卡类型：</th>
+            <th class="formTitle" style="width:55px;">Loại thẻ：</th>
             <td class="formValue" style="width: 100px;">
-                @Html.DropDownList("selCardType", EnumCardType.XNHJYK.ToDescSelectList(), "全部", new { @class = "form-control" })
+                @Html.DropDownList("selCardType", EnumCardType.XNHJYK.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
             </td>
-            <th class="formTitle" style="width:75px;">挂号时间：</th>
+            <th class="formTitle" style="width:75px;">Thời gian đăng ký khám：</th>
             <td class="formValue">
                 <input id="gh_kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 88px; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 <span style="margin-left:2px; float: left; line-height: 25px;">—</span>
                 <input id="gh_jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 88px;float:left;margin-left:2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
             </td>
             <td class="formTitle" style="width: 50px;">
-                <button type="button" id="btn_search" class="btn btn-primary btn-md">查询</button>
+                <button type="button" id="btn_search" class="btn btn-primary btn-md">Tra cứu</button>
             </td>
         </tr>
     </table>
@@ -59,19 +59,19 @@
         });
     });
 
-    //初始化
+    //Khởi tạo
     function gridList() {
         $gridList.dataGrid({
             height: $(window).height() - 130,
             postData: param(),
             url: "/OutpatientManage/OutpatCharge/GetpatientAccountList",
             colModel: [
-                { label: '病历号', name: 'blh', width: 100, align: 'left' },
-                { label: '门诊号', name: 'mzh', width: 100, align: 'left' },
-                { label: '卡类型', name: 'CardTypeName', hidden: true },
-                { label: '姓名', name: 'xm', width: 100, align: 'left' },
-                { label: '病人性质名称', name: 'brxzmc', width: 100, align: 'left' },
-                { label: '挂号日期', name: 'ghrq', width: 100, align: 'left' },
+                { label: 'Số hồ sơ bệnh án', name: 'blh', width: 100, align: 'left' },
+                { label: 'Số khám ngoại trú', name: 'mzh', width: 100, align: 'left' },
+                { label: 'Loại thẻ', name: 'CardTypeName', hidden: true },
+                { label: 'Họ tên', name: 'xm', width: 100, align: 'left' },
+                { label: 'Tên tính chất bệnh nhân', name: 'brxzmc', width: 100, align: 'left' },
+                { label: 'Ngày đăng ký khám', name: 'ghrq', width: 100, align: 'left' },
                 { label: 'xb', name: 'xb', hidden: true },
                 { label: 'brxz', name: 'brxz', hidden: true },
                 { label: 'csny', name: 'csny', hidden: true }

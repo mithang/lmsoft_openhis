@@ -7,32 +7,32 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">开始日期：</th>
+                <th class="formTitle">Ngày bắt đầu：</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
                 </td>
-                <th class="formTitle">结束日期：</th>
+                <th class="formTitle">Ngày kết thúc：</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
                 </td>
-                <th class="formTitle">药品分类：</th>
+                <th class="formTitle">Phân loại thuốc：</th>
                 <td class="formValue">
                     <select id="ypfl" class="form-control">
-                        <option value="">==全部==</option>
+                        <option value="">==Tất cả==</option>
                     </select>
                 </td>
-                <th class="formTitle">结算类型：</th>
+                <th class="formTitle">Loại quyết toán：</th>
                 <td class="formValue">
                     <select id="jslx" class="form-control">
-                        <option value="0">==全部==</option>
-                        <option value="1">门诊</option>
-                        <option value="2">住院</option>
+                        <option value="0">==Tất cả==</option>
+                        <option value="1">Ngoại trú</option>
+                        <option value="2">Nhập viện</option>
                     </select>
                 </td>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
                 <td class="formValue"></td>
             </tr>
@@ -57,15 +57,15 @@
     function submit() {
 
         if ($('#kssj').val().length == 0) {
-            $.modalAlert("缺少开始时间", "error");
+            $.modalAlert("Thiếu thời gian bắt đầu", "error");
             return;
         }
         if ($('#jssj').val().length == 0) {
-            $.modalAlert("缺少结束时间", "error");
+            $.modalAlert("Thiếu thời gian kết thúc", "error");
             return;
         }
         if ($('#kssj').val() > $('#jssj').val()) {
-            $.modalAlert("开始时间不能大于结束时间", "error");
+            $.modalAlert("Thời gian bắt đầu không được lớn hơn thời gian kết thúc", "error");
             return;
         }
         var url = getUrl();
@@ -75,7 +75,7 @@
         url += "&ypfl=" + $('#ypfl').val();
         url += "&jslx=" + $('#jslx').val();
 
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'Đang tải trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
     }
 
@@ -98,7 +98,7 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";

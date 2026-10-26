@@ -8,44 +8,44 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">开始日期：</th>
+                <th class="formTitle">Ngày bắt đầu：</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
                 </td>
-                <th class="formTitle">结束日期：</th>
+                <th class="formTitle">Ngày kết thúc：</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">病历号：</th>
+                <th class="formTitle">Số hồ sơ bệnh án：</th>
                 <td class="formValue">
                     <input id="blh" name="blh" type="text" class="form-control" placeholder="" />
                 </td>
-                <th class="formTitle">姓名：</th>
+                <th class="formTitle">Họ tên：</th>
                 <td class="formValue">
                     <input id="xm" name="xm" type="text" class="form-control" placeholder="" />
                 </td>
-                <th class="formTitle">收费状态：</th>
+                <th class="formTitle">Trạng thái thu phí：</th>
                 <td class="formValue">
                     <select id="qrzt" class="form-control">
-                        <option value="">全部</option>
-                        <option value="false">未收费</option>
-                        <option value="true">已收费</option>
+                        <option value="">Tất cả</option>
+                        <option value="false">Chưa thu phí</option>
+                        <option value="true">Đã thu phí</option>
                     </select>
                 </td>
-                <th class="formTitle">执行状态：</th>
+                <th class="formTitle">Trạng thái thực hiện：</th>
                 <td class="formValue">
                     <select id="zxzt" class="form-control">
-                        <option value="">全部</option>
-                        <option value="false">未执行</option>
-                        <option value="true">已执行</option>
+                        <option value="">Tất cả</option>
+                        <option value="false">Chưa thực hiện</option>
+                        <option value="true">Đã thực hiện</option>
                     </select>
                 </td>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
             </tr>
         </table>
@@ -71,19 +71,19 @@
     function submit() {
 
         if (!$('#OrganizeId').val()) {
-            $.modalAlert("请选择医疗机构", "warning");
+            $.modalAlert("Vui lòng chọn cơ sở y tế", "warning");
             return;
         }
         if ($('#kssj').val().length == 0) {
-            $.modalAlert("缺少开始时间", "error");
+            $.modalAlert("Thiếu thời gian bắt đầu", "error");
             return;
         }
         if ($('#jssj').val().length == 0) {
-            $.modalAlert("缺少结束时间", "error");
+            $.modalAlert("Thiếu thời gian kết thúc", "error");
             return;
         }
         if ($('#kssj').val() > $('#jssj').val()) {
-            $.modalAlert("开始时间不能大于结束时间", "error");
+            $.modalAlert("Thời gian bắt đầu không được lớn hơn thời gian kết thúc", "error");
             return;
         }
         var url = getUrl();
@@ -95,7 +95,7 @@
         url += "&qrzt=" + $('#qrzt').val();
         url += "&zxzt=" + $('#zxzt').val();
 
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'Đang tải trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
     }
 
@@ -115,14 +115,14 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        ////ReportViewerControl 页宽
+        ////ReportViewerControl Chiều rộng trang
         //if (true) {
         //    if (srcUrl.indexOf('&rc:') == -1) {
         //        srcUrl += "&rc:Zoom=Page Width";
         //    }
         //}
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";

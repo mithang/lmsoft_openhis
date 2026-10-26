@@ -9,20 +9,20 @@
 <form>
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">关键字：</th>
+                <th class="formTitle">Từ khóa：</th>
                 <td class="formValue">
-                    <input type="text" class="form-control form-an" id="xm" placeholder="姓名/拼音/病历号/证件号" />
+                    <input type="text" class="form-control form-an" id="xm" placeholder="Họ tên/Phiên âm/Số hồ sơ bệnh án/Số giấy tờ" />
                 </td>
-                @*<th class="formTitle">卡号：</th>
+                @*<th class="formTitle">Số thẻ：</th>
         <td class="formValue" width="120">
             <input type="text" class="form-control form-an" id="kh" />
         </td>*@
                 <td class="formTitle">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" value="Tra cứu" />
 
                 </td>
 
@@ -34,7 +34,7 @@
         </table>
        
         <div class="panel-heading navb-bg">
-            日志列表
+            Danh sách nhật ký
         </div>
         <div class="gridPanel">
             <table id="gridList"></table>
@@ -57,18 +57,18 @@
                 colModel: [
                     { label: 'Id', name: 'Id', width: 100, align: 'left', hidden: true },
                     { label: 'patid', name: 'patid', width: 100, align: 'left', hidden: true },
-                    { label: '姓名', name: 'xm', width: 100, align: 'left' },
+                    { label: 'Họ tên', name: 'xm', width: 100, align: 'left' },
                     {
-                        label: '性别', name: 'xb', width: 70, align: 'left',
+                        label: 'Giới tính', name: 'xb', width: 70, align: 'left',
                         formatter: function (cellvalue) {
                             return $.getGender(cellvalue);
                         }
                     },
-                    { label: '出生年月', name: 'csny', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                    { label: '病历号', name: 'blh', width: 100, align: 'left' },
-                    { label: '联系电话', name: 'phone', width: 120, align: 'left' },
-                    { label: '地址', name: 'xian_dz', width: 150, align: 'left' },
-                    { label: '更新时间', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                    { label: 'Năm sinh', name: 'csny', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                    { label: 'Số hồ sơ bệnh án', name: 'blh', width: 100, align: 'left' },
+                    { label: 'Số điện thoại liên hệ', name: 'phone', width: 120, align: 'left' },
+                    { label: 'Địa chỉ', name: 'xian_dz', width: 150, align: 'left' },
+                    { label: 'Thời gian cập nhật', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
                 ],
                 rowNum: 15,
                 rowList: [10, 20, 30],
@@ -88,7 +88,7 @@
         var rowData = $('#gridList').jqGrid('getRowData', rowData);
         $.modalOpen({
             id: "LogDetailsView",
-            title: "日志详情",
+            title: "Chi tiết nhật ký",
             url: "/PatientManage/HospiterRes/LogDetailsView?Id=" + rowData.Id,
             width: "500px",
             height: "530px",
@@ -105,7 +105,7 @@
         }).trigger('reloadGrid');
 
     });
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var xm = $("#xm").val();
         return { xm: xm };

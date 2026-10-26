@@ -4,28 +4,28 @@
 }
 <div class="panel panel-default" style="margin-top:10px;">
     <div class="panel-heading navb-bg">
-        预交款
+        Tiền tạm ứng
     </div>
     <div style="padding: 2px;padding-right:20px;">
         <table class="form">
             <tr>
-                <th class="formTitle">实收款：</th>
+                <th class="formTitle">Số tiền thực thu：</th>
                 <td class="formValue">
                     <select id="ddlzffs" name="zffs" class="form-control required"> 
                     </select>
                 </td>
-                <th class="formTitle"><span class="required">*</span>金额：</th>
+                <th class="formTitle"><span class="required">*</span>Số tiền：</th>
                 <td class="formValue">
-                    <input id="txtmoney" name="txtmoney" type="text" class="form-control required" placeholder="请输入金额" />
+                    <input id="txtmoney" name="txtmoney" type="text" class="form-control required" placeholder="Vui lòng nhập số tiền" />
                 </td>
-                <th class="formTitle">凭证日期：</th>
+                <th class="formTitle">Ngày chứng từ：</th>
                 <td class="formValue">
                     <input id="txtpzrq" name="txtpzrq" type="text" class="form-control required" placeholder="" />
                 </td>
-                <th class="formTitle">凭证号：</th>
+                <th class="formTitle">Số chứng từ：</th>
                 <td class="formValue">
                     <input type="text" id="txtlpzh" class="form-control newtouch_Readonly" style="width: 49.5%;display: inline;" value="" />
-                    <a id="receipt"  class="btn btn-primary" onclick=""><i class="fa"></i>凭证号</a>
+                    <a id="receipt"  class="btn btn-primary" onclick=""><i class="fa"></i>Số chứng từ</a>
                 </td>
             </tr>
         </table>
@@ -38,13 +38,13 @@
 <script>
     $(function () { 
         $("#receipt").click(function () {
-            showReceiptPanel(); //弹出凭证号窗口
+            showReceiptPanel(); //Bật cửa sổ số chứng từ
         }); 
         $("#ddlzffs").newtouchBindSelect({
             id: "xjzffsbh",
             text: "xjzffsmc",
             datasource: function () {
-                //遍历数据源
+                //Duyệt nguồn dữ liệu
                 var resultObjArr = new Array(); 
                 $.each(top.clients.SysForCashPayList, function (idx, val) {
                     if (val.zhxz == 'a') { 
@@ -61,22 +61,22 @@
     })
 
 
-    //弹出获取凭证号的窗口
+    //Bật cửa sổ lấy số chứng từ
     function showReceiptPanel() {
         var cardNo = $("#kh").val(); 
         if (cardNo) {
             $.modalOpen({
                 id: "ReceiptPanel",
-                title: "选择凭证号",
+                title: "Chọn số chứng từ",
                 url: "/PatientManage/AccountManage/ChooseReceipt?t=" + Math.random(),
                 width: "300px",
                 height: "200px",
                 callBack: function (iframeId) { 
                     top.frames[iframeId].ReceiptConfirm();
-                }//窗口点确定的回调函数
+                }//Hàm callback khi nhấn xác nhận trên cửa sổ
             });
         } else { 
-            $.modalAlert("请输入卡号或住院号", 'warning'); 
+            $.modalAlert("Vui lòng nhập số thẻ hoặc số nhập viện", 'warning'); 
             $("#txt_keyword").focus();
         }
     }

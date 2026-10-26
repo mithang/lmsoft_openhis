@@ -7,23 +7,23 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">入院开始日期：</th>
+                <th class="formTitle">Ngày bắt đầu nhập viện：</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
                 </td>
-                <th class="formTitle">结束日期：</th>
+                <th class="formTitle">Ngày kết thúc：</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
                 </td>
-                <th class="formTitle" style="width:11%">病历号/姓名/拼音：</th>
+                <th class="formTitle" style="width:11%">Số hồ sơ bệnh án/Họ tên/Phiên âm：</th>
                 <td class="formValue">
                     <input id="blh" type="text" class="form-control form-an-end" />
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
             </tr>
         </table>
@@ -42,7 +42,7 @@
 
     function search() {
         if ($("#blh").attr("data-label") == undefined || $("#blh").attr("data-label").length == 0) {
-            $.modalAlert("缺少病历号", "error");
+            $.modalAlert("Thiếu số hồ sơ bệnh án", "error");
             return;
         }
         submit();
@@ -51,16 +51,16 @@
     function submit() {
 
         if ($('#kssj').val().length == 0) {
-            $.modalAlert("缺少开始时间", "error");
+            $.modalAlert("Thiếu thời gian bắt đầu", "error");
             return;
         }
         if ($('#jssj').val().length == 0) {
-            $.modalAlert("缺少结束时间", "error");
+            $.modalAlert("Thiếu thời gian kết thúc", "error");
             return;
         }
 
         if ($('#kssj').val() > $('#jssj').val()) {
-            $.modalAlert("开始时间不能大于结束时间", "error");
+            $.modalAlert("Thời gian bắt đầu không được lớn hơn thời gian kết thúc", "error");
             return;
         }
         var url = getUrl();
@@ -75,7 +75,7 @@
         }
         url += "&patid=" + patid;
 
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'Đang tải trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
     }
 
@@ -87,11 +87,11 @@
         var h = $(window).height() - 55
         $('#layout iframe').css('height', h);
 
-        //治疗项目选择浮层绑定
+        //Liên kết lớp nổi chọn hạng mục trị liệu
         $('#blh').newtouchBatchFloatingSelector({
             width: 500,
             height: 200,
-            caption: "选择患者",
+            caption: "Chọn bệnh nhân",
             clickautotrigger: true,
             url: "/PatientManage/HospiterRes/PatSearchInfo",
             ajaxparameters: function ($thisinput) {
@@ -106,17 +106,17 @@
                 }
             },
             colModel: [
-                 { label: '主键', name: 'patid', hidden: true },
-                 { label: '病历号', name: 'blh', width: 100, align: 'left' },
-                { label: '姓名', name: 'xm', width: 120,  align: 'left' },
-                 { label: '出生年月', name: 'csny', hidden: true, width: 100, align: 'left' },
+                 { label: 'Khóa chính', name: 'patid', hidden: true },
+                 { label: 'Số hồ sơ bệnh án', name: 'blh', width: 100, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 120,  align: 'left' },
+                 { label: 'Năm sinh', name: 'csny', hidden: true, width: 100, align: 'left' },
                  {
-                     label: '性别', name: 'xb', width: 70, align: 'left', formatter: function (cellvalue) {
+                     label: 'Giới tính', name: 'xb', width: 70, align: 'left', formatter: function (cellvalue) {
                          return $.getGender(cellvalue);
                      }
                  },
                 {
-                    label: '年龄', name: 'nlshow', width: 100, align: 'left', formatter: function (cellvalue, a, b) {
+                    label: 'Tuổi', name: 'nlshow', width: 100, align: 'left', formatter: function (cellvalue, a, b) {
                         return getAgeFromBirthTime({ begin: b.csny }).text;
                     }
                 },
@@ -132,7 +132,7 @@
         });
 
         $("#iframerightiframerightiframerightttt").onload = function () {
-            alert('加载完成');
+            alert('Tải hoàn thành');
             $('#Pe7c5764decea461abdecced92e6f5a19_1_oReportDiv table').style.margin = 'auto'
         };
         setTimeout(function () { submit(); }, 100);
@@ -155,7 +155,7 @@
             srcUrl += "orgId=";
             srcUrl += orgId;
         }
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";

@@ -10,25 +10,25 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">按类型统计：</th>
+                <th class="formTitle">Thống kê theo loại：</th>
                 <td class="formValue">
                     <select id="querytype" class="form-control">
-                        <option value="0">按照主治医生统计</option>
-                        <option value="1">根据病人统计</option>
+                        <option value="0">Thống kê theo bác sĩ điều trị chính</option>
+                        <option value="1">Thống kê theo bệnh nhân</option>
                     </select>
                 </td>
-                <th class="formTitle">收费类型</th>
+                <th class="formTitle">Loại thu phí</th>
                 <td class="formValue">
                     <select id="sfdl" name="sfdl" class="form-control required"></select>
                 </td>
-                <th class="formTitle">开始日期：</th>
+                <th class="formTitle">Ngày bắt đầu：</th>
                 <td class="formValue">
                     <input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            value="@DateTime.Now.ToString("yyyy-MM-01")" />
                 </td>
-                <th class="formTitle">结束日期：</th>
+                <th class="formTitle">Ngày kết thúc：</th>
                 <td class="formValue">
                     <input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -37,7 +37,7 @@
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
             </tr>
         </table>
@@ -65,7 +65,7 @@
     });
     function submit() {
         if ($('#ksrq').val().length == 0 || $('#jsrq').val().length == 0) {
-            $.modalAlert("请选择时间范围", "error");
+            $.modalAlert("Vui lòng chọn khoảng thời gian", "error");
             return;
         }
         var url = getUrl();
@@ -82,7 +82,7 @@
 
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }

@@ -9,14 +9,14 @@
 	<div class="panel panel-default">
 		<table class="form">
 			<tr>
-				<th class="formTitle">开始日期：</th>
+				<th class="formTitle">Ngày bắt đầu：</th>
 				<td class="formValue">
 					<input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
 						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
 						   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
 						   value="@DateTime.Now.ToString("yyyy-MM-01")" />
 				</td>
-				<th class="formTitle">结束日期：</th>
+				<th class="formTitle">Ngày kết thúc：</th>
 				<td class="formValue">
 					<input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
 						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -25,9 +25,9 @@
 				</td>
 				<th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="jyjlsearch();" class="btn btn-primary btn-md" value="产生" style="width:55px" />
-                    <input type="button" id="btn_searchtotxt" onclick="searchtotxt();" class="btn btn-primary btn-md" value="上传" style="width:55px" />
-                    <input type="button" id="btn_searchhztotxt" onclick="searchhztotxt();" class="btn btn-primary btn-md" value="汇总产生" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="jyjlsearch();" class="btn btn-primary btn-md" value="Phát sinh" style="width:55px" />
+                    <input type="button" id="btn_searchtotxt" onclick="searchtotxt();" class="btn btn-primary btn-md" value="Tải lên" style="width:55px" />
+                    <input type="button" id="btn_searchhztotxt" onclick="searchhztotxt();" class="btn btn-primary btn-md" value="Tổng hợp phát sinh" style="width:55px" />
                 </td>
 			</tr>
 		</table>
@@ -51,33 +51,33 @@
             height: $(window).height()-200,
             postData: getpostData(),
             colModel: [
-                { label: '流水号', name: 'lsh', width: 60, align: 'left' },
-                { label: '机构代码', name: 'jgdm', width: 60, align: 'left' },
-                { label: '卡号', name: 'kh', width: 60, align: 'left' },
-                { label: '账户标志', name: 'zhbz', width: 60, align: 'left' },
-                { label: '病人类型', name: 'brlx', width: 60, align: 'left' },
-                { label: '就诊次数', name: 'jzcs', width: 60, align: 'left' },
-                { label: '交易时间', name: 'jysj', width: 60, align: 'left' },
-                { label: '结算类型', name: 'jslx', width: 60, align: 'left' },
-                { label: '交易总费用', name: 'jyzfy', width: 60, align: 'left' },
-                { label: '当年账户支付', name: 'dnzhzf', width: 60, align: 'left' },
-                { label: '历年账户支付', name: 'lnzhzf', width: 60, align: 'left' },
-                { label: '自付段现金', name: 'zfdxj', width: 60, align: 'left' },
-                { label: '起付段现金', name: 'qfdxj', width: 60, align: 'left' },
-                { label: '统筹段现金', name: 'tcdxj', width: 60, align: 'left' },
-                { label: '统筹段账户', name: 'tcdzh', width: 60, align: 'left' },
-                { label: '统筹支付', name: 'tczj', width: 60, align: 'left' },
-                { label: '附加段现金', name: 'fjdxj', width: 60, align: 'left' },
-                { label: '附加段账户', name: 'fjdzh', width: 60, align: 'left' },
-                { label: '附加支付', name: 'fjzf', width: 60, align: 'left' },
-                { label: '医保范围总额', name: 'ybfwze', width: 60, align: 'left' },
-                { label: '非医保范围总额', name: 'fybfwzf', width: 60, align: 'left' },
-                { label: '医保类型', name: 'yblx', width: 60, align: 'left' },
-                { label: '发票号码', name: 'fphm', width: 60, align: 'left' },
-                { label: '退费标志', name: 'tfbz', width: 60, align: 'left' },
-                { label: '开始日期', name: 'ksrq', width: 60, align: 'left' },
-                { label: '减负标志', name: 'jfbz', width: 60, align: 'left' },
-                { label: '减负金额', name: 'jfje', width: 60, align: 'left' }, 
+                { label: 'Số thứ tự giao dịch', name: 'lsh', width: 60, align: 'left' },
+                { label: 'Mã cơ quan', name: 'jgdm', width: 60, align: 'left' },
+                { label: 'Số thẻ', name: 'kh', width: 60, align: 'left' },
+                { label: 'Cờ tài khoản', name: 'zhbz', width: 60, align: 'left' },
+                { label: 'Loại bệnh nhân', name: 'brlx', width: 60, align: 'left' },
+                { label: 'Số lần khám bệnh', name: 'jzcs', width: 60, align: 'left' },
+                { label: 'Thời gian giao dịch', name: 'jysj', width: 60, align: 'left' },
+                { label: 'Loại quyết toán', name: 'jslx', width: 60, align: 'left' },
+                { label: 'Tổng chi phí giao dịch', name: 'jyzfy', width: 60, align: 'left' },
+                { label: 'Thanh toán từ tài khoản năm nay', name: 'dnzhzf', width: 60, align: 'left' },
+                { label: 'Thanh toán từ tài khoản các năm trước', name: 'lnzhzf', width: 60, align: 'left' },
+                { label: 'Tiền mặt đoạn tự trả', name: 'zfdxj', width: 60, align: 'left' },
+                { label: 'Tiền mặt đoạn khởi điểm', name: 'qfdxj', width: 60, align: 'left' },
+                { label: 'Tiền mặt đoạn quỹ chung', name: 'tcdxj', width: 60, align: 'left' },
+                { label: 'Tài khoản đoạn quỹ chung', name: 'tcdzh', width: 60, align: 'left' },
+                { label: 'Thanh toán từ quỹ chung', name: 'tczj', width: 60, align: 'left' },
+                { label: 'Tiền mặt đoạn bổ sung', name: 'fjdxj', width: 60, align: 'left' },
+                { label: 'Tài khoản đoạn bổ sung', name: 'fjdzh', width: 60, align: 'left' },
+                { label: 'Thanh toán bổ sung', name: 'fjzf', width: 60, align: 'left' },
+                { label: 'Tổng số tiền trong phạm vi BHYT', name: 'ybfwze', width: 60, align: 'left' },
+                { label: 'Tổng số tiền ngoài phạm vi BHYT', name: 'fybfwzf', width: 60, align: 'left' },
+                { label: 'Loại BHYT', name: 'yblx', width: 60, align: 'left' },
+                { label: 'Số hóa đơn', name: 'fphm', width: 60, align: 'left' },
+                { label: 'Cờ hoàn phí', name: 'tfbz', width: 60, align: 'left' },
+                { label: 'Ngày bắt đầu', name: 'ksrq', width: 60, align: 'left' },
+                { label: 'Cờ giảm gánh nặng', name: 'jfbz', width: 60, align: 'left' },
+                { label: 'Số tiền giảm gánh nặng', name: 'jfje', width: 60, align: 'left' }, 
                 
             ],
             pager: "#gridPager",
@@ -138,7 +138,7 @@
                     strtxt += "\t\n";     
                 }
                 var blob = new Blob([strtxt], { type: "text/plain;charset=utf-8" });
-                saveAs(blob, "交易记录库.txt");
+                saveAs(blob, "Kho bản ghi giao dịch.txt");
             }
         });
     }
@@ -183,7 +183,7 @@
                     strtxt += "\t\n";
                 }
                 var blob = new Blob([strtxt], { type: "text/plain;charset=utf-8" });
-                saveAs(blob, "交易记录库.txt");
+                saveAs(blob, "Kho bản ghi giao dịch.txt");
             }
         });
         $.najax({
@@ -211,7 +211,7 @@
                     strtxt += "\t\n";
                 }
                 var blob = new Blob([strtxt], { type: "text/plain;charset=utf-8" });
-                saveAs(blob, "门急诊大病挂号库.txt");
+                saveAs(blob, "Kho đăng ký khám bệnh nặng khám cấp cứu ngoại trú.txt");
             }
         });
         $.najax({
@@ -250,7 +250,7 @@
                     strtxt += "\t\n";
                 }
                 var blob = new Blob([strtxt], { type: "text/plain;charset=utf-8" });
-                saveAs(blob, "门急诊大病家床收费库.txt");
+                saveAs(blob, "Kho thu phí giường tại nhà bệnh nặng khám cấp cứu ngoại trú.txt");
             }
         });
     }

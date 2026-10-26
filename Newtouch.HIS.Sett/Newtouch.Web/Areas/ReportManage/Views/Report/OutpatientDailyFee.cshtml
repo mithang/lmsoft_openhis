@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //报表链接
+    //Liên kết báo cáo
     //var reportUrl = SysConfigReader.OrgReportLink("OutpatientDailyFee");
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
     var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
@@ -11,23 +11,23 @@
     <div class="panel panel-default">
         <table class="form">
 	        <tr>
-		        <th class="formTitle">交账列表：</th>
+		        <th class="formTitle">Danh sách nộp sổ：</th>
 		        <td class="formValue">
 			        <input id="jzlb" name="jzlb" type="text" autocomplete= "off" class="form-control" />
 		        </td>
-		        <th class="formTitle">开始日期：</th>
+		        <th class="formTitle">Ngày bắt đầu：</th>
 		        <td class="formValue">
 			        <input id="kssj" type="text" class="form-control input-wdatepicker form-an" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
 		        </td>
-		        <th class="formTitle">结束日期：</th>
+		        <th class="formTitle">Ngày kết thúc：</th>
 		        <td class="formValue">
 			        <input id="jssj" type="text" class="form-control input-wdatepicker form-an" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" />
 		        </td>
 		        <td class="formValue" style="padding-left: 20px;">
-			        <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width: 55px"/>
+			        <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width: 55px"/>
 		        </td>
 		        <td class="formValue" style="padding-left: 20px;">
-			        <input type="button" id="btn_turnInFee" onclick="turnInFee();" class="btn btn-primary btn-md" value="确认交账" style="width: 55px"/>
+			        <input type="button" id="btn_turnInFee" onclick="turnInFee();" class="btn btn-primary btn-md" value="Xác nhận nộp sổ" style="width: 55px"/>
 		        </td>
 		        <td class="formValue"></td>
 	        </tr>
@@ -41,11 +41,11 @@
 </div>
 <script type="text/javascript">
 	var isbd = 0;
-	//治疗项目选择浮层绑定
+	//Liên kết lớp nổi chọn hạng mục trị liệu
 	$('#jzlb').newtouchBatchFloatingSelector({
 		width: 600,
 		height: 200,
-		caption: "选择交账",
+		caption: "Chọn nộp sổ",
 		clickautotrigger: true,
 		url: "/ReportManage/Report/turnInFeeSelect",
 		ajaxparameters: function ($thisinput) {
@@ -70,10 +70,10 @@
 		},
 		colModel: [
 			{ label: 'ID', name: 'Id', hidden: true },
-			{ label: '开始时间', name: 'kssj', width: 180 },
-			{ label: '结束时间', name: 'jssj', width: 180 },
-			{ label: '总金额', name: 'zje', width: 80 },
-			{ label: '现金支付', name: 'xjzf', width: 80 }
+			{ label: 'Thời gian bắt đầu', name: 'kssj', width: 180 },
+			{ label: 'Thời gian kết thúc', name: 'jssj', width: 180 },
+			{ label: 'Tổng số tiền', name: 'zje', width: 80 },
+			{ label: 'Thanh toán tiền mặt', name: 'xjzf', width: 80 }
 		]
 	});
 	function submit(jzid) {
@@ -81,15 +81,15 @@
 			jzid = null;
 		}
         if ($('#kssj').val().length == 0) {
-            $.modalAlert("缺少开始时间", "error");
+            $.modalAlert("Thiếu thời gian bắt đầu", "error");
             return;
         }
         if ($('#jssj').val().length == 0) {
-            $.modalAlert("缺少结束时间", "error");
+            $.modalAlert("Thiếu thời gian kết thúc", "error");
             return;
         }
         if ($('#kssj').val() > $('#jssj').val()) {
-            $.modalAlert("开始时间不能大于结束时间", "error");
+            $.modalAlert("Thời gian bắt đầu không được lớn hơn thời gian kết thúc", "error");
             return;
         }
         
@@ -105,7 +105,7 @@
         }
         var orgId = '@ViewBag.orgId';
         url += "&orgId=" + orgId;
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'Đang tải trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
 
     }
@@ -116,15 +116,15 @@
 
     function turnInFee() {
 	    if ($('#kssj').val().length == 0) {
-		    $.modalAlert("缺少开始时间", "error");
+		    $.modalAlert("Thiếu thời gian bắt đầu", "error");
 		    return;
 	    }
 	    if ($('#jssj').val().length == 0) {
-		    $.modalAlert("缺少结束时间", "error");
+		    $.modalAlert("Thiếu thời gian kết thúc", "error");
 		    return;
 	    }
 	    if ($('#kssj').val() > $('#jssj').val()) {
-		    $.modalAlert("开始时间不能大于结束时间", "error");
+		    $.modalAlert("Thời gian bắt đầu không được lớn hơn thời gian kết thúc", "error");
 		    return;
 	    }
 	    $.ajax({
@@ -133,7 +133,7 @@
 		    data: { kssj: $('#kssj').val(), jssj: $('#jssj').val() },
 		    dataType: "json",
 		    success: function() {
-		    	$.modalAlert("交账成功", "success");
+		    	$.modalAlert("Nộp sổ thành công", "success");
 			    return;
 		    }
 	    });

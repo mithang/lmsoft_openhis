@@ -7,34 +7,34 @@
 <form name="form1">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">姓名/门诊号/拼音：</th>
+                <th class="formTitle">Họ tên/Số khám ngoại trú/Phiên âm：</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="txtxm" name="txtxm" />
                 </td>
-                <th class="formTitle">操作员：</th>
+                <th class="formTitle">Nhân viên thao tác：</th>
                 <td class="formValue">
                     <div class="row">
                         <div class="col-md-9">
                             <input type="text" class="form-control" id="txtsyy" value="" />
                         </div>
                         <div class="col-md-3" style="text-align:right;">
-                            <input type="button" class="btn btn-default btn-md" style="width:45px" id="btnsyy" value="查询" />
+                            <input type="button" class="btn btn-default btn-md" style="width:45px" id="btnsyy" value="Tra cứu" />
                         </div>
                     </div>
                 </td>
                 <td style="width:20px"></td>
-                <th class="formTitle" id="thCZRQ">操作日期：</th>
+                <th class="formTitle" id="thCZRQ">Ngày thao tác：</th>
                 <td class="formValue" colspan="2">
                     <input id="txtCreateTimestart" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:2%;float:left;">—</span>
                     <input id="txtCreateTimeEnd" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :41%;float:left;margin-left:2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
                 <td class="formValue">
-                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;" value="Tra cứu" />
                 </td>
                 <th></th>
                 <td></td>
@@ -50,14 +50,14 @@
 
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGridchiều rộng
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
-        //结算主记录
+        //Bản ghi chính quyết toán
         gridJSListData();
     });
-    //门诊挂号结算查询
+    //Tra cứu quyết toán đăng ký khám ngoại trú
     function gridJSListData() {
         var gridSort = 'CreateTime asc';
 
@@ -69,53 +69,53 @@
             colModel: [
                 { label: 'jsnm', name: 'jsnm', hidden: true, align: 'left' },
                 {
-                    label: '收费时间', name: 'CreateTime', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                    label: 'Thời gian thu phí', name: 'CreateTime', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
                 {
-                    label: '就诊时间', name: 'jzsj', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+                    label: 'Thời gian khám bệnh', name: 'jzsj', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: '门诊号', name: 'mzh', width: 100, align: 'center' },
-                { label: '费用类型', name: 'brxzmc', width: 80, align: 'center' },
+                { label: 'Số khám ngoại trú', name: 'mzh', width: 100, align: 'center' },
+                { label: 'Loại chi phí', name: 'brxzmc', width: 80, align: 'center' },
                 
-                { label: '姓名', name: 'xm', width: 70, align: 'center' },
+                { label: 'Họ tên', name: 'xm', width: 70, align: 'center' },
                 {
-                    label: '性别', name: 'xb', width: 50, align: 'center', formatter: function (cellvalue) {
-                        return cellvalue=="1"?"男":"女";
+                    label: 'Giới tính', name: 'xb', width: 50, align: 'center', formatter: function (cellvalue) {
+                        return cellvalue=="1"?"Nam":"Nữ";
                     }
                 },
-                { label: '身份证', name: 'zjh', width: 120, align: 'center' },
-                { label: '电话', name: 'phone', width: 80, align: 'center' },
-                { label: '诊断', name: 'zdmc', width: 80, align: 'center' },
-                { label: '医生', name: 'jzys', width: 80, align: 'center' },
-                { label: '病例号', name: 'blh', width: 100, align: 'center', hidden: true, },
-                { label: '发票号', name: 'fph', width: 80, align: 'center', hidden: true },
+                { label: 'CMND/CCCD', name: 'zjh', width: 120, align: 'center' },
+                { label: 'Điện thoại', name: 'phone', width: 80, align: 'center' },
+                { label: 'Chẩn đoán', name: 'zdmc', width: 80, align: 'center' },
+                { label: 'Bác sĩ', name: 'jzys', width: 80, align: 'center' },
+                { label: 'Số hồ sơ bệnh án', name: 'blh', width: 100, align: 'center', hidden: true, },
+                { label: 'Số hóa đơn', name: 'fph', width: 80, align: 'center', hidden: true },
                 {
-                    label: '总费用', name: 'jszje', width: 70, align: 'center', formatter: function (cellvalue) {
+                    label: 'Tổng chi phí', name: 'jszje', width: 70, align: 'center', formatter: function (cellvalue) {
                         return cellvalue ? cellvalue.toFixed(2) : "0.00";
                     }
                 },
                 {
-                    label: '现金', name: 'jsxjzf', width: 70, align: 'center', formatter: function (cellvalue) {
+                    label: 'Tiền mặt', name: 'jsxjzf', width: 70, align: 'center', formatter: function (cellvalue) {
                         return cellvalue ? cellvalue.toFixed(2) : "0.00";
                     }
                 },
                 {
-                    label: '记账', name: 'jsjz', width: 70, align: 'center', formatter: function (cellvalue) {
+                    label: 'Ghi sổ', name: 'jsjz', width: 70, align: 'center', formatter: function (cellvalue) {
                         return cellvalue ? cellvalue.toFixed(2) : "0.00";
                     }
                 },
                 {
-                    label: '费用日期', name: 'sfrq', width: 100, align: 'center', hidden: true, formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+                    label: 'Ngày chi phí', name: 'sfrq', width: 100, align: 'center', hidden: true, formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                 },
                 {
-                    label: '操作类型', name: 'jslx', width: 60, align: "center",
+                    label: 'Loại thao tác', name: 'jslx', width: 60, align: "center",
                     formatter: function (val) {
                         return $.enum.getDescByValue("EnumJslx", val);
                     }
                 },
-                { label: '操作员', name: 'CreatorName', width: 80, align: 'center' },
+                { label: 'Nhân viên thao tác', name: 'CreatorName', width: 80, align: 'center' },
                
-                { label: '退费员', name: 'tCreatorCode', align: 'center', hidden: true },
+                { label: 'Nhân viên hoàn phí', name: 'tCreatorCode', align: 'center', hidden: true },
             ],
             pager: "#gridPager",
             sortname: gridSort,
@@ -128,7 +128,7 @@
                     var jsxjzf = jQuery(this).getCol('jsxjzf', false, 'sum');
                     var jsjz = jQuery(this).getCol('jsjz', false, 'sum');
                     $(".ui-jqgrid-sdiv").show();
-                    $(this).footerData("set", { "jzys": "<font color='red'>合计<font>", "jszje": jszje, "jsxjzf": jsxjzf, "jsjz": jsjz });
+                    $(this).footerData("set", { "jzys": "<font color='red'>Tổng cộng<font>", "jszje": jszje, "jsxjzf": jsxjzf, "jsjz": jsjz });
                 } else {
                     $(".ui-jqgrid-sdiv").hide();
                 }
@@ -154,11 +154,11 @@
     };
 
 
-    //操作人
+    //Người thao tác
     $("#btnsyy").click(function () {
         $.modalOpen({
             id: "FormOutpatSFCZYUsers",
-            title: "选择操作员",
+            title: "Chọn nhân viên thao tác",
             url: "/SystemManage/User/Selector?from=mzshoufeicaozuoyuan&organizeId=" + '@curOpr.OrganizeId' + "&isExpand=true&callbackType=json&single=true",
             width: "300px",
             height: "400px",

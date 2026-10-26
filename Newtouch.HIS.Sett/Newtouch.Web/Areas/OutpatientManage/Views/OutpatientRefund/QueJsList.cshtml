@@ -8,7 +8,7 @@
         border: 0;
     }
 </style>
-<!--结算列表-->
+<!--Danh sách quyết toán-->
 <form id="tabGrid" style="margin:2px;margin-top:10px;">
     <div class="gridPanel" style="margin: 5px;">
         <table id="gridList" rel="tabGrid"></table>
@@ -21,28 +21,28 @@
         gridListFPH(JSON.parse(jsdata));
     });
 
-    //加载结算列表
+    //Tải danh sách quyết toán
     function gridListFPH(mydata) {
         var $gridList = $("#gridList");
         $gridList.dataNewGrid({
             height: 150,
             colModel: [
-                { label: '结算内码', width: 60, name: 'jsnm' },
+                { label: 'Mã nội bộ quyết toán', width: 60, name: 'jsnm' },
                 { label: 'flzffy', name: 'flzffy', hidden: true },
                 { label: 'zffy', name: 'zffy', hidden: true },
                 { label: 'jzfy', name: 'jzfy', hidden: true },
                 { label: 'zlfy', name: 'zlfy', hidden: true },
                 { label: 'xjzf', name: 'xjzf', hidden: true },
-                { label: '姓名', name: 'xm', width: 70, align: 'left' },
-                { label: '病历号', name: 'blh', width: 70, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 70, align: 'left' },
+                { label: 'Số hồ sơ bệnh án', name: 'blh', width: 70, align: 'left' },
                 {
-                    label: '记账日期', name: 'CreateTime', width: 80, align: 'left', formatter: function (cellvalue) {
+                    label: 'Ngày ghi sổ', name: 'CreateTime', width: 80, align: 'left', formatter: function (cellvalue) {
                         return cellvalue && cellvalue.length >= 10 ? cellvalue.substring(0, 10) : "";
                     }
                 },
-                { label: '操作人', name: 'czr', width: 70, align: 'left' },
+                { label: 'Người thao tác', name: 'czr', width: 70, align: 'left' },
                 {
-                    label: '总金额', name: 'zje', width: 80, align: 'left', formatter: function (cellvalue) {
+                    label: 'Tổng số tiền', name: 'zje', width: 80, align: 'left', formatter: function (cellvalue) {
                         return Number(cellvalue).toFixed(2);
                     }
                 }
@@ -57,25 +57,25 @@
     //function submitForm() {
     //    btn_edit();
     //}
-    //结算列表单击事件
+    //Sự kiện nhấp danh sách quyết toán
     function btn_edit() {
         var data = $("#gridList").jqGridRowValue();
         if (data) {
             var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
             if (!(seleRowid)) {
-                $.modalAlert("请选中一条信息", 'warning');
+                $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
                 return;
             }
             $.currentWindow().$("#blh").val(data.blh);
-            $.currentWindow().getDetail(data.jsnm); //主页中的方法
+            $.currentWindow().getDetail(data.jsnm); //Phương thức trong trang chính
             PatSearchConfirm();
         } else {
-            $.modalAlert("当前无选中的数据！", "warning");
+            $.modalAlert("Hiện không có dữ liệu đã chọn！", "warning");
         }
 
     }
 
-    //确定 主页面调用
+    //Xác nhận Trang chính gọi
     function PatSearchConfirm() {
         var $gridList = $("#gridList");
         var blh = $gridList.jqGridRowValue().blh;
@@ -83,11 +83,11 @@
         var obj = new Object();
         obj.blh = blh;
         obj.xm = xm;
-        //关闭窗口
+        //Đóng cửa sổ
         ReceiptCancle();
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() {
         $.modalClose();
     }

@@ -22,7 +22,7 @@
 </style>
 <table class="form">
     <tr>
-        <th class="formTitle">年份</th>
+        <th class="formTitle">Năm</th>
         <td class="formValue">
             <input id="year" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy")" onfocus="WdatePicker({ dateFmt: 'yyyy', onpicking: dateChange})" />
         </td>
@@ -30,7 +30,7 @@
     </tr>
 </table>
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-<input class="form-control btn btn-default" id="reset" type="button" value="重置" style="width: 50px;height: 25px;position: relative;top: -45px;right: -1050px;display:none">
+<input class="form-control btn btn-default" id="reset" type="button" value="Đặt lại" style="width: 50px;height: 25px;position: relative;top: -45px;right: -1050px;display:none">
 <table id="perIndicatortable" cellspacing="10">
     <thead>
         <tr>
@@ -64,7 +64,7 @@
                 perIndicatorObj.push({ zrc: 0, pjrc: 0 });
             }
             ShowChart();
-            $.modalAlert("请选择医疗机构", 'warning');
+            $.modalAlert("Vui lòng chọn cơ sở y tế", 'warning');
             return;
         }
         $.ajax({
@@ -79,16 +79,16 @@
         });
     }
 
-    //请求
+    //Yêu cầu
     aaaaaa($('#OrganizeId').val(), $('#year').val());
-    //图表
+    //Biểu đồ
     ShowChart();
 
     function dateChange(dp) {
         var year = dp.cal.getNewDateStr();
-        //请求
+        //Yêu cầu
         aaaaaa($('#OrganizeId').val(), year);
-        //图表
+        //Biểu đồ
         ShowChart();
     }
 
@@ -112,26 +112,26 @@
             yAxis: [{ // Primary yAxis
                 crosshair: true,
                 labels: {
-                    format: '{value}',   //总人次
+                    format: '{value}',   //Tổng số lượt
                     style: {
                         color: Highcharts.getOptions().colors[1]
                     }
                 },
                 title: {
-                    text: '总人次',
+                    text: 'Tổng số lượt',
                     style: {
                         color: Highcharts.getOptions().colors[1]
                     }
                 }
             }, { // Secondary yAxis
                 title: {
-                    text: '平均人次',
+                    text: 'Số lượt bình quân',
                     style: {
                         color: Highcharts.getOptions().colors[1]
                     }
                 },
                 labels: {
-                    format: '{value}',   //平均人次
+                    format: '{value}',   //Số lượt bình quân
                     style: {
                         color: Highcharts.getOptions().colors[1]
                     }
@@ -157,12 +157,12 @@
                 y: 0
             },
             series: [{
-                name: '总人次',  //总人次
+                name: 'Tổng số lượt',  //Tổng số lượt
                 type: 'column',
                 color: Highcharts.getOptions().colors[0],
                 data: [perIndicatorObj[0].zrc, perIndicatorObj[1].zrc, perIndicatorObj[2].zrc, perIndicatorObj[3].zrc, perIndicatorObj[4].zrc, perIndicatorObj[5].zrc, perIndicatorObj[6].zrc, perIndicatorObj[7].zrc, perIndicatorObj[8].zrc, perIndicatorObj[9].zrc, perIndicatorObj[10].zrc, perIndicatorObj[11].zrc],
                 tooltip: {
-                    valueSuffix: '' //单位
+                    valueSuffix: '' //Đơn vị
                 },
                 events: {
                     click: function (e) {
@@ -174,13 +174,13 @@
                 }
             },
             {
-                name: '平均人次',   //平均人次
+                name: 'Số lượt bình quân',   //Số lượt bình quân
                 type: 'spline',
                 color: Highcharts.getOptions().colors[6],
                 yAxis: 1,
                 data: [perIndicatorObj[0].pjrc, perIndicatorObj[1].pjrc, perIndicatorObj[2].pjrc, perIndicatorObj[3].pjrc, perIndicatorObj[4].pjrc, perIndicatorObj[5].pjrc, perIndicatorObj[6].pjrc, perIndicatorObj[7].pjrc, perIndicatorObj[8].pjrc, perIndicatorObj[9].pjrc, perIndicatorObj[10].pjrc, perIndicatorObj[11].pjrc],
                 tooltip: {
-                    valueSuffix: '' //单位
+                    valueSuffix: '' //Đơn vị
                 },
                 events: {
                     click: function (e) {
@@ -200,14 +200,14 @@
             $('#tr_pjrc').remove();
         }
         $('#thyear').html($('#year').val());
-        var str = "<tr id='tr_zrc'><td>总人次</td>";
+        var str = "<tr id='tr_zrc'><td>Tổng số lượt</td>";
         for (i = 0; i < 12; i++) {
             str += "<td>" + perIndicatorObj[i].zrc + "</td>";
         }
         str += "</tr>";
         $('#tbody').append(str);
 
-        var str = "<tr id='tr_pjrc'><td>平均人次</td>";
+        var str = "<tr id='tr_pjrc'><td>Số lượt bình quân</td>";
         for (i = 0; i < 12; i++) {
             str += "<td>" + perIndicatorObj[i].pjrc + "</td>";
         }
@@ -221,7 +221,7 @@
         var orgId = $('#OrganizeId').val();
         var year = $('#year').val();
         if (orgId == "") {
-            $.modalAlert("请选择医疗机构", 'warning');
+            $.modalAlert("Vui lòng chọn cơ sở y tế", 'warning');
             return;
         }
         $.ajax({
@@ -247,7 +247,7 @@
                 text: 'Performance Indicator'
             },
             subtitle: {
-                text: new Date().getFullYear() + '年' + month + "月人次统计"
+                text: new Date().getFullYear() + 'Năm' + month + "Thống kê lượt người theo tháng"
             },
             xAxis: [{
                 categories: rtnobj.str,
@@ -256,26 +256,26 @@
             yAxis: [{ // Primary yAxis
                 crosshair: true,
                 labels: {
-                    format: '{value}',   //总人次
+                    format: '{value}',   //Tổng số lượt
                     style: {
                         color: Highcharts.getOptions().colors[1]
                     }
                 },
                 title: {
-                    text: '总人次',
+                    text: 'Tổng số lượt',
                     style: {
                         color: Highcharts.getOptions().colors[1]
                     }
                 }
             }, { // Secondary yAxis
                 title: {
-                    text: '平均人次',
+                    text: 'Số lượt bình quân',
                     style: {
                         color: Highcharts.getOptions().colors[1]
                     }
                 },
                 labels: {
-                    format: '{value}',   //平均人次
+                    format: '{value}',   //Số lượt bình quân
                     style: {
                         color: Highcharts.getOptions().colors[1]
                     }
@@ -294,22 +294,22 @@
                 y: 0
             },
             series: [{
-                name: '总人次',  //总人次
+                name: 'Tổng số lượt',  //Tổng số lượt
                 type: 'column',
                 color: Highcharts.getOptions().colors[0],
                 data: rtnobj.zrc,
                 tooltip: {
-                    valueSuffix: '' //单位
+                    valueSuffix: '' //Đơn vị
                 }
             },
             {
-                name: '平均人次',   //平均人次
+                name: 'Số lượt bình quân',   //Số lượt bình quân
                 type: 'spline',
                 color: Highcharts.getOptions().colors[6],
                 yAxis: 1,
                 data: rtnobj.pjrc,
                 tooltip: {
-                    valueSuffix: '' //单位
+                    valueSuffix: '' //Đơn vị
                 }
             }],
 
@@ -321,14 +321,14 @@
             $('#tr_pjrc').remove();
         }
         $('#thyear').html($('#year').val());
-        var str = "<tr id='tr_zrc'><td>总人次</td>";
+        var str = "<tr id='tr_zrc'><td>Tổng số lượt</td>";
         for (i = 0; i < 12; i++) {
             str += "<td>" + perIndicatorObj[i].zrc + "</td>";
         }
         str += "</tr>";
         $('#tbody').append(str);
 
-        var str = "<tr id='tr_pjrc'><td>平均人次</td>";
+        var str = "<tr id='tr_pjrc'><td>Số lượt bình quân</td>";
         for (i = 0; i < 12; i++) {
             str += "<td>" + perIndicatorObj[i].pjrc + "</td>";
         }
@@ -385,9 +385,9 @@
 
 <script type="text/javascript">
     function funcOrganizeIdChange() {
-        //请求
+        //Yêu cầu
         aaaaaa($('#OrganizeId').val(), $('#year').val());
-        //图表
+        //Biểu đồ
         ShowChart();
 
     }

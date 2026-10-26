@@ -7,15 +7,15 @@
     var isZFtoYB = SysConfigReader.Bool("Inpatient_Open_ZF_to_YB", false).Value;
     var isYBtoZF = SysConfigReader.Bool("Inpatient_Open_YB_to_ZF", false).Value;
 
-    //是否和医保交易
+    //Có giao dịch với BHYT hay không
     var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
-    //医保所属地，区分系统将执行何处医保逻辑
+    //Nơi tham gia BHYT，Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
-    //HIS厂商编号
+    //HISMã nhà sản xuất
     var his_manufacturerID = SysConfigReader.String("HIS_ManufacturerID");
 
     var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
-    //就诊凭证类型是否从医保端获取
+    //Loại chứng từ khám bệnh có lấy từ phía BHYT hay không
     var YB_Jzpzl = SysConfigReader.String("YB_Jzpzl");
 }
 
@@ -43,15 +43,15 @@
 </style>
 
 <ol>
-    <li><span>住院患者信息初步判断</span></li>
-    @*<li><span>尚未开立非医保相关医嘱</span></li>*@
-    <li><span>医保环境检查</span></li>
-    <li><span>HIS唯一身份验证</span></li>
-    <li><span>医保交互.入院办理</span></li>
-    <li><span>更新HIS.自费转医保</span></li>
-    <li><span>医保交互.入院办理确认</span></li>
-    <li><span>同步数据至医生站</span></li>
-    <li><span>成功</span></li>
+    <li><span>Đánh giá sơ bộ thông tin bệnh nhân nội trú</span></li>
+    @*<li><span>Chưa kê y lệnh liên quan ngoài BHYT</span></li>*@
+    <li><span>Kiểm tra môi trường BHYT</span></li>
+    <li><span>HISXác thực danh tính duy nhất</span></li>
+    <li><span>Tương tác BHYT.Làm thủ tục nhập viện</span></li>
+    <li><span>Cập nhậtHIS.Chuyển tự chi trả sang BHYT</span></li>
+    <li><span>Tương tác BHYT.Xác nhận làm thủ tục nhập viện</span></li>
+    <li><span>Đồng bộ dữ liệu tới trạm bác sĩ</span></li>
+    <li><span>Thành công</span></li>
 </ol>
 
 <script type="text/javascript">
@@ -60,7 +60,7 @@
 
     });
 
-    //递归调用each step
+    //Gọi đệ quyeach step
     function go(stepFuncName) {
         if (!!!stepFuncName) {
             stepFuncName = "funcStep" + 1;
@@ -79,7 +79,7 @@
                 $iTemp.remove();
                 if (isStepSuccess === true) {
                     $('ol li:eq(' + (indx - 1) + ')').append('<i class="fa fa-check passing"></i>');
-                    //继续调用下一step function
+                    //Tiếp tục gọi tiếp theostep function
                     if ($('ol li').length > indx) {
                         go("funcStep" + (indx + 1));
                     }
@@ -90,11 +90,11 @@
             };
             var flag = func(callback);
             if (flag === true || flag === false) {
-                //同步返回模式
+                //Chế độ trả về đồng bộ
                 callback(flag);
             }
             else {
-                //回调模式
+                //Chế độ callback
             }
         }, 50);
     }
@@ -102,7 +102,7 @@
 </script>
 <script type="text/javascript">
 
-    var openYbSett = '@openYbSett' === 'True'; //开关配置：医保患者是否使用医保交易流程
+    var openYbSett = '@openYbSett' === 'True'; //Cấu hình công tắc：Bệnh nhân BHYT có sử dụng quy trình giao dịch BHYT hay không
     var medicalInsurance = '@medicalInsurance';
     var ybkCardType = "@((int)EnumCardType.YBJYK)";
     var zyh = $.request('zyh');
@@ -121,9 +121,9 @@
         jzh =parseInt(Math.random() * 100).toString();
     }
 
-    //医保卡信息
+    //Thông tin thẻ BHYT
     var cardInfo;
-    //系统病人主键
+    //Khóa chính bệnh nhân hệ thống
     var patid;
     var accountInfo;
     var cqcardInfo;
@@ -138,18 +138,18 @@
     var cardInfo3;
     var yibaoCardInfo;
     var brxzobj = { brxz: "1", brxzmc: "普通医保" };
-    var cqPatInfo = {};//患者读卡信息
-    //入院办理信息（医保接口返回）
+    var cqPatInfo = {};//Thông tin đọc thẻ bệnh nhân
+    //Thông tin làm thủ tục nhập viện（Giao diện BHYT trả về）
     var ryblInfo;
 
     function funcStep1(nextStepCallback) {
         //if (!!!zyh) {
-        //    $.modalAlert('缺少参数：zyh', 'error');
+        //    $.modalAlert('Thiếu tham số：zyh', 'error');
         //    return false;
         //}
         //$.modalOpen({
         //    id: "sbkhInput",
-        //    title: "卡号输入",
+        //    title: "Nhập số thẻ",
         //    url: "/OutpatientManage/OutpatientReg/OutPatientSbkhInput?t=" + Math.random() + "&medicalInsurance=" + medicalInsurance,
         //    width: "300px",
         //    height: "150px",
@@ -199,11 +199,11 @@
     //            break;
     //    }
     //}
-    ////手输社保卡号
+    ////Nhập tay số thẻ BHXH
     //function GetPatSbkh() {
     //    $.modalOpen({
     //        id: "sbkhInput",
-    //        title: "卡号输入",
+    //        title: "Nhập số thẻ",
     //        url: "/OutpatientManage/OutpatientReg/OutPatientSbkhInput?t=" + Math.random() + "&medicalInsurance=" + medicalInsurance,
     //        width: "300px",
     //        height: "150px",
@@ -213,7 +213,7 @@
     //    });
     //}
     function funcStep2(nextStepCallback) {
-        $.loading(true, '正在读卡...');
+        $.loading(true, 'Đang đọc thẻ...');
         var dk;
         if (medicalInsurance == "shanghai") {
             dk = shanghaiyb();
@@ -253,13 +253,13 @@
 				rydjksmc = data.data.ksmc;
 				rygjysbmobj = data.data.rygjysbm
 				if (!ryzd1 || !ryzd1.zdmc || !ryzd1.icd10) {
-				    $.modalAlert("缺少入院诊断,请先在入院登记处填写！", "error");
+				    $.modalAlert("Thiếu chẩn đoán nhập viện,Vui lòng điền tại nơi đăng ký nhập viện trước！", "error");
 				    $.loading(false);
 					nextStepCallback(false);
 					return;
 				}
 				if (!rydjksmc) {
-				    $.modalAlert("确认入院科室信息", "error");
+				    $.modalAlert("Xác nhận thông tin khoa nhập viện", "error");
 				    $.loading(false);
 					nextStepCallback(false);
 					return;
@@ -281,7 +281,7 @@
 
     function funcStep4(nextStepCallback) {
         debugger;
-	    $.loading(true, '正在医保入院办理...');
+	    $.loading(true, 'Đang làm thủ tục nhập viện BHYT...');
         setTimeout(function () {
             if(cqPatInfo.ybVer == "shanghaiV5") {
                 var payoptype = {
@@ -291,7 +291,7 @@
                     operatorName: '@(opr.UserName)',
                     insuplc_admdvs: cqPatInfo.xzqh,
                     orgId: '@(opr.OrganizeId)',
-                    hisId: zyh//住院号
+                    hisId: zyh//Số nhập viện
                 };
                 $.ajax({
                     type: "POST",
@@ -321,7 +321,7 @@
                                 nextStepCallback(true);
                             }
                             else {
-                                $.modalAlert("医保入院登记失败：" + medicalReg.err_msg, 'error');
+                                $.modalAlert("Đăng ký nhập viện BHYT thất bại：" + medicalReg.err_msg, 'error');
                                 $.loading(false);
                                 nextStepCallback(false);
                                 return false;;
@@ -333,9 +333,9 @@
 		        var payoptype = {
 		            mdtrt_cert_type: yibaoCardInfo.readCardCardType,
 		            mdtrt_cert_no: yibaoCardInfo.kh,
-		            hisId: zyh,//住院号
+		            hisId: zyh,//Số nhập viện
 		            hisIdNum:jzh,
-                    med_type: ryfs,//21普通住院，9925转入住院
+                    med_type: ryfs,//21Nhập viện thông thường，9925Chuyển vào nội trú
 		            operatorId: '@(opr.rygh)',
 		            operatorName: '@(opr.UserName)',
 		            insuplc_admdvs: cqPatInfo.xzqh,
@@ -376,7 +376,7 @@
 		                        nextStepCallback(true);
 		                    }
 		                    else {
-		                        $.modalAlert("医保入院登记失败：" + medicalReg.err_msg, 'error');
+		                        $.modalAlert("Đăng ký nhập viện BHYT thất bại：" + medicalReg.err_msg, 'error');
 		                        $.loading(false);
 		                        nextStepCallback(false);
 		                        return false;;
@@ -452,10 +452,10 @@
         var res = { "success": "true", "msg": "" };
         var yibaoCardInfo;
         var sm01Info;
-        var jzpzlx = "2";//HIS:社保卡
-        if (zffs == "sm") { jzpzlx = "3" } //his:电子凭证
+        var jzpzlx = "2";//HIS:Thẻ BHXH
+        if (zffs == "sm") { jzpzlx = "3" } //his:Chứng từ điện tử
         else if (zffs == "ck") {
-            jzpzlx = "0" //his:医保磁卡
+            jzpzlx = "0" //his:Thẻ từ BHYT
         }
         else {
             jzpzlx = "2"
@@ -465,24 +465,24 @@
             url = "http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_SM01";
         }
         var payoptype = { "cardtype": "1", "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', "businessType": "01101", "officeId": "0201", "officeName": "内科" };
-        if (jzpzlx == "0") {//磁条卡
+        if (jzpzlx == "0") {//Thẻ từ
             payoptype.cardtype = "0";
             payoptype.carddata = khxx;
         }
-        if (jzpzlx == "2") {//保障卡
+        if (jzpzlx == "2") {//Thẻ bảo đảm
             payoptype.cardtype = "1";
         }
-        if (jzpzlx == "3") {//电子凭证
+        if (jzpzlx == "3") {//Chứng từ điện tử
             payoptype.cardtype = "3";
             payoptype.carddata = khxx;
         }
-        if (jzpzlx == "4") {//身份证
+        if (jzpzlx == "4") {//CMND/CCCD
             payoptype.cardtype = "2";
             payoptype.carddata = khxx;
         }
         if (jzpzlx == "1") {
             $.loading(false);
-            $.modalAlert("院内卡读卡接口未开通", 'error');
+            $.modalAlert("Giao diện đọc thẻ nội viện chưa mở", 'error');
             return;
         }
         if (res.success) {
@@ -497,12 +497,12 @@
                 },
                 error: function (request, error, ex) {
                     res.success = false;
-                    res.msg = "医保服务读卡不可访问：[" + ex + "]";
+                    res.msg = "Dịch vụ BHYT đọc thẻ không thể truy cập：[" + ex + "]";
                 }
             });
             if (yibaoCardInfo) {
                 if (yibaoCardInfo.xxfhm === "P001") {
-                    sm01Info = yibaoCardInfo.sm01;//账户信息(s000 、se01 、sm01)
+                    sm01Info = yibaoCardInfo.sm01;//Thông tin tài khoản(s000 、se01 、sm01)
                     cqPatInfo.xm = sm01Info.xm;
                     cqPatInfo.sfzh = sm01Info.sfzh;
                     cqPatInfo.xzqh = sm01Info.xzqh;
@@ -514,8 +514,8 @@
                     //cqPatInfo.sfzh = sm01Info.sfzh;
                     cqPatInfo.kh = sm01Info.cardid;
                     //cqPatInfo.cblb = sm01Info.accountattr;
-                    var bkbz = sm01Info.accountattr.substr(11, 1);//帮困 G、A
-                    var gbbz = sm01Info.accountattr.substr(1, 1);//干保 1
+                    var bkbz = sm01Info.accountattr.substr(11, 1);//Hỗ trợ khó khăn G、A
+                    var gbbz = sm01Info.accountattr.substr(1, 1);//Bảo hiểm cán bộ 1
                     if (bkbz == "G" || bkbz == "A" || gbbz == "1") {
                         cqPatInfo.ybVer = "shanghaiV5";
                         cqPatInfo.cardtype = payoptype.cardtype;
@@ -535,12 +535,12 @@
                 else {
                     $.loading(false);
                     res.success = false;
-                    res.msg = "医保服务(获取医保中心患者信息失败):" + yibaoCardInfo.fhxx;
+                    res.msg = "Dịch vụ BHYT(Lấy thông tin bệnh nhân từ trung tâm BHYT thất bại):" + yibaoCardInfo.fhxx;
                 }
             } else {
                 $.loading(false);
                 res.success = false;
-                res.msg = "医保服务(获取医保中心未返回卡信息):";
+                res.msg = "Dịch vụ BHYT(Trung tâm BHYT chưa trả về thông tin thẻ):";
             }
         }
         return res;
@@ -552,7 +552,7 @@
       //  setTimeout(function () {
             var url = "http://127.0.0.1:33333/api/YiBao/CardecInfo_1161";
             var payoptype = { "mdtrt_cert_type": "03", "mdtrt_cert_no": patsfz, "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', "businessType": "01101", "officeId": "0201", "officeName": "内科" };
-            if (zffs === "sm")//电子凭证
+            if (zffs === "sm")//Chứng từ điện tử
             {
                 payoptype.mdtrt_cert_type = "01";
                 if (sbytj == "Y") {
@@ -561,18 +561,18 @@
                     url = "http://127.0.0.1:33333/api/YiBao/CardecInfo_1162A";
                 }
             }
-            if (zffs === "sfz") {//身份证
+            if (zffs === "sfz") {//CMND/CCCD
                 payoptype.mdtrt_cert_type = "02";
                 payoptype.mdtrt_cert_no = patsfz;
                 payoptype.psn_name = patName;
                 url = "http://127.0.0.1:33333/api/YiBao/CardecInfo_1163";
             }
-            if (zffs === "ck") {//医保磁卡
+            if (zffs === "ck") {//Thẻ từ BHYT
                 payoptype.mdtrt_cert_type = "00";
                 payoptype.mdtrt_cert_no = patsfz;
                 url = "http://127.0.0.1:33333/api/YiBao/CardecInfo_1101";
             }
-            if (zffs === "sl") {//刷脸
+            if (zffs === "sl") {//Quét khuôn mặt
                 payoptype.mdtrt_cert_type = "02";
                 url = "http://127.0.0.1:33333/api/YiBao/CardecInfo_1164";
             }
@@ -608,22 +608,22 @@
                     if ('@YB_Jzpzl' === 'ON') {
                         var cardecinfo = yibaoCardInfo.output.cardecinfo;
                         switch (cardecinfo.mdtrt_cert_type) {
-                            case "01"://电子凭证
+                            case "01"://Chứng từ điện tử
                                 zffs = '3';
                                 payoptype.mdtrt_cert_type = "01";
                                 payoptype.mdtrt_cert_type = cardecinfo.mdtrt_cert_type;
                                 break;
-                            case "02"://身份证
+                            case "02"://CMND/CCCD
                                 zffs = '4';
                                 break;
-                            case "03"://社保卡
+                            case "03"://Thẻ BHXH
                                 zffs = '2';
                                 /* sbkobj.sbkh = cardecinfo.mdtrt_cert_no;*/
                                 payoptype.mdtrt_cert_type = cardecinfo.mdtrt_cert_type;
                                 break;
                         }
                     }
-                    cardInfo1 = yibaoCardInfo.output.baseinfo; //医保基本信息
+                    cardInfo1 = yibaoCardInfo.output.baseinfo; //Thông tin cơ bản BHYT
                     if (yibaoCardInfo.output.insuinfo.length > 1) {
                         for (var i = 0; i < yibaoCardInfo.output.insuinfo.length; i++) {
                             if (yibaoCardInfo.output.insuinfo[i].paus_insu_date)
@@ -634,13 +634,13 @@
                             }
                         }
                     } else
-                        cardInfo2 = yibaoCardInfo.output.insuinfo[0];//参保信息
+                        cardInfo2 = yibaoCardInfo.output.insuinfo[0];//Thông tin tham gia bảo hiểm
                     if (zffs !== "3") {
-                        cardInfo3 = yibaoCardInfo.output.cardecinfo;//卡信息
+                        cardInfo3 = yibaoCardInfo.output.cardecinfo;//Thông tin thẻ
                         cqPatInfo.sbkh = cardInfo3.cardno;
                     }
                     if (zffs == "3") {
-                        cardInfo3 = yibaoCardInfo.output.cardecinfo;//卡信息
+                        cardInfo3 = yibaoCardInfo.output.cardecinfo;//Thông tin thẻ
                         cqPatInfo.ecToken = cardInfo3.ecToken;
                     }
                     getbrxz(cardInfo2.insutype);
@@ -672,7 +672,7 @@
                     //    var grbh = cardInfo1.psn_no;
                     //    var kh = cardInfo1.certno;
                     //    var cbdbm = cardInfo2.insuplc_admdvs;
-                    //    /*提交第一道扫码医保获取信息*/
+                    //    /*Gửi lần quét mã đầu tiên để BHYT lấy thông tin*/
                     //    $.najax({
                     //        type: "POST",
                     //        url: "/PatientManage/Inpatient/Up_hzybxx",
@@ -684,7 +684,7 @@
                     //    var grbh = cardInfo1.psn_no;
                     //    var kh = yibaoCardInfo.kh;
                     //    var cbdbm = cardInfo2.insuplc_admdvs;
-                    //    /*提交第一道刷卡医保获取信息*/
+                    //    /*Gửi lần quẹt thẻ đầu tiên để BHYT lấy thông tin*/
                     //    $.najax({
                     //        type: "POST",
                     //        url: "/PatientManage/Inpatient/Up_hzybxx",
@@ -695,12 +695,12 @@
                     return res;
                 } else {
                     res.success = false;
-                    res.msg = "医保服务【1101】(获取医保病人信息失败):" + yibaoCardInfo.err_msg;
+                    res.msg = "Dịch vụ BHYT【1101】(Lấy thông tin bệnh nhân BHYT thất bại):" + yibaoCardInfo.err_msg;
                     return res;
                 }
             } else {
                 res.success = false;
-                res.msg = "刷卡获取医保信息失败！失败原因：医保中心无信息返回，请重试！";
+                res.msg = "Quẹt thẻ lấy thông tin BHYT thất bại！Nguyên nhân thất bại：Trung tâm BHYT không trả về thông tin，Vui lòng thử lại！";
                 return res;
             }
        // }, 50);

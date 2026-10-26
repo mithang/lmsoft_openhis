@@ -6,7 +6,7 @@
     <div style="padding-top: 20px; margin-right: 55px;">
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>出院日期：</th>
+                <th class="formTitle"><span class="required">*</span>Ngày xuất viện：</th>
                 <td class="formValue">
                     <input class="form-control input-wdatepicker required" id="cyrq" name="cyrq"
                            value=@DateTime.Now.ToString("yyyy-MM-dd") type="text"
@@ -28,8 +28,8 @@
             return false;
         }
         var date = $('#cyrq').val();
-        if ($.getDate() < date) {   //一样的格式，可以直接比较大小
-            $.modalAlert("不能进行提前出院结算", 'warning');
+        if ($.getDate() < date) {   //Định dạng giống nhau，Có thể so sánh trực tiếp
+            $.modalAlert("Không thể quyết toán xuất viện trước", 'warning');
             return false;
         }
         return date;

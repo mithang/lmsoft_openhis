@@ -8,27 +8,27 @@
 <form name="form1">
     <div class="panel panel-default" style="margin-bottom: -1px;">
         <div class="panel-heading navb-bg">
-            客户信息
+            Thông tin khách hàng
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle" id="th_zyh" style="display:none">住院号：</th>
+                    <th class="formTitle" id="th_zyh" style="display:none">Số nhập viện：</th>
                     <td class="formValue" id="td_zyh" style="display:none">
                         <input type="text" class="form-control" id="zyh" placeholder="" />
                     </td>
-                    <th class="formTitle">病历号：</th>
+                    <th class="formTitle">Số hồ sơ bệnh án：</th>
                     <td class="formValue" colspan="2">
                         <input type="text" class="form-control" id="blh" placeholder="" style="width: 60%; float: left;"/>
-                        <input type="button" class="btn btn-default btn-md btn-default-color" style="width: 20%;margin-left: 2%;" title="选择病人" value="查询" onclick="GetPatSerarchView($('#blh').val(), $('#xm111').val());">
+                        <input type="button" class="btn btn-default btn-md btn-default-color" style="width: 20%;margin-left: 2%;" title="Chọn bệnh nhân" value="Tra cứu" onclick="GetPatSerarchView($('#blh').val(), $('#xm111').val());">
                     </td>
-                    <th class="formTitle" style="visibility:hidden;">姓名：</th>
+                    <th class="formTitle" style="visibility:hidden;">Họ tên：</th>
                     <td class="formValue" style="visibility:hidden;">
                         <input type="text" class="form-control" id="xm111" placeholder="" style="width: 124%;" />
                     </td>
                     <th class="formTitle" style="visibility:hidden;"></th>
                     <td class="formValue" style="visibility:hidden;">
-                        <input type="button" id="btn_search" class="btn btn-primary" style="width:75%" value="查询" />
+                        <input type="button" id="btn_search" class="btn btn-primary" style="width:75%" value="Tra cứu" />
                     </td>
                     <th class="formTitle"></th>
                     <td class="formValue" colspan="2"></td>
@@ -40,42 +40,42 @@
     </div>
     <div class="panel panel-default" style="margin-bottom: -1px;margin-top:8px;">
         <div class="panel-heading navb-bg">
-            记账信息
+            Thông tin ghi sổ
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>客户姓名：</th>
+                    <th class="formTitle"><span class="required">*</span>Tên khách hàng：</th>
                     <td class="formValue">
                         <input type="text" class="form-control form-an" id="xm" />
                     </td>
-                    <th class="formTitle">推荐人：</th>
+                    <th class="formTitle">Người giới thiệu：</th>
                     <td class="formValue">
                         <input type="text" class="form-control form-an" id="tjr" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>记账时间：</th>
+                    <th class="formTitle"><span class="required">*</span>Thời gian ghi sổ：</th>
                     <td class="formValue" style="width:14%;">
                         <input id="jzrq" type="text" class="form-control formClearIgnore form-an input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>收费项目：</th>
+                    <th class="formTitle"><span class="required">*</span>Hạng mục thu phí：</th>
                     <td class="formValue">
                         <input type="text" class="form-control form-an" id="sfxmName" />
                     </td>
-                    <th class="formTitle" id="thdjdw"><span class="required">*</span>单价：</th>
+                    <th class="formTitle" id="thdjdw"><span class="required">*</span>Đơn giá：</th>
                     <td class="formValue">
                         <input type="text" class="form-control newtouch_Readonly" id="dj" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>数量：</th>
+                    <th class="formTitle"><span class="required">*</span>Số lượng：</th>
                     <td class="formValue">
                         <input type="text" class="form-control form-an" id="sl" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>售卖人员：</th>
+                    <th class="formTitle"><span class="required">*</span>Nhân viên bán hàng：</th>
                     <td class="formValue">
                         <input type="text" readonly="readonly" class="form-control formClearIgnore form-an" id="smryName" data-smry="@opr.rygh" data-staffId="@opr.StaffId" value="@opr.UserName" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>售卖科室：</th>
+                    <th class="formTitle"><span class="required">*</span>Khoa bán hàng：</th>
                     <td class="formValue">
                         <input type="text" class="form-control formClearIgnore newtouch_Readonly" id="smks" data-smksCode="@opr.DepartmentCode" value="@opr.DepartmentName" />
                         <input id="editRowId" value="" style="display:none;" />
@@ -88,10 +88,10 @@
     @Html.Partial("_MiddleButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 2, 3, 6, 9 },
-    F2Text = "添加",
-    F3Text = "修改",
-    F6Text = "删除",
-    F9Text = "取消修改",
+    F2Text = "Thêm",
+    F3Text = "Sửa",
+    F6Text = "Xóa",
+    F9Text = "Hủy sửa",
     F9Hidden = true
 })
 
@@ -100,26 +100,26 @@
     </div>
     <div class="panel panel-default" style="margin-top:10px;">
         <div class="panel-heading navb-bg">
-            应收
+            Phải thu
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">应收款：</th>
+                    <th class="formTitle">Khoản phải thu：</th>
                     <td class="formValue">
                         <label style="color:red;">￥</label>
                         <label id="labysk"></label>
                     </td>
-                    <th class="formTitle">实收款：</th>
+                    <th class="formTitle">Số tiền thực thu：</th>
                     <td class="formValue">
-                        <input type="text" id="txtssk" class="form-control shortenWidth required" placeholder="不可为负数" />
+                        <input type="text" id="txtssk" class="form-control shortenWidth required" placeholder="Không được là số âm" />
                     </td>
-                    <th class="formTitle">找零：</th>
+                    <th class="formTitle">Tiền thừa：</th>
                     <td class="formValue">
                         <label>￥</label>
                         <label id="labzl"></label>
                     </td>
-                    @*<th class="formTitle">支付方式：</th>
+                    @*<th class="formTitle">Phương thức thanh toán：</th>
                         <td class="formValue formDdlSelectorTd">
                             <select id="ddlzffs" class="form-control"></select>
                         </td>*@
@@ -134,7 +134,7 @@
 })
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGridchiều rộng
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
@@ -146,15 +146,15 @@
         gridList([]);
     })
 
-    //住院号开关
+    //Công tắc số nhập viện
     var isShowZyh = '@ViewBag.IsShowZyh';
-    //查询
+    //Tra cứu
     $('#btn_search').click(function () {
         ajaxLoadDataResult();
         //}
     });
 
-    //病历号回车
+    //Nhấn Enter ở số hồ sơ bệnh án
     $('#blh,#zyh,#xm111').keydownEnterEvent(function () {
         ajaxLoadDataResult();
     })
@@ -166,7 +166,7 @@
         $('#td_formTitle').css('display', 'none');
         
     }
-    //弹层病人查询
+    //Lớp bật lên tra cứu bệnh nhân
     function GetPatSerarchView(blh, xm) {
         if (!!!blh) {
             blh = '';
@@ -176,17 +176,17 @@
         };
         $.modalOpen({
             id: "patSearch",
-            title: "患者查询",
+            title: "Tra cứu bệnh nhân",
             url: "/PatientManage/AccountManage/PatOnlyBlhSearchView?t=" + Math.random() + "&blh=" + $.trim(blh) + "&xm=" + $.trim(xm),
             width: "700px",
             height: "600px",
             callBack: function (iframeId) {
                 top.frames[iframeId].PatDbGrid();
-            }//窗口点确定的回调函数
+            }//Hàm callback khi nhấn xác nhận trên cửa sổ
         });
     }
 
-    //选择的病人 callback
+    //Bệnh nhân đã chọn callback
     function getPatInfoAjax(selePatInfo) {
         $('#blh').val(selePatInfo.blh)
         $('#blh').attr('data-patId', selePatInfo.patId);
@@ -194,7 +194,7 @@
     }
 
 
-    //查询病人信息
+    //Tra cứu thông tin bệnh nhân
     function ajaxLoadDataResult() {
         if (!$("#blh").val().trim() && !$("#zyh").val().trim() && !$("#xm111").val().trim()) {
             return;
@@ -210,7 +210,7 @@
             success: function (data) {
                 if (data.length <= 0) {
                     $.loading(false);
-                    $.modalAlert("未查到相关病人信息", 'warning');
+                    $.modalAlert("Không tra được thông tin bệnh nhân liên quan", 'warning');
                     $('#blh').val('');
                     $('#xm111').val('');
                     $('#xm').val('');
@@ -223,7 +223,7 @@
                     $('#xm').val(data[0].xm);
                 }
                 if (data.length > 1) {
-                    //弹层病人查询
+                    //Lớp bật lên tra cứu bệnh nhân
                     GetPatSerarchView($('#blh').val(), $('#xm111').val());
                 }
             }
@@ -231,12 +231,12 @@
 
     }
 
-    //默认
-    var Editing_ysList = []; //编辑域中的人员
+    //Mặc định
+    var Editing_ysList = []; //Nhân viên trong vùng chỉnh sửa
 
     Editing_ysList = [{ id: $('#smryName').attr('data-staffId'), gh: $('#smryName').attr('data-smry'), Name: $('#smryName').val(), ks: $('#smks').attr('data-smksCode'), ksmc: $('#smks').val() }];
 
-    //绑定 人员 树
+    //Liên kết Nhân viên Cây
     $('#smryName').click(function () {
         var initIdSelected = "";
         $.each(Editing_ysList, function () {
@@ -244,7 +244,7 @@
         })
         $.modalOpen({
             id: "StaffCorrelation",
-            title: "选择售卖人员",
+            title: "Chọn nhân viên bán hàng",
             url: "/SystemManage/SysStaff/Selector?single=true&isContansChildOrg=false&callbackType=json&initIdSelected=" + initIdSelected,
             showleftlalbel: false,
             width: "650px",
@@ -257,7 +257,7 @@
         });
     });
 
-    //人员树 选择 回调
+    //Cây nhân viên Chọn Callback
     function staffTreeCallback(treeSeleData) {
         Editing_ysList = [];
         $.each(treeSeleData, function () {
@@ -279,7 +279,7 @@
 
     }
 
-    //获取非治疗收费项目
+    //Lấy hạng mục thu phí không phải trị liệu
     $('#sfxmName').sfxmFloatingSelector({
         djDecimalPlaces: 4,
         searchType: "sfxm",
@@ -292,35 +292,35 @@
                 .attr('data-dw', $thistr.attr('data-dw'))
                 .val($thistr.attr('data-sfxmmc'));
             $('#dj').val($thistr.attr('data-dj'));;
-            $("#thdjdw").text("单价（元/" + $('#sfxmName').attr('data-dw') + "）: ")
+            $("#thdjdw").text("Đơn giá（đồng/" + $('#sfxmName').attr('data-dw') + "）: ")
             $('#sl').val(1);
         },
     });
 
-    //记账明细
+    //Chi tiết ghi sổ
     function gridList(mydata) {
         var $gridList = $("#gridList");
         $gridList.newtouchLocalDataGrid({
             height: $(window).height() - 395,
             unwritten: false,
             colModel: [
-                { label: '姓名', name: 'xm', width: 100, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 100, align: 'left' },
                 { label: 'patId', name: 'patId', width: 100, align: 'left', hidden: true },
-                { label: '病历号', name: 'blh', width: 100, align: 'left' },
-                { label: '住院号', name: 'zyh', width: 100, align: 'left' },
-                { label: '收费项目', name: 'sfxmName', width: 100, align: 'left' },
+                { label: 'Số hồ sơ bệnh án', name: 'blh', width: 100, align: 'left' },
+                { label: 'Số nhập viện', name: 'zyh', width: 100, align: 'left' },
+                { label: 'Hạng mục thu phí', name: 'sfxmName', width: 100, align: 'left' },
                 { label: 'sfxmCode', name: 'sfxmCode', width: 100, align: 'left', hidden: true },
                 { label: 'dlCode', name: 'dlCode', width: 100, align: 'left', hidden: true },
-                { label: '单位', name: 'dw', width: 100, align: 'left' },
-                { label: '单价', name: 'dj', width: 100, align: 'left' },
-                { label: '数量', name: 'sl', width: 100, align: 'left' },
-                { label: '金额', name: 'je', width: 100, align: 'left' },
-                { label: '售卖人员', name: 'smryName', width: 100, align: 'left' },
+                { label: 'Đơn vị', name: 'dw', width: 100, align: 'left' },
+                { label: 'Đơn giá', name: 'dj', width: 100, align: 'left' },
+                { label: 'Số lượng', name: 'sl', width: 100, align: 'left' },
+                { label: 'Số tiền', name: 'je', width: 100, align: 'left' },
+                { label: 'Nhân viên bán hàng', name: 'smryName', width: 100, align: 'left' },
                 { label: 'smry', name: 'smry', width: 100, align: 'left', hidden: true },
-                { label: '售卖科室', name: 'smks', width: 100, align: 'left' },
+                { label: 'Khoa bán hàng', name: 'smks', width: 100, align: 'left' },
                 { label: 'smksCode', name: 'smksCode', width: 100, align: 'left', hidden: true },
-                { label: '推荐人', name: 'tjr', width: 100, align: 'left' },
-                { label: '记账日期', name: 'jzrq', width: 100, align: 'left' },
+                { label: 'Người giới thiệu', name: 'tjr', width: 100, align: 'left' },
+                { label: 'Ngày ghi sổ', name: 'jzrq', width: 100, align: 'left' },
             ],
             ondblClickRow: function (rowid) {
                 gridDbclickRow(rowid);
@@ -335,7 +335,7 @@
         }, mydata);
     }
 
-    //双击
+    //Nhấp đúp
     function gridDbclickRow(rowid) {
         if (rowid) {
             var getRowData = $("#gridList").jqGrid('getRowData', rowid);
@@ -360,11 +360,11 @@
     }
 
 
-    //回车加载grid
+    //Nhấn Enter tảigrid
     $('#smryName').keydownEnterEvent(function () {
-        if ($('#editRowId').val()) {            //是修改
+        if ($('#editRowId').val()) {            //là sửa đổi
             newtouch_event_f3();
-            //操作按钮样式
+            //Kiểu nút thao tác
             bottomButtonsReset();
         }
         else {
@@ -372,10 +372,10 @@
         }
     });
 
-    //获取明细
+    //Lấy chi tiết
     function getEditRowData() {
         var count = $("#gridList").getGridParam('records');
-        //检查明细
+        //Chi tiết kiểm tra
         if (!CheckDetailData()) {
             return false;
         }
@@ -400,61 +400,61 @@
         }];
         return data;
     }
-    //添加按钮
+    //Nút Thêm
     function newtouch_event_f2() {
         if ($('#btn_bottombutton_f2').attr('disabled') == "disabled") {
             return;
         }
-        //检查明细
+        //Chi tiết kiểm tra
         if (!CheckDetailData()) {
             return false;
         }
-        //获取明细
+        //Lấy chi tiết
         var data = getEditRowData();
-        //清空控件
+        //Xóa trống điều khiển
         ClearInput();
         $("#gridList").newtouchLocalDataGrid(null, data);
-        //刷新应收款
+        //Làm mới khoản phải thu
         RefreshYSK();
     }
 
-    //F9取消修改
+    //F9Hủy sửa
     function newtouch_event_f9() {
         if ($('#btn_bottombutton_f9').attr('disabled') == "disabled") {
             return;
         }
-        //清空控件
+        //Xóa trống điều khiển
         ClearInput();
         bottomButtonsReset();
     }
 
-    //修改按钮
+    //Nút Sửa
     function newtouch_event_f3() {
         if ($('#btn_bottombutton_f3').attr('disabled') == "disabled") {
             return;
         }
         if ($('#editRowId').val()) {
-            //检查明细
+            //Chi tiết kiểm tra
             if (!CheckDetailData()) {
                 return false;
             }
-            //获取明细
+            //Lấy chi tiết
             var data = getEditRowData();
-            $('#gridList').jqGrid("delRowData", $('#editRowId').val()); //先remove掉那一行
-            //清空控件
+            $('#gridList').jqGrid("delRowData", $('#editRowId').val()); //Trước tiênremoveXóa dòng đó
+            //Xóa trống điều khiển
             ClearInput();
             $("#gridList").newtouchLocalDataGrid(null, data);
-            //刷新应收款
+            //Làm mới khoản phải thu
             RefreshYSK();
             bottomButtonsReset();
             $('#editRowId').val('');
         }
         else {
             $('#btn_bottombutton_f2').attr('disabled', 'disabled');
-            //获取grid当前选中的那一行
+            //LấygridDòng hiện đang chọn
             var seleId = $('#gridList').jqGrid('getGridParam', 'selrow');
             if (seleId) {
-                //请求修改该行
+                //Yêu cầu sửa dòng này
                 gridDbclickRow(seleId);
             }
             else {
@@ -463,7 +463,7 @@
         }
     }
 
-    //删除
+    //Xóa
     function newtouch_event_f6() {
         if ($('#btn_bottombutton_f6').attr('disabled') == "disabled") {
             return;
@@ -471,15 +471,15 @@
         var del_rowid = $("#gridList").jqGrid('getGridParam', 'selrow');
         if (!del_rowid) {
             $.loading(false);
-            $.modalAlert("未选中行", 'warning');
+            $.modalAlert("Chưa chọn dòng", 'warning');
             return;
         }
         $('#gridList').jqGrid('delRowData', del_rowid);
-        //刷新应收款
+        //Làm mới khoản phải thu
         RefreshYSK();
     }
 
-    //计算应收款
+    //Tính khoản phải thu
     function RefreshYSK() {
         var ysk = 0;
         var count = $("#gridList").getGridParam('records');
@@ -489,7 +489,7 @@
                 var getRow_je = $("#gridList").getRowData(rowIDS[i]).je;
                 ysk = parseFloat(ysk) + parseFloat(getRow_je);
             }
-            //入库金额
+            //Số tiền nhập kho
             $("#labysk").text(ysk.toFixed(2));
             $("#txtssk").val(ysk.toFixed(2));
             $("#labysk").addClass('moneybg');
@@ -499,55 +499,55 @@
         }
     }
 
-    //刷新找零
+    //Làm mới tiền thừa
     $("#txtssk").change(function () {
-        //先清空
+        //Xóa trống trước
         $("#labzl").text('');
         if ($("#txtssk").val() == "" || isNaN($("#txtssk").val()) || $("#txtssk").val() <= 0) {
             $.loading(false);
-            $.modalAlert("请填写实收款并且只可填数字且大于0", 'warning');
+            $.modalAlert("Vui lòng điền số tiền thực thu, chỉ điền số và lớn hơn0", 'warning');
             return;
         }
         var zl = parseFloat($("#txtssk").val()) - parseFloat($("#labysk").text());
-        $("#labzl").text(zl.toFixed(2)); //保留小数点后两位小数
+        $("#labzl").text(zl.toFixed(2)); //Giữ hai chữ số thập phân sau dấu thập phân
     });
 
 
-    //保存确认
+    //Xác nhận lưu
     function newtouch_event_f8() {
         var data = $("#gridList").jqGrid('getRowData_AllLine', undefined, false);
         if (data == "[]") {
             $.loading(false);
-            $.modalAlert("请先添加记账信息", 'warning');
+            $.modalAlert("Vui lòng thêm thông tin ghi sổ trước", 'warning');
             return;
         }
         if (!$('#jzrq').val()) {
             $.loading(false);
-            $.modalAlert("请先填写记账日期", 'warning');
+            $.modalAlert("Vui lòng điền ngày ghi sổ trước", 'warning');
             return;
         }
         if ($('#txtssk').val().replace(/(^\s*)|(\s*$)/g, "") == null || $('#txtssk').val().replace(/(^\s*)|(\s*$)/g, "") == "") {
             $.loading(false);
-            $.modalAlert("实收款为空", 'warning');
+            $.modalAlert("Số tiền thực thu trống", 'warning');
             return;
         }
         if ($("#txtssk").val() == "" || isNaN($("#txtssk").val()) || $("#txtssk").val() <= 0) {
             $.loading(false);
-            $.modalAlert("请填写实收款并且只可填数字且大于0", 'warning');
+            $.modalAlert("Vui lòng điền số tiền thực thu, chỉ điền số và lớn hơn0", 'warning');
             return;
         }
         if (parseFloat($('#txtssk').val()) < parseFloat($("#labysk").text())) {
             $.loading(false);
-            $.modalAlert("实收款必须不能小于应收款", 'warning');
+            $.modalAlert("Số tiền thực thu không được nhỏ hơn khoản phải thu", 'warning');
             return;
         } else {
             var zl = parseFloat($("#txtssk").val()) - parseFloat($("#labysk").text());
-            //弹出结算窗体
+            //Bật biểu mẫu quyết toán
             showBillSuccessDialog($("#labysk").text(), $("#txtssk").val(), 0, zl.toFixed(2));
         }
     }
 
-    //弹出金额确认窗口
+    //Bật cửa sổ xác nhận số tiền
     function showBillSuccessDialog(ysk, ssk, srce, zl) {
         var url = "/HospitalizationManage/Settlement/SettSuccessDialog?yingshoukuan=" + ysk
             + "&ssk=" + ssk
@@ -555,19 +555,19 @@
             + "&zhaoling=" + zl;
         $.modalOpen({
             id: "FormShowBillSuccessDialog",
-            title: "记账确认",
+            title: "Xác nhận ghi sổ",
             url: url,
             width: "320px",
             height: "260px",
             callBack: function (iframeId) {
-                $.loading(true, "正在请求数据...");
-                $.modalClose("FormShowBillSuccessDialog");   //关闭结算金额的窗体
+                $.loading(true, "Đang tải dữ liệu...");
+                $.modalClose("FormShowBillSuccessDialog");   //Đóng biểu mẫu số tiền quyết toán
                 SaveMethod(ysk, ssk);
             }
         });
     }
 
-    //具体保存执行
+    //Thực hiện lưu cụ thể
     function SaveMethod(ysk, ssk) {
         var data = $("#gridList").jqGrid('getRowData_AllLine', undefined, false);
         $.najax({
@@ -578,7 +578,7 @@
             async: false,
             success: function (data) {
                 $.loading(false);
-                $.modalAlert("保存成功", 'success');
+                $.modalAlert("Lưu thành công", 'success');
                 newtouch_globalevent_f4();
                 $("#labysk").text('');
                 $("#txtssk").val('');
@@ -604,51 +604,51 @@
     }
 
 
-    //校验明细
+    //Kiểm tra chi tiết
     function CheckDetailData() {
         if ($("#sfxmName").val() == "") {
-            $.modalAlert("请填写收费项目", 'warning');
+            $.modalAlert("Vui lòng điền hạng mục thu phí", 'warning');
             return false;
         }
         if ($("#dj").val() == "") {
-            $.modalAlert("请填写单价", 'warning');
+            $.modalAlert("Vui lòng điền đơn giá", 'warning');
             return false;
         }
         if ($("#sl").val() == "" || $("#sl").val() <= 0 || isNaN($("#sl").val()) || String($("#sl").val()).indexOf(".") > -1) {
-            $.modalAlert("请填写数量并且只可填整数且大于0", 'warning');
+            $.modalAlert("Vui lòng điền số lượng, chỉ điền số nguyên và lớn hơn0", 'warning');
             return false;
         }
         if ($("#xm").val() == "") {
-            $.modalAlert("请填写姓名", 'warning');
+            $.modalAlert("Vui lòng điền họ tên", 'warning');
             return false;
         }
         if ($("#smryName").val() == "") {
-            $.modalAlert("请填写售卖人员", 'warning');
+            $.modalAlert("Vui lòng điền nhân viên bán hàng", 'warning');
             return false;
         }
         if ($("#smks").val() == "") {
-            $.modalAlert("请填写售卖科室", 'warning');
+            $.modalAlert("Vui lòng điền khoa bán hàng", 'warning');
             return false;
         }
         if (!$("#jzrq").val()) {
-            $.modalAlert("请填写记账日期", 'warning');
+            $.modalAlert("Vui lòng điền ngày ghi sổ", 'warning');
             return false;
         }
         if ($("#jzrq").val() > "@DateTime.Now.ToString("yyyy-MM-dd")") {
-            $.modalAlert("不能选择未来的记账日期", 'warning');
+            $.modalAlert("Không thể chọn ngày ghi sổ trong tương lai", 'warning');
             return false;
         }
         return true;
     }
 
-    //清空控件
+    //Xóa trống điều khiển
     function ClearInput() {
         $('#sfxmName').val('');
         $('#dj').val('');
         $('#sl').val('');
     }
 
-    //f4清除操作
+    //f4Thao tác xóa
     function newtouch_event_f4() {
         $('#gridList').jqGrid("clearGridData");
     }

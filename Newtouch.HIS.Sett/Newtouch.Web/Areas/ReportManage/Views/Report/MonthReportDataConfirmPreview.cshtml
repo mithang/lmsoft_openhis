@@ -8,33 +8,33 @@
     <div style="padding-top: 20px; margin-right: 55px;">
         <table class="form">
             <tr>
-                <th class="formTitle">月份：</th>
+                <th class="formTitle">Tháng：</th>
                 <td class="formValue">
                     <label id="lblYearMonth"></label>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">费用：</th>
+                <th class="formTitle">Chi phí：</th>
                 <td class="formValue">
                     <label id="lblCalcZje"></label>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">补差调整：</th>
+                <th class="formTitle">Điều chỉnh bù chênh lệch：</th>
                 <td class="formValue">
-                    <input id="balance" type="text" class="form-control" placeholder="调整金额" />
+                    <input id="balance" type="text" class="form-control" placeholder="Điều chỉnh số tiền" />
                 </td>
             </tr>
             <tr>
                 <th class="formTitle" valign="top" style="padding-top: 5px;">
-                    调整原因：
+                    Lý do điều chỉnh：
                 </th>
                 <td class="formValue">
                     <textarea id="balanceReason" class="form-control" style="height: 60px;"></textarea>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">费用合计：</th>
+                <th class="formTitle">Tổng chi phí：</th>
                 <td class="formValue">
                     <label id="lblResultZje"></label>
                 </td>
@@ -47,14 +47,14 @@
     var year = $.request("year");
     var month = $.request("month");
     var calcZje = $.request("calcZje");
-    var isregenerate = $.request("isregenerate"); //重新生成 标志
+    var isregenerate = $.request("isregenerate"); //Tạo lại Cờ
 
     $('#lblYearMonth').html(year + '-' + $.zeroPrefixInteger(month, 2));
     $('#lblCalcZje').html(parseFloat(calcZje).toFixed(2));
     $('#lblResultZje').html(parseFloat(calcZje).toFixed(2));
 
     $('#balance').keyup(function () {
-        //重新计算合计
+        //Tính lại tổng cộng
         var tzje = $('#balance').val();
         if (tzje) {
             if (isNaN(parseFloat(tzje))) {
@@ -76,23 +76,23 @@
         var resultZje = $('#lblResultZje').html();
         var details = $.currentWindow().details;
         if (!year || !month) {
-            $.modalAlert("日期错误，请重试", 'error');
+            $.modalAlert("Ngày không đúng，Vui lòng thử lại", 'error');
             return;
         }
         if (!calcZje || !resultZje) {
-            $.modalAlert("费用错误，请重试", 'error');
+            $.modalAlert("Chi phí lỗi，Vui lòng thử lại", 'error');
             return;
         }
         if (!isNaN(parseFloat(resultZje)) && parseFloat(resultZje) <= 0) {
-            $.modalAlert("费用合计结果应为正数，请确认", 'error');
+            $.modalAlert("Kết quả tổng chi phí phải là số dương，Vui lòng xác nhận", 'error');
             return;
         }
         if (!balanceReason && balance) {
-            $.modalAlert("补差，请填写原因", 'error');
+            $.modalAlert("Bù chênh lệch，Vui lòng điền lý do", 'error');
             return;
         }
         if (!details || !details.length || details.length == 0) {
-            $.modalAlert("未获取到费用", 'error');
+            $.modalAlert("Chưa lấy được chi phí", 'error');
             return;
         }
         $.submitForm({

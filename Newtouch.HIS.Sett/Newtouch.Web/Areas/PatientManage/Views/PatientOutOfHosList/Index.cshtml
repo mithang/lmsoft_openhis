@@ -13,7 +13,7 @@
     $(function () {
         debugger;
         var Report = ReportViewer.Report;
-        // Report.LoadFromURL("../../../../ReportTemplate/出院患者列表.grf");
+        // Report.LoadFromURL("../../../../ReportTemplate/Danh sách bệnh nhân xuất viện.grf");
         GetDate();
     }
         );
@@ -29,39 +29,39 @@
         if (month < 10) {
             month = "0" + month;
         }
-        var firstDay = year + "-" + month + "-" + "01" + " 00:00:00";//上个月的第一天
+        var firstDay = year + "-" + month + "-" + "01" + " 00:00:00";//Ngày đầu tiên của tháng trước
 
         $("#ryrq").val(firstDay);
 
         var myDate = new Date(year, month, 0);
-        var lastDay = year + "-" + month + "-" + myDate.getDate() + " 23:59:59";//上个月的最后一天
+        var lastDay = year + "-" + month + "-" + myDate.getDate() + " 23:59:59";//Ngày cuối cùng của tháng trước
         $("#cyrq").val(lastDay);
     }
 </script>
 <form id="form1" class="form">
     <table style="width:95%">
         <tr>
-            <td>入院日期:</td>
+            <td>Ngày nhập viện:</td>
             <td class="formValue">
                 <input id="ryrq" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
             </td>
             <td class="formValue"><input id="cyrq" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" /></td>
-            <td>排序列:</td>
+            <td>Cột sắp xếp:</td>
             <td class="formValue">
                 <select id="px" class="form-control">
-                    <option value="">==请选择==</option>
-                    <option value="0">出院日期</option>
-                    <option value="1">住院号</option>
-                    <option value="2">病人类型</option>
-                    <option value="3">姓名</option>
-                    <option value="4">出生日期</option>
+                    <option value="">==Vui lòng chọn==</option>
+                    <option value="0">Ngày xuất viện</option>
+                    <option value="1">Số nhập viện</option>
+                    <option value="2">Loại bệnh nhân</option>
+                    <option value="3">Họ tên</option>
+                    <option value="4">Ngày sinh</option>
                 </select>
             </td>
             <td class="formValue">
                 <select id="sj" class="form-control">
-                    <option value="">==请选择==</option>
-                    <option value="0">升序</option>
-                    <option value="1">降序</option>
+                    <option value="">==Vui lòng chọn==</option>
+                    <option value="0">Tăng dần</option>
+                    <option value="1">Giảm dần</option>
                 </select>
             </td>
         </tr>

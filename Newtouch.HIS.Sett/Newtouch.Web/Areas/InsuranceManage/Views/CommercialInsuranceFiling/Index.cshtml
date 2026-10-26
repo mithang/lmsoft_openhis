@@ -6,16 +6,16 @@
 <div class="topPanel">
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
+            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
         </div>
         <div class="btn-group">
-            <a id="NF-Details" class="btn btn-primary dropdown-text" onclick="btn_details()"><i class="fa fa-search-plus"></i>查看</a>
+            <a id="NF-Details" class="btn btn-primary dropdown-text" onclick="btn_details()"><i class="fa fa-search-plus"></i>Xem</a>
         </div>
     </div>
     <div class="search">
@@ -23,7 +23,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="病历号" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Số hồ sơ bệnh án" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -39,7 +39,7 @@
 </div>
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGridchiều rộng
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
@@ -50,7 +50,7 @@
         });
     });
 
-    //明细
+    //Chi tiết
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -59,19 +59,19 @@
             height: $(window).height() - 130,
             colModel: [
                 { label: "sbbabId", name: "sbbabId", width: 100, align: "center", hidden: true },
-                { label: "病历号", name: "blh", width: 90, align: "center" },
-                { label: "姓名", name: "xm", width: 80, align: "center" },
+                { label: "Số hồ sơ bệnh án", name: "blh", width: 90, align: "center" },
+                { label: "Họ tên", name: "xm", width: 80, align: "center" },
                 {
-                    label: "年龄", name: "nlshow", width: 80, align: "center", formatter: function (cellvalue, a, b) {
+                    label: "Tuổi", name: "nlshow", width: 80, align: "center", formatter: function (cellvalue, a, b) {
                         return getAgeFromBirthTime({ begin: b.csny }).text;
                     }
                 },
-                { label: "证件号", name: "zjh", width: 130, align: "center" },
-                { label: "保险公司", name: "bxName", width: 130, align: "center" },
-                { label: "保险公司", name: "bxCode", width: 130, align: "center", hidden: true },
-                { label: "病人内码", name: "patId", width: 100, align: "center", hidden: true },
+                { label: "Số giấy tờ", name: "zjh", width: 130, align: "center" },
+                { label: "Công ty bảo hiểm", name: "bxName", width: 130, align: "center" },
+                { label: "Công ty bảo hiểm", name: "bxCode", width: 130, align: "center", hidden: true },
+                { label: "Mã nội bộ bệnh nhân", name: "patId", width: 100, align: "center", hidden: true },
                 {
-                    label: "开始日期",
+                    label: "Ngày bắt đầu",
                     name: "ksrq",
                     width: 100,
                     align: "center",
@@ -79,15 +79,15 @@
                     formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                 },
                 {
-                    label: "结束日期",
+                    label: "Ngày kết thúc",
                     name: "jsrq",
                     width: 100,
                     align: "center",
                     formatter: "date",
                     formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                 },
-                { label: "次数", name: "zcs", width: 100, align: "center" },
-                { label: "剩余次数", name: "sycs", width: 100, align: "center" }
+                { label: "Số lần", name: "zcs", width: 100, align: "center" },
+                { label: "Số lần còn lại", name: "sycs", width: 100, align: "center" }
             ],
             pager: "#gridPager",
             sortname: 'CreateTime desc',
@@ -103,17 +103,17 @@
         });
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var keyword = $("#txt_keyword").val();
         return { keyword: keyword };
     };
 
-    //新建
+    //Tạo mới
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增商保备案",
+            title: "Thêm đăng ký bảo hiểm thương mại mới",
             url: "/InsuranceManage/CommercialInsuranceFiling/Form",
             width: "550px",
             height: "470px",
@@ -123,17 +123,17 @@
         });
     }
 
-    //修改
+    //Sửa
     function btn_edit() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var sbbabId = $("#gridList").jqGridRowValue().sbbabId;
         $.modalOpen({
             id: "Form",
-            title: "修改信息",
+            title: "Sửa thông tin",
             url: "/InsuranceManage/CommercialInsuranceFiling/Form?sbbabId=" + sbbabId,
             width: "550px",
             height: "470px",
@@ -143,11 +143,11 @@
         });
     }
 
-    //删除
+    //Xóa
     function btn_delete() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var sbbabId = $("#gridList").jqGridRowValue().sbbabId;
@@ -160,22 +160,22 @@
         });
     }
 
-    //详情
+    //Chi tiết
     function btn_details() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var count = $("#gridList").getGridParam("reccount");
         if (count === 0) {
-            $.modalAlert("未选中行", 'warning');
+            $.modalAlert("Chưa chọn dòng", 'warning');
             return;
         }
         var sbbabId = $("#gridList").jqGridRowValue().sbbabId;
         $.modalOpen({
             id: "Details",
-            title: "查看机构",
+            title: "Xem cơ quan",
             url: "/InsuranceManage/CommercialInsuranceFiling/Form?sbbabId=" + sbbabId,
             width: "550px",
             height: "570px",

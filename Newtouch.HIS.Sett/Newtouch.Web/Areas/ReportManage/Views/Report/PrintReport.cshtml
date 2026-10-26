@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "费用一日清";
+    ViewBag.Title = "Chi phí một ngày rõ ràng";
     Layout = "~/Views/Shared/_Form.cshtml";
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
     var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
@@ -10,28 +10,28 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">住院号：</th>
+                <th class="formTitle">Số nhập viện：</th>
                 <td class="formValue">
                     <input id="zyh" name="zyh" type="text" autocomplete="off" class="form-control" />
                 </td>
-                <th class="formTitle">开始日期：</th>
+                <th class="formTitle">Ngày bắt đầu：</th>
                 <td class="formValue">
                     <input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refReport(); } })"
                            value="@DateTime.Now.ToString("yyyy-MM-01")" />
                 </td>
-                <th class="formTitle">结束日期：</th>
+                <th class="formTitle">Ngày kết thúc：</th>
                 <td class="formValue">
                     <input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refReport(); } })"
                            value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 </td>
-                <th class="formTitle">入院日期：</th>
+                <th class="formTitle">Ngày nhập viện：</th>
                 <td class="formValue"><p id="ryrq" name="ryrq" type="text" style="margin-bottom:0" /></td>
                 <th class="formTitle">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询一日清" style="width:60px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu chi phí một ngày rõ ràng" style="width:60px" />
                 </th>
                 <td class="formValue" style="padding-left:20px;">
 
@@ -60,11 +60,11 @@
     var OrgId = '@(ViewBag.OrgId)';
     var reportServerHOST = '@(ViewBag.ReportServerHOST)';
 
-    //治疗项目选择浮层绑定
+    //Liên kết lớp nổi chọn hạng mục trị liệu
     $('#zyh').newtouchBatchFloatingSelector({
         width: 520,
         height: 200,
-        caption: "选择患者",
+        caption: "Chọn bệnh nhân",
         clickautotrigger: true,
         url: "/ReportManage/Report/GetInpatientcryrq",
         ajaxparameters: function ($thisinput) {
@@ -87,36 +87,36 @@
             }
         },
         colModel: [
-            //hidden 是否隐藏
-            { label: '住院号', name: 'zyh', width: 100 },
+            //hidden Có ẩn hay không
+            { label: 'Số nhập viện', name: 'zyh', width: 100 },
             { label: 'cyrq', name: 'cyrq', hidden: true },
             { label: 'ryrq', name: 'ryrq', hidden: true },
-            { label: '在院标志', name: 'zybz', width: 100, align: 'Center' },
-            { label: '姓名', name: 'xm', width: 120, align: 'Center' },
-            { label: '出生年月', name: 'csny', hidden: true, width: 100, align: 'Center' },
+            { label: 'Cờ đang nằm viện', name: 'zybz', width: 100, align: 'Center' },
+            { label: 'Họ tên', name: 'xm', width: 120, align: 'Center' },
+            { label: 'Năm sinh', name: 'csny', hidden: true, width: 100, align: 'Center' },
             {
-                label: '性别', name: 'xb', width: 50, align: 'Center', formatter: function (cellvalue) {
+                label: 'Giới tính', name: 'xb', width: 50, align: 'Center', formatter: function (cellvalue) {
                     return $.getGender(cellvalue);
                 }
             },
             {
-                label: '年龄', name: 'nlshow', width: 50, align: 'Center', formatter: function (cellvalue, a, b) {
+                label: 'Tuổi', name: 'nlshow', width: 50, align: 'Center', formatter: function (cellvalue, a, b) {
                     return getAgeFromBirthTime({ begin: b.csny }).text;
                 }
             },
-            { label: '床号', name: 'cw', width: 50, align: 'Center' },
-            { label: '入院日期', name: 'ryrq', hidden: true, width: 100, align: 'Center' }
+            { label: 'Số giường', name: 'cw', width: 50, align: 'Center' },
+            { label: 'Ngày nhập viện', name: 'ryrq', hidden: true, width: 100, align: 'Center' }
         ]
     });
 
     function submit() {
 
         if ($('#zyh').val().length == 0) {
-            $.modalAlert("缺少住院号", "error");
+            $.modalAlert("Thiếu số nhập viện", "error");
             return;
         }
         if ($('#ksrq').val().length == 0 || $('#jsrq').val().length == 0) {
-            $.modalAlert("请选择时间范围", "error");
+            $.modalAlert("Vui lòng chọn khoảng thời gian", "error");
             return;
         }
 
@@ -126,13 +126,13 @@
 		url += "&orgId=" + OrgId;
 		url += "&kssj=" + $('#ksrq').val();
 		url += "&jssj=" +$('#jsrq').val();
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'Đang tải trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
     }
     function summary()
     {
         if ($('#zyh').val().length == 0) {
-            $.modalAlert("缺少住院号", "error");
+            $.modalAlert("Thiếu số nhập viện", "error");
             return;
         }
        // var url = getUrl();
@@ -142,7 +142,7 @@
             url += " &kssj=" + $('#ryrq').html();
             url += " &jssj=" + $('#jsrq').val();
             url += " &hospitalCode=" + OrgId;
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'Đang tải trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
     }
     $("#iframerightiframerightiframerightttt").load(function () {
@@ -155,7 +155,7 @@
 
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }
@@ -167,7 +167,7 @@
         }
         srcUrl = srcUrl2;
         srcUrl = reportServerHOST + srcUrl;
-        //console.info("地址：" + srcUrl);
+        //console.info("Địa chỉ：" + srcUrl);
         //alert(srcUrl);
         return srcUrl;
     }

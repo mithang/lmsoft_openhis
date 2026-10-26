@@ -4,14 +4,14 @@
     var isZFtoYB = SysConfigReader.Bool("Inpatient_Open_ZF_to_YB", false).Value;
     var isYBtoZF = SysConfigReader.Bool("Inpatient_Open_YB_to_ZF", false).Value;
 
-    //是否和医保交易
+    //Có giao dịch với BHYT hay không
     var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
-    //是否和新农合交易
+    //Có giao dịch với bảo hiểm nông thôn mới hay không
     var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
-    //医保所属地，区分系统将执行何处医保逻辑
+    //Nơi tham gia BHYT，Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
     var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
-    //就诊凭证类型是否从医保端获取
+    //Loại chứng từ khám bệnh có lấy từ phía BHYT hay không
     var YB_Jzpzl = SysConfigReader.String("YB_Jzpzl");
 }
 <style>
@@ -27,104 +27,104 @@
 <form>
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">在院状态：</th>
+                <th class="formTitle">Trạng thái đang nằm viện：</th>
                 <td class="formValue">
                     <select id="zybz" name="zybz" class="form-control">
-                        <option value="">==请选择==</option>
-                        <option value="0,1,2,7">在院</option>
-                        <option value="3">已出院</option>
-                        <option value="9">已作废</option>
+                        <option value="">==Vui lòng chọn==</option>
+                        <option value="0,1,2,7">Đang nằm viện</option>
+                        <option value="3">Đã xuất viện</option>
+                        <option value="9">Đã hủy</option>
                     </select>
                 </td>
-                <th class="formTitle">关键字：</th>
+                <th class="formTitle">Từ khóa：</th>
                 <td class="formValue">
-                    <input id="txt_keyword" type="text" class="form-control form-an" placeholder="姓名/病历号/住院号">
+                    <input id="txt_keyword" type="text" class="form-control form-an" placeholder="Họ tên/Số hồ sơ bệnh án/Số nhập viện">
                 </td>
-                <th class="formTitle">入院日期：</th>
+                <th class="formTitle">Ngày nhập viện：</th>
                 <td class="formValue" colspan="2">
                     <input id="ryrqkssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-6).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left">—</span>
                     <input id="ryrqjssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
-                <th class="formTitle" style="width:70px;padding-right:12px;">入院科室：</th>
+                <th class="formTitle" style="width:70px;padding-right:12px;">Khoa nhập viện：</th>
                 <td class="formValue">
                     <input type="text" id="ksmc" name="ksmc" class="form-control form-an" />
                 </td>
-                <th class="formTitle" style="width:70px;padding-right:12px;">入院病区：</th>
+                <th class="formTitle" style="width:70px;padding-right:12px;">Khu bệnh nhập viện：</th>
                 <td class="formValue">
                     <input type="text" id="bqmc" name="bqmc" class="form-control form-an" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">新住院号：</th>
+                <th class="formTitle">Số nhập viện mới：</th>
                 <td class="formValue" colspan="1">
                     <select id="sel_newzyh">
-                        <option value="0">否</option>
-                        <option value="1">是</option>
+                        <option value="0">Không</option>
+                        <option value="1">Có</option>
                     </select>
                 </td>
                 <td class="formTitle">
-                    入院方式：
+                    Cách nhập viện：
                 </td>
                 <td class="formValue">
                     <select id="sel_ryfs">
-                        <option value="21">普通住院</option>
-                        <option value="9925">转入住院</option>
+                        <option value="21">Nhập viện thông thường</option>
+                        <option value="9925">Chuyển vào nội trú</option>
                     </select>
                 </td>
                 <td class="formValue" colspan="2">
                     @if (isZFtoYB)
                     {
-                        <input type="button" id="btn_ZFtoYB" class="btn btn-info" style="width:17%;display:inline-block;" value="转医保" />
+                        <input type="button" id="btn_ZFtoYB" class="btn btn-info" style="width:17%;display:inline-block;" value="Chuyển sang BHYT" />
                     }
                     @if (isZFtoYB && medicalInsurance == "guian")
                     {
-                        <input type="button" id="btn_ZFtoXNH" class="btn btn-info" style="width:17%;display:inline-block;" value="转农合" />
+                        <input type="button" id="btn_ZFtoXNH" class="btn btn-info" style="width:17%;display:inline-block;" value="Chuyển sang bảo hiểm nông thôn mới" />
                     }
                     @if (isYBtoZF)
                     {
-                        <input type="button" id="btn_YBtoZF" class="btn btn-info" style="width:17%;display:inline-block;" value="转自费" />
+                        <input type="button" id="btn_YBtoZF" class="btn btn-info" style="width:17%;display:inline-block;" value="Chuyển sang tự chi trả" />
                     }
                     @if (medicalInsurance == "guian")
                     {
-                        <input type="button" id="btn_QXCYBL" class="btn btn-info" style="width:20%;display:inline-block;" value="出院回退" />
+                        <input type="button" id="btn_QXCYBL" class="btn btn-info" style="width:20%;display:inline-block;" value="Hoàn trả xuất viện" />
                     }
                 </td>
                 <td class="formValue" colspan="3">
-                    <input type="button" id="btn_search" class="btn btn-primary" style="width:20%;margin-left: 10%;" value="查询" />
-                    <input type="button" id="btn_excel" class="btn btn-primary" style="width:20%;margin-left: 1%;" value="导出Excel" />
+                    <input type="button" id="btn_search" class="btn btn-primary" style="width:20%;margin-left: 10%;" value="Tra cứu" />
+                    <input type="button" id="btn_excel" class="btn btn-primary" style="width:20%;margin-left: 1%;" value="Xuất raExcel" />
                 </td>
             </tr>
             <tr style="display:none">
                 <td class="formValue">
-                    <input type="button" id="btn_jsqd" class="btn btn-info" style="display:block;" value="结算清单上传" />
+                    <input type="button" id="btn_jsqd" class="btn btn-info" style="display:block;" value="Tải lên bảng kê quyết toán" />
 
                 </td>
                 <td>
-                    <input type="button" id="btn_basy" class="btn btn-info" style="display:block;" value="病案首页上传" />
+                    <input type="button" id="btn_basy" class="btn btn-info" style="display:block;" value="Tải lên trang đầu hồ sơ bệnh án" />
 
                 </td>
                 <td>
-                    <input type="button" id="btn_zyyz" class="btn btn-info" style="display:block;" value="住院医嘱上传" />
+                    <input type="button" id="btn_zyyz" class="btn btn-info" style="display:block;" value="Tải lên y lệnh nội trú" />
 
                 </td>
                 <td>
-                    <input type="button" id="btn_lcjc" class="btn btn-info" style="display:block;" value="临床检查上传" />
+                    <input type="button" id="btn_lcjc" class="btn btn-info" style="display:block;" value="Tải lên kiểm tra lâm sàng" />
 
                 </td>
                 <td>
-                    <input type="button" id="btn_bljcbg" class="btn btn-info" style="display:block;" value="病理检查报告上传" />
+                    <input type="button" id="btn_bljcbg" class="btn btn-info" style="display:block;" value="Tải lên báo cáo kiểm tra bệnh lý" />
 
                 </td>
                 <td colspan="3">
-                    <input type="button" id="btn_dzbl" class="btn btn-info" style="display:block;" value="电子病历上传" />
+                    <input type="button" id="btn_dzbl" class="btn btn-info" style="display:block;" value="Tải lên hồ sơ bệnh án điện tử" />
                 </td>
                 @*<td class="formValue" colspan="2">
-                        <input id="txtsfz" type="hidden" class="form-control form-an" placeholder="身份证(异地病人)">
+                        <input id="txtsfz" type="hidden" class="form-control form-an" placeholder="CMND/CCCD(Bệnh nhân khác địa phương)">
                     </td>*@
             </tr>
         </table>
@@ -155,54 +155,54 @@
                 yrqjssj: $("#ryrqjssj").val(), ksmc: $("#ksmc").attr("data-label"), bqmc: $("#bqmc").attr("data-label")
             },
             colModel: [
-                { label: '住院号', name: 'zyh', width: 50, align: 'left', key: true },
-                { label: '病历号', name: 'blh', hidden: true },
-                { label: '床号', name: 'cwmc', hidden: true },
-                { label: '姓名', name: 'xm', width: 60, align: 'left' },
-                { label: '联系人姓名', name: 'contPerName', width: 70, align: 'left' },
-                { label: '性别', name: 'sexValue', width: 40, align: 'Center' },
+                { label: 'Số nhập viện', name: 'zyh', width: 50, align: 'left', key: true },
+                { label: 'Số hồ sơ bệnh án', name: 'blh', hidden: true },
+                { label: 'Số giường', name: 'cwmc', hidden: true },
+                { label: 'Họ tên', name: 'xm', width: 60, align: 'left' },
+                { label: 'Tên người liên hệ', name: 'contPerName', width: 70, align: 'left' },
+                { label: 'Giới tính', name: 'sexValue', width: 40, align: 'Center' },
                 {
-                    label: '年龄', name: 'nlshow', width: 40, align: 'Center', formatter: function (cellvalue, a, b) {
+                    label: 'Tuổi', name: 'nlshow', width: 40, align: 'Center', formatter: function (cellvalue, a, b) {
                         return getAgeFromBirthTime({ begin: b.csny }).text;
                     }
                 },
-                { label: '职业', name: 'zy', width: 60, align: 'left' },
-                { label: '工作单位/地址', name: 'xzz', width: 120, align: 'left', classes: "text-break" },
-                { label: '联系电话', name: 'lxrdh', width: 80, align: 'left' },
-                { label: '入院日期', name: 'ryrq', width: 80, align: 'left' },
-                { label: '入院诊断', name: 'zzdmc', width: 120, align: 'left' },
-                { label: '第二诊断', name: 'zzdmc2', width: 120, align: 'left' },
-                { label: '第三诊断', name: 'zzdmc3', width: 120, align: 'left' },
-                { label: '出院日期', name: 'cyrq', width: 80, align: 'left' },
-                { label: '出院诊断', name: 'cyzd', width: 120, align: 'left' },
-                { label: '转归（预出院疗效类别）', name: 'cyfs', width: 125, align: 'left' },
-                { label: '身份证号', name: 'zjh', width: 120, align: 'left' },
-                { label: '住院天数', name: 'inHosDays', width: 60, align: 'left' },
-                { label: '诊断医生', name: 'doctor', width: 60, align: 'left' },
-                { label: '经治医生', name: 'jzDoctor', width: 60, align: 'left' },
+                { label: 'Nghề nghiệp', name: 'zy', width: 60, align: 'left' },
+                { label: 'Đơn vị công tác/Địa chỉ', name: 'xzz', width: 120, align: 'left', classes: "text-break" },
+                { label: 'Số điện thoại liên hệ', name: 'lxrdh', width: 80, align: 'left' },
+                { label: 'Ngày nhập viện', name: 'ryrq', width: 80, align: 'left' },
+                { label: 'Chẩn đoán nhập viện', name: 'zzdmc', width: 120, align: 'left' },
+                { label: 'Chẩn đoán thứ hai', name: 'zzdmc2', width: 120, align: 'left' },
+                { label: 'Chẩn đoán thứ ba', name: 'zzdmc3', width: 120, align: 'left' },
+                { label: 'Ngày xuất viện', name: 'cyrq', width: 80, align: 'left' },
+                { label: 'Chẩn đoán xuất viện', name: 'cyzd', width: 120, align: 'left' },
+                { label: 'Chuyển về（Loại hiệu quả điều trị trước xuất viện）', name: 'cyfs', width: 125, align: 'left' },
+                { label: 'Số CMND/CCCD', name: 'zjh', width: 120, align: 'left' },
+                { label: 'Số ngày nằm viện', name: 'inHosDays', width: 60, align: 'left' },
+                { label: 'Bác sĩ chẩn đoán', name: 'doctor', width: 60, align: 'left' },
+                { label: 'Bác sĩ điều trị', name: 'jzDoctor', width: 60, align: 'left' },
                 {
-                    label: '在院标志', name: 'zybz', width: 60, align: 'left', formatter: function (cellvalue) {
+                    label: 'Cờ đang nằm viện', name: 'zybz', width: 60, align: 'left', formatter: function (cellvalue) {
                         return $.enum.getDescByValue("EnumZYBZ", cellvalue);
                     }
                 },
-                { label: '是否贫困标志', name: 'pkbz', width: 80, align: 'left', hidden: true },
+                { label: 'Có phải cờ nghèo khó hay không', name: 'pkbz', width: 80, align: 'left', hidden: true },
                 { label: 'brxz', name: 'brxz', width: 80, align: 'left',hidden:true },
                 { label: 'CardType', name: 'CardType', width: 80, align: 'left', hidden: true },
                 { label: 'cbdbm', name: 'cbdbm', width: 80, align: 'left', hidden: true },
-                { label: '费用性质', name: 'brxzmc', width: 80, align: 'left' },
+                { label: 'Tính chất chi phí', name: 'brxzmc', width: 80, align: 'left' },
                 //{
-                //    label: '入院状态', name: 'rybq', width: 50, align: 'left', formatter: function (cellvalue) {
+                //    label: 'Trạng thái nhập viện', name: 'rybq', width: 50, align: 'left', formatter: function (cellvalue) {
                 //        return $.enum.getDescByValue("EnumWzjb", cellvalue);
                 //    }
                 //},
 
-                //{ label: '已产生费用', name: 'zyfy', width: 80, align: 'left' },
-                //{ label: '预交费', name: 'yjj', width: 50, align: 'left' },
+                //{ label: 'Đã phát sinh chi phí', name: 'zyfy', width: 80, align: 'left' },
+                //{ label: 'Phí tạm ứng', name: 'yjj', width: 50, align: 'left' },
                 { label: 'jzh', name: 'jzh', width: 80, align: 'left', hidden: true },
                 { label: 'brxzlb', name: 'brxzlb', width: 80, align: 'left', hidden: true },
-                //{ label: '病区', name: 'bqmc', width: 80, align: 'left' },
+                //{ label: 'Khu bệnh', name: 'bqmc', width: 80, align: 'left' },
                 //{
-                //    label: '最后更新时间', name: 'UpdateTime', width: 80, align: 'left',
+                //    label: 'Thời gian cập nhật lần cuối', name: 'UpdateTime', width: 80, align: 'left',
                 //    formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 //},
             ],
@@ -226,7 +226,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -249,28 +249,28 @@
         const dataSource = $("#gridList").jqGridRowValue();
         let option = {}, tableData = [], tableTitle;
         if (!dataSource || dataSource.length === 0) {
-            $.modalAlert("错误：没有可供导出的信息", "error");
+            $.modalAlert("Lỗi：Không có thông tin có thể xuất ra", "error");
             return;
         }
-        tableTitle = ['床号', '姓名', '性别', '年龄', '职业', '入院日期', '入院诊断', '住院天数', '所属医生', '备注'];
+        tableTitle = ['Số giường', 'Họ tên', 'Giới tính', 'Tuổi', 'Nghề nghiệp', 'Ngày nhập viện', 'Chẩn đoán nhập viện', 'Số ngày nằm viện', 'Bác sĩ phụ trách', 'Ghi chú'];
         dataSource.map((item) => {
             let row = {
-                '床号': item.cwmc,
-                '姓名': item.xm,
-                '性别': item.sexValue,
-                '年龄': item.nlshow,
-                '职业': item.zy,
-                '入院日期': item.ryrq,
-                '入院诊断': item.zzdmc,
-                '住院天数': item.inHosDays,
-                '所属医生': item.doctor,
-                '备注': ''
+                'Số giường': item.cwmc,
+                'Họ tên': item.xm,
+                'Giới tính': item.sexValue,
+                'Tuổi': item.nlshow,
+                'Nghề nghiệp': item.zy,
+                'Ngày nhập viện': item.ryrq,
+                'Chẩn đoán nhập viện': item.zzdmc,
+                'Số ngày nằm viện': item.inHosDays,
+                'Bác sĩ phụ trách': item.doctor,
+                'Ghi chú': ''
             };
             tableData.push(row);
         });
         var year = new Date().getFullYear();
         var month = new Date().getMonth() - 1;
-        option.fileName = year + "年" + month + "月" + new Date().getDay() + "日" + '住院患者信息';
+        option.fileName = year + "Năm" + month + "Tháng" + new Date().getDay() + "Ngày" + 'Thông tin bệnh nhân nội trú';
         option.datas = [
             {
                 sheetName: '',
@@ -350,10 +350,10 @@
             re = [];
         Array.isArray(data)
             ? (function () {
-                //对象
+                //Đối tượng
                 f
                     ? (function () {
-                        //存在过滤
+                        //Tồn tại bộ lọc
                         sj.forEach(function (obj) {
                             let one = [];
                             filter.forEach(function (no) {
@@ -363,7 +363,7 @@
                         });
                     })()
                     : (function () {
-                        //不存在过滤
+                        //Không tồn tại bộ lọc
                         sj.forEach(function (obj) {
                             let col = Object.keys(obj);
                             let one = [];
@@ -380,7 +380,7 @@
         return re;
     };
 
-    // 转换数据
+    // Chuyển đổi dữ liệu
     function sheetChangeData(data) {
         let ws = {};
         let range = {
@@ -435,13 +435,13 @@
         for (let i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xff;
         return buf;
     };
-    //日期编号
+    //Số ngày
     function datenum(v, date1904) {
         if (date1904) v += 1462;
         let epoch = Date.parse(v);
         return (epoch - new Date(Date.UTC(1899, 11, 30))) / (24 * 60 * 60 * 1000);
     };
-    //列宽
+    //Độ rộng cột
     function columnwidths(columnWidths) {
         let out = [];
         out = columnWidths.map(function (item) {
@@ -450,18 +450,18 @@
         return out;
     }
 
-    ////纸张设置
+    ////Thiết lập giấy
     //function pageSetupFunction() {
     //    var page = writextag('pageSetup', null, {
-    //        papersize: '9',//纸张大小 9为44纸
-    //        scale: '100',//缩放大小
-    //        orientation: 'portrait',// 纸张方向landscape 为横向 portrait 为纵向
+    //        papersize: '9',//Khổ giấy 9là44Giấy
+    //        scale: '100',//Kích thước thu phóng
+    //        orientation: 'portrait',// Hướng giấylandscape là ngang portrait là dọc
     //        horizontalDpi: '4294967292',
     //        verticalDpi : '4294967292'
     //    });
     //    return page;
     //}
-    ////边距设置
+    ////Thiết lập lề
     //function pageMagins() {
     //    var margins = {
     //        left: '0.7', right: '0.7',
@@ -474,34 +474,34 @@
 @if (isZFtoYB || isYBtoZF)
 {
 <script type="text/javascript">
-        var openYbSett = '@openYbSett' === 'True'; //开关配置：医保患者是否使用医保交易流程
-        var openXnhSett = '@openXnhSett' === 'True';//开关配置：新农合患者是否使用新农合交易流程
+        var openYbSett = '@openYbSett' === 'True'; //Cấu hình công tắc：Bệnh nhân BHYT có sử dụng quy trình giao dịch BHYT hay không
+        var openXnhSett = '@openXnhSett' === 'True';//Cấu hình công tắc：Bệnh nhân bảo hiểm nông thôn mới có sử dụng quy trình giao dịch bảo hiểm nông thôn mới hay không
         var medicalInsurance = '@medicalInsurance';
         var zyh = '';
         var kh = "";
         var jzh = '';
 
-        //结算清单上传
+        //Tải lên bảng kê quyết toán
         $('#btn_jsqd').click(function () {
             uploadData("1")
         });
-        //病案首页上传
+        //Tải lên trang đầu hồ sơ bệnh án
         $('#btn_basy').click(function () {
             uploadData("2")
         });
-        //住院医嘱上传
+        //Tải lên y lệnh nội trú
         $('#btn_zyyz').click(function () {
             uploadData("3")
         });
-        //临床检查上传
+        //Tải lên kiểm tra lâm sàng
         $('#btn_lcjc').click(function () {
             uploadData("4")
         });
-        //病理检查报告上传
+        //Tải lên báo cáo kiểm tra bệnh lý
         $('#btn_bljcbg').click(function () {
             uploadData("5")
         });
-        //电子病历上传
+        //Tải lên hồ sơ bệnh án điện tử
         $('#btn_dzbl').click(function () {
             uploadData("6")
         });
@@ -513,7 +513,7 @@
             }
             var isBrxzOk = seleRow.brxz == '0';
             if (isBrxzOk) {
-                $.modalAlert("错误：选择的是非医保", "error");
+                $.modalAlert("Lỗi：Đã chọn loại ngoài BHYT", "error");
                 return;
             }
             var zyh = seleRow.zyh;
@@ -540,7 +540,7 @@
                     upUrl = "http://127.0.0.1:33333/api/YiBao/PostMedicalRecords_4701";
                     break;
             }
-            $.loading("数据加载中，请稍等");
+            $.loading("Đang tải dữ liệu，Vui lòng chờ một chút");
             $.ajax({
                 type: "POST",
                 url: upUrl,
@@ -552,16 +552,16 @@
                     if (tfReturn) {
                         if (tfReturn.infcode == "0") {
                             $.loading(false);
-                            $.modalAlert("住院号为:" + zyh + "，上传成功", 'warning');
+                            $.modalAlert("Số nhập viện là:" + zyh + "，Tải lên thành công", 'warning');
                         }
                         else {
                             $.loading(false);
-                            $.modalAlert("结算清单上传失败：" + tfReturn.err_msg, 'error');
+                            $.modalAlert("Tải lên bảng kê quyết toán thất bại：" + tfReturn.err_msg, 'error');
                         }
                     }
                 }, error: function () {
                     $.loading(false);
-                    $.modalAlert("服务异常：", 'error');
+                    $.modalAlert("Dịch vụ bất thường：", 'error');
                 }
             });
         }
@@ -575,16 +575,16 @@
         }
         var isBrxzOk = seleRow.brxzlb == '0';
         if (!isBrxzOk) {
-            $.modalAlert("错误：选择的是非自费", "error");
+            $.modalAlert("Lỗi：Đã chọn loại không tự chi trả", "error");
             return;
         }
         zyh = seleRow.zyh;
         jzh = seleRow.jzh;
-        $.modalConfirm("转医保，点击确认继续", function (flag) {
+        $.modalConfirm("Chuyển sang BHYT，Nhấn xác nhận để tiếp tục", function (flag) {
             if (flag) {
                 var d = $("#txtsfz").val();
                 dkfsxz();
-                //判断是否第一次医保就诊
+                //Xét có phải lần khám BHYT đầu tiên hay không
                 //readCard();
                 //$.ajax({
                 //    url: "/PatientManage/Inpatient/CheckFistYbVisit",
@@ -596,7 +596,7 @@
                 //        if (ckdata.data === "0" && $("#txtsfz").val()=="") {
                 //            $.modalOpen({
                 //                id: "Form",
-                //                title: "免卡登记",
+                //                title: "Đăng ký không cần thẻ",
                 //                url: "/PatientManage/HospiterRes/PatientBasic?parent=" + "ZYZfToYb",
                 //                width: "1000px",
                 //                height: "824px",
@@ -618,10 +618,10 @@
         var ryfs = $('#sel_ryfs').val();
         var ydsfz = $('#txtsfz').val();
         var newzyh = $('#sel_newzyh').val();
-        var title = "读卡方式";
+        var title = "Cách đọc thẻ";
         var url = "/PatientManage/Inpatient/dkfsxz?zyh=" + zyh + "&ryfs=" + ryfs + "&ydsfz=" + ydsfz + "&newzyh=" + newzyh;
         @*if ('@YB_Jzpzl' === 'ON') {
-            title = "自费转医保";
+            title = "Chuyển tự chi trả sang BHYT";
             url = "/PatientManage/Inpatient/ZFToYBForm?zyh=" + zyh + "&ryfs=" + ryfs + "&ydsfz=" + ydsfz + "&newzyh=" + newzyh;
         }*@
         $.modalOpen({
@@ -630,7 +630,7 @@
             url: url,
             width: "480px",
             height: "480px",
-            btn: ['', '关闭'],
+            btn: ['', 'Đóng'],
             btnclass: ['', 'btn btn-danger'],
             callBack: function (iframeId) {
                 $.modalClose();
@@ -651,7 +651,7 @@
         var patsbkh = null;
         var ydsfzh = $("#txtsfz").val();
         var url = "http://127.0.0.1:33333/api/YiBao/CardecInfo_1161";
-        var payoptype = { "mdtrt_cert_type": "03", "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', "businessType": "01101", "officeId": "0201", "officeName": "内科" };
+        var payoptype = { "mdtrt_cert_type": "03", "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', "businessType": "01101", "officeId": "0201", "officeName": "Nội khoa" };
         if (ydsfzh.length > 0) {
             payoptype.mdtrt_cert_no = ydsfzh;
             payoptype.mdtrt_cert_type = "02";
@@ -670,14 +670,14 @@
         if (yibaoCardInfo) {
             if (yibaoCardInfo.infcode == "0") {
                 if (!yibaoCardInfo || !yibaoCardInfo.output.baseinfo || !yibaoCardInfo.output.insuinfo[0]) {
-                    $.modalAlert("读卡失败:" + yibaoCardInfo.err_msg, 'error');
+                    $.modalAlert("Đọc thẻ thất bại:" + yibaoCardInfo.err_msg, 'error');
                     return;
                 }
                 var ybklx = ydsfzh.length > 0 ? "02" : "03";
-                cardInfo1 = yibaoCardInfo.output.baseinfo; //医保基本信息
-                cardInfo2 = yibaoCardInfo.output.insuinfo[0];//参保信息
+                cardInfo1 = yibaoCardInfo.output.baseinfo; //Thông tin cơ bản BHYT
+                cardInfo2 = yibaoCardInfo.output.insuinfo[0];//Thông tin tham gia bảo hiểm
                 if (ybklx !== "02") {
-                    cardInfo3 = yibaoCardInfo.output.cardecinfo;//卡信息
+                    cardInfo3 = yibaoCardInfo.output.cardecinfo;//Thông tin thẻ
                 }
 
                 yibaoCardInfo.readCardCardType = "2";
@@ -687,10 +687,10 @@
                 localStorage.setItem("patientform", JSON.stringify(yibaoCardInfo));
 
             } else {
-                $.modalAlert("刷卡失败:" + yibaoCardInfo.err_msg, 'error');
+                $.modalAlert("Quẹt thẻ thất bại:" + yibaoCardInfo.err_msg, 'error');
             }
         } else {
-            $.modalAlert("刷卡获取医保信息失败！失败原因：医保中心无信息返回，请重试！", 'error');
+            $.modalAlert("Quẹt thẻ lấy thông tin BHYT thất bại！Nguyên nhân thất bại：Trung tâm BHYT không trả về thông tin，Vui lòng thử lại！", 'error');
         }
     }*@
 
@@ -700,11 +700,11 @@
         var newzyh = $('#sel_newzyh').val();
         $.modalOpen({
             id: "ZFToYBForm",
-            title: "自费转医保",
+            title: "Chuyển tự chi trả sang BHYT",
             url: "/PatientManage/Inpatient/ZFToYBForm?zyh=" + zyh + "&ryfs=" + ryfs + "&ydsfz=" + ydsfz + "&newzyh=" + newzyh,
             width: "550px",
             height: "380px",
-            btn: ['', '关闭'],
+            btn: ['', 'Đóng'],
             btnclass: ['', 'btn btn-danger'],
             callBack: function (iframeId) {
                 top.frames[iframeId].AcceptClick(function () {
@@ -721,16 +721,16 @@
         }
         var isBrxzOk = seleRow.brxz == '0';
         if (!isBrxzOk) {
-            $.modalAlert("错误：选择的是非自费", "error");
+            $.modalAlert("Lỗi：Đã chọn loại không tự chi trả", "error");
             return;
         }
         zyh = seleRow.zyh;
-        $.modalConfirm("转新农合，点击确认继续",
+        $.modalConfirm("Chuyển sang bảo hiểm nông thôn mới，Nhấn xác nhận để tiếp tục",
             function(flag) {
                 if (flag) {
                     $.modalOpen({
                         id: "Form",
-                        title: "家庭参保参数输入",
+                        title: "Nhập tham số tham gia bảo hiểm theo hộ gia đình",
                         url: "/PatientManage/HospiterRes/XNHfamilyrequestParForm",
                         width: "450px",
                         height: "224px",
@@ -740,7 +740,7 @@
                                     localStorage.setItem("jrespdata", JSON.stringify(jrespdata));
                                     $.modalOpen({
                                         id: "XNHParticipantsList",
-                                        title: "家庭参保人列表",
+                                        title: "Danh sách người tham gia bảo hiểm theo hộ gia đình",
                                         url: "/PatientManage/HospiterRes/XNHParticipantsList",
                                         width: "850px",
                                         height: "424px"
@@ -752,7 +752,7 @@
                 }
             });
     });
-    //选中家庭参合人列表返回数据
+    //Dữ liệu trả về danh sách người tham gia hộ gia đình đã chọn
     function GetSelectedpatient(obj) {
         if (!!obj) {
             var patXnhInfo= {
@@ -777,7 +777,7 @@
                         $.modalAlert(ajaxresp.message, 'warning');
                         $.modalClose();
                     } else {
-                        $.modalAlert("自费转新农合成功！", 'success');
+                        $.modalAlert("Chuyển tự chi trả sang bảo hiểm nông thôn mới thành công！", 'success');
                         $.modalClose();
                         $('#btn_search').trigger('click');
                     }
@@ -805,7 +805,7 @@
 
 
         if (!isybjy && !jsxnhjy) {
-            $.modalAlert("错误：请选择医保或者新农合患者", "error");
+            $.modalAlert("Lỗi：Vui lòng chọn bệnh nhân BHYT hoặc bảo hiểm nông thôn mới", "error");
             return;
         }
         var zyh = seleRow.zyh;
@@ -813,7 +813,7 @@
             if (medicalInsurance == "guian") {
                 $.najax({
                     url: '/HospitalizationManage/DischargeSettle/GetInpatientSettYbPatInfo?zyh=' + zyh,
-                    loadingtext: "正在请求患者出院信息，请稍后...",
+                    loadingtext: "Đang tải thông tin xuất viện của bệnh nhân，Vui lòng chờ...",
                     type: 'POST',
                     success: function (ybPreSettleReq) {
                         //var ybjshtReturn;
@@ -825,7 +825,7 @@
                         //    prm_yka103: "GZ1908122947977",
                         //    prm_aae011: "",
                         //    prm_aae036: $.getTime(),
-                        //    prm_aae013: "重新计费",
+                        //    prm_aae013: "Tính phí lại",
                         //    prm_ykb065: ybPreSettleReq.data.sbbf,
                         //    prm_ykc141: "GF001"
                         //};
@@ -841,7 +841,7 @@
                         //    }
                         //});
                         //if (ybjshtReturn.Code == 0) {
-                        //    $.modalAlert("结算回退成功！", 'success');
+                        //    $.modalAlert("Hoàn trả quyết toán thành công！", 'success');
                         //    var parameter1 = { "astr_jylsh": ybjshtReturn.jylsh, "astr_jyyzm": ybjshtReturn.jyyzm };
                         //    $.ajax({
                         //        url: "http://127.0.0.1:12345/api/YiBao/YibaoConfirm",
@@ -878,7 +878,7 @@
                         });
 
                         if (ybReturn.Code == 0) {
-                            $.modalAlert("取消成功！", 'success');
+                            $.modalAlert("Hủy thành công！", 'success');
                             var parameter = { "astr_jylsh": ybReturn.jylsh, "astr_jyyzm": ybReturn.jyyzm };
                             $.ajax({
                                 url: "http://127.0.0.1:12345/api/YiBao/YibaoConfirm",
@@ -902,13 +902,13 @@
                     url: "/HospitalizationManage/DischargeSettle/GuiAnXnhCyblCancel?zyh=" + patModel.zyh,
                     dataType: 'json',
                     async: false,
-                    loadingtext: "患者出院办理回退中，请稍后…",
+                    loadingtext: "Đang hoàn trả làm thủ tục xuất viện cho bệnh nhân，Vui lòng chờ…",
                     success: function (ajaxresp) {
                         if (ajaxresp.state != "1") {
                             $.modalAlert(ajaxresp.message, 'warning');
                             return;
                         } else {
-                            $.modalAlert("取消成功！", 'success');
+                            $.modalAlert("Hủy thành công！", 'success');
                             $('#btn_search').trigger('click');
                         }
                     }
@@ -928,22 +928,22 @@
 
 
         if (!isybjy ) {
-            $.modalAlert("错误：请选择医保患者", "error");
+            $.modalAlert("Lỗi：Vui lòng chọn bệnh nhân BHYT", "error");
             return;
         }
 
         zyh = seleRow.zyh;
         var jzh = seleRow.jzh;
         if (!!isybjy) {
-            $.modalConfirm("转自费，点击确认继续", function (flag) {
+            $.modalConfirm("Chuyển sang tự chi trả，Nhấn xác nhận để tiếp tục", function (flag) {
                 if (flag) {
                     $.modalOpen({
                         id: "YBToZFForm",
-                        title: "医保转自费",
+                        title: "Chuyển BHYT sang tự chi trả",
                         url: "/PatientManage/Inpatient/YBToZFForm?zyh=" + zyh + "&jzh=" + jzh,
                         width: "550px",
                         height: "380px",
-                        btn: ['', '关闭'],
+                        btn: ['', 'Đóng'],
                         btnclass: ['', 'btn btn-danger'],
                         callBack: function (iframeId) {
                             top.frames[iframeId].AcceptClick(function () {
@@ -956,7 +956,7 @@
         }
         if (!!jsxnhjy) {
             if (medicalInsurance == "guian") {
-                $.modalConfirm("转自费，点击确认继续", function(flag) {
+                $.modalConfirm("Chuyển sang tự chi trả，Nhấn xác nhận để tiếp tục", function(flag) {
                     if (flag) {
                         $.ajax({
                             url: "/PatientManage/Inpatient/GuiAnXnhYbToZf?zyh=" + zyh,
@@ -964,11 +964,11 @@
                             async: false,
                             success: function (ajaxresp) {
                                 if (ajaxresp.state != "1") {
-                                    $.modalAlert("转自费失败：" + ajaxresp.message, 'error');
+                                    $.modalAlert("Chuyển sang tự chi trả thất bại：" + ajaxresp.message, 'error');
                                     $.modalClose();
                                     return;
                                 } else {
-                                    $.modalAlert("新农合转自费成功！", 'success');
+                                    $.modalAlert("Chuyển bảo hiểm nông thôn mới sang tự chi trả thành công！", 'success');
                                     $.modalClose();
                                     $('#btn_search').trigger('click');
                                 }
@@ -985,19 +985,19 @@
         var seleRow = $("#gridList").jqGridRowValue();
         var zyh = seleRow.zyh;
         if (!!!zyh) {
-            $.modalAlert("尚未选择一条记录", "error");
+            $.modalAlert("Chưa chọn bản ghi nào", "error");
             return;
         }
         if (seleRow.zybz == '已出院') {
-            $.modalAlert("患者已出院", "error");
+            $.modalAlert("Bệnh nhân đã xuất viện", "error");
             return;
         }
         else if (seleRow.zybz == '作废记录') {
-            $.modalAlert("已作废记录", "error");
+            $.modalAlert("Bản ghi đã hủy", "error");
             return;
         }
         if (!medicalInsurance) {
-            $.modalAlert("缺少配置医保就医地", "error");
+            $.modalAlert("Thiếu cấu hình nơi khám chữa bệnh BHYT", "error");
             return;
         }
         return seleRow;
@@ -1006,27 +1006,27 @@
         var seleRow = $("#gridList").jqGridRowValue();
         var zyh = seleRow.zyh;
         if (!!!zyh) {
-            $.modalAlert("尚未选择一条记录", "error");
+            $.modalAlert("Chưa chọn bản ghi nào", "error");
             return;
         }
         else if (seleRow.zybz == '作废记录') {
-            $.modalAlert("已作废记录", "error");
+            $.modalAlert("Bản ghi đã hủy", "error");
             return;
         }
         if (!medicalInsurance) {
-            $.modalAlert("缺少配置医保就医地", "error");
+            $.modalAlert("Thiếu cấu hình nơi khám chữa bệnh BHYT", "error");
             return;
         }
         return seleRow;
     }
-    ///科室
+    ///Khoa
     $("#ksmc").newtouchBatchFloatingSelector({
         height: 200,
         width: 300,
         clickautotrigger: true,
         filter: function (keyword) {
 
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysDepartList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -1038,11 +1038,11 @@
             return resultObjArr;
 
         },
-        caption: "科室",
+        caption: "Khoa",
         colModel: [
-            { label: '编号', name: 'Code', widthratio: 30 },
-            { label: '名称', name: 'Name', widthratio: 50 },
-            { label: '拼音', name: 'py', hidden: true }
+            { label: 'Số hiệu', name: 'Code', widthratio: 30 },
+            { label: 'Tên', name: 'Name', widthratio: 50 },
+            { label: 'Phiên âm', name: 'py', hidden: true }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#ksmc").attr("data-label", $thistr.find("td:eq(0)").html());
@@ -1050,13 +1050,13 @@
             return;
         },
     });
-    ///病区
+    ///Khu bệnh
     $("#bqmc").newtouchBatchFloatingSelector({
         height: 200,
         width: 300,
         clickautotrigger: true,
         filter: function (keyword) {
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             var ks = $("#ksmc").attr("data-label");
             var bqlist = top.window.clients.sysWardDeptRelation.filter((item) => item.ks == ks);
@@ -1070,13 +1070,13 @@
             return resultObjArr;
 
         },
-        caption: "病区",
+        caption: "Khu bệnh",
         colModel: [
             {
-                label: '编号', name: 'bq', widthratio: 25
+                label: 'Số hiệu', name: 'bq', widthratio: 25
             },
             {
-                label: '名称', name: 'bqmc', widthratio: 50
+                label: 'Tên', name: 'bqmc', widthratio: 50
             }
         ],
         itemdbclickhandler: function ($thistr) {

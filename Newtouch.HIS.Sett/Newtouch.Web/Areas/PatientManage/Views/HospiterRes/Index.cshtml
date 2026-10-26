@@ -4,7 +4,7 @@
 
     var isEditPatientMedicalRecord = ViewBag.IsEditPatientMedicalRecord as bool?;
     var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
-    //医保所属地
+    //Nơi tham gia BHYT
     var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
 }
 <style>
@@ -35,20 +35,20 @@
 <form>
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
-                @*<th class="formTitle">病历号：</th>
+                @*<th class="formTitle">Số hồ sơ bệnh án：</th>
         <td class="formValue">
             <input type="text" class="form-control form-an" id="blh" />
         </td>*@
-                <th class="formTitle">关键字：</th>
+                <th class="formTitle">Từ khóa：</th>
                 <td class="formValue">
-                    <input type="text" class="form-control form-an" id="zjh" placeholder="姓名/拼音/病历号/证件号"/>
+                    <input type="text" class="form-control form-an" id="zjh" placeholder="Họ tên/Phiên âm/Số hồ sơ bệnh án/Số giấy tờ"/>
                 </td>
                 <td class="formTitle">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an"  value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an"  value="Tra cứu" />
                 </td>
 
                 <td class="formValue">
@@ -57,36 +57,36 @@
                     
                 </td>
                 <th class="formTitle">
-                    <button type="button" class="btn btn-primary" id="noCardRes" value="一卡通办理" onclick="btn_NocardRes(1)">一卡通办理</button>
+                    <button type="button" class="btn btn-primary" id="noCardRes" value="Làm thẻ đa năng" onclick="btn_NocardRes(1)">Làm thẻ đa năng</button>
                    
                 </th>
                 <td class="formValue">
-                    <input type="button" id="btn_qy" class="btn btn-md btn-primary form-an " value="一卡通启用" />
-                    <input type="button" id="btn_stop" class="btn btn-md btn-primary form-an" value="一卡通停用" />
-                    <a href="~/File/医保中间件下载.zip">医保中间件下载</a>
+                    <input type="button" id="btn_qy" class="btn btn-md btn-primary form-an " value="Kích hoạt thẻ đa năng" />
+                    <input type="button" id="btn_stop" class="btn btn-md btn-primary form-an" value="Vô hiệu hóa thẻ đa năng" />
+                    <a href="~/File/医保中间件下载.zip">Tải xuống phần mềm trung gian BHYT</a>
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue"></td>
             </tr>
         </table>
         <div class="panel-heading navb-bg">
-            患者基本信息
+            Thông tin cơ bản bệnh nhân
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">姓名：</th>
+                <th class="formTitle">Họ tên：</th>
                 <td class="formValue" style="width:80px;">
                     <label id="xm"></label>
                 </td>
-                <th class="formTitle">性别：</th>
+                <th class="formTitle">Giới tính：</th>
                 <td class="formValue">
                     <label id="xb"></label>
                 </td>
-                <th class="formTitle">年龄：</th>
+                <th class="formTitle">Tuổi：</th>
                 <td class="formValue">
                     <label id="nl"></label>
                 </td>
-                <td class="formTitle">初复诊：</td>
+                <td class="formTitle">Khám lần đầu/tái khám：</td>
                 <td class="formValue">
                     <label id="cfz"></label>
                 </td>
@@ -94,25 +94,25 @@
             </tr>
             <tr>
                 <td class="formTitle">
-                    证件号：
+                    Số giấy tờ：
                 </td>
                 <td class="formValue">
                     <label id="lbzjh"></label>
                 </td>
                 <td class="formTitle">
-                    出生日期：
+                    Ngày sinh：
                 </td>
                 <td class="formValue">
                     <label id="csrq"></label>
                 </td>
                 <td class="formTitle">
-                    联系电话：
+                    Số điện thoại liên hệ：
                 </td>
                 <td class="formValue">
                     <label id="lxdh"></label>
                 </td>
                 <td class="formTitle">
-                    地址：
+                    Địa chỉ：
                 </td>
                 <td class="formValue">
                     <label id="dz"></label>
@@ -120,7 +120,7 @@
             </tr>
         </table>
         <div class="panel-heading navb-bg">
-            患者列表
+            Danh sách bệnh nhân
         </div>
         <div class="gridPanel">
             <table id="gridList"></table>
@@ -133,10 +133,10 @@
 {
     ShowKeyList = new int[] { 6 },
     F6Hidden = !(isEditPatientMedicalRecord.Value),
-    F6Text = "历史病历",
+    F6Text = "Hồ sơ bệnh án lịch sử",
 })
 <script>
-    var medicalInsurance = '@medicalInsurance';//医保所属地配置:区分医院所属医保区域
+    var medicalInsurance = '@medicalInsurance';//Cấu hình nơi tham gia BHYT:Phân biệt khu vực BHYT của bệnh viện
     $(function () {
         $("#readCard").show();
         //$("#btkhsr").css('display', 'none');
@@ -155,32 +155,32 @@
             colModel: [
                 { label: 'patId', name: 'patId', width: 100, align: 'left', hidden: true },
                 { label: 'CardId', name: 'CardId', width: 100, align: 'left', hidden: true },
-                { label: '姓名', name: 'xm', width: 80, align: 'left' },
-                { label: '病历号', name: 'blh', width: 80, align: 'left' },
-                //{ label: '患者性质', name: 'brxzmc', width: 120, align: 'left' },
-                //{ label: '卡类型', name: 'cardTypeName', width: 120, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 80, align: 'left' },
+                { label: 'Số hồ sơ bệnh án', name: 'blh', width: 80, align: 'left' },
+                //{ label: 'Tính chất bệnh nhân', name: 'brxzmc', width: 120, align: 'left' },
+                //{ label: 'Loại thẻ', name: 'cardTypeName', width: 120, align: 'left' },
                 {
-                    label: '性别', name: 'xb', width: 50, align: 'left',
+                    label: 'Giới tính', name: 'xb', width: 50, align: 'left',
                     formatter: function (cellvalue) {
                         return $.getGender(cellvalue);
                     }
                 },
-                { label: '证件号', name: 'zjh', width: 160, align: 'left' },
+                { label: 'Số giấy tờ', name: 'zjh', width: 160, align: 'left' },
 
                  { label: 'cardType', name: 'cardType', width: 160, align: 'left', hidden: true  },
-                { label: '患者来源', name: 'brly', width: 80, align: 'left' },
+                { label: 'Nguồn bệnh nhân', name: 'brly', width: 80, align: 'left' },
                 {
-                    label: '出生年月', name: 'csny', width: 100, align: 'left',
+                    label: 'Năm sinh', name: 'csny', width: 100, align: 'left',
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                 },
-                { label: '创建时间', name: 'CreateTime', width: 160, align: 'left',formatter: "date", formatoptions: {
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 160, align: 'left',formatter: "date", formatoptions: {
                     srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: "有效", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: "Hiệu lực", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
                 {
-                    label: "卡管理", name: "", width: 100, align: 'center', formatter(val, option, row) {
+                    label: "Quản lý thẻ", name: "", width: 100, align: 'center', formatter(val, option, row) {
 
-                        return "<a class='btn btn-default' style='width:60px;font-weight:bold;textalign:center;' onclick='CardNoInfo(" + option.rowId + ")'>就诊卡管理</a>";
+                        return "<a class='btn btn-default' style='width:60px;font-weight:bold;textalign:center;' onclick='CardNoInfo(" + option.rowId + ")'>Quản lý thẻ khám bệnh</a>";
 
                     }
                 }
@@ -209,7 +209,7 @@
         });
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var zjh=$("#zjh").val();
         return {zjh: zjh};
@@ -219,7 +219,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "住院登记",
+            title: "Đăng ký nhập viện",
             url: "/PatientManage/HospiterRes/Register",
             width: "700px",
             height: "530px",
@@ -240,7 +240,7 @@
         }
         $.modalOpen({
             id: "Details",
-            title: "查看/修改一卡通信息",
+            title: "Xem/Sửa thông tin thẻ đa năng",
             url: "/PatientManage/HospiterRes/PatientBasic?keyValue=" + keyValue+"&parent=patientlist"+"&fromly=yktmodify",
             width: "1050px",
             height: "550px",
@@ -277,7 +277,7 @@
             async: true,
             success: function (resp) {
                 $("#btn_search").trigger("click");
-                $.modalAlert("修改成功", 'warning');
+                $.modalAlert("Sửa thành công", 'warning');
             }
         });
     }
@@ -286,7 +286,7 @@
         var seleRow = $("#gridList").jqGridRowValue();
         var patId = seleRow.patId;
         if (!!!patId) {
-            $.modalAlert("尚未选择一条记录", "error");
+            $.modalAlert("Chưa chọn bản ghi nào", "error");
             return;
         }
         return seleRow;
@@ -306,7 +306,7 @@
         }
         $.modalOpen({
             id: "Form",
-            title: "一卡通办理",
+            title: "Làm thẻ đa năng",
             url: url,
             width: "1050px",
             height: "550px",
@@ -319,7 +319,7 @@
 
     function btn_selfPayCard()
     {
-        $.modalAlert("功能开发中", "warning");
+        $.modalAlert("Chức năng đang phát triển", "warning");
     }
     function CallbackPatientQuery(blh) {
         //GetQueryFphAjax({ blh: blh });
@@ -328,12 +328,12 @@
     function newtouch_event_f6(){
         var keyValue = $("#gridList").jqGridRowValue().blh;
         if(!!!keyValue){
-            $.modalAlert("请选择一个患者", "warning");
+            $.modalAlert("Vui lòng chọn một bệnh nhân", "warning");
             return;
         }
         $.modalOpen({
             id: "PatientMedicalRecordList",
-            title: "患者历史病历",
+            title: "Hồ sơ bệnh án lịch sử bệnh nhân",
             url: "/PatientManage/SysPatientMedicalRecord/Index?blh=" + keyValue,
             width: "900px",
             height: "600px",
@@ -355,7 +355,7 @@
         $("#dz").html("");
     }
 
-    ////医保业务
+    ////Nghiệp vụ BHYT
    
     var patModel = null;
     function GetQueryFphAjax(obj, funcSuccCallback){
@@ -369,7 +369,7 @@
                 patModel = rep.data;
                 $("#xm").html(patModel.xm);
                 $("#xb").html($.getGender(patModel.xb));
-                $("#cfz").html(patModel.fzbz!==0 ? '复诊':'初诊');
+                $("#cfz").html(patModel.fzbz!==0 ? 'Tái khám':'Khám lần đầu');
                 $("#nl").html(getAgeFromBirthTime({ begin: patModel.csny.replace('T',' ') }).text);
                 $("#lbzjh").html(patModel.zjh);
                 $("#csrq").html(patModel.csny);
@@ -380,7 +380,7 @@
             errorCallback: function (rep){
                 if(rep.code === 'OUTPAT_REGIST_ISINVALID')
                 {
-                    $.modalConfirm("一卡通尚未登记，是否办理", function (flag) {
+                    $.modalConfirm("Thẻ đa năng chưa được đăng ký，Có làm thủ tục hay không", function (flag) {
                         if (flag) {
                             btn_NocardRes();
                         }
@@ -402,7 +402,7 @@
         var rowdata = $('#gridList').jqGrid('getRowData', rowid);
         $.modalOpen({
             id: "LogDetailsView",
-            title: "就诊卡管理",
+            title: "Quản lý thẻ khám bệnh",
             url: "/PatientManage/HospiterRes/CardManagement?patId=" + rowdata.patId + "&xm=" + rowdata.xm,
             width: "700px",
             height: "530px",

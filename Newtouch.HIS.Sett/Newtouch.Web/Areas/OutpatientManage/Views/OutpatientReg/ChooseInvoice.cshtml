@@ -9,7 +9,7 @@
     <div style="margin-top:40px;margin-right:40px;">
         <table class="form">
             <tr>
-                <th class="formTitle dialogText">发票号:</th>
+                <th class="formTitle dialogText">Số hóa đơn:</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="txtfph" name="txtfph" required value="">
                 </td>
@@ -19,7 +19,7 @@
 </form>
 
 <script>
-    //上一个window对象
+    //Mục trướcwindowĐối tượng
     var prevWindow;
     if ('@(from)' !== '') {
         prevWindow = top.top.frames['@(from)'];
@@ -29,7 +29,7 @@
     }
 
     $.najax({
-        url: "/OutpatientManage/OutpatientReg/GetInvoice",  //获取
+        url: "/OutpatientManage/OutpatientReg/GetInvoice",  //Lấy
         dataType: "text",
         async: false,
         success: function (data) {
@@ -39,11 +39,11 @@
         }
     });
 
-    //确认验证发票号
+    //Xác nhận kiểm tra số hóa đơn
     function checkFPH() {
         var ttheFph = $("#txtfph").val();
         if (!!!ttheFph) {
-            $.modalMsg('请输入发票号', 'warning');
+            $.modalMsg('Vui lòng nhập số hóa đơn', 'warning');
             return;
         }
         $.najax({

@@ -9,7 +9,7 @@
     }
 </style>
 
-<!--发票列表-->
+<!--Danh sách hóa đơn-->
 <form id="tabGrid" style="margin:2px;margin-top:10px;">
     <div class="gridPanel">
         <table id="gridListFPH" rel="tabGrid"></table>
@@ -23,12 +23,12 @@
         gridListFPH(JSON.parse(fapiaodata));
     });
 
-    //加载发票列表
+    //Tải danh sách hóa đơn
     function gridListFPH(mydata) {
         var $gridList = $("#gridListFPH");
         $gridList.dataNewGrid({
             height: 500, 
-            caption: "发票列表",
+            caption: "Danh sách hóa đơn",
             colModel: [
                 { label: 'jsnm', name: 'jsnm', hidden: true },
                 { label: 'flzffy', name: 'flzffy', hidden: true },
@@ -36,15 +36,15 @@
                 { label: 'jzfy', name: 'jzfy', hidden: true },
                 { label: 'zlfy', name: 'zlfy', hidden: true },
                 { label: 'xjzf', name: 'xjzf', hidden: true },
-                { label: '姓名', name: 'xm', width: 100, align: 'left' },
-                { label: '卡号', name: 'kh', width: 100, align: 'left' },
-                { label: '发票号', name: 'fph', width: 100, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 100, align: 'left' },
+                { label: 'Số thẻ', name: 'kh', width: 100, align: 'left' },
+                { label: 'Số hóa đơn', name: 'fph', width: 100, align: 'left' },
                 {
-                    label: '结算日期', name: 'CreateTime', width: 100, align: 'left', formatter: function (cellvalue) {
+                    label: 'Ngày quyết toán', name: 'CreateTime', width: 100, align: 'left', formatter: function (cellvalue) {
                         return cellvalue && cellvalue.length >= 10 ? cellvalue.substring(0, 10) : ""
                     }
                 },
-                { label: '总金额', name: 'zje', width: 100, align: 'left' }
+                { label: 'Tổng số tiền', name: 'zje', width: 100, align: 'left' }
             ]
         }, mydata);
         if (mydata.length > 0) {
@@ -54,21 +54,21 @@
 
  
 
-    //发票列表单击事件 
+    //Sự kiện nhấp danh sách hóa đơn 
     function btn_edit() {
         var data = $("#gridListFPH").jqGridRowValue();
         if (data) {
-            //input控件取消了，放在td中
-            $.currentWindow().loadFpData(data); //主页中的方法
+            //inputĐiều khiển đã bị hủy，Đặt ởtdTrong
+            $.currentWindow().loadFpData(data); //Phương thức trong trang chính
             PatSearchConfirm();
           
         } else {
-            $.modalAlert("当前无选中的发票！", "warning");
+            $.modalAlert("Hiện không có hóa đơn đã chọn！", "warning");
         }
 
     }
 
-    //确定 主页面调用
+    //Xác nhận Trang chính gọi
     function PatSearchConfirm() {
         var $gridList = $("#gridListFPH");
         var kh = $gridList.jqGridRowValue().kh;
@@ -78,11 +78,11 @@
         obj.kh = kh;
         obj.zyh = zyh;
         obj.xm = xm; 
-        //关闭窗口
+        //Đóng cửa sổ
         ReceiptCancle();
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() {
         $.modalClose();
     }

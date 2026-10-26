@@ -8,7 +8,7 @@
     <div style="margin-top:40px;margin-right:40px;">
         <table class="form">
             <tr>
-                <th class="formTitle dialogText">凭证号：</th>
+                <th class="formTitle dialogText">Số chứng từ：</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="txtpzh" name="txtpzh" required value="">
                 </td>
@@ -27,7 +27,7 @@
             $("#txtpzh").val(sjh);
         } else
         {
-            //获取收据凭证号
+            //Lấy số chứng từ biên lai
             GetReceiptByEmpCode();
         }
     })
@@ -47,7 +47,7 @@
         });
     }
 
-    //确定
+    //Xác nhận
     function ReceiptConfirm()
     {
         var pzh = $("#txtpzh").val();
@@ -57,18 +57,18 @@
         }
     }
 
-    //前台验证凭证号规则
+    //Quy tắc kiểm tra số chứng từ ở giao diện
     function checkPZH(pzh)
     {
         var szm = pzh.substring(0, 1);
         var reg = new RegExp("^[0-9]*$");
-        //如果发票号第一个字符不是数字，则为首字母
+        //Nếu ký tự đầu tiên của số hóa đơn không phải là số，thì là chữ cái đầu
         if (!reg.test(szm))
         {
             szm = pzh.substring(0, 1);
             if (!reg.test(pzh.substring(1,pzh.length-1)))
             {
-                var msg = "收据号除首字母外必须为数字。";
+                var msg = "Số biên lai ngoài chữ cái đầu phải là số。";
                 $("#lblMsg").text(msg);
                 return false;
              }
@@ -78,7 +78,7 @@
             szm = "";
             if (!reg.test(pzh))
             {
-                var msg = "收据号必须为数字。";
+                var msg = "Số biên lai phải là số。";
                 $("#lblMsg").text(msg);
                 return false;
             }
@@ -86,7 +86,7 @@
         return true;
     }
 
-    //后台验证凭证号
+    //Phía máy chủ kiểm tra số chứng từ
     function checkExitPZH(pzh)
     {
         $.najax({
@@ -107,7 +107,7 @@
         });
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle()
     {
         $.modalClose();

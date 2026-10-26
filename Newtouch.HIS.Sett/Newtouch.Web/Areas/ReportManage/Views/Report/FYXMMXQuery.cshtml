@@ -19,22 +19,22 @@
 	<div class="panel panel-default">
 		<table class="form">
 			<tr>
-				<th class="formTitle">查询类别：</th>
+				<th class="formTitle">Loại tra cứu：</th>
 				<td class="formValue">
 					<select id="tjfw" class="form-control">
-						<option value="门诊">门诊</option>
-						<option value="住院">住院</option>
+						<option value="门诊">Ngoại trú</option>
+						<option value="住院">Nhập viện</option>
 					</select>
 				</td>
 
-				<th class="formTitle">开始日期：</th>
+				<th class="formTitle">Ngày bắt đầu：</th>
 				<td class="formValue">
 					<input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
 						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
 						   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
 						   value="@DateTime.Now.ToString("yyyy-MM-01")" />
 				</td>
-				<th class="formTitle">结束日期：</th>
+				<th class="formTitle">Ngày kết thúc：</th>
 				<td class="formValue">
 					<input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
 						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -43,35 +43,35 @@
 				</td>
 				<th class="formTitle"></th>
 				<td class="formValue" style="padding-left:20px;">
-					<input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+					<input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
 				</td>
 			</tr>
             <tr>
                 <td class="formValue" colspan="2">
                     <label class="btn btn-default" style="z-index:100">
-                        <input id="gl" type="radio" value="gl" name="optionsRadios" class="optionsRadios" onclick="guolv()" />过滤
+                        <input id="gl" type="radio" value="gl" name="optionsRadios" class="optionsRadios" onclick="guolv()" />Lọc
                     </label>
                     <label class="btn btn-default" style="z-index:100">
-                        <input id="hf" type="radio" value="hf" name="optionsRadios" class="optionsRadios" onclick="huifu()" />恢复
+                        <input id="hf" type="radio" value="hf" name="optionsRadios" class="optionsRadios" onclick="huifu()" />Khôi phục
                     </label>
                     <label class="btn btn-default" style="z-index:100">
-                        <input type="radio" value="qc" name="optionsRadios" class="optionsRadios" onclick="qingchu()" />清除
+                        <input type="radio" value="qc" name="optionsRadios" class="optionsRadios" onclick="qingchu()" />Xóa
                     </label>
                 </td>
-                <th class="formTitle">项目检索：</th>
+                <th class="formTitle">Tìm kiếm hạng mục：</th>
                 <td class="formValue"> <input type="text" id="sfxmmc"  onkeyup="sfxmsx()" class="form-control" /></td>
-                <th class="formTitle">医生：</th>
+                <th class="formTitle">Bác sĩ：</th>
                 <td class="formValue">
 
                     <select id="yscode" class="form-control">
-                        <option value="" selected>全部</option>
+                        <option value="" selected>Tất cả</option>
                     </select>
                 </td>
 
-                <th class="formTitle">大类名称：</th>
+                <th class="formTitle">Tên nhóm lớn：</th>
                 <td class="formValue">
                     <select id="dlmc" onchange="selsfdl()" class="form-control">
-                        <option value="" selected>全部</option>
+                        <option value="" selected>Tất cả</option>
                     </select>
                 </td>
             </tr>
@@ -104,7 +104,7 @@
             gridList("");
         });
         function qingchu() {
-            // 获取所有选中行id
+            // Lấy tất cả dòng đã chọnid
             var jqGridRowid = $("#gridList").jqGrid("getGridParam", "selarrrow");
             for (var i = 0; i < jqGridRowid.length; i++) {
                 $("#gridList").setSelection(jqGridRowid[i], false);
@@ -161,9 +161,9 @@
                 height: $(window).height() - 210,
                 colModel: [
                     { label: 'sfxmcode', name: 'sfxmcode', align: 'center', width: 30, hidden: true, key: true },
-                    { label: '收费项目', name: 'sfxmmc', align: 'left', width: 100 },
-                    { label: '单位', name: 'dw', align: 'left', width: 30 },
-                    { label: '单价', name: 'dj', align: 'left', width: 30 },
+                    { label: 'Hạng mục thu phí', name: 'sfxmmc', align: 'left', width: 100 },
+                    { label: 'Đơn vị', name: 'dw', align: 'left', width: 30 },
+                    { label: 'Đơn giá', name: 'dj', align: 'left', width: 30 },
                 ],
                 rowNum:50,
                 viewrecords: true,
@@ -178,13 +178,13 @@
                         xzstr += rowIndex + ",";
                     }
                 },
-                //当表格所有数据都加载完成而且其他的处理也都完成时触发此事件，排序，翻页同样也会触发此事件
+                //Kích hoạt sự kiện này khi tất cả dữ liệu bảng đã tải xong và các xử lý khác cũng hoàn thành，Sắp xếp，Chuyển trang cũng sẽ kích hoạt sự kiện này
                 gridComplete: function () {
                     //if ($("#dlmc").val() != "") {
                     //    var ids = new Array();
-                    //    //getDataIDs()返回当前grid里所有数据的id
+                    //    //getDataIDs()Trả về hiện tạigridcủa tất cả dữ liệu trongid
                     //    ids = $("#" + this.id).getDataIDs();
-                    //    //选择或反选指定行。如果onselectrow为ture则会触发事件onSelectRow，onselectrow默认为ture
+                    //    //Chọn hoặc bỏ chọn dòng đã chỉ định。Nếuonselectrowlàturethì sẽ kích hoạt sự kiệnonSelectRow，onselectrowMặc định làture
                     //    $.each(ids, function () {
                     //        //$("#gridList").setSelection(this, true);
                     //        xzstr += this + ",";
@@ -193,10 +193,10 @@
                     //}
                     if ($("#gl").prop("checked")==true) {
                         var ids = new Array();
-                        //getDataIDs()返回当前grid里所有数据的id
+                        //getDataIDs()Trả về hiện tạigridcủa tất cả dữ liệu trongid
                         ids = $("#" + this.id).getDataIDs();
                         xzstr = "";
-                        //选择或反选指定行。如果onselectrow为ture则会触发事件onSelectRow，onselectrow默认为ture
+                        //Chọn hoặc bỏ chọn dòng đã chỉ định。Nếuonselectrowlàturethì sẽ kích hoạt sự kiệnonSelectRow，onselectrowMặc định làture
                         $.each(ids, function () {
                             $("#gridList").setSelection(this, true);
                             xzstr += this + ",";
@@ -213,7 +213,7 @@
 
             });
         }
-	//大类名称绑定下拉框
+	//Hộp thả xuống liên kết tên nhóm lớn
 	$("#dlmc").bindSelect({
 		id: "dlcode",
 		text: "dlmc",
@@ -230,7 +230,7 @@
 	//$('#sfxmmc').sfxmFloatingSelector({
 	//	djDecimalPlaces: 4,
 	//	searchType: "sfxm",
-	//	leftshift: 150, //整体左偏移
+	//	leftshift: 150, //Lệch trái tổng thể
 	//	ajaxparameters: function ($thisinput) {
 	//		return "dllb=2&mzzybz=&keyword=" + $.trim($thisinput.val());
 	//	},
@@ -242,7 +242,7 @@
 
 	function submit() {
 		if ($('#ksrq').val().length == 0 || $('#jsrq').val().length == 0) {
-			$.modalAlert("请选择时间范围", "error");
+			$.modalAlert("Vui lòng chọn khoảng thời gian", "error");
 			return;
 		}
 		var url = getUrl();
@@ -258,7 +258,7 @@
 		$('#layout iframe').css('height', h);
 
 	});
-	 //刷新列表
+	 //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }

@@ -26,7 +26,7 @@
             height: 100, 
             colModel: [
                 { label: 'brxz', name: 'brxz', width: 10, hidden: true },
-                { label: '病人性质', name: 'brxzmc', width: 100},
+                { label: 'Tính chất bệnh nhân', name: 'brxzmc', width: 100},
                 { label: 'brxzbh', name: 'brxzbh', width: 10, hidden: true },
                 { label: 'ybjylx', name: 'ybjylx', width: 10, hidden: true }
             ],
@@ -37,7 +37,7 @@
         }
     }
 
-    //jqGrid 双击选中某行
+    //jqGrid Nhấp đúp để chọn một dòng
     function btn_edit() {
         PatSearchConfirm();
     }
@@ -52,16 +52,16 @@
         obj.brxzmc = brxzmc;
         obj.brxzbh = brxzbh;
         $.currentWindow().getChargeInfoAjax(obj);
-        //关闭窗口
+        //Đóng cửa sổ
         ReceiptCancle();
     }
 
-    //确定 主页面调用
+    //Xác nhận Trang chính gọi
     function PatSearchConfirm() {
         PatDbGrid();
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() {
         $.modalClose();
     }

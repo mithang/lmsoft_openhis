@@ -14,13 +14,13 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control form-control-focus" placeholder="请输入卡号/住院号" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control form-control-focus" placeholder="Vui lòng nhập số thẻ/Số nhập viện" style="width: 200px;">
                     </div>
                 </td>
                 <td style="padding-left:12px;">
                     <div class="btn-group" id="btnKeywordTypeGourp" style="margin-top:0;">
-                        <button type="button" data-keywordtype="kh" class="btn active btn-restore">&nbsp;卡&nbsp;&nbsp;号&nbsp;</button>
-                        <button type="button" data-keywordtype="zyh" class="btn btn-default">住院号</button>
+                        <button type="button" data-keywordtype="kh" class="btn active btn-restore">&nbsp;Thẻ&nbsp;&nbsp;Số&nbsp;</button>
+                        <button type="button" data-keywordtype="zyh" class="btn btn-default">Số nhập viện</button>
                     </div>
                 </td>
             </tr>
@@ -33,57 +33,57 @@
     <div class="rows" style="margin-bottom: 1%;" id="divPatHospitalizationSettBasicInfo">
         <div class="panel panel-default" style="margin-top:10px; margin-bottom:0;">
             <div class="panel-heading navb-bg">
-                住院病人信息
+                Thông tin bệnh nhân nội trú
             </div>
             <table class="form" style="width:96%;">
                 <tr>
-                    <td class="formTitle">卡号：</td>
+                    <td class="formTitle">Số thẻ：</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" id="kh" value="" />
                     </td>
-                    <td class="formTitle">住院号：</td>
+                    <td class="formTitle">Số nhập viện：</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" id="zyh" value="" />
                     </td>
-                    <td class="formTitle">病历号：</td>
+                    <td class="formTitle">Số hồ sơ bệnh án：</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" id="blh" value="" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">姓名：</td>
+                    <td class="formTitle">Họ tên：</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" id="xm" value="" />
                     </td>
-                    <td class="formTitle">性别：</td>
+                    <td class="formTitle">Giới tính：</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" id="xb" value="" />
                     </td>
-                    <td class="formTitle">住院科别：</td>
+                    <td class="formTitle">Khoa nội trú：</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" id="ksmc" value="" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">患者类型：</td>
+                    <td class="formTitle">Loại bệnh nhân：</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" id="brxzmc" value="" />
                     </td>
-                    <td class="formTitle">预交金：</td>
+                    <td class="formTitle">Tiền tạm ứng：</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" value="" id="zhyjj" />
                     </td>
-                    <td class="formTitle">医保证号：</td>
+                    <td class="formTitle">Số chứng nhận BHYT：</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" value="" id="pzh" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">入院日期：</td>
+                    <td class="formTitle">Ngày nhập viện：</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" value="" id="ryrq" />
                     </td>
-                    <td class="formTitle">出院日期：</td>
+                    <td class="formTitle">Ngày xuất viện：</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" value="" id="cyrq" />
                     </td>
@@ -95,15 +95,15 @@
     <div class="rows" style="margin-bottom: 1%;" id="divPatHospitalizationSettFeeInfo">
         <div class="panel panel-default" style="margin-bottom:0;">
             <div class="panel-heading navb-bg">
-                结算信息
+                Thông tin quyết toán
             </div>
             <table class="form" style="width:96%;">
                 <tr>
-                    <td class="formTitle">结算类型：</td>
+                    <td class="formTitle">Loại quyết toán：</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" value="" id="txtSettType" />
                     </td>
-                    <td class="formTitle">结算金额：</td>
+                    <td class="formTitle">Số tiền quyết toán：</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" value="" id="txtSettJSJE" />
                     </td>
@@ -141,7 +141,7 @@
     txt_keyword.addEventListener('keydown', function (event) {
         event = event || window.event;
         if (isLoadingIIII) {
-            stopDefault(event); //数据加载过程中，阻止默认行为
+            stopDefault(event); //Trong quá trình tải dữ liệu，Ngăn hành vi mặc định
             return false;
         }
         if (event.keyCode == 13) {
@@ -150,7 +150,7 @@
     });
 
     //ajaxLoadResult
-    var isLoadingIIII = false;  //是否正在从后台加载数据
+    var isLoadingIIII = false;  //Có đang tải dữ liệu từ phía máy chủ hay không
     function ajaxLoadDataResult() {
         if (!isLoadingIIII) {
             isLoadingIIII = true;
@@ -159,7 +159,7 @@
                 isLoadingIIII = false;
                 return false;
             }
-            $.loading(true, "正在请求数据...");
+            $.loading(true, "Đang tải dữ liệu...");
             var zyh = null;
             var kh = null;
             if ($('#btnKeywordTypeGourp .btn.active').attr('data-keywordtype') == 'kh') {
@@ -174,21 +174,21 @@
                 data: { zyh: zyh, kh: kh },
                 dataType: "json",
                 success: function (ajaxresp) {
-                    //住院病人基本信息
+                    //Thông tin cơ bản bệnh nhân nội trú
                     $('#divPatHospitalizationSettBasicInfo').formSerialize(ajaxresp.data.HospSettPatInfo);
                     $("#xb").val($.getGender(ajaxresp.data.HospSettPatInfo.xb));
                     $("#ryrq").val((ajaxresp.data.HospSettPatInfo.ryrq && ajaxresp.data.HospSettPatInfo.ryrq.length >= 10 ? ajaxresp.data.HospSettPatInfo.ryrq.substring(0, 10) : ""));
                     $("#cyrq").val((ajaxresp.data.HospSettPatInfo.cyrq && ajaxresp.data.HospSettPatInfo.cyrq.length >= 10 ? ajaxresp.data.HospSettPatInfo.cyrq.substring(0, 10) : ""));
                     $('#zhyjj').val(ajaxresp.data.zhyjj.toFixed(2));
-                    //患者交款历史
+                    //Lịch sử nộp tiền của bệnh nhân
                     for (i = 0; i < ajaxresp.data.ChargeList.length; i++) {
                         ajaxresp.data.ChargeList[i].zyh = ajaxresp.data.HospSettPatInfo.zyh;
                         ajaxresp.data.ChargeList[i].xm = ajaxresp.data.HospSettPatInfo.xm;
                     }
                     $('#chargeGridList').newtouchLocalDataGrid(null, ajaxresp.data.ChargeList);
-                    //票据信息
+                    //Thông tin chứng từ
                     $('#dlFeeGridList').newtouchLocalDataGrid(null, ajaxresp.data.DLFeeList);
-                    //结算信息
+                    //Thông tin quyết toán
                     $('#txtSettType').val('出院结算');
                     $('#txtSettJSJE').val(ajaxresp.data.jsje.toFixed(2));
                 },
@@ -207,57 +207,57 @@
         container: "#divPatHospitalizationSettBasicInfo, #divPatHospitalizationSettFeeInfo"
     };
 
-    //患者交款记录 jGrid声明
+    //Bản ghi nộp tiền của bệnh nhân jGridKhai báo
     $('#chargeGridList').newtouchLocalDataGrid({
         height: 100,
         unwritten: false,
         sortable: false,
-        caption: "患者交款历史",
+        caption: "Lịch sử nộp tiền của bệnh nhân",
         colModel: [
-            { label: '住院号', name: 'zyh', width: 100, align: 'left' },
-            { label: '患者姓名', name: 'xm', width: 100, align: 'left' },
+            { label: 'Số nhập viện', name: 'zyh', width: 100, align: 'left' },
+            { label: 'Tên bệnh nhân', name: 'xm', width: 100, align: 'left' },
             {
-                label: '交款金额', name: 'szje', width: 100, align: 'left', formatter: function (cellvalue) {
+                label: 'Số tiền nộp', name: 'szje', width: 100, align: 'left', formatter: function (cellvalue) {
                     return cellvalue ? cellvalue.toFixed(2) : "0.00";
                 }
             },
-            { label: '单据号', name: 'pzh', width: 100, align: 'left' },
+            { label: 'Số chứng từ', name: 'pzh', width: 100, align: 'left' },
             {
-                label: '交款日期', name: 'CreateTime', width: 100, align: 'left', formatter: function (cellvalue) {
+                label: 'Ngày nộp tiền', name: 'CreateTime', width: 100, align: 'left', formatter: function (cellvalue) {
                     return cellvalue && cellvalue.length >= 10 ? cellvalue.substring(0, 10) : ""
                 }
             },
-            { label: '交款方式', name: 'xjzffsmc', width: 100 }
+            { label: 'Cách nộp tiền', name: 'xjzffsmc', width: 100 }
         ]
     });
 
-    //患者交款记录 jGrid声明
+    //Bản ghi nộp tiền của bệnh nhân jGridKhai báo
     $('#dlFeeGridList').newtouchLocalDataGrid({
         height: 240,
         unwritten: false,
         sortable: false,
-        caption: "票据信息",
+        caption: "Thông tin chứng từ",
         colModel: [
-            { label: '项目名称', name: 'dlmc', width: 60, align: 'left' },
+            { label: 'Tên hạng mục', name: 'dlmc', width: 60, align: 'left' },
             {
-                label: '总金额', name: 'jsje', width: 50, align: 'left', formatter: function (cellvalue) {
+                label: 'Tổng số tiền', name: 'jsje', width: 50, align: 'left', formatter: function (cellvalue) {
                     return cellvalue ? cellvalue.toFixed(2) : "";
                 }
             }
         ]
     });
 
-    //清除操作
+    //Thao tác xóa
     var funcDoPageClear = function () {
         newtouch_globalevent_f4();
     };
 
     function newtouch_event_f4() {
-        $('#chargeGridList').jqGrid("clearGridData");   //清除所有行
+        $('#chargeGridList').jqGrid("clearGridData");   //Xóa tất cả các dòng
         $('#dlFeeGridList').jqGrid("clearGridData");
     }
 
-    //结算
+    //Quyết toán
     function newtouch_event_f8() {
         var zyh = $.trim($('#zyh').val());
         var jsje = $.trim($('#txtSettJSJE').val());
@@ -266,7 +266,7 @@
         if (zyh && jsje) {
             $.modalOpen({
                 id: "FormShowSett",
-                title: "结算",
+                title: "Quyết toán",
                 url: url,
                 width: "670px",
                 height: "490px",
@@ -284,11 +284,11 @@
             + "&zhaoling=" + zhaoling;
         $.modalOpen({
             id: "FormShowSettSuccessDialog",
-            title: "结算成功",
+            title: "Quyết toán thành công",
             url: url,
             width: "320px",
             height: "240px",
-            //btn: ['关闭'],
+            //btn: ['Đóng'],
             //btnclass: ['btn btn-danger'],
             btn: null,
             callBack: function (iframeId) {

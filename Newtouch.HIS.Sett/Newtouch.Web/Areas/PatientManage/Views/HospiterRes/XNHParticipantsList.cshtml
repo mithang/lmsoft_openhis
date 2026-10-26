@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "新农合参保人列表";
+    ViewBag.Title = "Danh sách người tham gia bảo hiểm nông thôn mới";
     Layout = "~/Views/Shared/_Form.cshtml";
     var from = (ViewBag.from as string) ?? "";
 }
@@ -29,24 +29,24 @@
             colModel: [
                 { label: 'memberId', name: 'memberId', hidden: true },
                 { label: 'medicalNo', name: 'medicalNo', hidden: true },
-                { label: '姓名', name: 'memberName', width: 100, align: 'left' },
+                { label: 'Họ tên', name: 'memberName', width: 100, align: 'left' },
                 {
-                    label: '性别', name: 'memberSex', width: 30, align: 'left', formatter: function (cellvalue) {
+                    label: 'Giới tính', name: 'memberSex', width: 30, align: 'left', formatter: function (cellvalue) {
                         return $.getGender(cellvalue);
                     }
                 },
-                { label: '身份证号', name: 'idCard', width: 160, align: 'left' },
-                { label: '年龄', name: 'memberAge', width: 50, align: 'left' },
+                { label: 'Số CMND/CCCD', name: 'idCard', width: 160, align: 'left' },
+                { label: 'Tuổi', name: 'memberAge', width: 50, align: 'left' },
                 {
-                    label: '出生年月', name: 'birthday', width: 90, align: 'left',
+                    label: 'Năm sinh', name: 'birthday', width: 90, align: 'left',
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                 },
-                { label: '地址', name: 'areaName', width: 160, align: 'left' },
-                { label: '账户余额', name: 'account', width: 50, align: 'left' },
-                { label: '参保状态', name: 'memberStauts', width: 50, align: 'left' },
-                { label: '普通住院总费用', name: 'hosTotalCost', width: 75, align: 'left' },
-                { label: '普通住院保内费用', name: 'hosInsuranceCost', width: 85, align: 'left' },
-                { label: '普通住院补偿费用', name: 'hosCompens', width: 85, align: 'left' },
+                { label: 'Địa chỉ', name: 'areaName', width: 160, align: 'left' },
+                { label: 'Số dư tài khoản', name: 'account', width: 50, align: 'left' },
+                { label: 'Trạng thái tham gia bảo hiểm', name: 'memberStauts', width: 50, align: 'left' },
+                { label: 'Tổng chi phí nhập viện thông thường', name: 'hosTotalCost', width: 75, align: 'left' },
+                { label: 'Chi phí trong bảo hiểm nhập viện thông thường', name: 'hosInsuranceCost', width: 85, align: 'left' },
+                { label: 'Chi phí bồi thường nhập viện thông thường', name: 'hosCompens', width: 85, align: 'left' },
             ],
             pager: "#gridPager",
             sortname: 'isnull(LastModifyTime, CreateTime) desc',

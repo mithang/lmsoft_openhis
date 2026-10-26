@@ -9,13 +9,13 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
+            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
         </div>
     </div>
     <div class="search">
@@ -23,7 +23,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="请输入病历号" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Vui lòng nhập số hồ sơ bệnh án" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -43,12 +43,12 @@
         gridList();
     })
 
-    //回车
+    //Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $("#btn_search").trigger('click');
     })
 
-    //明细
+    //Chi tiết
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -58,25 +58,25 @@
             height: $(window).height() - 130,
             colModel: [
             { label: "ybbabId", name: "ybbabId", width: 120, align: "left", hidden: true },
-            { label: "病历号", name: "blh", width: 120, align: "left" },
-            { label: "姓名", name: "xm", width: 120, align: "left" },
+            { label: "Số hồ sơ bệnh án", name: "blh", width: 120, align: "left" },
+            { label: "Họ tên", name: "xm", width: 120, align: "left" },
             {
-                label: "年龄", name: "nlshow", width: 120, align: "left", formatter: function (cellvalue, a, b) {
+                label: "Tuổi", name: "nlshow", width: 120, align: "left", formatter: function (cellvalue, a, b) {
                     return getAgeFromBirthTime({ begin: b.csny }).text;
                 }
             },
-            { label: "证件号", name: "zjh", width: 140, align: "left" },
-            { label: "病人内码", name: "patId", width: 120, align: "left", hidden: true },
+            { label: "Số giấy tờ", name: "zjh", width: 140, align: "left" },
+            { label: "Mã nội bộ bệnh nhân", name: "patId", width: 120, align: "left", hidden: true },
             {
-                label: "开始日期", name: "ksrq", width: 120, align: "left",
+                label: "Ngày bắt đầu", name: "ksrq", width: 120, align: "left",
                 formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
             },
             {
-                label: "结束日期", name: "jsrq", width: 120, align: "left",
+                label: "Ngày kết thúc", name: "jsrq", width: 120, align: "left",
                 formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
             },
-            { label: "总次数", name: "zcs", width: 110, align: "left" },
-            { label: "剩余次数", name: "sycs", width: 110, align: "left" }
+            { label: "Tổng số lần", name: "zcs", width: 110, align: "left" },
+            { label: "Số lần còn lại", name: "sycs", width: 110, align: "left" }
             ],
             pager: "#gridPager",
             sortname: 'CreateTime desc',
@@ -90,17 +90,17 @@
                 }).trigger('reloadGrid');
         });
     }
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var keyword = $("#txt_keyword").val();
         return { keyword: keyword};
     };
 
-    //新建
+    //Tạo mới
     function btn_add(){
         $.modalOpen({
             id: "PatSerarchView",
-            title: "新增医保备案",
+            title: "Thêm đăng ký BHYT mới",
             url: "/KnowledgeBaseManage/MedicalInsurance/Form",
             width: "550px",
             height: "500px",
@@ -109,17 +109,17 @@
             }
         });
     }
-    //修改
+    //Sửa
     function btn_edit() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var ybbabId = $("#gridList").jqGridRowValue().ybbabId;
         $.modalOpen({
             id: "PatSerarchView",
-            title: "修改信息",
+            title: "Sửa thông tin",
             url: "/KnowledgeBaseManage/MedicalInsurance/Form?ybbabId=" + ybbabId,
             width: "550px",
             height: "500px",
@@ -128,11 +128,11 @@
             }
         });
     }
-    //删除
+    //Xóa
     function btn_delete() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var ybbabId = $("#gridList").jqGridRowValue().ybbabId;

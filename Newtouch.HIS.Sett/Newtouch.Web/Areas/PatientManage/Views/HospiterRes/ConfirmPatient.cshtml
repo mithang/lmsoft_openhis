@@ -12,45 +12,45 @@
             $gridList.dataNewGrid({
                 height: $(window).height() - 128,
                 colModel: [
-                    { label: "主键", name: "patid", hidden: true, key: true },
-                    { label: '卡号', name: 'CardNo', width: 100, align: 'left' },
-                    { label: '病人性质', name: 'brxzmc', width: 100, align: 'left' },
-                    { label: '病历号', name: 'blh', width: 100, align: 'left' },
-                    { label: '姓名', name: 'xm', width: 50, align: 'left' },
-                    { label: '学历', name: 'xl', width: 50, align: 'left' },
+                    { label: "Khóa chính", name: "patid", hidden: true, key: true },
+                    { label: 'Số thẻ', name: 'CardNo', width: 100, align: 'left' },
+                    { label: 'Tính chất bệnh nhân', name: 'brxzmc', width: 100, align: 'left' },
+                    { label: 'Số hồ sơ bệnh án', name: 'blh', width: 100, align: 'left' },
+                    { label: 'Họ tên', name: 'xm', width: 50, align: 'left' },
+                    { label: 'Trình độ học vấn', name: 'xl', width: 50, align: 'left' },
                     {
-                        label: '性别', name: 'xb', width: 50, align: 'left',
+                        label: 'Giới tính', name: 'xb', width: 50, align: 'left',
                         formatter: function (cellvalue) {
                             return $.getGender(cellvalue);
                         }
                     },
-                    { label: '拼音', name: 'py', width: 100, align: 'left' },
+                    { label: 'Phiên âm', name: 'py', width: 100, align: 'left' },
                     {
-                        label: '出生年月', name: 'csny', width: 80, align: 'left',
+                        label: 'Năm sinh', name: 'csny', width: 80, align: 'left',
                         formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                     },
                     {
-                        label: '证件类型', name: 'zjlx', width: 50, align: 'left',
+                        label: 'Loại giấy tờ', name: 'zjlx', width: 50, align: 'left',
                         formatter: function (cellvalue) {
                             if (cellvalue) {
                                 if (cellvalue.trim() == "1") {
-                                    return "身份证";
+                                    return "CMND/CCCD";
                                 } else if (cellvalue.trim() == "2") {
-                                    return "护照";
+                                    return "Hộ chiếu";
                                 } else if (cellvalue.trim() == "3") {
-                                    return "军官证";
+                                    return "Thẻ sĩ quan";
                                 } else {
-                                    return "其他";
+                                    return "Khác";
                                 }
                             }
                             return "";
                         }
                     },
-                     { label: '证件号', name: 'zjh', width: 150, align: 'left' },
-                     { label: '年龄', name: 'nl', width: 50, align: 'left' },
-                     { label: '电话', name: 'dh', width: 100, align: 'left' },
-                     { label: '紧急联系人', name: 'jjllr', width: 100, align: 'left' },
-                     { label: '联系人电话', name: 'jjlrdh', width: 100, align: 'left' },
+                     { label: 'Số giấy tờ', name: 'zjh', width: 150, align: 'left' },
+                     { label: 'Tuổi', name: 'nl', width: 50, align: 'left' },
+                     { label: 'Điện thoại', name: 'dh', width: 100, align: 'left' },
+                     { label: 'Người liên hệ khẩn cấp', name: 'jjllr', width: 100, align: 'left' },
+                     { label: 'Điện thoại người liên hệ', name: 'jjlrdh', width: 100, align: 'left' },
                      { label: 'CreateTime', name: 'CreateTime', hidden: true },
 
                 ],

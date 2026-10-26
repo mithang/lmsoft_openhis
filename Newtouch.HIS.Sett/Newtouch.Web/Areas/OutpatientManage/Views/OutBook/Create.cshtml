@@ -1,7 +1,7 @@
 ﻿
 @{
 
-    ViewBag.Title = "生成排班";
+    ViewBag.Title = "Tạo lịch trực";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -29,9 +29,9 @@
             height: $(window).height() - 118,
             colModel: [
                 { label: "ghpbId", name: "ScheduId", hidden: true },
-                { label: "编号", name: "ghpbId", width: 40, align: 'left' },
+                { label: "Số hiệu", name: "ghpbId", width: 40, align: 'left' },
                 {
-                    label: "出诊日期", name: "OutDate", width: 120, align: 'left', formatter: function (val) {
+                    label: "Ngày khám", name: "OutDate", width: 120, align: 'left', formatter: function (val) {
                         if (val.indexOf("T")) {
                             return val.replace('T', ' ');
                         } else {
@@ -39,86 +39,86 @@
                         }
                     }
                 },
-                { label: "医生工号", name: "ysgh", width: 80, align: 'left', hidden: true },
-                { label: "医生姓名", name: "ysxm", width: 100, align: 'left' },
-                { label: "出诊科室", name: "czks", width: 80, align: 'left', hidden: true},
-                { label: "出诊科室名称", name: "czksmc", width: 80, align: 'left' },
+                { label: "Mã nhân viên bác sĩ", name: "ysgh", width: 80, align: 'left', hidden: true },
+                { label: "Tên bác sĩ", name: "ysxm", width: 100, align: 'left' },
+                { label: "Khoa khám", name: "czks", width: 80, align: 'left', hidden: true},
+                { label: "Tên khoa khám", name: "czksmc", width: 80, align: 'left' },
                 {
-                    label: "挂号类型", name: "RegType", width: 60, align: 'left', formatter: function (val) {
+                    label: "Loại đăng ký khám", name: "RegType", width: 60, align: 'left', formatter: function (val) {
                         if (val == "1") {
-                            return "普通门诊";
+                            return "Khám ngoại trú thông thường";
                         }
                         else if (val == "2") {
-                            return "急诊";
+                            return "Cấp cứu";
                         } else if (val == "3") {
-                            return "专家门诊";
+                            return "Khám chuyên gia";
                         }
                         else if (val == "4") {
-                            return "特病门诊";
+                            return "Khám ngoại trú bệnh đặc biệt";
                         }
                         else if (val == "5") {
-                            return "重大疾病门诊";
+                            return "Khám ngoại trú bệnh hiểm nghèo";
                         }
                         else if (val == "6") {
-                            return "慢性病门诊";
+                            return "Khám ngoại trú bệnh mãn tính";
                         }
                         else if (val == "7") {
-                            return "居民两病";
+                            return "Hai bệnh dân cư";
                         }
                         else if (val == "8") {
-                            return "意外伤害门诊";
+                            return "Khám ngoại trú tai nạn bất ngờ";
                         }
                         else if (val == "9") {
-                            return "生育门诊";
+                            return "Khám ngoại trú sinh sản";
                         }
                         else if (val == "10") {
-                            return "耐多药结核门诊";
+                            return "Khám ngoại trú lao kháng đa thuốc";
                         }
                         else if (val == "11") {
-                            return "儿童两病门诊";
+                            return "Khám ngoại trú hai bệnh trẻ em";
                         }
                     }
                 },
-                { label: "职称", name: "Title", width: 90, align: 'left' },
-                { label: "出诊时间段", name: "PeriodDesc", width: 80, align: 'left' },
-                { label: "号源", name: "TotalNum", width: 60, align: 'left' },
-                { label: "开始时间", name: "PeriodStart", width: 80, align: 'left' },
-                { label: "结束时间", name: "PeriodEnd", width: 80, align: 'left' },
-                { label: "挂号费", name: "RegFee", width: 60, align: 'left' },
+                { label: "Chức danh", name: "Title", width: 90, align: 'left' },
+                { label: "Khoảng thời gian khám", name: "PeriodDesc", width: 80, align: 'left' },
+                { label: "Nguồn số khám", name: "TotalNum", width: 60, align: 'left' },
+                { label: "Thời gian bắt đầu", name: "PeriodStart", width: 80, align: 'left' },
+                { label: "Thời gian kết thúc", name: "PeriodEnd", width: 80, align: 'left' },
+                { label: "Phí đăng ký khám", name: "RegFee", width: 60, align: 'left' },
                 {
-                    label: "是否开放网络预约挂号", name: "IsBook", width: 100, align: 'left', formatter: function (val) {
+                    label: "Có mở đăng ký khám hẹn trước qua mạng hay không", name: "IsBook", width: 100, align: 'left', formatter: function (val) {
                         if (val == "1") {
-                            return "是";
+                            return "Có";
                         }
                         else if (val == "0") {
-                            return "否";
+                            return "Không";
                         }
                     }
                 },
-                { label: "挂号项目", name: "sfxmmc", width: 80, align: 'left' },
-                { label: "附加项目", name: "zlxmmc", width: 120, align: 'left' },
+                { label: "Hạng mục đăng ký khám", name: "sfxmmc", width: 80, align: 'left' },
+                { label: "Hạng mục bổ sung", name: "zlxmmc", width: 120, align: 'left' },
                 {
-                    label: "星期", name: "weekdd", width: 80, align: 'left', formatter: function (val) {
+                    label: "Thứ", name: "weekdd", width: 80, align: 'left', formatter: function (val) {
                         if (val == "1") {
-                            return "星期一";
+                            return "Thứ Hai";
                         }
                         else if (val == "2") {
-                            return "星期二";
+                            return "Thứ Ba";
                         }
                         else if (val == "3") {
-                            return "星期三";
+                            return "Thứ Tư";
                         }
                         else if (val == "4") {
-                            return "星期四";
+                            return "Thứ Năm";
                         }
                         else if (val == "5") {
-                            return "星期五";
+                            return "Thứ Sáu";
                         }
                         else if (val == "6") {
-                            return "星期六";
+                            return "Thứ Bảy";
                         }
                         else if (val == "7") {
-                            return "星期日";
+                            return "Chủ Nhật";
                         }
                     }
                 },

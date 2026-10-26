@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "病人基本信息";
+    ViewBag.Title = "Thông tin cơ bản bệnh nhân";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
@@ -12,12 +12,12 @@
     <table class="form" style="width: 98%; border: 0">
         <tr>
             <td class="formTitle">
-                <span>*</span>卡号：
+                <span>*</span>Số thẻ：
             </td>
             <td class="formValue">
                 <input type="text" id="kh" class="form-control form-an">
             </td>
-            <td class="formTitle"><span>*</span>病历号：</td>
+            <td class="formTitle"><span>*</span>Số hồ sơ bệnh án：</td>
             <td class="formValue">
                 <input type="text" id="blh" class="form-control form-an">
                 <input hidden id="py" />
@@ -28,12 +28,12 @@
             </td>
         </tr>
         <tr>
-            <td class="formTitle"><span>*</span>患者姓名：</td>
+            <td class="formTitle"><span>*</span>Tên bệnh nhân：</td>
             <td class="formValue">
                 <input type="text" id="xm" name="xm" class="form-control form-an">
             </td>
             <th class="formTitle">
-                <span class="required">*</span>挂号排班：
+                <span class="required">*</span>Lịch trực đăng ký khám：
             </th>
             <td class="formValue">
                 <input type="text" class="form-control" id="txtghpbchoose" />
@@ -41,20 +41,20 @@
             
         </tr>
         <tr>
-            <td class="formTitle"><span>*</span>患者性质：</td>
+            <td class="formTitle"><span>*</span>Tính chất bệnh nhân：</td>
             <td class="formValue">
                 <input type="text" id="brxzmc" name="brxzmc" class="form-control form-an">
             </td>
-            <td class="formTitle"><span>*</span>性别：</td>
+            <td class="formTitle"><span>*</span>Giới tính：</td>
             <td class="formValue">
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
                         <input type="radio" id="xb" value="1" name="xb" class="form-control form-an">
-                        男
+                        Nam
                     </label>
                     <label class="btn btn-default">
                         <input type="radio" id="xb" value="2" name="xb" class="form-control form-an">
-                        女
+                        Nữ
                     </label>
                 </div>
             </td>
@@ -65,7 +65,7 @@
 <script>
     $(function () {
         initControl();
-        //根据姓名获得拼音
+        //Lấy phiên âm theo họ tên
         $('#xm').keyup(function () {
             $('#py').val($(this).toShouPin());
         });
@@ -75,13 +75,13 @@
     });
 
     function initControl() {
-        ///报销政策
+        ///Chính sách thanh toán bảo hiểm
         $("#brxzmc").newtouchBatchFloatingSelector({
             height: 200,
             width: 400,
             clickautotrigger: true,
             filter: function (keyword) {
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) ||
@@ -93,11 +93,11 @@
                 return resultObjArr;
 
             },
-            caption: "病人性质",
+            caption: "Tính chất bệnh nhân",
             colModel: [
-                { label: '编码', name: 'brxz', widthratio: 25 },
-                { label: '名称', name: 'brxzmc', widthratio: 25 },
-                { label: '拼音', name: 'py', widthratio: 25 }
+                { label: 'Mã', name: 'brxz', widthratio: 25 },
+                { label: 'Tên', name: 'brxzmc', widthratio: 25 },
+                { label: 'Phiên âm', name: 'py', widthratio: 25 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#brxzmc").attr("data-label", $thistr.attr('data-brxz'));
@@ -107,7 +107,7 @@
         });
 
 
-        //挂号排班浮层
+        //Lớp nổi lịch trực đăng ký khám
         $("#txtghpbchoose").newtouchBatchFloatingSelector({
             height: 150,
             width: 400,
@@ -118,15 +118,15 @@
             ajaxreqdata: function () {
                 var reqData = {};
                 reqData.keyword = $("#txtghpbchoose").val();
-                reqData.mzlx = "1";//默认普通门诊
+                reqData.mzlx = "1";//Mặc định khám ngoại trú thông thường
                 return reqData;
             },
-            caption: "挂号排班",
+            caption: "Lịch trực đăng ký khám",
             colModel: [
-                { label: '挂号科室', name: 'ksmc', widthratio: 25 },
-                { label: '医生', name: 'rymc', widthratio: 20 },
-                { label: '挂号项目', name: 'sfxmmc', widthratio: 25 },
-                { label: '诊疗项目', name: 'zlxmmc', widthratio: 25 },
+                { label: 'Khoa đăng ký khám', name: 'ksmc', widthratio: 25 },
+                { label: 'Bác sĩ', name: 'rymc', widthratio: 20 },
+                { label: 'Hạng mục đăng ký khám', name: 'sfxmmc', widthratio: 25 },
+                { label: 'Hạng mục khám chữa bệnh', name: 'zlxmmc', widthratio: 25 },
                 { label: 'ks', name: 'ks', hidden: true },
                 { label: 'gh', name: 'gh', hidden: true },
                 { label: 'ghlx', name: 'ghlx', hidden: true },
@@ -186,40 +186,40 @@
 
 
     function checkNotNull() {
-        //卡号
+        //Số thẻ
         var kh = $("#kh").val();
         if (!kh) {
-            $.modalAlert("请填写卡号！", 'warning');
+            $.modalAlert("Vui lòng điền số thẻ！", 'warning');
             return false;
         }
-        //病历号
+        //Số hồ sơ bệnh án
         var blh = $("#blh").val();
         if (!blh) {
-            $.modalAlert("请填写病历号！", 'warning');
+            $.modalAlert("Vui lòng điền số hồ sơ bệnh án！", 'warning');
             return false;
         }
-        //姓名
+        //Họ tên
         var xm = $("#xm").val();
         if (!xm) {
-            $.modalAlert("请填写姓名！", 'warning');
+            $.modalAlert("Vui lòng điền họ tên！", 'warning');
             return false;
         }
 
-        //病人性质
+        //Tính chất bệnh nhân
         var brxzmc = $("#brxzmc").val();
         if (!brxzmc) {
-            $.modalAlert("请选择病人性质！", 'warning');
+            $.modalAlert("Vui lòng chọn tính chất bệnh nhân！", 'warning');
             return false;
         }
 
-        //拼音
+        //Phiên âm
         var py = $("#py").val();
         if (!py) {
             if (!!$("#xm").val()) {
                 py = $("#xm").toShouPin();
             }
             if (!py) {
-                $.modalAlert("拼音为空！", 'warning');
+                $.modalAlert("Phiên âm trống！", 'warning');
                 return false;
             }
             else {
@@ -227,7 +227,7 @@
             }
         }
 
-        //性别
+        //Giới tính
         var xb = false;
         $('input[name="xb"]').each(function () {
             var $this = $(this);
@@ -237,12 +237,12 @@
             }
         });
         if (!xb) {
-            $.modalAlert("请选中性别！", 'warning');
+            $.modalAlert("Vui lòng chọn giới tính！", 'warning');
             return false;
         }
 
         if (!!!$('#txtghpbId').val()) {
-            $.modalAlert("请选择排班!", 'warning');
+            $.modalAlert("Vui lòng chọn lịch trực!", 'warning');
             return false;
         }
 

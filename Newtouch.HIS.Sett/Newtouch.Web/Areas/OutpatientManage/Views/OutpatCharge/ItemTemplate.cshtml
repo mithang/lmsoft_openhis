@@ -11,8 +11,8 @@
 
 <script type="text/javascript">
     var ks = $.request("ks");
-    var tempList = [], //模板列表
-        detailList = []; //模板下项目列表
+    var tempList = [], //Danh sách mẫu
+        detailList = []; //Danh sách hạng mục dưới mẫu
     $(function () {
         tempInit();
     })
@@ -28,7 +28,7 @@
                 if (ajaxresp.state == 'success') { 
                     tempList = ajaxresp.data.tempList;
                     detailList = ajaxresp.data.tempDetailList;
-                    gridList(tempList); //绑定模板列表 
+                    gridList(tempList); //Liên kết danh sách mẫu 
 
                 } else if (ajaxresp.state == 'error') {
                     $.newtouchAlert(ajaxresp);
@@ -36,7 +36,7 @@
                 }
             },
             error: function (err) {
-                funcDoPageClear(); //清除
+                funcDoPageClear(); //Xóa
             },
             complete: function () {
                 $.loading(false);
@@ -49,12 +49,12 @@
         var $gridList = $("#parentGridList");
         $gridList.dataNewGrid({  
             height: 150,
-            caption: "模板列表",
+            caption: "Danh sách mẫu",
             colModel: [
-                { label: "主键", name: "sfmbbh", hidden: true, key: true },
-                { label: "模板代码", name: "sfmb", width: 80, align: 'left' },
-                { label: '模板名称', name: 'sfmbmc', width: 100, align: 'left' },
-                { label: '执行科室', name: 'ksmc', width: 50, align: 'left' },
+                { label: "Khóa chính", name: "sfmbbh", hidden: true, key: true },
+                { label: "Mã mẫu", name: "sfmb", width: 80, align: 'left' },
+                { label: 'Tên mẫu', name: 'sfmbmc', width: 100, align: 'left' },
+                { label: 'Khoa thực hiện', name: 'ksmc', width: 50, align: 'left' },
             ]
         }, tempList);
 
@@ -74,21 +74,21 @@
         } 
         $("#childGridList").dataNewGrid({ 
             height: 200,
-            caption: "项目列表",
+            caption: "Danh sách hạng mục",
             colModel: [
-                { label: "主键", name: "sfmbbh", hidden: true, key: true },
-                { label: '数量', name: 'sl', width: 50, align: 'left' },
-                { label: '项目代码', name: 'py', width: 50, align: 'left' },
-                { label: '名称', name: 'sfxmmc', width: 50, align: 'left' },
-                { label: '单位', name: 'dw', width: 50, align: 'left' },
-                { label: '单价', name: 'dj', width: 50, align: 'left' },
-                { label: '医保代码', name: 'ybdm', width: 100, align: 'left' },
-                { label: '费用类别', name: 'dlmc', width: 50, align: 'left' },
-                { label: '规格', name: 'gg', width: 50, align: 'left' },
-                { label: '剂量', name: 'jl', width: 50, align: 'left' },
-                { label: '用法', name: 'yf', width: 50, align: 'left' },
-                { label: '频率', name: 'pl', width: 50, align: 'left' },
-                { label: '剂型', name: 'jx', width: 50, align: 'left' },
+                { label: "Khóa chính", name: "sfmbbh", hidden: true, key: true },
+                { label: 'Số lượng', name: 'sl', width: 50, align: 'left' },
+                { label: 'Mã hạng mục', name: 'py', width: 50, align: 'left' },
+                { label: 'Tên', name: 'sfxmmc', width: 50, align: 'left' },
+                { label: 'Đơn vị', name: 'dw', width: 50, align: 'left' },
+                { label: 'Đơn giá', name: 'dj', width: 50, align: 'left' },
+                { label: 'Mã BHYT', name: 'ybdm', width: 100, align: 'left' },
+                { label: 'Loại chi phí', name: 'dlmc', width: 50, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 50, align: 'left' },
+                { label: 'Liều lượng', name: 'jl', width: 50, align: 'left' },
+                { label: 'Cách dùng', name: 'yf', width: 50, align: 'left' },
+                { label: 'Tần suất', name: 'pl', width: 50, align: 'left' },
+                { label: 'Dạng bào chế', name: 'jx', width: 50, align: 'left' },
                 { label: 'dlmc', name: 'dlmc', hidden: true },
                 { label: 'dl', name: 'dl', hidden: true },
                 { label: 'sfxm', name: 'sfxm', hidden: true },
@@ -104,13 +104,13 @@
         }
     }
 
-    //多选
+    //Chọn nhiều
     function grid_checkedit() {
         
     }
 
-    //ChargeIndex页面 调用
-    //在主页面进行调用
+    //ChargeIndexTrang Gọi
+    //Gọi tại trang chính
     function submitForm() {
         var rowid = $("#childGridList").jqGrid("getGridParam", "selarrrow");
         var obj = [];

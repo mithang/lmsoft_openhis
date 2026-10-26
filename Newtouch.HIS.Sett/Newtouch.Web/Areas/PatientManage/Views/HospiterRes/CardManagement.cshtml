@@ -14,7 +14,7 @@
 <form id="form1">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            基本信息
+            Thông tin cơ bản
         </div>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" id="basicInfo">
@@ -25,7 +25,7 @@
                     <table class="form" style="width: 98%; border: 0">
                         <tr>
                             <td class="formTitle">
-                                <span>*</span>卡号
+                                <span>*</span>Số thẻ
                             </td>
                             <td class="formValue">
                                 <input type="text" id="kh" class="form-control form-an">
@@ -34,51 +34,51 @@
                             <td class="formValue" colspan="2">
                                 @Html.Partial("YibaoRedCardCommon")
                             </td>
-                            <td class="formTitle"><span>*</span>卡类型</td>
+                            <td class="formTitle"><span>*</span>Loại thẻ</td>
                             <td class="formValue">
                                 @Html.DropDownList("cardtype", EnumCardType.XNK.ToDescSelectList(), new { @class = "form-control form-an", onchange = "TypeFunc(this.options[this.options.selectedIndex].value)" })
                             </td>
                         </tr>
                         <tr>
-                            <td class="formTitle"><span>*</span>患者姓名</td>
+                            <td class="formTitle"><span>*</span>Tên bệnh nhân</td>
                             <td class="formValue">
                                 <input type="text" id="xm" name="xm" class="form-control form-an">
                             </td>
-                            <td class="formTitle"><span>*</span>患者性质</td>
+                            <td class="formTitle"><span>*</span>Tính chất bệnh nhân</td>
                             <td class="formValue">
                                 <input type="text" id="brxzmc" name="brxzmc" class="form-control form-an">
                             </td>
-                            <td class="formTitle">参保类别编码</td>
+                            <td class="formTitle">Mã loại tham gia bảo hiểm</td>
                             <td class="formValue"><input type="text" id="cblb" class="form-control form-an" /></td>
                         
                         </tr>
                         <tr>
-                            <td class="formTitle">参保类别</td>
+                            <td class="formTitle">Loại tham gia bảo hiểm</td>
                             <td class="formValue">
                                 @*@Html.DropDownList("cblb", EnumCblb.none.ToDescSelectList(), new { @class = "form-control form-an" })*@
                                 <input type="text" id="cblbmc" name="cblbmc" class="form-control form-an">
                             </td>
-                            <td class="formTitle"><span></span>参保地编码</td>
+                            <td class="formTitle"><span></span>Mã nơi tham gia bảo hiểm</td>
                             <td class="formValue">
                                 <input type="text" id="cbdbm" name="cbdbm" class="form-control form-an">
                             </td>
-                            <td class="formTitle"><span></span>险种类型</td>
+                            <td class="formTitle"><span></span>Loại hình bảo hiểm</td>
                             <td class="formValue">
                                 <input type="text" id="xzlx" name="xzlx" class="form-control form-an">
                             </td>
                             
                         </tr>
                         <tr>
-                            <td class="formTitle">个人编号</td>
+                            <td class="formTitle">Mã cá nhân</td>
                             <td class="formValue">
                                 <input type="text" id="grbh" name="grbh" class="form-control form-an">
                             </td>
-                            <td class="formTitle">异地</td>
+                            <td class="formTitle">Khác địa phương</td>
                             <td class="formValue">
                                 @Html.DropDownList("dybh", EnumYd.f.ToDescSelectList(), new { @class = "form-control form-an", onchange = "TypeFunc(this.options[this.options.selectedIndex].value)" })
                             </td>
                             <td class="formValue" colspan="2">
-                                <input type="button" id="btn_tianjia" style="float:right;width:60px;" onclick="SubmitCard()" class="btn btn-md btn-primary form-an" value="添加" />
+                                <input type="button" id="btn_tianjia" style="float:right;width:60px;" onclick="SubmitCard()" class="btn btn-md btn-primary form-an" value="Thêm" />
                             </td>
 
                         </tr>
@@ -89,7 +89,7 @@
         </div>
     </div>
     <div class="panel-heading navb-bg">
-        就诊卡列表
+        Danh sách thẻ khám bệnh
     </div>
     <div class="gridPanel">
         <table id="gridList"></table>
@@ -149,25 +149,25 @@
                 colModel: [
                     { label: 'CardId', name: 'CardId', width: 100, align: 'left', hidden: true },
                     { label: 'patid', name: 'patid', width: 100, align: 'left', hidden: true },
-                    { label: '卡号', name: 'CardNo', width: 100, align: 'left' },
+                    { label: 'Số thẻ', name: 'CardNo', width: 100, align: 'left' },
                     {
-                        label: '类型名称', name: 'CardType', width: 100, align: 'left', formatter: function (cellvalue) {
+                        label: 'Tên loại', name: 'CardType', width: 100, align: 'left', formatter: function (cellvalue) {
                             return $.enum.getDescByValue("EnumCardType", cellvalue);
                         }
                     },
                     {
-                        label: '险种', name: 'xzlx', width: 100, align: 'left', formatter: function (cellvalue) {
+                        label: 'Loại hình bảo hiểm', name: 'xzlx', width: 100, align: 'left', formatter: function (cellvalue) {
                             return $.enum.getDescByValue("Enumxzlx", cellvalue);
                         }
                     },
                     {
-                        label: '病人性质', name: 'brxz', width: 100, align: 'left', formatter: function (cellvalue) {
+                        label: 'Tính chất bệnh nhân', name: 'brxz', width: 100, align: 'left', formatter: function (cellvalue) {
                             return $.enum.getDescByValue("EnumBrxz", cellvalue);
                         }
                     },
                     {
-                        label: "操作", name: "", width: 160, align: 'center', formatter(val, option, row) {
-                            return "<a class='btn btn-default' style='width:50px;font-weight:bold;textalign:center;color:red' onclick='CardVoidss(" + option.rowId + ")'>作废</a>";
+                        label: "Thao tác", name: "", width: 160, align: 'center', formatter(val, option, row) {
+                            return "<a class='btn btn-default' style='width:50px;font-weight:bold;textalign:center;color:red' onclick='CardVoidss(" + option.rowId + ")'>Hủy</a>";
 
                         }
                     }
@@ -210,10 +210,10 @@
                                 }
                             });
                         }
-                        $.modalAlert("操作成功", 'success');
+                        $.modalAlert("Thao tác thành công", 'success');
                     }
                     else {
-                        $.modalAlert("相同类型不能添加多张卡！", 'warning');
+                        $.modalAlert("Cùng loại không được thêm nhiều thẻ！", 'warning');
                     }
 
                 },
@@ -227,7 +227,7 @@
 
     function CardVoidss(rowid) {
         var rowdata = $('#gridList').jqGrid('getRowData', rowid);
-        $.modalConfirm("您确定要作废这张卡吗？", function (flag) {
+        $.modalConfirm("Bạn có chắc muốn hủy thẻ này không?？", function (flag) {
             if (flag) {
                 $.ajax({
                     url: "/PatientManage/HospiterRes/CardVoids",
@@ -240,7 +240,7 @@
                             $("#gridList").jqGrid('setGridParam', {
                                 postData: { patId: rowdata.patId },
                             }).trigger('reloadGrid');
-                            $.modalAlert("作废成功", 'success');
+                            $.modalAlert("Hủy thành công", 'success');
                         }
 
                     },
@@ -255,24 +255,24 @@
 
 
     function checkNotNulls() {
-        //姓名
+        //Họ tên
         var xm = $("#xm").val();
         if (!xm) {
-            $.modalAlert("请填写姓名！", 'warning');
+            $.modalAlert("Vui lòng điền họ tên！", 'warning');
             return false;
         }
 
-        //病人性质
+        //Tính chất bệnh nhân
         var brxzmc = $("#brxzmc").val();
         if (!brxzmc) {
-            $.modalAlert("请选择病人性质！", 'warning');
+            $.modalAlert("Vui lòng chọn tính chất bệnh nhân！", 'warning');
             return false;
         }
 
-        //卡号
+        //Số thẻ
         var khs = $("#kh").val();
         if (!khs) {
-            $.modalAlert("请输入卡号！", 'warning');
+            $.modalAlert("Vui lòng nhập số thẻ！", 'warning');
             return false;
         }
         return true;
@@ -284,7 +284,7 @@
         clickautotrigger: true,
         filter: function (keyword) {
             
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) ||
@@ -296,17 +296,17 @@
             return resultObjArr;
 
         },
-        caption: "病人性质",
+        caption: "Tính chất bệnh nhân",
         colModel: [
-            { label: '编码', name: 'brxz', widthratio: 25 },
-            { label: '名称', name: 'brxzmc', widthratio: 25 },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: 'Mã', name: 'brxz', widthratio: 25 },
+            { label: 'Tên', name: 'brxzmc', widthratio: 25 },
+            { label: 'Phiên âm', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             if ($thistr.attr('data-brxz') === "8") {
-                //判断是否需要读卡
+                //Xét có cần đọc thẻ hay không
                 if ($("#xnhylzh").val() === "" || $("#xnhgrbm").val() === "") {
-                    $.modalAlert("新农合病人请先读卡！", 'error');
+                    $.modalAlert("Bệnh nhân bảo hiểm nông thôn mới vui lòng đọc thẻ trước！", 'error');
                     return;
                 }
             }
@@ -316,7 +316,7 @@
         }
     });
 
-    ////医保业务
+    ////Nghiệp vụ BHYT
     function ReadCardCall(readCardObj) {
         $.loading(false);
         
@@ -330,7 +330,7 @@
             $("#xzlx").val(readCardObj.cardInfo2.insutype);
             $("#grbh").val(readCardObj.cardInfo1.psn_no);
             $("#cbdbm").val(readCardObj.cardInfo2.insuplc_admdvs);
-            var ybPatInfo2 = readCardObj.yibaoCardInfo.output.insuinfo[0];//参保信息
+            var ybPatInfo2 = readCardObj.yibaoCardInfo.output.insuinfo[0];//Thông tin tham gia bảo hiểm
             if (!!ybPatInfo2.insuplc_admdvs && ybPatInfo2.insuplc_admdvs.substring(0, 2) == "50") {
                 $('#dybh').val("0");
             } else {

@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "新增登记";
+    ViewBag.Title = "Thêm đăng ký mới";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <script>
@@ -8,41 +8,41 @@
     var sfzh;
     var age;
     var vcity = {
-        11: "北京",
-        12: "天津",
-        13: "河北",
-        14: "山西",
-        15: "内蒙古",
-        21: "辽宁",
-        22: "吉林",
-        23: "黑龙江",
-        31: "上海",
-        32: "江苏",
-        33: "浙江",
-        34: "安徽",
-        35: "福建",
-        36: "江西",
-        37: "山东",
-        41: "河南",
-        42: "湖北",
-        43: "湖南",
-        44: "广东",
-        45: "广西",
-        46: "海南",
-        50: "重庆",
-        51: "四川",
-        52: "贵州",
-        53: "云南",
-        54: "西藏",
-        61: "陕西",
-        62: "甘肃",
-        63: "青海",
-        64: "宁夏",
-        65: "新疆",
-        71: "台湾",
-        81: "香港",
-        82: "澳门",
-        91: "国外"
+        11: "Bắc Kinh",
+        12: "Thiên Tân",
+        13: "Hà Bắc",
+        14: "Sơn Tây",
+        15: "Nội Mông",
+        21: "Liêu Ninh",
+        22: "Cát Lâm",
+        23: "Hắc Long Giang",
+        31: "Thượng Hải",
+        32: "Giang Tô",
+        33: "Chiết Giang",
+        34: "An Huy",
+        35: "Phúc Kiến",
+        36: "Giang Tây",
+        37: "Sơn Đông",
+        41: "Hà Nam",
+        42: "Hồ Bắc",
+        43: "Hồ Nam",
+        44: "Quảng Đông",
+        45: "Quảng Tây",
+        46: "Hải Nam",
+        50: "Trùng Khánh",
+        51: "Tứ Xuyên",
+        52: "Quý Châu",
+        53: "Vân Nam",
+        54: "Tây Tạng",
+        61: "Thiểm Tây",
+        62: "Cam Túc",
+        63: "Thanh Hải",
+        64: "Ninh Hạ",
+        65: "Tân Cương",
+        71: "Đài Loan",
+        81: "Hồng Kông",
+        82: "Ma Cao",
+        91: "Nước ngoài"
     };
     $(function () {
         init();
@@ -59,13 +59,13 @@
                         csrq = sfzh.substr(6, 8);
                         if ((len === 15 && csrq) || len === 18) {
                             csrq = csrq.replace(/(.{4})(.{2})/, "$1-$2-");
-                            //获取性别
+                            //Lấy giới tính
                             var xb;
                             if (parseInt(sfzh.charAt(16) / 2) * 2 != sfzh.charAt(16))
                                 xb = 1;
                             else
                                 xb = 0;
-                            //获取年龄
+                            //Lấy tuổi
                             var myDate = new Date();
                             var month = myDate.getMonth() + 1;
                             var day = myDate.getDate();
@@ -79,13 +79,13 @@
                                 if ($("input[name=xb]:eq(0)").parent().hasClass('active')) {
                                     $("input[name=xb]:eq(0)").parent().removeClass('active');
                                 }
-                                $("input[name=xb]:eq(1)").attr("checked", 'checked'); //女
+                                $("input[name=xb]:eq(1)").attr("checked", 'checked'); //Nữ
                                 $("input[name=xb]:eq(1)").parent().addClass('active');
                             } else {
                                 if ($("input[name=xb]:eq(1)").parent().hasClass('active')) {
                                     $("input[name=xb]:eq(1)").parent().removeClass('active');
                                 }
-                                $("input[name=xb]:eq(0)").attr("checked", 'checked'); //男
+                                $("input[name=xb]:eq(0)").attr("checked", 'checked'); //Nam
                                 $("input[name=xb]:eq(0)").parent().addClass('active');
                             }
                             $('#nl').val(age);
@@ -94,7 +94,7 @@
                 }
             });
 
-        //根据姓名获得拼音
+        //Lấy phiên âm theo họ tên
         $('#xm').blur(function () {
             $('#py').val($(this).toPinyin());
 
@@ -105,7 +105,7 @@
     });
 
     function init() {
-        //国籍
+        //Quốc tịch
         $("#gj").newtouchBindSelect({
             id: "gjCode",
             text: "gjmc",
@@ -132,7 +132,7 @@
                 success: function () {
                     $.loading(false);
                     if ($.currentWindow().$("#blh").length === 1) {
-                        //门诊挂号免卡登记
+                        //Đăng ký khám ngoại trú không cần thẻ
                         $.currentWindow().searchPatInfo(data.blh);
                         $.modalClose();
                     }
@@ -146,39 +146,39 @@
         $("#zjh").val(card);
         if ($('#zjlx').val() !== "1") {
             if (card === '') {
-                $.modalAlert('请输入证件号，证件号不能为空', 'warning');
+                $.modalAlert('Vui lòng nhập số giấy tờ，Số giấy tờ không được trống', 'warning');
                 return false;
             }
             return true;
         }
 
-        //是否为空
+        //Có trống hay không
         if (card === '') {
-            $.modalAlert('请输入身份证号，身份证号不能为空', 'warning');
+            $.modalAlert('Vui lòng nhập số CMND/CCCD，Số CMND/CCCD không được trống', 'warning');
             // $("#zjh").focus;
             return false;
         }
-        //校验长度，类型
+        //Kiểm tra độ dài，Loại
         if (isCardNo(card) === false) {
-            $.modalAlert('您输入的身份证号码不正确，请重新输入', 'warning');
+            $.modalAlert('Số CMND/CCCD bạn nhập không đúng，Vui lòng nhập lại', 'warning');
             //$("#zjh").focus;
             return false;
         }
-        //检查省份
+        //Kiểm tra tỉnh
         if (checkProvince(card) === false) {
-            $.modalAlert('您输入的身份证前两位不正确,请重新输入', 'warning');
+            $.modalAlert('Hai ký tự đầu CMND/CCCD bạn nhập không đúng,Vui lòng nhập lại', 'warning');
             //$("#zjh").focus;
             return false;
         }
-        //校验生日
+        //Kiểm tra ngày sinh
         if (checkBirthday(card) === false) {
-            $.modalAlert('您输入的身份证号码生日不正确,请重新输入', 'warning');
+            $.modalAlert('Ngày sinh trong số CMND/CCCD bạn nhập không đúng,Vui lòng nhập lại', 'warning');
             //$("#zjh").focus();
             return false;
         }
-        //检验位的检测
+        //Kiểm tra vị trí kiểm tra
         if (checkParity(card) === false) {
-            $.modalAlert('您的身份证校验位不正确,请重新输入', 'warning');
+            $.modalAlert('Vị trí kiểm tra CMND/CCCD của bạn không đúng,Vui lòng nhập lại', 'warning');
             // $("#zjh").focus();
             return false;
         }
@@ -186,9 +186,9 @@
     };
 
 
-    //检查号码是否符合规范，包括长度，类型
+    //Kiểm tra số có phù hợp quy định hay không，Bao gồm độ dài，Loại
     isCardNo = function (card) {
-        //身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X
+        //Số CMND/CCCD là15vị trí hoặc18vị，15Khi ở vị trí đều là số，18Trước vị trí17vị trí là số，Ký tự cuối cùng là vị trí kiểm tra，Có thể là số hoặc ký tựX
         var reg = /(^\d{15}$)|(^\d{17}(\d|X)$)/;
         if (reg.test(card) === false) {
             return false;
@@ -197,7 +197,7 @@
         return true;
     };
 
-    //取身份证前两位,校验省份
+    //Lấy hai ký tự đầu của CMND/CCCD,Kiểm tra tỉnh
     checkProvince = function (card) {
         var province = card.substr(0, 2);
         if (vcity[province] == undefined) {
@@ -206,10 +206,10 @@
         return true;
     };
 
-    //检查生日是否正确
+    //Kiểm tra ngày sinh có đúng hay không
     checkBirthday = function (card) {
         var len = card.length;
-        //身份证15位时，次序为省（3位）市（3位）年（2位）月（2位）日（2位）校验位（3位），皆为数字
+        //CMND/CCCD15khi ở vị trí，Thứ tự là tỉnh（3vị）Thành phố（3vị）Năm（2vị）Tháng（2vị）Ngày（2vị）Vị trí kiểm tra（3vị），Đều là số
         if (len == '15') {
             var re_fifteen = /^(\d{6})(\d{2})(\d{2})(\d{2})(\d{3})$/;
             var arr_data = card.match(re_fifteen);
@@ -219,7 +219,7 @@
             var birthday = new Date('19' + year + '/' + month + '/' + day);
             return verifyBirthday('19' + year, month, day, birthday);
         }
-        //身份证18位时，次序为省（3位）市（3位）年（4位）月（2位）日（2位）校验位（4位），校验位末尾可能为X
+        //CMND/CCCD18khi ở vị trí，Thứ tự là tỉnh（3vị）Thành phố（3vị）Năm（4vị）Tháng（2vị）Ngày（2vị）Vị trí kiểm tra（4vị），Vị trí kiểm tra cuối cùng có thể làX
         if (len == '18') {
             var re_eighteen = /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/;
             var arr_data = card.match(re_eighteen);
@@ -232,13 +232,13 @@
         return false;
     };
 
-    //校验日期
+    //Kiểm tra ngày
     verifyBirthday = function (year, month, day, birthday) {
         var now = new Date();
         var now_year = now.getFullYear();
-        //年月日是否合理
+        //Năm tháng ngày có hợp lý hay không
         if (birthday.getFullYear() == year && (birthday.getMonth() + 1) == month && birthday.getDate() == day) {
-            //判断年份的范围（3岁到100岁之间)
+            //Xét phạm vi năm（3tuổi đến100giữa các tuổi)
             var time = now_year - year;
             if (time >= 3 && time <= 100) {
                 return true;
@@ -248,9 +248,9 @@
         return false;
     };
 
-    //校验位的检测
+    //Kiểm tra vị trí kiểm tra
     checkParity = function (card) {
-        //15位转18位
+        //15chuyển vị trí18vị
         card = changeFivteenToEighteen(card);
         sfzh = card;
         var len = card.length;
@@ -270,7 +270,7 @@
         return false;
     };
 
-    //15位转18位身份证号
+    //15chuyển vị trí18Số CMND/CCCD vị trí
     changeFivteenToEighteen = function (card) {
         if (card.length == '15') {
             var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
@@ -289,42 +289,42 @@
     function AddData_Check() {
         var blh = $("#blh").val();
         if (blh == null || blh === "" || blh == undefined) {
-            $.modalAlert("请填写病历号", 'warning');
+            $.modalAlert("Vui lòng điền số hồ sơ bệnh án", 'warning');
             $("#blh").focus();
             return false;
         }
         var xm = $("#xm").val();
         if (xm == null || xm === "" || xm == undefined) {
-            $.modalAlert("请填写姓名", 'warning');
+            $.modalAlert("Vui lòng điền họ tên", 'warning');
             $("#xm").focus();
             return false;
         }
         var zjlx = $("#zjlx").val();
         if (zjlx == null || zjlx === "" || zjlx == undefined) {
-            $.modalAlert("请选择证件类型", 'warning');
+            $.modalAlert("Vui lòng chọn loại giấy tờ", 'warning');
             $("#zjlx").focus();
             return false;
         }
         //var zjh = $("#zjh").val();
-        ////暂时去除身份验证----liixn 20190816
+        ////Tạm thời loại bỏ xác thực danh tính----liixn 20190816
         //if (!checkCard()) {
         //    return false;
         //}
         var csny = $("#csny").val();
         if (csny == null || csny === "" || csny == undefined) {
-            $.modalAlert("请填写出生年月", 'warning');
+            $.modalAlert("Vui lòng điền năm sinh", 'warning');
             $("#csny").focus();
             return false;
         }
 
         var nl = $("#nl").val();
         if (nl == null || nl === "" || nl == undefined) {
-            $.modalAlert("请填写年龄", 'warning');
+            $.modalAlert("Vui lòng điền tuổi", 'warning');
             $("#nl").focus();
             return false;
         }
 
-        //性别
+        //Giới tính
         var xb = false;
         $('input[name="xb"]').each(function () {
             var $this = $(this);
@@ -334,13 +334,13 @@
             }
         });
         if (!xb) {
-            $.modalAlert("请选中性别！", 'warning');
+            $.modalAlert("Vui lòng chọn giới tính！", 'warning');
             return false;
         }
         return true;
     }
 
-    /*根据出生日期算出年龄*/
+    /*Tính tuổi theo ngày sinh*/
     function jsGetAge(strBirthday) {
         var returnAge;
         var strBirthdayArr = strBirthday.split("-");
@@ -354,13 +354,13 @@
         var nowDay = d.getDate();
 
         if (nowYear == birthYear) {
-            returnAge = 0;//同年 则为0岁
+            returnAge = 0;//Cùng năm thì là0tuổi
         }
         else {
-            var ageDiff = nowYear - birthYear; //年之差
+            var ageDiff = nowYear - birthYear; //Chênh lệch năm
             if (ageDiff > 0) {
                 if (nowMonth == birthMonth) {
-                    var dayDiff = nowDay - birthDay;//日之差
+                    var dayDiff = nowDay - birthDay;//Chênh lệch ngày
                     if (dayDiff < 0) {
                         returnAge = ageDiff - 1;
                     }
@@ -369,7 +369,7 @@
                     }
                 }
                 else {
-                    var monthDiff = nowMonth - birthMonth;//月之差
+                    var monthDiff = nowMonth - birthMonth;//Chênh lệch tháng
                     if (monthDiff < 0) {
                         returnAge = ageDiff - 1;
                     }
@@ -379,7 +379,7 @@
                 }
             }
             else {
-                returnAge = -1;//返回-1 表示出生日期输入错误 晚于今天
+                returnAge = -1;//Trả về-1 Biểu thị nhập ngày sinh lỗi Muộn hơn hôm nay
             }
         }
         $("#nl").val(returnAge);
@@ -402,53 +402,53 @@
     <input type="hidden" id="py" name="py" />
     <table class="form" style="width: 98%; border: 0; margin-top: 10px">
         <tr>
-            <td class="formTitle"><span class="required">*</span>病历号：</td>
+            <td class="formTitle"><span class="required">*</span>Số hồ sơ bệnh án：</td>
             <td class="formValue">
                 <input type="text" id="blh" class="form-control form-an ">
             </td>
-            <td class="formTitle"><span>*</span>病人姓名：</td>
+            <td class="formTitle"><span>*</span>Tên bệnh nhân：</td>
             <td class="formValue">
                 <input type="text" id="xm" name="xm" class="form-control form-an ">
             </td>
-            <td class="formTitle">手机：</td>
+            <td class="formTitle">Điện thoại di động：</td>
             <td class="formValue">
                 <input type="text" id="phone" name="phone" class="form-control form-an ">
             </td>
         </tr>
         <tr>
-            <td class="formTitle"><span>*</span>证件类型：</td>
+            <td class="formTitle"><span>*</span>Loại giấy tờ：</td>
             <td class="formValue">
-                @Html.DropDownList("zjlx", EnumZJLX.sfz.ToDescSelectList(), "==请选择==", new { @class = "form-control" })
+                @Html.DropDownList("zjlx", EnumZJLX.sfz.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control" })
             </td>
-            <td class="formTitle"><span>*</span>证件号：</td>
+            <td class="formTitle"><span>*</span>Số giấy tờ：</td>
             <td class="formValue">
                 <input type="text" id="zjh" name="zjh" class="form-control form-an ">
             </td>
-            <td class="formTitle"><span>*</span>出生年月：</td>
+            <td class="formTitle"><span>*</span>Năm sinh：</td>
             <td class="formValue">
                 <input id="csny" type="text" class="form-control form-an  input-wdatepicker" onfocus="WdatePicker({
     onpicked: function () {jsGetAge($(this).val());return true;}})" />
             </td>
         </tr>
         <tr>
-            <td class="formTitle"><span>*</span>年龄：</td>
+            <td class="formTitle"><span>*</span>Tuổi：</td>
             <td class="formValue">
                 <input type="text" id="nl" name="nl" class="form-control form-an ">
             </td>
-            <td class="formTitle"><span>*</span>性别：</td>
+            <td class="formTitle"><span>*</span>Giới tính：</td>
             <td class="formValue">
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
                         <input type="radio" id="xb" value="1" name="xb" class="form-control form-an ">
-                        男
+                        Nam
                     </label>
                     <label class="btn btn-default">
                         <input type="radio" id="xb" value="0" name="xb" class="form-control form-an ">
-                        女
+                        Nữ
                     </label>
                 </div>
             </td>
-            <td class="formTitle">介绍人：</td>
+            <td class="formTitle">Người giới thiệu：</td>
             <td class="formValue">
                 <input type="text" id="jsr" name="jsr" class="form-control form-an form-an-end">
             </td>

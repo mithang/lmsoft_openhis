@@ -15,7 +15,7 @@
     <table>
         <tr>
             <td>
-                选择欠费预结记录：
+                Chọn bản ghi quyết toán trước nợ phí：
             </td>
             <td>
                 <div class="input-group" style="width:200px;">
@@ -32,17 +32,17 @@
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span style="color:red">*</span>收费日期：</th>
+                    <th class="formTitle"><span style="color:red">*</span>Ngày thu phí：</th>
                     <td class="formValue">
                         <input id="sfrq" type="text" class="form-control  form-an input-wdatepicker" style="float: left; margin-left: 5px; width:90%" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     </td>
                     @if (relatedFPH == true)
                     {
-                        <th class="formTitle"><span style="color:red">*</span>发票号：</th>
+                        <th class="formTitle"><span style="color:red">*</span>Số hóa đơn：</th>
                         <td class="formValue">
                             <label id="txtfph"></label>
                             <div style="position:absolute;top:5px;right:20px;">
-                                <input type="button" class="btn btn-default btn-md" style="margin-left:6px;" value="选发票号" onclick="ShowInvoicePanel()" />
+                                <input type="button" class="btn btn-default btn-md" style="margin-left:6px;" value="Chọn số hóa đơn" onclick="ShowInvoicePanel()" />
                             </div>
                         </td>
                     }
@@ -53,68 +53,68 @@
                     }
                 </tr>
                 <tr>
-                    <th class="formTitle">折前应收款：</th>
+                    <th class="formTitle">Khoản phải thu trước chiết khấu：</th>
                     <td class="formValue">
                         ￥<label id="zqysk"></label>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">折扣比例：</th>
+                    <th class="formTitle">Tỷ lệ chiết khấu：</th>
                     <td class="formValue">
                         <input id="zkbl" type="text" class="form-control  form-an" style="width:80%;float:left;margin-left: 5px;" /><span style="line-height:25px; margin-left:10px">%</span>
                     </td>
-                    <th class="formTitle">折扣金额：</th>
+                    <th class="formTitle">Số tiền chiết khấu：</th>
                     <td class="formValue">
                         <input id="zkje" type="text" class="form-control  form-an" style="width:90%" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">折后应收款：</th>
+                    <th class="formTitle">Khoản phải thu sau chiết khấu：</th>
                     <td class="formValue">
                         ￥<label id="zhysk"></label>
                     </td>
                 </tr>
                 <tr id="trYjjzf" style="display:none;">
-                    <th class="formTitle">预交金余额：</th>
+                    <th class="formTitle">Số dư tiền tạm ứng：</th>
                     <td class="formValue">
                         ￥<label id="yjjye"></label>
                     </td>
                     <td class="formValue">
                         <div class="ckbox">
-                            <input id="ckyjjzfyeqt" type="checkbox"><label for="ckyjjzfyeqt">余额全退</label>
+                            <input id="ckyjjzfyeqt" type="checkbox"><label for="ckyjjzfyeqt">Hoàn toàn bộ số dư</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">支付方式：</th>
+                    <th class="formTitle">Phương thức thanh toán：</th>
                     <td class="formValue">
                         <select id="zffs1" class="form-control  form-an" style="width:90%">
-                            <option value="">==请选择==</option>
+                            <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <th class="formTitle">收款：</th>
+                    <th class="formTitle">Thu tiền：</th>
                     <td class="formValue">
                         <input type="text" id="zfje1" class="form-control form-an" style="width:90%" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">支付方式：</th>
+                    <th class="formTitle">Phương thức thanh toán：</th>
                     <td class="formValue">
                         <select id="zffs2" class="form-control form-an" style="width:90%">
-                            <option value="">==可选择==</option>
+                            <option value="">==Có thể chọn==</option>
                         </select>
                     </td>
-                    <th class="formTitle">收款：</th>
+                    <th class="formTitle">Thu tiền：</th>
                     <td class="formValue">
                         <input type="text" id="zfje2" class="form-control form-an" style="width:90%" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">合计实收款：</th>
+                    <th class="formTitle">Tổng số tiền thực thu：</th>
                     <td class="formValue">￥<label id="hjssk">0.00</label></td>
                 </tr>
                 <tr>
-                    <th class="formTitle">找零：</th>
+                    <th class="formTitle">Tiền thừa：</th>
                     <td class="formValue">￥<label id="zhaoling">0.00</label></td>
                 </tr>
             </table>
@@ -124,15 +124,15 @@
 <script type="text/javascript">
     var mzh = $.request('mzh');
 
-    //预交金余额
+    //Số dư tiền tạm ứng
     var yjjye = 0;
     var withYjj = '@(withYjj)';
-    //结算总金额
+    //Tổng số tiền quyết toán
     var zje = 0;
-    //支付应收 结算时应收（zje = 可报 + 结算时应收 + 等等）
+    //Thanh toán khoản phải thu Khoản phải thu khi quyết toán（zje = Có thể thanh toán bảo hiểm + Khoản phải thu khi quyết toán + v.v.）
     var orglxjzfys = 0;
-    //有折扣时不等 original
-    var xjzfys = orglxjzfys;    //有折扣时会不等
+    //Khi có chiết khấu sẽ không bằng nhau original
+    var xjzfys = orglxjzfys;    //Khi có chiết khấu sẽ không bằng nhau
 
     $(function () {
         if (withYjj == 'True') {
@@ -154,13 +154,13 @@
             $('#yjjye').html(parseFloat(yjjye).toFixed(2));
         }
 
-        //现金支付方式1
+        //Phương thức thanh toán tiền mặt1
         $("#zffs1").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
                 $.each(top.clients.SysForCashPayList, function (key, value) {
                     if (!yjjye && value.xjzffs == '3') {
-                        return; //当前账户无预交金余额，则不显示该支付方式
+                        return; //Tài khoản hiện tại không có số dư tiền tạm ứng，thì không hiển thị phương thức thanh toán này
                     }
                     var sele = false;
                     if (!!yjjye && yjjye >= xjzfys) {
@@ -182,13 +182,13 @@
             }
         });
 
-        //现金支付方式2
+        //Phương thức thanh toán tiền mặt2
         $("#zffs2").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
                 $.each(top.clients.SysForCashPayList, function (key, value) {
                     if (value.xjzffs == '3') {
-                        return; //不显示该支付方式
+                        return; //Không hiển thị phương thức thanh toán này
                     }
                     $('#zffs2').append('<option value="' + value.xjzffs + '">' + value.xjzffsmc + '</option>');
                 });
@@ -198,7 +198,7 @@
 
         $("#ckyjjzfyeqt").click(function () {
             if ($('#ckyjjzfyeqt').is(':checked')) {
-                //预交金支付方式，‘余额全退’
+                //Phương thức thanh toán bằng tiền tạm ứng，‘Hoàn toàn bộ số dư’
                 if (!!yjjye && yjjye >= xjzfys) {
                     //
                     $("#zffs1").val('3').trigger('change');
@@ -227,10 +227,10 @@
         unwritten: false,
         colModel: [
             { label: 'jsmxnm', name: 'jsmxnm', hidden: true },
-            { label: '名称', name: 'mc', width: 160, align: 'left' },
-            { label: '数量', name: 'sl', width: 70, align: 'left' },
+            { label: 'Tên', name: 'mc', width: 160, align: 'left' },
+            { label: 'Số lượng', name: 'sl', width: 70, align: 'left' },
             {
-                label: '金额', name: 'je', width: 100, align: 'left',
+                label: 'Số tiền', name: 'je', width: 100, align: 'left',
                 formatter: function (cellvalue) {
                     if (!!cellvalue) {
                         return cellvalue.toFixed(4);
@@ -258,11 +258,11 @@
         $('#hjssk').html(xjzfys.toFixed(2));
         $('#zhaoling').html('0.00');
         if (!!yjjye && yjjye >= xjzfys) {
-            //预交金
+            //Tiền tạm ứng
             $('#zffs1').val('3').trigger('change');
         }
         else {
-            //现金
+            //Tiền mặt
             $('#zffs1').val('0').trigger('change');
         }
         //
@@ -276,7 +276,7 @@
         });
     });
 
-    //金额相关
+    //Liên quan đến số tiền
     function reset() {
         $('#zkbl').val('');
         $('#zkje').val('');
@@ -293,7 +293,7 @@
         $('#zhaoling').html('0.00');
     }
 
-    //提交
+    //Gửi
     function AcceptClick(callback) {
         var feeRelated = getPostData();
         if (feeRelated) {
@@ -301,7 +301,7 @@
             updateDto.jsnm = jsnm;
             updateDto.sfrq = feeRelated.sfrq;
             updateDto.fph = feeRelated.fph;
-            //提交到后台
+            //Gửi lên phía máy chủ
             $.submitForm({
                 url: "@Url.Action("SubmitArrearageSettedUpdate")",
                 param: { updateDto: updateDto, feeRelated: feeRelated },
@@ -323,7 +323,7 @@
         zfje1 = (!!zffs1 || zffs1 == '0') && !!parseFloat(zfje1) ? parseFloat(zfje1) : 0;
         if (zffs1 == '3' && yjjye) {
             if (!(zfje1 == yjjye || zfje1 <= xjzfys)) {
-                $.modalAlert("预交账户支付金额异常", "error");
+                $.modalAlert("Số tiền thanh toán tài khoản tạm ứng bất thường", "error");
                 return false;
             }
         }
@@ -343,11 +343,11 @@
         zhaoling = !!parseFloat(zhaoling) ? parseFloat(zhaoling) : 0;
         //
         if (!!!sfrq) {
-            $.modalAlert('缺少收费日期', 'warning');
+            $.modalAlert('Thiếu ngày thu phí', 'warning');
             return false;
         }
         if ($.getDate() < sfrq) {
-            $.modalAlert('收费日期错误', 'warning');
+            $.modalAlert('Ngày thu phí không đúng', 'warning');
             return false;
         }
         //
@@ -356,17 +356,17 @@
         }
         else {
             if (!fph) {
-                $.modalAlert('请选择发票号', 'warning');
+                $.modalAlert('Vui lòng chọn số hóa đơn', 'warning');
                 return false;
             }
         }
         //
         if (hjssk != zfje1 + zfje2) {
-            $.modalAlert("收款金额异常", "error");
+            $.modalAlert("Số tiền thu bất thường", "error");
             return false;
         }
         if (hjssk != xjzfys + zhaoling || zhaoling < 0) {
-            $.modalAlert("找零金额异常", "error");
+            $.modalAlert("Số tiền thừa bất thường", "error");
             return false;
         }
         return {
@@ -379,7 +379,7 @@
 
     //common start
 
-    //页面进来，加载发票号
+    //Vào trang，Tải số hóa đơn
     function initFPH() {
         if (!($("#txtfph").length == 1)) {
             return;
@@ -394,16 +394,16 @@
         });
     }
 
-    //弹出发票号的窗口
+    //Bật cửa sổ số hóa đơn
     function ShowInvoicePanel() {
         $.modalOpen({
             id: "InvoiceNoPanel",
-            title: "选发票号",
+            title: "Chọn số hóa đơn",
             url: "/OutpatientManage/OutpatientReg/ChooseInvoice?from=ConfirmFeeForm",
             width: "300px",
             height: "200px",
             callBack: function (iframeId) {
-                top.frames[iframeId].checkFPH();//窗口点确定的回调函数
+                top.frames[iframeId].checkFPH();//Hàm callback khi nhấn xác nhận trên cửa sổ
             }
         });
     }
@@ -422,10 +422,10 @@
         }
     });
 
-    //计算 根据 支付应收、支付方式 计算合计实收款、找零
+    //Tính toán Theo Thanh toán khoản phải thu、Phương thức thanh toán Tính tổng số tiền thực thu、Tiền thừa
     function hjsskZhaolingCal() {
         if (!$('#zffs1').val() && $('#zfje1').val() != 0) {
-            //未选择支付方式，对应金额要置为0.00
+            //Chưa chọn phương thức thanh toán，Số tiền tương ứng phải đặt thành0.00
             $('#zfje1').val('0.00');
         }
         var zfje1 = $('#zfje1').val();
@@ -433,32 +433,32 @@
             zfje1 = '0.00';
         }
         if (!$('#zffs2').val() && $('#zfje2').val() != 0) {
-            //未选择支付方式，对应金额要置为0.00
+            //Chưa chọn phương thức thanh toán，Số tiền tương ứng phải đặt thành0.00
             $('#zfje2').val('0.00');
         }
         var zfje2 = $('#zfje2').val();
         if (!zfje2) {
             zfje2 = '0.00';
         }
-        var hjssk = parseFloat(zfje1) + parseFloat(zfje2);  //多种支付方式合计实收
+        var hjssk = parseFloat(zfje1) + parseFloat(zfje2);  //Tổng thực thu của nhiều phương thức thanh toán
         $('#hjssk').html(hjssk.toFixed(2));
         $('#zhaoling').html(parseFloat(hjssk - xjzfys).toFixed(2));
     }
 
-    //如果有折扣功能start
+    //Nếu có chức năng chiết khấustart
 
     //
     $('#zkje,#zkbl').keyup(function () {
         discountCal();
     });
 
-    //折扣比例，折扣金额 计算折扣
+    //Tỷ lệ chiết khấu，Số tiền chiết khấu Tính chiết khấu
     function discountCal() {
         var zkje = $('#zkje').val();
         var zkbl = $('#zkbl').val();
         var je = calZkhMoney(orglxjzfys.toFixed(2), zkje, zkbl);
         if (je === false) {
-            //折扣计算失败 只能重置折扣
+            //Tính chiết khấu thất bại Chỉ có thể đặt lại chiết khấu
             $('#zkje').val('');
             $('#zkbl').val('');
             xjzfys = orglxjzfys;
@@ -479,23 +479,23 @@
         hjsskZhaolingCal();
     }
 
-    //根据折扣比例和折扣金额计算 折后金额
+    //Tính theo tỷ lệ chiết khấu và số tiền chiết khấu Số tiền sau chiết khấu
     function calZkhMoney(je, zkje, zkbl) {
         if (je == 0) {
             return 0;
         }
         if (validMoney(je, zkje, zkbl)) {
             if (zkbl) {
-                //折扣比例
+                //Tỷ lệ chiết khấu
                 var decimalbl = ((100 - parseInt(zkbl)) / 100).toFixed(2);
                 je = roundingBy4she6ru5chengshuang(parseFloat(parseFloat(je) * decimalbl), 2);
             }
             if (zkje) {
                 if (parseFloat(zkje) > parseFloat(je)) {
-                    $.modalAlert('折扣异常，产生负应收', 'warning');
+                    $.modalAlert('Chiết khấu bất thường，Phát sinh khoản phải thu âm', 'warning');
                     return false;
                 }
-                //折扣金额
+                //Số tiền chiết khấu
                 je = roundingBy4she6ru5chengshuang(parseFloat((parseFloat(je) - parseFloat(zkje))), 2);
             }
             return parseFloat(je);
@@ -505,42 +505,42 @@
         }
     }
 
-    //验证金额格式是否正确
+    //Kiểm tra định dạng số tiền có đúng hay không
     function validMoney(zqje, zkje, zkbl) {
         if (zqje == '' || zqje == '0.00') {
-            $.modalAlert('费用无效', 'warning');
+            $.modalAlert('Chi phí không hợp lệ', 'warning');
             return false;
         }
-        //折扣金额
+        //Số tiền chiết khấu
         var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
         if (!!zkje) {
             if (!reg.test(zkje) || zkje == '') {
-                $.modalAlert('折扣金额格式有误', 'warning');
+                $.modalAlert('Định dạng số tiền chiết khấu không đúng', 'warning');
                 return false;
             }
         }
 
         if (parseFloat(zkje) > parseFloat(zqje)) {
-            $.modalAlert('折扣金额不能大于折前金额', 'warning');
+            $.modalAlert('Số tiền chiết khấu không được lớn hơn số tiền trước chiết khấu', 'warning');
             return false;
         }
 
-        //折扣比例
+        //Tỷ lệ chiết khấu
         var blreg = /(^[1-9][0-9]$)|(^100&)|(^[1-9]$)$/;
         if (!!zkbl) {
             if (!reg.test(zkbl)) {
-                $.modalAlert('折扣比例格式有误', 'warning');
+                $.modalAlert('Định dạng tỷ lệ chiết khấu không đúng', 'warning');
                 return false;
             }
         }
         if (parseInt(zkbl) > 100) {
-            $.modalAlert('折扣比例不能大于100', 'warning');
+            $.modalAlert('Tỷ lệ chiết khấu không được lớn hơn100', 'warning');
             return false;
         }
         return true;
     }
 
-    //如果有折扣功能end
+    //Nếu có chức năng chiết khấuend
 
     //common end
 
