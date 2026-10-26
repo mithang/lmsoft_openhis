@@ -8,7 +8,7 @@ using System.Web.Mvc;
 namespace Newtouch.MRQC.Web
 {
     /// <summary>
-    /// Controller基类
+    /// Controllerlớp cơ sở
     /// </summary>
     [HandlerLogin]
     public abstract class ControllerBase : OrgControllerBase
