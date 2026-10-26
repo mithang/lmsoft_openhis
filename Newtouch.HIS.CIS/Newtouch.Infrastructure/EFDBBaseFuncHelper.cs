@@ -7,8 +7,8 @@ using System.Data.SqlClient;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 常用到的（放Repo、DmnService都不合适的，但又要请求数据库的）
-    /// 比如获取唯一编号（自增，但有不能重复）
+    /// Thường dùng (đặt ở Repo hay DmnService đều không phù hợp, nhưng lại cần yêu cầu cơ sở dữ liệu)
+    /// Ví dụ lấy mã duy nhất (tự tăng, nhưng không được trùng lặp)
     /// </summary>
     public class EFDBBaseFuncHelper
     {
@@ -20,7 +20,7 @@ namespace Newtouch.Infrastructure
         private IDatabaseFactory _databaseFactory;
 
         /// <summary>
-        /// 默认DB上下文
+        /// Ngữ cảnh DB mặc định
         /// </summary>
         public static EFDBBaseFuncHelper Instance
         {
@@ -33,7 +33,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 指定DB上下文
+        /// Ngữ cảnh DB đã chỉ định
         /// </summary>
         /// <param name="dbType"></param>
         /// <returns></returns>
@@ -41,7 +41,7 @@ namespace Newtouch.Infrastructure
         {
             if (!dbType.HasValue)
             {
-                dbType = EnumDBFactoryType.DefaultDB;  //默认
+                dbType = EnumDBFactoryType.DefaultDB;  //Mặc định
             }
             IDatabaseFactory databaseFactory = null;
             switch (dbType)
@@ -53,11 +53,11 @@ namespace Newtouch.Infrastructure
             return new EFDBBaseFuncHelper(databaseFactory);
         }
 
-        #region 方法
+        #region Phương pháp
 
-        //-------------------------------------示例------------------------------------------------
+        //-------------------------------------Ví dụ------------------------------------------------
         ///// <summary>
-        ///// 获取主键字段唯一Id
+        ///// Lấy Id duy nhất của trường khóa chính
         ///// </summary>
         ///// <param name="tableName"></param>
         ///// <returns></returns>
@@ -78,13 +78,13 @@ namespace Newtouch.Infrastructure
         #endregion
 
         /// <summary>
-        /// 获取 字段/业务 唯一值
+        /// Lấy giá trị duy nhất của trường/nghiệp vụ
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgId"></param>
         /// <param name="initFormat"></param>
         /// <param name="dateFlag"></param>
-        /// <returns>string类型</returns>
+        /// <returns>Kiểu string</returns>
         public string GetNewFieldUniqueValue(string fieldName, string orgId, string initFormat = "", bool dateFlag = false)
         {
             var tpl = GetNewFieldUniqueObjectValue(fieldName, orgId, initFormat, dateFlag);
@@ -99,10 +99,10 @@ namespace Newtouch.Infrastructure
             }
         }
         /// <summary>
-        /// 获取单据号
+        /// Lấy số chứng từ
         /// </summary>
         /// <param name="djmc"></param>
-        /// <param name="orgId">当前医院对应的组织机构Id</param>
+        /// <param name="orgId">Id tổ chức tương ứng với bệnh viện hiện tại</param>
         /// <param name="yfbmCode"></param>
         /// <returns></returns>
         public string GetNewMedicineReceiptNo(string djmc, string yfbmCode, string orgId)
@@ -126,13 +126,13 @@ namespace Newtouch.Infrastructure
             return null;
         }
         /// <summary>
-        /// 获取 字段/业务 唯一值
+        /// Lấy giá trị duy nhất của trường/nghiệp vụ
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgId"></param>
         /// <param name="initFormat"></param>
         /// <param name="dateFlag"></param>
-        /// <returns>string类型</returns>
+        /// <returns>Kiểu string</returns>
         public int GetNewFieldUniqueIntValue(string fieldName, string orgId, string initFormat = "", bool dateFlag = false)
         {
             var tpl = GetNewFieldUniqueObjectValue(fieldName, orgId, initFormat, dateFlag);
@@ -148,7 +148,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取处方号
+        /// Lấy số đơn thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -162,7 +162,7 @@ namespace Newtouch.Infrastructure
         #region private methods
 
         /// <summary>
-        /// 获取 字段/业务 唯一值 返回Tuple
+        /// Lấy giá trị duy nhất của trường/nghiệp vụ, trả về Tuple
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgId"></param>
@@ -196,7 +196,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 上下文 类型
+    /// Loại ngữ cảnh
     /// </summary>
     public enum EnumDBFactoryType
     {

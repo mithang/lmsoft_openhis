@@ -14,16 +14,16 @@ using System.Collections.Generic;
 namespace Newtouch.Repository
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 13:27
-    /// 描 述：住院病人信息
+    /// Tạo bởi: 张冬林
+    /// Ngày: 2018-06-28 13:27
+    /// Mô tả: Thông tin bệnh nhân nội trú
     /// </summary>
     public class InpatientPatientInfoRepo : RepositoryBase<InpatientPatientInfoEntity>, IInpatientPatientInfoRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public InpatientPatientInfoRepo(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {
@@ -31,10 +31,10 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu (thêm mới, sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(InpatientPatientInfoEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -53,16 +53,16 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void DeleteForm(string keyValue)
         {
             this.Delete(p => p.Id == keyValue);
         }
 
         /// <summary>
-        /// 更新住院病人在院标志
+        /// Cập nhật cờ đang nằm viện của bệnh nhân nội trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -122,7 +122,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 通过住院号获取住院病人信息
+        /// Lấy thông tin bệnh nhân nội trú theo số nhập viện
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="zyh"></param>
@@ -133,11 +133,11 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 获取病人基本信息
+        /// Lấy thông tin cơ bản của bệnh nhân
         /// </summary>
-        /// <param name="zyh">住院号</param>
-        /// <param name="xm">姓名</param>
-        /// <param name="organizeId">组织机构ID</param>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <param name="xm">Họ tên</param>
+        /// <param name="organizeId">ID tổ chức</param>
         /// <returns></returns>
         public InpatientPatientInfoEntity SelectData(string zyh, string xm, string organizeId)
         {
@@ -151,7 +151,7 @@ namespace Newtouch.Repository
             return FirstOrDefault<InpatientPatientInfoEntity>(sql, param);
         }
 
-        //获取病区列表
+        //Lấy danh sách khu bệnh
         public List<InpatientAreaVO> TreeViewdata(string orgId)
         {
             var sql = @"select bqCode,bqmc from [NewtouchHIS_Base].[dbo].[xt_bq] where OrganizeId='" + orgId+"' and zt=1";

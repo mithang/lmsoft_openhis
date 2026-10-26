@@ -16,9 +16,9 @@ namespace Newtouch.DomainServices.Inpatient
     {
         private readonly ISysConfigRepo _sysConfigRepo;
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public ExceReportPrintDmnService(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {
@@ -26,7 +26,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// 获取病区发药患者树
+        /// Lấy cây bệnh nhân phát thuốc của khu bệnh
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
@@ -47,11 +47,11 @@ from(select distinct zyh from zy_cqyz with(nolock)  where yzzt='2' and OrganizeI
             if (!string.IsNullOrWhiteSpace(zyzt))
             {
                 switch (zyzt) {
-                    case "zy"://在院：不是已出院，不是作废记录，不是取消入院
+                    case "zy"://Đang nằm viện: không phải đã xuất viện, không phải bản ghi đã hủy, không phải hủy nhập viện
                         sql += " and b.zybz not in (SELECT * FROM dbo.f_split(@zybz, ','))";
                         par.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Ycy + "," + (int)EnumZYBZ.Wry+","+(int)EnumZYBZ.Djz));
                         break;
-                    case "cy"://出院：已出院状态
+                    case "cy"://Xuất viện: trạng thái đã xuất viện
                         sql += " and b.zybz in (SELECT * FROM dbo.f_split(@zybz, ','))";
                         par.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Ycy + "," + (int)EnumZYBZ.Djz));
                         break;
@@ -70,7 +70,7 @@ from(select distinct zyh from zy_cqyz with(nolock)  where yzzt='2' and OrganizeI
 
         public IList<ExecReportReportRightVO> GetExecDetailGridJson(string orgId,string zyh,DateTime zxsj,string zxdlb,string yzxz) {
             string sqlzxrq = ""; 
-            if (!(!string.IsNullOrWhiteSpace(zxdlb) && zxdlb == "yzd" && yzxz == "2"))  //长期医嘱全部打印
+            if (!(!string.IsNullOrWhiteSpace(zxdlb) && zxdlb == "yzd" && yzxz == "2"))  //In toàn bộ y lệnh dài hạn
             {
                 sqlzxrq = " and CONVERT(date, zxrq)=convert(date,@zxsj) ";
             }
@@ -174,7 +174,7 @@ where num1=1 ";
             return this.FindList<ExecReportReportRightVO>(sql,par.ToArray());
         }
         /// <summary>
-        /// 执行单打印查询
+        /// Tra cứu in đơn thực hiện
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -286,7 +286,7 @@ group by zyh,hzxm,yzxz,clbz,yzh,zh,yznr,zxrq,shr,yzlx,ypyfdm,lyxh,shz,zxz,isjf,p
         }
 
         /// <summary>
-        /// 患者中心 left tree
+        /// Trung tâm bệnh nhân, cây trái
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyzt"></param>
@@ -309,15 +309,15 @@ where ciszyxx.OrganizeId=@orgId ";
             {
                 switch (zyzt)
                 {
-                    case "zy"://在院：不是已出院，不是作废记录，不是取消入院
+                    case "zy"://Đang nằm viện: không phải đã xuất viện, không phải bản ghi đã hủy, không phải hủy nhập viện
                         sql += " and zyxx.zybz not in (SELECT * FROM dbo.f_split(@zybz, ','))";
                         par.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Ycy + "," + (int)EnumZYBZ.Wry+","+ (int)EnumZYBZ.Djz));
                         break;
-                    case "cq"://出区：出区未结算
+                    case "cq"://Ra khỏi khu: Ra khỏi khu chưa thanh toán
                         sql += " and zyxx.zybz = @zybz";
                         par.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Djz));
                         break;
-                    case "cy"://出院：已出院状态
+                    case "cy"://Xuất viện: trạng thái đã xuất viện
                         sql += " and zyxx.zybz = @zybz";
                         par.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Ycy));
                         break;

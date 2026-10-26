@@ -18,9 +18,9 @@ namespace Newtouch.DomainServices.Inpatient
         public DeptMedicineApplyNoDmnService(IDefaultDatabaseFactory databaseFactory) : base(databaseFactory)
         {
         }
-        #region 科室备药
+        #region Chuẩn bị thuốc cho khoa
         /// <summary>
-        /// 查询备药申请单状态
+        /// Tra cứu trạng thái đơn xin chuẩn bị thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="sqdArr"></param>
@@ -44,7 +44,7 @@ where  organizeid=@orgId and zt=1 and djh in ( select col from f_split(@sqdArr,'
         }
 
         /// <summary>
-        /// 更新申请单状态
+        /// Cập nhật trạng thái đơn xin
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="sqdArr"></param>
@@ -83,7 +83,7 @@ where  organizeid=@orgId and zt=1 and djh =@djh
         }
 
         /// <summary>
-        /// 更新退科室库存申请单状态
+        /// Cập nhật trạng thái đơn xin trả tồn kho khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="sqdArr"></param>

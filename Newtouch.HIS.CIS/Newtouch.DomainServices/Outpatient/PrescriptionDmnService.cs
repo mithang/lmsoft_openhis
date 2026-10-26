@@ -21,12 +21,12 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// 历史处方树明细
+        /// Chi tiết cây đơn thuốc trong quá khứ
         /// </summary>
         /// <param name="cfId"></param>
         public IList<HistoryPresFormSelectVO> GetHistoryPresDetailByCfId(string cfId)
         {
-            //处方明细
+            //Chi tiết đơn thuốc
             var sql = @"
 SELECT cfmxId,Createtime, zh, xmmc, cfmx.ypmc, ypgg,
  cast(isnull(mcjl,0) as varchar)+'('+mcjldw+')' AS mcjl,
@@ -52,19 +52,19 @@ WHERE cfmx.cfId=@cfId and cfmx.zt='1' --and cfmx.ypmc is not null
         }
 
         /// <summary>
-        /// 根据cfId或cfmxIdStr查询明细
+        /// Tra cứu chi tiết theo cfId hoặc cfmxIdStr
         /// </summary>
         /// <param name="cflx"></param>
         /// <param name="cfId"></param>
         /// <param name="cfmxIdStr"></param>
-        /// 20190619 huangshanshan 去除cf.zt='1'和cfmx.zt='1'的限制，可复制作废处方
+        /// 20190619 huangshanshan Loại bỏ giới hạn cf.zt='1' và cfmx.zt='1', có thể sao chép đơn thuốc đã hủy
         /// <returns></returns>
         public List<PrescriptionDetailQueryVO> GetPresDetailList(int cflx, string cfId, string cfmxIdStr)
         { 
             var sql = "";
             var pars = new List<SqlParameter>();
             List<PrescriptionDetailQueryVO> list = new List<PrescriptionDetailQueryVO>();
-            if (cflx == (int)EnumCflx.RehabPres)   //康复处方
+            if (cflx == (int)EnumCflx.RehabPres)   //Đơn thuốc phục hồi chức năng
             {
                 sql += @"
 SELECT cf.cfId, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfmx.sl, cfmx.dw, 
@@ -72,7 +72,7 @@ SELECT cf.cfId, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfmx.sl, cfmx.dw
         isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0)*isnull(sfxm.dj,0) je,   --根据最新的dwjls和dj，算出总额
         ";
             }
-            else if (cflx == (int)EnumCflx.RegularItemPres|| cflx == (int)EnumCflx.Yyhc)   //常规项目处方  医用耗材处方
+            else if (cflx == (int)EnumCflx.RegularItemPres|| cflx == (int)EnumCflx.Yyhc)   //Đơn thuốc hạng mục thông thường, đơn thuốc vật tư y tế tiêu hao
             {
                 sql += @"
 SELECT cf.cfId, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfmx.sl, cfmx.dw, cfmx.ztId,cfmx.ztmc , 
@@ -80,7 +80,7 @@ SELECT cf.cfId, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfmx.sl, cfmx.dw
         isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0)*isnull(sfxm.dj,0) je,   --根据最新的dwjls和dj，算出总额
         ";
             }
-            if (cflx == (int)EnumCflx.InspectionPres || cflx == (int)EnumCflx.ExaminationPres)   //检验、检查处方
+            if (cflx == (int)EnumCflx.InspectionPres || cflx == (int)EnumCflx.ExaminationPres)   //Đơn thuốc xét nghiệm, kiểm tra
             {
                 sql += @"
 SELECT cf.cfId, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfmx.sl, cfmx.dw, 
@@ -132,7 +132,7 @@ WHERE 1=1";
                     pars.Add(new SqlParameter("@cfmxIdStr", cfmxIdStr));
                 }
             }
-            if (cflx == (int)EnumCflx.WMPres || cflx == (int)EnumCflx.TCMPres) //药品处方
+            if (cflx == (int)EnumCflx.WMPres || cflx == (int)EnumCflx.TCMPres) //Đơn thuốc
             {
                 sql = @"
 SELECT cf.cfId, cfmx.ypCode,cfmx.ypmc,cfmx.mcjl,cfmx.mcjldw,cfmx.mcjldw AS mcjldwwwwwww
@@ -185,7 +185,7 @@ WHERE 1=1";
             return list;
         }
         /// <summary>
-        /// 医保患者审核收费项目是否含自费
+        /// Bệnh nhân bảo hiểm y tế duyệt hạng mục thu phí có chứa tự chi trả hay không
         /// </summary>
         /// <param name="sfxmCode"></param>
         /// <param name="cflx"></param>
@@ -226,7 +226,7 @@ WHERE 1=1";
         }
 
 		/// <summary>
-		/// 开立物资项目冻结库存数量
+		/// Kê hạng mục vật tư, đóng băng số lượng tồn kho
 		/// </summary>
 		/// <param name="cfh"></param>
 		/// <param name="orgId"></param>
@@ -246,7 +246,7 @@ WHERE 1=1";
 			return 1;
 		}
 		/// <summary>
-		/// 开立物资项目冻结库存数量作废
+		/// Hủy đóng băng số lượng tồn kho khi kê hạng mục vật tư
 		/// </summary>
 		/// <param name="cfh"></param>
 		/// <param name="orgId"></param>
@@ -267,7 +267,7 @@ WHERE 1=1";
 			return 1;
 		}
         /// <summary>
-        /// 医保电子处方
+        /// Đơn thuốc điện tử bảo hiểm y tế
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="orgId"></param>

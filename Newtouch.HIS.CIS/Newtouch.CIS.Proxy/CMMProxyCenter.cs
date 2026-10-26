@@ -17,7 +17,7 @@ using ReceiveRequestEntity = Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07.Recei
 namespace Newtouch.CIS.Proxy
 {
     /// <summary>
-    /// 中医馆接口调用中心
+    /// Trung tâm gọi giao diện phòng khám Đông y
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="TV"></typeparam>
@@ -45,7 +45,7 @@ namespace Newtouch.CIS.Proxy
         }
 
         /// <summary>
-        /// 执行proxy
+        /// Thực thi proxy
         /// </summary>
         /// <param name="requestDto"></param>
         /// <returns></returns>

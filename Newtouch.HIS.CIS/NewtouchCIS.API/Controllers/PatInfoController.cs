@@ -54,7 +54,7 @@ namespace NewtouchCIS.API.Controllers
         }
 
         /// <summary>
-        /// 获取住院病人基本信息
+        /// Lấy thông tin cơ bản của bệnh nhân nội trú
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>

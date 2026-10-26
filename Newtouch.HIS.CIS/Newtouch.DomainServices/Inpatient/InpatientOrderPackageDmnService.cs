@@ -25,9 +25,9 @@ namespace Newtouch.DomainServices.Inpatient
         public InpatientOrderPackageDmnService(IDefaultDatabaseFactory databaseFactory) : base(databaseFactory)
         { }
 
-        #region 医嘱模板
+        #region Mẫu y lệnh
         /// <summary>
-        /// 另存为模板
+        /// Lưu thành mẫu
         /// </summary>
         /// <param name="mbObj"></param>
         /// <param name="mxList"></param>
@@ -39,7 +39,7 @@ namespace Newtouch.DomainServices.Inpatient
                 try
                 {
                     var dbMbObj = db.IQueryable<InpatientOrderPackageEntity>(p => p.Id == mbObj.Id).FirstOrDefault();
-                    if (dbMbObj!=null)  //修改
+                    if (dbMbObj!=null)  //Sửa đổi
                     {
                         mbObj.zt = "1";
                         mbObj.OrganizeId = orgId;
@@ -49,7 +49,7 @@ namespace Newtouch.DomainServices.Inpatient
 
                         db.Update(mbObj);
 
-                        db.Delete<InpatientOrderPackageDetailEntity>(a => a.MainId == mbObj.Id && a.OrganizeId == mbObj.OrganizeId); //先全删，再新增
+                        db.Delete<InpatientOrderPackageDetailEntity>(a => a.MainId == mbObj.Id && a.OrganizeId == mbObj.OrganizeId); //Xóa toàn bộ trước, rồi thêm mới
                     }
                     else
                     {
@@ -60,16 +60,16 @@ namespace Newtouch.DomainServices.Inpatient
                         db.Insert(mbObj);
                     }
 
-                    //组号生成集合 key操作界面带过来的组号，value后台生成的组号，最终保存到数据库
+                    //Tập hợp sinh số nhóm: key là số nhóm do giao diện thao tác truyền sang, value là số nhóm do hệ thống tự sinh, cuối cùng lưu vào cơ sở dữ liệu
                     var diczh = new Dictionary<int, int>();
                     foreach (var item in mxList)
                     {
-                        //不存在频次，没办法继续。
+                        //Không tồn tại tần suất, không thể tiếp tục.
                         if (string.IsNullOrWhiteSpace(item.pcCode))
                         {
                             continue;
                         }
-                        //组号重新赋值
+                        //Gán lại số nhóm
                         if (!string.IsNullOrWhiteSpace(item.zh.ToString()))
                         {
                             if (diczh.ContainsKey(item.zh.ToInt()))
@@ -84,14 +84,14 @@ namespace Newtouch.DomainServices.Inpatient
                             }
                             else
                             {
-                                //生成组号
+                                //Sinh số nhóm
                                 var No = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueValue("zy_cqlsyz.zh", orgId, "", false);
                                 diczh.Add(item.zh.ToInt(), No.ToInt());
                                 item.zh = No.ToInt();
                             }
                         }
 
-                        //医嘱内容 格式：药品名称 药品规格  药品剂量  剂量单位 用法编码 频次名称 部位
+                        //Nội dung y lệnh Định dạng: Tên thuốc Quy cách thuốc Liều thuốc Đơn vị liều Mã cách dùng Tên tần suất Vị trí
                         item.yznr = item.xmmc + " "
                             + (item.ypgg ?? "")
                             + " " + (item.ypjl.ToString() ?? "")
@@ -116,10 +116,10 @@ namespace Newtouch.DomainServices.Inpatient
                         }
                         if (item.yzlx == (int)EnumYzlx.zcy)
                         {
-                            //医嘱格式：药品名称 规格 每次剂量 每次剂量单位 用法 频次 贴数
+                            //Định dạng y lệnh: Tên thuốc Quy cách Liều mỗi lần Đơn vị liều mỗi lần Cách dùng Tần suất Số thang
                             item.yznr = item.xmmc + "  " + item.ypgg + " " + item.ypjl + item.dw + " " + item.yfmc + " " + item.pcmc + " " + item.sl + "剂";
                         }
-                        //对象赋值  
+                        //Gán giá trị đối tượng  
                         var addentity = item.MapperTo<InpatientOrderPackageVO, InpatientOrderPackageDetailEntity>();//AddCQdoctorService(item, orgId, tzsj);
                         addentity.OrganizeId = orgId;
                         addentity.MainId = mbObj.Id;
@@ -175,7 +175,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// 根据模板ID找到模板详情
+        /// Tìm chi tiết mẫu theo ID mẫu
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="orgId"></param>
@@ -314,7 +314,7 @@ and cyzd.zdlb='2' and cyzd.zdlx='0'
         }
     
         /// <summary>
-        /// 根据模板ID找到模板详情
+        /// Tìm chi tiết mẫu theo ID mẫu
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="orgId"></param>
@@ -466,9 +466,9 @@ and cyzd.zdlb='2' and cyzd.zdlx='0'
         }
         #endregion
 
-        #region  医嘱引用
+        #region  Trích dẫn y lệnh
         /// <summary>
-        /// 历史医嘱引用
+        /// Trích dẫn y lệnh trong quá khứ
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="orgId"></param>
@@ -674,7 +674,7 @@ and OrganizeId=@orgId
         }
 
         /// <summary>
-        /// 引用历史医嘱
+        /// Trích dẫn y lệnh trong quá khứ
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="orgId"></param>
@@ -867,7 +867,7 @@ order by CreateTime");
             return this.FindList<HistoricalOrdersRequestDto>(sqlstr.ToString(), par.ToArray());
         }
         /// <summary>
-        /// 历史医嘱复制引用
+        /// Sao chép và trích dẫn y lệnh trong quá khứ
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="yzlistId"></param>

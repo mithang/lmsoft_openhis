@@ -22,7 +22,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 获取有效国籍
+        /// Lấy quốc tịch có hiệu lực
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -33,7 +33,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 获取病人性质
+        /// Lấy tính chất bệnh nhân
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -50,7 +50,7 @@ namespace Newtouch.Repository
             return this.FindList<SysBrxzVEntity>(sql,param);
         }
         /// <summary>
-        /// 现金支付方式
+        /// Phương thức thanh toán tiền mặt
         /// </summary>
         /// <returns></returns>
         public IList<SysCashPaymenVEntity> GetCashPay()

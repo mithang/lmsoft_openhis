@@ -22,10 +22,10 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// 根据type 查询检验检查模板
+        /// Tra cứu mẫu xét nghiệm/kiểm tra theo type
         /// </summary>
         /// <param name="orgId"></param>
-        /// <param name="jyjcmbLx">检验 or 检查</param>
+        /// <param name="jyjcmbLx">Xét nghiệm hoặc kiểm tra</param>
         public List<InspectionTemplateTreeVO> GetTemplateListByType(string orgId, int jyjcmbLx)
         {
             var sql = @"
@@ -46,7 +46,7 @@ WHERE mb.zt='1'
         }
 
         /// <summary>
-        /// 根据mbId 查询模板下组套项目
+        /// Tra cứu hạng mục bộ dưới mẫu theo mbId
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mbId"></param>
@@ -72,7 +72,7 @@ WHERE zt.ztId is not null and mb.mbId=@mbId
 
 
         /// <summary>
-        /// 根据ztId查询组套下的收费项目
+        /// Tra cứu hạng mục thu phí dưới bộ theo ztId
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ztId"></param>
@@ -132,7 +132,7 @@ group by  ztxm.ztId,zt.ztmc,mb.zxks, Department.Name,sfxm.sqlx ";
         }
 
         /// <summary>
-        /// 模板详情
+        /// Chi tiết mẫu
         /// </summary>
         /// <param name="ztId"></param>
         public InspectionTemplateDetailBO GetTemplateDetail(string mbId, string orgId)
@@ -142,7 +142,7 @@ group by  ztxm.ztId,zt.ztmc,mb.zxks, Department.Name,sfxm.sqlx ";
                 throw new FailedException("数据异常，mbId为空或null");
             }
 
-            //模板信息
+            //Thông tin mẫu
             var sqlllll = @"
 SELECT mbId, mb.[Type], mb.mbmc, mb.dlCode, mb.zxks, Department.Name AS zxksmc,mb.zt
 FROM [dbo].[jyjc_mb] mb
@@ -159,7 +159,7 @@ WHERE mb.mbId=@mbId
                 throw new FailedException("数据异常，没有找到组套信息");
             }
 
-            //模板组套
+            //Bộ mẫu
             var sql = @"
 SELECT zutao.*      --zutao.ztId, zutao.ztmc, zutao.[Type], zutao.[Description], zutao.Remark
 FROM [dbo].[jyjc_mb] mb
@@ -181,7 +181,7 @@ WHERE mb.mbId=@mbId
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="ztobj"></param>
         /// <param name="ztxmlist"></param>
@@ -189,14 +189,14 @@ WHERE mb.mbId=@mbId
         {
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
-                //模板
-                if (!string.IsNullOrWhiteSpace(mbobj.mbId))  //修改
+                //Mẫu
+                if (!string.IsNullOrWhiteSpace(mbobj.mbId))  //Sửa đổi
                 {
                     mbobj.Modify();
 
                     db.Update(mbobj);
 
-                    db.Delete<TemplateGroupPackageEntity>(a => a.mbId == mbobj.mbId); //先全删，再新增
+                    db.Delete<TemplateGroupPackageEntity>(a => a.mbId == mbobj.mbId); //Xóa toàn bộ trước, rồi thêm mới
                 }
                 else
                 {
@@ -206,7 +206,7 @@ WHERE mb.mbId=@mbId
                     db.Insert(mbobj);
                 }
                 
-                //模板组套
+                //Bộ mẫu
                 if (mbztlist != null)
                 {
                     foreach (var item in mbztlist)
@@ -230,7 +230,7 @@ WHERE mb.mbId=@mbId
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="ztId"></param>
         public void DeleteData(string mbId)

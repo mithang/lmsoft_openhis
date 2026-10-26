@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 更新处方收费标志和同步标志
+        /// Cập nhật cờ thu phí và cờ đồng bộ của đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="tbbz"></param>
@@ -54,7 +54,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 更新处方收费标志
+        /// Cập nhật cờ thu phí của đơn thuốc
         /// </summary>
         /// <param name="part"></param>
         /// <param name="organizeId"></param>
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 更新处方收费标志
+        /// Cập nhật cờ thu phí của đơn thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfh"></param>
@@ -91,7 +91,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 更新处方退标志
+        /// Cập nhật cờ trả đơn thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfh"></param>
@@ -113,7 +113,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取处方信息
+        /// Lấy thông tin đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="orgId"></param>
@@ -130,7 +130,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取处方信息
+        /// Lấy thông tin đơn thuốc
         /// </summary>
         /// <param name="jzId"></param>
         /// <param name="sfbz"></param>

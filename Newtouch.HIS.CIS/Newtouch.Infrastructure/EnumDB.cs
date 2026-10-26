@@ -3,7 +3,7 @@
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 日志记录类型
+    /// Loại bản ghi nhật ký
     /// </summary>
     public enum DbLogType_Ex
     {
@@ -11,76 +11,76 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 证件类型
+    /// Loại giấy tờ
     /// </summary>
     public enum EnumZjlx
     {
         /// <summary>
-        /// 身份证
+        /// Chứng minh nhân dân
         /// </summary>
         [Description("身份证")]
         sfz = 1,
         /// <summary>
-        /// 护照
+        /// Hộ chiếu
         /// </summary>
         [Description("护照")]
         hz,
         /// <summary>
-        /// 军官证
+        /// Chứng nhận sĩ quan
         /// </summary>
         [Description("军官证")]
         jgz,
         /// <summary>
-        /// 其他
+        /// Khác
         /// </summary>
         [Description("其他")]
         other = 9
     }
 
     /// <summary>
-    /// 自负性质（药品、项目字典的属性）
+    /// Tính chất tự chi trả (thuộc tính của từ điển thuốc, hạng mục)
     /// </summary>
     public enum EnumZiFuXingZhi
     {
         /// <summary>
-        /// 可报
+        /// Có thể báo
         /// </summary>
         [Description("可报")]
         KB = 0,
         /// <summary>
-        /// 自费
+        /// Tự chi trả
         /// </summary>
         [Description("自费")]
         ZF = 1,
         /// <summary>
-        /// 分类自负
+        /// Tự chi trả theo phân loại
         /// </summary>
         [Description("分类自负")]
         FLZF = 2,
         /// <summary>
-        /// 绝对自理
+        /// Tự lo hoàn toàn
         /// </summary>
         [Description("绝对自理")]
         JueDuiZiLi = 3,
         /// <summary>
-        /// 甲类
+        /// Loại A
         /// </summary>
         [Description("甲类")]
         Jia,
         /// <summary>
-        /// 乙类
+        /// Loại B
         /// </summary>
         [Description("乙类")]
         Yi,
         /// <summary>
-        /// 丙类
+        /// Loại C
         /// </summary>
         [Description("丙类")]
         Bing,
     }
 
 	/// <summary>
-	/// 药品类别
+	/// Loại thuốc
 	/// </summary>
 	public enum EnumYpsx
 	{
@@ -98,7 +98,7 @@ namespace Newtouch.Infrastructure
 		Kzlywyp = 8,
 	}
 	/// <summary>
-	/// 抗生素级别
+	/// Cấp kháng sinh
 	/// </summary>
 	public enum EnumKss
 	{
@@ -112,136 +112,136 @@ namespace Newtouch.Infrastructure
 	}
 
 	/// <summary>
-	/// 就诊状态
+	/// Trạng thái khám bệnh
 	/// </summary>
 	public enum EnumJzzt
     {
         /// <summary>
-        /// 未就诊
+        /// Chưa khám
         /// </summary>
         [Description("未就诊")]
         NotYetTreate = 1,
         /// <summary>
-        /// 就诊中
+        /// Đang khám
         /// </summary>
         [Description("就诊中")]
         Treating = 2,
         /// <summary>
-        /// 就诊结束
+        /// Kết thúc khám
         /// </summary>
         [Description("就诊结束")]
         Treated = 3,
     }
 
     /// <summary>
-    /// 门诊类型 mjzbz
+    /// Loại ngoại trú mjzbz
     /// </summary>
     public enum EnumOutPatientType
     {
         /// <summary>
-        /// 普通门诊
+        /// Khám ngoại trú thông thường
         /// </summary>
         [Description("普通门诊")]
         generalOutpat = 1,
         /// <summary>
-        /// 急诊
+        /// Cấp cứu
         /// </summary>
         [Description("急诊")]
         emerDiagnosis = 2,
         /// <summary>
-        /// 专家门诊
+        /// Khám chuyên gia
         /// </summary>
         [Description("专家门诊")]
         expertOutpat = 3,
         /// <summary>
-        /// 专家门诊
+        /// Khám chuyên gia
         /// </summary>
         [Description("特病门诊")]
         SpecialOutpat = 4,
         /// <summary>
-        /// 重大疾病门诊
+        /// Khám ngoại trú bệnh hiểm nghèo
         /// </summary>
         [Description("重大疾病门诊")]
         MajorDiseases = 5,
         /// <summary>
-        /// 慢性病门诊
+        /// Khám ngoại trú bệnh mạn tính
         /// </summary>
         [Description("慢性病门诊")]
         ChronicDisease = 6,
         /// <summary>
-        /// 居民两病
+        /// Hai bệnh của cư dân
         /// </summary>
         [Description("居民两病")]
         jmlb = 7,
         /// <summary>
-        /// 意外伤害门诊
+        /// Khám ngoại trú tai nạn thương tích
         /// </summary>
         [Description("意外伤害门诊")]
         ywshmz = 8,
         /// <summary>
-        /// 生育门诊
+        /// Khám ngoại trú sinh đẻ
         /// </summary>
         [Description("生育门诊")]
         symz = 9,
         /// <summary>
-        /// 耐多药结核门诊
+        /// Khám ngoại trú lao đa kháng thuốc
         /// </summary>
         [Description("耐多药结核门诊")]
         ndyjhmz = 10,
         /// <summary>
-        /// 儿童两病门诊
+        /// Khám ngoại trú hai bệnh trẻ em
         /// </summary>
         [Description("儿童两病门诊")]
         etlbmz = 11,
         /// <summary>
-        /// 简易门诊
+        /// Khám ngoại trú đơn giản
         /// </summary>
         [Description("简易门诊")]
         jymz = 12
     }
 
     /// <summary>
-    /// 处方类型
+    /// Loại đơn thuốc
     /// </summary>
     public enum EnumCflx
     {
         /// <summary>
-        /// 西药处方
+        /// Đơn thuốc Tây y
         /// </summary>
         [Description("西药处方")]
         WMPres = 1,
         /// <summary>
-        /// 中药处方
+        /// Đơn thuốc Đông y
         /// </summary>
         [Description("中药处方")]
         TCMPres = 2,
         /// <summary>
-        /// 康复处方
+        /// Đơn thuốc phục hồi chức năng
         /// </summary>
         [Description("康复处方")]
         RehabPres = 3,
         /// <summary>
-        /// 检验处方
+        /// Đơn thuốc xét nghiệm
         /// </summary>
         [Description("检验处方")]
         InspectionPres = 4,
         /// <summary>
-        /// 检查处方
+        /// Đơn thuốc kiểm tra
         /// </summary>
         [Description("检查处方")]
         ExaminationPres = 5,
         /// <summary>
-        /// 常规项目处方
+        /// Đơn thuốc hạng mục thông thường
         /// </summary>
         [Description("常规项目处方")]
         RegularItemPres = 6,
         /// <summary>
-        /// 电子处方
+        /// Đơn thuốc điện tử
         /// </summary>
 		[Description("电子处方")]
 		Dzcf =7,
         /// <summary>
-        /// 医用耗材
+        /// Vật tư y tế tiêu hao
         /// </summary>
         [Description("医用耗材")]
         Yyhc = 8
@@ -256,103 +256,103 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 诊断类型
+    /// Loại chẩn đoán
     /// </summary>
     public enum EnumZdlx
     {
         /// <summary>
-        /// 主诊断
+        /// Chẩn đoán chính
         /// </summary>
         [Description("主诊断")]
         Main = 1,
         /// <summary>
-        /// 副诊断
+        /// Chẩn đoán phụ
         /// </summary>
         [Description("副诊断")]
         Deputy = 2
     }
 
     /// <summary>
-    /// 处方模板类型
-    /// （病历模板类型也是用此枚举）
+    /// Loại mẫu đơn thuốc
+    /// (Loại mẫu bệnh án cũng dùng enum này)
     /// </summary>
     public enum EnumCfMbLx
     {
         /// <summary>
-        /// 个人
+        /// Cá nhân
         /// </summary>
         [Description("个人")]
         personal = 1,
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         [Description("科室")]
         department = 2,
         /// <summary>
-        /// 全院
+        /// Toàn viện
         /// </summary>
         [Description("全院")]
         hospital = 3,
     }
 
     /// <summary>
-    /// 检验检查组套类型  （检验检查共用一个页面，只是参数（即type）不同）
+    /// Loại bộ xét nghiệm/kiểm tra (xét nghiệm và kiểm tra dùng chung một trang, chỉ khác tham số (tức type))
     /// </summary>
     public enum EnumjyjczutaoLx
     {
         /// <summary>
-        /// 检验
+        /// Xét nghiệm
         /// </summary>
         [Description("检验")]
         jy = 1,
         /// <summary>
-        /// 检查
+        /// Kiểm tra
         /// </summary>
         [Description("检查")]
         jc = 2
     }
 
     /// <summary>
-    /// 检验检查模板类型  （检验检查共用一个页面，只是参数（即type）不同）
+    /// Loại mẫu xét nghiệm/kiểm tra (xét nghiệm và kiểm tra dùng chung một trang, chỉ khác tham số (tức type))
     /// </summary>
     public enum EnumjyjcmbLx
     {
         /// <summary>
-        /// 检验
+        /// Xét nghiệm
         /// </summary>
         [Description("检验")]
         jy = 1,
         /// <summary>
-        /// 检查
+        /// Kiểm tra
         /// </summary>
         [Description("检查")]
         jc = 2
     }
 
     /// <summary>
-    /// 收费项目计价策略
+    /// Chiến lược tính giá hạng mục thu phí
     /// </summary>
     public enum EnumSfxmJjcl
     {
         /// <summary>
-        /// 按时长
+        /// Theo thời lượng
         /// </summary>
         [Description("按时长")]
         Time = 1,
         /// <summary>
-        /// 按数量
+        /// Theo số lượng
         /// </summary>
         [Description("按数量")]
         Amount,
         /// <summary>
-        /// 按面积
+        /// Theo diện tích
         /// </summary>
         [Description("按面积")]
         Acreage,
     }
 
     /// <summary>
-    /// 历史病历来源
+    /// Nguồn bệnh án trong quá khứ
     /// </summary>
     public enum Enumlsblly
     {
@@ -369,7 +369,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 登录标志
+    /// Cờ đăng nhập
     /// </summary>
     public enum EnumLoginFlag
     {
@@ -386,7 +386,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 饮食类别
+    /// Loại ăn uống
     /// </summary>
     public enum Enumyslb {
         /// <summary>
@@ -442,7 +442,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 门诊挂号来源
+    /// Nguồn đặt lịch hẹn khám ngoại trú
     /// </summary>
     public enum EnumMzghly
     {
@@ -461,7 +461,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 排队叫号状态
+    /// Trạng thái xếp hàng gọi số
     /// </summary>
     public enum EmunQueueCalledStu
     {
@@ -476,23 +476,23 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 门诊住院标志  0 通用 1 仅门诊 2 仅住院 3 系统（门诊住院都不可用）例如：家床
+    /// Cờ ngoại trú/nội trú 0 Dùng chung 1 Chỉ ngoại trú 2 Chỉ nội trú 3 Hệ thống (ngoại trú và nội trú đều không dùng được) Ví dụ: Giường tại nhà
     /// </summary>
     public enum Enummzzybz
     {
 
         /// <summary>
-        /// 仅门诊
+        /// Chỉ ngoại trú
         /// </summary>
         [Description("门诊")]
         mz = 1,
         /// <summary>
-        /// 仅住院
+        /// Chỉ nội trú
         /// </summary>
         [Description("住院")]
         zy = 2,
         ///// <summary>
-        ///// 通用
+        ///// Dùng chung
         ///// </summary>
         //[Description("通用")]
         //ty = 9,
@@ -500,19 +500,19 @@ namespace Newtouch.Infrastructure
     public enum Enumzxzt
     {
         /// <summary>
-        /// 未执行
+        /// Chưa thực hiện
         /// </summary>
         [Description("未执行")]
         wzx = 0,
         /// <summary>
-        /// 已执行
+        /// Đã thực hiện
         /// </summary>
         [Description("已执行")]
         yzx = 1
        
     } 
     /// <summary>
-    /// 分诊叫号状态
+    /// Trạng thái gọi số phân chẩn
     /// </summary>
     public enum EmunConsultCalledStu
     {
@@ -528,7 +528,7 @@ namespace Newtouch.Infrastructure
         recall = 5,
     }
     /// <summary>
-    /// 远程诊疗状态
+    /// Trạng thái chẩn trị từ xa
     /// </summary>
     public enum Emunzlzt
     {
@@ -546,18 +546,18 @@ namespace Newtouch.Infrastructure
         yfy = 6,
     }
     /// <summary>
-    /// 损益标志
+    /// Cờ hỏng/thừa
     /// </summary>
     public enum EnumSybz
     {
         /// <summary>
-        /// 报损
+        /// Báo hỏng
         /// </summary>
         [Description("报损")]
         Loss = 0,
 
         /// <summary>
-        /// 报溢
+        /// Báo thừa
         /// </summary>
         [Description("报溢")]
         Profit = 1,
@@ -565,127 +565,127 @@ namespace Newtouch.Infrastructure
     public enum EnumOutOrInStorageBillType
     {
         /// <summary>
-        /// 外部入库
+        /// Nhập kho bên ngoài
         /// </summary>
         [Description("外部入库")]
         Wbrk = 1,
 
         /// <summary>
-        /// 外部出库
+        /// Xuất kho bên ngoài
         /// </summary>
         [Description("外部出库")]
         Wbck = 2,
 
         /// <summary>
-        /// 直接出库
+        /// Xuất kho trực tiếp
         /// </summary>
         [Description("直接出库")]
         Zjck = 3,
 
         /// <summary>
-        /// 申领出库
+        /// Xuất kho theo đơn xin
         /// </summary>
         [Description("申领出库")]
         Slck = 4,
 
         /// <summary>
-        /// 内部退货
+        /// Trả hàng nội bộ
         /// </summary>
         [Description("内部退货")]
         Nbth = 5,
 
         /// <summary>
-        /// 报损报溢
+        /// Báo hỏng/báo thừa
         /// </summary>
         [Description("报损报溢")]
         Bsby = 6,
 
         /// <summary>
-        /// 配送至科室
+        /// Phân phối tới khoa
         /// </summary>
-        [Description("出库至科室")] //单据号ckZKS111111111111
+        [Description("出库至科室")] //Số chứng từ ckZKS111111111111
         chukuzhikeshi = 7,
 
         /// <summary>
-        /// 科室申领
+        /// Khoa xin lĩnh
         /// </summary>
         [Description("科室申领")]
         kssl = 8,
 
         /// <summary>
-        /// 科室申领出库
+        /// Xuất kho theo đơn xin của khoa
         /// </summary>
         [Description("科室申领出库")]
         ksSlck = 9,
 
         /// <summary>
-        /// 采购计划
+        /// Kế hoạch mua sắm
         /// </summary>
         [Description("采购计划")]
         purchasingPlan = 10,
 
         /// <summary>
-        /// 采购订单
+        /// Đơn đặt hàng mua sắm
         /// </summary>
         [Description("采购订单")]
         purchasingOrder = 11,
     }
     /// <summary>
-    /// 有效/无效
+    /// Có hiệu lực/Không hiệu lực
     /// </summary>
     public enum Enumzt
     {
         /// <summary>
-        /// 无效
+        /// Không hiệu lực
         /// </summary>
         [Description("无效")]
         Disable = 0,
 
         /// <summary>
-        /// 有效
+        /// Có hiệu lực
         /// </summary>
         [Description("有效")]
         Enable = 1
 
     }
     /// <summary>
-    /// 审核状态
+    /// Trạng thái duyệt
     /// </summary>
     public enum EnumAuditState
     {
 
         /// <summary>
-        /// 待处理
+        /// Chờ xử lý
         /// </summary>
         [Description("待处理")]
         Waiting = 0,
 
         /// <summary>
-        /// 审核通过
+        /// Duyệt đạt
         /// </summary>
         [Description("审核通过")]
         Adopt = 1,
 
         /// <summary>
-        /// 审核不通过
+        /// Duyệt không đạt
         /// </summary>
         [Description("审核不通过")]
         Refuse = 2,
 
         /// <summary>
-        /// 已作废
+        /// Đã hủy
         /// </summary>
         [Description("已作废")]
         Cancelled = 3,
 
         /// <summary>
-        /// 暂存
+        /// Lưu tạm
         /// </summary>
         [Description("暂存")]
         Temporary = 4,
     }
     /// <summary>
-    /// 库存显示
+    /// Hiển thị tồn kho
     /// </summary>
     public enum EnumKCXS
     {
@@ -695,22 +695,22 @@ namespace Newtouch.Infrastructure
         [Description("全部")]
         None = -1,
         /// <summary>
-        /// 显示零库存
+        /// Hiển thị tồn kho bằng 0
         /// </summary>
         [Description("显示零库存")]
         Xslkc = 0,
         /// <summary>
-        /// 不显示理论数量为零
+        /// Không hiển thị số lượng lý thuyết bằng 0
         /// </summary>
         [Description("不显示理论数量为零")]
         Bxsllslwl = 1,
         /// <summary>
-        /// 不显示实际数量为零
+        /// Không hiển thị số lượng thực tế bằng 0
         /// </summary>
         [Description("不显示实际数量为零")]
         Bxssjslwl = 2,
         /// <summary>
-        /// 不显示实际数量为零
+        /// Không hiển thị số lượng thực tế bằng 0
         /// </summary>
         [Description("不显示两者都为零")]
         Bxslzdwl = 4

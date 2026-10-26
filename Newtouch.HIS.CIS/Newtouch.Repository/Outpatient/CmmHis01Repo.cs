@@ -8,7 +8,7 @@ using Newtouch.Domain.IRepository;
 namespace Newtouch.Repository
 {
     /// <summary>
-    /// 中医馆推送患者信息
+    /// Phòng khám Đông y đẩy thông tin bệnh nhân
     /// </summary>
     public class CmmHis01Repo : RepositoryBase<CmmHis01Entity>, ICmmHis01Repo
     {

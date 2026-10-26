@@ -6,7 +6,7 @@ using ReceiveRequestEntity = Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_08.Recei
 namespace Newtouch.CIS.Proxy.Dapper.CMMPlatform
 {
     /// <summary>
-    /// 接收处方信息
+    /// Nhận thông tin đơn thuốc
     /// </summary>
     public class TcmHis08 : ProxyDapperBase<ReceiveRequestEntity, PullPrescriptionRequestEntity, Prescription>
     {

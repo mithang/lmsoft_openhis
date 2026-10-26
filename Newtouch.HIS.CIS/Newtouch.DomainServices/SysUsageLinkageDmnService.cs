@@ -10,7 +10,7 @@ using System.Text;
 namespace Newtouch.DomainServices
 {
     /// <summary>
-    /// 用法联动
+    /// Liên động cách dùng
     /// </summary>
     public class SysUsageLinkageDmnService : DmnServiceBase, ISysUsageLinkageDmnService
     {

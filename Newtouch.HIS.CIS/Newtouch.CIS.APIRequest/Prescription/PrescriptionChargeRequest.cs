@@ -9,18 +9,18 @@ namespace Newtouch.CIS.APIRequest.Prescription
     public class PrescriptionChargeRequest : RequestBase
     {
         /// <summary>
-        /// 处方号List
+        /// Danh sách số đơn thuốc
         /// </summary>
         public List<PrescriptionChargeDto> cfList { get; set; }
 
         /// <summary>
-        /// 收费标志
+        /// Cờ thu phí
         /// </summary>
         [Required]
         public bool sfbz { get; set; }
 
         ///// <summary>
-        ///// 操作时间
+        ///// Thời gian thao tác
         ///// </summary>
         //[Required]
         //public DateTime OperateTime { get; set; }
@@ -30,12 +30,12 @@ namespace Newtouch.CIS.APIRequest.Prescription
     public class PrescriptionReturnChargeRequest : RequestBase
     {
         /// <summary>
-        /// 处方号List
+        /// Danh sách số đơn thuốc
         /// </summary>
         public List<string> cfList { get; set; }
 
         /// <summary>
-        /// 收费标志
+        /// Cờ thu phí
         /// </summary>
         [Required]
         public bool tbz { get; set; }

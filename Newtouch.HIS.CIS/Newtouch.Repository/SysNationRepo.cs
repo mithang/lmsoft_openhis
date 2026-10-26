@@ -16,7 +16,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 获取有效民族下拉框
+        /// Lấy hộp thả xuống dân tộc có hiệu lực
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

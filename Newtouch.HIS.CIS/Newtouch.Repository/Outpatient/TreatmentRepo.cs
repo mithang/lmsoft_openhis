@@ -15,7 +15,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 就诊信息
+    /// Thông tin khám bệnh
     /// </summary>
     public class TreatmentRepo : RepositoryBase<TreatmentEntity>, ITreatmentRepo
     {
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 已就诊 就诊中 列表( 已就诊： 只能查看自己名下的患者)
+        /// Danh sách đã khám, đang khám (Đã khám: chỉ có thể xem bệnh nhân dưới tên mình)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -143,7 +143,7 @@ from [192.168.0.100].[bshrp].[dbo].[kk_1]
 		}
 		
 		/// <summary>
-		/// 恢复就诊
+		/// Khôi phục khám bệnh
 		/// </summary>
 		/// <param name="orgId"></param>
 		/// <param name="jzId"></param>
@@ -200,7 +200,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
         }
 
         /// <summary>
-        ///修改CmmPatId
+        ///Sửa CmmPatId
         /// </summary>
         /// <param name="cmmPatId"></param>
         /// <param name="jzId"></param>

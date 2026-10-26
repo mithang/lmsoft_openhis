@@ -9,7 +9,7 @@ using Newtouch.HIS.API.Common;
 namespace NewtouchCIS.API.Controllers
 {
     /// <summary>
-    /// 内部通用接口
+    /// Giao diện chung nội bộ
     /// </summary>
     [RoutePrefix("api/InsideGeneral")]
     public class InsideGeneralController : ApiControllerBase<InsideGeneralController>
@@ -20,7 +20,7 @@ namespace NewtouchCIS.API.Controllers
         }
 
         /// <summary>
-        /// mq调用入口
+        /// Điểm vào gọi mq
         /// </summary>
         /// <param name="requestDto"></param>
         /// <returns></returns>

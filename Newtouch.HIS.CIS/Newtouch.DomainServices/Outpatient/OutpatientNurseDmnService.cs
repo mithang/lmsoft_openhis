@@ -190,7 +190,7 @@ and not exists(select 1 from xt_gmxx c with(nolock) where a.OrganizeId=c.Organiz
             par.Add(new SqlParameter("@orgId", orgid));
             par.Add(new SqlParameter("@keyword", "%" + keyword + "%"));
 
-            if (true)//默认查询当前月份的处方人员
+            if (true)//Mặc định tra cứu nhân viên kê đơn trong tháng hiện tại
             {
                 sql += "  and SUBSTRING(CONVERT(varchar(15),a.ghsj,120),0,8)=SUBSTRING(CONVERT(varchar(15),GETDATE(),120),0,8)";
             }

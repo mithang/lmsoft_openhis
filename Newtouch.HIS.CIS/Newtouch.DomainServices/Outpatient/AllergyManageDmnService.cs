@@ -26,7 +26,7 @@ namespace Newtouch.DomainServices.Outpatient
         { }
 
         /// <summary>
-        /// 保存患者过敏信息
+        /// Lưu thông tin dị ứng của bệnh nhân
         /// </summary>
         /// <param name="entity"></param>
         public void SavePatAllergyInfo(AllergyEntity entity)
@@ -43,7 +43,7 @@ namespace Newtouch.DomainServices.Outpatient
         #region old
 
         /// <summary>
-        /// 门诊病人筛选
+        /// Lọc bệnh nhân ngoại trú
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -52,7 +52,7 @@ namespace Newtouch.DomainServices.Outpatient
         /// <param name="jssj"></param>
         /// <param name="orgId"></param>
         /// <param name="PsItemCode"></param>
-        /// <param name="Status">执行状态 1已执行 0未执行</param>
+        /// <param name="Status">Trạng thái thực hiện 1 đã thực hiện 0 chưa thực hiện</param>
         /// <returns></returns>
         public IList<OutHosPatientVO> GetOutPatientPaginationList(Pagination pagination, string keyword, string ks, string kssj, string jssj, string orgId, string PsItemCode, string Status)
         {
@@ -103,7 +103,7 @@ INNER JOIN [Newtouch_CIS].[dbo].[xt_cfmx] c on b.cfId = c.cfId and b.OrganizeId 
         }
 
         /// <summary>
-        /// 住院病人筛选
+        /// Lọc bệnh nhân nội trú
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -112,7 +112,7 @@ INNER JOIN [Newtouch_CIS].[dbo].[xt_cfmx] c on b.cfId = c.cfId and b.OrganizeId 
         /// <param name="jssj"></param>
         /// <param name="orgId"></param>
         /// <param name="PsItemCode"></param>
-        /// <param name="Status">执行状态 1已执行 0未执行</param>
+        /// <param name="Status">Trạng thái thực hiện 1 đã thực hiện 0 chưa thực hiện</param>
         /// <returns></returns>
         public IList<InHosPatientVO> GetInPatientPaginationList(Pagination pagination, string keyword, string ks, string kssj, string jssj, string orgId, string PsItemCode, string Status)
         {
@@ -175,12 +175,12 @@ INNER JOIN [Newtouch_CIS].[dbo].[xt_cfmx] c on b.cfId = c.cfId and b.OrganizeId 
         }
 
         /// <summary>
-        /// 获取门诊患者开的皮试项目
+        /// Lấy hạng mục thử da mà bệnh nhân ngoại trú đã kê
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Id"></param>
         /// <param name="orgId"></param>
-        /// <param name="mzzybz">1 门诊 2住院</param>
+        /// <param name="mzzybz">1 Ngoại trú 2 Nội trú</param>
         /// <returns></returns>
         public IList<PsItemVO> GetMzPatientPsItemsList(Pagination pagination, string Id, string orgId, string PsItemCode)
         {
@@ -203,12 +203,12 @@ INNER JOIN [Newtouch_CIS].[dbo].[xt_cfmx] c on b.cfId = c.cfId and b.OrganizeId 
         }
 
         /// <summary>
-        /// 获取住院患者开的皮试项目
+        /// Lấy hạng mục thử da mà bệnh nhân nội trú đã kê
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Id"></param>
         /// <param name="orgId"></param>
-        /// <param name="mzzybz">1 门诊 2住院</param>
+        /// <param name="mzzybz">1 Ngoại trú 2 Nội trú</param>
         /// <returns></returns>
         public IList<PsItemVO> GetZyPatientPsItemsList(Pagination pagination, string zyh, string orgId, string PsItemCode)
         {
@@ -244,7 +244,7 @@ where a.OrganizeId = @orgId and a.zt = '1' and a.zyh=@zyh and a.yzlx=@yzlx";
         }
 
         /// <summary>
-        /// 过敏信息查询
+        /// Tra cứu thông tin dị ứng
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Id"></param>
@@ -271,7 +271,7 @@ where a.OrganizeId = @orgId and a.zt = '1' and a.zyh=@zyh and a.yzlx=@yzlx";
         }
 
         /// <summary>
-        /// 获取抗生素药品信息
+        /// Lấy thông tin thuốc kháng sinh
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -287,7 +287,7 @@ where a.OrganizeId = @orgId and a.zt = '1' and a.zyh=@zyh and a.yzlx=@yzlx";
         }
 
         /// <summary>
-        /// 获取抗生素药品分类
+        /// Lấy phân loại thuốc kháng sinh
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="orgId"></param>
@@ -306,7 +306,7 @@ where a.OrganizeId = @orgId and a.zt = '1' and a.zyh=@zyh and a.yzlx=@yzlx";
         }
 
         /// <summary>
-        /// 保存患者过敏信息
+        /// Lưu thông tin dị ứng của bệnh nhân
         /// </summary>
         /// <param name="entity"></param>
         public void SaveAllergyInfo(AllergyEntity entity)
@@ -319,9 +319,9 @@ where a.OrganizeId = @orgId and a.zt = '1' and a.zyh=@zyh and a.yzlx=@yzlx";
         }
 
         /// <summary>
-        /// 删除执行的患者过敏信息
+        /// Xóa thông tin dị ứng của bệnh nhân đã thực hiện
         /// </summary>
-        /// <param name="xmCode">过敏项目code</param>
+        /// <param name="xmCode">code hạng mục dị ứng</param>
         /// <param name="blh"></param>
         /// <param name="mzzybz"></param>
         /// <param name="orgId"></param>
@@ -344,7 +344,7 @@ where a.OrganizeId = @orgId and a.zt = '1' and a.zyh=@zyh and a.yzlx=@yzlx";
         }
 
         /// <summary>
-        /// 获取系统配置皮试项目
+        /// Lấy hạng mục thử da trong cấu hình hệ thống
         /// </summary>
         /// <param name="PsItemCode"></param>
         /// <returns></returns>

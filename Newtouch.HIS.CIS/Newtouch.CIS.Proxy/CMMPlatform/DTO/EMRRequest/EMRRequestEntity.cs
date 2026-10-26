@@ -1,22 +1,22 @@
 ﻿namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.EMRRequest
 {
     /// <summary>
-    /// 集成电子病历
+    /// Tích hợp bệnh án điện tử
     /// </summary>
     public class EMRRequestEntity
     {
         /// <summary>
-        /// 资源名称：EMR_WRITE
+        /// Tên tài nguyên: EMR_WRITE
         /// </summary>
         public string resource { get; set; }
 
         /// <summary>
-        /// 医生编号：即医生登录系统的用户名
+        /// Mã bác sĩ: tức tên đăng nhập hệ thống của bác sĩ
         /// </summary>
         public string doctorId { get; set; }
 
         /// <summary>
-        /// 患者编号：患者唯一标识
+        /// Mã bệnh nhân: Định danh duy nhất của bệnh nhân
         /// </summary>
         public string patientId { get; set; }
     }

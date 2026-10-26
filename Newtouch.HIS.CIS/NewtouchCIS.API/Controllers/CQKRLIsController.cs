@@ -33,7 +33,7 @@ namespace NewtouchCIS.API.Controllers
                     LisRequest.GetMzReport(request.Ado_lis, request.brxx_id);
                     break;
                 case "zy":
-                    //门诊 住院共用
+                    //Ngoại trú và nội trú dùng chung
                     //GetMzReport(request.Ado_lis, request.brxx_id);
 
                     LisRequest.GetZyReport(request.Ado_lis, request.brxx_id);

@@ -4,7 +4,7 @@ namespace NewtouchActiveX
 {
     public abstract class ActiveXControl : IObjectSafety
     {
-        #region IObjectSafety 成员
+        #region Thành viên IObjectSafety
 
         private const string _IID_IDispatch = "{00020400-0000-0000-C000-000000000046}";
         private const string _IID_IDispatchEx = "{a6ef9860-c720-11d0-9337-00a0c90dcaa9}";

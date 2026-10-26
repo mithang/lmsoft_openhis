@@ -27,7 +27,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// 门诊处方单
+        /// Đơn thuốc ngoại trú
         /// </summary>
         /// <param name="cfId"></param>
         /// <param name="mzh"></param>
@@ -374,7 +374,7 @@ DROP TABLE #zhfz";
         }
 
         /// <summary>
-        /// 门诊处方单
+        /// Đơn thuốc ngoại trú
         /// </summary>
         /// <param name="cfId"></param>
         /// <param name="mzh"></param>
@@ -457,7 +457,7 @@ declare @list1 table(
         }
 
 
-        #region 报表工具
+        #region Công cụ báo cáo
         public IList<ReportConfigVO> ReportList(Pagination pagination, string orgId,string rptname,string keyword)
         {
             string sql = @"select [Id],[OrganizeId],[AppId],[RptName],[RptHost],[RptUrl],[RptSource]

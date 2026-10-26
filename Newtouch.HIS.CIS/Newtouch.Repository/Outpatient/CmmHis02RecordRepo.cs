@@ -6,7 +6,7 @@ using Newtouch.Domain.IRepository;
 namespace Newtouch.Repository
 {
     /// <summary>
-    /// 中医馆已推草药记录
+    /// Bản ghi thảo dược đã đẩy của phòng khám Đông y
     /// </summary>
     public class CmmHis02RecordRepo : RepositoryBase<CmmHis02RecordEntity>, ICmmHis02RecordRepo
     {

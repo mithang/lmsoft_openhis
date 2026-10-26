@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace Newtouch.Repository
 {
     /// <summary>
-    /// 门诊输液药品信息
+    /// Thông tin thuốc truyền dịch ngoại trú
     /// </summary>
     public class MzsyypxxRepo : RepositoryBase<MzsyypxxEntity>, IMzsyypxxRepo
     {

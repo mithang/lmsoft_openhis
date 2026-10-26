@@ -8,14 +8,14 @@ using Newtouch.Domain.ViewModels;
 namespace Newtouch.Application.Implementation
 {
     /// <summary>
-    /// 门诊出诊设置
+    /// Cài đặt khám ngoại trú
     /// </summary>
     public class VisitDeptSetApp : AppBase, IVisitDeptSetApp
     {
         private readonly IVisitDeptSetRepo _visitDeptSetRepo;
 
         /// <summary>
-        /// 提交表单
+        /// Gửi biểu mẫu
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="userCode"></param>

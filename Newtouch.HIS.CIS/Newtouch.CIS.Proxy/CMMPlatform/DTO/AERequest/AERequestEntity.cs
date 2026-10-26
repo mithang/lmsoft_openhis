@@ -1,61 +1,61 @@
 ﻿namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.AERequest
 {
     /// <summary>
-    /// 辩证论治集成请求参数体
+    /// Thân tham số yêu cầu tích hợp biện chứng luận trị
     /// </summary>
     public class AERequestEntity
     {
         /// <summary>
-        /// 资源名称：AE_EDIT
-        /// 必填
+        /// Tên tài nguyên: AE_EDIT
+        /// Bắt buộc
         /// </summary>
         public string resource { get; set; }
 
         /// <summary>
-        /// 机构编号
-        /// 必填
+        /// Số tổ chức
+        /// Bắt buộc
         /// </summary>
         public string orgCode { get; set; }
 
         /// <summary>
-        /// 医生工号：即医生登录系统的用户名
-        /// 必填
+        /// Mã nhân viên bác sĩ: tức tên đăng nhập hệ thống của bác sĩ
+        /// Bắt buộc
         /// </summary>
         public string chisZggh { get; set; }
 
         /// <summary>
-        /// 医生姓名
-        /// 必填
+        /// Tên bác sĩ
+        /// Bắt buộc
         /// </summary>
         public string chisEmpName { get; set; }
 
         /// <summary>
-        /// 接诊编号
-        /// 必填
+        /// Số tiếp nhận
+        /// Bắt buộc
         /// </summary>
         public string clinicId { get; set; }
 
         /// <summary>
-        /// 病人姓名
-        /// 必填
+        /// Tên bệnh nhân
+        /// Bắt buộc
         /// </summary>
         public string brxm { get; set; }
 
         /// <summary>
-        /// 病人性别-1/2/9 男/女/未知
-        /// 必填
+        /// Giới tính bệnh nhân -1/2/9 Nam/Nữ/Không rõ
+        /// Bắt buộc
         /// </summary>
         public string sex { get; set; }
 
         /// <summary>
-        /// 患者编号：患者唯一标识
-        /// 必填
+        /// Mã bệnh nhân: Định danh duy nhất của bệnh nhân
+        /// Bắt buộc
         /// </summary>
         public string patientid { get; set; }
 
         /// <summary>
-        /// 返回数据给 HIS 的代理页面地址
-        /// 必填
+        /// Địa chỉ trang đại diện trả dữ liệu về HIS
+        /// Bắt buộc
         /// </summary>
         public string returnHisUrl { get; set; }
     }

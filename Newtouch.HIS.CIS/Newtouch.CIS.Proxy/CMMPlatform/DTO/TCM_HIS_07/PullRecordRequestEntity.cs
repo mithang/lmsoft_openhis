@@ -3,78 +3,78 @@
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
 {
     /// <summary>
-    /// 提取电子病历响应体
+    /// Thân phản hồi trích xuất bệnh án điện tử
     /// </summary>
     [XmlRoot("Request")]
     public class PullRecordRequestEntity : RequestBase
     {
         /// <summary>
-        /// 病历信息体
+        /// Thân thông tin bệnh án
         /// </summary>
         public Record Record { get; set; }
     }
 
     /// <summary>
-    /// 病历信息体
+    /// Thân thông tin bệnh án
     /// </summary>
     public class Record
     {
         /// <summary>
-        /// 就诊流水号
-        /// 必填
+        /// Số thứ tự khám bệnh
+        /// Bắt buộc
         /// </summary>
         public string serialNo { get; set; }
 
         /// <summary>
-        /// 机构编码
-        /// 必填
+        /// Mã tổ chức
+        /// Bắt buộc
         /// </summary>
         public string orgCode { get; set; }
 
         /// <summary>
-        /// 患者编号
-        /// 必填
+        /// Mã bệnh nhân
+        /// Bắt buộc
         /// </summary>
         public string patiId { get; set; }
 
         /// <summary>
-        /// 患者姓名
-        /// 必填
+        /// Tên bệnh nhân
+        /// Bắt buộc
         /// </summary>
         public string name { get; set; }
 
         /// <summary>
-        /// 患者年龄
-        /// 必填
+        /// Tuổi bệnh nhân
+        /// Bắt buộc
         /// </summary>
         public string age { get; set; }
 
         /// <summary>
-        /// 患者性别
-        /// 必填
+        /// Giới tính bệnh nhân
+        /// Bắt buộc
         /// </summary>
         public string gender { get; set; }
 
         /// <summary>
-        /// 就诊日期-YYYYMMDD
-        /// 必填
+        /// Ngày khám -YYYYMMDD
+        /// Bắt buộc
         /// </summary>
         public string clinicDate { get; set; }
 
         /// <summary>
-        /// 医生编号（用户名）
-        /// 必填
+        /// Mã bác sĩ (tên đăng nhập)
+        /// Bắt buộc
         /// </summary>
         public string doctorId { get; set; }
 
         /// <summary>
-        /// 医生名称
-        /// 必填
+        /// Tên bác sĩ
+        /// Bắt buộc
         /// </summary>
         public string doctorName { get; set; }
 
         /// <summary>
-        /// 主诉
+        /// Triệu chứng chính
         /// </summary>
         public string priDepict { get; set; }
 
@@ -84,62 +84,62 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
         public string localDisHis { get; set; }
 
         /// <summary>
-        /// 过敏史
+        /// Tiền sử dị ứng
         /// </summary>
         public string allergicHis { get; set; }
 
         /// <summary>
-        /// 既往史
+        /// Tiền sử
         /// </summary>
         public string anamnesis { get; set; }
 
         /// <summary>
-        /// 个人史
+        /// Tiền sử cá nhân
         /// </summary>
         public string individualHis { get; set; }
 
         /// <summary>
-        /// 月经婚育史
+        /// Tiền sử kinh nguyệt và sinh đẻ
         /// </summary>
         public string mcObstetrical { get; set; }
 
         /// <summary>
-        /// 家族史
+        /// Tiền sử gia đình
         /// </summary>
         public string fhx { get; set; }
 
         /// <summary>
-        /// 望诊
+        /// Vọng chẩn
         /// </summary>
         public string inspection { get; set; }
 
         /// <summary>
-        /// 闻诊
+        /// Văn chẩn
         /// </summary>
         public string smelling { get; set; }
 
         /// <summary>
-        /// 切诊
+        /// Thiết chẩn
         /// </summary>
         public string palpation { get; set; }
 
         /// <summary>
-        /// 辨证要点
+        /// Điểm biện chứng
         /// </summary>
         public string syndrome { get; set; }
 
         /// <summary>
-        /// 体格检查
+        /// Khám thực thể
         /// </summary>
         public string psyCheck { get; set; }
 
         /// <summary>
-        /// 医生建议
+        /// Đề xuất của bác sĩ
         /// </summary>
         public string suggession { get; set; }
 
         /// <summary>
-        /// 医嘱编号
+        /// Mã y lệnh
         /// </summary>
         public string recordId { get; set; }
     }

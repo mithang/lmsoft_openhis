@@ -6,14 +6,14 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.Application.Implementation
 {
     /// <summary>
-    /// 用法联动
+    /// Liên động cách dùng
     /// </summary>
     public class UsageLinkageApp : AppBase, IUsageLinkageApp
     {
         private readonly ISysUsageLinkageRepo sysUsageLinkageRepo;
 
         /// <summary>
-        /// 提交用法绑定
+        /// Gửi liên kết cách dùng
         /// </summary>
         /// <param name="sysUsageLinkageEntity"></param>
         /// <returns></returns>

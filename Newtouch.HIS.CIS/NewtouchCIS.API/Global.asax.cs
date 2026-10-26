@@ -20,20 +20,20 @@ namespace NewtouchCIS.API
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
-            //向上下文注册表
+            //Đăng ký vào bảng ngữ cảnh
             DefaultDbContext.PartialTBRegister(DefaultDbContextTBRegister.Registe);
 
-            //注册 释放数据库链接
+            //Đăng ký, giải phóng liên kết cơ sở dữ liệu
             FrameworkBase.API.ApiControllerBaseEx.RegisterDBContextDisposer(() =>
             {
-                //释放DefaultDbContext
+                //Giải phóng DefaultDbContext
                 Newtouch.Infrastructure.EF.DatabaseFactoryDisposeHelper.TryDisposeDBContext<IDefaultDatabaseFactory, DefaultDbContext>();
 
             });
 
             IEntityEx.RegisterCurUserCodeGetter(() =>
             {
-                //在基类认证用户身份时写上的
+                //Được viết khi xác thực danh tính người dùng ở lớp cơ sở
                 var account = HttpContext.Current.Items["API_UserIdentity_Account"];
                 return account == null ? null : account.ToString();
             });

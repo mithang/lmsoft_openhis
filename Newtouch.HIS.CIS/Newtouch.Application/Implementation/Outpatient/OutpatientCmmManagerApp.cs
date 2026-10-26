@@ -35,7 +35,7 @@ using Newtouch.Tools;
 namespace Newtouch.Application.Implementation
 {
     /// <summary>
-    /// 门诊中医馆管理
+    /// Quản lý phòng khám Đông y ngoại trú
     /// </summary>
     public class OutpatientCmmManagerApp : AppBase, IOutpatientCmmManagerApp
     {
@@ -49,7 +49,7 @@ namespace Newtouch.Application.Implementation
         #region TCM_HIS_01
 
         /// <summary>
-        /// 患者信息上传
+        /// Tải lên thông tin bệnh nhân
         /// </summary>
         /// <param name="jzxx"></param>
         /// <param name="organizeId"></param>
@@ -128,7 +128,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 判断该患者是否已上传
+        /// Xác định bệnh nhân này đã tải lên hay chưa
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
@@ -140,7 +140,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 落地请求数据
+        /// Lưu dữ liệu yêu cầu
         /// </summary>
         /// <param name="request"></param>
         /// <param name="organizeId"></param>
@@ -204,7 +204,7 @@ namespace Newtouch.Application.Implementation
         #region TCM_HIS_02
 
         /// <summary>
-        /// 同步药品
+        /// Đồng bộ thuốc
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
@@ -240,7 +240,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 同步药品，并保存同步记录表
+        /// Đồng bộ thuốc, và lưu bảng bản ghi đồng bộ
         /// </summary>
         /// <param name="yp"></param>
         /// <param name="organizeId"></param>
@@ -288,9 +288,9 @@ namespace Newtouch.Application.Implementation
         #region TCM_HIS_07
 
         /// <summary>
-        /// 提取电子病历
+        /// Trích xuất bệnh án điện tử
         /// </summary>
-        /// <param name="mzh">门诊号</param>
+        /// <param name="mzh">Số ngoại trú</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         public Record ExtractIntegrateEmr(string mzh, string organizeId)
@@ -314,11 +314,11 @@ namespace Newtouch.Application.Implementation
         #region TCM_HIS_08
 
         /// <summary>
-        /// 提取处方
+        /// Trích xuất đơn thuốc
         /// </summary>
-        /// <param name="mzh">门诊号</param>
+        /// <param name="mzh">Số ngoại trú</param>
         /// <param name="organizeId"></param>
-        /// <param name="mzzybz">门诊住院标志 0-药库  1-门诊  2-住院  3-通用(取门诊单位) </param>
+        /// <param name="mzzybz">Cờ ngoại trú/nội trú 0-kho thuốc 1-ngoại trú 2-nội trú 3-dùng chung (lấy đơn vị ngoại trú) </param>
         /// <returns></returns>
         public List<DrugDataEx> ExtractIntegrateRp(string mzh, string organizeId, string mzzybz)
         {
@@ -338,7 +338,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 规范处方信息
+        /// Chuẩn hóa thông tin đơn thuốc
         /// </summary>
         /// <returns></returns>
         private List<DrugDataEx> FormatRpDetail(Prescription s, string organizeId, string mzzybz)
@@ -438,9 +438,9 @@ namespace Newtouch.Application.Implementation
         #region TCM_HIS_09
 
         /// <summary>
-        /// 提取诊断信息
+        /// Trích xuất thông tin chẩn đoán
         /// </summary>
-        /// <param name="mzh">门诊号</param>
+        /// <param name="mzh">Số ngoại trú</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         public DiagInfo ExtractIntegrateDiagnosis(string mzh, string organizeId)
@@ -462,7 +462,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 附加本地诊断代码
+        /// Gắn thêm mã chẩn đoán nội bộ
         /// </summary>
         /// <param name="diagInfo"></param>
         /// <param name="organizeId"></param>
@@ -497,7 +497,7 @@ namespace Newtouch.Application.Implementation
         #region Integrated Module
 
         /// <summary>
-        /// 电子病历集成模块
+        /// Mô-đun tích hợp bệnh án điện tử
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="jzys"></param>
@@ -520,7 +520,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 辩证论治
+        /// Biện chứng luận trị
         /// </summary>
         /// <param name="aeRequest"></param>
         /// <param name="response"></param>
@@ -559,7 +559,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 知识库
+        /// Cơ sở tri thức
         /// </summary>
         /// <returns></returns>
         public string GetIntegrateKUrl(out string response)
@@ -573,7 +573,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 集成治未病
+        /// Tích hợp trị vị bệnh
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="mzh"></param>
@@ -605,7 +605,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 组装远程医疗参数
+        /// Ghép tham số y tế từ xa
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="mzh"></param>

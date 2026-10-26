@@ -10,7 +10,7 @@ using System.Web.Http;
 namespace NewtouchCIS.API.Controllers
 {
     /// <summary>
-    /// 授权认证
+    /// Xác thực ủy quyền
     /// </summary>
     [RoutePrefix("api/MzBespeakRegister")]
     public class MzBespeakRegisterController : ApiControllerBase<MzBespeakRegisterController>
@@ -24,7 +24,7 @@ namespace NewtouchCIS.API.Controllers
         }
 
         /// <summary>
-        /// 当前患者门诊预约查询
+        /// Tra cứu đặt lịch hẹn khám ngoại trú của bệnh nhân hiện tại
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -42,7 +42,7 @@ namespace NewtouchCIS.API.Controllers
         }
 
         /// <summary>
-        /// 科室或专家预约挂号排班信息
+        /// Thông tin xếp lịch đặt lịch hẹn khám của khoa hoặc chuyên gia
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -60,7 +60,7 @@ namespace NewtouchCIS.API.Controllers
         }
 
         /// <summary>
-        /// 科室或专家已挂号总数查询
+        /// Tra cứu tổng số đã đặt lịch của khoa hoặc chuyên gia
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -78,7 +78,7 @@ namespace NewtouchCIS.API.Controllers
         }
 
         /// <summary>
-        /// 赴约
+        /// Đến hẹn
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

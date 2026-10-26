@@ -16,16 +16,16 @@ using System.Text;
 namespace Newtouch.Repository
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 13:27
-    /// 描 述：住院病人生命体征
+    /// Tạo bởi: 张冬林
+    /// Ngày: 2018-06-28 13:27
+    /// Mô tả: Dấu hiệu sinh tồn bệnh nhân nội trú
     /// </summary>
     public class InpatientVitalSignsRepo : RepositoryBase<InpatientVitalSignsEntity>, IInpatientVitalSignsRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public InpatientVitalSignsRepo(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {
@@ -33,7 +33,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 护理分页查询
+        /// Tra cứu phân trang chăm sóc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -100,7 +100,7 @@ namespace Newtouch.Repository
 			//                drop table #tmp");
 			//            return this.FindList<InpatientVitalSignsDto>(sb.ToString(), pars.ToArray());
 
-			//2021-2-2 解决Chinese_PRC_CI_AS 改为查询存储过程
+			//2021-2-2 Giải quyết Chinese_PRC_CI_AS, đổi thành tra cứu thủ tục lưu trữ
 			var pars = new List<SqlParameter>();
 			pars.Add(new SqlParameter("@orgId", orgId));
 			pars.Add(new SqlParameter("@kssj", kssj.Value.Date));
@@ -113,7 +113,7 @@ namespace Newtouch.Repository
 		}
 
 		/// <summary>
-		/// 护理查询(不分页)
+		/// Tra cứu chăm sóc (không phân trang)
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="orgId"></param>
@@ -148,7 +148,7 @@ where a.OrganizeId = @orgId and a.zt = '1'");
         }
 
         /// <summary>
-        /// 护理查询
+        /// Tra cứu chăm sóc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>
@@ -178,7 +178,7 @@ where OrganizeId = @orgId and zt = '1'");
                 pars.Add(new SqlParameter("@searchZyh", "%" + zyh.Trim() + "%"));
             }
 
-            //按时间排序
+            //Sắp xếp theo thời gian
             sb.Append(" order by rq,sj");
 
             return this.FindList<InpatientVitalSignsEntity>(sb.ToString(), pars.ToArray());
@@ -186,10 +186,10 @@ where OrganizeId = @orgId and zt = '1'");
 
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu (thêm mới, sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(InpatientVitalSignsEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -222,13 +222,13 @@ where OrganizeId = @orgId and zt = '1'");
 
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void DeleteForm(string keyValue)
         {
             var dbEntity = this.FindEntity(keyValue);
-            dbEntity.zt = "0";  //无效
+            dbEntity.zt = "0";  //Không hiệu lực
             dbEntity.Modify(keyValue);
             this.Update(dbEntity);
         }
@@ -236,7 +236,7 @@ where OrganizeId = @orgId and zt = '1'");
 
         /*****************************************************************/
         /// <summary>
-        /// 获取三测单绘制所需数据
+        /// Lấy dữ liệu cần thiết để vẽ bảng ba lần đo
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>

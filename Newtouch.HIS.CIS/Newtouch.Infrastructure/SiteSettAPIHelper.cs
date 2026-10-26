@@ -5,12 +5,12 @@ using System;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// Sett API请求帮助类
+    /// Lớp trợ giúp yêu cầu Sett API
     /// </summary>
     public class SiteSettAPIHelper : SiteAPIRequestHelperBase<SiteSettAPIHelper>
     {
         /// <summary>
-        /// 域Addr配置 的 Key
+        /// Key cấu hình Addr của miền
         /// </summary>
         private readonly static string _domainConfigKey = "SiteSettAPIHost";
 
@@ -21,7 +21,7 @@ namespace Newtouch.Infrastructure
         private static APIRequestHelper.DefaultResponse apiResp;
 
         /// <summary>
-        /// 同步病人信息给CIS
+        /// Đồng bộ thông tin bệnh nhân cho CIS
         /// </summary>
         /// <param name="dto"></param>
         public static APIRequestHelper.DefaultResponse UpdateInpatientBasicInfo(InpatientPatientInfoDTO dto)
@@ -42,13 +42,13 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 已结算处方明细查询
+        /// Tra cứu chi tiết đơn thuốc đã thanh toán
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
         /// <param name="fph"></param>
         /// <param name="kh"></param>
-        /// <param name="yfCode">用法代码</param>
+        /// <param name="yfCode">Mã cách dùng</param>
         /// <returns></returns>
         public static APIRequestHelper.DefaultResponse OutpatientSettledRpQuery(DateTime kssj, DateTime jssj, string fph, string kh, string yfCode,string mzh)
         {
@@ -66,36 +66,36 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 同步住院病人信息
+    /// Đồng bộ thông tin bệnh nhân nội trú
     /// </summary>
     public class InpatientPatientInfoDTO
     {
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// 在院标志
+        /// Cờ đang nằm viện
         /// </summary>
         public int zybz { get; set; }
         /// <summary>
-        /// 病区
+        /// Khu bệnh
         /// </summary>
         public string bq { get; set; }
         /// <summary>
-        /// 床位
+        /// Giường bệnh
         /// </summary>
         public string cw { get; set; }
         /// <summary>
-        /// 出院日期
+        /// Ngày xuất viện
         /// </summary>
         public DateTime? cyrq { get; set; }
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         public string doctor { get; set; }
         /// <summary>
-        /// 出院诊断
+        /// Chẩn đoán xuất viện
         /// </summary>
         public string cyzd { get; set; }
     }

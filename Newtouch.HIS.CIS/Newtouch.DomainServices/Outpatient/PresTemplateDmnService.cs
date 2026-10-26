@@ -26,7 +26,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// 查询模板明细
+        /// Tra cứu chi tiết mẫu
         /// </summary>
         /// <param name="mbId"></param>
         /// <param name="orgId"></param>
@@ -47,7 +47,7 @@ namespace Newtouch.DomainServices
                 bo.cfyf = cfEntity.cfyf;
                 bo.djbz = cfEntity.djbz;
                 bo.mblx = cfEntity.mblx;
-                if (cfEntity.cflx == (int)EnumCflx.RehabPres)   //康复处方
+                if (cfEntity.cflx == (int)EnumCflx.RehabPres)   //Đơn thuốc phục hồi chức năng
                 {
                     sql = @"
 SELECT mbmx.mxId, mbId, xmCode, xmmc, mczll, pcCode, sl,
@@ -77,7 +77,7 @@ WHERE mbmx.OrganizeId = @orgId
         AND mbmx.mbId = @mbId
                 ";
                 }
-                else if (cfEntity.cflx == (int)EnumCflx.RegularItemPres|| cfEntity.cflx == (int)EnumCflx.Yyhc)   //常规项目处方
+                else if (cfEntity.cflx == (int)EnumCflx.RegularItemPres|| cfEntity.cflx == (int)EnumCflx.Yyhc)   //Đơn thuốc hạng mục thông thường
                 {
                     sql = @"
 SELECT mbmx.mxId, mbId, xmCode, xmmc, zl,mbmx.mczll,mbmx.sl,mbmx.pcCode,pc.yzpcmc pcmc,
@@ -96,7 +96,7 @@ WHERE mbmx.OrganizeId = @orgId
         AND mbmx.mbId = @mbId
                 ";
                 }
-                else if (cfEntity.cflx == (int)EnumCflx.WMPres || cfEntity.cflx == (int)EnumCflx.TCMPres) //药品处方
+                else if (cfEntity.cflx == (int)EnumCflx.WMPres || cfEntity.cflx == (int)EnumCflx.TCMPres) //Đơn thuốc
                 {
                     sql = @"
 SELECT mbmx.px,mbmx.mxId, mbmx.mbId, mbmx.ypCode, yp.ypmc, mcjl, mcjldw, yp.jldw AS redundant_jldw, mbmx.yfCode, pcCode, sl, mbmx.dw, zh,
@@ -151,7 +151,7 @@ WHERE mbmx.OrganizeId = @orgId
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="mbObj"></param>
         /// <param name="mxList"></param>
@@ -159,21 +159,21 @@ WHERE mbmx.OrganizeId = @orgId
         {
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
-                if (!string.IsNullOrWhiteSpace(mbObj.mbId))  //修改
+                if (!string.IsNullOrWhiteSpace(mbObj.mbId))  //Sửa đổi
                 {
                     mbObj.zt = "1";
                     mbObj.Modify();
 
                     var dbMbObj = db.IQueryable<PresTemplateEntity>(p => p.mbId == mbObj.mbId).FirstOrDefault();
-                    mbObj.tieshu = dbMbObj.tieshu;  //保留贴数、代煎标志、处方用法
+                    mbObj.tieshu = dbMbObj.tieshu;  //Giữ số thang, cờ sắc thuốc, cách dùng đơn thuốc
                     mbObj.djbz = dbMbObj.djbz;
                     mbObj.cfyf = dbMbObj.cfyf;
-                    //这里如果是中药处方，数量不更新也没关系，因为引用时不会采用
+                    //Ở đây nếu là đơn thuốc Đông y thì số lượng không cập nhật cũng không sao, vì khi trích dẫn sẽ không dùng
                     db.DetacheEntity(dbMbObj);
 
                     db.Update(mbObj);
 
-                    db.Delete<PresTemplateDetailEntity>(a => a.mbId == mbObj.mbId && a.OrganizeId == mbObj.OrganizeId); //先全删，再新增
+                    db.Delete<PresTemplateDetailEntity>(a => a.mbId == mbObj.mbId && a.OrganizeId == mbObj.OrganizeId); //Xóa toàn bộ trước, rồi thêm mới
                 }
                 else
                 {
@@ -182,7 +182,7 @@ WHERE mbmx.OrganizeId = @orgId
 
                     db.Insert(mbObj);
                 }
-                //模板明细表
+                //Bảng chi tiết mẫu
                 int sort = 0;
                 foreach (var item in mxList)
                 {

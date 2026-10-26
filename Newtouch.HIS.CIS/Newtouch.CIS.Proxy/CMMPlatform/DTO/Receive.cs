@@ -1,19 +1,19 @@
 ﻿namespace Newtouch.CIS.Proxy.CMMPlatform.DTO
 {
     /// <summary>
-    /// 接收信息请求体
+    /// Thân yêu cầu nhận thông tin
     /// </summary>
     public class Receive
     {
         /// <summary>
-        /// 机构编码
-        /// 必填
+        /// Mã tổ chức
+        /// Bắt buộc
         /// </summary>
         public string orgCode { get; set; }
 
         /// <summary>
-        /// 就诊流水号
-        /// 必填
+        /// Số thứ tự khám bệnh
+        /// Bắt buộc
         /// </summary>
         public string serialNo { get; set; }
     }

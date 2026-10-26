@@ -10,14 +10,14 @@ using Newtouch.Tools;
 namespace Newtouch.Application.Implementation
 {
     /// <summary>
-    /// 内部接口调用业务
+    /// Nghiệp vụ gọi giao diện nội bộ
     /// </summary>
     public class InsideGeneralApp : AppBase, IInsideGeneralApp
     {
         private readonly IPrescriptionRepo _prescriptionRepo;
 
         /// <summary>
-        /// 公共入口
+        /// Điểm vào chung
         /// </summary>
         /// <param name="requestDto"></param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ namespace Newtouch.Application.Implementation
 
             switch (o.OperationType)
             {
-                case "UpdateChargeStatus"://查询并落地S27（结算查询）结果
+                case "UpdateChargeStatus"://Tra cứu và lưu kết quả S27 (tra cứu thanh toán)
                     var pr = UpdateChargeStatus(o.Content);
                     if (!string.IsNullOrWhiteSpace(pr)) throw new FailedException(pr);
                     break;
@@ -49,7 +49,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 修改收费状态
+        /// Sửa trạng thái thu phí
         /// </summary>
         /// <param name="body"></param>
         /// <returns></returns>

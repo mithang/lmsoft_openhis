@@ -13,19 +13,19 @@ namespace Newtouch.Repository.Inpatient
     public class QhdZnshSqtxRepo : RepositoryBase<QhdZnshSqtxEntity>, IQhdZnshSqtxRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public QhdZnshSqtxRepo(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {
 
         }
         /// <summary>
-        /// 保存（新增、修改）
+        /// Lưu (thêm mới, sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(QhdZnshSqtxEntity entity,out string rzid, string keyValue=null)
         {
             var keyId = "";

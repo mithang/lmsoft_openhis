@@ -24,7 +24,7 @@ namespace Newtouch.CIS.UnitTestProject
         {
             var patient = new Patient
             {
-                id = "03132", //取病历号
+                id = "03132", //Lấy số bệnh án
                 name = "刘伟浩",
                 genderCode = "2261.1-2003",
                 gender = "1",
@@ -35,7 +35,7 @@ namespace Newtouch.CIS.UnitTestProject
                 provinceCode = "34",
                 cityCode = "3401",
                 areaCode = "340101",
-                outpatientNo = "1906280350049", //门诊号
+                outpatientNo = "1906280350049", //Số ngoại trú
                 orgCode = "520000002312"
             };
             var result = ProxyDapperFactory.CreateTcmhis01ProxyDapper(patient).Execute() as Result;

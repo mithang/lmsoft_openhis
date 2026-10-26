@@ -44,7 +44,7 @@ using System.Xml;
 namespace Newtouch.DomainServices
 {
     /// <summary>
-    /// 处方
+    /// Đơn thuốc
     /// </summary>
     public class MedicalRecordDmnService : DmnServiceBase, IMedicalRecordDmnService
     {
@@ -73,7 +73,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// 历史病历树
+        /// Cây bệnh án trong quá khứ
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="orgId"></param>
@@ -95,7 +95,7 @@ and jz.jzId=bl.jzId
 WHERE bl.blh=@blh and bl.organizeId=@orgId
 AND jz.zt='1' AND bl.zt='1'");
 
-            if (queryDate > 0)   //近一个月的数据
+            if (queryDate > 0)   //Dữ liệu gần một tháng
             {
                 sb.Append(@" AND DateDiff(mm,ghsj,getdate())<=@queryDate");
             }
@@ -105,25 +105,25 @@ AND jz.zt='1' AND bl.zt='1'");
             return list;
         }
         /// <summary>
-        /// 详情树节点内容 （根据jzId查询病历和处方内容）
+        /// Nội dung nút cây chi tiết (tra cứu nội dung bệnh án và đơn thuốc theo jzId)
         /// </summary>
         /// <param name="jzId"></param>
         /// <returns></returns>
        public NodeContentDto SelectNodeContent(string jzId)
         {
-            //患者就诊信息
+            //Thông tin khám bệnh của bệnh nhân
             var jzEntity = _treatmentRepo.IQueryable().Where(a => a.jzId == jzId && a.zt == "1").FirstOrDefault();
             if (jzEntity == null)
             { 
                 throw new FailedException("数据异常，未查询出患者就诊信息");
             }
-            //病历
+            //Bệnh án
             var blEntity = _medicalRecordRepo.IQueryable().Where(a => a.jzId == jzId && a.zt == "1").FirstOrDefault();
             if (blEntity == null)
             {
                 throw new FailedException("数据异常，未查询出病历信息");
             }
-            //西医诊断  //主诊断排在前面
+            //Chẩn đoán Tây y  //Chẩn đoán chính xếp trước
             var xysql = @" SELECT a.zdCode,a.zdmc,a.zdlx,a.ysbz, b.icd10,a.zdbz FROM Newtouch_CIS.dbo.xt_xyzd a 
   LEFT JOIN [NewtouchHIS_Base].[dbo].[V_S_xt_zd] b ON a.zdCode=b.zdCode AND a.zdmc=b.zdmc AND (a.OrganizeId=b.OrganizeId OR b.OrganizeId='*')  AND a.zt='1' AND b.zt='1'
   WHERE a.jzId=@jzId  ORDER BY a.zdlx ";
@@ -133,10 +133,10 @@ AND jz.zt='1' AND bl.zt='1'");
   WHERE a.jzId=@jzId   ORDER BY a.zdlx ";
             var zyzdList = this.FindList<TCMDiagnosisHtmlVO>(zysql, new[] { new System.Data.SqlClient.SqlParameter("@jzId", jzId) });
 
-            //处方
+            //Đơn thuốc
             var presEntityList = _prescriptionRepo.IQueryable().Where(a => a.jzId == jzId && a.zt == "1").OrderBy(p => p.sfbz).ThenByDescending(p => p.cfh).ToList();
             List<NodeContentPresBO> boList = new List<NodeContentPresBO>();
-            //获取电子处方 处方主表
+            //Lấy đơn thuốc điện tử: bảng chính đơn thuốc
             var dzcfsql = @"select * from Newtouch_CIS..xt_dzcf where jzid=@jzId and zt='1' order by cfh";
             var dzcflist = this.FindList<DzcfEntity>(dzcfsql, new[] { new System.Data.SqlClient.SqlParameter("@jzId", jzId) });
 
@@ -167,14 +167,14 @@ AND jz.zt='1' AND bl.zt='1'");
             {
                 NodeContentPresBO bo = new NodeContentPresBO()
                 {
-                    presEntity = item,   //处方
+                    presEntity = item,   //Đơn thuốc
                     presDetailList = new List<PrescriptionDetailQueryVO> { }
                 };
 
-                //处方明细
+                //Chi tiết đơn thuốc
 
                 var sql = "";
-                if (item.cflx == (int)EnumCflx.RehabPres)   //康复处方
+                if (item.cflx == (int)EnumCflx.RehabPres)   //Đơn thuốc phục hồi chức năng
                 {
                     sql = @"
 SELECT cf.cfId, cfmx.xmCode, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfmx.sl, cfmx.dw, 
@@ -182,7 +182,7 @@ SELECT cf.cfId, cfmx.xmCode, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfm
         isnull(cfmx.mczll,1)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,1)*isnull(sfxm.dj,0) je,   --根据最新的dwjls和dj，算出总额
         ";
                 }
-                else if (item.cflx == (int)EnumCflx.RegularItemPres|| item.cflx == (int)EnumCflx.Yyhc)   //常规项目处方
+                else if (item.cflx == (int)EnumCflx.RegularItemPres|| item.cflx == (int)EnumCflx.Yyhc)   //Đơn thuốc hạng mục thông thường
                 {
                     sql = @"
 SELECT cf.cfId, cfmx.xmCode, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfmx.sl, cfmx.dw, cfmx.ztId,cfmx.ztmc , cfmx.ztsl ,
@@ -190,7 +190,7 @@ SELECT cf.cfId, cfmx.xmCode, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfm
         isnull(cfmx.mczll,1)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,1)*isnull(sfxm.dj,0) je,   --根据最新的dwjls和dj，算出总额
         ";
                 }
-                if (item.cflx == (int)EnumCflx.InspectionPres || item.cflx == (int)EnumCflx.ExaminationPres)   //检验、检查处方
+                if (item.cflx == (int)EnumCflx.InspectionPres || item.cflx == (int)EnumCflx.ExaminationPres)   //Đơn thuốc xét nghiệm, kiểm tra
                 {
                     sql = @"
 SELECT cf.cfId, cfmx.xmCode, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfmx.sl, cfmx.dw,
@@ -236,7 +236,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
         AND cfmx.cfId=@cfId order by cfmx.px
                     ";
                 }
-                if (item.cflx == (int)EnumCflx.WMPres || item.cflx == (int)EnumCflx.TCMPres) //药品处方
+                if (item.cflx == (int)EnumCflx.WMPres || item.cflx == (int)EnumCflx.TCMPres) //Đơn thuốc
                 {
                     sql = @"
 SELECT cf.cfId, cfmx.ypCode,cfmx.ypmc,cfmx.mcjl,cfmx.mcjldw
@@ -366,7 +366,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
             }
             var contentDto = new NodeContentDto()
             {
-                //患者就诊信息
+                //Thông tin khám bệnh của bệnh nhân
                 jzks = jzEntity.jzks,
                 mjzbz = jzEntity.mjzbz,
                 jzysmc = jzEntity.jzysmc,
@@ -386,12 +386,12 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                 shousuoya = jzEntity.shousuoya,
                 shuzhangya = jzEntity.shuzhangya,
                 xuetang = jzEntity.xuetang,
-                xuetangclfs = jzEntity.xuetangclfs,//zhaoyule 增加血糖测量方式
+                xuetangclfs = jzEntity.xuetangclfs,//zhaoyule Thêm phương thức đo đường huyết
                 huxi = jzEntity.huxi,
                 cfzbz = jzEntity.cfzbz,
                 hy = jzEntity.hy == null ? brhf : jzEntity.hy,
                 hymc = (jzEntity.hy == null ? brhf : jzEntity.hy) == "1" ? "未婚" :((jzEntity.hy == null ? brhf : jzEntity.hy) == "2" ? "已婚" : ((jzEntity.hy == null ? brhf : jzEntity.hy) == "3" ? "不详" : "")),
-                //病历
+                //Bệnh án
                 zs = blEntity.zs,
                 fbsj = blEntity.fbsj,
                 xbs = blEntity.xbs,
@@ -402,12 +402,12 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                 ct = blEntity.ct,
                 clfa = blEntity.clfa,
                 fzjc = blEntity.fzjc,
-                //西医诊断
+                //Chẩn đoán Tây y
                 xyzdList = xyzdList,
-                //中医诊断
+                //Chẩn đoán Đông y
                 zyzdList = zyzdList,
 
-                //处方
+                //Đơn thuốc
                 cfBoList = boList,
                 lastzcfDto = lastzcfDto,
                 sbbh = jzEntity.sbbh
@@ -419,9 +419,9 @@ WHERE cfmx.zt='1' AND cf.zt='1'
         public NodeContentDto SelectNodeContentByBlmb(string mbId,string orgId)
         {
             List<NodeContentPresBO> boList = new List<NodeContentPresBO>();
-            //病历模板信息
+            //Thông tin mẫu bệnh án
             var blmb = _mRecordTemplateDmnService.SelectTemplateDetailByMbId(mbId,orgId);
-            //查询模板下处方组套
+            //Tra cứu bộ đơn thuốc dưới mẫu
             foreach (var cfTemplateGroupPackageEntity in blmb.mbztList)
             {
                 var sqlllll = "";
@@ -436,7 +436,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                                                 ";
                 }
                 else {
-                    //处方模板
+                    //Mẫu đơn thuốc
                     sqlllll = @"
                            SELECT *
                         FROM xt_cfmb mb
@@ -517,7 +517,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
             return contentDto;
         }
         /// <summary>
-        /// 保存就诊记录、诊断、病历、处方、处方明细
+        /// Lưu bản ghi khám bệnh, chẩn đoán, bệnh án, đơn thuốc, chi tiết đơn thuốc
         /// </summary>
         /// <param name="jzObject"></param>
         /// <param name="xyzdList"></param>
@@ -536,7 +536,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
             , string operatorCode
             , out List<string> addedYpCfList, out List<string> updatedYpCfList)
         {
-            var stopwatch = new Stopwatch();//  开始监视代码运行时间
+            var stopwatch = new Stopwatch();//  Bắt đầu theo dõi thời gian chạy mã
             stopwatch.Start();
             try
             {
@@ -544,15 +544,15 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                 updatedYpCfList = new List<string>();
                 using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
                 {
-                    //关联就诊病历
+                    //Bệnh án khám bệnh liên quan
                     MedicalRecordEntity blEntity = null;
-                    //关联就诊病历
+                    //Bệnh án khám bệnh liên quan
                     if (string.IsNullOrEmpty(jzObject.mjzbz.ToString()) || jzObject.mjzbz == 0)
                     {
                         jzObject.mjzbz = 1;
                     }
 
-                    //2.就诊、病历表，先删除旧数据再新增
+                    //2. Bảng khám bệnh, bệnh án: xóa dữ liệu cũ trước rồi thêm mới
                     if (!string.IsNullOrWhiteSpace(jzObject.jzId))
                     {
                         const string sql1 = @"SELECT TOP 1 * FROM dbo.xt_jz(NOLOCK) WHERE jzId=@jzId ";
@@ -564,7 +564,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                         dbJzEntity.shengao = jzObject.shengao;
                         dbJzEntity.shousuoya = jzObject.shousuoya;
                         dbJzEntity.shuzhangya = jzObject.shuzhangya;
-                        dbJzEntity.xuetangclfs = jzObject.xuetangclfs; //zhaoyule 增加血糖测量方式
+                        dbJzEntity.xuetangclfs = jzObject.xuetangclfs; //zhaoyule Thêm phương thức đo đường huyết
                         dbJzEntity.xuetang = jzObject.xuetang;
                         dbJzEntity.zljssj = jzObject.zljssj;
                         dbJzEntity.jzks = jzObject.jzks;
@@ -577,15 +577,15 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                         dbJzEntity.huxi = jzObject.huxi;
                         dbJzEntity.hy = jzObject.hy;
                         dbJzEntity.cfzbz = jzObject.cfzbz;
-                        //1.2 修改就诊表
+                        //1.2 Sửa bảng khám bệnh
                         dbJzEntity.Modify();
                         db.Update(dbJzEntity);
-                        //删除西医诊断
+                        //Xóa chẩn đoán Tây y
                         db.Delete<WMDiagnosisEntity>(a => a.jzId == jzObject.jzId);
-                        //删除中医诊断
+                        //Xóa chẩn đoán Đông y
                         db.Delete<TCMDiagnosisEntity>(a => a.jzId == jzObject.jzId);
 
-                        //查出来 就诊病历
+                        //Tìm ra bệnh án khám bệnh
                         const string sql2 = @"SELECT TOP 1 * FROM dbo.xt_bl(NOLOCK) WHERE jzId=@jzId";
                         blEntity = db.FirstOrDefault<MedicalRecordEntity>(sql2, new DbParameter[] { new SqlParameter("@jzId", jzObject.jzId) });
                     }
@@ -609,7 +609,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                             dbJzEntity.shengao = jzObject.shengao;
                             dbJzEntity.shousuoya = jzObject.shousuoya;
                             dbJzEntity.shuzhangya = jzObject.shuzhangya;
-                            dbJzEntity.xuetangclfs = jzObject.xuetangclfs; //zhaoyule 增加血糖测量方式
+                            dbJzEntity.xuetangclfs = jzObject.xuetangclfs; //zhaoyule Thêm phương thức đo đường huyết
                             dbJzEntity.xuetang = jzObject.xuetang;
                             dbJzEntity.zljssj = jzObject.zljssj;
                             dbJzEntity.jzks = jzObject.jzks;
@@ -622,27 +622,27 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                             dbJzEntity.huxi = jzObject.huxi;
                             dbJzEntity.hy = jzObject.hy;
                             dbJzEntity.cfzbz = jzObject.cfzbz;
-                            //1.2 修改就诊表
+                            //1.2 Sửa bảng khám bệnh
                             dbJzEntity.Modify();
                             db.Update(dbJzEntity);
                             jzObject.jzId = dbJzEntity.jzId;
-                            //删除西医诊断
+                            //Xóa chẩn đoán Tây y
                             db.Delete<WMDiagnosisEntity>(a => a.jzId == jzObject.jzId);
-                            //删除中医诊断
+                            //Xóa chẩn đoán Đông y
                             db.Delete<TCMDiagnosisEntity>(a => a.jzId == jzObject.jzId);
 
-                            //查出来 就诊病历
+                            //Tìm ra bệnh án khám bệnh
                             const string sql2 = @"SELECT TOP 1 * FROM dbo.xt_bl(NOLOCK) WHERE jzId=@jzId";
                             blEntity = db.FirstOrDefault<MedicalRecordEntity>(sql2, new DbParameter[] { new SqlParameter("@jzId", jzObject.jzId) });
 
                         }
                         else
                         {
-                            //1.1 新增就诊表
+                            //1.1 Thêm mới bảng khám bệnh
                             jzObject.jzId = Guid.NewGuid().ToString();
                             if (jzObject.zlkssj < new DateTime(1970, 01, 01))
                             {
-                                jzObject.zlkssj = DateTime.Now; //诊疗开始时间    //防止页面上没传过来
+                                jzObject.zlkssj = DateTime.Now; //Thời gian bắt đầu chẩn trị    //Phòng trường hợp trang không truyền sang
                             }
 
                             jzObject.Create();
@@ -650,7 +650,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                         }
                     }
 
-                    //insert 诊断
+                    //insert Chẩn đoán
                     if (xyzdList != null)
                     {
                         foreach (var diagnosisEntity in from item in xyzdList
@@ -699,19 +699,19 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                         }
                     }
 
-                    //3.病历表
+                    //3. Bảng bệnh án
                     if (blEntity != null)
                     {
-                        blEntity.zs = blObject.zs; //主诉
-                        blEntity.fbsj = blObject.fbsj; //发病时间
-                        blEntity.xbs = blObject.xbs; //现病史
-                        blEntity.jws = blObject.jws; //既往史
-                        blEntity.yjs = blObject.yjs; //月经史
-                        blEntity.gms = blObject.gms; //过敏史
-                        blEntity.hy = blObject.hy; //过敏史
-                        blEntity.ct = blObject.ct; //查体
-                        blEntity.clfa = blObject.clfa; //处理方案
-                        blEntity.fzjc = blObject.fzjc; //辅助检查
+                        blEntity.zs = blObject.zs; //Triệu chứng chính
+                        blEntity.fbsj = blObject.fbsj; //Thời gian phát bệnh
+                        blEntity.xbs = blObject.xbs; //Bệnh sử hiện tại
+                        blEntity.jws = blObject.jws; //Tiền sử
+                        blEntity.yjs = blObject.yjs; //Tiền sử kinh nguyệt
+                        blEntity.gms = blObject.gms; //Tiền sử dị ứng
+                        blEntity.hy = blObject.hy; //Tiền sử dị ứng
+                        blEntity.ct = blObject.ct; //Khám thực thể
+                        blEntity.clfa = blObject.clfa; //Phương án xử lý
+                        blEntity.fzjc = blObject.fzjc; //Kiểm tra phụ trợ
                         blEntity.Modify();
                         db.Update(blEntity);
                     }
@@ -728,7 +728,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
 
                     blEntity.zs = blEntity.zs ?? "";
 
-                    //4.处方
+                    //4. Đơn thuốc
                     if (cfDto != null)
                     {
                         var ypyfList = _baseDataDmnService.GetMediUsageList();
@@ -746,7 +746,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                                     cfId = Guid.NewGuid().ToString(),
                                     OrganizeId = jzObject.OrganizeId,
                                     jzId = jzObject.jzId,
-                                    sfbz = cf.sfbz, //一定是false
+                                    sfbz = cf.sfbz, //Nhất định là false
                                     cflx = cf.cflx,
                                     cfh = cf.cfh,
                                     zje = cf.zje,
@@ -810,7 +810,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                                     }
                                 }
                                 if (cf.cfmxList == null) continue;
-                                //处方明细,新增
+                                //Chi tiết đơn thuốc, thêm mới
                                 var rpDetail = new List<DzcfmxEntity>();
                                 foreach (var cfmx in cf.cfmxList)
                                 {
@@ -830,7 +830,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                                 PrescriptionEntity dbPresEnitty = new PrescriptionEntity();
                                 if (!string.IsNullOrWhiteSpace(cf.cfId))
                                 {
-                                    //验证表表中处方的收费状态
+                                    //Kiểm tra trạng thái thu phí của đơn thuốc trong bảng kiểm tra
                                     const string sql4 = @"SELECT TOP 1 * FROM dbo.xt_cf(NOLOCK) WHERE cfId=@cfId";
                                     dbPresEnitty = db.FirstOrDefault<PrescriptionEntity>(sql4, new DbParameter[] { new SqlParameter("@cfId", cf.cfId) });
                                     if (dbPresEnitty == null)
@@ -861,8 +861,8 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                                         cfklrq = dbPresEnitty.CreateTime;
                                         cfCreator = dbPresEnitty.CreatorCode;
                                         sqdh = dbPresEnitty.sqdh;
-                                        //表中已存在该处方，先删除明细和删除主记录，再新增
-                                        //明细循环 导致cf主表多次Delete  暂时规避 待优化
+                                        //Trong bảng đã tồn tại đơn thuốc này, xóa chi tiết và xóa bản ghi chính trước, rồi thêm mới
+                                        //Vòng lặp chi tiết khiến bảng chính cf bị Delete nhiều lần, tạm thời tránh, chờ tối ưu
                                         if (lastEty == null || lastEty.cfId != dbPresEnitty.cfId)
                                         {
                                             db.Delete(dbPresEnitty);
@@ -899,13 +899,13 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                                             needOutpatientBook = true;
                                         }
                                     }
-                                    //处方主表,新增
+                                    //Bảng chính đơn thuốc, thêm mới
                                     var cfEntity = new PrescriptionEntity
                                     {
                                         cfId = Guid.NewGuid().ToString(),
                                         OrganizeId = jzObject.OrganizeId,
                                         jzId = jzObject.jzId,
-                                        sfbz = cf.sfbz, //一定是false
+                                        sfbz = cf.sfbz, //Nhất định là false
                                         cflx = cf.cflx,
                                         cfh = cf.cfh,
                                         zje = cf.zje,
@@ -972,7 +972,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
 
                                     if (cf.cfmxList == null) continue;
 
-                                    //处方明细,新增
+                                    //Chi tiết đơn thuốc, thêm mới
                                     var rpDetail = new List<PrescriptionDetailEntity>();
                                     foreach (var cfmx in cf.cfmxList)
                                     {
@@ -987,10 +987,10 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                                         rpDetail.Add(cfmxEntity);
                                     }
 
-                                    #region 发送处方至pds
+                                    #region Gửi đơn thuốc tới pds
 
                                     var t = "";
-                                    if (cf.isdzcf != "1")//如果走电子处方，不发送处方到药房
+                                    if (cf.isdzcf != "1")//Nếu đi đơn thuốc điện tử thì không gửi đơn thuốc tới nhà thuốc
                                     {
                                         if (needOutpatientBook)
                                         {
@@ -1020,19 +1020,19 @@ WHERE cfmx.zt='1' AND cf.zt='1'
             }
             finally
             {
-                stopwatch.Stop(); //  停止监视
+                stopwatch.Stop(); //  Dừng theo dõi
                 LogCore.Info("SaveMedicalRecord", string.Format("方法耗时-{0}", stopwatch.Elapsed.TotalMilliseconds));
             }
         }
 
         /// <summary>
-        /// 作废病历 包括病历诊断 处方 处方明细
+        /// Hủy bệnh án, bao gồm chẩn đoán bệnh án, đơn thuốc, chi tiết đơn thuốc
         /// </summary>
         public void ObsoleteMedicalRecord(string jzId, string orgId)
         {
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
-                //就诊记录
+                //Bản ghi khám bệnh
                 var jzEntity = _treatmentRepo.IQueryable().Where(a => a.jzId == jzId && a.OrganizeId == orgId && a.zt == "1").FirstOrDefault();
                 if (jzEntity == null)
                 {
@@ -1043,41 +1043,41 @@ WHERE cfmx.zt='1' AND cf.zt='1'
 
                 //db.Update(jzEntity);
 
-                //诊断
+                //Chẩn đoán
                 var jzzdList = _wmDiagnosisRepo.IQueryable().Where(a => a.jzId == jzId && a.OrganizeId == orgId).ToList();
                 foreach (var item in jzzdList)
                 {
-                    item.zt = "0";    //作废
+                    item.zt = "0";    //Hủy bỏ
                     item.Modify();
 
                     db.Update(item);
                 }
 
-                //处方
+                //Đơn thuốc
                 var cfList = _prescriptionRepo.IQueryable().Where(a => a.jzId == jzId && a.OrganizeId == orgId).ToList();
                 foreach (var item in cfList)
                 {
-                    item.zt = "0";    //作废
+                    item.zt = "0";    //Hủy bỏ
                     item.Modify();
 
                     db.Update(item);
 
-                    //处方明细
+                    //Chi tiết đơn thuốc
                     var cfmxList = _prescriptionDetailRepo.IQueryable().Where(a => a.cfId == jzId && a.OrganizeId == orgId).ToList();
                     foreach (var cfmx in cfmxList)
                     {
-                        cfmx.zt = "0";    //作废
+                        cfmx.zt = "0";    //Hủy bỏ
                         cfmx.Modify();
 
                         db.Update(cfmx);
                     }
                 }
 
-                //病历
+                //Bệnh án
                 var blList = _medicalRecordRepo.IQueryable().Where(a => a.jzId == jzId && a.OrganizeId == orgId).ToList();
                 foreach (var item in blList)
                 {
-                    item.zt = "0";    //作废
+                    item.zt = "0";    //Hủy bỏ
                     item.Modify();
 
                     db.Update(item);
@@ -1087,11 +1087,11 @@ WHERE cfmx.zt='1' AND cf.zt='1'
         }
 
         /// <summary>
-        /// 作废his单次就诊的所有处方
+        /// Hủy tất cả đơn thuốc của một lần khám trong his
         /// </summary>
         public void ObsoleteAllPresToHIS(string jzId, string orgId)
         {
-            //作废处方接口
+            //Giao diện hủy đơn thuốc
             var list = _prescriptionRepo.IQueryable().Where(a => a.jzId == jzId && a.OrganizeId == orgId).ToList();
             List<ObsoletePresVO> zfcfList = new List<ObsoletePresVO>();
             foreach (var item in list)
@@ -1101,7 +1101,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                 vo.cfh = item.cfh;
             }
 
-            //接口内容
+            //Nội dung giao diện
             var reqObj = new
             {
                 orgId = orgId,
@@ -1113,46 +1113,46 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                 "/api/Prescription/Cancel", reqObj);
             if (apiRespPush.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                //记日志
+                //Ghi nhật ký
                 AppLogger.Instance.Warn(string.Format("推送作废处方接口失败，就诊Id：" + jzId + "推送时间" + DateTime.Now));
             }
         }
 
         /// <summary>
-        /// 发送单次就诊的所有处方（但不推已收费的）、或指定处方
+        /// Gửi tất cả đơn thuốc của một lần khám (nhưng không đẩy đơn đã thu phí), hoặc đơn thuốc đã chỉ định
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
-        /// <param name="opr">操作员</param>
-        /// <param name="cfId">指定时发送单一处方，否则发送单次就诊的所有处方（但不推已收费的）</param>
+        /// <param name="opr">Người thao tác</param>
+        /// <param name="cfId">Khi chỉ định thì gửi một đơn thuốc duy nhất, nếu không thì gửi tất cả đơn thuốc của một lần khám (nhưng không đẩy đơn đã thu phí)</param>
         public bool sendPresToHis(string mzh, string orgId, string opr, string cfId = null)
         {
             var pushResult = true;
-            //1.准备数据
+            //1. Chuẩn bị dữ liệu
             var jzObjectList = _treatmentRepo.SelectDataByMzh(mzh, orgId);
             if (jzObjectList.Count != 1)
             {
                 return false;
             }
             var jzObject = jzObjectList[0];
-            //2更新就诊状态,推送单一处方时不更新就诊状态,推送单一处方时不更新诊断
+            //2. Cập nhật trạng thái khám bệnh; khi đẩy một đơn thuốc duy nhất thì không cập nhật trạng thái khám bệnh, khi đẩy một đơn thuốc duy nhất thì không cập nhật chẩn đoán
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                //就诊状态
+                //Trạng thái khám bệnh
                 var reqObj1 = new
                 {
                     outpatientNo = jzObject.mzh,
                     jiuzhenbz = jzObject.jzzt,
                     jzys = jzObject.jzys
                 };
-                //推送就诊状态
+                //Đẩy trạng thái khám bệnh
                 var apiResp1 = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Patient/OutPatientUpdateConsultationStatus", reqObj1);
                 if (apiResp1.code != APIRequestHelper.ResponseResultCode.SUCCESS)
                 {
-                    AppLogger.Instance.Warn(string.Format("推送就诊状态失败，门诊号：" + jzObject.mzh + "推送时间" + DateTime.Now));//记日志s
+                    AppLogger.Instance.Warn(string.Format("推送就诊状态失败，门诊号：" + jzObject.mzh + "推送时间" + DateTime.Now));//Ghi nhật ký s
                 }
 
-                //2.2 推送主诊断
+                //2.2 Đẩy chẩn đoán chính
                 var diagnosisEntity = this.FirstOrDefault<SysDiagnosisVEntity>(@"
 select xtzd.zdCode, xtzd.icd10, xtzd.zdmc 
 from xt_xyzd(NOLOCK) xyzd
@@ -1171,21 +1171,21 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                         zdicd10 = diagnosisEntity.icd10,
                         zdmc = diagnosisEntity.zdmc,
                     };
-                    //推送诊断
+                    //Đẩy chẩn đoán
                     var apiResp = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Patient/OutPatientUpdateDiagnosis", reqObj);
                     if (apiResp.code != APIRequestHelper.ResponseResultCode.SUCCESS)
                     {
-                        AppLogger.Instance.Warn(string.Format("推送诊断失败，门诊号：" + jzObject.mzh + "推送时间" + DateTime.Now));//记日志
+                        AppLogger.Instance.Warn(string.Format("推送诊断失败，门诊号：" + jzObject.mzh + "推送时间" + DateTime.Now));//Ghi nhật ký
                     }
                 }
             }
 
-            //3.推送处方
+            //3. Đẩy đơn thuốc
             var dtoList = new List<PrescriptionAPIDto>();
             var presList = _prescriptionRepo.FindList(jzObject.jzId, false);
             if (!string.IsNullOrWhiteSpace(cfId))
             {
-                presList = presList.Where(p => p.cfId == cfId).ToList();    //仅退指定处方
+                presList = presList.Where(p => p.cfId == cfId).ToList();    //Chỉ trả lại đơn thuốc đã chỉ định
             }
             foreach (var cf in presList)
             {
@@ -1195,7 +1195,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                         {
                             var dto = new PrescriptionAPIDto
                             {
-                                cflx = 2,//1药品 2项目
+                                cflx = 2,//1 thuốc 2 hạng mục
                                 cflxxf = cf.cflx,
                                 cflxmc = ((EnumCflx)cf.cflx).GetDescription(),
                                 cfh = cf.cfh,
@@ -1226,7 +1226,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                         {
                             var dto = new PrescriptionAPIDto
                             {
-                                cflx = 2, //1药品 2项目
+                                cflx = 2, //1 thuốc 2 hạng mục
                                 cflxxf = cf.cflx,
                                 cflxmc = ((EnumCflx)cf.cflx).GetDescription(),
                                 cfh = cf.cfh,
@@ -1235,7 +1235,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                             };
                             var cfmxList = _prescriptionDetailRepo.SelectData(cf.cfId, false);
                             //var list1 = cfmxList.Select(cfmx => new TreamentItemVO { sfxm = cfmx.xmCode, sl = cfmx.sl, dw = cfmx.dw,zzfbz=cfmx.zzfbz }).ToList();
-                            //2021年7月21日 相同项目数量合并
+                            //Ngày 21 tháng 7 năm 2021: Gộp số lượng hạng mục giống nhau
                             var list = cfmxList.GroupBy(cfmx => new { cfmx.xmCode, cfmx.sl, cfmx.dw, cfmx.zzfbz, cfmx.ztId, cfmx.ztmc, cfmx.ztsl }).Select(t => new TreamentItemVO { sfxm = t.Key.xmCode, sl = t.Sum(p => p.sl), dw = t.Key.dw, zzfbz = t.Key.zzfbz, ztId = t.Key.ztId, ztmc = t.Key.ztmc, ztsl = t.Key.ztsl }).Where(p => p.sl > 0).ToList();
                             dto.AddTreamentItems = list;
                             dtoList.Add(dto);
@@ -1252,7 +1252,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                             {
                                 var dto1 = new PrescriptionAPIDto
                                 {
-                                    cflx = 2, //1药品 2项目
+                                    cflx = 2, //1 thuốc 2 hạng mục
                                     cflxxf = (int)EnumCflx.RegularItemPres,
                                     cflxmc = ((EnumCflx.RegularItemPres)).GetDescription(),
                                     cfh = cf.cfh,
@@ -1262,7 +1262,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                                 var cfmxList1 = _prescriptionDetailRepo.SelectDataDjxm(cf.cfId);
                                 if (cfmxList1 != null)
                                 {
-                                    //2021年7月21日 相同项目数量合并
+                                    //Ngày 21 tháng 7 năm 2021: Gộp số lượng hạng mục giống nhau
                                     var list1 = cfmxList1.GroupBy(cfmx => new { cfmx.xmCode, cfmx.sl, cfmx.dw, cfmx.zzfbz }).Select(t => new TreamentItemVO { sfxm = t.Key.xmCode, sl = t.Sum(p => p.sl), dw = t.Key.dw, zzfbz = t.Key.zzfbz }).Where(p => p.sl > 0).ToList();
                                     dto1.AddTreamentItems = list1;
                                     dtoList.Add(dto1);
@@ -1270,7 +1270,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                             }
                             var dto = new PrescriptionAPIDto
                             {
-                                cflx = 1, //1药品 2项目
+                                cflx = 1, //1 thuốc 2 hạng mục
                                 cflxxf = cf.cflx,
                                 cflxmc = ((EnumCflx)cf.cflx).GetDescription(),
                                 cfh = cf.cfh,
@@ -1311,21 +1311,21 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                 }
             }
 
-            //接口内容
+            //Nội dung giao diện
             var reqPush = new
             {
                 mzh = jzObject.mzh,
-                ys = jzObject.jzys, //有问题   //可以去掉了
+                ys = jzObject.jzys, //Có vấn đề   //Có thể bỏ đi
                 OperateTime = DateTime.Now,
                 PrescriptionList = dtoList,
-                AheadCancelCf = !string.IsNullOrWhiteSpace(cfId) && presList.Count == 1 ? presList[0].cfh : "",  //是否 先取消所有的未收费处方
+                AheadCancelCf = !string.IsNullOrWhiteSpace(cfId) && presList.Count == 1 ? presList[0].cfh : "",  //Có hủy tất cả đơn thuốc chưa thu phí trước hay không
             };
 
             var apiRespPush = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<PresUpdateResultDTO>>("/api/Prescription/UpdateAllForOutNo", reqPush);
             if (apiRespPush.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
                 pushResult = false;
-                AppLogger.Instance.Warn(string.Format("推送处方失败，门诊号：" + reqPush.mzh + "处方Id：" + cfId + "推送时间" + DateTime.Now));//记日志
+                AppLogger.Instance.Warn(string.Format("推送处方失败，门诊号：" + reqPush.mzh + "处方Id：" + cfId + "推送时间" + DateTime.Now));//Ghi nhật ký
             }
             else
             {
@@ -1334,13 +1334,13 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                     bool? sfbz = null;
                     if (apiRespPush.data.settledCfhList != null && apiRespPush.data.settledCfhList.Contains(pres.cfh))
                     {
-                        sfbz = true;   //历史更新遗漏
+                        sfbz = true;   //Cập nhật trong quá khứ bị sót
                     }
-                    _prescriptionRepo.UpdateChargeStatus(pres.cfh, true, sfbz, orgId, opr);//更新处方推送状态
+                    _prescriptionRepo.UpdateChargeStatus(pres.cfh, true, sfbz, orgId, opr);//Cập nhật trạng thái đẩy đơn thuốc
                 }
             }
 
-            //更新处方推送状态
+            //Cập nhật trạng thái đẩy đơn thuốc
             foreach (var actionEntity in presList.Select(pres => new SysObjectActionRecordEntity
             {
                 OrganizeId = pres.OrganizeId,
@@ -1358,7 +1358,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
         }
 
         /// <summary>
-        /// 更新pds已有处方
+        /// Cập nhật đơn thuốc đã có trong pds
         /// </summary>
         /// <param name="jzObject"></param>
         /// <param name="cfh"></param>
@@ -1389,24 +1389,24 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                     ItemCount = p.sl,
                     Zhyz = 0,
                     ItemName = p.ypmc,
-                    ItemSpecifications = (string)null,  //药品规格
+                    ItemSpecifications = (string)null,  //Quy cách thuốc
                     ItemUnitPrice = p.dj,
                     ItemUnitName = p.dw,
-                    ItemManufacturer = (string)null,    //项目/药品生产商名称
-                    DlCode = (string)null,  //收费大类
+                    ItemManufacturer = (string)null,    //Tên nhà sản xuất hạng mục/thuốc
+                    DlCode = (string)null,  //Nhóm thu phí lớn
                     Dosage = p.mcjl,
                     DosageUnit = p.mcjldw,
-                    UsageName = ypyfList.Where(a => a.yfCode == p.yfCode).Select(a => a.yfmc).FirstOrDefault(),   //用法名称
+                    UsageName = ypyfList.Where(a => a.yfCode == p.yfCode).Select(a => a.yfmc).FirstOrDefault(),   //Tên cách dùng
                     CardNo = jzObject.kh,
                     xm = jzObject.xm,
                     nl = jzObject.csny.HasValue ? (int?)((DateTime.Now - jzObject.csny.Value).TotalDays / 365.25) : null,
                     brxzmc = jzObject.brxzmc,
                     ysmc = jzObject.jzysmc,
                     ksmc = jzObject.ghksmc,
-                    Remark = (string)null,  //备注
+                    Remark = (string)null,  //Ghi chú
                     GroupNum = p.zh,
                 }).ToList();
-                //修改
+                //Sửa đổi
                 var reqPush = new
                 {
                     Items = items,
@@ -1443,7 +1443,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
         }
 
         /// <summary>
-        /// 发送新处方至药房药库
+        /// Gửi đơn thuốc mới tới nhà thuốc/kho thuốc
         /// </summary>
         /// <param name="jzObject"></param>
         /// <param name="cfh"></param>
@@ -1474,14 +1474,14 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                     ItemCount = p.sl,
                     Zhyz = 0,
                     ItemName = p.ypmc,
-                    ItemSpecifications = (string)null,  //药品规格
+                    ItemSpecifications = (string)null,  //Quy cách thuốc
                     ItemUnitPrice = p.dj,
                     ItemUnitName = p.dw,
-                    ItemManufacturer = (string)null,    //项目/药品生产商名称
-                    DlCode = (string)null,  //收费大类
+                    ItemManufacturer = (string)null,    //Tên nhà sản xuất hạng mục/thuốc
+                    DlCode = (string)null,  //Nhóm thu phí lớn
                     Dosage = p.mcjl,
                     DosageUnit = p.mcjldw,
-                    UsageName = ypyfList.Where(a => a.yfCode == p.yfCode).Select(a => a.yfmc).FirstOrDefault(),   //用法名称
+                    UsageName = ypyfList.Where(a => a.yfCode == p.yfCode).Select(a => a.yfmc).FirstOrDefault(),   //Tên cách dùng
                     CardNo = jzObject.kh,
                     xm = jzObject.xm,
                     xb = jzObject.xb,
@@ -1489,10 +1489,10 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                     brxzmc = jzObject.brxzmc,
                     ysmc = jzObject.jzysmc,
                     ksmc = jzObject.ghksmc,
-                    Remark = (string)null,  //备注
+                    Remark = (string)null,  //Ghi chú
                     GroupNum = p.zh,
                 }).ToList();
-                //新增
+                //Thêm mới
                 var reqPush = new
                 {
                     Items = items,
@@ -1529,7 +1529,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
         }
 
         /// <summary>
-        /// 推送处方至药房药库
+        /// Đẩy đơn thuốc tới nhà thuốc/kho thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="operatorCode"></param>
@@ -1541,7 +1541,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
         public bool sendPresToPDS(string orgId, string operatorCode, string mzh, string cfId = null, List<string> addedYpCfList = null, List<string> updatedYpCfList = null)
         {
             var pushResult = true;
-            //1.准备数据
+            //1. Chuẩn bị dữ liệu
             var jzObjectList = _treatmentRepo.IQueryable(p => p.mzh == mzh && p.zt == "1").ToList();
             if (jzObjectList.Count != 1)
             {
@@ -1549,12 +1549,12 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
             }
             var jzObject = jzObjectList[0];
 
-            //2.推送处方
+            //2. Đẩy đơn thuốc
             var dtoList = new List<PrescriptionAPIDto>();
             var presList = _prescriptionRepo.IQueryable(p => p.jzId == jzObject.jzId && p.sfbz == false && p.zt == "1").ToList();
             if (!string.IsNullOrWhiteSpace(cfId))
             {
-                presList = presList.Where(p => p.cfId == cfId).ToList();    //仅退指定处方
+                presList = presList.Where(p => p.cfId == cfId).ToList();    //Chỉ trả lại đơn thuốc đã chỉ định
             }
             else
             {
@@ -1567,7 +1567,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
             var cfIdList = presList.Select(p => p.cfId).ToList();
             var cfmxList = _prescriptionDetailRepo.IQueryable(p => cfIdList.Contains(p.cfId)).ToList();
 
-            ////接口内容
+            ////Nội dung giao diện
             //if (!string.IsNullOrWhiteSpace(token))
             //{
             var ypyfList = _baseDataDmnService.GetMediUsageList();
@@ -1584,26 +1584,26 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                         ItemCount = p.sl,
                         Zhyz = 0,
                         ItemName = p.ypmc,
-                        ItemSpecifications = (string)null,  //药品规格
+                        ItemSpecifications = (string)null,  //Quy cách thuốc
                         ItemUnitPrice = p.dj,
                         ItemUnitName = p.dw,
-                        ItemManufacturer = (string)null,    //项目/药品生产商名称
-                        DlCode = (string)null,  //收费大类
+                        ItemManufacturer = (string)null,    //Tên nhà sản xuất hạng mục/thuốc
+                        DlCode = (string)null,  //Nhóm thu phí lớn
                         Dosage = p.mcjl,
                         DosageUnit = p.mcjldw,
-                        UsageName = ypyfList.Where(a => a.yfCode == p.yfCode).Select(a => a.yfmc).FirstOrDefault(),   //用法名称
+                        UsageName = ypyfList.Where(a => a.yfCode == p.yfCode).Select(a => a.yfmc).FirstOrDefault(),   //Tên cách dùng
                         CardNo = jzObject.kh,
                         xm = jzObject.xm,
                         nl = jzObject.csny.HasValue ? (int?)((DateTime.Now - jzObject.csny.Value).TotalDays / 365.25) : null,
                         brxzmc = jzObject.brxzmc,
                         ysmc = jzObject.jzysmc,
                         ksmc = jzObject.ghksmc,
-                        Remark = (string)null,  //备注
+                        Remark = (string)null,  //Ghi chú
                         GroupNum = p.zh,
                     }).ToList();
                     if (updatedYpCfList.Contains(cf.cfh))
                     {
-                        //修改
+                        //Sửa đổi
                         var reqPush = new
                         {
                             Items = items,
@@ -1627,7 +1627,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                     }
                     else
                     {
-                        //新增
+                        //Thêm mới
                         var reqPush = new
                         {
                             Items = items,
@@ -1657,7 +1657,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
         }
 
         /// <summary>
-        /// 作废处方（并推送给HIS）
+        /// Hủy đơn thuốc (và đẩy cho HIS)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -1670,7 +1670,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
             isAlertinherit = false;
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
-                //处方
+                //Đơn thuốc
                 var cf = _prescriptionRepo.IQueryable().Where(a => a.cfId == cfId).FirstOrDefault();
                 if (cf == null)
                 {
@@ -1688,15 +1688,15 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                     }
 
                 }
-                cf.zt = "0";    //作废
+                cf.zt = "0";    //Hủy bỏ
                 cf.Modify();
                 db.Update(cf);
 
-                //处方明细
+                //Chi tiết đơn thuốc
                 var cfmxList = _prescriptionDetailRepo.IQueryable().Where(a => a.cfId == cfId).ToList();
                 foreach (var cfmx in cfmxList)
                 {
-                    cfmx.zt = "0";    //作废
+                    cfmx.zt = "0";    //Hủy bỏ
                     cfmx.Modify();
 
                     db.Update(cfmx);
@@ -1706,7 +1706,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
 
                 if (cf.cflx == (int)EnumCflx.RehabPres || cf.cflx == (int)EnumCflx.RegularItemPres ||cf.cflx == (int)EnumCflx.Yyhc || cf.cflx == (int)EnumCflx.InspectionPres || cf.cflx == (int)EnumCflx.ExaminationPres)
                 {
-                    apicflx = 2;    //1药品 2项目
+                    apicflx = 2;    //1 thuốc 2 hạng mục
                 }
                 else
                 {
@@ -1741,7 +1741,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
         }
 
         /// <summary>
-        /// 作废HIS单张
+        /// Hủy đơn lẻ của HIS
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -1751,10 +1751,10 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
         {
             if (apicflx == 0 || string.IsNullOrWhiteSpace(apicfh))
             {
-                return; //不推
+                return; //Không đẩy
             }
 
-            //作废处方接口
+            //Giao diện hủy đơn thuốc
             List<ObsoletePresVO> zfcfList = new List<ObsoletePresVO>();
             zfcfList.Add(new ObsoletePresVO()
             {
@@ -1762,7 +1762,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                 cfh = apicfh,
             });
 
-            //接口内容
+            //Nội dung giao diện
             var reqObj = new
             {
                 orgId = orgId,
@@ -1774,13 +1774,13 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                 "/api/Prescription/Cancel", reqObj);
             if (apiRespPush.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                //记日志
+                //Ghi nhật ký
                 AppLogger.Instance.Warn(string.Format("推送作废处方接口失败，chId：" + cfId + "推送时间" + DateTime.Now));
             }
         }
 
         /// <summary>
-        /// 作废PDS单张
+        /// Hủy đơn lẻ của PDS
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -1798,7 +1798,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
             {
                 return;
             }
-            //接口内容
+            //Nội dung giao diện
             var reqObj = new
             {
                 cfh = apicfh,
@@ -1811,7 +1811,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                 "/api/ResourcesOperate/OutpatientCancelAllBook", reqObj);
             if (apiRespPush.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                //记日志
+                //Ghi nhật ký
                 AppLogger.Instance.Warn(string.Format("推送PDS作废处方接口失败，chId：" + cfId + "推送时间" + DateTime.Now));
             }
         }
@@ -1827,10 +1827,10 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
             return list;
         }
         /// <summary>
-        /// 获取药品或项目的信息
+        /// Lấy thông tin thuốc hoặc hạng mục
         /// </summary>
         /// <param name="code"></param>
-        /// <param name="cxlx">1表示项目 2表示药品</param>
+        /// <param name="cxlx">1 nghĩa là hạng mục, 2 nghĩa là thuốc</param>
         /// <returns></returns>
         public SqtxXmYpInfoVO GetXmYpInfo(string code, string cxlx, string orgId)
         {
@@ -1857,7 +1857,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
             return  ypJxmc;
         }
 
-        #region 门诊日志查询
+        #region Tra cứu nhật ký ngoại trú
         public IList<OutpatientLogQueryVO> GetLogGridList(Pagination pagination, string keyword, string kssj, string jssj, string jzysgh, string orgId, string hznl, string xtxy, string qbdc)
         {
             var sb = new StringBuilder();
@@ -2140,7 +2140,7 @@ WHERE (
         }
         #endregion
 
-        #region 门诊远程医疗
+        #region Y tế từ xa ngoại trú
 
         public YCYL_DtxdscDTO GetJcDtxdmc(string mzh, string orgId)
         {
@@ -2279,7 +2279,7 @@ WHERE   b.mzh = @mzh
         }
 
         /// <summary>
-        /// 院内心电报告调阅
+        /// Xem báo cáo điện tâm đồ trong viện
         /// </summary>
         /// <param name="kh"></param>
         /// <returns></returns>
@@ -2302,7 +2302,7 @@ WHERE   b.mzh = @mzh
         }
 
         /// <summary>
-        /// 远程医疗心电申请
+        /// Đơn xin điện tâm đồ y tế từ xa
         /// </summary>
         /// <param name="PlaceerOrderNo"></param>
         public DataTable xindianshenqing(string patid, string orderno)
@@ -2354,7 +2354,7 @@ WHERE   b.mzh = @mzh
         }
 
         /// <summary>
-        /// 远程医疗心电调阅
+        /// Xem điện tâm đồ y tế từ xa
         /// </summary>
         /// <param name="PlaceerOrderNo"></param>
         public DataTable xindiandiaoyue(string kh, string orderno)
@@ -2374,10 +2374,10 @@ WHERE   b.mzh = @mzh
         }
 
         /// <summary>
-        ///  远程医疗检验申请
+        ///  Đơn xin xét nghiệm y tế từ xa
         /// </summary>
         /// <param name="kh"></param>
-        /// <param name="jzlsh">就诊流水号</param>
+        /// <param name="jzlsh">Số thứ tự khám bệnh</param>
         /// <param name="calltype"></param>
         /// <returns></returns>
         public DataTable jianyanshenqing(string patid, string jzlsh, string OrgId)
@@ -2409,7 +2409,7 @@ WHERE   b.mzh = @mzh
                 //string sReturn = @"<BGESBEnvelope >
                 //     <BGESBResult Return='1' >
                 //      <BusinessResult>
-                //       <!--调用返回业务数据结果集-->
+                //       <!--Gọi trả về tập hợp kết quả dữ liệu nghiệp vụ-->
                 //       <RMT_system>
                 //        <Index>2DE1D73B-BC58-471F-8103-4475D423A044</Index>
                 //       </RMT_system>
@@ -2427,9 +2427,9 @@ WHERE   b.mzh = @mzh
                     XmlDocument doc = new XmlDocument();
                     doc.LoadXml(sReturn);
                     string retKey = doc.SelectSingleNode(@"/BGESBEnvelope/BGESBResult/LIS_system/StatusCode").InnerText;
-                    if (retKey == "0000") //申请成功
+                    if (retKey == "0000") //Xin thành công
                     {
-                        ////2.2发起远程医疗进度查询消息（ESBRMTQ002）
+                        ////2.2 Khởi tạo thông báo tra cứu tiến độ y tế từ xa (ESBRMTQ002)
                         //sBusinessReqCGQ = @"<BusinessRequest>
                         //  <Parameters>
                         //    <Card_id>{0}</Card_id>
@@ -2465,7 +2465,7 @@ WHERE   b.mzh = @mzh
                             i++;
                         }
 
-                        //上传成功置cf状态
+                        //Tải lên thành công thì đặt trạng thái cf
                         string sql = @"        
                                     UPDATE dbo.xt_cf
                                     SET Syncstatus = 1
@@ -2507,7 +2507,7 @@ WHERE   b.mzh = @mzh
 
 
         /// <summary>
-        /// 远程医疗影像申请
+        /// Đơn xin hình ảnh y tế từ xa
         /// </summary>
         /// <param name="hispatientid"></param>
         /// <param name="name"></param>
@@ -2570,7 +2570,7 @@ WHERE   b.mzh = @mzh
 
         public lastzcfDto GetLastzcf(string blh, string orgId)
         {
-            // 获取最后一次收取诊查费的时间和收费项目详情
+            // Lấy thời gian thu phí khám bệnh lần cuối và chi tiết hạng mục thu phí
             var lastsql = @"select top 1 c.xmmc zcfsfxm,convert(varchar(10),c.createtime, 20) zcfsj  from xt_jz a 
                 left join xt_cf b on a.jzId=b.jzId and a.OrganizeId=b.OrganizeId
                 left join xt_cfmx c on b.cfId=c.cfId and c.OrganizeId=b.OrganizeId
@@ -2583,7 +2583,7 @@ WHERE   b.mzh = @mzh
             new SqlParameter("@orgId", orgId)});
         }
         /// <summary>
-        /// 组织机构名称
+        /// Tên tổ chức
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -2595,7 +2595,7 @@ WHERE   b.mzh = @mzh
             return this.FirstOrDefault<OrganizationData>(orgsql.ToString(), new[] { new SqlParameter("@orgId", orgId) });
         }
         /// <summary>
-        /// 获取第三方对照值
+        /// Lấy giá trị đối chiếu của bên thứ ba
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="TTcode"></param>
@@ -2614,7 +2614,7 @@ WHERE   b.mzh = @mzh
             switch (TTtype)
             {
                 case "fylb":
-                    return "91";//其他费用
+                    return "91";//Chi phí khác
                 case "sypc":
                     return "99";
                 case "yf":
@@ -2624,7 +2624,7 @@ WHERE   b.mzh = @mzh
             }
         }
         /// <summary>
-        /// 处方事前提醒
+        /// Nhắc trước đơn thuốc
         /// </summary>
         /// <param name="xyzdList"></param>
         /// <param name="zyzdList"></param>
@@ -2637,18 +2637,18 @@ WHERE   b.mzh = @mzh
         /// <returns></returns>
         public string GetqhdCfSqtxData(List<WMDiagnosisHtmlVO> xyzdList, List<TCMDiagnosisHtmlVO> zyzdList, string strCfList, string mzh, out string jlId, string orgId, string rygh, string userName)
         {
-            //获取当前患者就诊信息
+            //Lấy thông tin khám bệnh của bệnh nhân hiện tại
             TreatmentEntity patjzInfo = _treatmentRepo.IQueryable(p => p.mzh == mzh && p.OrganizeId == orgId && p.zt == "1").FirstOrDefault();
             QhdPrescriptionDTO pre = new QhdPrescriptionDTO();
             REQUESTDATA request = new REQUESTDATA();
             KC21XML kc21 = new KC21XML();
             List<KC22ROW> kc22list = new List<KC22ROW>();
             List<KC33ROW> kc33list = new List<KC33ROW>();
-            //页面上提交过来的处方明细列表    //重构处方数据
+            //Danh sách chi tiết đơn thuốc gửi từ trang    //Tái cấu trúc dữ liệu đơn thuốc
             var cfDtoList = Tools.Json.ToList<PrescriptionHtmlDTO>(strCfList);
             OrganizationData orgInfo = GetOrgInfo(orgId);
 
-            #region 根节点组装
+            #region Ghép nút gốc
             request.AKB020 = orgInfo.orgCode;
             request.AKB021 = orgInfo.orgName;
             request.MSGNO = "5100";
@@ -2658,7 +2658,7 @@ WHERE   b.mzh = @mzh
             request.OPERNAME = userName;
             #endregion
 
-            #region kc21节点数据组装
+            #region Ghép dữ liệu nút kc21
             kc21.AKC190 = mzh;
             var ybmzbz = "";
             switch (patjzInfo.mjzbz)
@@ -2701,7 +2701,7 @@ WHERE   b.mzh = @mzh
             request.KC21XML = kc21;
             #endregion
 
-            #region kc22节点数据组装
+            #region Ghép dữ liệu nút kc22
             foreach (var item in cfDtoList)
             {
                 foreach (var cfitem in item.cfHtml)
@@ -2711,7 +2711,7 @@ WHERE   b.mzh = @mzh
                         cfitem.cflx = item.cflx == "kfcf" ? (int)EnumCflx.RehabPres : item.cflx == "cgxmcf" ? (int)EnumCflx.RegularItemPres : item.cflx == "xycf" ? (int)EnumCflx.WMPres : item.cflx == "zycf" ? cfitem.cflx = (int)EnumCflx.TCMPres : item.cflx == "jycf" ? (int)EnumCflx.InspectionPres : item.cflx == "jccf" ? (int)EnumCflx.ExaminationPres : 0;
                         if (cfitem.cflx == (int)EnumCflx.InspectionPres || cfitem.cflx == (int)EnumCflx.ExaminationPres)
                         {
-                            //检验 检查 sl 1
+                            //Xét nghiệm, kiểm tra sl 1
                             cfitem.sl = 1;  //sl 1
                             cfitem.je = cfitem.dj;
                         }
@@ -2770,7 +2770,7 @@ WHERE   b.mzh = @mzh
             request.KC22XML = kc22list;
             #endregion
 
-            #region kc33节点数据
+            #region Dữ liệu nút kc33
             var cnt = 0;
             if (xyzdList != null)
             {
@@ -2951,7 +2951,7 @@ and a.mzh=@mzh and a.OrganizeId=@orgid
             return this.QueryWithPage<LisReportSqdyczValueVo>(sql, pagination, par.ToArray());
         }
 
-        #region 补充推处方到PDS
+        #region Đẩy bổ sung đơn thuốc tới PDS
         public void SyncToPdsQuery(string operatorCode, string ghrq)
         {
             string sql = "";
@@ -3053,7 +3053,7 @@ where  yzlx='7' and a.zyh=@zymzh  and a.OrganizeId=@orgId and a.zt=1 and yzzt='2
         }
 
         /// <summary>
-        /// 补充推处方
+        /// Đẩy bổ sung đơn thuốc
         /// </summary>
         /// <param name="jzObject"></param>
         /// <param name="cfDto"></param>
@@ -3063,7 +3063,7 @@ where  yzlx='7' and a.zyh=@zymzh  and a.OrganizeId=@orgId and a.zt=1 and yzzt='2
             {
                 List<string> updatedYpCfList = new List<string>();
                 var addedYpCfList = new List<string>();
-                //4.处方
+                //4. Đơn thuốc
                 if (cfDto != null)
                 {
                     var ypyfList = _baseDataDmnService.GetMediUsageList();
@@ -3082,7 +3082,7 @@ where  yzlx='7' and a.zyh=@zymzh  and a.OrganizeId=@orgId and a.zt=1 and yzzt='2
                             var needOutpatientBookModify = false;
                             if (!string.IsNullOrWhiteSpace(cf.cfId))
                             {
-                                //验证表表中处方的收费状态
+                                //Kiểm tra trạng thái thu phí của đơn thuốc trong bảng kiểm tra
                                 const string sql4 = @"SELECT TOP 1 * FROM dbo.xt_cf(NOLOCK) WHERE cfId=@cfId";
                                 var dbPresEnitty = db.FirstOrDefault<PrescriptionEntity>(sql4, new DbParameter[] { new SqlParameter("@cfId", cf.cfId) });
                                 if (dbPresEnitty == null)
@@ -3111,13 +3111,13 @@ where  yzlx='7' and a.zyh=@zymzh  and a.OrganizeId=@orgId and a.zt=1 and yzzt='2
                             }
 
 
-                            //处方明细,新增
+                            //Chi tiết đơn thuốc, thêm mới
                             var rpDetail = new List<PrescriptionDetailEntity>();
                             string sqlmx = @"select * from xt_cfmx with(nolock) where cfId=@cfid and zt='1'";
                             rpDetail = FindList<PrescriptionDetailEntity>(sqlmx, new SqlParameter[] { new SqlParameter("cfid", cf.cfId) });
 
 
-                            #region 发送处方至pds
+                            #region Gửi đơn thuốc tới pds
 
                             var t = "";
                             if (needOutpatientBook)
@@ -3139,7 +3139,7 @@ where  yzlx='7' and a.zyh=@zymzh  and a.OrganizeId=@orgId and a.zt=1 and yzzt='2
 
         }
         /// <summary>
-        /// 获取收费模板项目信息
+        /// Lấy thông tin hạng mục mẫu thu phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="sfmb"></param>
@@ -3194,7 +3194,7 @@ WHERE zt = '1' and organizeId = @orgId and sfxmCode = @sfxmCode";
             //
             pagination = pagination ?? new Pagination();
             pagination.page = pagination.page <= 0 ? 1 : pagination.page;
-            pagination.rows = pagination.rows <= 0 ? 100000 : pagination.rows;  //不分页
+            pagination.rows = pagination.rows <= 0 ? 100000 : pagination.rows;  //Không phân trang
             pagination.sidx = string.IsNullOrWhiteSpace(pagination.sidx) ? "UpdateTime" : pagination.sidx;
 
             paraList.Add(new SqlParameter("@page", pagination.page));
@@ -3228,7 +3228,7 @@ WHERE zt = '1' and organizeId = @orgId and sfxmCode = @sfxmCode";
 
 
 
-        //药品、诊疗项目、耗材信息查询
+        //Tra cứu thông tin thuốc, hạng mục chẩn trị, vật tư tiêu hao
         //
         public IList<MedicineInfoVO2> GetMedicineInfoList(Pagination pagination, string xmbm, string xmmc, string ck_kc, string orgId)
         {
@@ -3258,7 +3258,7 @@ WHERE zt = '1' and organizeId = @orgId and sfxmCode = @sfxmCode";
 
 
 
-            //            #region 药品
+            //            #region Thuốc
             //            var sql = @"SELECT convert(varchar(50),yp.ypId)  ypId,
             //        yp.ypCode ,
             //        yp.ypmc ,
@@ -3297,7 +3297,7 @@ WHERE zt = '1' and organizeId = @orgId and sfxmCode = @sfxmCode";
             //            sql += " WHERE bm.OrganizeId=@orgId and yp.dlCode in ('01','02','03')";
             //            #endregion
 
-            //            #region 诊疗项目
+            //            #region Hạng mục chẩn trị
             //            var sql2 = @"SELECT convert(varchar(50),a.sfxmId) ypId,  
             // sfxmCode ypCode, sfxmmc ypmc,'' ycmc,
             // gg ypgg,
@@ -3331,7 +3331,7 @@ WHERE zt = '1' and organizeId = @orgId and sfxmCode = @sfxmCode";
 
             //            #endregion
 
-            //            #region 耗材
+            //            #region Vật tư tiêu hao
             //            var sql3 = @"SELECT wz.Id ypId,
             //wz.productCode ypCode,
             //wz.name ypmc,
@@ -3421,7 +3421,7 @@ WHERE zt = '1' and organizeId = @orgId and sfxmCode = @sfxmCode";
 
 
         /// <summary>
-        /// 根据挂号内码获取LIS/PACS报告完成数量
+        /// Lấy số lượng báo cáo LIS/PACS đã hoàn thành theo mã nội bộ đặt lịch
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="yzh"></param>

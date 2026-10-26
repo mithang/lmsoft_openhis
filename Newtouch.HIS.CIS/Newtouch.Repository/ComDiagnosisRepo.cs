@@ -16,15 +16,15 @@ namespace Newtouch.Repository
     public class ComDiagnosisRepo : RepositoryBase<ComDiagnosisEntity>, IComDiagnosisRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public ComDiagnosisRepo(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {
 
         }
-        //获取常用诊断信息--浮层
+        //Lấy thông tin chẩn đoán thường dùng -- lớp nổi
         public IList<ComDiagnosisVO> GetComDiagnosis(string ys,string ks, string orgId, string type,string keyword,string lx)
         {
             try
@@ -58,7 +58,7 @@ namespace Newtouch.Repository
                 throw new FailedException("错误信息："+ex.Message);
             }
         }
-        //获取常用诊断信息--维护
+        //Lấy thông tin chẩn đoán thường dùng -- bảo trì
         public IList<ComDiagnosisVO> GetComDiagnosisAdmin(string ys, string ks, string orgId, string type, string keyword, string lx)
         {
             try
@@ -92,7 +92,7 @@ namespace Newtouch.Repository
                 throw new FailedException("错误信息：" + ex.Message);
             }
         }
-        //获取诊断记录信息
+        //Lấy thông tin bản ghi chẩn đoán
         public List<ComDiagnosisVO> GetDiagsLists(string orgId, string type, string mzh)
         {
             try
@@ -128,7 +128,7 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
             }
             
         }
-        //获取诊断拼音
+        //Lấy pinyin chẩn đoán
         public List<ComDiagnosisVO> Getzdpy( string zdmc, string zdbm)
         {
             try
@@ -146,7 +146,7 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
             }
 
         }
-        //添加常用诊断
+        //Thêm chẩn đoán thường dùng
         public void SubmitDiag(ComDiagnosisEntity entity)
         {
             try
@@ -173,7 +173,7 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
 
 
         }
-        //删除常用诊断
+        //Xóa chẩn đoán thường dùng
         public void DelDiagnosticTemplate(string Id)
         {
             try

@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 namespace Newtouch.Repository
 {
     /// <summary>
-    /// 预约挂号
+    /// Đặt lịch hẹn khám
     /// </summary>
     public class SysBespeakRegisterRepo : RepositoryBase<SysBespeakRegisterEntity>, ISysBespeakRegisterRepo
     {
@@ -19,7 +19,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 获取时段
+        /// Lấy khung giờ
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="regDate"></param>

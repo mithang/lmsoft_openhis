@@ -9,17 +9,17 @@ using ZXing.Common;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 帮助类
+    /// Lớp trợ giúp
     /// </summary>
     public class CommmHelper
     {
         /// <summary>
-        /// 收费项目 治疗量 换算成 数量
+        /// Hạng mục thu phí, lượng điều trị quy đổi thành số lượng
         /// </summary>
-        /// <param name="zll">指的是康复处方页的总量</param>
+        /// <param name="zll">Chỉ tổng lượng của trang đơn thuốc phục hồi chức năng</param>
         /// <param name="dwjls"></param>
-        /// <param name="jjcl">枚举EnumSfxmJjcl</param>
-        /// <param name="throwExWhenZero">当数量结果为0时 是否抛异常，默认抛</param>
+        /// <param name="jjcl">Enum EnumSfxmJjcl</param>
+        /// <param name="throwExWhenZero">Khi kết quả số lượng bằng 0 có ném ngoại lệ hay không, mặc định ném</param>
         /// <returns></returns>
         public static int CalcSfxmSl(int? mczll, int? dwjls, int? jjcl,
             bool throwExWhenZero = true)
@@ -45,10 +45,10 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取本地文件对应的本地路径
+        /// Lấy đường dẫn nội bộ tương ứng với tệp nội bộ
         /// </summary>
-        /// <param name="path">相对路径</param>
-        /// <returns>返回绝对路径</returns>
+        /// <param name="path">Đường dẫn tương đối</param>
+        /// <returns>Trả về đường dẫn tuyệt đối</returns>
         public static string GetLocalFilePath(string path)
         {
             var configFileExportBaseDir = ConfigurationHelper.GetAppConfigValue("LocalFileBaseDir");
@@ -69,19 +69,19 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 生成一维条形码
+        /// Sinh mã vạch một chiều
         /// </summary>
-        /// <param name="text">内容</param>
-        /// <param name="width">宽度</param>
-        /// <param name="height">高度</param>
+        /// <param name="text">Nội dung</param>
+        /// <param name="width">Chiều rộng</param>
+        /// <param name="height">Chiều cao</param>
         /// <returns></returns>
         public static string GenerateBarCode(string text, int width, int height)
         {
             byte[] imageArray;
             //System.IO.MemoryStream MStream = new System.IO.MemoryStream();
             BarcodeWriter writer = new BarcodeWriter();
-            //使用ITF 格式，不能被现在常用的支付宝、微信扫出来
-            //如果想生成可识别的可以使用 CODE_128 格式
+            //Dùng định dạng ITF, không thể quét được bằng Alipay, WeChat thường dùng hiện nay
+            //Nếu muốn sinh mã có thể nhận dạng thì có thể dùng định dạng CODE_128
             //writer.Format = BarcodeFormat.ITF;
             writer.Format = BarcodeFormat.CODE_128;
             EncodingOptions options = new EncodingOptions()

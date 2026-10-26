@@ -10,7 +10,7 @@ using DbParameter = System.Data.Common.DbParameter;
 namespace Newtouch.Repository
 {
     /// <summary>
-    /// 出诊设置
+    /// Cài đặt khám bệnh
     /// </summary>
     public class VisitDeptSetRepo : RepositoryBase<VisitDeptSetEntity>, IVisitDeptSetRepo
     {
@@ -19,7 +19,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 获取出诊信息
+        /// Lấy thông tin khám bệnh
         /// </summary>
         /// <param name="ysgh"></param>
         /// <param name="organizeId"></param>
@@ -41,7 +41,7 @@ AND OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 根据ID物理删除记录
+        /// Xóa vật lý bản ghi theo ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

@@ -25,7 +25,7 @@ namespace Newtouch.DomainServices.Inpatient
         { }
 
         /// <summary>
-        /// 内部类定义(一次性使用)
+        /// Định nghĩa lớp nội bộ (dùng một lần)
         /// </summary>
         public class UncheckedAdviceCount
         {
@@ -38,7 +38,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// 获取在病区的病人对象集合
+        /// Lấy tập hợp đối tượng bệnh nhân trong khu bệnh
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -231,7 +231,7 @@ WHERE   1 = 1");
         }
 
         /// <summary>
-        /// 获取已出区的病人对象集合
+        /// Lấy tập hợp đối tượng bệnh nhân đã ra khỏi khu
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -303,13 +303,13 @@ FROM    dbo.zy_brxxk zyxx
         }
 
         /// <summary>
-        /// 住院病人筛选
+        /// Lọc bệnh nhân nội trú
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="bq"></param>
         /// <param name="zyh"></param>
         /// <param name="xm"></param>
-        /// <param name="zybz">在院标志，多个用逗号分割</param>
+        /// <param name="zybz">Cờ đang nằm viện, nhiều giá trị phân tách bằng dấu phẩy</param>
         /// <returns></returns>
         public IList<InPatientPatientSearchVO> GetInPatSearchPaginationList(Pagination pagination, string orgId, string bq, string zyh, string xm,string ch, string bqCode, string zybz = null)
         {
@@ -371,7 +371,7 @@ where zyxx.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 住院号、姓名、卡号获取病人基本信息 姓名，性别，年龄，病人性质、入院日期
+        /// Lấy thông tin cơ bản của bệnh nhân theo số nhập viện, họ tên, số thẻ: họ tên, giới tính, tuổi, tính chất bệnh nhân, ngày nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -399,7 +399,7 @@ where zyxx.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 住院号获取病人基本信息 姓名，性别，年龄，病人性质
+        /// Lấy thông tin cơ bản của bệnh nhân theo số nhập viện: họ tên, giới tính, tuổi, tính chất bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -444,13 +444,13 @@ where zyxx.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 住院病人筛选
+        /// Lọc bệnh nhân nội trú
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="bq"></param>
         /// <param name="zyh"></param>
         /// <param name="xm"></param>
-        /// <param name="zybz">在院标志，多个用逗号分割</param>
+        /// <param name="zybz">Cờ đang nằm viện, nhiều giá trị phân tách bằng dấu phẩy</param>
         /// <returns></returns>
         public IList<InPatientNursingInputVO> GetInPatSearchList(string orgId, string bq,DateTime rq,string sj, string zyh, string zybz = null)
         {
@@ -492,7 +492,7 @@ where zyxx.OrganizeId = @orgId";
             return this.FindList<InPatientNursingInputVO>(sql,  pars.ToArray());
         }
         /// <summary>
-        /// 获取全部病人树信息
+        /// Lấy toàn bộ thông tin cây bệnh nhân
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
@@ -510,11 +510,11 @@ left join zy_cwsyjlk cw with(nolock) on cw.zyh=b.zyh and cw.organizeid=b.Organiz
             {
                 switch (zyzt)
                 {
-                    case "zy"://在院：不是已出院，不是作废记录，不是取消入院
+                    case "zy"://Đang nằm viện: không phải đã xuất viện, không phải bản ghi đã hủy, không phải hủy nhập viện
                         sql += " and b.zybz in (SELECT * FROM dbo.f_split(@zybz, ','))";
                         par.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Bqz));
                         break;
-                    case "cy"://出院：已出院状态
+                    case "cy"://Xuất viện: trạng thái đã xuất viện
                         sql += " and b.zybz in (SELECT * FROM dbo.f_split(@zybz, ','))";
                         par.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Ycy + "," + (int)EnumZYBZ.Djz));
                         break;
@@ -548,7 +548,7 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
             return this.FirstOrDefault<InpWardPatTreeVO>(sql, par.ToArray());
         }
         /// <summary>
-        /// 住院多病人护理录入
+        /// Nhập ghi chép chăm sóc nhiều bệnh nhân nội trú
         /// </summary>
         /// <param name="entity"></param>
         public void submitmutiple(List<InpatientVitalSignsEntity> entity,string orgId,int? sjd,DateTime rq, string flag)
@@ -572,7 +572,7 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
                         item.rq = rq;
                         item.lrflag = flag;
                         item.Create(true);
-                        if (flag == "1")//自定义录入
+                        if (flag == "1")//Nhập tùy chỉnh
                         {
                             item.zdysjd = sjd.ToString();
                         }
@@ -713,7 +713,7 @@ where prejs_id=@prejs_id
 
         }
         /// <summary>
-        /// 预交金额度提醒
+        /// Nhắc nhở hạn mức tiền tạm ứng
         /// </summary>
         /// <param name="patlist"></param>
         /// <param name="orgId"></param>
@@ -760,8 +760,8 @@ zyxx.zt = 1 and  zyxx.OrganizeId=@orgId and zyxx.zyh in (select col from dbo.f_s
 
 			var val1 = outParameter1.Value;
 			var val2 = outParameter2.Value;
-			var val3 = outParameter3.Value;//状态
-			var val4 = outParameter4.Value;//错误信息
+			var val3 = outParameter3.Value;//Trạng thái
+			var val4 = outParameter4.Value;//Thông tin lỗi
 			RefSuccess reflist = new RefSuccess();
 			if (val1 != null)
 			{

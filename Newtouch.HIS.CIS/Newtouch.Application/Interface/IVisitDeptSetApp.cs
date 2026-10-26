@@ -3,12 +3,12 @@
 namespace Newtouch.Application.Interface
 {
     /// <summary>
-    /// 门诊出诊设置
+    /// Cài đặt khám ngoại trú
     /// </summary>
     public interface IVisitDeptSetApp
     {
         /// <summary>
-        /// 提交表单
+        /// Gửi biểu mẫu
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="userCode"></param>

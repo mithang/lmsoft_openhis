@@ -25,7 +25,7 @@ namespace Newtouch.DomainServices
 
         }
         /// <summary>
-        /// 获取病区发药患者树
+        /// Lấy cây bệnh nhân phát thuốc của khu bệnh
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
@@ -229,7 +229,7 @@ and exists (
                             ClientNo = Guid.NewGuid(),
                             TimeStamp = DateTime.Now.ToString()
                         };
-                        //调用药房药库接口请求退药，返回IsSucceed==true 则全部成功，若false 则认为全部失败 
+                        //Gọi giao diện nhà thuốc/kho thuốc yêu cầu trả thuốc, nếu trả về IsSucceed==true thì toàn bộ thành công, nếu false thì coi là toàn bộ thất bại 
                         var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>(
                         "/api/ResourcesOperate/HospitalizatiionReturnDispensingMedicine", reqobj, autoAppendToken: false);
 
@@ -241,11 +241,11 @@ and exists (
                                 db.Commit();
                             }
                         }
-                        else //黄杉杉修改于2019.05.24 药房药库请求返回不支持 （5 药品已退 6 已申请退药） 两种情况，所以不做处理
+                        else //黄杉杉 sửa ngày 2019.05.24: Yêu cầu nhà thuốc/kho thuốc trả về không hỗ trợ (5 Thuốc đã trả, 6 Đã xin trả thuốc) hai trường hợp này, nên không xử lý
                         //if (apires.code == APIRequestHelper.ResponseResultCode.FAIL && apires.sub_msg != "")
                         //{
 
-                        //    var data = Tools.Json.ToObject<List<InpMedReturnResultDataDto>>(apires.data.ToString()); //接口返回数据 
+                        //    var data = Tools.Json.ToObject<List<InpMedReturnResultDataDto>>(apires.data.ToString()); //Dữ liệu trả về của giao diện 
                         //medList = "";
                         //if (data != null)
                         //{
@@ -253,7 +253,7 @@ and exists (
                         //    {
                         //        if (item.ErrorCode == "5" || item.ErrorCode == "6")
                         //        {
-                        //            //5 药品已退 6 已申请退药
+                        //            //5 Thuốc đã trả, 6 Đã xin trả thuốc
                         //            var list = yzList.Where(p => p.yzId == item.yzId).Where(p => p.ypCode == item.ypCode).Where(p => p.zxrq == item.zxrq);
                         //            foreach (InpMedReturnNeedDto fyItem in list)
                         //            {
@@ -276,7 +276,7 @@ and exists (
                         //    var hastyjl = this.FindList<InpatientMedicineReturnEntity>(sql, new[] { new SqlParameter("@medList", medL), new SqlParameter("@orgId ", user.OrganizeId) });
                         //    if (hastyjl.Count > 0)
                         //    {
-                        //        //更新发药请求库对应医嘱为退药状态
+                        //        //Cập nhật y lệnh tương ứng trong kho yêu cầu phát thuốc thành trạng thái trả thuốc
                         //        sql = @"update a
                         //            set a.tybz=@tybz,a.LastModifierCode=@modificode,a.[LastModifyTime]=getdate()
                         //            from zy_fyqqk a 
@@ -327,7 +327,7 @@ and exists (
                         {
                             int ypsl = ime.ypsl;
                             if (item.yzlx == 10) {
-                                ypsl = Convert.ToInt32(ime.mcsl ?? 0)*ime.ypsl; //中药需ypsl*每次数量 =中药总数量
+                                ypsl = Convert.ToInt32(ime.mcsl ?? 0)*ime.ypsl; //Thuốc Đông y cần ypsl*Số lượng mỗi lần = Tổng số lượng thuốc Đông y
                             }
                             ime.ytsl = (ime.ytsl ?? 0) + item.tsl;
                             if (ime.ytsl == ypsl)
@@ -392,8 +392,8 @@ and exists (
                 //int flag = this.ExecuteSqlCommand(sql, para);
                 //if (flag != 0)
                 //{
-                //    //生成退药请求
-                //    //生成退药序号
+                //    //Sinh yêu cầu trả thuốc
+                //    //Sinh số thứ tự trả thuốc
                 //    int tyxh = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueIntValue("zy_tyxh", user.OrganizeId);
                 //    if (tyxh > 0)
                 //    {

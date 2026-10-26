@@ -6,38 +6,38 @@ namespace Newtouch.CIS.APIRequest.Inpatient
     public class PatInfoRequest: JSONRequestBase
     {
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         [Required]
         public string zyh { get; set; }
 
         /// <summary>
-        /// 在院标志
+        /// Cờ đang nằm viện
         /// </summary>
         public string zybz { get; set; }
         /// <summary>
-        /// 入院诊断
+        /// Chẩn đoán nhập viện
         /// </summary>
         public string ryzd { get; set; }  
         public string ryzdmc { get; set; }
-        //病人性质代码 
+        //Mã tính chất bệnh nhân 
         public string brxz { get; set; }
         /// <summary>
-        /// 病人性质描述
+        /// Mô tả tính chất bệnh nhân
         /// </summary>
         public string brxzmc { get; set; }
         /// <summary>
-        ///  联系人姓名
+        ///  Tên người liên hệ
         /// </summary>
         public string lxr { get; set; }
 
         /// <summary>
-        /// 联系人关系
+        /// Quan hệ người liên hệ
         /// </summary>
         public string lxrgx { get; set; }
 
         /// <summary>
-        /// 联系人电话
+        /// Điện thoại người liên hệ
         /// </summary>
         public string lxrdh { get; set; }
     }

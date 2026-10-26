@@ -3,13 +3,13 @@
 namespace Newtouch.CIS.Proxy
 {
     /// <summary>
-    /// 扩展
+    /// Mở rộng
     /// </summary>
     public static class Extend
     {
 
         /// <summary>
-        /// html编码转成html实体
+        /// Mã hóa html thành thực thể html
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
@@ -19,7 +19,7 @@ namespace Newtouch.CIS.Proxy
         }
 
         /// <summary>
-        /// 提取soapXml报文return内的内容
+        /// Trích xuất nội dung trong return của bản tin soapXml
         /// </summary>
         /// <param name="envelope"></param>
         /// <returns></returns>
@@ -33,7 +33,7 @@ namespace Newtouch.CIS.Proxy
         }
 
         /// <summary>
-        /// 提取soapXml报文return内的内容
+        /// Trích xuất nội dung trong return của bản tin soapXml
         /// </summary>
         /// <param name="envelope"></param>
         /// <returns></returns>
@@ -43,7 +43,7 @@ namespace Newtouch.CIS.Proxy
         }
 
         /// <summary>
-        /// 判断返回是否正确，判断依据为是否含有"<return>"
+        /// Xác định kết quả trả về có đúng hay không, căn cứ là có chứa "<return>" hay không
         /// </summary>
         /// <param name="response"></param>
         /// <returns></returns>

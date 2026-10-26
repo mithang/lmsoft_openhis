@@ -14,7 +14,7 @@ using Newtouch.Domain.ViewModels;
 namespace Newtouch.DomainServices
 {
     /// <summary>
-    /// 门诊输液药品信息
+    /// Thông tin thuốc truyền dịch ngoại trú
     /// </summary>
     public class MzsyypxxDmnService : DmnServiceBase, IMzsyypxxDmnService
     {
@@ -23,13 +23,13 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// 根据卡号获取输液信息
+        /// Lấy thông tin truyền dịch theo số thẻ
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
-        /// <param name="isEnd">true：已结束输液；false：未结束输液</param>
+        /// <param name="isEnd">true: Đã kết thúc truyền dịch; false: Chưa kết thúc truyền dịch</param>
         /// <returns></returns>
         public IList<MzsyypxxVO> SelectMzsyypxxByKh(Pagination pagination, string kh,string mzh, string organizeId, bool isEnd)
         {
@@ -79,7 +79,7 @@ AND syyp.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 根据卡号获取输液信息
+        /// Lấy thông tin truyền dịch theo số thẻ
         /// </summary>
         /// <param name="id"></param>
         /// <param name="organizeId"></param>
@@ -105,16 +105,16 @@ AND syyp.OrganizeId=@OrganizeId ");
         }
 
         /// <summary>
-        /// 未结束的输液患者
+        /// Bệnh nhân truyền dịch chưa kết thúc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
-        /// <param name="keyvalue">门诊号/姓名</param>
+        /// <param name="keyvalue">Số ngoại trú/Họ tên</param>
         /// <param name="fph"></param>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
         /// <param name="organizeId"></param>
-        /// <param name="isEnd">是否结束  false：输液未结束  true：输液已结束</param>
+        /// <param name="isEnd">Có kết thúc hay không false: Truyền dịch chưa kết thúc true: Truyền dịch đã kết thúc</param>
         /// <returns></returns>
         public IList<MzsyhzxxVO> SelectKhAndXm(Pagination pagination, string kh,string keyvalue, string fph, DateTime kssj, DateTime jssj, string organizeId, bool isEnd = false)
         {
@@ -144,7 +144,7 @@ AND syyp.fph LIKE '%' + @fph + '%'");
         }
 
         /// <summary>
-        /// 获取所有组号
+        /// Lấy tất cả số nhóm
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="organizeId"></param>
@@ -166,14 +166,14 @@ AND mzh=@mzh
         }
 
 		/// <summary>
-		/// 已结算处方明细查询
+		/// Tra cứu chi tiết đơn thuốc đã thanh toán
 		/// </summary>
 		/// <param name="organizeId"></param>
 		/// <param name="kssj"></param>
 		/// <param name="jssj"></param>
 		/// <param name="fph"></param>
 		/// <param name="kh"></param>
-		/// <param name="yfCode">用法代码</param>
+		/// <param name="yfCode">Mã cách dùng</param>
 		/// <returns></returns>
 		public List<OutpatientSettledRpQueryResponseDTO> OutpatientSettledRpQuery(string organizeId, DateTime kssj, DateTime jssj, string fph, string kh, string yfCode, string mzh)
 		{
@@ -211,7 +211,7 @@ AND cfmx.yfCode in (select col from f_split(@yfCode,',') where col>'') ";
 
 
 		/// <summary>
-		/// 插入新输液信息
+		/// Chèn thông tin truyền dịch mới
 		/// </summary>
 		/// <param name="item"></param>
 		/// <param name="organizeId"></param>

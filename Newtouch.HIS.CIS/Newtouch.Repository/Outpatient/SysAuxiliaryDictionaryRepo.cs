@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取当前组织下的所有有效词典
+        /// Lấy tất cả từ điển có hiệu lực dưới tổ chức hiện tại
         /// </summary>
         /// <returns></returns>
         public IList<SysAuxiliaryDictionaryEntity> GetValidListByOrg(string orgId, bool withCache = false)
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取词典列表
+        /// Lấy danh sách từ điển
         /// </summary>
         /// <returns></returns>
         public List<SysAuxiliaryDictionaryEntity> GetListByOrg(string orgId)
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Repository
                     throw new FailedException("编号不可重复");
                 }
 
-                SysAuxiliaryDictionaryEntity oldEntity = null;   //变更前Entity
+                SysAuxiliaryDictionaryEntity oldEntity = null;   //Entity trước khi thay đổi
                 oldEntity = this.FindEntity(keyValue);
                 this.DetacheEntity(oldEntity);
 
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(string keyValue)

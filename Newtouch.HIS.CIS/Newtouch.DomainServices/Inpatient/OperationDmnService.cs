@@ -25,7 +25,7 @@ namespace Newtouch.DomainServices.Inpatient
         { }
 
         /// <summary>
-        /// 手术安排列表查询
+        /// Tra cứu danh sách sắp xếp phẫu thuật
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -89,7 +89,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// 手术安排内容获取
+        /// Lấy nội dung sắp xếp phẫu thuật
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -109,7 +109,7 @@ WHERE a.Id = @Id AND a.OrganizeId=@orgId ";
         }
 
         /// <summary>
-        /// 获取手术医嘱病人
+        /// Lấy bệnh nhân có y lệnh phẫu thuật
         /// </summary>
         /// <param name="psOrgId"></param>
         /// <returns></returns>
@@ -127,7 +127,7 @@ AND zyxx.zybz in ('1','2','3')
         }
 
         /// <summary>
-        /// 提交补录费用
+        /// Gửi phí bổ sung
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -141,7 +141,7 @@ AND zyxx.zybz in ('1','2','3')
                 using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
                 {
                     InpatientFeeDetailEntity tmp = null;
-                    foreach (InpatientFeeDetailEntity item in FeeDetails)//添加或更新的数据
+                    foreach (InpatientFeeDetailEntity item in FeeDetails)//Dữ liệu thêm hoặc cập nhật
                     {
                         if (string.IsNullOrWhiteSpace(item.Id))
                         {
@@ -153,22 +153,22 @@ AND zyxx.zybz in ('1','2','3')
                             tmp = Exists.FirstOrDefault(p => p.Id == item.Id);
                             if (tmp != null)
                             {
-                                if (tmp.xmdm != item.xmdm || tmp.sl != item.sl)//数据有修改,则更新(项目或数量变动)
+                                if (tmp.xmdm != item.xmdm || tmp.sl != item.sl)//Nếu dữ liệu có sửa đổi thì cập nhật (hạng mục hoặc số lượng thay đổi)
                                 {
                                     item.LastModifyTime = DateTime.Now;
                                     item.LastModifierCode = item.czyh;
                                     db.Update<InpatientFeeDetailEntity>(item);
                                 }
-                                Exists.Remove(tmp);//提取要删除的数据
+                                Exists.Remove(tmp);//Trích xuất dữ liệu cần xóa
                             }
                         }
                     }
-                    foreach (InpatientFeeDetailEntity item in Exists)//删除的数据
+                    foreach (InpatientFeeDetailEntity item in Exists)//Dữ liệu đã xóa
                     {
                         item.zt = "0";
                         item.LastModifyTime = DateTime.Now;
                         item.LastModifierCode = item.czyh;
-                        db.Update<InpatientFeeDetailEntity>(item);//逻辑删除
+                        db.Update<InpatientFeeDetailEntity>(item);//Xóa logic
                     }
                     db.Commit();
                 }
@@ -181,7 +181,7 @@ AND zyxx.zybz in ('1','2','3')
 
 
         /// <summary>
-        /// 通过住院号,医嘱性质获取费用信息
+        /// Lấy thông tin chi phí theo số nhập viện, tính chất y lệnh
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="zyh"></param>

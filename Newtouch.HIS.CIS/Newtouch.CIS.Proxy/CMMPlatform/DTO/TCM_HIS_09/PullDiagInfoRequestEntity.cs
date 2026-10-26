@@ -4,87 +4,87 @@ using System.Xml.Serialization;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
 {
     /// <summary>
-    /// 提取诊断信息请求体
+    /// Thân yêu cầu trích xuất thông tin chẩn đoán
     /// </summary>
     [XmlRoot("Request")]
     public class PullDiagInfoRequestEntity : RequestBase
     {
 
         /// <summary>
-        /// 诊断信息体
+        /// Thân thông tin chẩn đoán
         /// </summary>
         public DiagInfo DiagInfo { get; set; }
     }
 
     /// <summary>
-    /// 诊断信息体
+    /// Thân thông tin chẩn đoán
     /// </summary>
     public class DiagInfo
     {
         /// <summary>
-        /// 就诊流水号
-        /// 必填
+        /// Số thứ tự khám bệnh
+        /// Bắt buộc
         /// </summary>
         public string serialNo { get; set; }
 
         /// <summary>
-        /// 机构编码
-        /// 必填
+        /// Mã tổ chức
+        /// Bắt buộc
         /// </summary>
         public string orgCode { get; set; }
 
         /// <summary>
-        /// 诊断明细集合
+        /// Tập hợp chi tiết chẩn đoán
         /// </summary>
         public List<Diagnosis> diagnosislist { get; set; }
     }
 
     /// <summary>
-    /// 诊断项
+    /// Hạng mục chẩn đoán
     /// </summary>
     public class Diagnosis
     {
         /// <summary>
-        /// 本地诊断代码
+        /// Mã chẩn đoán nội bộ
         /// </summary>
         public string localCode { get; set; }
 
         /// <summary>
-        /// 诊断编码（ICD10）
-        /// 必填
+        /// Mã chẩn đoán (ICD10)
+        /// Bắt buộc
         /// </summary>
         public string code { get; set; }
 
         /// <summary>
-        ///诊断类别 0：西医 1：中医
-        /// 必填
+        ///Loại chẩn đoán 0: Tây y 1: Đông y
+        /// Bắt buộc
         /// </summary>
         public string cate { get; set; }
 
         /// <summary>
-        ///诊断名称
-        /// 必填
+        ///Tên chẩn đoán
+        /// Bắt buộc
         /// </summary>
         public string name { get; set; }
 
         /// <summary>
-        ///中医诊断类型 0：疾病 1：症候； 当诊断分类为中医时必填
-        /// 必填
+        ///Loại chẩn đoán Đông y 0: Bệnh 1: Chứng hậu; bắt buộc khi phân loại chẩn đoán là Đông y
+        /// Bắt buộc
         /// </summary>
         public string type { get; set; }
 
         /// <summary>
-        ///中医诊断分组 此标识相同的疾病和症候诊断为一组
+        ///Nhóm chẩn đoán Đông y: Các chẩn đoán bệnh và chứng hậu có cùng định danh này là một nhóm
         /// </summary>
         public string group { get; set; }
 
         /// <summary>
-        ///中医诊断级别 0：主要诊断 1：次要诊断
+        ///Cấp chẩn đoán Đông y 0: Chẩn đoán chính 1: Chẩn đoán phụ
         /// </summary>
         public string level { get; set; }
 
         /// <summary>
-        ///描述
+        ///Mô tả
         /// </summary>
         public string description { get; set; }
     }

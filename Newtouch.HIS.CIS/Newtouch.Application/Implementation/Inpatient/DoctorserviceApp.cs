@@ -42,7 +42,7 @@ namespace Newtouch.Application.Implementation.Inpatient
         }
 
         /// <summary>
-        /// 修改药品医嘱时，根据医嘱Id获取详情并且展示到医嘱录入界面
+        /// Khi sửa y lệnh thuốc, lấy chi tiết theo Id y lệnh và hiển thị lên giao diện nhập y lệnh
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="yzId"></param>
@@ -123,8 +123,8 @@ namespace Newtouch.Application.Implementation.Inpatient
                             _iDoctorserviceDmnService.Getzxksmc(item.zxksdm, orgId, ref zxksmc);
                         }
 
-                        //获取单位计量数
-                        //根据停止时间计算天数
+                        //Lấy số lượng đơn vị đo lường
+                        //Tính số ngày theo thời gian dừng
                         if (item.tzsj != DateTime.MinValue &&
                             item.tzsj != DateTime.MaxValue &&
                             item.tzsj != null &&
@@ -187,7 +187,7 @@ namespace Newtouch.Application.Implementation.Inpatient
                             dj=dj
                         };
 
-                        //膳食医嘱逻辑添加
+                        //Thêm logic y lệnh ăn uống
                         string yslb;
                         string yslbdm;
                         string yszs;
@@ -296,7 +296,7 @@ namespace Newtouch.Application.Implementation.Inpatient
                         yztag = item.yztag,
                         dj=dj
                     };
-                    //膳食医嘱逻辑添加
+                    //Thêm logic y lệnh ăn uống
                     string yslb;
                     string yslbdm;
                     string yszs;

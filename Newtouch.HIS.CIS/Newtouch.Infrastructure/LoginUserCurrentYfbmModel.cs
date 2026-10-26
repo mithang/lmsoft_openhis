@@ -7,37 +7,37 @@ using System.Threading.Tasks;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 登录用户，当前药房部门信息
+    /// Người dùng đăng nhập, thông tin khoa nhà thuốc hiện tại
     /// </summary>
     public class LoginUserCurrentYfbmModel
     {
         /// <summary>
-        /// 药房部门Code
+        /// Code khoa nhà thuốc
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 药房部门级别（1级 药库，2级药房）
+        /// Cấp khoa nhà thuốc (cấp 1 kho thuốc, cấp 2 nhà thuốc)
         /// </summary>
         public string yfbmjb { get; set; }
 
         /// <summary>
-        /// 当前登录身份 的 药房部门：0药库；1门诊药房；2住院药房   药库直接通过yjbmjb判断就可以了
+        /// Khoa nhà thuốc của danh tính đăng nhập hiện tại: 0 kho thuốc; 1 nhà thuốc ngoại trú; 2 nhà thuốc nội trú. Kho thuốc có thể phán đoán trực tiếp qua yjbmjb
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 上级 药库 Code List（药房可向目标药库申领）
+        /// Code kho thuốc cấp trên (nhà thuốc có thể xin lĩnh từ kho thuốc mục tiêu)
         /// </summary>
         public IList<string> TheUpperYfbmCodeList { get; set; }
 
         /// <summary>
-        /// 下级 药房 Code List（药库可向目标药房发药）
+        /// Code nhà thuốc cấp dưới (kho thuốc có thể phát thuốc cho nhà thuốc mục tiêu)
         /// </summary>
         public IList<string> TheLowerYfbmCodeList { get; set; }
 
         /// <summary>
-        /// 药房部门名称
+        /// Tên khoa nhà thuốc
         /// </summary>
         public string yfbmmc { get; set; }
     }

@@ -1,15 +1,15 @@
 ﻿namespace Newtouch.CIS.Proxy
 {
     /// <summary>
-    /// 工具类
+    /// Lớp công cụ
     /// </summary>
     public static class Tools
     {
         /// <summary>
-        /// 获取性别代码
+        /// Lấy mã giới tính
         /// </summary>
         /// <param name="gender"></param>
-        /// <returns>返回中医对应的性别代码</returns>
+        /// <returns>Trả về mã giới tính tương ứng của Đông y</returns>
         public static string GetGenderCode(string gender)
         {
             switch (gender.Trim())
@@ -31,31 +31,31 @@
         }
 
         /// <summary>
-        /// 转换成中医对应的证件类型编码
+        /// Chuyển đổi thành mã loại giấy tờ tương ứng của Đông y
         /// </summary>
-        /// <param name="zjlx">证件类型</param>
-        /// <returns>中医对应的证件类型编码</returns>
+        /// <param name="zjlx">Loại giấy tờ</param>
+        /// <returns>Mã loại giấy tờ tương ứng của Đông y</returns>
         public static string CardTypeCodeChange(int zjlx)
         {
             switch (zjlx)
             {
-                case 1://身份证
+                case 1://Chứng minh nhân dân
                     return "01";
-                case 2://护照
+                case 2://Hộ chiếu
                     return "03";
-                case 3://军官证
+                case 3://Chứng nhận sĩ quan
                     return "04";
-                case 9://其他
+                case 9://Khác
                 default:
                     return "99";
             }
         }
 
         /// <summary>
-        /// 获取证件名称
+        /// Lấy tên giấy tờ
         /// </summary>
-        /// <param name="zjlx">cis证件类型</param>
-        /// <returns>中医对应的证件类型名称</returns>
+        /// <param name="zjlx">Loại giấy tờ cis</param>
+        /// <returns>Tên loại giấy tờ tương ứng của Đông y</returns>
         public static string GetCardType(int zjlx)
         {
             var code = CardTypeCodeChange(zjlx);
@@ -83,7 +83,7 @@
         }
 
         /// <summary>
-        /// 转换成中医对应的婚姻状况编码
+        /// Chuyển đổi thành mã tình trạng hôn nhân tương ứng của Đông y
         /// </summary>
         /// <param name="hf"></param>
         /// <returns></returns>
@@ -91,9 +91,9 @@
         {
             switch (hf)
             {
-                case 0://未婚
+                case 0://Chưa kết hôn
                     return "10";
-                case 1://已婚
+                case 1://Đã kết hôn
                     return "20";
                 case 9:
                 default:
@@ -102,7 +102,7 @@
         }
 
         /// <summary>
-        /// 转换成中医对应的婚姻状况编码
+        /// Chuyển đổi thành mã tình trạng hôn nhân tương ứng của Đông y
         /// </summary>
         /// <param name="hf"></param>
         /// <returns></returns>
@@ -132,7 +132,7 @@
         }
 
         /// <summary>
-        /// 本地病人性质转中医馆病人性质
+        /// Chuyển tính chất bệnh nhân nội bộ thành tính chất bệnh nhân phòng khám Đông y
         /// </summary>
         /// <param name="brxz"></param>
         /// <returns></returns>
@@ -140,11 +140,11 @@
         {
             switch (brxz)
             {
-                case "1"://本地 自费
-                    return "2";// 中医馆 自费
-                case "0"://本地 自费
+                case "1"://Nội trú Tự chi trả
+                    return "2";// Phòng khám Đông y Tự chi trả
+                case "0"://Nội trú Tự chi trả
                 default:
-                    return "1";// 中医馆 自费
+                    return "1";// Phòng khám Đông y Tự chi trả
             }
         }
     }

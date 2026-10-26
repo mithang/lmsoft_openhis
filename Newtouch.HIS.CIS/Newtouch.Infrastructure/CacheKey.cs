@@ -14,12 +14,12 @@
         public static string ValidSystemBwFlSetKey = "set:VBodyDlSetKey_{0}";
 
         /// <summary>
-        /// 当前登录的用户的药房部门信息  {0}UserId
+        /// Thông tin khoa nhà thuốc của người dùng đang đăng nhập {0}UserId
         /// </summary>
         public static string CurrentYfbmInfoEntityKey = "string:CurrentYfbmInfo_{0}";
 
         /// <summary>
-        /// 用户登陆第三方授权token {0} 当前系统AppId {1} 机构代码 {2} 用户
+        /// Token ủy quyền bên thứ ba khi người dùng đăng nhập {0} AppId hệ thống hiện tại {1} Mã tổ chức {2} Người dùng
         /// </summary>
         public static string AccessToken = "${0}${1}:accesstoken_{2}";
     }

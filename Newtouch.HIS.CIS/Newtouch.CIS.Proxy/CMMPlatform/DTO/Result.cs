@@ -1,19 +1,19 @@
 ﻿namespace Newtouch.CIS.Proxy.CMMPlatform.DTO
 {
     /// <summary>
-    /// 响应体结果
+    /// Kết quả thân phản hồi
     /// </summary>
     public class Result
     {
         /// <summary>
-        /// 1： 成功； 0：失败
-        /// 必填
+        /// 1: Thành công; 0: Thất bại
+        /// Bắt buộc
         /// </summary>
         public string code { get; set; }
 
         /// <summary>
-        /// 成功；失败(补充失败原因描述)
-        /// 必填
+        /// Thành công; Thất bại (bổ sung mô tả nguyên nhân thất bại)
+        /// Bắt buộc
         /// </summary>
         public string desc  {get; set; }
 }

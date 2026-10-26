@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.CIS.Proxy
 {
     /// <summary>
-    /// 贵安远程医疗接口代理
+    /// Đại diện giao diện y tế từ xa Quý An
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="TV"></typeparam>
@@ -11,7 +11,7 @@
         protected string IntegratedModuleUrl = Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("IntegratedModuleUrl");
 
         /// <summary>
-        /// 执行
+        /// Thực thi
         /// </summary>
         /// <param name="requestDto"></param>
         /// <returns></returns>

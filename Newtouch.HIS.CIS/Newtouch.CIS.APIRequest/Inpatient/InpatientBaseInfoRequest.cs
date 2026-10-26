@@ -3,22 +3,22 @@
 namespace Newtouch.CIS.APIRequest.Inpatient
 {
     /// <summary>
-    /// 获取住院病人基本信息
+    /// Lấy thông tin cơ bản của bệnh nhân nội trú
     /// </summary>
     public class InpatientBaseInfoRequest : JSONRequestBase
     {
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 患者姓名
+        /// Tên bệnh nhân
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// ID tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
     }

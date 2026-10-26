@@ -11,7 +11,7 @@ using System.Text;
 namespace Newtouch.DomainServices
 {
     /// <summary>
-    /// 预约挂号
+    /// Đặt lịch hẹn khám
     /// </summary>
     public class SysBespeakRegisterDmnService : DmnServiceBase, ISysBespeakRegisterDmnService
     {
@@ -95,7 +95,7 @@ AND br.zt='1'
         }
 
         /// <summary>
-        /// 根据科室和排班日期获取系统预约排班
+        /// Lấy lịch đặt lịch hẹn của hệ thống theo khoa và ngày xếp lịch
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="regDate"></param>
@@ -121,7 +121,7 @@ AND br.regDate=@regDate
         }
 
         /// <summary>
-        /// 根据科室获取系统预约排班
+        /// Lấy lịch đặt lịch hẹn của hệ thống theo khoa
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="organizeId"></param>

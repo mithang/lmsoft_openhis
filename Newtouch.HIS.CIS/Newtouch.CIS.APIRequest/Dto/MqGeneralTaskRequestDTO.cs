@@ -3,28 +3,28 @@
 namespace Newtouch.CIS.APIRequest.Dto
 {
     /// <summary>
-    /// 通用消息请求报文
+    /// Bản tin yêu cầu thông báo chung
     /// </summary>
     public class MqGeneralTaskRequestDto : RequestBase
     {
         /// <summary>
-        /// 消息主内容
+        /// Nội dung chính của thông báo
         /// </summary>
         public string body { get; set; }
     }
 
     /// <summary>
-    /// MqGeneralTaskRequestDto.body反序列化内容
+    /// Nội dung giải tuần tự hóa của MqGeneralTaskRequestDto.body
     /// </summary>
     public class MqGeneralTaskBody
     {
         /// <summary>
-        /// 操作类型
+        /// Loại thao tác
         /// </summary>
         public string OperationType { get; set; }
 
         /// <summary>
-        /// 内容，action传参
+        /// Nội dung, tham số truyền action
         /// </summary>
         public string Content { get; set; }
     }

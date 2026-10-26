@@ -7,7 +7,7 @@ using Newtouch.Tools;
 namespace NewtouchCIS.API.Controllers
 {
     /// <summary>
-    /// 中医馆结构测试
+    /// Kiểm tra cấu trúc phòng khám Đông y
     /// </summary>
     [System.Web.Http.RoutePrefix("api/cmmtests")]
     public class CmmTestsController : ApiControllerBase<CmmTestsController>
@@ -19,7 +19,7 @@ namespace NewtouchCIS.API.Controllers
         }
 
         ///// <summary>
-        ///// 当前患者门诊预约查询
+        ///// Tra cứu đặt lịch hẹn khám ngoại trú của bệnh nhân hiện tại
         ///// </summary>
         ///// <param name="request"></param>
         ///// <returns></returns>
@@ -30,7 +30,7 @@ namespace NewtouchCIS.API.Controllers
         //}
 
         /// <summary>
-        /// 当前患者门诊预约查询
+        /// Tra cứu đặt lịch hẹn khám ngoại trú của bệnh nhân hiện tại
         /// </summary>
         /// <param name="jzxx"></param>
         /// <param name="organizeId"></param>

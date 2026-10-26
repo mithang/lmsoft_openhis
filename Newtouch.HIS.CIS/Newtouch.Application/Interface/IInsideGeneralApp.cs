@@ -3,12 +3,12 @@
 namespace Newtouch.Application.Interface
 {
     /// <summary>
-    /// 内部接口调用业务
+    /// Nghiệp vụ gọi giao diện nội bộ
     /// </summary>
     public interface IInsideGeneralApp
     {
         /// <summary>
-        /// 公共入口
+        /// Điểm vào chung
         /// </summary>
         /// <param name="requestDto"></param>
         /// <returns></returns>

@@ -21,7 +21,7 @@ namespace Newtouch.Repository
             _cache = cache;
         }
         /// <summary>
-        /// 获取列表
+        /// Lấy danh sách
         /// </summary>
         /// <returns></returns>
         public List<SysBodyPartsEntity> GetListByOrg(string orgId)
@@ -30,7 +30,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -55,12 +55,12 @@ namespace Newtouch.Repository
                 entity.Create(true);
                 this.Insert(entity);
             }
-            //刷新缓存
+            //Làm mới bộ nhớ đệm
             _cache.Remove(string.Format(CacheKey.ValidSysBodyPartsSetKey_, entity.OrganizeId));
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="orgId"></param>

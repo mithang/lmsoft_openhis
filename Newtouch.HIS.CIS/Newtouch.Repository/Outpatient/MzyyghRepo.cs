@@ -7,7 +7,7 @@ using System;
 namespace Newtouch.Repository
 {
     /// <summary>
-    /// 门诊预约挂号
+    /// Đặt lịch hẹn khám ngoại trú
     /// </summary>
     public class MzyyghRepo : RepositoryBase<MzyyghEntity>, IMzyyghRepo
     {
@@ -16,7 +16,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 根据ID删除已预约挂号
+        /// Xóa đặt lịch hẹn khám theo ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -29,7 +29,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 赴约
+        /// Đến hẹn
         /// </summary>
         /// <param name="id"></param>
         /// <param name="arrivalDate"></param>

@@ -21,7 +21,7 @@ namespace Newtouch.DomainServices
         {
 
         }
-        #region 作废
+        #region Hủy bỏ
         public List<VSelProductInfoVO> DepartmentStockListQuery(DepartmentStockListQueryParamDTO param)
         {
             var sql = new StringBuilder(@"
@@ -166,13 +166,13 @@ GROUP BY s.ph,s.pc,s.yxq,s.scrq,s.fph,s.bmjj,s.minjj,s.zhyz,s.bmdwmc,s.zxdwmc
 
         #endregion
 
-        #region 科室物资库存
+        #region Tồn kho vật tư của khoa
         public List<WzTypeVo> GetWzTreeSelectJson()
         {
             return FindList<WzTypeVo>("select Id,name,parentId from NewtouchHIS_Base..wz_type where zt='1'");
         }
         /// <summary>
-        /// 库存汇总
+        /// Tổng hợp tồn kho
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ks"></param>
@@ -271,7 +271,7 @@ WHERE  num=1 and yxq < GETDATE() ");
         }
         
         /// <summary>
-        /// 库存批次批号明细
+        /// Chi tiết lô, số lô tồn kho
         /// </summary>
         /// <param name="ks"></param>
         /// <param name="OrganizeId"></param>
@@ -309,7 +309,7 @@ WHERE  num=1 and yxq < GETDATE() ");
             return FindList<VProductStorageDetailEntity>(sql, param);
         }
         /// <summary>
-        /// 变更库存可用状态
+        /// Thay đổi trạng thái khả dụng của tồn kho
         /// </summary>
         /// <param name="mxId"></param>
         /// <param name="OrganizeId"></param>
@@ -322,7 +322,7 @@ WHERE  num=1 and yxq < GETDATE() ");
 
         }
         /// <summary>
-        /// 同步物资耗材
+        /// Đồng bộ vật tư tiêu hao
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="userCode"></param>

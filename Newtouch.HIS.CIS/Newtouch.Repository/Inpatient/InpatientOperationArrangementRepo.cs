@@ -10,16 +10,16 @@ using FrameworkBase.MultiOrg.Repository;
 namespace Newtouch.Repository
 {
     /// <summary>
-    /// 创 建：周珏琦
-    /// 日 期：2019-01-28 13:27
-    /// 描 述：手术安排表
+    /// Tạo bởi: 周珏琦
+    /// Ngày: 2019-01-28 13:27
+    /// Mô tả: Bảng sắp xếp phẫu thuật
     /// </summary>
     public class InpatientOperationArrangementRepo : RepositoryBase<InpatientOperationArrangementEntity>, IInpatientOperationArrangementRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public InpatientOperationArrangementRepo(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {
@@ -27,10 +27,10 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu (thêm mới, sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public bool SubmitForm(InpatientOperationArrangementEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -62,9 +62,9 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void DeleteForm(string keyValue)
         {
             this.Delete(p => p.Id == keyValue);

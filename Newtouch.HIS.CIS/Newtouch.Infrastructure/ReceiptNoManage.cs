@@ -4,14 +4,14 @@ using System.Text;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 单据号管理
+    /// Quản lý số chứng từ
     /// </summary>
     public static class ReceiptNoManage
     {
         public static Random random = new Random();
 
         /// <summary>
-        /// 生成随机数 时间点（年月日时分秒）+三位随机数
+        /// Sinh số ngẫu nhiên: thời điểm (năm tháng ngày giờ phút giây) + số ngẫu nhiên ba chữ số
         /// </summary>
         /// <returns></returns>
         public static string GetNewOrderNoV1()
@@ -20,7 +20,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取物资入库单据号
+        /// Lấy số chứng từ nhập kho vật tư
         /// </summary>
         /// <param name="djmc"></param>
         /// <param name="userId"></param>
@@ -31,10 +31,10 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 在指定的字符串列表CnStr中检索符合拼音索引字符串
+        /// Tìm trong danh sách chuỗi chỉ định CnStr chuỗi phù hợp với chuỗi chỉ mục pinyin
         /// </summary>
-        /// <param name="cnStr">汉字字符串</param>
-        /// <returns>相对应的汉语拼音首字母串</returns>
+        /// <param name="cnStr">Chuỗi ký tự Hán</param>
+        /// <returns>Chuỗi chữ cái đầu pinyin tương ứng</returns>
         private static string GetSpellCode(string cnStr)
         {
             var strTemp = "";
@@ -47,14 +47,14 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 得到一个汉字的拼音第一个字母，如果是一个英文字母则直接返回大写字母
+        /// Lấy chữ cái đầu pinyin của một ký tự Hán, nếu là chữ cái tiếng Anh thì trả trực tiếp chữ hoa
         /// </summary>
-        /// <param name="cnChar">单个汉字</param>
-        /// <returns>单个大写字母</returns>
+        /// <param name="cnChar">Một ký tự Hán đơn</param>
+        /// <returns>Một chữ cái hoa đơn</returns>
         private static string GetCharSpellCode(string cnChar)
         {
             var zw = Encoding.Default.GetBytes(cnChar);
-            //如果是字母，则直接返回首字母
+            //Nếu là chữ cái thì trả trực tiếp chữ cái đầu
             if (zw.Length == 1)
             {
                 return cnChar.ToUpper();

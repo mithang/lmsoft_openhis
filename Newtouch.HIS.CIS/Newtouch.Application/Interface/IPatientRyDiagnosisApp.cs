@@ -5,12 +5,12 @@ using Newtouch.Domain.ValueObjects.Inpatient;
 namespace Newtouch.Application.Interface
 {
     /// <summary>
-    /// 患者入院诊断
+    /// Chẩn đoán nhập viện của bệnh nhân
     /// </summary>
     public interface IPatientRyDiagnosisApp
     {
         /// <summary>
-        /// 获取入院诊断信息
+        /// Lấy thông tin chẩn đoán nhập viện
         /// </summary>
         /// <param name="zhy"></param>
         /// <param name="organizeId"></param>
@@ -18,7 +18,7 @@ namespace Newtouch.Application.Interface
         List<PatientRyDiagnosisDto> PatientRyDiagnosisQuery(string zhy, string organizeId);
 
         /// <summary>
-        /// 保存入院诊断
+        /// Lưu chẩn đoán nhập viện
         /// </summary>
         /// <param name="patInAreaVo"></param>
         /// <param name="organizeId"></param>

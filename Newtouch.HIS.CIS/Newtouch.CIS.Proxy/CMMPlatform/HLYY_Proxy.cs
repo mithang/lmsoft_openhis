@@ -11,17 +11,17 @@ namespace Newtouch.CIS.Proxy.CMMPlatform
     public class HlyyProxy 
     {
         
-        // 声明 client 为类的属性
+        // Khai báo client là thuộc tính của lớp
         public HisApiClient Client { get; private set; }
         
         public HlyyProxy()
         {
-            // 在构造函数中初始化 client
+            // Khởi tạo client trong hàm khởi tạo
             Client = new HisApiClient();
         }
 
        /**
-        * 处方审核状态查询
+        * Tra cứu trạng thái duyệt đơn thuốc
         */
         public string GetEngDataStatus(string presNo)
         {
@@ -41,7 +41,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform
         }
        
         /**
-        * 处方审核状态查询
+        * Tra cứu trạng thái duyệt đơn thuốc
         */
         public EngineRes engine(EngineReq engineReq)
         {
@@ -54,7 +54,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform
         
         
         /**
-       * 说明书
+       * Hướng dẫn sử dụng
        */
         public string GetHisSmsJson(string ypmcId)
         {

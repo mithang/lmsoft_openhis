@@ -15,7 +15,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.Application.Implementation
 {
     /// <summary>
-    /// 患者入院诊断
+    /// Chẩn đoán nhập viện của bệnh nhân
     /// </summary>
     public class PatientRyDiagnosisApp : AppBase, IPatientRyDiagnosisApp
     {
@@ -23,7 +23,7 @@ namespace Newtouch.Application.Implementation
         private readonly IInpatientPatientInfoRepo _inpatientPatientInfoRepo;
 
         /// <summary>
-        /// 获取入院诊断信息
+        /// Lấy thông tin chẩn đoán nhập viện
         /// </summary>
         /// <param name="zhy"></param>
         /// <param name="organizeId"></param>
@@ -45,7 +45,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 保存入院诊断
+        /// Lưu chẩn đoán nhập viện
         /// </summary>
         /// <param name="patInAreaVo"></param>
         /// <param name="organizeId"></param>
@@ -57,20 +57,20 @@ namespace Newtouch.Application.Implementation
             if (string.IsNullOrWhiteSpace(patInAreaVo.zyh)) return "住院号不能为空！";
             if (string.IsNullOrWhiteSpace(patInAreaVo.ryzddm1) || string.IsNullOrWhiteSpace(patInAreaVo.ryzdmc1)) return "入院诊断1不能为空！";
 
-            #region 同步至Sett
+            #region Đồng bộ tới Sett
             var syncSettResult = SyncInPatDiagnosisToSett(patInAreaVo, organizeId, userCode);
             if (!string.IsNullOrWhiteSpace(syncSettResult)) return syncSettResult;
             #endregion
 
-            var patOutDiaList = _inpatientPatientDiagnosisRepo.SelectData(patInAreaVo.zyh, organizeId, "1");//获取历史出院诊断
-            var patInfo = _inpatientPatientInfoRepo.GetByZyh(organizeId, patInAreaVo.zyh);//获取患者信息
+            var patOutDiaList = _inpatientPatientDiagnosisRepo.SelectData(patInAreaVo.zyh, organizeId, "1");//Lấy chẩn đoán xuất viện trong quá khứ
+            var patInfo = _inpatientPatientInfoRepo.GetByZyh(organizeId, patInAreaVo.zyh);//Lấy thông tin bệnh nhân
             var operateTime = DateTime.Now;
             try
             {
 
                 using (var db = new EFDbTransaction(new DefaultDatabaseFactory()).BeginTrans())
                 {
-                    #region 修改病人信息库
+                    #region Sửa cơ sở dữ liệu thông tin bệnh nhân
                     if (patInfo != null)
                     {
                         patInfo.LastModifierCode = userCode;
@@ -81,7 +81,7 @@ namespace Newtouch.Application.Implementation
                     }
                     #endregion
 
-                    #region 修改住院病人诊断信息
+                    #region Sửa thông tin chẩn đoán bệnh nhân nội trú
                     if (patOutDiaList != null && patOutDiaList.Count > 0)
                     {
                         patOutDiaList.ForEach(p =>
@@ -121,7 +121,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 同步入院诊断至结算系统
+        /// Đồng bộ chẩn đoán nhập viện tới hệ thống thanh toán
         /// </summary>
         /// <param name="patInAreaVo"></param>
         /// <param name="organizeId"></param>

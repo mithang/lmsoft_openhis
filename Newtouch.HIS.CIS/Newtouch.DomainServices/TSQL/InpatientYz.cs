@@ -1,12 +1,12 @@
 ﻿namespace Newtouch.DomainServices.TSQL
 {
     /// <summary>
-    /// 住院医嘱
+    /// Y lệnh nội trú
     /// </summary>
     public class InpatientYz
     {
         /// <summary>
-        /// 医嘱执行 包括文字医嘱
+        /// Thực hiện y lệnh, bao gồm y lệnh văn bản
         /// </summary>
         public const string zyOrderExecutionWithWzYz = @"
 BEGIN TRAN

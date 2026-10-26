@@ -15,16 +15,16 @@ namespace Newtouch.DomainServices
     public class HospInterfaceSyncDmnService : DmnServiceBase, IHospInterfaceSyncDmnService
     {
         /// <summary>
-        /// 替换接口api 后台接口 SiteBaseAPIHelper
+        /// Thay thế giao diện api, giao diện nền tảng SiteBaseAPIHelper
         /// </summary>
         /// <param name="databaseFactory"></param>
         public HospInterfaceSyncDmnService(IDefaultDatabaseFactory databaseFactory) : base(databaseFactory)
         {
         }
 
-        #region 后台接口 SiteBaseAPIHelper
+        #region Giao diện nền tảng SiteBaseAPIHelper
         /// <summary>
-        /// 更新床位是否占用
+        /// Cập nhật giường bệnh có đang sử dụng hay không
         /// </summary>
         /// <param name="cwcode"></param>
         /// <param name="bq"></param>

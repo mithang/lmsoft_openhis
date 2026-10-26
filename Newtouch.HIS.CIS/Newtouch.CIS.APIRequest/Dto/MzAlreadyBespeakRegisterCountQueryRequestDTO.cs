@@ -4,27 +4,27 @@ using System;
 namespace Newtouch.CIS.APIRequest.Dto
 {
     /// <summary>
-    /// 已预约门诊挂号信息查询请求报文
+    /// Bản tin yêu cầu tra cứu thông tin đặt lịch hẹn khám ngoại trú đã đặt
     /// </summary>
     public class MzAlreadyBespeakRegisterCountQueryRequestDTO : RequestBase
     {
         /// <summary>
-        /// 科室代码
+        /// Mã khoa
         /// </summary>
         public string ksCode { get; set; }
         
         /// <summary>
-        /// 医生工号
+        /// Mã nhân viên bác sĩ
         /// </summary>
         public string ysgh { get; set; }
 
         /// <summary>
-        /// 预约日期
+        /// Ngày đặt lịch
         /// </summary>
         public DateTime regDate { get; set; }
 
         /// <summary>
-        /// 预约时间
+        /// Thời gian đặt lịch
         /// </summary>
         public string regTime { get; set; }
 

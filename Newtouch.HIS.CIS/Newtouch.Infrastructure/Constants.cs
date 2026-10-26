@@ -11,7 +11,7 @@ namespace Newtouch.Infrastructure
     public class Constants
     {
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// Id tổ chức (cấp cao nhất, cấu hình hệ thống)
         /// </summary>
         public static string TopOrganizeId
         {
@@ -22,7 +22,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// Id tổ chức (cấp cao nhất, cấu hình hệ thống)
         /// </summary>
         public static string AppId
         {
@@ -33,7 +33,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取当前的药剂部门（药房或药库）
+        /// Lấy khoa dược hiện tại (nhà thuốc hoặc kho thuốc)
         /// </summary>
         public static LoginUserCurrentYfbmModel CurrentYfbm
         {
@@ -45,7 +45,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取当前的药剂部门（药房或药库）
+        /// Lấy khoa dược hiện tại (nhà thuốc hoặc kho thuốc)
         /// </summary>
         /// <param name="userId"></param>
         public static LoginUserCurrentYfbmModel GetCurrentYfbm(string userId)
@@ -53,12 +53,12 @@ namespace Newtouch.Infrastructure
             return RedisHelper.Get<LoginUserCurrentYfbmModel>(string.Format(CacheKey.CurrentYfbmInfoEntityKey, userId)) ?? new LoginUserCurrentYfbmModel();
         }
         /// <summary>
-        /// 时间格式化
+        /// Định dạng thời gian
         /// </summary>
         public const string DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
         
         /// <summary>
-        /// 返回最小时间 1970-01-01 00:00:000
+        /// Trả về thời gian nhỏ nhất 1970-01-01 00:00:000
         /// </summary>
         public static DateTime MinDateTime
         {

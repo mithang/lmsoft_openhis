@@ -3,12 +3,12 @@
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// Base API请求帮助类
+    /// Lớp trợ giúp yêu cầu Base API
     /// </summary>
     public class SiteBaseAPIHelper : SiteAPIRequestHelperBase<SiteBaseAPIHelper>
     {
         /// <summary>
-        /// 域Addr配置 的 Key
+        /// Key cấu hình Addr của miền
         /// </summary>
         private readonly static string _domainConfigKey = "SiteBaseAPIHost";
 

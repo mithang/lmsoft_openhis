@@ -15,7 +15,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.Application.Implementation
 {
     /// <summary>
-    /// 盘点
+    /// Kiểm kê
     /// </summary>
     public class StockInventoryApp : AppBase, IStockInventoryApp
     {
@@ -24,7 +24,7 @@ namespace Newtouch.Application.Implementation
         private readonly IKcPdxxmxRepo _kcPdxxmxRepo;
 
         /// <summary>
-        /// 开始盘点
+        /// Bắt đầu kiểm kê
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -50,11 +50,11 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 盘点保存
+        /// Lưu kiểm kê
         /// </summary>
         /// <param name="inventoryInfoList"></param>
-        /// <param name="pdId">盘点单ID</param>
-        /// <param name="noPc">  0：按批次盘点 1：不按批次盘点</param>
+        /// <param name="pdId">ID phiếu kiểm kê</param>
+        /// <param name="noPc">  0：Kiểm kê theo lô 1：Không kiểm kê theo lô</param>
         public void SaveInventoryInfo(List<SaveInventoryDTO> inventoryInfoList, long pdId, string noPc = "0")
         {
             var pdInfo = _kcPdxxRepo.SelectPdInfByPdId(pdId, OperatorProvider.GetCurrent().OrganizeId);
@@ -70,11 +70,11 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 盘点保存
+        /// Lưu kiểm kê
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         /// <param name="pdId"></param>
-        /// <param name="noPc">0：按批次盘点 1：不按批次盘点</param>
+        /// <param name="noPc">0：Kiểm kê theo lô 1：Không kiểm kê theo lô</param>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
         private void SaveInventoryInfo(List<SaveInventoryDTO> inventoryInfoList, long pdId, string noPc, string warehouseId, string organizeId)
@@ -92,12 +92,12 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 取消盘点
+        /// Hủy kiểm kê
         /// </summary>
         /// <param name="pdId"></param>
         public void CancelInventory(long pdId)
         {
-            //判断是否有未完成的盘点
+            //Xác định có kiểm kê chưa hoàn thành hay không
             var count = _kcPdxxRepo.SelectUnfinishedInventoryByPdId(pdId, OrganizeId);
             if (count != 1)
             {
@@ -107,7 +107,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 结束盘点
+        /// Kết thúc kiểm kê
         /// </summary>
         /// <returns></returns>
         public void EndInventory(long pdId)
@@ -121,7 +121,7 @@ namespace Newtouch.Application.Implementation
             {
                 throw new FailedException("该盘点已结束");
             }
-            //生成盘点信息
+            //Sinh thông tin kiểm kê
             var resultMessage = _stockInventoryDmnService.EndInventory(pdId, OrganizeId, OperatorProvider.GetCurrent().UserCode);
             if (!string.IsNullOrEmpty(resultMessage) && !resultMessage.Contains("成功"))
             {
@@ -130,7 +130,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 提交损益
+        /// Gửi hỏng/thừa
         /// </summary>
         /// <param name="plist"></param>
         /// <param name="warehouseId"></param>
@@ -144,7 +144,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 组装损益信息
+        /// Ghép thông tin hỏng/thừa
         /// </summary>
         /// <param name="plist"></param>
         /// <param name="warehouseId"></param>

@@ -17,7 +17,7 @@ namespace Newtouch.CIS.APIRequest
             string brxx_id);
 
         [DllImport(@"../bin/Debug/Lis_HisReport.dll", EntryPoint = "GetZyReport", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
-        public static extern void GetZyReport([MarshalAs(UnmanagedType.BStr)] string Ado_lis, [MarshalAs(UnmanagedType.BStr)] string brxx_id);//lis住院报告
+        public static extern void GetZyReport([MarshalAs(UnmanagedType.BStr)] string Ado_lis, [MarshalAs(UnmanagedType.BStr)] string brxx_id);//Báo cáo nội trú lis
         [DllImport(@"../bin/Debug/Lis_HisReport.dll", EntryPoint = "CreateJpg_C", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern void CreateJpg_C([MarshalAs(UnmanagedType.BStr)] string Ado_lis, [MarshalAs(UnmanagedType.BStr)] string brxx_tmh,
           [MarshalAs(UnmanagedType.BStr)] string zydj_id, [MarshalAs(UnmanagedType.BStr)] string brxx_id);

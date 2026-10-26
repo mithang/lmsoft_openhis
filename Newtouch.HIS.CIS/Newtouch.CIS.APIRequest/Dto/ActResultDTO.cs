@@ -1,12 +1,12 @@
 ﻿namespace Newtouch.CIS.APIRequest.Dto
 {
     /// <summary>
-    /// 执行结果
+    /// Kết quả thực hiện
     /// </summary>
     public class ActResultDTO
     {
         /// <summary>
-        /// 构造函数初始化
+        /// Khởi tạo hàm khởi tạo
         /// </summary>
         public ActResultDTO()
         {
@@ -14,17 +14,17 @@
         }
 
         /// <summary>
-        /// 是否成功
+        /// Có thành công hay không
         /// </summary>
         public bool IsSucceed { get; set; }
 
         /// <summary>
-        /// 错误编码
+        /// Mã lỗi
         /// </summary>
         public int ErrorCode { get; set; }
 
         /// <summary>
-        /// 错误描述
+        /// Mô tả lỗi
         /// </summary>
         public string ErrorMsg { get; set; }
     }

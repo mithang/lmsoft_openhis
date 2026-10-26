@@ -19,9 +19,9 @@ namespace Newtouch.DomainServices.Inpatient
     {
         private readonly IInpatientDietBaseRepo _inpatientDietBaseRepo;
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public DietaryAdviceDmnService(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {
@@ -77,7 +77,7 @@ namespace Newtouch.DomainServices.Inpatient
                                 db.Insert(item);
                             }
                         }
-                        //物理删除
+                        //Xóa vật lý
                         if (dto.DelIds != null && dto.DelIds.Count() > 0)
                         {
                             var sql = @"UPDATE  dbo.zy_Dietsfxmdy

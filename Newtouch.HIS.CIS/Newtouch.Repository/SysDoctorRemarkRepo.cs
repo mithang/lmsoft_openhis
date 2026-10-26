@@ -17,7 +17,7 @@ namespace Newtouch.Repository
         {
         }
         /// <summary>
-        /// 获取列表
+        /// Lấy danh sách
         /// </summary>
         /// <returns></returns>
         public List<SysDoctorRemarkVO> GetListByOrg(string orgId)
@@ -34,7 +34,7 @@ where zt.OrganizeId=@orgId
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -62,7 +62,7 @@ where zt.OrganizeId=@orgId
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="orgId"></param>
@@ -74,7 +74,7 @@ where zt.OrganizeId=@orgId
 
 
 
-        #region 医生站--》文字录入--》指示文本框按钮
+        #region Trạm bác sĩ--》Nhập văn bản--》Nút hộp văn bản chỉ thị
 
 //        public List<SyssurgeryTextVO> surgery_record(string OrganizeId) {
 

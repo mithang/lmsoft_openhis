@@ -21,7 +21,7 @@ namespace NewtouchCIS.API.Controllers
         }
 
         /// <summary>
-        /// 更新处方收费标志
+        /// Cập nhật cờ thu phí của đơn thuốc
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -46,7 +46,7 @@ namespace NewtouchCIS.API.Controllers
             return base.CreateResponse(response);
         }
         /// <summary>
-        /// 更新处方收费标志
+        /// Cập nhật cờ thu phí của đơn thuốc
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -74,7 +74,7 @@ namespace NewtouchCIS.API.Controllers
             return base.CreateResponse(response);
         }
         /// <summary>
-        /// 更新处方退标志
+        /// Cập nhật cờ trả đơn thuốc
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>

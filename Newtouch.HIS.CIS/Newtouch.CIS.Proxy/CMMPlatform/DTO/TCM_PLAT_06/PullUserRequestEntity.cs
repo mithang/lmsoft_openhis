@@ -1,160 +1,160 @@
 ﻿namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_PLAT_06
 {
     /// <summary>
-    /// 推送患者信息请求体
+    /// Thân yêu cầu đẩy thông tin bệnh nhân
     /// </summary>
     public class PullUserRequestEntity : RequestBase
     {
         /// <summary>
-        /// 处理类型请求体
+        /// Thân yêu cầu loại xử lý
         /// </summary>
         public HandleType HandleType { get; set; }
 
         /// <summary>
-        /// 人员信息体
+        /// Thân thông tin nhân sự
         /// </summary>
         public User User { get; set; }
     }
 
     /// <summary>
-    /// 处理类型请求体
+    /// Thân yêu cầu loại xử lý
     /// </summary>
     public class HandleType
     {
         /// <summary>
-        /// 处理类型：A-新增，U-修改
-        /// 必填
+        /// Loại xử lý: A-Thêm mới, U-Sửa đổi
+        /// Bắt buộc
         /// </summary>
         public string handleType { get; set; }
     }
 
     /// <summary>
-    /// 人员信息体
+    /// Thân thông tin nhân sự
     /// </summary>
     public class User
     {
         /// <summary>
-        ///人员编号（用户名）
-        /// 必填
+        ///Mã nhân sự (tên đăng nhập)
+        /// Bắt buộc
         /// </summary>
         /// <returns></returns>
         public string id { get; set; }
 
         /// <summary>
-        ///默认值：1
-        /// 必填
+        ///Giá trị mặc định: 1
+        /// Bắt buộc
         /// </summary>
         /// <returns></returns>
         public string typeCode { get; set; }
 
         /// <summary>
-        ///工号
+        ///Mã nhân viên
         /// </summary>
         /// <returns></returns>
         public string jobNo { get; set; }
 
         /// <summary>
-        ///姓名
-        /// 必填
+        ///Họ tên
+        /// Bắt buộc
         /// </summary>
         /// <returns></returns>
         public string name { get; set; }
 
         /// <summary>
-        ///性别编码
-        /// 必填
+        ///Mã giới tính
+        /// Bắt buộc
         /// </summary>
         /// <returns></returns>
         public string genderCode { get; set; }
 
         /// <summary>
-        ///性别
-        /// 必填
+        ///Giới tính
+        /// Bắt buộc
         /// </summary>
         /// <returns></returns>
         public string gender { get; set; }
 
         /// <summary>
-        ///证件类型编码
-        /// 必填
+        ///Mã loại giấy tờ
+        /// Bắt buộc
         /// </summary>
         /// <returns></returns>
         public string cardTypeCode { get; set; }
 
         /// <summary>
-        ///证件类型
-        /// 必填
+        ///Loại giấy tờ
+        /// Bắt buộc
         /// </summary>
         /// <returns></returns>
         public string cardType { get; set; }
 
         /// <summary>
-        ///证件号码
-        /// 必填
+        ///Số giấy tờ
+        /// Bắt buộc
         /// </summary>
         /// <returns></returns>
         public string cardNo { get; set; }
 
         /// <summary>
-        ///出生日期-YYYYMMDD
+        ///Ngày sinh -YYYYMMDD
         /// </summary>
         /// <returns></returns>
         public string birthday { get; set; }
 
         /// <summary>
-        ///手机
+        ///Điện thoại di động
         /// </summary>
         /// <returns></returns>
         public string telephone { get; set; }
 
         /// <summary>
-        ///邮箱
+        ///Email
         /// </summary>
         /// <returns></returns>
         public string email { get; set; }
 
         /// <summary>
-        ///介绍
+        ///Giới thiệu
         /// </summary>
         /// <returns></returns>
         public string introduce { get; set; }
 
         /// <summary>
-        ///职称编码-医师职称编码
+        ///Mã chức danh - Mã chức danh bác sĩ
         /// </summary>
         /// <returns></returns>
         public string proTitleCode { get; set; }
 
         /// <summary>
-        ///职称
+        ///Chức danh
         /// </summary>
         /// <returns></returns>
         public string proTitle { get; set; }
 
         /// <summary>
-        ///所属机构编码
-        /// 必填
+        ///Mã tổ chức trực thuộc
+        /// Bắt buộc
         /// </summary>
         /// <returns></returns>
         public string orgCode { get; set; }
 
         /// <summary>
-        ///所属科室编码
-        /// 必填
+        ///Mã khoa trực thuộc
+        /// Bắt buộc
         /// </summary>
         /// <returns></returns>
         public string deptCode { get; set; }
 
         /// <summary>
-        ///角色编码 0： 省管理员,1： 中医馆管理员,2： 医生
-        /// 必填
+        ///Mã vai trò 0: Quản trị viên cấp tỉnh, 1: Quản trị viên phòng khám Đông y, 2: Bác sĩ
+        /// Bắt buộc
         /// </summary>
         /// <returns></returns>
         public string roleCode { get; set; }
 
         /// <summary>
-        ///机构编号（唯一标识）
-        /// 必填
+        ///Mã tổ chức (định danh duy nhất)
+        /// Bắt buộc
         /// </summary>
         /// <returns></returns>
         public string oid { get; set; }

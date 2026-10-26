@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 模板列表
+        /// Danh sách mẫu
         /// </summary>
         /// <returns></returns>
         public List<InspectionTemplateEntity> GetList(int type, string orgId)

@@ -19,7 +19,7 @@ namespace NewtouchCIS.API.Controllers
         {
         }
         /// <summary>
-        /// 调用病案智能审核
+        /// Gọi duyệt thông minh bệnh án
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>

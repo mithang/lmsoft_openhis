@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace Newtouch.Repository.Outpatient
 {
     /// <summary>
-    /// 输液执行信息
+    /// Thông tin thực hiện truyền dịch
     /// </summary>
     public class MzsyzxxxRepo : RepositoryBase<MzsyzxxxEntity>, IMzsyzxxxRepo
     {
@@ -17,7 +17,7 @@ namespace Newtouch.Repository.Outpatient
         }
 
         /// <summary>
-        /// 提交执行
+        /// Gửi thực hiện
         /// </summary>
         /// <param name="syIds"></param>
         /// <param name="zt"></param>

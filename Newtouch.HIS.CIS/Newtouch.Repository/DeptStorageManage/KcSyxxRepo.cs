@@ -9,7 +9,7 @@ using Newtouch.Domain.IRepository.DeptStorageManage;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 损益
+    /// Hỏng/thừa
     /// </summary>
     public class KcSyxxRepo : RepositoryBase<KcSyxxEntity>, IKcSyxxRepo
     {

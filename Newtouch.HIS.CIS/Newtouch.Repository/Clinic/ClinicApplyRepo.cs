@@ -15,9 +15,9 @@ namespace Newtouch.Repository.Clinic
     public class ClinicApplyRepo : RepositoryBase<ClinicApplyInfoEntity>, IClinicApplyRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public ClinicApplyRepo(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {
@@ -25,7 +25,7 @@ namespace Newtouch.Repository.Clinic
         }
 
         /// <summary>
-        /// 更新申请状态
+        /// Cập nhật trạng thái đơn xin
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="sqzt"></param>

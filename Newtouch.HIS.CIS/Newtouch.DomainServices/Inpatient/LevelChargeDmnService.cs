@@ -18,16 +18,16 @@ namespace Newtouch.DomainServices.Inpatient
     public class LevelChargeDmnService : DmnServiceBase, ILevelChargeDmnService
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public LevelChargeDmnService(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {
 
         }
         /// <summary>
-        /// 获取等级费用
+        /// Lấy phí cấp độ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="bqCode"></param>

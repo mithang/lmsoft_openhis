@@ -25,7 +25,7 @@ namespace Newtouch.DomainServices
 		}
 
 		/// <summary>
-		/// 药品用法 检索
+		/// Tra cứu cách dùng thuốc
 		/// </summary>
 		/// <param name="orgId"></param>
 		/// <returns></returns>
@@ -43,7 +43,7 @@ WHERE zt='1'
 			});
 		}
         /// <summary>
-		/// 药品用法 检索
+		/// Tra cứu cách dùng thuốc
 		/// </summary>
 		/// <param name="orgId"></param>
 		/// <returns></returns>
@@ -53,7 +53,7 @@ WHERE zt='1'
          return this.FindList<SysAuxiliaryDictionaryEntity>(sql);
         }
         /// <summary>
-        /// 获取中药代煎费
+        /// Lấy phí sắc thuốc Đông y
         /// </summary>
         /// <returns></returns>
         public decimal? GetDjFee(string orgId)
@@ -96,7 +96,7 @@ WHERE zt='1'
         }
 
         /// <summary>
-        /// 获取系统部位
+        /// Lấy vị trí hệ thống
         /// </summary>
         /// <returns></returns>
         public IList<GetSysBodyPartsVO> GetSysBodyParts(string orgId)
@@ -112,7 +112,7 @@ select  isnull(bwCode,'') bwCode,isnull(bwmc,'') bwmc,isnull(bwflCode,'') bwflCo
         }
 
 		/// <summary>
-		/// 获取影像部位
+		/// Lấy vị trí hình ảnh
 		/// </summary>
 		/// <returns></returns>
 		public IList<GetYxBodyPartsVO> GetYxBodyParts(string orgId)
@@ -123,7 +123,7 @@ select DISTINCT jcbw,isnull(bwflCode,'') bwflCode,isnull(bwflmc,'') bwflmc from 
 		}
 
 		/// <summary>
-		/// 获取影像方法
+		/// Lấy phương pháp hình ảnh
 		/// </summary>
 		/// <returns></returns>
 		public IList<string> GetYxBodyMethod(string orgId, string jcbw)
@@ -146,7 +146,7 @@ select DISTINCT jcbw,isnull(bwflCode,'') bwflCode,isnull(bwflmc,'') bwflmc from 
         }
 
         /// <summary>
-        /// 获取系统嘱托
+        /// Lấy lời dặn của hệ thống
         /// </summary>
         /// <returns></returns>
         public IList<SysDoctorRemarkVO2> GetSysDoctorRemark(string orgId, string ksCode)
@@ -157,7 +157,7 @@ select ztCode,ztmc from xt_zt where OrganizeId=@orgId and ksCode=@ksCode and zt 
 		}
 
 		/// <summary>
-		/// 获取
+		/// Lấy
 		/// </summary>
 		/// <returns></returns>
 		public string GetDoctorDepartCode(string orgId, string ysgh)
@@ -167,7 +167,7 @@ select ztCode,ztmc from xt_zt where OrganizeId=@orgId and ksCode=@ksCode and zt 
 		}
 
 		/// <summary>
-		/// 通过字典代码获取子项数据
+		/// Lấy dữ liệu mục con theo mã từ điển
 		/// </summary>
 		/// <param name="code"></param>
 		/// <param name="orgId"></param>
@@ -217,10 +217,10 @@ select ztCode,ztmc from xt_zt where OrganizeId=@orgId and ksCode=@ksCode and zt 
 		}
 
 		/// <summary>
-		/// 获取病人基本信息
+		/// Lấy thông tin cơ bản của bệnh nhân
 		/// </summary>
-		/// <param name="blh">病历号</param>
-		/// <param name="mzh">门诊号</param>
+		/// <param name="blh">Số bệnh án</param>
+		/// <param name="mzh">Số ngoại trú</param>
 		/// <param name="organizeId"></param>
 		/// <returns></returns>
 		public List<SysPatientBasicInfoVO> SelectXtBrjbxx(string blh, string mzh, string organizeId)
@@ -243,7 +243,7 @@ WHERE brxx.blh=@blh AND brxx.zt='1' AND brxx.OrganizeId=@OrganizeId
 		}
 
 		/// <summary>
-		/// 获取病人卡信息
+		/// Lấy thông tin thẻ bệnh nhân
 		/// </summary>
 		/// <param name="blh"></param>
 		/// <param name="organizeId"></param>
@@ -289,19 +289,19 @@ where a.OrganizeId=@orgId and a.zt='1'";
 		}
 
 		/// <summary>
-		/// 获取医生开药权限
+		/// Lấy quyền kê thuốc của bác sĩ
 		/// </summary>
 		/// <param name="orgid"></param>
-		/// <param name="gh">工号</param>
-		/// <param name="tsypzl">药品种类</param>
-		/// <param name="qxMc">权限名称</param>
+		/// <param name="gh">Mã nhân viên</param>
+		/// <param name="tsypzl">Loại thuốc</param>
+		/// <param name="qxMc">Tên quyền</param>
 		/// <returns></returns>
 		public int GetPermissions(string orgid, string gh, string tsypzl, string dlcode, string kssqxjb)
 		{
 			var code = 1;
-			string sqls = @"select count(*) from [Newtouch_CIS]..[Sys_Config] where OrganizeId=@orgId and code = 'DocPresAuthCtrl' and Value = '1'";//查看是否具有开药的权限,此表的value 0为未开启此权限，1为开启
+			string sqls = @"select count(*) from [Newtouch_CIS]..[Sys_Config] where OrganizeId=@orgId and code = 'DocPresAuthCtrl' and Value = '1'";//Xem có quyền kê thuốc hay không, value của bảng này 0 là chưa bật quyền này, 1 là đã bật
 			var tt = this.FirstOrDefault<int>(sqls, new SqlParameter[] { new SqlParameter("@orgId", orgid) });
-			if (tt == 0) //如未在医生站开启开药权限，则所有药品均可开立
+			if (tt == 0) //Nếu chưa bật quyền kê thuốc tại trạm bác sĩ thì tất cả thuốc đều có thể kê
 			{
 				return code;
 			}
@@ -316,7 +316,7 @@ where a.OrganizeId=@orgid and b.gh=@gh and a.rel_value=@ypzl and a.rel_lxcode=1 
 				new SqlParameter("@gh",gh),
 				new SqlParameter("@ypzl",tsypzl),
 			};
-				var tsbz = this.FirstOrDefault<int>(sql, parm);//获取是否具有此类药物的特殊药品标志的开立权限,如大于0则有权限，等于0 则无权限
+				var tsbz = this.FirstOrDefault<int>(sql, parm);//Lấy xem có quyền kê thuốc có cờ thuốc đặc biệt loại này hay không, nếu lớn hơn 0 thì có quyền, bằng 0 thì không có quyền
 				if (tsbz == 0)
 				{
 					code = -1;
@@ -333,8 +333,8 @@ where a.OrganizeId=@orgid and b.gh=@gh and a.rel_value=2 and a.rel_lxcode=3 and 
 				new SqlParameter("@gh",gh),
 				new SqlParameter("@ksscode",kssqxjb),
 			};
-				var qxjb = this.FirstOrDefault<int>(sqlqxjb, parm1);//获取是否具有此类药物的抗生素开立权限,如大于0则有权限，等于0 则无权限
-				if (qxjb == 0)//该医生不具备抗生素非限制使用药物权限，则进行下一步判断
+				var qxjb = this.FirstOrDefault<int>(sqlqxjb, parm1);//Lấy xem có quyền kê kháng sinh loại thuốc này hay không, nếu lớn hơn 0 thì có quyền, bằng 0 thì không có quyền
+				if (qxjb == 0)//Bác sĩ này không có quyền dùng thuốc kháng sinh không hạn chế thì tiến hành bước phán đoán tiếp theo
 				{
 					string sql = @"select COUNT(a.qxId) from  NewtouchHIS_Base.dbo.xt_qxkz a 
 left join  NewtouchHIS_Base.dbo.xt_qxkz_rel b on a.OrganizeId=b.OrganizeId and a.qxId=b.qxId
@@ -345,7 +345,7 @@ where a.OrganizeId=@orgid and b.gh=@gh and a.rel_value=@ksscode and a.rel_lxcode
 				new SqlParameter("@gh",gh),
 				new SqlParameter("@ksscode",kssqxjb),
 			};
-					var kss = this.FirstOrDefault<int>(sql, parm2);//获取是否具有此类药物的抗生素开立权限,如大于0则有权限，等于0 则无权限
+					var kss = this.FirstOrDefault<int>(sql, parm2);//Lấy xem có quyền kê kháng sinh loại thuốc này hay không, nếu lớn hơn 0 thì có quyền, bằng 0 thì không có quyền
 					if (kss == 0)
 					{
 						code = -2;
@@ -363,7 +363,7 @@ where a.OrganizeId=@orgid and b.gh=@gh and a.rel_value=@dlcode and a.rel_lxcode=
 				new SqlParameter("@gh",gh),
 				new SqlParameter("@dlcode",dlcode),
 			};
-				var ypdl= this.FirstOrDefault<int>(sql, parm);//获取是否具有此类药物的大类名称开立权限,如大于0则有权限，等于0 则无权限
+				var ypdl= this.FirstOrDefault<int>(sql, parm);//Lấy xem có quyền kê thuốc có tên nhóm lớn loại này hay không, nếu lớn hơn 0 thì có quyền, bằng 0 thì không có quyền
 				if (ypdl == 0)
 				{
 					code = -3;

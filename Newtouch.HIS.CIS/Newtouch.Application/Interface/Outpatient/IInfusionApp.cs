@@ -6,12 +6,12 @@ using Newtouch.Domain.ViewModels.Outpatient;
 namespace Newtouch.Application.Interface
 {
     /// <summary>
-    /// 注射管理
+    /// Quản lý tiêm
     /// </summary>
     public interface IInfusionApp
     {
         /// <summary>
-        /// 同步已结算处方信息
+        /// Đồng bộ thông tin đơn thuốc đã thanh toán
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -21,7 +21,7 @@ namespace Newtouch.Application.Interface
         string SyncSettRpDetail(DateTime kssj, DateTime jssj, string fph, string kh, string mzh);
 
         /// <summary>
-        /// 已结算处方明细查询
+        /// Tra cứu chi tiết đơn thuốc đã thanh toán
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -31,47 +31,47 @@ namespace Newtouch.Application.Interface
         List<OutpatientSettledRpQueryResponseDTO> OutpatientSettledRpQuery(DateTime kssj, DateTime jssj, string fph, string kh,string mzh);
 
         /// <summary>
-        /// 分组
+        /// Nhóm
         /// </summary>
-        /// <param name="tags">输液明细ID</param>
-        /// <param name="groupNo">组号</param>
+        /// <param name="tags">ID chi tiết truyền dịch</param>
+        /// <param name="groupNo">Số nhóm</param>
         /// <returns></returns>
         string Grouping(List<long> tags, string groupNo);
 
         /// <summary>
-        /// 输液开始
+        /// Bắt đầu truyền dịch
         /// </summary>
-        /// <param name="tags">输液明细ID</param>
-        /// <param name="startDateTime">开始时间</param>
-        /// <param name="seatNum">座号/床号</param>
+        /// <param name="tags">ID chi tiết truyền dịch</param>
+        /// <param name="startDateTime">Thời gian bắt đầu</param>
+        /// <param name="seatNum">Số ghế/số giường</param>
         /// <returns></returns>
         string StartInfusion(List<long> tags, DateTime startDateTime, string seatNum);
 
         /// <summary>
-        /// 输液结束
+        /// Kết thúc truyền dịch
         /// </summary>
-        /// <param name="tags">输液明细ID</param>
-        /// <param name="endDateTime">结束时间</param>
+        /// <param name="tags">ID chi tiết truyền dịch</param>
+        /// <param name="endDateTime">Thời gian kết thúc</param>
         /// <returns></returns>
         string EndInfusion(List<long> tags, DateTime endDateTime);
 
         /// <summary>
-        /// 创建组号
+        /// Tạo số nhóm
         /// </summary>
         /// <param name="kh"></param>
         /// <returns></returns>
         string CreateGroupNo(string kh,string mzh);
 
         /// <summary>
-        /// 设置座位号
+        /// Đặt số ghế
         /// </summary>
-        /// <param name="tag">目标ID</param>
-        /// <param name="seatNum">座位号</param>
+        /// <param name="tag">ID đích</param>
+        /// <param name="seatNum">Số ghế</param>
         /// <returns></returns>
         string SetSeatNum(long tag, string seatNum);
 
         /// <summary>
-        /// 查询输液信息
+        /// Tra cứu thông tin truyền dịch
         /// </summary>
         /// <param name="ids"></param>
         /// <param name="organizeId"></param>

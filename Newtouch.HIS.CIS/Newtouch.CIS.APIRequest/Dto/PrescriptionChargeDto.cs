@@ -5,7 +5,7 @@ namespace Newtouch.CIS.APIRequest.Dto
     public class PrescriptionChargeDto
     {
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         [Required]
         public string cfh { get; set; }

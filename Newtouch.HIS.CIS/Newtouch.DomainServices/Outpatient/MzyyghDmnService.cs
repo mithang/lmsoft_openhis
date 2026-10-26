@@ -16,14 +16,14 @@ using System.Text;
 namespace Newtouch.DomainServices
 {
     /// <summary>
-    /// 门诊预约挂号
+    /// Đặt lịch hẹn khám ngoại trú
     /// </summary>
     public class MzyyghDmnService : DmnServiceBase, IMzyyghDmnService
     {
         private readonly IMzyyghRepo _mzyyghRepo;
         private readonly ISysBespeakRegisterRepo _sysBespeakRegisterRepo;
         /// <summary>
-        /// 初始化
+        /// Khởi tạo
         /// </summary>
         /// <param name="databaseFactory"></param>
         public MzyyghDmnService(IDefaultDatabaseFactory databaseFactory) : base(databaseFactory)
@@ -31,13 +31,13 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// 根据病历号查询门诊预约挂号信息
+        /// Tra cứu thông tin đặt lịch hẹn khám ngoại trú theo số bệnh án
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
         /// <param name="organizeId"></param>
         /// <param name="regDate"></param>
-        /// <returns>返回今天和今天以后的预约挂号</returns>
+        /// <returns>Trả về đặt lịch hẹn khám từ hôm nay trở đi</returns>
         public IList<MzyyghVO> SelectMzyyghDetail(Pagination pagination, string blh, string organizeId, DateTime regDate)
         {
             var sql = @"
@@ -59,11 +59,11 @@ AND br.regDate>=@regDate ";
         }
 
         /// <summary>
-        /// 门诊预约查询
+        /// Tra cứu đặt lịch hẹn khám ngoại trú
         /// </summary>
-        /// <param name="blh">病历号</param>
-        /// <param name="kh">卡号</param>
-        /// <param name="zjh">证件号</param>
+        /// <param name="blh">Số bệnh án</param>
+        /// <param name="kh">Số thẻ</param>
+        /// <param name="zjh">Số giấy tờ</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         public List<MzBespeakRegisterQueryResponseDTO> MzBespeakRegisterQuery(string blh, string kh, string zjh, string organizeId)
@@ -88,7 +88,7 @@ AND yygh.zt='1' ";
         }
 
         /// <summary>
-        /// 获取当前科室或专家已预约挂号总数
+        /// Lấy tổng số đặt lịch hẹn khám của khoa hoặc chuyên gia hiện tại
         /// </summary>
         /// <param name="ksCode"></param>
         /// <param name="ysgh"></param>
@@ -125,9 +125,9 @@ AND yygh.zt='1' ";
         }
 
         /// <summary>
-        /// 查询已预约挂号
+        /// Tra cứu đặt lịch hẹn khám
         /// </summary>
-        /// <param name="mzlx">门诊住院标志 1：普通门诊  2：急诊   3：专家门诊</param>
+        /// <param name="mzlx">Cờ ngoại trú/nội trú 1: Khám ngoại trú thông thường 2: Cấp cứu 3: Khám chuyên gia</param>
         /// <param name="departmentCode"></param>
         /// <param name="ysgh"></param>
         /// <param name="beginTime"></param>

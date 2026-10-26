@@ -3,58 +3,58 @@
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_02
 {
     /// <summary>
-    /// 推送草药信息 请求体
+    /// Thân yêu cầu đẩy thông tin thảo dược
     /// </summary>
     [XmlRoot("Request")]
     public class PushMedicineInfoRequestEntity : RequestBase
     {
         /// <summary>
-        /// 草药信息体
+        /// Thân thông tin thảo dược
         /// </summary>
         public Medicine Medicine { get; set; }
     }
 
     /// <summary>
-    /// 草药信息体
+    /// Thân thông tin thảo dược
     /// </summary>
     public class Medicine
     {
         /// <summary>
-        /// 药品编号
-        /// 必填
+        /// Số thuốc
+        /// Bắt buộc
         /// </summary>
         public string id { get; set; }
 
         /// <summary>
-        /// 药品名称
-        /// 必填
+        /// Tên thuốc
+        /// Bắt buộc
         /// </summary>
         public string name { get; set; }
 
         /// <summary>
-        /// 药品编码
-        /// 必填
+        /// Mã thuốc
+        /// Bắt buộc
         /// </summary>
         public string code { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string specification { get; set; }
 
         /// <summary>
-        /// 生产厂商
+        /// Nhà sản xuất
         /// </summary>
         public string manufacturer { get; set; }
 
         /// <summary>
-        /// 是否启用：Y： 是 N： 否
+        /// Có bật hay không: Y: Có N: Không
         /// </summary>
         public string activeFlg { get; set; }
 
         /// <summary>
-        /// 机构编码
-        /// 必填
+        /// Mã tổ chức
+        /// Bắt buộc
         /// </summary>
         public string orgCode { get; set; }
 

@@ -17,7 +17,7 @@ using System.Text;
 namespace Newtouch.DomainServices
 {
     /// <summary>
-    /// 中间库相关
+    /// Liên quan đến kho trung gian
     /// </summary>
     public class IDBDmnService : DmnServiceBase, IIDBDmnService
     {
@@ -26,11 +26,11 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// 查询患者挂号信息
+        /// Tra cứu thông tin đặt lịch của bệnh nhân
         /// </summary>
         /// <param name="ksCode"></param>
-        /// <param name="ysgh">//筛选专家号 仅看挂自己号的</param>
-        /// <param name="mjzbz">//1普通门诊 2急诊 3专家门诊</param>
+        /// <param name="ysgh">//Lọc số chuyên gia, chỉ xem số của mình</param>
+        /// <param name="mjzbz">//1 Khám ngoại trú thông thường 2 Cấp cứu 3 Khám chuyên gia</param>
         /// <param name="jiuzhenbz"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -42,7 +42,7 @@ namespace Newtouch.DomainServices
             }
             if (jiuzhenbz == (int)EnumJzzt.NotYetTreate)
             {
-                jiuzhenbz = 0;  //对应中间库待就诊0
+                jiuzhenbz = 0;  //Tương ứng với kho trung gian đang chờ khám 0
             }
 
             const  string sqlstr = @"
@@ -103,8 +103,8 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         }
 
         /// <summary>
-        /// 将mzh的未收费处方等信息 同步至中间库   
-        /// （且同步处方成功后要回写处方同步状态）
+        /// Đồng bộ thông tin đơn thuốc chưa thu phí của mzh tới kho trung gian   
+        /// (Và sau khi đồng bộ đơn thuốc thành công phải ghi lại trạng thái đồng bộ đơn thuốc)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -126,7 +126,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         }
 
         /// <summary>
-        /// 作废his单次就诊的所有处方
+        /// Hủy tất cả đơn thuốc của một lần khám trong his
         /// </summary>
         /// <param name="jzId"></param>
         /// <param name="orgId"></param>
@@ -147,7 +147,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         }
 
         /// <summary>
-        /// 作废HIS单张处方
+        /// Hủy đơn thuốc đơn lẻ của HIS
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -175,7 +175,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
 
 
         /// <summary>
-        /// CIS处方数据
+        /// Dữ liệu đơn thuốc CIS
         /// </summary>
         /// <param name="Opt"></param>
         /// <param name="Brwym"></param>
@@ -197,7 +197,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
 
         }
         /// <summary>
-        /// 中间库 同步处方收费状态
+        /// Kho trung gian đồng bộ trạng thái thu phí đơn thuốc
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="orgId"></param>

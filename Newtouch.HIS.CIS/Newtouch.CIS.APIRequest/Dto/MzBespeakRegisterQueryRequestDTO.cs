@@ -4,29 +4,29 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.CIS.APIRequest.Dto
 {
     /// <summary>
-    /// 门诊预约查询请求报文
+    /// Bản tin yêu cầu tra cứu đặt lịch hẹn khám ngoại trú
     /// </summary>
     public class MzBespeakRegisterQueryRequestDTO : RequestBase
     {
         /// <summary>
-        /// 证件类型
+        /// Loại giấy tờ
         /// </summary>
         public int? zjlx { get; set; }
 
         /// <summary>
-        /// 证件号
+        /// Số giấy tờ
         /// </summary>
         [Required]
         public string zjh { get; set; }
 
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         [Required]
         public string blh { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
     }

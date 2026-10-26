@@ -9,7 +9,7 @@ using Newtouch.HIS.API.Common;
 namespace NewtouchCIS.API.Controllers
 {
     /// <summary>
-    /// 授权认证
+    /// Xác thực ủy quyền
     /// </summary>
     [RoutePrefix("api/PatientSeekingInfo")]
     public class PatientTreatmentInfoController : ApiControllerBase<PatientTreatmentInfoController>
@@ -17,7 +17,7 @@ namespace NewtouchCIS.API.Controllers
         private readonly ITreatmentDmnService _treatmentDmnService;
 
         /// <summary>
-        /// 初始化
+        /// Khởi tạo
         /// </summary>
         /// <param name="com"></param>
         public PatientTreatmentInfoController(IComponentContext com) : base(com)
@@ -25,7 +25,7 @@ namespace NewtouchCIS.API.Controllers
         }
 
         /// <summary>
-        /// 患者就诊信息查询
+        /// Tra cứu thông tin khám bệnh của bệnh nhân
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

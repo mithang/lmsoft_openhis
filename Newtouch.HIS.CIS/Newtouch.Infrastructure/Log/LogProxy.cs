@@ -12,10 +12,10 @@ namespace Newtouch.Infrastructure.Log
     public class LogProxy : ILog
     {
         private static ILogV2 _log;
-        #region 单例
+        #region Singleton
 
         /// <summary>
-        /// 服务名称
+        /// Tên dịch vụ
         /// </summary>
         private static string _serviceName = string.Empty;
 

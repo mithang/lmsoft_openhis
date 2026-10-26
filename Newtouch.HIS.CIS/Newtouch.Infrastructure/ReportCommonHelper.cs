@@ -16,11 +16,11 @@ namespace NewtouchCIS.Infrastructure
         {
             DataSet dsPrint = new DataSet();
             string filename = rptlj;
-            //格式化数据参数
+            //Định dạng tham số dữ liệu
             XmlDocument paraXml = Newtonsoft.Json.JsonConvert.DeserializeXmlNode(json, "parameter");
             //AppLogger.Info("GetReportDS4");
 
-            //读取报告格式
+            //Đọc định dạng báo cáo
             string rptFile = fileToString(filename);
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(rptFile);
@@ -34,18 +34,18 @@ namespace NewtouchCIS.Infrastructure
             //if (rptTableDataSourceList.Count > 0)
             //{
             int idx = 0;
-            foreach (XmlNode item in rptTableDataSourceList) //报表数据源循环加载
+            foreach (XmlNode item in rptTableDataSourceList) //Nguồn dữ liệu báo cáo tải theo vòng lặp
             {
-                //数据源名称
+                //Tên nguồn dữ liệu
                 string dsname = item.Attributes["Name"].InnerText;
-                //相应数据源入参数据
+                //Dữ liệu tham số đầu vào của nguồn dữ liệu tương ứng
                 XmlNodeList paraList = paraXml.SelectNodes(@"/parameter/" + dsname);
-                //获取数据源参数字段
+                //Lấy trường tham số nguồn dữ liệu
                 DataTable dtRptPara = ConvertXMLToDataSet(dsname, "<row>" + item.InnerXml + "</row>").Tables[0];
                 if (dtRptPara != null && dtRptPara.Rows.Count > 0)
                 {
                     DataTable dt = new DataTable(dsname);
-                    foreach (DataRow rptPara in dtRptPara.Rows)  //数据源参数循环
+                    foreach (DataRow rptPara in dtRptPara.Rows)  //Vòng lặp tham số nguồn dữ liệu
                     {
                         string colname = rptPara["Name"].ToString();
                         string typestring = rptPara["DataType"].ToString();
@@ -64,11 +64,11 @@ namespace NewtouchCIS.Infrastructure
                     }
 
                     int j = 0;
-                    foreach (XmlNode para in paraList)  //数据源参数对应值
+                    foreach (XmlNode para in paraList)  //Giá trị tương ứng với tham số nguồn dữ liệu
                     {
                         DataRow dr = dt.NewRow();
                         int k = 0;
-                        foreach (DataColumn rptPara in dr.Table.Columns)  //数据源参数循环
+                        foreach (DataColumn rptPara in dr.Table.Columns)  //Vòng lặp tham số nguồn dữ liệu
                         {
                             string col = rptPara.ColumnName;
                             string val = para.SelectSingleNode(col) == null ? "" : para.SelectSingleNode(col).InnerText;
@@ -87,7 +87,7 @@ namespace NewtouchCIS.Infrastructure
         }
 
         /// <summary>
-        /// 获取文件中的数据
+        /// Lấy dữ liệu trong tệp
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
@@ -97,10 +97,10 @@ namespace NewtouchCIS.Infrastructure
             try
             {
                 string line;
-                // 创建一个 StreamReader 的实例来读取文件 ,using 语句也能关闭 StreamReader
+                // Tạo một thực thể StreamReader để đọc tệp, câu lệnh using cũng có thể đóng StreamReader
                 using (System.IO.StreamReader sr = new System.IO.StreamReader(filePath))
                 {
-                    // 从文件读取并显示行，直到文件的末尾 
+                    // Đọc và hiển thị dòng từ tệp cho đến cuối tệp 
                     while ((line = sr.ReadLine()) != null)
                     {
                         //Console.WriteLine(line);
@@ -110,14 +110,14 @@ namespace NewtouchCIS.Infrastructure
             }
             catch (Exception e)
             {
-                // 向用户显示出错消息
+                // Hiển thị thông báo lỗi cho người dùng
                 Console.WriteLine("The file could not be read:");
                 Console.WriteLine(e.Message);
             }
             return strData;
         }
 
-        // Xml结构的文件读到DataTable中
+        // Đọc tệp có cấu trúc Xml vào DataTable
         public static DataSet ConvertXMLToDataSet(string tbname, string xmlData)
         {
             XmlDocument xmldoc = new XmlDocument();

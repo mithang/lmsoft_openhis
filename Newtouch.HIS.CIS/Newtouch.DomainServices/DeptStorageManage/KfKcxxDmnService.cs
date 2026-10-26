@@ -14,7 +14,7 @@ using Newtouch.Infrastructure.TSql;
 namespace Newtouch.DomainServices.DeptStorageManage
 {
     /// <summary>
-    /// 库存维护
+    /// Bảo trì tồn kho
     /// </summary>
     public class KfKcxxDmnService : DmnServiceBase, IKfKcxxDmnService
     {
@@ -26,16 +26,16 @@ namespace Newtouch.DomainServices.DeptStorageManage
         }
 
          /// <summary>
-         /// 修改库存数量(加库存)，不修改冻结数量  返回影响行
+         /// Sửa số lượng tồn kho (tăng tồn kho), không sửa số lượng đóng băng, trả về số hàng bị ảnh hưởng
          /// </summary>
          /// <param name="productId"></param>
          /// <param name="pc"></param>
          /// <param name="ph"></param>
          /// <param name="warehouseId"></param>
-         /// <param name="sl">最小单位数量</param>
+         /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
          /// <param name="organizeId"></param>
          /// <param name="userCode"></param>
-         /// <returns>返回影响行</returns>
+         /// <returns>Trả về số hàng bị ảnh hưởng</returns>
          public int UpdateKcsl(string productId, string pc, string ph, string warehouseId, int sl, string organizeId, string userCode)
          {
              if (sl >= 0) return AddKcsl(productId, pc, ph, warehouseId, sl, organizeId, userCode);
@@ -45,7 +45,7 @@ namespace Newtouch.DomainServices.DeptStorageManage
          }
 //
 //         /// <summary>
-//         /// 修改库存数量，不修改冻结数量  该方法为批量修改相同批次批号的物资，慎用
+//         /// Sửa số lượng tồn kho, không sửa số lượng đóng băng  Phương pháp này sửa hàng loạt vật tư cùng lô, cùng số lô, dùng thận trọng
 //         /// </summary>
 //         /// <param name="updateKcslDto"></param>
 //         /// <returns></returns>
@@ -68,16 +68,16 @@ namespace Newtouch.DomainServices.DeptStorageManage
 //         }
 //
         /// <summary>
-        /// 追加库存，不修改冻结数量 返回影响行
+        /// Thêm tồn kho, không sửa số lượng đóng băng, trả về số hàng bị ảnh hưởng
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="warehouseId"></param>
-        /// <param name="sl">最小单位数量  必须为正数</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất phải là số dương</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
-        /// <returns>返回影响行</returns>
+        /// <returns>Trả về số hàng bị ảnh hưởng</returns>
         public int AddKcsl(string productId, string pc, string ph, string warehouseId, int sl, string organizeId, string userCode)
         {
             if (sl <= 0) throw new System.Exception("数量必须为正数");
@@ -112,7 +112,7 @@ SELECT @@ROWCOUNT ;
         }
 //
          // /// <summary>
-         // /// 修改库存数量，不修改冻结数量
+         // /// Sửa số lượng tồn kho, không sửa số lượng đóng băng
          // /// </summary>
          // /// <param name="updateKcslDto"></param>
          // /// <returns></returns>
@@ -132,7 +132,7 @@ SELECT @@ROWCOUNT ;
          // }
 //
 //         /// <summary>
-//         /// 修改库存数量，不修改冻结数量
+//         /// Sửa số lượng tồn kho, không sửa số lượng đóng băng
 //         /// </summary>
 //         /// <param name="updateKcslDto"></param>
 //         /// <param name="db"></param>
@@ -149,7 +149,7 @@ SELECT @@ROWCOUNT ;
 //         }
 //
          /// <summary>
-         /// 修改库存数量，不修改冻结数量
+         /// Sửa số lượng tồn kho, không sửa số lượng đóng băng
          /// </summary>
          /// <param name="updateKcslDto"></param>
          /// <param name="db"></param>
@@ -172,13 +172,13 @@ SELECT @@ROWCOUNT ;
          }
 //
 //         /// <summary>
-//         /// 减库存数量、冻结数量（出库可用）
+//         /// Giảm số lượng tồn kho, số lượng đóng băng (có thể xuất kho)
 //         /// </summary>
 //         /// <param name="productId"></param>
 //         /// <param name="pc"></param>
 //         /// <param name="ph"></param>
 //         /// <param name="warehouseId"></param>
-//         /// <param name="sl">最小单位数量</param>
+//         /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
 //         /// <param name="organizeId"></param>
 //         /// <param name="userCode"></param>
 //         /// <returns></returns>
@@ -198,13 +198,13 @@ SELECT @@ROWCOUNT ;
 //         }
 //
 //         /// <summary>
-//         /// 解冻
+//         /// Giải đóng băng
 //         /// </summary>
 //         /// <param name="productId"></param>
 //         /// <param name="pc"></param>
 //         /// <param name="ph"></param>
 //         /// <param name="warehouseId"></param>
-//         /// <param name="sl">最小单位数量</param>
+//         /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
 //         /// <param name="organizeId"></param>
 //         /// <param name="userCode"></param>
 //         /// <returns></returns>
@@ -224,9 +224,9 @@ SELECT @@ROWCOUNT ;
 //         }
 //
 //         /// <summary>
-//         /// 冻结库存
+//         /// Đóng băng tồn kho
 //         /// </summary>
-//         /// <param name="sl">最小单位数量</param>
+//         /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
 //         /// <param name="pc"></param>
 //         /// <param name="ph"></param>
 //         /// <param name="productId"></param>
@@ -250,9 +250,9 @@ SELECT @@ROWCOUNT ;
 //         }
 
         // /// <summary>
-        // /// 外部入库 扣库存(作废)
+        // /// Nhập kho bên ngoài trừ tồn kho (hủy bỏ)
         // /// </summary>
-        // /// <param name="sl">最小单位数量</param>
+        // /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         // /// <param name="pc"></param>
         // /// <param name="ph"></param>
         // /// <param name="productId"></param>
@@ -277,9 +277,9 @@ SELECT @@ROWCOUNT ;
         // }
 
         // /// <summary>
-        // /// 撤销入库（直接出库作废） 若要使用该方法请套上事务，方法内不做回滚
+        // /// Hủy nhập kho (xuất kho trực tiếp và hủy bỏ) Nếu muốn dùng phương pháp này hãy bọc trong giao dịch, trong phương pháp không rollback
         // /// </summary>
-        // /// <param name="sl">最小单位数量</param>
+        // /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         // /// <param name="pc"></param>
         // /// <param name="ph"></param>
         // /// <param name="productId"></param>
@@ -290,11 +290,11 @@ SELECT @@ROWCOUNT ;
         // /// <returns></returns>
         // public string RevokeInstorage(int sl, string pc, string ph, string productId, string organizeId, string rkbm, string ckbm, string userCode)
         // {
-        //     //入库部门扣库存
+        //     //Khoa nhập kho trừ tồn kho
         //     var substractResult = JustSubtractKcsl(new UpdateKcslDTO { organizeId = organizeId, pc = pc, ph = ph, productId = productId, sl = sl, userCode = userCode, warehouseId = rkbm });
         //     if (!string.IsNullOrWhiteSpace(substractResult)) return substractResult;
         //
-        //     //出库部门还库存
+        //     //Khoa xuất kho trả tồn kho
         //     if (UpdateKcsl(productId, pc, ph, ckbm, sl, organizeId, userCode) <= 0)
         //     {
         //         return "还库存失败";
@@ -303,7 +303,7 @@ SELECT @@ROWCOUNT ;
         // }
 
         /// <summary>
-        /// 获取库存信息 结转用
+        /// Lấy thông tin tồn kho, dùng để kết chuyển
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -329,9 +329,9 @@ AND kcxx.zt=@zt
         }
 
         //        /// <summary>
-        //        /// 撤销入库（直接出库作废）
+        //        /// Hủy nhập kho (xuất kho trực tiếp và hủy bỏ)
         //        /// </summary>
-        //        /// <param name="sl">最小单位数量</param>
+        //        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         //        /// <param name="pc"></param>
         //        /// <param name="ph"></param>
         //        /// <param name="productId"></param>

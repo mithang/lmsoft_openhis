@@ -15,7 +15,7 @@ using Newtouch.Domain.ViewModels.Outpatient;
 namespace Newtouch.Application.Implementation
 {
     /// <summary>
-    /// 注射管理
+    /// Quản lý tiêm
     /// </summary>
     public class InfusionApp : AppBase, IInfusionApp
     {
@@ -25,7 +25,7 @@ namespace Newtouch.Application.Implementation
         private readonly IMzsyypxxDmnService _mzsyypxxDmnService;
 
         /// <summary>
-        /// 同步已结算处方信息
+        /// Đồng bộ thông tin đơn thuốc đã thanh toán
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -34,12 +34,12 @@ namespace Newtouch.Application.Implementation
         /// <returns></returns>
         public string SyncSettRpDetail(DateTime kssj, DateTime jssj, string fph, string kh,string mzh)
         {
-            #region 第一步：根据条件从结算系统查询已结算处方信息 settRpDetail
+            #region Bước 1: Theo điều kiện, tra cứu thông tin đơn thuốc đã thanh toán từ hệ thống thanh toán settRpDetail
             var settRpDetail = OutpatientSettledRpQuery(kssj, jssj, fph, kh, mzh);
             if (settRpDetail == null || settRpDetail.Count <= 0) return "";
             #endregion
 
-            #region 第二步：根据条件拉取本地输液信息，所依据条件与第一步相同 syxx
+            #region Bước 2: Theo điều kiện, lấy thông tin truyền dịch nội bộ, điều kiện căn cứ giống bước 1 syxx
             var syxx = _mzsyypxx.IQueryable(p => p.sfsj >= kssj && p.sfsj < jssj && p.OrganizeId == OrganizeId && p.zt == "1");
             if (syxx.Any())
             {
@@ -48,17 +48,17 @@ namespace Newtouch.Application.Implementation
             }
             #endregion
 
-            #region 第三步：取settRpDetail与syxx差异值——取出新增的输液信息  newData
+            #region Bước 3: Lấy giá trị khác biệt giữa settRpDetail và syxx——lấy ra thông tin truyền dịch mới tăng newData
             var newData = ScreeningNewInfusionData(settRpDetail, syxx.ToList());
             #endregion
 
-            #region 第四步：保存新增的输液信息
+            #region Bước 4: Lưu thông tin truyền dịch mới tăng
             return SaveNewInfusionData(newData);
             #endregion
         }
 
         /// <summary>
-        /// 筛选出新的处方结算信息
+        /// Lọc ra thông tin thanh toán đơn thuốc mới
         /// </summary>
         /// <param name="tagDate"></param>
         /// <param name="srcData"></param>
@@ -76,7 +76,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 已结算处方明细查询
+        /// Tra cứu chi tiết đơn thuốc đã thanh toán
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -94,7 +94,7 @@ namespace Newtouch.Application.Implementation
         }
 		
 		/// <summary>
-		/// 患者查询
+		/// Tra cứu bệnh nhân
 		/// </summary>
 		/// <param name="kh"></param>
 		/// <param name="fph"></param>
@@ -114,9 +114,9 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 保存新的输液信息
+        /// Lưu thông tin truyền dịch mới
         /// </summary>
-        /// <param name="source">数据源</param>
+        /// <param name="source">Nguồn dữ liệu</param>
         /// <returns></returns>
         public string SaveNewInfusionData(List<OutpatientSettledRpQueryResponseDTO> source)
         {
@@ -131,10 +131,10 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 分组
+        /// Nhóm
         /// </summary>
         /// <param name="tags"></param>
-        /// <param name="groupNo">组号</param>
+        /// <param name="groupNo">Số nhóm</param>
         /// <returns></returns>
         public string Grouping(List<long> tags, string groupNo)
         {
@@ -154,11 +154,11 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 输液开始
+        /// Bắt đầu truyền dịch
         /// </summary>
-        /// <param name="tags">输液明细ID</param>
-        /// <param name="startDateTime">j结束时间</param>
-        /// <param name="seatNum">座号/床号</param>
+        /// <param name="tags">ID chi tiết truyền dịch</param>
+        /// <param name="startDateTime">jThời gian kết thúc</param>
+        /// <param name="seatNum">Số ghế/số giường</param>
         /// <returns></returns>
         public string StartInfusion(List<long> tags, DateTime startDateTime, string seatNum)
         {
@@ -193,10 +193,10 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 输液结束
+        /// Kết thúc truyền dịch
         /// </summary>
-        /// <param name="tags">输液明细ID</param>
-        /// <param name="endDateTime">j结束时间</param>
+        /// <param name="tags">ID chi tiết truyền dịch</param>
+        /// <param name="endDateTime">jThời gian kết thúc</param>
         /// <returns></returns>
         public string EndInfusion(List<long> tags, DateTime endDateTime)
         {
@@ -229,7 +229,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 创建组号
+        /// Tạo số nhóm
         /// </summary>
         /// <param name="kh"></param>
         /// <returns></returns>
@@ -251,10 +251,10 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 设置座位号
+        /// Đặt số ghế
         /// </summary>
-        /// <param name="tag">目标ID</param>
-        /// <param name="seatNum">座位号</param>
+        /// <param name="tag">ID đích</param>
+        /// <param name="seatNum">Số ghế</param>
         /// <returns></returns>
         public string SetSeatNum(long tag, string seatNum)
         {
@@ -278,7 +278,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 查询输液信息
+        /// Tra cứu thông tin truyền dịch
         /// </summary>
         /// <param name="ids"></param>
         /// <param name="organizeId"></param>

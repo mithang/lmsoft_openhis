@@ -15,7 +15,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.DomainServices.DeptStorageManage
 {
     /// <summary>
-    /// 库存结转
+    /// Kết chuyển tồn kho
     /// </summary>
     public class KcKcjzDmnService : DmnServiceBase, IKcKcjzDmnService
     {
@@ -24,7 +24,7 @@ namespace Newtouch.DomainServices.DeptStorageManage
         }
 
         /// <summary>
-        /// 获取结转明细
+        /// Lấy chi tiết kết chuyển
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="jzsj"></param>
@@ -80,7 +80,7 @@ WHERE  a.num=1
         }
 
         /// <summary>
-        /// 结转
+        /// Kết chuyển
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -136,7 +136,7 @@ END CATCH
         }
 
         /// <summary>
-        /// 进销存统计
+        /// Thống kê nhập-xuất-tồn
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="searchParam"></param>

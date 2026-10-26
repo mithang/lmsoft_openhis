@@ -23,9 +23,9 @@ namespace Newtouch.Application.Implementation
 
         private readonly IPrepareMedicineDmnService _preparemMedicineDmnService;
 
-        #region 报损报溢
+        #region Báo hỏng/báo thừa
         /// <summary>
-        /// 根据损益类型获取损益原因
+        /// Lấy nguyên nhân hỏng/thừa theo loại hỏng/thừa
         /// </summary>
         /// <param name="sylx"></param>
         /// <returns></returns>
@@ -35,9 +35,9 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 查询损益药品list
+        /// Tra cứu danh sách thuốc báo hỏng/báo thừa
         /// </summary>
-        /// <param name="inputCode">关键字</param>
+        /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>
         public List<ReportLossAndProfitMedicineInfoVO> SelectLossAndProfitMedicineList(string inputCode)
         {
@@ -46,7 +46,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 提交报损报溢
+        /// Gửi báo hỏng/báo thừa
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>
@@ -95,9 +95,9 @@ namespace Newtouch.Application.Implementation
 
         #endregion
 
-        #region 报损报溢查询
+        #region Tra cứu báo hỏng/báo thừa
         /// <summary>
-        /// 报损报溢查询
+        /// Tra cứu báo hỏng/báo thừa
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -112,13 +112,13 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 批发价总金额、零售价总金额查询
+        /// Tra cứu tổng tiền giá bán buôn, tổng tiền giá bán lẻ
         /// </summary>
-        /// <param name="startTime">开始时间</param>
-        /// <param name="endTime">结束时间</param>
-        /// <param name="syyy">损益原因</param>
-        /// <param name="inputCode">关键字</param>
-        /// <param name="syqk">损益情况</param>
+        /// <param name="startTime">Thời gian bắt đầu</param>
+        /// <param name="endTime">Thời gian kết thúc</param>
+        /// <param name="syyy">Nguyên nhân hỏng/thừa</param>
+        /// <param name="inputCode">Từ khóa</param>
+        /// <param name="syqk">Tình hình hỏng/thừa</param>
         /// <returns></returns>
         public LossAndProditInfoJeVo ComputePjzeAndLjze(string startTime, string endTime, string syyy, string inputCode, int syqk)
         {
@@ -126,7 +126,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 报损报溢 保存
+        /// Lưu báo hỏng/báo thừa
         /// </summary>
         /// <param name="profitLossEntityList"></param>
         //public void SaveReportLossAndProfit(List<SysMedicineProfitLossEntity> profitLossEntityList)
@@ -135,13 +135,13 @@ namespace Newtouch.Application.Implementation
         //    {
         //        int kcsl = 0;
         //        decimal jj = 0;
-        //        //1.查出kcsl和jj
+        //        //1. Tìm ra kcsl và jj
         //        _medicineDmnService.SelectKcslAndJj(item.Ypdm, item.Ph, item.pc, item.Yxq, out kcsl, out jj);
-        //        if (item.Sysl <= 0)  //报损
+        //        if (item.Sysl <= 0)  //Báo hỏng
         //        {
         //            if (kcsl + item.Sysl >= 0)
         //            {
-        //                //保存（update库存 insert损益表）
+        //                //Lưu (update tồn kho, insert bảng hỏng/thừa)
         //                _medicineDmnService.SaveReportLossAndProfit(item, kcsl, jj);
         //            }
         //            else
@@ -149,9 +149,9 @@ namespace Newtouch.Application.Implementation
         //                throw new FailedCodeException("INSUFFICIENT_STOCK_NOT_ENOUGH_TO_REPORT_LOSS");
         //            }
         //        }
-        //        else  //报溢
+        //        else  //Báo thừa
         //        {
-        //            //保存（update库存 insert损益表）
+        //            //Lưu (update tồn kho, insert bảng hỏng/thừa)
         //            _medicineDmnService.SaveReportLossAndProfit(item, kcsl, jj);
         //        }
         //    }

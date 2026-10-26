@@ -64,9 +64,9 @@ namespace Newtouch.DomainServices
 
         //}
 
-        #region 医嘱执行 页面查询
+        #region Thực hiện y lệnh, tra cứu trang
         /// <summary>
-        /// 获取待执行医嘱病区树
+        /// Lấy cây khu bệnh có y lệnh chờ thực hiện
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
@@ -83,7 +83,7 @@ namespace Newtouch.DomainServices
             return this.FindList<InpWardPatTreeVO>(sql, new[] { new SqlParameter("@staffId", staffId) });
         }
         /// <summary>
-        /// 获取待执行医嘱患者树
+        /// Lấy cây bệnh nhân có y lệnh chờ thực hiện
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
@@ -122,7 +122,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// 获取待执行医嘱患者树（包括文字医嘱）
+        /// Lấy cây bệnh nhân có y lệnh chờ thực hiện (bao gồm y lệnh văn bản)
         /// </summary>
         /// <param name="staffId"></param>
         /// <param name="vzxsj"></param>
@@ -163,7 +163,7 @@ group by a.organizeid, a.userid,a.staffid,a.account,a.gh,a.name ,b.bqcode,c.bqmc
         }
 
         /// <summary>
-        /// 获取分页医嘱列表
+        /// Lấy danh sách y lệnh phân trang
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
@@ -227,7 +227,7 @@ group by a.organizeid, a.userid,a.staffid,a.account,a.gh,a.name ,b.bqcode,c.bqmc
         }
 
         /// <summary>
-        /// 获取分页医嘱列表(包括文字医嘱)
+        /// Lấy danh sách y lệnh phân trang (bao gồm y lệnh văn bản)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
@@ -270,7 +270,7 @@ FROM(
         }
 
         /// <summary>
-        /// 获取分页医嘱列表by医嘱性质/长期或临时 暂不用
+        /// Lấy danh sách y lệnh phân trang theo tính chất y lệnh/dài hạn hoặc tạm thời, tạm thời không dùng
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
@@ -299,7 +299,7 @@ FROM(
 
 
         /// <summary>
-        /// 获取执行医嘱ApiList
+        /// Lấy ApiList y lệnh thực hiện
         /// </summary>
         /// <param name="orderExeList">yzid,yzxx,zyh,yzxl</param>
         /// <returns></returns>
@@ -378,7 +378,7 @@ FROM(
         }
         #endregion
 
-        #region 获取执行医嘱ApiList new 
+        #region Lấy ApiList y lệnh thực hiện mới
         public List<YzDetail> GetapiList(OperatorModel user, IList<ApiResponseVO> orderExeList, DateTime Vzxsj, int lyxh)
         {
             try {
@@ -450,10 +450,10 @@ FROM(
 
         #endregion
 
-        #region 医嘱执行 执行操作
+        #region Thực hiện y lệnh, thao tác thực hiện
 
         /// <summary>
-        /// 提交执行 药品
+        /// Gửi thực hiện thuốc
         /// </summary>
         /// <param name="orderList"></param>
         public string OrderExecutionSubmit(OperatorModel user, IList<YzDetail> orderExeList, int lyxh, DateTime zxrq)
@@ -489,7 +489,7 @@ FROM(
             }
         }
         /// <summary>
-        /// 执行医嘱信息 药品项目执行 by 长期/临时/全部 
+        /// Thông tin y lệnh thực hiện: thực hiện thuốc/hạng mục theo dài hạn/tạm thời/toàn bộ 
         /// </summary>
         /// <param name="user"></param>
         /// <param name="orderExeList"></param>
@@ -532,7 +532,7 @@ FROM(
             }
         }
         /// <summary>
-        /// 不计费、科室备药开立医嘱执行
+        /// Thực hiện y lệnh kê không tính phí, chuẩn bị thuốc cho khoa
         /// </summary>
         /// <param name="user"></param>
         /// <param name="orderExeList"></param>
@@ -573,7 +573,7 @@ FROM(
         }
 
         /// <summary>
-        /// 执行膳食费用项目执行(不包含文字医嘱)
+        /// Thực hiện hạng mục phí ăn uống (không bao gồm y lệnh văn bản)
         /// </summary>
         public string OrderExecutionXM(OperatorModel user, IList<ApiResponseVO> orderExeList, int lyxh, DateTime zxrq,string orgId,string medicalInsurance, int? yzxz = null)
         {
@@ -659,7 +659,7 @@ FROM(
         }
 
         /// <summary>
-        /// 通用项目执行
+        /// Thực hiện hạng mục chung
         /// </summary>
         /// <param name="rygh"></param>
         /// <param name="orderExeList"></param>
@@ -677,7 +677,7 @@ FROM(
                 var yzxhlistbindfee = string.Empty;
                 var zyhArr = orderExeList.Select(p => p.zyh).Distinct().ToArray();
                 zyhs = string.Join(",", zyhArr);
-                if (yzxz != null)//执行全部/长期、临时医嘱
+                if (yzxz != null)//Thực hiện toàn bộ/dài hạn, y lệnh tạm thời
                 {
                     if (!string.IsNullOrWhiteSpace(zyhs) && yzxz != null)
                     {
@@ -696,7 +696,7 @@ FROM(
                         return "F|无效操作，请刷新重试";
                     }
                 }
-                else {//执行当前选择医嘱
+                else {//Thực hiện y lệnh đã chọn hiện tại
                     foreach (var item in orderExeList)
                     {
                         //if ((item.yzlx == Convert.ToInt32(EnumYzlx.jy) || item.yzlx == Convert.ToInt32(EnumYzlx.jc)) && item.zh1 != null)
@@ -772,7 +772,7 @@ FROM(
         }
         #endregion
         
-        #region 病人费用实时计算
+        #region Tính phí bệnh nhân theo thời gian thực
         public void Updatezy_brxxexpand(string OrganizeId, string zyh)
         {
             try
@@ -791,23 +791,23 @@ FROM(
         }
         #endregion
         
-        #region 生成项目费用
+        #region Sinh phí hạng mục
         /// <summary>
-        /// 同步最新CPOE项目费用
+        /// Đồng bộ phí hạng mục CPOE mới nhất
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
         public void SyncPatFee(string orgId, string zyh, int zxtype)
         {
-            //是否启用费用同步最新机制
+            //Có bật cơ chế đồng bộ phí mới nhất hay không
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
                 string sql = "";
-                if (zxtype == 0) //同步项目费用
+                if (zxtype == 0) //Đồng bộ phí hạng mục
                 {
                     sql = @" exec [NewtouchHIS_Sett]..[skd_syncxmjfbcope] @orgId=@orgId,@lqrq=@lqrq,@zyh=@zyh ";
                 }
-                else //同步药品费用
+                else //Đồng bộ phí thuốc
                 {
                     sql = @" exec [NewtouchHIS_Sett]..[skd_syncypjfbcope] @orgId=@orgId,@lqrq=@lqrq,@zyh=@zyh";
                 }
@@ -822,9 +822,9 @@ FROM(
         }
         #endregion
         
-        #region 执行医嘱查询
+        #region Tra cứu y lệnh thực hiện
         /// <summary>
-        /// 获取执行全部医嘱ALLYZ
+        /// Lấy thực hiện tất cả y lệnh ALLYZ
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -871,7 +871,7 @@ AND  Convert(DATE,kssj)< =Convert(DATE,@zxrq)  AND (Convert(DATE,zfsj) IS NULL O
         }
 
         /// <summary>
-        /// 获取执行全部医嘱ALLYZ
+        /// Lấy thực hiện tất cả y lệnh ALLYZ
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="zxlx"></param>
@@ -974,7 +974,7 @@ and a.zyh in (select col from dbo.f_split(@zyh,',') where col>'')");
         }
 
         /// <summary>
-        /// 可以执行的医嘱信息
+        /// Thông tin y lệnh có thể thực hiện
         /// </summary>
         /// <param name="OrderList">Tzxsj,yzid,zyh,yzlx,ypmc</param>
         /// <param name="Vzxsj"></param>
@@ -986,7 +986,7 @@ and a.zyh in (select col from dbo.f_split(@zyh,',') where col>'')");
                 if (OrderList.Count > 0)
                 {
                     string yzidstr = string.Join("','", OrderList.Select(p => p.yzid).ToArray());
-                    //耗材物资库存验证
+                    //Kiểm tra tồn kho vật tư tiêu hao
                     List<ApiResponseVO> hclist = OrderList.Where(m =>!string.IsNullOrWhiteSpace(m.xmdm)&& m.xmdm.Contains("wz")).ToList();
                     List<HospItemFeeVO> kcxx = new List<HospItemFeeVO>(); 
                     if (hclist.Count>0) {
@@ -1030,7 +1030,7 @@ and a.zyh in (select col from dbo.f_split(@zyh,',') where col>'')");
                             }
                         }
                     }
-                    //锁定医嘱执行状态
+                    //Khóa trạng thái thực hiện y lệnh
 
                     return "T|有可执行医嘱";
 
@@ -1049,7 +1049,7 @@ and a.zyh in (select col from dbo.f_split(@zyh,',') where col>'')");
         }
 
         /// <summary>
-        /// 物资耗材库存验证
+        /// Kiểm tra tồn kho vật tư tiêu hao
         /// </summary>
         /// <param name="xmCodes"></param>
         /// <param name="orgId"></param>
@@ -1066,7 +1066,7 @@ group by productCode";
         }
         #endregion
 
-        #region 消息提醒
+        #region Nhắc nhở thông báo
         public IList<SysMSGQueryVO> MSGQuery(string gh,string orgId)
         {
             var sql = string.Format(@" exec [Newtouch_CIS].[dbo].[MessageQuery] @gh=@gh,@orgId=@orgId ");
@@ -1077,7 +1077,7 @@ group by productCode";
         }
         #endregion
 
-        #region pace接口
+        #region Giao diện pace
         public CheckApplicationfromDTO pushApplicationform(ApiResponseVO orderList, string orgid, string typezt)
         {
             CheckApplicationfromDTO checkApplicationfromDTO = new CheckApplicationfromDTO();
@@ -1166,7 +1166,7 @@ left join [Newtouch_CIS]..jyjc_zt g on g.ztid=b.ztId and b.OrganizeId=g.Organize
         }
         #endregion
 
-        #region 医技执行
+        #region Thực hiện y kỹ
         public IList<JyjcExecVo> GetJyjcSqd(Pagination pagination,string orgId, DateTime kssj, DateTime jssj,string zxzt, string hzlx,string fylx,
             string sqdlx,string keyword=null)
         {

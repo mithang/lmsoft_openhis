@@ -1,25 +1,25 @@
 ﻿namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HEALRequest
 {
     /// <summary>
-    /// 治未病集成请求参数体
+    /// Thân tham số yêu cầu tích hợp trị vị bệnh
     /// </summary>
     public class HEALRequestEntity
     {
         /// <summary>
-        /// 资源名称：HEAL_CHECKBODY
-        /// 必填
+        /// Tên tài nguyên: HEAL_CHECKBODY
+        /// Bắt buộc
         /// </summary>
         public string resource { get; set; }
 
         /// <summary>
-        /// 患者证件类型：1-身份证，2-军官证
-        /// 必填
+        /// Loại giấy tờ của bệnh nhân: 1-Chứng minh nhân dân, 2-Chứng nhận sĩ quan
+        /// Bắt buộc
         /// </summary>
         public string CertificatesType { get; set; }
 
         /// <summary>
-        /// 患者证件号码
-        /// 必填
+        /// Số giấy tờ của bệnh nhân
+        /// Bắt buộc
         /// </summary>
         public string CertificatesNumber { get; set; }
 
