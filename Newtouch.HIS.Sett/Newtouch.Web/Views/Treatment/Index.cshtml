@@ -9,13 +9,13 @@
     @Html.Partial("_OrganizeIdDDLToolbarSearchView")
     <div class="toolbar">
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_add()" id="bedata"><i class="fa fa-plus"></i>新建</a>
+            <a class="btn btn-primary" onclick="btn_add()" id="bedata"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
         </div>
     </div>
     <div class="search">
@@ -23,7 +23,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keywordcx" type="text" class="form-control" placeholder="名称/编码" style="width: 180px;">
+                        <input id="txt_keywordcx" type="text" class="form-control" placeholder="Tên/Mã số" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_searchcx" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -51,26 +51,26 @@
             height: $(window).height() - 128,
             postData: { keyword: $("#txt_keywordcx").val(),OrganizeId:$("#OrganizeId").val() },
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: '诊疗组合名称', name: 'zhmc', width: 150, align: 'left' },
-                { label: '诊疗组合编码', name: 'zhcode', width: 100, align: 'left' },
-                { label: '排序', name: 'ord', width: 60, align: 'center' },
-                { label: '明细项目名称', name: 'zlxmmc', width: 170, align: 'left' },
-                { label: '明细项目', name: 'zlxm', width: 100, align: 'center' },
-                { label: '单价', name: 'price', width: 100, align: 'center', formatter: 'number', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 } },
-                { label: '明细项目拼音', name: 'zlxmpy', width: 120, align: 'left' },
-                { label: '组合金额', name: 'zhje', width: 100, align: 'left', hidden: true },
-                { label: '收费大类', name: 'dlmc', width: 100, align: 'left' },
-                { label: '分组列', name: 'zhmccode', width: 100, align: 'left' },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Tên tổ hợp khám chữa bệnh', name: 'zhmc', width: 150, align: 'left' },
+                { label: 'Mã tổ hợp khám chữa bệnh', name: 'zhcode', width: 100, align: 'left' },
+                { label: 'Sắp xếp', name: 'ord', width: 60, align: 'center' },
+                { label: 'Hạng mục chi tiếtTên', name: 'zlxmmc', width: 170, align: 'left' },
+                { label: 'Hạng mục chi tiết', name: 'zlxm', width: 100, align: 'center' },
+                { label: 'Đơn giá', name: 'price', width: 100, align: 'center', formatter: 'number', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 } },
+                { label: 'Hạng mục chi tiếtPhiên âm', name: 'zlxmpy', width: 120, align: 'left' },
+                { label: 'Số tiền kết hợp', name: 'zhje', width: 100, align: 'left', hidden: true },
+                { label: 'Nhóm thu phí lớn', name: 'dlmc', width: 100, align: 'left' },
+                { label: 'ĐiểmNhóm列', name: 'zhmccode', width: 100, align: 'left' },
             ],
 
             pager: "#gridPager",
             viewrecords: true,
             sortname: 'zhcode',
             gridview: true,
-            grouping: true,// 是否分组,默认为false
+            grouping: true,// Có hay khôngĐiểmNhóm,mặc định làfalse
             groupingView: {
-                groupField: ['zhmccode'], // 按照哪一列进行分组
+                groupField: ['zhmccode'], // 按照哪一列进DòngĐiểmNhóm
                 //groupText: ['<b>{0}</b>'],
                 groupColumnShow: [false],
             },
@@ -90,7 +90,7 @@
     function btn_add() {
         $.modalOpen({
             id: "AForm",
-            title: "添加项目信息",
+            title: "Thêm hạng mụcThông tin",
             url: "/Treatment/AForm?orgId=" + $('#OrganizeId').val(),
             width: "550px",
             height: "490px",
@@ -101,12 +101,12 @@
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().zhcode;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "修改信息",
+            title: "Sửa thông tin",
             url: "/Treatment/AForm?keyValue=" + keyValue+"&orgId=" + $('#OrganizeId').val(),
             width: "550px",
             height: "590px",
@@ -117,13 +117,13 @@
     function btn_delete() {
 
         var rowKey = $("#gridList").jqGrid('getGridParam', "selrow");
-        var rowData = $("#gridList").jqGrid("getRowData", rowKey);//根据上面的rowKey获得本行的所有数据
+        var rowData = $("#gridList").jqGrid("getRowData", rowKey);//Theo phần trênrowKeyLấy tất cả dữ liệu của dòng này
         var zhcode = rowData.zhcode; //获得制定列的值 （ReservationTime为colModel的name）
 
 
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         $.deleteForm({

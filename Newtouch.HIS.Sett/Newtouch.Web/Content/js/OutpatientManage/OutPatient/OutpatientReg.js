@@ -1,19 +1,19 @@
 ﻿$(function () {
 
-    //浏览器窗口调整大小时重新加载jqGrid的宽
+    //Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGridchiều rộng của
     $(window).resize(function () {
         initLayout("MyTabGrid");
     });
 
-    //页面加载，禁用控件
+    //Tải trang，Vô hiệu hóa điều khiển
     DisableSysBasicInfo(false);
-    //页面进来，加载门诊类型
-    $("#sel_mzlx").select2({ minimumResultsForSearch: -1 }); //去掉筛选条件
+    //khi vào trang，TảiKhám ngoại trúLoại
+    $("#sel_mzlx").select2({ minimumResultsForSearch: -1 }); //Loại bỏĐiều kiện lọc
     initFPH();
     initLastFPHInfo();
     initZffs();
 
-    //回车键
+    //Phím Enter
     $("#txtkh").keypress(function (e) {
         if (e.keyCode === 13) {
             LoadPatientInfo($("#txtkh").val(), true);
@@ -26,20 +26,20 @@
         }
     });
     $("#txtssk").keypress(function (e) {
-        //先清空
+        //先Xóa trống
         $("#labzl").text('');
         if (e.keyCode == 13) {
             if ($("#txtssk").val() == "" || isNaN($("#txtssk").val())) {
-                $.modalAlert("请填写实收款并且只可填数字", 'warning');
+                $.modalAlert("Vui lòng nhập số thực thu và chỉ được nhập số", 'warning');
                 return false;
             }
             var zl = parseFloat($("#txtssk").val()) - parseFloat($("#labysk").text());
-            $("#labzl").text(zl.toFixed(2)); //保留小数点后两位小数
+            $("#labzl").text(zl.toFixed(2)); //Giữ hai chữ số thập phân
         }
     });
 });
 
-//搜索
+//Tìm kiếm
 $("#btn_search").click(function () {
     LoadPatientInfo($("#txtkh").val(), true);
     if ($("#linkregistering").parent()[0].className == "active") {
@@ -50,13 +50,13 @@ $("#btn_search").click(function () {
     }
 })
 
-//刷卡
+//Quẹt thẻ
 function SK() {
-    $.modalAlert("功能正在开发中", 'warning');
+    $.modalAlert("Chức năng đang được phát triển", 'warning');
     return false;
 }
 
-//页面进来，加载发票号
+//khi vào trang，Tải số hóa đơn
 function initFPH() {
     $.najax({
         url: "/OutpatientManage/OutpatientReg/GetInvoice?r=" + Math.random(),
@@ -68,20 +68,20 @@ function initFPH() {
     });
 }
 
-//页面进来，加载上一张发票信息
+//khi vào trang，Tải thông tin hóa đơn trước
 function initLastFPHInfo() {
     $.najax({
         url: "/OutpatientManage/OutpatientReg/GetLastSettleInfo?r=" + Math.random(),
         dataType: "json",
         async: false,
         success: function (data) {
-            //查询ok
+            //Tra cứuok
             if (data != null && data.length > 0) {
                 $("#lblqfph").val(data[0].fph);
                 $("#lblzje").val(data[0].xjzf);
                 $("#lblys").val(data[0].ysk);
                 $("#lblzl").val(data[0].zl);
-            } else //查询ok，但当天还没挂号结算信息
+            } else //Tra cứuok，Nhưng trong ngày chưa có thông tin quyết toán đăng ký khám
             {
                 $("#lblqfph").val('');
                 $("#lblzje").val('');
@@ -93,13 +93,13 @@ function initLastFPHInfo() {
     });
 }
 
-//页面进来，加载支付方式
+//khi vào trang，Tải phương thức thanh toán
 function initZffs() {
     $("#ddlzffs").newtouchBindSelect({
         id: "xjzffsbh",
         text: "xjzffsmc",
         datasource: function () {
-            //遍历数据源
+            //Duyệt nguồn dữ liệu
             var resultObjArr = new Array();
             $.each(top.clients.SysForCashPayList, function (idx, val) {
                 if (val.zhxz == 'a') {
@@ -112,11 +112,11 @@ function initZffs() {
 
 }
 
-//免卡登记
+//Đăng ký không cần thẻ
 function FreeCardReg() {
     $.modalOpen({
         id: "Form",
-        title: "免卡登记",
+        title: "Đăng ký không cần thẻ",
         url: "/PatientManage/HospiterRes/PatientBasic",
         width: "1000px",
         height: "824px",
@@ -126,7 +126,7 @@ function FreeCardReg() {
     });
 }
 
-//根据卡号加载信息
+//Tải thông tin theo số thẻ
 var kh = "";
 function LoadPatientInfo(kh, isAutoOpenFreeCardReg) {
     if (!kh) {
@@ -155,7 +155,7 @@ function LoadPatientInfo(kh, isAutoOpenFreeCardReg) {
             $("#txtbrxz").val(data.data.brxz);
             $("#txtbrxzqc").val("[" + data.data.brxz + "]" + data.data.brxzmc);
             $("#txtbrxzbh").val(data.data.brxzbh);
-            DisableSysBasicInfo(true); //true:标志是从免卡登记或根据卡号查询返回明细, false:页面加载时，可以输kh
+            DisableSysBasicInfo(true); //true:Cờ này lấy từ đăng ký không cần thẻ hoặc từ chi tiết trả về khi tra cứu theo số thẻ, false:Khi tải trang，có thể nhậpkh
         },
         errorCallback: function (data) {
             newtouch_globalevent_f4();
@@ -172,21 +172,21 @@ function LoadPatientInfo(kh, isAutoOpenFreeCardReg) {
     });
 }
 
-//弹出发票号的窗口
+//Cửa sổ bật số hóa đơn
 function ShowInvoicePanel() {
     $.modalOpen({
         id: "InvoiceNoPanel",
-        title: "选发票号",
+        title: "Chọn số hóa đơn",
         url: "/OutpatientManage/OutpatientReg/ChooseInvoice",
         width: "300px",
         height: "200px",
         callBack: function (iframeId) {
-            top.frames[iframeId].checkFPH();//窗口点确定的回调函数
+            top.frames[iframeId].checkFPH();//điểm cửa sổXác nhận的CallbackHàm
         }
     });
 }
 
-//病人性质浮层
+//Lớp nổi tính chất bệnh nhân
 $("#txtbrxzqc").newtouchFloatingSelector({
     height: 200,
     width: 300,
@@ -194,7 +194,7 @@ $("#txtbrxzqc").newtouchFloatingSelector({
         if (!keyword) {
             return null;
         }
-        //遍历数据源，用keyword来筛选出结果
+        //Duyệt nguồn dữ liệu，用keywordđể lọc ra kết quả
         var resultObjArr = new Array();
         $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
             if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -204,12 +204,12 @@ $("#txtbrxzqc").newtouchFloatingSelector({
         return resultObjArr;
 
     },
-    caption: "病人性质",
+    caption: "Tính chất bệnh nhân",
     colModel: [
-        { label: '编号', name: 'brxzbh', widthratio: 25 },
-        { label: '代码', name: 'brxz', widthratio: 25 },
-        { label: '名称', name: 'brxzmc', widthratio: 25 },
-        { label: '拼音', name: 'py', widthratio: 25 }
+        { label: 'Số hiệu', name: 'brxzbh', widthratio: 25 },
+        { label: 'Mã', name: 'brxz', widthratio: 25 },
+        { label: 'Tên', name: 'brxzmc', widthratio: 25 },
+        { label: 'Phiên âm', name: 'py', widthratio: 25 }
     ],
     itemdbclickhandler: function ($thistr) {
         checkBrxz($thistr.attr('data-brxz'));
@@ -220,7 +220,7 @@ $("#txtbrxzqc").newtouchFloatingSelector({
     }
 });
 
-//check病人性质
+//checkTính chất bệnh nhân
 function checkBrxz(updateBrxz) {
     var kh = $("#txtkh").val();
     $.najax({
@@ -230,20 +230,20 @@ function checkBrxz(updateBrxz) {
         success: function (data) {
 
         },
-        errorCallback: function (data) {   //状态为error时自动弹出错误信息，该方法为弹出错误信息之后需做的事情
+        errorCallback: function (data) {   //Trạng thái为errorKhi自动弹出错误Thông tin，NàyPhương thức为弹出错误Thông tinSau đóCần做的事情
 
         }
     })
 }
 
-//门诊类型发生改变清空科室/医生
+//Khám ngoại trúLoại发生改变Xóa trốngKhoa/Bác sĩ
 function sel_mzlxChange() {
     $("#txtksys").val('');
 }
 
-//挂号类型
+//Loại đăng ký khám
 var currentghlx;
-//挂号排班浮层
+//Lớp nổi lịch trực đăng ký khám
 $("#txtksys").newtouchBatchFloatingSelector({
     height: 200,
     width: 350,
@@ -257,16 +257,16 @@ $("#txtksys").newtouchBatchFloatingSelector({
         reqData.mzlx = $("#sel_mzlx").val();
         return reqData;
     },
-    caption: "挂号排班",
+    caption: "Lịch trực đăng ký khám",
     colModel: [
         { label: 'gh', name: 'gh', hidden: true, widthratio: 0 },
         { label: 'ghlx', name: 'ghlx', hidden: true, widthratio: 0 },
         { label: 'ghlxbh', name: 'ghlxbh', hidden: true, widthratio: 0 },
-        { label: '挂号类型', name: 'sfxmmc', widthratio: 25 },
-        { label: '挂号科室', name: 'ksmc', widthratio: 25 },
-        { label: '医生', name: 'rymc', widthratio: 25 },
+        { label: 'Loại đăng ký khám', name: 'sfxmmc', widthratio: 25 },
+        { label: 'Khoa đăng ký khám', name: 'ksmc', widthratio: 25 },
+        { label: 'Bác sĩ', name: 'rymc', widthratio: 25 },
         {
-            label: '专病', name: 'ghzbmc', widthratio: 25, formatter: function (cellvalue) {
+            label: 'Bệnh chuyên khoa', name: 'ghzbmc', widthratio: 25, formatter: function (cellvalue) {
                 return cellvalue === "null" ? "" : cellvalue;
             }
         },
@@ -274,11 +274,11 @@ $("#txtksys").newtouchBatchFloatingSelector({
         { label: 'ksbh', name: 'ksbh', hidden: true, widthratio: 0 }
     ],
     itemdbclickhandler: function ($thistr) {
-        if ($("#sel_mzlx").val() === "1" || $("#sel_mzlx").val() === "2")//门诊/急诊  只显示科室
+        if ($("#sel_mzlx").val() === "1" || $("#sel_mzlx").val() === "2")//Khám ngoại trú/Cấp cứu  Chỉ hiển thị khoa
         {
             $("#txtksys").val($thistr.attr('data-ksmc'));
         }
-        if ($("#sel_mzlx").val() === "3")//专家门诊  显示科室和医生
+        if ($("#sel_mzlx").val() === "3")//Khám chuyên gia  Hiển thị khoa và bác sĩ
         {
             $("#txtksys").val($thistr.attr('data-ksmc') + "/" + $thistr.attr('data-rymc'));
         }
@@ -293,13 +293,13 @@ $("#txtksys").newtouchBatchFloatingSelector({
     }
 });
 
-//加载正在挂号信息 
+//Tải thông tin đang đăng ký khám 
 function RegisterInfo() {
     //var rowIDs = $("#registeringList").getDataIDs();
     //for (var i = 0; i < rowIDs.length; i++) {
     //    var getRow = $("#registeringList").getRowData(rowIDs[i]);
     //    if ($("#txtksys").val() == getRow.ghlx) {
-    //        $.modalAlert("同个号不能挂多次", 'warning');
+    //        $.modalAlert("Cùng mộtSố不能挂多次", 'warning');
     //        $("#txtksys").val("");
     //        return;
     //    }
@@ -308,13 +308,13 @@ function RegisterInfo() {
     $('#registeringList').jqGrid("clearGridData");
     if ($("#txtksys").val() != null && $("#ksys").val() !== "") {
 
-        //把tab页中所需的数据保存到一个对象
+        //đưatabLưu dữ liệu cần trong trang vào một đối tượng
         list = new Object();
         list.ghlx = $("#txtksys").val();
         list.brxz = $("#txtbrxz").val();
         list.brxzbh = $("#txtbrxzbh").val();
         list.dbxm = $("#txtdbxm").val();
-        //获取挂号费 诊疗费 磁卡费 工本费
+        //Lấy phí đăng ký khám Phí khám chữa bệnh Phí thẻ từ Phí làm thẻ
         var feesList = GHFees(true);
         list.ghf = feesList.ghf;
         list.zlf = feesList.zlf;
@@ -322,15 +322,15 @@ function RegisterInfo() {
         list.gbf = feesList.gbf;
         list.totalfees = feesList.totalfees;
 
-        //正在挂号
+        //Đang đăng ký khám
         registeringListNew([list]);
         //$("#txtysk").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
-        $("#labysk").text(list.totalfees);  //应收款
+        $("#labysk").text(list.totalfees);  //Khoản phải thu
         $("#labysk").addClass('moneybg');
     }
 }
 
-//获取挂号费用
+//Lấy phí đăng ký khám
 function GHFees(flag) {
     var isZzjm = false;
     var isCkf = false;
@@ -368,13 +368,13 @@ function GHFees(flag) {
             feesList.totalfees = data.totalfees;
         }
     });
-    //单独点击CheckBox
+    //Nhấn riêngCheckBox
     if (!flag) {
         //var rowData = $('#registeringList').jqGrid('getRowData', 1);
         $('#registeringList').jqGrid('setCell', 1, 'ckf', feesList.ckf);
         $('#registeringList').jqGrid('setCell', 1, 'gbf', feesList.gbf);
         $('#registeringList').jqGrid('setCell', 1, 'totalfees', feesList.totalfees);
-        //更新Grid费用的同时，更新总金额
+        //Cập nhậtGridđồng thời với chi phí，Cập nhật tổng số tiền
         //$("#txtysk").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
         $("#labysk").text(feesList.totalfees);
 
@@ -383,26 +383,26 @@ function GHFees(flag) {
 }
 
 
-//退号
+//Hủy số khám
 function BackNum() {
     var currtab = $("#linkclosedReg").parent();
     if (currtab[0].className === "active") {
         if ($("#closedRegList").getDataIDs().length == 0) {
-            $.modalAlert("没有可退号的挂号信息", 'warning');
+            $.modalAlert("Không cóHủy số khám的Đăng ký khámThông tin", 'warning');
             return;
         }
         var seleRowid = jQuery("#closedRegList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条需要退号的挂号信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin đăng ký khám cần hủy số", 'warning');
             return;
         }
         var seleRowData = $("#closedRegList").jqGrid('getRowData', seleRowid);
         if (seleRowData.isth === "已退号") {
-            $.modalAlert("该挂号已退", 'warning');
+            $.modalAlert("Đăng ký khám này đã hủy", 'warning');
             return;
         }
         seleRowData.isReturnCKGBFee = (seleRowData.isReturnCKGBFee === 'Yes');
-        $.modalConfirm("是否退号？", function (flag) {
+        $.modalConfirm("Có hủy số khám hay không？", function (flag) {
             if (flag) {
                 $.najax({
                     url: "/OutpatientManage/OutpatientReg/BackNum",
@@ -416,7 +416,7 @@ function BackNum() {
                     success: function (data) {
                         $.loading(false);
                         if (data === true) {
-                            $.modalAlert("退号成功", 'success');
+                            $.modalAlert("Hủy số khám thành công", 'success');
                             $("#linkclosedReg").trigger("click");
                         }
                         else {
@@ -428,20 +428,20 @@ function BackNum() {
             else {
                 return false;
             }
-        }, false); //false:modalConfirm不关闭dialog
+        }, false); //false:modalConfirm不Đóngdialog
     }
     else {
-        $.modalAlert("请在已结算列表里选择要退号的项", 'warning');
+        $.modalAlert("Vui lòng chọn mục cần hủy số trong danh sách đã quyết toán", 'warning');
         return;
     }
 }
 
-//保存
+//Lưu
 function Save() {
-    //先看当前是不是在正在挂号列表，再看列表有没有数据，如果有 默认第一条，若没有则提示
+    //Trước tiên xem hiện có trong danh sách đang đăng ký khám hay không，Rồi xem danh sách có dữ liệu hay không，Nếu có Mặc định dòng đầu tiên，Nếu không có thì nhắc
     var currtab = $("#linkregistering").parent();
     if (currtab[0].className === "active") {
-        //获取jqGrid的行数
+        //LấyjqGridsố dòng của
         var count = $("#registeringList").getGridParam('records');
         if (count > 0) {
             var regList = new Object();
@@ -453,30 +453,30 @@ function Save() {
             var ysk = 0;
             ysk = $("#labysk").text();
             regList.ssk = $("#txtssk").val();
-            //数据验证
+            //Kiểm tra dữ liệu
             if (!CheckItem(regList)) {
                 return false;
             }
             if (parseFloat(regList.ssk) < parseFloat(ysk)) {
-                $.modalAlert("实收款必须不能小于应收款", 'warning');
+                $.modalAlert("Số thực thu không được nhỏ hơn số phải thu", 'warning');
                 return false;
             } else {
                 var zl = parseFloat($("#txtssk").val()) - parseFloat($("#labysk").text());
                 //Book(ysk, regList.ssk);
-                //结算窗体
+                //Biểu mẫu quyết toán
                 showBillSuccessDialog(ysk, regList.ssk, 0, zl.toFixed(2));
             }
 
         } else {
-            $.modalAlert("当前没有正在挂号信息", 'warning');
+            $.modalAlert("Hiện không có thông tin đang đăng ký khám", 'warning');
             return false;
         }
     } else {
-        $.modalAlert("请到正在挂号列表进行结算", 'warning');
+        $.modalAlert("Vui lòng到Đang đăng ký khám列表进DòngQuyết toán", 'warning');
     }
 }
 
-//下暂存单
+//下Lưu tạm单
 function Book(ysk, ssk) {
     var selRowRowId = $("#registeringList").jqGrid("getGridParam", "selrow");
     if (!selRowRowId && $("#registeringList").getGridParam('records') === 1) {
@@ -484,7 +484,7 @@ function Book(ysk, ssk) {
     }
 
     if (!selRowRowId) {
-        $.modalAlert("请选中挂号记录", 'warning');
+        $.modalAlert("Vui lòng chọn bản ghi đăng ký khám", 'warning');
     }
 
     var selRow = $("#registeringList").jqGrid('getRowData', selRowRowId);
@@ -494,7 +494,7 @@ function Book(ysk, ssk) {
         brxz: $("#txtbrxz").val(),
         brxzbh: $("#txtbrxzbh").val(),
         ghly: "0",
-        mjzbz: $.currentWindow().$("#sel_mzlx").val(),////门急诊标志 1：门诊 2：急诊
+        mjzbz: $.currentWindow().$("#sel_mzlx").val(),////Cờ khám cấp cứu ngoại trú 1：Khám ngoại trú 2：Cấp cứu
         ksbh: $("#txtksbh").val(),
         ks: $("#txtks").val(),
         ys: $("#txtrygh").val(),
@@ -526,8 +526,8 @@ function Book(ysk, ssk) {
         blh: $("#txtblh").val(),
         updateBrxz: $("#txtbrxz").val()
     };
-    $.loading(true, "正在请求数据...");
-    //保存
+    $.loading(true, "Đang yêu cầu dữ liệu...");
+    //Lưu
     $.najax({
         url: "/OutpatientManage/OutpatientReg/Book",
         dataType: "text",
@@ -535,19 +535,19 @@ function Book(ysk, ssk) {
         type: "POST",
         async: false,
         success: function (data) {
-            $.loading(false, "正在请求数据...");
+            $.loading(false, "Đang yêu cầu dữ liệu...");
             $("#hidOrderId").val(parseInt(data));
         },
         errorCallback: function (data) {
-            $.loading(false, "正在请求数据...");
+            $.loading(false, "Đang yêu cầu dữ liệu...");
         },
         complete: function () {
-            $.loading(false, "正在请求数据...");
+            $.loading(false, "Đang yêu cầu dữ liệu...");
         }
     });
 }
 
-//弹出金额确认窗口
+//Bật cửa sổ xác nhận số tiền
 function showBillSuccessDialog(ysk, ssk, srce, zl) {
     var url = "/HospitalizationManage/Settlement/SettSuccessDialog?yingshoukuan=" + ysk
         + "&ssk=" + ssk
@@ -555,20 +555,20 @@ function showBillSuccessDialog(ysk, ssk, srce, zl) {
         + "&zhaoling=" + zl;
     $.modalOpen({
         id: "FormShowBillSuccessDialog",
-        title: "结算确认",
+        title: "Xác nhận quyết toán",
         url: url,
         width: "320px",
         height: "260px",
         callBack: function (iframeId) {
-            $.modalClose("FormShowBillSuccessDialog");   //关闭结算金额的窗体
-            $.loading(true, "正在请求数据...");
+            $.modalClose("FormShowBillSuccessDialog");   //Đóng biểu mẫu số tiền quyết toán
+            $.loading(true, "Đang yêu cầu dữ liệu...");
             SaveMethod(ysk, ssk);
         }
     });
 }
-//具体保存执行
+//Thực hiện lưu cụ thể
 function SaveMethod(ysk, ssk) {
-    var mzlx = $.currentWindow().$("#sel_mzlx").val(); //门急诊标志 1：门诊 2：急诊
+    var mzlx = $.currentWindow().$("#sel_mzlx").val(); //Cờ khám cấp cứu ngoại trú 1：Khám ngoại trú 2：Cấp cứu
     var isZzjm = "";
     if ($("#chk_zzjm").is(":checked")) {
         isZzjm = true;
@@ -590,7 +590,7 @@ function SaveMethod(ysk, ssk) {
     }
 
     if (!selRowRowId) {
-        $.modalAlert("请选中挂号记录", 'warning');
+        $.modalAlert("Vui lòng chọn bản ghi đăng ký khám", 'warning');
     }
 
     var selRow = $("#registeringList").jqGrid('getRowData', selRowRowId);
@@ -605,23 +605,23 @@ function SaveMethod(ysk, ssk) {
         orderId = parseInt($("#hidOrderId").val());
     }
 
-    //保存
+    //Lưu
     $.najax({
         url: "/OutpatientManage/OutpatientReg/Save",
         dataType: "json",
-        //ghxz:0 普通挂号； jzbz:"1",ghzt:"1" 无效字段； ghzbbh:0,ghzb:0 暂且默认为0；ghly: "0" 挂号来源为窗口；  gsrdh:"",zdicd10:"",zdmc:"" 暂且默认空
+        //ghxz:0 Đăng ký khám thông thường； jzbz:"1",ghzt:"1" Trường không hợp lệ； ghzbbh:0,ghzb:0 Tạm thời mặc định là0；ghly: "0" Nguồn đăng ký khám là cửa sổ；  gsrdh:"",zdicd10:"",zdmc:"" Tạm thời mặc định trống
         data: { OrderId: orderId, patid: $("#txtpatid").val(), brxz: $("#txtbrxz").val(), brxzbh: $("#txtbrxzbh").val(), ghly: "0", mjzbz: mzlx, ksbh: $("#txtksbh").val(), ks: $("#txtks").val(), ys: $("#txtrygh").val(), ghlxbh: $("#txtghlxbh").val(), ghlx: $("#txtghlx").val(), ghzbbh: 0, ghzb: 0, fzbz: $("#txtfzbz").val(), jzbz: "1", ghzt: "1", ghxz: 0, dbxm: $("#txtdb").val(), gsrdh: "", zdicd10: "", zdmc: "", ghf: ghf, zlf: zlf, ckf: ckf, gbf: gbf, zzjm: isZzjm, kh: $("#txtkh").val(), ssk: ssk, fph: $("#txtfph").val(), isCkf: isCkf, isGbf: isGbf, xm: $("#labxm").text(), xb: xb, csny: $("#txtcsny").val(), blh: $("#txtblh").val(), updateBrxz: $("#txtbrxz").val() },
         type: "POST",
         async: false,
         success: function (data) {
-            $.modalAlert("保存成功", 'success');
+            $.modalAlert("Lưu thành công", 'success');
 
-            //重新加载发票号
+            //Tải lại số hóa đơn
             initFPH();
             newtouch_globalevent_f4();
             $("#labysk").text = String.Empty;
             $("#labzl").text = String.Empty;
-            //刷新上一次结算信息
+            //Làm mớimục trước次Quyết toánThông tin
             $("#lastSettleInfoList").jqGrid('setGridParam', {}).trigger('reloadGrid');
             $.loading(false);
         },
@@ -634,39 +634,39 @@ function SaveMethod(ysk, ssk) {
 
 }
 
-//保存验证
+//Kiểm tra khi lưu
 function CheckItem(RegList) {
     if (RegList.fph == "") {
-        $.modalAlert("发票号不可为空", 'warning');
+        $.modalAlert("Số hóa đơn không được trống", 'warning');
         return;
     }
     if (RegList.patid == "") {
-        $.modalAlert("请先新增病人信息", 'warning');
+        $.modalAlert("Vui lòng thêm thông tin bệnh nhân trước", 'warning');
         return false;
     }
     if (RegList.kh == "") {
-        $.modalAlert("请先输入卡号", 'warning');
+        $.modalAlert("Vui lòng nhập số thẻ trước", 'warning');
         return false;
     }
     if (RegList.brxz == "") {
-        $.modalAlert("请选择病人性质", 'warning');
+        $.modalAlert("Vui lòng chọn tính chất bệnh nhân", 'warning');
         return false;
     }
     if (RegList.ghlx == "") {
-        $.modalAlert("请选择挂号类型", 'warning');
+        $.modalAlert("Vui lòng chọn loại đăng ký khám", 'warning');
         return false;
     }
     if (RegList.ssk == "" || isNaN(RegList.ssk)) {
-        $.modalAlert("请填写实收款并且只可填数字", 'warning');
+        $.modalAlert("Vui lòng nhập số thực thu và chỉ được nhập số", 'warning');
         return false;
     }
 
     return true;
 }
 
-//快捷键：清除
+//Phím tắt：Xóa
 function newtouch_event_f4() {
-    //清空Grid
+    //Xóa trốngGrid
     $('#registeringList').jqGrid("clearGridData");
     $('#closedRegList').jqGrid("clearGridData");
     $('#labxm').text("");
@@ -674,21 +674,21 @@ function newtouch_event_f4() {
     //$("input[name=radio_xb]").removeAttr("checked");
     //$("input[name=radio_xb]").parent().removeClass('active').css('background-color', '#fff');
 
-    //启用控件
+    //Bật điều khiển
     EnabledSysBasicInfo();
 }
-//快捷键:保存
+//Phím tắt:Lưu
 function newtouch_event_f8() {
     Save();
 }
-//快捷键：退号
+//Phím tắt：Hủy số khám
 function newtouch_event_f9() {
     BackNum();
 }
 
-//禁用
+//Vô hiệu hóa
 function DisableSysBasicInfo(flag) {
-    //true:标志是从免卡登记或根据卡号查询返回明细, false:页面加载时，可以输kh
+    //true:Cờ này lấy từ đăng ký không cần thẻ hoặc từ chi tiết trả về khi tra cứu theo số thẻ, false:Khi tải trang，có thể nhậpkh
     if (flag) {
         $("#txtkh").attr("disabled", "disabled").css("background-color", "#f1f4f6");
         $("#txtbrxzqc").removeAttr("disabled").removeAttr("style");
@@ -704,7 +704,7 @@ function DisableSysBasicInfo(flag) {
     //$("#txtzl").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
 }
 
-//启用
+//Bật
 function EnabledSysBasicInfo() {
     $("#txtkh").removeAttr("disabled").removeAttr("style");
 }

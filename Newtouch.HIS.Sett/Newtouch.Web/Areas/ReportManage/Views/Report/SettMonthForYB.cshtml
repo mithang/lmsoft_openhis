@@ -7,14 +7,14 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">申报类型：</th>
+                <th class="formTitle">Khai báoLoại：</th>
                 <td class="formValue">
                     <select id="sblx" class="form-control">
-                        <option value="1">医保</option>
-                        <option value="2">居保</option>
+                        <option value="1">Bảo hiểm y tế</option>
+                        <option value="2">Bảo hiểm cư dân</option>
                     </select>
                 </td>
-                <th class="formTitle">结算月份：</th>
+                <th class="formTitle">Quyết toánTháng：</th>
                 <td class="formValue">
                     <input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM' })"
@@ -23,7 +23,7 @@
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
                 <th></th>
                 <td></td>
@@ -53,11 +53,11 @@
     function submit() {
 
         if ($('#ksrq').val().length == 0 ) {
-            $.modalAlert("请选择日期", "error");
+            $.modalAlert("Vui lòng chọnNgày", "error");
             return;
         }
 
-        //同步费用
+        //Đồng bộ chi phí
         $.ajax({
             url: "/ReportManage/Report/SettMonthForYB",
             dataType: "json",
@@ -71,7 +71,7 @@
 
         url += "&Bdate=" + bdate + "&Edate=" + bdate + "&yblx=" + $('#sblx').val();
 
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'Đang yêu cầu trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
     }
 
@@ -85,7 +85,7 @@
 
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }
@@ -97,7 +97,7 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:Stylesheet') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";

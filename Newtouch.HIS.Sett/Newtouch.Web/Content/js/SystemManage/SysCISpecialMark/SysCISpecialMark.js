@@ -9,22 +9,22 @@ function gridList() {
         url: "/SystemManage/SysCISpecialMark/GetbzGridJson",
         height: $(window).height() - 128,
         colModel: [
-            { label: "主键", name: "sfxmtsbzbh", hidden: true, key: true },
-            { label: '收费项目', name: 'sfxmmc', width: 200, align: 'left' },
-            { label: '病人性质', name: 'brxzmc', width: 220, align: 'left' },
+            { label: "Khóa chính", name: "sfxmtsbzbh", hidden: true, key: true },
+            { label: 'Hạng mục thu phí', name: 'sfxmmc', width: 200, align: 'left' },
+            { label: 'Tính chất bệnh nhân', name: 'brxzmc', width: 220, align: 'left' },
             {
-                label: '有效', name: 'zt', width: 50, align: 'left',
+                label: 'Có hiệu lực', name: 'zt', width: 50, align: 'left',
                 formatter: function (cellvalue) {
                     if (cellvalue == 0) {
-                        return "无效"
+                        return "Không hiệu lực"
                     } else {
-                        return "有效"
+                        return "Có hiệu lực"
                     }
                 }
             },
-            { label: '建档人员', name: 'CreatorCode', width: 100, align: 'left' },
+            { label: 'Người lập hồ sơ', name: 'CreatorCode', width: 100, align: 'left' },
             {
-                label: '建档日期', name: 'CreateTime', width: 100, align: 'left',
+                label: 'Ngày lập hồ sơ', name: 'CreateTime', width: 100, align: 'left',
                 formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
             }
         ],
@@ -42,7 +42,7 @@ function gridList() {
 function btn_add() {
     $.modalOpen({
         id: "Form",
-        title: "系统收费项目特殊标志维护",
+        title: "Bảo trì cờ đặc biệt hạng mục thu phí hệ thống",
         url: "/SystemManage/SysCISpecialMark/Form",
         width: "500px",
         height: "200px",
@@ -55,7 +55,7 @@ function btn_edit() {
     var keyValue = $("#gridList").jqGridRowValue().sfxmtsbzbh;
     $.modalOpen({
         id: "Form",
-        title: "修改信息",
+        title: "Sửa thông tin",
         url: "/SystemManage/SysCISpecialMark/Form?keyValue=" + keyValue,
         width: "500px",
         height: "200px",
@@ -80,7 +80,7 @@ function btn_details() {
     var keyValue = $("#gridList").jqGridRowValue().sfxmtsbzbh;
     $.modalOpen({
         id: "Details",
-        title: "查看机构",
+        title: "Xem cơ sở",
         url: "/SystemManage/SysCISpecialMark/Form?keyValue=" + keyValue,
         width: "400px",
         height: "200px",

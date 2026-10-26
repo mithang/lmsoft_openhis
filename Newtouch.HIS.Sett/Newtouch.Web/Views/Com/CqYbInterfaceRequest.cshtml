@@ -25,8 +25,8 @@
 						<input type="text" class="form-control" id="txt_it" value="http://127.0.0.1:33333/api/YiBao/" />
 					</td>
 					<td class="formValue">
-						<button type="button" class="btn btn-primary" id="btn_request" value="请求" style="width: 100px;">Send</button>
-						<button type="button" class="btn btn-primary" id="btn_clean" value="清除" style="width: 100px;">Clean</button>
+						<button type="button" class="btn btn-primary" id="btn_request" value="Yêu cầu" style="width: 100px;">Send</button>
+						<button type="button" class="btn btn-primary" id="btn_clean" value="Xóa" style="width: 100px;">Clean</button>
 					</td>
 				</tr>
 				<tr>
@@ -59,7 +59,7 @@
 	$(function () {
 		$("#btn_request").click(function () {
 			$("#txt_response").val("");
-			//var payoptype = { "inStr":  };//险种类别默认，1、医疗保险；2、工伤保险；3、生育保险；
+			//var payoptype = { "inStr":  };//Loại bảo hiểmLoạiMặc định，1、Y tếBảo hiểm；2、Tai nạn lao độngBảo hiểm；3、Sinh đẻBảo hiểm；
 			$.ajax({
 				type: "POST",
                 url: $("#txt_it").val(),
@@ -78,7 +78,7 @@
 		});
 	});
 
-	//回车事件绑定
+	//Gắn sự kiện Enter
 	$(document).keyup(function (event) {
 		if (event.keyCode === 13) {
 			$("#btn_request").trigger("click");

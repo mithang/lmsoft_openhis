@@ -12,21 +12,21 @@
 <form id="form1">
     <table class="form">
         <tr>
-            <td class="formTitle">代码</td>
+            <td class="formTitle">Mã</td>
             <td class="formValue"><input type="text" class="form-control newtouch_Readonly" name="dlCode" id="dlCode" /></td>
-            <td class="formTitle">大类<span>*</span></td>
+            <td class="formTitle">Nhóm lớn<span>*</span></td>
             <td class="formValue"><input type="text" class="form-control" name="dlmc" id="dlmc" /></td>
         </tr>
         <tr>
-            <td class="formTitle">门诊报表大类<span>*</span></td>
+            <td class="formTitle">Khám ngoại trú报表Nhóm lớn<span>*</span></td>
             <td class="formValue"><input type="text" class="form-control" name="mzprintreportcode" id="mzprintreportcode" /></td>
-            <td class="formTitle">门诊账单大类<span>*</span></td>
+            <td class="formTitle">Nhóm lớn hóa đơn khám ngoại trú<span>*</span></td>
             <td class="formValue"><input type="text" class="form-control" name="mzprintbillcode" id="mzprintbillcode" /></td>
         </tr>
         <tr>
-            <td class="formTitle">拼音<span>*</span></td>
+            <td class="formTitle">Phiên âm<span>*</span></td>
             <td class="formValue"><input type="text" class="form-control" name="py" id="py" /></td>
-            <td class="formTitle">有效<span>*</span></td>
+            <td class="formTitle">Có hiệu lực<span>*</span></td>
             <td class="formValue">
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
@@ -39,23 +39,23 @@
             </td>
         </tr>
         <tr>
-            <td class="formTitle">范围<span>*</span></td>
+            <td class="formTitle">Phạm vi<span>*</span></td>
             <td class="formValue">
                 <select class="form-control" id="mzzybz" name="mzzybz">
-                    <option value="">==请选择==</option>
-                    <option value="0">通用</option>
-                    <option value="1">门诊</option>
-                    <option value="2">住院</option>
+                    <option value="">==Vui lòng chọn==</option>
+                    <option value="0">Chung</option>
+                    <option value="1">Khám ngoại trú</option>
+                    <option value="2">Nội trú</option>
                 </select>
             </td>
-            <td class="formTitle">排序</td>
+            <td class="formTitle">Sắp xếp</td>
             <td class="formValue"><input type="text" class="form-control" name="px" id="px" /></td>
         <tr>
-            <td class="formTitle">建档人员</td>
+            <td class="formTitle">Người lập hồ sơ</td>
             <td class="formValue">
                 <input class="form-control newtouch_Readonly" id="CreatorCode" name="CreatorCode" value=@OperatorProvider.GetCurrent().UserCode type="text" />
             </td>
-            <td class="formTitle">建档日期</td>
+            <td class="formTitle">Ngày lập hồ sơ</td>
             <td class="formValue"><input class="form-control newtouch_Readonly" id="CreateTime" name="CreateTime" value=@DateTime.Now type="text" /></td>
         </tr>
         </tr>

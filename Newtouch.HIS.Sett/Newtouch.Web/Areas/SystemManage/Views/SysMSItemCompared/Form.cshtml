@@ -10,25 +10,25 @@
     <div class="container">
         <div class="row">
             <div class="formValue col-xs-6">
-                <label>科室</label>
+                <label>Khoa</label>
                 <div id="selectOption">
                     <select class="form-control" name="ks" id="ks">
-                        <option>请选择</option>
+                        <option>Vui lòng chọn</option>
                     </select>
                 </div>
             </div>
             <div class="formValue col-xs-6">
-                <label>收费项目</label>
+                <label>Hạng mục thu phí</label>
                 <div id="selectOption">
                     <select class="form-control" name="sfxm" id="sfxm">
-                        <option>请选择</option>
+                        <option>Vui lòng chọn</option>
                     </select>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="formValue col-xs-6">
-                <label>有效</label>
+                <label>Có hiệu lực</label>
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
                         <input type="radio" name="zt" id="zt" value="1"> 是
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="formValue col-xs-6">
-                <label>可收费</label>
+                <label>Có thể thu phí</label>
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
                         <input type="radio" name="ksbz" id="ksbz" value="1"> 是
@@ -52,12 +52,12 @@
         </div>
         <div class="row">
             <div class="formValue col-xs-6">
-                <label>建档人员</label>
+                <label>Người lập hồ sơ</label>
                 @*<input class="form-control" id="jdry" name="jdry" value=@Newtouch.Tools.OperatorProvider.GetCurrent().UserCode type="text" readonly="readonly" />*@
                 <input class="form-control" id="CreatorCode" name="CreatorCode" value=@OperatorProvider.GetCurrent().UserCode type="text" readonly="readonly" />
             </div>
             <div class="formValue col-xs-6">
-                <label>建档日期</label>
+                <label>Ngày lập hồ sơ</label>
                 @*<input class="form-control" id="bgbz" name="bgbz" value="0" style="display:none" type="text" />
                     <input class="form-control" id="bgrq" name="bgrq" style="display:none" value=@DateTime.Now type="text" />
                     <input class="form-control" id="jdrq" name="jdrq" value=@DateTime.Now type="text" readonly="readonly" />*@

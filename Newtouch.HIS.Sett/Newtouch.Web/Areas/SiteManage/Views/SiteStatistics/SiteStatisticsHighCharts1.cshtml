@@ -9,12 +9,12 @@
 <form id="form1">
     <div class="panel panel-default">
         <div class="panel-heading">
-            收支比例
+            Thu chi比例
         </div>
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">统计时间：</th>
+                    <th class="formTitle">Thời gian thống kê：</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlRKFS" class="form-control required">
                             <option value="1">2018-09-01 ~ 2018-09-26</option>
@@ -23,12 +23,12 @@
                             <option value="4">2018-06-01 ~ 2018-06-30</option>
                         </select>
                     </td>
-                    <th class="formTitle">站点：</th>
+                    <th class="formTitle">Trạm：</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="site1" name="site" class="form-control">
                             <option value="1">秦皇岛养老院</option>
                             <option value="2">嘉兴康复</option>
-                            <option value="3">上海百诺</option>
+                            <option value="3">trên海百诺</option>
                             <option value="4">常熟美迪柯医院</option>
                             <option value="5">广州松鹤养老院</option>
                         </select>
@@ -44,17 +44,17 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            年度收入统计
+            年度Thống kê thu nhập
         </div>
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">站点：</th>
+                    <th class="formTitle">Trạm：</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="site2" name="site" class="form-control">
                             <option value="1">秦皇岛养老院</option>
                             <option value="2">嘉兴康复</option>
-                            <option value="3">上海百诺</option>
+                            <option value="3">trên海百诺</option>
                             <option value="4">常熟美迪柯医院</option>
                             <option value="5">广州松鹤养老院</option>
                         </select>
@@ -82,7 +82,7 @@
             type: 'pie'
         },
         title: {
-            text: '实收占比'
+            text: 'Thực thu占比'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -101,13 +101,13 @@
             }
         },
         series: [{
-            name: '实收',
+            name: 'Thực thu',
             colorByPoint: true,
             data: [{
-                name: '机构实收',
+                name: 'Thực thu của cơ sở',
                 y: 40.0
             }, {
-                name: 'GRS实收',
+                name: 'GRSThực thu',
                 y: 60.0
             }]
         }]
@@ -117,7 +117,7 @@
             type: 'bar'
         },
         title: {
-            text: '收入统计'
+            text: 'Thống kê thu nhập'
         },
         xAxis: {
             categories: ['PT', 'OT', 'ST', 'TCM']
@@ -125,12 +125,12 @@
         yAxis: {
             min: 0,
             title: {
-                text: '科目收费金额'
+                text: 'Số tiền thu phí theo khoản mục'
             }
         },
         legend: {
-            /* 图例显示顺序反转
-             * 这是因为堆叠的顺序默认是反转的，可以设置
+            /* 图例Thứ tự hiển thị反转
+             * 这是因为堆叠的顺序Mặc định是反转的，可以设置
              * yAxis.reversedStacks = false 来达到类似的效果
              */
             reversed: true
@@ -141,10 +141,10 @@
             }
         },
         series: [{
-            name: '门诊收入',
+            name: 'Thu nhập khám ngoại trú',
             data: [1120.00, 3776.76, 4655.99, 7476.12]
         }, {
-            name: '住院收入',
+            name: 'Thu nhập nội trú',
             data: [2123.11, 21234.34, 3235.56, 14563.12]
         }],
         credits: {
@@ -159,25 +159,25 @@
             enabled: false
         },
         title: {
-            text: '本年度收费金额统计'
+            text: 'Năm naySố tiền thu phíThống kê'
         },
         //subtitle: {
-        //    text: '数据来源: newtouch.com'
+        //    text: 'Nguồn dữ liệu: newtouch.com'
         //},
         xAxis: {
             categories: [
-                '一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月'
+                'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9'
             ],
             crosshair: true
         },
         yAxis: {
             min: 0,
             title: {
-                text: '科目收费金额 (元)'
+                text: 'Số tiền thu phí theo khoản mục (元)'
             }
         },
         tooltip: {
-            // head + 每个 point + footer 拼接成完整的 table
+            // head + mỗi point + footer ghép thành đầy đủ table
             headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
             pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
             '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
@@ -191,10 +191,10 @@
             }
         },
         series: [{
-            name: '门诊收入',
+            name: 'Thu nhập khám ngoại trú',
             data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4]
         }, {
-            name: '住院收入',
+            name: 'Thu nhập nội trú',
             data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 92.3]
         }]
     });
@@ -203,10 +203,10 @@
             type: 'spline'
         },
         title: {
-            text: '各站点本年度收费金额统计'
+            text: '各TrạmNăm naySố tiền thu phíThống kê'
         },
         //subtitle: {
-        //    text: '非规律性时间内的变化'
+        //    text: 'Không规律性Thời gianTrong的变化'
         //},
         credits: {
             enabled: false
@@ -219,7 +219,7 @@
         },
         yAxis: {
             title: {
-                text: '科目收费金额 (元)'
+                text: 'Số tiền thu phí theo khoản mục (元)'
             },
             min: 0
         },
@@ -290,7 +290,7 @@
                 [Date.UTC(2018, 9, 7), 12]
             ]
         }, {
-            name: '上海百诺',
+            name: 'trên海百诺',
             data: [
                 [Date.UTC(2018, 1, 9), 90],
                 [Date.UTC(2018, 1, 14), 50.15],

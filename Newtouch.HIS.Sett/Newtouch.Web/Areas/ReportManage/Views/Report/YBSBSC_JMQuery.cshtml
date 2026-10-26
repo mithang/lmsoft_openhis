@@ -10,14 +10,14 @@
 	<div class="panel panel-default">
 		<table class="form">
 			<tr>
-				<th class="formTitle">开始日期：</th>
+				<th class="formTitle">Ngày bắt đầu：</th>
 				<td class="formValue">
 					<input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
 						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
 						   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
 						   value="@DateTime.Now.ToString("yyyy-MM-01")" />
 				</td>
-				<th class="formTitle">结束日期：</th>
+				<th class="formTitle">Ngày kết thúc：</th>
 				<td class="formValue">
 					<input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
 						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -26,17 +26,17 @@
 				</td>
 				<th class="formTitle"></th>
 				<td class="formValue" style="padding-left:20px;">
-					<input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+					<input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
 				</td>
 			</tr>
 		</table>
 	</div>
 </div>
-<p style="color:red;">查询有数据会弹出下载提示</p>
+<p style="color:red;">Khi tra cứu có dữ liệu sẽ bật nhắc tải xuống</p>
 <div class="ui-layout" id="layout" style="height:100%;width:100%;">
 	<ul id="myTab" class="nav nav-tabs">
-		<li class="active"><a href="#mjz" data-toggle="tab" onclick="tabchange('Q')">城镇居民门急诊#Q</a></li>
-		<li><a href="#zy" data-toggle="tab" onclick="tabchange('R')">城镇居民住院#R</a></li>
+		<li class="active"><a href="#mjz" data-toggle="tab" onclick="tabchange('Q')">Khám ngoại trú cư dân thành thịCấp cứu#Q</a></li>
+		<li><a href="#zy" data-toggle="tab" onclick="tabchange('R')">Cư dân thành thịNội trú#R</a></li>
 	</ul>
 	<div class="tab-pane fade in active" id="mjz">
 		<iframe class="ui-layout-center" style="width:100%;" id="iframerightiframerightiframerightttt" name="iframerightiframerightiframerightttt"
@@ -49,7 +49,7 @@
 </div>
 
 <script>
-	var tabaction = "Q";//切换卡片 默认门诊
+	var tabaction = "Q";//Chuyển thẻ Mặc định khám ngoại trú
 	 var isHospAdministrator = '@(ViewBag.IsHospAdministrator)';
     var curUserCode = '@(ViewBag.CurUserCode)';
     var OrgId = '@(ViewBag.OrgId)';
@@ -66,7 +66,7 @@
 	}
 	function submit() {
 		if ($('#ksrq').val().length == 0 || $('#jsrq').val().length == 0) {
-			$.modalAlert("请选择时间范围", "error");
+			$.modalAlert("Vui lòng chọn khoảng thời gian", "error");
 			return;
 		}
 
@@ -92,7 +92,7 @@
 
 	function DCQuery(type) {
 		if ($('#ksrq').val().length == 0 || $('#jsrq').val().length == 0) {
-			$.modalAlert("请选择时间范围", "error");
+			$.modalAlert("Vui lòng chọn khoảng thời gian", "error");
 			return;
 		}
 		var predata = {

@@ -9,32 +9,32 @@ function gridList() {
         url: "/SystemManage/SysMSItemCompared/GetdzGridJson",
         height: $(window).height() - 96,
         colModel: [
-            { label: "主键", name: "id", hidden: true, key: true },
-            { label: '科室', name: 'ksmc', width: 100, align: 'left' },
-            { label: '收费项目', name: 'sfxmmc', width: 220, align: 'left' },
+            { label: "Khóa chính", name: "id", hidden: true, key: true },
+            { label: 'Khoa', name: 'ksmc', width: 100, align: 'left' },
+            { label: 'Hạng mục thu phí', name: 'sfxmmc', width: 220, align: 'left' },
             {
-                label: '可收费', name: 'ksbz', width: 50, align: 'left',
+                label: 'Có thể thu phí', name: 'ksbz', width: 50, align: 'left',
                 formatter: function (cellvalue) {
                     if (cellvalue == 0) {
-                        return "只允许确认不允许收费  "
+                        return "Chỉ cho phép xác nhận, không cho phép thu phí  "
                     } else {
-                        return "允许确认和收费"
+                        return "Cho phép xác nhận và thu phí"
                     }
                 }
             },
             {
-                label: '有效', name: 'zt', width: 50, align: 'left',
+                label: 'Có hiệu lực', name: 'zt', width: 50, align: 'left',
                 formatter: function (cellvalue) {
                     if (cellvalue == 0) {
-                        return "无效"
+                        return "Không hiệu lực"
                     } else {
-                        return "有效"
+                        return "Có hiệu lực"
                     }
                 }
             },
-            { label: '建档人员', name: 'jdry', width: 100, align: 'left' },
+            { label: 'Người lập hồ sơ', name: 'jdry', width: 100, align: 'left' },
             {
-                label: '建档日期', name: 'jdrq', width: 100, align: 'left',
+                label: 'Ngày lập hồ sơ', name: 'jdrq', width: 100, align: 'left',
                 formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
             }
         ]
@@ -48,7 +48,7 @@ function gridList() {
 function btn_add() {
     $.modalOpen({
         id: "Form",
-        title: "系统医技项目对照维护",
+        title: "Bảo trì đối chiếu hạng mục kỹ thuật y tế hệ thống",
         url: "/SystemManage/SysMSItemCompared/Form",
         width: "500px",
         height: "300px",
@@ -61,7 +61,7 @@ function btn_edit() {
     var keyValue = $("#gridList").jqGridRowValue().id;
     $.modalOpen({
         id: "Form",
-        title: "修改信息",
+        title: "Sửa thông tin",
         url: "/SystemManage/SysMSItemCompared/Form?keyValue=" + keyValue,
         width: "500px",
         height: "300px",
@@ -84,7 +84,7 @@ function btn_details() {
     var keyValue = $("#gridList").jqGridRowValue().id;
     $.modalOpen({
         id: "Details",
-        title: "查看机构",
+        title: "Xem cơ sở",
         url: "/SystemManage/SysMSItemCompared/Form?keyValue=" + keyValue,
         width: "500px",
         height: "300px",

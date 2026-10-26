@@ -7,37 +7,37 @@
 <form id="form1">
     <div class="container" style="margin-top: 10px; margin-left: -4%; ">
         <ul class="nav nav-tabs" role="tablist" id="myTab" style="margin-left: 4%;">
-            <li role="presentation"><a href="" role="tab" data-toggle="tab">基本信息</a></li>
+            <li role="presentation"><a href="" role="tab" data-toggle="tab">Thông tin cơ bản</a></li>
         </ul>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" style="padding-top: 20px; margin-right: 99px; margin-left:69px;" id="basicInfo">
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>提醒类型：</th>
+                        <th class="formTitle"><span class="required">*</span>Loại nhắc nhở：</th>
                         <td class="formValue formDdlSelectorTd">
-                            @Html.DropDownList("reminderType", Newtouch.Infrastructure.EnmuReminderType.金额上限提醒.ToDescSelectList(), "==请选择==", new { @class = "form-control required" })
+                            @Html.DropDownList("reminderType", Newtouch.Infrastructure.EnmuReminderType.Nhắc nhở giới hạn số tiền.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control required" })
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">@*<span class="required">*</span>*@科室：</th>
+                        <th class="formTitle">@*<span class="required">*</span>*@Khoa：</th>
                         <td class="formValue">
-                            <input type="text" class="form-control" id="ks" name="ks" placeholder="请空格或关键字进行选择" />
+                            <input type="text" class="form-control" id="ks" name="ks" placeholder="Vui lòng chọn bằng phím cách hoặc từ khóa" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">@*<span class="required">*</span>*@医生：</th>
+                        <th class="formTitle">@*<span class="required">*</span>*@Bác sĩ：</th>
                         <td class="formValue">
-                            <input type="text" class="form-control " id="ys" name="ys" placeholder="请空格或关键字进行选择"/>
+                            <input type="text" class="form-control " id="ys" name="ys" placeholder="Vui lòng chọn bằng phím cách hoặc từ khóa"/>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">金额上限（元）：</th>
+                        <th class="formTitle">Giới hạn số tiền（元）：</th>
                         <td class="formValue">
                             <input type="text" class="form-control required" id="jesx" name="jesx" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">有效：</th>
+                        <th class="formTitle">Có hiệu lực：</th>
                         <td class="formValue">
                             <div class="ckbox">
                                 <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt"></label>
@@ -72,13 +72,13 @@
         }
     })
 
-    //科室浮层
+    //KhoaLớp nổi
     $('#ks').newtouchBatchFloatingSelector({
         width: 300,
         height: 250,
         clickautotrigger: true,
         //minlength: 2,
-        caption: "选择科室",
+        caption: "Chọn khoa",
         url: '/SystemManage/MoneyUpperLimitReminder/SelectDepartmentList',
         ajaxparameters: function ($thisinput) {
             return "keyword=" + $thisinput.val();
@@ -87,33 +87,33 @@
         //    $('#ks').attr('data-Code', $thistr.attr('data-Code'))
         //        .val($thistr.attr('data-Name'));
         //    $('#ys').attr('data-gh', '')
-        //        .val(''); //清空医生
+        //        .val(''); //Xóa trốngBác sĩ
         //},
         colModel: [
-            { label: '代码', name: 'Code', widthratio: 40 },
-            { label: '名称', name: 'Name', widthratio: 60 }
+            { label: 'Mã', name: 'Code', widthratio: 40 },
+            { label: 'Tên', name: 'Name', widthratio: 60 }
         ]
     });
 
     //$('#ys').focus(function () {
     //    if (!!!$('#ks').attr('data-Code') || !!!$('#ks').val()) {
-    //        $.modalAlert("请先选择科室", 'warning');
+    //        $.modalAlert("Vui lòng chọn khoa trước", 'warning');
     //        return;
     //    }
     //});
     //$('#ys').change(function () {
     //    if (!!!$('#ks').attr('data-Code') || !!!$('#ks').val()) {
-    //        $.modalAlert("请先选择科室", 'warning');
+    //        $.modalAlert("Vui lòng chọn khoa trước", 'warning');
     //        return;
     //    }
     //});
 
-    //医生浮层
+    //Bác sĩLớp nổi
     $('#ys').newtouchBatchFloatingSelector({
         width: 300,
         height: 200,
         //minlength: 2,
-        caption: "选择医生",
+        caption: "ChọnBác sĩ",
         clickautotrigger: true,
         url: '/SystemManage/MoneyUpperLimitReminder/SelectTherapistList',
         ajaxparameters: function ($thisinput) {
@@ -130,19 +130,19 @@
         //    return true;
         //},
         colModel: [
-            { label: '工号', name: 'StaffGh', widthratio: 40 ,align: 'center'},
-            { label: '名称', name: 'StaffName', widthratio: 60, align: 'center' }
+            { label: 'Mã nhân viên', name: 'StaffGh', widthratio: 40 ,align: 'center'},
+            { label: 'Tên', name: 'StaffName', widthratio: 60, align: 'center' }
         ]
     });
 
 
-    //提交
+    //Gửi
     function submitForm() {
         if (!$('#form1').formValid()) {
             return false;
         }
         if (isNaN($('#jesx').val())) {
-            $.modalAlert("金额上限仅可填写数字", 'warning');
+            $.modalAlert("Giới hạn số tiền仅可填写数字", 'warning');
             return false;
         }
         var params = $("#form1").formSerialize();

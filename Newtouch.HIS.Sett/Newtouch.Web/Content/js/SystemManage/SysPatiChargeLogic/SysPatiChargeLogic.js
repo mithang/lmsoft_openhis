@@ -9,24 +9,24 @@ function gridList() {
         postData: { keyword: $("#txt_keyword").val(), ogrId: $("#OrganizeId").val() },
         height: $(window).height() - 128,
         colModel: [
-            { label: "主键", name: "brsfsfbh", hidden: true, key: true },
-            { label: "病人性质", name: "brxzmc", width: 80, align: 'left' },
-            { label: '大类', name: "dlmc", width: 100, align: 'left' },
-            { label: '收费项目', name: "sfxmmc", width: 100, align: 'left' },
+            { label: "Khóa chính", name: "brsfsfbh", hidden: true, key: true },
+            { label: "Tính chất bệnh nhân", name: "brxzmc", width: 80, align: 'left' },
+            { label: 'Nhóm lớn', name: "dlmc", width: 100, align: 'left' },
+            { label: 'Hạng mục thu phí', name: "sfxmmc", width: 100, align: 'left' },
             {
-                label: '适用范围', name: "mzzybz", width: 80, align: 'left',
+                label: 'Phạm vi áp dụng', name: "mzzybz", width: 80, align: 'left',
                 formatter: function (cellvalue) {
                     if (cellvalue) {
                         if (cellvalue === "0") {
-                            return "通用";
+                            return "Chung";
                         } else if (cellvalue === "1") {
-                            return "门诊";
+                            return "Khám ngoại trú";
                         } else if (cellvalue === "2") {
-                            return "部门";
+                            return "Bộ phận";
                         } else if (cellvalue === "3") {
-                            return "住院";
+                            return "Nội trú";
                         } else if (cellvalue === "4") {
-                            return "系统";
+                            return "Hệ thống";
                         } else {
                             return "";
                         }
@@ -35,48 +35,48 @@ function gridList() {
                 }
             },
             {
-                label: '算法级别', name: 'sfjb', width: 80, align: 'left'
+                label: 'Cấp độ thuật toán', name: 'sfjb', width: 80, align: 'left'
             },
             {
-                label: "费用范围", name: 'fyfw', width: 130, align: 'left',
+                label: "Phạm vi chi phí", name: 'fyfw', width: 130, align: 'left',
                 formatter: function (cellvalue) {
                     if (cellvalue) {
                         if (cellvalue == "0") {
-                            return "可报";
+                            return "Được thanh toán BHYT";
                         } else if (cellvalue == "1") {
-                            return "可报+分类自负";
+                            return "Được thanh toán BHYT+Tự chịu theo loại";
                         } else if (cellvalue == "2") {
-                            return "可报+分类自负+自费";
+                            return "Được thanh toán BHYT+Tự chịu theo loại+Tự trả";
                         } else if (cellvalue == "3") {
-                            return "可报+分类自负+自费+绝对自费";
+                            return "Được thanh toán BHYT+Tự chịu theo loại+Tự trả+Hoàn toàn tự trả";
                         }
                     }
                     return "";
                 }
             },
-            { label: '自负比例', name: 'zfbl', width: 80, align: 'left' },
+            { label: 'Tỷ lệ tự chịu', name: 'zfbl', width: 80, align: 'left' },
             {
-                label: '自负性质', name: 'zfxz', width: 80, align: 'left',
+                label: 'Tính chất tự chịu', name: 'zfxz', width: 80, align: 'left',
                 formatter: function (cellvalue) {
                     if (cellvalue) {
                         if (cellvalue == "0") {
-                            return "自付";
+                            return "Tự trả";
                         } else if (cellvalue == "1") {
-                            return "自理";
+                            return "Tự lo";
                         }
                     }
                     return "";
                 }
             },
-            { label: '费用上限', name: 'fysx', width: 50, align: 'left' },
+            { label: 'Giới hạn chi phí', name: 'fysx', width: 50, align: 'left' },
             {
-                label: '有效', name: 'zt', width: 50, align: 'left',
+                label: 'Có hiệu lực', name: 'zt', width: 50, align: 'left',
                 formatter: function (cellvalue) {
                     if (cellvalue) {
                         if (cellvalue == 0) {
-                            return "无效";
+                            return "Không hiệu lực";
                         } else {
-                            return "有效";
+                            return "Có hiệu lực";
                         }
                     }
                     return "";
@@ -98,7 +98,7 @@ function gridList() {
 function btn_add() {
     $.modalOpen({
         id: "Form",
-        title: "系统病人收费算法维护",
+        title: "Bảo trì thuật toán thu phí bệnh nhân hệ thống",
         url: "/SystemManage/SysPatiChargeLogic/Form",
         width: "700px",
         height: "350px",
@@ -110,13 +110,13 @@ function btn_add() {
 function btn_edit() {
     var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
     if (!(seleRowid)) {
-        $.modalAlert("请先选中一条信息", "warning");
+        $.modalAlert("Vui lòng chọn trước một thông tin", "warning");
         return;
     }
     var keyValue = $("#gridList").jqGridRowValue().brsfsfbh;
     $.modalOpen({
         id: "Form",
-        title: "修改信息",
+        title: "Sửa thông tin",
         url: "/SystemManage/SysPatiChargeLogic/Form?keyValue=" + keyValue,
         width: "700px",
         height: "300px",
@@ -128,7 +128,7 @@ function btn_edit() {
 function btn_delete() {
     var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
     if (!(seleRowid)) {
-        $.modalAlert("请先选中一条信息", "warning");
+        $.modalAlert("Vui lòng chọn trước một thông tin", "warning");
         return;
     }
     $.deleteForm({
@@ -143,13 +143,13 @@ function btn_delete() {
 function btn_details() {
     var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
     if (!(seleRowid)) {
-        $.modalAlert("请先选中一条信息", "warning");
+        $.modalAlert("Vui lòng chọn trước một thông tin", "warning");
         return;
     }
     var keyValue = $("#gridList").jqGridRowValue().brsfsfbh;
     $.modalOpen({
         id: "Details",
-        title: "查看机构",
+        title: "Xem cơ sở",
         url: "/SystemManage/SysPatiChargeLogic/Form?keyValue=" + keyValue,
         width: "700px",
         height: "350px",

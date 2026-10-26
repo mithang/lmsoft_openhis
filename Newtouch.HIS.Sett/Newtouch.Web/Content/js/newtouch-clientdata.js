@@ -14,32 +14,32 @@ $.newtouchclientsInit = function () {
             async: true,
             cache: false,
             success: function (data) {
-                dataJson.sysPatientNatureList = data.sysPatientNatureList;//病人性质，报销政策
+                dataJson.sysPatientNatureList = data.sysPatientNatureList;//Tính chất bệnh nhân，Chính sách thanh toán BHYT
                 //dataJson.sysCashPay = data.sysCashPay;
                 dataJson.SysForCashPayList = data.SysForCashPayList;
                 //dataJson.sysFieldList = data.sysFieldList;
-                dataJson.sysStaffList = eval(data.sysStaffList);//人员
-                dataJson.sysDepartList = eval(data.sysDepartList),//科室
-                dataJson.sysPatiAreaList = eval(data.sysPatiAreaList),//病区
-                dataJson.sysNationalityList = eval(data.sysNationalityList),//国籍
-                dataJson.sysNationList = eval(data.sysNationList),//民族
-                //dataJson.sysChargeItemList = data.sysChargeItemList,//住院记账收费项目
-                dataJson.doctorInHosBookkeep = data.doctorInHosBookkeep//住院记账门诊医生
-                dataJson.sysMajorClassList = eval(data.sysMajorClassList);//大类
-                //dataJson.sysChargeItemList = data.sysChargeItemList;//收费项目
-                //dataJson.sysChargeClassifyList = data.sysChargeClassifyList;//收费分类
-                //dataJson.syszlxmList = data.syszlxmList;//诊疗项目
-                dataJson.sysnbsfdlList = eval(data.sysnbsfdlList);//农保收费大类
-                dataJson.sysbasfdlList = eval(data.sysbasfdlList);//病案收费大类
-                dataJson.sysStaffDutyList = eval(data.sysStaffDutyList);//医生，健康教练
-                //dataJson.regScheduleList = data.regScheduleList//挂号排班
+                dataJson.sysStaffList = eval(data.sysStaffList);//Nhân viên
+                dataJson.sysDepartList = eval(data.sysDepartList),//Khoa
+                dataJson.sysPatiAreaList = eval(data.sysPatiAreaList),//Khu bệnh
+                dataJson.sysNationalityList = eval(data.sysNationalityList),//Quốc tịch
+                dataJson.sysNationList = eval(data.sysNationList),//Dân tộc
+                //dataJson.sysChargeItemList = data.sysChargeItemList,//Hạng mục thu phí ghi sổ nội trú
+                dataJson.doctorInHosBookkeep = data.doctorInHosBookkeep//Bác sĩ khám ngoại trú ghi sổ nội trú
+                dataJson.sysMajorClassList = eval(data.sysMajorClassList);//Nhóm lớn
+                //dataJson.sysChargeItemList = data.sysChargeItemList;//Hạng mục thu phí
+                //dataJson.sysChargeClassifyList = data.sysChargeClassifyList;//Phân loại thu phí
+                //dataJson.syszlxmList = data.syszlxmList;//Hạng mục khám chữa bệnh
+                dataJson.sysnbsfdlList = eval(data.sysnbsfdlList);//Nhóm lớn thu phí bảo hiểm nông nghiệp
+                dataJson.sysbasfdlList = eval(data.sysbasfdlList);//Nhóm lớn hồ sơ bệnh án
+                dataJson.sysStaffDutyList = eval(data.sysStaffDutyList);//Bác sĩ，Huấn luyện viên sức khỏe
+                //dataJson.regScheduleList = data.regScheduleList//Lịch trực đăng ký khám
                 //GetDYList
                 //dataJson.organize = data.organize;
                 //dataJson.role = data.role;
                 //dataJson.duty = data.duty;
                 //dataJson.authorizeMenu = eval(data.authorizeMenu);
                 //dataJson.authorizeButton = data.authorizeButton;
-                dataJson.commercialInsuranceList = data.commercialInsuranceList;//商保
+                dataJson.commercialInsuranceList = data.commercialInsuranceList;//Bảo hiểm thương mại
             }
         });
     }

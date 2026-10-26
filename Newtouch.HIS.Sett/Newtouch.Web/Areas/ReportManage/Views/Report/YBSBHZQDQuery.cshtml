@@ -10,14 +10,14 @@
 	<div class="panel panel-default">
 		<table class="form">
 			<tr>
-				<th class="formTitle">开始日期：</th>
+				<th class="formTitle">Ngày bắt đầu：</th>
 				<td class="formValue">
 					<input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
 						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
 						   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
 						   value="@DateTime.Now.ToString("yyyy-MM-01")" />
 				</td>
-				<th class="formTitle">结束日期：</th>
+				<th class="formTitle">Ngày kết thúc：</th>
 				<td class="formValue">
 					<input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
 						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -26,7 +26,7 @@
 				</td>
 				<th class="formTitle"></th>
 				<td class="formValue" style="padding-left:20px;">
-					<input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+					<input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
 				</td>
 			</tr>
 		</table>
@@ -34,8 +34,8 @@
 </div>
 <div class="ui-layout" id="layout" style="height:100%;width:100%;">
 	<ul id="myTab" class="nav nav-tabs">
-		<li class="active"><a href="#newyj" data-toggle="tab" onclick="tabchange('1')">医保汇总报表1号表</a></li>
-		<li><a href="#yj" data-toggle="tab" onclick="tabchange('2')">医保汇总报表2号表</a></li>
+		<li class="active"><a href="#newyj" data-toggle="tab" onclick="tabchange('1')">Báo cáo tổng hợp BHYT1Bảng số khám</a></li>
+		<li><a href="#yj" data-toggle="tab" onclick="tabchange('2')">Báo cáo tổng hợp BHYT2Bảng số khám</a></li>
 	</ul>
 	<div class="tab-pane fade in active" id="newyj">
 		<iframe class="ui-layout-center" style="width:100%;" id="iframerightiframerightiframerightttt" name="iframerightiframerightiframerightttt"
@@ -48,7 +48,7 @@
 </div>
 
 <script>
-	var tabaction = "1";//切换卡片 默认门诊
+	var tabaction = "1";//Chuyển thẻ Mặc định khám ngoại trú
 	 var isHospAdministrator = '@(ViewBag.IsHospAdministrator)';
     var curUserCode = '@(ViewBag.CurUserCode)';
     var OrgId = '@(ViewBag.OrgId)';
@@ -65,7 +65,7 @@
 	}
 	function submit() {
 		if ($('#ksrq').val().length == 0 || $('#jsrq').val().length == 0) {
-			$.modalAlert("请选择时间范围", "error");
+			$.modalAlert("Vui lòng chọn khoảng thời gian", "error");
 			return;
 		}
 		

@@ -39,9 +39,9 @@ function checkNotNull() {
             zt: { required: true }
         },
         messages: {
-            flmc: { required: "分类名称必须填写" },
-            py: { required: "拼音必须填写" },
-            zt: { required: "状态必须选择" }
+            flmc: { required: "Tên phân loại bắt buộc phải nhập" },
+            py: { required: "Phiên âm bắt buộc phải nhập" },
+            zt: { required: "Trạng thái bắt buộc phải chọn" }
         },
         showErrors: function (errorMap, errorList) {
             if (!$.isEmptyObject(errorList)) {

@@ -8,9 +8,9 @@
 <script src="~/Content/js/reporttotxt.js"></script>
 <div class="ui-layout" id="layout" style="height:100%;width:100%;">
     <ul id="myTab" class="nav nav-tabs">
-        <li class="active"><a href="#jyjlk" data-toggle="tab" onclick="tabchange('1')">交易记录库</a></li>
-        <li><a href="#mjzdbghk" data-toggle="tab" onclick="tabchange('2')">门急诊大病挂号库</a></li>
-        <li><a href="#mjzdbjcsfk" data-toggle="tab" onclick="tabchange('3')">门急诊大病家床收费库</a></li>
+        <li class="active"><a href="#jyjlk" data-toggle="tab" onclick="tabchange('1')">Kho ghi giao dịch</a></li>
+        <li><a href="#mjzdbghk" data-toggle="tab" onclick="tabchange('2')">门Cấp cứuBệnh nặngĐăng ký khám库</a></li>
+        <li><a href="#mjzdbjcsfk" data-toggle="tab" onclick="tabchange('3')">门Cấp cứuGiường tại nhà bệnh nặngThu phí库</a></li>
     </ul>
     <div class="tab-pane fade in active" id="jyjltab">
         @Html.Partial("~/Areas/ReportManage/Views/Report/JYJLQueryUpload.cshtml")
@@ -24,7 +24,7 @@
 </div>
 
 <script>
-	var tabaction = "1";//切换卡片 默认门诊
+	var tabaction = "1";//Chuyển thẻ Mặc định khám ngoại trú
 	 var isHospAdministrator = '@(ViewBag.IsHospAdministrator)';
     var curUserCode = '@(ViewBag.CurUserCode)';
     var OrgId = '@(ViewBag.OrgId)';
@@ -43,7 +43,7 @@
 	}
 	function submit() {
 		if ($('#ksrq').val().length == 0 || $('#jsrq').val().length == 0) {
-			$.modalAlert("请选择时间范围", "error");
+			$.modalAlert("Vui lòng chọn khoảng thời gian", "error");
 			return;
 		}
 		

@@ -7,18 +7,18 @@
 <div class="topPanel">
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
         </div>
         <div class="btn-group">
             <select id="yxbz" style="height:25px">
-                <option value="1">有效</option>
-                <option value="0">无效</option>
+                <option value="1">Có hiệu lực</option>
+                <option value="0">Không hiệu lực</option>
             </select>
         </div>
     </div>
@@ -27,7 +27,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="请输入要查询关键字" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Vui lòng nhập từ khóa cần tra cứu" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -51,31 +51,31 @@
         postData: { keyword: $("#txt_keyword").val(), yxbz: $("#yxbz").val() },
         height: $(window).height() - 146,
         colModel: [
-            { label: "主键", name: "sfmbbh", hidden: true, key: true },
-            { label: '代码', name: 'sfmb', width: 100, align: 'left' },
-            { label: '收费模板名称', name: 'sfmbmc', width: 150, align: 'left' },
+            { label: "Khóa chính", name: "sfmbbh", hidden: true, key: true },
+            { label: 'Mã', name: 'sfmb', width: 100, align: 'left' },
+            { label: 'Thu phíMẫuTên', name: 'sfmbmc', width: 150, align: 'left' },
             {
-                label: "门诊住院标志", name: "mzzybz", width: 60, align: "center",
+                label: "Cờ khám ngoại trú/nội trú", name: "mzzybz", width: 60, align: "center",
                 formatter: function (cellvalue) {
                     if (cellvalue == "0") {
-                        return "通用"
+                        return "Chung"
                     } else if (cellvalue == "1") {
-                        return "门诊"
+                        return "Khám ngoại trú"
                     } else {
-                        return "住院"
+                        return "Nội trú"
                     }
                 }
             },
             {
-                label: "有效", name: "zt", width: 60, align: "center",
+                label: "Có hiệu lực", name: "zt", width: 60, align: "center",
                 formatter: function (cellvalue) {
                     return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>";
                 }
             },
-            { label: '收费项目科室', name: 'ks', width: 100, align: 'left' },
-            { label: '总金额', name: 'zje', width: 100, align: 'left' },
+            { label: 'Hạng mục thu phíKhoa', name: 'ks', width: 100, align: 'left' },
+            { label: 'Tổng số tiền', name: 'zje', width: 100, align: 'left' },
             {
-                label: '创建时间', name: 'CreateTime', width: 100, align: 'left',
+                label: 'Thời gian tạo', name: 'CreateTime', width: 100, align: 'left',
                 formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
             },
         ],
@@ -92,7 +92,7 @@
         }).trigger('reloadGrid');
     });
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -100,7 +100,7 @@
     function btn_add() {
         $.modalOpen({
             id: "ChargeTemplateIndexEditForm",
-            title: "新增收费模板",
+            title: "Thêm mớiThu phíMẫu",
             url: "/SystemManage/SysParameterConfig/ChargeTemplate_EditForm",
             width: "800px",
             height: "610px",
@@ -113,12 +113,12 @@
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().sfmbbh;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         $.modalOpen({
             id: "ChargeTemplateIndexEditForm",
-            title: "修改收费模板",
+            title: "SửaThu phíMẫu",
             url: "/SystemManage/SysParameterConfig/ChargeTemplate_EditForm?keyValue=" + keyValue,
             width: "800px",
             height: "610px",
@@ -131,11 +131,11 @@
     function btn_delete() {
 
         var rowKey = $("#gridList").jqGrid('getGridParam', "selrow");
-        var rowData = $("#gridList").jqGrid("getRowData", rowKey);//根据上面的rowKey获得本行的所有数据
+        var rowData = $("#gridList").jqGrid("getRowData", rowKey);//Theo phần trênrowKeyLấy tất cả dữ liệu của dòng này
 
         var keyValue = $("#gridList").jqGridRowValue().sfmbbh;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         $.deleteForm({

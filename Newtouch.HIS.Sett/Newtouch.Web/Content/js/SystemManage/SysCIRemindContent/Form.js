@@ -18,7 +18,7 @@ $(function () {
     //}
 })
 function InitControl() {
-    dlList();//收费项目
+    dlList();//Hạng mục thu phí
 }
 function dlList() {
     $("#sfxmmc").newtouchFloatingSelector({
@@ -28,7 +28,7 @@ function dlList() {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，用keywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysChargeItemList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -38,12 +38,12 @@ function dlList() {
             return resultObjArr;
 
         },
-        caption: "收费项目",
+        caption: "Hạng mục thu phí",
         colModel: [
-            { label: '编号', name: 'sfxmbh', widthratio: 25 },
-            { label: '代码', name: 'sfxm', widthratio: 25 },
-            { label: '名称', name: 'sfxmmc', widthratio: 25 },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: 'Số hiệu', name: 'sfxmbh', widthratio: 25 },
+            { label: 'Mã', name: 'sfxm', widthratio: 25 },
+            { label: 'Tên', name: 'sfxmmc', widthratio: 25 },
+            { label: 'Phiên âm', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#sfxmmc").attr("data-label", $thistr.find("td:eq(1)").html());
@@ -81,11 +81,11 @@ function checkNotNull() {
             zt: { required: true }
         },
         messages: {
-            mzjsnr: { required: "门诊警示内容必须填写" },
-            zyjsnr: { required: "住院警示内容必须填写" },
-            mzjsjb: { required: "门诊警示级别必须选择" },
-            zyjsjb: { required: "住院警示级别必须选择" },
-            zt: { required: "状态必须选择" }
+            mzjsnr: { required: "Nội dung cảnh báo khám ngoại trú bắt buộc phải nhập" },
+            zyjsnr: { required: "Nội dung cảnh báo nội trú bắt buộc phải nhập" },
+            mzjsjb: { required: "Mức cảnh báo khám ngoại trú bắt buộc phải chọn" },
+            zyjsjb: { required: "Mức cảnh báo nội trú bắt buộc phải chọn" },
+            zt: { required: "Trạng thái bắt buộc phải chọn" }
         },
         showErrors: function (errorMap, errorList) {
             if (!$.isEmptyObject(errorList)) {
@@ -99,7 +99,7 @@ function checkNotNull() {
     if (!validator.form()) {
         return false;
     }
-    ////状态
+    ////Trạng thái
     //var zt = false;
     //$('input[name="zt"]').each(function () {
     //    var $this = $(this);
@@ -109,7 +109,7 @@ function checkNotNull() {
     //    }
     //});
     //if (!zt) {
-    //    $.modalAlert("请选择是否有效！", 'warning');
+    //    $.modalAlert("Vui lòng chọn có hiệu lực hay không！", 'warning');
     //    return false;
     //}
     return true;

@@ -15,8 +15,8 @@ $(function () {
     }
 })
 function InitControl() {
-    xmList();//收费项目
-    ksList();//病人性质
+    xmList();//Hạng mục thu phí
+    ksList();//Tính chất bệnh nhân
 }
 function xmList() {
     $("#sfxm").bindSelect({

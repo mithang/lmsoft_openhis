@@ -21,8 +21,8 @@ $(function () {
     //}
 })
 function InitControl() {
-    xmList();//收费项目
-    xzList();//病人性质
+    xmList();//Hạng mục thu phí
+    xzList();//Tính chất bệnh nhân
 }
 function xmList() {
     $("#sfxmmc").newtouchFloatingSelector({
@@ -32,7 +32,7 @@ function xmList() {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，用keywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysChargeItemList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -42,12 +42,12 @@ function xmList() {
             return resultObjArr;
 
         },
-        caption: "收费项目",
+        caption: "Hạng mục thu phí",
         colModel: [
-            { label: '编号', name: 'sfxmbh', widthratio: 25 },
-            { label: '代码', name: 'sfxm', widthratio: 25 },
-            { label: '名称', name: 'sfxmmc', widthratio: 25 },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: 'Số hiệu', name: 'sfxmbh', widthratio: 25 },
+            { label: 'Mã', name: 'sfxm', widthratio: 25 },
+            { label: 'Tên', name: 'sfxmmc', widthratio: 25 },
+            { label: 'Phiên âm', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#sfxmmc").attr("data-label", $thistr.find("td:eq(1)").html());
@@ -65,7 +65,7 @@ function xzList() {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，用keywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -75,12 +75,12 @@ function xzList() {
             return resultObjArr;
 
         },
-        caption: "病人性质",
+        caption: "Tính chất bệnh nhân",
         colModel: [
-            { label: '编号', name: 'brxzbh', widthratio: 25 },
-            { label: '代码', name: 'brxz', widthratio: 25 },
-            { label: '名称', name: 'brxzmc', widthratio: 25 },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: 'Số hiệu', name: 'brxzbh', widthratio: 25 },
+            { label: 'Mã', name: 'brxz', widthratio: 25 },
+            { label: 'Tên', name: 'brxzmc', widthratio: 25 },
+            { label: 'Phiên âm', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#brxzmc").attr("data-label", $thistr.find("td:eq(1)").html());
@@ -117,8 +117,8 @@ function checkNotNull() {
             zt: { required: true }
         },
         messages: {
-            brxzmc: { required: "病人性质必须填写" },
-            zt: { required: "状态必须选择" }
+            brxzmc: { required: "Tính chất bệnh nhân bắt buộc phải nhập" },
+            zt: { required: "Trạng thái bắt buộc phải chọn" }
         },
         showErrors: function (errorMap, errorList) {
             if (!$.isEmptyObject(errorList)) {

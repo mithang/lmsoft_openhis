@@ -18,19 +18,19 @@
 <form>
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">病历号：</th>
+                <th class="formTitle">Số hồ sơ bệnh án：</th>
                 <td class="formValue">
                     <input type="text" class="form-control form-an" id="blh" />
                 </td>
-                <th class="formTitle">姓名：</th>
+                <th class="formTitle">Họ tên：</th>
                 <td class="formValue">
                     <input type="text" class="form-control form-an" id="xm" />
                 </td>
-                <th class="formTitle">上传时间：</th>
+                <th class="formTitle">trênTruyềnThời gian：</th>
                 <td class="formValue" colspan="2">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left;">—</span>
@@ -39,39 +39,39 @@
                 <td></td>
             </tr>
             <tr>
-                <th class="formTitle">患者类型：</th>
+                <th class="formTitle">Loại bệnh nhân：</th>
                 <td class="formValue formDdlSelectorTd">
                     <select id="brlx" class="form-control form-an">
-                        <option value="-1">全部</option>
-                        <option value="Outpatient">门诊</option>
-                        <option value="Inpatient">住院</option>
+                        <option value="-1">Tất cả</option>
+                        <option value="Outpatient">Khám ngoại trú</option>
+                        <option value="Inpatient">Nội trú</option>
                     </select>
                 </td>
-                <th class="formTitle">数据类型：</th>
+                <th class="formTitle">Dữ liệuLoại：</th>
                 <td class="formValue formDdlSelectorTd">
                     <select id="wtjlbz" class="form-control form-an">
-                        <option value="-1">全部</option>
-                        <option value=false>正常</option>
+                        <option value="-1">Tất cả</option>
+                        <option value=false>Bình thường</option>
                         <option value=true selected>问题</option>
                     </select>
                 </td>
-                <th class="formTitle">治疗师：</th>
+                <th class="formTitle">Nhà trị liệu：</th>
                 <td class="formValue">
                     @*<input type="text" readonly="readonly" class="form-control formClearIgnore form-an" id="smryName" data-smry="@OperatorProvider.GetCurrent().rygh" data-staffId="@OperatorProvider.GetCurrent().StaffId" value=@OperatorProvider.GetCurrent().UserName />*@
                     <select id="smryName" class="form-control">
-                        <option>==请选择==</option>
+                        <option>==Vui lòng chọn==</option>
                     </select>
                 </td>
-                <th class="formTitle">是否已删除：</th>
+                <th class="formTitle">Có hay khôngĐãXóa：</th>
                 <td class="formValue">
                     <select id="isDeleted" class="form-control">
-                        <option>全部</option>
-                        <option value=false selected>正常</option>
-                        <option value=true>已删除</option>
+                        <option>Tất cả</option>
+                        <option value=false selected>Bình thường</option>
+                        <option value=true>ĐãXóa</option>
                     </select>
                 </td>
                 <td class="formValue">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="Tra cứu" />
                 </td>
 
             </tr>
@@ -87,18 +87,18 @@
                 <label style="height:7px;width:25px; margin-left:20%;background-color:white; border:1px solid #ddd"></label>
             </td>
             <td>
-                表示正常
+                Nghĩa làBình thường
             </td>
             <td style="width: 40px;">
                 <label style="height:7px;width:25px;background-color:#f2dede; border:1px solid #ddd"></label>
             </td>
-            <td>表示异常</td>
+            <td>Nghĩa là异常</td>
         </tr>
     </table>
 </form>
 <script>
-    //默认
-    //var Editing_ysList = []; //编辑域中的人员
+    //Mặc định
+    //var Editing_ysList = []; //Chỉnh sửatrong vùngNhân viên
 
     $(function () {
         gridList();
@@ -106,7 +106,7 @@
 
     });
 
-    //治疗师
+    //Nhà trị liệu
     $("#smryName").bindSelect({
         url: "/Report/GetRehabDoctorList",
         id: "StaffGh",
@@ -121,21 +121,21 @@
             height: $(window).height() - 200,
             colModel: [
                 { label: 'Id', name: 'Id', align: 'left', hidden: true },
-                { label: '收费项目', name: 'serviceDescription', width: 100, align: 'left' },
-                { label: '姓名', name: 'patientName', width: 120, align: 'left' },
-                { label: '病历号', name: 'patientId', width: 100, align: 'left' },
-                { label: '住院/门诊号', name: 'admsNum', width: 100, align: 'left' },
-                { label: '治疗师', name: 'therapistName', width: 60, align: 'left' },
-                { label: '康复类别', name: 'disciplineTrack', width: 120, align: 'left' },
+                { label: 'Hạng mục thu phí', name: 'serviceDescription', width: 100, align: 'left' },
+                { label: 'Họ tên', name: 'patientName', width: 120, align: 'left' },
+                { label: 'Số hồ sơ bệnh án', name: 'patientId', width: 100, align: 'left' },
+                { label: 'Nội trú/Số khám ngoại trú', name: 'admsNum', width: 100, align: 'left' },
+                { label: 'Nhà trị liệu', name: 'therapistName', width: 60, align: 'left' },
+                { label: 'Loại phục hồi chức năng', name: 'disciplineTrack', width: 120, align: 'left' },
                 { label: 'wtjlbz', name: 'wtjlbz', hidden: true, formatter: "bool", align: 'left' },
                 {
-                    label: '患者类型', name: 'patientType', width: 60, align: 'left', formatter: function (val) {
+                    label: 'Loại bệnh nhân', name: 'patientType', width: 60, align: 'left', formatter: function (val) {
                         switch (val) {
                             case "outpatient":
-                                return "门诊"
+                                return "Khám ngoại trú"
                                 break;
                             case "inpatient":
-                                return "住院"
+                                return "Nội trú"
                                 break;
                             default:
                                 return val;
@@ -143,7 +143,7 @@
                         }
                     }
                 },
-                { label: '创建时间', name: 'CreatedDate', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Thời gian tạo', name: 'CreatedDate', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
                 { label: '详细异常', name: 'remark', width: 267, align: 'left' }
 
             ],
@@ -173,7 +173,7 @@
         });
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var blh = $("#blh").val();
         var xm = $("#xm").val();
@@ -186,7 +186,7 @@
         return { blh: blh, xm: xm, kssj: kssj, jssj: jssj, brlx: brlx, wtjlbz: wtjlbz, isDeleted: isDeleted, rygh: rygh };
 
     }
-    //作废
+    //Hủy bỏ
     function newtouch_event_f8() {
         var data = $("#gridList").jqGrid('getRowData_AllLine', undefined, false);
         if (data == "[]") {
@@ -194,7 +194,7 @@
         }
         var ids = $("#gridList").jqGrid("getGridParam", "selarrrow");
         if (!ids || ids.length == 0) {
-            $.modalAlert("请先在列表勾选需要作废的治疗记录", 'warning');
+            $.modalAlert("Vui lòngTrước tiên trong列表勾选CầncầnHủy bỏ的Điều trị记录", 'warning');
             return false;
         }
         var arraryData = [];
@@ -210,9 +210,9 @@
             async: false,
             success: function (data) {
                 $.loading(false);
-                //刷新未确认列表
+                //Làm mớiChưaXác nhận列表
                 $('#btn_search').trigger('click');
-                $.modalMsg("操作成功", 'success');
+                $.modalMsg("Thao tác thành công", 'success');
             },
             errCallback: function (err) {
                 $.loading(false);

@@ -8,39 +8,39 @@
     <div style="padding: 20px 35px 0 2px;">
         <table class="form">
             <tr>
-                <th class="formTitle">病人性质</th>
+                <th class="formTitle">Tính chất bệnh nhân</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="brxz" name="brxz" required/>
                 </td>
-                <th class="formTitle">大类</th>
+                <th class="formTitle">Nhóm lớn</th>
                 <td class="formValue">
                     <select id="dl" name="dl" class="form-control" required>
-                        <option value="">请选择</option>
+                        <option value="">Vui lòng chọn</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">收费项目</th>
+                <th class="formTitle">Hạng mục thu phí</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="sfxm" name="sfxm" required />
                 </td>
-                <th class="formTitle">药品项目</th>
+                <th class="formTitle">Hạng mục thuốc</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="yp" name="yp" required />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">建档人员</th>
+                <th class="formTitle">Người lập hồ sơ</th>
                 <td class="formValue">
                     <input type="text" class="form-control newtouch_Readonly" id="CreatorCode" name="CreatorCode" value=@OperatorProvider.GetCurrent().UserCode />
                 </td>
-                <th class="formTitle">建档日期</th>
+                <th class="formTitle">Ngày lập hồ sơ</th>
                 <td class="formValue">
                     <input type="text" class="form-control newtouch_Readonly" id="CreateTime" name="CreateTime" value=@DateTime.Now.ToString("yyyy-MM-dd") />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">有效</th>
+                <th class="formTitle">Có hiệu lực</th>
                 <td class="formValue">
                     <div class="ckbox">
                         <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt"></label>
@@ -75,7 +75,7 @@
         }
     })
 
-    //病人性质浮层
+    //Lớp nổi tính chất bệnh nhân
     $("#brxz").newtouchFloatingSelector({
         height: 200,
         width: 300,
@@ -83,7 +83,7 @@
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，用keywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -93,12 +93,12 @@
             return resultObjArr;
 
         },
-        caption: "病人性质",
+        caption: "Tính chất bệnh nhân",
         colModel: [
-            { label: '编号', name: 'brxzbh', widthratio: 25 },
-            { label: '代码', name: 'brxz', widthratio: 25 },
-            { label: '名称', name: 'brxzmc', widthratio: 25 },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: 'Số hiệu', name: 'brxzbh', widthratio: 25 },
+            { label: 'Mã', name: 'brxz', widthratio: 25 },
+            { label: 'Tên', name: 'brxzmc', widthratio: 25 },
+            { label: 'Phiên âm', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#brxz").val($thistr.attr('data-brxzmc'))
@@ -107,11 +107,11 @@
         }
     });
 
-    //收费项目
+    //Hạng mục thu phí
     $('#sfxm').newtouchFloatingSelector({
         width: 600,
         height: 280,
-        caption: "收费项目",
+        caption: "Hạng mục thu phí",
         url: '/SystemManage/SysChargeItem/GetChargeItemSelectData',
         ajaxparameters: function () {
             if ($.trim($('#sfxm').val()).length == 0) {
@@ -123,21 +123,21 @@
             $('#sfxm').attr('data-sfxm', $thistr.attr('data-sfxm'))
                 .val($thistr.attr('data-sfxmmc'));
         },
-        colModel: [{ label: '收费项目', name: 'sfxm', widthratio: 10 },
-            { label: '收费项目名称', name: 'sfxmmc', widthratio: 15 },
-            { label: '拼音', name: 'py', widthratio: 10 },
-            { label: '单位', name: 'dw', widthratio: 7 },
-            { label: '单价', name: 'dj', widthratio: 8 },
-            { label: '大类', name: 'dl', widthratio: 10 },
-            { label: '门诊住院标志', name: 'mzzybz', widthratio: 13 }
+        colModel: [{ label: 'Hạng mục thu phí', name: 'sfxm', widthratio: 10 },
+            { label: 'Tên hạng mục thu phí', name: 'sfxmmc', widthratio: 15 },
+            { label: 'Phiên âm', name: 'py', widthratio: 10 },
+            { label: 'Đơn vị', name: 'dw', widthratio: 7 },
+            { label: 'Đơn giá', name: 'dj', widthratio: 8 },
+            { label: 'Nhóm lớn', name: 'dl', widthratio: 10 },
+            { label: 'Cờ khám ngoại trú/nội trú', name: 'mzzybz', widthratio: 13 }
         ]
     });
 
-    //药品项目
+    //Hạng mục thuốc
     $('#yp').newtouchFloatingSelector({
         width: 600,
         height: 280,
-        caption: "药品项目",
+        caption: "Hạng mục thuốc",
         url: '/SystemManage/SysPatiChargeRange/GetYpSelectJsonData',
         ajaxparameters: function () {
             if ($.trim($('#yp').val()).length == 0) {
@@ -149,15 +149,15 @@
             $('#yp').attr('data-yp', $thistr.attr('data-yp'))
                 .val($thistr.attr('data-ypmc'));
         },
-        colModel: [{ label: '药品', name: 'yp', widthratio: 15 },
-            { label: '药品名称', name: 'ypmc', widthratio: 15 },
-            { label: '拼音', name: 'py', widthratio: 7 },
-            { label: '自负比例', name: 'zfbl', widthratio: 8 },
-            { label: '自负性质', name: 'zfxz', widthratio: 10 },
-            { label: '大类', name: 'dl', widthratio: 13 },
-            { label: '大类名称', name: 'dlmc', widthratio: 13 },
-            { label: '药品名称', name: 'ycmc', widthratio: 13 },
-            { label: '医保代码', name: 'ybdm', widthratio: 13 }
+        colModel: [{ label: 'Thuốc', name: 'yp', widthratio: 15 },
+            { label: 'Tên thuốc', name: 'ypmc', widthratio: 15 },
+            { label: 'Phiên âm', name: 'py', widthratio: 7 },
+            { label: 'Tỷ lệ tự chịu', name: 'zfbl', widthratio: 8 },
+            { label: 'Tính chất tự chịu', name: 'zfxz', widthratio: 10 },
+            { label: 'Nhóm lớn', name: 'dl', widthratio: 13 },
+            { label: 'Tên nhóm lớn', name: 'dlmc', widthratio: 13 },
+            { label: 'Tên thuốc', name: 'ycmc', widthratio: 13 },
+            { label: 'Mã bảo hiểm y tế', name: 'ybdm', widthratio: 13 }
         ]
     });
 

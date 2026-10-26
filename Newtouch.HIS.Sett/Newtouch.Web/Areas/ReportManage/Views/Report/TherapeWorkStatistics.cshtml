@@ -8,19 +8,19 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">年份：</th>
+                <th class="formTitle">Năm：</th>
                 <td class="formValue">
                     <select id="year" name="year">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
-                <th class="formTitle">月份：</th>
+                <th class="formTitle">Tháng：</th>
                 <td class="formValue">
                     <select id="month" name="month">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
-                <th class="formTitle">治疗师：</th>
+                <th class="formTitle">Nhà trị liệu：</th>
                 <td class="formValue">
                     <input id="zls" name="zls" type="text" class="form-control" />
                     <input id="zlsId" name="zlsId" type="text" class="form-control" style="display:none;" />
@@ -28,7 +28,7 @@
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
                 <th></th>
                 <td></td>
@@ -53,11 +53,11 @@
     function submit() {
 
         if ($('#year').val().length == 0) {
-            $.modalAlert("缺少年份", "error");
+            $.modalAlert("ThiếuNăm", "error");
             return;
         }
         if ($('#month').val().length == 0) {
-            $.modalAlert("缺少月份", "error");
+            $.modalAlert("ThiếuTháng", "error");
             return;
         }
 
@@ -67,7 +67,7 @@
         url += "&month=" + $('#month').val();
         url += "&ysgh=" + $('#zlsGh').val();
 
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'Đang yêu cầu trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
     }
 
@@ -85,12 +85,12 @@
     });
 
     function init() {
-        //治疗师选择
+        //Nhà trị liệuChọn
         $('#zls').click(function () {
             var initIdSelected = $('#zlsId').val();
             $.modalOpen({
                 id: "StaffCorrelation",
-                title: "选择治疗师",
+                title: "Chọn nhà trị liệu",
                 url: "/SystemManage/SysStaff/Selector?single=true&isContansChildOrg=false&callbackType=json&dutyCode=RehabDoctor&initIdSelected=" + initIdSelected,
                 showleftlalbel: false,
                 width: "650px",
@@ -103,9 +103,9 @@
             });
         });
 
-        //年月下拉初始化
+        //Khởi tạo dropdown năm-tháng
         var date = new Date;
-        //年份
+        //Năm
         $("#year").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -118,7 +118,7 @@
             },
             selectedValue: 1900 + date.getYear(),
         });
-        //月份
+        //Tháng
         $("#month").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -134,7 +134,7 @@
 
     }
 
-    //人员树 选择 回调
+    //Cây nhân viên Chọn Callback
     function staffTreeCallback(treeSeleData) {
 
         $('#zls').val(treeSeleData[0].text);
@@ -146,7 +146,7 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
         
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";

@@ -7,60 +7,60 @@
         <div class="panel-bodys" style="width: 95%;padding-left:15px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>组织机构：</th>
+                    <th class="formTitle"><span class="required">*</span>Tổ chức：</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="OrganizeId" name="OrganizeId" class="form-control required">
-                            <option value="">==请选择==</option>
+                            <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>诊疗组合名称：</th>
+                    <th class="formTitle"><span class="required">*</span>Tên tổ hợp khám chữa bệnh：</th>
                     <td class="formValue">
-                        <input id="zhmc" name="zhmc" type="text" class="form-control required" placeholder="请输入诊疗组合名称" />
+                        <input id="zhmc" name="zhmc" type="text" class="form-control required" placeholder="Vui lòng nhậpTên tổ hợp khám chữa bệnh" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>诊疗组合编码：</th>
+                    <th class="formTitle"><span class="required">*</span>Mã tổ hợp khám chữa bệnh：</th>
                     <td class="formValue">
-                        <input id="zhcode" name="zhcode" type="text" class="form-control" placeholder="请输入诊疗组合编码" />
+                        <input id="zhcode" name="zhcode" type="text" class="form-control" placeholder="Vui lòng nhậpMã tổ hợp khám chữa bệnh" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">明细项目排序：</th>
+                    <th class="formTitle">Hạng mục chi tiếtSắp xếp：</th>
                     <td class="formValue">
-                        <input id="ord" name="ord" type="text" class="form-control" placeholder="请输入明细项目排序" />
+                        <input id="ord" name="ord" type="text" class="form-control" placeholder="Vui lòng nhậpHạng mục chi tiếtSắp xếp" />
                     </td>
                 </tr>
                 <tr hidden>
-                    <th class="formTitle">诊疗明细项目：</th>
+                    <th class="formTitle">Khám chữa bệnhHạng mục chi tiết：</th>
                     <td class="formValue">
-                        <input id="zlxm" name="zlxm" type="text" class="form-control" placeholder="请输入诊疗明细项目" />
+                        <input id="zlxm" name="zlxm" type="text" class="form-control" placeholder="Vui lòng nhậpKhám chữa bệnhHạng mục chi tiết" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">诊疗明细项目名称：</th>
+                    <th class="formTitle">Khám chữa bệnhHạng mục chi tiếtTên：</th>
                     <td class="formValue">
-                        <input id="zlxmmc" name="zlxmmc" type="text" class="form-control" placeholder="请输入诊疗明细项目名称" style="width:78%;float:left" />
-                        <input type="button" id="tjmx" value="添加明细" onclick="tianjiamx()" class="btn btn-default" style="width:60px;height:20px;float:left" />
+                        <input id="zlxmmc" name="zlxmmc" type="text" class="form-control" placeholder="Vui lòng nhậpKhám chữa bệnhHạng mục chi tiếtTên" style="width:78%;float:left" />
+                        <input type="button" id="tjmx" value="ThêmChi tiết" onclick="tianjiamx()" class="btn btn-default" style="width:60px;height:20px;float:left" />
                     </td>
                 </tr>
                 <tr hidden>
-                    <th class="formTitle">诊疗明细项目单价：</th>
+                    <th class="formTitle">Khám chữa bệnhHạng mục chi tiếtĐơn giá：</th>
                     <td class="formValue">
-                        <input id="price" name="price" type="text" class="form-control" placeholder="请输入诊疗明细项目单价" />
+                        <input id="price" name="price" type="text" class="form-control" placeholder="Vui lòng nhậpKhám chữa bệnhHạng mục chi tiếtĐơn giá" />
                     </td>
                 </tr>
                 <tr hidden>
-                    <th class="formTitle">诊疗明细项目拼音：</th>
+                    <th class="formTitle">Khám chữa bệnhHạng mục chi tiếtPhiên âm：</th>
                     <td class="formValue">
-                        <input id="zlxmpy" name="zlxmpy" type="text" class="form-control" placeholder="请输入诊疗明细项目拼音" />
+                        <input id="zlxmpy" name="zlxmpy" type="text" class="form-control" placeholder="Vui lòng nhậpKhám chữa bệnhHạng mục chi tiếtPhiên âm" />
                     </td>
                 </tr>
                 <tr hidden>
-                    <th class="formTitle">组合金额：</th>
+                    <th class="formTitle">Số tiền kết hợp：</th>
                     <td class="formValue">
-                        <input id="zhje" name="zhje" type="text" class="form-control" placeholder="请输入组合金额" />
+                        <input id="zhje" name="zhje" type="text" class="form-control" placeholder="Vui lòng nhậpSố tiền kết hợp" />
                     </td>
                 </tr>
             </table>
@@ -68,8 +68,8 @@
                 <table id="MXTable"></table>
             </div>
             <p>
-                <input type="button" id="addmx" value="保存" onclick="addMX()" class="btn btn-default" style="float:right;width:40px;height:20px;margin-top:5px;" />
-                <input type="button" id="addmx" value="删除" onclick="deleteMX()" class="btn btn-default" style="float:right;margin-right:20px;width:40px;height:20px;margin-top:5px;" />
+                <input type="button" id="addmx" value="Lưu" onclick="addMX()" class="btn btn-default" style="float:right;width:40px;height:20px;margin-top:5px;" />
+                <input type="button" id="addmx" value="Xóa" onclick="deleteMX()" class="btn btn-default" style="float:right;margin-right:20px;width:40px;height:20px;margin-top:5px;" />
             </p>
         </div>
     </div>
@@ -83,28 +83,28 @@
             $('#zhmc').attr("readonly", "readonly");
             $('#zhcode').attr("readonly", "readonly");
             $.ajax({
-                url: "/Treatment/Codecx",  //请求的url地址
-                dataType: "json",   //返回格式为json
+                url: "/Treatment/Codecx",  //của yêu cầuurlĐịa chỉ
+                dataType: "json",   //Định dạng trả về làjson
                 async: false,
-                data: { zhcode: keyValue },  //参数值
-                type: "POST",   //请求方式
+                data: { zhcode: keyValue },  //Giá trị tham số
+                type: "POST",   //Phương thức yêu cầu
                 traditional: true,
                 success: function (data) {
                     $("#form1").formSerialize(data[0]);
                     for (var i = 0; i < data.length; i++) {
                         $("#MXTable").addRowData(i, data[i], "last");
                     }
-                    //请求成功时处理
+                    //Xử lý khi yêu cầu thành công
                 },
                 error: function () {
-                    //请求出错处理
+                    //Xử lý khi yêu cầu lỗi
                 }
             });
             $("#OrganizeId").prop("disabled", true);
         }
     })
     function initControl() {
-        //组织机构下拉框
+        //Dropdown tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
             selectedValue: $.request('orgId'),
@@ -115,18 +115,18 @@
         $("#zlxmmc").val('');
     });
 
-    var sfxmmc = "";//收费项目名称
-    var sfxmdm = "";//收费项目代码
+    var sfxmmc = "";//Tên hạng mục thu phí
+    var sfxmdm = "";//Hạng mục thu phíMã
     var price = ""; //价格
 
-    var zlxmpy = "";//拼音
-    var sfdl = ""; //收费大类
-    var sfdlcode = ""; //收费大类代码
+    var zlxmpy = "";//Phiên âm
+    var sfdl = ""; //Nhóm thu phí lớn
+    var sfdlcode = ""; //Nhóm thu phí lớnMã
 
     $('#zlxmmc').newtouchFloatingSelector({
         width: 600,
         height: 220,
-        caption: "收费项目",
+        caption: "Hạng mục thu phí",
         clickautotrigger: true,
         url: '/SystemManage/BaseData/SelectSfxmYp',
         ajaxparameters: function () {
@@ -151,13 +151,13 @@
             sfdl = $thistr.attr('data-sfdlmc');
             sfdlcode = $thistr.attr('data-sfdlCode');
         },
-        colModel: [{ label: '编码', name: 'sfxmCode', widthratio: 15 },
-        { label: '名称', name: 'sfxmmc', widthratio: 25 },
-        { label: '拼音', name: 'py', widthratio: 15 },
-        { label: '单位', name: 'dw', widthratio: 8 },
-        { label: '单价', name: 'dj', widthratio: 10 },
-        { label: '收费大类', name: 'sfdlmc', widthratio: 15 },
-        { label: '收费大类code', name: 'sfdlCode', widthratio: 15,hidden:true },
+        colModel: [{ label: 'Mã số', name: 'sfxmCode', widthratio: 15 },
+        { label: 'Tên', name: 'sfxmmc', widthratio: 25 },
+        { label: 'Phiên âm', name: 'py', widthratio: 15 },
+        { label: 'Đơn vị', name: 'dw', widthratio: 8 },
+        { label: 'Đơn giá', name: 'dj', widthratio: 10 },
+        { label: 'Nhóm thu phí lớn', name: 'sfdlmc', widthratio: 15 },
+        { label: 'Nhóm thu phí lớncode', name: 'sfdlCode', widthratio: 15,hidden:true },
         ]
     });
 
@@ -168,7 +168,7 @@
         debugger;
         var zlxmmcnull = $("#zlxmmc").val();
         if (!zlxmmcnull) {
-            $.modalAlert("名称不能为空", 'warning');
+            $.modalAlert("TênKhông được trống", 'warning');
         }
         else {
             if (!keyValue)
@@ -176,10 +176,10 @@
                 var btcode = $("#zhcode").val();
                 var btzhmc = $("#zhmc").val();
                 if (!btcode || !btzhmc) {
-                    $.modalAlert("名称和编码为必填项！", 'warning');
+                    $.modalAlert("TênVàMã số为Bắt buộc项！", 'warning');
                     return;
                 }
-                //判断文本框中的编码和明细表中的编码是否一致
+                //Xét文本框trong的Mã sốVàChi tiết表trong的Mã sốCó hay không一致
                 var jjzhcode = $("#MXTable").getCol("zhcode", false);
 
                 var jjzhcodelie = $("#zhcode").val();
@@ -191,7 +191,7 @@
                 var datamx = [{ "zhmc": zhmc, "zhcode": zhcode, "ord": ord, "zlxm": sfxmdm, "zlxmmc": sfxmmc, "price": price, "zlxmpy": zlxmpy, "sfdl": sfdl, "sfdlcode": sfdlcode }];
                 var rowid = 0;
                 var zhcodetj = $("#zhcode").val();
-                //获取某列数据
+                //Lấy dữ liệu của một cột
                 var chkzhcode = $("#MXTable").getCol("zhcode", false);
                 var inzhcode = $.inArray(zhcodetj, chkzhcode);
                 var chkzlxmmc = $("#MXTable").getCol("zlxmmc", false);
@@ -199,11 +199,11 @@
 
                 if (inzhcode = -1 && inzlxmmc == -1) {
                     $.ajax({
-                        url: "/Treatment/Tjchaxun",  //请求的url地址
-                        dataType: "json",   //返回格式为json
+                        url: "/Treatment/Tjchaxun",  //của yêu cầuurlĐịa chỉ
+                        dataType: "json",   //Định dạng trả về làjson
                         async: false,
-                        data: { zhcodetj: zhcodetj, sfxmmc: sfxmmc, orgId: $.request('orgId') },  //参数值
-                        type: "POST",   //请求方式
+                        data: { zhcodetj: zhcodetj, sfxmmc: sfxmmc, orgId: $.request('orgId') },  //Giá trị tham số
+                        type: "POST",   //Phương thức yêu cầu
                         traditional: true,
                         success: function (data) {
 
@@ -211,16 +211,16 @@
                                 $("#MXTable").addRowData(rowid, datamx, "last");
                             }
                             else {
-                                $.modalAlert("诊疗项目组合已存在,请修改诊疗组合名称/编码",'success')
+                                $.modalAlert("Tổ hợp hạng mục khám chữa bệnh đã tồn tại,Vui lòng sửa tên tổ hợp khám chữa bệnh/Mã số",'success')
                             }
                         },
                         error: function () {
-                            //请求出错处理
+                            //Xử lý khi yêu cầu lỗi
                         }
                     });
                 }
                 else {
-                    $.modalAlert("列表已经存在此项目", 'success');
+                    $.modalAlert("Danh sách đã có hạng mục này", 'success');
                 }
             }
             else {
@@ -237,7 +237,7 @@
 
                 var zhcodetj = $("#zhcode").val();
 
-                //获取某列数据
+                //Lấy dữ liệu của một cột
                 var chkzhcode = $("#MXTable").getCol("zhcode", false);
                 var inzhcode = $.inArray(zhcodetj, chkzhcode);
                 var chkzlxmmc = $("#MXTable").getCol("zlxmmc", false);
@@ -245,11 +245,11 @@
 
                 if (inzhcode = -1 && inzlxmmc == -1) {
                     $.ajax({
-                        url: "/Treatment/Tjchaxun",  //请求的url地址
-                        dataType: "json",   //返回格式为json
+                        url: "/Treatment/Tjchaxun",  //của yêu cầuurlĐịa chỉ
+                        dataType: "json",   //Định dạng trả về làjson
                         async: true,
-                        data: { zhcodetj: zhcodetj, sfxmmc: sfxmmc,orgId: $.request('orgId')  },  //参数值
-                        type: "POST",   //请求方式
+                        data: { zhcodetj: zhcodetj, sfxmmc: sfxmmc,orgId: $.request('orgId')  },  //Giá trị tham số
+                        type: "POST",   //Phương thức yêu cầu
                         traditional: true,
                         success: function (data2) {
 
@@ -257,20 +257,20 @@
                                 $("#MXTable").addRowData(rowid, datamx, "last");
                             }
                             else {
-                                $.modalAlert("诊疗项目组合已存在,请修改诊疗组合名称/编码", 'success')
+                                $.modalAlert("Tổ hợp hạng mục khám chữa bệnh đã tồn tại,Vui lòng sửa tên tổ hợp khám chữa bệnh/Mã số", 'success')
                             }
 
                             // $("#MXTable").addRowData(rowid, data, "last");
-                            //请求成功时处理
+                            //Xử lý khi yêu cầu thành công
                         },
                         error: function () {
-                            //请求出错处理
+                            //Xử lý khi yêu cầu lỗi
                         }
                     });
                 }
                 else {
 
-                    $.modalAlert("列表已经存在此项目", 'success')
+                    $.modalAlert("Danh sách đã có hạng mục này", 'success')
                 }
             }
         }
@@ -289,9 +289,9 @@
         else {
             var keyValue = $("#MXTable").jqGridRowValue().zlxmmc;
             var zhcodemc = $("#zhcode").val();
-            console.info("这是获取的ID" + keyValue);
+            console.info("这是Lấy的ID" + keyValue);
             if (!!!keyValue) {
-                $.modalAlert("请选中一条信息", 'warning');
+                $.modalAlert("Vui lòng chọn một thông tin", 'warning');
                 return;
             }
             $.deleteForm({
@@ -312,8 +312,8 @@
         var rowData = $('#MXTable').jqGrid('getRowData');
 
         //var needRefundData = $("#gridList").jqGrid('getRowData_AllLine', true);
-        //处理少一行bug
-        var allOrgId = $('#MXTable').jqGrid('getDataIDs'); //这里获取所有行 主键id 是全的
+        //Xử lý少一Dòngbug
+        var allOrgId = $('#MXTable').jqGrid('getDataIDs'); //这里Lấy tất cả các dòng Khóa chínhid 是全的
         rowData.push($('#MXTable').jqGrid('getRowData', allOrgId[allOrgId.length - 1]));
 
         var dataset = JSON.stringify(rowData);
@@ -326,7 +326,7 @@
             traditional: true,
             type: "POST",
             success: function (data) {
-                $.modalAlert("保存成功", 'success');
+                $.modalAlert("Lưu thành công", 'success');
                 $.currentWindow().$("#gridList").resetSelection();
                 $.currentWindow().$("#gridList").trigger("reloadGrid");
                 $.modalClose();
@@ -337,17 +337,17 @@
 
     $("#MXTable").dataGrid({
         colModel: [
-            //{ label: "主键", name: "Id", hidden: true, key: true },
-            { label: '编码', name: 'zhcode', width: 80, align: 'left', hidden: true },
-            { label: '项目名称', name: 'zlxmmc', width: 110, align: 'left' },
-            { label: '排序', name: 'ord', width: 40, align: 'left' },
-            { label: '明细项目', name: 'zlxm', width: 84, align: 'left' },
-            { label: '项目单价', name: 'price', width: 90, align: 'left', formatter: 'number', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 } },
-            { label: '项目拼音', name: 'zlxmpy', width: 100, align: 'left' },
-            { label: '组合名称', name: 'zhmc', width: 80, align: 'left', hidden: true },
-            //{ label: '组合金额', name: 'zhje', width: 100, align: 'left' },
-            { label: '收费大类', name: 'sfdl', width: 100, align: 'left', hidden: true },
-            { label: '收费大类code', name: 'sfdlcode', width: 100, align: 'left', hidden: true },
+            //{ label: "Khóa chính", name: "Id", hidden: true, key: true },
+            { label: 'Mã số', name: 'zhcode', width: 80, align: 'left', hidden: true },
+            { label: 'Tên hạng mục', name: 'zlxmmc', width: 110, align: 'left' },
+            { label: 'Sắp xếp', name: 'ord', width: 40, align: 'left' },
+            { label: 'Hạng mục chi tiết', name: 'zlxm', width: 84, align: 'left' },
+            { label: 'Hạng mụcĐơn giá', name: 'price', width: 90, align: 'left', formatter: 'number', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 } },
+            { label: 'Hạng mụcPhiên âm', name: 'zlxmpy', width: 100, align: 'left' },
+            { label: 'Nhóm合Tên', name: 'zhmc', width: 80, align: 'left', hidden: true },
+            //{ label: 'Số tiền kết hợp', name: 'zhje', width: 100, align: 'left' },
+            { label: 'Nhóm thu phí lớn', name: 'sfdl', width: 100, align: 'left', hidden: true },
+            { label: 'Nhóm thu phí lớncode', name: 'sfdlcode', width: 100, align: 'left', hidden: true },
         ],
         width: "510",
         height: "150",

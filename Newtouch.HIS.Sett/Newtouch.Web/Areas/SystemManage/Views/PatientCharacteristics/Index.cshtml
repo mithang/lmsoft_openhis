@@ -16,28 +16,28 @@
             url: "/SystemManage/PatientCharacteristics/GetTreeGridJson",
             height: 420,
             colModel: [
-                { label: '主键', name: 'brxzbh', hidden: true, key: true },
-                { label: '患者性质', name: 'brxzmc', width: 170, algin: 'left' },
-                { label: '编码', name: 'brxz', width: 100, algin: 'left' },
+                { label: 'Khóa chính', name: 'brxzbh', hidden: true, key: true },
+                { label: 'Tính chất bệnh nhân', name: 'brxzmc', width: 170, algin: 'left' },
+                { label: 'Mã số', name: 'brxz', width: 100, algin: 'left' },
                 {
-                    label: '门诊住院标志', name: 'mzzybz', width: 100, algin: 'left',
+                    label: 'Cờ khám ngoại trú/nội trú', name: 'mzzybz', width: 100, algin: 'left',
                     formatter: function (cellvalue) {
                         return $.enum.getDescByValue("Enummzzybz", cellvalue);
                     }
                 },
                  {
-                     label: '性质类别(卡)', name: 'brxzlb', width: 100, algin: 'left',
+                     label: 'Loại tính chất(卡)', name: 'brxzlb', width: 100, algin: 'left',
                      formatter: function (cellvalue) {
                          return $.enum.getDescByValue("EnumJykxzlx", cellvalue);
                      }
                  },
                 {
-                    label: '医保交易类型', name: 'ybjylx', width: 100, algin: 'left', formatter: function (cellvalue) {
+                    label: 'Loại giao dịch BHYT', name: 'ybjylx', width: 100, algin: 'left', formatter: function (cellvalue) {
                         return $.enum.getDescByValue("EnumYBJYLX", cellvalue);
                     }
                 },
-                { label: '医保险种标志', name: 'insutype', width: 80, algin: 'left', },
-                { label: '备注', name: 'bz', width: 100, algin: 'left', }
+                { label: 'Bảo hiểm y tếCờ loại bảo hiểm', name: 'insutype', width: 80, algin: 'left', },
+                { label: 'Ghi chú', name: 'bz', width: 100, algin: 'left', }
             ],
             pager: "#gridPager",
             sortname: 'CreateTime desc',
@@ -54,7 +54,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "患者性质维护",
+            title: "Tính chất bệnh nhânBảo trì",
             url: "/SystemManage/PatientCharacteristics/Form",
             width: "700px",
             height: "600px",
@@ -68,13 +68,13 @@
     function btn_edit() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请先选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn trước một thông tin", 'warning');
             return;
         }
         var keyValue = $("#gridList").jqGridRowValue().brxzbh;
         $.modalOpen({
             id: "Form",
-            title: "修改信息",
+            title: "Sửa thông tin",
             url: "/SystemManage/PatientCharacteristics/Form?keyValue=" + keyValue,
             width: "700px",
             height: "600px",
@@ -86,7 +86,7 @@
     function btn_delete() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请先选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn trước một thông tin", 'warning');
             return;
         }
         $.deleteForm({
@@ -101,13 +101,13 @@
     function btn_details() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请先选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn trước một thông tin", 'warning');
             return;
         }
         var keyValue = $("#gridList").jqGridRowValue().brxzbh;
         $.modalOpen({
             id: "Details",
-            title: "查看",
+            title: "Xem",
             url: "/SystemManage/PatientCharacteristics/Form?keyValue=" + keyValue,
             width: "700px",
             height: "600px",
@@ -120,16 +120,16 @@
     <div class="topPanel">
         <div class="toolbar">
             <div class="btn-group">
-                <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+                <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
             </div>
             <div class="btn-group">
-                <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+                <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
             </div>
             <div class="btn-group">
-                <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
+                <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
             </div>
             <div class="btn-group">
-                <a id="NF-Details" class="btn btn-primary dropdown-text" onclick="btn_details()"><i class="fa fa-search-plus"></i>查看</a>
+                <a id="NF-Details" class="btn btn-primary dropdown-text" onclick="btn_details()"><i class="fa fa-search-plus"></i>Xem</a>
             </div>
         </div>
         <div class="search">
@@ -137,7 +137,7 @@
                 <tr>
                     <td>
                         <div class="input-group">
-                            <input id="txt_keyword" type="text" class="form-control" placeholder="项目名称/项目代码" style="width: 200px;">
+                            <input id="txt_keyword" type="text" class="form-control" placeholder="Tên hạng mục/Hạng mụcMã" style="width: 200px;">
                             <span class="input-group-btn">
                                 <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                             </span>

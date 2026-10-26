@@ -8,44 +8,44 @@ function gridList() {
         height: $(window).height() - 128,
         cache: false,
         colModel: [
-            { label: "主键", name: "dlId", hidden: true, key: true },
-            { label: "代码", name: "dlCode", width: 80, align: 'left' },
-            { label: '大类', name: 'dlmc', width: 100, align: 'left' },
-             { label: '拼音', name: 'py', width: 100, align: 'left' },
+            { label: "Khóa chính", name: "dlId", hidden: true, key: true },
+            { label: "Mã", name: "dlCode", width: 80, align: 'left' },
+            { label: 'Nhóm lớn', name: 'dlmc', width: 100, align: 'left' },
+             { label: 'Phiên âm', name: 'py', width: 100, align: 'left' },
             {
-                label: '范围', name: 'mzzybz', width: 80, align: 'left',
+                label: 'Phạm vi', name: 'mzzybz', width: 80, align: 'left',
                 formatter: function (cellvalue) {
                     if (cellvalue == "0") {
-                        return "通用";
+                        return "Chung";
                     } else if (cellvalue == "1") {
-                        return "门诊";
+                        return "Khám ngoại trú";
                     } else if (cellvalue == "2") {
-                        return "住院";
+                        return "Nội trú";
                     } else {
                         return "";
                     }
                 }
             },
             {
-                label: '门诊报告大类', name: 'mzprintreportcode', width: 80, align: 'left'
+                label: 'Nhóm lớn báo cáo khám ngoại trú', name: 'mzprintreportcode', width: 80, align: 'left'
             },
             {
-                label: '门诊账单大类', name: 'mzprintbillcode', width: 80, align: 'left'
+                label: 'Nhóm lớn hóa đơn khám ngoại trú', name: 'mzprintbillcode', width: 80, align: 'left'
             },
-            { label: '排序', name: 'px', width: 80, align: 'left' },
+            { label: 'Sắp xếp', name: 'px', width: 80, align: 'left' },
             {
-                label: '有效', name: 'zt', width: 50, align: 'left',
+                label: 'Có hiệu lực', name: 'zt', width: 50, align: 'left',
                 formatter: function (cellvalue) {
                     if (cellvalue == 0) {
-                        return "无效"
+                        return "Không hiệu lực"
                     } else {
-                        return "有效"
+                        return "Có hiệu lực"
                     }
                 }
             },
-            { label: '建档人员', name: 'CreatorCode', width: 50, align: 'left' },
+            { label: 'Người lập hồ sơ', name: 'CreatorCode', width: 50, align: 'left' },
             {
-                label: '建档日期', name: 'CreateTime', width: 50, align: 'left',
+                label: 'Ngày lập hồ sơ', name: 'CreateTime', width: 50, align: 'left',
                 formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
             }
         ],
@@ -63,7 +63,7 @@ function gridList() {
 function btn_add() {
     $.modalOpen({
         id: "Form",
-        title: "系统病人收费算法维护",
+        title: "Bảo trì thuật toán thu phí bệnh nhân hệ thống",
         url: "/SystemManage/SysChargeMajorClass/Form",
         width: "700px",
         height: "320px",
@@ -76,7 +76,7 @@ function btn_edit() {
     var keyValue = $("#gridList").jqGridRowValue().dlId;
     $.modalOpen({
         id: "Form",
-        title: "修改信息",
+        title: "Sửa thông tin",
         url: "/SystemManage/SysChargeMajorClass/Form?keyValue=" + keyValue,
         width: "700px",
         height: "320px",
@@ -100,7 +100,7 @@ function btn_details() {
     var keyValue = $("#gridList").jqGridRowValue().dlId;
     $.modalOpen({
         id: "Details",
-        title: "查看机构",
+        title: "Xem cơ sở",
         url: "/SystemManage/SysChargeMajorClass/Form?keyValue=" + keyValue,
         width: "700px",
         height: "320px",

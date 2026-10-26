@@ -11,7 +11,7 @@
 
     function init() {
         var date = new Date();
-        //年份
+        //Năm
         $("#Year").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -24,7 +24,7 @@
             },
             selectedValue: 1900 + date.getYear(),
         });
-        //月份
+        //Tháng
         $("#Month").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -46,34 +46,34 @@
             shrinkToFit: true,
             height: $(window).height() - 130,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: '姓名', name: 'Name', width: 150, align: 'left' },
-                { label: '工号', name: 'gh', width: 150, align: 'left' },
-                { label: '天数', name: 'ts', width: 90, editable: true, align: "left" }
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Họ tên', name: 'Name', width: 150, align: 'left' },
+                { label: 'Mã nhân viên', name: 'gh', width: 150, align: 'left' },
+                { label: 'Số ngày', name: 'ts', width: 90, editable: true, align: "left" }
             ],
             viewrecords: true,
             onSelectRow_page: function (rowid, status) {
-                if (rowid && lastRowId && rowid !== lastRowId) {   //&&: 相当于true/fase(判断是否有值)
+                if (rowid && lastRowId && rowid !== lastRowId) {   //&&: Tương đương vớitrue/fase(Xét xem có giá trị hay không)
                     $gridList.saveRow(lastRowId, function (result) {
-                        // return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
-                    }); //先保存处于编辑状态的那一行    //function checksave
+                        // return false;   //Kiểm tra nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //Không hiệu lực v.v. cần sửa
+                    }); //Trước tiên lưu dòng đang ở trạng thái chỉnh sửa    //function checksave
                 }
                 lastRowId = rowid;
                 $gridList.jqGrid('editRow', rowid, true, null, function (result) {
-                    return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
+                    return false;   //Kiểm tra nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //Không hiệu lực v.v. cần sửa
                 }, null, null, function () {
                 });
             },
             gridComplete: function () {
-                //启用行内编辑框
+                //Bật hộp chỉnh sửa trong dòng
                 EnableInlineEditBox();
             }
         });
     }
 
-    //启用行内编辑框
+    //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox() {
-        //Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        //GridTải xong thì bật chỉnh sửa trong dòng   1.Trước tiên lấy tất cả các dòngId  2.Duyệt và gọieditRowPhương thức
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
 
@@ -86,25 +86,25 @@
         var year = $("#Year").val();
         var month = $("#Month").val();
         if (year == '-1' || month == '-1') {
-            $.modalAlert("请选择年月", "warning");
+            $.modalAlert("Vui lòng chọnNăm-tháng", "warning");
             return;
         }
         var par = {};
         var dic = [];
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
-            //遍历使编辑框处于保存状态
+            //Duyệt để hộp chỉnh sửa ở trạng thái đã lưu
             $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
             var rowData = $("#gridList").jqGrid('getRowData', rowIds[i]);
             if (!rowData) {
                 break;
             }
             if (!(/^(\+|-)?\d+$/.test(rowData.ts))) {
-                $.modalAlert("工号（" + rowData.gh + "）天数不是数字，请确认。", 'warning');
+                $.modalAlert("Mã nhân viên（" + rowData.gh + "）Số ngày不是数字，Vui lòng xác nhận。", 'warning');
                 return;
             }
             if ((rowData.ts > 31)) {
-                $.modalAlert("不能大于31天，请确认。", 'warning');
+                $.modalAlert("Không được lớn hơn31天，Vui lòng xác nhận。", 'warning');
                 return;
             }
         }
@@ -120,7 +120,7 @@
             success: function () {
                 $.loading(false);
                 $.modalClose();
-                $.modalMsg("操作成功", 'success');
+                $.modalMsg("Thao tác thành công", 'success');
             }
         })
     }
@@ -140,16 +140,16 @@
     <div class="topPanel" style="border-bottom:1px solid rgb(221, 221, 221);margin-bottom: -1%;">
         <table class="form">
             <tr>
-                <td class="formTitle"><span style="color:red">*</span>年份</td>
+                <td class="formTitle"><span style="color:red">*</span>Năm</td>
                 <td class="formValue">
                     <select id="Year" class="form-control">
-                        <option value="-1">==请选择==</option>
+                        <option value="-1">==Vui lòng chọn==</option>
                     </select>
                 </td>
-                <td class="formTitle"><span style="color:red">*</span>月份：</td>
+                <td class="formTitle"><span style="color:red">*</span>Tháng：</td>
                 <td class="formValue">
                     <select id="Month" class="form-control">
-                        <option value="-1">==请选择==</option>
+                        <option value="-1">==Vui lòng chọn==</option>
                     </select>
                 </td>
                 <td class="formValue"></td>

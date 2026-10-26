@@ -6,10 +6,10 @@ function notSettledRegList() {
     var isJz = false;
     if ($("#sel_mzlx").val() == 3)
     {
-        isJz = true;    //急诊
+        isJz = true;    //Cấp cứu
     }
 
-    var isJs = false;  //表示未结算请求
+    var isJs = false;  //nghĩa là yêu cầu chưa quyết toán
     var $notSettledRegList = $("#notSettledRegList");
     $notSettledRegList.dataGrid({
         treeGrid: true,
@@ -17,18 +17,18 @@ function notSettledRegList() {
         url: "/BusinessManage/OutPatient/GetSettledFeesList",
         height: 142,
         colModel: [
-            { label: '序号', name: '', algin: 'left' },
-            { label: '挂号内码', name: 'ghnm', hidden:true, algin: 'left' },
-            { label: '挂号类型', name: 'sfxmmc', algin: 'left' },
-            { label: '病人类型', name: 'brxzmc', algin: 'left' },
-            { label: '大病项目', name: 'dbxmmc', algin: 'left' },
-            { label: '总金额', name: 'zje', algin: 'left' },
-            { label: '是否已作废', name: 'iszf', algin: 'left' }
+            { label: 'STT', name: '', algin: 'left' },
+            { label: 'Mã nội bộ đăng ký khám', name: 'ghnm', hidden:true, algin: 'left' },
+            { label: 'Loại đăng ký khám', name: 'sfxmmc', algin: 'left' },
+            { label: 'Loại bệnh nhân', name: 'brxzmc', algin: 'left' },
+            { label: 'Hạng mục bệnh nặng', name: 'dbxmmc', algin: 'left' },
+            { label: 'Tổng số tiền', name: 'zje', algin: 'left' },
+            { label: 'Đã hủy bỏ hay chưa', name: 'iszf', algin: 'left' }
         ]
     });
 
     $("#linknotSettledReg").click(function () {
-        //每次点击tab页，调整Grid宽度
+        //Mỗi lần nhấntab页，Điều chỉnhGridChiều rộng
         initLayout("MyTabGrid");
 
         $notSettledRegList.jqGrid('setGridParam', {

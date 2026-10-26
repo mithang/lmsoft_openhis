@@ -18,7 +18,7 @@
             initControl();
         });
     })
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -49,14 +49,14 @@
         if (callbackType == 'json') {
             treeSeleData = $("#userStaffTree").getCheckedNodeObjArray();
             if (single == 'true' && treeSeleData.length != 1) {
-                $.modalAlert('最多选中一条', 'warning');
+                $.modalAlert('Tối đa chọn một dòng', 'warning');
                 return;
             }
         }
         else {
-            treeSeleData = $("#userStaffTree").getCheckedValues();  //Values对应的是UserId
+            treeSeleData = $("#userStaffTree").getCheckedValues();  //Valuestương ứng làUserId
             if (single == 'true' && treeSeleData.length != 1) {
-                $.modalAlert('最多选中一条', 'warning');
+                $.modalAlert('Tối đa chọn một dòng', 'warning');
                 return;
             }
             treeSeleData = String(treeSeleData);
@@ -75,7 +75,7 @@
                 <tr>
                     <td>
                         <div class="input-group">
-                            <input id="txt_keyword" type="text" class="form-control" placeholder="姓名/工号" style="width: 180px;">
+                            <input id="txt_keyword" type="text" class="form-control" placeholder="Họ tên/Mã nhân viên" style="width: 180px;">
                             <span class="input-group-btn">
                                 <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                             </span>

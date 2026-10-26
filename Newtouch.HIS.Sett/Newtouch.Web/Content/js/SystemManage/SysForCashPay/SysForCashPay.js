@@ -10,22 +10,22 @@ function gridList() {
         postData: { keyword: $("#txt_keyword").val() },
         height: $(window).height() - 96,
         colModel: [
-            { label: "主键", name: "xjzffsbh", hidden: true, key: true },
-            { label: '代码', name: 'xjzffs', width: 100, align: 'left' },
-            { label: '现金支付方式', name: 'xjzffsmc', width: 220, align: 'left' },
+            { label: "Khóa chính", name: "xjzffsbh", hidden: true, key: true },
+            { label: 'Mã', name: 'xjzffs', width: 100, align: 'left' },
+            { label: 'Phương thức thanh toán tiền mặt', name: 'xjzffsmc', width: 220, align: 'left' },
             {
-                label: '有效', name: 'zt', width: 50, align: 'left',
+                label: 'Có hiệu lực', name: 'zt', width: 50, align: 'left',
                 formatter: function (cellvalue) {
                     if (cellvalue == 0) {
-                        return "无效"
+                        return "Không hiệu lực"
                     } else {
-                        return "有效"
+                        return "Có hiệu lực"
                     }
                 }
             },
-            { label: '创建人', name: 'CreatorCode', width: 100, align: 'left' },
+            { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
             {
-                label: '创建日期', name: 'CreateTime', width: 100, align: 'left',
+                label: 'Ngày tạo', name: 'CreateTime', width: 100, align: 'left',
                 formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
             }
         ]
@@ -39,7 +39,7 @@ function gridList() {
 function btn_add() {
     $.modalOpen({
         id: "Form",
-        title: "系统收费项目特殊标志维护",
+        title: "Bảo trì cờ đặc biệt hạng mục thu phí hệ thống",
         url: "/SystemManage/SysForCashPay/Form",
         width: "500px",
         height: "300px",
@@ -52,7 +52,7 @@ function btn_edit() {
     var keyValue = $("#gridList").jqGridRowValue().xjzffsbh;
     $.modalOpen({
         id: "Form",
-        title: "修改信息",
+        title: "Sửa thông tin",
         url: "/SystemManage/SysForCashPay/Form?keyValue=" + keyValue,
         width: "500px",
         height: "300px",
@@ -75,7 +75,7 @@ function btn_details() {
     var keyValue = $("#gridList").jqGridRowValue().id;
     $.modalOpen({
         id: "Details",
-        title: "查看机构",
+        title: "Xem cơ sở",
         url: "/SystemManage/SysForCashPay/Form?keyValue=" + keyValue,
         width: "500px",
         height: "300px",

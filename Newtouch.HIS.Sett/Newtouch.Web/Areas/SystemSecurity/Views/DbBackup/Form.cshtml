@@ -15,7 +15,7 @@
             return false;
         }
         $.submitForm({
-            loading: "正在备份数据...",
+            loading: "ĐangTrongSao lưuDữ liệu...",
             url: "/SystemSecurity/DbBackup/SubmitForm",
             param: $("#form1").formSerialize(),
             success: function () {
@@ -27,12 +27,12 @@
 
 <form id="form1">
     <div style="margin-bottom: 0px; border-radius: 0px;" class="alert alert-warning alert-dismissable">
-        <strong>注意：</strong>&nbsp;备份成功后，请将备份文件下载到本地保存！
+        <strong>Chú ý：</strong>&nbsp;Sao lưuThành công后，Vui lòng将Sao lưuTệp下载到本地Lưu！
     </div>
     <div style="padding-top: 20px; margin-right: 20px;">
         <table class="form">
             <tr>
-                <th class="formTitle">数据库名</th>
+                <th class="formTitle">Tên cơ sở dữ liệu</th>
                 <td class="formValue">
                     <select id="F_DbName" name="F_DbName" class="form-control required">
                         <option value="NewtouchBase">NewtouchBase</option>
@@ -40,22 +40,22 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">备份名称</th>
+                <th class="formTitle">Tên bản sao lưu</th>
                 <td class="formValue">
-                    <input id="F_FileName" name="F_FileName" type="text" class="form-control required"  value="@Newtouch.Tools.Comm.CreateNo()" placeholder="请输入备份名称" />
+                    <input id="F_FileName" name="F_FileName" type="text" class="form-control required"  value="@Newtouch.Tools.Comm.CreateNo()" placeholder="Vui lòng nhậpTên bản sao lưu" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">备份模式</th>
+                <th class="formTitle">Chế độ sao lưu</th>
                 <td class="formValue">
                     <select id="F_BackupType" name="F_BackupType" class="form-control required">
-                        <option value="1">完整备份</option>
-                        <option value="2">差异备份</option>
+                        <option value="1">Sao lưu đầy đủ</option>
+                        <option value="2">Sao lưu khác biệt</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle" valign="top" style="padding-top: 11px;">备份说明
+                <th class="formTitle" valign="top" style="padding-top: 11px;">Giải thích sao lưu
                 </th>
                 <td class="formValue">
                     <textarea id="F_Description" name="F_Description" class="form-control" style="height: 60px;"></textarea>

@@ -433,7 +433,7 @@
                     ClearMoney(); //Xóa trống
                     getZhInfo(zh); //Bản ghi thu chi tài khoản
 
-                    var reqzhxz=$.request("zhxz")=='zy'?'住院':'门诊'
+                    var reqzhxz=$.request("zhxz")=='zy'?'Nội trú':'Khám ngoại trú'
                     var orgId = '@curOpr.OrganizeId';
                     var uri = '@Html.Raw(reportUrl)' + "?tempCode=04" + "&szid=" + resdata.data.szId + "&patId=" + patid + "&orgId=" + orgId;
                     window.open(uri, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
@@ -507,7 +507,7 @@
             return false;
         }
 
-        var reqzhxz=$.request("zhxz")=='zy'?'住院':'门诊'
+        var reqzhxz=$.request("zhxz")=='zy'?'Nội trú':'Khám ngoại trú'
         var orgId = '@curOpr.OrganizeId';
         var uri = '@Html.Raw(reportUrl)' + "?tempCode=04" + "&szid=" + gridId + "&patId=" + patid + "&orgId=" + orgId;
         window.open(uri, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");

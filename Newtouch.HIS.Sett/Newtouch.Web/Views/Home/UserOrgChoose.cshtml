@@ -1,7 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_Index.cshtml";
 
-    //是否页面加载时就必须选择Org
+    //Có phải khi tải trang đã bắt buộc chọn hay khôngOrg
     var mediOrgList = ViewBag.MediOrgList as IList<FrameworkBase.MultiOrg.Domain.Entity.SysOrganizeVEntity>;
 }
 
@@ -28,7 +28,7 @@
             type: "post",
             dataType: "json",
             success: function (data) {
-                cookieRemove(); //必须选择医疗机构
+                cookieRemove(); //Bắt buộcChọnY tếCơ sở
 
                 top.top.location.href = top.top.location.href;
             }

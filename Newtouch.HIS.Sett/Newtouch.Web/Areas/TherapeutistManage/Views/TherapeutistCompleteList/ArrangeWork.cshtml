@@ -14,7 +14,7 @@
     }
 </style>
 <script>
-    var Editing_ysList = []; //编辑域中的人员
+    var Editing_ysList = []; //Chỉnh sửatrong vùngNhân viên
     $(function () {
         init();
         gridList();
@@ -26,7 +26,7 @@
                 });
             $.modalOpen({
                 id: "StaffCorrelation",
-                title: "选择治疗师",
+                title: "Chọn nhà trị liệu",
                 url: "/SystemManage/SysStaff/Selector?single=true&isContansChildOrg=false&callbackType=json&dutyCode=RehabDoctor&initIdSelected=" + initIdSelected,
                 showleftlalbel: false,
                 width: "650px",
@@ -42,7 +42,7 @@
 
     function init() {
         var date = new Date;
-        //年份
+        //Năm
         $("#Year").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -55,7 +55,7 @@
             },
             selectedValue: 1900 + date.getYear(),
         });
-        //月份
+        //Tháng
         $("#Month").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -79,16 +79,16 @@
             postData: getSearchPostData(),
             height: $(window).height() - 185,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: '姓名', name: 'Name', width: 150, align: 'left' },
-                { label: '工号', name: 'ysgh', width: 150, align: 'left' },
-                { label: '年份', name: 'year', width: 80, align: 'left' },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Họ tên', name: 'Name', width: 150, align: 'left' },
+                { label: 'Mã nhân viên', name: 'ysgh', width: 150, align: 'left' },
+                { label: 'Năm', name: 'year', width: 80, align: 'left' },
                 {
-                    label: '月份', name: 'month', width: 50, align: 'left', formatter: function (cellvalue) {
+                    label: 'Tháng', name: 'month', width: 50, align: 'left', formatter: function (cellvalue) {
                         return parseInt(cellvalue) < 10 ? "0" + cellvalue : cellvalue
                     }
                 },
-                { label: '天数', name: 'ts', align: 'left' }
+                { label: 'Số ngày', name: 'ts', align: 'left' }
             ],
             pager: "#gridPager",
             sortname: 'year,month desc',
@@ -118,7 +118,7 @@
         return postData;
     }
 
-    //人员树 选择 回调
+    //Cây nhân viên Chọn Callback
     function staffTreeCallback(treeSeleData) {
         Editing_ysList = [];
         var zlsNames = "";
@@ -135,7 +135,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "添加排班",
+            title: "ThêmLịch trực",
             url: "/TherapeutistManage/TherapeutistCompleteList/AddArrange",
             width: "600px",
             height: "600px",
@@ -145,17 +145,17 @@
         });
     }
 
-    //编辑
+    //Chỉnh sửa
     function btn_edit() {
         var seleRowid = jQuery("#HisgridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         var Id = $("#HisgridList").jqGridRowValue().Id;
         $.modalOpen({
             id: "Form",
-            title: "编辑",
+            title: "Chỉnh sửa",
             url: "/TherapeutistManage/TherapeutistCompleteList/EditArrange?keyvalue=" + Id,
             width: "550px",
             height: "300px",
@@ -165,11 +165,11 @@
         });
     }
 
-    //删除
+    //Xóa
     function btn_delete() {
         var seleRowid = jQuery("#HisgridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         var Id = $("#HisgridList").jqGridRowValue().Id;
@@ -182,22 +182,22 @@
         });
     }
 
-    //详情
+    //Chi tiết
     function btn_details() {
         var seleRowid = jQuery("#HisgridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         var count = $("#HisgridList").getGridParam("reccount");
         if (count === 0) {
-            $.modalAlert("未选中行", 'warning');
+            $.modalAlert("Chưa chọnDòng", 'warning');
             return;
         }
         var Id = $("#HisgridList").jqGridRowValue().Id;
         $.modalOpen({
             id: "Details",
-            title: "查看",
+            title: "Xem",
             url: "/TherapeutistManage/TherapeutistCompleteList/EditArrange?keyvalue=" + Id,
             width: "550px",
             height: "570px",
@@ -207,7 +207,7 @@
     function btn_single() {
         $.modalOpen({
             id: "Form",
-            title: "新建",
+            title: "Tạo mới",
             url: "/TherapeutistManage/TherapeutistCompleteList/EditArrange",
             width: "550px",
             height: "300px",
@@ -221,39 +221,39 @@
     <div class="topPanel">
         <div class="toolbar" style="padding-left:30px">
             <div class="btn-group">
-                <a id="NF-add" class="btn btn-primary dropdown-text" href="javascript:void()" onclick="btn_single()"><i class="fa fa-plus"></i>新建</a>
+                <a id="NF-add" class="btn btn-primary dropdown-text" href="javascript:void()" onclick="btn_single()"><i class="fa fa-plus"></i>Tạo mới</a>
                 <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
                 <ul class="dropdown-menu pull-right">
-                    <li><a id="NF-add" authorize="yes" onclick="btn_add()" href="javascript:void()">批量新建</a></li>
-                    <li><a id="NF-add" authorize="yes" onclick="btn_single()" href="javascript:void()">单独新建</a></li>
+                    <li><a id="NF-add" authorize="yes" onclick="btn_add()" href="javascript:void()">批LượngTạo mới</a></li>
+                    <li><a id="NF-add" authorize="yes" onclick="btn_single()" href="javascript:void()">单独Tạo mới</a></li>
                 </ul>
             </div>
             <div class="btn-group">
-                <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+                <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
             </div>
             <div class="btn-group">
-                <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
+                <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
             </div>
         </div>
         <div>
             <table class="form search" style="width:65%">
                 <tr>
-                    <td class="formTitle">年份：</td>
+                    <td class="formTitle">Năm：</td>
                     <td class="formValue">
                         <select id="Year" class="form-control">
-                            <option value="-1">===请选择===</option>
+                            <option value="-1">===Vui lòng chọn===</option>
                         </select>
                     </td>
-                    <td class="formTitle">月份：</td>
+                    <td class="formTitle">Tháng：</td>
                     <td class="formValue">
                         <select id="Month" class="form-control">
-                            <option value="-1">===请选择===</option>
+                            <option value="-1">===Vui lòng chọn===</option>
                         </select>
                     </td>
                     <td class="formTitle"></td>
                     <td class="formTitle">
                         <div class="input-group">
-                            <input type="text" id="zls" class="form-control" placeholder="治疗师姓名" />
+                            <input type="text" id="zls" class="form-control" placeholder="Tên nhà trị liệu" />
                             <span class="input-group-btn">
                                 <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                             </span>

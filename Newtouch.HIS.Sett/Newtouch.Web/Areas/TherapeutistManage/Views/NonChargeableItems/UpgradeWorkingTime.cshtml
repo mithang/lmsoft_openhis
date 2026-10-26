@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <script>
-    var Editing_ysList = []; //编辑域中的人员
+    var Editing_ysList = []; //Chỉnh sửatrong vùngNhân viên
     $(function () {
         $('#zls').click(function () {
             var initIdSelected = "";
@@ -13,7 +13,7 @@
                 });
             $.modalOpen({
                 id: "StaffCorrelation",
-                title: "选择治疗师",
+                title: "Chọn nhà trị liệu",
                 url: "/SystemManage/SysStaff/Selector?single=true&isContansChildOrg=false&callbackType=json&dutyCode=RehabDoctor&initIdSelected=" + initIdSelected,
                 showleftlalbel: false,
                 width: "650px",
@@ -39,19 +39,19 @@
             postData: getSearchPostData(),
             height: $(window).height() - 185,
             colModel: [
-                { label: "主键", name: "id", hidden: true, key: true },
-                { label: '工号', name: 'ysgh', width: 50, align: 'left' },
-                { label: '治疗师姓名', name: 'NAME', width: 80, align: 'left' },
-                { label: '年份', name: 'syear', width: 80, align: 'left' },
+                { label: "Khóa chính", name: "id", hidden: true, key: true },
+                { label: 'Mã nhân viên', name: 'ysgh', width: 50, align: 'left' },
+                { label: 'Tên nhà trị liệu', name: 'NAME', width: 80, align: 'left' },
+                { label: 'Năm', name: 'syear', width: 80, align: 'left' },
                 {
-                    label: '月份', name: 'smonth', width: 80, align: 'left',
+                    label: 'Tháng', name: 'smonth', width: 80, align: 'left',
                     formatter: function (cellvalue) {
                         return parseInt(cellvalue) < 10 ? "0" + cellvalue : cellvalue
                     }
                 },
                 {
-                    label: '总时长(H)', name: 'sc', width: 80, align: 'left', formatter: function (cellvalue, options, rowObject) {
-                        return (rowObject.sc / 60).toFixed(2) + "小时";
+                    label: '总Thời lượng(H)', name: 'sc', width: 80, align: 'left', formatter: function (cellvalue, options, rowObject) {
+                        return (rowObject.sc / 60).toFixed(2) + "Giờ";
                     }
                 }
             ],
@@ -84,7 +84,7 @@
         return postData;
     }
 
-    //人员树 选择 回调
+    //Cây nhân viên Chọn Callback
     function staffTreeCallback(treeSeleData) {
         Editing_ysList = [];
         var zlsNames = "";
@@ -101,7 +101,7 @@
 
     function init() {
         var date = new Date();
-        //年份
+        //Năm
         $("#Year").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -114,7 +114,7 @@
             },
             selectedValue: 1900 + date.getYear(),
         });
-        //月份
+        //Tháng
         $("#Month").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -142,14 +142,14 @@
     function btn_edit() {
         var seleRowid = jQuery("#HisgridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请先选中一条信息", "warning");
+            $.modalAlert("Vui lòng chọn trước một thông tin", "warning");
             return;
         }
         var data = $("#HisgridList").jqGridRowValue();
         localStorage.setItem("needupdateData", JSON.stringify(data));
         $.modalOpen({
             id: "Form",
-            title: "调整时长",
+            title: "Điều chỉnh thời lượng",
             url: "/TherapeutistManage/NonChargeableItems/UpdateView",
             width: "700px",
             height: "600px",
@@ -162,36 +162,36 @@
 <form id="form1">
     <div class="panel panel-default" style="margin-top:5px;">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <div style="padding: 2px; padding-right: 20px;">
             <table class="form">
                 <tr>
-                    <td class="formTitle">年份：</td>
+                    <td class="formTitle">Năm：</td>
                     <td class="formValue">
                         <select id="Year" class="form-control">
-                            <option value="-1">===请选择===</option>
+                            <option value="-1">===Vui lòng chọn===</option>
                         </select>
                     </td>
-                    <td class="formTitle">月份：</td>
+                    <td class="formTitle">Tháng：</td>
                     <td class="formValue">
                         <select id="Month" class="form-control">
-                            <option value="-1">===请选择===</option>
+                            <option value="-1">===Vui lòng chọn===</option>
                         </select>
                     </td>
-                    @*<th class="formTitle">科室：</th>
+                    @*<th class="formTitle">Khoa：</th>
                         <td class="formValue">
                             <select id="ks" class="form-control">
-                                <option value="-1">===请选择===</option>
+                                <option value="-1">===Vui lòng chọn===</option>
                             </select>
                         </td>*@
-                    <th class="formTitle">治疗师：</th>
+                    <th class="formTitle">Nhà trị liệu：</th>
                     <td class="formValue">
                         <input id="zls" type="text" class="form-control" />
                     </td>
                     <td class="formValue" colspan="3">
-                        <input type="button" id="btn_search" class="btn btn-primary" style="width: 50px; margin-left: 40px;" value="查询" />
-                        <input type="button" class="btn btn-primary" onclick="btn_edit()" style="width: 55px; margin-left: 40px;" value="调整时长" />
+                        <input type="button" id="btn_search" class="btn btn-primary" style="width: 50px; margin-left: 40px;" value="Tra cứu" />
+                        <input type="button" class="btn btn-primary" onclick="btn_edit()" style="width: 55px; margin-left: 40px;" value="Điều chỉnh thời lượng" />
                     </td>
                 </tr>
             </table>

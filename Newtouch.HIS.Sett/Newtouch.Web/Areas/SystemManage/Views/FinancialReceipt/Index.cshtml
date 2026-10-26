@@ -6,13 +6,13 @@
 <div class="topPanel">
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改信息</a>
+            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa thông tin</a>
         </div>
         <div class="btn-group">
-            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除信息</a>
+            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa thông tin</a>
         </div>
     </div>
     <div class="search">
@@ -20,7 +20,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="领用人员" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Người lĩnh" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -46,13 +46,13 @@
             height: 400,
             colModel: [
                 { label: 'cwsjId', name: 'cwsjId', hidden: true },
-                { label: '领用人员', name: 'ry', width: 100, algin: 'left' },
-                { label: '首字母', name: 'szm', width: 100, algin: 'left' },
-                { label: '当前发票号', name: 'dqsjh', width: 100, algin: 'left' },
-                { label: '起始发票号', name: 'qssjh', width: 100, algin: 'left' },
-                { label: '结束发票号', name: 'jssjh', width: 100, algin: 'left' },
+                { label: 'Người lĩnh', name: 'ry', width: 100, algin: 'left' },
+                { label: 'Chữ cái đầu', name: 'szm', width: 100, algin: 'left' },
+                { label: 'Số hóa đơn hiện tại', name: 'dqsjh', width: 100, algin: 'left' },
+                { label: 'Số hóa đơn bắt đầu', name: 'qssjh', width: 100, algin: 'left' },
+                { label: 'Số hóa đơn kết thúc', name: 'jssjh', width: 100, algin: 'left' },
                 {
-                    label: '有效', name: 'zt', width: 100, algin: 'left',
+                    label: 'Có hiệu lực', name: 'zt', width: 100, algin: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue == 0) {
                             return "否";
@@ -62,7 +62,7 @@
                     }
                 },
                 {
-                    label: '建档日期', name: 'CreateTime', width: 100, align: 'left',
+                    label: 'Ngày lập hồ sơ', name: 'CreateTime', width: 100, align: 'left',
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                 }
             ]
@@ -81,7 +81,7 @@
     function btn_add() {
         $.modalOpen({
             id: "FormFIEdit",
-            title: "发票配置维护",
+            title: "Bảo trì cấu hình hóa đơn",
             url: "@Url.Action("Form")",
             width: "700px",
             height: "500px",
@@ -90,17 +90,17 @@
             }
         });
     }
-    //修改
+    //Sửa
     function btn_edit() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         var Id = $("#gridList").jqGridRowValue().cwsjId;
         $.modalOpen({
             id: "FormFIEdit",
-            title: "修改信息",
+            title: "Sửa thông tin",
             url: "/SystemManage/FinancialReceipt/Form?Id=" + Id,
             width: "700px",
             height: "500px",
@@ -109,11 +109,11 @@
             }
         });
     }
-    //删除
+    //Xóa
     function btn_delete() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         var Id = $("#gridList").jqGridRowValue().cwsjId;

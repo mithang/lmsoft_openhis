@@ -15,17 +15,17 @@
             height: $(window).height() - 128,
             postData: { roleId: roleId },
             colModel: [
-                { label: '主键用户Id', name: 'UserId', hidden: true },
-                { label: '工号', name: 'gh', width: 70, align: 'left' },
-                { label: '姓名', name: 'UserName', width: 100, align: 'left' },
+                { label: 'Khóa chínhNgười dùngId', name: 'UserId', hidden: true },
+                { label: 'Mã nhân viên', name: 'gh', width: 70, align: 'left' },
+                { label: 'Họ tên', name: 'UserName', width: 100, align: 'left' },
                 {
-                    label: '性别', name: 'Gender', width: 40, align: 'center',
+                    label: 'Giới tính', name: 'Gender', width: 40, align: 'center',
                     formatter: function (cellvalue, options, rowObject) {
                         if (cellvalue === true) {
-                            return '男';
+                            return 'Nam';
                         }
                         else if (cellvalue === false) {
-                            return '女';
+                            return 'Nữ';
                         }
                         else {
                             return '';
@@ -33,14 +33,14 @@
                     }
                 },
                 {
-                    label: '科室名称', name: 'DepartmentCode', width: 80, align: 'left',
+                    label: 'Tên khoa', name: 'DepartmentCode', width: 80, align: 'left',
                     formatter: function (cellvalue, options, rowObject) {
                         var mcelarr = $.jsonWhere(top.top.clients.department, function (v) { return v.Code == cellvalue });
                         return mcelarr == null || mcelarr.length == 0 ? "" : mcelarr[0].Name;
                     }
                 },
                {
-                   label: '机构名称', name: 'OrganizeId', width: 150, align: 'left',
+                   label: 'Tên cơ sở', name: 'OrganizeId', width: 150, align: 'left',
                    formatter: function (cellvalue, options, rowObject) {
                        var mcelarr = $.jsonWhere(top.top.clients.organize, function (v) { return v.Id == cellvalue });
                        return mcelarr == null || mcelarr.length == 0 ? "" : mcelarr[0].Name;
@@ -76,7 +76,7 @@
     function btn_add() {
         $.modalOpen({
             id: "FormAddUsersToRole",
-            title: "选择用户",
+            title: "ChọnNgười dùng",
             url: "/SystemManage/User/Selector?cacheTime=0",
             width: "850px",
             height: "620px",
@@ -90,12 +90,12 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a id="NF-add" authorize="yes" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新增用户</a>
+            <a id="NF-add" authorize="yes" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>Thêm mớiNgười dùng</a>
         </div>
         <div class="operate">
             <ul class="nav nav-pills">
-                <li class="first">已选中<span>1</span>项</li>
-                <li><a id="NF-remove" authorize="yes" onclick="btn_remove()"><i class="fa fa-trash-o"></i>移除用户</a></li>
+                <li class="first">Đã chọn<span>1</span>项</li>
+                <li><a id="NF-remove" authorize="yes" onclick="btn_remove()"><i class="fa fa-trash-o"></i>移除Người dùng</a></li>
             </ul>
             <a href="javascript:;" class="close"></a>
         </div>
@@ -105,8 +105,8 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="gh" type="text" class="form-control" placeholder="工号" style="width: 200px;">
-                        <input id="name" type="text" class="form-control" placeholder="姓名" style="width: 200px;margin-left:10px;">
+                        <input id="gh" type="text" class="form-control" placeholder="Mã nhân viên" style="width: 200px;">
+                        <input id="name" type="text" class="form-control" placeholder="Họ tên" style="width: 200px;margin-left:10px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>

@@ -85,23 +85,23 @@
 <form id="form1" enctype="multipart/form-data" method="post">
     <div class="container" style="padding: 0;">
         <ul class="nav nav-tabs" role="tablist" id="tab">
-            <li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab">收入信息</a></li>
-            <li role="presentation"><a href="#cb" role="tab" data-toggle="tab">成本</a></li>
-            <li role="presentation"><a href="#attachments" role="tab" data-toggle="tab">附件信息</a></li>
+            <li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab">Thông tin thu nhập</a></li>
+            <li role="presentation"><a href="#cb" role="tab" data-toggle="tab">Chi phí</a></li>
+            <li role="presentation"><a href="#attachments" role="tab" data-toggle="tab">Thông tin tệp đính kèm</a></li>
         </ul>
         <div class="tab-content" style="margin-top: 10px; padding-right: 10px;">
             <div id="basicInfo" role="tabpanel" class="tab-pane fade in active">
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><a class="btn btn-primary" onclick="reload()" style="margin:auto 5px"><span class="glyphicon glyphicon-refresh"></span></a><span class="required">*</span>站点：</th>
+                        <th class="formTitle"><a class="btn btn-primary" onclick="reload()" style="margin:auto 5px"><span class="glyphicon glyphicon-refresh"></span></a><span class="required">*</span>Trạm：</th>
                         <td class="formValue" style="width:180px">
                             <select id="siteId" name="siteId" class="form-control"></select>
                         </td>
-                        <th class="formTitle"><span class="required">*</span>年份：</th>
+                        <th class="formTitle"><span class="required">*</span>Năm：</th>
                         <td class="formValue" style="width:80px">
                             <select id="year" name="year" class="form-control"></select>
                         </td>
-                        <th class="formTitle"><span class="required">*</span>月份：</th>
+                        <th class="formTitle"><span class="required">*</span>Tháng：</th>
                         <td class="formValue" style="width:80px">
                             <select id="month" name="month" class="form-control" style="width:50px"></select>
                         </td>
@@ -115,38 +115,38 @@
             <div id="cb" role="tabpanel" class="tab-pane fade in">
                 <table class="form" style="margin-bottom:10px;width:745px">
                     <tr>
-                        <th class="formTitle"><span style="color:red">*</span>类别：</th>
+                        <th class="formTitle"><span style="color:red">*</span>Loại：</th>
                         <td class="formValue">
                             <input type="hidden" id="cbId" />
                             <select id="cblb" name="cblb" class="form-control">
-                                <option value="" selected>==请选择==</option>
-                                <option value="ShareObj">共担科目</option>
-                                <option value="GRSbillObj">GRS负担科目</option>
+                                <option value="" selected>==Vui lòng chọn==</option>
+                                <option value="ShareObj">Cùng chịuMôn/khoản mục</option>
+                                <option value="GRSbillObj">GRSGánh chịuMôn/khoản mục</option>
                             </select>
                         </td>
-                        <th class="formTitle"><span style="color:red">*</span>科目：</th>
+                        <th class="formTitle"><span style="color:red">*</span>Môn/khoản mục：</th>
                         <td class="formValue">
                             <select id="kmmc" name="kmmc" class="form-control">
-                                <option value="" selected>==请选择==</option>
+                                <option value="" selected>==Vui lòng chọn==</option>
                             </select>
                         </td>
-                        <th class="formTitle"><span style="color:red">*</span>金额：</th>
+                        <th class="formTitle"><span style="color:red">*</span>Số tiền：</th>
                         <td class="formValue">
                             <input id="je" class="form-control" />
                         </td>
                     </tr>
                     <tr>
                         <th class="formTitle" colspan="6">
-                            <a class="btn btn-default btn-md" style="margin-left:4px;" id="btn_bottombutton_add" onclick="btn_bottombutton_add()">添加</a>
-                            <a class="btn btn-default btn-md" style="margin-left:4px;" id="btn_bottombutton_edit" onclick="btn_bottombutton_edit()" disabled="disabled">修改</a>
-                            <a class="btn btn-default btn-md" style="margin-left:4px;" id="btn_bottombutton_delete" onclick="btn_bottombutton_delete()" disabled="disabled">删除</a>
-                            <a class="btn btn-default btn-md" style="margin-left:4px;display:none;" id="btn_bottombutton_canceldel" onclick="btn_bottombutton_canceldel()">取消修改</a>
+                            <a class="btn btn-default btn-md" style="margin-left:4px;" id="btn_bottombutton_add" onclick="btn_bottombutton_add()">Thêm</a>
+                            <a class="btn btn-default btn-md" style="margin-left:4px;" id="btn_bottombutton_edit" onclick="btn_bottombutton_edit()" disabled="disabled">Sửa</a>
+                            <a class="btn btn-default btn-md" style="margin-left:4px;" id="btn_bottombutton_delete" onclick="btn_bottombutton_delete()" disabled="disabled">Xóa</a>
+                            <a class="btn btn-default btn-md" style="margin-left:4px;display:none;" id="btn_bottombutton_canceldel" onclick="btn_bottombutton_canceldel()">Hủy sửa</a>
                         </th>
                     </tr>
                 </table>
                 <div id="fj" role="tabpanel" class="tab-pane fade in" style="float: right;height: 337px;width: 200px;position: relative;top: -60px;border-left: 1px solid #ddd;">
                     <div id="jgssfdbl" style="padding-left: 10px;">
-                        共担成本GRS分担比例:
+                        Chi phí cùng chịuGRSTỷ lệ phân bổ:
                         <div>
                             <input id="input_fcbl" class="form-control" value="@ViewData["jgssfdbl"]" style="width: 55px;height:15px;float: left;line-height: 4px;" />%
                         </div>
@@ -158,7 +158,7 @@
             </div>
             <div id="attachments" role="tabpanel" class="tab-pane fade in" style="height:400px">
                 <a href="javascript:;" class="file">
-                    选择文件
+                    ChọnTệp
                     <input id="fileUpload" name="fileUpload" type="file" style="padding-left: 10px;padding-top: 10px;width: 200px;" multiple="multiple" />
                 </a>
                 <ul id='content'></ul>
@@ -167,11 +167,11 @@
     </div>
 </form>
 <div style="position: absolute; right: 0; bottom: 0;">
-    <input type="button" id="btn_ytj" onclick="btnclick('@Html.Raw(((int)EnumOrgshzt.YTJ).ToString())')" class="btn btn-primary btn-md btn-bottom" value="预提交" />
-    <input type="button" id="btn_zc" onclick="btnclick('@Html.Raw(((int)EnumOrgshzt.WTJ).ToString())')" class="btn btn-primary btn-md btn-bottom" value="暂存" />
-    <input type="button" id="btn_tj" onclick="btnclick('@Html.Raw(((int)EnumOrgshzt.DS).ToString())')" class="btn btn-primary btn-md btn-bottom" value="提交" />
+    <input type="button" id="btn_ytj" onclick="btnclick('@Html.Raw(((int)EnumOrgshzt.YTJ).ToString())')" class="btn btn-primary btn-md btn-bottom" value="Gửi trước" />
+    <input type="button" id="btn_zc" onclick="btnclick('@Html.Raw(((int)EnumOrgshzt.WTJ).ToString())')" class="btn btn-primary btn-md btn-bottom" value="Lưu tạm" />
+    <input type="button" id="btn_tj" onclick="btnclick('@Html.Raw(((int)EnumOrgshzt.DS).ToString())')" class="btn btn-primary btn-md btn-bottom" value="Gửi" />
 </div>
-<a id="tips" style="color:red;float:right;position: relative;bottom: -15px;margin-right: 10px;text-decoration: none;display:none">*已提交的数据不能重复操作</a>
+<a id="tips" style="color:red;float:right;position: relative;bottom: -15px;margin-right: 10px;text-decoration: none;display:none">*ĐãGửiDữ liệu không thể lặp lạiThao tác</a>
 <script lang="javascript">
     var id = 0;
     var keyValue = $.request("keyValue");
@@ -182,23 +182,23 @@
     var zysf = 0.00;
     var zsf = 0.00;
     var SiteCostEarningVO = {};
-    var ContentType = "";//附件类型
-    var fjmc = "";//附件名称
-    var fjPath = "";//附件名称
+    var ContentType = "";//Tệp đính kèmLoại
+    var fjmc = "";//Tên tệp đính kèm
+    var fjPath = "";//Tên tệp đính kèm
     var fileExt = "";
     var files = [];
 
-    //年月下拉初始化
+    //Khởi tạo dropdown năm-tháng
     (function initYearMonthSelect() {
         var date = new Date;
-        //默认选择上个月
+        //Mặc định chọn tháng trước
         var defaultSelYear = 1900 + date.getYear();
         var defaultSelMonth = date.getMonth();
         if (defaultSelMonth === 0) {
             defaultSelYear--;
             defaultSelMonth = 12;
         }
-        //年份
+        //Năm
         $("#year").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -211,7 +211,7 @@
             },
             selectedValue: defaultSelYear,
         });
-        //月份
+        //Tháng
         $("#month").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -237,7 +237,7 @@
         CbGridList(null);
 
         if (!!keyValue) {
-            $.loading(true, "正在请求数据...");
+            $.loading(true, "Đang yêu cầu dữ liệu...");
             $.najax({
                 url: "/SiteManage/SiteStatistics/GetFormJson?keyWord=" + keyValue,
                 dataType: "json",
@@ -245,7 +245,7 @@
                     rtndata = JSON.parse(data.message);
                     $('#siteId').val(rtndata.srxx.siteId).trigger("change");
                     //$('#siteId')
-                    //收入信息
+                    //Thông tin thu nhập
                     $('#year').val(rtndata.srxx.year).trigger("change");
                     $('#month').val(rtndata.srxx.month).trigger("change");
                     //if (rtndata.srxx.fjPath !== "") {
@@ -258,13 +258,13 @@
                         files = rtndata.fjxx;
                     }
                     renderFiles();
-                    //收入详情
+                    //Thu nhậpChi tiết
                     $.each(rtndata.srxxList, function () {
                         mzsf += this.mzsfje;
                         zysf += this.zysfje;
                     });
                     CRGridList(rtndata.srxxList);
-                    //成本详情
+                    //Chi tiết chi phí
                     cbjson = rtndata.cbxxList;
                     CbGridList(cbjson);
                 },
@@ -272,15 +272,15 @@
                     $.loading(false);
                 }
             });
-            //禁用站点，成本信息，附件
+            //Vô hiệu hóaTrạm，Chi phíThông tin，Tệp đính kèm
             $('#siteId').attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
             $('#year').attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
             $('#month').attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
         }
         else {
-            CRGridList();//声明收入信息
-            ajaxCR();//请求收入数据
-            loadlastmonthcbxx();//请求上个月的成本信息
+            CRGridList();//Khai báoThông tin thu nhập
+            ajaxCR();//Yêu cầu dữ liệu thu nhập
+            loadlastmonthcbxx();//Yêu cầutrêntháng的Chi phíThông tin
         }
         $('#siteId,#year,#month').change(function () {
             if (keyValue == "") {
@@ -309,35 +309,35 @@
                     fjmc = t_files[i].name;
                     if (fileExt !== "jpg" && fileExt !== "rar" && fileExt !== "png" && fileExt !== "zip"
                         && fileExt !== "xlsx" && fileExt !== "doc" && fileExt !== "docx" && fileExt !== "pdf" && fileExt !== "xls") {
-                        $.modalAlert("目前系统仅支持jpg、rar、png、zip、doc、xlsx、docx、pdf、xls后缀文件上传!", 'warning');
+                        $.modalAlert("Hiện tạiHệ thốngChỉ hỗ trợjpg、rar、png、zip、doc、xlsx、docx、pdf、xlsTải lên tệp có hậu tố!", 'warning');
                         $("#fileUrl").val("");
                         return false;
                     }
 
                     if (t_files[i].size / 1024 / 2014 > @ViewData["maxSize"]) {
-                        $.modalAlert("文件大小不能超过" +@ViewData["maxSize"]+"M!", 'warning');
+                        $.modalAlert("TệpKích thướcKhông được vượt quá" +@ViewData["maxSize"]+"M!", 'warning');
                         $("#fileUrl").val("");
                         return false;
                     }
                     files.push(t_files[i]);
-                    //str += '<li>名称：' + t_files[i].name + '大小' + t_files[i].size / 1024 / 2014 + 'M<i class="fa fa-times" aria-hidden="true" hidden="" style="display: inline;"></i></li> ';
+                    //str += '<li>Tên：' + t_files[i].name + 'Kích thước' + t_files[i].size / 1024 / 2014 + 'M<i class="fa fa-times" aria-hidden="true" hidden="" style="display: inline;"></i></li> ';
                 }
             }
             renderFiles();
         });
 
-        //清空icon事件
+        //Xóa trốngiconSự kiện
         $('#form1').on('click', '.fa.fa-times', function () {
             $(this).hide();
         });
     });
 
-    // 渲染附件信息到页面上
+    // Hiển thịThông tin tệp đính kèmlên trang
     function renderFiles() {
         var htmlstring = '';
         for (var i = 0; i < files.length; i++) {
             var file = files[i];
-            htmlstring += '<li style="list-style-type: none;height:20px;">名称：';
+            htmlstring += '<li style="list-style-type: none;height:20px;">Tên：';
             if (file.Id != null && file.Id != undefined) {
                 htmlstring += "<a id='file" + i + "' href='/SiteManage/SiteStatistics/download?id=" + rtndata.fjxx[i].Id + "'>" + rtndata.fjxx[i].fjmc + "</a>";
             } else {
@@ -355,14 +355,14 @@
 
 
 
-    //初始化 浮层
+    //Khởi tạo Lớp nổi
     function initInlineFunc(rowid) {
         $('#' + rowid + "_ce").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $('#' + rowid + "_zsr").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $('#' + rowid + "_mzsfje").formatCurrency();
         $('#' + rowid + "_zysfje").formatCurrency();
     }
-    //清空成本信息
+    //Xóa thông tin chi phí
     function clearcbInfo() {
         $('#cblb').val("").trigger("change");
         $('#kmmc').val("").trigger("change");
@@ -388,10 +388,10 @@
             width: 580,
             colModel: [
                 { label: 'Id', name: 'Id', hidden: true },
-                { label: '类别', name: 'lbmc', width: 220, align: 'left' },
+                { label: 'Loại', name: 'lbmc', width: 220, align: 'left' },
                 { label: 'cblb', name: 'cblb', hidden: true },
-                { label: '科目', name: 'kmmc', width: 250, align: 'left' },
-                { label: '金额', name: 'je', width: 200, align: 'left', formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 } },
+                { label: 'Môn/khoản mục', name: 'kmmc', width: 250, align: 'left' },
+                { label: 'Số tiền', name: 'je', width: 200, align: 'left', formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 } },
                 { label: 'kmcode', name: 'kmcode', hidden: true }
             ], ondblClickRow: function (rowid) {
                 gridEditRow(rowid);
@@ -404,7 +404,7 @@
         }, data);
     }
 
-    //收入信息
+    //Thông tin thu nhập
     function CRGridList(data) {
             $('#CRGridList').newtouchLocalDataGrid({
                 height: window.$(window).height() - 230,
@@ -414,9 +414,9 @@
                     { label: 'fcbl', name: 'fcbl',hidden: true },
                     { label: 'dlCode', name: 'dlCode', width: 80, hidden: true },
                     { label: 'intype', name: 'intype', hidden: true },
-                    { label: '科目', name: 'dlmc', width: 80, align: 'center' },
+                    { label: 'Môn/khoản mục', name: 'dlmc', width: 80, align: 'center' },
                     {
-                        label: '收费金额', name: 'mzsfje', width: 60, align: 'center',
+                        label: 'Số tiền thu phí', name: 'mzsfje', width: 60, align: 'center',
                         formatter: function (cellvalue, options, rowObject) {
                             if (rowObject.dlmc === "合计(元)") {
                                 return cellvalue;
@@ -426,50 +426,50 @@
                             //return "<a class=\"moneyunderline\" style=\"text-decoration:underline;cursor:pointer\"  color:blue onclick=\"btn_detail('" + rowObject.dlCode + "','" +rowObject.intype+ "')\">" + cellvalue + "</a>";
                         }
                     },
-                    { label: '治疗执行金额', name: 'mzzxje', width: 80, formatter: 'number', formatoptions: { thousandsSeparator: ",",decimalPlaces: 2 }, align: 'center' },
+                    { label: 'Số tiền thực hiện điều trị', name: 'mzzxje', width: 80, formatter: 'number', formatoptions: { thousandsSeparator: ",",decimalPlaces: 2 }, align: 'center' },
                     {
-                        label: '收费金额', name: 'zysfje', width: 60, align: 'center', formatter: function (cellvalue, options, rowObject) {
+                        label: 'Số tiền thu phí', name: 'zysfje', width: 60, align: 'center', formatter: function (cellvalue, options, rowObject) {
                             if (rowObject.dlmc === "合计(元)") {
                                 return cellvalue;
                             }
                             return "<a class=\"moneyunderline\" style=\"text-decoration:underline;cursor:pointer\" color:blue onclick=\"btn_detail('" + rowObject.dlCode + "','inpatient')\">" + cellvalue + "</a>";
                         }
                     }   ,
-                    { label: '治疗执行金额', name: 'zyzxje', width: 80, formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 }, align: 'center' },
-                    { label: '总收入', name: 'zsr', width: 100, formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 }, editable: true, align: 'center', editwidth: "98%" },
+                    { label: 'Số tiền thực hiện điều trị', name: 'zyzxje', width: 80, formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 }, align: 'center' },
+                    { label: 'Tổng thu nhập', name: 'zsr', width: 100, formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 }, editable: true, align: 'center', editwidth: "98%" },
                     {
-                        label: '核实收入', name: 'hssr', width: 100, editwidth: "98%", align: 'center', formatter: 'currency', formatoptions: { decimalPlaces: 2 }, editable: true, editrules: { required: true }, editoptions: {
+                        label: 'Xác minh thu nhập', name: 'hssr', width: 100, editwidth: "98%", align: 'center', formatter: 'currency', formatoptions: { decimalPlaces: 2 }, editable: true, editrules: { required: true }, editoptions: {
                             dataEvents: [
                                 {
                                     type: 'change',
                                     fn: function (e) {
                                         var cellval = $(this).val();
                                         if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                            $.modalAlert("核实收入，请确认。", 'warning');
+                                            $.modalAlert("Xác minh thu nhập，Vui lòng xác nhận。", 'warning');
                                             return;
                                         }
                                         if (isNaN(cellval)) {
-                                            $.modalAlert("核实收入：请填写数字", 'warning');
+                                            $.modalAlert("Xác minh thu nhập：Vui lòng nhập số", 'warning');
                                             $(this).val('');
                                             return;
                                         }
                                         var row = $(e.target).closest('tr.jqgrow');
                                         var rowid = row.attr('id');
-                                        CalculateEachLinece(rowid);   //计算差额
+                                        CalculateEachLinece(rowid);   //Tính toánChênh lệch
                                     }
                                 }
                             ]
                         }
                     },
-                    { label: '差额调整', name: 'ce', width: 80, editable: true, editwidth: "98%", align: 'center' },
-                    { label: '调整说明', name: 'tzsm', width: 80, align: 'center', editwidth: "98%", editable: true }
+                    { label: 'Chênh lệchĐiều chỉnh', name: 'ce', width: 80, editable: true, editwidth: "98%", align: 'center' },
+                    { label: 'Giải thích điều chỉnh', name: 'tzsm', width: 80, align: 'center', editwidth: "98%", editable: true }
 
                 ],
                 unwritten: false,
                 footerrow: true,
                 rownumbers: false,
                 gridComplete: function () {
-                    //启用行内编辑框
+                    //Bật hộp chỉnh sửa trong dòng
                     EnableInlineEditBox();
                     var sum_mzzxje = $("#CRGridList").getCol('mzzxje', false, 'sum');
                     var sum_zyzxje = $("#CRGridList").getCol('zyzxje', false, 'sum');
@@ -477,41 +477,41 @@
                     //var sum_hssr = $("#CRGridList").getCol('hssr', false, 'sum');
                     //var sum_ce = $("#CRGridList").getCol('ce', false, 'sum');
                     zsf = $.addNum(mzsf, zysf);
-                    $("#CRGridList").footerData('set', { "dlmc": '合计(元)', mzsfje: '<a class="money">' + mzsf + '</a>', mzzxje: sum_mzzxje, zysfje: '<a class="money">' + zysf + '</a>', zyzxje: sum_zyzxje, zsr: zsf });
-                    //$('#sfspan').html('<a class="money">' + mzsf + '</a>' + "（门诊）+" + '<a class="money">' + zysf + '</a>'+ "（住院）=" + '<a class="money">' +zsf+'</a>');
+                    $("#CRGridList").footerData('set', { "dlmc": 'Tổng cộng(元)', mzsfje: '<a class="money">' + mzsf + '</a>', mzzxje: sum_mzzxje, zysfje: '<a class="money">' + zysf + '</a>', zyzxje: sum_zyzxje, zsr: zsf });
+                    //$('#sfspan').html('<a class="money">' + mzsf + '</a>' + "（Khám ngoại trú）+" + '<a class="money">' + zysf + '</a>'+ "（Nội trú）=" + '<a class="money">' +zsf+'</a>');
                     $('.money').formatCurrency();
                     $('.moneyunderline').formatCurrency();
 
                 }
             }, data);
-            //二级菜单
+            //Menu cấp hai
             $('#CRGridList').jqGrid('setGroupHeaders', {
                 useColSpanStyle: true,
                 groupHeaders: [
                     {
                         startColumnName: 'zysfje',
                         numberOfColumns: 2,
-                        titleText: '住院收入(元)'
+                        titleText: 'Thu nhập nội trú(元)'
                     }, {
                         startColumnName: 'mzsfje',
                         numberOfColumns: 2,
-                        titleText: '门诊收入(元)'
+                        titleText: 'Thu nhập khám ngoại trú(元)'
                     }]
             });
     }
-    //请求收入数据
+    //Yêu cầu dữ liệu thu nhập
     function ajaxCR() {
-        //新增已收集时，限制按钮
+        //Thêm mớiKhi đã thu thập，Nút giới hạn
         if (keyValue == null || keyValue==="") {
             $.najax({
                 url: "/SiteManage/SiteStatistics/isAlreadyCollect",
                 dataType: "json",
                 type: "POST",
                 data: getSearchPostData(),
-                loadingtext: "收支统计数据请求中，请稍后...",
+                loadingtext: "Đang yêu cầu dữ liệu thống kê thu chi，Vui lòng đợi...",
                 success: function (resp) {
                     if (resp) {
-                        //禁用按钮
+                        //Vô hiệu hóaNút
                         $('#btn_zc').attr('disabled', 'disabled');
                         $('#btn_ytj').attr('disabled', 'disabled');
                         $('#btn_tj').attr('disabled', 'disabled');
@@ -533,7 +533,7 @@
             type: "POST",
             data: getSearchPostData(),
             loading: true,
-            loadingtext: "收支统计数据请求中，请稍后...",
+            loadingtext: "Đang yêu cầu dữ liệu thống kê thu chi，Vui lòng đợi...",
             success: function (resp) {
                 $("#CRGridList").clearGridData();
                 $.each(resp, function () {
@@ -597,12 +597,12 @@
                 success: function (resp) {
                     resp = JSON.parse(resp);
                     if (resp.state == "success") {
-                        $.modalMsg("操作成功", "success");
-                        $.currentWindow().$('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                        $.modalMsg("Thao tác thành công", "success");
+                        $.currentWindow().$('#gridList').jqGrid("clearGridData"); //Xóa chi tiếtgrid
                         $.currentWindow().$("#btn_search").trigger("click");
                         $.modalClose();
                     } else {
-                        //开启编辑模式
+                        //BậtChỉnh sửaChế độ
                         EnableInlineEditBox();
                         $.modalAlert(resp.message, "warning");
                     }
@@ -613,7 +613,7 @@
         }
     }
 
-    //提交
+    //Gửi
     function AcceptClick(callback, shzt) {
         var form = $("#form1");
         var options = {
@@ -635,7 +635,7 @@
                         dataType: "json",
                         type: "POST",
                         data: formatSiteCostEarningVO(shzt),
-                        loadingtext: "收支统计数据保存中，请稍后...",
+                        loadingtext: "Dữ liệu thống kê thu chiLưutrong，Vui lòng đợi...",
                         success: function () {
                             $.modalClose();
                             callback();
@@ -650,10 +650,10 @@
     }
 
     function validatesave() {
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấy tất cả các dòngId，Duyệt để hộp chỉnh sửa ở trạng thái đã lưu
         var rowIds = $("#CRGridList").jqGrid('getDataIDs');
         if (rowIds.length < 1) {
-            $.modalAlert("当前没有保存的收入内容", 'warning');
+            $.modalAlert("Hiện không có nội dung thu nhập đã lưu", 'warning');
             return false;
         }
         for (var i = 0; i < rowIds.length; i++) {
@@ -661,28 +661,28 @@
         }
         //
         if (!saveResult) {
-            EnableInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-            return false;   //保存失败，则return
+            EnableInlineEditBox();    //Khởi động lại và bật chỉnh sửa nếu không lần sauSavesẽ trả vềfalse
+            return false;   //Lưu thất bại，thìreturn
         }
     }
 
-    //数据效验
+    //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#siteId").val() === "") {
-            $.modalAlert("请选择站点", 'warning');
+            $.modalAlert("Vui lòng chọnTrạm", 'warning');
             return false;
         }
         if ($("#kssj").val() === "") {
-            $.modalAlert("开始时间不能为空", 'warning');
+            $.modalAlert("Thời gian bắt đầuKhông được trống", 'warning');
             return false;
         }
         if ($("#jssj").val() === "") {
-            $.modalAlert("结束时间不能为空", 'warning');
+            $.modalAlert("Thời gian kết thúcKhông được trống", 'warning');
             return false;
         }
         var input_fcbl = $('#input_fcbl').val();
         if (!((/^(\+|-)?\d+$/).test(input_fcbl)) || input_fcbl < 0 || input_fcbl > 100) {
-            $.modalAlert("共担成本分担比例为小于100的整数", 'warning');
+            $.modalAlert("Tỷ lệ phân bổ chi phí cùng chịulà nhỏ hơn100số nguyên", 'warning');
             return false;
         }
         return true;
@@ -690,10 +690,10 @@
     function formatSiteCostEarningVO(shzt) {
         var griddata = $("#CRGridList").jqGrid('getRowData_AllLine', null, true);
         if (griddata.length < 1) {
-            $.modalAlert("当前没有保存的收入内容", 'warning');
+            $.modalAlert("Hiện không có nội dung thu nhập đã lưu", 'warning');
             return false;
         }
-        $.each(griddata, function () {    //去掉action
+        $.each(griddata, function () {    //Loại bỏaction
             for (var i = 0; i < $(this).length; i++) {
                 $(this)[i].mzsfje = $($(this)[i].mzsfje).toNumber().text();
                 $(this)[i].zysfje = $($(this)[i].zysfje).toNumber().text();
@@ -727,13 +727,13 @@
         return SiteCostEarningVO;//{ srxx: SiteCostEarningVO.srxx, srxxList: SiteCostEarningVO.srxxList, cbxxList: cbjson, keyValue: keyValue };
     }
 
-    var editingNewid = null;    //正在修改的行
-    var editingId = null;    //正在修改的行
+    var editingNewid = null;    //Dòng đang sửa
+    var editingId = null;    //Dòng đang sửa
 
-    //添加成本
+    //ThêmChi phí
     function btn_bottombutton_add() {
         if (editingNewid || editingId) {
-            return; //正在处于修改状态，是不能点击添加按钮的   要disable处理
+            return; //Đang ởSửaTrạng thái，là không thể nhấnThêmcủa nút   cầndisableXử lý
         }
         if (validatecbinfo()) {
             var item = {
@@ -749,32 +749,32 @@
             }
             cbjson.push(item)
             fillDataToGrid();
-            clearcbInfo();//清空成本信息
+            clearcbInfo();//Xóa thông tin chi phí
         }
     }
 
-    //验证成本信息
+    //Xác minhChi phíThông tin
     function validatecbinfo() {
         var cblb = $('#cblb').val();
         if (!cblb) {
-            $.modalAlert("缺少成本类别", 'warning');
+            $.modalAlert("ThiếuChi phíLoại", 'warning');
             return false;
         }
         var kmmc = $('#kmmc').val();
         if (!kmmc) {
-            $.modalAlert("缺少科目", 'warning');
+            $.modalAlert("ThiếuMôn/khoản mục", 'warning');
             return false;
         }
         var je = $('#je').val();
         if (!je) {
-            $.modalAlert("缺少金额", 'warning');
+            $.modalAlert("ThiếuSố tiền", 'warning');
             return false;
         }
         return true;
 
     };
 
-    //请求 编辑 行
+    //Yêu cầu Chỉnh sửa Dòng
     function gridEditRow(rowid) {
         if (rowid) {
             var rowData = $("#CbGridList").jqGrid('getRowData', rowid);
@@ -783,11 +783,11 @@
                     return v && v.Id == rowData.Id;
                 });
                 if (!rowDataArr || rowDataArr.length == 0) {
-                    return; //为什么没找到
+                    return; //Tại sao không tìm thấy
                 }
-                rowData = rowDataArr[0];  //通过rowData.newid从对象数组中取出该行数据
-                editingNewid = rowData.Id;    //正在修改的行
-                //序列化至编辑域中
+                rowData = rowDataArr[0];  //Thông quarowData.newidLấy dữ liệu dòng này từ mảng đối tượng
+                editingNewid = rowData.Id;    //Dòng đang sửa
+                //Tuần tự hóa tớiChỉnh sửa域trong
                 $('#cblb').val(rowData.cblb).trigger("change");
                 $('#kmmc').val(rowData.kmcode).trigger("change");
                 $('#je').val(rowData.je);
@@ -800,19 +800,19 @@
         }
     }
 
-    //修改成本
+    //SửaChi phí
     function btn_bottombutton_edit() {
         if (editingNewid) {
-            //提交修改
+            //GửiSửa
             var data = getEditRowData();
             if (!(validatecbinfo())) {
-                //数据是否完善，检查必填项
+                //Dữ liệu có đầy đủ hay không，Kiểm tra mục bắt buộc
                 return;
             }
             data.Id = editingNewid;
-            //检查重复项
+            //Kiểm tra mục trùng lặp
 
-            //先在xm数组中找到之
+            //Trước tiên trongxmTìm trong mảng
             var matchedIndex = -1;
             for (var ii = 0; ii < cbjson.length; ii++) {
                 if (cbjson[ii].Id == data.Id) {
@@ -821,32 +821,32 @@
                 }
             }
             if (matchedIndex == -1) {
-                return; //应该是异常
+                return; //Có lẽ là ngoại lệ
             }
-            cbjson.remove(matchedIndex);   //移除该项
-            cbjson.unshift(data);   //作为新项添加    //”数组最前端“
+            cbjson.remove(matchedIndex);   //Xóa mục này
+            cbjson.unshift(data);   //Thêm dưới dạng mục mới    //”Đầu mảng“
 
-            //重新将xm数组呈现至grid
+            //lại đưaxmHiển thị mảng tớigrid
             fillDataToGrid();
 
             clearcbInfo();
 
-            editingNewid = null;    //正在修改的行
+            editingNewid = null;    //Dòng đang sửa
 
             bottomButtonsReset();
 
         }
         else {
-            //申请修改 获取grid当前选中的那一行
+            //XinSửa LấygridDòng hiện đang chọn
             var seleId = $('#CbGridList').jqGrid('getGridParam', 'selrow');
             if (seleId) {
-                //请求修改该行
+                //Yêu cầuSửaDòng này
                 gridEditRow(seleId);
             }
         }
     };
 
-    //按钮重置
+    //Nút重置
     function bottomButtonsReset() {
         $('#btn_bottombutton_add').removeAttr('disabled');
         $('#btn_bottombutton_edit').attr('disabled', 'disabled');
@@ -866,17 +866,17 @@
         return item;
     }
 
-    //删除成本
+    //XóaChi phí
     function btn_bottombutton_delete() {
-        //获取grid当前选中的那一行
+        //LấygridDòng hiện đang chọn
         var rowid = $('#CbGridList').jqGrid('getGridParam', 'selrow');
-        //请求删除该行
+        //Yêu cầuXóaDòng này
         if (rowid) {
             var rowData = $("#CbGridList").jqGrid('getRowData', rowid);
             if (rowData) {
                 if (rowData.Id == editingNewid) {
-                    $.modalAlert("该行正在处于编辑状态，不能删除", 'warning');
-                    return; //该行正在处于编辑状态，不能删除
+                    $.modalAlert("Dòng này đang ở trạng thái chỉnh sửa，Không thể xóa", 'warning');
+                    return; //Dòng này đang ở trạng thái chỉnh sửa，Không thể xóa
                 }
                 var matchedIndex = -1;
 
@@ -889,39 +889,39 @@
                 }
                 cbjson.remove(matchedIndex);   //移除
 
-                //重新将xm数组呈现至grid
+                //lại đưaxmHiển thị mảng tớigrid
                 fillDataToGrid();
             }
         }
     };
 
-    //向CbGridList grid里填充数据
+    //向CbGridList grid里填充Dữ liệu
     function fillDataToGrid() {
         $("#CbGridList").resetSelection();
         $("#CbGridList").clearGridData();
         $("#CbGridList").newtouchLocalDataGrid({ posttofirst: false }, cbjson);
     }
 
-    //取消修改
+    //Hủy sửa
     function btn_bottombutton_canceldel() {
         clearcbInfo();
-        editingNewid = null;    //正在修改的行
+        editingNewid = null;    //Dòng đang sửa
         bottomButtonsReset();
         $("#CbGridList").resetSelection();
     };
 
-    //启用行内编辑框
+    //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox() {
-        //Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        //GridTải xong thì bật chỉnh sửa trong dòng   1.Trước tiên lấy tất cả các dòngId  2.Duyệt và gọieditRowPhương thức
         var rowIds = $("#CRGridList").jqGrid('getDataIDs');
         $.each(rowIds, function () {
-            //打开编辑模式
+            //Mở chế độ chỉnh sửa
             $("#CRGridList").jqGrid('editRow', this, false, initInlineFunc);
         });
     }
 
     function reload() {
-        $.modalConfirm("此操作将清空暂存的机构收入详情，并重新统计，确认操作吗？", function (flag) {
+        $.modalConfirm("此Thao tác将Xóa trốngLưu tạm的Thu nhập cơ sởChi tiết，并重MớiThống kê，Xác nhậnThao táckhông？", function (flag) {
             if (!flag) {
                 return;
             }
@@ -933,14 +933,14 @@
         });
     }
 
-    //查看收费金额详情
+    //Xem chi tiết số tiền thu phí
     function btn_detail(dlcode, type) {
         var year = $('#year').val();
         var siteId = $('#siteId').val();
         var month = $('#month').val();
         $.modalOpen({
             id: "ViewChargeMoneyDetail",
-            title: "查看收费详情",
+            title: "Xem chi tiết thu phí",
             url: "/SiteManage/SiteStatistics/ViewChargeMoneyDetail?year=" + year + "&siteId=" + siteId + "&month=" + month + "&dlcode=" + dlcode + "&type=" + type,
             width: "1000px",
             height: "580px",

@@ -58,12 +58,12 @@ function checkNotNull() {
             zt: { required: true },
         },
         messages: {
-            dlmc: { required: "大类必须填写" },
-            py: { required: "拼音必须填写" },
-            mzzybz: { required: "范围必须填写" },
-            mzprintreportcode: { required: "门诊报表大类必须填写" },
-            mzprintbillcode: { required: "门诊账单大类必须填写" },
-            zt: { required: "状态必须选择" }
+            dlmc: { required: "Nhóm lớn bắt buộc phải nhập" },
+            py: { required: "Phiên âm bắt buộc phải nhập" },
+            mzzybz: { required: "Phạm vi bắt buộc phải nhập" },
+            mzprintreportcode: { required: "Nhóm lớn báo cáo khám ngoại trú bắt buộc phải nhập" },
+            mzprintbillcode: { required: "Nhóm lớn hóa đơn khám ngoại trú bắt buộc phải nhập" },
+            zt: { required: "Trạng thái bắt buộc phải chọn" }
         },
         showErrors: function (errorMap, errorList) {
             if (!$.isEmptyObject(errorList)) {
@@ -77,7 +77,7 @@ function checkNotNull() {
     if (!validator.form()) {
         return false;
     }
-    //状态
+    //Trạng thái
     var zt = false;
     $('input[name="zt"]').each(function () {
         var $this = $(this);
@@ -87,7 +87,7 @@ function checkNotNull() {
         }
     });
     if (!zt) {
-        $.modalAlert("请选择是否有效！", 'warning');
+        $.modalAlert("Vui lòng chọn có hiệu lực hay không！", 'warning');
         return false;
     }
     return true;

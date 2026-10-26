@@ -9,13 +9,13 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>删除</a>
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
         </div>
     </div>
     <div class="search">
@@ -23,7 +23,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="编码/内容" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Mã số/Nội dung" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -51,10 +51,10 @@
             height: $(window).height() - 128,
             colModel: [
                 { label: "Id", name: "Id", width: 100, align: 'left', key: true, hidden: true },
-                { label: "编码", name: "code", width: 450, align: 'left' },
-                { label: "内容", name: "msg", width: 350, align: 'left', sortable: false },
-                { label: "排序", name: "px", width: 100, align: 'left' },
-                { label: "创建时间", name: "CreateTime", width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: "Mã số", name: "code", width: 450, align: 'left' },
+                { label: "Nội dung", name: "msg", width: 350, align: 'left', sortable: false },
+                { label: "Sắp xếp", name: "px", width: 100, align: 'left' },
+                { label: "Thời gian tạo", name: "CreateTime", width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
             ],
             rowNum: 10,
             pager: "#gridPager",
@@ -75,7 +75,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增数据",
+            title: "Thêm dữ liệu mới",
             url: "/SystemManage/SysFailedCodeMessageMapp/Form",
             width: "700px",
             height: "440px",
@@ -91,12 +91,12 @@
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "修改数据",
+            title: "Sửa dữ liệu",
             url: "/SystemManage/SysFailedCodeMessageMapp/Form?keyValue=" + keyValue,
             width: "700px",
             height: "440px",
@@ -112,7 +112,7 @@
     function btn_delete() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         $.deleteForm({

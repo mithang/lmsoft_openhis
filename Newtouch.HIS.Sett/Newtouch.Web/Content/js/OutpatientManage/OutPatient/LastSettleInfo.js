@@ -10,11 +10,11 @@ function lastSettleInfoList() {
         url: "/OutpatientManage/OutpatientReg/GetLastSettleInfo",
         height: 142,
         colModel: [
-            { label: '发票号', name: 'fph', width: 100, algin: 'left' },
-            { label: '姓名', name: 'xm', width: 100, algin: 'left' },
-            { label: '应收', name: 'ysk', width: 100, algin: 'left' },
-            { label: '实收', name: 'xjzf', width: 100, algin: 'left' },
-            { label: '找零', name: 'zl', width: 100, algin: 'left' }
+            { label: 'Số hóa đơn', name: 'fph', width: 100, algin: 'left' },
+            { label: 'Họ tên', name: 'xm', width: 100, algin: 'left' },
+            { label: 'Phải thu', name: 'ysk', width: 100, algin: 'left' },
+            { label: 'Thực thu', name: 'xjzf', width: 100, algin: 'left' },
+            { label: 'Trả lại tiền thừa', name: 'zl', width: 100, algin: 'left' }
         ],
         loadComplete: function (data) {
             if (data && data.length && data.length > 0) {
@@ -26,7 +26,7 @@ function lastSettleInfoList() {
         }
     });
     $("#linkLastSettledInfo").click(function () {
-        //每次点击tab页，调整Grid宽度
+        //Mỗi lần nhấntab页，Điều chỉnhGridChiều rộng
         initLayout("MyTabGrid");
 
         $lastSettleInfoList.jqGrid('setGridParam', {

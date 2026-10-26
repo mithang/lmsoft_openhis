@@ -8,23 +8,23 @@
         <div style="padding-top: 20px; margin-right: 30px;">
             <table id="tb_xm" class="form">
                 <tr>
-                    <th class="formTitle">权限科室：</th>
+                    <th class="formTitle">QuyềnKhoa：</th>
                     <td class="formValue">
                         <select id="dllDepartment" name="dllDepartment" class="form-control">
-                            <option>==请选择==</option>
+                            <option>==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <th class="formTitle"><span class="required">*</span>模板编码：</th>
+                    <th class="formTitle"><span class="required">*</span>MẫuMã số：</th>
                     <td class="formValue formDdlSelectorTd">
-                        <input id="sfmb" name="sfmb" type="text" class="form-control required" value="" placeholder="请输入模板编码" />
+                        <input id="sfmb" name="sfmb" type="text" class="form-control required" value="" placeholder="Vui lòng nhậpMẫuMã số" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>模板名称：</th>
+                    <th class="formTitle"><span class="required">*</span>MẫuTên：</th>
                     <td class="formValue">
-                        <input id="sfmbmc" name="sfmbmc" type="text" class="form-control required" value="" placeholder="请输入模板名称" />
+                        <input id="sfmbmc" name="sfmbmc" type="text" class="form-control required" value="" placeholder="Vui lòng nhậpMẫuTên" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>名称首拼：</th>
+                    <th class="formTitle"><span class="required">*</span>TênChữ đầu phiên âm：</th>
                     <td class="formValue formDdlSelectorTd">
                         <input id="py" name="py" type="text" class="form-control required" value=""  />
                     </td>
@@ -32,62 +32,62 @@
             </table>
             <table id="tb_com" class="form">
                 <tr>
-                    <td class="formTitle"><span class="required">*</span>门诊住院标志：</td>
+                    <td class="formTitle"><span class="required">*</span>Cờ khám ngoại trú/nội trú：</td>
                     <td class="formValue">
                         <select id="mzzybz" name="mzzybz" class="form-control required">
-                            <option value="">==请选择==</option>
-                            <option value="0">通用</option>
-                            <option value="1">门诊</option>
-                            <option value="2">住院</option>
+                            <option value="">==Vui lòng chọn==</option>
+                            <option value="0">Chung</option>
+                            <option value="1">Khám ngoại trú</option>
+                            <option value="2">Nội trú</option>
                         </select>
                     </td>
-                    <th class="formTitle">频次：</th>
+                    <th class="formTitle">Tần suất：</th>
                     <td class="formValue">
                         <input type="text" id="yzpc" class="form-control" value="">
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">单次治疗量：</th>
+                    <th class="formTitle">Lượng điều trị một lần：</th>
                     <td class="formValue">
                         <input type="text" id="zll" class="form-control" value="">
                     </td>
-                    <th class="formTitle"><span class="required">*</span>数量：</th>
+                    <th class="formTitle"><span class="required">*</span>Số lượng：</th>
                     <td class="formValue">
                         <input type="text" id="sl" class="form-control" value="">
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">执行次数：</th>
+                    <th class="formTitle">Số lần thực hiện：</th>
                     <td class="formValue">
                         <input type="text" id="zxcs" class="form-control" value="">
                     </td>
-                    <th class="formTitle">部位：</th>
+                    <th class="formTitle">Vị trí：</th>
                     <td class="formValue">
                         <input type="text" id="bw" class="form-control" value="">
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">执行科室：</th>
+                    <th class="formTitle">Khoa thực hiện：</th>
                     <td class="formValue">
                         <select id="zxks" name="zxks" class="form-control">
-                            <option>==请选择==</option>
+                            <option>==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <th class="formTitle">用法：</th>
+                    <th class="formTitle">Cách dùng：</th>
                     <td class="formValue">
                         <select id="yf" name="yf" class="form-control">
-                            <option>==请选择==</option>
+                            <option>==Vui lòng chọn==</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">康复类别：</th>
+                    <th class="formTitle">Loại phục hồi chức năng：</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="kflb" name="kflb" class="form-control" data-ItemType="RehabTreatmentMethod">
-                            <option value="">==请选择==</option>
+                            <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <th class="formTitle">单位时长(分)：</th>
+                    <th class="formTitle">Thời lượng đơn vị(Điểm)：</th>
                     <td class="formValue">
                         <input id="duration" type="text" class="form-control" value="" />
                     </td>
@@ -95,24 +95,24 @@
             </table>
             <table id="tb_op" class="form" hidden="hidden">
                 <tr>
-                    <th class="formTitle">收费大类：</th>
+                    <th class="formTitle">Nhóm thu phí lớn：</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="sfdl" name="sfdl" class="form-control" >
-                            <option value="">==请选择==</option>
+                            <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
                 </tr>
             </table>
             <table id="tb_addxm" class="form">
                 <tr>
-                    <th class="formTitle"><b><span class="required">*</span>添加项目：</b></th>
+                    <th class="formTitle"><b><span class="required">*</span>Thêm hạng mục：</b></th>
                     <td class="formValue">
-                        <input id="txtSFXMSel" type="text" class="form-control" placeholder="请输入项目名称或拼音" />
+                        <input id="txtSFXMSel" type="text" class="form-control" placeholder="Vui lòng nhậpTên hạng mụcHoặcPhiên âm" />
                     </td>
-                    <th class="formTitle">选项：</th>
+                    <th class="formTitle">Tùy chọn：</th>
                     <td class="formValue" style="padding-top: 1px;">
                         <div class="ckbox">
-                            <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                            <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Có hiệu lực</label>
                         </div>
                     </td>
                     <td>
@@ -169,10 +169,10 @@
     });
 
     function initControl() {
-        $("#dllDepartment").html('<option>==请选择==</option>').bindSelect({
+        $("#dllDepartment").html('<option>==Vui lòng chọn==</option>').bindSelect({
             url: "/SystemManage/SysDepartment/GetTreeSelectJson",
         });
-        //配置手术 则默认手术项目
+        //Cấu hìnhPhẫu thuật thìMặc địnhPhẫu thuậtHạng mục
         if (opDept != null && opDept != "") {
             $("#dllDepartment").val(opDept).trigger('change');
 
@@ -183,7 +183,7 @@
 
         }
 
-        $("#zxks").html('<option>==请选择==</option>').bindSelect({
+        $("#zxks").html('<option>==Vui lòng chọn==</option>').bindSelect({
             url: "/SystemManage/SysDepartment/GetTreeSelectJson",
         });
         $('#mzzybz').select2();
@@ -213,13 +213,13 @@
         //    }
         //});
 
-        //加载收费大类树
+        //TảiNhóm thu phí lớnCây
         $("#sfdl").bindSelect({
             url: "/NonTreatmentItem/GetTreeSelectChargeCategoryJson"
         });
 
 
-        //加载药品用法
+        //TảiThuốcCách dùng
         $("#yf").bindSelect({
             url: "/SystemManage/SysParameterConfig/GetUsages",
             id: "yfCode",
@@ -228,32 +228,32 @@
 
     }
 
-    //jGrid声明
+    //jGridKhai báo
     function initChargeItemGrid(data) {
         $('#xmDetailListGridList').newtouchLocalDataGrid({
             height: 100,
             unwritten: false,
-            caption: "收费项目",
+            caption: "Hạng mục thu phí",
             colModel: [
-                { label: '收费项目', name: 'sfxmCode', hidden: true, key: true },
-                { label: '收费项目名称', name: 'sfxmmc', width: 140, align: 'left' },
-                { label: '拼音', name: 'py', hidden: true, align: 'left' },
-                { label: '单位', name: 'dw', width: 40, align: 'left' },
-                { label: '单次治疗量', name: 'zll', width: 70, align: 'left' },
-                { label: '数量', name: 'sl', width: 40, align: 'left' },
-                //{ label: '执行次数', name: 'zxcs', width: 60, align: 'left' },
-                { label: '康复类别', name: 'kflbmc', width: 80, align: 'left' },
+                { label: 'Hạng mục thu phí', name: 'sfxmCode', hidden: true, key: true },
+                { label: 'Tên hạng mục thu phí', name: 'sfxmmc', width: 140, align: 'left' },
+                { label: 'Phiên âm', name: 'py', hidden: true, align: 'left' },
+                { label: 'Đơn vị', name: 'dw', width: 40, align: 'left' },
+                { label: 'Lượng điều trị một lần', name: 'zll', width: 70, align: 'left' },
+                { label: 'Số lượng', name: 'sl', width: 40, align: 'left' },
+                //{ label: 'Số lần thực hiện', name: 'zxcs', width: 60, align: 'left' },
+                { label: 'Loại phục hồi chức năng', name: 'kflbmc', width: 80, align: 'left' },
                 { label: 'kflb', name: 'kflb', hidden: true, align: 'left' },
-                { label: '单位时长', name: 'duration', width: 70, align: 'left' },
+                { label: 'Thời lượng đơn vị', name: 'duration', width: 70, align: 'left' },
                 { label: 'zxks', name: 'zxks', hidden: true },
-                { label: '部位', name: 'bw', width: 70, align: 'left' },
+                { label: 'Vị trí', name: 'bw', width: 70, align: 'left' },
                 { label: 'yzpc', name: 'yzpc', hidden: true },
-                { label: '单价', name: 'dj', width: 80, align: 'left' },
+                { label: 'Đơn giá', name: 'dj', width: 80, align: 'left' },
             ]
         }, data);
     }
 
-    //收费项目选择浮层
+    //Hạng mục thu phíChọnLớp nổi
     $('#txtSFXMSel').sfxmFloatingSelector({
         djDecimalPlaces: 4,
         searchType: 'sfxm',
@@ -271,13 +271,13 @@
                 }
             });
             if (returnFlag) {
-                return; //不能重复添加
+                return; //不能重复Thêm
             }
             btn_addItem($thistr);
         },
     });
 
-    //添加项目
+    //Thêm hạng mục
     function btn_addItem($thistr) {
         var valsl = $('#sl').val();
         var valduration = $('#duration').val();
@@ -290,24 +290,24 @@
             textkflb = $('#kflb').find("option:selected").text();
         }
         if (((/^(\+|-)?\d+$/).test(valsl)) && (valsl < 0)) {
-            $.modalAlert("数量为大于0的整数", 'warning');
+            $.modalAlert("Số lượnglà lớn hơn0số nguyên", 'warning');
             return;
         }
         if (((/^(\+|-)?\d+$/).test(valduration)) && (valduration < 0)) {
-            $.modalAlert("单位时长为大于0的整数", 'warning');
+            $.modalAlert("Thời lượng đơn vịlà lớn hơn0số nguyên", 'warning');
             return;
         }
         if (((/^(\+|-)?\d+$/).test(valzll)) && (valzll < 0)) {
-            $.modalAlert("治疗量为大于0的整数", 'warning');
+            $.modalAlert("Điều trịLượnglà lớn hơn0số nguyên", 'warning');
             return;
         }
         if (((/^(\+|-)?\d+$/).test(valzxcs)) && (valzxcs < 0)) {
-            $.modalAlert("执行次数为大于0的整数", 'warning');
+            $.modalAlert("Số lần thực hiệnlà lớn hơn0số nguyên", 'warning');
             return;
         }
 
         if (!valsl && !valzll) {
-            $.modalAlert("请填写数量或单次治疗量", 'warning');
+            $.modalAlert("Vui lòng nhậpSố lượngHoặcLượng điều trị một lần", 'warning');
             return;
         }
         
@@ -350,7 +350,7 @@
         }
         var postData = $("#form1").formSerialize();
 
-        //支付方式 json串
+        //Phương thức thanh toán json串
         var xmArr = new Array();
         var rowIds = $("#xmDetailListGridList").getDataIDs();
         $.each(rowIds, function (idx, val) {
@@ -373,17 +373,17 @@
             });
         });
         if (xmArr.length == 0) {
-            $.modalAlert("至少选择一条收费项目", 'warning');
+            $.modalAlert("至少ChọnMột dòngHạng mục thu phí", 'warning');
             return false;
         }
         postData['xmListStr'] = JSON.stringify(xmArr);
         debugger
-        postData['sfmbbh'] = keyValue;  //主键，决定是新增还是修改
+        postData['sfmbbh'] = keyValue;  //Khóa chính，决定是Thêm mới还是Sửa
         postData['ks'] = $('#dllDepartment').val();
         postData['mzzybz'] = $('#mzzybz').val();
         postData['py'] = $('#py').val();
         
-        var yfop = $("#yf option:selected");//获取选中的项
+        var yfop = $("#yf option:selected");//Lấy mục đã chọn
         postData['yfdm'] = yfop.val();
         postData['yfmc'] = yfop.text();
         if ($('#yf').val() =="==请选择==") {
@@ -417,7 +417,7 @@
         }
     });
 
-    //根据名称获取名称首拼
+    //TheoTênLấyTênChữ đầu phiên âm
     $('#sfmbmc').keyup(function () {
         $('#py').val($(this).toShouPin());
     })

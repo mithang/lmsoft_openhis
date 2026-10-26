@@ -6,13 +6,13 @@
 <div class="topPanel">
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改信息</a>
+            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa thông tin</a>
         </div>
         <div class="btn-group">
-            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除信息</a>
+            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa thông tin</a>
         </div>
     </div>
     <div class="search">
@@ -20,7 +20,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="医生名称" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Bác sĩTên" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -46,19 +46,19 @@
             height: 400,
             colModel: [
                 { label: 'bddm', name: 'bddm', hidden: true },
-                { label: '科室', name: 'ksmc', width: 100, algin: 'left' },
-                { label: '姓名', name: 'xm', width: 100, algin: 'left' },
+                { label: 'Khoa', name: 'ksmc', width: 100, algin: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 100, algin: 'left' },
                 {
-                    label: '性别', name: 'xb', width: 100, algin: 'left',
+                    label: 'Giới tính', name: 'xb', width: 100, algin: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue) {
-                            return "男";
+                            return "Nam";
                         } else {
-                            return "女";
+                            return "Nữ";
                         }
                     }
                 },
-                { label: '身份证', name: 'zjh', width: 100, algin: 'left' }
+                { label: 'Chứng minh nhân dân', name: 'zjh', width: 100, algin: 'left' }
             ]
         });
         $("#btn_search").click(function () {
@@ -75,7 +75,7 @@
     function btn_add() {
         $.modalOpen({
             id: "FormFIEdit",
-            title: "新增科室人员绑定",
+            title: "Thêm mớiKhoaNhân viênGắn",
             url: "/SystemManage/SysDepartmentBinding/Form",
             width: "700px",
             height: "300px",
@@ -84,17 +84,17 @@
             }
         });
     }
-    //修改
+    //Sửa
     function btn_edit() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         var bddm = $("#gridList").jqGridRowValue().bddm;
         $.modalOpen({
             id: "FormFIEdit",
-            title: "修改科室人员绑定",
+            title: "SửaKhoaNhân viênGắn",
             url: "/SystemManage/SysDepartmentBinding/Form?bddm=" + bddm,
             width: "700px",
             height: "300px",
@@ -103,11 +103,11 @@
             }
         });
     }
-    //删除
+    //Xóa
     function btn_delete() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         var bddm = $("#gridList").jqGridRowValue().bddm;

@@ -13,9 +13,9 @@
                 }
                 if (ajaxResp && ajaxResp.length) {
                     if (ajaxResp.length > 1) {
-                        var html = '<th class="formTitle">医疗机构：</th>';
+                        var html = '<th class="formTitle">Y tếCơ sở：</th>';
                         html += '<td class="formValue formDdlSelectorTd" style="width:110px;">';
-                        html += '   <select id="OrganizeId" name="OrganizeId" class="form-control"><option value="">==请选择==</option></select>';
+                        html += '   <select id="OrganizeId" name="OrganizeId" class="form-control"><option value="">==Vui lòng chọn==</option></select>';
                         html += '</td>';
                         $(html).insertBefore($firstFormTitle);
                         $('#OrganizeId').bindSelect({

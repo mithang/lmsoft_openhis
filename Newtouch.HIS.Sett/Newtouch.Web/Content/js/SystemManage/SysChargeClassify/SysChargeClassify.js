@@ -7,23 +7,23 @@ function gridList() {
         url: "/SystemManage/SysChargeClassify/GetdlGridJson",
         height: $(window).height() - 128,
         colModel: [
-            { label: "主键", name: "flbh", hidden: true, key: true },
-            { label: "代码", name: "fl", width: 80, align: 'left' },
-            { label: '分类', name: 'flmc', width: 100, align: 'left' },
-             { label: '拼音', name: 'py', width: 100, align: 'left' },
+            { label: "Khóa chính", name: "flbh", hidden: true, key: true },
+            { label: "Mã", name: "fl", width: 80, align: 'left' },
+            { label: 'Phân loại', name: 'flmc', width: 100, align: 'left' },
+             { label: 'Phiên âm', name: 'py', width: 100, align: 'left' },
             {
-                label: '有效', name: 'zt', width: 50, align: 'left',
+                label: 'Có hiệu lực', name: 'zt', width: 50, align: 'left',
                 formatter: function (cellvalue) {
                     if (cellvalue == 0) {
-                        return "无效"
+                        return "Không hiệu lực"
                     } else {
-                        return "有效"
+                        return "Có hiệu lực"
                     }
                 }
             },
-            { label: '建档人员', name: 'CreatorCode', width: 50, align: 'left' },
+            { label: 'Người lập hồ sơ', name: 'CreatorCode', width: 50, align: 'left' },
             {
-                label: '建档日期', name: 'CreateTime', width: 50, align: 'left',
+                label: 'Ngày lập hồ sơ', name: 'CreateTime', width: 50, align: 'left',
                 formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
             }
         ],
@@ -41,7 +41,7 @@ function gridList() {
 function btn_add() {
     $.modalOpen({
         id: "Form",
-        title: "系统分类信息维护",
+        title: "Bảo trì thông tin phân loại hệ thống",
         url: "/SystemManage/SysChargeClassify/Form",
         width: "700px",
         height: "220px",
@@ -54,7 +54,7 @@ function btn_edit() {
     var keyValue = $("#gridList").jqGridRowValue().flbh;
     $.modalOpen({
         id: "Form",
-        title: "修改信息",
+        title: "Sửa thông tin",
         url: "/SystemManage/SysChargeClassify/Form?keyValue=" + keyValue,
         width: "700px",
         height: "220px",
@@ -78,7 +78,7 @@ function btn_details() {
     var keyValue = $("#gridList").jqGridRowValue().flbh;
     $.modalOpen({
         id: "Details",
-        title: "查看机构",
+        title: "Xem cơ sở",
         url: "/SystemManage/SysChargeClassify/Form?keyValue=" + keyValue,
         width: "700px",
         height: "220px",

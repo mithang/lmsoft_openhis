@@ -12,9 +12,9 @@
             url: "/SystemSecurity/FilterIP/GetGridJson",
             height: $(window).height() - 96,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
                 {
-                    label: '策略类型', name: 'F_Type', width: 80, align: 'left',
+                    label: 'Loại chính sách', name: 'F_Type', width: 80, align: 'left',
                     formatter: function (cellvalue, options, rowObject) {
                         if (cellvalue == true) {
                             return '<span class=\"label label-success\">允许访问</span>';
@@ -23,14 +23,14 @@
                         }
                     }
                 },
-                { label: '起始IP', name: 'F_StartIP', width: 200, align: 'left' },
-                { label: '结束IP', name: 'F_EndIP', width: 200, align: 'left' },
-                { label: '创建人员', name: 'CreatorUserId', width: 100, align: 'left' },
+                { label: 'Bắt đầuIP', name: 'F_StartIP', width: 200, align: 'left' },
+                { label: 'Kết thúcIP', name: 'F_EndIP', width: 200, align: 'left' },
+                { label: 'Người tạo', name: 'CreatorUserId', width: 100, align: 'left' },
                 {
-                    label: '创建时间', name: 'CreatorTime', width: 100, align: 'left',
+                    label: 'Thời gian tạo', name: 'CreatorTime', width: 100, align: 'left',
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' }
                 },
-                { label: '备注', name: 'F_Description', width: 300, align: 'left' }
+                { label: 'Ghi chú', name: 'F_Description', width: 300, align: 'left' }
             ]
         });
         $("#btn_search").click(function () {
@@ -42,7 +42,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新建策略",
+            title: "Tạo chính sách mới",
             url: "/SystemSecurity/FilterIP/Form",
             width: "450px",
             height: "400px",
@@ -64,7 +64,7 @@
         var keyValue = $("#gridList").jqGridRowValue().Id;
         $.modalOpen({
             id: "Details",
-            title: "查看策略",
+            title: "Xem chính sách",
             url: "/SystemSecurity/FilterIP/Details?keyValue=" + keyValue,
             width: "450px",
             height: "520px",
@@ -79,14 +79,14 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a id="NF-add" authorize="yes" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建策略</a>
+            <a id="NF-add" authorize="yes" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo chính sách mới</a>
         </div>
         <div class="operate">
             <ul class="nav nav-pills">
-                <li class="first">已选中<span>1</span>项</li>
-                <li><a id="NF-edit" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改策略</a></li>
-                <li><a id="NF-delete" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除策略</a></li>
-                <li><a id="NF-Details" authorize="yes" onclick="btn_details()"><i class="fa fa-search-plus"></i>查看策略</a></li>
+                <li class="first">Đã chọn<span>1</span>项</li>
+                <li><a id="NF-edit" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>SửaChính sách</a></li>
+                <li><a id="NF-delete" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>XóaChính sách</a></li>
+                <li><a id="NF-Details" authorize="yes" onclick="btn_details()"><i class="fa fa-search-plus"></i>Xem chính sách</a></li>
             </ul>
             <a href="javascript:;" class="close"></a>
         </div>
@@ -97,7 +97,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="请输入要查询关键字" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Vui lòng nhập từ khóa cần tra cứu" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>

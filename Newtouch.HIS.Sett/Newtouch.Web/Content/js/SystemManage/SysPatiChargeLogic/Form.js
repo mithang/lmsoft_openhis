@@ -44,7 +44,7 @@ function InitControl() {
     });
 }
 function brxzList() {
-    ///报销政策
+    ///Chính sách thanh toán BHYT
     $("#brxzmc").newtouchFloatingSelector({
         height: 200,
         width: 300,
@@ -52,7 +52,7 @@ function brxzList() {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，用keywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -62,12 +62,12 @@ function brxzList() {
             return resultObjArr;
 
         },
-        caption: "病人性质",
+        caption: "Tính chất bệnh nhân",
         colModel: [
-            { label: "编号", name: 'brxzbh', widthratio: 25 },
-            { label: "代码", name: 'brxz', widthratio: 25 },
-            { label: "名称", name: 'brxzmc', widthratio: 25 },
-            { label: "拼音", name: 'py', widthratio: 25 }
+            { label: "Số hiệu", name: 'brxzbh', widthratio: 25 },
+            { label: "Mã", name: 'brxz', widthratio: 25 },
+            { label: "Tên", name: 'brxzmc', widthratio: 25 },
+            { label: "Phiên âm", name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#brxzmc").attr("data-label", $thistr.find("td:eq(1)").html());
@@ -83,14 +83,14 @@ function dlList() {
         width: 300,
         filter: function (keyword) {
             
-            //请用ajax
+            //Vui lòng dùngajax
 
         },
-        caption: "大类",
+        caption: "Nhóm lớn",
         colModel: [
-            { label: "编号", name: "dlCode", widthratio: 25 },
-            { label: "名称", name: "dlmc", widthratio: 25 },
-            { label: "拼音", name: "py", widthratio: 25 }
+            { label: "Số hiệu", name: "dlCode", widthratio: 25 },
+            { label: "Tên", name: "dlmc", widthratio: 25 },
+            { label: "Phiên âm", name: "py", widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#dlmc").attr("data-label", $thistr.find("td:eq(0)").html());
@@ -101,7 +101,7 @@ function dlList() {
 }
 
 function sfxmList() {
-    ///收费项目
+    ///Hạng mục thu phí
     //$("#sfxmmc").newtouchFloatingSelector({
     //    height: 200,
     //    width: 300,
@@ -109,7 +109,7 @@ function sfxmList() {
     //        if (!keyword) {
     //            return null;
     //        }
-    //        //遍历数据源，用keyword来筛选出结果
+    //        //Duyệt nguồn dữ liệu，用keywordđể lọc ra kết quả
     //        var resultObjArr = new Array();
     //        $.each(top.window.clients.sysChargeItemList, function (idx, val) {
     //            if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -118,12 +118,12 @@ function sfxmList() {
     //        });
     //        return resultObjArr;
     //    },
-    //    caption: "收费项目",
+    //    caption: "Hạng mục thu phí",
     //    colModel: [
-    //        { label: '编号', name: 'sfxmbh', widthratio: 25 },
-    //        { label: '代码', name: 'sfxm', widthratio: 25 },
-    //        { label: '名称', name: 'sfxmmc', widthratio: 25 },
-    //        { label: '拼音', name: 'py', widthratio: 25 }
+    //        { label: 'Số hiệu', name: 'sfxmbh', widthratio: 25 },
+    //        { label: 'Mã', name: 'sfxm', widthratio: 25 },
+    //        { label: 'Tên', name: 'sfxmmc', widthratio: 25 },
+    //        { label: 'Phiên âm', name: 'py', widthratio: 25 }
     //    ],
     //    itemdbclickhandler: function ($thistr) {
     //        $("#sfxmmc").attr("data-label", $thistr.find("td:eq(1)").html());
@@ -143,17 +143,17 @@ function sfxmList() {
             reqData.dlCode = $.trim($("#dlmc").attr("data-label"));
             return reqData;
         },
-        caption: "收费项目",
+        caption: "Hạng mục thu phí",
         colModel: [
-            { label: "项目与否", name: "xmtype", widthratio: 25, hidden: true },
-            { label: "编码", name: "py", widthratio: 25 },
-            { label: "通用名", name: "xmmc", widthratio: 25 },
-            { label: "商品名", name: "spm", widthratio: 25, hidden: true },
-            { label: "单位", name: "dw", widthratio: 25, hidden: true },
-            { label: "单价", name: "dj", widthratio: 25, hidden: true },
-            { label: "规格", name: "ypgg", widthratio: 25, hidden: true },
-            { label: "医保代码", name: "ybdm", widthratio: 25 },
-            { label: "包装代码", name: "ypbzdm", widthratio: 25, hidden: true },
+            { label: "có phải hạng mục hay không", name: "xmtype", widthratio: 25, hidden: true },
+            { label: "Mã số", name: "py", widthratio: 25 },
+            { label: "Tên chung", name: "xmmc", widthratio: 25 },
+            { label: "Tên thương mại", name: "spm", widthratio: 25, hidden: true },
+            { label: "Đơn vị", name: "dw", widthratio: 25, hidden: true },
+            { label: "Đơn giá", name: "dj", widthratio: 25, hidden: true },
+            { label: "Quy cách", name: "ypgg", widthratio: 25, hidden: true },
+            { label: "Mã bảo hiểm y tế", name: "ybdm", widthratio: 25 },
+            { label: "Mã đóng gói", name: "ypbzdm", widthratio: 25, hidden: true },
             { label: "xmbh", name: "xmbh", widthratio: 25, hidden: true },
             { label: "sfxm", name: "sfxm", widthratio: 25, hidden: true },
             { label: "dl", name: "dl", widthratio: 25, hidden: true },
@@ -203,11 +203,11 @@ function checkNotNull() {
             fysx: { required: true }
         },
         messages: {
-            syfw: { required: "适用范围必须填写" },
-            sfjb: { required: "算法级别必须填写" },
-            zfbl: { required: "自付比例必须填写" },
-            zfxz: { required: "自付性质必须填写" },
-            fysx: { required: "费用上限必须填写" }
+            syfw: { required: "Phạm vi áp dụng bắt buộc phải nhập" },
+            sfjb: { required: "Cấp độ thuật toán bắt buộc phải nhập" },
+            zfbl: { required: "Tỷ lệ tự trả bắt buộc phải nhập" },
+            zfxz: { required: "Tính chất tự trả bắt buộc phải nhập" },
+            fysx: { required: "Giới hạn chi phí bắt buộc phải nhập" }
         },
         showErrors: function (errorMap, errorList) {
             if (!$.isEmptyObject(errorList)) {
@@ -221,7 +221,7 @@ function checkNotNull() {
     if (!validator.form()) {
         return false;
     }
-    ////状态
+    ////Trạng thái
     //var zt = false;
     //$('input[name="zt"]').each(function () {
     //    var $this = $(this);
@@ -231,7 +231,7 @@ function checkNotNull() {
     //    }
     //});
     //if (!zt) {
-    //    $.modalAlert("请选择是否有效！", "warning");
+    //    $.modalAlert("Vui lòng chọn có hiệu lực hay không！", "warning");
     //    return false;
     //}
     return true;

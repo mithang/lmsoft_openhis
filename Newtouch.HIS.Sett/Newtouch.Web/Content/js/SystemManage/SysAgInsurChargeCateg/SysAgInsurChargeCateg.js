@@ -9,28 +9,28 @@ function gridList() {
         url: "/SystemManage/SysAgInsurChargeCateg/GetsfGridJson",
         height: $(window).height - 96,
         colModel: [
-            { label: '主键', name: 'dlbh', hidden: true, key: true },
-            { label: '代码', name: 'dl', width: 100, algin: 'left' },
-            { label: '大类', name: 'dlmc', width: 100, algin: 'left' },
-            { label: '拼音', name: 'py', width: 100, algin: 'left' },
+            { label: 'Khóa chính', name: 'dlbh', hidden: true, key: true },
+            { label: 'Mã', name: 'dl', width: 100, algin: 'left' },
+            { label: 'Nhóm lớn', name: 'dlmc', width: 100, algin: 'left' },
+            { label: 'Phiên âm', name: 'py', width: 100, algin: 'left' },
             {
-                label: '范围', name: 'mzzybz', width: 80, align: 'left',
+                label: 'Phạm vi', name: 'mzzybz', width: 80, align: 'left',
                 formatter: function (cellvalue) {
                     if (cellvalue == "0") {
-                        return "通用";
+                        return "Chung";
                     } else if (cellvalue == "1") {
-                        return "门诊";
+                        return "Khám ngoại trú";
                     } else if (cellvalue == "2") {
-                        return "部门";
+                        return "Bộ phận";
                     } else if (cellvalue == "3") {
-                        return "住院";
+                        return "Nội trú";
                     } else {
                         return "";
                     }
                 }
             },
             {
-                label: '有效', name: 'zt', width: 100, algin: 'left',
+                label: 'Có hiệu lực', name: 'zt', width: 100, algin: 'left',
                 formatter: function (cellvalue) {
                     if (cellvalue == 0) {
                         return "否";
@@ -39,12 +39,12 @@ function gridList() {
                     }
                 }
             },
-            { label: '排序', name: 'px', width: 100, algin: 'left'},
+            { label: 'Sắp xếp', name: 'px', width: 100, algin: 'left'},
             {
-                label: '建档日期', name: 'jdrq', width: 100, align: 'left',
+                label: 'Ngày lập hồ sơ', name: 'jdrq', width: 100, align: 'left',
                 formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
             },
-           { label: '建档人员', name: 'jdry', width: 80, align: 'left' }
+           { label: 'Người lập hồ sơ', name: 'jdry', width: 80, align: 'left' }
         ]
     });
 }
@@ -57,7 +57,7 @@ $("#btn_search").click(function () {
 function btn_add() {
     $.modalOpen({
         id: "Form",
-        title: "系统农保收费大类维护",
+        title: "Bảo trì nhóm lớn thu phí bảo hiểm nông nghiệp hệ thống",
         url: "/SystemManage/SysAgInsurChargeCateg/Form",
         width: "700px",
         height: "520px",
@@ -71,7 +71,7 @@ function btn_edit() {
     var keyValue = $("#gridList").jqGridRowValue().brsfjmbh;
     $.modalOpen({
         id: "Form",
-        title: "修改信息",
+        title: "Sửa thông tin",
         url: "/SystemManage/AgInsurChargeCateg/Form?keyValue=" + keyValue,
         width: "700px",
         height: "520px",
@@ -94,7 +94,7 @@ function btn_details() {
     var keyValue = $("#gridList").jqGridRowValue().brsfjmbh;
     $.modalOpen({
         id: "Details",
-        title: "查看机构",
+        title: "Xem cơ sở",
         url: "/SystemManage/AgInsurChargeCateg/Form?keyValue=" + keyValue,
         width: "700px",
         height: "520px",

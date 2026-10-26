@@ -24,7 +24,7 @@
 
     function init() {
         var date = new Date;
-        //年份
+        //Năm
         $("#year").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -37,7 +37,7 @@
             },
             selectedValue: 1900 + date.getYear(),
         });
-        //月份
+        //Tháng
         $("#month").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -77,11 +77,11 @@
                 ts: { required: true }
             },
             messages: {
-                ysgh: { required: "工号不能为空" },
-                //Name: { required: "名字不能为空" },
-                year: { required: "年份不能为空" },
-                month: { required: "月份不能为空" },
-                ts: { required: "天数不能为空" }
+                ysgh: { required: "Mã nhân viênKhông được trống" },
+                //Name: { required: "名字Không được trống" },
+                year: { required: "NămKhông được trống" },
+                month: { required: "ThángKhông được trống" },
+                ts: { required: "Số ngàyKhông được trống" }
             },
             showErrors: function (errorMap, errorList) {
                 if (!$.isEmptyObject(errorList)) {
@@ -96,11 +96,11 @@
             return false;
         }
         if (!((/^(\+|-)?\d+$/).test($("#ts").val())) || ($("#ts").val() < 1)) {
-            $.modalAlert("天数不是大于0的整数，请确认。", 'warning');
+            $.modalAlert("Số ngày不是大于0số nguyên，Vui lòng xác nhận。", 'warning');
             return;
         }
         if (($("#ts").val() > 31)) {
-            $.modalAlert("不能大于31天，请确认。", 'warning');
+            $.modalAlert("Không được lớn hơn31天，Vui lòng xác nhận。", 'warning');
             return;
         }
         return true;
@@ -110,36 +110,36 @@
     <div style="padding-right:30px">
         <table class="form">
             <tr>
-                <td class="formTitle"><span style="color:red">*</span>工号：</td>
+                <td class="formTitle"><span style="color:red">*</span>Mã nhân viên：</td>
                 <td class="formValue">
                     <input type="text" id="ysgh" name="ysgh" class="form-control" />
                     <input type="hidden" id="Id" class="form-control" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">姓名：</td>
+                <td class="formTitle">Họ tên：</td>
                 <td class="formValue">
                     <input type="text" id="Name" name="Name" class="form-control" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span style="color:red">*</span>年份：</td>
+                <td class="formTitle"><span style="color:red">*</span>Năm：</td>
                 <td class="formValue formDdlSelectorTd">
                     <select id="year" name="year" class="form-control">
-                        <option value="">===请选择===</option>
+                        <option value="">===Vui lòng chọn===</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span style="color:red">*</span>月份：</td>
+                <td class="formTitle"><span style="color:red">*</span>Tháng：</td>
                 <td class="formValue formDdlSelectorTd">
                     <select id="month" name="month" class="form-control">
-                        <option value="">===请选择===</option>
+                        <option value="">===Vui lòng chọn===</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span style="color:red">*</span>天数：</td>
+                <td class="formTitle"><span style="color:red">*</span>Số ngày：</td>
                 <td class="formValue">
                     <input type="text" id="ts" name="ts" class="form-control" />
                 </td>

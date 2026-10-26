@@ -38,34 +38,34 @@
                 type: 'column'
             },
             title: {
-                text: '治疗师工作效率分析'
+                text: 'Nhà trị liệu工作效率Điểm析'
             },
             xAxis: {
                 categories: [
-                    '一月',
-                    '二月',
-                    '三月',
-                    '四月',
-                    '五月',
-                    '六月',
-                    '七月',
-                    '八月',
-                    '九月',
-                    '十月',
-                    '十一月',
-                    '十二月'
+                    'Tháng 1',
+                    'Tháng 2',
+                    'Tháng 3',
+                    'Tháng 4',
+                    'Tháng 5',
+                    'Tháng 6',
+                    'Tháng 7',
+                    'Tháng 8',
+                    'Tháng 9',
+                    'Tháng 10',
+                    'Tháng 11',
+                    'Tháng 12'
                 ]
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: '单位 (小时)'
+                    text: 'Đơn vị (Giờ)'
                 }
             },
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} 小时</b></td></tr>',
+                '<td style="padding:0"><b>{point.y:.1f} Giờ</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
@@ -82,7 +82,7 @@
                             click: function () {
                                 time = this.x;
                                 type = this.series.name;
-                                $("#headInfo").text(type + "治疗师" + this.category + "明细");
+                                $("#headInfo").text(type + "Nhà trị liệu" + this.category + "Chi tiết");
                                 $("#btn_search").trigger('click');
                             }
                         }
@@ -93,12 +93,12 @@
                 }
             },
             series: [{
-                name: "门诊",
+                name: "Khám ngoại trú",
                 data: [
                         OutpatientList[0].num, OutpatientList[1].num, OutpatientList[2].num, OutpatientList[3].num, OutpatientList[4].num, OutpatientList[5].num, OutpatientList[6].num, OutpatientList[7].num, OutpatientList[8].num, OutpatientList[9].num, OutpatientList[10].num, OutpatientList[11].num
                 ]
             }, {
-                name: "住院",
+                name: "Nội trú",
                 data: [
                            InpatientList[0].num, InpatientList[1].num, InpatientList[2].num, InpatientList[3].num, InpatientList[4].num, InpatientList[5].num, InpatientList[6].num, InpatientList[7].num, InpatientList[8].num, InpatientList[9].num, InpatientList[10].num, InpatientList[11].num
                 ]
@@ -113,10 +113,10 @@
             postData: {},
             height: $(window).height() - 320,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: "治疗师", name: "NAME", width: 80 },
-                { label: '治疗时间', name: "jzsj", width: 80, align: 'left' },
-                { label: '时长(分)', name: 'sc', width: 100, align: 'left' }
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: "Nhà trị liệu", name: "NAME", width: 80 },
+                { label: 'Thời gian điều trị', name: "jzsj", width: 80, align: 'left' },
+                { label: 'Thời lượng(Điểm)', name: 'sc', width: 100, align: 'left' }
             ],
             pager: "#gridPager",
             sortname: 'jzsj desc',

@@ -11,7 +11,7 @@
     <div class="dashboard-stats">
         <div class="dashboard-stats-item">
             <div class="m-top-none">
-                <span>机构总数</span>
+                <span>Cơ sở总数</span>
             </div>
             <div class="m-bottom-none">
                 <span>8</span>
@@ -21,7 +21,7 @@
     <div class="dashboard-stats" style="width:230px">
         <div class="dashboard-stats-item">
             <div class="m-top-none">
-                <span>年度总收入（单位：万元）</span>
+                <span>年度Tổng thu nhập（Đơn vị：Vạn tệ）</span>
             </div>
             <div class="m-bottom-none">
                 <span style="left:45px !important">200</span>
@@ -31,7 +31,7 @@
     <div class="dashboard-stats" style="width:270px !important;margin-right:20px !important">
         <div class="dashboard-stats-item">
             <div class="m-top-none" style="width:270px">
-                <span>年度收入对比（单位：万元）</span>
+                <span>So sánh thu nhập năm（Đơn vị：Vạn tệ）</span>
             </div>
             <div class="m-bottom-none" style="height:100px;">
                 <div id="ndsrdb" style="height:100px; width:270px"></div>
@@ -41,7 +41,7 @@
     <div class="dashboard-stats" style="width:270px !important">
         <div class="dashboard-stats-item">
             <div class="m-top-none" style="width:270px;">
-                <span>收费/已执行费用对比</span>
+                <span>Thu phí/ĐãChi phí thực hiệnSo sánh</span>
             </div>
             <div class="m-bottom-none" style="height:100px; width:270px;">
                 <div id="sfzxfydb" style="min-width: 110px; max-width: 270px; height: 100px; margin: 0 auto"></div>
@@ -52,12 +52,12 @@
 <form id="form1">
         <div class="panel panel-default">
             <div class="panel-heading">
-                收支比例与访问人次
+                Thu chi比例与访问人次
             </div>
             <div style="padding-right:10px;">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">统计时间：</th>
+                        <th class="formTitle">Thời gian thống kê：</th>
                         <td class="formValue formDdlSelectorTd" style="width:50px">
                             <select id="ddlRKFS" class="form-control required">
                                 <option value="1">2015</option>
@@ -87,7 +87,7 @@
 
         });
 
-        //随机组成4位数
+        //Tạo ngẫu nhiên4Số ký tự
         function sjs() {
             var arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
             var str = '';
@@ -102,7 +102,7 @@
             return str;
         }
 
-        //随机组成3位数
+        //Tạo ngẫu nhiên3Số ký tự
         function twsjs() {
             var arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
             var str = '';
@@ -117,9 +117,9 @@
             return str;
         }
 
-        //总收入
+        //Tổng thu nhập
         var d = { zsr: "78000, 62000, 98000, 23000, 56000" };
-        //年度收入对比
+        //So sánh thu nhập năm
         Highcharts.chart('ndsrdb', {
             chart: {
                 type: 'column'
@@ -134,7 +134,7 @@
             legend: { enabled: false },
             xAxis: {
                 categories: [
-                    '门诊', '住院'
+                    'Khám ngoại trú', 'Nội trú'
                 ],
                 crosshair: true
             },
@@ -146,10 +146,10 @@
                 }
             },
             tooltip: {
-                // head + 每个 point + footer 拼接成完整的 table
+                // head + mỗi point + footer ghép thành đầy đủ table
                 headerFormat: '<table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:10">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} 万元</b></td></tr>',
+                    '<td style="padding:0"><b>{point.y:.1f} Vạn tệ</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
@@ -160,11 +160,11 @@
                 }
             },
             series: [{
-                name: '收入',
+                name: 'Thu nhập',
                 data: [83.6, 78.8]
             }]
         });
-        //月份收入对比
+        //ThángThu nhậpSo sánh
         Highcharts.chart('yfsrdb', {
             chart: {
                 type: 'column'
@@ -178,22 +178,22 @@
             },
             legend: { enabled: false },
             //subtitle: {
-            //    text: '数据来源: newtouch.com'
+            //    text: 'Nguồn dữ liệu: newtouch.com'
             //},
             xAxis: {
                 categories: [
-                    '一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月'
+                    'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9'
                 ],
                 crosshair: true
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: '月份收入金额 (元)'
+                    text: 'ThángThu nhậpSố tiền (元)'
                 }
             },
             tooltip: {
-                // head + 每个 point + footer 拼接成完整的 table
+                // head + mỗi point + footer ghép thành đầy đủ table
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
                     '<td style="padding:0"><b>{point.y:.1f} 元</b></td></tr>',
@@ -215,7 +215,7 @@
                 },
             }, labels: {
                 items: [{
-                    html: '门诊/住院收入对比',
+                    html: 'Khám ngoại trú/Thu nhập nội trúSo sánh',
                     style: {
                         left: '220px',
                         top: '18px',
@@ -224,11 +224,11 @@
                 }]
             },
             series: [{
-                name: '门诊收入',
+                name: 'Thu nhập khám ngoại trú',
                 data: [10000, 12000, 12900, 14000, 17000, 19000, 20900, 21000, 28190]
             }, {
                 type: 'spline',
-                name: '住院收入',
+                name: 'Thu nhập nội trú',
                     data: [9000, 12080, 12000, 13200, 16900, 18900, 21000, 21600, 28100],
                 marker: {
                     lineWidth: 2,
@@ -237,13 +237,13 @@
                 }
             }, {
                 type: 'pie',
-                name: '总收入',
+                name: 'Tổng thu nhập',
                 data: [{
-                    name: '门诊总收入',
+                    name: 'Khám ngoại trúTổng thu nhập',
                     y: 130000,
                     color: Highcharts.getOptions().colors[0] // Jane's color
                 }, {
-                    name: '住院总收入',
+                    name: 'Nội trúTổng thu nhập',
                     y: 230000,
                     color: Highcharts.getOptions().colors[1] // John's color
                 }],
@@ -255,7 +255,7 @@
                 }
             }]
         });
-        //月份人次对比
+        //Tháng人次So sánh
         Highcharts.chart('yfrcdb', {
             chart: {
                 type: 'column'
@@ -270,18 +270,18 @@
             legend: { enabled: false },
             xAxis: {
                 categories: [
-                    '一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月'
+                    'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9'
                 ],
                 crosshair: true
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: '月份门诊访问人次 (人/次)'
+                    text: 'ThángKhám ngoại trú访问人次 (人/次)'
                 }
             },
             tooltip: {
-                // head + 每个 point + footer 拼接成完整的 table
+                // head + mỗi point + footer ghép thành đầy đủ table
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
                     '<td style="padding:0"><b>{point.y:.1f} 人/次</b></td></tr>',
@@ -295,7 +295,7 @@
                 }
             },
             series: [{
-                name: '门诊',
+                name: 'Khám ngoại trú',
                 data: [49, 71, 106, 129, 134, 145, 158, 216, 176],
                 cursor: 'pointer',
                 events: {
@@ -327,14 +327,14 @@
                 floating: true
             }, legend: { enabled: false },
             //subtitle: {
-            //    text: '数据来源: newtouch.com'
+            //    text: 'Nguồn dữ liệu: newtouch.com'
             //},
             xAxis: {
                 categories: [
-                    '秦皇岛', '上海银康', '上海百诺', '北京国门', '广州松鹤'
+                    '秦皇岛', 'trên海银康', 'trên海百诺', '北京国门', '广州松鹤'
                 ],
                 crosshair: true,
-                title: { text: "本年度各机构收入对比（元）" }
+                title: { text: "Các của năm nayThu nhập cơ sởSo sánh（元）" }
             },
             yAxis: {
                 min: 0,
@@ -344,7 +344,7 @@
                 }
             },
             tooltip: {
-                // head + 每个 point + footer 拼接成完整的 table
+                // head + mỗi point + footer ghép thành đầy đủ table
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
                     '<td style="padding:0"><b>{point.y:.1f} 元</b></td></tr>',
@@ -359,7 +359,7 @@
             },
             series: [{
                 id: "szsr",
-                name: '总收入',
+                name: 'Tổng thu nhập',
                 data: eval("[" + d.zsr + "]")
             }]
         });
@@ -376,11 +376,11 @@
             }, legend: { enabled: false },
             xAxis: {
                 categories: [
-                    '秦皇岛', '上海银康', '上海百诺', '北京国门', '广州松鹤'
+                    '秦皇岛', 'trên海银康', 'trên海百诺', '北京国门', '广州松鹤'
                 ],
                 crosshair: true,
                 title: {
-                    text: "本年度各机构门诊对比（人/次）"
+                    text: "Các của năm nayCơ sởKhám ngoại trúSo sánh（人/次）"
                 }
             },
             yAxis: {
@@ -391,7 +391,7 @@
                 }
             },
             tooltip: {
-                // head + 每个 point + footer 拼接成完整的 table
+                // head + mỗi point + footer ghép thành đầy đủ table
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
                     '<td style="padding:0"><b>{point.y:.1f} 人/次</b></td></tr>',
@@ -487,12 +487,12 @@
                     color: '#DF5353' // red
                 }],
                 title: {
-                    text: '收费/执行费用',
+                    text: 'Thu phí/Chi phí thực hiện',
                     y: 20
                 }
             }],
             series: [{
-                name: '执行费用',
+                name: 'Chi phí thực hiện',
                 data: [600],
                 yAxis: 0,
                 tooltip: {

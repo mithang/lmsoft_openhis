@@ -9,9 +9,9 @@
         <table class="form">
             <tr>
                 <td class="formTitle" hidden="hidden"><input type="text" id="ks" name="ks" class="form-control form-an" /></td>
-                <td class="formTitle"><span class="rema">*</span>科室：</td>
+                <td class="formTitle"><span class="rema">*</span>Khoa：</td>
                 <td class="formValue"><input type="text" id="ksmc" name="ksmc" class="form-control form-an" /></td>
-                <td class="formTitle">医生：</td>
+                <td class="formTitle">Bác sĩ：</td>
                 <td class="formValue"><input type="text" id="doctor" class="form-control form-an" /></td>
                 <td class="formValue" hidden="hidden"><input type="text" id="gh" class="form-control form-an" /></td>
                 <td class="formValue" hidden="hidden"><input type="text" id="xm" class="form-control form-an" /></td>
@@ -39,13 +39,13 @@
     })
 
     function initControl() {
-        ///医生
+        ///Bác sĩ
         $("#doctor").newtouchFloatingSelector({
             height: 150,
             width: 250,
             clickautotrigger: true,
             filter: function (keyword) {
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，用keywordđể lọc ra kết quả
                 var resultObjArr = new Array();
 
                 $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
@@ -59,15 +59,15 @@
                 return resultObjArr;
 
             },
-            caption: "医生",
+            caption: "Bác sĩ",
             colModel: [
                 {
-                    label: '工号', name: 'StaffGh', widthratio: 33
+                    label: 'Mã nhân viên', name: 'StaffGh', widthratio: 33
                 },
                 {
-                    label: '名称', name: 'StaffName', widthratio: 33
+                    label: 'Tên', name: 'StaffName', widthratio: 33
                 },
-                { label: '拼音', name: 'StaffPY', widthratio: 33 }
+                { label: 'Phiên âm', name: 'StaffPY', widthratio: 33 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#doctor").attr("data-label", $thistr.find("td:eq(0)").html());
@@ -78,13 +78,13 @@
             }
         });
 
-        ///科室
+        ///Khoa
         $("#ksmc").newtouchBatchFloatingSelector({
             height: 150,
             width: 250,
             clickautotrigger: true,
             filter: function (keyword) {
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，用keywordđể lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysDepartList, function (idx, val) {
                     if ((val.py && val.py.indexOf(keyword.toLowerCase()) >= 0)
@@ -96,11 +96,11 @@
                 return resultObjArr;
 
             },
-            caption: "科室",
+            caption: "Khoa",
             colModel: [
-                { label: '编号', name: 'Code', widthratio: 50 },
-                { label: '名称', name: 'Name', widthratio: 50 },
-                { label: '拼音', name: 'py', hidden: true }
+                { label: 'Số hiệu', name: 'Code', widthratio: 50 },
+                { label: 'Tên', name: 'Name', widthratio: 50 },
+                { label: 'Phiên âm', name: 'py', hidden: true }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#ks").val($thistr.find("td:eq(0)").html());

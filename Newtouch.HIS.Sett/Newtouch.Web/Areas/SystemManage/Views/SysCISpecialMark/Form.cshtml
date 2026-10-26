@@ -12,13 +12,13 @@
 <form id="form1">
     <table class="form">
         <tr>
-            <td class="formTitle">收费项目</td>
+            <td class="formTitle">Hạng mục thu phí</td>
             <td class="formValue"><input class="form-control" id="sfxmmc" name="sfxmmc" type="text" /></td>
-            <td class="formTitle">病人性质<span>*</span></td>
+            <td class="formTitle">Tính chất bệnh nhân<span>*</span></td>
             <td class="formValue"><input class="form-control" id="brxzmc" name="brxzmc" type="text" /></td>
         </tr>
         <tr>
-            <td class="formTitle">有效<span>*</span></td>
+            <td class="formTitle">Có hiệu lực<span>*</span></td>
             <td class="formValue">
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
@@ -33,11 +33,11 @@
             <td class="formValue"></td>
         </tr>
         <tr>
-            <td class="formTitle">建档人员</td>
+            <td class="formTitle">Người lập hồ sơ</td>
             <td class="formValue">
                 <input class="form-control newtouch_Readonly" id="CreatorCode" name="CreatorCode" value=@OperatorProvider.GetCurrent().UserCode type="text" readonly="readonly" />
             </td>
-            <td class="formTitle">建档日期</td>
+            <td class="formTitle">Ngày lập hồ sơ</td>
             <td class="formValue"><input class="form-control newtouch_Readonly" id="CreateTime" name="CreateTime" value=@DateTime.Now type="text" readonly="readonly" /></td>
         </tr>
     </table>

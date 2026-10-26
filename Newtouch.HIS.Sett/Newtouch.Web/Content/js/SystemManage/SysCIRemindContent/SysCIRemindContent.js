@@ -9,51 +9,51 @@ function gridList() {
         url: "/SystemManage/SysCIRemindContent/GetnrGridJson",
         height: $(window).height() - 128,
         colModel: [
-            { label: "主键", name: "sfxjsnrbh", hidden: true, key: true },
-            { label: '收费项目', name: 'sfxmmc', width: 100, align: 'left' },
-            { label: '门诊警示内容', name: 'mzjsnr', width: 100, align: 'left' },
-            { label: '住院警示内容', name: 'zyjsnr', width: 220, align: 'left' },
+            { label: "Khóa chính", name: "sfxjsnrbh", hidden: true, key: true },
+            { label: 'Hạng mục thu phí', name: 'sfxmmc', width: 100, align: 'left' },
+            { label: 'Nội dung cảnh báo khám ngoại trú', name: 'mzjsnr', width: 100, align: 'left' },
+            { label: 'Nội dung cảnh báo nội trú', name: 'zyjsnr', width: 220, align: 'left' },
              {
-                 label: '门诊警示级别', name: 'mzjsjb', width: 50, align: 'left',
+                 label: 'Mức cảnh báo khám ngoại trú', name: 'mzjsjb', width: 50, align: 'left',
                  formatter: function (cellvalue) {
                      if (cellvalue == 0) {
-                         return "不提示";
+                         return "Không nhắc";
                      } else if (cellvalue == 1) {
-                         return "普通提示";
+                         return "Nhắc thông thường";
                      } else if (cellvalue == 2) {
-                         return "警示";
+                         return "Cảnh báo";
                      } else if (cellvalue == 3) {
-                         return "禁止使用";
+                         return "Cấm sử dụng";
                      }
                  }
              },
             {
-                label: '住院警示级别', name: 'zyjsjb', width: 50, align: 'left',
+                label: 'Mức cảnh báo nội trú', name: 'zyjsjb', width: 50, align: 'left',
                 formatter: function (cellvalue) {
                     if (cellvalue == 0) {
-                        return "不提示";
+                        return "Không nhắc";
                     } else if (cellvalue == 1) {
-                        return "普通提示";
+                        return "Nhắc thông thường";
                     } else if (cellvalue == 2) {
-                        return "警示";
+                        return "Cảnh báo";
                     } else if (cellvalue == 3) {
-                        return "禁止使用";
+                        return "Cấm sử dụng";
                     }
                 }
             },
             {
-                label: '有效', name: 'zt', width: 50, align: 'left',
+                label: 'Có hiệu lực', name: 'zt', width: 50, align: 'left',
                 formatter: function (cellvalue) {
                     if (cellvalue == 0) {
-                        return "无效"
+                        return "Không hiệu lực"
                     } else {
-                        return "有效"
+                        return "Có hiệu lực"
                     }
                 }
             },
-            { label: '建档人员', name: 'CreatorCode', width: 50, align: 'left' },
+            { label: 'Người lập hồ sơ', name: 'CreatorCode', width: 50, align: 'left' },
             {
-                label: '建档日期', name: 'CreateTime', width: 50, align: 'left',
+                label: 'Ngày lập hồ sơ', name: 'CreateTime', width: 50, align: 'left',
                 formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
             }
         ],
@@ -71,7 +71,7 @@ function gridList() {
 function btn_add() {
     $.modalOpen({
         id: "Form",
-        title: "系统收费项目警示内容维护",
+        title: "Bảo trì nội dung cảnh báo hạng mục thu phí hệ thống",
         url: "/SystemManage/SysCIRemindContent/Form",
         width: "700px",
         height: "300px",
@@ -84,7 +84,7 @@ function btn_edit() {
     var keyValue = $("#gridList").jqGridRowValue().sfxjsnrbh;
     $.modalOpen({
         id: "Form",
-        title: "修改信息",
+        title: "Sửa thông tin",
         url: "/SystemManage/SysCIRemindContent/Form?keyValue=" + keyValue,
         width: "700px",
         height: "300px",
@@ -108,7 +108,7 @@ function btn_details() {
     var keyValue = $("#gridList").jqGridRowValue().sfxjsnrbh;
     $.modalOpen({
         id: "Details",
-        title: "查看机构",
+        title: "Xem cơ sở",
         url: "/SystemManage/SysCIRemindContent/Form?keyValue=" + keyValue,
         width: "700px",
         height: "300",

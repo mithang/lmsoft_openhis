@@ -1,7 +1,7 @@
 ﻿@{
-    //是否和医保交易
+    //Có giao dịch với BHYT hay không
     var openYbSett = SysConfigReader.Bool("Outpatient_ChargeFee_OpenYbSett");
-    //医保所属地，区分系统将执行何处医保逻辑
+    //Nơi thuộc BHYT，Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
     var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
 }
 @if (openYbSett == true && medicalInsurance=="changshu")

@@ -7,32 +7,32 @@ function gridList() {
         url: "/SystemManage/SysChargeItem/GetsfGridJson",
         height: $(window).height() - 128,
         colModel: [
-            { label: "主键", name: "sfxmbh", hidden: true, key: true },
-            { label: "代码", name: "sfxm", width: 80, align: 'left' },
-            { label: '收费项目', name: 'sfxmmc', width: 100, align: 'left' },
-            { label: '拼音', name: 'py', width: 50, align: 'left' },
-            { label: '单位', name: 'dw', width: 50, align: 'left' },
-            { label: '单价', name: 'dj', width: 50, align: 'left' },
-            { label: '大类', name: 'dlmc', width: 100, align: 'left' },
-            { label: '分类', name: 'flmc', width: 100, align: 'left' },
-            { label: '自负比例', name: 'zfbl', width: 50, align: 'left' },
-            { label: '医保代码', name: 'ybdm', width: 100, align: 'left' },
-            { label: '物价代码', name: 'wjdm', width: 100, align: 'left' },
+            { label: "Khóa chính", name: "sfxmbh", hidden: true, key: true },
+            { label: "Mã", name: "sfxm", width: 80, align: 'left' },
+            { label: 'Hạng mục thu phí', name: 'sfxmmc', width: 100, align: 'left' },
+            { label: 'Phiên âm', name: 'py', width: 50, align: 'left' },
+            { label: 'Đơn vị', name: 'dw', width: 50, align: 'left' },
+            { label: 'Đơn giá', name: 'dj', width: 50, align: 'left' },
+            { label: 'Nhóm lớn', name: 'dlmc', width: 100, align: 'left' },
+            { label: 'Phân loại', name: 'flmc', width: 100, align: 'left' },
+            { label: 'Tỷ lệ tự chịu', name: 'zfbl', width: 50, align: 'left' },
+            { label: 'Mã bảo hiểm y tế', name: 'ybdm', width: 100, align: 'left' },
+            { label: 'Mã giá', name: 'wjdm', width: 100, align: 'left' },
              {
-                 label: '范围', name: 'mzzybz', width: 80, align: 'left',
+                 label: 'Phạm vi', name: 'mzzybz', width: 80, align: 'left',
                  formatter: function (cellvalue) {
                      if (cellvalue == "0") {
-                         return "通用";
+                         return "Chung";
                      } else if (cellvalue == "1") {
-                         return "门诊";
+                         return "Khám ngoại trú";
                      } else if (cellvalue == "2") {
-                         return "住院";
+                         return "Nội trú";
                      } else {
                          return "";
                      }
                  }
              }, {
-                 label: '实施', name: 'ssbz', width: 50, align: 'left',
+                 label: 'Thực hiện', name: 'ssbz', width: 50, align: 'left',
                  formatter: function (cellvalue) {
                      if (cellvalue == 0) {
                          return "是"
@@ -42,7 +42,7 @@ function gridList() {
                  }
              },
 {
-    label: '特殊', name: 'tsbz', width: 50, align: 'left',
+    label: 'Đặc biệt', name: 'tsbz', width: 50, align: 'left',
     formatter: function (cellvalue) {
         if (cellvalue == 0) {
             return "是"
@@ -52,7 +52,7 @@ function gridList() {
     }
 },
 {
-    label: '警示', name: 'jsbz', width: 50, align: 'left',
+    label: 'Cảnh báo', name: 'jsbz', width: 50, align: 'left',
     formatter: function (cellvalue) {
         if (cellvalue == 0) {
             return "是"
@@ -61,14 +61,14 @@ function gridList() {
         }
     }
 },
-{ label: '收费项', name: 'sfbz', width: 50, align: 'left' },
+{ label: 'Hạng mục thu phí', name: 'sfbz', width: 50, align: 'left' },
 {
-    label: '有效', name: 'zt', width: 50, align: 'left',
+    label: 'Có hiệu lực', name: 'zt', width: 50, align: 'left',
     formatter: function (cellvalue) {
         if (cellvalue == 0) {
-            return "无效"
+            return "Không hiệu lực"
         } else {
-            return "有效"
+            return "Có hiệu lực"
         }
     }
 }],
@@ -86,7 +86,7 @@ function gridList() {
 function btn_add() {
     $.modalOpen({
         id: "Form",
-        title: "收费项目维护",
+        title: "Bảo trì hạng mục thu phí",
         url: "/SystemManage/SysChargeItem/Form",
         width: "800px",
         height: "520px",
@@ -99,7 +99,7 @@ function btn_edit() {
     var keyValue = $("#gridList").jqGridRowValue().sfxmbh;
     $.modalOpen({
         id: "Form",
-        title: "修改信息",
+        title: "Sửa thông tin",
         url: "/SystemManage/SysChargeItem/Form?keyValue=" + keyValue,
         width: "700px",
         height: "520px",
@@ -123,7 +123,7 @@ function btn_details() {
     var keyValue = $("#gridList").jqGridRowValue().sfxmbh;
     $.modalOpen({
         id: "Details",
-        title: "查看机构",
+        title: "Xem cơ sở",
         url: "/SystemManage/SysChargeItem/Form?keyValue=" + keyValue,
         width: "700px",
         height: "560px",

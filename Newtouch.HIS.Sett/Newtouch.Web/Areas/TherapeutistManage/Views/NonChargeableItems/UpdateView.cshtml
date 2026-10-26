@@ -33,7 +33,7 @@
 
         });
     });
-    //绑定grid
+    //Gắngrid
     function gridList(mydata) {
         var $gridList = $("#gridList");
         var lastRowId;
@@ -44,36 +44,36 @@
             colModel: [
                 { name: "Id", hidden: true, },
                 { name: "type", label: "type", hidden: true, },
-                { label: "日期", name: "jzsj", align: 'left' },
-                { label: '时长(Min)', name: 'sc', width: 100, align: 'left' },
+                { label: "Ngày", name: "jzsj", align: 'left' },
+                { label: 'Thời lượng(Min)', name: 'sc', width: 100, align: 'left' },
                 {
-                    label: '调整时长(Min)', name: 'tzsc', width: 100, editable: true, align: "left", summaryType: 'sum'
+                    label: 'Điều chỉnh thời lượng(Min)', name: 'tzsc', width: 100, editable: true, align: "left", summaryType: 'sum'
                 },
                 {
-                    label: '调整理由', name: 'tzly', width: 260, editable: true, align: "left"
+                    label: 'Điều chỉnh理Do', name: 'tzly', width: 260, editable: true, align: "left"
                 }
             ],
             onSelectRow_page: function (rowid, status) {
-                if (rowid && lastRowId && rowid !== lastRowId) {   //&&: 相当于true/fase(判断是否有值)
+                if (rowid && lastRowId && rowid !== lastRowId) {   //&&: Tương đương vớitrue/fase(Xét xem có giá trị hay không)
                     $gridList.saveRow(lastRowId, function (result) {
-                        // return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
-                    }); //先保存处于编辑状态的那一行    //function checksave
+                        // return false;   //Kiểm tra nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //Không hiệu lực v.v. cần sửa
+                    }); //Trước tiên lưu dòng đang ở trạng thái chỉnh sửa    //function checksave
                 }
                 lastRowId = rowid;
                 $gridList.jqGrid('editRow', rowid, true, null, function (result) {
-                    return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
+                    return false;   //Kiểm tra nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //Không hiệu lực v.v. cần sửa
                 }, null, null, function () {
                 });
 
             },
             gridComplete: function () {
-                //启用行内编辑框
+                //Bật hộp chỉnh sửa trong dòng
                 //EnableInlineEditBox();
                 var rowNum = parseInt($(this).getGridParam('records'), 10);
                 if (rowNum > 0) {
                     $(".ui-jqgrid-sdiv").show();
                     var sc = jQuery(this).getCol('sc', false, 'sum');
-                    $(this).footerData("set", { "Source": "<font color='red'>当前页点击合计<font>", "sc": "<font color='red'>" + sc + "<font>分钟" });
+                    $(this).footerData("set", { "Source": "<font color='red'>Hiện tại页点击Tổng cộng<font>", "sc": "<font color='red'>" + sc + "<font>Điểm钟" });
                 } else {
                     $(".ui-jqgrid-sdiv").hide();
                 }
@@ -82,9 +82,9 @@
         }, mydata);
     }
 
-    //启用行内编辑框
+    //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox() {
-        //Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        //GridTải xong thì bật chỉnh sửa trong dòng   1.Trước tiên lấy tất cả các dòngId  2.Duyệt và gọieditRowPhương thức
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
 
@@ -97,7 +97,7 @@
         var ysgh = $("#ysgh").html();
         var par = {};
         var dic = [];
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấy tất cả các dòngId，Duyệt để hộp chỉnh sửa ở trạng thái đã lưu
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
@@ -120,24 +120,24 @@
 <div class="rows" style="margin: 5px 10px">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            治疗师信息
+            Nhà trị liệuThông tin
         </div>
         <table class="form">
             <tr>
                 <td class="formTitle">
-                    工号：
+                    Mã nhân viên：
                 </td>
                 <td class="formValue">
                     <label id="ysgh"></label>
                 </td>
                 <td class="formTitle">
-                    姓名:
+                    Họ tên:
                 </td>
                 <td class="formValue">
                     <label id="NAME"></label>
                 </td>
                 <td class="formTitle">
-                    年月：
+                    Năm-tháng：
                 </td>
                 <td class="formValue">
                     <label id="ny"></label>

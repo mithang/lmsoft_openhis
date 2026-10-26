@@ -12,26 +12,26 @@
             url: "/SystemSecurity/DbBackup/GetGridJson",
             height: $(window).height() - 96,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: '数据库名', name: 'F_DbName', width: 100, align: 'left' },
-                { label: '备份名称', name: 'F_FileName', width: 200, align: 'left' },
-                { label: '大小', name: 'F_FileSize', width: 100, align: 'left' },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Tên cơ sở dữ liệu', name: 'F_DbName', width: 100, align: 'left' },
+                { label: 'Tên bản sao lưu', name: 'F_FileName', width: 200, align: 'left' },
+                { label: 'Kích thước', name: 'F_FileSize', width: 100, align: 'left' },
                 {
-                    label: '备份模式', name: 'F_BackupType', width: 100, align: 'left',
+                    label: 'Chế độ sao lưu', name: 'F_BackupType', width: 100, align: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue == "1") {
-                            return "完整备份";
+                            return "Sao lưu đầy đủ";
                         } else if (cellvalue == "2") {
-                            return "差异备份";
+                            return "Sao lưu khác biệt";
                         }
                     }
                 },
                 {
-                    label: '备份时间', name: 'CreatorTime', width: 100, align: 'left',
+                    label: 'Sao lưuThời gian', name: 'CreatorTime', width: 100, align: 'left',
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' }
                 },
-                { label: '备份人员', name: 'CreatorUserId', width: 100, align: 'left' },
-                { label: '备份说明', name: 'F_Description', width: 300, align: 'left' }
+                { label: 'Sao lưuNhân viên', name: 'CreatorUserId', width: 100, align: 'left' },
+                { label: 'Giải thích sao lưu', name: 'F_Description', width: 300, align: 'left' }
             ]
         });
         $("#txt_condition .dropdown-menu li").click(function () {
@@ -52,7 +52,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增备份",
+            title: "Thêm mớiSao lưu",
             url: "/SystemSecurity/DbBackup/Form",
             width: "450px",
             height: "360px",
@@ -82,20 +82,20 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a id="NF-add" authorize="yes" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建备份</a>
+            <a id="NF-add" authorize="yes" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mớiSao lưu</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" id="NF-delete" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除备份</a>
+            <a class="btn btn-primary" id="NF-delete" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa bản sao lưu</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" id="NF-download" authorize="yes" onclick="btn_download()"><i class="fa fa-cloud-download"></i>下载备份</a>
+            <a class="btn btn-primary" id="NF-download" authorize="yes" onclick="btn_download()"><i class="fa fa-cloud-download"></i>Tải bản sao lưu</a>
         </div>
         @*<div class="operate">
             <ul class="nav nav-pills">
-                <li class="first">已选中<span>1</span>项</li>
-                <li><a id="NF-delete" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除备份</a></li>
+                <li class="first">Đã chọn<span>1</span>项</li>
+                <li><a id="NF-delete" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa bản sao lưu</a></li>
                 <li class="split"></li>
-                <li><a id="NF-download" authorize="yes" onclick="btn_download()"><i class="fa fa-cloud-download"></i>下载备份</a></li>
+                <li><a id="NF-download" authorize="yes" onclick="btn_download()"><i class="fa fa-cloud-download"></i>Tải bản sao lưu</a></li>
             </ul>
             <a href="javascript:;" class="close"></a>
         </div>*@
@@ -106,17 +106,17 @@
             <tr>
                 <td>
                     <div id="txt_condition" class="btn-group">
-                        <a class="btn btn-default dropdown-text" data-toggle="dropdown">选择条件</a>
+                        <a class="btn btn-default dropdown-text" data-toggle="dropdown">ChọnĐiều kiện</a>
                         <a class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="javascript:void()" data-value="DbName">数据库名</a></li>
-                            <li><a href="javascript:void()" data-value="FileName">备份名称</a></li>
+                            <li><a href="javascript:void()" data-value="DbName">Tên cơ sở dữ liệu</a></li>
+                            <li><a href="javascript:void()" data-value="FileName">Tên bản sao lưu</a></li>
                         </ul>
                     </div>
                 </td>
                 <td style="padding-left: 2px;">
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="请输入要查询关键字" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Vui lòng nhập từ khóa cần tra cứu" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>

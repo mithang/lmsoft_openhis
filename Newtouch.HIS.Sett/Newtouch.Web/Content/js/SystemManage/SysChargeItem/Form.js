@@ -31,11 +31,11 @@ $(function () {
     });
 })
 function InitControl() {
-    dlList();//大类
-    flList();//分类 
-    ybdmList(); //医保代码
-    nbList();//农保大类
-    baList();//病案大类
+    dlList();//Nhóm lớn
+    flList();//Phân loại 
+    ybdmList(); //Mã bảo hiểm y tế
+    nbList();//Nhóm lớn bảo hiểm nông nghiệp
+    baList();//Nhóm lớn hồ sơ bệnh án
 }
 function dlList() {
     $("#dlmc").newtouchFloatingSelector({
@@ -45,7 +45,7 @@ function dlList() {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，用keywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.newtouchclients.sysMajorClassList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -55,12 +55,12 @@ function dlList() {
             return resultObjArr;
 
         },
-        caption: "大类",
+        caption: "Nhóm lớn",
         colModel: [
-            { label: '编号', name: 'dlbh', widthratio: 25 },
-            { label: '代码', name: 'dl', widthratio: 25 },
-            { label: '名称', name: 'dlmc', widthratio: 25 },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: 'Số hiệu', name: 'dlbh', widthratio: 25 },
+            { label: 'Mã', name: 'dl', widthratio: 25 },
+            { label: 'Tên', name: 'dlmc', widthratio: 25 },
+            { label: 'Phiên âm', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#dlmc").attr("data-label", $thistr.find("td:eq(1)").html());
@@ -78,7 +78,7 @@ function flList() {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，用keywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.newtouchclients.sysChargeClassifyList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -88,12 +88,12 @@ function flList() {
             return resultObjArr;
 
         },
-        caption: "分类",
+        caption: "Phân loại",
         colModel: [
-            { label: '编号', name: 'flbh', widthratio: 25 },
-            { label: '代码', name: 'fl', widthratio: 25 },
-            { label: '名称', name: 'flmc', widthratio: 25 },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: 'Số hiệu', name: 'flbh', widthratio: 25 },
+            { label: 'Mã', name: 'fl', widthratio: 25 },
+            { label: 'Tên', name: 'flmc', widthratio: 25 },
+            { label: 'Phiên âm', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#flmc").attr("data-label", $thistr.find("td:eq(1)").html());
@@ -111,7 +111,7 @@ function nbList() {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，用keywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.newtouchclients.sysnbsfdlList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -121,12 +121,12 @@ function nbList() {
             return resultObjArr;
 
         },
-        caption: "大类",
+        caption: "Nhóm lớn",
         colModel: [
-            { label: '编号', name: 'dlbh', widthratio: 25 },
-            { label: '代码', name: 'dl', widthratio: 25 },
-            { label: '名称', name: 'dlmc', widthratio: 25 },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: 'Số hiệu', name: 'dlbh', widthratio: 25 },
+            { label: 'Mã', name: 'dl', widthratio: 25 },
+            { label: 'Tên', name: 'dlmc', widthratio: 25 },
+            { label: 'Phiên âm', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#nbdlmc").attr("data-label", $thistr.find("td:eq(1)").html());
@@ -144,7 +144,7 @@ function baList() {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，用keywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.newtouchclients.sysbasfdlList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -154,12 +154,12 @@ function baList() {
             return resultObjArr;
 
         },
-        caption: "大类",
+        caption: "Nhóm lớn",
         colModel: [
-            { label: '编号', name: 'dlbh', widthratio: 25 },
-            { label: '代码', name: 'dl', widthratio: 25 },
-            { label: '名称', name: 'dlmc', widthratio: 25 },
-            { label: '拼音', name: 'py', widthratio: 25 }
+            { label: 'Số hiệu', name: 'dlbh', widthratio: 25 },
+            { label: 'Mã', name: 'dl', widthratio: 25 },
+            { label: 'Tên', name: 'dlmc', widthratio: 25 },
+            { label: 'Phiên âm', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#badlmc").attr("data-label", $thistr.find("td:eq(1)").html());
@@ -177,7 +177,7 @@ function ybdmList() {
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，用keywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.newtouchclients.syszlxmList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -187,12 +187,12 @@ function ybdmList() {
             return resultObjArr;
 
         },
-        caption: "分类",
+        caption: "Phân loại",
         colModel: [
-            { label: '编号', name: 'py', widthratio: 25 },
-            { label: '医保代码', name: 'ybdm', widthratio: 25 },
-            { label: '物价代码', name: 'wjdm', widthratio: 25 },
-            { label: '名称', name: 'xmmc', widthratio: 25 }
+            { label: 'Số hiệu', name: 'py', widthratio: 25 },
+            { label: 'Mã bảo hiểm y tế', name: 'ybdm', widthratio: 25 },
+            { label: 'Mã giá', name: 'wjdm', widthratio: 25 },
+            { label: 'Tên', name: 'xmmc', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
             $("#ybdm").attr("data-label", $thistr.find("td:eq(0)").html());
@@ -244,19 +244,19 @@ function checkNotNull() {
             dl: { required: true },
         },
         messages: {
-            sfxmmc: { required: "收费项目名称必须填写" },
-            py: { required: "拼音必须填写" },
-            dw: { required: "单位必须填写" },
-            dj: { required: "单价必须填写" },
-            zfbl: { required: "自负比例必须填写" },
-            zfxz: { required: "自负性质必须选择" },
-            mzzybz: { required: "范围必须选择" },
-            ssbz: { required: "实施标志必须选择" },
-            tsbz: { required: "特殊标志必须选择" },
-            jsbz: { required: "警示标志必须选择" },
-            sfbz: { required: "收费标志必须选择" },
-            zt: { required: "状态必须选择" },
-            dl: { required: "大类必须选择" },
+            sfxmmc: { required: "Tên hạng mục thu phí bắt buộc phải nhập" },
+            py: { required: "Phiên âm bắt buộc phải nhập" },
+            dw: { required: "Đơn vị bắt buộc phải nhập" },
+            dj: { required: "Đơn giá bắt buộc phải nhập" },
+            zfbl: { required: "Tỷ lệ tự chịu bắt buộc phải nhập" },
+            zfxz: { required: "Tính chất tự chịu bắt buộc phải chọn" },
+            mzzybz: { required: "Phạm vi bắt buộc phải chọn" },
+            ssbz: { required: "Cờ thực hiện bắt buộc phải chọn" },
+            tsbz: { required: "Cờ đặc biệt bắt buộc phải chọn" },
+            jsbz: { required: "Cờ cảnh báo bắt buộc phải chọn" },
+            sfbz: { required: "Cờ thu phí bắt buộc phải chọn" },
+            zt: { required: "Trạng thái bắt buộc phải chọn" },
+            dl: { required: "Nhóm lớn bắt buộc phải chọn" },
         },
         showErrors: function (errorMap, errorList) {
             if (!$.isEmptyObject(errorList)) {
@@ -267,7 +267,7 @@ function checkNotNull() {
     if (!validator.form()) {
         return false;
     }
-    //状态
+    //Trạng thái
     var zt = false;
     $('input[name="zt"]').each(function () {
         var $this = $(this);
@@ -277,7 +277,7 @@ function checkNotNull() {
         }
     });
     if (!zt) {
-        $.modalAlert("请选择是否有效！", 'warning');
+        $.modalAlert("Vui lòng chọn có hiệu lực hay không！", 'warning');
         return false;
     }
     return true;
