@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.Sys.Controllers
 			this._sysMedicineDmnService = sysMedicineDmnService;
 		}
 		/// <summary>
-		/// 药品对码视图
+		/// Chế độ xem đối mã thuốc
 		/// </summary>
 		/// <returns></returns>
 		// GET: Sys/Combination
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.Sys.Controllers
             return View();
         }
         /// <summary>
-        /// 耗材对码视图
+        /// Chế độ xem đối mã vật tư
         /// </summary>
         /// <returns></returns>
         public ActionResult materialIndex()
@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.Sys.Controllers
 			return View();
 		}
 		/// <summary>
-		/// 项目对码视图
+		/// Chế độ xem đối mã hạng mục
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult projectIndex()
@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.Sys.Controllers
 		}
 		
 		/// <summary>
-		/// 查询系统药品信息
+		/// Tra cứu thông tin thuốc hệ thống
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="keyword"></param>
@@ -74,7 +74,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.Sys.Controllers
 			return Content(data.ToJson());
 		}
         /// <summary>
-		/// 查询系统药品信息
+		/// Tra cứu thông tin thuốc hệ thống
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="keyword"></param>
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.Sys.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 根据系统药品信息查询医保对应药品信息 
+        /// Tra cứu thông tin thuốc BHYT tương ứng theo thông tin thuốc hệ thống 
         /// </summary>
         /// <param name="ypmc"></param>
         /// <param name="py"></param>
@@ -111,7 +111,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.Sys.Controllers
 		}
 
 		/// <summary>
-		/// 药品对码操作
+		/// Thao tác đối mã thuốc
 		/// </summary>
 		/// <param name="ybxx"></param>
 		/// <param name="ypid"></param>
@@ -125,7 +125,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.Sys.Controllers
 			return Content(data.ToJson());
 		}
 		/// <summary>
-		/// 系统材料信息
+		/// Thông tin vật tư hệ thống
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="keyword"></param>
@@ -146,7 +146,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.Sys.Controllers
 		}
 
 		/// <summary>
-		/// 医保材料信息
+		/// Thông tin vật tư BHYT
 		/// </summary>
 		/// <param name="ypmc"></param>
 		/// <param name="py"></param>
@@ -161,7 +161,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.Sys.Controllers
 		}
 
 		/// <summary>
-		/// 材料对码操作
+		/// Thao tác đối mã vật tư
 		/// </summary>
 		/// <param name="ybxx"></param>
 		/// <param name="ypid"></param>
@@ -175,7 +175,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.Sys.Controllers
 			return Content(data.ToJson());
 		}
         /// <summary>
-        /// 获取项目信息集合
+        /// Lấy tập hợp thông tin hạng mục
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -196,7 +196,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.Sys.Controllers
 		}
 
 		/// <summary>
-		/// 医保项目信息
+		/// Thông tin hạng mục BHYT
 		/// </summary>
 		/// <param name="ypmc"></param>
 		/// <param name="py"></param>
@@ -211,7 +211,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.Sys.Controllers
 		}
 
 		/// <summary>
-		/// 项目对码操作
+		/// Thao tác đối mã hạng mục
 		/// </summary>
 		/// <param name="ybxx"></param>
 		/// <param name="ypid"></param>

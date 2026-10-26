@@ -10,22 +10,22 @@
     @Html.Partial("_OrganizeIdDDLToolbarSearchView")
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" authorize="yes" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a id="NF-edit" authorize="yes" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a id="NF-Wards" class="btn btn-primary" onclick="btn_wards()"><i class="fa fa-pencil-square-o"></i>病区信息</a>
+            <a id="NF-Wards" class="btn btn-primary" onclick="btn_wards()"><i class="fa fa-pencil-square-o"></i>Thông tin khu bệnh</a>
         </div>
         <div class="btn-group">
-            <a id="YBKS-upload" class="btn btn-primary" onclick="btn_ybks_upload()"><i class="fa"></i>医保科室上传</a>
+            <a id="YBKS-upload" class="btn btn-primary" onclick="btn_ybks_upload()"><i class="fa"></i>Tải lên khoa BHYT</a>
         </div>
         <div class="btn-group">
-            <a id="YBKS-update" class="btn btn-primary" onclick="btn_ybks_update()"><i class="fa fa-pencil-square-o"></i>医保科室更新</a>
+            <a id="YBKS-update" class="btn btn-primary" onclick="btn_ybks_update()"><i class="fa fa-pencil-square-o"></i>Cập nhật khoa BHYT</a>
         </div>
         <div class="btn-group">
-            <a id="YBKS-revoke" class="btn btn-primary" onclick="btn_ybks_revoke()"><i class="fa fa-trash-o"></i>医保科室撤销</a>
+            <a id="YBKS-revoke" class="btn btn-primary" onclick="btn_ybks_revoke()"><i class="fa fa-trash-o"></i>Thu hồi khoa BHYT</a>
         </div>
     </div>
     <div class="search">
@@ -33,7 +33,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="名称/编码" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Mã" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -62,52 +62,52 @@
             height: $(window).height() - 96,
             postData: { keyword: $("#txt_keyword").val(), organizeId: $("#OrganizeId").val() },
             colModel: [
-				{ label: "主键", name: "Id", hidden: true, key: true },
-                { label: '名称', name: 'Name', width: 100, align: 'left' },
-                { label: '编码', name: 'Code', width: 60, align: 'left' },
-                { label: '机构名称', name: 'OrganizeName', width: 200, align: 'left' },
+				{ label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Tên', name: 'Name', width: 100, align: 'left' },
+                { label: 'Mã', name: 'Code', width: 60, align: 'left' },
+                { label: 'Tên cơ quan', name: 'OrganizeName', width: 200, align: 'left' },
                 {
-                    label: "门诊住院标志", name: "mzzybz", width: 80, align: "left",
+                    label: "Cờ ngoại trú/nội trú", name: "mzzybz", width: 80, align: "left",
                     formatter: function (cellvalue) {
                         if (cellvalue == "0") {
-                            return "通用"
+                            return "Chung"
                         } else if (cellvalue == "1") {
-                            return "门诊"
+                            return "Ngoại trú"
                         } else {
-                            return "住院"
+                            return "Nội trú"
                         }
                     }
                 },
-                { label: "国家科室名称", width: 80, name: "gjksmc" },
-                { label: "国家科室编码", width: 80, name: "ybksbm" },
+                { label: "Tên khoa quốc gia", width: 80, name: "gjksmc" },
+                { label: "Mã khoa quốc gia", width: 80, name: "ybksbm" },
                 {
-                    label: '上传医保', name: 'UploadYB', width: 60, align: 'left',
+                    label: 'Tải lên BHYT', name: 'UploadYB', width: 60, align: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue == "1") {
-                            return "已上传"
+                            return "Đã tải lên"
                         } else if (cellvalue == "0") {
-                            return "未上传"
+                            return "Chưa tải lên"
                         } else
-                            return "未上传"
+                            return "Chưa tải lên"
                     }
                 },
                 {
-                    label: '从医保撤销', name: 'RevokeYB', width: 60, align: 'left',
+                    label: 'Thu hồi khỏi BHYT', name: 'RevokeYB', width: 60, align: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue == "1") {
-                            return "已撤销"
+                            return "Đã thu hồi"
                         } else if (cellvalue == "0") {
-                            return "未撤销"
+                            return "Chưa thu hồi"
                         } else
-                            return "未撤销"
+                            return "Chưa thu hồi"
                     }
                 },
-                { label: "有效", name: "zt", width: 60, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: '创建人', name: 'CreatorCode', width: 100, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '最后修改', name: 'LastModifierCode', width: 100, align: 'left' },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '排序', name: 'px', width: 40, align: 'left' }
+                { label: "Hiệu lực", name: "zt", width: 60, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sửa lần cuối', name: 'LastModifierCode', width: 100, align: 'left' },
+                { label: 'Thời gian sửa lần cuối', name: 'LastModifyTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sắp xếp', name: 'px', width: 40, align: 'left' }
             ]
         });
         $("#btn_search").click(function () {
@@ -117,7 +117,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -129,7 +129,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增科室",
+            title: "Thêm khoa mới",
             url: "/Department/Form?orgId=" + $('#OrganizeId').val(),
             width: "700px",
             height: "600px",
@@ -142,13 +142,13 @@
     function btn_edit() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var keyValue = $("#gridList").jqGridRowValue().Id;
         $.modalOpen({
             id: "Form",
-            title: "修改科室",
+            title: "Sửa khoa",
             url: "/Department/Form?keyValue=" + keyValue,
 			width: "700px",
 			height: "600px",
@@ -161,13 +161,13 @@
     function btn_wards() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var keyValue = $("#gridList").jqGridRowValue().Id;
         $.modalOpen({
             id: "Form",
-            title: "病区信息",
+            title: "Thông tin khu bệnh",
             url: "/Department/WardInfo?keyValue=" + keyValue,
             width: "750px",
             height: "700px",
@@ -180,13 +180,13 @@
     function btn_ybks_upload() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var codeValue = jQuery("#gridList").jqGrid('getCell', seleRowid, 'Code');
         var uploadYBValue = jQuery("#gridList").jqGrid('getCell', seleRowid, 'UploadYB');
         if (uploadYBValue == "1") {
-            $.modalAlert("该科室已经上传医保", 'warning');
+            $.modalAlert("Khoa này đã tải lên BHYT", 'warning');
             return;
         }
         var ybresp = { hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", ksCode: codeValue };
@@ -199,14 +199,14 @@
             success: function (data) {
                 var upDataReturn = eval('(' + data + ')');
                 if (upDataReturn.infcode == "0") {
-                    $.modalAlert("医保科室上传成功", 'success');
+                    $.modalAlert("Tải lên khoa BHYT thành công", 'success');
                     gridList();
                     $('#btn_search').trigger('click');
                 }
                 else {
                     $.loading(false);
                     isuccer = false;
-                    $.modalAlert("医保科室上传失败：" + upDataReturn.err_msg, 'error');
+                    $.modalAlert("Tải lên khoa BHYT thất bại：" + upDataReturn.err_msg, 'error');
                     return;
                 }
 
@@ -217,13 +217,13 @@
     function btn_ybks_update() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var codeValue = jQuery("#gridList").jqGrid('getCell', seleRowid, 'Code');
         var uploadYBValue = jQuery("#gridList").jqGrid('getCell', seleRowid, 'UploadYB');
         if (uploadYBValue == "0") {
-            $.modalAlert("该科室尚未上传医保", 'warning');
+            $.modalAlert("Khoa này chưa tải lên BHYT", 'warning');
             return;
         }
         var ybresp = { hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", ksCode: codeValue };
@@ -236,14 +236,14 @@
             success: function (data) {
                 var upDataReturn = eval('(' + data + ')');
                 if (upDataReturn.infcode == "0") {
-                    $.modalAlert("医保科室更新成功", 'success');
+                    $.modalAlert("Cập nhật khoa BHYT thành công", 'success');
                     gridList();
                     $('#btn_search').trigger('click');
                 }
                 else {
                     $.loading(false);
                     isuccer = false;
-                    $.modalAlert("医保科室更新失败：" + upDataReturn.err_msg, 'error');
+                    $.modalAlert("Cập nhật khoa BHYT thất bại：" + upDataReturn.err_msg, 'error');
                     return;
                 }
             }
@@ -253,18 +253,18 @@
     function btn_ybks_revoke() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var codeValue = jQuery("#gridList").jqGrid('getCell', seleRowid, 'Code');
         var uploadYBValue = jQuery("#gridList").jqGrid('getCell', seleRowid, 'UploadYB');
         if (uploadYBValue == "0") {
-            $.modalAlert("该科室尚未上传医保", 'warning');
+            $.modalAlert("Khoa này chưa tải lên BHYT", 'warning');
             return;
         }
         var revokeYBBValue = jQuery("#gridList").jqGrid('getCell', seleRowid, 'RevokeYB');
         if (revokeYBBValue == "1") {
-            $.modalAlert("该科室已经从医保撤销", 'warning');
+            $.modalAlert("Khoa này đã thu hồi khỏi BHYT", 'warning');
             return;
         }
         var ybresp = { hisId: "0", operatorId: "@opr.rygh", operatorName: "@opr.UserName", orgId: "@opr.OrganizeId", ksCode: codeValue };
@@ -277,14 +277,14 @@
             success: function (data) {
                 var upDataReturn = eval('(' + data + ')');
                 if (upDataReturn.infcode == "0") {
-                    $.modalAlert("医保科室撤销成功", 'success');
+                    $.modalAlert("Thu hồi khoa BHYT thành công", 'success');
                     gridList();
                     $('#btn_search').trigger('click');
                 }
                 else {
                     $.loading(false);
                     isuccer = false;
-                    $.modalAlert("医保科室撤销失败：" + upDataReturn.err_msg, 'error');
+                    $.modalAlert("Thu hồi khoa BHYT thất bại：" + upDataReturn.err_msg, 'error');
                     return;
                 }
             }

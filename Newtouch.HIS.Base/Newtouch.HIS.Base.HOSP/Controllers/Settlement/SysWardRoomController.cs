@@ -86,7 +86,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 
         #region 提供字典查询
         /// <summary>
-        /// 病放下拉
+        /// Danh sách thả xuống phòng bệnh
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

@@ -8,54 +8,54 @@
     <div style="padding-top: 20px; margin-right: 30px;">
         <table class="form">
             <tr>
-                <td class="formTitle"><span class="required">*</span>组织机构：</td>
+                <td class="formTitle"><span class="required">*</span>Tổ chức：</td>
                 <td class="formValue formDdlSelectorTd">
                     <select id="OrganizeId" name="OrganizeId" class="form-control required">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>权限编码：</td>
+                <td class="formTitle"><span class="required">*</span>Mã quyền：</td>
                 <td class="formValue">
-                    <input id="qxCode" name="qxCode" type="text" class="form-control required" placeholder="请输入编码" />
+                    <input id="qxCode" name="qxCode" type="text" class="form-control required" placeholder="Vui lòng nhập mã" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>权限名称：</th>
+                <th class="formTitle"><span class="required">*</span>Tên quyền：</th>
                 <td class="formValue">
                     <input id="qxmc" name="qxmc" type="text" class="form-control" placeholder="" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>类型：</td>
+                <td class="formTitle"><span class="required">*</span>Loại：</td>
                 <td class="formValue formDdlSelectorTd">
                     <select id="rel_lxcode" name="rel_lxcode" class="form-control required">
-                        @*<option value="">==请选择==</option>*@
-                        <option value="1">特殊药品</option>
-                        <option value="2">收费大类</option>
-                        <option value="3">抗生素</option>
+                        @*<option value="">==Vui lòng chọn==</option>*@
+                        <option value="1">Thuốc đặc biệt</option>
+                        <option value="2">Nhóm thu phí lớn</option>
+                        <option value="3">Kháng sinh</option>
                     </select>
                 </td>
             </tr>
             <tr id="div_ypsx">
-                <td class="formTitle"><span class="required">*</span>特殊药品：</td>
+                <td class="formTitle"><span class="required">*</span>Thuốc đặc biệt：</td>
                 <td class="formValue formDdlSelectorTd">
-                    @Html.DropDownList("ypsxCode", Newtouch.Infrastructure.EnumYpsx.Mzyp.ToDescSelectList(((int)Newtouch.Infrastructure.EnumYpsx.Mzyp)), "==请选择==", new { @class = "form-control required" })
+                    @Html.DropDownList("ypsxCode", Newtouch.Infrastructure.EnumYpsx.Mzyp.ToDescSelectList(((int)Newtouch.Infrastructure.EnumYpsx.Mzyp)), "==Vui lòng chọn==", new { @class = "form-control required" })
                 </td>
             </tr>
             <tr id="div_sfdl">
-                <td class="formTitle"><span class="required">*</span>收费大类：</td>
+                <td class="formTitle"><span class="required">*</span>Nhóm thu phí lớn：</td>
                 <td class="formValue formDdlSelectorTd">
                     <select id="sfdlCode" name="sfdlCode" class="form-control required">
-                        @*<option value="">==请选择==</option>*@
+                        @*<option value="">==Vui lòng chọn==</option>*@
                     </select>
                 </td>
             </tr>
             <tr id="div_kss">
-                <td class="formTitle"><span class="required">*</span>抗生素：</td>
+                <td class="formTitle"><span class="required">*</span>Kháng sinh：</td>
                 <td class="formValue formDdlSelectorTd">
-                    @Html.DropDownList("kssCode", Newtouch.Infrastructure.EnumKss.Fxzsyyw.ToDescSelectList(((int)Newtouch.Infrastructure.EnumKss.Fxzsyyw)), "==请选择==", new { @class = "form-control required" })
+                    @Html.DropDownList("kssCode", Newtouch.Infrastructure.EnumKss.Fxzsyyw.ToDescSelectList(((int)Newtouch.Infrastructure.EnumKss.Fxzsyyw)), "==Vui lòng chọn==", new { @class = "form-control required" })
                 </td>
             </tr>
             <tr>
@@ -64,10 +64,10 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle" style="height: 35px;">状态：</th>
+                <th class="formTitle" style="height: 35px;">Trạng thái：</th>
                 <td class="formValue" style="padding-top: 1px;">
                     <div class="ckbox">
-                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                     </div>
                 </td>
             </tr>
@@ -89,7 +89,7 @@
                 success: function (data) {
                     $("#form1").formSerialize(data);
                     optionValue = data.rel_value;
-                    getSelectByLx();//根据类型切换下拉选择框
+                    getSelectByLx();//Chuyển hộp chọn thả xuống theo loại
                 }
             });
         }
@@ -102,28 +102,28 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp chọn tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
         
 
-        //组织对应的科室下拉框加载
+        //Tải hộp chọn khoa tương ứng với tổ chức
         $("#OrganizeId").bind("change", function () {
             var organizeId = $(this).val();
 
-            //收费大类绑定
+            //Gắn nhóm thu phí lớn
             $("#sfdlCode").bindSelect({
                 url: "/ChargeCategory/GetTreeSelectJson?organizeId=" + organizeId,
             });
 
         });
         
-        getSelectByLx();//根据类型切换下拉选择框
+        getSelectByLx();//Chuyển hộp chọn thả xuống theo loại
 
-        //类型下拉框改变
-        $("#rel_lxcode").bind("change", function () {  //1属性 2收费大类
-            getSelectByLx();//根据类型切换下拉选择框
+        //Hộp thả xuống loại thay đổi
+        $("#rel_lxcode").bind("change", function () {  //1Thuộc tính 2Nhóm thu phí lớn
+            getSelectByLx();//Chuyển hộp chọn thả xuống theo loại
         });
         
     }
@@ -151,15 +151,15 @@
         if (postData.rel_lxcode == 1) {
             postData.rel_value = $("#ypsxCode").val();
             postData.rel_lxywcode = "tsypbz";
-            postData.rel_lxywdesc = "特殊药品";
+            postData.rel_lxywdesc = "Thuốc đặc biệt";
         } else if (postData.rel_lxcode == 2) {
             postData.rel_value = $("#sfdlCode").val();
             postData.rel_lxywcode = "sfdlCode";
-            postData.rel_lxywdesc = "收费大类";
+            postData.rel_lxywdesc = "Nhóm thu phí lớn";
         } else if (postData.rel_lxcode == 3) {
             postData.rel_value = $("#kssCode").val();
             postData.rel_lxywcode = "kssCode";
-            postData.rel_lxywdesc = "抗生素";
+            postData.rel_lxywdesc = "Kháng sinh";
         }
         $.submitForm({
             url: "/SysMedicineAuthority/SubmitForm?keyValue=" + keyValue,
@@ -173,7 +173,7 @@
 
     function getSelectByLx() {
         var lx = $("#rel_lxcode").val();
-        if (lx == 1) {//获取药品属性
+        if (lx == 1) {//Lấy thuộc tính thuốc
             $("#div_ypsx").show();
             $("#div_sfdl").hide();
             $("#div_kss").hide();
@@ -181,14 +181,14 @@
                 $("#ypsxCode").find("option[value =" + optionValue + "]").attr("selected", true);
             }
         }
-        else if (lx == 2) {//获取收费大类
+        else if (lx == 2) {//Lấy nhóm thu phí lớn
             $("#div_ypsx").hide();
             $("#div_sfdl").show();
             $("#div_kss").hide();
             if (optionValue != "") {
                 $("#sfdlCode").val(optionValue).select2();
             }
-        } else if (lx == 3) {//抗生素
+        } else if (lx == 3) {//Kháng sinh
             $("#div_ypsx").hide();
             $("#div_sfdl").hide();
             $("#div_kss").show();

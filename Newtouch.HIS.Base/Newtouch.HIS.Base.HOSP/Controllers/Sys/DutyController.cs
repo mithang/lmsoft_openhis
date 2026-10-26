@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 
         public ActionResult GetDutyList(string staffId)
         {
-            var dutyList = _sysDutyRepo.GetValidList();  //获取有效岗位列表
+            var dutyList = _sysDutyRepo.GetValidList();  //Lấy danh sách vị trí hiệu lực
             var treeList = new List<TreeViewModel>();
             var staffCurrentDutyEntityList = new List<SysStaffDutyEntity>();
             if (!string.IsNullOrWhiteSpace(staffId))
@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 获取列表
+        /// Lấy danh sách
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

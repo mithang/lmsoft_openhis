@@ -50,7 +50,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers.Sys
         }
 
         /// <summary>
-        /// 获取科室列表
+        /// Lấy danh sách khoa
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -63,9 +63,9 @@ namespace Newtouch.HIS.Base.HOSP.Controllers.Sys
 
 
         /// <summary>
-        /// 获取部门的诊室列表
+        /// Lấy danh sách phòng khám của bộ phận
         /// </summary>
-        /// <param name="ksCode">科室编号</param>
+        /// <param name="ksCode">Mã khoa</param>
         /// <returns></returns>
         [HttpGet]
         [HandlerAjaxOnly]
@@ -78,7 +78,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers.Sys
 
 
         /// <summary>
-        /// 普通诊室：生成普通诊室时初始化诊室内容
+        /// Phòng khám thường：Khi tạo phòng khám thường, khởi tạo nội dung phòng khám
         /// </summary>
         /// <param name="ksCode"></param>
         /// <returns></returns>
@@ -98,16 +98,16 @@ namespace Newtouch.HIS.Base.HOSP.Controllers.Sys
 
 
         /// <summary>
-        /// 专家诊室：获取科室下的专家列表
+        /// Phòng khám chuyên gia：Lấy danh sách chuyên gia thuộc khoa
         /// </summary>
-        /// <param name="ksCode">科室编号</param>
+        /// <param name="ksCode">Mã khoa</param>
         /// <returns></returns>
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetExpertListByDept(string ksCode)
         {
             var treeList = new List<TreeViewModel>();
-            //获取专家医生
+            //Lấy bác sĩ chuyên gia
             var list = _sysConsultDmnService.GetExpertListByDept(this.OrganizeId, ksCode);
             if (list == null)
             {
@@ -133,7 +133,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers.Sys
         }
 
         /// <summary>
-        /// 生成专家诊室
+        /// Tạo phòng khám chuyên gia
         /// </summary>
         /// <param name="expert"></param>
         /// <param name="ksCode"></param>
@@ -150,9 +150,9 @@ namespace Newtouch.HIS.Base.HOSP.Controllers.Sys
                 entity.ys = gh;
                 entity.OrganizeId = this.OrganizeId;
                 entity.py = staff.py + "ZJZS";
-                entity.xh = 0;//专家诊室xh为0
+                entity.xh = 0;//Phòng khám chuyên giaxhLà0
                 
-                //诊室已存在则不再插入
+                //Nếu phòng khám đã tồn tại thì không chèn nữa
                 if (_sysConsultRepo.IQueryable().Any(p => p.zsCode == entity.zsCode && p.zt == "1"))
                 {
                     continue;
@@ -165,19 +165,19 @@ namespace Newtouch.HIS.Base.HOSP.Controllers.Sys
         }
 
         /// <summary>
-        /// 生成普通诊室
+        /// Tạo phòng khám thường
         /// </summary>
         /// <param name="ksCode"></param>
         /// <param name="zssl"></param>
         /// <returns></returns>
         public ActionResult CreateNormalConsult( string ksCode,int zssl)
         {
-            //科室名称
+            //Tên khoa
             var ksmc=_sysDepartmentRepository.IQueryable().Where(p => p.Code == ksCode && p.OrganizeId == this.OrganizeId && p.zt == "1").FirstOrDefault().Name;
-            //科室下诊室最大序号
+            //Số thứ tự lớn nhất của phòng khám thuộc khoa
             var maxConsult = _sysConsultRepo.IQueryable().Where(p => p.ksCode == ksCode && p.OrganizeId == this.OrganizeId && p.zt == "1").OrderByDescending(p => p.xh).FirstOrDefault();
             var num = maxConsult == null ? 0 : maxConsult.xh;
-            //自动生成多个诊室
+            //Tự động tạo nhiều phòng khám
             for (var i=0;i<zssl;i++)
             {
                 num++;
@@ -190,7 +190,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers.Sys
                 entity.py = ksCode + "zs" + num;
                 entity.xh = num;
 
-                //诊室已存在则不再插入
+                //Nếu phòng khám đã tồn tại thì không chèn nữa
                 if (_sysConsultRepo.IQueryable().Any(p => p.zsCode == entity.zsCode && p.zt == "1"))
                 {
                     continue;

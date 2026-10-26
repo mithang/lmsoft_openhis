@@ -8,32 +8,32 @@
             <div class="step-pane active" id="step-1" style="margin: 10px; margin-bottom: 0px;">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">表单信息</h3>
+                        <h3 class="panel-title">Thông tin biểu mẫu</h3>
                     </div>
                     <div class="panel-body" style="width: 98%; margin-left: -34px;">
                         <table class="form">
                             <tr>
-                                <th class="formTitle"><span class="required">*</span>组织机构：</th>
+                                <th class="formTitle"><span class="required">*</span>Tổ chức：</th>
                                 <td class="formValue formDdlSelectorTd">
                                     <select id="HospitalCode" name="HospitalCode" class="form-control required">
-                                        <option value="">==请选择==</option>
+                                        <option value="">==Vui lòng chọn==</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle">报表：</th>
+                                <th class="formTitle">Báo cáo：</th>
                                 <td class="formValue">
                                     <input id="ReportName" name="ReportName" type="text" class="form-control required" />
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle"><span class="required">*</span>名称：</th>
+                                <th class="formTitle"><span class="required">*</span>Tên：</th>
                                 <td class="formValue">
-                                    <input id="Name" name="Name" type="text" class="form-control required" placeholder="请输入名称" />
+                                    <input id="Name" name="Name" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle">编码：</th>
+                                <th class="formTitle">Mã：</th>
                                 <td class="formValue">
                                     <input id="ReportCode" name="ReportCode" type="text" class="form-control" />
                                 </td>
@@ -90,7 +90,7 @@
         }
     })
     function initControl() {
-        //组织机构下拉框
+        //Hộp chọn tổ chức
         $("#HospitalCode").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
             selectedValue: $.request('orgId'),
@@ -100,7 +100,7 @@
         debugger;
         var postData = $("#form1").formSerialize();
         if ($("#HospitalCode").val()=="") {
-            $.modalAlert("请选择医院", 'warning');
+            $.modalAlert("Vui lòng chọn bệnh viện", 'warning');
             return;
         }
         postData["ReportName"] = $("#Name").val();
@@ -112,18 +112,18 @@
                 
                 if (res.message != "") {
                     if (Type == "update") {
-                        $.modalAlert("报表修改失败：" + res.message, 'warning');
+                        $.modalAlert("Sửa báo cáo thất bại：" + res.message, 'warning');
                     }
                     else {
-                        $.modalAlert("报表新建失败：" + res.message, 'warning');
+                        $.modalAlert("Tạo báo cáo mới thất bại：" + res.message, 'warning');
                     }
                 }
                 else {
                     if (Type == "update") {
-                        $.modalAlert("报表修改成功", 'success');
+                        $.modalAlert("Sửa báo cáo thành công", 'success');
                     }
                     else {
-                        $.modalAlert("报表新建成功", 'success');
+                        $.modalAlert("Tạo báo cáo mới thành công", 'success');
                     }
                 }
                 $.currentWindow().$("#gridList").resetSelection();

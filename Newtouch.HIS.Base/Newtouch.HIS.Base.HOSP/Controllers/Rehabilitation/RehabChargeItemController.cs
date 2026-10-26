@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 收费分类下拉
+        /// Danh sách thả xuống phân loại thu phí
         /// </summary>
         /// <returns></returns>
         public ActionResult GetsfflBindSelect(string OrganizeId)
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         public ActionResult SubmitForm(RehabChargeItemEntity entity, string sfxmId)
         {
@@ -56,7 +56,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 
 
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách hiệu lực
         /// </summary>
         public ActionResult GetRehabChargeItemList(string keyword, string OrganizeId)
         {
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         public ActionResult GetFormJson(string sfxmId, string OrganizeId)
         {
@@ -74,7 +74,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         public ActionResult DeleteForm(string sfxmId, string OrganizeId)
         {

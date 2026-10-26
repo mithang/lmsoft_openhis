@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             this._itemDmnService = itemDmnService;
         }
 
-        //下拉 by Code
+        //Thả xuống by Code
         /// <summary>
         /// 
         /// </summary>
@@ -59,7 +59,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             }
             if (string.IsNullOrWhiteSpace(OrganizeId))
             {
-                return null;    //不返回
+                return null;    //Không trả về
             }
             var data = _sysItemsDetailRepository.GetListByOrgId(OrganizeId, itemId, keyword);
             foreach (var item in data)
@@ -78,7 +78,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             return Content(data.ToJson());
         }
 
-        //保存、修改
+        //Lưu、Sửa
         [HttpPost]
         [HandlerAjaxOnly]
         //[ValidateAntiForgeryToken]

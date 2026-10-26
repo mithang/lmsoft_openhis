@@ -7,69 +7,69 @@
 <form id="form1">
     <div class="container" style="margin-top: 10px; margin-left: -4%; ">
         <ul class="nav nav-tabs" role="tablist" id="myTab" style="margin-left: 4%;">
-            <li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab">基本信息</a></li>
+            <li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab">Thông tin cơ bản</a></li>
         </ul>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" style="padding-top: 20px; margin-right: 58px; margin-left:33px;" id="basicInfo">
                 <table class="form">
                     @* <tr> *@
-                    @*     <th class="formTitle"><span class="required">*</span>组织机构：</th> *@
+                    @*     <th class="formTitle"><span class="required">*</span>Tổ chức：</th> *@
                     @*     <td class="formValue formDdlSelectorTd"> *@
                     @*         <select id="OrganizeId" name="OrganizeId" class="form-control required"> *@
-                    @*             <option value="">==请选择==</option> *@
+                    @*             <option value="">==Vui lòng chọn==</option> *@
                     @*         </select> *@
                     @*     </td> *@
                     @* </tr> *@
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>名称：</th>
+                        <th class="formTitle"><span class="required">*</span>Tên：</th>
                         <td class="formValue">
                             <input type="text" class="form-control required" id="yzpcmc" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>名称说明：</th>
+                        <th class="formTitle"><span class="required">*</span>Mô tả tên：</th>
                         <td class="formValue">
-                            <input type="text" class="form-control required" id="yzpcmcsm" placeholder="例：每日三次" />
+                            <input type="text" class="form-control required" id="yzpcmcsm" placeholder="Ví dụ：Mỗi ngày ba lần" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>编码：</th>
+                        <th class="formTitle"><span class="required">*</span>Mã：</th>
                         <td class="formValue">
                             <input type="text" class="form-control required" id="yzpcCode"  />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>执行次数：</th>
+                        <th class="formTitle"><span class="required">*</span>Số lần thực hiện：</th>
                         <th class="formValue">
                             <input type="text" class="form-control required" id="zxcs"  />
                         </th>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>执行周期：</th>
+                        <th class="formTitle"><span class="required">*</span>Chu kỳ thực hiện：</th>
                         <th class="formValue">
                             <input type="text" class="form-control required" id="zxzq"  />
                         </th>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>执行周期时间单位：</th>
+                        <th class="formTitle"><span class="required">*</span>Đơn vị thời gian chu kỳ thực hiện：</th>
                         <th class="formValue">
                             <input type="text" class="form-control required" id="zxzqdw"  />
                         </th>
                     </tr>
                     <tr>
-                        <th class="formTitle">周标志：</th>
+                        <th class="formTitle">Cờ tuần：</th>
                         <td class="formValue">
                             <input class="form-control" id="zbz" value="" type="text" required />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>执行时间：</th>
+                        <th class="formTitle"><span class="required">*</span>Thời gian thực hiện：</th>
                         <th class="formValue">
                             <input class="form-control" id="zxsj" value="" type="text" required />
                         </th>
                     </tr>
                     <tr>
-                        <th class="formTitle">有效：</th>
+                        <th class="formTitle">Hiệu lực：</th>
                         <td class="formValue">
                             <div class="ckbox">
                                 <input id="zt" type="checkbox" checked="checked" required><label for="zt"></label>
@@ -102,15 +102,15 @@
     })
 
     $(document).ready(function () {
-        // 设置组织机构不可编辑
+        // Đặt tổ chức không thể sửa
         if (keyValue && orgId) {
-            $("#OrganizeId").prop("disabled", true); // 设置下拉框不可编辑
-            $("#OrganizeId").css("background-color", "#e9ecef"); // 使其变灰色
+            $("#OrganizeId").prop("disabled", true); // Đặt hộp thả xuống không thể sửa
+            $("#OrganizeId").css("background-color", "#e9ecef"); // Làm cho nó chuyển sang màu xám
         }
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp chọn tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
             selectedValue: $.request('orgId'),
@@ -133,7 +133,7 @@
         }
     });
 
-    //提交
+    //Gửi
     function submitForm() {
         if (!$('#form1').formValid()) {
             return false;

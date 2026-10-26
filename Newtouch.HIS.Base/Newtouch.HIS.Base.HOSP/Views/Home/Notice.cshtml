@@ -34,13 +34,13 @@
         <div class="graybox"></div>
         <div class="popbox">
             <div class="poptop">
-                <h3>匿名聊天室</h3>
+                <h3>Phòng trò chuyện ẩn danh</h3>
                 <a href="#" class="close"></a>
             </div>
             <div class="popcon">
                 <div>
                     <div class="group">
-                        <input type="text" id="nickname" value="请输入昵称" onfocus="if (value == '请输入昵称') { value = '' }" onblur="    if (value == '') { value = '请输入昵称' }">
+                        <input type="text" id="nickname" value="Vui lòng nhập biệt danh" onfocus="if (value == 'Vui lòng nhập biệt danh') { value = '' }" onblur="    if (value == '') { value = 'Vui lòng nhập biệt danh' }">
                         <i class="fa fa-user"></i>
                     </div>
 
@@ -48,8 +48,8 @@
 
             </div>
             <div class="divbtn clearfix">
-                <a class="btn" onclick="quxiao()">取消</a>
-                <a href="#" class="btn" onclick="GoHome()">进入聊天室</a>
+                <a class="btn" onclick="quxiao()">Hủy</a>
+                <a href="#" class="btn" onclick="GoHome()">Vào phòng trò chuyện</a>
             </div>
         </div>
     </div>
@@ -57,7 +57,7 @@
 
 
     <div id="msg" style="margin:10px;">
-        <h3>欢迎<font color='blue' style="font-family: Glyphicons Halflings" size="3" id="nick"></font>进入聊天室</h3>
+        <h3>Chào mừng<font color='blue' style="font-family: Glyphicons Halflings" size="3" id="nick"></font>Vào phòng trò chuyện</h3>
         <div id="msgcontent">
         </div>
         <div>
@@ -65,7 +65,7 @@
         </div>
         <div style="text-align: left; width: 98%; margin: 10px auto 0;zoom:1;">
             <textarea id="message" rows=5 style="width:90%;border:1px solid #271818;height:98px;float:left;"></textarea>
-            <input class="button" type="button" value="发送消息" id="btnSend" />
+            <input class="button" type="button" value="Gửi tin nhắn" id="btnSend" />
         </div>
 
     </div>
@@ -73,10 +73,10 @@
         var clientName = "";
 
         var eUsers = $("#users");
-        var hubUrl = 'http://localhost:55144/signalr'; //服务端ip
+        var hubUrl = 'http://localhost:55144/signalr'; //Phía serverip
 
         $(function () {
-            //绑定输入框，这里只能 是ID
+            //Gắn hộp nhập，Ở đây chỉ có thể CóID
             $("#btnSend").keydown(function (event) {
                 event = document.all ? window.event : event;
                 if ((event.keyCode || event.which) == 13) {
@@ -104,7 +104,7 @@
                     $.ajax({
                         url: 'http://localhost:55144/api/notice/SendNoticeToUser',
                         data: {
-                            users: ["000000", "0376"], message: "病历质控消息测试", data: {} },
+                            users: ["000000", "0376"], message: "Kiểm tra tin nhắn kiểm soát chất lượng bệnh án", data: {} },
                         type: "post",
                         dataType: "json",
                         success: function (data) {
@@ -116,7 +116,7 @@
             });
         });
 
-        //初始化服务端和客户端的连接
+        //Khởi tạo kết nối server và client
         function initTalk() {
             document.getElementById('nick').innerHTML = clientName;
             $.connection.hub.url = hubUrl;
@@ -149,7 +149,7 @@
                     $.ajax({
                         url: 'http://localhost:55144/api/notice/SendNoticeToUser',
                         data: {
-                            user: "000000", message: "病历质控消息测试", orgid:"6d5752a7-234a-403e-aa1c-df8b45d3469f"
+                            user: "000000", message: "Kiểm tra tin nhắn kiểm soát chất lượng bệnh án", orgid:"6d5752a7-234a-403e-aa1c-df8b45d3469f"
                         },
                         type: "post",
                         dataType: "json",
@@ -164,11 +164,11 @@
 
             });
         }
-        //登录方法，登录成功以后调用 initTalk()进行$.connection服务端的连接
+        //Phương thức đăng nhập，Gọi sau khi đăng nhập thành công initTalk()Tiến hành$.connectionKết nối phía server
         function GoHome() {
             clientName = $("#nickname").val();
-            if (clientName.length == 0 || clientName == "请输入昵称") {
-                alert("随便起个名字吧，我们不会记录");
+            if (clientName.length == 0 || clientName == "Vui lòng nhập biệt danh") {
+                alert("Cứ đặt tên tùy ý nhé，Chúng tôi sẽ không ghi lại");
                 return;
             }
 
@@ -178,7 +178,7 @@
 
         function randomString() {
 
-            var $chars = 'ycz123';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+            var $chars = 'ycz123';    /****Mặc định đã loại bỏ các ký tự dễ nhầm lẫnoOLl,9gq,Vv,Uu,I1****/
             var maxPos = $chars.length;
             var pwd = '';
             for (i = 0; i < 3; i++) {

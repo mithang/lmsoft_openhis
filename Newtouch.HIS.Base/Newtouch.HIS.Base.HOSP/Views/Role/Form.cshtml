@@ -6,59 +6,59 @@
     <div class="widget-body">
         <div id="wizard" class="wizard" data-target="#wizard-steps" style="border-left: none; border-top: none; border-right: none;">
             <ul class="steps">
-                <li data-target="#step-1" class="active"><span class="step">1</span>角色信息<span class="chevron"></span></li>
-                <li data-target="#step-2"><span class="step">2</span>功能权限<span class="chevron"></span></li>
+                <li data-target="#step-1" class="active"><span class="step">1</span>Thông tin vai trò<span class="chevron"></span></li>
+                <li data-target="#step-2"><span class="step">2</span>Quyền chức năng<span class="chevron"></span></li>
             </ul>
         </div>
         <div class="step-content" id="wizard-steps" style="border-left: none; border-bottom: none; border-right: none;">
             <div class="step-pane active" id="step-1" style="margin: 10px; margin-bottom: 0px;">
                 <div class="alert alert-danger" style="text-align: left; margin-bottom: 10px;">
                     <i class="fa fa-warning alert-dismissible" style="position: relative; top: 1px; font-size: 15px; padding-right: 5px;"></i>
-                    请填写角色信息，用于创建或修改角色信息！
+                    Vui lòng nhập thông tin vai trò，Dùng để tạo hoặc sửa thông tin vai trò！
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">表单信息</h3>
+                        <h3 class="panel-title">Thông tin biểu mẫu</h3>
                     </div>
                     <div class="panel-body" style="width: 98%; margin-left: -34px;">
                         <table class="form">
                             <tr>
-                                <th class="formTitle"><span class="required">*</span>组织机构：</th>
+                                <th class="formTitle"><span class="required">*</span>Tổ chức：</th>
                                 <td class="formValue formDdlSelectorTd">
                                     <select id="OrganizeId" name="OrganizeId" class="form-control required">
-                                        <option value="">==请选择==</option>
+                                        <option value="">==Vui lòng chọn==</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle"><span class="required">*</span>名称：</th>
+                                <th class="formTitle"><span class="required">*</span>Tên：</th>
                                 <td class="formValue">
-                                    <input id="Name" name="Name" type="text" class="form-control required" placeholder="请输入名称" />
+                                    <input id="Name" name="Name" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle">编码：</th>
+                                <th class="formTitle">Mã：</th>
                                 <td class="formValue">
                                     <input id="Code" name="Code" type="text" class="form-control" />
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle">显示顺序：</th>
+                                <th class="formTitle">Thứ tự hiển thị：</th>
                                 <td class="formValue">
                                     <input id="px" name="px" type="text" class="form-control" />
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle" style="height: 35px;">选项：</th>
+                                <th class="formTitle" style="height: 35px;">Tùy chọn：</th>
                                 <td class="formValue" style="padding-top: 1px;">
                                     <div class="ckbox">
-                                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <th class="formTitle" valign="top" style="padding-top: 5px;">
-                                    备注：
+                                    Ghi chú：
                                 </th>
                                 <td class="formValue">
                                     <textarea id="Description" name="Description" class="form-control" style="height: 60px;"></textarea>
@@ -75,9 +75,9 @@
             </div>
         </div>
         <div class="form-button" id="wizard-actions">
-            <a id="btn_last" disabled class="btn btn-default btn-prev">上一步</a>
-            <a id="btn_next" class="btn btn-default btn-next" style="margin-right: 10px;">下一步</a>
-            <a id="btn_finish" class="btn btn-default" style="display: none;margin-right: 10px;" onclick="submitForm()">完成</a>
+            <a id="btn_last" disabled class="btn btn-default btn-prev">Bước trước</a>
+            <a id="btn_next" class="btn btn-default btn-next" style="margin-right: 10px;">Bước tiếp theo</a>
+            <a id="btn_finish" class="btn btn-default" style="display: none;margin-right: 10px;" onclick="submitForm()">Hoàn thành</a>
         </div>
     </div>
 </form>
@@ -106,7 +106,7 @@
         }
     })
     function initControl() {
-        //组织机构下拉框
+        //Hộp chọn tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
             selectedValue: $.request('orgId'),

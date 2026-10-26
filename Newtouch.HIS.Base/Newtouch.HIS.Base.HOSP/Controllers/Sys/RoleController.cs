@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             this._sysUserRoleRepo = sysUserRoleRepo;
         }
 
-        //角色列表 gridjson
+        //Danh sách vai trò gridjson
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetGridJson(Pagination pagination, string keyword, string OrganizeId)
@@ -51,7 +51,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             }
             if (string.IsNullOrWhiteSpace(OrganizeId))
             {
-                return null;    //不返回
+                return null;    //Không trả về
             }
             var data = new
             {
@@ -93,7 +93,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 保存角色用户关联关系
+        /// Lưu quan hệ liên kết vai trò - người dùng
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -104,7 +104,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 角色（树）   （用户主动关联角色）
+        /// Vai trò（Cây）   （Người dùng chủ động liên kết vai trò）
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="organizeId"></param>

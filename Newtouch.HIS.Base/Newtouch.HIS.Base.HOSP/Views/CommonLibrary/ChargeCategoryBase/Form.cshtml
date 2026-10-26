@@ -6,110 +6,110 @@
 <form id="form1">
 	<div class="container" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
 		<ul class="nav nav-tabs" role="tablist" id="myTab">
-			<li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab">基本信息<br>税率换算例如：30%需填入0.3</a></li>
+			<li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab">Thông tin cơ bản<br>Ví dụ quy đổi thuế suất：30%Cần nhập0.3</a></li>
 		</ul>
 	
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane fade in active" style="padding-top: 20px; margin-right: 107px;" id="basicInfo">
 				<table class="form">
 					<tr>
-						<td class="formTitle"><span class="required">*</span>组织机构：</td>
+						<td class="formTitle"><span class="required">*</span>Tổ chức：</td>
 						<td class="formValue formDdlSelectorTd">
 							<select id="OrganizeId" name="OrganizeId" class="form-control required">
-								<option value="">==请选择==</option>
+								<option value="">==Vui lòng chọn==</option>
 							</select>
 						</td>
 					</tr>
 					<tr>
-						<td class="formTitle"><span class="required">*</span>名称：</td>
+						<td class="formTitle"><span class="required">*</span>Tên：</td>
 						<td class="formValue">
-							<input id="dlmc" name="dlmc" type="text" class="form-control required" placeholder="请输入名称" />
+							<input id="dlmc" name="dlmc" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
 						</td>
 					</tr>
 					<tr>
-						<td class="formTitle"><span class="required">*</span>编码：</td>
+						<td class="formTitle"><span class="required">*</span>Mã：</td>
 						<td class="formValue">
-							<input id="dlCode" name="dlCode" type="text" class="form-control required" placeholder="请输入编码" />
+							<input id="dlCode" name="dlCode" type="text" class="form-control required" placeholder="Vui lòng nhập mã" />
 						</td>
 					</tr>
 					<tr>
-						<th class="formTitle"><span class="required">*</span>首拼：</th>
+						<th class="formTitle"><span class="required">*</span>Mã chữ cái đầu：</th>
 						<td class="formValue">
 							<input id="py" name="py" type="text" class="form-control required" placeholder="" />
 						</td>
 					</tr>
 					<tr>
-						<td class="formTitle"><span class="required">*</span>大类类别：</td>
+						<td class="formTitle"><span class="required">*</span>Loại nhóm lớn：</td>
 						<td class="formValue formDdlSelectorTd">
-							@Html.DropDownList("dllb", Newtouch.Infrastructure.EnumSfdlDllb.yp.ToDescSelectList(), "==请选择==", new { @class = "form-control required" })
+							@Html.DropDownList("dllb", Newtouch.Infrastructure.EnumSfdlDllb.yp.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control required" })
 						</td>
 					</tr>
 					<tr>
-						<td class="formTitle">上级大类：</td>
+						<td class="formTitle">Nhóm lớn cấp trên：</td>
 						<td class="formValue formDdlSelectorTd">
 							<select id="ParentId" name="ParentId" class="form-control">
-								<option value="">==请选择==</option>
+								<option value="">==Vui lòng chọn==</option>
 							</select>
 						</td>
 					</tr>
 					<tr>
-						<td class="formTitle">所属分类：</td>
+						<td class="formTitle">Phân loại trực thuộc：</td>
 						<td class="formValue formDdlSelectorTd">
-							@Html.DropDownList("fjCode", Newtouch.Infrastructure.EnumSffjdlCode.ypf.ToDescSelectList(), "==请选择==", new { @class = "form-control required" })
+							@Html.DropDownList("fjCode", Newtouch.Infrastructure.EnumSffjdlCode.ypf.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control required" })
 						</td>
 					</tr>
 					<tr>
-						<td class="formTitle">门诊报表大类：</td>
+						<td class="formTitle">Nhóm lớn báo cáo ngoại trú：</td>
 						<td class="formValue formDdlSelectorTd">
 							<select id="mzprintreportcode" name="mzprintreportcode" class="form-control">
-								<option value="">==请选择==</option>
+								<option value="">==Vui lòng chọn==</option>
 							</select>
 						</td>
 					</tr>
 					<tr>
-						<td class="formTitle">门诊结算大类：</td>
+						<td class="formTitle">Nhóm lớn thanh toán ngoại trú：</td>
 						<td class="formValue formDdlSelectorTd">
 							<select id="mzprintbillcode" name="mzprintbillcode" class="form-control">
-								<option value="">==请选择==</option>
+								<option value="">==Vui lòng chọn==</option>
 							</select>
 						</td>
 					</tr>
 					<tr>
-						<td class="formTitle">通用报表大类：</td>
+						<td class="formTitle">Nhóm lớn báo cáo chung：</td>
 						<td class="formValue formDdlSelectorTd">
 							<select id="reportdlcode" name="reportdlcode" class="form-control">
-								<option value="">==请选择==</option>
+								<option value="">==Vui lòng chọn==</option>
 							</select>
 						</td>
 					</tr>
 					<tr>
-						<td class="formTitle"><span class="required">*</span>门诊住院标志：</td>
+						<td class="formTitle"><span class="required">*</span>Cờ ngoại trú/nội trú：</td>
 						<td class="formValue formDdlSelectorTd">
 							<select id="mzzybz" name="mzzybz" class="form-control required">
-								<option value="">==请选择==</option>
-								<option value="0">通用</option>
-								<option value="1">门诊</option>
-								<option value="2">住院</option>
+								<option value="">==Vui lòng chọn==</option>
+								<option value="0">Chung</option>
+								<option value="1">Ngoại trú</option>
+								<option value="2">Nội trú</option>
 							</select>
 						</td>
 					</tr>
 					<tr>
-						<th class="formTitle">排序：</th>
+						<th class="formTitle">Sắp xếp：</th>
 						<td class="formValue">
 							<input id="px" name="px" type="text" class="form-control" placeholder="" />
 						</td>
 					</tr>
 					<tr>
-						<th class="formTitle">税率：</th>
+						<th class="formTitle">Thuế suất：</th>
 						<td class="formValue">
-							<input id="sn" name="sn" type="text" class="form-control" onkeyup="value=value.replace(/^[1-9]{1}\d{0,9}(\.\d{1,4})?$/,'')" placeholder="最多保留四位小数" />
+							<input id="sn" name="sn" type="text" class="form-control" onkeyup="value=value.replace(/^[1-9]{1}\d{0,9}(\.\d{1,4})?$/,'')" placeholder="Giữ tối đa bốn chữ số thập phân" />
 						</td>
 					</tr>
 					<tr>
-						<th class="formTitle" style="height: 35px;">状态：</th>
+						<th class="formTitle" style="height: 35px;">Trạng thái：</th>
 						<td class="formValue" style="padding-top: 1px;">
 							<div class="ckbox">
-								<input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+								<input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
 							</div>
 						</td>
 					</tr>
@@ -137,32 +137,32 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp chọn tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
             selectedValue: $.request('orgId'),
         });
-        //组织对应的科室下拉框加载
+        //Tải hộp chọn khoa tương ứng với tổ chức
         $("#OrganizeId").bind("change", function () {
             var organizeId = $(this).val();
-            //获取门诊报表大类
+            //Lấy nhóm lớn báo cáo ngoại trú
             $("#mzprintreportcode").bindSelect({
                 url: "/ChargeCategory/GetTreeSelectJson?organizeId=" + organizeId,
             });
-            //获取门诊结算大类
+            //Lấy nhóm lớn thanh toán ngoại trú
             $("#mzprintbillcode").bindSelect({
                 url: "/ChargeCategory/GetTreeSelectJson?organizeId=" + organizeId,
             });
-            //获取通用报表大类
+            //Lấy nhóm lớn báo cáo chung
             $("#reportdlcode").bindSelect({
                 url: "/ChargeCategory/GetTreeSelectJson?organizeId=" + organizeId,
             });
-            //上级收费大类
+            //Nhóm thu phí lớn cấp trên
             $("#ParentId").bindSelect({
                 url: "/ChargeCategory/GetTreeSelectJson?treeidFieldName=dlId&organizeId=" + organizeId,
             });
         });
-        //首拼
+        //Mã chữ cái đầu
         $('#dlmc').keyup(function () {
             $('#py').val($(this).toShouPin());
         })

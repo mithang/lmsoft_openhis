@@ -9,10 +9,10 @@
     @Html.Partial("_OrganizeIdDDLToolbarSearchView")
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" authorize="yes" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a id="NF-edit" authorize="yes" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
    </div>
 </div>
@@ -21,7 +21,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增demo",
+            title: "Thêm mớidemo",
             url: "/Demo/Form?orgId=" + $('#OrganizeId').val(),
             width: "700px",
             height: "600px",

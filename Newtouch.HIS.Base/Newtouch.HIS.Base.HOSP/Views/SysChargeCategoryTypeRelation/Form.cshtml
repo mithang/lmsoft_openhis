@@ -3,46 +3,46 @@
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <div style="margin-top: 20px; margin-left: 30px;">
-    <span style="color:red;">*.开立处方（医嘱）项目可选范围配置</span>，比如开立西药处方可选范围仅西药费类药品
+    <span style="color:red;">*.Kê đơn（Y lệnh）Cấu hình phạm vi tùy chọn hạng mục</span>，Ví dụ phạm vi tùy chọn khi kê đơn thuốc Tây chỉ gồm thuốc loại phí thuốc Tây
 </div>
 <form id="form1">
     <div style="padding-top: 20px; margin-right: 30px;">
         <table class="form">
             <tr>
-                <td class="formTitle"><span class="required">*</span>组织机构：</td>
+                <td class="formTitle"><span class="required">*</span>Tổ chức：</td>
                 <td class="formValue formDdlSelectorTd">
                     <select id="OrganizeId" name="OrganizeId" class="form-control required">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>类型：</td>
+                <td class="formTitle"><span class="required">*</span>Loại：</td>
                 <td class="formValue formDdlSelectorTd">
                     <select id="Type" name="Type" class="form-control required">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>收费大类：</td>
+                <td class="formTitle"><span class="required">*</span>Nhóm thu phí lớn：</td>
                 <td class="formValue formDdlSelectorTd">
                     <select id="dlCode" name="dlCode" class="form-control required">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">排序：</th>
+                <th class="formTitle">Sắp xếp：</th>
                 <td class="formValue">
                     <input id="px" name="px" type="text" class="form-control" placeholder="" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle" style="height: 35px;">状态：</th>
+                <th class="formTitle" style="height: 35px;">Trạng thái：</th>
                 <td class="formValue" style="padding-top: 1px;">
                     <div class="ckbox">
-                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                     </div>
                 </td>
             </tr>
@@ -79,18 +79,18 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp chọn tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
-        //组织对应的科室下拉框加载
+        //Tải hộp chọn khoa tương ứng với tổ chức
         $("#OrganizeId").bind("change", function () {
             var organizeId = $(this).val();
-            //获取收费大类
+            //Lấy nhóm thu phí lớn
             $("#dlCode").bindSelect({
                 url: "/ChargeCategory/GetTreeSelectJson?organizeId=" + organizeId,
             });
-            //类型下拉    //这里不区分组织机构
+            //Danh sách thả xuống loại    //Ở đây không phân biệt tổ chức
             $("#Type").bindSelect({
                 url: "/ItemsData/GetSelectJson",
                 param: { code: "ChargeCateType" }

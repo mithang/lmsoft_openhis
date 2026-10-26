@@ -19,7 +19,7 @@
     var xmmc = decodeURIComponent($.request("xmmc"));
     $(function () {
         $('#gridList').newtouchLocalDataGrid({
-            //caption: '计费明细',
+            //caption: 'Chi tiết tính phí',
             height: $(window).height() - 80,
             unwritten: false,
             editurl: "clientArray",
@@ -27,10 +27,10 @@
             colModel: [
                 { label: "xmcode", name: "xmcode", width: 130, align: "left", hidden: true },
                 { label: "xmmc", name: "xmmc", width: 130, align: "left", hidden: true },
-                { label: "性质名称", name: "xzId", width: 130, align: "left", hidden:true },
-                { label: "性质名称", name: "xzmc", width: 130, align: "left" },
+                { label: "Tên tính chất", name: "xzId", width: 130, align: "left", hidden:true },
+                { label: "Tên tính chất", name: "xzmc", width: 130, align: "left" },
                 {
-                    label: "自负比例(%)", name: "zfbl", width: 130, align: "left", editable: true, editrules: { numeric: true, minValue: 0.0, maxValue: 100 },
+                    label: "Tỷ lệ tự trả(%)", name: "zfbl", width: 130, align: "left", editable: true, editrules: { numeric: true, minValue: 0.0, maxValue: 100 },
                     editoptions: {
                         dataEvents: [
                                 {
@@ -38,11 +38,11 @@
                                     fn: function (e) {
                                         var cellval = $(this).val();
                                         if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                            $.modalAlert("数值为空，请确认。", 'warning');
+                                            $.modalAlert("Giá trị trống，Vui lòng xác nhận。", 'warning');
                                             return;
                                         }
                                         if (cellval<0 ||cellval>100) {
-                                            $.modalAlert("自负比例：填写数值必须为0~100之间", 'warning');
+                                            $.modalAlert("Tỷ lệ tự trả：Giá trị nhập vào phải là0~100Trong khoảng", 'warning');
                                             $(this).val('')
                                             return;
                                         }
@@ -52,18 +52,18 @@
                     }
                 },
                 {
-                    label: "费用限额", name: "fyxe", width: 100, align: "left", editable: true, editrules: { numeric: true, minValue: 0.0, maxValue: 100 }, editoptions: {
+                    label: "Hạn mức chi phí", name: "fyxe", width: 100, align: "left", editable: true, editrules: { numeric: true, minValue: 0.0, maxValue: 100 }, editoptions: {
                         dataEvents: [
                                 {
                                     type: 'change',
                                     fn: function (e) {
                                         var cellval = $(this).val();
                                         if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                            $.modalAlert("数值为空，请确认。", 'warning');
+                                            $.modalAlert("Giá trị trống，Vui lòng xác nhận。", 'warning');
                                             return;
                                         }
                                         if (cellval < 0 || cellval > 100) {
-                                            $.modalAlert("费用限额：填写数值必须为0~100之间", 'warning');
+                                            $.modalAlert("Hạn mức chi phí：Giá trị nhập vào phải là0~100Trong khoảng", 'warning');
                                             $(this).val('')
                                             return;
                                         }
@@ -73,18 +73,18 @@
                     }
                 },
                 {
-                    label: "超限比例(%)", name: "cxbl", width: 130, align: "left", editable: true, editrules: { numeric: true, minValue: 0.0, }, editoptions: {
+                    label: "Tỷ lệ vượt hạn(%)", name: "cxbl", width: 130, align: "left", editable: true, editrules: { numeric: true, minValue: 0.0, }, editoptions: {
                         dataEvents: [
                                 {
                                     type: 'change',
                                     fn: function (e) {
                                         var cellval = $(this).val();
                                         if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                            $.modalAlert("数值为空，请确认。", 'warning');
+                                            $.modalAlert("Giá trị trống，Vui lòng xác nhận。", 'warning');
                                             return;
                                         }
                                         if (cellval < 0 || cellval > 100) {
-                                            $.modalAlert("超限比例：填写数值必须为0~100之间", 'warning');
+                                            $.modalAlert("Tỷ lệ vượt hạn：Giá trị nhập vào phải là0~100Trong khoảng", 'warning');
                                             $(this).val('')
                                             return;
                                         }
@@ -97,7 +97,7 @@
             //multiselect: true,
             gridComplete: function () {
 
-                //启用行内编辑框
+                //Bật hộp sửa trong dòng
                 EnableInlineEditBox();
             },
             onSelectRow: function (rowid) {
@@ -112,7 +112,7 @@
     function submitForm() {
         debugger;
         var res = true;
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấy tất cả các dòngId，Duyệt để hộp sửa ở trạng thái lưu
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) {
@@ -123,7 +123,7 @@
         {
             return;
         }
-        //获取所有选中行数据
+        //Lấy dữ liệu tất cả các dòng đã chọn
         var data = $("#gridList").jqGrid('getRowData_AllLine', false);
         $.najax({
             url: "/SysChargeItem/SaveYbblValue",
@@ -131,14 +131,14 @@
             data: { entity: data, xmbm: xmdm, xmmc: xmmc },
             type: "POST",
             success: function (data) {
-                $.modalAlert("保存成功", 'success');
+                $.modalAlert("Lưu thành công", 'success');
                 $.currentWindow().$("#gridList").resetSelection();
                 $.currentWindow().$("#gridList").trigger("reloadGrid");
                 $.modalClose("Form");
                 $.loading(false);
             },
             error: function (request, error, ex) {
-                $.modalAlert("服务不可访问", 'error');
+                $.modalAlert("Dịch vụ không thể truy cập", 'error');
             }
         });
 
@@ -157,9 +157,9 @@
             }
         });
     }
-    //启用行内编辑框
+    //Bật hộp sửa trong dòng
     function EnableInlineEditBox() {
-        //Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        //GridSau khi tải xong, bật sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt và gọieditRowPhương thức
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {    

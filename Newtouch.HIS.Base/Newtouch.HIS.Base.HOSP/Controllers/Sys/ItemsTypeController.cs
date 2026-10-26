@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             this._itemDmnService = itemDmnService;
         }
 
-        //左导航
+        //Điều hướng trái
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetTreeJson()

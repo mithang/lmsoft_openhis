@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 查询药品剂型
+        /// Tra cứu dạng bào chế thuốc
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>

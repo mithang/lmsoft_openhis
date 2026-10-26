@@ -14,7 +14,7 @@ using Newtouch.HIS.Domain.Entity.Settlement;
 namespace Newtouch.HIS.Base.HOSP.Areas.Settlement.Controllers
 {
 	/// <summary>
-	/// 系统诊断
+	/// Chẩn đoán hệ thống
 	/// </summary>
 	public class SysDiagnosisController : ControllerBase
 	{

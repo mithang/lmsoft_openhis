@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 
         }
 
-		//grid json 数据源
+		//grid json Nguồn dữ liệu
 		[HttpGet]
 		[HandlerAjaxOnly]
 		public ActionResult GetGridJson(Pagination pagination, string keyword, string OrganizeId)
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 		}
 
 		/// <summary>
-		/// 工作人员导出
+		/// Xuất nhân viên
 		/// </summary>
 		/// <param name="key"></param>
 		/// <param name="kpzt"></param>
@@ -111,9 +111,9 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 			}
 
 			var pagination = new Pagination();
-			pagination.sidx = "CreateTime desc"; //时间升序
-			pagination.rows = 65536 - 1;    //Excel最大行数
-			pagination.page = 1;    //第一页把所有都查出来
+			pagination.sidx = "CreateTime desc"; //Thời gian tăng dần
+			pagination.rows = 65536 - 1;    //ExcelSố dòng tối đa
+			pagination.page = 1;    //Trang đầu tiên tra cứu tất cả
 
 			var list = _sysStaffDmnService.GetPaginationList(pagination, OrganizeId, keyword);
 
@@ -146,7 +146,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 			sheet.columns.ToList().ForEach(p =>
 				{
 					p.WidthTimes = (double)p.Width / colStanWidth;
-					p.Width = 0;    //Width都置为0
+					p.Width = 0;    //WidthĐều đặt thành0
 				});
 
 			var path = DateTime.Now.ToString("\\\\yyyyMMdd\\\\HHmmssfff") + "工作人员.xls";
@@ -155,7 +155,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 
 			if (isContainFilter == true)
 			{
-				//筛选条件
+				//Điều kiện lọc
 				var filterDict = new Dictionary<string, string>();
 				if (!string.IsNullOrWhiteSpace(keyword))
 				{
@@ -222,7 +222,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 		public ActionResult FileUpLoad(string staffId, string orgId)
 		{
 			HttpPostedFileBase pUpImage = Request.Files["file"];
-			//判断是否上传了图片
+			//Xác định đã tải lên hình ảnh chưa
 			if (pUpImage != null)
 			{
 				var maxbyte = 10 * 1024;
@@ -231,11 +231,11 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 				{
 					throw new FailedException("上传图片不能超过10kb");
 				}
-				//获取文件名
+				//Lấy tên tệp
 				string sFilename = System.IO.Path.GetFileName(pUpImage.FileName).ToLower();
-				//获取upImage文件的扩展名
+				//LấyupImagePhần mở rộng của tệp
 				string extendName = System.IO.Path.GetExtension(sFilename);
-				//判断是否为图片格式 
+				//Xác định có phải định dạng hình ảnh không 
 				if (extendName != ".jpg" && extendName != ".png")
 				{
 					throw new FailedException("上传图片格式只能是.jpg/.png格式");
@@ -286,7 +286,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             return View();
         }
         /// <summary>
-        /// 导出
+        /// Xuất
         /// </summary>
         /// <returns></returns>
         public ActionResult ExcelExportChooseColumns()
@@ -304,7 +304,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 		}
 
 		/// <summary>
-		/// 关联用户
+		/// Người dùng liên quan
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult Selector()
@@ -313,7 +313,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 		}
 
 		/// <summary>
-		/// 获取机构人员树 三级（机构+科室+人员）
+		/// Lấy cây nhân sự cơ quan Ba cấp（Cơ quan+Khoa+Nhân sự）
 		/// </summary>
 		/// <param name="keyValue"></param>
 		/// <returns></returns>
@@ -321,16 +321,16 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 		{
 			if (string.IsNullOrWhiteSpace(organizeId))
 			{
-				organizeId = base.GetAuthOrganizeId();  //默认 权限OrganizeId
+				organizeId = base.GetAuthOrganizeId();  //Mặc định QuyềnOrganizeId
 			}
-			//缓存start
+			//Bộ nhớ đệmstart
 			var organizedata = _sysOrganizeRepository.GetValidListByParentOrg(organizeId);
 			var treeList = new List<TreeViewModel>();
 			foreach (SysOrganizeEntity orgItem in organizedata)
 			{
-				//机构科室集合
+				//Tập hợp khoa của cơ quan
 				var orgDetpData = _sysDepartmentRepository.GetListByOrg(orgItem.Id);
-				//机构人员集合
+				//Tập hợp nhân sự của cơ quan
 				var orgStaffData = _sysStaffRepo.GetsatffListByOrg(orgItem.Id);
 				#region 机构下所有科室
 				foreach (SysDepartmentEntity deptItem in orgDetpData)
@@ -346,7 +346,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 						staffTree.parentId = deptItem.Id;
 						staffTree.hasChildren = false;
 						staffTree.showcheck = true;
-						staffTree.checkstate = 0;   //外面赋值，方便缓存
+						staffTree.checkstate = 0;   //Gán từ bên ngoài，Thuận tiện cho bộ nhớ đệm
 						treeList.Add(staffTree);
 					}
 					#endregion
@@ -355,7 +355,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 					deptTree.text = deptItem.Name;
 					deptTree.value = deptItem.Code;
 					deptTree.parentId = deptItem.ParentId == null ? orgItem.Id : deptItem.ParentId;
-					deptTree.isexpand = isExpand;  //默认不展开，人太多
+					deptTree.isexpand = isExpand;  //Mặc định không mở rộng，Quá nhiều người
 					deptTree.complete = true;
 					deptTree.showcheck = false;
 					deptTree.hasChildren = deptStaffData.Count > 0 || orgDetpData.Any(p => p.ParentId == deptItem.Id);
@@ -366,7 +366,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 				tree.id = orgItem.Id;
 				tree.text = orgItem.Name;
 				tree.value = orgItem.Code;
-				tree.parentId = orgItem.Id == organizeId ? null : orgItem.ParentId; //特殊
+				tree.parentId = orgItem.Id == organizeId ? null : orgItem.ParentId; //Đặc biệt
 				tree.isexpand = true;
 				tree.complete = true;
 				tree.showcheck = false;
@@ -374,9 +374,9 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 				tree.hasChildren = true;
 				treeList.Add(tree);
 			}
-			//缓存end
+			//Bộ nhớ đệmend
 			IList<string> checkedStaffIdList = new List<string>();
-			if (from == "userrelatioinstaff" && !string.IsNullOrWhiteSpace(keyValue))   //用户已关联人员
+			if (from == "userrelatioinstaff" && !string.IsNullOrWhiteSpace(keyValue))   //Người dùng đã liên kết nhân sự
 			{
 				checkedStaffIdList = _sysStaffRepo.GetCurStaffIdListByUserId(keyValue);
 			}
@@ -391,22 +391,22 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 					if (treeItem.showcheck && checkedStaffIdList.Contains(treeItem.id))
 					{
 						treeItem.checkstate = 1;
-						//同时让上级展开
+						//Đồng thời mở rộng cấp trên
 						var thisParentNode = treeList.Where(p => p.id == treeItem.parentId).FirstOrDefault();
 						if (thisParentNode != null)
 						{
-							thisParentNode.isexpand = true;  //下级有选中的，这里一定展开之
+							thisParentNode.isexpand = true;  //Cấp dưới có mục đã chọn，Ở đây nhất định mở rộng
 						}
 					}
 				}
 			}
-			if (!isShowEmpty)   //不显示多余的
+			if (!isShowEmpty)   //Không hiển thị phần thừa
 			{
-				var count = 1;  //移除的行数
+				var count = 1;  //Số dòng đã loại bỏ
 				while (count > 0)
 				{
 					count = treeList.RemoveAll(p => !p.showcheck && !p.hasChildren);
-					//重新调整下树 移除 没有下级（下级刚被移了） 又 不显示showcheck的
+					//Điều chỉnh lại cây Loại bỏ Không có cấp dưới（Cấp dưới vừa bị di chuyển） Lại Không hiển thịshowcheckcủa
 					treeList.RemoveAll(p => !p.showcheck && !treeList.Any(sub => sub.parentId == p.id));
 				}
 			}
@@ -423,9 +423,9 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 			}
 
 			string OrganizeId = staffInfo.OrganizeId;
-			//系统有效病区列表
+			//Danh sách khu bệnh hiệu lực của hệ thống
 			var wardList = _sysWardRepo.SelectWardList(OrganizeId);
-			//员工病区绑定信息
+			//Thông tin gắn khu bệnh của nhân viên
 			var staffwards = new List<SysStaffWardEntity>();
 
 			if (!string.IsNullOrWhiteSpace(staffId))
@@ -499,9 +499,9 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             }
 
             string OrganizeId = staffInfo.OrganizeId;
-            //系统有效诊室列表
+            //Danh sách phòng khám hiệu lực hệ thống
             var consultList = _sysConsultRepo.GetValidConsultListByDept(OrganizeId,ksCode);
-            //员工诊室绑定信息
+            //Thông tin gắn phòng khám của nhân viên
             var staffconsult = new List<SysStaffConsultEntity>();
 
             if (!string.IsNullOrWhiteSpace(staffId))

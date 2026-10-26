@@ -16,21 +16,21 @@ $.newtouchclientsInit = function () {
                 dataJson.sysCashPay = data.sysCashPay;
                 dataJson.SysForCashPayList = data.SysForCashPayList;
                 dataJson.sysFieldList = data.sysFieldList;
-                dataJson.sysStaffList = data.sysStaffList;//人员
-                dataJson.sysDepartList = data.sysDepartList,//科室
-                dataJson.sysPatiAreaList = data.sysPatiAreaList,//病区
-                dataJson.sysNationalityList = data.sysNationalityList,//国籍
-                dataJson.sysNationList = data.sysNationList,//民族
-                //dataJson.sysChargeItemList = data.sysChargeItemList,//住院记账收费项目
-                dataJson.doctorInHosBookkeep = data.doctorInHosBookkeep//住院记账门诊医生
-                //dataJson.regScheduleList = data.regScheduleList//挂号排班
+                dataJson.sysStaffList = data.sysStaffList;//Nhân sự
+                dataJson.sysDepartList = data.sysDepartList,//Khoa
+                dataJson.sysPatiAreaList = data.sysPatiAreaList,//Khu bệnh
+                dataJson.sysNationalityList = data.sysNationalityList,//Quốc tịch
+                dataJson.sysNationList = data.sysNationList,//Dân tộc
+                //dataJson.sysChargeItemList = data.sysChargeItemList,//Hạng mục thu phí ghi sổ nội trú
+                dataJson.doctorInHosBookkeep = data.doctorInHosBookkeep//Bác sĩ ngoại trú ghi sổ nội trú
+                //dataJson.regScheduleList = data.regScheduleList//Lịch trực đăng ký khám
                 //GetDYList
                 //dataJson.organize = data.organize;
                 //dataJson.role = data.role;
                 //dataJson.duty = data.duty;
                 //dataJson.authorizeMenu = eval(data.authorizeMenu);
                 //dataJson.authorizeButton = data.authorizeButton;
-                dataJson.SysFailedCodeMessageMapList = data.SysFailedCodeMessageMapList;//FailedException错误提示映射关系
+                dataJson.SysFailedCodeMessageMapList = data.SysFailedCodeMessageMapList;//FailedExceptionQuan hệ ánh xạ gợi ý lỗi
             }
         });
     }

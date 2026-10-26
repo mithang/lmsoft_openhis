@@ -31,19 +31,19 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <returns></returns>
         public ActionResult SubmitForm(SysMedicalOrderFrequencyEntity entity, int? yzpcId)
         {
-            entity.zbz = entity.zbz ?? "";  //数据类型问题
+            entity.zbz = entity.zbz ?? "";  //Vấn đề loại dữ liệu
             entity.zt = entity.zt == "true" ? "1" : "0";
             _sysMedicalOrderFrequencyRepo.SubmitForm(entity, yzpcId);
             return Success("操作成功。");
         }
 
         /// <summary>
-        /// 获取列表
+        /// Lấy danh sách
         /// </summary>
         public ActionResult GetGridJson(string keyword,string orgId)
         {
@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         public ActionResult GetFormJson(int? yzpcId,string orgId)
         {
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         public ActionResult DeleteForm(int yzpcId,string orgId)
         {

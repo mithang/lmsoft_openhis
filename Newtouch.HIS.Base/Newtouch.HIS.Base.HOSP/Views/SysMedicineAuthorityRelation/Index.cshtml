@@ -33,7 +33,7 @@
                 <tr>
                     <td>
                         <div class="input-group">
-                            <input id="txt_keyword_User" type="text" class="form-control" placeholder="工号/姓名/部门" style="width: 140px;">
+                            <input id="txt_keyword_User" type="text" class="form-control" placeholder="Mã nhân viên/Họ tên/Bộ phận" style="width: 140px;">
                             <span class="input-group-btn">
                                 <button id="btn_searchUser" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                             </span>
@@ -53,7 +53,7 @@
         <div class="topPanel">
             <div class="toolbar">
                 <div class="btn-group">
-                    <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>绑定权限</a>
+                    <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Gắn quyền</a>
                 </div>
             </div>
             <div class="search">
@@ -61,7 +61,7 @@
                     <tr>
                         <td>
                             <div class="input-group">
-                                <input id="txt_keyword_Qx" type="text" class="form-control" placeholder="权限编码/权限名称" style="width: 180px;">
+                                <input id="txt_keyword_Qx" type="text" class="form-control" placeholder="Mã quyền/Tên quyền" style="width: 180px;">
                                 <span class="input-group-btn">
                                     <button id="btn_searchQx" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                                 </span>
@@ -83,7 +83,7 @@
             gridListUser();
         })
 
-        //用户列表
+        //Danh sách người dùng
         function gridListUser() {
             var $gridListUser = $("#gridListUser");
             $gridListUser.dataGrid({
@@ -92,10 +92,10 @@
                 postData: { keyword: $("#txt_keyword").val(), organizeId: $("#OrganizeId").val() },
                 colModel: [
                     { label: "id", name: "Id", hidden: true, key: true },
-                    { label: "工号", name: "gh", width: 100, align: 'left' },
-                    { label: "姓名", name: "Name", width: 100, align: 'left' },
-                    { label: "科室", name: "DepartmentName", width: 100, align: 'left' },
-                    //{ label: "有效", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                    { label: "Mã nhân viên", name: "gh", width: 100, align: 'left' },
+                    { label: "Họ tên", name: "Name", width: 100, align: 'left' },
+                    { label: "Khoa", name: "DepartmentName", width: 100, align: 'left' },
+                    //{ label: "Hiệu lực", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
 
                 ],
 
@@ -122,7 +122,7 @@
             });
         }
 
-        //权限列表
+        //Danh sách quyền
         function gridListQx(gh) {
             var $gridListQx = $("#gridListQx");
             $gridListQx.dataGrid({
@@ -131,10 +131,10 @@
                 postData: { gh: gh, organizeId: $("#OrganizeId").val(),keyword: $("#txt_keyword").val()},
                 colModel: [
                     { label: "id", name: "Id", hidden: true, key: true },
-                    { label: "姓名", name: "name", width: 100, align: 'left' },
-                    { label: "权限编码", name: "qxCode", width: 100, align: 'left' },
-                    { label: "权限", name: "qxmc", width: 100, align: 'left' },
-                    //{ label: "有效", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                    { label: "Họ tên", name: "name", width: 100, align: 'left' },
+                    { label: "Mã quyền", name: "qxCode", width: 100, align: 'left' },
+                    { label: "Quyền", name: "qxmc", width: 100, align: 'left' },
+                    //{ label: "Hiệu lực", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
 
                 ],
 
@@ -153,7 +153,7 @@
             });
         }
 
-        //回车事件
+        //Sự kiện Enter
         $('#txt_keyword_User').keydownEnterEvent(function () {
             $('#btn_searchUser').trigger('click');
         })
@@ -162,17 +162,17 @@
             $('#btn_searchQx').trigger('click');
         })
 
-        //绑定权限
+        //Gắn quyền
         function btn_edit() {
             var seleRowid = jQuery("#gridListUser").jqGrid("getGridParam", "selrow");
             if (!(seleRowid)) {
-                $.modalAlert("请选中一条信息", 'warning');
+                $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
                 return;
             }
             var keyword = "";
             $.modalOpen({
                 id: "Form",
-                title: "绑定权限",
+                title: "Gắn quyền",
                 url: "/SysMedicineAuthorityRelation/Form?gh=" + gh + "&organizeId=" + $("#OrganizeId").val() + "&keyword=" + keyword,
                 width: "350px",
                 height: "550px",

@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 病区下拉
+        /// Danh sách thả xuống khu bệnh
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <returns></returns>
         public ActionResult SubmitForm(SysWardBedEntity entity, int? cwId)
@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 获取列表
+        /// Lấy danh sách
         /// </summary>
         public ActionResult GetGridJson(Pagination pagination, string keyword, string organizeId)
         {
@@ -105,7 +105,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         public ActionResult GetFormJson(int? cwId, string orgId)
         {
@@ -114,7 +114,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         public ActionResult DeleteForm(int cwId, string orgId)
         {

@@ -8,7 +8,7 @@ using Newtouch.Core.Common.Exceptions;
 namespace Newtouch.HIS.Base.HOSP.Controllers
 {
     /// <summary>
-    /// 系统农保收费大类
+    /// Nhóm thu phí lớn bảo hiểm nông nghiệp hệ thống
     /// </summary>
     public class SysAgriInsuranceChargeCategoryController : ControllerBase
     {
@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
         
         /// <summary>
-        /// 根据organizeId获取有效大类信息
+        /// TheoorganizeIdLấy thông tin nhóm lớn hiệu lực
         /// </summary>
         /// <param name="organizeId"></param>
         /// <returns></returns>
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 获取列表
+        /// Lấy danh sách
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -56,7 +56,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="SysPatiChargeAddEntity"></param>
         /// <param name="keyValue"></param>

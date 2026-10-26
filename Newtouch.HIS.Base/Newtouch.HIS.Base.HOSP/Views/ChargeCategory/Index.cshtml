@@ -8,10 +8,10 @@
     @Html.Partial("_OrganizeIdDDLToolbarSearchView")
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
     </div>
     <div class="search">
@@ -19,18 +19,18 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="名称" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
                     </div>
                 </td>
-                <td class="formTitle">有效状态：</td>
+                <td class="formTitle">Trạng thái hiệu lực：</td>
                 <td class="input-group" id="zttd" style="margin-top:13px;">
                     <select id="yxzt" name="zt" class="form-control">
-                        <option value="" >全部</option>
-                        <option value="0">无效</option>
-                        <option value="1" selected="selected">有效</option>
+                        <option value="" >Tất cả</option>
+                        <option value="0">Vô hiệu</option>
+                        <option value="1" selected="selected">Hiệu lực</option>
                     </select>
                 </td>
                 <td></td>
@@ -57,41 +57,41 @@
             url: "/ChargeCategory/GetTreeGridJson",
             height: $(window).height() - 128,
             colModel: [
-                 { label: "主键", name: "dlId", hidden: true, key: true },
-                    { label: '名称', name: 'dlmc', width: 150, align: 'left' },
-                  { label: "编码", name: "dlCode", width: 100, align: 'left' },
+                 { label: "Khóa chính", name: "dlId", hidden: true, key: true },
+                    { label: 'Tên', name: 'dlmc', width: 150, align: 'left' },
+                  { label: "Mã", name: "dlCode", width: 100, align: 'left' },
                  {
-                     label: "门诊住院标志", name: "mzzybz", width: 100, align: "left",
+                     label: "Cờ ngoại trú/nội trú", name: "mzzybz", width: 100, align: "left",
                     formatter: function (cellvalue) {
                         if (cellvalue == "0") {
-                            return "通用"
+                            return "Chung"
                         } else if (cellvalue == "1") {
-                            return "门诊"
+                            return "Ngoại trú"
                         } else {
-                            return "住院"
+                            return "Nội trú"
                         }
                     }
                  },
             {
-                label: "大类类别", name: "dllb", width: 100, align: "left",
+                label: "Loại nhóm lớn", name: "dllb", width: 100, align: "left",
                 formatter: function (cellvalue) {
                     if (cellvalue == "1") {
-                        return "药品"
+                        return "Thuốc"
                     }
                     else if (cellvalue == "2") {
-                        return "治疗项目"
+                        return "Hạng mục điều trị"
                     }
                     else if (cellvalue == "3") {
-                        return "非治疗项目"
+                        return "Hạng mục không điều trị"
                     }
                     else {
                         return ""
                     }
                 }
                 },
-				{ label: '所属分类', name: 'fjmc', width: 100, align: 'left' },
+				{ label: 'Phân loại trực thuộc', name: 'fjmc', width: 100, align: 'left' },
 				{
-					label: '税率', name: 'sn', width: 40, align: 'left', formatter: function (cellvalue) {
+					label: 'Thuế suất', name: 'sn', width: 40, align: 'left', formatter: function (cellvalue) {
 						if (cellvalue == null) {
 							return 0
 						}
@@ -100,17 +100,17 @@
 						}
 						
 					}},
-                { label: "有效", name: "zt", width: 80, align: "left",
+                { label: "Hiệu lực", name: "zt", width: 80, align: "left",
                     formatter: function (cellvalue, options, rowObject) {
                         return cellvalue == "1"
                             ? `<i class="fa fa-toggle-on" style="cursor:pointer;" onclick="toggleZt('${rowObject.dlId}', 0)"></i>`
                             : `<i class="fa fa-toggle-off" style="cursor:pointer;" onclick="toggleZt('${rowObject.dlId}', 1)"></i>`;
                     } },
-                { label: '创建人', name: 'CreatorCode', width: 100, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '最后修改', name: 'LastModifierCode', width: 100, align: 'left' },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '排序', name: 'px', width: 85, align: 'left' }
+                { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sửa lần cuối', name: 'LastModifierCode', width: 100, align: 'left' },
+                { label: 'Thời gian sửa lần cuối', name: 'LastModifyTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sắp xếp', name: 'px', width: 85, align: 'left' }
             ],
         });
         $("#btn_search").click(function () {
@@ -120,7 +120,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -132,7 +132,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增大类",
+            title: "Thêm nhóm lớn mới",
             url: "/ChargeCategory/Form?orgId=" + $('#OrganizeId').val(),
             width: "550px",
             height: "700px",
@@ -145,13 +145,13 @@
     function btn_edit() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var keyValue = $("#gridList").jqGridRowValue().dlId;
         $.modalOpen({
             id: "Form",
-            title: "修改大类",
+            title: "Sửa nhóm lớn",
             url: "/ChargeCategory/Form?keyValue=" + keyValue,
             width: "550px",
 			height: "700px",
@@ -162,9 +162,9 @@
     }
     function toggleZt(dlId, newZt) {
 
-        // 发送请求到后端更新数据
+        // Gửi yêu cầu tới backend để cập nhật dữ liệu
         $.ajax({
-            url: '/ChargeCategory/UpdateZt',  // 后端处理修改的URL
+            url: '/ChargeCategory/UpdateZt',  // Backend xử lý phần sửaURL
             type: 'POST',
             data: {
                 dlId: dlId,
@@ -172,7 +172,7 @@
                 organizeId: $("#OrganizeId").val()
             },
             success: function () {
-                // 切换显示的开关状态
+                // Chuyển trạng thái công tắc hiển thị
                 $('#btn_search').trigger('click');
 
             },

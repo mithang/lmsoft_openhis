@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers.Settlement
 		
 
 		/// <summary>
-		/// 获取列表
+		/// Lấy danh sách
 		/// </summary>
 		/// <param name="keyword"></param>
 		/// <returns></returns>
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers.Settlement
 
 
         /// <summary>
-        /// 获取列表
+        /// Lấy danh sách
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -84,12 +84,12 @@ namespace Newtouch.HIS.Base.HOSP.Controllers.Settlement
         //        var staff = _sysStaffRepo.FindEntity(p => p.gh == obj.gh && p.OrganizeId == OrganizeId && p.zt == "1");
         //        obj.name = staff.Name;
         //        //obj.qxnames= _sysMedicineAuthorityRelationRepo.FindEntity(p => p.gh == obj.gh && p.OrganizeId == OrganizeId && p.zt == "1")
-        //        //obj.qxnames=  //通过工号获取所有的权限名称  逗号分割
+        //        //obj.qxnames=  //Lấy tất cả tên quyền qua mã nhân viên  Phân tách bằng dấu phẩy
 
         //        //var qxkzRelList = _sysMedicineAuthorityRelationRepo.FindEntity(p => p.gh == obj.gh && p.OrganizeId == OrganizeId && p.zt == "1");
         //        //foreach (var qxkzRel in qxkzRelList) {
         //        //    var qxid = qxkzRel.qxId;
-        //        //    //通过id获取权限名称
+        //        //    //Thông quaidLấy tên quyền
 
         //        //}
         //        List.Add(obj);
@@ -131,7 +131,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers.Settlement
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="SysMedicineAuthorityRelationEntity"></param>
         /// <param name="keyValue"></param>
@@ -149,7 +149,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers.Settlement
 
         public ActionResult GetAuthorityList(string gh,string organizeId,string keyword)
         {
-            var AuthorityList = _sysMedicineAuthorityRepo.GetValidList(organizeId,keyword);  //获取有效权限列表
+            var AuthorityList = _sysMedicineAuthorityRepo.GetValidList(organizeId,keyword);  //Lấy danh sách quyền hiệu lực
             var treeList = new List<TreeViewModel>();
             var authorityCurrentEntityList = new List<SysMedicineAuthorityRelationVO>();
             if (!string.IsNullOrWhiteSpace(gh))
@@ -158,7 +158,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers.Settlement
             }
             //TreeViewModel tree0 = new TreeViewModel();
             //tree0.id = "0";
-            //tree0.text = "分类";
+            //tree0.text = "Phân loại";
             //tree0.value = "qxkz";
             //tree0.parentId = null;
             //tree0.isexpand = true;

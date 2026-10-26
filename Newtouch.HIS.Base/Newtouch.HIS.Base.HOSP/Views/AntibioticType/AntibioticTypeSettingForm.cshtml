@@ -30,13 +30,13 @@
                 <td class="formValue"></td>
             </tr>
             <tr>
-                <td class="formTitle">分类级别：</td>
+                <td class="formTitle">Cấp phân loại：</td>
                 <td class="formValue">
-                    <label id="typelevel" name="typelevel">一级分类</label>
+                    <label id="typelevel" name="typelevel">Phân loại cấp 1</label>
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>分类名称：</td>
+                <td class="formTitle"><span class="required">*</span>Tên phân loại：</td>
                 <td class="formValue">
                     <input type="text" width="120" id="typeName" name="typeName"/>
                     <input type="hidden" id="Id" />
@@ -44,12 +44,12 @@
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">权限级别：</td>
+                <td class="formTitle">Cấp quyền：</td>
                 <td class="formValue" >
                     <select id="qxjb" name="qxjb" class="form-control" style="width:126px;">
-                        <option value="0">非限制使用药物</option>
-                        <option value="1">限制使用药物</option>
-                        <option value="2">特殊使用药物</option>
+                        <option value="0">Thuốc sử dụng không hạn chế</option>
+                        <option value="1">Thuốc sử dụng hạn chế</option>
+                        <option value="2">Thuốc sử dụng đặc biệt</option>
                     </select>
                 </td>
             </tr>
@@ -65,10 +65,10 @@
     var tlevel = $.request("level");
     if (tlevel == "1")
     {
-        $('#typelevel').html("一级分类");
+        $('#typelevel').html("Phân loại cấp 1");
     }
     else if (tlevel == "2") {
-        $('#typelevel').html("二级分类");
+        $('#typelevel').html("Phân loại cấp 2");
     }
 
     $(function () {
@@ -85,10 +85,10 @@
                     switch (data.typelevel)
                     {
                         case "1":
-                            $('#typelevel').html("一级分类");
+                            $('#typelevel').html("Phân loại cấp 1");
                             break;
                         case "2":
-                            $('#typelevel').html("二级分类");
+                            $('#typelevel').html("Phân loại cấp 2");
                             break;
                         default:
                             $('#typelevel').html("error");
@@ -118,15 +118,15 @@
         data.qxjbmc = $('#qxjb').find("option:selected").text();
         if (!data.typeName || $.trim(data.typeName) == "")
         {
-            $.modalAlert("请填写分类名称", "warning");
+            $.modalAlert("Vui lòng nhập tên phân loại", "warning");
             return;
         }
         if (!data.typelevel || $.trim(data.typelevel) == "") {
-            $.modalAlert("分类等级获取失败，请退至查询界面重新操作！", "warning");
+            $.modalAlert("Lấy cấp phân loại thất bại，Vui lòng quay lại giao diện tra cứu và thao tác lại！", "warning");
             return;
         }
         if (!data.qxjb || $.trim(data.qxjb) == "") {
-            $.modalAlert("权限级别获取失败！", "warning");
+            $.modalAlert("Lấy cấp quyền thất bại！", "warning");
             return;
         }
 

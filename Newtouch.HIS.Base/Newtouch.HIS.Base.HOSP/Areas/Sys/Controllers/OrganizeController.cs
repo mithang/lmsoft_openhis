@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.Sys.Controllers
 
             if (string.IsNullOrWhiteSpace(keyValue))
             {
-                //新增
+                //Thêm mới
                 entity.ParentId = null;
                 entity.TopOrganizeId = null;
             }
@@ -83,11 +83,11 @@ namespace Newtouch.HIS.Base.HOSP.Areas.Sys.Controllers
 
             if (string.IsNullOrWhiteSpace(keyValue) && string.IsNullOrWhiteSpace(entity.ParentId))
             {
-                //已经成功创建了一个顶级组织机构 尝试为该机构初始化一个系统管理员admin
+                //Đã tạo thành công một tổ chức cấp cao nhất Thử khởi tạo một quản trị viên hệ thống cho tổ chức nàyadmin
                 try
                 {
                     _sysUserApp.CreateDefaultAdminToOrg(entity.Id, Constants.LogonDefaultPassword);
-                    //return Success("操作成功。且已成功初始化系统管理员admin");
+                    //return Success("Thao tác thành công。và đã khởi tạo thành công quản trị viên hệ thốngadmin");
                     return Success("操作成功<br/>且已成功初始化系统管理员admin");
                 }
                 catch (Exception ex)

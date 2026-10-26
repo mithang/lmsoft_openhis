@@ -51,7 +51,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 1.单点登录的回调，接收token，访问单点登录的API以获得UserId
+        /// 1.Callback đăng nhập một lần，Nhận token，Truy cập đăng nhập một lần API để lấy UserId
         /// </summary>
         /// <returns></returns>
         public ActionResult SSOCallback(string access_token)
@@ -78,7 +78,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 2.验证登录
+        /// 2.Xác minh đăng nhập
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
@@ -86,7 +86,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         {
             var username = WebHelper.GetCookie(Constants.AppId + "_OpenId");
             WebHelper.RemoveCookie(Constants.AppId + "_OpenId");
-            //登录日志Entity
+            //Nhật ký đăng nhậpEntity
             var logEntity = new SysLogEntity
             {
                 Id = Guid.NewGuid().ToString(),
@@ -114,7 +114,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             {
                 SaveLoginSuccessStatus(userEntity, logEntity);
                 _sysLogRepository.Insert(logEntity);
-                //用来标志用户的登录来源
+                //Dùng để đánh dấu nguồn đăng nhập của người dùng
                 WebHelper.WriteCookie(Constants.AppId + "_" + username + "_" + "LoginFlag", EnumLoginFlag.SSO.ToString());
 
                 return RedirectToAction("Index", "Home");
@@ -127,7 +127,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         [HttpGet]
         public virtual ActionResult Index()
         {
-            //写入客户端Id
+            //Ghi vào clientId
             WebHelper.WriteCookie(Constants.AppId + "_ClientId", Guid.NewGuid().ToString("N").ToLower());
 
             ViewBag.IsCheckChkCode = ConfigurationHelper.GetAppConfigBoolValue("Is_CheckChkCode");
@@ -142,7 +142,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             string code;
             var stream = new VerifyCode().GetVerifyCode(out code);
 
-            //验证码 5分钟内有效
+            //Mã xác minh 5Hiệu lực trong vòng phút
             RedisHelper.StringSet(clientId + "_chkCode", code, new TimeSpan(0, 5, 0));
 
             AppLogger.Info(string.Format("生成验证码：{0}", code));
@@ -180,7 +180,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             {
                 WebHelper.RemoveCookie(Constants.AppId + "_" + userCode + "_" + "LoginFlag");
 
-                var url = ConfigurationHelper.GetAppConfigValue("SSOOutLogin");  //退出SSO登录
+                var url = ConfigurationHelper.GetAppConfigValue("SSOOutLogin");  //ThoátSSOĐăng nhập
 
                 return Redirect(url);
             }
@@ -192,7 +192,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 
 
         /// <summary>
-        /// 返回单点登录首页
+        /// Quay về trang chủ đăng nhập một lần
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -222,7 +222,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             if (opr != null) { userCode = opr.UserCode; }
             WebHelper.RemoveCookie(Constants.AppId + "_" + userCode + "_" + "LoginFlag");
 
-            var url = ConfigurationHelper.GetAppConfigValue("SSOHomeHost"); ;  //跳转到单点登录页面
+            var url = ConfigurationHelper.GetAppConfigValue("SSOHomeHost"); ;  //Chuyển tới trang đăng nhập một lần
 
             return Redirect(url);
         }
@@ -231,7 +231,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         [HandlerAjaxOnly]
         public ActionResult CheckLogin(string username, string password, string code)
         {
-            //登录日志Entity
+            //Nhật ký đăng nhậpEntity
             var logEntity = new SysLogEntity
             {
                 Id = Guid.NewGuid().ToString(),
@@ -247,7 +247,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 
                 if (ConfigurationHelper.GetAppConfigBoolValue("Is_CheckChkCode") ?? true)
                 {
-                    //登录验证码 验证
+                    //Mã xác minh đăng nhập Xác thực
                     var clientId = WebHelper.GetCookie(Constants.AppId + "_ClientId");
                     var chkCode = RedisHelper.StringGet(clientId + "_chkCode");
                     if (string.IsNullOrWhiteSpace(chkCode) || code.ToLower() != chkCode.ToLower())
@@ -310,7 +310,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 获取Web客户端的Ip
+        /// LấyWebCủa clientIp
         /// </summary>
         public string GetWebClientIp()
         {
@@ -328,7 +328,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 身份验证通过后，记录成功登陆状态
+        /// Sau khi xác thực danh tính thành công，Ghi lại trạng thái đăng nhập thành công
         /// </summary>
         /// <param name="userEntity"></param>
         /// <param name="logEntity"></param>
@@ -344,17 +344,17 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
                 var staffList = _sysUserDmnService.GetStaffListByUserId(userEntity.Id);
                 if (userEntity.Account != "root" && userEntity.Account != "admin")
                 {
-                    //root admin 不可以关联医院Id，建立了关联也无视
+                    //root admin Không thể liên kết bệnh việnId，Dù đã thiết lập liên kết cũng bỏ qua
                     staffList = _sysUserDmnService.GetStaffListByUserId(userEntity.Id);
                     if (staffList.Count > 1)
                     {
-                        //主页需要做Org选择
+                        //Trang chủ cần làmOrgChọn
                         WebHelper.WriteCookie(Constants.AppId + "_" + "CookieKey_ChooseOrg", "1");
                         writedNeedChooseOrgFlag = true;
                     }
                     else if (staffList.Count == 0)
                     {
-                        //170904 如果尚未关联系统人员 视登录失败
+                        //170904 Nếu chưa liên kết nhân sự hệ thống Xem như đăng nhập thất bại
                         throw new FailedException("登录失败，尚未关联系统人员");
                     }
                 }
@@ -369,8 +369,8 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
                     OrganizeId = staff == null ? null : staff.OrganizeId,
                     LoginIPAddress = GetWebClientIp(),
                     LoginTime = DateTime.Now,
-                    StaffId = staff == null ? null : staff.Id,  //人员 Id
-                    rygh = staff == null ? null : staff.gh, //人员工号
+                    StaffId = staff == null ? null : staff.Id,  //Nhân sự Id
+                    rygh = staff == null ? null : staff.gh, //Mã nhân viên
                     TopOrganizeId = Constants.TopOrganizeId,
                     DepartmentName = _sysDepartmentRepository.GetNameByCode(staff == null ? null : staff.DepartmentCode
                         , staff == null ? null : staff.OrganizeId),
@@ -400,8 +400,8 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
                 else
                 {
                     var roleList = _userRoleAuthDmnService.GetUserRoleList(userEntity.Id,operatorModel.OrganizeId);
-                    //前 已作 staff != null 的 前置判断
-                    //170904 Administrator不再可以关联Staff，仅admin
+                    //Trước Đã làm staff != null của Đánh giá tiền điều kiện
+                    //170904 AdministratorKhông còn có thể liên kếtStaff，Chỉadmin
                     operatorModel.RoleIdList = roleList.Select(p => p.Id).ToList();
                     operatorModel.IsHospAdministrator = roleList.Any(p => p.Code == "HospAdministrator");
                 }
@@ -410,7 +410,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 
                 if (!writedNeedChooseOrgFlag)
                 {
-                    //主页需要做Org选择
+                    //Trang chủ cần làmOrgChọn
                     WebHelper.RemoveCookie(Constants.AppId + "_" + "CookieKey_ChooseOrg");
                 }
 
@@ -428,7 +428,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
                     WebHelper.RemoveCookie(Constants.AppId + "_" + "ReportServer_HOST");
                 }
 
-                OperatorProvider.AddCurrent(operatorModel); //这个放到最后
+                OperatorProvider.AddCurrent(operatorModel); //Đặt cái này cuối cùng
             }
         }
     }

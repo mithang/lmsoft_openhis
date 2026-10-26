@@ -12,13 +12,13 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" authorize="yes" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a id="NF-edit" authorize="yes" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a id="NF-YBGetInfo" authorize="yes" class="btn btn-primary" onclick="btn_YBGetInfo()"><i class="fa fa-search"></i>医药机构信息获取</a>
+            <a id="NF-YBGetInfo" authorize="yes" class="btn btn-primary" onclick="btn_YBGetInfo()"><i class="fa fa-search"></i>Lấy thông tin cơ sở y dược</a>
         </div>
     </div>
     <div class="search">
@@ -26,7 +26,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="名称/编码" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Mã" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -53,37 +53,37 @@
             url: "/Organize/GetTreeGridJson",
             height: $(window).height() - 96,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: "有效", name: "zt", width: 30, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: '名称', name: 'Name', width: 150, align: 'left' },
-                { label: "编码", name: "Code", width: 60, align: "left" },
-                { label: "国家编码", name: "gjjgdm", width: 60, align: "left" },
-                { label: '简称', name: 'ShortName', width: 80, align: 'left' },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: "Hiệu lực", name: "zt", width: 30, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Tên', name: 'Name', width: 150, align: 'left' },
+                { label: "Mã", name: "Code", width: 60, align: "left" },
+                { label: "Mã quốc gia", name: "gjjgdm", width: 60, align: "left" },
+                { label: 'Tên viết tắt', name: 'ShortName', width: 80, align: 'left' },
                 {
-                    label: '机构分类', name: 'CategoryCode', width: 100, align: 'left',
+                    label: 'Phân loại cơ quan', name: 'CategoryCode', width: 100, align: 'left',
                     formatter: function (cellvalue) {
                         return top.clients.dataItems['OrganizeType'][cellvalue] == null ? "" : top.clients.dataItems['OrganizeType'][cellvalue];
                     }
                 },
                 {
-                    label: "允许编辑", name: "AllowEdit", width: 60, align: "left",
+                    label: "Cho phép sửa", name: "AllowEdit", width: 60, align: "left",
                     formatter: function (cellvalue) {
                         return cellvalue == 1 ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>";
                     }
                 },
-                { label: '电话', name: 'TelePhone', width: 100, align: 'left' },
-                { label: '医保区划名称', name: 'ybxzqhName', width: 100, align: 'left' },
-                { label: '医保区划代码', name: 'ybxzqhCode', width: 100, align: 'left' },
-                { label: '微信', name: 'WeChat', width: 100, align: 'left' },
-                { label: '传真', name: 'Fax', width: 100, align: 'left' },
-                { label: '邮箱', name: 'Email', width: 100, align: 'left' },
-                { label: '地址', name: 'Address', width: 100, align: 'left' },
-                { label: '备注', name: 'Description', width: 200, align: 'left' },
-                   { label: '排序', name: 'px', width: 40, align: 'left' },
-                { label: '创建人', name: 'CreatorCode', width: 60, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '最后修改', name: 'LastModifierCode', width: 60, align: 'left' },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Điện thoại', name: 'TelePhone', width: 100, align: 'left' },
+                { label: 'Tên khu vực BHYT', name: 'ybxzqhName', width: 100, align: 'left' },
+                { label: 'Mã khu vực BHYT', name: 'ybxzqhCode', width: 100, align: 'left' },
+                { label: 'WeChat', name: 'WeChat', width: 100, align: 'left' },
+                { label: 'Fax', name: 'Fax', width: 100, align: 'left' },
+                { label: 'Email', name: 'Email', width: 100, align: 'left' },
+                { label: 'Địa chỉ', name: 'Address', width: 100, align: 'left' },
+                { label: 'Ghi chú', name: 'Description', width: 200, align: 'left' },
+                   { label: 'Sắp xếp', name: 'px', width: 40, align: 'left' },
+                { label: 'Người tạo', name: 'CreatorCode', width: 60, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sửa lần cuối', name: 'LastModifierCode', width: 60, align: 'left' },
+                { label: 'Thời gian sửa lần cuối', name: 'LastModifyTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
             ]
         });
         $("#btn_search").click(function () {
@@ -93,7 +93,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -101,7 +101,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增机构",
+            title: "Thêm cơ quan mới",
             url: "/Organize/Form",
             width: "700px",
             height: "620px",
@@ -113,7 +113,7 @@
     function btn_edit() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var keyValue = $("#gridList").jqGridRowValue().Id;
@@ -123,7 +123,7 @@
         }
         $.modalOpen({
             id: "Form",
-            title: "修改机构",
+            title: "Sửa cơ quan",
             url: "/Organize/Form?keyValue=" + keyValue,
             width: "700px",
             height: "620px",
@@ -144,10 +144,10 @@
             success: function (data) {
                 var upDataReturn = eval('(' + data + ')');
                 if (upDataReturn.infcode == "0") {
-                    $.modalAlert("医院登记：" + upDataReturn.output.medinsinfo[0].hosp_lv + ";      \n\r 统一社会信用代码：" + upDataReturn.output.medinsinfo[0].uscc, 'success');
+                    $.modalAlert("Đăng ký bệnh viện：" + upDataReturn.output.medinsinfo[0].hosp_lv + ";      \n\r Mã tín dụng xã hội thống nhất：" + upDataReturn.output.medinsinfo[0].uscc, 'success');
                 }
                 else {
-                    $.modalAlert("获取机构信息失败：" + upDataReturn.err_msg, 'error');
+                    $.modalAlert("Lấy thông tin cơ quan thất bại：" + upDataReturn.err_msg, 'error');
                     return;
                 }
 

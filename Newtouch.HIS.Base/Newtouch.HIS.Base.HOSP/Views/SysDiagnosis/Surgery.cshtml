@@ -8,10 +8,10 @@
 	@Html.Partial("_OrganizeIdDDLToolbarSearchView")
 	<div class="toolbar">
 		<div class="btn-group">
-			<a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+			<a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
 		</div>
 		<div class="btn-group">
-			<a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+			<a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
 		</div>
 	</div>
 	<div class="search">
@@ -19,7 +19,7 @@
 			<tr>
 				<td>
 					<div class="input-group">
-						<input id="txt_keyword" type="text" class="form-control" placeholder="名称/编码/首拼" style="width: 180px;">
+						<input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Mã/Mã chữ cái đầu" style="width: 180px;">
 						<span class="input-group-btn">
 							<button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
 						</span>
@@ -46,20 +46,20 @@
 			url: "/SysDiagnosis/SurgeryGetGridJson",
             height: $(window).height() - 128,
             colModel: [
-				{ label: "主键", name: "id", hidden: true, key: true },
-				{ label: "国临版编码", name: "ssm", width: 70, align: 'left' },
-                { label: '国临版名称', name: 'ssmc', width: 150, align: 'left' },
-				{ label: '医保版手术名称', name: 'ssmc_yb', width: 150, align: 'left' },
-				{ label: '医保版手术码', name: 'ssm_yb', width: 70, align: 'left' },
-                { label: "手术级别", name: "ssjb", width: 100, align: 'left' },
+				{ label: "Khóa chính", name: "id", hidden: true, key: true },
+				{ label: "Mã bản quốc lâm", name: "ssm", width: 70, align: 'left' },
+                { label: 'Tên bản quốc lâm', name: 'ssmc', width: 150, align: 'left' },
+				{ label: 'Tên phẫu thuật bản BHYT', name: 'ssmc_yb', width: 150, align: 'left' },
+				{ label: 'Mã phẫu thuật bản BHYT', name: 'ssm_yb', width: 70, align: 'left' },
+                { label: "Cấp phẫu thuật", name: "ssjb", width: 100, align: 'left' },
 				{
-					label: '手术类型', name: 'sslx', width: 80, align: 'left'
+					label: 'Loại phẫu thuật', name: 'sslx', width: 80, align: 'left'
 					, formatter: function (cellVallue) {
-						return cellVallue == 0 ? "诊断型" : (cellVallue == 1 ? "治疗型" : (cellVallue == 2 ? "操作型" : (cellVallue == 3 ? "手术" : "" )));
+						return cellVallue == 0 ? "Loại chẩn đoán" : (cellVallue == 1 ? "Loại điều trị" : (cellVallue == 2 ? "Loại thao tác" : (cellVallue == 3 ? "Phẫu thuật" : "" )));
 					}
 				},
-				{ label: '拼音码', name: 'pym', width: 60, align: 'left' },
-                { label: "有效", name: "zt", width: 60, align: "left", formatter: function (cellvalue) { return cellvalue == true ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+				{ label: 'Mã pinyin', name: 'pym', width: 60, align: 'left' },
+                { label: "Hiệu lực", name: "zt", width: 60, align: "left", formatter: function (cellvalue) { return cellvalue == true ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
             ],
             pager: "#gridPager",
             sortname: 'CreateTime desc',
@@ -72,7 +72,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -84,7 +84,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增手术",
+            title: "Thêm phẫu thuật mới",
 			url: "/SysDiagnosis/SurgeryFrom?orgId=" + $('#OrganizeId').val(),
             width: "550px",
             height: "570px",
@@ -98,13 +98,13 @@
 		debugger
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var keyValue = $("#gridList").jqGridRowValue().id;
         $.modalOpen({
             id: "Form",
-            title: "修改手术",
+            title: "Sửa phẫu thuật",
 			url: "/SysDiagnosis/SurgeryFrom?keyValue=" + keyValue,
             width: "550px",
             height: "570px",

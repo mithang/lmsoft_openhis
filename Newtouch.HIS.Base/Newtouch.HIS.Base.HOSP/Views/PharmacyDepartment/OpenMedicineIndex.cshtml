@@ -8,10 +8,10 @@
     @Html.Partial("_OrganizeIdDDLToolbarSearchView")
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" authorize="yes" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a id="NF-edit" authorize="yes" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
     </div>
     <div class="search">
@@ -19,7 +19,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="名称/编码/首拼" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Mã/Mã chữ cái đầu" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -45,15 +45,15 @@
             url: "/PharmacyDepartment/GetOpenMedicineGridJson",
             height: $(window).height() - 128,
             colModel: [
-                 { label: "主键", name: "Id", hidden: true, key: true },
-                 { label: "药房部门名称", name: "yfbmmc", width: 150, align: 'left' },
-                 { label: '大类名称', name: 'dlmc', width: 150, align: 'left' },
-                 { label: "有效", name: "zt", width: 80, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                 { label: '创建人', name: 'CreatorCode', width: 100, align: 'left' },
-                 { label: '创建时间', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                 { label: '最后修改', name: 'LastModifierCode', width: 120, align: 'left' },
-                 { label: '最后修改时间', name: 'LastModifyTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                 { label: '排序', name: 'px', width: 100, align: 'left' },
+                 { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                 { label: "Tên bộ phận nhà thuốc", name: "yfbmmc", width: 150, align: 'left' },
+                 { label: 'Tên nhóm lớn', name: 'dlmc', width: 150, align: 'left' },
+                 { label: "Hiệu lực", name: "zt", width: 80, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                 { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
+                 { label: 'Thời gian tạo', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                 { label: 'Sửa lần cuối', name: 'LastModifierCode', width: 120, align: 'left' },
+                 { label: 'Thời gian sửa lần cuối', name: 'LastModifyTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                 { label: 'Sắp xếp', name: 'px', width: 100, align: 'left' },
             ],
         });
         $("#btn_search").click(function () {
@@ -63,7 +63,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -71,12 +71,12 @@
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         $.modalOpen({
             id: "OpenMadicineForm",
-            title: "修改药房部门",
+            title: "Sửa bộ phận nhà thuốc",
             url: "/PharmacyDepartment/OpenMadicineForm?keyValue=" + keyValue,
             width: "550px",
             height: "400px",
@@ -89,7 +89,7 @@
     function btn_add() {
         $.modalOpen({
             id: "OpenMadicineForm",
-            title: "新建药房部门",
+            title: "Tạo bộ phận nhà thuốc mới",
             url: "/PharmacyDepartment/OpenMadicineForm?orgId=" + $('#OrganizeId').val(),
             width: "550px",
             height: "400px",

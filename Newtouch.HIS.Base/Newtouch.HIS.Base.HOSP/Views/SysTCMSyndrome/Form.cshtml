@@ -5,54 +5,54 @@
 <form id="form1">
     <div class="container" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
         <ul class="nav nav-tabs" role="tablist" id="myTab">
-            <li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab">基本信息</a></li>
+            <li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab">Thông tin cơ bản</a></li>
         </ul>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" style="padding-top: 20px; margin-right: 104px;margin-left:20px;" id="basicInfo">
                 <table class="form">
                     <tr>
-                        <td class="formTitle"><span class="required">*</span>组织机构：</td>
+                        <td class="formTitle"><span class="required">*</span>Tổ chức：</td>
                         <td class="formValue formDdlSelectorTd">
                             <select id="OrganizeId" name="OrganizeId" class="form-control required">
-                                <option value="">==请选择==</option>
+                                <option value="">==Vui lòng chọn==</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
-                        <td class="formTitle"><span class="required">*</span>名称：</td>
+                        <td class="formTitle"><span class="required">*</span>Tên：</td>
                         <td class="formValue">
-                            <input id="zhmc" name="zhmc" type="text" class="form-control required" placeholder="请输入名称" />
+                            <input id="zhmc" name="zhmc" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="formTitle"><span class="required">*</span>编码：</td>
+                        <td class="formTitle"><span class="required">*</span>Mã：</td>
                         <td class="formValue">
-                            <input id="zhCode" name="zhCode" type="text" class="form-control required" placeholder="请输入编码" />
+                            <input id="zhCode" name="zhCode" type="text" class="form-control required" placeholder="Vui lòng nhập mã" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>首拼：</th>
+                        <th class="formTitle"><span class="required">*</span>Mã chữ cái đầu：</th>
                         <td class="formValue">
                             <input id="py" name="py" type="text" class="form-control required" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">五笔：</th>
+                        <th class="formTitle">Ngũ bút：</th>
                         <td class="formValue">
                             <input id="wb" name="wb" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">排序：</th>
+                        <th class="formTitle">Sắp xếp：</th>
                         <td class="formValue">
                             <input id="px" name="px" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle" style="height: 35px;">状态：</th>
+                        <th class="formTitle" style="height: 35px;">Trạng thái：</th>
                         <td class="formValue" style="padding-top: 1px;">
                             <div class="ckbox">
-                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                             </div>
                         </td>
                     </tr>
@@ -80,13 +80,13 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp chọn tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
             selectedValue: $.request('orgId'),
         });
 
-        //首拼
+        //Mã chữ cái đầu
         $('#zhmc').keyup(function () {
             $('#py').val($(this).toShouPin());
         })

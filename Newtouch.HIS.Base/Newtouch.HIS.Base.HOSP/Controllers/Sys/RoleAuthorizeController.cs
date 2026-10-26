@@ -26,13 +26,13 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 系统权限树 （菜单+按钮）
+        /// Cây quyền hệ thống （Menu+Nút）
         /// </summary>
-        /// <param name="roleId">当前角色Id</param>
+        /// <param name="roleId">Vai trò hiện tạiId</param>
         /// <returns></returns>
         public ActionResult GetPermissionTree(string roleId)
         {
-            //且有效菜单
+            //và menu hiệu lực
             var moduledata = _sysModuleDmnService.GetMenuListByOrg(this.OrganizeId).Where(p => p.zt == "1").ToList();
             var authorizedata = new List<SysRoleAuthorizeEntity>();
             if (!string.IsNullOrEmpty(roleId))

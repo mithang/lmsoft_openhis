@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "新增/修改";
+    ViewBag.Title = "Thêm mới/Sửa";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
@@ -13,36 +13,36 @@
             <div role="tabpanel" class="tab-pane fade in active">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">上级：</th>
+                        <th class="formTitle">Cấp trên：</th>
                         <td class="formValue">
                             <select id="parentId" name="parentId" class="form-control">
-                                <option value="">==请选择==</option>
+                                <option value="">==Vui lòng chọn==</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>类别名称：</th>
+                        <th class="formTitle"><span class="required">*</span>Tên loại：</th>
                         <td class="formValue">
-                            <input id="name" name="name" type="text" class="form-control required" placeholder="请输入名称" />
+                            <input id="name" name="name" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">备注：</th>
+                        <th class="formTitle">Ghi chú：</th>
                         <td class="formValue">
                             <input id="remark" name="remark" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">排序：</th>
+                        <th class="formTitle">Sắp xếp：</th>
                         <td class="formValue">
-                            <input id="px" name="px" type="text" class="form-control" placeholder="请输入排序" />
+                            <input id="px" name="px" type="text" class="form-control" placeholder="Vui lòng nhập thứ tự sắp xếp" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle" style="height: 35px;">选项：</th>
+                        <th class="formTitle" style="height: 35px;">Tùy chọn：</th>
                         <td class="formValue" style="padding-top: 1px;">
                             <div class="ckbox">
-                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                             </div>
                         </td>
                     </tr>
@@ -68,14 +68,14 @@
         }
     });
 
-    //初始化
+    //Khởi tạo
     function initControl() {
         $("#parentId").bindSelect({
             url: "/ProductManage/ProductType/GetPatientTreeSelectJson"
         });
     };
 
-    //提交
+    //Gửi
     function AcceptClick(callback) {
         if (!DataValidate()) {
             return;
@@ -91,10 +91,10 @@
         });
     }
 
-    //数据效验
+    //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#name").val() === "") {
-            $.modalAlert("类别名称必填", 'warning');
+            $.modalAlert("Tên loại là bắt buộc", 'warning');
             return false;
         }
         return true;

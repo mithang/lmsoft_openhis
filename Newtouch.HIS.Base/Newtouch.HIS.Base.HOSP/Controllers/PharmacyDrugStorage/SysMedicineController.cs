@@ -13,7 +13,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.Base.HOSP.Controllers
 {
     /// <summary>
-    /// 系统药品
+    /// Thuốc hệ thống
     /// </summary>
     public class SysMedicineController : ControllerBase
     {
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             return View();
         }
 
-        //grid json 数据源
+        //grid json Nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetGridJson(Pagination pagination, string keyword, string organizeId,string zt,string ypflCode)
@@ -67,7 +67,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         #region 绑定下拉控件的值
 
         /// <summary>
-        /// 根据组织机构获取药品信息列表
+        /// Lấy danh sách thông tin thuốc theo tổ chức
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>
@@ -91,7 +91,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         #endregion
 
         /// <summary>
-        /// 提交数据信息
+        /// Gửi thông tin dữ liệu
         /// </summary>
         /// <param name="model"></param>
         /// <param name="p"></param>
@@ -123,7 +123,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 修改信息时，把信息带到新页面
+        /// Khi sửa thông tin，Đưa thông tin sang trang mới
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -136,7 +136,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 药品信息同步医保
+        /// Đồng bộ thông tin thuốc với BHYT
         /// </summary>
         /// <param name="ypCode"></param>
         /// <returns></returns>
@@ -188,7 +188,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 获取抗生素信息
+        /// Lấy thông tin kháng sinh
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
@@ -199,7 +199,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 保存抗生素信息
+        /// Lưu thông tin kháng sinh
         /// </summary>
         /// <param name="AntibioticInfo"></param>
         /// <returns></returns>
@@ -217,7 +217,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
 
 
         /// <summary>
-        /// 获取所有药房药库
+        /// Lấy tất cả nhà thuốc/kho thuốc
         /// </summary>
         /// <returns></returns>
         public ActionResult GetAllYfbm(string organizeId)
@@ -227,7 +227,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 获取该药品已授权的药房药库
+        /// Lấy nhà thuốc/kho thuốc đã được ủy quyền của thuốc này
         /// </summary>
         /// <param name="ypId"></param>
         /// <returns></returns>
@@ -238,11 +238,11 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 提交授权药房药库
+        /// Gửi nhà thuốc/kho thuốc được ủy quyền
         /// </summary>
         /// <param name="p"></param>
-        /// <param name="ypCode">药品代码</param>
-        /// <param name="keyValue">药品ID</param>
+        /// <param name="ypCode">Mã thuốc</param>
+        /// <param name="keyValue">ThuốcID</param>
         /// <returns></returns>
         public ActionResult SubmitEmpowermentPharmacyDepartment(List<string> p, string ypCode, int? keyValue)
         {
@@ -258,7 +258,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         #endregion
 
 
-        //药品用法下拉浮层
+        //Lớp nổi thả xuống cách dùng thuốc
         public ActionResult GetUsageFloat(string keyword = null)
         {
             var list = _sysMedicineDmnService.GetUsageFloat(keyword);

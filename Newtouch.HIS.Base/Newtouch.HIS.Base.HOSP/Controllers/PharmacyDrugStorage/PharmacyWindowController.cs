@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Base.HOSP.Controllers
 {
     /// <summary>
-    /// 药房窗口
+    /// Cửa sổ nhà thuốc
     /// </summary>
     public class PharmacyWindowController : ControllerBase
     {
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 查询药房窗口信息
+        /// Tra cứu thông tin cửa sổ nhà thuốc
         /// </summary>
         /// <param name="pagintion"></param>
         /// <param name="yfckCode"></param>
@@ -59,7 +59,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 修改窗口信息
+        /// Sửa thông tin cửa sổ
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -91,7 +91,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 根据organizeId获取药房部门
+        /// TheoorganizeIdLấy bộ phận nhà thuốc
         /// </summary>
         /// <returns></returns>
         public ActionResult PharmacyDepartmentList(string organizeId ,byte? yjbmjb)

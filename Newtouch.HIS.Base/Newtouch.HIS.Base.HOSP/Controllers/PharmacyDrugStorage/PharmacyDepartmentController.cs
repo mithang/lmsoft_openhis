@@ -96,7 +96,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         #region xt_yfbm_yp维护
 
         /// <summary>
-        /// 主页面 
+        /// Trang chính 
         /// </summary>
         /// <returns></returns>
         public ActionResult OpenMedicineIndex()
@@ -106,7 +106,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 更新添加页面
+        /// Cập nhật trang thêm
         /// </summary>
         /// <returns></returns>
         public ActionResult OpenMadicineForm()

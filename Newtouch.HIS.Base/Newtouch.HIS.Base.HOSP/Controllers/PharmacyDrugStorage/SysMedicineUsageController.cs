@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách hiệu lực
         /// </summary>
         public ActionResult GetGridJson(Pagination pagination, string keyword = null)
         {

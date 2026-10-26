@@ -9,10 +9,10 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" authorize="yes" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a id="NF-edit" authorize="yes" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
     </div>
     <div class="search">
@@ -20,7 +20,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="名称/编码" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Mã" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -45,26 +45,26 @@
             url: "/Sys/Organize/GetGridJson",
             height: $(window).height() - 130,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: '名称', name: 'Name', width: 150, align: 'left' },
-                { label: "编码", name: "Code", width: 120, align: "center" },
-                { label: '简称', name: 'ShortName', width: 80, align: 'left' },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Tên', name: 'Name', width: 150, align: 'left' },
+                { label: "Mã", name: "Code", width: 120, align: "center" },
+                { label: 'Tên viết tắt', name: 'ShortName', width: 80, align: 'left' },
                 {
-                    label: '机构分类', name: 'CategoryCode', width: 100, align: 'center',
+                    label: 'Phân loại cơ quan', name: 'CategoryCode', width: 100, align: 'center',
                     formatter: function (cellvalue) {
                         return top.clients.dataItems['OrganizeType'][cellvalue] == null ? "" : top.clients.dataItems['OrganizeType'][cellvalue];
                     }
                 },
-                { label: '电话', name: 'TelePhone', width: 100, align: 'left' },
-                { label: '微信', name: 'WeChat', width: 100, align: 'left' },
-                { label: '传真', name: 'Fax', width: 100, align: 'left' },
-                { label: '邮箱', name: 'Email', width: 100, align: 'left' },
-                { label: '地址', name: 'Address', width: 100, align: 'left' },
-                { label: '备注', name: 'Description', width: 200, align: 'left' },
-                           { label: '排序', name: 'px', width: 40, align: 'left' },
-                 { label: "有效", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: '创建时间', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Điện thoại', name: 'TelePhone', width: 100, align: 'left' },
+                { label: 'WeChat', name: 'WeChat', width: 100, align: 'left' },
+                { label: 'Fax', name: 'Fax', width: 100, align: 'left' },
+                { label: 'Email', name: 'Email', width: 100, align: 'left' },
+                { label: 'Địa chỉ', name: 'Address', width: 100, align: 'left' },
+                { label: 'Ghi chú', name: 'Description', width: 200, align: 'left' },
+                           { label: 'Sắp xếp', name: 'px', width: 40, align: 'left' },
+                 { label: "Hiệu lực", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Thời gian sửa lần cuối', name: 'LastModifyTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
             ],
             pager: "#gridPager",
             sortname: 'CreateTime desc',
@@ -77,7 +77,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -85,7 +85,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增机构",
+            title: "Thêm cơ quan mới",
             url: "/Sys/Organize/Form",
             width: "700px",
             height: "520px",
@@ -97,12 +97,12 @@
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         $.modalOpen({
             id: "Form",
-            title: "修改机构",
+            title: "Sửa cơ quan",
             url: "/Sys/Organize/Form?keyValue=" + keyValue,
             width: "700px",
             height: "520px",

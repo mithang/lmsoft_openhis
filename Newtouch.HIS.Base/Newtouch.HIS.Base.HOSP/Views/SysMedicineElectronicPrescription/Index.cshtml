@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Common.Operator;
 @{
-    ViewBag.Title = "电子处方药品管理";
+    ViewBag.Title = "Quản lý thuốc đơn điện tử";
     Layout = "~/Views/Shared/_Index.cshtml";
 
     var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
@@ -9,39 +9,39 @@
 <form>
     <div class="panel panel-default">
         <div class="panel-heading">
-            筛选信息
+            Thông tin lọc
         </div>
         <div>
             <table class="form">
                 <tr>
 
-                    <th class="formTitle">药品名：</th>
+                    <th class="formTitle">Tên thuốc：</th>
                     <td class="formValue" colspan="2">
                         <input id="genname" type="text" class="form-control" />
                     </td>
-                    <th class="formTitle">国家医保编码：</th>
+                    <th class="formTitle">Mã BHYT quốc gia：</th>
                     <td class="formValue" colspan="2">
                         <input id="medListCodg" type="text" class="form-control" />
                     </td>
-                    <td class="formTitle">药品类型：</td>
+                    <td class="formTitle">Loại thuốc：</td>
                     <td class="formValue">
                         <select class="form-control" id="listType">
-                            <option value="">全部</option>
-                            <option value="101">西药中成药</option>
-                            <option value="102">中药饮片</option>
+                            <option value="">Tất cả</option>
+                            <option value="101">Thuốc Tây và thuốc thành phẩm Đông y</option>
+                            <option value="102">Thuốc thang Đông y</option>
                         </select>
                     </td>
-                    <td class="formTitle">有效标志：</td>
+                    <td class="formTitle">Cờ hiệu lực：</td>
                     <td class="formValue">
                         <select class="form-control" id="zt">
-                            <option value="">全部</option>
-                            <option value="0">无效</option>
-                            <option value="1">有效</option>
+                            <option value="">Tất cả</option>
+                            <option value="0">Vô hiệu</option>
+                            <option value="1">Hiệu lực</option>
                         </select>
                     </td>
                     <td class="formValue title">
-                        <input type="button" id="btn_search" class="btn btn-primary" style="margin-left: 10%;" value="查询" />
-                        <input type="button" id="btn_sync" class="btn btn-primary" style="margin-left: 10%;" value="同步" />
+                        <input type="button" id="btn_search" class="btn btn-primary" style="margin-left: 10%;" value="Tra cứu" />
+                        <input type="button" id="btn_sync" class="btn btn-primary" style="margin-left: 10%;" value="Đồng bộ" />
                     </td>
 
                 </tr>
@@ -69,30 +69,30 @@
             height: $(window).height() - 160,
             postData: { genname: $("#genname").val(), medListCodg: $("#medListCodg").val(), listType: $("#listType").val(), zt: $("#zt").val() },
             colModel: [
-                { label: '医疗目录编码', name: 'medListCodg', width: 180, align: 'left' },
-                { label: '国家药品编号', name: 'natDrugNo', width: 120, align: 'left' },
-                { label: '通用名', name: 'genname', width: 150, align: 'left' },
-                { label: '商品名', name: 'prodname', width: 150, align: 'left' },
-                { label: '注册名', name: 'regName', width: 150, align: 'left' },
-                { label: '目录类别', name: 'listType', width: 80, align: 'left' },
+                { label: 'Mã danh mục y tế', name: 'medListCodg', width: 180, align: 'left' },
+                { label: 'Số hiệu thuốc quốc gia', name: 'natDrugNo', width: 120, align: 'left' },
+                { label: 'Tên chung', name: 'genname', width: 150, align: 'left' },
+                { label: 'Tên thương mại', name: 'prodname', width: 150, align: 'left' },
+                { label: 'Tên đăng ký', name: 'regName', width: 150, align: 'left' },
+                { label: 'Loại danh mục', name: 'listType', width: 80, align: 'left' },
                 {
-                    label: '目录类别名称', name: 'listTypeName', width: 120, align: 'left', formatter: function (cellVallue) {
-                        return cellVallue == "" ? "中药饮片" : cellVallue;
+                    label: 'Tên loại danh mục', name: 'listTypeName', width: 120, align: 'left', formatter: function (cellVallue) {
+                        return cellVallue == "" ? "Thuốc thang Đông y" : cellVallue;
                     }
                 },
-                { label: '规格名称', name: 'specName', width: 100, align: 'left' },
-                { label: '生厂厂家', name: 'prdrName', width: 150, align: 'left' },
-                { label: '批准文号', name: 'aprvno', width: 150, align: 'left' },
-                { label: '剂型名称', name: 'dosformName', width: 100, align: 'left' },
-                { label: '最小包装单位', name: 'minPacunt', width: 80, align: 'left' },
-                { label: '最小包装数量', name: 'minPacCnt', width: 80, align: 'left' },
-                { label: '最小制剂单位', name: 'minPrepunt', width: 80, align: 'left' },
-                { label: '统筹区编号', name: 'poolareaNo', width: 80, align: 'left' },
-                { label: '统筹区名称', name: 'poolareaName', width: 80, align: 'left' },
-                { label: '是否双通道标志', name: 'dualchnlFlag', width: 80, align: 'left' },
-                { label: '是否门诊统筹标志', name: 'oppoolFlag', hidden: true, width: 80, align: 'left' },
-                { label: '开始时间', name: 'begntime', width: 80, align: 'left' },
-                { label: '结束时间', name: 'endtime', width: 80, align: 'left' },
+                { label: 'Tên quy cách', name: 'specName', width: 100, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'prdrName', width: 150, align: 'left' },
+                { label: 'Số phê duyệt', name: 'aprvno', width: 150, align: 'left' },
+                { label: 'Tên dạng bào chế', name: 'dosformName', width: 100, align: 'left' },
+                { label: 'Đơn vị đóng gói nhỏ nhất', name: 'minPacunt', width: 80, align: 'left' },
+                { label: 'Số lượng đóng gói nhỏ nhất', name: 'minPacCnt', width: 80, align: 'left' },
+                { label: 'Đơn vị bào chế nhỏ nhất', name: 'minPrepunt', width: 80, align: 'left' },
+                { label: 'Số hiệu khu vực quỹ chung', name: 'poolareaNo', width: 80, align: 'left' },
+                { label: 'Tên khu vực quỹ chung', name: 'poolareaName', width: 80, align: 'left' },
+                { label: 'Cờ kênh đôi hay không', name: 'dualchnlFlag', width: 80, align: 'left' },
+                { label: 'Cờ quỹ chung ngoại trú hay không', name: 'oppoolFlag', hidden: true, width: 80, align: 'left' },
+                { label: 'Thời gian bắt đầu', name: 'begntime', width: 80, align: 'left' },
+                { label: 'Thời gian kết thúc', name: 'endtime', width: 80, align: 'left' },
             ],
             multiselect: false,
             pager: "#gridPager",
@@ -109,7 +109,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#genname').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -122,7 +122,7 @@
     $('#zt').change(function () {
         $('#btn_search').trigger('click');
     })
-    //同步
+    //Đồng bộ
     $('#btn_sync').click(function () {
         $.ajax({
             url: "http://127.0.0.1:33333/api/YiBao/ElectronicPrescription_D008",

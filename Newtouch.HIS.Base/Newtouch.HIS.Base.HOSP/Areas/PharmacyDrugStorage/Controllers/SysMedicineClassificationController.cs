@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.PharmacyDrugStorage.Controllers
         }
 
         /// <summary>
-        /// 根据关键字查询药品分类
+        /// Tra cứu phân loại thuốc theo từ khóa
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>

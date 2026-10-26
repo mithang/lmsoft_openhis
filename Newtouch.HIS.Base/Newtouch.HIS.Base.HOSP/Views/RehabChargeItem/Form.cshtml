@@ -7,53 +7,53 @@
     <div style="padding-top: 20px; margin-right: 30px;">
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>组织机构：</th>
+                <th class="formTitle"><span class="required">*</span>Tổ chức：</th>
                 <td class="formValue formDdlSelectorTd">
                     <select id="OrganizeId" name="OrganizeId" class="form-control required">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>名称：</th>
+                <th class="formTitle"><span class="required">*</span>Tên：</th>
                 <td class="formValue">
                     <input type="text" class="form-control required" id="Name" name="Name" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>编码：</th>
+                <th class="formTitle"><span class="required">*</span>Mã：</th>
                 <td class="formValue">
                     <input type="text" class="form-control required" id="Code" name="Code" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>首拼：</th>
+                <th class="formTitle"><span class="required">*</span>Mã chữ cái đầu：</th>
                 <td class="formValue">
                     <input type="text" class="form-control required" id="py" name="py" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>计费方式：</th>
+                <th class="formTitle"><span class="required">*</span>Phương thức tính phí：</th>
                 <td class="formValue formDdlSelectorTd">
-                    @Html.DropDownList("CollectionMethod", Newtouch.Infrastructure.EnumCollectionMethod.Service.ToDescSelectList(), "==请选择==", new { @class = "form-control required" })
+                    @Html.DropDownList("CollectionMethod", Newtouch.Infrastructure.EnumCollectionMethod.Service.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control required" })
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>分类：</th>
+                <th class="formTitle"><span class="required">*</span>Phân loại：</th>
                 <td class="formValue formDdlSelectorTd">
                     <select id="sfflCode" name="sfflCode" class="form-control required">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">排序：</th>
+                <th class="formTitle">Sắp xếp：</th>
                 <th class="formValue">
                     <input type="text" class="form-control" id="px" name="px" />
                 </th>
             </tr>
             <tr>
-                <th class="formTitle">有效：</th>
+                <th class="formTitle">Hiệu lực：</th>
                 <td class="formValue">
                     <div class="ckbox">
                         <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt"></label>
@@ -94,12 +94,12 @@
     })
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp chọn tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
         $("#OrganizeId").change(function () {
-            //收费分类下拉
+            //Danh sách thả xuống phân loại thu phí
             $("#sfflCode").bindSelect({
                 url: "/RehabChargeItem/GetsfflBindSelect?OrganizeId=" + $('#OrganizeId').val()
             });
@@ -107,12 +107,12 @@
         $('#CollectionMethod').select2();
     }
 
-    //首拼
+    //Mã chữ cái đầu
     $('#Name').keyup(function () {
         $('#py').val($(this).toShouPin());
     })
 
-    //提交
+    //Gửi
     function submitForm() {
         if (!$('#form1').formValid()) {
             return false;

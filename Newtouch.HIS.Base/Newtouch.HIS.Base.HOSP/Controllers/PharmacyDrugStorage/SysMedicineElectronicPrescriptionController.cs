@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers.PharmacyDrugStorage
             return View();
         }
         /// <summary>
-        /// 电子处方目录
+        /// Danh mục đơn điện tử
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="genname"></param>

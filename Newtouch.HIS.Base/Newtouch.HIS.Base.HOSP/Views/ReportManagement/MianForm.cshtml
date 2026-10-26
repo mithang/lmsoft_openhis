@@ -8,41 +8,41 @@
             <div class="step-pane active" id="step-1" style="margin: 10px; margin-bottom: 0px;">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">表单信息</h3>
+                        <h3 class="panel-title">Thông tin biểu mẫu</h3>
                     </div>
                     <div class="panel-body" style="width: 98%; margin-left: -34px;">
                         <table class="form">
                             <tr>
-                                <th class="formTitle"><span class="required">*</span>组织机构：</th>
+                                <th class="formTitle"><span class="required">*</span>Tổ chức：</th>
                                 <td class="formValue formDdlSelectorTd">
                                     <select id="HospitalCode" name="HospitalCode" class="form-control required">
-                                        <option value="">==请选择==</option>
+                                        <option value="">==Vui lòng chọn==</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle">系统名称：</th>
+                                <th class="formTitle">Tên hệ thống：</th>
                                 <td class="formValue">
                                     <input id="SystemName" name="SystemName" type="text" class="form-control required" />
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle"><span class="required">*</span>报表类型：</th>
+                                <th class="formTitle"><span class="required">*</span>Loại báo cáo：</th>
                                 <td class="formValue">
                                     <select id="ReportType" name="ReportType" class="form-control required">
-                                        <option value="1" selected="selected">程序报表</option>
-                                        <option value="2">查询报表</option>
+                                        <option value="1" selected="selected">Báo cáo chương trình</option>
+                                        <option value="2">Báo cáo tra cứu</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle">报表名称：</th>
+                                <th class="formTitle">Tên báo cáo：</th>
                                 <td class="formValue">
                                     <input id="ReportName" name="ReportName" type="text" class="form-control required" />
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle">排序：</th>
+                                <th class="formTitle">Sắp xếp：</th>
                                 <td class="formValue">
                                     <input id="px" name="px" type="text" class="form-control required" />
                                 </td>
@@ -76,7 +76,7 @@
         });
     })
     function initControl() {
-        //组织机构下拉框
+        //Hộp chọn tổ chức
         $("#HospitalCode").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
             selectedValue: $.request('orgId'),
@@ -85,7 +85,7 @@
     function submitForm() {
         var postData = $("#form1").formSerialize();
         if ($("#HospitalCode").val()=="") {
-            $.modalAlert("请选择医院", 'warning');
+            $.modalAlert("Vui lòng chọn bệnh viện", 'warning');
             return;
         }
         postData["ReportID"]=ReportId;
@@ -94,10 +94,10 @@
             param: postData,
             success: function (res) {
                 if (res.message != "") {
-                    $.modalAlert("报表新建失败：" + res.message, 'warning');
+                    $.modalAlert("Tạo báo cáo mới thất bại：" + res.message, 'warning');
                 }
                 else {
-                    $.modalAlert("报表新建成功", 'success');
+                    $.modalAlert("Tạo báo cáo mới thành công", 'success');
                 }
                 $.currentWindow().$("#gridList").resetSelection();
                 $.currentWindow().$("#gridList").trigger("reloadGrid");

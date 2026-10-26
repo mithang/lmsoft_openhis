@@ -22,11 +22,11 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp chọn tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
-        //组织对应的科室下拉框加载
+        //Tải hộp chọn khoa tương ứng với tổ chức
         $("#OrganizeId").bind("change", function () {
             var organizeId = $(this).val();
             $("#ParentId").bindSelect({
@@ -35,7 +35,7 @@
         });
     }
 
-    //验证
+    //Xác thực
     function validate() {
         var validator = $("#form1").validate();
         validator.settings = {
@@ -46,10 +46,10 @@
                 mzzybz: { required: true }
             },
             messages: {
-                OrganizeId: { required: "组织机构必须填写" },
-                Name: { required: "姓名必须填写" },
-                Code: { required: "编码必须填写" },
-                mzzybz: { required: "门诊住院标志必须选择" }
+                OrganizeId: { required: "Tổ chức là bắt buộc" },
+                Name: { required: "Họ tên là bắt buộc" },
+                Code: { required: "Mã là bắt buộc" },
+                mzzybz: { required: "Cờ ngoại trú/nội trú là bắt buộc phải chọn" }
 
             },
             showErrors: function (errorMap, errorList) {
@@ -81,51 +81,51 @@
 <form id="form1" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
     <table class="form">
         <tr>
-            <td class="formTitle">组织机构：</td>
+            <td class="formTitle">Tổ chức：</td>
             <td class="formValue">
                 <select id="OrganizeId" name="OrganizeId" class="form-control">
-                    <option value="">==请选择==</option>
+                    <option value="">==Vui lòng chọn==</option>
                 </select>
             </td>
-            <td class="formTitle">上级科室：</td>
+            <td class="formTitle">Khoa cấp trên：</td>
             <td class="formValue">
                 <select class="form-control" id="ParentId" name="ParentId">
-                    <option value="">==请选择==</option>
+                    <option value="">==Vui lòng chọn==</option>
                 </select>
             </td>
         </tr>
         <tr>
-            <td class="formTitle">名称：</td>
-            <td class="formValue"><input type="text" class="form-control" name="Name" id="Name"  placeholder="请输入名称"  /></td>
-            <td class="formTitle">编码：</td>
-            <td class="formValue"><input type="text" class="form-control" id="Code" name="Code"  placeholder="请输入编码"  /></td>
+            <td class="formTitle">Tên：</td>
+            <td class="formValue"><input type="text" class="form-control" name="Name" id="Name"  placeholder="Vui lòng nhập tên"  /></td>
+            <td class="formTitle">Mã：</td>
+            <td class="formValue"><input type="text" class="form-control" id="Code" name="Code"  placeholder="Vui lòng nhập mã"  /></td>
         </tr>
         <tr>
-            <td class="formTitle">门诊住院标志：</td>
+            <td class="formTitle">Cờ ngoại trú/nội trú：</td>
             <td class="formValue">
                 <select id="mzzybz" class="form-control" name="mzzybz">
-                    <option value="">==请选择==</option>
-                    <option value="0">通用</option>
-                    <option value="1">门诊</option>
-                    <option value="2">住院</option>
+                    <option value="">==Vui lòng chọn==</option>
+                    <option value="0">Chung</option>
+                    <option value="1">Ngoại trú</option>
+                    <option value="2">Nội trú</option>
                 </select>
             </td>
-            <th class="formTitle">选项：</th>
+            <th class="formTitle">Tùy chọn：</th>
             <td class="formValue" style="padding-top: 1px;">
                 <div class="ckbox">
-                    <input id="yjbz" name="yjbz" type="checkbox"><label for="yjbz">医技标志</label>
+                    <input id="yjbz" name="yjbz" type="checkbox"><label for="yjbz">Cờ y kỹ thuật</label>
                 </div>
                 <div class="ckbox">
-                    <input id="zt" name="zt" type="checkbox"><label for="zt">有效</label>
+                    <input id="zt" name="zt" type="checkbox"><label for="zt">Hiệu lực</label>
                 </div>
             </td>
         </tr>
         <tr>
-            <td class="formTitle">创建人员：</td>
+            <td class="formTitle">Người tạo：</td>
             <td class="formValue">
                 <input id="CreatorCode" name="CreatorCode" type="text" class="form-control" />
             </td>
-            <td class="formTitle">创建时间：</td>
+            <td class="formTitle">Thời gian tạo：</td>
             <td class="formValue">
                 <input id="CreateTime" name="CreateTime" type="text" class="form-control" />
             </td>

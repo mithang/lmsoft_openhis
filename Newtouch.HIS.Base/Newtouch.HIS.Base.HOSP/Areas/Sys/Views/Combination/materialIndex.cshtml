@@ -9,22 +9,22 @@
 <form>
 	<div class="panel panel-default">
 		<div class="panel-heading navb-bg">
-			筛选条件
+			Điều kiện lọc
 		</div>
 		<table class="form">
 			<tr>
 				<th class="formTitle"></th>
 				<td class="formValue" colspan="2">
-					<input type="radio" name="radios" class="radios" value="qb" checked="checked">全部
-					<input type="radio" name="radios" class="radios" value="yd">已对码
-					<input type="radio" name="radios" class="radios" value="wd">未对码
+					<input type="radio" name="radios" class="radios" value="qb" checked="checked">Tất cả
+					<input type="radio" name="radios" class="radios" value="yd">Đã đối mã
+					<input type="radio" name="radios" class="radios" value="wd">Chưa đối mã
 				</td>
-				<th class="formTitle">材料名称：</th>
+				<th class="formTitle">Tên vật tư：</th>
 				<td class="formValue" colspan="2">
-					<input id="txt_keyword" type="text" style="width:200px;" class="form-control form-an" placeholder="材料名称">
+					<input id="txt_keyword" type="text" style="width:200px;" class="form-control form-an" placeholder="Tên vật tư">
 				</td>
 				<td class="formValue">
-					<input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="查询" />
+					<input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tra cứu" />
 				</td>
 				<th class="formTitle"></th>
 				<td class="formValue"></td>
@@ -40,51 +40,51 @@
 	<div class="panel panel-default">
 		<div class="toolbar" style="margin-left:2%">
 			<div class="btn-group">
-				<label>数据源：</label>
+				<label>Nguồn dữ liệu：</label>
 			</div>
 			<div class="btn-group">
 				<select id="DataSource" name="DataSource"  style="width:200px; height:15px;"  class="form-control form-an">
-					<option value="1">系统视图</option>
-					<option value="2">医保下载目录</option>
+					<option value="1">Chế độ xem hệ thống</option>
+					<option value="2">Danh mục tải xuống BHYT</option>
 				</select>
 			</div>
 			<div class="btn-group">
-				<label>医保耗材名称：</label>
+				<label>Tên vật tư tiêu hao BHYT：</label>
 			</div>
 			<div class="btn-group">
-				<input id="txt_gjybdm" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="医保耗材名称">
+				<input id="txt_gjybdm" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="Tên vật tư tiêu hao BHYT">
 			</div>
 			<div class="btn-group">
-				<label>注册备案号：</label>
+				<label>Số đăng ký lưu hồ sơ：</label>
 			</div>
 			<div class="btn-group">
-				<input id="txt_pzwh" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="医保注册备案号">
+				<input id="txt_pzwh" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="Số đăng ký lưu hồ sơ BHYT">
 			</div>
 			<div class="btn-group">
-				<label>耗材企业：</label>
+				<label>Doanh nghiệp vật tư：</label>
 			</div>
 			<div class="btn-group">
-				<input id="txt_scqy" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="医保耗材企业">
+				<input id="txt_scqy" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="Doanh nghiệp vật tư BHYT">
 			</div>
 			<div class="btn-group">
-				<input type="button" id="btn_searchyb" class="btn btn-primary" value="查询"/>
+				<input type="button" id="btn_searchyb" class="btn btn-primary" value="Tra cứu"/>
 			</div>
 			<div class="btn-group">
-				<input type="button" id="btn_save" class="btn btn-primary" value="对码"/>
+				<input type="button" id="btn_save" class="btn btn-primary" value="Đối mã"/>
 			</div>
 		</div>
 		@*<table class="form">
 			<tr>
-				<th class="formTitle">耗材代码：</th>
+				<th class="formTitle">Mã vật tư：</th>
 				<td class="formValue" colspan="3">
-					<input id="txt_gjybdm" type="text" style="width:300px;" class="form-control form-an" placeholder="耗材代码">
+					<input id="txt_gjybdm" type="text" style="width:300px;" class="form-control form-an" placeholder="Mã vật tư">
 				</td>
 
 				<td class="formValue" colspan="2">
-					<input type="button" id="btn_searchyb" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="查询" />
+					<input type="button" id="btn_searchyb" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tra cứu" />
 				</td>
 				<td class="formValue" colspan="2">
-					<input type="button" id="btn_save" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="对码" />
+					<input type="button" id="btn_save" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Đối mã" />
 				</td>
 				<th class="formTitle"></th>
 				<td class="formValue"></td>
@@ -103,7 +103,7 @@
 	$(function () {
 		gridList();
 		$("#btn_searchyb").click(function () {
-			$('#gridJSMXList').jqGrid("clearGridData");//先清空明细
+			$('#gridJSMXList').jqGrid("clearGridData");//Xóa chi tiết trước
 			btn_selectmx();
 		});
 
@@ -119,16 +119,16 @@
 			height: 240,
             postData: getpostData(),
               colModel: [
-				  { label: "主键", name: "sfxmId", hidden: true, key: true },
-				{ label: '耗材名称', name: 'ypmc', width: 200, align: 'center',  sortable: false, frozen: true},
-				{ label: "国家医保代码", name: "gjybdm", width: 180, align: 'center', sortable: false, frozen: true},
-				{ label: "国家医保名称", name: "gjybmc", width: 200, align: 'center', sortable: false },
-				{ label: '规格', name: 'gg', width: 110, align: 'center', sortable: false},
-				  { label: '批准文号', name: 'ypzsm', width: 140, align: 'center', sortable: false },
-				//{ label: '剂型', name: 'jxmc', width: 60, align: 'center', sortable: false },
-				{ label: '生产厂商', name: 'ycmc', width: 180, align: 'center', sortable: false },
+				  { label: "Khóa chính", name: "sfxmId", hidden: true, key: true },
+				{ label: 'Tên vật tư tiêu hao', name: 'ypmc', width: 200, align: 'center',  sortable: false, frozen: true},
+				{ label: "Mã BHYT quốc gia", name: "gjybdm", width: 180, align: 'center', sortable: false, frozen: true},
+				{ label: "Tên BHYT quốc gia", name: "gjybmc", width: 200, align: 'center', sortable: false },
+				{ label: 'Quy cách', name: 'gg', width: 110, align: 'center', sortable: false},
+				  { label: 'Số phê duyệt', name: 'ypzsm', width: 140, align: 'center', sortable: false },
+				//{ label: 'Dạng bào chế', name: 'jxmc', width: 60, align: 'center', sortable: false },
+				{ label: 'Nhà sản xuất', name: 'ycmc', width: 180, align: 'center', sortable: false },
 				{
-					label: '自负性质', name: 'zfxz', width: 60, align: 'center', sortable: false, formatter: function (cellvalue, a, b) {
+					label: 'Tính chất tự trả', name: 'zfxz', width: 60, align: 'center', sortable: false, formatter: function (cellvalue, a, b) {
 						switch (parseInt(b.zfxz)) {
 						case @((int)EnumZiFuXingZhi.ZF):
                             return "@EnumZiFuXingZhi.ZF.GetDescription()";
@@ -143,9 +143,9 @@
                         }
 					}
 				},
-				{ label: "医保代码", name: "ybdm", width: 110, align: 'center', sortable: false },
-				{ label: '拼音码', name: 'py', width: 100, align: 'center', sortable: false },
-				{ label: "材料编码", name: "sfxmcode", width: 100, align: 'center', sortable: false },
+				{ label: "Mã BHYT", name: "ybdm", width: 110, align: 'center', sortable: false },
+				{ label: 'Mã pinyin', name: 'py', width: 100, align: 'center', sortable: false },
+				{ label: "Mã vật tư", name: "sfxmcode", width: 100, align: 'center', sortable: false },
 			],
             pager: "#gridPager",
             sortname: ' CreateTime desc',
@@ -162,7 +162,7 @@
         });
 
         $("#btn_search").click(function () {
-            $('#gridJSMXList').jqGrid("clearGridData");//先清空明细
+            $('#gridJSMXList').jqGrid("clearGridData");//Xóa chi tiết trước
             $gridList.jqGrid('setGridParam', {
                 postData: getpostData(),
                 page: 1,
@@ -174,31 +174,31 @@
 	}
 
 
-	//结算明细 jGrid声明
+	//Chi tiết thanh toán jGridTuyên bố
 	$('#gridJSMXList').newtouchLocalDataGrid({
 		height: $(window).height() - 520,
-		caption: "医保耗材信息",
+		caption: "Thông tin vật tư BHYT",
 		unwritten: false,
 		colModel: [
-			{ label: '国家耗材代码', name: 'hcdm', width: 180, align: 'center' },
-			//{ label: '医保名称', name: 'zcmc', width: 200, align: 'center' },
-			{ label: '医保耗材名称', name: 'djcpmc', width: 80, align: 'center' },
-			{ label: '规格型号数', name: 'ggxhs', width: 100, align: 'center' },
-			{ label: '耗材企业', name: 'hcqy', width: 180, align: 'center' },
-			{ label: '注册备案号', name: 'zcbah', width: 130, align: 'center' },
-			{ label: '注册备案人', name: 'zcbar', width: 180, align: 'center' },
-			{ label: '医保性质', name: 'ybxz', width: 80, align: 'center'},
-			{ label: '医保通用名', name: 'ybtym', width: 120, align: 'center' },
-			{ label: '材质', name: 'cz', width: 100, align: 'center' },
-			{ label: '特征', name: 'tz', width: 80, align: 'center' },
-			{ label: '拼音码', name: 'pym', width: 80, align: 'center' },
-			{ label: '一级分类', name: 'yjfl', width: 140, align: 'center' },
-			{ label: '二级分类', name: 'ejfl', width: 120, align: 'center' },
-			{ label: '三级分类', name: 'sjfl', width: 100, align: 'center' },
-			//{ label: '最小包装数量', name: 'zxbzsl', width: 40, align: 'center' },
-			//{ label: '最小制剂单位', name: 'zxzjdw', width: 40, align: 'center' },
-			//{ label: '最小包装单位', name: 'zxbzdw', width: 80, align: 'center' },
-			//{ label: '编号', name: 'bh', width: 80, align: 'center' },
+			{ label: 'Mã vật tư quốc gia', name: 'hcdm', width: 180, align: 'center' },
+			//{ label: 'Tên BHYT', name: 'zcmc', width: 200, align: 'center' },
+			{ label: 'Tên vật tư tiêu hao BHYT', name: 'djcpmc', width: 80, align: 'center' },
+			{ label: 'Số mẫu quy cách', name: 'ggxhs', width: 100, align: 'center' },
+			{ label: 'Doanh nghiệp vật tư', name: 'hcqy', width: 180, align: 'center' },
+			{ label: 'Số đăng ký lưu hồ sơ', name: 'zcbah', width: 130, align: 'center' },
+			{ label: 'Người đăng ký lưu hồ sơ', name: 'zcbar', width: 180, align: 'center' },
+			{ label: 'Tính chất BHYT', name: 'ybxz', width: 80, align: 'center'},
+			{ label: 'Tên chung BHYT', name: 'ybtym', width: 120, align: 'center' },
+			{ label: 'Chất liệu', name: 'cz', width: 100, align: 'center' },
+			{ label: 'Đặc điểm', name: 'tz', width: 80, align: 'center' },
+			{ label: 'Mã pinyin', name: 'pym', width: 80, align: 'center' },
+			{ label: 'Phân loại cấp 1', name: 'yjfl', width: 140, align: 'center' },
+			{ label: 'Phân loại cấp 2', name: 'ejfl', width: 120, align: 'center' },
+			{ label: 'Phân loại cấp 3', name: 'sjfl', width: 100, align: 'center' },
+			//{ label: 'Số lượng đóng gói nhỏ nhất', name: 'zxbzsl', width: 40, align: 'center' },
+			//{ label: 'Đơn vị bào chế nhỏ nhất', name: 'zxzjdw', width: 40, align: 'center' },
+			//{ label: 'Đơn vị đóng gói nhỏ nhất', name: 'zxbzdw', width: 80, align: 'center' },
+			//{ label: 'Số hiệu', name: 'bh', width: 80, align: 'center' },
 
 
 		],
@@ -212,7 +212,7 @@
 
 		var ypid = $("#gridList").jqGrid('getGridParam', 'selrow');
 		if (!ypid) {
-			$.modalMsg("请选择需要对码的材料信息", "warning", 1000);
+			$.modalMsg("Vui lòng chọn thông tin vật tư cần đối mã", "warning", 1000);
 			return false;
 		}
 		console.log($("#txt_gjybdm").val());
@@ -243,7 +243,7 @@
 		$("#txt_pzwh").val("");
 		$("#txt_scqy").val("");
 		console.log(gjybdm);
-		//每次单击，先清空上一条明细 和合计
+		//Mỗi lần nhấp，Xóa chi tiết của dòng trước trước và tổng cộng
 		$('#gridJSMXList').jqGrid("clearGridData");
 		$.najax({
 			type: "POST",
@@ -257,17 +257,17 @@
 	}
 
 
-	//保存对码
+	//Lưu đối mã
 	function btn_save() {
 
 		var ypids = $("#gridList").jqGrid('getGridParam', 'selrow');
 		if (!ypids) {
-			$.modalMsg("请选择需要对码的材料信息", "warning", 1000);
+			$.modalMsg("Vui lòng chọn thông tin vật tư cần đối mã", "warning", 1000);
 			return false;
 		}
 		var ybid = $("#gridJSMXList").jqGrid('getGridParam', 'selrow');
 		if (!ybid ){
-			$.modalMsg("请选择医保材料信息", "warning", 1000);
+			$.modalMsg("Vui lòng chọn thông tin vật tư BHYT", "warning", 1000);
 			return false;
 		}
 		var ybxx = {
@@ -288,7 +288,7 @@
 
 				if (data != null && data !== "") {
 					//gridList();
-					$.modalAlert("该材料对码成功", 'success');
+					$.modalAlert("Vật tư này đối mã thành công", 'success');
 					//$("#txt_gjybdm").val("");
 					//$('#btn_search').trigger('click');
 					$("#txt_pzwh").val("");

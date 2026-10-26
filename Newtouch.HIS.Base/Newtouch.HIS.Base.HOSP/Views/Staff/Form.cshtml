@@ -7,8 +7,8 @@
     <div class="widget-body">
         <div id="wizard" class="wizard" data-target="#wizard-steps" style="border-left: none; border-top: none; border-right: none;">
             <ul class="steps">
-                <li data-target="#step-1" class="active"><span class="step">1</span>人员信息<span class="chevron"></span></li>
-                <li data-target="#step-2"><span class="step">2</span>关联岗位<span class="chevron"></span></li>
+                <li data-target="#step-1" class="active"><span class="step">1</span>Thông tin nhân sự<span class="chevron"></span></li>
+                <li data-target="#step-2"><span class="step">2</span>Vị trí liên quan<span class="chevron"></span></li>
             </ul>
         </div>
         <div class="step-content" id="wizard-steps" style="border-left: none; border-bottom: none; border-right: none;">
@@ -17,141 +17,141 @@
                     <div class="panel-body" style="width: 98%; margin-left: -34px;">
                         <table class="form">
                             <tr>
-                                <th class="formTitle"><span class="required">*</span>组织机构：</th>
+                                <th class="formTitle"><span class="required">*</span>Tổ chức：</th>
                                 <td class="formValue formDdlSelectorTd">
                                     <select id="OrganizeId" name="OrganizeId" class="form-control required">
-                                        <option value="">==请选择==</option>
+                                        <option value="">==Vui lòng chọn==</option>
                                     </select>
                                 </td>
-                                <th class="formTitle">科室：</th>
+                                <th class="formTitle">Khoa：</th>
                                 <td class="formValue formDdlSelectorTd">
                                     <select id="DepartmentCode" name="DepartmentCode" class="form-control">
-                                        <option value="">==请选择==</option>
+                                        <option value="">==Vui lòng chọn==</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle"><span class="required">*</span>姓名：</th>
+                                <th class="formTitle"><span class="required">*</span>Họ tên：</th>
                                 <td class="formValue">
-                                    <input id="Name" name="Name" type="text" class="form-control required" placeholder="请输入姓名" />
+                                    <input id="Name" name="Name" type="text" class="form-control required" placeholder="Vui lòng nhập họ tên" />
                                 </td>
-                                <th class="formTitle">性别：</th>
+                                <th class="formTitle">Giới tính：</th>
                                 <td class="formValue formDdlSelectorTd">
                                     <select id="Gender" name="Gender" class="form-control required">
-                                        <option value="true">男</option>
-                                        <option value="false">女</option>
+                                        <option value="true">Nam</option>
+                                        <option value="false">Nữ</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle"><span class="required">*</span>工号：</th>
+                                <th class="formTitle"><span class="required">*</span>Mã nhân viên：</th>
                                 <td class="formValue">
-                                    <input id="gh" name="gh" type="text" class="form-control required" placeholder="请输入工号" />
+                                    <input id="gh" name="gh" type="text" class="form-control required" placeholder="Vui lòng nhập mã nhân viên" />
                                 </td>
-                                <th class="formTitle">康复类别：</th>
+                                <th class="formTitle">Loại phục hồi chức năng：</th>
                                 <td class="formValue formDdlSelectorTd">
                                     <select id="kflb" name="kflb" class="form-control">
-                                        <option value="">==请选择==</option>
+                                        <option value="">==Vui lòng chọn==</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle"><span class="required">*</span>证件类别：</th>
+                                <th class="formTitle"><span class="required">*</span>Loại giấy tờ：</th>
                                 <td class="formValue formDdlSelectorTd">
-                                    @Html.DropDownList("zjlx", Newtouch.Infrastructure.EnumZjlx.Sfz.ToDescSelectList(), "==请选择==", new { @class = "form-control required" })
+                                    @Html.DropDownList("zjlx", Newtouch.Infrastructure.EnumZjlx.Sfz.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control required" })
                                 </td>
-                                <th class="formTitle">证件号：</th>
+                                <th class="formTitle">Số giấy tờ：</th>
                                 <td class="formValue">
-                                    <input id="zjh" name="zjh" type="text" class="form-control" placeholder="请输入证件号" />
+                                    <input id="zjh" name="zjh" type="text" class="form-control" placeholder="Vui lòng nhập số giấy tờ" />
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle">职称：</th>
+                                <th class="formTitle">Chức danh：</th>
                                 <td class="formValue formDdlSelectorTd">
                                     <select id="zc" name="zc" class="form-control ">
-                                        <option value="">==请选择==</option>
+                                        <option value="">==Vui lòng chọn==</option>
                                     </select>
                                 </td>
-                                <th class="formTitle">头像：</th>
+                                <th class="formTitle">Ảnh đại diện：</th>
                                 <td class="formValue">
                                     <input id="HeadIcon" name="HeadIcon" type="text" class="form-control" />
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle">手机：</th>
+                                <th class="formTitle">Điện thoại di động：</th>
                                 <td class="formValue">
                                     <input id="MobilePhone" name="MobilePhone" type="text" class="form-control" />
                                 </td>
-                                <th class="formTitle">生日：</th>
+                                <th class="formTitle">Ngày sinh：</th>
                                 <td class="formValue">
                                     <input id="Birthday" name="Birthday" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker()" />
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle">微信：</th>
+                                <th class="formTitle">WeChat：</th>
                                 <td class="formValue">
                                     <input id="WeChat" name="WeChat" type="text" class="form-control" />
                                 </td>
-                                <th class="formTitle">邮箱：</th>
+                                <th class="formTitle">Email：</th>
                                 <td class="formValue">
                                     <input id="Email" name="Email" type="text" class="form-control" />
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle"><span class="required">*</span>首拼：</th>
+                                <th class="formTitle"><span class="required">*</span>Mã chữ cái đầu：</th>
                                 <td class="formValue">
                                     <input id="py" type="text" class="form-control required" placeholder="" />
                                 </td>
 
-                                <th class="formTitle">模板权限：</th>
+                                <th class="formTitle">Quyền mẫu：</th>
                                 <td class="formValue formDdlSelectorTd">
-                                    @Html.DropDownList("mbqx", Newtouch.Infrastructure.EnumTcfw.Person.ToDescSelectList(), "==请选择==", new { @class = "form-control" })
+                                    @Html.DropDownList("mbqx", Newtouch.Infrastructure.EnumTcfw.Person.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control" })
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle">排序：</th>
+                                <th class="formTitle">Sắp xếp：</th>
                                 <td class="formValue">
                                     <input id="px" name="px" type="text" class="form-control" placeholder="" />
                                 </td>
-                                <th class="formTitle" style="height: 35px;">选项：</th>
+                                <th class="formTitle" style="height: 35px;">Tùy chọn：</th>
                                 <td class="formValue" style="padding-top: 1px;">
                                     <div class="ckbox">
-                                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                                     </div>
                                     <div class="ckbox" id="divCreateAsLoginUser">
-                                        <input id="asLoginUser" name="asLoginUser" type="checkbox" checked="checked"><label for="asLoginUser">作为登录用户</label>
+                                        <input id="asLoginUser" name="asLoginUser" type="checkbox" checked="checked"><label for="asLoginUser">Là người dùng đăng nhập</label>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle">电子签名(jpg/png)：</th>
+                                <th class="formTitle">Chữ ký điện tử(jpg/png)：</th>
                                 <td class="formValue">
                                     <input id="dzqmUpload" name="dzqmUpload" type="file" class="form-control" />
                                 </td>
-                                <th class="formTitle">签名预览：</th>
+                                <th class="formTitle">Xem trước chữ ký：</th>
                                 <td class="formValue">
                                     <img id="dzqmImage" name="dzqmImage" class="form-control" style="height: 40px; width:auto" />
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle">国家医师代码：</th>
+                                <th class="formTitle">Mã bác sĩ quốc gia：</th>
                                 <td class="formValue">
                                     <input id="gjybdm" name="gjybdm" type="text" class="form-control" />
                                 </td>
-                                <th class="formTitle">BI邮箱：</th>
+                                <th class="formTitle">BIEmail：</th>
                                 <td class="formValue">
                                     <input id="MsEmail" name="MsEmail" type="text" class="form-control" />
                                 </td>
                             </tr>
 							<tr>
-								<th class="formTitle">医师职业证书编码：</th>
+								<th class="formTitle">Mã chứng chỉ nghề nghiệp bác sĩ：</th>
 								<td class="formValue">
 									<input id="yszydm" name="yszydm" type="text" class="form-control" />
 								</td>
 							</tr>
                             <tr>
                                 <th class="formTitle" valign="top" style="padding-top: 1px;">
-                                    备注：
+                                    Ghi chú：
                                 </th>
                                 <td class="formValue" colspan="3">
                                     <textarea id="Description" name="Description" class="form-control" style="height: 20px;"></textarea>
@@ -169,9 +169,9 @@
             </div>
         </div>
         <div class="form-button" id="wizard-actions" style="height:30px;bottom:auto;margin-top:auto">
-            <a id="btn_last" disabled class="btn btn-default btn-prev">上一步</a>
-            <a id="btn_next" class="btn btn-default btn-next" style="margin-right: 10px;">下一步</a>
-            <a id="btn_finish" class="btn btn-default" style="display: none;margin-right: 10px;" onclick="submitForm()">完成</a>
+            <a id="btn_last" disabled class="btn btn-default btn-prev">Bước trước</a>
+            <a id="btn_next" class="btn btn-default btn-next" style="margin-right: 10px;">Bước tiếp theo</a>
+            <a id="btn_finish" class="btn btn-default" style="display: none;margin-right: 10px;" onclick="submitForm()">Hoàn thành</a>
         </div>
     </div>
 </form>
@@ -221,22 +221,22 @@
     function initControl() {
         $("#Gender").bindSelect();
         $('#mbqx').bindSelect();
-        //组织机构下拉框
+        //Hộp chọn tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
-        //组织对应的科室下拉框加载
+        //Tải hộp chọn khoa tương ứng với tổ chức
         $("#OrganizeId").bind("change", function () {
             var organizeId = $(this).val();
             $("#DepartmentCode").bindSelect({
                 url: "/Department/GetTreeSelectJson?organizeId=" + organizeId,
             });
-            //加载职称
+            //Tải chức danh
             $("#zc").bindSelect({
                 url: "/ItemsData/GetSelectJson",
                 param: { code: "DoctorTitle", OrganizeId: organizeId }
             });
-            //加载康复类别
+            //Tải loại phục hồi chức năng
             $("#kflb").bindSelect({
                 url: "/ItemsData/GetSelectJson",
                 param: { code: "RehabTreatmentMethod", OrganizeId: organizeId }
@@ -244,7 +244,7 @@
         });
 
         
-        //首拼
+        //Mã chữ cái đầu
         $('#Name').keyup(function () {
             $('#py').val($(this).toShouPin());
         });
@@ -257,12 +257,12 @@
             var zjh = $("#zjh").val()
             //var checkzjh = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
             //if (!checkzjh.test(zjh)) {
-            //    $.modalAlert("请输入正确的身份证号码", 'warning');
+            //    $.modalAlert("Vui lòng nhập đúng số chứng minh nhân dân", 'warning');
             //    return false;
             //}
             //var num = 0;
             //if (MsEmail=='') {
-            //    $.modalAlert("BI邮箱为必填项", 'warning');
+            //    $.modalAlert("BIEmail là mục bắt buộc", 'warning');
             //    return false;
             //}
             //$.ajax({
@@ -277,7 +277,7 @@
             //});
 
             //if (num!=1) {
-            //    $.modalAlert("BI邮箱格式不准确", 'warning');
+            //    $.modalAlert("BIĐịnh dạng email không chính xác", 'warning');
             //    return false;
             //}
           
@@ -289,7 +289,7 @@
                             return false;
                         }
                         if (zjlx.value != 1) {
-                            $.modalAlert("请选择证件类型", 'warning');
+                            $.modalAlert("Vui lòng chọn loại giấy tờ", 'warning');
                             return false;
                         }
                         $finish.show();
@@ -322,17 +322,17 @@
 
     imgReaderI.onload = function (evt) {
         
-        //将数据结果赋值给image的src
+        //Gán kết quả dữ liệu choimagecủasrc
         $("#dzqmImage").attr('src', evt.target.result);
     }
     $("#dzqmUpload").change(function () {
         var imgfFile = $("#dzqmUpload").prop('files')[0];
         if (!regexImageFilter.test(imgfFile.type)) {
-            $.modalAlert("仅支持Jpg,Png格式的图片", 'warning');
+            $.modalAlert("Chỉ hỗ trợJpg,Pnghình ảnh định dạng", 'warning');
             return;
         }
         if (imgfFile.size > (10 * 1024)) {
-            $.modalAlert("上传图片不能超过10kb", 'warning');
+            $.modalAlert("Hình ảnh tải lên không được vượt quá10kb", 'warning');
             return;
         }
         imgReaderI.readAsDataURL(imgfFile);
@@ -347,7 +347,7 @@
 
         var formData = new FormData();
         formData.append("file", $("#dzqmUpload")[0].files[0]);
-        var Picture = $('#form1 [name="dzqmUpload"]').prop('files');//照片
+        var Picture = $('#form1 [name="dzqmUpload"]').prop('files');//Ảnh
 
         $.submitForm({
             url: "/Staff/SubmitForm?keyValue=" + keyValue,
@@ -374,7 +374,7 @@
     $('#zjh').bind("blur",
         function (e) {
             if ((e.keyCode === 13 || e.type === "blur") && $('#zjlx').val() === "1") {
-                //获取输入的身份证号
+                //Lấy số chứng minh nhân dân đã nhập
                 var sfzh = $(this).val();
                 var len = $(this).val().length;
                 //if (len == 18 || len == 15) {//checkCard()
@@ -383,7 +383,7 @@
                     csrq = sfzh.substr(6, 8);
                     if ((len === 15 && csrq) || len === 18) {
                         csrq = csrq.replace(/(.{4})(.{2})/, "$1-$2-");
-                        //获取性别
+                        //Lấy giới tính
                         var xb;
                         if (parseInt(sfzh.charAt(16) / 2) * 2 != sfzh.charAt(16))
                             xb = "true";
@@ -400,7 +400,7 @@
                         }
                         var myvalue;
                         $('#select2-Gender-container').each(function () {
-                            myvalue= xb=='true'?'男':'女';
+                            myvalue= xb=='true'?'Nam':'Nữ';
                             $(this).html(myvalue);
                         });
                         $('#select2-Gender-container').attr('title', myvalue);

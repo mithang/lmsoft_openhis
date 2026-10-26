@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.PharmacyDrugStorage.Controllers
             return View();
         }
         /// <summary>
-        /// 用法树
+        /// Cây cách dùng
         /// </summary>
         /// <returns></returns>
         public ActionResult GetDosageTree(string jxCode)

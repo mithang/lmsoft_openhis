@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Base.HOSP
     public class MvcApplication : System.Web.HttpApplication
     {
         /// <summary>
-        /// 启动应用程序
+        /// Khởi động ứng dụng
         /// </summary>
         protected void Application_Start()
         {
@@ -27,19 +27,19 @@ namespace Newtouch.HIS.Base.HOSP
 
             App_Start.DependencyResolver.RegisteWebApiComponent();
 
-            //数据库链接释放
+            //Giải phóng kết nối cơ sở dữ liệu
             AspNetObjectContextDisposalModule.Register(() =>
             {
                 Infrastructure.EF.DatabaseFactoryDisposeHelper.TryDisposeDBContext<IBaseDatabaseFactory, BaseDbContext>();
             });
 
-            //权限验证向下层注册
+            //Đăng ký xác minh quyền xuống tầng dưới
             HandlerAuthorizeAttribute.Register((IList<string> roleIdList, string moduleId, string action) =>
             {
                 return DependencyDefaultInstanceResolver.GetInstance<IRoleAuthorizeApp>().ActionValidate(roleIdList, moduleId, action);
             });
 
-            //运行全局脚本 程序启动时执行一次
+            //Chạy tập lệnh toàn cục Thực hiện một lần khi chương trình khởi động
             try
             {
                 var pars = new List<SqlParameter>() {

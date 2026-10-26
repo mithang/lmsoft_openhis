@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.PharmacyDrugStorage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

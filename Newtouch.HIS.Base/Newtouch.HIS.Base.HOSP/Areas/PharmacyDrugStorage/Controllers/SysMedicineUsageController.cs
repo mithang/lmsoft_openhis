@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.PharmacyDrugStorage.Controllers
 
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <returns></returns>
         public ActionResult SubmitForm(SysMedicineUsageEntity entity, int? yfId)
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.PharmacyDrugStorage.Controllers
         }
 
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách hiệu lực
         /// </summary>
         public ActionResult GetGridJson(Pagination pagination, string keyword = null)
         {
@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.PharmacyDrugStorage.Controllers
         }
 
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         public ActionResult GetFormJson(int? yfId)
         {
@@ -67,7 +67,7 @@ namespace Newtouch.HIS.Base.HOSP.Areas.PharmacyDrugStorage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         public ActionResult DeleteForm(int yfId)
         {

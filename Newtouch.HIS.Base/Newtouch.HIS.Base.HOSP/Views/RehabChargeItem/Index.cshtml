@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "康复项目基本信息管理";
+    ViewBag.Title = "Quản lý thông tin cơ bản hạng mục phục hồi chức năng";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -8,10 +8,10 @@
     @Html.Partial("_OrganizeIdDDLToolbarSearchView")
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
     </div>
     <div class="search">
@@ -19,7 +19,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="名称/编码/首拼" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Mã/Mã chữ cái đầu" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -52,25 +52,25 @@
             height: 400,
             colModel: [
             { label: "sfxmId", name: "sfxmId", width: 100, align: "left", hidden: true },
-            { label: "名称", name: "Name", width: 120, align: "left" },
-            { label: "编码", name: "Code", width: 100, align: "left" },
-            { label: "分类", name: "sfflName", width: 120, align: "left" },
-            { label: "首拼", name: "py", width: 100, align: "left" },
+            { label: "Tên", name: "Name", width: 120, align: "left" },
+            { label: "Mã", name: "Code", width: 100, align: "left" },
+            { label: "Phân loại", name: "sfflName", width: 120, align: "left" },
+            { label: "Mã chữ cái đầu", name: "py", width: 100, align: "left" },
             {
-                label: "计费方式", name: "CollectionMethod", width: 120, align: "left",
+                label: "Phương thức tính phí", name: "CollectionMethod", width: 120, align: "left",
                 formatter: function (val) {
                     if (val == 1) {
-                        return "服务次数";
+                        return "Số lần dịch vụ";
                     };
                     if (val == 0) {
-                        return "时长";
+                        return "Thời lượng";
                     }
                 }
             },
-            { label: "有效", name: "zt", width: 100, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-            { label: '创建时间', name: 'CreateTime', width: 150, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-            { label: '最后修改时间', name: 'LastModifyTime', width: 150, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-            { label: '排序', name: 'px', width: 100, align: 'left' }
+            { label: "Hiệu lực", name: "zt", width: 100, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+            { label: 'Thời gian tạo', name: 'CreateTime', width: 150, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+            { label: 'Thời gian sửa lần cuối', name: 'LastModifyTime', width: 150, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+            { label: 'Sắp xếp', name: 'px', width: 100, align: 'left' }
             ]
         });
         $("#btn_search").click(function () {
@@ -80,14 +80,14 @@
         })
         $("#btn_search").trigger('click');
     }
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var keyword = $("#txt_keyword").val();
         var OrganizeId = $("#OrganizeId").val();
         return { keyword: keyword, OrganizeId: OrganizeId };
     };
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -95,7 +95,7 @@
     function btn_add() {
         $.modalOpen({
             id: "FormFIEdit",
-            title: "康复项目维护",
+            title: "Bảo trì hạng mục phục hồi chức năng",
             url: "/RehabChargeItem/Form",
             width: "500px",
             height: "470px",
@@ -104,17 +104,17 @@
             }
         });
     }
-    //修改
+    //Sửa
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().sfxmId;
         var OrganizeId = $("#OrganizeId").val();
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         $.modalOpen({
             id: "FormFIEdit",
-            title: "修改信息",
+            title: "Sửa thông tin",
             url: "/RehabChargeItem/Form?sfxmId=" + keyValue + "&OrganizeId=" + OrganizeId,
             width: "500px",
             height: "470px",

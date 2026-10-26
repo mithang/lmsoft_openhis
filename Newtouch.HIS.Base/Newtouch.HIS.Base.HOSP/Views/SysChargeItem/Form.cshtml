@@ -8,207 +8,207 @@
     <div style="padding-top: 20px; margin-right: 30px; ">
         <table class="form">
             <tr>
-                <td class="formTitle"><span class="required">*</span>组织机构：</td>
+                <td class="formTitle"><span class="required">*</span>Tổ chức：</td>
                 <td class="formValue formDdlSelectorTd">
                     <select id="OrganizeId" name="OrganizeId" class="form-control required">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
-                <td class="formTitle"><span class="required">*</span>名称：</td>
+                <td class="formTitle"><span class="required">*</span>Tên：</td>
                 <td class="formValue">
                     <input id="sfxmmc" name="sfxmmc" type="text" class="form-control required" />
                 </td>
-                <td class="formTitle"><span class="required">*</span>编码：</td>
+                <td class="formTitle"><span class="required">*</span>Mã：</td>
                 <td class="formValue">
-                    <input id="sfxmCode" name="sfxmCode" type="text" class="form-control required" placeholder="请输入编码" />
+                    <input id="sfxmCode" name="sfxmCode" type="text" class="form-control required" placeholder="Vui lòng nhập mã" />
                 </td>
             </tr>
             <tr id="trSSDJ" name="trSSDJ">
-                <th class="formTitle"><span class="required">*</span>首拼：</th>
+                <th class="formTitle"><span class="required">*</span>Mã chữ cái đầu：</th>
                 <td class="formValue">
                     <input id="py" name="py" type="text" class="form-control required" placeholder="" />
                 </td>
-                <th class="formTitle">手术等级：</th>
+                <th class="formTitle">Cấp phẫu thuật：</th>
                 <td class="formValue">
                     <select id="ssdj" name="ssdj" class="form-control required">
-                        <option value="">==请选择==</option>
-                        <option value="1">一级手术</option>
-                        <option value="2">二级手术</option>
-                        <option value="3">三级手术</option>
-                        <option value="4">四级手术</option>
+                        <option value="">==Vui lòng chọn==</option>
+                        <option value="1">Phẫu thuật cấp 1</option>
+                        <option value="2">Phẫu thuật cấp 2</option>
+                        <option value="3">Phẫu thuật cấp 3</option>
+                        <option value="4">Phẫu thuật cấp 4</option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td class="formTitle">
-                    <span class="required">*</span>自负性质：
+                    <span class="required">*</span>Tính chất tự trả：
                 </td>
                 <td class="formValue">
-                    @Html.DropDownList("zfxz", Newtouch.Infrastructure.EnumZFXZv2.ZF.ToDescSelectList(), "==请选择==", new { @class = "form-control required" })
+                    @Html.DropDownList("zfxz", Newtouch.Infrastructure.EnumZFXZv2.ZF.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control required" })
                 </td>
-                <td class="formTitle">自负比例：</td>
+                <td class="formTitle">Tỷ lệ tự trả：</td>
                 <td class="formValue">
                     <input id="zfbl" name="zfbl" type="text" class="form-control" placeholder="" />
                 </td>
-                <td class="formTitle">计价策略：</td>
+                <td class="formTitle">Chiến lược tính giá：</td>
                 <td class="formValue">
-                    @Html.DropDownList("jjcl", Newtouch.Infrastructure.EnumSfxmJjcl.Amount.ToDescSelectList(((int)Newtouch.Infrastructure.EnumSfxmJjcl.Amount)), "==请选择==", new { @class = "form-control required" })
+                    @Html.DropDownList("jjcl", Newtouch.Infrastructure.EnumSfxmJjcl.Amount.ToDescSelectList(((int)Newtouch.Infrastructure.EnumSfxmJjcl.Amount)), "==Vui lòng chọn==", new { @class = "form-control required" })
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>单价：</td>
+                <td class="formTitle"><span class="required">*</span>Đơn giá：</td>
                 <td class="formValue">
                     <input id="dj" name="dj" type="text" class="form-control required" placeholder="" />
                 </td>
-                <td class="formTitle"><span class="required">*</span>单位：</td>
+                <td class="formTitle"><span class="required">*</span>Đơn vị：</td>
                 <td class="formValue">
                     <input id="dw" name="dw" type="text" class="form-control required" placeholder="" />
                 </td>
-                <td class="formTitle">单位计量数：</td>
+                <td class="formTitle">Số lượng đo đơn vị：</td>
                 <td class="formValue">
                     <input id="dwjls" name="dwjls" type="text" class="form-control" value="1" placeholder="" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>收费大类：</td>
+                <td class="formTitle"><span class="required">*</span>Nhóm thu phí lớn：</td>
                 <td class="formValue formDdlSelectorTd">
                     <select id="sfdlCode" name="sfdlCode" class="form-control required">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
-                <td class="formTitle">病案收费大类：</td>
+                <td class="formTitle">Nhóm thu phí lớn hồ sơ bệnh án：</td>
                 <td class="formValue formDdlSelectorTd">
                     <select id="badlCode" name="badlCode" class="form-control">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
-                <td class="formTitle">默认执行科室：</td>
+                <td class="formTitle">Khoa thực hiện mặc định：</td>
                 <td class="formValue formDdlSelectorTd">
                     <select id="zxks" name="zxks" class="form-control">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">批准文号：</td>
+                <td class="formTitle">Số phê duyệt：</td>
                 <td class="formValue" style="padding-top: 1px;">
                     <input id="pzwh" name="pzwh" type="text" class="form-control" placeholder="" />
                 </td>
-                <th class="formTitle">规格：</th>
+                <th class="formTitle">Quy cách：</th>
                 <td class="formValue">
                     <input id="gg" name="gg" type="text" class="form-control" placeholder="" />
                 </td>
-                <td class="formTitle">生产厂家：</td>
+                <td class="formTitle">Nhà sản xuất：</td>
                 <td class="formValue">
                     <input id="sccj" name="sccj" type="text" class="form-control" placeholder="" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>医保标志：</td>
+                <td class="formTitle"><span class="required">*</span>Cờ BHYT：</td>
                 <td class="formValue" style="padding-top: 1px;">
                     <div class="ckbox">
-                        <!-- 医保标志：即便有医保代码对照，也需要打上医保标志才会跟医保交互 -->
+                        <!-- Cờ BHYT：Dù đã có đối chiếu mã BHYT，cũng cần gắn cờ BHYT thì mới tương tác với BHYT -->
                         <select id="ybbz" name="ybbz" class="form-control required">
-                            <option value="">==请选择==</option>
-                            <option value="1">是</option>
-                            <option value="0">否</option>
+                            <option value="">==Vui lòng chọn==</option>
+                            <option value="1">Có</option>
+                            <option value="0">Không</option>
                         </select>
                     </div>
                 </td>
-                <td class="formTitle">国家医保代码：</td>
+                <td class="formTitle">Mã BHYT quốc gia：</td>
                 <td class="formValue">
                     <input id="gjybdm" name="gjybdm" type="text" class="form-control" placeholder="" />
                 </td>
-                <td class="formTitle">省医保代码：</td>
+                <td class="formTitle">Mã BHYT tỉnh：</td>
                 <td class="formValue">
-                    <!-- 从医保诊疗项目智能带出来的，医保分诊疗项目和材料 -->
+                    <!-- Được tự động lấy từ hạng mục khám chữa bệnh BHYT，BHYT phân thành hạng mục khám chữa bệnh và vật tư -->
                     <input id="ybdm" name="ybdm" type="text" class="form-control" placeholder="" />
                 </td>
             </tr>
             <tr>
-                @*<td class="formTitle">新农合医保代码：</td>
+                @*<td class="formTitle">Mã BHYT nông thôn mới：</td>
         <td class="formValue">
             <input id="xnhybdm" name="xnhybdm" type="text" class="form-control" placeholder="" />
         </td>*@
-                <td class="formTitle"><span class="required">*</span>门诊住院标志：</td>
+                <td class="formTitle"><span class="required">*</span>Cờ ngoại trú/nội trú：</td>
                 <td class="formValue formDdlSelectorTd">
                     <select id="mzzybz" class="form-control required" name="mzzybz">
-                        <option value="">==请选择==</option>
-                        <option value="0">通用</option>
-                        <option value="1">门诊</option>
-                        <option value="2">住院</option>
+                        <option value="">==Vui lòng chọn==</option>
+                        <option value="0">Chung</option>
+                        <option value="1">Ngoại trú</option>
+                        <option value="2">Nội trú</option>
                     </select>
                 </td>
-                <td class="formTitle" style="display:none">农保收费大类：</td>
+                <td class="formTitle" style="display:none">Nhóm thu phí lớn bảo hiểm nông nghiệp：</td>
                 <td class="formValue formDdlSelectorTd" style="display:none">
                     <select id="nbdlCode" name="nbdlCode" class="form-control">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
-                <td class="formTitle">医保限价：</td>
+                <td class="formTitle">Giá trần BHYT：</td>
                 <td class="formValue">
                     <input id="cxjje" name="cxjje" type="text" class="form-control" placeholder="" oninput="value=value.replace(/[^\d]/g,'')" />
                 </td>
-                <td class="formTitle">国家医保名称：</td>
+                <td class="formTitle">Tên BHYT quốc gia：</td>
                 <td class="formValue">
                     <input id="gjybmc" name="gjybmc" type="text" class="form-control" placeholder=""/>
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">实施标志：</td>
+                <td class="formTitle">Cờ thực hiện：</td>
                 <td class="formValue" style="padding-top: 1px;">
                     <div class="ckbox">
 
 
-                        <input id="ssbz" name="ssbz" type="checkbox" checked="checked"><label for="ssbz">是</label>
+                        <input id="ssbz" name="ssbz" type="checkbox" checked="checked"><label for="ssbz">Có</label>
                     </div>
                 </td>
-                <td class="formTitle">特殊标志：</td>
+                <td class="formTitle">Cờ đặc biệt：</td>
                 <td class="formValue" style="padding-top: 1px;">
                     <div class="ckbox">
-                        <!-- 特殊项目：1：xt_sfxmtsbz里配置的特殊病人群才可以使用该项目 -->
-                        <input id="tsbz" name="tsbz" type="checkbox"><label for="tsbz">是</label>
+                        <!-- Hạng mục đặc biệt：1：xt_sfxmtsbzChỉ nhóm bệnh nhân đặc biệt được cấu hình trong này mới có thể sử dụng hạng mục này -->
+                        <input id="tsbz" name="tsbz" type="checkbox"><label for="tsbz">Có</label>
                     </div>
                 </td>
-                <td class="formTitle">收费标志：</td>
+                <td class="formTitle">Cờ thu phí：</td>
                 <td class="formValue" style="padding-top: 1px;">
                     <div class="ckbox">
-                        <input id="sfbz" name="sfbz" type="checkbox" checked="checked"><label for="sfbz">是</label>
+                        <input id="sfbz" name="sfbz" type="checkbox" checked="checked"><label for="sfbz">Có</label>
                     </div>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">申请类型：</th>
+                <th class="formTitle">Loại đơn đăng ký：</th>
                 <td class="formValue">
                     <select id="sqlx" name="sqlx" class="form-control">
-                        <option value="">==请选择==</option>
+                        <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
-                <td class="formTitle">物价代码：</td>
+                <td class="formTitle">Mã giá：</td>
                 <td class="formValue">
-                    <!-- 从医保诊疗项目智能带出来的，医保分诊疗项目和材料 -->
+                    <!-- Được tự động lấy từ hạng mục khám chữa bệnh BHYT，BHYT phân thành hạng mục khám chữa bệnh và vật tư -->
                     <input id="wjdm" name="wjdm" type="text" class="form-control" placeholder="" />
                 </td>
-                <td class="formTitle">时长（分）：</td>
+                <td class="formTitle">Thời lượng（Điểm）：</td>
                 <td class="formValue">
                     <input id="duration" name="duration" type="text" class="form-control" placeholder="" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">排序：</th>
+                <th class="formTitle">Sắp xếp：</th>
                 <td class="formValue">
                     <input id="px" name="px" type="text" class="form-control" placeholder="" />
                 </td>
-                <th class="formTitle" style="height: 35px;">状态：</th>
+                <th class="formTitle" style="height: 35px;">Trạng thái：</th>
                 <td class="formValue" style="padding-top: 1px;">
                     <div class="ckbox">
-                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
                     </div>
                 </td>
             </tr>
             <tr>
                 <th class="formTitle" valign="top" style="padding-top: 5px;">
-                    备注：
+                    Ghi chú：
                 </th>
                 <td class="formValue">
                     <textarea id="bz" name="bz" class="form-control" style="height: 60px;"></textarea>
@@ -251,40 +251,40 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp chọn tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
-        //组织对应的科室下拉框加载
+        //Tải hộp chọn khoa tương ứng với tổ chức
         $("#OrganizeId").bind("change", function () {
             var organizeId = $(this).val();
-            //获取收费大类
+            //Lấy nhóm thu phí lớn
             $("#sfdlCode").bindSelect({
                 url: "/ChargeCategory/GetTreeSelectJson?organizeId=" + organizeId,
             });
-            //获取病案收费大类
+            //Lấy nhóm thu phí lớn hồ sơ bệnh án
             $("#badlCode").bindSelect({
                 url: "/SysMedicalRecordChargeCategory/GetListSelectJson?organizeId=" + organizeId,
                 id: "dlCode",
                 text: "dlmc",
             });
-            //获取农保收费大类
+            //Lấy nhóm thu phí lớn bảo hiểm nông nghiệp
             $("#nbdlCode").bindSelect({
                 url: "/SysAgriInsuranceChargeCategory/GetListSelectJson?organizeId=" + organizeId,
                 id: "dlCode",
                 text: "dlmc",
             });
-            //默认执行科室
+            //Khoa thực hiện mặc định
             $("#zxks").bindSelect({
                 url: "/Department/GetTreeSelectJson?organizeId=" + organizeId,
             });
         });
         $('#zfxz').select2();
-        //首拼
+        //Mã chữ cái đầu
         $('#sfxmmc').keyup(function () {
             $('#py').val($(this).toShouPin());
         });
-        //药品申请类型
+        //Loại đơn đăng ký thuốc
         $("#sqlx").bindSelect({
             url: "/ItemsData/GetSelectJson",
             param: { code: "ExamTypeID" }
@@ -306,7 +306,7 @@
                 width: 1100,
                 height: 300,
                 clickautotrigger: true,
-                caption: "选择药品",
+                caption: "Chọn thuốc",
 				ajaxparameters: function ($thisinput) {
 					var key = $.trim($('#sfxmmc').val());
 					if ($thisinput.selector == "#gjybdm") {
@@ -316,18 +316,18 @@
                 },
                 itemdbclickhandler: null,
                 colModel: [
-                    { label: '类型', name: 'lx', widthratio: 5, },
-                    { label: '国家项目名称', name: 'xmmc', widthratio: 15 },
-                    { label: '国家医保代码', name: 'gjybdm', widthratio: 15, },
-                    { label: '规格', name: 'gg', widthratio: 5, },
-                    { label: '单位', name: 'dw', widthratio: 5, },
-                    { label: '单价', name: 'dj', widthratio: 5, },
-                    { label: '医保限价', name: 'ybxj', widthratio: 10 },
-                    { label: '批准文号', name: 'pzwh', widthratio: 10, },
-                    { label: '生产厂家', name: 'sccj', widthratio: 10, },
-                    { label: '项目名称', name: 'dfxmmc', widthratio: 10, },
-                    { label: '医保代码', name: 'dfybdm', widthratio: 10 },
-                    { label: '拼音码', name: 'pym', widthratio: 10, hidden: true },
+                    { label: 'Loại', name: 'lx', widthratio: 5, },
+                    { label: 'Tên hạng mục quốc gia', name: 'xmmc', widthratio: 15 },
+                    { label: 'Mã BHYT quốc gia', name: 'gjybdm', widthratio: 15, },
+                    { label: 'Quy cách', name: 'gg', widthratio: 5, },
+                    { label: 'Đơn vị', name: 'dw', widthratio: 5, },
+                    { label: 'Đơn giá', name: 'dj', widthratio: 5, },
+                    { label: 'Giá trần BHYT', name: 'ybxj', widthratio: 10 },
+                    { label: 'Số phê duyệt', name: 'pzwh', widthratio: 10, },
+                    { label: 'Nhà sản xuất', name: 'sccj', widthratio: 10, },
+                    { label: 'Tên hạng mục', name: 'dfxmmc', widthratio: 10, },
+                    { label: 'Mã BHYT', name: 'dfybdm', widthratio: 10 },
+                    { label: 'Mã pinyin', name: 'pym', widthratio: 10, hidden: true },
                     { label: 'ID', name: 'id', widthratio: 5, hidden: true },
                 ]
             };
@@ -347,7 +347,7 @@
                     debugger
                     var curRowData = jQuery(curData).jqGrid('getRowData', rowIds[k]);
                     if ($thistr.attr('data-gjybdm') != "" && $thistr.attr('data-gjybdm') != null && curRowData.gjybdm == $thistr.attr('data-gjybdm')) {
-                        $.modalAlert("系统已存在国家医保代码为" + $thistr.attr("data-gjybdm") + "的药品，" + $thistr.attr("data-xmmc"), 'warning');
+                        $.modalAlert("Hệ thống đã tồn tại thuốc có mã BHYT quốc gia là" + $thistr.attr("data-gjybdm") + "，" + $thistr.attr("data-xmmc"), 'warning');
                     };
                     $('#py').val($thistr.attr('data-pym'));
                     $('#sfxmmc').val($thistr.attr('data-xmmc'));
@@ -369,11 +369,11 @@
 					debugger
 					var curRowData = jQuery(curData).jqGrid('getRowData', rowIds[k]);
 					//if ($thistr.attr('data-gjybdm') != "" && $thistr.attr('data-gjybdm') != null && curRowData.gjybdm == $thistr.attr('data-gjybdm')) {
-					//	$.modalAlert("系统已存在国家医保代码为" + $thistr.attr("data-gjybdm") + "的药品，" + $thistr.attr("data-xmmc"), 'warning');
+					//	$.modalAlert("Hệ thống đã tồn tại thuốc có mã BHYT quốc gia là" + $thistr.attr("data-gjybdm") + "，" + $thistr.attr("data-xmmc"), 'warning');
 					//};
 				}
                 if (($('#sfxmmc').val() != "" || $('#ypmc').val() != null) && $('#ybdm').val() != $thistr.attr('data-gjybdm')) {
-					$.modalConfirm("是否更新当前项目医保信息？", function (flag) {
+					$.modalConfirm("Có cập nhật thông tin BHYT của hạng mục hiện tại không？", function (flag) {
 						if (flag) {
 							//$('#py').val($thistr.attr('data-pym'));
 							//$('#sfxmmc').val($thistr.attr('data-xmmc'));

@@ -5,10 +5,10 @@
 }
 
 <ul id="myTab" class="nav nav-tabs">
-    <li class="active"><a href="#xz" data-toggle="tab">下载类目录</a></li>
-    <li><a href="#cx" data-toggle="tab">查询类目录</a></li>
-    @*<li><a href="#zdcx" data-toggle="tab">字典表查询</a></li>
-    <li><a href="#yzry" data-toggle="tab">医执人员信息查询</a></li>*@
+    <li class="active"><a href="#xz" data-toggle="tab">Tải xuống danh mục loại</a></li>
+    <li><a href="#cx" data-toggle="tab">Danh mục loại tra cứu</a></li>
+    @*<li><a href="#zdcx" data-toggle="tab">Tra cứu bảng từ điển</a></li>
+    <li><a href="#yzry" data-toggle="tab">Tra cứu thông tin nhân viên hành nghề y</a></li>*@
 </ul>
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade in active" id="xz">
@@ -16,49 +16,49 @@
             <div class="panel panel-default">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">目录：</th>
+                        <th class="formTitle">Danh mục：</th>
                         <td class="formValue" style="width:220px;">
                             <select id="XZNR" name="XZNR" class="form-control">
-                                <option value="0">============请选择===========</option>
-                                <option value="1301">【1301】西药中成药目录下载</option>
-                                <option value="1302">【1302】中药饮片目录下载</option>
-                                <option value="1303">【1303】医疗机构制剂目录下载</option>
-                                <option value="1305">【1305】医疗服务项目目录下载</option>
-                                <option value="1306">【1306】医用耗材目录下载</option>
-                                <option value="1307">【1307】疾病与诊断目录下载</option>
-                                <option value="1308">【1308】手术操作目录下载</option>
-                                <option value="1309">【1309】门诊慢特病种目录下载</option>
-                                <option value="1310">【1310】按病种付费病种目录下载</option>
-                                <option value="1311">【1311】日间手术治疗病种目录下载</option>
-                                <option value="1313">【1313】肿瘤形态学目录下载</option>
-                                <option value="1314">【1314】中医疾病目录下载</option>
-                                <option value="1315">【1315】中医证候目录下载</option>
+                                <option value="0">============Vui lòng chọn===========</option>
+                                <option value="1301">【1301】Tải xuống danh mục thuốc Tây và thuốc thành phẩm Đông y</option>
+                                <option value="1302">【1302】Tải xuống danh mục thuốc thang Đông y</option>
+                                <option value="1303">【1303】Tải xuống danh mục chế phẩm cơ sở y tế</option>
+                                <option value="1305">【1305】Tải xuống danh mục hạng mục dịch vụ y tế</option>
+                                <option value="1306">【1306】Tải xuống danh mục vật tư tiêu hao y tế</option>
+                                <option value="1307">【1307】Tải xuống danh mục bệnh và chẩn đoán</option>
+                                <option value="1308">【1308】Tải xuống danh mục thao tác phẫu thuật</option>
+                                <option value="1309">【1309】Tải xuống danh mục bệnh mạn tính/đặc biệt ngoại trú</option>
+                                <option value="1310">【1310】Tải xuống danh mục bệnh trả phí theo bệnh</option>
+                                <option value="1311">【1311】Tải xuống danh mục bệnh điều trị phẫu thuật trong ngày</option>
+                                <option value="1313">【1313】Tải xuống danh mục hình thái học ung thư</option>
+                                <option value="1314">【1314】Tải xuống danh mục bệnh Đông y</option>
+                                <option value="1315">【1315】Tải xuống danh mục chứng hậu Đông y</option>
 
                             </select>
                         </td>
-                        <td class="formTitle">版本号：</td>
+                        <td class="formTitle">Số phiên bản：</td>
                         <td class="formValue">
                             <input type="text" id="BBH" class="form-control" value="0" />
                         </td>
                         <td class="formTitle">
-                            <input type="button" id="XiaZai" class="btn btn-primary btn-md" value="目录下载" style="width:55px" />
+                            <input type="button" id="XiaZai" class="btn btn-primary btn-md" value="Tải xuống danh mục" style="width:55px" />
 
                         </td>
-                        <td class="formTitle" style="text-align:right;">药品/项目名称：</td>
+                        <td class="formTitle" style="text-align:right;">Thuốc/Tên hạng mục：</td>
                         <td class="formValue">
                             <input type="text" id="mlmc" class="form-control" value="" style="width:105px" />
                         </td>
                         <td class="formTitle">
-                            <input type="button" id="btn_cx" class="btn btn-primary btn-md" style="float:left" value="查询" />
+                            <input type="button" id="btn_cx" class="btn btn-primary btn-md" style="float:left" value="Tra cứu" />
                         </td>
                     </tr>
                     <tr>
 
                         <td class="formValue" style="text-align:left; color:red" colspan="4">
                             <span>
-                                备注:首次下载版本号传“0”    操作下载后请等待5-10分钟
+                                Ghi chú:Lần tải xuống đầu tiên truyền số phiên bản“0”    Sau khi thao tác tải xuống, vui lòng đợi5-10Phút
                             </span>
-                            下载方式:<span>单次<input type="radio" name="rd" value="0" checked="checked"/> 循环<input type="radio" name="rd" value="1" /></span>
+                            Phương thức tải xuống:<span>Một lần<input type="radio" name="rd" value="0" checked="checked"/> Vòng lặp<input type="radio" name="rd" value="1" /></span>
                         </td>
                       
                     </tr>
@@ -75,51 +75,51 @@
             <div class="panel panel-default">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">*目录：</th>
+                        <th class="formTitle">*Danh mục：</th>
                         <td class="formValue">
                             <select id="btmlcx" name="btmlcx" class="form-control">
-                                <option value="0">============请选择===========</option>
-                                <option value="1304">【1304】民族药品目录查询</option>
-                                <option value="1312">【1312】医保目录信息查询</option>
-                                <option value="1316">【1316】医疗目录与医保目录匹配信息查询</option>
-                                <option value="1317">【1317】医药机构目录匹配信息查询</option>
-                                <option value="1318">【1318】医保目录限价信息查询</option>
-                                <option value="1319">【1319】医保目录先自付比例信息查询</option>
+                                <option value="0">============Vui lòng chọn===========</option>
+                                <option value="1304">【1304】Tra cứu danh mục thuốc dân tộc</option>
+                                <option value="1312">【1312】Tra cứu thông tin danh mục BHYT</option>
+                                <option value="1316">【1316】Tra cứu thông tin khớp danh mục y tế với danh mục BHYT</option>
+                                <option value="1317">【1317】Tra cứu thông tin khớp danh mục cơ sở y dược</option>
+                                <option value="1318">【1318】Tra cứu thông tin giá trần danh mục BHYT</option>
+                                <option value="1319">【1319】Tra cứu thông tin tỷ lệ tự trả trước danh mục BHYT</option>
 
                             </select>
                         </td>
-                        <td class="formTitle">*当前页数:</td>
+                        <td class="formTitle">*Số trang hiện tại:</td>
                         <td class="formValue">
                             <input type="text" id="pagenum" class="form-control" style="height:26px;width:90px;display:inline" value="" />
-                            <input type="button" id="btn_NextPage" class="btn btn-primary btn-md" value="下一页" />
+                            <input type="button" id="btn_NextPage" class="btn btn-primary btn-md" value="Trang tiếp theo" />
                         </td>
-                        <td class="formTitle">*本页数据量:</td>
+                        <td class="formTitle">*Lượng dữ liệu trang này:</td>
                         <td class="formTitle">
                             <input type="text" id="pagesize" class="form-control" style="height:16px" value="" />
                         </td>
-                        <td class="formTitle">*更新时间:</td>
+                        <td class="formTitle">*Thời gian cập nhật:</td>
                         <td class="formValue">
                             <input id="gxsj" type="text" class="form-control input-wdatepicker" style="width:120px; float:left;margin-left:1%;" value="@DateTime.Now.AddDays(-180).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         </td>
                     </tr>
 					<tr>
-						<td class="formTitle">医疗目录编码:</td>
+						<td class="formTitle">Mã danh mục y tế:</td>
 						<td class="formValue">
 							<input type="text" id="drugCode" class="form-control" value="" />
 						</td>
-						<td class="formTitle">通用名称:</td>
+						<td class="formTitle">Tên chung:</td>
 						<td class="formValue">
 							<input type="text" id="drugName" class="form-control" value="" />
 						</td>
-						<th class="formTitle">数据来源：</th>
+						<th class="formTitle">Nguồn dữ liệu：</th>
 						<td class="formValue">
 							<select id="sjly" name="sjly" class="form-control">
-								<option value="1">本地数据源</option>
-								<option value="2">医保数据源</option>
+								<option value="1">Nguồn dữ liệu cục bộ</option>
+								<option value="2">Nguồn dữ liệu BHYT</option>
 							</select>
 						</td>
 						<td class="formTitle">
-							<input type="button" id="btn_mlcx" class="btn btn-primary btn-md" value="查询" />
+							<input type="button" id="btn_mlcx" class="btn btn-primary btn-md" value="Tra cứu" />
 						</td>
 						<td class="formValue"></td>
 						<td class="formTitle"></td>
@@ -137,24 +137,24 @@
             <div class="panel panel-default">
                 <table class="form">
                     <tr>
-                        <td class="formTitle">字典类型:</td>
+                        <td class="formTitle">Loại từ điển:</td>
                         <td class="formValue">
                             <input type="text" id="zdtype" class="form-control" value="" />
                         </td>
-                        <td class="formTitle" style="padding-right:5px;">父字典键值:</td>
+                        <td class="formTitle" style="padding-right:5px;">Giá trị khóa từ điển cha:</td>
                         <td class="formValue">
                             <input type="text" id="zdparentValue" class="form-control" value="" />
                         </td>
-                        <td class="formTitle" style="padding-right:5px;">行政区划:</td>
+                        <td class="formTitle" style="padding-right:5px;">Khu vực hành chính:</td>
                         <td class="formValue">
                             <input type="text" id="zdadmdvs" class="form-control" value="" />
                         </td>
-                        <td class="formTitle" style="padding-right:5px;">查询日期:</td>
+                        <td class="formTitle" style="padding-right:5px;">Ngày tra cứu:</td>
                         <td class="formValue">
                             <input id="zddate" type="text" class="form-control input-wdatepicker" style="width:120px; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         </td>
                         <td class="formTitle" style="padding-right:5px;">
-                            <input type="button" id="btn_zdcx" class="btn btn-primary btn-md" value="查询" style="width:60px;" />
+                            <input type="button" id="btn_zdcx" class="btn btn-primary btn-md" value="Tra cứu" style="width:60px;" />
                         </td>
                     </tr>
                 </table>
@@ -170,18 +170,18 @@
             @*<div class="panel panel-default">*@
             <table class="form" style="width:350px;">
                 <tr>
-                    <td class="formTitle">执业人员类型:</td>
+                    <td class="formTitle">Loại nhân viên hành nghề:</td>
                     <td class="formValue">
                         <select id="prac_psn_type" name="prac_psn_type" class="form-control">
-                            <option value="">======请选择=====</option>
-                            <option value="1">医师</option>
-                            <option value="2">护士</option>
-                            <option value="3">药师</option>
-                            <option value="4">医技人员</option>
+                            <option value="">======Vui lòng chọn=====</option>
+                            <option value="1">Bác sĩ</option>
+                            <option value="2">Y tá</option>
+                            <option value="3">Dược sĩ</option>
+                            <option value="4">Nhân viên y kỹ thuật</option>
                         </select>
                     </td>
                     <td class="formTitle" style="padding-right:5px;">
-                        <input type="button" id="btn_yzry" class="btn btn-primary btn-md" value="查询" style="width:60px;" />
+                        <input type="button" id="btn_yzry" class="btn btn-primary btn-md" value="Tra cứu" style="width:60px;" />
                     </td>
                 </tr>
             </table>
@@ -230,7 +230,7 @@
                 },
                 error: function (request, error, ex) {
                     $.loading(false);
-                    $.modalAlert("获取目录版本号错误：[" + ex + "]", 'error');
+                    $.modalAlert("Lỗi lấy số phiên bản danh mục：[" + ex + "]", 'error');
 
                 }
             })
@@ -260,11 +260,11 @@
         $('#XiaZai').click(function () {
             if($('#XZNR').val()=="0")
             {
-                $.modalAlert("请选择需下载的目录", 'warning');
+                $.modalAlert("Vui lòng chọn danh mục cần tải xuống", 'warning');
                 return;
             }
             setTimeout(function () {
-                $.loading(true, '下载目录文件中 请稍等...');
+                $.loading(true, 'Trong tệp danh mục đang tải xuống Vui lòng đợi một chút...');
                 setTimeout(function () { XiaZai(); }, 50);
             }, 50);
         })
@@ -284,17 +284,17 @@
                     if (Returndata.infcode == "0") {
                         $("#btn_cx").click();
                         GetVer();
-                        $.modalAlert("目录下载成功!", 'success');
+                        $.modalAlert("Tải xuống danh mục thành công!", 'success');
                     }
                     else {
                         $.loading(false);
-                        if (Returndata.err_msg.indexOf("违反了 PRIMARY KEY 约束") == -1) {
+                        if (Returndata.err_msg.indexOf("Đã vi phạm PRIMARY KEY Ràng buộc") == -1) {
                             $.modalAlert(Returndata.err_msg, "error");
                         }
                         else {
                             $("#btn_cx").click();
                             GetVer();
-                            $.modalAlert("已下载至最新版本!", "error");
+                            $.modalAlert("Đã tải xuống phiên bản mới nhất!", "error");
                         }
 
                     }
@@ -302,7 +302,7 @@
                 },
                 error: function (request, error, ex) {
                     $.loading(false);
-                    $.modalAlert("医保服务(目录下载接口)不可访问：[" + ex + "]", 'error');
+                    $.modalAlert("Dịch vụ BHYT(Giao diện tải xuống danh mục)Không thể truy cập：[" + ex + "]", 'error');
 
                 }
 
@@ -310,7 +310,7 @@
 
 
         }
-        //目录查询类
+        //Lớp tra cứu danh mục
         $('#btmlcx').change(function () {
             if ($('#btmlcx').val() == "0") {
                 return;
@@ -339,7 +339,7 @@
 
         $("#btn_mlcx").click(function () {
             if ($('#btmlcx').val() == "0") {
-                $.modalAlert("请选择需查询的目录", 'warning');
+                $.modalAlert("Vui lòng chọn danh mục cần tra cứu", 'warning');
                 return;
             }
             //$('#gridList2').remove();
@@ -354,7 +354,7 @@
             gridList2();
         });
 
-        //目录查询返回值
+        //Giá trị trả về khi tra cứu danh mục
         function DirectoryQuery()
 		{
 			var type = $('#sjly').val();
@@ -395,7 +395,7 @@
             if (tradiNumber = "1319") {
                 dataReq.hilist_code = drug_Code;
             }
-            $.loading(true, '数据加载中...');
+            $.loading(true, 'Đang tải dữ liệu...');
             $.ajax({
                 type: "POST",
                 url: "http://127.0.0.1:33333/api/YiBaoDirectory/GetCatalogData",
@@ -414,7 +414,7 @@
                 },
                 error: function (request, error, ex) {
                     $.loading(false);
-                    $.modalAlert("医保服务(目录查询接口)不可访问：[" + ex + "]", 'error');
+                    $.modalAlert("Dịch vụ BHYT(Giao diện tra cứu danh mục)Không thể truy cập：[" + ex + "]", 'error');
 
                 }
             });
@@ -422,26 +422,26 @@
             return ResultData;
         }
 
-        //字典表查询
+        //Tra cứu bảng từ điển
         $("#btn_zdcx").click(function () {
             var type = $('#zdtype').val();
             if (!type) {
-                $.modalAlert("字典类型不能为空！", 'warning');
+                $.modalAlert("Loại từ điển không được trống！", 'warning');
                 return false;
             }
             var parentValue = $('#zdparentValue').val();
             if (!parentValue) {
-                $.modalAlert("父字典键值不能为空！", 'warning');
+                $.modalAlert("Giá trị khóa từ điển cha không được trống！", 'warning');
                 return false;
             }
             var admdvs = $('#zdadmdvs').val();
             if (!admdvs) {
-                $.modalAlert("行政区划不能为空！", 'warning');
+                $.modalAlert("Khu vực hành chính không được trống！", 'warning');
                 return false;
             }
             var date = $('#zddate').val();
             if (!date) {
-                $.modalAlert("查询日期不能为空！", 'warning');
+                $.modalAlert("Ngày tra cứu không được trống！", 'warning');
                 return false;
             }
             $('#gridList3').remove();
@@ -466,7 +466,7 @@
         }
 
 
-        //字典表查询返回值
+        //Giá trị trả về khi tra cứu bảng từ điển
         function DictionaryTable() {
             var type = $('#zdtype').val();
             var parentValue = $('#zdparentValue').val();
@@ -474,7 +474,7 @@
             var date = $('#zddate').val();
             //var valiFlag = $('#zdvaliFlag').val();
             var ResultData;
-            $.loading(true, '数据加载中...');
+            $.loading(true, 'Đang tải dữ liệu...');
             $.ajax({
                 type: "POST",
                 url: "http://127.0.0.1:33333/api/YiBao/DictionaryTable",
@@ -489,7 +489,7 @@
                 },
                 error: function () {
                     $.loading(false);
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("Dịch vụ không thể truy cập", 'warning');
                 }
             });
             $.loading(false);
@@ -509,7 +509,7 @@
         })
 
 
-        //医执人员信息查询
+        //Tra cứu thông tin nhân viên hành nghề y
         $("#btn_zdcx").click(function () {
             $('#gridList4').remove();
             $("#gbox_gridList4").remove();
@@ -526,18 +526,18 @@
                 // width: $("#formPat2").width() - 10,
                 //caption: captionCon,
                 colModel: [
-                    { label: '人员证件类型', name: 'psn_cert_type', width: 100, align: 'left' },
-                    { label: '证件号码', name: 'certno', width: 100, align: 'left' },
-                    { label: '执业人员自编号', name: 'prac_psn_no', width: 100, align: 'left' },
-                    { label: '执业人员代码', name: 'prac_psn_code', width: 100, align: 'left' },
-                    { label: '执业人员姓名', name: 'prac_psn_name', width: 100, align: 'left' },
-                    { label: '执业人员分类', name: 'prac_psn_type', width: 60, align: 'left' },
-                    { label: '执业人员资格证书编码', name: 'prac_psn_cert', width: 60, align: 'left' },
-                    { label: '执业证书编号', name: 'prac_cert_no', width: 60, align: 'left' },
-                    { label: '医保医师标志', name: 'hi_dr_flag', width: 60, align: 'left' },
-                    { label: '开始时间', name: 'begntime', width: 100, align: 'left' },
-                    { label: '结束时间', name: 'endtime', width: 100, align: 'left' },
-                    { label: '变更原因', name: 'chg_rea', width: 100, align: 'left' }
+                    { label: 'Loại giấy tờ của nhân viên', name: 'psn_cert_type', width: 100, align: 'left' },
+                    { label: 'Số giấy tờ', name: 'certno', width: 100, align: 'left' },
+                    { label: 'Số tự đánh của nhân viên hành nghề', name: 'prac_psn_no', width: 100, align: 'left' },
+                    { label: 'Mã nhân viên hành nghề', name: 'prac_psn_code', width: 100, align: 'left' },
+                    { label: 'Tên nhân viên hành nghề', name: 'prac_psn_name', width: 100, align: 'left' },
+                    { label: 'Phân loại nhân viên hành nghề', name: 'prac_psn_type', width: 60, align: 'left' },
+                    { label: 'Mã chứng chỉ hành nghề của nhân viên', name: 'prac_psn_cert', width: 60, align: 'left' },
+                    { label: 'Số chứng chỉ hành nghề', name: 'prac_cert_no', width: 60, align: 'left' },
+                    { label: 'Cờ bác sĩ BHYT', name: 'hi_dr_flag', width: 60, align: 'left' },
+                    { label: 'Thời gian bắt đầu', name: 'begntime', width: 100, align: 'left' },
+                    { label: 'Thời gian kết thúc', name: 'endtime', width: 100, align: 'left' },
+                    { label: 'Lý do thay đổi', name: 'chg_rea', width: 100, align: 'left' }
                 ]
             }, MedicalExecutiveData());
 
@@ -546,7 +546,7 @@
             debugger
             var prac_psn_type = $('#prac_psn_type').val();
             var ResultData;
-            $.loading(true, '数据加载中,请稍后...');
+            $.loading(true, 'Đang tải dữ liệu,Vui lòng đợi...');
             $.ajax({
                 type: "POST",
                 url: "http://127.0.0.1:33333/api/YiBao/MedicalExecutive",
@@ -560,7 +560,7 @@
                 },
                 error: function () {
                     $.loading(false);
-                    $.modalAlert("服务不可访问", 'warning');
+                    $.modalAlert("Dịch vụ không thể truy cập", 'warning');
                 }
             });
             $.loading(false);

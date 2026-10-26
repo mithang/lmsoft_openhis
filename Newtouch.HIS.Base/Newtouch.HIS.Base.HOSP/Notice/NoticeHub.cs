@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 所有已连接的客户端。
+        /// Tất cả client đã kết nối。
         /// </summary>
         /// <param name="name"></param>
         /// <param name="message"></param>
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             await Clients.All.addNewMessageToPage(name, message);
         }
         /// <summary>
-        /// 仅调用客户端。
+        /// Chỉ client gọi。
         /// </summary>
         /// <param name="name"></param>
         /// <param name="message"></param>
@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             await Clients.Caller.addContosoChatMessageToPage(name, message);
         }
         /// <summary>
-        /// 除调用客户端之外的所有客户端。
+        /// Tất cả client trừ client gọi。
         /// </summary>
         /// <param name="name"></param>
         /// <param name="message"></param>
@@ -59,7 +59,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             await Clients.Others.addContosoChatMessageToPage(name, message);
         }
         /// <summary>
-        /// 由连接 ID 标识的特定客户端。
+        /// Theo kết nối ID Client cụ thể được xác định。
         /// </summary>
         /// <param name="name"></param>
         /// <param name="message"></param>
@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             await Clients.Client(connectionId).addContosoChatMessageToPage(name, message);
         }
         /// <summary>
-        /// 指定组中的所有已连接客户端（调用客户端除外）。
+        /// Tất cả client đã kết nối trong nhóm được chỉ định（Trừ client gọi）。
         /// </summary>
         /// <param name="name"></param>
         /// <param name="message"></param>
@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             await Clients.OthersInGroup(groupName).addContosoChatMessageToPage(name, message);
         }
         /// <summary>
-        /// 由 userId 标识的特定用户。
+        /// Theo userId Người dùng cụ thể được xác định。
         /// </summary>
         /// <param name="name"></param>
         /// <param name="message"></param>
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             await Clients.User(user).addContosoChatMessageToPage(name, message);
         }
         /// <summary>
-        /// 连接 ID 列表中的所有客户端和组。
+        /// Kết nối ID Tất cả client và nhóm trong danh sách。
         /// </summary>
         /// <param name="name"></param>
         /// <param name="message"></param>
@@ -103,7 +103,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             await Clients.Clients(connectionIds).broadcastMessage(name, message);
         }
         /// <summary>
-        /// 组列表
+        /// Danh sách nhóm
         /// </summary>
         /// <param name="name"></param>
         /// <param name="message"></param>
@@ -114,7 +114,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             await Clients.Groups(groupIds).broadcastMessage(name, message);
         }
         /// <summary>
-        /// SignalR 2.1 用户名列表
+        /// SignalR 2.1 Danh sách tên người dùng
         /// </summary>
         /// <param name="name"></param>
         /// <param name="message"></param>
@@ -238,7 +238,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         public string username { get; set; }
         public string group { get; set; }
         /// <summary>
-        /// 连接状态
+        /// Trạng thái kết nối
         /// </summary>
         public int connStu { get; set; } = (int)EnumNoticeUserConnStu.conn;
 

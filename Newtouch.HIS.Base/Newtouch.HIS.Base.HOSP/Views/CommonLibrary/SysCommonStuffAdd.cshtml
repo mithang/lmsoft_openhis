@@ -32,73 +32,73 @@
 <form id="form1">
     <div class="container">
         <ul class="nav nav-tabs" role="tablist" id="myTab">
-            <li role="presentation" id="li_1"><a href="#basicInfo" role="tab" data-toggle="tab">基本信息</a></li>
-            <li role="presentation" id="li_2"><a href="#antibioticInfo" id="li_antibioticInfo" class="disabled" role="tab" data-toggle="tab"> 抗生素信息</a></li>
+            <li role="presentation" id="li_1"><a href="#basicInfo" role="tab" data-toggle="tab">Thông tin cơ bản</a></li>
+            <li role="presentation" id="li_2"><a href="#antibioticInfo" id="li_antibioticInfo" class="disabled" role="tab" data-toggle="tab"> Thông tin kháng sinh</a></li>
         </ul>
         <div class="tab-content" style="margin-top:10px;padding-right:10px; overflow-y: auto; height: 660px;">
             <div id="basicInfo" role="tabpanel" class="tab-pane fade in active">
                 <table class="form" style="width:98%;border:0">
                     <tr>
                         <td class="formTitle">
-                            <span class="required">*</span>材料名称：
+                            <span class="required">*</span>Tên vật tư：
                         </td>
                         <td class="formValue">
                             <input type="text" id="ypmc" name="ypmc" class="form-control required" />
                         </td>
                         <td class="formTitle">
-                            <span class="required">*</span>首拼：
+                            <span class="required">*</span>Mã chữ cái đầu：
                         </td>
                         <td class="formValue">
                             <input type="text" id="py" name="py" class="form-control required" />
                         </td>
                         <td class="formTitle">
-                            <span class="required">*</span>大类：
+                            <span class="required">*</span>Nhóm lớn：
                         </td>
                         <td class="formValue">
                             <select  disabled="disabled" id="dlCode" name="dlCode" class="form-control required">
-                                <option value="18">材料费</option>
+                                <option value="18">Phí vật tư</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td class="formTitle">
-                            商品名：
+                            Tên thương mại：
                         </td>
                         <td class="formValue">
                             <input type="text" id="spm" name="spm" class="form-control" />
                         </td>
                         <td class="formTitle">
-                            <span class="required">*</span>编码：
+                            <span class="required">*</span>Mã：
                         </td>
                         <td class="formValue">
                             <input type="text" id="ypCode" name="ypCode" class="form-control required" disabled="disabled" />
                         </td>
                         <td class="formTitle">
-                            <span class="required">*</span>厂商名称：
+                            <span class="required">*</span>Tên nhà sản xuất：
                         </td>
                         <td class="formValue">
                             <input type="text" id="ycmc" name="ycmc" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="formTitle">批准文号：</td>
+                        <td class="formTitle">Số phê duyệt：</td>
                         <td class="formValue">
                             <input type="text" id="pzwh" name="pzwh" class="form-control" />
                         </td>
                         <td class="formTitle" style="display:none">
-                            新农合医保代码：
+                            Mã BHYT nông thôn mới：
                         </td>
                         <td class="formValue" style="display:none">
                             <input type="text" id="xnhybdm" name="xnhybdm" class="form-control" />
                         </td>
                         <td class="formTitle">
-                            <span class="required">*</span>药品规格：
+                            <span class="required">*</span>Quy cách thuốc：
                         </td>
                         <td class="formValue">
                             <input type="text" id="ypgg" name="ypgg" class="form-control required" />
                         </td>
                         <td class="formTitle">
-                            <span class="required">*</span>剂型：
+                            <span class="required">*</span>Dạng bào chế：
                         </td>
                         <td class="formValue">
                             <input type="text" id="jxmc" name="jxmc" autocomplete="off" class="form-control required" />
@@ -106,50 +106,50 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="formTitle"><span class="required">*</span>剂量单位：</td>
+                        <td class="formTitle"><span class="required">*</span>Đơn vị liều lượng：</td>
                         <td class="formValue">
                             <input type="text" id="jldw" name="jldw" class="form-control required" />
                         </td>
-                        <td class="formTitle"><span class="required">*</span>剂量转换系数：</td>
+                        <td class="formTitle"><span class="required">*</span>Hệ số chuyển đổi liều lượng：</td>
                         <td class="formValue">
                             <input type="text" id="jl" name="jl" class="form-control required" />
                         </td>
                         <td class="formValue" colspan="2">
-                            <p style="color:red;">1最小单位 = 剂量转换系数 * 剂量单位</p>
+                            <p style="color:red;">1Đơn vị nhỏ nhất = Hệ số chuyển đổi liều lượng * Đơn vị liều lượng</p>
                         </td>
                     </tr>
                     <tr>
-                        <td class="formTitle">默认剂量：</td>
+                        <td class="formTitle">Liều lượng mặc định：</td>
                         <td class="formValue">
                             <input type="text" id="mrjl" name="mrjl" class="form-control" />
                         </td>
-                        <td class="formTitle">默认频次：</td>
+                        <td class="formTitle">Tần suất mặc định：</td>
                         <td class="formValue">
                             <select id="mrpc" name="mrpc" class="form-control">
-                                <option value="">==请选择==</option>
+                                <option value="">==Vui lòng chọn==</option>
                             </select>
                         </td>
-                        <td class="formTitle">抗生素：</td>
+                        <td class="formTitle">Kháng sinh：</td>
                         <td class="formValue">
-                            <label><input type="radio" name="isKss" class="optionsRadios formClearIgnore" value="1" />是</label>&nbsp;&nbsp;&nbsp;
-                            <label><input type="radio" name="isKss" class="optionsRadios formClearIgnore" checked="checked" value="0" />否</label>
+                            <label><input type="radio" name="isKss" class="optionsRadios formClearIgnore" value="1" />Có</label>&nbsp;&nbsp;&nbsp;
+                            <label><input type="radio" name="isKss" class="optionsRadios formClearIgnore" checked="checked" value="0" />Không</label>
                             <input type="hidden" id="kssId" name="kssId" class="form-control required" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="formTitle"><span class="required">*</span>医保标志：</td>
+                        <td class="formTitle"><span class="required">*</span>Cờ BHYT：</td>
                         <td class="formValue">
                             <div class="ckbox">
-                                <!-- 医保标志：即便有医保代码对照，也需要打上医保标志才会跟医保交互 -->
+                                <!-- Cờ BHYT：Dù đã có đối chiếu mã BHYT，cũng cần gắn cờ BHYT thì mới tương tác với BHYT -->
                                 <select id="ybbz" name="ybbz" class="form-control required">
-                                    <option value="">==请选择==</option>
-                                    <option value="1">是</option>
-                                    <option value="0">否</option>
+                                    <option value="">==Vui lòng chọn==</option>
+                                    <option value="1">Có</option>
+                                    <option value="0">Không</option>
                                 </select>
                             </div>
                         </td>
                         <td class="formTitle">
-                            国家医保代码：
+                            Mã BHYT quốc gia：
                         </td>
                         <td class="formValue" colspan="2">
                             <input type="text" id="gjybdm" name="gjybdm" class="form-control" />
@@ -157,17 +157,17 @@
                     </tr>
                     <tr>
                         <td class="formTitle">
-                            国家医保名称：
+                            Tên BHYT quốc gia：
                         </td>
                         <td class="formValue">
                             <input type="text" id="gjybmc" name="gjybmc" class="form-control" />
                         </td>
-                        <td class="formTitle">省医保代码：</td>
+                        <td class="formTitle">Mã BHYT tỉnh：</td>
                         <td class="formValue">
                             <input type="text" id="ybdm" name="ybdm" class="form-control" />
                         </td>
                         <td class="formTitle">
-                            默认用法：
+                            Cách dùng mặc định：
                         </td>
                         <td class="formValue">
                             <input type="text" id="mryfmc" name="mryfmc" autocomplete="off" class="form-control" />
@@ -176,33 +176,33 @@
                     </tr>
                     <tr>
                         <td class="formTitle">
-                            <span class="required">*</span>自负性质：
+                            <span class="required">*</span>Tính chất tự trả：
                         </td>
                         <td class="formValue">
                             @*<div class="ckbox">
 
                 <select id="zfxz" name="zfxz" class="form-control required">
-                    <option value="">==请选择==</option>
-                    <option value="1">自费</option>
-                    <option value="4">甲类</option>
-                    <option value="5">乙类</option>
-                    <option value="6">丙类</option>
+                    <option value="">==Vui lòng chọn==</option>
+                    <option value="1">Tự trả</option>
+                    <option value="4">Hạng A</option>
+                    <option value="5">Hạng B</option>
+                    <option value="6">Hạng C</option>
                 </select>
             </div>*@
-                            @Html.DropDownList("zfxz", Newtouch.Infrastructure.EnumZFXZv2.ZF.ToDescSelectList(), "==请选择==", new { @class = "form-control required" })
+                            @Html.DropDownList("zfxz", Newtouch.Infrastructure.EnumZFXZv2.ZF.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control required" })
                         </td>
-                        <td class="formTitle">自付比例：</td>
+                        <td class="formTitle">Tỷ lệ tự trả：</td>
                         <td class="formValue">
                             <input type="text" id="zfbl" name="zfbl" class="form-control" />
                         </td>
-                        <td class="formTitle">医保规格：</td>
+                        <td class="formTitle">Quy cách BHYT：</td>
                         <td class="formValue">
                             <input type="text" id="ybgg" name="ybgg" class="form-control" />
                         </td>
                     </tr>
                     <tr>
                         <th class="formTitle" valign="top" style="padding-top: 5px;">
-                            备注：
+                            Ghi chú：
                         </th>
                         <td class="formValue" colspan="5">
                             <textarea id="bz" name="bz" class="form-control" style="height: 60px;"></textarea>
@@ -210,34 +210,34 @@
                     </tr>
                 </table>
                 <div class="panel-heading">
-                    单位转换 <p style="color:red;float:right">说明：1最小单位 = 剂量转换系数 * 剂量单位</p>
+                    Chuyển đổi đơn vị <p style="color:red;float:right">Mô tả：1Đơn vị nhỏ nhất = Hệ số chuyển đổi liều lượng * Đơn vị liều lượng</p>
                 </div>
                 <div style="padding-right:5px;">
                     <table class="form">
                         <tr>
                             <td class="formTitle">
-                                <span class="required">*</span>零售价：
+                                <span class="required">*</span>Giá bán lẻ：
                             </td>
                             <td class="formValue">
                                 <input type="text" id="lsj" name="lsj" class="form-control required" onblur="lsjOnBlur();" />
                             </td>
                             <td class="formTitle">
-                                批发价：
+                                Giá bán buôn：
                             </td>
                             <td class="formValue">
                                 <input type="text" id="pfj" name="pfj" class="form-control" @*onchange="getlsj()"*@ onblur="pfjOnBlur();" />
                             </td>
                             <td class="formTitle">
-                                <span class="required">*</span>最小单位：
+                                <span class="required">*</span>Đơn vị nhỏ nhất：
                             </td>
                             <td class="formValue">
                                 <input type="text" id="zxdw" name="zxdw" class="form-control" onchange="changeZxdw()" />
                             </td>
                         </tr>
                         <tr>
-                            <th class="formTitle"><span class="required">*</span>住院：</th>
+                            <th class="formTitle"><span class="required">*</span>Nội trú：</th>
                             <td class="formValue">
-                                <input type="text" id="zycldw" name="zycldw" class="form-control required" placeholder="住院单位" />
+                                <input type="text" id="zycldw" name="zycldw" class="form-control required" placeholder="Đơn vị nội trú" />
                             </td>
                             <td class="formValue">
                                 <span class="span-dy">=</span>
@@ -245,7 +245,7 @@
                                 <span class="span-dy">x</span>
                             </td>
                             <td class="formValue">
-                                <input type="text" id="zycls" name="zycls" class="form-control" placeholder="住院转化系数" />
+                                <input type="text" id="zycls" name="zycls" class="form-control" placeholder="Hệ số chuyển đổi nội trú" />
                             </td>
                             <th class="formValue" style="color:red;" colspan="2">
                                 <span name="zycls" class="span-dy"></span>
@@ -258,10 +258,10 @@
                         </tr>
                         <tr>
                             <th class="formTitle">
-                                <span class="required">*</span>门诊：
+                                <span class="required">*</span>Ngoại trú：
                             </th>
                             <td class="formValue">
-                                <input type="text" id="mzcldw" name="mzcldw" class="form-control required" placeholder="门诊单位" />
+                                <input type="text" id="mzcldw" name="mzcldw" class="form-control required" placeholder="Đơn vị ngoại trú" />
                             </td>
                             <td class="formValue">
                                 <span class="span-dy">=</span>
@@ -269,7 +269,7 @@
                                 <span class="span-dy">x</span>
                             </td>
                             <td class="formValue">
-                                <input type="text" id="mzcls" name="mzcls" class="form-control" placeholder="门诊转化系数" />
+                                <input type="text" id="mzcls" name="mzcls" class="form-control" placeholder="Hệ số chuyển đổi ngoại trú" />
                             </td>
                             <th class="formValue" style="color:red;" colspan="2">
                                 <span name="mzcls" class="span-dy"></span>
@@ -282,10 +282,10 @@
                         </tr>
                         <tr>
                             <th class="formTitle">
-                                <span class="required">*</span>药库：
+                                <span class="required">*</span>Kho thuốc：
                             </th>
                             <td class="formValue">
-                                <input type="text" id="bzdw" name="bzdw" class="form-control required " placeholder="药库单位" />
+                                <input type="text" id="bzdw" name="bzdw" class="form-control required " placeholder="Đơn vị kho thuốc" />
                             </td>
                             <td class="formValue">
                                 <span class="span-dy">=</span>
@@ -293,7 +293,7 @@
                                 <span class="span-dy">x</span>
                             </td>
                             <td class="formValue">
-                                <input type="text" id="bzs" name="bzs" class="form-control" placeholder="药库转化系数" />
+                                <input type="text" id="bzs" name="bzs" class="form-control" placeholder="Hệ số chuyển đổi kho thuốc" />
                             </td>
                             <th class="formValue" style="color:red;" colspan="2">
                                 <span name="bzs" class="span-dy"></span>
@@ -306,19 +306,19 @@
                         </tr>
                         <tr>
                             <td class="formTitle">
-                                医保限价：
+                                Giá trần BHYT：
                             </td>
                             <td class="formValue">
                                 <input type="text" id="ybdj" name="ybdj" class="form-control" oninput="value=value.replace(/[^0-9.]/g,'')" />
                             </td>
                             <td class="formTitle">
-                                单次限量：
+                                Giới hạn mỗi lần：
                             </td>
                             <td class="formValue">
                                 <input type="text" id="dcxl" name="dcxl" class="form-control" oninput="value=value.replace(/[^0-9.]/g,'')" />
                             </td>
                             <td class="formTitle">
-                                慢病限量：
+                                Giới hạn bệnh mạn tính：
                             </td>
                             <td class="formValue">
                                 <input type="text" id="mbxl" name="mbxl" class="form-control" oninput="value=value.replace(/[^0-9.]/g,'')" />
@@ -327,48 +327,48 @@
                     </table>
                 </div>
                 @*<div class="panel-heading">
-                    药品属性
+                    Thuộc tính thuốc
                 </div>*@
                 <table class="form" style="width:98%; height:80%; border:0">
                     <tr>
-                       @* <td class="formTitle">招标方式：</td>
+                       @* <td class="formTitle">Phương thức đấu thầu：</td>
                         <td class="formValue">
                             <select id="zbbz" name="zbbz" class="form-control">
-                                <option value="">==请选择==</option>
+                                <option value="">==Vui lòng chọn==</option>
                             </select>
                         </td>
-                        <td class="formTitle">药品属性：</td>
+                        <td class="formTitle">Thuộc tính thuốc：</td>
                         <td class="formValue">
                             <select id="yptssx" name="yptssx" class="form-control">
-                                <option value="">==请选择==</option>
+                                <option value="">==Vui lòng chọn==</option>
                             </select>
                         </td>
-                        <td class="formTitle"><span class="required">*</span>病区记账类型：</td>
+                        <td class="formTitle"><span class="required">*</span>Loại ghi sổ khu bệnh：</td>
                         <td class="formValue">
-                            @Html.DropDownList("jzlx", Newtouch.Infrastructure.EnumBQJZQZ.Day.ToDescSelectList(), "==请选择==", new { @class = "form-control required" })
+                            @Html.DropDownList("jzlx", Newtouch.Infrastructure.EnumBQJZQZ.Day.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control required" })
                         </td>
                     </tr>
 					<tr>
-						<td class="formTitle"><span class="required">*</span>基药标识：</td>
+						<td class="formTitle"><span class="required">*</span>Cờ thuốc thiết yếu：</td>
 						<td class="formValue" style="padding-top: 1px;">
-							@Html.DropDownList("jybz", Newtouch.Infrastructure.EnumJybz.Gjy.ToDescSelectList(), "==请选择==", new { @class = "form-control required" })
+							@Html.DropDownList("jybz", Newtouch.Infrastructure.EnumJybz.Gjy.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control required" })
 						</td>
-						<td class="formTitle">特殊药品标志：</td>
+						<td class="formTitle">Cờ thuốc đặc biệt：</td>
 						<td class="formValue" style="padding-top: 1px;">
 							<select id="tsypbz" name="tsypbz" class="form-control">
-								<option value="">==请选择==</option>
+								<option value="">==Vui lòng chọn==</option>
 							</select>
 						</td>*@
-						<td class="formTitle">选项：</td>
+						<td class="formTitle">Tùy chọn：</td>
 						<td class="formValue" style="padding-top: 1px;">
 							<span class="ckbox">
-								<input id="zt" name="zt" type="checkbox" checked="checked" /><label for="zt">有效</label>
+								<input id="zt" name="zt" type="checkbox" checked="checked" /><label for="zt">Hiệu lực</label>
 							</span>
 						</td>
 					</tr>
                 </table>
                 @* <div class="panel-heading"> *@
-                @*     同步药/库房 *@
+                @*     Đồng bộ thuốc/Kho *@
                 @* </div> *@
                 <div>
                     <ul class="ul-fybm"></ul>
@@ -378,29 +378,29 @@
                 <table class="form" style="width:98%;border:0;">
                     <tr>
                         <td class="formTitle">
-                            <span class="required">*</span>抗生素分类：
+                            <span class="required">*</span>Phân loại kháng sinh：
                         </td>
                         <td class="formValue">
                             <select id="kssType1" name="kssType1" class="form-control required">
-                                <option value="">==请选择==</option>
+                                <option value="">==Vui lòng chọn==</option>
                             </select>
                         </td>
                         <td class="formValue">
                             <select id="kssType2" name="kssType2" class="form-control">
-                                <option value="">==请选择==</option>
+                                <option value="">==Vui lòng chọn==</option>
                             </select>
                         </td>
                         <td class="formValue"></td>
                     </tr>
                     <tr>
                         <td class="formTitle">
-                            <span class="required">*</span>权限级别：
+                            <span class="required">*</span>Cấp quyền：
                         </td>
                         <td class="formValue">
                             <select id="qxjb" name="qxjb" class="form-control">
-                                <option value="0">非限制使用药物</option>
-                                <option value="1">限制使用药物</option>
-                                <option value="2">特殊使用药物</option>
+                                <option value="0">Thuốc sử dụng không hạn chế</option>
+                                <option value="1">Thuốc sử dụng hạn chế</option>
+                                <option value="2">Thuốc sử dụng đặc biệt</option>
                             </select>
                         </td>
                         <td class="formValue"></td>
@@ -409,7 +409,7 @@
                     </tr>
                     <tr>
                         <td class="formTitle">
-                            单次剂量：
+                            Liều lượng mỗi lần：
                         </td>
                         <td class="formValue" colspan="3">
                             <input type="number" id="jlfwks" name="jlfwks" class="form-control" style="width:130px;display:inline;" />
@@ -421,50 +421,50 @@
                     </tr>
                     <tr>
                         <td class="formTitle">
-                            频次范围：
+                            Phạm vi tần suất：
                         </td>
                         <td class="formValue" colspan="3">
                             <input type="number" id="pcfwks" min="0" name="pcfwks" class="form-control" style="width:130px;display:inline;"/>
                             &nbsp;-&nbsp;&nbsp;
                             <input type="number" id="pcfwjs" min="0" name="pcfwjs" class="form-control" style="width:130px;display:inline;"/>
-                            (小时一次)
+                            (Mỗi giờ một lần)
                         </td>
                         <td class="formValue"></td>
                     </tr>
                     <tr>
                         <td class="formTitle">
-                            DDD值：
+                            DDDGiá trị：
                         </td>
                         <td class="formValue" colspan="3">
                             <input type="number" id="DDDnum" name="DDDnum" class="form-control" style="width:120px;display:inline;"/>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DDD单位：&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DDDĐơn vị：&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="text" id="DDDdw" name="DDDdw" class="form-control" style="width:120px;display:inline;"/>
                         </td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td class="formTitle">剂量单位：</td>
+                        <td class="formTitle">Đơn vị liều lượng：</td>
                         <td class="formValue" colspan="3">
-                            <input type="text" id="kssjldw" name="kssjldw" class="form-control" style="width:120px;display:inline;" />&nbsp;&nbsp;(单位g)
+                            <input type="text" id="kssjldw" name="kssjldw" class="form-control" style="width:120px;display:inline;" />&nbsp;&nbsp;(Đơn vịg)
                         </td>
                         <td></td>
                     </tr>
                     <tr>
                         <td class="formTitle">
-                            效价：
+                            Hiệu giá：
                         </td>
                         <td class="formValue" colspan="2">
-                            <input type="number" id="xj" name="xj" class="form-control" style="width:120px;display:inline;"/>&nbsp;&nbsp;(单位mg)
+                            <input type="number" id="xj" name="xj" class="form-control" style="width:120px;display:inline;"/>&nbsp;&nbsp;(Đơn vịmg)
                         </td>
                         <td></td>
                     </tr>
                     <tr>
                         <td class="formTitle">
-                            空瓶：
+                            Lọ rỗng：
                         </td>
                         <td class="formValue">
-                            <label><input type="radio" name="kp" class="optionsRadios formClearIgnore" value="1" />是</label>&nbsp;&nbsp;&nbsp;
-                            <label><input type="radio" name="kp" class="optionsRadios formClearIgnore" checked="checked" value="0" />否</label>
+                            <label><input type="radio" name="kp" class="optionsRadios formClearIgnore" value="1" />Có</label>&nbsp;&nbsp;&nbsp;
+                            <label><input type="radio" name="kp" class="optionsRadios formClearIgnore" checked="checked" value="0" />Không</label>
                         </td>
                     </tr>
                 </table>
@@ -507,7 +507,7 @@
                 }
             });
             if ($.trim($("#kssId").val()).length > 0) {
-                //获取抗生素信息
+                //Lấy thông tin kháng sinh
                 $.najax({
                     url: "/SysMedicine/GetKssById",
                     data: { Id: $("#kssId").val() },
@@ -538,7 +538,7 @@
         initUnitChange();
     });
 
-    //初始化单位换算
+    //Khởi tạo chuyển đổi đơn vị
     function initUnitChange() {
         $("#zxdw").on("input", function () {
             changeZxdw();
@@ -583,27 +583,27 @@
         });
     }
 
-    //最小单位发生变化
+    //Đơn vị nhỏ nhất thay đổi
     function changeZxdw() {
         $("span[name=zxdw]").html($("#zxdw").val());
     }
 
     function initControl() {
-        $("#OrganizeId").bindSelect({//组织机构下拉框
+        $("#OrganizeId").bindSelect({//Hộp chọn tổ chức
             url: "/Organize/GetChildTreeSelectJson",
         });
 
     
-            //获取收费大类基础
+            //Lấy cơ sở nhóm thu phí lớn
         @*$("#dlCode").bindSelect({
                 url: "/ChargeCategory/GetTreeSelectJson?organizeId=*" ,
             });*@
-            //招标方式
+            //Phương thức đấu thầu
             $("#zbbz").bindSelect({
                 url: "/ItemsData/GetSelectJson",
                 param: { code: "MedicineTenderMethod" }
             });
-        //药品特殊属性
+        //Thuộc tính đặc biệt của thuốc
         $("#yptssx").bindSelect({
                 url: "/ItemsData/GetSelectJson",
                 param: { code: "XT_YP_TSSX" }
@@ -612,13 +612,13 @@
         $("#mrpc").bindSelect({
                 url: "GetPcSelectJson"
 			});
-			//获取特殊药品标志
+			//Lấy cờ thuốc đặc biệt
 			$("#tsypbz").bindSelect({
 				url: "/ItemsData/GetSelectJson",
 				param: { code: "tsypbz" }
             });
 
-        //药品名称
+        //Tên thuốc
         //$("#ypmc").ypFloatingSelector({
         //    itemdbclickhandler: function ($thistr) {
         //        //$('#ypmcsh').val($thistr.attr('data-ypmc'));
@@ -637,7 +637,7 @@
         //$('#ypmc').newtouchFloatingSelector({
         //    width: 600,
         //    height: 300,
-        //    caption: "药品名称",
+        //    caption: "Tên thuốc",
         //    url: '/SysMedicine/GetFloatingYPXXJson',
         //    ajaxparameters: function ($thistr) {
         //        return 'organizeId=' + $.trim($('#OrganizeId').val()) + '&keyword=' + $thistr;
@@ -655,19 +655,19 @@
         //        $('#ybbz option[value=' + 1 + ']').attr('selected', 'selected');
         //    },
         //    colModel: [
-        //        { label: '名称', name: 'ypmc', widthratio: 25 },
-        //        { label: '医保代码', name: 'ybdm', widthratio: 20 },
-        //        { label: '规格', name: 'gg', widthratio: 20 },
-        //        { label: '药厂名称', name: 'ycmc', widthratio: 25 },
-        //        { label: '药品性质', name: 'ypxz', widthratio: 25 },
-        //        { label: '拼音', name: 'py', hidden: true },
-        //        { label: '药品性质', name: 'ybxz', widthratio: 25 ,hidden:true}
+        //        { label: 'Tên', name: 'ypmc', widthratio: 25 },
+        //        { label: 'Mã BHYT', name: 'ybdm', widthratio: 20 },
+        //        { label: 'Quy cách', name: 'gg', widthratio: 20 },
+        //        { label: 'Tên nhà máy dược', name: 'ycmc', widthratio: 25 },
+        //        { label: 'Tính chất thuốc', name: 'ypxz', widthratio: 25 },
+        //        { label: 'Pinyin', name: 'py', hidden: true },
+        //        { label: 'Tính chất thuốc', name: 'ybxz', widthratio: 25 ,hidden:true}
         //    ]
         //});
         $('#xnhybdm').newtouchFloatingSelector({
             width: 540,
             height: 300,
-            caption: "药品名称",
+            caption: "Tên thuốc",
             url: '/SysMedicine/GetFloatingYPXNHXXJson',
             ajaxparameters: function () {
                 return 'keyword=' + $.trim($('#xnhybdm').val());
@@ -677,17 +677,17 @@
                 $('#xnhybdm').val($thistr.attr('data-code'));
             },
             colModel: [
-                { label: '名称', name: 'name', widthratio: 25 },
-                { label: '农保代码', name: 'code', widthratio: 30 },
-                { label: '剂型', name: 'dosageForm', widthratio: 30 },
-                { label: '是否基药', name: 'isBase' }
+                { label: 'Tên', name: 'name', widthratio: 25 },
+                { label: 'Mã bảo hiểm nông nghiệp', name: 'code', widthratio: 30 },
+                { label: 'Dạng bào chế', name: 'dosageForm', widthratio: 30 },
+                { label: 'Có phải thuốc thiết yếu không', name: 'isBase' }
             ]
         });
-        //剂型信息
+        //Thông tin dạng bào chế
         $('#jxmc').newtouchFloatingSelector({
             width: 300,
             height: 200,
-            caption: "剂型信息",
+            caption: "Thông tin dạng bào chế",
             url: '/SysMedicineFormulation/GetListSelectJson',
             ajaxparameters: function () {
                 return "keyword=HC" + $.trim($('#jxmc').val());
@@ -696,17 +696,17 @@
                 $('#jx').val($thistr.attr('data-jxCode'));
                 $('#jxmc').val($thistr.attr('data-jxmc'));
             },
-            colModel: [{ label: '编码', name: 'jxCode', hidden: true },
-            { label: '名称', name: 'jxmc', widthratio: 50 },
-            { label: '首拼', name: 'py', widthratio: 50 }
+            colModel: [{ label: 'Mã', name: 'jxCode', hidden: true },
+            { label: 'Tên', name: 'jxmc', widthratio: 50 },
+            { label: 'Mã chữ cái đầu', name: 'py', widthratio: 50 }
             ]
         });
 
-        //默认用法
+        //Cách dùng mặc định
         $('#mryfmc').newtouchFloatingSelector({
             width: 300,
             height: 300,
-            caption: "用法",
+            caption: "Cách dùng",
             url: '/SysMedicine/GetUsageFloat',
             clickautotrigger: true,
             ajaxparameters: function () {
@@ -716,17 +716,17 @@
                 $('#mryf').val($thistr.attr('data-yfCode'));
                 $('#mryfmc').val($thistr.attr('data-yfmc'));
             },
-            colModel: [{ label: '编码', name: 'yfCode', hidden: true },
-                { label: '名称', name: 'yfmc', widthratio: 50 },
-            { label: '首拼', name: 'py', widthratio: 50 }
+            colModel: [{ label: 'Mã', name: 'yfCode', hidden: true },
+                { label: 'Tên', name: 'yfmc', widthratio: 50 },
+            { label: 'Mã chữ cái đầu', name: 'py', widthratio: 50 }
             ]
         });
 
-        //药品分类
+        //Phân loại thuốc
         $('#ypflMc').newtouchFloatingSelector({
             width: 300,
             height: 300,
-            caption: "药品分类",
+            caption: "Phân loại thuốc",
             url: '/SysMedicineClassification/GetListSelectJson',
             clickautotrigger: true,
             ajaxparameters: function () {
@@ -736,15 +736,15 @@
                 $('#ypflCode').val($thistr.attr('data-ypflCode'));
                 $('#ypflMc').val($thistr.attr('data-ypflmc'));
             },
-            colModel: [{ label: '编码', name: 'ypflCode', hidden: true },
-            { label: '名称', name: 'ypflmc', widthratio: 50 },
-            { label: '首拼', name: 'py', widthratio: 50 }
+            colModel: [{ label: 'Mã', name: 'ypflCode', hidden: true },
+            { label: 'Tên', name: 'ypflmc', widthratio: 50 },
+            { label: 'Mã chữ cái đầu', name: 'py', widthratio: 50 }
             ]
 		});
 
 
 
-		//药品名称
+		//Tên thuốc
         $.fn.ypmcFloatingSelector = function (options) {
 			var defaults = {
 				url: '/SysMedicine/GetFloatingYPXXJson',
@@ -752,7 +752,7 @@
                 height: 300,
                 data: options,
 				clickautotrigger: true,
-				caption: "选择药品",
+				caption: "Chọn thuốc",
                 ajaxparameters: function ($thisinput) {
 					var key = $.trim($('#ypmc').val());
 					if ($thisinput.selector =="#gjybdm") {
@@ -762,17 +762,17 @@
 				},
 				itemdbclickhandler: null,
 				colModel: [
-					{ label: '名称', name: 'ypmc', widthratio: 10 },
-					{ label: '医保代码', name: 'ybdm', widthratio: 10 },
-					{ label: '规格', name: 'gg', widthratio: 10 },
-					{ label: '药厂名称', name: 'ycmc', widthratio: 20 },
-					{ label: '批准文号', name: 'pzwh', widthratio: 10 },
-					{ label: '药品性质', name: 'ypxz', widthratio: 10 },
-					{ label: '药品性质', name: 'ybxz', widthratio: 15, hidden: true },
-                    { label: '首拼', name: 'py', widthratio: 10, hidden: true },
-					{ label: '医保限价', name: 'ybdj', widthratio: 10 },
-					{ label: '国家医保代码', name: 'gjybdm', widthratio: 10 },
-					{ label: '剂型', name: 'jxmc', widthratio: 10 }
+					{ label: 'Tên', name: 'ypmc', widthratio: 10 },
+					{ label: 'Mã BHYT', name: 'ybdm', widthratio: 10 },
+					{ label: 'Quy cách', name: 'gg', widthratio: 10 },
+					{ label: 'Tên nhà máy dược', name: 'ycmc', widthratio: 20 },
+					{ label: 'Số phê duyệt', name: 'pzwh', widthratio: 10 },
+					{ label: 'Tính chất thuốc', name: 'ypxz', widthratio: 10 },
+					{ label: 'Tính chất thuốc', name: 'ybxz', widthratio: 15, hidden: true },
+                    { label: 'Mã chữ cái đầu', name: 'py', widthratio: 10, hidden: true },
+					{ label: 'Giá trần BHYT', name: 'ybdj', widthratio: 10 },
+					{ label: 'Mã BHYT quốc gia', name: 'gjybdm', widthratio: 10 },
+					{ label: 'Dạng bào chế', name: 'jxmc', widthratio: 10 }
 				]
             };
 
@@ -790,7 +790,7 @@
                 for (var k = 0; k < rowIds.length; k++) {
                     var curRowData = jQuery(curData).jqGrid('getRowData', rowIds[k]);
                     if ($thistr.attr('data-gjybdm') != "" && $thistr.attr('data-gjybdm') != null && curRowData.gjybdm == $thistr.attr('data-gjybdm')) {
-                        $.modalAlert("系统已存在国家医保代码为" + $thistr.attr("data-gjybdm")+"的药品，"+$thistr.attr("data-ypmc"),'warning');
+                        $.modalAlert("Hệ thống đã tồn tại thuốc có mã BHYT quốc gia là" + $thistr.attr("data-gjybdm")+"，"+$thistr.attr("data-ypmc"),'warning');
                     };
                 };
 				$('#ypmc').val($thistr.attr('data-ypmc'));
@@ -817,11 +817,11 @@
 				for (var k = 0; k < rowIds.length; k++) {
 					var curRowData = jQuery(curData).jqGrid('getRowData', rowIds[k]);
 					//if ($thistr.attr('data-gjybdm') != "" && $thistr.attr('data-gjybdm') != null && curRowData.gjybdm == $thistr.attr('data-gjybdm')) {
-					//	$.modalAlert("系统已存在国家医保代码为" + $thistr.attr("data-gjybdm") + "的药品，" + $thistr.attr("data-ypmc"), 'warning');
+					//	$.modalAlert("Hệ thống đã tồn tại thuốc có mã BHYT quốc gia là" + $thistr.attr("data-gjybdm") + "，" + $thistr.attr("data-ypmc"), 'warning');
 					//};
 				};
                 if (($('#ypmc').val() != "" || $('#ypmc').val() != null) && $('#ybdm').val() != $thistr.attr('data-ybdm')) {
-					$.modalConfirm("是否更新当前药品医保信息？", function (flag) {
+					$.modalConfirm("Có cập nhật thông tin BHYT của thuốc hiện tại không？", function (flag) {
                         if (flag) {
 							//$('#ypmc').val($thistr.attr('data-ypmc'));
 							$('#ybdm').val($thistr.attr('data-ybdm'));
@@ -848,11 +848,11 @@
 			}
 		});
 
-    //    //药品名称
+    //    //Tên thuốc
     //    $('#ypmc').newtouchFloatingSelector({
     //        width: 540,
     //        height: 300,
-    //        caption: "药品名称",
+    //        caption: "Tên thuốc",
     //        url: '/SysMedicine/GetFloatingYPXXJson',
     //        ajaxparameters: function () {
     //            return 'organizeId='+ $.trim($('#OrganizeId').val())+'&keyword='+$.trim($('#ypmc').val());
@@ -871,33 +871,33 @@
 				////$('#ypmc').html($thistr.attr('data-ypmc'));
     //        },
     //        colModel: [
-    //            { label: '名称', name: 'ypmc', widthratio: 20 },
-    //            { label: '医保代码', name: 'ybdm', widthratio: 15 },
-    //            { label: '规格', name: 'gg', widthratio: 15 },
-    //            { label: '药厂名称', name: 'ycmc', widthratio: 20 },
-    //            { label: '药品性质', name: 'ypxz', widthratio: 15 },
-				//{ label: '药品性质', name: 'ybxz', widthratio: 25, hidden: true },
-				//{ label: '首拼', name: 'py', widthratio: 15 },
+    //            { label: 'Tên', name: 'ypmc', widthratio: 20 },
+    //            { label: 'Mã BHYT', name: 'ybdm', widthratio: 15 },
+    //            { label: 'Quy cách', name: 'gg', widthratio: 15 },
+    //            { label: 'Tên nhà máy dược', name: 'ycmc', widthratio: 20 },
+    //            { label: 'Tính chất thuốc', name: 'ypxz', widthratio: 15 },
+				//{ label: 'Tính chất thuốc', name: 'ybxz', widthratio: 25, hidden: true },
+				//{ label: 'Mã chữ cái đầu', name: 'py', widthratio: 15 },
     //        ]
     //    });
 
-		//新农合医保代码
+		//Mã BHYT nông thôn mới
 		$.fn.xnhFloatingSelector = function (options) {
 			var defaults = {
 				url: '/SysMedicine/GetFloatingYPXNHXXJson',
 				width: 540,
 				height: 300,
 				clickautotrigger: true,
-				caption: "药品名称",
+				caption: "Tên thuốc",
 				ajaxparameters: function ($thisinput) {
 					return 'keyword=' + $.trim($('#xnhybdm').val());
 				},
 				itemdbclickhandler: null,
 				colModel: [
-					{ label: '名称', name: 'name', widthratio: 25 },
-					{ label: '农保代码', name: 'code', widthratio: 30 },
-					{ label: '剂型', name: 'dosageForm', widthratio: 30 },
-					{ label: '是否基药', name: 'isBase' }
+					{ label: 'Tên', name: 'name', widthratio: 25 },
+					{ label: 'Mã bảo hiểm nông nghiệp', name: 'code', widthratio: 30 },
+					{ label: 'Dạng bào chế', name: 'dosageForm', widthratio: 30 },
+					{ label: 'Có phải thuốc thiết yếu không', name: 'isBase' }
 				]
 			};
 			var options = $.extend(defaults, options);
@@ -915,7 +915,7 @@
   //      $('#xnhybdm').newtouchFloatingSelector({
   //          width: 540,
   //          height: 300,
-  //          caption: "药品名称",
+  //          caption: "Tên thuốc",
   //          url: '/SysMedicine/GetFloatingYPXNHXXJson',
   //          ajaxparameters: function () {
   //              return 'keyword=' + $.trim($('#xnhybdm').val());
@@ -925,28 +925,28 @@
   //              $('#xnhybdm').val($thistr.attr('data-code'));
   //          },
   //          colModel: [
-  //              { label: '名称', name: 'name', widthratio: 25 },
-  //              { label: '农保代码', name: 'code', widthratio: 30 },
-  //              { label: '剂型', name: 'dosageForm', widthratio: 30 },
-  //              { label: '是否基药', name: 'isBase' }
+  //              { label: 'Tên', name: 'name', widthratio: 25 },
+  //              { label: 'Mã bảo hiểm nông nghiệp', name: 'code', widthratio: 30 },
+  //              { label: 'Dạng bào chế', name: 'dosageForm', widthratio: 30 },
+  //              { label: 'Có phải thuốc thiết yếu không', name: 'isBase' }
   //          ]
 		//});
 
-		//剂型信息
+		//Thông tin dạng bào chế
 		$.fn.jxFloatingSelector = function (options) {
 			var defaults = {
 				url: '/SysMedicineFormulation/GetListSelectJson',
 				width: 300,
 				height: 200,
 				clickautotrigger: true,
-				caption: "剂型信息",
+				caption: "Thông tin dạng bào chế",
 				ajaxparameters: function ($thisinput) {
 					return "keyword=HC" + $.trim($('#jxmc').val());
 				},
 				itemdbclickhandler: null,
-				colModel: [{ label: '编码', name: 'jxCode', hidden: true },
-				{ label: '名称', name: 'jxmc', widthratio: 50 },
-				{ label: '首拼', name: 'py', widthratio: 50 }
+				colModel: [{ label: 'Mã', name: 'jxCode', hidden: true },
+				{ label: 'Tên', name: 'jxmc', widthratio: 50 },
+				{ label: 'Mã chữ cái đầu', name: 'py', widthratio: 50 }
 				]
 			};
 			var options = $.extend(defaults, options);
@@ -961,11 +961,11 @@
 				$('#jxmc').val($thistr.attr('data-jxmc'));
 			}
 		});
-        ////剂型信息
+        ////Thông tin dạng bào chế
         //$('#jxmc').newtouchFloatingSelector({
         //    width: 300,
         //    height: 200,
-        //    caption: "剂型信息",
+        //    caption: "Thông tin dạng bào chế",
         //    url: '/SysMedicineFormulation/GetListSelectJson',
         //    ajaxparameters: function () {
         //        return "keyword=" + $.trim($('#jxmc').val());
@@ -974,26 +974,26 @@
         //        $('#jx').val($thistr.attr('data-jxCode'));
         //        $('#jxmc').val($thistr.attr('data-jxmc'));
         //    },
-        //    colModel: [{ label: '编码', name: 'jxCode', hidden: true },
-        //    { label: '名称', name: 'jxmc', widthratio: 50 },
-        //    { label: '首拼', name: 'py', widthratio: 50 }
+        //    colModel: [{ label: 'Mã', name: 'jxCode', hidden: true },
+        //    { label: 'Tên', name: 'jxmc', widthratio: 50 },
+        //    { label: 'Mã chữ cái đầu', name: 'py', widthratio: 50 }
         //    ]
         //});
 
-		//药品单位
+		//Đơn vị thuốc
 		$.fn.ypdwFloatingSelector = function (options) {
 			var defaults = {
 				url: '/SysMedicineUnit/GetListSelectJson',
 				width: 300,
 				height: 300,
 				clickautotrigger: true,
-				caption: "药品单位",
+				caption: "Đơn vị thuốc",
 				ajaxparameters: function ($thisinput) {
 					return "keyword=" + $.trim($thisinput.val());
 				},
 				itemdbclickhandler: null,
 				colModel: [
-					{ label: '名称', name: 'ypdwmc', widthratio: 50 }
+					{ label: 'Tên', name: 'ypdwmc', widthratio: 50 }
 				]
 			};
 			var options = $.extend(defaults, options);
@@ -1036,11 +1036,11 @@
 				$($thisinput.val($thistr.attr('data-ypdwmc'))).trigger("change");
 			}
 		});
-        ////药品单位
+        ////Đơn vị thuốc
         //$("#jldw,#zxdw,#zycldw,#mzcldw,#bzdw").newtouchBatchFloatingSelector({
         //    width: 300,
         //    height: 300,
-        //    caption: "剂型信息",
+        //    caption: "Thông tin dạng bào chế",
         //    url: '/SysMedicineUnit/GetListSelectJson',
         //    ajaxparameters: function ($thisinput) {
         //        return "keyword=" + $.trim($thisinput.val());
@@ -1049,19 +1049,19 @@
         //        $($thisinput.val($thistr.attr('data-ypdwmc'))).trigger("change");
         //    },
         //    colModel: [
-        //        { label: '名称', name: 'ypdwmc', widthratio: 50 }
+        //        { label: 'Tên', name: 'ypdwmc', widthratio: 50 }
         //    ]
         //});
 
         //$('#zfxz').select2();
         $('#jzlx').select2();
 
-        //首拼
+        //Mã chữ cái đầu
         $('#ypmc').keyup(function () {
             $('#py').val($(this).toShouPin());
         });
 
-        //抗生素单选按钮控制Tab是否禁用
+        //Điều khiển nút radio kháng sinhTabCó vô hiệu hóa không
         $("input:radio[name='isKss']").change(function () {
             var opt = $("input:radio[name='isKss']:checked").val();
             if (opt == "1") {
@@ -1082,7 +1082,7 @@
             var parentId = "";
             if (typeval != "") {
                 parentId = typeval.split("|")[0];
-                qxjb = typeval.split("|")[1];//一级分类变更时沿用权限级别
+                qxjb = typeval.split("|")[1];//Khi phân loại cấp 1 thay đổi vẫn giữ cấp quyền
             }
             $("#qxjb").val(qxjb);
             $("#kssType2").bindSelect({
@@ -1093,14 +1093,14 @@
         $("#kssType2").change(function () {
             var typeval = $("#kssType2").val();
             if (typeval != "") {
-                var qxjb = typeval.split("|")[1];//二级分类变更时沿用权限级别
+                var qxjb = typeval.split("|")[1];//Khi phân loại cấp 2 thay đổi vẫn giữ cấp quyền
                 $("#qxjb").val(qxjb);
             }
         });
         InitYfbmByNewDrug();
     }
 
-    //获取所有药房部门
+    //Lấy tất cả bộ phận nhà thuốc
     function InitYfbmByNewDrug() {
         $.najax({
             url: "/SysMedicine/GetAllYfbm",
@@ -1122,7 +1122,7 @@
         });
     }
 
-    //刷新授权药房
+    //Làm mới nhà thuốc được ủy quyền
     function RefreshEmpowermentPharmacyDepartment() {
         if (!keyValue) return false;
         var organizeId = $("#OrganizeId").val();
@@ -1163,49 +1163,49 @@
         }
     });
 
-    function submitForm() {//点击提交序列化
+    function submitForm() {//Nhấp gửi để tuần tự hóa
         debugger;
         @*if ($("#OrganizeId").val() == "") {
             $("#OrganizeId").focus();
             return false;
         }*@
-        var reg = /^[1-9]\d*$/;//大于0的整数
+        var reg = /^[1-9]\d*$/;//Lớn hơn0số nguyên
         if (!reg.test($("#zycls").val())) {
-            $.modalMsg("住院转化系数必须为大于0的整数！", "warning", 1500);
+            $.modalMsg("Hệ số chuyển đổi nội trú phải lớn hơn0số nguyên！", "warning", 1500);
             $("#zycls").val("");
             return false;
         }
         if (!reg.test($("#mzcls").val())) {
-            $.modalMsg("门诊转化系数必须为大于0的整数！", "warning", 1500);
+            $.modalMsg("Hệ số chuyển đổi ngoại trú phải lớn hơn0số nguyên！", "warning", 1500);
             $("#mzcls").val("");
             return false;
         }
         if (!reg.test($("#bzs").val())) {
-            $.modalMsg("药库转化系数必须为大于0的整数！", "warning", 1500);
+            $.modalMsg("Hệ số chuyển đổi kho thuốc phải lớn hơn0số nguyên！", "warning", 1500);
             $("#bzs").val("");
             return false;
         }
         if (parseFloat($("#jlfwks").val()) > parseFloat($("#jlfwjs").val()) && $.trim($("#jlfwjs").val()) != "") {
-            $.modalMsg("抗生素单次剂量，剂量最小值不能大于剂量最大值！", "warning", 1500);
+            $.modalMsg("Liều lượng kháng sinh mỗi lần，Giá trị liều lượng tối thiểu không được lớn hơn giá trị tối đa！", "warning", 1500);
             return false;
         }
         if (parseFloat($("#pcfwks").val()) > parseFloat($("#pcfwjs").val()) && $.trim($("#jlfwjs").val()) != "") {
-            $.modalMsg("抗生素频次范围，频次最小值不能大于频次最大值！", "warning", 1500);
+            $.modalMsg("Phạm vi tần suất kháng sinh，Giá trị tần suất tối thiểu không được lớn hơn giá trị tối đa！", "warning", 1500);
             return false;
         }
         if ($('input:radio[name=isKss]:checked').val() == "1" && $("#kssType1").val() == "") {
-            $.modalMsg("抗生素药品必须录入抗生素类型！", "warning", 1500);
+            $.modalMsg("Thuốc kháng sinh phải nhập loại kháng sinh！", "warning", 1500);
             return false;
         }
 
         if ($("#ybbz").val() == 1 && ($("#ybdm").val() == "" || $("#ybdm").val() == null)) {
-            //$.modalMsg("请录入医保代码！", "warning", 1500);
+            //$.modalMsg("Vui lòng nhập mã BHYT！", "warning", 1500);
             //return false;
         }
 
-        //取消国家医保代码必填项
+        //Hủy mục bắt buộc mã BHYT quốc gia
         //if ($("#ybbz").val() == 1 && ($("#gjybdm").val() == "" || $("#gjybdm").val() == null)) {
-        //    $.modalMsg("请录入国家医保代码！", "warning", 1500);
+        //    $.modalMsg("Vui lòng nhập mã BHYT quốc gia！", "warning", 1500);
         //    return false;
         //}
         
@@ -1216,12 +1216,12 @@
         var postData = $("#form1").formSerialize();
         postData.isKss = $('input:radio[name=isKss]:checked').val();
         if (postData.isKss === "1") {
-            kssId = SaveKss(); //抗生素信息保存
+            kssId = SaveKss(); //Lưu thông tin kháng sinh
         }
         postData.mryf = $("#mryfmc").val() == "" ? "" : $("#mryf").val();
         postData["djdw"] = postData["bzdw"]; //2018.04.18
         postData.kssId = kssId;
-        //基础公共信息组织机构默认为 * 
+        //Tổ chức thông tin công cộng cơ bản mặc định là * 
         postData.OrganizeId= '*';
         $.submitForm({
             url: "/SysMedicine/submitForm?keyValue=" + keyValue,
@@ -1234,7 +1234,7 @@
         });
     }
 
-    ////提交授权库房
+    ////Gửi kho được ủy quyền
     //function SubmitEmpowermentPharmacyDepartment() {
     //    $.najax({
     //        url: "/SysMedicine/SubmitEmpowermentPharmacyDepartment?keyValue=" + keyValue,
@@ -1244,7 +1244,7 @@
     //    });
     //}
 
-    //组装被选中的药房药库
+    //Tập hợp nhà thuốc/kho thuốc đã chọn
     function AssembleEmpowermentPharmacyDepartment() {
         var chk = $("input:checkbox[name=yfbm]:checked");
         if (chk === null || chk.length === 0) return false;
@@ -1255,7 +1255,7 @@
         return param;
     }
 
-    function SaveKss()//提交抗生素信息
+    function SaveKss()//Gửi thông tin kháng sinh
     {
         var kssData = new Object();
         kssData.Id = $("#kssId").val();
@@ -1296,8 +1296,8 @@
         if (type1 !== "") {
             var result1 = "";
             $("#kssType1 option").each(function () {
-                //遍历所有option
-                var value = $(this).val();   //获取option值
+                //Duyệt tất cảoption
+                var value = $(this).val();   //LấyoptionGiá trị
                 if (value.indexOf(type1) > -1) {
                     result1 = value;
                     return;
@@ -1308,8 +1308,8 @@
                 setTimeout(function () {
                     var result2 = "";
                     $("#kssType2 option").each(function () {
-                        //遍历所有option
-                        var value = $(this).val(); //获取option值
+                        //Duyệt tất cảoption
+                        var value = $(this).val(); //LấyoptionGiá trị
                         if (value.indexOf(type2) > -1) {
                             result2 = value;
                             return;
@@ -1322,7 +1322,7 @@
             }
         }
 	}
-    //说明：这边会自动改零售价，温江不需要。
+    //Mô tả：Bên này sẽ tự động đổi giá bán lẻ，Wenjiang không cần。
 	//function getlsj() {
 	//	var pfj = $("#pfj").val();
 	//	//alert(pfj);

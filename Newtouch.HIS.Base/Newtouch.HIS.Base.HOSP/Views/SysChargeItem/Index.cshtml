@@ -8,13 +8,13 @@
     @Html.Partial("_OrganizeIdDDLToolbarSearchView")
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary" onclick="btn_xy()"><i class="fa fa-pencil-square-o"></i>限用</a>
+            <a id="NF-edit" class="btn btn-primary" onclick="btn_xy()"><i class="fa fa-pencil-square-o"></i>Hạn chế sử dụng</a>
         </div>
     </div>
     <div class="search">
@@ -22,18 +22,18 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="名称/编码/首拼" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Mã/Mã chữ cái đầu" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
                     </div>
                 </td>
-                <td class="formTitle">有效状态：</td>
+                <td class="formTitle">Trạng thái hiệu lực：</td>
                 <td class="input-group" id="zttd" style="margin-top:13px;">
                     <select id="yxzt" name="zt" class="form-control">
-                        <option value="" >全部</option>
-                        <option value="0">无效</option>
-                        <option value="1" selected="selected">有效</option>
+                        <option value="" >Tất cả</option>
+                        <option value="0">Vô hiệu</option>
+                        <option value="1" selected="selected">Hiệu lực</option>
                     </select>
                 </td>
                 <td></td>
@@ -42,7 +42,7 @@
     </div>
     <div class="toolbar">
         <select id="sfdl" name="sfdl" class="form-control required" style="width:120px">
-            <option value="">==请选择==</option>
+            <option value="">==Vui lòng chọn==</option>
         </select>
     </div>
 </div>
@@ -64,9 +64,9 @@
             url: "/SysChargeItem/GetGridJson",
             height: $(window).height() - 128,
             colModel: [
-                 { label: "主键", name: "sfxmId", hidden: true, key: true },
+                 { label: "Khóa chính", name: "sfxmId", hidden: true, key: true },
                  //{
-                 //    label: '同步', name: 'isSynch', width: 40, align: 'left',
+                 //    label: 'Đồng bộ', name: 'isSynch', width: 40, align: 'left',
                  //    formatter: function (cellvalue, options, rowObject) {
                  //        if (cellvalue === '0') {
                  //            var $row = JSON.stringify(rowObject).replace(/\"/g, "'");
@@ -80,27 +80,27 @@
                  //        }
                  //    }
                  //},
-                 { label: '名称', name: 'sfxmmc', width: 150, align: 'left' },
-                 { label: '规格', name: 'gg', width: 30, align: 'left' },
-                 { label: "编码", name: "sfxmCode", width: 75, align: 'left' },
-                { label: "医保代码", name: "ybdm", width: 75, align: 'left' },
-                { label: "国家医保代码", name: "gjybdm", width: 90, align: 'left' },
-                { label: "新农合医保代码", name: "xnhybdm", width: 90, align: 'left', hidden: true },
-                 { label: "首拼", name: "py", hidden: true },
-                { label: '国家医保名称', name: 'gjybmc', width: 150, align: 'left' },
-                { label: '生产厂家', name: 'sccj', width: 150, align: 'left' },
+                 { label: 'Tên', name: 'sfxmmc', width: 150, align: 'left' },
+                 { label: 'Quy cách', name: 'gg', width: 30, align: 'left' },
+                 { label: "Mã", name: "sfxmCode", width: 75, align: 'left' },
+                { label: "Mã BHYT", name: "ybdm", width: 75, align: 'left' },
+                { label: "Mã BHYT quốc gia", name: "gjybdm", width: 90, align: 'left' },
+                { label: "Mã BHYT nông thôn mới", name: "xnhybdm", width: 90, align: 'left', hidden: true },
+                 { label: "Mã chữ cái đầu", name: "py", hidden: true },
+                { label: 'Tên BHYT quốc gia', name: 'gjybmc', width: 150, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 150, align: 'left' },
                 {
-                    label: "自负性质", name: "zfxz", width: 60, align: 'left', formatter: function (cellVallue) {
-                        return cellVallue == 0 ? "可报" : (cellVallue == 1 ? "自费" : (cellVallue == 2 ? "分类自负" : (cellVallue == 3 ? "绝对自理" : (cellVallue == 4 ? "甲类" : (cellVallue == 5 ? "乙类" : (cellVallue == 6 ? "丙类" : ""))))));
+                    label: "Tính chất tự trả", name: "zfxz", width: 60, align: 'left', formatter: function (cellVallue) {
+                        return cellVallue == 0 ? "Được thanh toán" : (cellVallue == 1 ? "Tự trả" : (cellVallue == 2 ? "Tự trả theo phân loại" : (cellVallue == 3 ? "Hoàn toàn tự trả" : (cellVallue == 4 ? "Hạng A" : (cellVallue == 5 ? "Hạng B" : (cellVallue == 6 ? "Hạng C" : ""))))));
                     }
                 },
                 {
-                    label: "单价", name: "dj", width: 60, align: 'left', formatter: "number"
+                    label: "Đơn giá", name: "dj", width: 60, align: 'left', formatter: "number"
                 , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
-                { label: "收费大类", name: "sfdlmc", width: 100, align: 'left' },
+                { label: "Nhóm thu phí lớn", name: "sfdlmc", width: 100, align: 'left' },
                 {
-                    label: '超限价金额', name: 'cxjje', width: 80, align: 'left',
+                    label: 'Số tiền vượt giá trần', name: 'cxjje', width: 80, align: 'left',
                     formatter: function (cxjje) {
                         if (cxjje == 0 || cxjje == null) {
                             return "0.00";
@@ -110,18 +110,18 @@
                     }
                 },
                 {
-                    label: "有效", name: "zt", width: 80, align: "left", formatter: function (cellvalue, options, rowObject) {
+                    label: "Hiệu lực", name: "zt", width: 80, align: "left", formatter: function (cellvalue, options, rowObject) {
                         return cellvalue == "1"
                             ? `<i class="fa fa-toggle-on" style="cursor:pointer;" onclick="toggleZt('${rowObject.sfxmId}', 0)"></i>`
                             : `<i class="fa fa-toggle-off" style="cursor:pointer;" onclick="toggleZt('${rowObject.sfxmId}', 1)"></i>`;
                     }
                 },
-                 { label: '创建人', name: 'CreatorCode', width: 100, align: 'left' },
-                 { label: '创建时间', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                 { label: '最后修改', name: 'LastModifierCode', width: 100, align: 'left' },
-                 { label: '最后修改时间', name: 'LastModifyTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-				{ label: '排序', name: 'px', width: 40, align: 'left' },
-				{ label: "是否是物资同步数据", name: "iswzsame", hidden: true },
+                 { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
+                 { label: 'Thời gian tạo', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                 { label: 'Sửa lần cuối', name: 'LastModifierCode', width: 100, align: 'left' },
+                 { label: 'Thời gian sửa lần cuối', name: 'LastModifyTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+				{ label: 'Sắp xếp', name: 'px', width: 40, align: 'left' },
+				{ label: "Có phải dữ liệu đồng bộ vật tư không", name: "iswzsame", hidden: true },
             ],
             pager: "#gridPager",
             sortname: 'CreateTime desc',
@@ -134,13 +134,13 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
 
     function initControl() {
-        //获取收费大类
+        //Lấy nhóm thu phí lớn
         $("#sfdl").bindSelect({
             url: "/ChargeCategory/GetTreeSelectJson?organizeId=" + $("#OrganizeId").val(),
         });
@@ -153,7 +153,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增项目",
+            title: "Thêm hạng mục mới",
             url: "/SysChargeItem/Form?orgId=" + $('#OrganizeId').val(),
             width: "1100px",
             height: "570px",
@@ -166,17 +166,17 @@
     function btn_edit() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
 		}
 		if ($("#gridList").jqGridRowValue().iswzsame=="1") {
-			$.modalAlert("该数据为物资系统同步过来的数据，如果要修改请到物资系统进行修改", 'warning');
+			$.modalAlert("Dữ liệu này được đồng bộ từ hệ thống vật tư，Nếu muốn sửa, vui lòng sửa trong hệ thống vật tư", 'warning');
 			return;
 		}
         var keyValue = $("#gridList").jqGridRowValue().sfxmId;
         $.modalOpen({
             id: "Form",
-            title: "修改项目",
+            title: "Sửa hạng mục",
             url: "/SysChargeItem/Form?keyValue=" + keyValue,
 			width: "1100px",
 			height: "550px",
@@ -189,13 +189,13 @@
     {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var xmdm = $("#gridList").jqGridRowValue().sfxmCode;
         var xmmc = encodeURIComponent($("#gridList").jqGridRowValue().sfxmmc);
         xmmc = xmmc.replace(/%/g, '%25');
-        var title = "【"+$("#gridList").jqGridRowValue().sfxmmc +"】"+ "的限用";
+        var title = "【"+$("#gridList").jqGridRowValue().sfxmmc +"】"+ "hạn chế sử dụng của";
         $.modalOpen({
             id: "Form",
             title: title,
@@ -211,9 +211,9 @@
     
     function toggleZt(sfxmId, newZt) {
         
-        // 发送请求到后端更新数据
+        // Gửi yêu cầu tới backend để cập nhật dữ liệu
         $.ajax({
-            url: '/SysChargeItem/UpdateZt',  // 后端处理修改的URL
+            url: '/SysChargeItem/UpdateZt',  // Backend xử lý phần sửaURL
             type: 'POST',
             data: {
                 sfxmId: sfxmId,
@@ -221,7 +221,7 @@
                 organizeId: $("#OrganizeId").val()
             },
             success: function () {
-                    // 切换显示的开关状态
+                    // Chuyển trạng thái công tắc hiển thị
                 $('#btn_search').trigger('click');
               
             },
@@ -229,7 +229,7 @@
     }
     
     
-    //收费项目同步医保
+    //Đồng bộ hạng mục thu phí với BHYT
     function YibaoUpload(row) {
         $.najax({
             url: "/SysChargeItem/YibaoUploadApi",

@@ -4,11 +4,11 @@
 }
 
 <ul id="myTab" class="nav nav-tabs">
-    <li class="active"><a href="#yp" data-toggle="tab">基础药品</a></li>
-    <li><a href="#sfdltab" data-toggle="tab">基础收费大类</a></li>
-    <li><a href="#hc" data-toggle="tab">基础耗材</a></li>
-    <li><a href="#sfxm" data-toggle="tab">基础收费项目</a></li>
-    <li><a href="#yzpc" data-toggle="tab">医嘱频次</a></li>
+    <li class="active"><a href="#yp" data-toggle="tab">Thuốc cơ bản</a></li>
+    <li><a href="#sfdltab" data-toggle="tab">Nhóm thu phí lớn cơ bản</a></li>
+    <li><a href="#hc" data-toggle="tab">Vật tư tiêu hao cơ bản</a></li>
+    <li><a href="#sfxm" data-toggle="tab">Hạng mục thu phí cơ bản</a></li>
+    <li><a href="#yzpc" data-toggle="tab">Tần suất y lệnh</a></li>
 </ul>
 
 <div id="myTabContent" class="tab-content">
@@ -17,39 +17,39 @@
             @Html.Partial("_OrganizeIdDDLToolbarSearchView")
             <div class="toolbar">
                 <div class="btn-group">
-                    <a id="NF-add1" class="btn btn-primary" onclick="btn_add1()"><i class="fa fa-plus"></i>新建</a>
+                    <a id="NF-add1" class="btn btn-primary" onclick="btn_add1()"><i class="fa fa-plus"></i>Tạo mới</a>
                 </div>
                 <div class="btn-group">
-                    <a id="NF-edit1" class="btn btn-primary" onclick="btn_edit1()"><i class="fa fa-pencil-square-o"></i>修改</a>
+                    <a id="NF-edit1" class="btn btn-primary" onclick="btn_edit1()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
                 </div>
                 <div class="btn-group">
-                    <a id="NF-dirSync1" class="btn btn-primary" onclick="btn_dirSync1()"><i class="fa fa-plus"></i>医保目录同步</a>
+                    <a id="NF-dirSync1" class="btn btn-primary" onclick="btn_dirSync1()"><i class="fa fa-plus"></i>Đồng bộ danh mục BHYT</a>
                 </div>
                 @*<div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary" onclick="btn_xy()"><i class="fa fa-pencil-square-o"></i>限用</a>
+            <a id="NF-edit" class="btn btn-primary" onclick="btn_xy()"><i class="fa fa-pencil-square-o"></i>Hạn chế sử dụng</a>
         </div>*@
             </div>
             <div class="search">
                 <table>
                     <tr>
-                        <td class="formTitle">中西药：</td>
+                        <td class="formTitle">Thuốc Đông - Tây y：</td>
                         <td class="input-group" id="zxy" style="margin-top:8px;">
                             <select id="zxyfl" name="zt" class="form-control"  style="width: 44px">
-                                <option value="" selected="selected">全部</option>
-                                <option value="01">西药</option>
-                                <option value="03">中药</option>
+                                <option value="" selected="selected">Tất cả</option>
+                                <option value="01">Thuốc Tây</option>
+                                <option value="03">Thuốc Đông y</option>
                             </select>
                         </td>
-                        <td class="formTitle">有效状态：</td>
+                        <td class="formTitle">Trạng thái hiệu lực：</td>
                         <td class="input-group" id="zttd" style="margin-top:13px;">
                             <select id="zt" name="zt" class="form-control">
-                                <option value="" selected="selected">全部</option>
-                                <option value="0">无效</option>
-                                <option value="1">有效</option>
+                                <option value="" selected="selected">Tất cả</option>
+                                <option value="0">Vô hiệu</option>
+                                <option value="1">Hiệu lực</option>
                             </select>
                         </td>
                         <td></td>
-                        <td class="formTitle" style="padding-left:20px;">药品分类：</td>
+                        <td class="formTitle" style="padding-left:20px;">Phân loại thuốc：</td>
                         <td class="input-group">
                             <input type="text" id="ypflMc" name="ypflMc" class="form-control"/>
                             <input type="text" style="display:none;" id="ypflCode" name="ypflCode"
@@ -57,11 +57,11 @@
                         </td>
                         <td>
                             <div class="input-group" style="padding-left:30px;margin-bottom:5px;">
-                                <input id="txt_keyword_yp1" type="text" class="form-control" placeholder="名称/编码/首拼/国药准字"
+                                <input id="txt_keyword_yp1" type="text" class="form-control" placeholder="Tên/Mã/Mã chữ cái đầu/Số chuẩn thuốc quốc gia"
                                        style="width: 180px;">
-                                <input id="txt_keyword_yp2" type="text" class="form-control" placeholder="规格"
+                                <input id="txt_keyword_yp2" type="text" class="form-control" placeholder="Quy cách"
                                        style="width: 180px;">
-                                <input id="txt_keyword_yp3" type="text" class="form-control" placeholder="药厂名称"
+                                <input id="txt_keyword_yp3" type="text" class="form-control" placeholder="Tên nhà máy dược"
                                        style="width: 180px;">
                                 <span class="input-group-btn">
                                     <button id="btn_search1" type="button" class="btn btn-primary">
@@ -75,10 +75,10 @@
             </div>
             <div class="toolbar">
                 @* <div class="btn-group"> *@
-                @*     <a id="NF-AllSync" class="btn btn-primary" onclick="btn_allSync1()"><i class="fa fa-plus"></i>全部同步</a> *@
+                @*     <a id="NF-AllSync" class="btn btn-primary" onclick="btn_allSync1()"><i class="fa fa-plus"></i>Đồng bộ tất cả</a> *@
                 @* </div> *@
                 <div class="btn-group">
-                    <a id="NF-Sync1" class="btn btn-primary" onclick="btn_Sync1()"><i class="fa fa-plus"></i>同步</a>
+                    <a id="NF-Sync1" class="btn btn-primary" onclick="btn_Sync1()"><i class="fa fa-plus"></i>Đồng bộ</a>
                 </div>
             </div>
         </div>
@@ -87,15 +87,15 @@
             <div id="gridPager1"></div>
         </div>
     </div>
-    @* 收费大类tab *@
+    @* Nhóm thu phí lớntab *@
     <div class="tab-pane fade" id="sfdltab">
         <div class="topPanel">
             <div class="toolbar">
                 <div class="btn-group">
-                    <a id="NF-add2" authorize="yes" class="btn btn-primary" onclick="btn_add2()"><i class="fa fa-plus"></i>新建</a>
+                    <a id="NF-add2" authorize="yes" class="btn btn-primary" onclick="btn_add2()"><i class="fa fa-plus"></i>Tạo mới</a>
                 </div>
                 <div class="btn-group">
-                    <a id="NF-edit2" class="btn btn-primary" onclick="btn_edit2()"><i class="fa fa-pencil-square-o"></i>修改</a>
+                    <a id="NF-edit2" class="btn btn-primary" onclick="btn_edit2()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
                 </div>
             </div>
             <div class="search">
@@ -103,7 +103,7 @@
                     <tr>
                         <td>
                             <div class="input-group">
-                                <input id="txt_keyword_sfdl1" type="text" class="form-control" placeholder="名称" style="width: 180px;">
+                                <input id="txt_keyword_sfdl1" type="text" class="form-control" placeholder="Tên" style="width: 180px;">
                                 <span class="input-group-btn">
                                     <button id="btn_search2" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                                 </span>
@@ -114,10 +114,10 @@
             </div>
             <div class="toolbar">
                 @* <div class="btn-group"> *@
-                @*     <a id="NF-AllSync" class="btn btn-primary" onclick="btn_allSync2()"><i class="fa fa-plus"></i>全部同步</a> *@
+                @*     <a id="NF-AllSync" class="btn btn-primary" onclick="btn_allSync2()"><i class="fa fa-plus"></i>Đồng bộ tất cả</a> *@
                 @* </div> *@
                 <div class="btn-group">
-                    <a id="NF-Sync2" class="btn btn-primary" onclick="btn_Sync2()"><i class="fa fa-plus"></i>同步</a>
+                    <a id="NF-Sync2" class="btn btn-primary" onclick="btn_Sync2()"><i class="fa fa-plus"></i>Đồng bộ</a>
                 </div>
             </div>
         </div>
@@ -125,34 +125,34 @@
             <table id="gridList2"></table>
         </div>
     </div>
-    @* 耗材tab *@
+    @* Vật tư tiêu haotab *@
     <div class="tab-pane fade" id="hc">
         <div class="topPanel">
             <div class="toolbar">
                 <div class="btn-group">
-                    <a id="NF-add3" class="btn btn-primary" onclick="btn_add3()"><i class="fa fa-plus"></i>新建</a>
+                    <a id="NF-add3" class="btn btn-primary" onclick="btn_add3()"><i class="fa fa-plus"></i>Tạo mới</a>
                 </div>
                 <div class="btn-group">
-                    <a id="NF-edit3" class="btn btn-primary" onclick="btn_edit3()"><i class="fa fa-pencil-square-o"></i>修改</a>
+                    <a id="NF-edit3" class="btn btn-primary" onclick="btn_edit3()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
                 </div>
             </div>
             <div class="search">
                 <table>
                     <tr>
-                        <td class="formTitle">有效状态：</td>
+                        <td class="formTitle">Trạng thái hiệu lực：</td>
                         <td class="input-group" id="hczttd" style="margin-top:13px;">
                             <select id="hczt" name="zt" class="form-control">
-                                <option value="" selected="selected">全部</option>
-                                <option value="0">无效</option>
-                                <option value="1">有效</option>
+                                <option value="" selected="selected">Tất cả</option>
+                                <option value="0">Vô hiệu</option>
+                                <option value="1">Hiệu lực</option>
                             </select>
                         </td>
                         <td></td>
                         <td>
                             <div class="input-group" style="padding-left:30px;margin-bottom:5px;">
-                                <input id="txt_keyword_hc1" type="text" class="form-control" placeholder="名称/编码/首拼"
+                                <input id="txt_keyword_hc1" type="text" class="form-control" placeholder="Tên/Mã/Mã chữ cái đầu"
                                        style="width: 180px;">
-                                <input id="txt_keyword_hc2" type="text" class="form-control" placeholder="厂商名称"
+                                <input id="txt_keyword_hc2" type="text" class="form-control" placeholder="Tên nhà sản xuất"
                                        style="width: 180px;">
                                 <span class="input-group-btn">
                                     <button id="btn_search3" type="button" class="btn btn-primary">
@@ -166,7 +166,7 @@
             </div>
             <div class="toolbar">
                 <div class="btn-group">
-                    <a id="NF-Sync3" class="btn btn-primary" onclick="btn_Sync3()"><i class="fa fa-plus"></i>同步</a>
+                    <a id="NF-Sync3" class="btn btn-primary" onclick="btn_Sync3()"><i class="fa fa-plus"></i>Đồng bộ</a>
                 </div>
             </div>
         </div>
@@ -176,15 +176,15 @@
         </div>
 
     </div>
-    @* 收费项目tab *@
+    @* Hạng mục thu phítab *@
     <div class="tab-pane fade" id="sfxm">
         <div class="topPanel">
             <div class="toolbar">
                 <div class="btn-group">
-                    <a id="NF-add4" authorize="yes" class="btn btn-primary" onclick="btn_add4()"><i class="fa fa-plus"></i>新建</a>
+                    <a id="NF-add4" authorize="yes" class="btn btn-primary" onclick="btn_add4()"><i class="fa fa-plus"></i>Tạo mới</a>
                 </div>
                 <div class="btn-group">
-                    <a id="NF-edit4" class="btn btn-primary" onclick="btn_edit4()"><i class="fa fa-pencil-square-o"></i>修改</a>
+                    <a id="NF-edit4" class="btn btn-primary" onclick="btn_edit4()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
                 </div>
             </div>
             <div class="search">
@@ -192,7 +192,7 @@
                     <tr>
                         <td>
                             <div class="input-group">
-                                <input id="txt_keyword_sfxm1" type="text" class="form-control" placeholder="名称/编码/首拼" style="width: 180px;">
+                                <input id="txt_keyword_sfxm1" type="text" class="form-control" placeholder="Tên/Mã/Mã chữ cái đầu" style="width: 180px;">
                                 <span class="input-group-btn">
                                     <button id="btn_search4" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                                 </span>
@@ -203,12 +203,12 @@
             </div>
             <div class="toolbar">
                 <select id="sfdl" name="sfdl" class="form-control required" style="width:120px">
-                    <option value="">==请选择==</option>
+                    <option value="">==Vui lòng chọn==</option>
                 </select>
             </div>
             <div class="toolbar">
                 <div class="btn-group">
-                    <a id="NF-Sync4" class="btn btn-primary" onclick="btn_Sync4()"><i class="fa fa-plus"></i>同步</a>
+                    <a id="NF-Sync4" class="btn btn-primary" onclick="btn_Sync4()"><i class="fa fa-plus"></i>Đồng bộ</a>
                 </div>
             </div>
         </div>
@@ -217,15 +217,15 @@
             <div id="gridPager4"></div>
         </div>
     </div>
-    @* 医嘱频次 *@
+    @* Tần suất y lệnh *@
     <div class="tab-pane fade" id="yzpc">
         <div class="topPanel">
             <div class="toolbar">
                 <div class="btn-group">
-                    <a id="NF-add5" class="btn btn-primary" onclick="btn_add5()"><i class="fa fa-plus"></i>新建</a>
+                    <a id="NF-add5" class="btn btn-primary" onclick="btn_add5()"><i class="fa fa-plus"></i>Tạo mới</a>
                 </div>
                 <div class="btn-group">
-                    <a id="NF-edit5" class="btn btn-primary" onclick="btn_edit5()"><i class="fa fa-pencil-square-o"></i>修改</a>
+                    <a id="NF-edit5" class="btn btn-primary" onclick="btn_edit5()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
                 </div>
             </div>
             <div class="search">
@@ -233,7 +233,7 @@
                     <tr>
                         <td>
                             <div class="input-group">
-                                <input id="txt_keyword_yzpc" type="text" class="form-control" placeholder="编码/名称" style="width: 180px;">
+                                <input id="txt_keyword_yzpc" type="text" class="form-control" placeholder="Mã/Tên" style="width: 180px;">
                                 <span class="input-group-btn">
                                     <button id="btn_search5" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                                 </span>
@@ -244,7 +244,7 @@
             </div>
             <div class="toolbar">
                 <div class="btn-group">
-                    <a id="NF-Sync5" class="btn btn-primary" onclick="btn_Sync5()"><i class="fa fa-plus"></i>同步</a>
+                    <a id="NF-Sync5" class="btn btn-primary" onclick="btn_Sync5()"><i class="fa fa-plus"></i>Đồng bộ</a>
                 </div>
             </div>
         </div>
@@ -269,7 +269,7 @@
         gridList4();
         gridList5();
     });
-    //药品tab
+    //Thuốctab
     function gridList1() {
         var $gridList = $("#gridList1");
         $gridList.dataGrid({
@@ -277,9 +277,9 @@
             height: $(window).height() - 130,
             postData: { keyword: $("#txt_keyword_yp1").val(),ypgg: $("#txt_keyword_yp2").val() ,ycmc: $("#txt_keyword_yp3").val(), organizeId: "*",zxyfl:$("#zxyfl").val(), zt: $("#zt").val(), ypflCode: $("#ypflMc").val() === "" ? "" : $("#ypflCode").val(),dlCode:''},
             colModel: [
-                { label: "主键", name: "ypId", hidden: true, key: true },
+                { label: "Khóa chính", name: "ypId", hidden: true, key: true },
                 {
-                    label: '同步', name: 'isSynch', width: 40, hidden: true, align: 'left',
+                    label: 'Đồng bộ', name: 'isSynch', width: 40, hidden: true, align: 'left',
                     formatter: function (cellvalue, options, rowObject) {
                         if (cellvalue === '0') {
                             var $row = JSON.stringify(rowObject).replace(/\"/g, "'");
@@ -293,51 +293,51 @@
                         }
                     }
                 },
-                { label: "药品编码", name: "ypCode", width: 100, align: 'left' },
-                { label: '药品名称', name: 'ypmc', width: 150, align: 'left' },
-                { label: "医保代码", name: "ybdm", width: 100, align: 'left' },
-                { label: "国家医保名称", name: "gjybmc", width: 100, align: 'left' },
-                { label: "国家医保代码", name: "gjybdm", width: 100, align: 'left' },
-                { label: "新农合医保代码", name: "xnhybdm", width: 100, align: 'left', hidden: true },
-                { label: '药品规格', name: 'ypgg', width: 70, align: 'center' },
-                { label: '国药准字', name: 'ypzsm', width: 70, align: 'center' },
-                { label: '商品名', name: 'spm', width: 100, align: 'left', hidden: true },
-                { label: '首拼', name: 'py', width: 100, align: 'left', hidden: true },
+                { label: "Mã thuốc", name: "ypCode", width: 100, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 150, align: 'left' },
+                { label: "Mã BHYT", name: "ybdm", width: 100, align: 'left' },
+                { label: "Tên BHYT quốc gia", name: "gjybmc", width: 100, align: 'left' },
+                { label: "Mã BHYT quốc gia", name: "gjybdm", width: 100, align: 'left' },
+                { label: "Mã BHYT nông thôn mới", name: "xnhybdm", width: 100, align: 'left', hidden: true },
+                { label: 'Quy cách thuốc', name: 'ypgg', width: 70, align: 'center' },
+                { label: 'Số chuẩn thuốc quốc gia', name: 'ypzsm', width: 70, align: 'center' },
+                { label: 'Tên thương mại', name: 'spm', width: 100, align: 'left', hidden: true },
+                { label: 'Mã chữ cái đầu', name: 'py', width: 100, align: 'left', hidden: true },
                 {
-                    label: "自负性质", name: "zfxz", width: 60, align: 'left', formatter: function (cellVallue) {
-                        return cellVallue == 0 ? "可报" : (cellVallue == 1 ? "自费" : (cellVallue == 2 ? "分类自负" : (cellVallue == 3 ? "绝对自理" : (cellVallue == 4 ? "甲类" : (cellVallue == 5 ? "乙类" : (cellVallue == 6 ? "丙类" : ""))))));
+                    label: "Tính chất tự trả", name: "zfxz", width: 60, align: 'left', formatter: function (cellVallue) {
+                        return cellVallue == 0 ? "Được thanh toán" : (cellVallue == 1 ? "Tự trả" : (cellVallue == 2 ? "Tự trả theo phân loại" : (cellVallue == 3 ? "Hoàn toàn tự trả" : (cellVallue == 4 ? "Hạng A" : (cellVallue == 5 ? "Hạng B" : (cellVallue == 6 ? "Hạng C" : ""))))));
                     }
                 },
                 {
-                    label: "零售价", name: "lsj", width: 60, align: 'left', formatter: "number"
+                    label: "Giá bán lẻ", name: "lsj", width: 60, align: 'left', formatter: "number"
                     , formatoptions: { decimalPlaces: 4, defaultValue: '0.0000' }
                 },
-                { label: '包装单位', name: 'bzdw', width: 80, align: 'left' },
-                { label: '门诊拆零数', name: 'mzcls', width: 70, align: 'left' },
-                { label: '门诊拆零单位', name: 'mzcldw', width: 70, align: 'left' },
-                { label: '住院拆零数', name: 'zycls', width: 70, align: 'left' },
-                { label: '住院拆零单位', name: 'zycldw', width: 80, align: 'left' },
-                { label: '定价单位', name: 'djdw', width: 50, align: 'left' },
-                { label: '自负比例', name: 'zfbl', width: 50, align: 'left' },
-                { label: '大类', name: 'sfdlMc', width: 50, align: 'left' },
-                { label: '药厂名称', name: 'ycmc', width: 80, align: 'left' },
-                { label: '药品包装代码', name: 'ypbzdm', width: 80, align: 'left' },
+                { label: 'Đơn vị đóng gói', name: 'bzdw', width: 80, align: 'left' },
+                { label: 'Số lượng lẻ ngoại trú', name: 'mzcls', width: 70, align: 'left' },
+                { label: 'Đơn vị lẻ ngoại trú', name: 'mzcldw', width: 70, align: 'left' },
+                { label: 'Số lượng lẻ nội trú', name: 'zycls', width: 70, align: 'left' },
+                { label: 'Đơn vị lẻ nội trú', name: 'zycldw', width: 80, align: 'left' },
+                { label: 'Đơn vị định giá', name: 'djdw', width: 50, align: 'left' },
+                { label: 'Tỷ lệ tự trả', name: 'zfbl', width: 50, align: 'left' },
+                { label: 'Nhóm lớn', name: 'sfdlMc', width: 50, align: 'left' },
+                { label: 'Tên nhà máy dược', name: 'ycmc', width: 80, align: 'left' },
+                { label: 'Mã đóng gói thuốc', name: 'ypbzdm', width: 80, align: 'left' },
                 {
-                    label: '门诊住院标志', name: 'mzzybz', width: 80, align: 'left',
+                    label: 'Cờ ngoại trú/nội trú', name: 'mzzybz', width: 80, align: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue == "0") {
-                            return "通用";
+                            return "Chung";
                         } else if (cellvalue == "1") {
-                            return "门诊";
+                            return "Ngoại trú";
                         } else if (cellvalue == "2") {
-                            return "住院";
+                            return "Nội trú";
                         } else {
-                            return "其他";
+                            return "Khác";
                         }
                     }
                 },
                 {
-                    label: '医保限价', name: 'cxjje', width: 80, align: 'left',
+                    label: 'Giá trần BHYT', name: 'cxjje', width: 80, align: 'left',
                     formatter: function (cxjje) {
                         if (cxjje == 0 || cxjje == null) {
                             return "0.00";
@@ -346,17 +346,17 @@
                         }
                     }
                 },
-                { label: "有效", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: '创建人', name: 'CreatorCode', width: 60, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '最后修改', name: 'LastModifierCode', width: 60, align: 'center' },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 80, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '排序', name: 'px', width: 40, align: 'left' }
+                { label: "Hiệu lực", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Người tạo', name: 'CreatorCode', width: 60, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sửa lần cuối', name: 'LastModifierCode', width: 60, align: 'center' },
+                { label: 'Thời gian sửa lần cuối', name: 'LastModifyTime', width: 80, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sắp xếp', name: 'px', width: 40, align: 'left' }
             ],
             pager: "#gridPager1",
             sortname: 'CreateTime desc',
             viewrecords: true,
-            multiselect: true, // 启用多选
+            multiselect: true, // Bật chọn nhiều
         });
         $("#btn_search1").click(function () {
             $gridList.jqGrid('setGridParam', {
@@ -366,17 +366,17 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword_yp1').keydownEnterEvent(function () {
         $('#btn_search1').trigger('click');
     });
 
     function initControl1() {
-        //药品分类
+        //Phân loại thuốc
         $('#ypflMc').newtouchFloatingSelector({
             width: 300,
             height: 300,
-            caption: "药品分类",
+            caption: "Phân loại thuốc",
             url: '/SysMedicineClassification/GetListSelectJson',
             clickautotrigger: true,
             ajaxparameters: function () {
@@ -386,9 +386,9 @@
                 $('#ypflCode').val($thistr.attr('data-ypflCode'));
                 $('#ypflMc').val($thistr.attr('data-ypflmc'));
             },
-            colModel: [{ label: '编码', name: 'ypflCode', hidden: true },
-            { label: '名称', name: 'ypflmc', widthratio: 50 },
-            { label: '首拼', name: 'py', widthratio: 50 }
+            colModel: [{ label: 'Mã', name: 'ypflCode', hidden: true },
+            { label: 'Tên', name: 'ypflmc', widthratio: 50 },
+            { label: 'Mã chữ cái đầu', name: 'py', widthratio: 50 }
             ]
         });
     }
@@ -396,7 +396,7 @@
     function btn_add1() {
         $.modalOpen({
             id: "Form",
-            title: "系统药品添加",
+            title: "Thêm thuốc hệ thống",
             url: "/CommonLibrary/SysCommonMedicineAdd?orgId=*" ,
             width: "1300px",
             height: "800px",
@@ -408,12 +408,12 @@
     function btn_edit1() {
         let selectedIdList = $("#gridList1").jqGrid('getGridParam', 'selarrrow');
         if (!selectedIdList.length === 1 ) {
-            $.modalAlert("请选中一条信息进行修改", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi để sửa", 'warning');
             return;
         }
         $.modalOpen({
             id: "SysMedicineAdd",
-            title: "修改系统药品",
+            title: "Sửa thuốc hệ thống",
             url: "/CommonLibrary/SysCommonMedicineAdd?keyValue=" + selectedIdList[0]+"&orgId=*",
             width: "1300px",
             height: "800px",
@@ -426,13 +426,13 @@
         debugger;
         var seleRowid = jQuery("#gridList1").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var xmdm = $("#gridList1").jqGridRowValue().ypCode;
         var xmmc = encodeURIComponent($("#gridList1").jqGridRowValue().ypmc);
         xmmc = xmmc.replace(/%/g, '%25');
-        var title = "【" + $("#gridList").jqGridRowValue().ypmc + "】" + "的限用";
+        var title = "【" + $("#gridList").jqGridRowValue().ypmc + "】" + "hạn chế sử dụng của";
         $.modalOpen({
             id: "Form",
             title: title,
@@ -449,7 +449,7 @@
         @*let keyValue = $("#gridList").jqGridRowValue().ypId;*@
         let selectedIdList = $("#gridList1").jqGrid('getGridParam', 'selarrrow');
         if (selectedIdList.length <=  0) {
-            $.modalAlert("请至少选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn ít nhất một bản ghi", 'warning');
             return;
         }
         $.najax({
@@ -465,11 +465,11 @@
         });
         
     }
-    //医保目录药品下载
+    //Tải xuống thuốc danh mục BHYT
     function btn_dirSync1() {
-        $.modalConfirm("确定要同步医保药品吗？", function (r) {
+        $.modalConfirm("Bạn có chắc muốn đồng bộ thuốc BHYT không？", function (r) {
             if (r) {
-                $.loading(true, "数据同步中...请勿操作");
+                $.loading(true, "Đang đồng bộ dữ liệu...Vui lòng không thao tác");
                 $.najax({
                     url: "/CommonLibrary/SyncYbyp",
                     type: "GET",
@@ -490,9 +490,9 @@
     }
 
     function btn_allSync1() {
-        $.modalConfirm("确定要同步所有药品吗？", function (r) {
+        $.modalConfirm("Bạn có chắc muốn đồng bộ tất cả thuốc không？", function (r) {
             if (r) {
-                $.loading(true, '数据同步中...');
+                $.loading(true, 'Đang đồng bộ dữ liệu...');
                 $.najax({
                     url: "/CommonLibrary/SyncAllDrug",
                     type: "GET",
@@ -512,7 +512,7 @@
 
     }
     
-    //药品同步医保
+    //Đồng bộ thuốc với BHYT
     function YibaoUpload(row) {
         $.najax({
             url: "/SysMedicine/YibaoUploadApi",
@@ -527,7 +527,7 @@
         });
     }
     
-//收费大类tab
+//Nhóm thu phí lớntab
     function gridList2() {
         var $gridList = $("#gridList2");
         $gridList.dataGrid({
@@ -538,41 +538,41 @@
             url: "/ChargeCategory/GetTreeGridJson",
             height: $(window).height() - 128,
             colModel: [
-                { label: "主键", name: "dlId", hidden: true, key: true },
-                { label: '名称', name: 'dlmc', width: 150, align: 'left' },
-                { label: "编码", name: "dlCode", width: 100, align: 'left' },
+                { label: "Khóa chính", name: "dlId", hidden: true, key: true },
+                { label: 'Tên', name: 'dlmc', width: 150, align: 'left' },
+                { label: "Mã", name: "dlCode", width: 100, align: 'left' },
                 {
-                    label: "门诊住院标志", name: "mzzybz", width: 100, align: "left",
+                    label: "Cờ ngoại trú/nội trú", name: "mzzybz", width: 100, align: "left",
                     formatter: function (cellvalue) {
                         if (cellvalue == "0") {
-                            return "通用"
+                            return "Chung"
                         } else if (cellvalue == "1") {
-                            return "门诊"
+                            return "Ngoại trú"
                         } else {
-                            return "住院"
+                            return "Nội trú"
                         }
                     }
                 },
                 {
-                    label: "大类类别", name: "dllb", width: 100, align: "left",
+                    label: "Loại nhóm lớn", name: "dllb", width: 100, align: "left",
                     formatter: function (cellvalue) {
                         if (cellvalue == "1") {
-                            return "药品"
+                            return "Thuốc"
                         }
                         else if (cellvalue == "2") {
-                            return "治疗项目"
+                            return "Hạng mục điều trị"
                         }
                         else if (cellvalue == "3") {
-                            return "非治疗项目"
+                            return "Hạng mục không điều trị"
                         }
                         else {
                             return ""
                         }
                     }
                 },
-                { label: '所属分类', name: 'fjmc', width: 100, align: 'left' },
+                { label: 'Phân loại trực thuộc', name: 'fjmc', width: 100, align: 'left' },
                 {
-                    label: '税率', name: 'sn', width: 40, align: 'left', formatter: function (cellvalue) {
+                    label: 'Thuế suất', name: 'sn', width: 40, align: 'left', formatter: function (cellvalue) {
                         if (cellvalue == null) {
                             return 0
                         }
@@ -581,14 +581,14 @@
                         }
 
                     }},
-                { label: "有效", name: "zt", width: 80, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: '创建人', name: 'CreatorCode', width: 100, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '最后修改', name: 'LastModifierCode', width: 100, align: 'left' },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '排序', name: 'px', width: 85, align: 'left' }
+                { label: "Hiệu lực", name: "zt", width: 80, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sửa lần cuối', name: 'LastModifierCode', width: 100, align: 'left' },
+                { label: 'Thời gian sửa lần cuối', name: 'LastModifyTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sắp xếp', name: 'px', width: 85, align: 'left' }
             ],
-            multiselect: true, // 启用多选框
+            multiselect: true, // Bật hộp chọn nhiều
         });
         $("#btn_search2").click(function () {
             $("#gridList2").jqGrid('setGridParam', {
@@ -597,7 +597,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword2').keydownEnterEvent(function () {
         $('#btn_search2').trigger('click');
     })
@@ -608,7 +608,7 @@
     function btn_add2() {
         $.modalOpen({
             id: "Form",
-            title: "新增大类",
+            title: "Thêm nhóm lớn mới",
             url: "/CommonLibrary/SysCommonChargeCategoryForm?orgId=*",
             width: "550px",
             height: "700px",
@@ -621,13 +621,13 @@
     function btn_edit2() {
         let selectedIdList = $("#gridList2").jqGrid('getGridParam', 'selarrrow');
         if (!(selectedIdList.length === 1 )) {
-            $.modalAlert("请选中一条信息进行修改", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi để sửa", 'warning');
             return;
         }
         var keyValue = selectedIdList;
         $.modalOpen({
             id: "Form",
-            title: "修改大类",
+            title: "Sửa nhóm lớn",
             url: "/CommonLibrary/SysCommonChargeCategoryForm?keyValue=" + keyValue,
             width: "550px",
             height: "700px",
@@ -640,7 +640,7 @@
         @*let keyValue = $("#gridList").jqGridRowValue().ypId;*@
         let selectedIdList = $("#gridList2").jqGrid('getGridParam', 'selarrrow');
         if (selectedIdList.length <  0) {
-            $.modalAlert("请至少选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn ít nhất một bản ghi", 'warning');
             return;
         }
         $.najax({
@@ -656,7 +656,7 @@
         });
 
     }
-    //耗材tab
+    //Vật tư tiêu haotab
     function gridList3() {
         var $gridList = $("#gridList3");
         $gridList.dataGrid({
@@ -664,9 +664,9 @@
             height: $(window).height() - 130,
             postData: { keyword: $("#txt_keyword_hc1").val(),ypgg: $("#txt_keyword_hc2").val() ,ycmc: $("#txt_keyword_yp3").val(), organizeId: "*", zt: $("#zt").val(), ypflCode: $("#ypflMc").val() === "" ? "" : $("#ypflCode").val(),dlCode:'18'},
             colModel: [
-                { label: "主键", name: "ypId", hidden: true, key: true },
+                { label: "Khóa chính", name: "ypId", hidden: true, key: true },
                 {
-                    label: '同步', name: 'isSynch', width: 40, hidden: true, align: 'left',
+                    label: 'Đồng bộ', name: 'isSynch', width: 40, hidden: true, align: 'left',
                     formatter: function (cellvalue, options, rowObject) {
                         if (cellvalue === '0') {
                             var $row = JSON.stringify(rowObject).replace(/\"/g, "'");
@@ -680,51 +680,51 @@
                         }
                     }
                 },
-                { label: "药品编码", name: "ypCode", width: 100, align: 'left' },
-                { label: '药品名称', name: 'ypmc', width: 150, align: 'left' },
-                { label: "医保代码", name: "ybdm", width: 100, align: 'left' },
-                { label: "国家医保名称", name: "gjybmc", width: 100, align: 'left' },
-                { label: "国家医保代码", name: "gjybdm", width: 100, align: 'left' },
-                { label: "新农合医保代码", name: "xnhybdm", width: 100, align: 'left', hidden: true },
-                { label: '药品规格', name: 'ypgg', width: 70, align: 'center' },
-                { label: '国药准字', name: 'ypzsm', width: 70, align: 'center' },
-                { label: '商品名', name: 'spm', width: 100, align: 'left', hidden: true },
-                { label: '首拼', name: 'py', width: 100, align: 'left', hidden: true },
+                { label: "Mã thuốc", name: "ypCode", width: 100, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 150, align: 'left' },
+                { label: "Mã BHYT", name: "ybdm", width: 100, align: 'left' },
+                { label: "Tên BHYT quốc gia", name: "gjybmc", width: 100, align: 'left' },
+                { label: "Mã BHYT quốc gia", name: "gjybdm", width: 100, align: 'left' },
+                { label: "Mã BHYT nông thôn mới", name: "xnhybdm", width: 100, align: 'left', hidden: true },
+                { label: 'Quy cách thuốc', name: 'ypgg', width: 70, align: 'center' },
+                { label: 'Số chuẩn thuốc quốc gia', name: 'ypzsm', width: 70, align: 'center' },
+                { label: 'Tên thương mại', name: 'spm', width: 100, align: 'left', hidden: true },
+                { label: 'Mã chữ cái đầu', name: 'py', width: 100, align: 'left', hidden: true },
                 {
-                    label: "自负性质", name: "zfxz", width: 60, align: 'left', formatter: function (cellVallue) {
-                        return cellVallue == 0 ? "可报" : (cellVallue == 1 ? "自费" : (cellVallue == 2 ? "分类自负" : (cellVallue == 3 ? "绝对自理" : (cellVallue == 4 ? "甲类" : (cellVallue == 5 ? "乙类" : (cellVallue == 6 ? "丙类" : ""))))));
+                    label: "Tính chất tự trả", name: "zfxz", width: 60, align: 'left', formatter: function (cellVallue) {
+                        return cellVallue == 0 ? "Được thanh toán" : (cellVallue == 1 ? "Tự trả" : (cellVallue == 2 ? "Tự trả theo phân loại" : (cellVallue == 3 ? "Hoàn toàn tự trả" : (cellVallue == 4 ? "Hạng A" : (cellVallue == 5 ? "Hạng B" : (cellVallue == 6 ? "Hạng C" : ""))))));
                     }
                 },
                 {
-                    label: "零售价", name: "lsj", width: 60, align: 'left', formatter: "number"
+                    label: "Giá bán lẻ", name: "lsj", width: 60, align: 'left', formatter: "number"
                     , formatoptions: { decimalPlaces: 4, defaultValue: '0.0000' }
                 },
-                { label: '包装单位', name: 'bzdw', width: 80, align: 'left' },
-                { label: '门诊拆零数', name: 'mzcls', width: 70, align: 'left' },
-                { label: '门诊拆零单位', name: 'mzcldw', width: 70, align: 'left' },
-                { label: '住院拆零数', name: 'zycls', width: 70, align: 'left' },
-                { label: '住院拆零单位', name: 'zycldw', width: 80, align: 'left' },
-                { label: '定价单位', name: 'djdw', width: 50, align: 'left' },
-                { label: '自负比例', name: 'zfbl', width: 50, align: 'left' },
-                { label: '大类', name: 'sfdlMc', width: 50, align: 'left' },
-                { label: '药厂名称', name: 'ycmc', width: 80, align: 'left' },
-                { label: '药品包装代码', name: 'ypbzdm', width: 80, align: 'left' },
+                { label: 'Đơn vị đóng gói', name: 'bzdw', width: 80, align: 'left' },
+                { label: 'Số lượng lẻ ngoại trú', name: 'mzcls', width: 70, align: 'left' },
+                { label: 'Đơn vị lẻ ngoại trú', name: 'mzcldw', width: 70, align: 'left' },
+                { label: 'Số lượng lẻ nội trú', name: 'zycls', width: 70, align: 'left' },
+                { label: 'Đơn vị lẻ nội trú', name: 'zycldw', width: 80, align: 'left' },
+                { label: 'Đơn vị định giá', name: 'djdw', width: 50, align: 'left' },
+                { label: 'Tỷ lệ tự trả', name: 'zfbl', width: 50, align: 'left' },
+                { label: 'Nhóm lớn', name: 'sfdlMc', width: 50, align: 'left' },
+                { label: 'Tên nhà máy dược', name: 'ycmc', width: 80, align: 'left' },
+                { label: 'Mã đóng gói thuốc', name: 'ypbzdm', width: 80, align: 'left' },
                 {
-                    label: '门诊住院标志', name: 'mzzybz', width: 80, align: 'left',
+                    label: 'Cờ ngoại trú/nội trú', name: 'mzzybz', width: 80, align: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue == "0") {
-                            return "通用";
+                            return "Chung";
                         } else if (cellvalue == "1") {
-                            return "门诊";
+                            return "Ngoại trú";
                         } else if (cellvalue == "2") {
-                            return "住院";
+                            return "Nội trú";
                         } else {
-                            return "其他";
+                            return "Khác";
                         }
                     }
                 },
                 {
-                    label: '医保限价', name: 'cxjje', width: 80, align: 'left',
+                    label: 'Giá trần BHYT', name: 'cxjje', width: 80, align: 'left',
                     formatter: function (cxjje) {
                         if (cxjje == 0 || cxjje == null) {
                             return "0.00";
@@ -733,17 +733,17 @@
                         }
                     }
                 },
-                { label: "有效", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: '创建人', name: 'CreatorCode', width: 60, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '最后修改', name: 'LastModifierCode', width: 60, align: 'center' },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 80, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '排序', name: 'px', width: 40, align: 'left' }
+                { label: "Hiệu lực", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Người tạo', name: 'CreatorCode', width: 60, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sửa lần cuối', name: 'LastModifierCode', width: 60, align: 'center' },
+                { label: 'Thời gian sửa lần cuối', name: 'LastModifyTime', width: 80, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sắp xếp', name: 'px', width: 40, align: 'left' }
             ],
             pager: "#gridPager3",
             sortname: 'CreateTime desc',
             viewrecords: true,
-            multiselect: true, // 启用多选
+            multiselect: true, // Bật chọn nhiều
         });
         $("#btn_search3").click(function () {
             $gridList.jqGrid('setGridParam', {
@@ -753,7 +753,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword_hc1').keydownEnterEvent(function () {
         $('#btn_search3').trigger('click');
     });
@@ -761,7 +761,7 @@
     function btn_add3() {
         $.modalOpen({
             id: "Form",
-            title: "系统耗材添加",
+            title: "Thêm vật tư hệ thống",
             url: "/CommonLibrary/SysCommonStuffAdd?orgId=*" ,
             width: "1300px",
             height: "800px",
@@ -773,12 +773,12 @@
     function btn_edit3() {
         let selectedIdList = $("#gridList3").jqGrid('getGridParam', 'selarrrow');
         if (!selectedIdList.length === 1 ) {
-            $.modalAlert("请选中一条信息进行修改", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi để sửa", 'warning');
             return;
         }
         $.modalOpen({
             id: "SysMedicineAdd",
-            title: "修改系统药品",
+            title: "Sửa thuốc hệ thống",
             url: "/CommonLibrary/SysCommonStuffAdd?keyValue=" + selectedIdList[0]+"&orgId=*",
             width: "1300px",
             height: "800px",
@@ -791,7 +791,7 @@
         @*let keyValue = $("#gridList").jqGridRowValue().ypId;*@
         let selectedIdList = $("#gridList3").jqGrid('getGridParam', 'selarrrow');
         if (selectedIdList.length <=  0) {
-            $.modalAlert("请至少选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn ít nhất một bản ghi", 'warning');
             return;
         }
         $.najax({
@@ -815,28 +815,28 @@
             url: "/SysChargeItem/GetGridJson",
             height: $(window).height() - 128,
             colModel: [
-                { label: "主键", name: "sfxmId", hidden: true, key: true },
-                { label: '名称', name: 'sfxmmc', width: 150, align: 'left' },
-                { label: '规格', name: 'gg', width: 30, align: 'left' },
-                { label: "编码", name: "sfxmCode", width: 75, align: 'left' },
-                { label: "医保代码", name: "ybdm", width: 75, align: 'left' },
-                { label: "国家医保代码", name: "gjybdm", width: 90, align: 'left' },
-                { label: "新农合医保代码", name: "xnhybdm", width: 90, align: 'left', hidden: true },
-                { label: "首拼", name: "py", hidden: true },
-                { label: '国家医保名称', name: 'gjybmc', width: 150, align: 'left' },
-                { label: '生产厂家', name: 'sccj', width: 150, align: 'left' },
+                { label: "Khóa chính", name: "sfxmId", hidden: true, key: true },
+                { label: 'Tên', name: 'sfxmmc', width: 150, align: 'left' },
+                { label: 'Quy cách', name: 'gg', width: 30, align: 'left' },
+                { label: "Mã", name: "sfxmCode", width: 75, align: 'left' },
+                { label: "Mã BHYT", name: "ybdm", width: 75, align: 'left' },
+                { label: "Mã BHYT quốc gia", name: "gjybdm", width: 90, align: 'left' },
+                { label: "Mã BHYT nông thôn mới", name: "xnhybdm", width: 90, align: 'left', hidden: true },
+                { label: "Mã chữ cái đầu", name: "py", hidden: true },
+                { label: 'Tên BHYT quốc gia', name: 'gjybmc', width: 150, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'sccj', width: 150, align: 'left' },
                 {
-                    label: "自负性质", name: "zfxz", width: 60, align: 'left', formatter: function (cellVallue) {
-                        return cellVallue == 0 ? "可报" : (cellVallue == 1 ? "自费" : (cellVallue == 2 ? "分类自负" : (cellVallue == 3 ? "绝对自理" : (cellVallue == 4 ? "甲类" : (cellVallue == 5 ? "乙类" : (cellVallue == 6 ? "丙类" : ""))))));
+                    label: "Tính chất tự trả", name: "zfxz", width: 60, align: 'left', formatter: function (cellVallue) {
+                        return cellVallue == 0 ? "Được thanh toán" : (cellVallue == 1 ? "Tự trả" : (cellVallue == 2 ? "Tự trả theo phân loại" : (cellVallue == 3 ? "Hoàn toàn tự trả" : (cellVallue == 4 ? "Hạng A" : (cellVallue == 5 ? "Hạng B" : (cellVallue == 6 ? "Hạng C" : ""))))));
                     }
                 },
                 {
-                    label: "单价", name: "dj", width: 60, align: 'left', formatter: "number"
+                    label: "Đơn giá", name: "dj", width: 60, align: 'left', formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
-                { label: "收费大类", name: "sfdlmc", width: 100, align: 'left' },
+                { label: "Nhóm thu phí lớn", name: "sfdlmc", width: 100, align: 'left' },
                 {
-                    label: '超限价金额', name: 'cxjje', width: 80, align: 'left',
+                    label: 'Số tiền vượt giá trần', name: 'cxjje', width: 80, align: 'left',
                     formatter: function (cxjje) {
                         if (cxjje == 0 || cxjje == null) {
                             return "0.00";
@@ -845,18 +845,18 @@
                         }
                     }
                 },
-                { label: "有效", name: "zt", width: 80, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: '创建人', name: 'CreatorCode', width: 100, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '最后修改', name: 'LastModifierCode', width: 100, align: 'left' },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '排序', name: 'px', width: 40, align: 'left' },
-                { label: "是否是物资同步数据", name: "iswzsame", hidden: true },
+                { label: "Hiệu lực", name: "zt", width: 80, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sửa lần cuối', name: 'LastModifierCode', width: 100, align: 'left' },
+                { label: 'Thời gian sửa lần cuối', name: 'LastModifyTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sắp xếp', name: 'px', width: 40, align: 'left' },
+                { label: "Có phải dữ liệu đồng bộ vật tư không", name: "iswzsame", hidden: true },
             ],
             pager: "#gridPager4",
             sortname: 'CreateTime desc',
             viewrecords: true,
-            multiselect: true, // 启用多选
+            multiselect: true, // Bật chọn nhiều
         });
         $("#btn_search4").click(function () {
             $("#gridList4").jqGrid('setGridParam', {
@@ -865,13 +865,13 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search4').trigger('click');
     })
 
     function initControl4() {
-        //获取收费大类
+        //Lấy nhóm thu phí lớn
         $("#sfdl").bindSelect({
             url: "/ChargeCategory/GetTreeSelectJson?organizeId=*" ,
         });
@@ -884,7 +884,7 @@
     function btn_add4() {
         $.modalOpen({
             id: "Form",
-            title: "新增项目",
+            title: "Thêm hạng mục mới",
             url: "/CommonLibrary/ChargeItemForm?orgId=*",
             width: "1100px",
             height: "570px",
@@ -897,17 +897,17 @@
     function btn_edit4() {
         var seleRowid = jQuery("#gridList4").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         if ($("#gridList4").jqGridRowValue().iswzsame=="1") {
-            $.modalAlert("该数据为物资系统同步过来的数据，如果要修改请到物资系统进行修改", 'warning');
+            $.modalAlert("Dữ liệu này được đồng bộ từ hệ thống vật tư，Nếu muốn sửa, vui lòng sửa trong hệ thống vật tư", 'warning');
             return;
         }
         var keyValue = $("#gridList4").jqGridRowValue().sfxmId;
         $.modalOpen({
             id: "Form",
-            title: "修改项目",
+            title: "Sửa hạng mục",
             url: "/SysChargeItem/Form?keyValue=" + keyValue,
             width: "1100px",
             height: "550px",
@@ -920,7 +920,7 @@
         @*let keyValue = $("#gridList").jqGridRowValue().ypId;*@
         let selectedIdList = $("#gridList4").jqGrid('getGridParam', 'selarrrow');
         if (selectedIdList.length <=  0) {
-            $.modalAlert("请至少选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn ít nhất một bản ghi", 'warning');
             return;
         }
         $.najax({
@@ -944,23 +944,23 @@
             postData: getSearchPostData(),
             height: 400,
             colModel: [
-                { label: "主键", name: "yzpcId", width: 100, align: "left", hidden: true,key :true },
-                { label: "编码", name: "yzpcCode", width: 100, align: "left" },
-                { label: "频次名称", name: "yzpcmc", width: 100, align: "left" },
-                { label: "名称说明", name: "yzpcmcsm", width: 100, align: "left" },
-                { label: "执行次数", name: "zxcs", width: 100, align: "left" },
-                { label: "执行周期", name: "zxzq", width: 100, align: "left" },
-                { label: "执行周期时间单位", name: "zxzqdw", width: 100, align: "left" },
-                { label: "周标志", name: "zbz", width: 100, align: "left" },
-                { label: "执行时间", name: "zxsj", width: 100, align: "left" },
-                { label: "有效", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: '创建人', name: 'CreatorCode', width: 60, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '最后修改', name: 'LastModifierCode', width: 60, align: 'left' },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } }
+                { label: "Khóa chính", name: "yzpcId", width: 100, align: "left", hidden: true,key :true },
+                { label: "Mã", name: "yzpcCode", width: 100, align: "left" },
+                { label: "Tên tần suất", name: "yzpcmc", width: 100, align: "left" },
+                { label: "Mô tả tên", name: "yzpcmcsm", width: 100, align: "left" },
+                { label: "Số lần thực hiện", name: "zxcs", width: 100, align: "left" },
+                { label: "Chu kỳ thực hiện", name: "zxzq", width: 100, align: "left" },
+                { label: "Đơn vị thời gian chu kỳ thực hiện", name: "zxzqdw", width: 100, align: "left" },
+                { label: "Cờ tuần", name: "zbz", width: 100, align: "left" },
+                { label: "Thời gian thực hiện", name: "zxsj", width: 100, align: "left" },
+                { label: "Hiệu lực", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Người tạo', name: 'CreatorCode', width: 60, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sửa lần cuối', name: 'LastModifierCode', width: 60, align: 'left' },
+                { label: 'Thời gian sửa lần cuối', name: 'LastModifyTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } }
             ],
             viewrecords: true,
-            multiselect: true, // 启用多选
+            multiselect: true, // Bật chọn nhiều
         });
         $("#btn_search5").click(function () {
             $gridList.jqGrid('setGridParam', {
@@ -970,22 +970,22 @@
         $("#btn_search5").trigger('click');
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var keyword = $("#txt_keyword_yzpc").val();
         return { keyword: keyword, orgId:'*' };
     };
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword_yzpc').keydownEnterEvent(function () {
         $('#btn_search5').trigger('click');
     })
 
-    //新增
+    //Thêm mới
     function btn_add5() {
         $.modalOpen({
             id: "FormFIEdit",
-            title: "医嘱频次维护",
+            title: "Bảo trì tần suất y lệnh",
             url: "/CommonLibrary/SysMedicalOrderFrequencyForm?orgId=*",
             width: "500px",
             height: "620px",
@@ -994,17 +994,17 @@
             }
         });
     }
-    //修改
+    //Sửa
     function btn_edit5() {
         let selectedIdList = $("#gridList5").jqGrid('getGridParam', 'selarrrow');
         if (!(selectedIdList.length === 1 )) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var OrganizeId = '*';
         $.modalOpen({
             id: "FormFIEdit",
-            title: "修改信息",
+            title: "Sửa thông tin",
             url: "/CommonLibrary/SysMedicalOrderFrequencyForm?yzpcId=" + selectedIdList + "&orgId=" + OrganizeId,
             width: "500px",
             height: "620px",
@@ -1017,7 +1017,7 @@
         @*let keyValue = $("#gridList").jqGridRowValue().ypId;*@
         let selectedIdList = $("#gridList5").jqGrid('getGridParam', 'selarrrow');
         if (selectedIdList.length <=  0) {
-            $.modalAlert("请至少选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn ít nhất một bản ghi", 'warning');
             return;
         }
         $.najax({

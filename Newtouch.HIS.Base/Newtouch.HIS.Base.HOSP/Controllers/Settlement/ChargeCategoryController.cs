@@ -12,7 +12,7 @@ using Newtouch.HIS.Repository;
 namespace Newtouch.HIS.Base.HOSP.Controllers
 {
     /// <summary>
-    /// 系统收费大类
+    /// Nhóm thu phí lớn hệ thống
     /// </summary>
     public class ChargeCategoryController : ControllerBase
     {
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             this._SysChargeCategoryBaseRepo = SysChargeCategoryBaseRepo;
         }
 
-        //收费大类树形（医院） 下拉 数据源
+        //Cây nhóm thu phí lớn（Bệnh viện） Thả xuống Nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetTreeSelectJson(string organizeId, string treeidFieldName = "Code")
@@ -36,10 +36,10 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             var data = _SysChargeCategoryRepo.GetValidList(organizeId);
             var data1 = _SysChargeCategoryBaseRepo.GetValidList(organizeId);
             var treeList = new List<TreeSelectModel>();
-           // 基础数据
+           // Dữ liệu cơ bản
             if (organizeId .Equals("*") )
             {
-                // 遍历 data1
+                // Duyệt data1
                 foreach (var item in data1)
                 {
                     TreeSelectModel treeModel = new TreeSelectModel();
@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             }
             else
             {
-                // 遍历 data
+                // Duyệt data
                 foreach (var item in data)
                 {
                     TreeSelectModel treeModel = new TreeSelectModel();
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 获取树形列表
+        /// Lấy danh sách cây
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -97,7 +97,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         {
             if (!organizeId.Equals("*"))
             {
-                //非基础数据
+                //Dữ liệu không cơ bản
                 var data = _SysChargeCategoryRepo.GetList(organizeId,zt);
                 if (!string.IsNullOrEmpty(keyword))
                 {
@@ -153,7 +153,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -174,7 +174,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="SysPatiChargeAddEntity"></param>
         /// <param name="keyValue"></param>
@@ -218,7 +218,7 @@ namespace Newtouch.HIS.Base.HOSP.Controllers
             return Success("操作成功。");
         }
         /// <summary>
-        /// 修改状态
+        /// Sửa trạng thái
         /// </summary>
         /// <param name="SysPatiChargeAddEntity"></param>
         /// <param name="keyValue"></param>

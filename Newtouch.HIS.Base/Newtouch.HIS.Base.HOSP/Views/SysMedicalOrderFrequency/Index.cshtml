@@ -7,13 +7,13 @@
     @Html.Partial("_OrganizeIdDDLToolbarSearchView")
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         @*<div class="btn-group">
-            <a id="NF-delete" class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
+            <a id="NF-delete" class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
         </div>*@
     </div>
     <div class="search">
@@ -21,7 +21,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="编码/名称" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Mã/Tên" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -42,7 +42,7 @@
         gridList();
     });
 
-    //组织机构
+    //Tổ chức
     function initControl() {
 
     }
@@ -55,28 +55,28 @@
             height: $(window).height() - 125,
             colModel: [
             { label: "yzpcId", name: "yzpcId", width: 100, align: "left", hidden: true },
-            { label: "编码", name: "yzpcCode", width: 100, align: "left" },
-            { label: "频次名称", name: "yzpcmc", width: 100, align: "left" },
-            { label: "名称说明", name: "yzpcmcsm", width: 100, align: "left" },
-            { label: "执行次数", name: "zxcs", width: 100, align: "left" },
-            { label: "执行周期", name: "zxzq", width: 100, align: "left" },
+            { label: "Mã", name: "yzpcCode", width: 100, align: "left" },
+            { label: "Tên tần suất", name: "yzpcmc", width: 100, align: "left" },
+            { label: "Mô tả tên", name: "yzpcmcsm", width: 100, align: "left" },
+            { label: "Số lần thực hiện", name: "zxcs", width: 100, align: "left" },
+            { label: "Chu kỳ thực hiện", name: "zxzq", width: 100, align: "left" },
             {
-                label: "执行周期时间单位", name: "zxzqdw", width: 100, align: "left", formatter: function (cellvalue) {
+                label: "Đơn vị thời gian chu kỳ thực hiện", name: "zxzqdw", width: 100, align: "left", formatter: function (cellvalue) {
                     if (cellvalue == "1")
-                        return "天";
+                        return "Ngày";
                     else if (cellvalue == "2")
-                        return "小时";
+                        return "Giờ";
                     else if (cellvalue == "3")
-                        return "分钟";
+                        return "Phút";
                 }
             },
-            { label: "周标志", name: "zbz", width: 100, align: "left" },
-            { label: "执行时间", name: "zxsj", width: 100, align: "left" },
-            { label: "有效", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-            { label: '创建人', name: 'CreatorCode', width: 60, align: 'left' },
-            { label: '创建时间', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-            { label: '最后修改', name: 'LastModifierCode', width: 60, align: 'left' },
-            { label: '最后修改时间', name: 'LastModifyTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } }
+            { label: "Cờ tuần", name: "zbz", width: 100, align: "left" },
+            { label: "Thời gian thực hiện", name: "zxsj", width: 100, align: "left" },
+            { label: "Hiệu lực", name: "zt", width: 60, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+            { label: 'Người tạo', name: 'CreatorCode', width: 60, align: 'left' },
+            { label: 'Thời gian tạo', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+            { label: 'Sửa lần cuối', name: 'LastModifierCode', width: 60, align: 'left' },
+            { label: 'Thời gian sửa lần cuối', name: 'LastModifyTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } }
             ]
         });
         $("#btn_search").click(function () {
@@ -87,23 +87,23 @@
         $("#btn_search").trigger('click');
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var keyword = $("#txt_keyword").val();
         var OrganizeId = $("#OrganizeId").val();
         return { keyword: keyword, orgId:OrganizeId };
     };
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
 
-    //新增
+    //Thêm mới
     function btn_add() {
         $.modalOpen({
             id: "FormFIEdit",
-            title: "医嘱频次维护",
+            title: "Bảo trì tần suất y lệnh",
             url: "/SysMedicalOrderFrequency/Form?orgId=" + $('#OrganizeId').val(),
             width: "500px",
             height: "620px",
@@ -112,18 +112,18 @@
             }
         });
     }
-    //修改
+    //Sửa
     function btn_edit() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var yzpcId = $("#gridList").jqGridRowValue().yzpcId;
         var OrganizeId = $("#OrganizeId").val();
         $.modalOpen({
             id: "FormFIEdit",
-            title: "修改信息",
+            title: "Sửa thông tin",
             url: "/SysMedicalOrderFrequency/Form?yzpcId=" + yzpcId + "&orgId=" + OrganizeId,
             width: "500px",
             height: "620px",
@@ -132,11 +132,11 @@
             }
         });
     }
-    ////删除
+    ////Xóa
     //function btn_delete() {
     //    var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
     //    if (!(seleRowid)) {
-    //        $.modalAlert("请选中一条信息", 'warning');
+    //        $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
     //        return;
     //    }
     //    var yzpcId = $("#gridList").jqGridRowValue().yzpcId;

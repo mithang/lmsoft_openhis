@@ -8,10 +8,10 @@
     @Html.Partial("_OrganizeIdDDLToolbarSearchView")
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
     </div>
     <div class="search">
@@ -19,7 +19,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="名称/编码/首拼" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Mã/Mã chữ cái đầu" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -47,19 +47,19 @@
             height: 400,
             colModel: [
             { label: "sfxmdzId", name: "sfxmdzId", hidden:true },
-            { label: "康复项目编码", name: "kfsfxmCode", width: 100, align: "left" },
-            { label: "康复项目名称", name: "kfsfxmName", width: 150, align: "left" },
-            { label: "HIS项目编码", name: "xtsfxmCode", width: 100, align: "left" },
-            { label: "HIS项目名称", name: "xtsfxmName", width: 150, align: "left" },
-            { label: "HIS项目单价", name: "dj", width: 100, align: "left" },
-            { label: "HIS项目时长", name: "xtsfxm_duration", width: 150, align: "left" },
+            { label: "Mã hạng mục phục hồi chức năng", name: "kfsfxmCode", width: 100, align: "left" },
+            { label: "Tên hạng mục phục hồi chức năng", name: "kfsfxmName", width: 150, align: "left" },
+            { label: "HISMã hạng mục", name: "xtsfxmCode", width: 100, align: "left" },
+            { label: "HISTên hạng mục", name: "xtsfxmName", width: 150, align: "left" },
+            { label: "HISĐơn giá hạng mục", name: "dj", width: 100, align: "left" },
+            { label: "HISThời lượng hạng mục", name: "xtsfxm_duration", width: 150, align: "left" },
             {
-                label: '有效', name: 'zt', width: 100, algin: 'center',
+                label: 'Hiệu lực', name: 'zt', width: 100, algin: 'center',
                 formatter: function (cellvalue) {
                     if (cellvalue == 0) {
-                        return "否";
+                        return "Không";
                     } else {
-                        return "是";
+                        return "Có";
                     }
                 }
             }
@@ -71,14 +71,14 @@
             }).trigger('reloadGrid');
         })
     }
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var keyword = $("#txt_keyword").val();
         var OrganizeId = $("#OrganizeId").val();
         return { keyword: keyword, OrganizeId: OrganizeId };
     };
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -90,7 +90,7 @@
     function btn_add() {
         $.modalOpen({
             id: "FormFIEdit",
-            title: "康复项目对照维护",
+            title: "Bảo trì đối chiếu hạng mục phục hồi chức năng",
             url: "/RehabChargeItemComparison/Form",
             width: "600px",
             height: "500px",
@@ -99,18 +99,18 @@
             }
         });
     }
-    //修改
+    //Sửa
     function btn_edit() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var sfxmdzId = $("#gridList").jqGridRowValue().sfxmdzId;
         var OrganizeId = $("#OrganizeId").val();
         $.modalOpen({
             id: "FormFIEdit",
-            title: "修改信息",
+            title: "Sửa thông tin",
             url: "/RehabChargeItemComparison/Form?sfxmdzId=" + sfxmdzId + "&OrganizeId=" + OrganizeId,
             width: "600px",
             height: "500px",

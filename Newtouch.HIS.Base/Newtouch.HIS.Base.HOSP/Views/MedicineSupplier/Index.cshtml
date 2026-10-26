@@ -7,10 +7,10 @@
     @Html.Partial("_OrganizeIdDDLToolbarSearchView")
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" authorize="yes" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a id="NF-edit" authorize="yes" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
     </div>
     <div class="search">
@@ -18,7 +18,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="名称/编码/首拼" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên/Mã/Mã chữ cái đầu" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -44,18 +44,18 @@
             postData: { keyword: $("#txt_keyword").val(), organizeId: $("#OrganizeId").val() },
             height: $(window).height() - 128,
             colModel: [
-                { label: '主键', name: 'gysId', hidden: true },
-                { label: '名称', name: 'gysmc', width: 200, align: 'center' },
-                { label: '编码', name: 'gysCode', width: 100, align: 'center' },
-                { label: '首拼', name: 'py', width: 100, align: 'center' },
-                { label: '联系地址', name: 'Dz', width: 200, align: 'center' },
-                { label: '联系电话', name: 'Lxdh', width: 100, align: 'center' },
-                { label: "有效", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                { label: '创建人', name: 'CreatorCode', width: 100, align: 'center' },
-                { label: '创建时间', name: 'CreateTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '最后修改', name: 'LastModifierCode', width: 100, align: 'center' },
-                { label: '最后修改时间', name: 'LastModifyTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '排序', name: 'px', width: 40, align: 'center' }
+                { label: 'Khóa chính', name: 'gysId', hidden: true },
+                { label: 'Tên', name: 'gysmc', width: 200, align: 'center' },
+                { label: 'Mã', name: 'gysCode', width: 100, align: 'center' },
+                { label: 'Mã chữ cái đầu', name: 'py', width: 100, align: 'center' },
+                { label: 'Địa chỉ liên hệ', name: 'Dz', width: 200, align: 'center' },
+                { label: 'Số điện thoại liên hệ', name: 'Lxdh', width: 100, align: 'center' },
+                { label: "Hiệu lực", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'center' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sửa lần cuối', name: 'LastModifierCode', width: 100, align: 'center' },
+                { label: 'Thời gian sửa lần cuối', name: 'LastModifyTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Sắp xếp', name: 'px', width: 40, align: 'center' }
             ],
             pager: "#gridPager",
             sortname: 'CreateTime desc',
@@ -68,7 +68,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -76,7 +76,7 @@
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新建信息",
+            title: "Tạo thông tin mới",
             url: "/MedicineSupplier/Form?orgId=" + $('#OrganizeId').val(),
             width: "550px",
             height: "580px",
@@ -93,13 +93,13 @@
     function btn_edit() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;
         }
         var keyValue = $("#gridList").jqGridRowValue().gysId;
         $.modalOpen({
             id: "Form",
-            title: "修改信息",
+            title: "Sửa thông tin",
             url:"/MedicineSupplier/Form?keyValue="+ keyValue,
             width: "600px",
             height: "580px",

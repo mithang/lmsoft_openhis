@@ -13,7 +13,7 @@ using Newtouch.HIS.Domain.IRepository.Settlement;
 namespace Newtouch.HIS.Base.HOSP.Controllers
 {
     /// <summary>
-    /// 系统诊断
+    /// Chẩn đoán hệ thống
     /// </summary>
     public class SysDiagnosisController : ControllerBase
     {
