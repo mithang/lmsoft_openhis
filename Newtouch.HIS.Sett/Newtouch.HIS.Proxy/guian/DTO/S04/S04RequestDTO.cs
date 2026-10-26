@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string treatingPhysician { get; set; }
         /// <summary>
-        /// Trạng thái nhập viện(xem từ điển 入xuất viện trạng thái)
+        /// Trạng thái nhập viện(xem từ điển nhập xuất viện trạng thái)
         /// </summary>
         public string admissionStatus { get; set; }
         /// <summary>
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string berthNo { get; set; }
         /// <summary>
-        /// Giấy tờ đ ã đ ầy đ ủ chưa0 không 齐全1齐全
+        /// Giấy tờ đ ã đ ầy đ ủ chưa0 không đầy đủ1đầy đủ
         /// </summary>
         public string isIncrease { get; set; }
         /// <summary>
@@ -113,15 +113,15 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string familySysno { get; set; }
         /// <summary>
-        /// 身高(liên tỉnh)
+        /// chiều cao(liên tỉnh)
         /// </summary>
         public string Stature { get; set; }
         /// <summary>
-        /// 体重(liên tỉnh)
+        /// cân nặng(liên tỉnh)
         /// </summary>
         public string Weight { get; set; }
         /// <summary>
-        /// Thứ二 bệnh chẩn đoán(icd mã)(liên tỉnh)
+        /// Thứhai bệnh chẩn đoán(icd mã)(liên tỉnh)
         /// </summary>
         public string secondIcdNo { get; set; }
         /// <summary>
@@ -137,11 +137,11 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string treatCode { get; set; }
         /// <summary>
-        /// Loại khám bệnh(liên tỉnh)群 tệp có文档
+        /// Loại khám bệnh(liên tỉnh)nhóm tệp cótài liệu
         /// </summary>
         public string cureId { get; set; }
         /// <summary>
-        /// và 发症(liên tỉnh) truyền tên, chỉ có thể truyền một 
+        /// và biến chứng(liên tỉnh) truyền tên, chỉ có thể truyền một 
         /// </summary>
         public string complication { get; set; }
         /// <summary>
@@ -149,7 +149,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string turnMode { get; set; }
         /// <summary>
-        /// chuyển tuyến chuyển viện mã (huyện ngoài khám chữa bệnh chuyển tuyến - này giá trị là chuyển tuyến xin đ ơn số; chuyển viện - này giá trị là chuyển viện nhập viện登记 số)(liên tỉnh)
+        /// chuyển tuyến chuyển viện mã (huyện ngoài khám chữa bệnh chuyển tuyến - này giá trị là chuyển tuyến xin đ ơn số; chuyển viện - này giá trị là chuyển viện nhập việnđăng ký số)(liên tỉnh)
         /// </summary>
         public string turnCode { get; set; }
         /// <summary>
@@ -161,11 +161,11 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string ticketNo { get; set; }
         /// <summary>
-        /// 民政 thông báo 书 số (liên tỉnh)
+        /// dân chính thông báo giấy chứng nhận số (liên tỉnh)
         /// </summary>
         public string ministerNotice { get; set; }
         /// <summary>
-        /// 生育证 số (liên tỉnh)
+        /// giấy chứng nhận sinh con số (liên tỉnh)
         /// </summary>
         public string procreateNotice { get; set; }
         /// <summary>
@@ -181,15 +181,15 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string newbornName { get; set; }
         /// <summary>
-        /// isNewborn=1 giờ không có thể là trống 1:男2:女(liên tỉnh)
+        /// isNewborn=1 giờ không có thể là trống 1:nam2:nữ(liên tỉnh)
         /// </summary>
         public string newbornSex { get; set; }
         /// <summary>
-        /// 经办 bệnh viện 登记 số thứ tự duy nhất ID(liên tỉnh)
+        /// người xử lý bệnh viện đăng ký số thứ tự duy nhất ID(liên tỉnh)
         /// </summary>
         public string registerID { get; set; }
         /// <summary>
-        /// Nhập viện登记 số thứ tự nhập viện登记sửa giờ truyền 入(liên tỉnh)
+        /// Nhập việnđăng ký số thứ tự nhập việnđăng kýsửa giờ truyền vào(liên tỉnh)
         /// </summary>
         public string inpatientSn { get; set; }
         /// <summary>
@@ -201,11 +201,11 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string isTransProvincial { get; set; }
         /// <summary>
-        /// bệnh nặng 主chẩn đoán nhóm mã 
+        /// bệnh nặng chínhchẩn đoán nhóm mã 
         /// </summary>
         public string majorDiseaseICD { get; set; }
         /// <summary>
-        /// bệnh nặng thứ二chẩn đoán nhóm mã 
+        /// bệnh nặng thứhaichẩn đoán nhóm mã 
         /// </summary>
         public string secondMajorDiseaseICD { get; set; }
         /// <summary>
@@ -213,7 +213,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string threeMajorDiseaseICD { get; set; }
         /// <summary>
-        /// Thứ二 điều trị phư ơng thức mã,Tư ơng ứng thứ二chẩn đoán
+        /// Thứhai điều trị phư ơng thức mã,Tư ơng ứng thứhaichẩn đoán
         /// </summary>
         public string secondTreatCode { get; set; }
         /// <summary>

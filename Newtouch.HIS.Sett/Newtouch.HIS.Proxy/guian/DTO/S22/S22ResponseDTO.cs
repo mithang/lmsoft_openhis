@@ -41,7 +41,7 @@
         public string detailCode { get; set; }
 
         /// <summary>
-        /// Loại mã(xem từ điển 目录loại)
+        /// Loại mã(xem từ điển danh mụcloại)
         /// </summary>
         public string typeCode { get; set; }
 
@@ -86,7 +86,7 @@
         public string formulations { get; set; }
 
         /// <summary>
-        /// 保 trong hoặc保 trong (1-保 trong,0 保 ngoài)
+        /// bảo hiểm trong hoặcbảo hiểm trong (1-bảo hiểm trong,0 bảo hiểm ngoài)
         /// </summary>
         public string flag { get; set; }
 
@@ -96,12 +96,12 @@
         public decimal proportion { get; set; }
 
         /// <summary>
-        /// Có hay không trong 药
+        /// Có hay không trong thuốc
         /// </summary>
         public string isCm { get; set; }
 
         /// <summary>
-        /// 限制 giá trị 
+        /// giới hạn giá trị 
         /// </summary>
         public string limitValue { get; set; }
 
@@ -111,7 +111,7 @@
         public string isAudit { get; set; }
 
         /// <summary>
-        /// 入 kho ngày 
+        /// nhập kho ngày 
         /// </summary>
         public string storageTime { get; set; }
 

@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
     public class Response<T>
     {
         /// <summary>
-        /// giao dịch kết quả trạng tháitrue thành côngfalse thất bại, 必填 
+        /// giao dịch kết quả trạng tháitrue thành côngfalse thất bại, bắt buộc 
         /// </summary>
         public bool state { get; set; }
 

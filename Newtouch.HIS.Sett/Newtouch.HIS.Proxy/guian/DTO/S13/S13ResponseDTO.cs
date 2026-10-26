@@ -85,11 +85,11 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string salvaJKCost { get; set; }
         /// <summary>
-        /// 成 viên mã 
+        /// thành viên mã 
         /// </summary>
         public string memberNo { get; set; }
         /// <summary>
-        /// 成 viên họ tên
+        /// thành viên họ tên
         /// </summary>
         public string name { get; set; }
         /// <summary>
@@ -105,15 +105,15 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string birthday { get; set; }
         /// <summary>
-        /// 户主họ tên
+        /// chủ hộhọ tên
         /// </summary>
         public string masterName { get; set; }
         /// <summary>
-        /// Và户主 quan hệ tên
+        /// Vàchủ hộ quan hệ tên
         /// </summary>
         public string relationName { get; set; }
         /// <summary>
-        /// 个人 thân phận thuộc tính tên
+        /// cá nhân thân phận thuộc tính tên
         /// </summary>
         public string identityName { get; set; }
         /// <summary>
@@ -121,7 +121,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string idCard { get; set; }
         /// <summary>
-        /// Khi trư ớc năm 成 viên nhập vi ệnĐ ãbồi thư ờng số lần 
+        /// Khi trư ớc năm thành viên nhập vi ệnĐ ãbồi thư ờng số lần 
         /// </summary>
         public string currYearRedeemCount { get; set; }
         /// <summary>
@@ -137,11 +137,11 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string currYearReddemMoney { get; set; }
         /// <summary>
-        /// 成 viên gia đ ình mã 
+        /// thành viên gia đ ình mã 
         /// </summary>
         public string familyNo { get; set; }
         /// <summary>
-        /// 成 viên gia đ ình 住址
+        /// thành viên gia đ ình địa chỉ
         /// </summary>
         public string address { get; set; }
         /// <summary>
@@ -173,15 +173,15 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string enableMoney { get; set; }
         /// <summary>
-        /// lần này nhập việnchi phí trong 国定 cơ bản thuốcchi phí(Đ ơn vị tệ,giữ 2 chữ số thập phân)
+        /// lần này nhập việnchi phí trong quy định quốc gia cơ bản thuốcchi phí(Đ ơn vị tệ,giữ 2 chữ số thập phân)
         /// </summary>
         public string essentialMedicineMoney { get; set; }
         /// <summary>
-        /// lần này nhập việnchi phí trong tỉnh补 cơ bản thuốcchi phí(Đ ơn vị tệ,giữ 2 chữ số thập phân)
+        /// lần này nhập việnchi phí trong tỉnhbổ sung cơ bản thuốcchi phí(Đ ơn vị tệ,giữ 2 chữ số thập phân)
         /// </summary>
         public string provinceMedicineMoney { get; set; }
         /// <summary>
-        /// lần này nhập viện bồi thư ờng扣除 mức khởi trả 线số tiền(đ ơn vị tính bằng tệ, giữ 2 chữ số thập phân)
+        /// lần này nhập viện bồi thư ờngkhấu trừ mức khởi trả mứcsố tiền(đ ơn vị tính bằng tệ, giữ 2 chữ số thập phân)
         /// </summary>
         public string startMoney { get; set; }
         /// <summary>
@@ -197,11 +197,11 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string isSpecial { get; set; }
         /// <summary>
-        /// Có hay không实 dòng 保底bồi thư ờng
+        /// Có hay khôngthực hiện dòng bảo đảm tối thiểubồi thư ờng
         /// </summary>
         public string isPaul { get; set; }
         /// <summary>
-        /// 追补số tiền, trong 药và国定 cơ bản thuốc nâng cao bồi thư ờng额một phần(đ ơn vị tính bằng tệ, giữ 2 chữ số thập phân)
+        /// bổ sung truy thusố tiền, trong thuốcvàquy định quốc gia cơ bản thuốc nâng cao bồi thư ờngsố tiềnmột phần(đ ơn vị tính bằng tệ, giữ 2 chữ số thập phân)
         /// </summary>
         public string anlagernMoney { get; set; }
         /// <summary>
@@ -213,23 +213,23 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string hospAssumeMoney { get; set; }
         /// <summary>
-        /// 个人 tự 付chi phí(đ ơn vị tính bằng tệ, giữ 2 chữ số thập phân)
+        /// cá nhân tự trảchi phí(đ ơn vị tính bằng tệ, giữ 2 chữ số thập phân)
         /// </summary>
         public string personalPayMoney { get; set; }
         /// <summary>
-        /// 民政优抚 y tế 补助
+        /// ưu đãi dân chính y tế trợ cấp
         /// </summary>
         public string YFmedicalAid { get; set; }
         /// <summary>
-        /// 民政城乡 y tế 救助
+        /// thành thị và nông thôn dân chính y tế cứu trợ
         /// </summary>
         public string CXmedicalAid { get; set; }
         /// <summary>
-        /// 高额材料 giá trần 超额chi phí(đ ơn vị tính bằng tệ, giữ 2 chữ số thập phân)
+        /// vật tư giá cao giá trần vượt mứcchi phí(đ ơn vị tính bằng tệ, giữ 2 chữ số thập phân)
         /// </summary>
         public string materialMoney { get; set; }
         /// <summary>
-        /// Bồi thư ờng分 đoạn thông tindanh sách
+        /// Bồi thư ờngphân đoạn thông tindanh sách
         /// </summary>
         public string gradeList { get; set; }
         /// <summary>
@@ -237,43 +237,43 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string calculationMethod { get; set; }
         /// <summary>
-        /// 慈善总 sẽ thanh toán số tiền
+        /// tổng hội từ thiện sẽ thanh toán số tiền
         /// </summary>
         public string ChinaCharityPay { get; set; }
         /// <summary>
-        /// Có hay không长tuần kỳ Đ ịnh mức付费
+        /// Có hay khôngdàituần kỳ Đ ịnh mứctrả phí
         /// </summary>
         public string isLongPeriod { get; set; }
         /// <summary>
-        /// Có hay không进入大病 bảo hiểm 
+        /// Có hay khôngvào bảo hiểm bệnh nặng bảo hiểm 
         /// </summary>
         public string isCII { get; set; }
         /// <summary>
-        /// 大病 bảo hiểm 合规chi phí
+        /// bệnh nặng bảo hiểm hợp quychi phí
         /// </summary>
         public string CIIEligibleCosts { get; set; }
         /// <summary>
-        /// lần này 大病 bảo hiểm mức khởi trả 线
+        /// lần này bệnh nặng bảo hiểm mức khởi trả mức
         /// </summary>
         public string CIIStartMoney { get; set; }
         /// <summary>
-        /// lần này 大病 bảo hiểm bồi thư ờng số tiền
+        /// lần này bệnh nặng bảo hiểm bồi thư ờng số tiền
         /// </summary>
         public string CIICalculateMoney { get; set; }
         /// <summary>
-        /// lũy kế 大病 bảo hiểm bồi thư ờng额
+        /// lũy kế bệnh nặng bảo hiểm bồi thư ờngsố tiền
         /// </summary>
         public string CIICumulativePay { get; set; }
         /// <summary>
-        /// lũy kế 大病 bảo hiểm 扣除 mức khởi trả 线số tiền
+        /// lũy kế bệnh nặng bảo hiểm khấu trừ mức khởi trả mứcsố tiền
         /// </summary>
         public string CIICumulativeStart { get; set; }
         /// <summary>
-        /// lũy kế 进入大病 bảo hiểm 合规chi phí
+        /// lũy kế vào bảo hiểm bệnh nặng bảo hiểm hợp quychi phí
         /// </summary>
         public string CIICumulativeEligible { get; set; }
         /// <summary>
-        /// 计生 hai 户chi phí giảm trừ số tiền
+        /// kế hoạch hóa gia đình hai hộchi phí giảm trừ số tiền
         /// </summary>
         public string FamilyPlanningWaiver { get; set; }
         /// <summary>
@@ -289,7 +289,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string continentInsuranceCost { get; set; }
         /// <summary>
-        /// 护理补贴
+        /// trợ cấp điều dưỡng
         /// </summary>
         public string nurseCost { get; set; }
         /// <summary>
@@ -344,7 +344,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string calcName { get; set; }
         /// <summary>
-        /// Tính说明
+        /// Tínhgiải thích
         /// </summary>
         public string calcMemo { get; set; }
         /// <summary>

@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO.S20
         public string initialDiagnosis { get; set; }
 
         /// <summary>
-        /// Có hay không扣 gia đ ình tài khoản
+        /// Có hay khôngkhấu trừ gia đ ình tài khoản
         /// </summary>
         public string isAccountPay { get; set; }
 

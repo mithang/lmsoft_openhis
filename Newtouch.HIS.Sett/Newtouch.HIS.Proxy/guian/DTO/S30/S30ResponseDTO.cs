@@ -40,11 +40,11 @@
         /// </summary>
         public string scale { get; set; }
         /// <summary>
-        /// BHYTphạm vi1保 trong 0保 ngoài 
+        /// BHYTphạm vi1bảo hiểm trong 0bảo hiểm ngoài 
         /// </summary>
         public string scope { get; set; }
         /// <summary>
-        /// Có hay không基药
+        /// Có hay khôngthuốc cơ bản
         /// </summary>
         public string isBase { get; set; }
         /// <summary>
@@ -64,11 +64,11 @@
         /// </summary>
         public string price3 { get; set; }
         /// <summary>
-        /// Giá(乡)
+        /// Giá(xã)
         /// </summary>
         public string price2 { get; set; }
         /// <summary>
-        /// Giá(村)
+        /// Giá(thôn)
         /// </summary>
         public string price1 { get; set; }
         /// <summary>
@@ -84,15 +84,15 @@
         /// </summary>
         public string limitPrice3 { get; set; }
         /// <summary>
-        /// giá trần (乡)
+        /// giá trần (xã)
         /// </summary>
         public string limitPrice2 { get; set; }
         /// <summary>
-        /// giá trần (村)
+        /// giá trần (thôn)
         /// </summary>
         public string limitPrice1 { get; set; }
         /// <summary>
-        /// 目录 cấp bậc 
+        /// danh mục cấp bậc 
         /// </summary>
         public string grade { get; set; }
         /// <summary>
@@ -100,7 +100,7 @@
         /// </summary>
         public string status { get; set; }
         /// <summary>
-        /// Thời gian戳
+        /// Thời gianmốc
         /// </summary>
         public string datetime { get; set; }
     }

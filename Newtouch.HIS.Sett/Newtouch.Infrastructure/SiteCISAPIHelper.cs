@@ -52,7 +52,7 @@ namespace Newtouch.Infrastructure
             return apiResp;
         }
         /// <summary>
-        /// Ngoại trú đ ặt lịch tra cứu không 分 đ ặt lịch ngày, khoa, chuyên gia
+        /// Ngoại trú đ ặt lịch tra cứu không phân biệt đ ặt lịch ngày, khoa, chuyên gia
         /// </summary>
         /// <param name="zjlx"></param>
         /// <param name="zjh"></param>
@@ -117,10 +117,10 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 赴约
+        /// đến hẹn
         /// </summary>
         /// <param name="mzyyghid">Đ ặt lịch đ ăng ký khám ngoại trú ID</param>
-        /// <param name="arrivalDate">赴约thời gian</param>
+        /// <param name="arrivalDate">đến hẹnthời gian</param>
         /// <param name="arrivalOpereater">Đ ăng ký khám ngoại trú thao tác viên </param>
         /// <returns></returns>
         public static APIRequestHelper.DefaultResponse KeepAnAppointment(string mzyyghId, DateTime arrivalDate, string arrivalOpereater)
@@ -183,15 +183,15 @@ namespace Newtouch.Infrastructure
         /// </summary>
         public string brxzmc { get; set; }
         /// <summary>
-        /// liên hệ 人
+        /// liên hệ người
         /// </summary>
         public string lxr { get; set; }
         /// <summary>
-        /// liên hệ 人 quan hệ 
+        /// liên hệ người quan hệ 
         /// </summary>
         public string lxrgx { get; set; }
         /// <summary>
-        /// liên hệ 人điện thoại
+        /// liên hệ ngườiđiện thoại
         /// </summary>
         public string lxrdh { get; set; }
     }

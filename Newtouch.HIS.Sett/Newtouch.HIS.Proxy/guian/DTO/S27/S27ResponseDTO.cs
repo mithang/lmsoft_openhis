@@ -71,7 +71,7 @@
         public string hospitalLevel { get; set; }
 
         /// <summary>
-        /// 民政性质
+        /// tính chất dân chính
         /// </summary>
         public string mzPro { get; set; }
 
@@ -141,7 +141,7 @@
         public string compensateDate { get; set; }
 
         /// <summary>
-        /// 经办人
+        /// người xử lý
         /// </summary>
         public string managerCode { get; set; }
 
@@ -166,27 +166,27 @@
         public string compensateCost { get; set; }
 
         /// <summary>
-        /// tự 付số tiền
+        /// tự trảsố tiền
         /// </summary>
         public string setPayCost { get; set; }
 
         /// <summary>
-        /// 保 trong tự 付số tiền
+        /// bảo hiểm trong tự trảsố tiền
         /// </summary>
         public string insurancePayCost { get; set; }
 
         /// <summary>
-        /// 核 tính số tiền
+        /// xét duyệt tính số tiền
         /// </summary>
         public string auditCompensateCost { get; set; }
 
         /// <summary>
-        /// 初审扣减
+        /// khấu trừ sơ thẩm
         /// </summary>
         public string auditDeductionCost { get; set; }
 
         /// <summary>
-        /// 终审扣减
+        /// khấu trừ chung thẩm
         /// </summary>
         public string lastAuditDeductionCost { get; set; }
 
@@ -196,7 +196,7 @@
         public string tel { get; set; }
 
         /// <summary>
-        /// bảo hiểm nông nghiệp bồi thư ờng比
+        /// bảo hiểm nông nghiệp bồi thư ờngtỷ lệ
         /// </summary>
         public string compensateProportion { get; set; }
 
@@ -216,7 +216,7 @@
         public string isReferra { get; set; }
 
         /// <summary>
-        /// Có hay không扣 gia đ ình tài khoản
+        /// Có hay khôngkhấu trừ gia đ ình tài khoản
         /// </summary>
         public string isAccountPay { get; set; }
 
@@ -276,12 +276,12 @@
         public string bxAccount { get; set; }
 
         /// <summary>
-        /// Tính公 kiểu 
+        /// Tínhcông kiểu 
         /// </summary>
         public string jsgs { get; set; }
 
         /// <summary>
-        /// 大额bồi thư ờng số tiền
+        /// số tiền lớnbồi thư ờng số tiền
         /// </summary>
         public string bigAccountCost { get; set; }
 
@@ -291,22 +291,22 @@
         public string cwAccountCost { get; set; }
 
         /// <summary>
-        /// 二 lần bồi thư ờng số tiền
+        /// hai lần bồi thư ờng số tiền
         /// </summary>
         public string secondCompensateCost { get; set; }
 
         /// <summary>
-        /// gia đ ình tài khoản抵扣
+        /// gia đ ình tài khoảnkhấu trừ
         /// </summary>
         public string accRedeem { get; set; }
 
         /// <summary>
-        /// lũy kế bồi thư ờng có hay kh ôngĐ ã达封顶线
+        /// lũy kế bồi thư ờng có hay kh ôngĐ ãđạt mức trần
         /// </summary>
         public string isOverLimitLine { get; set; }
 
         /// <summary>
-        /// Có hay không保底
+        /// Có hay khôngbảo đảm tối thiểu
         /// </summary>
         public string isLessLimit { get; set; }
 
@@ -326,42 +326,42 @@
         public string countryName { get; set; }
 
         /// <summary>
-        /// 初审thời gian
+        /// sơ thẩmthời gian
         /// </summary>
         public string auditDate { get; set; }
 
         /// <summary>
-        /// 初审cơ quan
+        /// sơ thẩmcơ quan
         /// </summary>
         public string auditOrg { get; set; }
 
         /// <summary>
-        /// 初审 nhân sự 
+        /// sơ thẩm nhân sự 
         /// </summary>
         public string auditUser { get; set; }
 
         /// <summary>
-        /// 初审扣减 nguyên nhân 
+        /// khấu trừ sơ thẩm nguyên nhân 
         /// </summary>
         public string auditRemark { get; set; }
 
         /// <summary>
-        /// 终审thời gian
+        /// chung thẩmthời gian
         /// </summary>
         public string lastAuditDate { get; set; }
 
         /// <summary>
-        /// 终审cơ quan
+        /// chung thẩmcơ quan
         /// </summary>
         public string lastAuditOrg { get; set; }
 
         /// <summary>
-        /// 终审 nhân sự 
+        /// chung thẩm nhân sự 
         /// </summary>
         public string lastAuditUser { get; set; }
 
         /// <summary>
-        /// 终审扣减 nguyên nhân 
+        /// khấu trừ chung thẩm nguyên nhân 
         /// </summary>
         public string lastAuditRemark { get; set; }
 
@@ -381,67 +381,67 @@
         public string destoryDate { get; set; }
 
         /// <summary>
-        /// 终审 dấu hiệu trạng thái
+        /// chung thẩm dấu hiệu trạng thái
         /// </summary>
         public string lastAuditState { get; set; }
 
         /// <summary>
-        /// Thuốc费
+        /// Thuốcphí
         /// </summary>
         public string yp { get; set; }
 
         /// <summary>
-        /// kiểm tra 费
+        /// kiểm tra phí
         /// </summary>
         public string jc { get; set; }
 
         /// <summary>
-        /// điều trị 费
+        /// điều trị phí
         /// </summary>
         public string zl { get; set; }
 
         /// <summary>
-        /// giư ờng bệnh 费
+        /// giư ờng bệnh phí
         /// </summary>
         public string cw { get; set; }
 
         /// <summary>
-        /// 材料费
+        /// phí vật tư
         /// </summary>
         public string cl { get; set; }
 
         /// <summary>
-        /// Khác费
+        /// Khácphí
         /// </summary>
         public string qt { get; set; }
 
         /// <summary>
-        /// 民政局bồi thư ờng số tiền
+        /// cục dân chínhbồi thư ờng số tiền
         /// </summary>
         public string mzjCompensateCost { get; set; }
 
         /// <summary>
-        /// 计生bồi thư ờng số tiền
+        /// kế hoạch hóa gia đìnhbồi thư ờng số tiền
         /// </summary>
         public string jsCompensateCost { get; set; }
 
         /// <summary>
-        /// 大病 bảo hiểm bồi thư ờng số tiền
+        /// bệnh nặng bảo hiểm bồi thư ờng số tiền
         /// </summary>
         public string sbCost { get; set; }
 
         /// <summary>
-        /// 大病 bảo hiểm tải lên dấu hiệu 
+        /// bệnh nặng bảo hiểm tải lên dấu hiệu 
         /// </summary>
         public string sbState { get; set; }
 
         /// <summary>
-        /// 付 khoản Đ ối tư ợng
+        /// trả khoản Đ ối tư ợng
         /// </summary>
         public string bus_type { get; set; }
 
         /// <summary>
-        /// 锁定
+        /// khóa
         /// </summary>
         public string lockedStatus { get; set; }
 
@@ -456,7 +456,7 @@
         public string cureTypeName { get; set; }
 
         /// <summary>
-        /// 学历
+        /// trình độ học vấn
         /// </summary>
         public string degree { get; set; }
 
@@ -471,22 +471,22 @@
         public string accountLeftCost { get; set; }
 
         /// <summary>
-        /// 精准民政 thuộc tính 
+        /// dân chính chính xác thuộc tính 
         /// </summary>
         public string jzmzName { get; set; }
 
         /// <summary>
-        /// 精准计生 thuộc tính 
+        /// kế hoạch hóa gia đình chính xác thuộc tính 
         /// </summary>
         public string jzjsName { get; set; }
 
         /// <summary>
-        /// 精准目录进口目录chi phí
+        /// danh mục chính xác nhập khẩuchi phí
         /// </summary>
         public string jzImportCost { get; set; }
 
         /// <summary>
-        /// 精准目录国产目录chi phí
+        /// danh mục chính xác trong nướcchi phí
         /// </summary>
         public string jzHomeCost { get; set; }
 
@@ -496,7 +496,7 @@
         public string jzCompensateCost { get; set; }
 
         /// <summary>
-        /// 兜底bồi thư ờng số tiền
+        /// bảo đảmbồi thư ờng số tiền
         /// </summary>
         public string ddCost { get; set; }
 
@@ -521,27 +521,27 @@
         public string salvaJKCost { get; set; }
 
         /// <summary>
-        /// mới 精准优抚 thuộc tính 
+        /// mới ưu đãi chính xác thuộc tính 
         /// </summary>
         public string salvaYFName { get; set; }
 
         /// <summary>
-        /// mới 精准残联 thuộc tính 
+        /// mới hội người khuyết tật chính xác thuộc tính 
         /// </summary>
         public string salvaCLName { get; set; }
 
         /// <summary>
-        /// mới 精准扶贫 thuộc tính 
+        /// mới giảm nghèo chính xác thuộc tính 
         /// </summary>
         public string salvaFPName { get; set; }
 
         /// <summary>
-        /// mới 精准疾控 thuộc tính 
+        /// mới phòng chống dịch bệnh chính xác thuộc tính 
         /// </summary>
         public string salvaJKName { get; set; }
 
         /// <summary>
-        /// 合医二 lần bồi thư ờng
+        /// hợp tác y tế lần hai lần bồi thư ờng
         /// </summary>
         public decimal medicalSecondCost { get; set; }
 

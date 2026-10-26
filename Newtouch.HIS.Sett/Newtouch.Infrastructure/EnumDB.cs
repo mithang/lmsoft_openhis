@@ -4,7 +4,7 @@ using System.ComponentModel;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// nhật ký bản ghi loại enum 项扩展
+    /// nhật ký bản ghi loại enum mở rộng hạng mục
     /// Valuevui lòng từ 101 bắt đ ầu
     /// </summary>
     public enum DbLogType_Ex
@@ -33,7 +33,7 @@ namespace Newtouch.Infrastructure
         [Description("病区中")]
         Bqz = 1,
         /// <summary>
-        /// Khu bệnh xuất viện(出khu bệnh)(chờ thanh toán)
+        /// Khu bệnh xuất viện(rakhu bệnh)(chờ thanh toán)
         /// </summary>
         [Description("待结账")]
         Djz = 2,
@@ -66,7 +66,7 @@ namespace Newtouch.Infrastructure
         [Description("单位帐户")]
         DWZH = 0,
         /// <summary>
-        /// 个人 tài khoản 
+        /// cá nhân tài khoản 
         /// </summary>
         [Description("个人帐户")]
         GRZH = 1,
@@ -76,12 +76,12 @@ namespace Newtouch.Infrastructure
         [Description("家床账户")]
         JCZH = 2,
         /// <summary>
-        /// Nhập viện预缴 khoản tài khoản
+        /// Nhập việntạm ứng khoản tài khoản
         /// </summary>
         [Description("住院预缴款账户")]
         ZYYJKZH = 3,
         /// <summary>
-        /// giúp 困tài khoản
+        /// giúp khó khăntài khoản
         /// </summary>
         [Description("帮困账户")]
         BKZH = 4,
@@ -91,14 +91,14 @@ namespace Newtouch.Infrastructure
         [Description("门诊登记账户")]
         MZDJZH = 5,
         /// <summary>
-        /// Ngoại trú预缴 khoản tài khoản
+        /// Ngoại trútạm ứng khoản tài khoản
         /// </summary>
         [Description("门诊预缴款账户")]
         MZYJKZH = 6
     }
 
     /// <summary>
-    /// BHYT giao dịch loại 0 không giao dịch 1 thông thư ờng giao dịch 2 大病 giao dịch 3 giao dịch giư ờng gia đ ình 4 工伤 giao dịch 5 nhập viện giao dịch 6 bảo hiểm nông nghiệp giao dịch 
+    /// BHYT giao dịch loại 0 không giao dịch 1 thông thư ờng giao dịch 2 bệnh nặng giao dịch 3 giao dịch giư ờng gia đ ình 4 tai nạn lao động giao dịch 5 nhập viện giao dịch 6 bảo hiểm nông nghiệp giao dịch 
     /// xt_brxz.ybjylx
     /// </summary>
     public enum EnumYBJYLX
@@ -114,7 +114,7 @@ namespace Newtouch.Infrastructure
         [Description("普通交易")]
         ybjylx1 = 1,
         /// <summary>
-        /// 大病 giao dịch 
+        /// bệnh nặng giao dịch 
         /// </summary>
         [Description("大病交易")]
         ybjylx2 = 2,
@@ -124,7 +124,7 @@ namespace Newtouch.Infrastructure
         [Description("家床交易")]
         ybjylx3 = 3,
         /// <summary>
-        /// 工伤 giao dịch 
+        /// tai nạn lao động giao dịch 
         /// </summary>
         [Description("工伤交易")]
         ybjylx4 = 4,
@@ -161,22 +161,22 @@ namespace Newtouch.Infrastructure
         [Description("分类自负")]
         FLZF = 2,
         /// <summary>
-        /// 绝 đ ối với tự chi trả
+        /// tuyệt đối đ ối với tự chi trả
         /// </summary>
         [Description("绝对自理")]
         JueDuiZiLi = 3,
         /// <summary>
-        /// 甲 loại 
+        /// Giáp loại 
         /// </summary>
         [Description("甲类")]
         Jia,
         /// <summary>
-        /// 乙 loại 
+        /// Ất loại 
         /// </summary>
         [Description("乙类")]
         Yi,
         /// <summary>
-        /// 丙 loại 
+        /// Bính loại 
         /// </summary>
         [Description("丙类")]
         Bing,
@@ -184,12 +184,12 @@ namespace Newtouch.Infrastructure
 
     /// <summary>
     /// thuật toán tính chất tự trả
-    /// Xác nhận theo tỷ lệ tự trả tính出来của tự trả một phần của性质
+    /// Xác nhận theo tỷ lệ tự trả tínhracủa tự trả một phần củatính chất
     /// </summary>
     public enum EnumSuanFaZFXZ
     {
         /// <summary>
-        /// Tự trả(同BHYT giao dịch sau tự trả tiền mặt)
+        /// Tự trả(cùngBHYT giao dịch sau tự trả tiền mặt)
         /// </summary>
         [Description("自负")]
         ZF = 0,
@@ -201,7 +201,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Thu chi tài khoản性质 
+    /// Thu chi tài khoảntính chất 
     /// xt_brzhszjl.szxz
     /// </summary>
     public enum AccSzxz
@@ -231,22 +231,22 @@ namespace Newtouch.Infrastructure
     public enum EnumCardType
     {
         /// <summary>
-        /// BHYT磁dòng thẻ 
+        /// BHYTtừdòng thẻ 
         /// </summary>
         [Description("医保磁条卡")]
         CTK = 0,
         /// <summary>
-        /// 虚拟 thẻ / trong viện thẻ (tự đ ộng tạo giờ虚拟 thẻ / thủ công nhập giờ trong viện thẻ)
+        /// ảo thẻ / trong viện thẻ (tự đ ộng tạo giờảo thẻ / thủ công nhập giờ trong viện thẻ)
         /// </summary>
         [Description("虚拟卡")]
         XNK = 1,
         /// <summary>
-        /// 社保 thẻ 
+        /// bảo hiểm xã hội thẻ 
         /// </summary>
         [Description("社保卡")]
         YBJYK = 2,
         /// <summary>
-        /// BHYT电子凭证
+        /// BHYTchứng từ điện tử
         /// </summary>
         [Description("医保电子凭证")]
         ybdzpz = 3,
@@ -256,12 +256,12 @@ namespace Newtouch.Infrastructure
         [Description("身份证(医保)")]
         sfz = 4,
         /// <summary>
-        /// 健康 mã 
+        /// sức khỏe mã 
         /// </summary>
         [Description("健康码")]
         XNHJYK = 5,
         /// <summary>
-        /// 刷脸
+        /// quét mặt
         /// </summary>
         [Description("刷脸")]
         YBfACE = 6,
@@ -288,7 +288,7 @@ namespace Newtouch.Infrastructure
         [Description("专家门诊")]
         expertOutpat = 3,
         /// <summary>
-        /// 特病ngoại trú
+        /// bệnh đặc biệtngoại trú
         /// </summary>
         [Description("特病门诊")]
         SpecialOutpat = 4,
@@ -298,37 +298,37 @@ namespace Newtouch.Infrastructure
         [Description("重大疾病门诊")]
         MajorDiseases = 5,
         /// <summary>
-        /// chậm 性病ngoại trú
+        /// chậm bệnh tình dụcngoại trú
         /// </summary>
         [Description("慢性病门诊")]
         ChronicDisease = 6,
         /// <summary>
-        /// cư dân hai 病
+        /// cư dân hai bệnh
         /// </summary>
         [Description("居民两病")]
         jmlb = 7,
         /// <summary>
-        /// 意 ngoài 伤害ngoại trú
+        /// ngoài ý muốn tổn thươngngoại trú
         /// </summary>
         [Description("意外伤害门诊")]
         ywshmz = 8,
         /// <summary>
-        /// 生育ngoại trú
+        /// sinh sảnngoại trú
         /// </summary>
         [Description("生育门诊")]
         symz = 9,
         /// <summary>
-        /// 耐 nhiều 药结核ngoại trú
+        /// kháng nhiều laongoại trú
         /// </summary>
         [Description("耐多药结核门诊")]
         ndyjhmz = 10,
         /// <summary>
-        /// 儿童 hai 病ngoại trú
+        /// trẻ em hai bệnhngoại trú
         /// </summary>
         [Description("儿童两病门诊")]
         etlbmz = 11,
         /// <summary>
-        /// 简易ngoại trú
+        /// đơn giảnngoại trú
         /// </summary>
         [Description("简易门诊")]
         jymz = 12
@@ -367,17 +367,17 @@ namespace Newtouch.Infrastructure
     public enum EnumSex
     {
         /// <summary>
-        /// 男
+        /// nam
         /// </summary>
         [Description("男")]
         male = 1,
         /// <summary>
-        /// 女
+        /// nữ
         /// </summary>
         [Description("女")]
         female = 2,
         /// <summary>
-        /// không 详
+        /// không chi tiết
         /// </summary>
         [Description("不详")]
         other = 3
@@ -401,7 +401,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// y lệnh 性质
+    /// y lệnh tính chất
     /// </summary>
     public enum EnumYiZhuXZ
     {
@@ -416,22 +416,22 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 财务 hóa đ ơn 停 dùng dấu hiệu 
+    /// tài chính hóa đ ơn dừng dùng dấu hiệu 
     /// </summary>
     public enum EnumCWFPTY
     {
         /// <summary>
-        /// Chưa停 dùng 
+        /// Chưadừng dùng 
         /// </summary>
         WTY = 0,
 
         /// <summary>
-        /// Đ ã停 dùng 
+        /// Đ ãdừng dùng 
         /// </summary>
         YTY = 1,
     }
     /// <summary>
-    /// Đ ăng ký khám性质 
+    /// Đ ăng ký khámtính chất 
     /// 0-thông thư ờngĐ ăng ký khám
     /// 1- trống Đ ăng ký khám
     /// 2- giư ờng gia đ ình Đ ăng ký khám
@@ -479,7 +479,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// y lệnh 性质 1 tạm thời y lệnh 2 y lệnh dài hạn 3 xuất viện y lệnh 
+    /// y lệnh tính chất 1 tạm thời y lệnh 2 y lệnh dài hạn 3 xuất viện y lệnh 
     /// </summary>
     public enum EnumYZXZ
     {
@@ -523,7 +523,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 语言
+    /// ngôn ngữ
     /// </summary>
     public enum Enumlan
     {
@@ -562,17 +562,17 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 生效 dấu hiệu 
+    /// có hiệu lực dấu hiệu 
     /// </summary>
     public enum EnumSXBZ
     {
         /// <summary>
-        /// tức là giờ生效
+        /// tức là giờcó hiệu lực
         /// </summary>
         [Description("即时生效")]
         Jssx = 0,
         /// <summary>
-        /// 定点生效
+        /// có hiệu lực tại điểm chỉ định
         /// </summary>
         [Description("定点生效")]
         Ddsx = 1
@@ -613,14 +613,14 @@ namespace Newtouch.Infrastructure
         [Description("已婚")]
         yh,
         /// <summary>
-        /// không 详
+        /// không chi tiết
         /// </summary>
         [Description("不详")]
         UnKnown = 9,
     }
 
     /// <summary>
-    /// Nhập viện途径
+    /// Nhập việncon đường
     /// </summary>
     public enum EnumRYTJ
     {
@@ -635,12 +635,12 @@ namespace Newtouch.Infrastructure
         [Description("急诊转住院")]
         jz = 24,
         /// <summary>
-        /// Khác y tế cơ quan chuyển 入
+        /// Khác y tế cơ quan chuyển vào
         /// </summary>
         [Description("转入住院")]
         qtyljg = 9925,
         /// <summary>
-        /// chuyển ngoài 诊治nhập viện
+        /// chuyển ngoài chẩn trịnhập viện
         /// </summary>
         [Description("转外诊治住院")]
         zwzzzy = 23,
@@ -650,22 +650,22 @@ namespace Newtouch.Infrastructure
         [Description("重大疾病住院")]
         dbry = 9902,
         /// <summary>
-        /// 生育nhập viện
+        /// sinh sảnnhập viện
         /// </summary>
         [Description("生育住院")]
         syzy = 52,
         /// <summary>
-        /// 儿童 hai 病nhập viện
+        /// trẻ em hai bệnhnhập viện
         /// </summary>
         [Description("儿童两病住院")]
         etlb = 9904,
         /// <summary>
-        /// 耐 nhiều 药结核nhập viện
+        /// kháng nhiều laonhập viện
         /// </summary>
         [Description("耐多药结核住院")]
         ndyzy = 9907,
         /// <summary>
-        /// trẻ sơ sinh 随母nhập viện
+        /// trẻ sơ sinh theo mẹnhập viện
         /// </summary>
         [Description("新生儿随母住院")]
         xsesmzy = 9921,
@@ -710,7 +710,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// BHYTĐ ặc biệt chờ 遇
+    /// BHYTĐ ặc biệt chờ đãi ngộ
     /// </summary>
     public enum EnumYBTSDY
     {
@@ -725,7 +725,7 @@ namespace Newtouch.Infrastructure
         [Description("离休")]
         lx,
         /// <summary>
-        /// 伤残
+        /// thương tật
         /// </summary>
         [Description("伤残")]
         sc
@@ -733,26 +733,26 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 适 dùng BHYT biện pháp 0:城保 1:个体BHYT 2:小城镇 3:Giờ工
-    // A:民政 y tế giúp 困
-    // B:老năm遗嘱 C: năm 保老人 D:重残 nhân sự 
-    // E: trong 小学生và婴幼儿 F: Khác cư dân 
-    //G: y tế 互助 giúp 困Đ ối tư ợng
+    /// áp dụng dùng BHYT biện pháp 0:bảo hiểm thành thị 1:cá nhânBHYT 2:thị trấn nhỏ 3:Giờcông nhân
+    // A:dân chính y tế giúp khó khăn
+    // B:giànămdi chúc C: năm người già được bảo hiểm D:khuyết tật nặng nhân sự 
+    // E: trong học sinh tiểu họcvàtrẻ sơ sinh và trẻ nhỏ F: Khác cư dân 
+    //G: y tế tương trợ giúp khó khănĐ ối tư ợng
     /// </summary>
     public enum EnumSYYBBF
     {
         /// <summary>
-        /// 城保
+        /// bảo hiểm thành thị
         /// </summary>
         [Description("城保")]
         cb = 1,
         /// <summary>
-        /// 个体BHYT
+        /// cá nhânBHYT
         /// </summary>
         [Description("个体医保")]
         gtyb,
         /// <summary>
-        /// 小城镇
+        /// thị trấn nhỏ
         /// </summary>
         [Description("小城镇")]
         xcz,
@@ -775,7 +775,7 @@ namespace Newtouch.Infrastructure
         [Description("无")]
         none = 0,
         /// <summary>
-        /// 全ngày
+        /// cảngày
         /// </summary>
         [Description("全天")]
         allday = 1,
@@ -828,7 +828,7 @@ namespace Newtouch.Infrastructure
         /// Số tiền giới hạn trên nhắc nhở 
         /// </summary>
         [Description("金额上限提醒")]
-        金额上限提醒 = 1,    // ví dụ:Chuyên viên trị liệu một tháng trong thu phí không 得超 qua mư ời vạn 
+        金额上限提醒 = 1,    // ví dụ:Chuyên viên trị liệu một tháng trong thu phí không được vượt qua mư ời vạn 
     }
 
     /// <summary>
@@ -871,7 +871,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Hạng mục thu phí计价策略
+    /// Hạng mục thu phíchiến lược định giá
     /// </summary>
     public enum EnumSfxmJjcl
     {
@@ -886,7 +886,7 @@ namespace Newtouch.Infrastructure
         [Description("按数量")]
         Amount,
         /// <summary>
-        /// theo 面积
+        /// theo diện tích
         /// </summary>
         [Description("按面积")]
         Acreage,
@@ -932,7 +932,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 收支性质
+    /// tính chất thu chi
     /// </summary>
     public enum EnumSZXZ
     {
@@ -953,7 +953,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 危重 cấp bậc 
+    /// nguy kịch cấp bậc 
     /// </summary>
     public enum EnumWzjb
     {
@@ -963,12 +963,12 @@ namespace Newtouch.Infrastructure
         [Description("一般")]
         Normal = 1,
         /// <summary>
-        /// 病重
+        /// bệnh nặng
         /// </summary>
         [Description("病重")]
         Serious = 2,
         /// <summary>
-        /// 病危
+        /// bệnh nguy kịch
         /// </summary>
         [Description("病危")]
         Bedying = 3
@@ -987,7 +987,7 @@ namespace Newtouch.Infrastructure
         [Description("未通过")]
         WTG = 2,
         /// <summary>
-        /// chờ 审
+        /// chờ thẩm định
         /// </summary>
         [Description("待审")]
         DS = 3,
@@ -997,7 +997,7 @@ namespace Newtouch.Infrastructure
         [Description("未提交")]
         WTJ = 4,
         /// <summary>
-        /// 预gửi
+        /// gửi trước
         /// </summary>
         [Description("预提交")]
         YTJ = 5
@@ -1025,12 +1025,12 @@ namespace Newtouch.Infrastructure
     {
 
         /// <summary>
-        /// thanh toán 宝付 khoản mã 
+        /// thanh toán Alipay khoản mã 
         /// </summary>
         [Description("支付宝")]
         Alipay_Bar_Code = 1,
         /// <summary>
-        /// 微信付 khoản mã 
+        /// WeChat Pay khoản mã 
         /// </summary>
         [Description("微信")]
         Wechat_MICROPAY = 2,
@@ -1107,7 +1107,7 @@ namespace Newtouch.Infrastructure
         ty = 1
     }
     /// <summary>
-    /// Đ ăng ký khám ngoại trú来源
+    /// Đ ăng ký khám ngoại trúnguồn
     /// </summary>
     public enum EnumMzghly
     {
@@ -1276,7 +1276,7 @@ namespace Newtouch.Infrastructure
         ksxxcx = 5101,
     }
     /// <summary>
-    /// chờ 遇 kiểm tra loại 
+    /// chờ đãi ngộ kiểm tra loại 
     /// </summary>
     public enum Enumdyjclx
     {
@@ -1286,7 +1286,7 @@ namespace Newtouch.Infrastructure
         qtjc = 99
     }
     /// <summary>
-    /// 基金 thanh toán loại 
+    /// quỹ thanh toán loại 
     /// </summary>
     public enum Enumjjzflx
     {
@@ -1328,7 +1328,7 @@ namespace Newtouch.Infrastructure
         qtjj = 999997
     }
     /// <summary>
-    /// 基金 khoản 项 chờ 遇享受 dấu hiệu 
+    /// quỹ khoản hạng mục chờ hưởng đãi ngộ dấu hiệu 
     /// </summary>
     public enum Enumdyxsbz
     {
@@ -1350,7 +1350,7 @@ namespace Newtouch.Infrastructure
         zyzzzd = 3
     }
     /// <summary>
-    /// 险 chủng loại kiểu 
+    /// bảo hiểm chủng loại kiểu 
     /// </summary>
     public enum Enumxzlx
     {
@@ -1428,7 +1428,7 @@ namespace Newtouch.Infrastructure
         xsesmzy = 9921
     }
     /// <summary>
-    /// xin 报来源
+    /// xin nguồn báo cáo
     /// </summary>
     public enum Enumsbly
     {
@@ -1446,42 +1446,42 @@ namespace Newtouch.Infrastructure
         xsesmzy = 99
     }
     /// <summary>
-    /// 生育loại
+    /// sinh sảnloại
     /// </summary>
     public enum EnumSylb
     {
         /// <summary>
-        /// bình thư ờng 产
+        /// bình thư ờng sinh
         /// </summary>
         [Description("正常产")]
         Zcc = 1,
         /// <summary>
-        /// 助娩产
+        /// sinh có hỗ trợ
         /// </summary>
         [Description("助娩产")]
         Zmc = 2,
         /// <summary>
-        /// 剖宫产
+        /// sinh mổ
         /// </summary>
         [Description("剖宫产")]
         Pgc = 3,
         /// <summary>
-        /// 难产
+        /// sinh khó
         /// </summary>
         [Description("难产")]
         nc = 4,
         /// <summary>
-        /// 流产
+        /// sẩy thai
         /// </summary>
         [Description("流产")]
         lc = 5,
         /// <summary>
-        /// 引产
+        /// gây chuyển dạ
         /// </summary>
         [Description("引产")]
         yc = 6,
         /// <summary>
-        /// 产 trư ớc kiểm tra 
+        /// sinh trư ớc kiểm tra 
         /// </summary>
         [Description("产前检查")]
         cqjc = 7,
@@ -1491,68 +1491,68 @@ namespace Newtouch.Infrastructure
         [Description("其他")]
         qt = 9,
         /// <summary>
-        /// 宫 ngoài 孕
+        /// tử cung ngoài thai
         /// </summary>
         [Description("宫外孕")]
         gwc = 10,
         /// <summary>
-        /// 遗 truyền 基因检测
+        /// di truyền xét nghiệm gen
         /// </summary>
         [Description("遗传基因检测")]
         ycjyjc = 11,
         /// <summary>
-        /// bốn 个tháng以 trên 流引产
+        /// bốn tháng trở lên sẩy thai và gây chuyển dạ
         /// </summary>
         [Description("四个月以上流产")]
         sgyyslc = 12,
         /// <summary>
-        /// bốn 个tháng以 dư ới 流产
+        /// bốn tháng trở xuống sẩy thai
         /// </summary>
         [Description("四个月以下流产")]
         sgyyxlc = 13
     }
     /// <summary>
-    /// kế hoạch 生育 phẫu thuật loại
+    /// kế hoạch sinh sản phẫu thuật loại
     /// </summary>
     public enum EnumSysslb
     {
         /// <summary>
-        /// 放置宫 trong mục 育 thiết bị 
+        /// đặt dụng cụ tử cung trong mục nuôi dưỡng thiết bị 
         /// </summary>
         [Description("放置宫内节育器")]
         fzgnjyq = 1,
         /// <summary>
-        /// 取出宫 trong mục 育 thiết bị 
+        /// lấy dụng cụ tử cung trong mục nuôi dưỡng thiết bị 
         /// </summary>
         [Description("取出宫内节育器")]
         qcgnjyq = 2,
         /// <summary>
-        /// 流产术
+        /// phẫu thuật sẩy thai
         /// </summary>
         [Description("流产术")]
         lcs = 3,
         /// <summary>
-        /// 引产术
+        /// phẫu thuật gây chuyển dạ
         /// </summary>
         [Description("引产术")]
         ycs = 4,
         /// <summary>
-        /// 绝育 phẫu thuật 
+        /// triệt sản phẫu thuật 
         /// </summary>
         [Description("绝育手术")]
         jyss = 5,
         /// <summary>
-        /// 绝育复通 phẫu thuật 
+        /// phục hồi triệt sản phẫu thuật 
         /// </summary>
         [Description("绝育复通手术")]
         jyftss = 6,
         /// <summary>
-        /// 绝育 phẫu thuật (输精管)
+        /// triệt sản phẫu thuật (ống dẫn tinh)
         /// </summary>
         [Description("绝育手术（输精管）")]
         jysssjg = 7,
         /// <summary>
-        /// 绝育复通 phẫu thuật (输精管)
+        /// phục hồi triệt sản phẫu thuật (ống dẫn tinh)
         /// </summary>
         [Description("绝育复通手术（输精管）")]
         jyftsssjg = 8,
@@ -1562,23 +1562,23 @@ namespace Newtouch.Infrastructure
         [Description("其他")]
         qt = 9,
         /// <summary>
-        /// 皮 dư ới 埋植术
+        /// da dư ới phẫu thuật cấy ghép
         /// </summary>
         [Description("皮下埋植术")]
         pxmzs = 10,
         /// <summary>
-        /// Hủy皮 dư ới 埋植术
+        /// Hủyda dư ới phẫu thuật cấy ghép
         /// </summary>
         [Description("取消皮下埋植术")]
         qxpxmzs = 11,
         /// <summary>
-        /// 输卵管结扎术
+        /// phẫu thuật thắt ống dẫn trứng
         /// </summary>
         [Description("输卵管结扎术")]
         srgjzs = 12
     }
     /// <summary>
-    /// muộn 育 dấu hiệu / sớm 产 dấu hiệu 
+    /// muộn sinh dấu hiệu / sớm sinh dấu hiệu 
     /// </summary>
     public enum EnumWybz
     {
@@ -1632,7 +1632,7 @@ namespace Newtouch.Infrastructure
         [Description("自费")]
         zf = 0,
         /// <summary>
-        /// 职工BHYT
+        /// nhân viênBHYT
         /// </summary>
         [Description("职工医保")]
         zg = 11,

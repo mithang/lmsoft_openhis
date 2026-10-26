@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string dischargeDepartments { get; set; }
         /// <summary>
-        /// Xuất viện trạng thái(xem từ điển 入xuất viện trạng thái)
+        /// Xuất viện trạng thái(xem từ điển nhập xuất viện trạng thái)
         /// </summary>
         public string dischargeStatus { get; set; }
         /// <summary>
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string icdAllNo { get; set; }
         /// <summary>
-        /// Thứ二 bệnh chẩn đoán(icd mã)(liên tỉnh)
+        /// Thứhai bệnh chẩn đoán(icd mã)(liên tỉnh)
         /// </summary>
         public string secondIcdNo { get; set; }
         /// <summary>
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string treatCode { get; set; }
         /// <summary>
-        /// Thứ二 điều trị phư ơng thức mã (liên tỉnh)
+        /// Thứhai điều trị phư ơng thức mã (liên tỉnh)
         /// </summary>
         public string secondTreatCode { get; set; }
         /// <summary>
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string turnMode { get; set; }
         /// <summary>
-        /// chuyển tuyến chuyển viện mã (huyện ngoài khám chữa bệnh chuyển tuyến - này giá trị là chuyển tuyến xin đ ơn số; chuyển viện - này giá trị là chuyển viện nhập viện登记 số)(liên tỉnh)
+        /// chuyển tuyến chuyển viện mã (huyện ngoài khám chữa bệnh chuyển tuyến - này giá trị là chuyển tuyến xin đ ơn số; chuyển viện - này giá trị là chuyển viện nhập việnđăng ký số)(liên tỉnh)
         /// </summary>
         public string turnCode { get; set; }
         /// <summary>
@@ -88,11 +88,11 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string isTransProvincial { get; set; }
         /// <summary>
-        /// bệnh nặng 主chẩn đoán mã 
+        /// bệnh nặng chínhchẩn đoán mã 
         /// </summary>
         public string majorDiseaseICD { get; set; }
         /// <summary>
-        /// bệnh nặng thứ二chẩn đoán mã 
+        /// bệnh nặng thứhaichẩn đoán mã 
         /// </summary>
         public string secondMajorDiseaseICD { get; set; }
         /// <summary>

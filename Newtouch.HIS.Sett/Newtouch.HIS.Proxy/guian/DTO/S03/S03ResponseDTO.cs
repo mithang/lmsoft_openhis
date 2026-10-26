@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Proxy.guian.DTO.S03
 {
     /// <summary>
-    /// theo truyền 入của số chứng nhận y tế lấy gia đ ình của tham gia hợp tác 成 viên danh sách bản tin trả về
+    /// theo truyền vàocủa số chứng nhận y tế lấy gia đ ình của tham gia hợp tác thành viên danh sách bản tin trả về
     /// </summary>
     public class member
     {
@@ -26,7 +26,7 @@
         public string memberName { get; set; }
 
         /// <summary>
-        /// Bệnh nhân giới tính 1男 2女
+        /// Bệnh nhân giới tính 1nam 2nữ
         /// </summary>
         public string memberSex { get; set; }
 
@@ -61,7 +61,7 @@
         public string areaName { get; set; }
 
         /// <summary>
-        /// Và户主 quan hệ 
+        /// Vàchủ hộ quan hệ 
         /// </summary>
         public string relation { get; set; }
 
@@ -76,7 +76,7 @@
         public decimal account { get; set; }
 
         /// <summary>
-        /// 参保trạng thái,có hay không停保(0 bình thư ờng,1停保)
+        /// tham gia bảo hiểmtrạng thái,có hay khôngdừng bảo hiểm(0 bình thư ờng,1dừng bảo hiểm)
         /// </summary>
         public string memberStauts { get; set; }
 
@@ -126,27 +126,27 @@
         public decimal outpCompensateCost { get; set; }
 
         /// <summary>
-        /// chậm 性病tổng chi phí
+        /// chậm bệnh tình dụctổng chi phí
         /// </summary>
         public decimal chroTotalCost { get; set; }
 
         /// <summary>
-        /// chậm 性病chi phí trong phạm vi bảo hiểm
+        /// chậm bệnh tình dụcchi phí trong phạm vi bảo hiểm
         /// </summary>
         public decimal chroInsuranceCost { get; set; }
 
         /// <summary>
-        /// chậm 性病chi phí bồi thư ờng
+        /// chậm bệnh tình dụcchi phí bồi thư ờng
         /// </summary>
         public decimal chroCompensateCost { get; set; }
 
         /// <summary>
-        /// 精准民政 thuộc tính 
+        /// dân chính chính xác thuộc tính 
         /// </summary>
         public string jzmzName { get; set; }
 
         /// <summary>
-        /// 精准计生 thuộc tính 
+        /// kế hoạch hóa gia đình chính xác thuộc tính 
         /// </summary>
         public string jzjsName { get; set; }
 
@@ -156,12 +156,12 @@
         public string tel { get; set; }
 
         /// <summary>
-        /// 个人 thân phận thuộc tính tên
+        /// cá nhân thân phận thuộc tính tên
         /// </summary>
         public string ideName { get; set; }
 
         /// <summary>
-        /// 精准扶贫Đ ối tư ợng thuộc tính 
+        /// giảm nghèo chính xácĐ ối tư ợng thuộc tính 
         /// </summary>
         public string PoorObject { get; set; }
 
@@ -171,7 +171,7 @@
         public string currYearRedeemCount { get; set; }
 
         /// <summary>
-        /// Ngoại trú lũy kế bồi thư ờng额 
+        /// Ngoại trú lũy kế bồi thư ờngsố tiền 
         /// </summary>
         public string currYearReddemMoney { get; set; }
 
@@ -181,7 +181,7 @@
         public string inYearRedeemCount { get; set; }
 
         /// <summary>
-        /// Nhập viện lũy kế bồi thư ờng额 
+        /// Nhập viện lũy kế bồi thư ờngsố tiền 
         /// </summary>
         public string inYearRedeemMoney { get; set; }
 

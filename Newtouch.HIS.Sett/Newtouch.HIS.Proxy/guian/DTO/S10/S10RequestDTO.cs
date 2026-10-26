@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string inpId { get; set; }
         /// <summary>
-        /// 开方bác sĩ(liên tỉnh 
+        /// kê đơnbác sĩ(liên tỉnh 
         /// </summary>
         public string doctor { get; set; }
         /// <summary>
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string familyNo { get; set; }
         /// <summary>
-        /// 个人số hiệu(liên tỉnh)
+        /// cá nhânsố hiệu(liên tỉnh)
         /// </summary>
         public string memberNo { get; set; }
         /// <summary>
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string detailHosCode { get; set; }
         /// <summary>
-        /// Loại mã(xem từ điển 目录loại) liên tỉnh quyết toán truyền 00
+        /// Loại mã(xem từ điển danh mụcloại) liên tỉnh quyết toán truyền 00
         /// </summary>
         public string typeCode { get; set; }
         /// <summary>
@@ -100,7 +100,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string formulations { get; set; }
         /// <summary>
-        /// 经办 bệnh viện số thứ tự đ ơn thuốc duy nhất ID 贵阳thành phố bệnh nhân必填(liên tỉnh)
+        /// người xử lý bệnh viện số thứ tự đ ơn thuốc duy nhất ID Quý Dươngthành phố bệnh nhânbắt buộc(liên tỉnh)
         /// </summary>
         public string recipeID { get; set; }
     }

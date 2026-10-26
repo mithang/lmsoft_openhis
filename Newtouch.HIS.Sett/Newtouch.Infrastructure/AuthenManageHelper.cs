@@ -16,14 +16,14 @@ namespace Newtouch.Infrastructure
 {
     public class AuthenManageHelper
     {
-        public readonly static string SiteTokenAPIHost = ConfigurationManager.AppSettings["SiteTokenAPIHost"];//token trạm 点
-        public readonly static string SiteConmonAPIHost = ConfigurationManager.AppSettings["SiteConmonAPIHost"]; //api trong 心 trạm 点
-        public readonly static string appId = ConfigurationManager.AppSettings["AppId"];//api trong 心 trạm 点 truy cập appid
+        public readonly static string SiteTokenAPIHost = ConfigurationManager.AppSettings["SiteTokenAPIHost"];//token trạm điểm
+        public readonly static string SiteConmonAPIHost = ConfigurationManager.AppSettings["SiteConmonAPIHost"]; //api trong trung tâm trạm điểm
+        public readonly static string appId = ConfigurationManager.AppSettings["AppId"];//api trong trung tâm trạm điểm truy cập appid
         public readonly static string accessAppId = ConfigurationManager.AppSettings["Token_ApiManage"];//Apimanage AppId
         // ngư ời dùng Đ ăng nhập bộ nhớ đ ệm token
         public static string userCacheToken = "";
         /// <summary>
-        /// Lấy trong 心giao diệnapi token
+        /// Lấy trong trung tâmgiao diệnapi token
         /// </summary>
         /// <returns></returns>
         public static string GetToken()
@@ -61,7 +61,7 @@ namespace Newtouch.Infrastructure
 
         /// <summary>
         /// Post yêu cầu 
-        /// 鉴权thất bại tự đ ộng 刷 mới 
+        /// phân quyềnthất bại tự đ ộng làm mới mới 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="data"></param>
@@ -83,7 +83,7 @@ namespace Newtouch.Infrastructure
                 ApiManageResponse<T> apiResp = JsonConvert.DeserializeObject<ApiManageResponse<T>>(response);
                 if (apiResp.HttpStatus == (int)HttpStatusCode.Unauthorized)
                 {
-                    //鉴权thất bại 刷 mới token
+                    //phân quyềnthất bại làm mới mới token
                     token = GetUserTokenRefesh(user, token);
                     //Lại yêu cầu giao diện
                     response = HttpMethods.HttpPostWithToken(uri, data, token);
@@ -101,7 +101,7 @@ namespace Newtouch.Infrastructure
             }
         }
         /// <summary>
-        /// token hết hạn 强制刷 mới 
+        /// token hết hạn bắt buộc làm mới mới 
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>

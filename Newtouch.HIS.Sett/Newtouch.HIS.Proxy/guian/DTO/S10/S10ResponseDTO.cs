@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string essentialMedicine { get; set; }
         /// <summary>
-        /// Có hay không là trong 药 0 không là 1 là
+        /// Có hay không là trong thuốc 0 không là 1 là
         /// </summary>
         public string chineseMedicine { get; set; }
         /// <summary>
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string success { get; set; }
         /// <summary>
-        /// Thất bại消息
+        /// Thất bạithông báo
         /// </summary>
         public string message { get; set; }
     }

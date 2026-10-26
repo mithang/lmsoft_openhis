@@ -3,7 +3,7 @@
 namespace Newtouch.Infrastructure.ExException
 {
     /// <summary>
-    /// Xử lý quá trình 产生của bất thư ờng
+    /// Xử lý quá trình phát sinhcủa bất thư ờng
     /// </summary>
     public class ProcessException : Exception
     {

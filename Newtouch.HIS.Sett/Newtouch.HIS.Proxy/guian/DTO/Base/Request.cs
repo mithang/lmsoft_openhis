@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
     public class Request
     {
         /// <summary>
-        /// 初始化
+        /// khởi tạo
         /// </summary>
         public Request()
         {
@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
     public class RequestHeader : RequestHeaderBase
     {
         /// <summary>
-        /// 票据mã
+        /// chứng từmã
         /// </summary>
         [DataMember]
         public string billCode { get; set; }
@@ -83,7 +83,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         public string operCode { get; set; }
 
         /// <summary>
-        /// body Củamd5摘 cần thuật toán 串
+        /// body Củamd5tóm tắt cần thuật toán chuỗi
         /// </summary>
         [DataMember]
         public string rsa { get; set; }

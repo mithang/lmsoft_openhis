@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Proxy.Log
         #region 单例
 
         /// <summary>
-        /// 服务tên
+        /// dịch vụtên
         /// </summary>
         private static string _serviceName = string.Empty;
 

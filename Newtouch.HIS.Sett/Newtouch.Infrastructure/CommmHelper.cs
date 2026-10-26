@@ -31,7 +31,7 @@ namespace Newtouch.Infrastructure
                 reqest.Timeout = (180000);
                 reqest.ContentType = ContentType;
 
-                //Đ ặt代理
+                //Đ ặtđại lý
                 //reqest.Proxy = new System.Net.WebProxy("192.168.100.249", 18888);
 
                 Stream stream = reqest.GetRequestStream();
@@ -53,12 +53,12 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Hạng mục thu phí điều trị lư ợng 换 tính 成 số lư ợng
+        /// Hạng mục thu phí điều trị lư ợng chuyển đổi tính thành số lư ợng
         /// </summary>
         /// <param name="zll"></param>
         /// <param name="dwjls"></param>
         /// <param name="jjcl"> enum enumSfxmJjcl</param>
-        /// <param name="throwExWhenZero">Khi số lư ợng kết quả là0 giờ có hay không抛bất thư ờng,mặc đ ịnh抛</param>
+        /// <param name="throwExWhenZero">Khi số lư ợng kết quả là0 giờ có hay khôngnémbất thư ờng,mặc đ ịnhném</param>
         /// <returns></returns>
         public static int CalcSfxmSl(int? zll, int? dwjls, int? jjcl,
             bool throwExWhenZero = true)
@@ -84,7 +84,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// LấyĐ ịa phư ơng tệp Tư ơng ứng CủaĐ ịa phư ơng路径
+        /// LấyĐ ịa phư ơng tệp Tư ơng ứng CủaĐ ịa phư ơngđường dẫn
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
@@ -108,7 +108,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// LấyĐ ịa phư ơng tệp Tư ơng ứng của mạng truy cập 路径
+        /// LấyĐ ịa phư ơng tệp Tư ơng ứng của mạng truy cập đường dẫn
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
@@ -135,7 +135,7 @@ namespace Newtouch.Infrastructure
          
         #region 身份证校验
         /// <summary>  
-        /// Xác minhCMND合理性 
+        /// Xác minhCMNDtính hợp lý 
         /// </summary>  
         /// <param name="Id"></param>  
         /// <returns></returns>  
@@ -178,7 +178,7 @@ namespace Newtouch.Infrastructure
             DateTime time = new DateTime();
             if (DateTime.TryParse(birth, out time) == false)
             {
-                return false;//生ngày xác minh 
+                return false;//sinhngày xác minh 
             }
             string[] arrVarifyCode = ("1,0,x,9,8,7,6,5,4,3,2").Split(',');
             string[] Wi = ("7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2").Split(',');
@@ -192,9 +192,9 @@ namespace Newtouch.Infrastructure
             Math.DivRem(sum, 11, out y);
             if (arrVarifyCode[y] != idNumber.Substring(17, 1).ToLower())
             {
-                return false;//校验 mã xác minh 
+                return false;//kiểm tra mã xác minh 
             }
-            return true;//符合GB11643-1999标准 
+            return true;//phù hợpGB11643-1999tiêu chuẩn 
         }
 
 
@@ -217,14 +217,14 @@ namespace Newtouch.Infrastructure
             DateTime time = new DateTime();
             if (DateTime.TryParse(birth, out time) == false)
             {
-                return false;//生ngày xác minh 
+                return false;//sinhngày xác minh 
             }
             return true;
         }
         #endregion
 
         #region 汉字拼音
-        //定义phiên âm Quận mã 数 nhóm 
+        //định nghĩaphiên âm Quận mã mảng nhóm 
         private static int[] getValue = new int[]
             {
         -20319,-20317,-20304,-20295,-20292,-20283,-20265,-20257,-20242,-20230,-20051,-20036,
@@ -261,7 +261,7 @@ namespace Newtouch.Infrastructure
         -10815,-10800,-10790,-10780,-10764,-10587,-10544,-10533,-10519,-10331,-10329,-10328,
         -10322,-10315,-10309,-10307,-10296,-10281,-10274,-10270,-10262,-10260,-10256,-10254
             };
-        //定义phiên âm数 nhóm 
+        //định nghĩaphiên âmmảng nhóm 
         private static string[] getName = new string[]
             {
         "A","Ai","An","Ang","Ao","Ba","Bai","Ban","Bang","Bao","Bei","Ben",
@@ -298,16 +298,16 @@ namespace Newtouch.Infrastructure
         "Zhang","Zhao","Zhe","Zhen","Zheng","Zhi","Zhong","Zhou","Zhu","Zhua","Zhuai","Zhuan",
         "Zhuang","Zhui","Zhun","Zhuo","Zi","Zong","Zou","Zu","Zuan","Zui","Zun","Zuo"
            };
-        /// <summary> chữ hán chuyển 换成全拼của phiên âm</summary>
-        /// <param name="Chstr"> chữ hán 字符串</param>
-        /// <returns> chuyển 换 sau của phiên âm字符串</returns> 
+        /// <summary> chữ hán chuyển chuyển thành phiên âm đầy đủcủa phiên âm</summary>
+        /// <param name="Chstr"> chữ hán chuỗi</param>
+        /// <returns> chuyển chuyển đổi sau của phiên âmchuỗi</returns> 
         public static string StrConvertToPinyin(string Chstr,string type)
         {
             Regex reg = new Regex("^[\u4e00-\u9fa5]$");//Xác minh có hay không nhập chữ hán 
             byte[] arr = new byte[2];
             string pystr = "";
             int asc = 0, M1 = 0, M2 = 0;
-            char[] mChar = Chstr.ToCharArray();//Lấy chữ hán Tư ơng ứng của字符数 nhóm 
+            char[] mChar = Chstr.ToCharArray();//Lấy chữ hán Tư ơng ứng củamảng ký tự nhóm 
             for (int j = 0; j < mChar.Length; j++)
             {
                 //Nếu nhập của là chữ hán 
@@ -358,7 +358,7 @@ namespace Newtouch.Infrastructure
                                         }
                                         else
                                         {
-                                            pystr += getName[i];//Nếu không 超出phạm vi thì lấy Tư ơng ứng của phiên âm
+                                            pystr += getName[i];//Nếu không vượt quáphạm vi thì lấy Tư ơng ứng của phiên âm
                                         }
                                         break;
                                     }
@@ -376,16 +376,16 @@ namespace Newtouch.Infrastructure
         }
 
         /////   <summary> 
-        ///// nhận đ ược một chữ hán của phiên âm thứ một 字母,nếu là một tiếng anh字母thì trực tiếpquay lại大写字母 
+        ///// nhận đ ược một chữ hán của phiên âm thứ một chữ cái,nếu là một tiếng anhchữ cáithì trực tiếpquay lạichữ hoa 
         /////   </summary> 
-        ///// <param name="CnChar"> đ ơn 个 chữ hán </param> 
-        ///// <returns> đ ơn 个大写字母</returns> 
+        ///// <param name="CnChar"> đ ơn cái chữ hán </param> 
+        ///// <returns> đ ơn chữ hoa</returns> 
         //private static string GetCharSpellCode(string CnChar)
         //{
         //    long iCnChar;
         //    byte[] ZW = System.Text.Encoding.Default.GetBytes(CnChar);
 
-        // //Nếu là字母,thì trực tiếpquay lại 
+        // //Nếu làchữ cái,thì trực tiếpquay lại 
         //    if (ZW.Length == 1)
         //    {
         //        return CnChar.ToUpper();

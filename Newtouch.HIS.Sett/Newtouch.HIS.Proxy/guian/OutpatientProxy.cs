@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Proxy.guian
         public static string OrganizeId { get; set; }
 
         /// <summary>
-        /// theo lấy của gia đ ình tham gia hợp tác danh sách tiến hành ngoại trú tải lên liên tỉnh 登记sửa cũng là này giao diện,sử dụnguploadType
+        /// theo lấy của gia đ ình tham gia hợp tác danh sách tiến hành ngoại trú tải lên liên tỉnh đăng kýsửa cũng là này giao diện,sử dụnguploadType
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// theo S18 số thứ tự bồi thư ờng trả về sau khi tải lên ngoại trúoutpid ngoại trú chi phí chi tiếttra cứuS22 tiến hành ngoại trú chi phí chi tiết trả lại đ ơn; liên tỉnh nếu只 truyền số thứ tự bồi thư ờng, không truyền chi tiếtID thì là tất cả các chi tiết xóa
+        /// theo S18 số thứ tự bồi thư ờng trả về sau khi tải lên ngoại trúoutpid ngoại trú chi phí chi tiếttra cứuS22 tiến hành ngoại trú chi phí chi tiết trả lại đ ơn; liên tỉnh nếuchỉ truyền số thứ tự bồi thư ờng, không truyền chi tiếtID thì là tất cả các chi tiết xóa
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

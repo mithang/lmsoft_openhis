@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Proxy.guian.DO
 {
     /// <summary>
-    /// Quyết toán完整流程 nơi 需tham số
+    /// Quyết toánquy trình đầy đủ nơi cầntham số
     /// </summary>
     public class SettlementOverallProcessDo
     {
@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Proxy.guian.DO
     }
 
     /// <summary>
-    /// 虚拟quyết toán完整流程 nơi 需tham số
+    /// ảoquyết toánquy trình đầy đủ nơi cầntham số
     /// </summary>
     public class SimulationSettlementOverallProcessDo
     {
@@ -56,13 +56,13 @@ namespace Newtouch.HIS.Proxy.guian.DO
         public string startDate { get; set; }
 
         /// <summary>
-        /// 截止thời gian(yyyy-mm-dd)
+        /// hạn cuốithời gian(yyyy-mm-dd)
         /// </summary>
         public string endDate { get; set; }
     }
 
     /// <summary>
-    /// S18giao diện nơi 需tham số
+    /// S18giao diện nơi cầntham số
     /// </summary>
     public class S18Param
     {
@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Proxy.guian.DO
         public DateTime jzsj{ get; set; }
 
         /// <summary>
-        /// Khoa khám bệnh,我们hệ thống nơi dùng khoa
+        /// Khoa khám bệnh,chúng tôihệ thống nơi dùng khoa
         /// </summary>
         public string ksCode { get; set; }
 
@@ -93,7 +93,7 @@ namespace Newtouch.HIS.Proxy.guian.DO
     }
 
     /// <summary>
-    /// S21 tải lênchi tiết nơi 需tham số
+    /// S21 tải lênchi tiết nơi cầntham số
     /// </summary>
     public class S21Detail
     {

@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string treatingPhysician { get; set; }
         /// <summary>
-        /// Trạng thái nhập viện(xem từ điển 入xuất viện trạng thái)
+        /// Trạng thái nhập viện(xem từ điển nhập xuất viện trạng thái)
         /// </summary>
         public string admissionStatus { get; set; }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string berthNo { get; set; }
         /// <summary>
-        /// Giấy tờ đ ã đ ầy đ ủ chưa0 không 齐全1齐全
+        /// Giấy tờ đ ã đ ầy đ ủ chưa0 không đầy đủ1đầy đủ
         /// </summary>
         public string isIncrease { get; set; }
         /// <summary>

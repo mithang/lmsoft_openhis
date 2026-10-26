@@ -101,21 +101,21 @@ namespace Newtouch.Infrastructure
             {
                 dicEnum.Add(keyDefault, valueDefault);
             }
-            string[] fieldstrs = Enum.GetNames(enumType); //Lấy enum trư ờng 数 nhóm 
+            string[] fieldstrs = Enum.GetNames(enumType); //Lấy enum trư ờng mảng nhóm 
             foreach (var item in fieldstrs)
             {
                 string description = string.Empty;
                 var field = enumType.GetField(item);
-                object[] arr = field.GetCustomAttributes(typeof(DescriptionAttribute), true); //Lấy thuộc tính trư ờng 数 nhóm 
+                object[] arr = field.GetCustomAttributes(typeof(DescriptionAttribute), true); //Lấy thuộc tính trư ờng mảng nhóm 
                 if (arr != null && arr.Length > 0)
                 {
                     description = ((DescriptionAttribute)arr[0]).Description;   // thuộc tính mô tả
                 }
                 else
                 {
-                    description = item;  //Mô tả không tồn tại tại取 trư ờng tên
+                    description = item;  //Mô tả không tồn tại tạilấy trư ờng tên
                 }
-                dicEnum.Add(description, (int)Enum.Parse(enumType, item));  // không cần enum Củavalue giá trị 作là từ điển key giá trị của nguyên nhân từ enum 例子 có thể 看出来, thực ra này 边nên phán đoán 他của giá trị không tồn tại tại,mặc đ ịnh取 trư ờng tên
+                dicEnum.Add(description, (int)Enum.Parse(enumType, item));  // không cần enum Củavalue giá trị làmlà từ điển key giá trị của nguyên nhân từ enum ví dụ có thể nhìn ra, thực ra này bênnên phán đoán nócủa giá trị không tồn tại tại,mặc đ ịnhlấy trư ờng tên
             }
             return dicEnum;
         }

@@ -29,8 +29,8 @@ using System.Runtime.InteropServices;
 // Số đ ược tạo
 // Số hiệu sửa đ ổi
 //
-// Có thể chỉ đ ịnh tất cả các giá trị, cũng có thể sử dụng以 dư ới nơi 示của "*" 预置版 bản số và số hiệu sửa đ ổi
-// thông qua sử dụng "*",如 dư ới nơi 示:
+// Có thể chỉ đ ịnh tất cả các giá trị, cũng có thể sử dụngnhư dư ới nơi hiển thịcủa "*" phiên bản đặt trước bản số và số hiệu sửa đ ổi
+// thông qua sử dụng "*",như dư ới nơi hiển thị:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

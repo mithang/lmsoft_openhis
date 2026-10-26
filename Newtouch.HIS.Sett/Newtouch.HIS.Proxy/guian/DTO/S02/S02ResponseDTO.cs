@@ -1,12 +1,12 @@
 ﻿namespace Newtouch.HIS.Proxy.guian.DTO.S02
 {
     /// <summary>
-    /// 客户端 truyền 入 ngư ời dùng 名 mật khẩu tiến hành thân phận 认证quay lại票据mã, mật khẩu cầnMD5 mã hóa 32 vị 大写 response dto
+    /// máy khách truyền vào ngư ời dùng tên mật khẩu tiến hành thân phận xác thựcquay lạichứng từmã, mật khẩu cầnMD5 mã hóa 32 vị chữ hoa response dto
     /// </summary>
     public class S02ResponseDTO
     {
         /// <summary>
-        /// 票据 đ ơn số 
+        /// chứng từ đ ơn số 
         /// </summary>
         public string billCode { get; set; }
 
@@ -57,7 +57,7 @@
         public string areaCode { get; set; }
 
         /// <summary>
-        /// dòng 政tên
+        /// dòng hành chínhtên
         /// </summary>
         public string areaName { get; set; }
 

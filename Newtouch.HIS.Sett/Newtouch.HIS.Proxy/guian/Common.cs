@@ -4,7 +4,7 @@ using Newtouch.HIS.Proxy.guian.DTO.S25;
 namespace Newtouch.HIS.Proxy.guian
 {
     /// <summary>
-    /// 贵安 BHYT nông thôn mới 公tổng cộng Phư ơng thức
+    /// Quý An BHYT nông thôn mới côngtổng cộng Phư ơng thức
     /// </summary>
     public static class Common
     {

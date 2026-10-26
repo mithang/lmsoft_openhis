@@ -8,8 +8,8 @@ using System.Text.RegularExpressions;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 常 dùng đ ến của(放Repo, DmnService đ ều không 合适của,nhưng又 cần yêu cầu dữ liệu kho của)
-    /// ví dụ lấy duy nhất số hiệu(tự 增,nhưng có không thể trùng lặp)
+    /// thường dùng đ ến của(đặtRepo, DmnService đ ều không phù hợpcủa,nhưnglại cần yêu cầu dữ liệu kho của)
+    /// ví dụ lấy duy nhất số hiệu(tự tăng,nhưng có không thể trùng lặp)
     /// </summary>
     public class EFDBBaseFuncHelper
     {

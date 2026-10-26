@@ -16,7 +16,7 @@
         public static string ValidSystemChargeMajorClassListSetKey = "set:ValidSystemChargeMajorClassList_{0}";
 
         /// <summary>
-        /// Hệ thống nghiệp vụ xử lý lỗi nhắc nhở của code msg 映射 {0}TopOrganizeid
+        /// Hệ thống nghiệp vụ xử lý lỗi nhắc nhở của code msg ánh xạ {0}TopOrganizeid
         /// </summary>
         public static string SysFailedCodeMessageMapListListSetKey = "set:SysFailedCodeMessageMapListList_{0}";
 
@@ -26,12 +26,12 @@
         public static string CurrentYfbmInfoEntityKey = "string:CurrentYfbmInfo_{0}";
 
         /// <summary>
-        /// Tổ chức của ngư ời dùng 树(得Tư ơng ứng nhân sự) bộ nhớ đ ệm {0}Organizeid
+        /// Tổ chức của ngư ời dùng cây(lấy đượcTư ơng ứng nhân sự) bộ nhớ đ ệm {0}Organizeid
         /// </summary>
         public static string OrganizeUserTreeSetKey = "set:OrganizeUserTree_{0}";
 
         /// <summary>
-        /// Tổ chức của nhân sự 树 bộ nhớ đ ệm {0}Organizeid
+        /// Tổ chức của nhân sự cây bộ nhớ đ ệm {0}Organizeid
         /// </summary>
         public static string OrganizeStaffTreeSetKey = "set:OrganizeStaffTree_{0}";
 

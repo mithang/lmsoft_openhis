@@ -21,20 +21,20 @@ namespace Newtouch.Infrastructure
     public class XmlToDtUntility
     {
         /// <summary>
-        /// Có hay không启 dùng mã hóa 
+        /// Có hay khôngkích hoạt dùng mã hóa 
         /// </summary>
         private static readonly bool isEnhanced = false;
         /// <summary>
-        /// mã hóa, 解密 thiết bị 
+        /// mã hóa, giải mã thiết bị 
         /// </summary>
         private static readonly string rigndae_passPhrase = null;
         /// <summary>
-        /// mã hóa, 解密 thiết bị 
+        /// mã hóa, giải mã thiết bị 
         /// </summary>
         private static readonly string rigndae_initVector = null;
 
         /// <summary>
-        /// 静态 xây dựng hàm 
+        /// tĩnh xây dựng hàm 
         /// </summary>
         static XmlToDtUntility()
         {
@@ -101,7 +101,7 @@ namespace Newtouch.Infrastructure
                 return null;
             for (int i = 0; i < p_DataSet.Tables.Count; i++)
             {
-                // LấyTable tên tạiTables tập hợp trong của索引 giá trị 
+                // LấyTable tên tạiTables tập hợp trong củachỉ mục giá trị 
                 if (p_DataSet.Tables[i].TableName.Equals(rowtable))
                 {
                     _TableIndex = i;
@@ -116,11 +116,11 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary> 
-        /// DataSet装换là泛 kiểu tập hợp 
+        /// DataSetchuyển đổilàchung kiểu tập hợp 
         /// </summary> 
         /// <typeparam name="T"></typeparam> 
         /// <param name="p_DataSet">DataSet</param> 
-        /// <param name="p_TableName"> chờ chuyển 换dữ liệu bảng tên</param> 
+        /// <param name="p_TableName"> chờ chuyển chuyển đổidữ liệu bảng tên</param> 
         /// <returns></returns> 
         public static IList<T> DataSetToIList<T>(DataSet p_DataSet, string p_TableName)
         {
@@ -131,7 +131,7 @@ namespace Newtouch.Infrastructure
                 return null;
             for (int i = 0; i < p_DataSet.Tables.Count; i++)
             {
-                // LấyTable tên tạiTables tập hợp trong của索引 giá trị 
+                // LấyTable tên tạiTables tập hợp trong củachỉ mục giá trị 
                 if (p_DataSet.Tables[i].TableName.Equals(p_TableName))
                 {
                     _TableIndex = i;
@@ -146,11 +146,11 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary> 
-        /// DataSet装换là泛 kiểu tập hợp 
+        /// DataSetchuyển đổilàchung kiểu tập hợp 
         /// </summary> 
         /// <typeparam name="T"></typeparam> 
         /// <param name="dataSet">DataSet</param> 
-        /// <param name="tableIndex"> chờ chuyển 换dữ liệu bảng 索引</param> 
+        /// <param name="tableIndex"> chờ chuyển chuyển đổidữ liệu bảng chỉ mục</param> 
         /// <returns></returns>
         private static IList<T> DataSetToIList<T>(DataSet dataSet, int tableIndex = 0)
         {
@@ -168,7 +168,7 @@ namespace Newtouch.Infrastructure
             }
 
             DataTable dt = dataSet.Tables[tableIndex];
-            // Quay lại giá trị 初始化 
+            // Quay lại giá trị khởi tạo 
             IList<T> result = new List<T>();
             RijndaelEnhanced rigndae = null;
             if (isEnhanced)
@@ -183,10 +183,10 @@ namespace Newtouch.Infrastructure
                 {
                     for (int i = 0; i < dt.Columns.Count; i++)
                     {
-                        // thuộc tính và trư ờng tên nhất quán của tiến hành gán giá trị //忽略大小写
+                        // thuộc tính và trư ờng tên nhất quán của tiến hành gán giá trị //bỏ qua chữ hoa chữ thường
                         if (pi.Name.ToLower().Equals(dt.Columns[i].ColumnName.ToLower()))
                         {
-                            //得 bộ try catch
+                            //lấy được bộ try catch
                             try
                             {
                                 var str = string.Empty;
@@ -199,7 +199,7 @@ namespace Newtouch.Infrastructure
                                     {
                                         if (!string.IsNullOrWhiteSpace(str))
                                         {
-                                            str = str.Decrypt(rigndae); // trư ớc 做解密xử lý
+                                            str = str.Decrypt(rigndae); // trư ớc thực hiện giải mãxử lý
                                         }
                                     }
                                 }
@@ -236,7 +236,7 @@ namespace Newtouch.Infrastructure
                                         {
                                             if (pi.GetCustomAttributes(true).Any(a => a is DateTimeAttribute))
                                             {
-                                                // đ ể phía sau xác minh tại đ ây truyền 递 một lỗi của格 kiểu 
+                                                // đ ể phía sau xác minh tại đ ây truyền đi một lỗi củađịnh dạng kiểu 
                                                 pi.SetValue(_t, DateTime.MinValue, null);
                                             }
                                             pi.SetValue(_t, Convert.ToDateTime(str), null);
@@ -271,7 +271,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Sẽ ListĐ ối tư ợng chuyển 换成XML字符串
+        /// Sẽ ListĐ ối tư ợng chuyển chuyển thànhXMLchuỗi
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>
@@ -304,7 +304,7 @@ namespace Newtouch.Infrastructure
 
                         if (!string.IsNullOrWhiteSpace(propValStr))
                         {
-                            // ngày chuyển 字符串格 kiểu 
+                            // ngày chuyển định dạng chuỗi kiểu 
                             var isDateString = prop.GetCustomAttributes(true).Any(a => a is DateTimeStringAttribute);
                             if (isDateString)
                             {
@@ -314,7 +314,7 @@ namespace Newtouch.Infrastructure
                             var isEnhanceIgnore = prop.GetCustomAttributes(true).Any(a => a is EncryptDecryptIgnorePropertyAttribute);
                             if (isEnhanced && !isEnhanceIgnore)
                             {
-                                // giá trị 做 mã hóa xử lý
+                                // giá trị thực hiện mã hóa xử lý
                                 propValStr = rigndae.Encrypt(propValStr);
                             }
                         }
@@ -341,7 +341,7 @@ namespace Newtouch.Infrastructure
 
                         if (!string.IsNullOrWhiteSpace(propValStr))
                         {
-                            // ngày chuyển 字符串格 kiểu 
+                            // ngày chuyển định dạng chuỗi kiểu 
                             var isDateString = prop.GetCustomAttributes(true).Any(a => a is DateTimeStringAttribute);
                             if (isDateString)
                             {
@@ -351,7 +351,7 @@ namespace Newtouch.Infrastructure
                             var isEnhanceIgnore = prop.GetCustomAttributes(true).Any(a => a is EncryptDecryptIgnorePropertyAttribute);
                             if (isEnhanced && !isEnhanceIgnore)
                             {
-                                // giá trị 做 mã hóa xử lý
+                                // giá trị thực hiện mã hóa xử lý
                                 propValStr = rigndae.Encrypt(propValStr);
                             }
                         }
@@ -366,7 +366,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Quay lại kết quả của字符kết quả
+        /// Quay lại kết quả củaký tựkết quả
         /// </summary>
         /// <param name="resultmsg"></param>
         /// <param name="msgcontent"></param>
@@ -397,7 +397,7 @@ namespace Newtouch.Infrastructure
         }
 
 		/// <summary>
-		/// Đ ối tư ợng tuần tự hóa 成xml
+		/// Đ ối tư ợng tuần tự hóa thànhxml
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="Object"></param>
@@ -413,7 +413,7 @@ namespace Newtouch.Infrastructure
 				StreamWriter writer = new StreamWriter(ms);
 				XmlSerializer serializer = new XmlSerializer(typeof(T));
 
-				//Đ ặt命名 trống giữa 
+				//Đ ặtđặt tên trống giữa 
 				XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
 				ns.Add(string.Empty, string.Empty);
 
@@ -459,7 +459,7 @@ namespace Newtouch.Infrastructure
 			}
 		}
 		/// <summary>
-		/// XML String 反 tuần tự hóa 成Đ ối tư ợng
+		/// XML String giải tuần tự hóa thànhĐ ối tư ợng
 		/// </summary>
 		public static T XmlDeserialize<T>(string xmlString)
 		{

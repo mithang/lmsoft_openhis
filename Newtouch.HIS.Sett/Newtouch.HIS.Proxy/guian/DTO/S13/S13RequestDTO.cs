@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string outDate { get; set; }
         /// <summary>
-        /// năm 保户, 低保户V.v.Đ ặc biệt tham gia hợp tác bệnh nhân có hay không提供 thân phận thuộc tính 证明材料(liên tỉnh)1:Đ ã提供 0:Chưa提供
+        /// năm hộ bảo hiểm, hộ nghèoV.v.Đ ặc biệt tham gia hợp tác bệnh nhân có hay khôngcung cấp thân phận thuộc tính tài liệu chứng minh(liên tỉnh)1:Đ ãcung cấp 0:Chưacung cấp
         /// </summary>
         public string isMaterials { get; set; }
         /// <summary>

@@ -23,12 +23,12 @@ namespace Newtouch.Infrastructure.Model
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// trên cấp kho thuốc Code List(nhà thuốc có thể tới 目标 kho thuốc xin 领)
+        /// trên cấp kho thuốc Code List(nhà thuốc có thể tới mục tiêu kho thuốc xin nhận)
         /// </summary>
         public IList<string> TheUpperYfbmCodeList { get; set; }
 
         /// <summary>
-        /// dư ới cấp nhà thuốc Code List(kho thuốc có thể tới 目标 nhà thuốc phát thuốc)
+        /// dư ới cấp nhà thuốc Code List(kho thuốc có thể tới mục tiêu nhà thuốc phát thuốc)
         /// </summary>
         public IList<string> TheLowerYfbmCodeList { get; set; }
 

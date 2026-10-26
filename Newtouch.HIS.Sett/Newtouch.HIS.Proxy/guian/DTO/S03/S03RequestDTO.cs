@@ -4,7 +4,7 @@ using Newtouch.HIS.Proxy.Attribute;
 namespace Newtouch.HIS.Proxy.guian.DTO.S03
 {
     /// <summary>
-    /// theo truyền 入của số chứng nhận y tế lấy gia đ ình của tham gia hợp tác 成 viên danh sách bản tin yêu cầu
+    /// theo truyền vàocủa số chứng nhận y tế lấy gia đ ình của tham gia hợp tác thành viên danh sách bản tin yêu cầu
     /// </summary>
     [InterfaceCode("S03")]
     [XmlRoot("body")]
@@ -16,17 +16,17 @@ namespace Newtouch.HIS.Proxy.guian.DTO.S03
         public string year { get; set; }
 
         /// <summary>
-        /// số chứng nhận y tế liên tỉnh 至少 một 入参 không thể là trống; không liên tỉnh, số chứng nhận y tế không là trống 
+        /// số chứng nhận y tế liên tỉnh ít nhất một tham số đầu vào không thể là trống; không liên tỉnh, số chứng nhận y tế không là trống 
         /// </summary>
         public string medicalNo { get; set; }
 
         /// <summary>
-        /// Số CMND(liên tỉnh) liên tỉnh 至少 một 入参 không thể là trống; không liên tỉnh, số chứng nhận y tế không là trống 
+        /// Số CMND(liên tỉnh) liên tỉnh ít nhất một tham số đầu vào không thể là trống; không liên tỉnh, số chứng nhận y tế không là trống 
         /// </summary>
         public string idcardNo { get; set; }
 
         /// <summary>
-        /// ngư ời giám hộ số CMND(liên tỉnh) liên tỉnh 至少 một 入参 không thể là trống; không liên tỉnh, số chứng nhận y tế không là trống 
+        /// ngư ời giám hộ số CMND(liên tỉnh) liên tỉnh ít nhất một tham số đầu vào không thể là trống; không liên tỉnh, số chứng nhận y tế không là trống 
         /// </summary>
         public string guardianCardNo { get; set; }
 

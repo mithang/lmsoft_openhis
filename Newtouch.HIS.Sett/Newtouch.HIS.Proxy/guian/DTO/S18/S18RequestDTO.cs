@@ -4,7 +4,7 @@ using Newtouch.HIS.Proxy.Attribute;
 namespace Newtouch.HIS.Proxy.guian.DTO.S18
 {
     /// <summary>
-    /// theo lấy của gia đ ình tham gia hợp tác danh sách tiến hành ngoại trú tải lên liên tỉnh 登记sửa cũng là này giao diện,sử dụnguploadType bản tin yêu cầu
+    /// theo lấy của gia đ ình tham gia hợp tác danh sách tiến hành ngoại trú tải lên liên tỉnh đăng kýsửa cũng là này giao diện,sử dụnguploadType bản tin yêu cầu
     /// </summary>
     [InterfaceCode("S18")]
     [XmlRoot("body")]
@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO.S18
         public string isInfusion { get; set; }
 
         /// <summary>
-        /// Có hay không扣 gia đ ình tài khoản
+        /// Có hay khôngkhấu trừ gia đ ình tài khoản
         /// </summary>
         public string isAccountPay { get; set; }
 
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO.S18
         public string holderRelation { get; set; }
 
         /// <summary>
-        /// 输液 số lần 
+        /// truyền dịch số lần 
         /// </summary>
         public string infusionCount { get; set; }
 
@@ -117,7 +117,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO.S18
         public string uploadType { get; set; }
 
         /// <summary>
-        /// HISsố khám ngoại trú(liên tỉnh)需保证 bản y tế cơ quan trong HISsố khám ngoại trú duy nhất 
+        /// HISsố khám ngoại trú(liên tỉnh)cần đảm bảo bản y tế cơ quan trong HISsố khám ngoại trú duy nhất 
         /// </summary>
         public string hisClinicNo { get; set; }
 
@@ -127,17 +127,17 @@ namespace Newtouch.HIS.Proxy.guian.DTO.S18
         public string familyNo { get; set; }
 
         /// <summary>
-        /// 身高(liên tỉnh)
+        /// chiều cao(liên tỉnh)
         /// </summary>
         public string stature { get; set; }
 
         /// <summary>
-        /// 体重(liên tỉnh)
+        /// cân nặng(liên tỉnh)
         /// </summary>
         public string weight { get; set; }
 
         /// <summary>
-        /// Thứ二 bệnh chẩn đoán(liên tỉnh)
+        /// Thứhai bệnh chẩn đoán(liên tỉnh)
         /// </summary>
         public string secondIcdNo { get; set; }
 
@@ -152,22 +152,22 @@ namespace Newtouch.HIS.Proxy.guian.DTO.S18
         public string treatCode { get; set; }
 
         /// <summary>
-        /// Loại khám bệnh(liên tỉnh)参见附 bảng,群 tệp có tệp 
+        /// Loại khám bệnh(liên tỉnh)xem phụ lục bảng,nhóm tệp có tệp 
         /// </summary>
         public string cureCode { get; set; }
 
         /// <summary>
-        /// 来khám bệnh trạng thái(liên tỉnh)参见附 bảng 
+        /// đếnkhám bệnh trạng thái(liên tỉnh)xem phụ lục bảng 
         /// </summary>
         public string inHosId { get; set; }
 
         /// <summary>
-        /// 经办 y tế cơ quan登记 số thứ tự ID(liên tỉnh)
+        /// người xử lý y tế cơ quanđăng ký số thứ tự ID(liên tỉnh)
         /// </summary>
         public string registerID { get; set; }
 
         /// <summary>
-        /// hợp tác nông thôn Đ ăng ký ngoại trú số thứ tự (liên tỉnh)Đ ăng ký ngoại trú sửa giờ truyền 入
+        /// hợp tác nông thôn Đ ăng ký ngoại trú số thứ tự (liên tỉnh)Đ ăng ký ngoại trú sửa giờ truyền vào
         /// </summary>
         public string ClinicNo { get; set; }
 

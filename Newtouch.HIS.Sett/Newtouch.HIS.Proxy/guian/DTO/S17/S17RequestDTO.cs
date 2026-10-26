@@ -12,7 +12,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string startDate { get; set; }
         /// <summary>
-        /// 截止thời gian
+        /// hạn cuốithời gian
         /// </summary>
         public string endDate { get; set; }
         /// <summary>

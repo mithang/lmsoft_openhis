@@ -145,7 +145,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string compensateDate { get; set; }
         /// <summary>
-        /// 经办人
+        /// người xử lý
         /// </summary>
         public string managerCode { get; set; }
         /// <summary>
@@ -153,23 +153,23 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public decimal undulatingLine { get; set; }
         /// <summary>
-        /// tự 付số tiền
+        /// tự trảsố tiền
         /// </summary>
         public string setPayCost { get; set; }
         /// <summary>
-        /// 核 tính số tiền
+        /// xét duyệt tính số tiền
         /// </summary>
         public string auditCompensateCost { get; set; }
         /// <summary>
-        /// 初审扣减
+        /// khấu trừ sơ thẩm
         /// </summary>
         public string auditDeductionCost { get; set; }
         /// <summary>
-        /// 终审扣减
+        /// khấu trừ chung thẩm
         /// </summary>
         public string lastAuditDeductionCost { get; set; }
         /// <summary>
-        /// bảo hiểm nông nghiệp bồi thư ờng比
+        /// bảo hiểm nông nghiệp bồi thư ờngtỷ lệ
         /// </summary>
         public string compensateProportion { get; set; }
         /// <summary>
@@ -197,11 +197,11 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string bxAccount { get; set; }
         /// <summary>
-        /// Tính公 kiểu 
+        /// Tínhcông kiểu 
         /// </summary>
         public string jsgs { get; set; }
         /// <summary>
-        /// 大额bồi thư ờng số tiền
+        /// số tiền lớnbồi thư ờng số tiền
         /// </summary>
         public string bigAccountCost { get; set; }
         /// <summary>
@@ -209,19 +209,19 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string cwAccountCost { get; set; }
         /// <summary>
-        /// 二 lần bồi thư ờng số tiền
+        /// hai lần bồi thư ờng số tiền
         /// </summary>
         public string secondCompensateCost { get; set; }
         /// <summary>
-        /// gia đ ình tài khoản抵扣
+        /// gia đ ình tài khoảnkhấu trừ
         /// </summary>
         public string accRedeem { get; set; }
         /// <summary>
-        /// lũy kế bồi thư ờng có hay kh ôngĐ ã达封顶线
+        /// lũy kế bồi thư ờng có hay kh ôngĐ ãđạt mức trần
         /// </summary>
         public string isOverLimitLine { get; set; }
         /// <summary>
-        /// Có hay không保底 0 không là1 là
+        /// Có hay khôngbảo đảm tối thiểu 0 không là1 là
         /// </summary>
         public string isLessLimit { get; set; }
         /// <summary>
@@ -241,7 +241,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public bool state { get; set; }
         /// <summary>
-        /// 终审 dấu hiệu trạng thái
+        /// chung thẩm dấu hiệu trạng thái
         /// </summary>
         public string lastAuditState { get; set; }
         /// <summary>
@@ -261,7 +261,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string cw { get; set; }
         /// <summary>
-        /// 材料chi phí
+        /// vật tưchi phí
         /// </summary>
         public string cl { get; set; }
         /// <summary>
@@ -277,7 +277,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string sbState { get; set; }
         /// <summary>
-        /// 清 tính 锁定trạng thái
+        /// thanh toán tính khóatrạng thái
         /// </summary>
         public string lockedStatus { get; set; }
         /// <summary>
@@ -289,7 +289,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string bankCardNo { get; set; }
         /// <summary>
-        /// Họ của chủ tài khoản thẻ ngân hàng名
+        /// Họ của chủ tài khoản thẻ ngân hàngtên
         /// </summary>
         public string accountHolder { get; set; }
         /// <summary>
@@ -309,19 +309,19 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string compensateCost { get; set; }
         /// <summary>
-        /// 精准民政 thuộc tính 
+        /// dân chính chính xác thuộc tính 
         /// </summary>
         public string jzmzName { get; set; }
         /// <summary>
-        /// 精准计生 thuộc tính 
+        /// kế hoạch hóa gia đình chính xác thuộc tính 
         /// </summary>
         public string jzjsName { get; set; }
         /// <summary>
-        /// 精准目录进口目录chi phí
+        /// danh mục chính xác nhập khẩuchi phí
         /// </summary>
         public string jzImportCost { get; set; }
         /// <summary>
-        /// 精准目录国产目录chi phí
+        /// danh mục chính xác trong nướcchi phí
         /// </summary>
         public string jzHomeCost { get; set; }
         /// <summary>
@@ -329,7 +329,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string jzCompensateCost { get; set; }
         /// <summary>
-        /// 兜底bồi thư ờng số tiền
+        /// bảo đảmbồi thư ờng số tiền
         /// </summary>
         public string ddCost { get; set; }
         /// <summary>
@@ -361,23 +361,23 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string salvaJKCost { get; set; }
         /// <summary>
-        /// mới 精准优抚 thuộc tính 
+        /// mới ưu đãi chính xác thuộc tính 
         /// </summary>
         public string salvaYFName { get; set; }
         /// <summary>
-        /// mới 精准残联 thuộc tính 
+        /// mới hội người khuyết tật chính xác thuộc tính 
         /// </summary>
         public string salvaCLName { get; set; }
         /// <summary>
-        /// mới 精准扶贫 thuộc tính 
+        /// mới giảm nghèo chính xác thuộc tính 
         /// </summary>
         public string salvaFPName { get; set; }
         /// <summary>
-        /// mới 精准疾控 thuộc tính 
+        /// mới phòng chống dịch bệnh chính xác thuộc tính 
         /// </summary>
         public string salvaJKName { get; set; }
         /// <summary>
-        /// 兜底二 lần bồi thư ờng số tiền
+        /// bảo đảm lần hai lần bồi thư ờng số tiền
         /// </summary>
         public string ddSecondCost { get; set; }
         /// <summary>
@@ -397,7 +397,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public decimal? continentInsuranceCost { get; set; }
         /// <summary>
-        /// 护理bồi thư ờng
+        /// điều dưỡngbồi thư ờng
         /// </summary>
         public decimal? nurseCost { get; set; }
     }

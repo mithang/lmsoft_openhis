@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO.S24
         public string salvaJSCost { get; set; }
 
         /// <summary>
-        /// 精准民政救助bồi thư ờng(đ ộ chính xác 4 chữ số thập phân)
+        /// trợ giúp dân chính chính xácbồi thư ờng(đ ộ chính xác 4 chữ số thập phân)
         /// </summary>
         public string salvaMZCost { get; set; }
 
@@ -98,7 +98,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO.S24
         public string continentInsuranceCost { get; set; }
 
         /// <summary>
-        /// 护理补贴
+        /// trợ cấp điều dưỡng
         /// </summary>
         public string nurseCost { get; set; }
 
@@ -108,7 +108,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO.S24
         public string cwAccountCost { get; set; }
 
         /// <summary>
-        /// Tính进 đ ộ 
+        /// Tínhtiến đ ộ 
         /// </summary>
         public List<calcProgress> list { get; set; }
 
@@ -123,13 +123,13 @@ namespace Newtouch.HIS.Proxy.guian.DTO.S24
         public string medicalAssistanceCost { get; set; }
 
         /// <summary>
-        /// 合医二 lần bồi thư ờng
+        /// hợp tác y tế lần hai lần bồi thư ờng
         /// </summary>
         public string medicalSecondCost { get; set; }
     }
 
     /// <summary>
-    /// Tính进 đ ộ 
+    /// Tínhtiến đ ộ 
     /// </summary>
     public class calcProgress
     {
@@ -139,7 +139,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO.S24
         public string calcName { get; set; }
 
         /// <summary>
-        /// Tính说明
+        /// Tínhgiải thích
         /// </summary>
         public string calcMemo { get; set; }
 

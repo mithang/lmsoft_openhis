@@ -15,7 +15,7 @@ using NLog.Client.Util;
 namespace Newtouch.HIS.Proxy.guian
 {
     /// <summary>
-    /// 公tổng cộnggiao diện
+    /// côngtổng cộnggiao diện
     /// </summary>
     public class CommonProxy
     {
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Proxy.guian
         public static string OrganizeId { get; set; }
 
         /// <summary>
-        /// 认证鉴权
+        /// xác thực và phân quyền
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// S02 客户端 truyền 入 ngư ời dùng 名 mật khẩu tiến hành thân phận 认证quay lại票据mã, mật khẩu cầnMD5 mã hóa 32 vị 大写
+        /// S02 máy khách truyền vào ngư ời dùng tên mật khẩu tiến hành thân phận xác thựcquay lạichứng từmã, mật khẩu cầnMD5 mã hóa 32 vị chữ hoa
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="passWord"></param>
@@ -122,7 +122,7 @@ namespace Newtouch.HIS.Proxy.guian
         }
 
         /// <summary>
-        /// theo truyền 入của số chứng nhận y tế lấy gia đ ình của tham gia hợp tác 成 viên danh sách
+        /// theo truyền vàocủa số chứng nhận y tế lấy gia đ ình của tham gia hợp tác thành viên danh sách
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

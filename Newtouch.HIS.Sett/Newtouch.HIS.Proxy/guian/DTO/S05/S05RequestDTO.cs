@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string inpId { get; set; }
         /// <summary>
-        /// Nhập viện登记hủy nguyên nhân (liên tỉnh)
+        /// Nhập việnđăng kýhủy nguyên nhân (liên tỉnh)
         /// </summary>
         public string cancelCause { get; set; }
         /// <summary>

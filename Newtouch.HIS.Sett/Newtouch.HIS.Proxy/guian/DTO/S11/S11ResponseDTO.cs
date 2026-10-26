@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Proxy.guian.DTO
         /// </summary>
         public string detailCode { get; set; }
         /// <summary>
-        /// Loại mã(xem từ điển 目录loại)
+        /// Loại mã(xem từ điển danh mụcloại)
         /// </summary>
         public string typeCode { get; set; }
         /// <summary>

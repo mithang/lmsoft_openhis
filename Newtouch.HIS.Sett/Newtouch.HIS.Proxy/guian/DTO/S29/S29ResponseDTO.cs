@@ -16,7 +16,7 @@
         public string code { get; set; }
 
         /// <summary>
-        /// Thời gian戳
+        /// Thời gianmốc
         /// </summary>
         public string date { get; set; }
     }

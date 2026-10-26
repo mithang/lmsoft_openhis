@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Proxy.Log
         }
 
         /// <summary>
-        /// 写Đ ịa phư ơng nhật ký 
+        /// ghiĐ ịa phư ơng nhật ký 
         /// </summary>
         /// <param name="message"></param>
         public static void WriteInfo(string message)
@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Proxy.Log
             catch { }
         }
         /// <summary>
-        /// 写Đ ịa phư ơng nhật ký 
+        /// ghiĐ ịa phư ơng nhật ký 
         /// </summary>
         /// <param name="message"></param>
         public static void WriteInfoWeb(string message)

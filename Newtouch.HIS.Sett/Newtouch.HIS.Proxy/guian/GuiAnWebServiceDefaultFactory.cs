@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Proxy.guian
                 body = body,
                 head = new RequestHeader()
             };
-            foreach (var attribute in body.GetType().GetCustomAttributes(true)) //2. thông qua 映射,找 đ ến 成 viên thuộc tính trên liên kết của thuộc tính loại 实例,
+            foreach (var attribute in body.GetType().GetCustomAttributes(true)) //2. thông qua ánh xạ,tìm đ ến thành viên thuộc tính trên liên kết của thuộc tính loại thể hiện,
             {
                 if (!(attribute is InterfaceCodeAttribute)) continue;
                 Request.head.operCode = (attribute as InterfaceCodeAttribute).InterfaceCode;
