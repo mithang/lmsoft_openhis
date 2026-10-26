@@ -23,67 +23,67 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 关联billing系统的挂号表
+        /// Liên kếtbillingBảng đăng ký khám của hệ thống
         /// </summary>
         public string mzh { get; set; }
 
         /// <summary>
-        /// 冗余挂号信息  枚举 1 普通门诊 2 急诊 3专家
+        /// Thông tin đăng ký khám dư thừa  Enum 1 Khám thường ngoại trú 2 Cấp cứu 3Chuyên gia
         /// </summary>
         public int mjzbz { get; set; }
 
         /// <summary>
-        /// 对应billing接口中的病历号
+        /// Tương ứngbillingSố bệnh án trong giao diện
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// 冗余患者信息字段
+        /// Trường thông tin bệnh nhân dư thừa
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 冗余患者信息字段
+        /// Trường thông tin bệnh nhân dư thừa
         /// </summary>
         public string xb { get; set; }
 
         /// <summary>
-        /// 冗余患者信息字段
+        /// Trường thông tin bệnh nhân dư thừa
         /// </summary>
         public DateTime? csny { get; set; }
 
         /// <summary>
-        /// 冗余患者信息字段
+        /// Trường thông tin bệnh nhân dư thừa
         /// </summary>
         public string brxzmc { get; set; }
 
         /// <summary>
-        /// 冗余患者信息字段 枚举
+        /// Trường thông tin bệnh nhân dư thừa Enum
         /// </summary>
         public int? zjlx { get; set; }
 
         /// <summary>
-        /// 冗余患者信息字段
+        /// Trường thông tin bệnh nhân dư thừa
         /// </summary>
         public string zjh { get; set; }
 
         /// <summary>
-        /// 冗余挂号表字段 科室名称
+        /// Trường bảng đăng ký khám dư thừa Tên khoa
         /// </summary>
         public string ghksmc { get; set; }
 
         /// <summary>
-        /// 冗余挂号表字段 医生名称
+        /// Trường bảng đăng ký khám dư thừa Tên bác sĩ
         /// </summary>
         public string ghys { get; set; }
 
         /// <summary>
-        /// 冗余挂号表字段
+        /// Trường bảng đăng ký khám dư thừa
         /// </summary>
         public DateTime ghsj { get; set; }
 
         /// <summary>
-        /// 挂号操作时间
+        /// Thời gian thao tác đăng ký khám
         /// </summary>
         public DateTime? ghczsj { get; set; }
 
@@ -108,7 +108,7 @@ namespace Newtouch.Domain.Entity
         public decimal? xueya { get; set; }
 
         /// <summary>
-        /// 血糖测量方式 餐后 空腹 随机
+        /// Cách đo đường huyết Sau bữa ăn Lúc đói Ngẫu nhiên
         /// </summary>
         public string xuetangclfs { get; set; }
 
@@ -118,7 +118,7 @@ namespace Newtouch.Domain.Entity
         public decimal? xuetang { get; set; }
 
         /// <summary>
-        /// 针对一个疾病 医生进行判断
+        /// Đối với một bệnh Bác sĩ phán đoán
         /// </summary>
         public bool fzbz { get; set; }
 
@@ -133,22 +133,22 @@ namespace Newtouch.Domain.Entity
         public DateTime? zljssj { get; set; }
 
         /// <summary>
-        /// 关联base库 科室表
+        /// Liên kếtbaseCSDL Bảng khoa
         /// </summary>
         public string jzks { get; set; }
 
         /// <summary>
-        /// 关联base库 人员表（最后看诊医生）
+        /// Liên kếtbaseCSDL Bảng nhân viên(Bác sĩ khám cuối cùng)
         /// </summary>
         public string jzys { get; set; }
 
         /// <summary>
-        /// （最后）看诊医生名称
+        /// (Cuối cùng)Tên bác sĩ khám
         /// </summary>
         public string jzysmc { get; set; }
 
         /// <summary>
-        /// 枚举 1 未就诊 2 就诊中 3 已就诊 （用来恢复结束就诊的记录）
+        /// Enum 1 Chưa khám 2 Đang khám 3 Đã khám (Dùng để khôi phục hồ sơ kết thúc khám bệnh)
         /// </summary>
         public int jzzt { get; set; }
 
@@ -180,58 +180,58 @@ namespace Newtouch.Domain.Entity
         public string brxzCode { get; set; }
 
         /// <summary>
-        /// 医保结算号（医保返回）
+        /// Số quyết toán BHYT(BHYT trả về)
         /// </summary>
         public string ybjsh { get; set; }
         /// <summary>
-        /// 初复诊标志 1复诊
+        /// Cờ khám lần đầu/tái khám 1Tái khám
         /// </summary>
         public string cfzbz { get; set; }
         /// <summary>
-        /// 社保编号
+        /// Số bảo hiểm xã hội
         /// </summary>
         public string sbbh { get; set; }
         /// <summary>
-        /// 参保地编码
+        /// Mã nơi tham gia bảo hiểm
         /// </summary>
         public string cbdbm { get; set; }
         /// <summary>
-        /// 身高
+        /// Chiều cao
         /// </summary>
         public decimal? shengao { get; set; }
         /// <summary>
-        /// 收缩压
+        /// Huyết áp tâm thu
         /// </summary>
         public decimal? shousuoya { get; set; }
         /// <summary>
-        /// 舒张压
+        /// Huyết áp tâm trương
         /// </summary>
         public decimal? shuzhangya { get; set; }
         /// <summary>
-        /// 拼音
+        /// Pinyin
         /// </summary>
         public string py { get; set; }
         /// <summary>
-        /// 联系电话
+        /// Số điện thoại liên hệ
         /// </summary>
         public string ContactNum { get; set; }
         /// <summary>
-        /// 就诊卡号
+        /// Số thẻ khám bệnh
         /// </summary>
         public string kh { get; set; }
 
         public string nlshow { get; set; }
         /// <summary>
-        /// 呼吸
+        /// Hô hấp
         /// </summary>
         public decimal? huxi { get; set; }
 
         /// <summary>
-        /// 挂号来源标志
+        /// Cờ nguồn đăng ký khám
         /// </summary>
         public string ghlybz { get; set; }
         /// <summary>
-        /// 医保个人编号
+        /// Số cá nhân BHYT
         /// </summary>
         public string grbh { get; set; }
 

@@ -3,32 +3,32 @@
 namespace Newtouch.Domain.ViewModels
 {
     /// <summary>
-    /// 系统并个人基本信息
+    /// Thông tin cơ bản hệ thống và cá nhân
     /// </summary>
     public class SysPatientBasicInfoVO
     {
         /// <summary>
-        /// 患者ID
+        /// Bệnh nhânID
         /// </summary>
         public int patid { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 病人最近的性质xt_brxz.brxz
+        /// Tính chất gần nhất của bệnh nhânxt_brxz.brxz
         /// </summary>
         public string brxz { get; set; }
 
         /// <summary>
-        /// 病人性质名称
+        /// Tên tính chất bệnh nhân
         /// </summary>
         public string brxzmc { get; set; }
 
         /// <summary>
-        /// 本院磁卡号（包括医保离休病人），或者医保卡号
+        /// Số thẻ từ của bệnh viện này(Bao gồm bệnh nhân BHYT nghỉ hưu),hoặc số thẻ BHYT
         /// </summary>
         public string blh { get; set; }
 
@@ -138,27 +138,27 @@ namespace Newtouch.Domain.ViewModels
         public int? dybh { get; set; }
 
         /// <summary>
-        /// 单位代码
+        /// Mã đơn vị
         /// </summary>
         public string dwdm { get; set; }
 
         /// <summary>
-        /// 区县代码
+        /// Mã quận/huyện
         /// </summary>
         public string qxdm { get; set; }
 
         /// <summary>
-        /// 单位名称
+        /// Tên đơn vị
         /// </summary>
         public string dwmc { get; set; }
 
         /// <summary>
-        /// 离休凭证
+        /// Chứng từ nghỉ hưu
         /// </summary>
         public string pzh { get; set; }
 
         /// <summary>
-        /// 医疗项目
+        /// Hạng mục y tế
         /// </summary>
         public string ylxm { get; set; }
 
@@ -173,17 +173,17 @@ namespace Newtouch.Domain.ViewModels
         public DateTime? pzzzrq { get; set; }
 
         /// <summary>
-        /// 凭证诊断
+        /// Chẩn đoán chứng từ
         /// </summary>
         public string pzzd { get; set; }
 
         /// <summary>
-        /// --2006-07-9 取消???帐户规则，家床结算，在变量传递时取负数，不修改表      --2006.07.09 不允许自动注销帐户，为了不和家床撤床失败混淆   负帐户只有一个含义，就是撤床失败      单位特约帐号、个人特约帐号 from xtzh   当帐户为负数时，表示此帐户已被系统自动注销(有效期已过、或家床交易成功，但是撤床失败。)
+        /// --2006-07-9 Hủy???Quy tắc tài khoản,Quyết toán giường gia đình,Khi truyền biến lấy số âm,Không sửa bảng      --2006.07.09 Không cho phép tự động hủy tài khoản,Để không nhầm lẫn với thất bại rút giường gia đình   Tài khoản âm chỉ có một ý nghĩa,Chính là thất bại rút giường      Tài khoản đặc ước đơn vị,Tài khoản đặc ước cá nhân from xtzh   Khi tài khoản là số âm,Biểu thị tài khoản này đã bị hệ thống tự động hủy(Đã quá hạn sử dụng,hoặc giao dịch giường gia đình thành công,Nhưng rút giường thất bại.)
         /// </summary>
         public int? zh { get; set; }
 
         /// <summary>
-        /// 0 无效 1 有效
+        /// 0 Vô hiệu 1 Có hiệu lực
         /// </summary>
         public string zt { get; set; }
 
@@ -198,17 +198,17 @@ namespace Newtouch.Domain.ViewModels
         public string gj { get; set; }
 
         /// <summary>
-        /// 枚举EnumHF
+        /// EnumEnumHF
         /// </summary>
         public byte? hf { get; set; }
 
         /// <summary>
-        /// 民族
+        /// Dân tộc
         /// </summary>
         public string mz { get; set; }
 
         /// <summary>
-        /// 职业
+        /// Nghề nghiệp
         /// </summary>
         public string zy { get; set; }
 
@@ -223,7 +223,7 @@ namespace Newtouch.Domain.ViewModels
         public string yddh { get; set; }
 
         /// <summary>
-        /// 0.其他 1.住宅 2.公司
+        /// 0.Khác 1.Nhà ở 2.Công ty
         /// </summary>
         public byte? dzxz { get; set; }
 
@@ -263,7 +263,7 @@ namespace Newtouch.Domain.ViewModels
         public short? bxgs { get; set; }
 
         /// <summary>
-        /// 医保卡返回的标志位，非医保卡为空字符
+        /// Bit cờ thẻ BHYT trả về,Thẻ không phải BHYT là ký tự trống
         /// </summary>
         public string zhbz { get; set; }
 
@@ -323,128 +323,128 @@ namespace Newtouch.Domain.ViewModels
         public string jjllrgx { get; set; }
 
         /// <summary>
-        /// 个人社保编号
+        /// Số bảo hiểm xã hội cá nhân
         /// </summary>
         public string sbbh { get; set; }
 
         /// <summary>
-        /// 参保地编码（181019医保参保地编码）
+        /// Mã nơi tham gia bảo hiểm(181019Mã nơi tham gia BHYT)
         /// </summary>
         public string cbdbm { get; set; }
 
         /// <summary>
-        /// 执行社会保险办法
+        /// Thực hiện biện pháp bảo hiểm xã hội
         /// </summary>
         public string zxsbbf { get; set; }
 
         /// <summary>
-        /// 新农合个人编码
+        /// Mã cá nhân hợp tác xã y tế nông thôn mới
         /// </summary>
         public string xnhgrbm { get; set; }
 
         /// <summary>
-        /// 新农合医疗证号
+        /// Số chứng nhận y tế hợp tác xã nông thôn mới
         /// </summary>
         public string xnhylzh { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string CardNo { get; set; }
 
         /// <summary>
-        /// 卡类型
+        /// Loại thẻ
         /// </summary>
         public string CardType { get; set; }
 
         /// <summary>
-        /// 卡类型名称
+        /// Tên loại thẻ
         /// </summary>
         public string CardTypeName { get; set; }
     }
 
     /// <summary>
-    /// 系统病人卡信息
+    /// Thông tin thẻ bệnh nhân hệ thống
     /// </summary>
     public class SysPatientCardDetail
     {
         /// <summary>
-        /// 卡ID  系统卡号表主键
+        /// ThẻID  Khóa chính bảng số thẻ hệ thống
         /// </summary>
         public string CardId { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string CardNo { get; set; }
 
         /// <summary>
-        /// 卡类型 1-虚拟吗  2-医保交易卡  3-新农合交易卡
+        /// Loại thẻ 1-Thẻ ảo  2-Thẻ giao dịch BHYT  3-Thẻ giao dịch hợp tác xã nông thôn mới
         /// </summary>
         public string CardType { get; set; }
 
         /// <summary>
-        /// 卡类型名称
+        /// Tên loại thẻ
         /// </summary>
         public string CardTypeName { get; set; }
 
         /// <summary>
-        /// 病人内码
+        /// Mã nội bộ bệnh nhân
         /// </summary>
         public int patid { get; set; }
 
         /// <summary>
-        /// 病人姓名
+        /// Họ tên bệnh nhân
         /// </summary>
         public string hzxm { get; set; }
 
         /// <summary>
-        /// 个人医保号
+        /// Số BHYT cá nhân
         /// </summary>
         public string grybh { get; set; }
 
         /// <summary>
-        /// 单位医保号
+        /// Số BHYT đơn vị
         /// </summary>
         public string dwybh { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string Memo { get; set; }
 
         /// <summary>
-        /// 状态  1：有效  0：无效
+        /// Trạng thái  1:Có hiệu lực  0:Vô hiệu
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 修改人
+        /// Người sửa đổi
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa đổi
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
     }

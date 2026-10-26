@@ -7,24 +7,24 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.IDomainServices
 {
     /// <summary>
-    /// 中间库相关
+    /// Liên quan tới CSDL trung gian
     /// </summary>
     public interface IIDBDmnService
     {
         /// <summary>
-        /// 查询患者挂号信息
+        /// Tra cứu thông tin đăng ký khám bệnh nhân
         /// </summary>
         /// <param name="ksCode"></param>
-        /// <param name="ysgh">//筛选专家号 仅看挂自己号的</param>
-        /// <param name="mjzbz">//1普通门诊 2急诊 3专家门诊</param>
+        /// <param name="ysgh">//Lọc số chuyên gia Chỉ xem số đăng ký của chính mình</param>
+        /// <param name="mjzbz">//1Khám thường ngoại trú 2Cấp cứu 3Khám chuyên gia</param>
         /// <param name="jiuzhenbz"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         IList<TreatmentEntity> GetRegistrationInfoList(Pagination pagination, string orgId, string ksCode, string ysgh, string mjzbz, int jiuzhenbz, string keyword);
 
         /// <summary>
-        /// 将mzh的未收费处方+就诊标志 等信息 同步至中间库
-        /// （且同步处方成功后要回写处方同步状态）
+        /// sẽmzhđơn thuốc chưa thu phí của+Cờ khám bệnh và các thông tin khác Đồng bộ tới CSDL trung gian
+        /// (Và sau khi đồng bộ đơn thuốc thành công phải ghi lại trạng thái đồng bộ đơn thuốc)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -32,14 +32,14 @@ namespace Newtouch.Domain.IDomainServices
         void SyncTo(string orgId, string mzh, string cfId = null);
 
         /// <summary>
-        /// 作废his单次就诊的所有处方
+        /// Hủy bỏhisTất cả đơn thuốc của một lần khám
         /// </summary>
         /// <param name="jzId"></param>
         /// <param name="orgId"></param>
         void ObsoleteAllPresToHIS(string jzId, string orgId);
 
         /// <summary>
-        /// 作废HIS单张处方
+        /// Hủy bỏHISMột đơn thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -51,7 +51,7 @@ namespace Newtouch.Domain.IDomainServices
 
 
         /// <summary>
-        /// CIS处方数据
+        /// CISDữ liệu đơn thuốc
         /// </summary>
         /// <param name="Opt"></param>
         /// <param name="Brwym"></param>
@@ -63,7 +63,7 @@ namespace Newtouch.Domain.IDomainServices
          List<PrescriptionDto> GetCisPrescription(string Opt, string Brwym, string Zdlx, string Brxz, DateTime? startDate, DateTime? endDate);
 
         /// <summary>
-        /// 中间库 同步处方收费状态
+        /// CSDL trung gian Đồng bộ trạng thái thu phí đơn thuốc
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="orgId"></param>

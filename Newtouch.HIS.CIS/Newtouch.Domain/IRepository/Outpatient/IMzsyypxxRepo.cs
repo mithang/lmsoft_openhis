@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.IRepository
 {
     /// <summary>
-    /// 门诊输液药品信息
+    /// Thông tin thuốc truyền dịch ngoại trú
     /// </summary>
     public interface IMzsyypxxRepo : IRepositoryBase<MzsyypxxEntity>
     {

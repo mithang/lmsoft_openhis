@@ -77,12 +77,12 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public int? sl { get; set; }
 
 		/// <summary>
-		/// 排序
+		/// Sắp xếp
 		/// </summary>
 		public int? px { get; set; }
 

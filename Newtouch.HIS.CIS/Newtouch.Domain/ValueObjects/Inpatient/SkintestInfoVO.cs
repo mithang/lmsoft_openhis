@@ -9,19 +9,19 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
     public class SkintestInfoVO
     {
         /// <summary>
-        /// 项目编码
+        /// Mã hạng mục
         /// </summary>
         public string xmCode { get; set; }
         /// <summary>
-        /// 项目名称
+        /// Tên hạng mục
         /// </summary>
         public string xmmc { get; set; }
         /// <summary>
-        /// 皮试结果
+        /// Kết quả thử da
         /// </summary>
         public string result { get; set; }
         /// <summary>
-        /// 描述
+        /// Mô tả
         /// </summary>
         public string remark { get; set; }
     }

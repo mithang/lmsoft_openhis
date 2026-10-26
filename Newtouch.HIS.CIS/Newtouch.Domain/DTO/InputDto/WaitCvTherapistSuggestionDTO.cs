@@ -3,7 +3,7 @@
 namespace Newtouch.Domain.DTO
 {
     /// <summary>
-    /// 待转换治疗建议
+    /// Khuyến nghị điều trị chờ chuyển đổi
     /// </summary>
     public class WaitCvTherapistSuggestionDTO
     {
@@ -31,11 +31,11 @@ namespace Newtouch.Domain.DTO
         public string zxksmc { get; set; }
 
         /// <summary>
-        /// 开立日期
+        /// Ngày kê
         /// </summary>
         public DateTime CreateTime { get; set; }
         /// <summary>
-        /// 开立人员
+        /// Người kê
         /// </summary>
         public string CreatorName { get; set; }
 

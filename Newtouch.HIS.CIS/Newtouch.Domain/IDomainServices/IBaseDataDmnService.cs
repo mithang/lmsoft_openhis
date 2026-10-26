@@ -7,68 +7,68 @@ using Newtouch.Domain.ViewModels;
 namespace Newtouch.Domain.IDomainServices
 {
     /// <summary>
-    /// 基础信息
+    /// Thông tin cơ bản
     /// </summary>
     public interface IBaseDataDmnService
     {
         /// <summary>
-        /// 药品用法 检索
+        /// Cách dùng thuốc Tra cứu
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<SysMedicineUsageVEntity> GetMedicineUsageList();
         /// <summary>
-        /// 代煎方式
+        /// Cách sắc hộ
         /// </summary>
         /// <returns></returns>
         IList<SysAuxiliaryDictionaryEntity> GetDjfsUsageList(string OrganizeId);
         /// <summary>
-        /// 获取中药代煎费
+        /// Lấy phí sắc hộ thuốc đông y
         /// </summary>
         /// <returns></returns>
         decimal? GetDjFee(string orgId);
 
         /// <summary>
-        /// 部位大类
+        /// Nhóm lớn vị trí
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<GetSysBodyPartsVO> GetSysBodyBwFl(string orgId);
         /// <summary>
-        /// 检查部位大类
+        /// Nhóm lớn vị trí kiểm tra
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<GetSysBodyPartsVO> GetSysBodyJcBwFl(string orgId);
 
         /// <summary>
-        /// 获取系统部位
+        /// Lấy vị trí hệ thống
         /// </summary>
         /// <returns></returns>
         IList<GetSysBodyPartsVO> GetSysBodyParts(string orgId);
 
 
         /// <summary>
-        /// 获取系统部位
+        /// Lấy vị trí hệ thống
         /// </summary>
         /// <returns></returns>
         IList<GetYxBodyPartsVO> GetYxBodyParts(string orgId);
 
         /// <summary>
-        /// 获取影像方法
+        /// Lấy phương pháp hình ảnh
         /// </summary>
         /// <returns></returns>
         IList<string> GetYxBodyMethod(string orgId, string jcbw);
 
         IList<GetSysJcBodyPartsVo> GetJcListByOrg(string orgId);
         /// <summary>
-        /// 获取系统嘱托
+        /// Lấy dặn dò hệ thống
         /// </summary>
         /// <returns></returns>
         IList<SysDoctorRemarkVO2> GetSysDoctorRemark(string orgId, string ksCode);
 
         /// <summary>
-        /// 获取医生科室
+        /// Lấy khoa của bác sĩ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ysgh"></param>
@@ -78,23 +78,23 @@ namespace Newtouch.Domain.IDomainServices
         void UpdatebrxzInfo(string orgId, string mzh, string zyh, string brxzCode, string brxzmc);
 
         /// <summary>
-        /// 获取病人基本信息
+        /// Lấy thông tin cơ bản bệnh nhân
         /// </summary>
-        /// <param name="blh">病历号</param>
-        /// <param name="mzh">门诊号</param>
+        /// <param name="blh">Số bệnh án</param>
+        /// <param name="mzh">Số ngoại trú</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         List<SysPatientBasicInfoVO> SelectXtBrjbxx(string blh, string mzh, string organizeId);
 
         /// <summary>
-        /// 获取病人卡信息
+        /// Lấy thông tin thẻ bệnh nhân
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         List<SysPatientCardDetail> SelectCardDetail(string blh, string organizeId);
         /// <summary>
-        /// 科室病区关系列表
+        /// Danh sách quan hệ khoa - khu bệnh
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -102,7 +102,7 @@ namespace Newtouch.Domain.IDomainServices
         List<SysDeptWardRelVO> GetDeptWardRel(string orgId, string ks, string bq);
 
 		/// <summary>
-		/// 获取医生开药权限
+		/// Lấy quyền kê thuốc của bác sĩ
 		/// </summary>
 		/// <param name="orgid"></param>
 		/// <param name="gh"></param>

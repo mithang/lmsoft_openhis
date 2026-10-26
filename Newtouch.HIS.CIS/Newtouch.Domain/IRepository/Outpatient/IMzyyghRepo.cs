@@ -5,19 +5,19 @@ using System;
 namespace Newtouch.Domain.IRepository
 {
     /// <summary>
-    /// 门诊预约挂号
+    /// Đăng ký khám hẹn ngoại trú
     /// </summary>
     public interface IMzyyghRepo : IRepositoryBase<MzyyghEntity>
     {
         /// <summary>
-        /// 根据ID删除已预约挂号
+        /// TheoIDXóa đăng ký khám đã hẹn
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         int DeleteById(string id);
 
         /// <summary>
-        /// 赴约
+        /// Đến hẹn
         /// </summary>
         /// <param name="id"></param>
         /// <param name="arrivalDate"></param>

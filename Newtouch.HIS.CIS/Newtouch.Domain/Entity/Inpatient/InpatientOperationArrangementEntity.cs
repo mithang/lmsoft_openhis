@@ -6,9 +6,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 创 建：周珏琦
-    /// 日 期：2019-02-11 15:37
-    /// 描 述：手术安排
+    /// Tạo bởi:周珏琦
+    /// Ngày:2019-02-11 15:37
+    /// Mô tả:Sắp xếp phẫu thuật
     /// </summary>
     [Table("zy_OperationArrangement")]
     public class InpatientOperationArrangementEntity : IEntity<InpatientOperationArrangementEntity>
@@ -25,7 +25,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 临时医嘱id
+        /// Y lệnh tạm thờiid
         /// </summary>
         public string lsyzid { get; set; }
         /// <summary>
@@ -34,45 +34,45 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string zyh { get; set; }
         /// <summary>
-        /// 安排日期
+        /// Ngày sắp xếp
         /// </summary>
         /// <returns></returns>
         public DateTime aprq { get; set; }
         /// <summary>
-        /// 手术地址
+        /// Địa chỉ phẫu thuật
         /// </summary>
         /// <returns></returns>
         public string ssAddr { get; set; }
         /// <summary>
-        /// 紧急
+        /// Khẩn cấp
         /// </summary>
         /// <returns></returns>
         public string urgent { get; set; }
         /// <summary>
-        /// 手术医生ID
+        /// Bác sĩ phẫu thuậtID
         /// </summary>
         /// <returns></returns>
         public string surgeonId { get; set; }
         /// <summary>
-        /// 手术医生姓名
+        /// Họ tên bác sĩ phẫu thuật
         /// </summary>
         public string surgeonName { get; set; }
         /// <summary>
-        /// 助手ID
+        /// Trợ lýID
         /// </summary>
         /// <returns></returns>
         public string assistant { get; set; }
         /// <summary>
-        /// 助手姓名
+        /// Họ tên trợ lý
         /// </summary>
         public string assistantName { get; set; }
         /// <summary>
-        /// 麻醉方式
+        /// Phương pháp gây mê
         /// </summary>
         /// <returns></returns>
         public string anesthesiaType { get; set; }
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         /// <returns></returns>
         public string remark { get; set; }

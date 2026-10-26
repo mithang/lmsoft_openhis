@@ -6,9 +6,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 15:37
-    /// 描 述：住院医嘱套餐明细
+    /// Tạo bởi:张冬林
+    /// Ngày:2018-06-28 15:37
+    /// Mô tả:Chi tiết gói y lệnh nội trú
     /// </summary>
     [Table("zy_yztcmx")]
     public class InpatientOrderPackageDetailEntity : IEntity<InpatientOrderPackageDetailEntity>
@@ -30,37 +30,37 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string MainId { get; set; }
         /// <summary>
-        /// 本地医嘱分组序号
+        /// Số thứ tự nhóm y lệnh cục bộ
         /// </summary>
         /// <returns></returns>
         public int? zh { get; set; }
         /// <summary>
-        /// 频次代码
+        /// Mã tần suất
         /// </summary>
         /// <returns></returns>
         public string pcCode { get; set; }
         /// <summary>
-        /// 执行次数
+        /// Số lần thực hiện
         /// </summary>
         /// <returns></returns>
         public int? zxcs { get; set; }
         /// <summary>
-        /// 执行周期
+        /// Chu kỳ thực hiện
         /// </summary>
         /// <returns></returns>
         public int? zxzq { get; set; }
         /// <summary>
-        /// 执行周期单位 -1:不规则周期，0：天,1：小时,2：分钟.注意：当为-1时，周代码（zdm）为数字（1234567）中的任意几个数字
+        /// Đơn vị chu kỳ thực hiện -1:Chu kỳ không đều,0:Ngày,1:Giờ,2:Phút.Lưu ý:Khi là-1khi,Mã tuần(zdm)là số(1234567)một vài số bất kỳ trong đó
         /// </summary>
         /// <returns></returns>
         public int? zxzqdw { get; set; }
         /// <summary>
-        /// 周代码
+        /// Mã tuần
         /// </summary>
         /// <returns></returns>
         public string zdm { get; set; }
         /// <summary>
-        /// 药品idm
+        /// Thuốcidm
         /// </summary>
         /// <returns></returns>
         public decimal? idm { get; set; }
@@ -75,7 +75,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string xmmc { get; set; }
         /// <summary>
-        /// 剂量单位
+        /// Đơn vị liều lượng
         /// </summary>
         /// <returns></returns>
         public string dw { get; set; }
@@ -85,42 +85,42 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public int sl { get; set; }
         /// <summary>
-        /// 单位类别 0剂量单位，1药库单位，2门诊单位，3住院单位，4进货单位(指示医嘱单位类别为0)
+        /// Loại đơn vị 0Đơn vị liều lượng,1Đơn vị kho thuốc,2Đơn vị ngoại trú,3Đơn vị nội trú,4Đơn vị nhập hàng(Loại đơn vị của y lệnh chỉ thị là0)
         /// </summary>
         /// <returns></returns>
         public int? dwlb { get; set; }
         /// <summary>
-        /// 本地医嘱类别 0：药品医嘱，1：抗生素医嘱，2：检查医嘱，3：检验医嘱，4：指示医嘱，5：普通医嘱 ， 6 停止医嘱， 7  出院带药， 8 膳食医嘱， 9 手术医嘱   10  中草药  
+        /// Loại y lệnh cục bộ 0:Y lệnh thuốc,1:Y lệnh kháng sinh,2:Y lệnh kiểm tra,3:Y lệnh xét nghiệm,4:Y lệnh chỉ thị,5:Y lệnh thường , 6 Y lệnh dừng, 7  Thuốc mang về khi xuất viện, 8 Y lệnh chế độ ăn, 9 Y lệnh phẫu thuật   10  Thuốc thảo dược  
         /// </summary>
         /// <returns></returns>
         public int yzlx { get; set; }
         /// <summary>
-        /// 药品剂量
+        /// Liều lượng thuốc
         /// </summary>
         /// <returns></returns>
         public decimal? ypjl { get; set; }
         /// <summary>
-        /// 药品规格
+        /// Quy cách thuốc
         /// </summary>
         /// <returns></returns>
         public string ypgg { get; set; }
         /// <summary>
-        /// 嘱托内容
+        /// Nội dung dặn dò
         /// </summary>
         /// <returns></returns>
         public string ztnr { get; set; }
         /// <summary>
-        /// 医嘱内容
+        /// Nội dung y lệnh
         /// </summary>
         /// <returns></returns>
         public string yznr { get; set; }
         /// <summary>
-        /// 药品用法
+        /// Cách dùng thuốc
         /// </summary>
         /// <returns></returns>
         public string ypyfdm { get; set; }
         /// <summary>
-        /// 0 通用 1 自备
+        /// 0 Chung 1 Tự chuẩn bị
         /// </summary>
         /// <returns></returns>
         public int zbbz { get; set; }
@@ -153,7 +153,7 @@ namespace Newtouch.Domain.Entity
         public string zxksdm { get; set; }
         public string nlmd { get; set; }
         /// <summary>
-        /// 长临标志
+        /// Cờ dài hạn/tạm thời
         /// </summary>
         public string yzlb { get; set; }
     }

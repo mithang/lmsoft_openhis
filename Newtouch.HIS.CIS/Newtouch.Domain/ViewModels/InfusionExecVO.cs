@@ -3,62 +3,62 @@
 namespace Newtouch.Domain.ViewModels
 {
     /// <summary>
-    /// 注射患者信息
+    /// Thông tin bệnh nhân tiêm
     /// </summary>
     public class InfusionExecVO
     {
         /// <summary>
-        /// 患者姓名
+        /// Họ tên bệnh nhân
         /// </summary>
         public string patientName { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
 
         /// <summary>
-        /// 座/床号
+        /// ghế/Số giường
         /// </summary>
         public string seatNum { get; set; }
 
         /// <summary>
-        /// 年龄
+        /// Tuổi
         /// </summary>
         public string age { get; set; }
 
         /// <summary>
-        /// 配药师工号
+        /// Mã nhân viên dược sĩ pha thuốc
         /// </summary>
         public string dispenser { get; set; }
 
         /// <summary>
-        /// 配药师姓名
+        /// Họ tên dược sĩ pha thuốc
         /// </summary>
         public string dispenserName { get; set; }
 
         /// <summary>
-        /// 执行者工号
+        /// Mã nhân viên người thực hiện
         /// </summary>
         public string executor { get; set; }
 
         /// <summary>
-        /// 执行者姓名
+        /// Họ tên người thực hiện
         /// </summary>
         public string executorName { get; set; }
 
         /// <summary>
-        /// 输液开始时间
+        /// Thời gian bắt đầu truyền dịch
         /// </summary>
         public DateTime? sykssj { get; set; }
 
         /// <summary>
-        /// 输液结束时间
+        /// Thời gian kết thúc truyền dịch
         /// </summary>
         public DateTime? syjssj { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
 

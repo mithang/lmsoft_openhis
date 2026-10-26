@@ -3,82 +3,82 @@
 namespace Newtouch.Domain.ViewModels
 {
     /// <summary>
-    /// 预约挂号管理内容
+    /// Nội dung quản lý đăng ký khám theo hẹn
     /// </summary>
     public class SysBespeakRegisterVO
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织结构
+        /// Cơ cấu tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 门诊住院标志 1：普通门诊  2：急诊   3：专家门诊
+        /// Cờ ngoại trú/nội trú 1:Khám thường ngoại trú  2:Cấp cứu   3:Khám chuyên gia
         /// </summary>
         public string mzlx { get; set; }
 
         /// <summary>
-        /// 挂号日期
+        /// Ngày đăng ký khám
         /// </summary>
         public DateTime regDate { get; set; }
 
         /// <summary>
-        /// 挂号时间
+        /// Thời gian đăng ký khám
         /// </summary>
         public string regTime { get; set; }
 
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 专家名称
+        /// Tên chuyên gia
         /// </summary>
         public string zjmc { get; set; }
 
         /// <summary>
-        /// 科室代码
+        /// Mã khoa
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// 专家工号
+        /// Mã nhân viên chuyên gia
         /// </summary>
         public string gh { get; set; }
 
         /// <summary>
-        /// 最大预约数
+        /// Số lượng hẹn tối đa
         /// </summary>
         public int bespeakMaxCount { get; set; }
 
         /// <summary>
-        /// 状态     1:有效  0：无效
+        /// Trạng thái     1:Có hiệu lực  0:Vô hiệu
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa đổi
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改者
+        /// Người sửa đổi
         /// </summary>
         public string LastModifierCode { get; set; }
     }

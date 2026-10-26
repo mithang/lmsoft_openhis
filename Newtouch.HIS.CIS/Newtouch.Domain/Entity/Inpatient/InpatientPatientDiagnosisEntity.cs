@@ -6,9 +6,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 15:37
-    /// 描 述：住院病人诊断信息
+    /// Tạo bởi:张冬林
+    /// Ngày:2018-06-28 15:37
+    /// Mô tả:Thông tin chẩn đoán bệnh nhân nội trú
     /// </summary>
     [Table("zy_PatDxInfo")]
     public class InpatientPatientDiagnosisEntity : IEntity<InpatientPatientDiagnosisEntity>
@@ -30,16 +30,16 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string zyh { get; set; }
         /// <summary>
-        /// WM 西医  TCM 中医
+        /// WM Tây y  TCM Đông y
         /// </summary>
         public string zddl { get; set; }
         /// <summary>
-        /// 1入院诊断2出院诊断
+        /// 1Chẩn đoán nhập viện2Chẩn đoán xuất viện
         /// </summary>
         /// <returns></returns>
         public string zdlb { get; set; }
         /// <summary>
-        /// 0主要诊断1第一辅助诊断2第二辅助诊断3第三辅助诊断9自定义诊断
+        /// 0Chẩn đoán chính1Chẩn đoán phụ thứ nhất2Chẩn đoán phụ thứ hai3Chẩn đoán phụ thứ ba9Chẩn đoán tùy chỉnh
         /// </summary>
         /// <returns></returns>
         public string zdlx { get; set; }
@@ -79,16 +79,16 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 0无效1有效
+        /// 0Vô hiệu1Có hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }
         /// <summary>
-        /// 出院情况
+        /// Tình hình xuất viện
         /// </summary>
         public int? cyqk { get; set; }
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
     }

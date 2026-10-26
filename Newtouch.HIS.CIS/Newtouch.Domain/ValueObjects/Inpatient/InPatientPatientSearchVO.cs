@@ -4,52 +4,52 @@ using System;
 namespace Newtouch.Domain.ValueObjects
 {
     /// <summary>
-    /// 住院患者信息
+    /// Thông tin bệnh nhân nội trú
     /// </summary>
     public class InPatientPatientSearchVO
     {
         /// <summary>
-        /// 住院号
+        /// Số nội trú
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string sex { get; set; }
 
         /// <summary>
-        /// 病区编码
+        /// Mã khu bệnh
         /// </summary>
         public string WardCode { get; set; }
 
         /// <summary>
-        /// 病区名称
+        /// Tên khu bệnh
         /// </summary>
         public string WardName { get; set; }
 
         /// <summary>
-        /// 出生年月
+        /// Năm tháng sinh
         /// </summary>
         public DateTime? birth { get; set; }
 
         /// <summary>
-        /// 入院日期
+        /// Ngày nhập viện
         /// </summary>
         public DateTime? ryrq { get; set; }
 
         /// <summary>
-        /// 入区日期
+        /// Ngày vào khu
         /// </summary>
         public DateTime? rqrq { get; set; }
 
@@ -60,42 +60,42 @@ namespace Newtouch.Domain.ValueObjects
     public class InPatientNursingInputVO
     {
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string sex { get; set; }
 
         /// <summary>
-        /// 病区编码
+        /// Mã khu bệnh
         /// </summary>
         public string WardCode { get; set; }
 
         /// <summary>
-        /// 病区名称
+        /// Tên khu bệnh
         /// </summary>
         public string WardName { get; set; }
 
         /// <summary>
-        /// 出生年月
+        /// Năm tháng sinh
         /// </summary>
         public DateTime? birth { get; set; }
 
         /// <summary>
-        /// 入院日期
+        /// Ngày nhập viện
         /// </summary>
         public DateTime? ryrq { get; set; }
 
         /// <summary>
-        /// 入区日期
+        /// Ngày vào khu
         /// </summary>
         public DateTime? rqrq { get; set; }
         /// <summary>
@@ -119,12 +119,12 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public DateTime? rq { get; set; }
         /// <summary>
-        /// 时间点 4 8 12 16 20 24
+        /// Thời điểm 4 8 12 16 20 24
         /// </summary>
         /// <returns></returns>
         public int? sj { get; set; }
         /// <summary>
-        /// 枚举 请假 拒测 等
+        /// Enum Xin nghỉ Từ chối đo v.v.
         /// </summary>
         /// <returns></returns>
         public int? brzt { get; set; }
@@ -134,7 +134,7 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public decimal? tw { get; set; }
         /// <summary>
-        /// 体温测量说明 口温 腋温 肛温
+        /// Hướng dẫn đo thân nhiệt Nhiệt độ miệng Nhiệt độ nách Nhiệt độ hậu môn
         /// </summary>
         /// <returns></returns>
         public int? twclfs { get; set; }
@@ -179,7 +179,7 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public string tz { get; set; }
         /// <summary>
-        /// 字典不区分Org
+        /// Từ điển không phân biệtOrg
         /// </summary>
         /// <returns></returns>
         public string tzclbz { get; set; }
@@ -204,7 +204,7 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public int? dbcs { get; set; }
         /// <summary>
-        /// 字典不区分Org
+        /// Từ điển không phân biệtOrg
         /// </summary>
         /// <returns></returns>
         public string dbcsbz { get; set; }
@@ -219,7 +219,7 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public int? xbl { get; set; }
         /// <summary>
-        /// 超液量
+        /// Lượng dịch vượt mức
         /// </summary>
         /// <returns></returns>
         public int? cys { get; set; }
@@ -254,7 +254,7 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public int? xyll { get; set; }
         /// <summary>
-        /// 字典不区分Org
+        /// Từ điển không phân biệtOrg
         /// </summary>
         /// <returns></returns>
         public string xyfs { get; set; }
@@ -294,47 +294,47 @@ namespace Newtouch.Domain.ValueObjects
         /// <returns></returns>
         public string zt { get; set; }
         /// <summary>
-        /// 自定义时间点
+        /// Thời điểm tùy chỉnh
         /// </summary>
         public string zdysjd { get; set; }
 
         public string lrflag { get; set; }
 
         /// <summary>
-        /// 病人状态-小时
+        /// Trạng thái bệnh nhân-Giờ
         /// </summary>
         public string brzt_hh { get; set; }
         /// <summary>
-        /// 病人状态-分
+        /// Trạng thái bệnh nhân-phút
         /// </summary>
         public string brzt_mi { get; set; }
         /// <summary>
-        /// 引流量
+        /// Lượng dịch dẫn lưu
         /// </summary>
         public string yll { get; set; }
         /// <summary>
-        /// 总入量
+        /// Tổng lượng vào
         /// </summary>
         public string zrl { get; set; }
         /// <summary>
-        /// 总出量
+        /// Tổng lượng ra
         /// </summary>
         public string zcl { get; set; }
         /// <summary>
-        /// 过敏药物
+        /// Thuốc gây dị ứng
         /// </summary>
         public string gmyw { get; set; }
         /// <summary>
-        /// 身高
+        /// Chiều cao
         /// </summary>
         public string sg { get; set; }
         /// <summary>
-        /// 疼痛评分
+        /// Điểm đau
         /// </summary>
         public string ttpf { get; set; }
 
         /// <summary>
-        /// 血压上下值合并显示
+        /// Hiển thị gộp giá trị huyết áp trên/dưới
         /// </summary>
         public string xysxz { get; set; }
     }

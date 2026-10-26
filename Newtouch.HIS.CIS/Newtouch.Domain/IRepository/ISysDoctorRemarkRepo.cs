@@ -8,20 +8,20 @@ namespace Newtouch.Domain.IRepository
     public interface ISysDoctorRemarkRepo : IRepositoryBase<SysDoctorRemarkEntity>
     {
         /// <summary>
-        /// 获取列表
+        /// Lấy danh sách
         /// </summary>
         /// <returns></returns>
         List<SysDoctorRemarkVO> GetListByOrg(string orgId);
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
         void SubmitForm(SysDoctorRemarkEntity entity, string keyValue);
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         void DeleteForm(string keyValue);

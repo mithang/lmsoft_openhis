@@ -4,7 +4,7 @@ using System;
 namespace Newtouch.Domain.ViewModels
 {
     /// <summary>
-    /// 备药
+    /// Chuẩn bị thuốc
     /// </summary>
     public class PreparationStockVO
     {

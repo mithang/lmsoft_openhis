@@ -16,14 +16,14 @@ namespace Newtouch.Domain.IDomainServices
     {
         #region 报损报益
         /// <summary>
-        /// 查询损益药品list
+        /// Tra cứu thuốc chênh lệchlist
         /// </summary>
-        /// <param name="inputCode">关键字</param>
+        /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>
         List<ReportLossAndProfitMedicineInfoVO> SelectLossAndProfitMedicineList(string inputCode);
 
         /// <summary>
-        /// 查询药品的kcsl和jj
+        /// Tra cứu của thuốckcslvàjj
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="ph"></param>
@@ -34,7 +34,7 @@ namespace Newtouch.Domain.IDomainServices
         //void SelectKcslAndJj(string ypCode, string ph, string pc, DateTime? yxq, out int kcsl, out decimal jj);
 
         ///// <summary>
-        ///// 表更库存数量
+        ///// Thay đổi số lượng tồn kho
         ///// </summary>
         ///// <param name="ypCode"></param>
         ///// <param name="ph"></param>
@@ -45,14 +45,14 @@ namespace Newtouch.Domain.IDomainServices
 
 
         /// <summary>
-        /// 提交报损报益
+        /// Gửi báo hao hụt/thừa
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>
         string SubmitReportLossAndProfit(SysMedicineProfitLossEntity syxx);
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="kcsl"></param>
@@ -60,7 +60,7 @@ namespace Newtouch.Domain.IDomainServices
         //void SaveReportLossAndProfit(SysMedicineProfitLossEntity entity, int kcsl, decimal jj);
 
         /// <summary>
-        /// 报损报溢查询
+        /// Tra cứu báo hao hụt/thừa
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -72,25 +72,25 @@ namespace Newtouch.Domain.IDomainServices
         //IList<LossAndProditInfoVO> SelectLossAndProditInfoList(Pagination pagination, string startTime, string endTime, string inputCode, string syyy, int syqk);
 
         /// <summary>
-        /// 批发价总金额、零售价总金额查询
+        /// Tổng số tiền giá bán sỉ,Tra cứu tổng số tiền giá bán lẻ
         /// </summary>
-        /// <param name="startTime">开始时间</param>
-        /// <param name="endTime">结束时间</param>
-        /// <param name="syyy">损益原因</param>
-        /// <param name="inputCode">关键字</param>
-        /// <param name="syqk">损益情况</param>
+        /// <param name="startTime">Thời gian bắt đầu</param>
+        /// <param name="endTime">Thời gian kết thúc</param>
+        /// <param name="syyy">Nguyên nhân chênh lệch</param>
+        /// <param name="inputCode">Từ khóa</param>
+        /// <param name="syqk">Tình hình chênh lệch</param>
         /// <returns></returns>
         //LossAndProditInfoJeVo ComputePjzeAndLjze(string startTime, string endTime, string syyy, string inputCode, int syqk);
 
         /// <summary>
-        /// 报损报溢 保存
+        /// Báo hao hụt/thừa Lưu
         /// </summary>
         /// <param name="profitLossEntityList"></param>
         //string SaveReportLossAndProfit(List<YpSyxxVo> profitLossEntityList);
 
 
         /// <summary>
-        /// 报损报溢查询
+        /// Tra cứu báo hao hụt/thừa
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>

@@ -16,12 +16,12 @@ namespace Newtouch.Domain.DBContext.Infrastructure
     public class DefaultDbContextTBRegister
     {
         /// <summary>
-        /// 注册表（底层已经注册了一部分）
+        /// Bảng đăng ký(Tầng dưới đã đăng ký một phần)
         /// </summary>
         /// <param name="modelBuilder"></param>
         public static void Registe(DbModelBuilder modelBuilder)
         {
-            //注册新表
+            //Đăng ký bảng mới
             modelBuilder.Entity<CommonChargeItemEntity>().RegisterTable().HasKey(p => p.cyxmId);
             modelBuilder.Entity<CommonDrugEntity>().RegisterTable().HasKey(p => p.cyypId);
             modelBuilder.Entity<PresTemplateDetailEntity>().RegisterTable().HasKey(p => p.mxId);
@@ -41,25 +41,25 @@ namespace Newtouch.Domain.DBContext.Infrastructure
             modelBuilder.Entity<KcKcjzEntity>().RegisterTable().HasKey(p => p.Id);
             
 
-            //病历模板
+            //Mẫu bệnh án
             modelBuilder.Entity<MRTemplateEntity>().RegisterTable().HasKey(p => p.mbId);
             modelBuilder.Entity<MRTemplateWMDiagnosisEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<MRTemplateTCMDiagnosisEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<CfTemplateGroupPackageEntity>().RegisterTable().HasKey(p => p.mbztId);
 
-            //检验检查
+            //Xét nghiệm và kiểm tra
             modelBuilder.Entity<GroupPackageEntity>().RegisterTable().HasKey(p => p.ztId);
             modelBuilder.Entity<GroupPackageItemEntity>().RegisterTable().HasKey(p => p.ztxmId);
             modelBuilder.Entity<InspectionCategoryEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<InspectionTemplateEntity>().RegisterTable().HasKey(p => p.mbId);
             modelBuilder.Entity<TemplateGroupPackageEntity>().RegisterTable().HasKey(p => p.mbztId);
-            //医技科室执行
+            //Khoa kỹ thuật y tế thực hiện
             modelBuilder.Entity<XtjyjcExecEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<XtjyjcFileUploadEntity>().RegisterTable().HasKey(p => p.Id);
 
             modelBuilder.Entity<PatientVitalSignsEntity>().RegisterTable().HasKey(p => p.Id);
 
-            //系统
+            //Hệ thống
             modelBuilder.Entity<SysAuxiliaryDictionaryEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<SysDoctorRemarkEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<SysBodyPartsEntity>().RegisterTable().HasKey(p => p.Id);
@@ -88,7 +88,7 @@ namespace Newtouch.Domain.DBContext.Infrastructure
 			modelBuilder.Entity<InpatientBedCardEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<InpatientDiagnosisEntity>().RegisterTable().HasKey(p => p.Id);
 
-            //门诊部分
+            //Phần ngoại trú
             modelBuilder.Entity<MzyyghEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<MzsyypxxEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<MzsyzxxxEntity>().RegisterTable().HasKey(p => p.Id);
@@ -96,32 +96,32 @@ namespace Newtouch.Domain.DBContext.Infrastructure
 
 			modelBuilder.Entity<DzcfEntity>().RegisterTable().HasKey(p => p.cfId);
 			modelBuilder.Entity<DzcfmxEntity>().RegisterTable().HasKey(p => p.cfmxId);
-			//过敏信息
+			//Thông tin dị ứng
 			modelBuilder.Entity<AllergyEntity>().RegisterTable().HasKey(p => p.Id);
 
-            //影像部位方法
+            //Phương pháp vị trí hình ảnh
             modelBuilder.Entity<Pacs_ExamBodyPartsEntity>().RegisterTable().HasKey(p => p.Id);
 
-            //中医馆  
+            //Phòng khám đông y  
             modelBuilder.Entity<CmmHis01Entity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<CmmHis02RecordEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<UsedDiagnosisEntity>().RegisterTable().HasKey(p => p.Id);
 
-            //智能审核日志
+            //Nhật ký kiểm duyệt thông minh
             modelBuilder.Entity<QhdZnshSqtxEntity>().RegisterTable().HasKey(p => p.Id);
-            //事前事中审核drg入参出参日志
+            //Duyệt trước và trong quá trìnhdrgNhật ký tham số đầu vào/đầu ra
             modelBuilder.Entity<shjkldrzEntity>().RegisterTable().HasKey(p => p.Id);
-            //条码码
+            //Mã vạch
             modelBuilder.Entity<MzZyBarCodeEntity>().RegisterTable().HasKey(p => p.Id);
 
-            modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());//注入
+            modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());//Inject
 
-            //病历词条
+            //Mục từ bệnh án
             modelBuilder.Entity<BlctglEntity>().RegisterTable().HasKey(p => p.ID);
-            //门诊病历常用诊断
+            //Chẩn đoán thường dùng trong bệnh án ngoại trú
             modelBuilder.Entity<ComDiagnosisEntity>().RegisterTable().HasKey(p => p.Id);
 
-            //科室备药
+            //Thuốc dự trữ khoa
 
             modelBuilder.Entity<SysMedicineProfitLossReasonEntity>().RegisterTable().HasKey(p => p.syyyId);
             modelBuilder.Entity<PreparationdrugsEntity>().RegisterTable().HasKey(p => p.Id);
@@ -130,17 +130,17 @@ namespace Newtouch.Domain.DBContext.Infrastructure
             modelBuilder.Entity<PrepareMedicineReturnMXEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<SysMedicineProfitLossEntity>().RegisterTable().HasKey(p => p.syId);
 
-            //诊室
+            //Phòng khám
             modelBuilder.Entity<OutpatientRegConsultEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<OutpatientConsultDoctorEntity>().RegisterTable().HasKey(p => p.Id);
 
-            //预约看诊
+            //Hẹn khám
             modelBuilder.Entity<ReservationEntity>().RegisterTable().HasKey(p => p.Id);
-            //住院通知单
+            //Giấy báo nhập viện
             modelBuilder.Entity<AdmissionNoticeEntity>().RegisterTable().HasKey(p => p.Id);
-            //远程诊疗
+            //Khám chữa bệnh từ xa
             modelBuilder.Entity<ClinicApplyInfoEntity>().RegisterTable().HasKey(p => p.Id);
-            //医嘱执行绑定费用
+            //Chi phí liên kết thực hiện y lệnh
             modelBuilder.Entity<MedicalAdviceBindingFeeEntity>().RegisterTable().HasKey(p => p.newid);
         }
 

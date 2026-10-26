@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Outpatient
 {
     /// <summary>
-    /// 抗生素类别
+    /// Loại kháng sinh
     /// </summary>
     public class KssYpLbVO
     {
         /// <summary>
-        /// 抗生素类别id
+        /// Loại kháng sinhid
         /// </summary>
         public string Id { get; set; }
         /// <summary>
-        /// 抗生素类别名称
+        /// Tên loại kháng sinh
         /// </summary>
         public string typeName { get; set; }
     }

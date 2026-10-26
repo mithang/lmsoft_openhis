@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IPatientVitalSignsRepo : IRepositoryBase<PatientVitalSignsEntity>
     {
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>

@@ -13,7 +13,7 @@ namespace Newtouch.Domain.IDomainServices.Inpatient
     public interface IWardMaintenanceDmnService
     {
         /// <summary>
-        /// 获取当天有效医嘱
+        /// Lấy y lệnh có hiệu lực trong ngày
         /// </summary>
         /// <param name="bedCode"></param>
         /// <returns></returns>
@@ -21,62 +21,62 @@ namespace Newtouch.Domain.IDomainServices.Inpatient
         IList<Dispensing> GetDispensings(Pagination pagination, DispensingMXRequestDto req);
         IList<DispensingMX> GetDispensingMXs(Pagination pagination, string bysj);
         /// <summary>
-        /// 保存床位绑定费用信息
+        /// Lưu thông tin chi phí liên kết giường bệnh
         /// </summary>
         /// <param name="req"></param>
         void SaveBedItems(List<BedItemsVO> mxList, WardMaintenanceRequestDto req, string zyh);
         /// <summary>
-        /// 获取床位绑定医生信息
+        /// Lấy thông tin bác sĩ liên kết giường bệnh
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         List<BedDocsVO> GetBedDocs(patRequestDto req);
 
         /// <summary>
-        /// 保存床位绑定医生信息
+        /// Lưu thông tin bác sĩ liên kết giường bệnh
         /// </summary>
         /// <param name="req"></param>
         void SaveBedDocs(List<BedDocsVO> mxList, patRequestDto req);
 
         /// <summary>
-        /// 获取患者诊断信息
+        /// Lấy thông tin chẩn đoán bệnh nhân
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         List<PatDiagnosisVO> GetPatDiagnosis(patRequestDto req);
         /// <summary>
-        /// 验证患者能否出区
+        /// Xác thực bệnh nhân có thể ra khỏi khu hay không
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         string GetPatIsOutArea(patBedFeeRequestDto req);
         /// <summary>
-        /// 保存患者诊断信息
+        /// Lưu thông tin chẩn đoán bệnh nhân
         /// </summary>
         /// <param name="patOutAreaVO"></param>
         /// <param name="req"></param>
         string SavaPatDiagnosis(PatOutAreaInfoVO patOutAreaVO, patRequestDto req);
         /// <summary>
-        /// 保存出院诊断患者信息
+        /// Lưu thông tin chẩn đoán xuất viện bệnh nhân
         /// </summary>
         /// <param name="patOutAreaVO"></param>
         /// <param name="req"></param>
         /// <returns></returns>
        string SavaOutPatDiagnosis(PatOutAreaVO patOutAreaVO, patRequestDto req);
 		/// <summary>
-		/// 保存出区诊断List
+		/// Lưu chẩn đoán ra khỏi khuList
 		/// </summary>
 		/// <param name="PatDxList"></param>
 		/// <returns></returns>
 		string SavaPatDxList(List<InpatientPatientDiagnosisEntity> PatDxList,string OrganizeId);
 		/// <summary>
-		/// 保存出院诊断Entity
+		/// Lưu chẩn đoán xuất việnEntity
 		/// </summary>
 		/// <param name="PatDxEntity"></param>
 		/// <returns></returns>
 		//string SavaPatDxEntity(InpatientPatientDiagnosisEntity PatDxEntity);
 		/// <summary>
-		/// 获取住院床卡
+		/// Lấy thẻ giường nội trú
 		/// </summary>
 		/// <param></param>
 		List<InpatientBedCardVo> GetBedCard(string zyh, string OrganizeId);

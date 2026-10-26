@@ -40,7 +40,7 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
     public class patBedFeeRequestDto: patRequestDto
     {
         /// <summary>
-        /// 出区/转区/入区日期
+        /// Ra khỏi khu/Chuyển khu/Ngày vào khu
         /// </summary>
         public DateTime rq { get; set; }
     }
@@ -61,15 +61,15 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         public string ysgh { get; set; }
         public string ysmc { get; set; }
         /// <summary>
-        /// 上一个床位
+        /// Giường bệnh trước đó
         /// </summary>
         public string lastcwCode { get; set; }
         /// <summary>
-        /// 当前病区
+        /// Khu bệnh hiện tại
         /// </summary>
         public string WardCode {get;set ;}
         /// <summary>
-        /// 当前科室
+        /// Khoa hiện tại
         /// </summary>
         public string DeptCode { get; set; }
     }

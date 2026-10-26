@@ -23,22 +23,22 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 关联就诊表
+        /// Liên kết bảng khám bệnh
         /// </summary>
         public string jzId { get; set; }
 
         /// <summary>
-        /// 枚举 1 主诊断 2 辅诊断
+        /// Enum 1 Chẩn đoán chính 2 Chẩn đoán phụ
         /// </summary>
         public int zdlx { get; set; }
 
         /// <summary>
-        /// 关联base库 系统诊断表
+        /// Liên kếtbaseCSDL Bảng chẩn đoán hệ thống
         /// </summary>
         public string zdCode { get; set; }
 
         /// <summary>
-        /// 冗余字段
+        /// Trường dư thừa
         /// </summary>
         public string zdmc { get; set; }
 
@@ -68,23 +68,23 @@ namespace Newtouch.Domain.Entity
         public string zt { get; set; }
         
         /// <summary>
-        /// 疑似标志
+        /// Cờ nghi ngờ
         /// </summary>
         public bool ysbz { get; set; }
         /// <summary>
-        /// 西医诊断备注
+        /// Ghi chú chẩn đoán tây y
         /// </summary>
         public string zdbz { get; set; }
         /// <summary>
-        /// 牙位图类型
+        /// Loại sơ đồ vị trí răng
         /// </summary>
         public string ywlx { get; set; }
         /// <summary>
-        /// 牙位图位置
+        /// Vị trí sơ đồ răng
         /// </summary>
         public string ywstr { get; set; }
         /// <summary>
-        /// 牙位图显示
+        /// Hiển thị sơ đồ răng
         /// </summary>
         public string ywxs { get; set; }
     }

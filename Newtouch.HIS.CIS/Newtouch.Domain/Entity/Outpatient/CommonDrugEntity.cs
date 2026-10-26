@@ -23,27 +23,27 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 枚举 1 科室常用 2 个人常用
+        /// Enum 1 Thường dùng của khoa 2 Thường dùng cá nhân
         /// </summary>
         public int type { get; set; }
 
         /// <summary>
-        /// 关联base库的科室表
+        /// Liên kếtbaseBảng khoa của CSDL
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// 关联base库的人员表
+        /// Liên kếtbaseBảng nhân viên của CSDL
         /// </summary>
         public string ysgh { get; set; }
 
         /// <summary>
-        /// 关联base库的系统药品表
+        /// Liên kếtbaseBảng thuốc hệ thống của CSDL
         /// </summary>
         public string zdCode { get; set; }
 
         /// <summary>
-        /// 冗余字段
+        /// Trường dư thừa
         /// </summary>
         public string zdmc { get; set; }
 

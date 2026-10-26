@@ -4,7 +4,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Domain.IRepository
 {
     /// <summary>
-    /// 中医馆推送患者信息
+    /// Đẩy thông tin bệnh nhân phòng khám đông y
     /// </summary>
     public interface ICmmHis01Repo : IRepositoryBase<CmmHis01Entity>
     {

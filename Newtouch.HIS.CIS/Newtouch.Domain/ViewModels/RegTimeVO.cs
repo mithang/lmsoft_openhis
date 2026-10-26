@@ -1,17 +1,17 @@
 ﻿namespace Newtouch.Domain.ViewModels
 {
     /// <summary>
-    /// 预约时段
+    /// Khung giờ hẹn
     /// </summary>
     public class RegTimeVO
     {
         /// <summary>
-        /// ID 唯一标识
+        /// ID Dấu hiệu duy nhất
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 预约时段
+        /// Khung giờ hẹn
         /// </summary>
         public string regTime { get; set; }
     }

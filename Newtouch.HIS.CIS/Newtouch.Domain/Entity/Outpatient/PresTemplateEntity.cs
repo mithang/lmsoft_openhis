@@ -23,17 +23,17 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 枚举 1 科室常用 2 个人常用
+        /// Enum 1 Thường dùng của khoa 2 Thường dùng cá nhân
         /// </summary>
         public int mblx { get; set; }
 
         /// <summary>
-        /// 关联base库的科室表
+        /// Liên kếtbaseBảng khoa của CSDL
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// 枚举 1 西药处方 2 中药处方 3 康复处方 4 检验处方 5 检查处方
+        /// Enum 1 Đơn thuốc tây 2 Đơn thuốc đông y 3 Đơn thuốc phục hồi chức năng 4 Đơn xét nghiệm 5 Đơn kiểm tra
         /// </summary>
         public int cflx { get; set; }
 
@@ -43,7 +43,7 @@ namespace Newtouch.Domain.Entity
         public string mbmc { get; set; }
 
         /// <summary>
-        /// 创建医生
+        /// Bác sĩ tạo
         /// </summary>
         public string ysgh { get; set; }
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 智能审核日志
+    /// Nhật ký kiểm duyệt thông minh
     /// </summary>
     [Table("qhd_znshsqtx")]
     public class QhdZnshSqtxEntity : IEntity<QhdZnshSqtxEntity>
@@ -19,23 +19,23 @@ namespace Newtouch.Domain.Entity
         public string Id { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 交易代码
+        /// Mã giao dịch
         /// </summary>
         public string jydm { get; set; }
         /// <summary>
-        /// 门诊住院号
+        /// Số ngoại trú/nội trú
         /// </summary>
         public string mzzyh { get; set; }
         /// <summary>
-        /// 1：门诊 2：住院
+        /// 1:Ngoại trú 2:Nội trú
         /// </summary>
         public string Type { get; set; }
         /// <summary>
-        /// 入参xml
+        /// Tham số đầu vàoxml
         /// </summary>
         public string XmlRequest { get; set; }
         /// <summary>
-        /// 出参xml
+        /// Tham số đầu raxml
         /// </summary>
         public string XmlResponse { get; set; }
         public string zt { get; set; }

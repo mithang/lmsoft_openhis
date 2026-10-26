@@ -14,26 +14,26 @@ namespace Newtouch.Domain.BusinessObjects
         /// </summary>
         public string mbmc { get; set; }
         /// <summary>
-        /// 主诉
+        /// Triệu chứng chính
         /// </summary>
         public string zs { get; set; }
 
         /// <summary>
-        /// 现病史
+        /// Bệnh sử hiện tại
         /// </summary>
         public string xbs { get; set; }
 
         /// <summary>
-        /// 既往史
+        /// Tiền sử
         /// </summary>
         public string jws { get; set; }
 
         /// <summary>
-        /// 查体
+        /// Khám thực thể
         /// </summary>
         public string ct { get; set; }
         /// <summary>
-        /// 处理
+        /// Xử lý
         /// </summary>
         public string clfa { get; set; }
         #endregion
@@ -50,15 +50,15 @@ namespace Newtouch.Domain.BusinessObjects
         
         public List<CfTemplateGroupPackageEntity> mbztList { get; set; }
         /// <summary>
-        /// 月经史
+        /// Tiền sử kinh nguyệt
         /// </summary>
         public string yjs { get; set; }
         /// <summary>
-        /// 过敏史
+        /// Tiền sử dị ứng
         /// </summary>
         public string gms { get; set; }
         /// <summary>
-        /// 婚姻
+        /// Hôn nhân
         /// </summary>
         public string hy { get; set; }
     }

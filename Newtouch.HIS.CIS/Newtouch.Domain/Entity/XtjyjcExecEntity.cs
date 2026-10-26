@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 医技科室执行记录
+    /// Hồ sơ thực hiện khoa kỹ thuật y tế
     /// </summary>
     [Table("xt_jyjcexec")]
     public class XtjyjcExecEntity:IEntity<XtjyjcExecEntity>

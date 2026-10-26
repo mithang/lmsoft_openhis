@@ -3,130 +3,130 @@
 namespace Newtouch.Domain.ValueObjects.Storage
 {
     /// <summary>
-    /// 物资库存
+    /// Tồn kho vật tư
     /// </summary>
     public class VProductStorageEntity
     {
         public string ks { get; set; }
         public string ksName { get; set; }
         /// <summary>
-        /// 物资ID
+        /// Vật tưID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 物资名称
+        /// Tên vật tư
         /// </summary>
         public string wzmc { get; set; }
 
         /// <summary>
-        /// 拼音
+        /// Pinyin
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 类别名称
+        /// Tên loại
         /// </summary>
         public string lb { get; set; }
 
         /// <summary>
-        /// 部门带单位数量
+        /// Số lượng khoa phòng kèm đơn vị
         /// </summary>
         public string slStr { get; set; }
 
         /// <summary>
-        /// 总库存  最小单位
+        /// Tổng tồn kho  Đơn vị nhỏ nhất
         /// </summary>
         public int zkc { get; set; }
         /// <summary>
-        /// 零售价带单位
+        /// Giá bán lẻ kèm đơn vị
         /// </summary>
         public string lsjStr { get; set; }
         /// <summary>
-        /// 零售价
+        /// Giá bán lẻ
         /// </summary>
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 零售总额
+        /// Tổng số tiền bán lẻ
         /// </summary>
         public decimal lsze { get; set; }
 
         /// <summary>
-        /// 进价单价（与kcxx.zhyz对应）
+        /// Đơn giá nhập(vàkcxx.zhyzTương ứng)
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 进价单价（最小单位）
+        /// Đơn giá nhập(Đơn vị nhỏ nhất)
         /// </summary>
         public decimal minjj { get; set; }
 
         /// <summary>
-        /// 进价总额
+        /// Tổng số tiền giá nhập
         /// </summary>
         public decimal jjze { get; set; }
 
         /// <summary>
-        /// 部门单位名称
+        /// Tên đơn vị khoa phòng
         /// </summary>
         public string bmdwmc { get; set; }
         
         /// <summary>
-        /// 最小单位名称
+        /// Tên đơn vị nhỏ nhất
         /// </summary>
         public string zxdwmc { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 品牌
+        /// Thương hiệu
         /// </summary>
         public string brand { get; set; }
 
         /// <summary>
-        /// 生产厂商
+        /// Nhà sản xuất
         /// </summary>
         public string sccj { get; set; }
 
         /// <summary>
-        /// 有效期 varchar（10）
+        /// Hạn sử dụng varchar(10)
         /// </summary>
         public string yxqStr { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn sử dụng
         /// </summary>
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 可用库存
+        /// Tồn kho khả dụng
         /// </summary>
         public int kykcsl { get; set; }
         /// <summary>
-        /// 库存预警值
+        /// Giá trị cảnh báo tồn kho
         /// </summary>
         public int? kcyjz { get; set; }
-        //物资最小单位进价
+        //Giá nhập đơn vị nhỏ nhất vật tư
         public decimal? wzjj { get; set; }
-        //物资最小单位零售价
+        //Giá bán lẻ đơn vị nhỏ nhất vật tư
         public decimal? wzlsj { get; set; }
         
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 

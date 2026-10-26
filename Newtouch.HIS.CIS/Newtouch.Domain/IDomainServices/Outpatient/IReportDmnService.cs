@@ -12,7 +12,7 @@ namespace Newtouch.Domain.IDomainServices
     public interface IReportDmnService
     {
         /// <summary>
-        /// 门诊处方单
+        /// Đơn thuốc ngoại trú
         /// </summary>
         /// <param name="cfId"></param>
         /// <param name="mzh"></param>
@@ -28,14 +28,14 @@ namespace Newtouch.Domain.IDomainServices
         string GetZSDjson(string cfId, string mzh, string orgId);
 
         /// <summary>
-        /// 门诊处方单
+        /// Đơn thuốc ngoại trú
         /// </summary>
         /// <param name="cfId"></param>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
         string GetZCYCFjson(string cfId, string mzh, string orgId);
         /// <summary>
-        /// 报表列表
+        /// Danh sách báo cáo
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -44,7 +44,7 @@ namespace Newtouch.Domain.IDomainServices
         /// <returns></returns>
         IList<ReportConfigVO> ReportList(Pagination pagination, string orgId, string rptname, string keyword);
         /// <summary>
-        /// 报表配置详情
+        /// Chi tiết cấu hình báo cáo
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyValue"></param>

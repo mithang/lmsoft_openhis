@@ -9,22 +9,22 @@ namespace Newtouch.Domain.DTO.InterfaceSync
     public class ResponseAPIBase
     {
         /// <summary>
-        /// 业务返回码
+        /// Mã trả về nghiệp vụ
         /// </summary>
         public ResponseResultCodeAPI code { get; set; }
 
         /// <summary>
-        /// 业务返回码描述
+        /// Mô tả mã trả về nghiệp vụ
         /// </summary>
         public string msg { get; set; }
 
         /// <summary>
-        /// 响应数据（ResponseResultCode.SUCCESS时的返回数据）
+        /// Dữ liệu phản hồi(ResponseResultCode.SUCCESSDữ liệu trả về khi)
         /// </summary>
         public object data { get; set; }
     }
     /// <summary>
-    /// 过渡类 仅用于调用his内部Api
+    /// Loại chuyển tiếp Chỉ dùng để gọihisNội bộApi
     /// </summary>
     public class ResponseBaseOld : ResponseBase
     {
@@ -37,21 +37,21 @@ namespace Newtouch.Domain.DTO.InterfaceSync
     public enum ResponseResultCodeAPI
     {
         /// <summary>
-        /// 默认值
+        /// Giá trị mặc định
         /// </summary>
         Default = -1,
         /// <summary>
-        /// 成功
+        /// Thành công
         /// </summary>
         SUCCESS = 10000,
 
         /// <summary>
-        /// 服务器内部错误（程序发生异常）
+        /// Lỗi nội bộ máy chủ(Chương trình gặp ngoại lệ)
         /// </summary>
         ERROR = 20000,
 
         /// <summary>
-        /// 业务处理失败:	具体失败原因参见接口返回的错误码    
+        /// Xử lý nghiệp vụ thất bại:	Lý do thất bại cụ thể xem mã lỗi giao diện trả về    
         /// </summary>
         FAIL = 40004
     }

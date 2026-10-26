@@ -15,17 +15,17 @@
         /// </summary>
         public int zdlx { get; set; }
         /// <summary>
-        /// 疑似标志
+        /// Cờ nghi ngờ
         /// </summary>
         public bool ysbz { get; set; }
 
         /// <summary>
-        /// 症候编码
+        /// Mã chứng hậu
         /// </summary>
         public string zhCode { get; set; }
 
         /// <summary>
-        /// 症候名称
+        /// Tên chứng hậu
         /// </summary>
         public string zhmc { get; set; }
         /// <summary>
@@ -33,7 +33,7 @@
         /// </summary>
         public string icd10 { get; set; }
         /// <summary>
-        /// 中医诊断备注
+        /// Ghi chú chẩn đoán đông y
         /// </summary>
         public string zdbz { get; set; }
     }

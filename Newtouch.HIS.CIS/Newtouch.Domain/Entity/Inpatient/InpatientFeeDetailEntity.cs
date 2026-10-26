@@ -6,9 +6,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 15:37
-    /// 描 述：住院费用明细库
+    /// Tạo bởi:张冬林
+    /// Ngày:2018-06-28 15:37
+    /// Mô tả:CSDL chi tiết chi phí nội trú
     /// </summary>
     [Table("zy_fymxk")]
     public class InpatientFeeDetailEntity : IEntity<InpatientFeeDetailEntity>
@@ -145,12 +145,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string jzks { get; set; }
         /// <summary>
-        /// 1固定0不固定
+        /// 1Cố định0Không cố định
         /// </summary>
         /// <returns></returns>
         public int? gdzxbz { get; set; }
         /// <summary>
-        /// -1收费项目 0药品
+        /// -1Hạng mục thu phí 0Thuốc
         /// </summary>
         /// <returns></returns>
         public int? yzlb { get; set; }

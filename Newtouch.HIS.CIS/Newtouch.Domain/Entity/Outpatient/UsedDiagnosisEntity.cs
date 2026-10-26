@@ -23,23 +23,23 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 1 西医诊断，2 中医诊断
+        /// 1 Chẩn đoán tây y,2 Chẩn đoán đông y
         /// </summary>
         public int? type { get; set; }
 
         public string ksCode { get; set; }
 
         /// <summary>
-        /// 使用次数
+        /// Số lần sử dụng
         /// </summary>
         public int? sycs { get; set; }
         /// <summary>
-        /// 关联base库 系统诊断表
+        /// Liên kếtbaseCSDL Bảng chẩn đoán hệ thống
         /// </summary>
         public string zdCode { get; set; }
 
         /// <summary>
-        /// 诊断名称
+        /// Tên chẩn đoán
         /// </summary>
         public string zdmc { get; set; }
 

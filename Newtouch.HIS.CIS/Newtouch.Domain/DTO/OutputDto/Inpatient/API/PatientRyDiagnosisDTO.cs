@@ -3,22 +3,22 @@
 namespace Newtouch.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// 患者入院诊断
+    /// Chẩn đoán nhập viện của bệnh nhân
     /// </summary>
     public class PatientRyDiagnosisDto
     {
         /// <summary>
-        /// 入院多诊断ID
+        /// Nhiều chẩn đoán nhập việnID
         /// </summary>
         public string rydzdId { get; set; }
         
         /// <summary>
-        /// 住院号
+        /// Số nội trú
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 诊断代码
+        /// Mã chẩn đoán
         /// </summary>
         public string zdCode { get; set; }
 
@@ -28,47 +28,47 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string icd10 { get; set; }
 
         /// <summary>
-        /// 诊断名称
+        /// Tên chẩn đoán
         /// </summary>
         public string zdmc { get; set; }
 
         /// <summary>
-        /// 诊断排序   1：诊断1 2：诊断2  3：诊断3
+        /// Sắp xếp chẩn đoán   1:Chẩn đoán1 2:Chẩn đoán2  3:Chẩn đoán3
         /// </summary>
         public string zdpx { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
         
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建日期
+        /// Ngày tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 修改日期
+        /// Ngày sửa đổi
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改人
+        /// Người sửa đổi
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 状态 0:无效  1：有效
+        /// Trạng thái 0:Vô hiệu  1:Có hiệu lực
         /// </summary>
         public string zt { get; set; }
     }

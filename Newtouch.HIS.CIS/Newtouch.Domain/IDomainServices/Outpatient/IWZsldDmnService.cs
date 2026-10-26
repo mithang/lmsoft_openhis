@@ -14,14 +14,14 @@ namespace Newtouch.Domain.IDomainServices
     {
 
         /// <summary>
-        /// 下拉列表物资信息
+        /// Thông tin vật tư trong danh sách thả xuống
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
         List<VSelProductInfoVO> DepartmentStockListQuery(DepartmentStockListQueryParamDTO param);
 
         /// <summary>
-        /// 获取物资批号批次信息  top 20
+        /// Lấy thông tin số lô/lô vật tư  top 20
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="warehouseId"></param>

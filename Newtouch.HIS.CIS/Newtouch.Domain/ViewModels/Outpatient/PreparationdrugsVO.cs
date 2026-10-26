@@ -4,7 +4,7 @@ using System;
 namespace Newtouch.Domain.ViewModels
 {
     /// <summary>
-    /// 备药
+    /// Chuẩn bị thuốc
     /// </summary>
     public class PreparationdrugsVO 
     {
@@ -18,25 +18,25 @@ namespace Newtouch.Domain.ViewModels
         public string shzt { get; set; }
         public string tjsj { get; set; }
         /// <summary>
-        /// 修改用户
+        /// Người sửa đổi
         /// </summary>
         public string CreatorCode { get; set; }
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa đổi
         /// </summary>
         public DateTime CreateTime { get; set; }
 
 
         /// <summary>
-        /// 最后修改用户
+        /// Người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
         public string yfmc { get; set; }

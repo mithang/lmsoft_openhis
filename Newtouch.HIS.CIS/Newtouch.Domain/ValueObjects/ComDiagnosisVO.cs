@@ -13,15 +13,15 @@ namespace Newtouch.Domain.ValueObjects
         //public string py { get; set; }
         public string Id { get; set; }
         /// <summary>
-        /// 机构代码
+        /// Mã cơ sở
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 常用诊断名称
+        /// Tên chẩn đoán thường dùng
         /// </summary>
         public string cyzdmc { get; set; }
         /// <summary>
-        /// 常用诊断编码
+        /// Mã chẩn đoán thường dùng
         /// </summary>
         public string cyzdbm { get; set; }
         /// <summary>
@@ -29,47 +29,47 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string icd10 { get; set; }
         /// <summary>
-        /// 常用诊断类型(1 西医 2 中医)
+        /// Loại chẩn đoán thường dùng(1 Tây y 2 Đông y)
         /// </summary>
         public string cyzdtype { get; set; }
         /// <summary>
-        /// 拼音
+        /// Pinyin
         /// </summary>
         public string py { get; set; }
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ksCode { get; set; }
         /// <summary>
-        /// 医生工号
+        /// Mã nhân viên bác sĩ
         /// </summary>
         public string ys { get; set; }
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime? CreateTime { get; set; }
         /// <summary>
-        /// 更新人
+        /// Người cập nhật
         /// </summary>
         public string LastModifierCode { get; set; }
         /// <summary>
-        ///更新时间
+        ///Thời gian cập nhật
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
         /// <summary>
-        /// 状态(0 无效 1 有效)
+        /// Trạng thái(0 Vô hiệu 1 Có hiệu lực)
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// 个人还是科室
+        /// Cá nhân hay khoa
         /// </summary>
         public string isgr { get; set; }
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public System.Int64? px { get; set; }
 

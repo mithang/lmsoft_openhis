@@ -29,22 +29,22 @@ namespace Newtouch.Domain.Entity.V
         public string yzpcmc { get; set; }
 
         /// <summary>
-        /// 执行次数
+        /// Số lần thực hiện
         /// </summary>
         public int zxcs { get; set; }
 
         /// <summary>
-        /// 执行周期
+        /// Chu kỳ thực hiện
         /// </summary>
         public int zxzq { get; set; }
 
         /// <summary>
-        /// 执行周期单位
+        /// Đơn vị chu kỳ thực hiện
         /// </summary>
         public string zxzqdw { get; set; }
 
         /// <summary>
-        /// 执行时间
+        /// Thời gian thực hiện
         /// </summary>
         public string zxsj { get; set; }
 

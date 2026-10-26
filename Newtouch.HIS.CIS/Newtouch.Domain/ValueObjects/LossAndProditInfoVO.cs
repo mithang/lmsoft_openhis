@@ -93,23 +93,23 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// 零售价总额
+        /// Tổng giá bán lẻ
         /// </summary>
         public decimal? ljze { get; set; }
         /// <summary>
-        /// 批发价总额
+        /// Tổng giá bán sỉ
         /// </summary>
         public decimal? pjze { get; set; }
         /// <summary>
-        /// 进价
+        /// Giá nhập
         /// </summary>
         public decimal? jj { get; set; }
         /// <summary>
-        /// 进价总额
+        /// Tổng số tiền giá nhập
         /// </summary>
         public decimal? jjze { get; set; }
         /// <summary>
-        /// 转化因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int? Zhyz { get; set; }
     }

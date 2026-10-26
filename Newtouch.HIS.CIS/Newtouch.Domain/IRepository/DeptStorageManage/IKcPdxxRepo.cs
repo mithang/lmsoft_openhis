@@ -4,12 +4,12 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Domain.IRepository.DeptStorageManage
 {
     /// <summary>
-    /// 盘点
+    /// Kiểm kê
     /// </summary>
     public interface IKcPdxxRepo : IRepositoryBase<KcPdxxEntity>
     {
         /// <summary>
-        /// 根据盘点ID获取盘点信息
+        /// Theo kiểm kêIDLấy thông tin kiểm kê
         /// </summary>
         /// <param name="pdId"></param>
         /// <param name="organizeId"></param>
@@ -17,7 +17,7 @@ namespace Newtouch.Domain.IRepository.DeptStorageManage
         KcPdxxEntity SelectPdInfByPdId(long pdId, string organizeId);
 
         /// <summary>
-        /// 判断是否有未完成的盘点 （结束）
+        /// Kiểm tra có kiểm kê chưa hoàn thành hay không (Kết thúc)
         /// </summary>
         /// <returns></returns>
         int SelectUnfinishedInventoryByPdId(long pdId, string organizeId);

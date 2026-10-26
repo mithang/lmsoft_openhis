@@ -6,84 +6,84 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 系统预约挂号维护
+    /// Bảo trì đăng ký khám theo hẹn hệ thống
     /// </summary>
     [Table("xt_bespeakRegister")]
     public class SysBespeakRegisterEntity : IEntity<SysBespeakRegisterEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织结构
+        /// Cơ cấu tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 门诊住院标志 1：普通门诊  2：急诊   3：专家门诊
+        /// Cờ ngoại trú/nội trú 1:Khám thường ngoại trú  2:Cấp cứu   3:Khám chuyên gia
         /// </summary>
         public string mzlx { get; set; }
 
         /// <summary>
-        /// 挂号日期
+        /// Ngày đăng ký khám
         /// </summary>
         public DateTime regDate { get; set; }
 
         /// <summary>
-        /// 挂号开始时段
+        /// Khung giờ bắt đầu đăng ký khám
         /// </summary>
         public DateTime regBeginTime { get; set; }
 
         /// <summary>
-        /// 挂号结束时段
+        /// Khung giờ kết thúc đăng ký khám
         /// </summary>
         public DateTime regEndTime { get; set; }
 
         /// <summary>
-        /// 挂号时段,挂号开始时段和挂号结束时段结合
+        /// Khung giờ đăng ký khám,Kết hợp khung giờ bắt đầu và kết thúc đăng ký khám
         /// </summary>
         public string regTime { get; set; }
 
         /// <summary>
-        /// 科室代码
+        /// Mã khoa
         /// </summary>
         public string departmentCode { get; set; }
 
         /// <summary>
-        /// 医生工号
+        /// Mã nhân viên bác sĩ
         /// </summary>
         public string ysgh { get; set; }
 
         /// <summary>
-        /// 最大预约数
+        /// Số lượng hẹn tối đa
         /// </summary>
         public int bespeakMaxCount { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa đổi
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改者
+        /// Người sửa đổi
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 状态     1:有效  0：无效
+        /// Trạng thái     1:Có hiệu lực  0:Vô hiệu
         /// </summary>
         public string zt { get; set; }
     }

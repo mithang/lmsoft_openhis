@@ -20,7 +20,7 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         public string sqsj { get; set; }
         //public decimal zje { get; set; }
         /// <summary>
-        /// 申请状态 0:已申请 1:已接收 2:已完成
+        /// Trạng thái yêu cầu 0:Đã yêu cầu 1:Đã tiếp nhận 2:Đã hoàn thành
         /// </summary>
         public string syncStatus { get; set; }
     }

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// （门诊）护士录入，医生书写病历时带入
+    /// (Ngoại trú)Điều dưỡng nhập,Đưa vào khi bác sĩ viết bệnh án
     /// </summary>
     [Table("xt_brsmtz")]
     public class PatientVitalSignsEntity : IEntity<PatientVitalSignsEntity>

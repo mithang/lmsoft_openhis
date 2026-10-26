@@ -7,12 +7,12 @@ using Newtouch.Domain.ValueObjects.Storage;
 namespace Newtouch.Domain.IDomainServices.DeptStorageManage
 {
     /// <summary>
-    /// 库存结转
+    /// Kết chuyển tồn kho
     /// </summary>
     public interface IKcKcjzDmnService
     {
         /// <summary>
-        /// 获取结转明细
+        /// Lấy chi tiết kết chuyển
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="jzsj"></param>
@@ -23,7 +23,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         IList<VCarryOverDetailEntity> SelectCarryOverDetail(Pagination pagination, string jzsj, string keyWord, string warehouseId, string organizeId);
 
         /// <summary>
-        /// 结转
+        /// Kết chuyển
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -32,7 +32,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         string CarryOverProduct(string warehouseId, string organizeId, string userCode);
 
         /// <summary>
-        /// 进销存统计
+        /// Thống kê nhập xuất tồn
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="searchParam"></param>

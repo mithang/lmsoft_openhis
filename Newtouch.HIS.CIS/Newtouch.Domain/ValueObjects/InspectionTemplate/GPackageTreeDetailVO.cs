@@ -50,7 +50,7 @@
         public int sl { get; set; }
 		public int? px { get; set; }
         /// <summary>
-        /// 组合金额
+        /// Số tiền kết hợp
         /// </summary>
         public decimal? zhje { get; set; }
     }

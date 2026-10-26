@@ -9,59 +9,59 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
     public class OutpatientConsultVO
     {
         /// <summary>
-        /// 挂号诊室表主键ID
+        /// Khóa chính bảng phòng khám đăng ký khámID
         /// </summary>
         public int ghzsId { get; set; }
         /// <summary>
-        /// 挂号内码
+        /// Mã nội bộ đăng ký khám
         /// </summary>
         public int ghnm { get; set; }
         /// <summary>
-        /// 就诊序号
+        /// Số thứ tự khám bệnh
         /// </summary>
         public Int16 jzxh { get; set; }
         /// <summary>
-        /// 患者姓名
+        /// Họ tên bệnh nhân
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// 挂号日期
+        /// Ngày đăng ký khám
         /// </summary>
         public DateTime ghrq { get; set; }
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ksCode { get; set; }
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ksmc { get; set; }
         /// <summary>
-        /// 医生工号
+        /// Mã nhân viên bác sĩ
         /// </summary>
         public string ys { get; set; }
         /// <summary>
-        /// 医生名称
+        /// Tên bác sĩ
         /// </summary>
         public string ysmc { get; set; }
         /// <summary>
-        /// 诊室编码
+        /// Mã phòng khám
         /// </summary>
         public string zsCode { get; set; }
         /// <summary>
-        /// 诊室名称
+        /// Tên phòng khám
         /// </summary>
         public string zsmc { get; set; }
         /// <summary>
-        /// 叫号状态
+        /// Trạng thái gọi số
         /// </summary>
         public int? calledstu { get; set; }
 		/// <summary>
-		/// 诊室楼层
+		/// Tầng phòng khám
 		/// </summary>
 		public string zslc { get; set; }
 		/// <summary>
-		/// 诊室房号
+		/// Số phòng khám
 		/// </summary>
 		public string zsfh { get; set; }
 	}

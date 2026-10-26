@@ -9,7 +9,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
     public class MeetingResponseVO
     {
         /// <summary>
-        /// 为音视频账号以 Secret 为密钥进行 AES 对称加密后的结果，调用音视频服务需要用到，请解密后使用
+        /// dùng tài khoản âm thanh/hình ảnh để Secret dùng làm khóa bí mật để tiến hành AES Kết quả sau khi mã hóa đối xứng,Cần dùng khi gọi dịch vụ âm thanh/hình ảnh,Vui lòng giải mã rồi sử dụng
         /// </summary>
         public string rtcuserid { get; set; }
         /// <summary>

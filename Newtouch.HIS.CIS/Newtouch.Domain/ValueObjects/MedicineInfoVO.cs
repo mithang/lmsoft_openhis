@@ -46,38 +46,38 @@ namespace Newtouch.Domain.ValueObjects
         //public string ypkw { get; set; }
 
         /// <summary>
-        /// 0：不控制1：控制
+        /// 0:Không kiểm soát1:Kiểm soát
         /// </summary>
         //public short kzbz { get; set; }
 
         /// <summary>
-        /// 已配药未发（领）药的数量
+        /// Đã pha thuốc chưa phát(lĩnh)Số lượng thuốc
         /// </summary>
         public int djsl { get; set; }
 
         /// <summary>
-        /// 0：启用1：停用
+        /// 0:Bật1:Tắt
         /// </summary>
         public short tybz { get; set; }
 
         /// <summary>
-        /// 来自 表 XT_YP_CRKMXK 
+        /// Đến từ bảng XT_YP_CRKMXK 
         /// </summary>
         //public string crkmxId { get; set; }
 
         /// <summary>
-        /// 进价  药库单位
+        /// Giá nhập  Đơn vị kho thuốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal? jj { get; set; }
 
         /// <summary>
-        /// 对应药房药房的拆零数
+        /// Số lượng bán lẻ tương ứng của nhà thuốc
         /// </summary>
         public int? zhyz { get; set; }
 
         /// <summary>
-        /// 产地目录
+        /// Danh mục xuất xứ
         /// </summary>
         public int? cd { get; set; }
 
@@ -87,7 +87,7 @@ namespace Newtouch.Domain.ValueObjects
         public string pc { get; set; }
 
         /// <summary>
-        /// 是否已锁  0：未锁 ；    1/null：已锁
+        /// Đã khóa hay chưa  0:Chưa khóa ;    1/null:Đã khóa
         /// </summary>
         public string locked { get; set; }
 
@@ -149,27 +149,27 @@ namespace Newtouch.Domain.ValueObjects
         public string syzt { get; set; }
 
         /// <summary>
-        /// 药库库存
+        /// Tồn kho kho thuốc
         /// </summary>
         public decimal? YkKcsl { get; set; }
 
         /// <summary>
-        /// 药库库位
+        /// Vị trí kho thuốc
         /// </summary>
         public string YkDw { get; set; }
 
         /// <summary>
-        /// 部门单位
+        /// Đơn vị khoa phòng
         /// </summaYkDwry>
         public string deptdw { get; set; }
 
         /// <summary>
-        /// 零售价
+        /// Giá bán lẻ
         /// </summary>
         public decimal? lsj { get; set; }
 
         /// <summary>
-        /// 批发价
+        /// Giá bán sỉ
         /// </summary>
         public decimal? pfj { get; set; }
 
@@ -209,11 +209,11 @@ namespace Newtouch.Domain.ValueObjects
         public string klsl { get; set; }
 
         /// <summary>
-        /// 本部门药品ID XT_YP_BMYPXX 主键
+        /// Thuốc của khoa nàyID XT_YP_BMYPXX Khóa chính
         /// </summary>
         public string bmypId { get; set; }
         /// <summary>
-        /// 有效期
+        /// Hạn sử dụng
         /// </summary>
         public System.DateTime? yxq { get; set; }
 

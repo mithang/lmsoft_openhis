@@ -7,100 +7,100 @@ using Newtouch.Infrastructure.EF.Attributes;
 namespace Newtouch.Domain.Entity.DeptStorageManage
 {
     /// <summary>
-    /// 库存表
+    /// Bảng tồn kho
     /// </summary>
     [Table("kf_kcxx")]
     public class KfKcxxEntity : IEntity<KfKcxxEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 库房ID
+        /// KhoID
         /// </summary>
         public string warehouseId { get; set; }
 
         /// <summary>
-        ///  物资ID
+        ///  Vật tưID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn sử dụng
         /// </summary>
         public DateTime yxq { get; set; }
 
         /// <summary>
-        /// 库存数量 最小单位数量
+        /// Số lượng tồn kho Số lượng đơn vị nhỏ nhất
         /// </summary>
         public int kcsl { get; set; }
 
         /// <summary>
-        /// 冻结数量 最小单位数量
+        /// Số lượng đóng băng Số lượng đơn vị nhỏ nhất
         /// </summary>
         public int djsl { get; set; }
 
         /// <summary>
-        /// 出入库明细ID
+        /// Chi tiết nhập xuất khoID
         /// </summary>
         public long crkmxId { get; set; }
 
         /// <summary>
-        /// 进价 转化因子对应单位
+        /// Giá nhập Đơn vị tương ứng với hệ số chuyển đổi
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 转化因子，转化成当前库房单位
+        /// Hệ số chuyển đổi,Chuyển đổi thành đơn vị kho hiện tại
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 库存锁 0/null：未上锁      >0：已锁
+        /// Khóa tồn kho 0/null:Chưa khóa      >0:Đã khóa
         /// </summary>
         public int? locked { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
     }

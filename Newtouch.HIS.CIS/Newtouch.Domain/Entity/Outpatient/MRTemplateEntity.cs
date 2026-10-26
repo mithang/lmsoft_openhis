@@ -52,7 +52,7 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public string ct { get; set; }
         /// <summary>
-        /// 处理
+        /// Xử lý
         /// </summary>
         public string clfa { get; set; }
 
@@ -82,7 +82,7 @@ namespace Newtouch.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// 科室模板
+        /// Mẫu khoa
         /// </summary>
         public string ks { get; set; }
         /// <summary>

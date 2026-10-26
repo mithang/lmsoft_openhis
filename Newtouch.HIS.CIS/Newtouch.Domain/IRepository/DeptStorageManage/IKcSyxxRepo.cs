@@ -5,7 +5,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Domain.IRepository.DeptStorageManage
 {
     /// <summary>
-    /// 库存损益
+    /// Chênh lệch tồn kho
     /// </summary>
     public interface IKcSyxxRepo : IRepositoryBase<KcSyxxEntity>
     {

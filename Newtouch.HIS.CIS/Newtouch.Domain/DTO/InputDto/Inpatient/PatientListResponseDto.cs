@@ -3,7 +3,7 @@
 namespace Newtouch.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 住院患者一览 在病区的病人返回对象集合
+    /// Danh sách tổng quan bệnh nhân nội trú Tập hợp đối tượng trả về của bệnh nhân tại khu bệnh
     /// </summary>
    public class PatientzbqResponseDto: PatientyzxxResponseDto
     {
@@ -34,16 +34,16 @@ namespace Newtouch.Domain.DTO.InputDto
         public DateTime? kssj { get; set; }
         public string ztnr { get; set; }
         /// <summary>
-        /// 是否显示预出院图标 (有kssj 显示:null / 不显示:none)
+        /// Có hiển thị biểu tượng dự kiến xuất viện hay không (Cókssj Hiển thị:null / Không hiển thị:none)
         /// </summary>
         public string display { get; set; }
         /// <summary>
-        /// 待审核医嘱条数
+        /// Số y lệnh chờ duyệt
         /// </summary>
         public int? cnt { get; set; }
     }
     /// <summary>
-    /// 住院患者一览 已出区的病人返回对象集合
+    /// Danh sách tổng quan bệnh nhân nội trú Tập hợp đối tượng trả về của bệnh nhân đã ra khỏi khu
     /// </summary>
     public class PatientycqResponseDto
     {

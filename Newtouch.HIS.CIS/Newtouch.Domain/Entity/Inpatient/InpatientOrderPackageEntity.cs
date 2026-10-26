@@ -6,9 +6,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 15:37
-    /// 描 述：住院医嘱套餐
+    /// Tạo bởi:张冬林
+    /// Ngày:2018-06-28 15:37
+    /// Mô tả:Gói y lệnh nội trú
     /// </summary>
     [Table("zy_yztc")]
     public class InpatientOrderPackageEntity : IEntity<InpatientOrderPackageEntity>
@@ -30,27 +30,27 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string tcmc { get; set; }
         /// <summary>
-        /// 医嘱类型： 0：药品医嘱，1：抗生素医嘱，2：检查医嘱，3：检验医嘱，4：指示医嘱，5：普通医嘱 ， 6 停止医嘱， 7  出院带药， 8 膳食医嘱， 9 手术医嘱   10  中草药 
+        /// Loại y lệnh: 0:Y lệnh thuốc,1:Y lệnh kháng sinh,2:Y lệnh kiểm tra,3:Y lệnh xét nghiệm,4:Y lệnh chỉ thị,5:Y lệnh thường , 6 Y lệnh dừng, 7  Thuốc mang về khi xuất viện, 8 Y lệnh chế độ ăn, 9 Y lệnh phẫu thuật   10  Thuốc thảo dược 
         /// </summary>
         /// <returns></returns>
         public int tclx { get; set; }
         /// <summary>
-        /// 0 个人 1 科室 2 全院
+        /// 0 Cá nhân 1 Khoa 2 Toàn viện
         /// </summary>
         /// <returns></returns>
         public int tcfw { get; set; }
         /// <summary>
-        /// 病区代码
+        /// Mã khu bệnh
         /// </summary>
         /// <returns></returns>
         public string WardCode { get; set; }
         /// <summary>
-        /// 科室代码
+        /// Mã khoa
         /// </summary>
         /// <returns></returns>
         public string DeptCode { get; set; }
         /// <summary>
-        /// 医生代码
+        /// Mã bác sĩ
         /// </summary>
         /// <returns></returns>
         public string ysgh { get; set; }

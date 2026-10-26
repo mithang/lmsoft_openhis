@@ -7,7 +7,7 @@ namespace Newtouch.Domain.BusinessObjects
     public class PresTemplateBO
     {
         /// <summary>
-        /// 模板名称
+        /// Tên mẫu
         /// </summary>
         public string mbmc { get; set; }
 
@@ -29,7 +29,7 @@ namespace Newtouch.Domain.BusinessObjects
         public int mblx { get; set; }
 
         /// <summary>
-        /// 模板明细
+        /// Chi tiết mẫu
         /// </summary>
         public List<PresTemplateDetailVO> mbmxList { get; set; }
     }

@@ -16,31 +16,31 @@ namespace Newtouch.Domain.DTO.OutputDto
     public class REQUESTDATA
     {
         /// <summary>
-        /// 定点医疗机构编码
+        /// Mã cơ sở y tế chỉ định
         /// </summary>
         public string AKB020 { get; set; }
         /// <summary>
-        /// 定点医疗机构名称
+        /// Tên cơ sở y tế chỉ định
         /// </summary>
         public string AKB021 { get; set; }
         /// <summary>
-        /// 交易代码
+        /// Mã giao dịch
         /// </summary>
         public string MSGNO { get; set; }
         /// <summary>
-        /// 发送方交易流水号
+        /// Số thứ tự giao dịch của bên gửi
         /// </summary>
         public string MSGID { get; set; }
         /// <summary>
-        /// 授权码
+        /// Mã ủy quyền
         /// </summary>
         public string GRANTID { get; set; }
         /// <summary>
-        /// 操作员编号
+        /// Số nhân viên thao tác
         /// </summary>
         public string OPERID { get; set; }
         /// <summary>
-        /// 操作员姓名
+        /// Họ tên nhân viên thao tác
         /// </summary>
         public string OPERNAME { get; set; }
         public KC21XML KC21XML { get; set; }
@@ -50,95 +50,95 @@ namespace Newtouch.Domain.DTO.OutputDto
     public class KC21XML
     {
         /// <summary>
-        /// 就诊流水号
+        /// Số thứ tự khám bệnh
         /// </summary>
         public string AKC190 { get; set; }
         /// <summary>
-        /// 医疗类别
+        /// Loại hình y tế
         /// </summary>
         public string AKA130 { get; set; }
         /// <summary>
-        /// 门诊日期YYYYMMDDHH24MISS
+        /// Ngày ngoại trúYYYYMMDDHH24MISS
         /// </summary>
         public string AKC192 { get; set; }
         /// <summary>
-        /// 入院诊断疾病编码/门诊诊断疾病编码
+        /// Mã bệnh chẩn đoán nhập viện/Mã bệnh chẩn đoán ngoại trú
         /// </summary>
         public string AKC193 { get; set; }
         /// <summary>
-        /// 入院诊断疾病名称/门诊诊断疾病名称
+        /// Tên bệnh chẩn đoán nhập viện/Tên bệnh chẩn đoán ngoại trú
         /// </summary>
         public string ZKC274 { get; set; }
         /// <summary>
-        /// 出院日期 YYYYMMDDHH24MISS
+        /// Ngày xuất viện YYYYMMDDHH24MISS
         /// </summary>
         public string AKC194 { get; set; }
         /// <summary>
-        /// 出院原因
+        /// Lý do xuất viện
         /// </summary>
         public string AKC195 { get; set; }
         /// <summary>
-        /// 出院诊断疾病编码
+        /// Mã bệnh chẩn đoán xuất viện
         /// </summary>
         public string AKC196 { get; set; }
         /// <summary>
-        /// 出院诊断疾病名称
+        /// Tên bệnh chẩn đoán xuất viện
         /// </summary>
         public string ZKC275 { get; set; }
         /// <summary>
-        /// 重症精神病标志
+        /// Cờ bệnh tâm thần nặng
         /// </summary>
         public string ZKC285 { get; set; }
         /// <summary>
-        /// 医院内部挂号单号
+        /// Số phiếu đăng ký khám nội bộ bệnh viện
         /// </summary>
         public string ZKC286 { get; set; }
         /// <summary>
-        /// 科室编号
+        /// Số khoa
         /// </summary>
         public string BKF040 { get; set; }
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ZKC272 { get; set; }
         /// <summary>
-        /// 主治医师编码
+        /// Mã bác sĩ điều trị chính
         /// </summary>
         public string BKF050 { get; set; }
         /// <summary>
-        /// 主治医师姓名
+        /// Họ tên bác sĩ điều trị chính
         /// </summary>
         public string ZKC271 { get; set; }
         /// <summary>
-        /// 医保编号
+        /// Số BHYT
         /// </summary>
         public string AAC001 { get; set; }
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string CKC502 { get; set; }
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string AAC003 { get; set; }
         /// <summary>
-        /// 公民身份号码
+        /// Số CMND công dân
         /// </summary>
         public string AAE135 { get; set; }
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string AAC004 { get; set; }
         /// <summary>
-        /// 年龄
+        /// Tuổi
         /// </summary>
         public decimal BAE450 { get; set; }
         /// <summary>
-        /// 经办人
+        /// Người xử lý
         /// </summary>
         public string AAE011 { get; set; }
         /// <summary>
-        /// 经办时间YYYYMMDDHH24MISS
+        /// Thời gian xử lýYYYYMMDDHH24MISS
         /// </summary>
         public string AAE036 { get; set; }
     }
@@ -146,111 +146,111 @@ namespace Newtouch.Domain.DTO.OutputDto
     public class KC22ROW
     {
         /// <summary>
-        /// 就诊流水号
+        /// Số thứ tự khám bệnh
         /// </summary>
         public string AKC190 { get; set; }
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string AKC220 { get; set; }
         /// <summary>
-        /// 处方日期 YYYYMMDDHH24MISS
+        /// Ngày kê đơn YYYYMMDDHH24MISS
         /// </summary>
         public string AKC221 { get; set; }
         /// <summary>
-        /// 医保药品/项目编码
+        /// Thuốc BHYT/Mã hạng mục
         /// </summary>
         public string AKE001 { get; set; }
         /// <summary>
-        /// 医保药品/项目名称
+        /// Thuốc BHYT/Tên hạng mục
         /// </summary>
         public string AKE002 { get; set; }
         /// <summary>
-        /// 医院收费项目编码
+        /// Mã hạng mục thu phí bệnh viện
         /// </summary>
         public string AKC515 { get; set; }
         /// <summary>
-        /// 医院收费项目名称
+        /// Tên hạng mục thu phí bệnh viện
         /// </summary>
         public string AKC223 { get; set; }
         /// <summary>
-        /// 项目类别1:药品 2：诊疗项目 3：服务设施
+        /// Loại hạng mục1:Thuốc 2:Hạng mục khám chữa bệnh 3:Cơ sở dịch vụ
         /// </summary>
         public string AKC224 { get; set; }
         /// <summary>
-        /// 费用类别
+        /// Loại chi phí
         /// </summary>
         public string AKA063 { get; set; }
         /// <summary>
-        /// 单价
+        /// Đơn giá
         /// </summary>
         public decimal AKC225 { get; set; }
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public decimal AKC226 { get; set; }
         /// <summary>
-        /// 金额
+        /// Số tiền
         /// </summary>
         public decimal AKC227 { get; set; }
         /// <summary>
-        /// 剂型
+        /// Dạng bào chế
         /// </summary>
         public string AKA070 { get; set; }
         /// <summary>
-        /// 药品剂量单位
+        /// Đơn vị liều lượng thuốc
         /// </summary>
         public string CKC132 { get; set; }
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string AKA074 { get; set; }
         /// <summary>
-        /// 每次用量
+        /// Liều dùng mỗi lần
         /// </summary>
         public decimal? AKA071 { get; set; }
         /// <summary>
-        /// 药品每日最大剂量
+        /// Liều tối đa mỗi ngày của thuốc
         /// </summary>
         public decimal? AKA075 { get; set; }
         /// <summary>
-        /// 使用频次
+        /// Tần suất sử dụng
         /// </summary>
         public string AKA072 { get; set; }
         /// <summary>
-        /// 用法
+        /// Cách dùng
         /// </summary>
         public string AKA073 { get; set; }
         /// <summary>
-        /// 销售单位
+        /// Đơn vị bán
         /// </summary>
         public string ZKA101 { get; set; }
         /// <summary>
-        /// 当前单位标记
+        /// Cờ đơn vị hiện tại
         /// </summary>
         public string AKA067 { get; set; }
         /// <summary>
-        /// 执行天数
+        /// Số ngày thực hiện
         /// </summary>
         public decimal AKC229 { get; set; }
         /// <summary>
-        /// 草药单复方标志
+        /// Cờ đơn thuốc thảo dược đơn/phức
         /// </summary>
         public string BKC127 { get; set; }
         /// <summary>
-        /// 处方医师编码
+        /// Mã bác sĩ kê đơn
         /// </summary>
         public string BKF050 { get; set; }
         /// <summary>
-        /// 处方医师姓名
+        /// Họ tên bác sĩ kê đơn
         /// </summary>
         public string ZKC271 { get; set; }
         /// <summary>
-        /// 经办人
+        /// Người xử lý
         /// </summary>
         public string AAE011 { get; set; }
         /// <summary>
-        /// 经办时间 YYYYMMDDHH24MISS
+        /// Thời gian xử lý YYYYMMDDHH24MISS
         /// </summary>
         public string AAE036 { get; set; }
     }
@@ -258,39 +258,39 @@ namespace Newtouch.Domain.DTO.OutputDto
     public class KC33ROW
     {
         /// <summary>
-        /// 就诊流水号
+        /// Số thứ tự khám bệnh
         /// </summary>
         public string AKC190 { get; set; }
         /// <summary>
-        /// 诊断顺序
+        /// Thứ tự chẩn đoán
         /// </summary>
         public int BKE150 { get; set; }
         /// <summary>
-        /// 是否主诊断
+        /// Có phải chẩn đoán chính hay không
         /// </summary>
         public string CKC305 { get; set; }
         /// <summary>
-        /// 诊断日期YYYYMMDDHH24MISS
+        /// Ngày chẩn đoánYYYYMMDDHH24MISS
         /// </summary>
         public string CKC304 { get; set; }
         /// <summary>
-        /// 诊断编码
+        /// Mã chẩn đoán
         /// </summary>
         public string CKC302 { get; set; }
         /// <summary>
-        /// 诊断名称
+        /// Tên chẩn đoán
         /// </summary>
         public string CKC303 { get; set; }
         /// <summary>
-        /// 诊断医师编码
+        /// Mã bác sĩ chẩn đoán
         /// </summary>
         public string BKF050 { get; set; }
         /// <summary>
-        /// 诊断医师姓名
+        /// Họ tên bác sĩ chẩn đoán
         /// </summary>
         public string ZKC271 { get; set; }
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string AAE013 { get; set; }
     }

@@ -4,17 +4,17 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// 页面提交过来的
+    /// Được gửi từ trang
     /// </summary>
     public class PrescriptionHtmlDTO
     {
         /// <summary>
-        /// 处方类型
+        /// Loại đơn thuốc
         /// </summary>
         public string cflx { get; set; }
 
         /// <summary>
-        /// 处方信息
+        /// Thông tin đơn thuốc
         /// </summary>
         public List<PrescriptionHtmlVO> cfHtml;
     }

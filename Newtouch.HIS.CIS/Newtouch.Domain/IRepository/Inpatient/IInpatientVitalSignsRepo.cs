@@ -9,14 +9,14 @@ using Newtouch.Domain.ValueObjects.Inpatient;
 namespace Newtouch.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 13:27
-    /// 描 述：住院病人生命体征
+    /// Tạo bởi:张冬林
+    /// Ngày:2018-06-28 13:27
+    /// Mô tả:Dấu hiệu sinh tồn bệnh nhân nội trú
     /// </summary>
     public interface IInpatientVitalSignsRepo : IRepositoryBase<InpatientVitalSignsEntity>
     {
         /// <summary>
-        /// 护理分页查询
+        /// Tra cứu phân trang điều dưỡng
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -27,7 +27,7 @@ namespace Newtouch.Domain.IRepository
         IList<InpatientVitalSignsDto> GetPaginationList(Pagination pagination, string orgId, DateTime? kssj, DateTime? jssj, string zyh,string wardCode, string isShowDelete);
 
         /// <summary>
-        /// 护理查询
+        /// Tra cứu điều dưỡng
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>
@@ -38,7 +38,7 @@ namespace Newtouch.Domain.IRepository
 
 
         /// <summary>
-        /// 护理查询(不分页)
+        /// Tra cứu điều dưỡng(Không phân trang)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -48,16 +48,16 @@ namespace Newtouch.Domain.IRepository
         /// <returns></returns>
         IList<InpatientVitalSignsDto> GetList(string orgId, DateTime? kssj, DateTime? jssj, string zyh);
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu(Thêm mới,Sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void SubmitForm(InpatientVitalSignsEntity entity, string keyValue);
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void DeleteForm(string keyValue);
 
         IList<TemperatureGraphData> GetTempratureData(string orgId, DateTime? kssj, DateTime? jssj, string zyh,int pagesize =6);

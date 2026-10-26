@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects
 {
     /// <summary>
-    /// 中间库同步到本地
+    /// Đồng bộ CSDL trung gian về cục bộ
     /// </summary>
     public class SysIDBVO
     {
@@ -18,62 +18,62 @@ namespace Newtouch.Domain.ValueObjects
 
 
         /// <summary>
-        /// 冗余挂号信息  枚举 1 普通门诊 2 急诊 3专家
+        /// Thông tin đăng ký khám dư thừa  Enum 1 Khám thường ngoại trú 2 Cấp cứu 3Chuyên gia
         /// </summary>
         public int mjzbz { get; set; }
 
         /// <summary>
-        /// 对应billing接口中的病历号
+        /// Tương ứngbillingSố bệnh án trong giao diện
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// 关联billing系统的挂号表
+        /// Liên kếtbillingBảng đăng ký khám của hệ thống
         /// </summary>
         public string mzh { get; set; }
 
         /// <summary>
-        /// 冗余患者信息字段
+        /// Trường thông tin bệnh nhân dư thừa
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 冗余患者信息字段
+        /// Trường thông tin bệnh nhân dư thừa
         /// </summary>
         public string xb { get; set; }
 
         /// <summary>
-        /// 冗余患者信息字段
+        /// Trường thông tin bệnh nhân dư thừa
         /// </summary>
         public DateTime? csny { get; set; }
 
         /// <summary>
-        /// 冗余患者信息字段
+        /// Trường thông tin bệnh nhân dư thừa
         /// </summary>
         public string brxzmc { get; set; }
 
         /// <summary>
-        /// 冗余患者信息字段 枚举
+        /// Trường thông tin bệnh nhân dư thừa Enum
         /// </summary>
         public int? zjlx { get; set; }
 
         /// <summary>
-        /// 冗余患者信息字段
+        /// Trường thông tin bệnh nhân dư thừa
         /// </summary>
         public string zjh { get; set; }
 
         /// <summary>
-        /// 冗余挂号表字段 科室名称
+        /// Trường bảng đăng ký khám dư thừa Tên khoa
         /// </summary>
         public string ghksmc { get; set; }
 
         /// <summary>
-        /// 冗余挂号表字段 医生名称
+        /// Trường bảng đăng ký khám dư thừa Tên bác sĩ
         /// </summary>
         public string ghys { get; set; }
 
         /// <summary>
-        /// 冗余挂号表字段
+        /// Trường bảng đăng ký khám dư thừa
         /// </summary>
         public DateTime ghsj { get; set; }
 

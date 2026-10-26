@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Inpatient
 {
     /// <summary>
-    /// 单据内容
+    /// Nội dung chứng từ
     /// </summary>
     public class BYDjInfoSubmit
     {
         /// <summary>
-        /// 入库部门
+        /// Khoa nhập kho
         /// </summary>
         public string rkbm { get; set; }
         public string yfbm { get; set; }

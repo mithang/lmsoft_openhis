@@ -3,12 +3,12 @@
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 扩展药品信息
+    /// Thông tin thuốc mở rộng
     /// </summary>
     public class SysMedicineExVEntity: SysMedicineVEntity
     {
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
     }

@@ -10,20 +10,20 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IInspectionCategoryRepo : IRepositoryBase<InspectionCategoryEntity>
     {
         /// <summary>
-        /// 获取列表
+        /// Lấy danh sách
         /// </summary>
         /// <returns></returns>
         List<InspectionCategoryEntity> GetListByOrg(string orgId);
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
         void SubmitForm(InspectionCategoryEntity entity, string keyValue);
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="orgId"></param>

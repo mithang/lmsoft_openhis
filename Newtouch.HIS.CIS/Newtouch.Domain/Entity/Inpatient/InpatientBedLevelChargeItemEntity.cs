@@ -6,9 +6,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 创 建：黄杉杉
-    /// 日 期：2018-12-12 15:37
-    /// 描 述：住院床位费用对应表
+    /// Tạo bởi:黄杉杉
+    /// Ngày:2018-12-12 15:37
+    /// Mô tả:Bảng tương ứng chi phí giường bệnh nội trú
     /// </summary>
     [Table("zy_LevelChargedy")]
     public class InpatientBedLevelChargeItemEntity : IEntity<InpatientBedLevelChargeItemEntity>
@@ -57,7 +57,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 0无效1有效
+        /// 0Vô hiệu1Có hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }

@@ -6,9 +6,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 15:37
-    /// 描 述：住院病人医生信息表
+    /// Tạo bởi:张冬林
+    /// Ngày:2018-06-28 15:37
+    /// Mô tả:Bảng thông tin bác sĩ bệnh nhân nội trú
     /// </summary>
     [Table("zy_PatDocInfo")]
     public class InpatientPatientDoctorEntity : IEntity<InpatientPatientDoctorEntity>
@@ -40,7 +40,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string ysmc { get; set; }
         /// <summary>
-        /// 0住院1主治2主任
+        /// 0Nội trú1Bác sĩ điều trị chính2Chủ nhiệm
         /// </summary>
         /// <returns></returns>
         public int Type { get; set; }
@@ -70,7 +70,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 0无效1有效
+        /// 0Vô hiệu1Có hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }

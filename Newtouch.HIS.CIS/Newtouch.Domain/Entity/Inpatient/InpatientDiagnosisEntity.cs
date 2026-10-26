@@ -6,9 +6,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 创 建：毛浩泽
-    /// 日 期：2021-07-02 15:37
-    /// 描 述：住院医嘱诊断信息
+    /// Tạo bởi:毛浩泽
+    /// Ngày:2021-07-02 15:37
+    /// Mô tả:Thông tin chẩn đoán y lệnh nội trú
     /// </summary>
     [Table("zy_clyzzd")]
     public class InpatientDiagnosisEntity : IEntity<InpatientDiagnosisEntity>
@@ -35,7 +35,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string zyh { get; set; }
         /// <summary>
-        /// 诊断时间
+        /// Thời gian chẩn đoán
         /// </summary>
         /// <returns></returns>
         public DateTime? zdsj { get; set; }
@@ -45,27 +45,27 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string icd10 { get; set; }
         /// <summary>
-        /// 诊断名称
+        /// Tên chẩn đoán
         /// </summary>
         /// <returns></returns>
         public string zdmc { get; set; }
         /// <summary>
-        /// 是否精麻类医嘱
+        /// Có phải y lệnh thuốc hướng thần/gây mê hay không
         /// </summary>
         /// <returns></returns>
         public string yztag { get; set; }
         /// <summary>
-        /// 医嘱排序
+        /// Sắp xếp y lệnh
         /// </summary>
         /// <returns></returns>
         public string yzpx { get; set; }
         /// <summary>
-        /// 医嘱类型
+        /// Loại y lệnh
         /// </summary>
         /// <returns></returns>
         public int? yzlx { get; set; }
         /// <summary>
-        /// 医嘱性质
+        /// Tính chất y lệnh
         /// </summary>
         /// <returns></returns>
         public string yzxz { get; set; }
@@ -90,12 +90,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 0无效1有效
+        /// 0Vô hiệu1Có hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }
         /// <summary>
-        /// 医院唯一id
+        /// duy nhất của bệnh việnid
         /// </summary>
         /// <returns></returns>
         public string OrganizeId { get; set; }

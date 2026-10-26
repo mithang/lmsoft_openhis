@@ -22,7 +22,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string mzh { get; set; }
         /// <summary>
-        /// 挂号医生
+        /// Bác sĩ đăng ký khám
         /// </summary>
         public string ghys { get; set; }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public decimal? xueya { get; set; }
 
         /// <summary>
-        /// 血糖测量方式
+        /// Cách đo đường huyết
         /// </summary>
         public string xuetangclfs { get; set; }
 
@@ -76,7 +76,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public decimal? huxi { get; set; }
         public string cfzbz { get; set; }
         /// <summary>
-        /// 社保编号
+        /// Số bảo hiểm xã hội
         /// </summary>
         public string sbbh { get; set; }
         public lastzcfDto lastzcfDto { get; set; }
@@ -84,42 +84,42 @@ namespace Newtouch.Domain.DTO.OutputDto
 
         #region 病历内容
         /// <summary>
-        /// 主诉
+        /// Triệu chứng chính
         /// </summary>
         public string zs { get; set; }
 
         /// <summary>
-        /// 发病时间
+        /// Thời gian phát bệnh
         /// </summary>
         public DateTime? fbsj { get; set; }
 
         /// <summary>
-        /// 现病史
+        /// Bệnh sử hiện tại
         /// </summary>
         public string xbs { get; set; }
 
         /// <summary>
-        /// 既往史
+        /// Tiền sử
         /// </summary>
         public string jws { get; set; }
         /// <summary>
-        /// 月经史
+        /// Tiền sử kinh nguyệt
         /// </summary>
         public string yjs { get; set; }
         /// <summary>
-        /// 过敏史
+        /// Tiền sử dị ứng
         /// </summary>
         public string gms { get; set; }
         /// <summary>
-        /// 婚姻
+        /// Hôn nhân
         /// </summary>
         public string hy { get; set; }
         /// <summary>
-        /// 婚姻
+        /// Hôn nhân
         /// </summary>
         public string hymc { get; set; }
         /// <summary>
-        /// 查体
+        /// Khám thực thể
         /// </summary>
         public string ct { get; set; }
 
@@ -152,11 +152,11 @@ namespace Newtouch.Domain.DTO.OutputDto
 
     public class lastzcfDto {
         /// <summary>
-        /// 最后一次收取诊查费时间
+        /// Thời gian thu phí khám chữa bệnh lần cuối
         /// </summary>
         public string zcfsj { get; set; }
         /// <summary>
-        /// 最后一次收取诊查费收费项目详情
+        /// Chi tiết hạng mục thu phí khám chữa bệnh thu lần cuối
         /// </summary>
         public string zcfsfxm { get; set; }
     }

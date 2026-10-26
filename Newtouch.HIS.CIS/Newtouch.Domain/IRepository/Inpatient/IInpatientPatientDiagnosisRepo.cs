@@ -6,42 +6,42 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 13:27
-    /// 描 述：住院病人诊断信息
+    /// Tạo bởi:张冬林
+    /// Ngày:2018-06-28 13:27
+    /// Mô tả:Thông tin chẩn đoán bệnh nhân nội trú
     /// </summary>
     public interface IInpatientPatientDiagnosisRepo : IRepositoryBase<InpatientPatientDiagnosisEntity>
     {
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu(Thêm mới,Sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void SubmitForm(InpatientPatientDiagnosisEntity entity, string keyValue);
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void DeleteForm(string keyValue);
 
         /// <summary>
-        /// 获取诊断信息
+        /// Lấy thông tin chẩn đoán
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="organizeId"></param>
-        /// <param name="zdlb">1入院诊断2出院诊断</param>
-        /// <param name="zt">1-有效  0-无效</param>
+        /// <param name="zdlb">1Chẩn đoán nhập viện2Chẩn đoán xuất viện</param>
+        /// <param name="zt">1-Có hiệu lực  0-Vô hiệu</param>
         /// <returns></returns>
         List<InpatientPatientDiagnosisEntity> SelectData(string zyh, string organizeId, string zdlb,
            string zt = "1");
         /// <summary>
-        /// 获取诊断信息
+        /// Lấy thông tin chẩn đoán
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="organizeId"></param>
-        /// <param name="zdlb">1入院诊断2出院诊断</param>
-        /// <param name="zt">1-有效  0-无效</param>
+        /// <param name="zdlb">1Chẩn đoán nhập viện2Chẩn đoán xuất viện</param>
+        /// <param name="zt">1-Có hiệu lực  0-Vô hiệu</param>
         /// <returns></returns>
         List<WMDiagnosisHtmlVO> SelectDiagData(string zyh, string organizeId, string zdlb,
            string zt = "1");

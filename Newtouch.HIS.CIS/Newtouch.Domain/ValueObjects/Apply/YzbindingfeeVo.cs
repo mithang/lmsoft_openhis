@@ -42,7 +42,7 @@ namespace Newtouch.Domain.ValueObjects.Apply
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 拆零数
+        /// Số lượng bán lẻ
         /// </summary>
         public int? cls { get; set; }
         public decimal ztsl { get; set; }
@@ -50,17 +50,17 @@ namespace Newtouch.Domain.ValueObjects.Apply
         public string sfxmmc { get; set; }
         public string pcCode { get; set; }
         /// <summary>
-        /// 执行次数
+        /// Số lần thực hiện
         /// </summary>
         /// <returns></returns>
         public int? zxcs { get; set; }
         /// <summary>
-        /// 执行周期
+        /// Chu kỳ thực hiện
         /// </summary>
         /// <returns></returns>
         public int? zxzq { get; set; }
         /// <summary>
-        /// 执行周期单位 -1:不规则周期，0：天,1：小时,2：分钟.注意：当为-1时，周代码（zdm）为数字（1234567）中的任意几个数字
+        /// Đơn vị chu kỳ thực hiện -1:Chu kỳ không đều,0:Ngày,1:Giờ,2:Phút.Lưu ý:Khi là-1khi,Mã tuần(zdm)là số(1234567)một vài số bất kỳ trong đó
         /// </summary>
         /// <returns></returns>
         public int? zxzqdw { get; set; }

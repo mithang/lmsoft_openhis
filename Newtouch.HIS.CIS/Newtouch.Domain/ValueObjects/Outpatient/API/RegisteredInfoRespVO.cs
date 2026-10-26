@@ -51,75 +51,75 @@ namespace Newtouch.Domain.ValueObjects.API
         /// </summary>
         public DateTime ghsj { get; set; }
         /// <summary>
-        /// 就诊类别 1普通门诊 2急诊 3专家门诊
+        /// Loại khám bệnh 1Khám thường ngoại trú 2Cấp cứu 3Khám chuyên gia
         /// </summary>
         public string mjzbz { get; set; }
 
         /// <summary>
-        /// 操作时间
+        /// Thời gian thao tác
         /// </summary>
         public DateTime operatingTime { get; set; }
         /// <summary>
-        /// 医生代码
+        /// Mã bác sĩ
         /// </summary>
         public string ys { get; set; }
         /// <summary>
-        /// 科室代码
+        /// Mã khoa
         /// </summary>
         public string ks { get; set; }
         /// <summary>
-        /// 医保结算号（医保返回）
+        /// Số quyết toán BHYT(BHYT trả về)
         /// </summary>
         public string ybjsh { get; set; }
         /// <summary>
-        /// 复诊标志 1复诊
+        /// Cờ tái khám 1Tái khám
         /// </summary>
         public string fzbz { get; set; }
         /// <summary>
-        /// 社保编号
+        /// Số bảo hiểm xã hội
         /// </summary>
         public string sbbh { get; set; }
         /// <summary>
-        /// 参保地编码
+        /// Mã nơi tham gia bảo hiểm
         /// </summary>
         public string cbdbm { get; set; }
         /// <summary>
-        /// 姓名拼音
+        /// Pinyin họ tên
         /// </summary>
         public string py { get; set; }
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
         /// <summary>
-        /// 联系电话
+        /// Số điện thoại liên hệ
         /// </summary>
         public string ContactNum { get; set; }
 
         /// <summary>
-        /// 省
+        /// Tỉnh
         /// </summary>
         public string province { get; set; }
         /// <summary>
-        /// 市
+        /// Thành phố
         /// </summary>
         public string city { get; set; }
         /// <summary>
-        /// 县
+        /// Huyện
         /// </summary>
         public string county { get; set; }
         /// <summary>
-        /// 地址
+        /// Địa chỉ
         /// </summary>
         public string address { get; set; }
 
         public string nlshow { get; set; }
         /// <summary>
-        /// 挂号来源标志
+        /// Cờ nguồn đăng ký khám
         /// </summary>
         public string ghlybz { get; set; }
         /// <summary>
-        /// 医保个人编号
+        /// Số cá nhân BHYT
         /// </summary>
         public string grbh { get; set; }
         public short? queno { get; set; }

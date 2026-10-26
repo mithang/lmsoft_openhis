@@ -6,80 +6,80 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 门诊输液执行信息
+    /// Thông tin thực hiện truyền dịch ngoại trú
     /// </summary>
     [Table("mz_syzxxx")]
     public class MzsyzxxxEntity : IEntity<MzsyzxxxEntity>
     {
 
         /// <summary>
-        /// 主键ID
+        /// Khóa chínhID
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织机构
+        /// Tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// mz_syypxx表主键
+        /// mz_syypxxKhóa chính của bảng
         /// </summary>
         public long syypxxId { get; set; }
 
         /// <summary>
-        /// 座位号
+        /// Số ghế
         /// </summary>
         public string seatNum { get; set; }
 
         /// <summary>
-        /// 输液开始时间
+        /// Thời gian bắt đầu truyền dịch
         /// </summary>
         public DateTime? sykssj { get; set; }
 
         /// <summary>
-        /// 输液结束时间
+        /// Thời gian kết thúc truyền dịch
         /// </summary>
         public DateTime? syjssj { get; set; }
 
         /// <summary>
-        /// 配药师工号
+        /// Mã nhân viên dược sĩ pha thuốc
         /// </summary>
         public string dispenser { get; set; }
 
         /// <summary>
-        /// 执行人员工号
+        /// Mã nhân viên người thực hiện
         /// </summary>
         public string executor { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
 
         /// <summary>
-        /// 状态 0：无效  1：有效
+        /// Trạng thái 0:Vô hiệu  1:Có hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa đổi
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改者
+        /// Người sửa đổi
         /// </summary>
         public string LastModifierCode { get; set; }
     }

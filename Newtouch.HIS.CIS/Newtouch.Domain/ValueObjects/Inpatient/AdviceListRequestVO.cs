@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Inpatient
 {
     /// <summary>
-    /// 医嘱查询Grid request
+    /// Tra cứu y lệnhGrid request
     /// </summary>
    public class AdviceListRequestVO
     {
 
         /// <summary>
-        /// 当日医嘱
+        /// Y lệnh trong ngày
         /// </summary>
         public bool dryz { get; set; }
         
         public string yzlb { get; set; }
         /// <summary>
-        /// 未审核
+        /// Chưa duyệt
         /// </summary>
         public bool wsh { get; set; }
         /// <summary>
-        /// 全部，有效
+        /// Tất cả,Có hiệu lực
         /// </summary>
         public string yx { get; set; }
         public DateTime kssj { get; set; }

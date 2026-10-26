@@ -12,7 +12,7 @@ namespace Newtouch.Domain.IDomainServices
     public interface IOperationDmnService
     {
         /// <summary>
-        /// 手术安排列表查询
+        /// Tra cứu danh sách sắp xếp phẫu thuật
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -20,7 +20,7 @@ namespace Newtouch.Domain.IDomainServices
         List<ArrangeQueryGridVO> ArrangeQueryGridView(Pagination pagination, ArrangeQueryRequestVO req);
 
         /// <summary>
-        /// 手术安排内容获取
+        /// Lấy nội dung sắp xếp phẫu thuật
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -28,7 +28,7 @@ namespace Newtouch.Domain.IDomainServices
         ArrangementVO ArrangementForID(Pagination pagination, ArrangementRequestVO req);
 
         /// <summary>
-        /// 获取手术医嘱病人
+        /// Lấy bệnh nhân y lệnh phẫu thuật
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -38,14 +38,14 @@ namespace Newtouch.Domain.IDomainServices
         List<OperatPatVO> GetOperationPatSearchList(string psOrgId);
 
         /// <summary>
-        /// 提交补录费用
+        /// Gửi chi phí bổ sung
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="FeeDetails"></param>
         void InpatientFeeDetailSubmit(string orgId, string zyh, List<InpatientFeeDetailEntity> FeeDetails);
 
         /// <summary>
-        /// 通过住院号,医嘱性质获取费用信息
+        /// Thông qua số nội trú,Lấy thông tin chi phí theo tính chất y lệnh
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="zyh"></param>

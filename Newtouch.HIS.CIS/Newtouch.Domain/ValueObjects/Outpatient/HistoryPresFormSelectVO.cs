@@ -67,7 +67,7 @@
 
         public string zxksmc { get; set; }
         /// <summary>
-        /// 是否医保
+        /// Có phải BHYT hay không
         /// </summary>
         public string sfyb { get; set; }
     }

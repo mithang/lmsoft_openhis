@@ -7,11 +7,11 @@ namespace Newtouch.Domain.ValueObjects
     public class PrescriptionDetailQueryVO: PrescriptionDetailEntity
     {
         /// <summary>
-        /// 药品字典表的jldw
+        /// của bảng từ điển thuốcjldw
         /// </summary>
         public string redundant_jldw { get; set; }
         /// <summary>
-        /// 保存选择的jldw 同mcjldw
+        /// Lưu lựa chọnjldw cùngmcjldw
         /// </summary>
         public string mcjldwwwwwww { get; set; }
         /// <summary>
@@ -23,7 +23,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string ypgg { get; set; }
         /// <summary>
-        /// 门诊单位拆零数（开的、算钱的一定是用门诊单位）
+        /// Số lượng bán lẻ đơn vị ngoại trú(đã kê,Khi tính tiền nhất định dùng đơn vị ngoại trú)
         /// </summary>
         public decimal? cls { get; set; }
         /// <summary>
@@ -31,20 +31,20 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string yfmc { get; set; }
         /// <summary>
-        /// 单位计量数
+        /// Số lượng đo đơn vị
         /// </summary>
         public int? dwjls { get; set; }
         /// <summary>
-        /// 计价策略
+        /// Chiến lược định giá
         /// </summary>
         public int? jjcl { get; set; }
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 执行科室名称
+        /// Tên khoa thực hiện
         /// </summary>
         public string zxksmc { get; set; }
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Inpatient
 {
     /// <summary>
-    /// 手术安排对象
+    /// Đối tượng sắp xếp phẫu thuật
     /// </summary>
     public class OperatPatVO
     {

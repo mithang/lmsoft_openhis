@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 过敏信息
+    /// Thông tin dị ứng
     /// </summary>
     [Table("xt_gmxx")]
     public class AllergyEntity : IEntity<AllergyEntity>
@@ -18,42 +18,42 @@ namespace Newtouch.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织机构id
+        /// Tổ chứcid
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string sex { get; set; }
 
         /// <summary>
-        /// 过敏项目Code
+        /// Hạng mục dị ứngCode
         /// </summary>
         public string xmCode { get; set; }
 
         /// <summary>
-        /// 过敏项目名称
+        /// Tên hạng mục dị ứng
         /// </summary>
         public string xmmc { get; set; }
 
         /// <summary>
-        /// 结果
+        /// Kết quả
         /// </summary>
         public string Result { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string Remark { get; set; }
 
@@ -88,32 +88,32 @@ namespace Newtouch.Domain.Entity
         public string LastModifierName { get; set; }
 
         /// <summary>
-        /// 门诊住院标志
+        /// Cờ ngoại trú/nội trú
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 医嘱id
+        /// Y lệnhid
         /// </summary>
         public string yzid { get; set; }
 
         /// <summary>
-        /// 处方明细id
+        /// Chi tiết đơn thuốcid
         /// </summary>
         public string cfmxid { get; set; }
 
         /// <summary>
-        /// 执行状态
+        /// Trạng thái thực hiện
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 过敏类型
+        /// Loại dị ứng
         /// </summary>
         public string gmlx { get; set; }
 
         /// <summary>
-        /// 过敏药品Code
+        /// Thuốc gây dị ứngCode
         /// </summary>
         public string ypCode { get; set; }
     }

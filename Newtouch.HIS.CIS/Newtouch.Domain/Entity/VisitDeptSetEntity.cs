@@ -6,64 +6,64 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 出诊科室设置
+    /// Cài đặt khoa khám bệnh
     /// </summary>
     [Table("visit_deptSet")]
     public class VisitDeptSetEntity : IEntity<VisitDeptSetEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织结构
+        /// Cơ cấu tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 医生工号
+        /// Mã nhân viên bác sĩ
         /// </summary>
         public string ysgh { get; set; }
 
         /// <summary>
-        /// 出诊科室代码(包含所属科室)
+        /// Mã khoa khám bệnh(Bao gồm khoa trực thuộc)
         /// </summary>
         public string visitksCode { get; set; }
 
         /// <summary>
-        /// 出诊类型  1-普通门诊；2-急诊；3-专家门诊
+        /// Loại khám bệnh  1-Khám thường ngoại trú;2-Cấp cứu;3-Khám chuyên gia
         /// </summary>
         public int czlx { get; set; }
 
         /// <summary>
-        /// 所属科室代码
+        /// Mã khoa trực thuộc
         /// </summary>
         public string SubordinateDepartments { get; set; }
 
         /// <summary>
-        /// 状态     1:有效  0：无效
+        /// Trạng thái     1:Có hiệu lực  0:Vô hiệu
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa đổi
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改者
+        /// Người sửa đổi
         /// </summary>
         public string LastModifierCode { get; set; }
     }

@@ -10,47 +10,47 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
     public class InPatientInfoVO
     {
         /// <summary>
-        /// 住院号
+        /// Số nội trú
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// 病人性质
+        /// Tính chất bệnh nhân
         /// </summary>
         public string brxz { get; set; }
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ksmc { get; set; }
         /// <summary>
-        /// 住院医师
+        /// Bác sĩ nội trú
         /// </summary>
         public string zyys { get; set; }
         /// <summary>
-        /// 主治医生
+        /// Bác sĩ điều trị chính
         /// </summary>
         public string zzys { get; set; }
         /// <summary>
-        /// 主任医生
+        /// Bác sĩ chủ nhiệm
         /// </summary>
         public string zrys { get; set; }
         /// <summary>
-        /// 入院诊断
+        /// Chẩn đoán nhập viện
         /// </summary>
         public string ryzd { get; set; }
         /// <summary>
-        /// 出院诊断
+        /// Chẩn đoán xuất viện
         /// </summary>
         public string cyzd { get; set; }
         /// <summary>
-        /// 入院日期
+        /// Ngày nhập viện
         /// </summary>
         public DateTime? ryrq { get; set; }
         /// <summary>
-        /// 出院日期
+        /// Ngày xuất viện
         /// </summary>
         public DateTime? cyrq { get; set; }
         /// <summary>
-        /// 在院标志
+        /// Cờ đang ở viện
         /// </summary>
         public string zybz { get; set; }
         public List<WMDiagnosisHtmlVO> ryzdList { get; set; }

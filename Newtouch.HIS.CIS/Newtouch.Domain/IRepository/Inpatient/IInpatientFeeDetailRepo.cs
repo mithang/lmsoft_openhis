@@ -6,27 +6,27 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 13:27
-    /// 描 述：住院费用明细库
+    /// Tạo bởi:张冬林
+    /// Ngày:2018-06-28 13:27
+    /// Mô tả:CSDL chi tiết chi phí nội trú
     /// </summary>
     public interface IInpatientFeeDetailRepo : IRepositoryBase<InpatientFeeDetailEntity>
     {
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu(Thêm mới,Sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void SubmitForm(InpatientFeeDetailEntity entity, string keyValue);
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void DeleteForm(string keyValue);
 
         /// <summary>
-        /// 通过住院号,医嘱性质获取收费信息
+        /// Thông qua số nội trú,Lấy thông tin thu phí theo tính chất y lệnh
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="zyh"></param>

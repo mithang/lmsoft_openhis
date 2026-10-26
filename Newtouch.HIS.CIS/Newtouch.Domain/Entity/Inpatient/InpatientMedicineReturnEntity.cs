@@ -6,9 +6,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 15:37
-    /// 描 述：住院退药请求库
+    /// Tạo bởi:张冬林
+    /// Ngày:2018-06-28 15:37
+    /// Mô tả:CSDL yêu cầu trả thuốc nội trú
     /// </summary>
     [Table("zy_tyjl")]
     public class InpatientMedicineReturnEntity : IEntity<InpatientMedicineReturnEntity>
@@ -20,110 +20,110 @@ namespace Newtouch.Domain.Entity
         [Key]
         public string Id { get; set; }
         /// <summary>
-        /// 对应发药记录Id
+        /// Hồ sơ phát thuốc tương ứngId
         /// </summary>
         public string fyId { get; set; }
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         /// <returns></returns>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 退药序号 （标记一次退药）
+        /// Số thứ tự trả thuốc (Đánh dấu một lần trả thuốc)
         /// </summary>
         /// <returns></returns>
         public decimal tyxh { get; set; }
         /// <summary>
-        /// 医嘱序号
+        /// Số thứ tự y lệnh
         /// </summary>
         /// <returns></returns>
         public string yzxh { get; set; }
         /// <summary>
-        /// 分组序号
+        /// Số thứ tự nhóm
         /// </summary>
         public int? fzxh { get; set; }
         /// <summary>
-        /// 住院号
+        /// Số nội trú
         /// </summary>
         /// <returns></returns>
         public string zyh { get; set; }
         /// <summary>
-        /// 患者姓名
+        /// Họ tên bệnh nhân
         /// </summary>
         /// <returns></returns>
         public string hzxm { get; set; }
         /// <summary>
-        /// 病区代码
+        /// Mã khu bệnh
         /// </summary>
         /// <returns></returns>
         public string WardCode { get; set; }
         /// <summary>
-        /// 发药请求序号
+        /// Số thứ tự yêu cầu phát thuốc
         /// </summary>
         /// <returns></returns>
         public decimal? fyqqxh { get; set; }
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         /// <returns></returns>
         public string ypdm { get; set; }
         /// <summary>
-        /// 退药数量
+        /// Số lượng trả thuốc
         /// </summary>
         /// <returns></returns>
         public int tysl { get; set; }
         /// <summary>
-        /// 可退药品数量
+        /// Số lượng thuốc có thể trả
         /// </summary>
         /// <returns></returns>
         public int ktypsl { get; set; }
         /// <summary>
-        /// 药品规格
+        /// Quy cách thuốc
         /// </summary>
         /// <returns></returns>
         public string ypgg { get; set; }
         /// <summary>
-        /// 药品单位
+        /// Đơn vị thuốc
         /// </summary>
         /// <returns></returns>
         public string ypdw { get; set; }
         /// <summary>
-        /// 单位系数
+        /// Hệ số đơn vị
         /// </summary>
         /// <returns></returns>
         public decimal? dwxs { get; set; }
         /// <summary>
-        /// 药库系数
+        /// Hệ số kho thuốc
         /// </summary>
         /// <returns></returns>
         public decimal? ykxs { get; set; }
         /// <summary>
-        /// 药品单价
+        /// Đơn giá thuốc
         /// </summary>
         /// <returns></returns>
         public decimal? ypdj { get; set; }
         /// <summary>
-        /// （0 申请退药 1 退药成功）
+        /// (0 Yêu cầu trả thuốc 1 Trả thuốc thành công)
         /// </summary>
         /// <returns></returns>
         public int? tyqrbz { get; set; }
         /// <summary>
-        /// 退药确认序号 代替原：tyqqxh
+        /// Số thứ tự xác nhận trả thuốc Thay thế cho cái cũ:tyqqxh
         /// </summary>
         /// <returns></returns>
         public decimal? tyqrxh { get; set; }
         /// <summary>
-        /// 退药操作员代码
+        /// Mã nhân viên trả thuốc
         /// </summary>
         /// <returns></returns>
         public string tyczydm { get; set; }
         /// <summary>
-        /// 药房退药操作员代码
+        /// Mã nhân viên trả thuốc nhà thuốc
         /// </summary>
         /// <returns></returns>
         public string yftyczydm { get; set; }
         /// <summary>
-        /// 药房退药日期
+        /// Ngày trả thuốc nhà thuốc
         /// </summary>
         /// <returns></returns>
         public DateTime? yftyrq { get; set; }
@@ -148,12 +148,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 0无效1有效
+        /// 0Vô hiệu1Có hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }
         /// <summary>
-        /// 退药单号
+        /// Số phiếu trả thuốc
         /// </summary>
         /// <returns></returns>
         public string tydh { get; set; }

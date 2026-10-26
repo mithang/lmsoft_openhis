@@ -31,7 +31,7 @@ namespace Newtouch.Domain.ValueObjects
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 每次治疗量  针对康复项目
+        /// Liều lượng mỗi lần điều trị  Đối với hạng mục phục hồi chức năng
         /// </summary>
         public int? mczll { get; set; }
 
@@ -46,7 +46,7 @@ namespace Newtouch.Domain.ValueObjects
         public string mcjldw { get; set; }
 
         /// <summary>
-        /// 用法代码
+        /// Mã cách dùng
         /// </summary>
         public string yfCode { get; set; }
 
@@ -56,7 +56,7 @@ namespace Newtouch.Domain.ValueObjects
         public string pcCode { get; set; }
 
         /// <summary>
-        /// 药品中的数量=总量   康复中的总量=总量
+        /// Số lượng trong thuốc=Tổng lượng   Tổng lượng trong phục hồi chức năng=Tổng lượng
         /// </summary>
         public int? zl { get; set; }
 
@@ -86,7 +86,7 @@ namespace Newtouch.Domain.ValueObjects
         public string zh { get; set; }
 
         /// <summary>
-        /// 部位
+        /// Vị trí
         /// </summary>
         public string bw { get; set; }
 
@@ -114,11 +114,11 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public DateTime? zxsj { get; set; }
         /// <summary>
-        /// 医保唯一码
+        /// Mã duy nhất BHYT
         /// </summary>
         public string ybwym { get; set; }
         /// <summary>
-        /// 限制使用标志
+        /// Cờ hạn chế sử dụng
         /// </summary>
         public string xzsybz { get; set; }
 
@@ -129,7 +129,7 @@ namespace Newtouch.Domain.ValueObjects
         public string ztCode { get; set; }
 
         /// <summary>
-        /// 抗生素原因
+        /// Lý do dùng kháng sinh
         /// </summary>
         public string kssReason { get; set; }
         public string bwff { get; set; }
@@ -137,11 +137,11 @@ namespace Newtouch.Domain.ValueObjects
         public string sqlx { get; set; }
         public int? px { get; set; }
         /// <summary>
-        /// 滴速
+        /// Tốc độ truyền
         /// </summary>
         public int? ds { get; set; }
         /// <summary>
-        /// 转自费标志
+        /// Cờ chuyển sang tự chi trả
         /// </summary>
         public int? zzfbz { get; set; }
 
@@ -153,14 +153,14 @@ namespace Newtouch.Domain.ValueObjects
         public string zysm { get; set; }
 
         /// <summary>
-        /// 处方附带生成的常规处方
+        /// Đơn thuốc thường được tạo kèm theo đơn thuốc
         /// </summary>
         public string syncfbz { get; set; }
 		#endregion
 
 
 		/// <summary>
-		/// 处方id
+		/// Đơn thuốcid
 		/// </summary>
 		public string cfId { get; set; }
 

@@ -8,12 +8,12 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.IDomainServices
 {
     /// <summary>
-    /// 门诊预约挂号
+    /// Đăng ký khám hẹn ngoại trú
     /// </summary>
     public interface IMzyyghDmnService
     {
         /// <summary>
-        /// 根据病历号查询门诊预约挂号信息
+        /// Tra cứu thông tin đăng ký khám hẹn ngoại trú theo số bệnh án
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
@@ -23,16 +23,16 @@ namespace Newtouch.Domain.IDomainServices
         IList<MzyyghVO> SelectMzyyghDetail(Pagination pagination, string blh, string organizeId, DateTime regDate);
 
         /// <summary>
-        /// 门诊预约查询
+        /// Tra cứu hẹn ngoại trú
         /// </summary>
-        /// <param name="blh">病历号</param>
-        /// <param name="kh">卡号</param>
-        /// <param name="zjh">证件号</param>
+        /// <param name="blh">Số bệnh án</param>
+        /// <param name="kh">Số thẻ</param>
+        /// <param name="zjh">Số giấy tờ</param>
         /// <param name="organizeId"></param>
         List<MzBespeakRegisterQueryResponseDTO> MzBespeakRegisterQuery(string blh, string kh, string zjh, string organizeId);
 
         /// <summary>
-        /// 获取当前科室或专家已预约挂号总数
+        /// Lấy tổng số đăng ký khám theo hẹn của khoa hoặc chuyên gia hiện tại
         /// </summary>
         /// <param name="ksCode"></param>
         /// <param name="ysgh"></param>
@@ -43,9 +43,9 @@ namespace Newtouch.Domain.IDomainServices
         MzAlreadyBespeakRegisterCountQueryResponseDTO SelectAlreadyBespeakRegisterCount(string ksCode, string ysgh, DateTime regDate, string regTime, string organizeId);
 
         /// <summary>
-        /// 查询已预约挂号
+        /// Tra cứu đăng ký khám đã hẹn
         /// </summary>
-        /// <param name="mzlx">门诊住院标志 1：普通门诊  2：急诊   3：专家门诊</param>
+        /// <param name="mzlx">Cờ ngoại trú/nội trú 1:Khám thường ngoại trú  2:Cấp cứu   3:Khám chuyên gia</param>
         /// <param name="departmentCode"></param>
         /// <param name="ysgh"></param>
         /// <param name="beginTime"></param>

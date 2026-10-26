@@ -5,19 +5,19 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 处方明细
+    /// Chi tiết đơn thuốc
     /// </summary>
     public interface IPrescriptionDetailRepo : IRepositoryBase<PrescriptionDetailEntity>
     {
 
         /// <summary>
-        /// 获取处方明细
+        /// Lấy chi tiết đơn thuốc
         /// </summary>
         /// <param name="cfId"></param>
         /// <returns></returns>
         List<PrescriptionDetailEntity> SelectData(string cfId, bool djbz);
         /// <summary>
-        /// 获取代煎项目
+        /// Lấy hạng mục sắc hộ
         /// </summary>
         /// <param name="cfId"></param>
         /// <returns></returns>

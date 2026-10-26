@@ -10,118 +10,118 @@ namespace Newtouch.Domain.Entity
     {
 
         /// <summary>
-        /// 处方id
+        /// Đơn thuốcid
         /// </summary>
         [Key]
         public string cfId { get; set; }
 
         /// <summary>
-        /// 组织机构id
+        /// Tổ chứcid
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 就诊id
+        /// Khám bệnhid
         /// </summary>
         public string jzId { get; set; }
 
         /// <summary>
-        /// 收费标志
+        /// Cờ thu phí
         /// </summary>
         public bool sfbz { get; set; }
 
         /// <summary>
-        /// 处方类型
+        /// Loại đơn thuốc
         /// </summary>
         public int cflx { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 总金额
+        /// Tổng số tiền
         /// </summary>
         public decimal zje { get; set; }
 
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         public string ys { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// Người sửa đổi lần cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 贴数
+        /// Số thang
         /// </summary>
         public int? tieshu { get; set; }
 
         /// <summary>
-        /// 处方
+        /// Đơn thuốc
         /// </summary>
         public string cfyf { get; set; }
 
         /// <summary>
-        /// 是否代煎   1是  0否
+        /// Có sắc hộ hay không   1Có  0Không
         /// </summary>
         public bool? djbz { get; set; }
 
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// 同步标志
+        /// Cờ đồng bộ
         /// </summary>
         public bool? tbbz { get; set; }
 
         /// <summary>
-        /// 临床原因
+        /// Lý do lâm sàng
         /// </summary>
         public string lcyx { get; set; }
 
         /// <summary>
-        /// 申请备注
+        /// Ghi chú yêu cầu
         /// </summary>
         public string sqbz { get; set; }
 
         /// <summary>
-        /// 退标志
+        /// Cờ trả lại
         /// </summary>
         public bool? tbz { get; set; }
 
         /// <summary>
-        /// 申请单号
+        /// Số phiếu yêu cầu
         /// </summary>
         public string sqdh { get; set; }
 
         /// <summary>
-        /// 远程医疗上传状态
+        /// Trạng thái tải lên y tế từ xa
         /// </summary>
         public string SyncStatus { get; set; }
 
@@ -141,52 +141,52 @@ namespace Newtouch.Domain.Entity
         public string djts { get; set; }
 
         /// <summary>
-        /// 处方状态
+        /// Trạng thái đơn thuốc
         /// </summary>
         public string cfzt { get; set; }
 
         /// <summary>
-        /// 处方整剂医嘱说明
+        /// Giải thích y lệnh nguyên thang đơn thuốc
         /// </summary>
         public string rxDrordDscr { get; set; }
 
         /// <summary>
-        /// 处方有效天数
+        /// Số ngày hiệu lực đơn thuốc
         /// </summary>
         public int? valiDays { get; set; }
 
         /// <summary>
-        /// 复用(多次)使用标志
+        /// Tái sử dụng(Nhiều lần)Cờ sử dụng
         /// </summary>
         public string reptFlag { get; set; }
 
         /// <summary>
-        /// 最大使用次数
+        /// Số lần sử dụng tối đa
         /// </summary>
         public int? maxReptCnt { get; set; }
 
         /// <summary>
-        /// 使用最小间隔(天数)
+        /// Khoảng cách tối thiểu khi sử dụng(Số ngày)
         /// </summary>
         public int? minInrvDays { get; set; }
 
         /// <summary>
-        /// 续方标志
+        /// Cờ kê đơn tiếp
         /// </summary>
         public string rxCotnFlag { get; set; }
 
         /// <summary>
-        /// 长期处方标志
+        /// Cờ đơn thuốc dài hạn
         /// </summary>
         public string longRxFlag { get; set; }
 
         /// <summary>
-        /// 处方追溯码
+        /// Mã truy xuất đơn thuốc
         /// </summary>
         public string rxTraceCode { get; set; }
 
         /// <summary>
-        /// 医保处方编号
+        /// Số đơn thuốc BHYT
         /// </summary>
         public string hiRxno { get; set; }
     }

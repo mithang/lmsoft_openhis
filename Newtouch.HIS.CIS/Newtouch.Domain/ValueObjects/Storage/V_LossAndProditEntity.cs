@@ -7,87 +7,87 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Storage
 {
     /// <summary>
-    /// 损益明细信息
+    /// Thông tin chi tiết chênh lệch
     /// </summary>
     public class VLossAndProditEntity
     {
         /// <summary>
-        /// 损益标志
+        /// Cờ chênh lệch
         /// </summary>
         public string sybz { get; set; }
 
         /// <summary>
-        /// 损益原因
+        /// Nguyên nhân chênh lệch
         /// </summary>
         public string syyy { get; set; }
 
         /// <summary>
-        /// 单据号
+        /// Số chứng từ
         /// </summary>
         public string djh { get; set; }
 
         /// <summary>
-        /// 物资ID
+        /// Vật tưID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 物资名称
+        /// Tên vật tư
         /// </summary>
         public string wzmc { get; set; }
 
         /// <summary>
-        /// 进价
+        /// Giá nhập
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 报告时间
+        /// Thời gian báo cáo
         /// </summary>
         public DateTime Bgsj { get; set; }
 
         /// <summary>
-        /// 类别
+        /// Loại
         /// </summary>
         public string lb { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 产地名称
+        /// Tên xuất xứ
         /// </summary>
         public string cd { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string Ph { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn sử dụng
         /// </summary>
         public DateTime Yxq { get; set; }
 
         /// <summary>
-        /// 责任人
+        /// Người chịu trách nhiệm
         /// </summary>
         public string Zrr { get; set; }
 
         /// <summary>
-        /// 损益数量（带单位）
+        /// Số lượng chênh lệch(Kèm đơn vị)
         /// </summary>
         public string syslStr { get; set; }
 
         /// <summary>
-        /// 零售价
+        /// Giá bán lẻ
         /// </summary>
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 零售总额
+        /// Tổng số tiền bán lẻ
         /// </summary>
         public decimal ljze { get; set; }
     }

@@ -6,7 +6,7 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 手术费用补录
+    /// Bổ sung chi phí phẫu thuật
     /// </summary>
     public class OperatFeeVO
     {
@@ -141,12 +141,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string jzks { get; set; }
         /// <summary>
-        /// 1固定0不固定
+        /// 1Cố định0Không cố định
         /// </summary>
         /// <returns></returns>
         public int? gdzxbz { get; set; }
         /// <summary>
-        /// -1收费项目 0药品
+        /// -1Hạng mục thu phí 0Thuốc
         /// </summary>
         /// <returns></returns>
         public int? yzlb { get; set; }

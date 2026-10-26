@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 通用对象操作记录表
+    /// Bảng ghi nhận thao tác đối tượng chung
     /// </summary>
     [Table("xt_dxczjl")]
     public class SysObjectActionRecordEntity : IEntity<SysObjectActionRecordEntity>
@@ -28,7 +28,7 @@ namespace Newtouch.Domain.Entity
         public string objectType { get; set; }
 
         /// <summary>
-        /// object键
+        /// objectkhóa
         /// </summary>
         public string objectKey { get; set; }
 

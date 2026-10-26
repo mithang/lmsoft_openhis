@@ -7,20 +7,20 @@ namespace Newtouch.Domain.IDomainServices
     public interface IGroupPackageDmnService
     {
         /// <summary>
-        /// 组套项目
+        /// Hạng mục gói
         /// </summary>
         /// <param name="ztId"></param>
         GroupPackageDetailBO GetGroupPackageDetail(string ztId, string orgId);
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="ztobj"></param>
         /// <param name="ztxmlist"></param>
         void SaveData(GroupPackageEntity ztobj, List<GroupPackageItemEntity> ztxmlist);
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="ztId"></param>
         void DeleteData(string ztId);

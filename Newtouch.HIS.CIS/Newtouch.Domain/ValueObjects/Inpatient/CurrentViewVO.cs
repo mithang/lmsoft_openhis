@@ -3,7 +3,7 @@
 namespace Newtouch.Domain.ValueObjects.Inpatient
 {
     /// <summary>
-    /// 当日查看
+    /// Xem trong ngày
     /// </summary>
     public class CurrentViewVO
     {

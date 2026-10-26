@@ -28,17 +28,17 @@ namespace Newtouch.Domain.Entity
         public string ztmc { get; set; }
 
         /// <summary>
-        /// 1 检验 2 检查
+        /// 1 Xét nghiệm 2 Kiểm tra
         /// </summary>
         public int Type { get; set; }
 
         /// <summary>
-        /// 描述
+        /// Mô tả
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// 注意事项
+        /// Lưu ý
         /// </summary>
         public string Remark { get; set; }
 

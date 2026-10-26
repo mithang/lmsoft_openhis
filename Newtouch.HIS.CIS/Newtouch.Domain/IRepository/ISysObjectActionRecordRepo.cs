@@ -6,19 +6,19 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.IRepository
 {
     /// <summary>
-    /// 通用对象操作记录
+    /// Ghi nhận thao tác đối tượng chung
     /// </summary>
     public interface ISysObjectActionRecordRepo : IRepositoryBase<SysObjectActionRecordEntity>
     {
         /// <summary>
-        /// 新增操作记录
+        /// Thêm ghi nhận thao tác
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
         void Add(SysObjectActionRecordEntity entity);
 
         /// <summary>
-        /// 根据键获取List
+        /// Lấy theo khóaList
         /// </summary>
         /// <param name="objectKey"></param>
         /// <param name="orgId"></param>

@@ -6,9 +6,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 15:37
-    /// 描 述：住院病人信息
+    /// Tạo bởi:张冬林
+    /// Ngày:2018-06-28 15:37
+    /// Mô tả:Thông tin bệnh nhân nội trú
     /// </summary>
     [Table("zy_brxxk")]
     public class InpatientPatientInfoEntity : IEntity<InpatientPatientInfoEntity>
@@ -220,7 +220,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string zt { get; set; }
         /// <summary>
-        /// 秦皇岛医保卡个人编号
+        /// Số cá nhân thẻ BHYT Tần Hoàng Đảo
         /// </summary>
         public string grbh { get; set; }
     }

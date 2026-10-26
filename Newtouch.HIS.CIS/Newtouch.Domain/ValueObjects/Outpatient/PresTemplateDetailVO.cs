@@ -40,15 +40,15 @@ namespace Newtouch.Domain.ValueObjects
         public string zxksmc { get; set; }
 
         /// <summary>
-        /// 冗余的字段，页面上在给select填充options的时候用到
+        /// Trường dư thừa,Trên trang đang choselectĐiền vàooptionsdùng khi
         /// </summary>
         public string redundant_jldw { get; set; }
         /// <summary>
-        /// 是否医保 add by sunny 秦皇岛三期 引用历史处方时，医保病人无法选择自费项目
+        /// Có phải BHYT hay không add by sunny Tần Hoàng Đảo giai đoạn 3 Khi trích dẫn đơn thuốc lịch sử,Bệnh nhân BHYT không thể chọn hạng mục tự chi trả
         /// </summary>
         public string sfyb { get; set; }
         /// <summary>
-        /// add by huangshanshan 门诊模板复制用法和剂型关联，用法无法正常显示
+        /// add by huangshanshan Mẫu ngoại trú sao chép liên kết cách dùng và dạng bào chế,Cách dùng không hiển thị bình thường
         /// </summary>
         public string jxCode { get; set; }
         public string ztId { get; set; }

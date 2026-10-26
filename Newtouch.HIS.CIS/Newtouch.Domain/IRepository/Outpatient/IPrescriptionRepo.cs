@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IPrescriptionRepo : IRepositoryBase<PrescriptionEntity>
     {
         /// <summary>
-        /// 更新处方收费标志和同步标志
+        /// Cập nhật cờ thu phí và cờ đồng bộ đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="tbbz"></param>
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Domain.IRepository
         void UpdateChargeStatus(string cfh, bool tbbz, bool? sfbz, string orgId, string account);
 
         /// <summary>
-        /// 更新处方收费标志
+        /// Cập nhật cờ thu phí đơn thuốc
         /// </summary>
         /// <param name="part"></param>
         /// <param name="organizeId"></param>
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Domain.IRepository
         void UpdateChargeStatus(PrescriptionChargeRequest part, string organizeId, string userCode);
 
         /// <summary>
-        /// 更新处方收费标志
+        /// Cập nhật cờ thu phí đơn thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfh"></param>
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Domain.IRepository
         void UpdateChargeStatus(string orgId, string cfh, bool sfbz, string account);
 
         /// <summary>
-        /// 更新处方退标志
+        /// Cập nhật cờ trả đơn thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfh"></param>
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Domain.IRepository
         void UpdateChargeTbz(string orgId, string cfh, bool tbz, string account);
 
         /// <summary>
-        /// 获取处方信息
+        /// Lấy thông tin đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="orgId"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Domain.IRepository
         PrescriptionEntity FindListByCfh(string cfh, string orgId);
 
         /// <summary>
-        /// 获取处方信息
+        /// Lấy thông tin đơn thuốc
         /// </summary>
         /// <param name="jzId"></param>
         /// <param name="sfbz"></param>

@@ -10,7 +10,7 @@ namespace Newtouch.Domain.IDomainServices
     {
         string saveAsTemplate(InpatientOrderPackageEntity mbObj, List<InpatientOrderPackageVO> mxList, string orgId);
         /// <summary>
-        /// 根据模板ID找到模板内容
+        /// Theo mẫuIDTìm thấy nội dung mẫu
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="orgId"></param>
@@ -19,7 +19,7 @@ namespace Newtouch.Domain.IDomainServices
 
         List<HistoricalOrdersRequestDto> GetHistoricalOrders(string zyh,string type,string kssj,string jssj,string cqorls, string orgId);
         /// <summary>
-        /// 根据模板ID找到模板详情
+        /// Theo mẫuIDTìm thấy chi tiết mẫu
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="orgId"></param>
@@ -30,7 +30,7 @@ namespace Newtouch.Domain.IDomainServices
 
         string GetHistoricalRegist(string zyh,string curzyh, string yzlistId, string orgId, string creatorcode);
         /// <summary>
-        /// 删除模板
+        /// Xóa mẫu
         /// </summary>
         /// <param name="mbId"></param>
         void DeleteTemplate(string mbId, string orgId);

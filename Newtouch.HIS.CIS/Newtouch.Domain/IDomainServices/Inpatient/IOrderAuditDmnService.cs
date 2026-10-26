@@ -25,7 +25,7 @@ namespace Newtouch.Domain.IDomainServices
         List<DrugStockInfoVEntity> GetDrugAndStock(string yfcode,string keyword, string OrganizeId);
         IList<PharmacyInfoVEntity> GetTheLowerYfbmCodeList(string keyword, string OrganizeId);
         /// <summary>
-        /// 审核长期/临时/全部 
+        /// Duyệt dài hạn/Tạm thời/Tất cả 
         /// </summary>
         /// <param name="user"></param>
         /// <param name="patList"></param>
@@ -33,7 +33,7 @@ namespace Newtouch.Domain.IDomainServices
         /// <param name="IsRehabAuthtoNurse"></param>
         string OrderAuditSubmitbyPat(OperatorModel user, string patList, int Yzxz, IList<OrderAuditVO> orderList,string IsRehabAuthtoNurse = null, bool Iskf = false, string zxks = null);
         /// <summary>
-        /// 康复医嘱
+        /// Y lệnh phục hồi chức năng
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
@@ -43,14 +43,14 @@ namespace Newtouch.Domain.IDomainServices
         IList<OrderAuditVO> GetOrderAuditYZList_KF(Pagination pagination, string patList, string orgId, string zxks);
 
         /// <summary>
-        /// 皮试录入树
+        /// Cây nhập thử da
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
         IList<SkintestVO> SkintestVO(string orgId,string keyword,string selectkey);
 
         /// <summary>
-        /// 皮试病人信息展示
+        /// Hiển thị thông tin bệnh nhân thử da
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
@@ -60,7 +60,7 @@ namespace Newtouch.Domain.IDomainServices
 
         void Inputskintestresults(OperatorModel user, IList<SkintestqueryVO> orderList);
         /// <summary>
-        /// 多医嘱录入
+        /// Nhập nhiều y lệnh
         /// </summary>
         /// <param name="user"></param>
         /// <param name="yzids"></param>
@@ -73,7 +73,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<DisplayinformationVO> Displayinformation(string patList,string orgId);
 
 		/// <summary>
-		/// 住院医嘱发药查询
+		/// Tra cứu phát thuốc y lệnh nội trú
 		/// </summary>
 		/// <param name="xm"></param>
 		/// <param name="bqCode"></param>

@@ -15,7 +15,7 @@
         /// </summary>
         public int zdlx{ get; set; }
         /// <summary>
-        /// 疑似标志
+        /// Cờ nghi ngờ
         /// </summary>
         public bool ysbz { get; set; }
         /// <summary>
@@ -23,19 +23,19 @@
         /// </summary>
         public string icd10 { get; set; }
         /// <summary>
-        /// 西医诊断备注
+        /// Ghi chú chẩn đoán tây y
         /// </summary>
         public string zdbz { get; set; }
         /// <summary>
-        /// 牙位图类型
+        /// Loại sơ đồ vị trí răng
         /// </summary>
         public string ywlx { get; set; }
         /// <summary>
-        /// 牙位图位置
+        /// Vị trí sơ đồ răng
         /// </summary>
         public string ywstr { get; set; }
         /// <summary>
-        /// 牙位图显示
+        /// Hiển thị sơ đồ răng
         /// </summary>
         public string ywxs { get; set; }
     }

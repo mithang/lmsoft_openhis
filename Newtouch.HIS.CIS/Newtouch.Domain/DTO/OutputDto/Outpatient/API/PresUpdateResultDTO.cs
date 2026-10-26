@@ -3,12 +3,12 @@
 namespace Newtouch.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// 通过API更新处方的返回结果
+    /// Thông quaAPIKết quả trả về khi cập nhật đơn thuốc
     /// </summary>
     public class PresUpdateResultDTO
     {
         /// <summary>
-        /// 已结处方 处方号 List（哪些已结了 还请求更新）
+        /// Đơn thuốc đã quyết toán Số đơn thuốc List(Những cái nào đã quyết toán Vẫn yêu cầu cập nhật)
         /// </summary>
         public IList<string> settledCfhList { get; set; }
     }

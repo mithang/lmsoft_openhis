@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Outpatient
 {
     /// <summary>
-    /// 抗生素药品信息
+    /// Thông tin thuốc kháng sinh
     /// </summary>
     public class KssYpVO
     {
         /// <summary>
-        /// 药品Id
+        /// ThuốcId
         /// </summary>
         public int ypId { get; set; }
         /// <summary>
-        /// 药品Code
+        /// ThuốcCode
         /// </summary>
         public string ypCode { get; set; }
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
     }

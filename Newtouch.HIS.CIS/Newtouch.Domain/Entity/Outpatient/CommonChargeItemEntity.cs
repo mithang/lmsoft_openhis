@@ -18,32 +18,32 @@ namespace Newtouch.Domain.Entity
         public string cyxmId { get; set; }
 
         /// <summary>
-        /// 枚举 1 科室常用 2 个人常用
+        /// Enum 1 Thường dùng của khoa 2 Thường dùng cá nhân
         /// </summary>
         public int type { get; set; }
 
         /// <summary>
-        /// 关联base库的科室表
+        /// Liên kếtbaseBảng khoa của CSDL
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// 关联base库的人员表
+        /// Liên kếtbaseBảng nhân viên của CSDL
         /// </summary>
         public string ysgh { get; set; }
 
         /// <summary>
-        /// 枚举 1 康复项目 2 检验项目 3检查项目
+        /// Enum 1 Hạng mục phục hồi chức năng 2 Hạng mục xét nghiệm 3Hạng mục kiểm tra
         /// </summary>
         public int xmlx { get; set; }
 
         /// <summary>
-        /// 关联base库的收费项目表
+        /// Liên kếtbaseBảng hạng mục thu phí của CSDL
         /// </summary>
         public string xmCode { get; set; }
 
         /// <summary>
-        /// 冗余字段
+        /// Trường dư thừa
         /// </summary>
         public string xmmc { get; set; }
 

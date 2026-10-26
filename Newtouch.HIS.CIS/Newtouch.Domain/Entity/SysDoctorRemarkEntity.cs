@@ -28,12 +28,12 @@ namespace Newtouch.Domain.Entity
         public string ksCode { get; set; }
 
         /// <summary>
-        /// 嘱托编码
+        /// Mã dặn dò
         /// </summary>
         public string ztCode { get; set; }
 
         /// <summary>
-        /// 嘱托名称
+        /// Tên dặn dò
         /// </summary>
         public string ztmc { get; set; }
 

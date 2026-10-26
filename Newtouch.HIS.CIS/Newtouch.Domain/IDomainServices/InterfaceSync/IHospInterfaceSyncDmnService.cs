@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.IDomainServices.InterfaceSync
 {
     /// <summary>
-    /// 后台代接口类
+    /// Lớp giao diện thay thế backend
     /// </summary>
     public interface IHospInterfaceSyncDmnService
     {

@@ -16,50 +16,50 @@ namespace Newtouch.Domain.DTO.OutputDto.Inpatient.API
     }
 
     /// <summary>
-    /// 查询药品库存返回报文
+    /// Thông báo trả về khi tra cứu tồn kho thuốc
     /// </summary>
     public class StockQueryResponseDTO
     {
         /// <summary>
-        /// 药品库存信息
+        /// Thông tin tồn kho thuốc
         /// </summary>
         public List<DrugStockInfo> drugStockInfos { get; set; }
 
     }
 
     /// <summary>
-    /// 库存药品信息
+    /// Thông tin thuốc tồn kho
     /// </summary>
     public class DrugStockInfo
     {
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 领药药房
+        /// Nhà thuốc lĩnh thuốc
         /// </summary>
         public string lyyf { get; set; }
 
         /// <summary>
-        /// 做小单位库存数量
+        /// Làm số lượng tồn kho đơn vị nhỏ
         /// </summary>
         public int kscl { get; set; }
 
         /// <summary>
-        /// 做小单位冻结数量
+        /// Làm số lượng đóng băng đơn vị nhỏ
         /// </summary>
         public int djsl { get; set; }
 
         /// <summary>
-        /// 做小单位可用数量
+        /// Làm số lượng khả dụng đơn vị nhỏ
         /// </summary>
         public int kysl { get; set; }
     }

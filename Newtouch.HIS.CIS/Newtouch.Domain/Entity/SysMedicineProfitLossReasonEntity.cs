@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 科室备药药品损益原因
+    /// Nguyên nhân chênh lệch thuốc dự trữ khoa
     /// </summary>
     [Table("xt_ksbysyyy")]
 
@@ -29,7 +29,7 @@ namespace Newtouch.Domain.Entity
         public string syyy { get; set; }
 
         /// <summary>
-        /// 0 报损，1 报溢
+        /// 0 Báo hao hụt,1 Báo thừa
         /// </summary>
         public string sybz { get; set; }
 

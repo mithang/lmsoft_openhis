@@ -18,13 +18,13 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string bqdm { get; set; }
 
         /// <summary>
-        /// 上一个床位
+        /// Giường bệnh trước đó
         /// </summary>
         public string lastcwCode { get; set; }
         public string DeptCode { get; set; }
     }
     /// <summary>
-    /// 待入区患者信息
+    /// Thông tin bệnh nhân chờ vào khu
     /// </summary>
     public class NewPatInfoVO
     {
@@ -48,7 +48,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
     {
         public string bqCode { get; set; }
         public string OrganizeId { get; set; }
-        //是否占用
+        //Có bị chiếm hay không
         public string sfzy { get; set; }
     }
     public class BedInfoViewResponseVO
@@ -65,7 +65,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string brxzmc { get; set; }
         public string sfzt { get; set; }
         /// <summary>
-        /// 床位使用状态
+        /// Trạng thái sử dụng giường bệnh
         /// </summary>
         public int? cwsystu { get; set; }
 

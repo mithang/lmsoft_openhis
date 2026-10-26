@@ -1,29 +1,29 @@
 ﻿namespace Newtouch.Domain.DTO
 {
     /// <summary>
-    /// 下拉列表物资信息
+    /// Thông tin vật tư trong danh sách thả xuống
     /// </summary>
     public class DepartmentStockListQueryParamDTO
     {
         /// <summary>
-        /// keyword 物资名称/拼音
+        /// keyword Tên vật tư/Pinyin
         /// </summary>
         public string key { get; set; }
 
         /// <summary>
-        /// 当前库房
+        /// Kho hiện tại
         /// </summary>
         public string warehouseId { get; set; }
 
 
 
         /// <summary>
-        /// 组织结构
+        /// Cơ cấu tổ chức
         /// </summary>
         public string organizeId { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
     }

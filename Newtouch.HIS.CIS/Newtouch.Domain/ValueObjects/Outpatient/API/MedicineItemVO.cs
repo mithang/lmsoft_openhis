@@ -24,12 +24,12 @@
         public string jldw { get; set; }
 
         /// <summary>
-        /// 组号
+        /// Số nhóm
         /// </summary>
         public string zh { get; set; }
 
         /// <summary>
-        /// 用法代码
+        /// Mã cách dùng
         /// </summary>
         public string yfCode { get; set; }
         public int? zzfbz { get; set; }

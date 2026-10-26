@@ -19,7 +19,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string MZH { get; set; }
 
         /// <summary>
-        /// 枚举 1 西药处方 2 中药处方 3 康复处方 4 检验处方 5 检查处方 6 输液处方
+        /// Enum 1 Đơn thuốc tây 2 Đơn thuốc đông y 3 Đơn thuốc phục hồi chức năng 4 Đơn xét nghiệm 5 Đơn kiểm tra 6 Đơn truyền dịch
         /// </summary>
         public string CFH { get; set; }
 
@@ -44,7 +44,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string YSXM { get; set; }
 
         /// <summary>
-        /// 处方明细
+        /// Chi tiết đơn thuốc
         /// </summary>
         public List<SqtxCFYP> ypcfmxList { get; set; }
 

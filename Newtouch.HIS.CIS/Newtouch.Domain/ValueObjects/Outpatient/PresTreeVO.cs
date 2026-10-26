@@ -23,12 +23,12 @@
         public int lsblly { get; set; }
 
         /// <summary>
-        /// 挂号科室名称
+        /// Tên khoa đăng ký khám
         /// </summary>
         public string ghksmc { get; set; }
 
         /// <summary>
-        /// 最后看诊医生
+        /// Bác sĩ khám cuối cùng
         /// </summary>
         public string jzysmc { get; set; }
     }

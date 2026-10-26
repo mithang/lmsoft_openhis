@@ -9,198 +9,198 @@ namespace Newtouch.Domain.Entity
     public class DzcfmxEntity : IEntity<DzcfmxEntity>
     {
         /// <summary>
-        /// 处方明细id
+        /// Chi tiết đơn thuốcid
         /// </summary>
         [Key]
         public string cfmxId { get; set; }
 
         /// <summary>
-        /// 组织机构id
+        /// Tổ chứcid
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 处方id
+        /// Đơn thuốcid
         /// </summary>
         public string cfId { get; set; }
 
         /// <summary>
-        /// 项目代码
+        /// Mã hạng mục
         /// </summary>
         public string xmCode { get; set; }
 
         /// <summary>
-        /// 项目名称
+        /// Tên hạng mục
         /// </summary>
         public string xmmc { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 单价
+        /// Đơn giá
         /// </summary>
         public decimal? dj { get; set; }
 
         /// <summary>
-        /// 每次治疗量
+        /// Liều lượng mỗi lần điều trị
         /// </summary>
         public int? mczll { get; set; }
 
         /// <summary>
-        /// 每次剂量
+        /// Liều mỗi lần
         /// </summary>
         public decimal? mcjl { get; set; }
 
         /// <summary>
-        /// 每次剂量单位
+        /// Đơn vị liều mỗi lần
         /// </summary>
         public string mcjldw { get; set; }
 
         /// <summary>
-        /// 用法代码
+        /// Mã cách dùng
         /// </summary>
         public string yfCode { get; set; }
 
         /// <summary>
-        /// 频次代码
+        /// Mã tần suất
         /// </summary>
         public string pcCode { get; set; }
 
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public int? sl { get; set; }
 
         /// <summary>
-        /// 总量
+        /// Tổng lượng
         /// </summary>
         public int? zl { get; set; }
 
         /// <summary>
-        /// 总量单位
+        /// Đơn vị tổng lượng
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 金额
+        /// Số tiền
         /// </summary>
         public decimal? je { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime? CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户id
+        /// Người tạoid
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户id
+        /// Người sửa đổi lần cuốiid
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 组号
+        /// Số nhóm
         /// </summary>
         public string zh { get; set; }
 
         /// <summary>
-        /// 贴数
+        /// Số thang
         /// </summary>
         public string bw { get; set; }
 
         /// <summary>
-        /// 加急
+        /// Khẩn
         /// </summary>
         public string urgent { get; set; }
 
         /// <summary>
-        /// 目的
+        /// Mục đích
         /// </summary>
         public string purpose { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string Remark { get; set; }
 
         /// <summary>
-        /// 执行科室
+        /// Khoa thực hiện
         /// </summary>
         public string zxks { get; set; }
 
         /// <summary>
-        /// 执行时间
+        /// Thời gian thực hiện
         /// </summary>
         public DateTime? zxsj { get; set; }
 
         /// <summary>
-        /// 医保唯一码
+        /// Mã duy nhất BHYT
         /// </summary>
         public string ybwym { get; set; }
 
         /// <summary>
-        /// 限制使用标志
+        /// Cờ hạn chế sử dụng
         /// </summary>
         public string xzsybz { get; set; }
 
         /// <summary>
-        /// 天数
+        /// Số ngày
         /// </summary>
         public decimal? ts { get; set; }
 
         /// <summary>
-        /// 抗生素使用原因
+        /// Lý do sử dụng kháng sinh
         /// </summary>
         public string kssReason { get; set; }
 
         /// <summary>
-        /// 组套id
+        /// Góiid
         /// </summary>
         public string ztId { get; set; }
 
         /// <summary>
-        /// 组套名称
+        /// Tên gói
         /// </summary>
         public string ztmc { get; set; }
 
         /// <summary>
-        /// 部位
+        /// Vị trí
         /// </summary>
         public string bwff { get; set; }
 
         /// <summary>
-        /// 申请类型
+        /// Loại yêu cầu
         /// </summary>
         public string sqlx { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 滴速
+        /// Tốc độ truyền
         /// </summary>
         public int? ds { get; set; }
 

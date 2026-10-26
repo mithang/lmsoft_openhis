@@ -11,31 +11,31 @@ namespace Newtouch.Domain.ViewModels
         public string Id { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 应用代码Sett\CIS 等
+        /// Mã ứng dụngSett\CIS v.v.
         /// </summary>
         public string AppId { get; set; }
         /// <summary>
-        /// 报表名称
+        /// Tên báo cáo
         /// </summary>
         public string RptName { get; set; }
         /// <summary>
-        /// 报表服务root
+        /// Dịch vụ báo cáoroot
         /// </summary>
         public string RptHost { get; set; }
         /// <summary>
-        /// 报表地址
+        /// Địa chỉ báo cáo
         /// </summary>
         public string RptUrl { get; set; }
         /// <summary>
-        /// 数据源
+        /// Nguồn dữ liệu
         /// </summary>
         public string RptSource { get; set; }
         /// <summary>
-        /// 参数
+        /// Tham số
         /// </summary>
         public string Paras { get; set; }
         /// <summary>
-        /// 工具栏 date（单日期） ,daterange（时间范围）
+        /// Thanh công cụ date(Ngày đơn) ,daterange(Phạm vi thời gian)
         /// </summary>
         public string Tools { get; set; }
         public DateTime CreateTime { get; set; }
@@ -46,7 +46,7 @@ namespace Newtouch.Domain.ViewModels
         public string zt { get; set; }
         public IList<ReportPara> Paralist { get; set; }
         /// <summary>
-        /// 报表 代码
+        /// Báo cáo Mã
         /// </summary>
         public string RptCode { get; set; }
     }

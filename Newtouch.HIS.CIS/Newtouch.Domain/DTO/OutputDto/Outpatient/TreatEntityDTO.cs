@@ -7,24 +7,24 @@ namespace Newtouch.Domain.DTO.OutputDto
     public class TreatEntityObj : TreatmentEntity
     {
         /// <summary>
-        /// 省
+        /// Tỉnh
         /// </summary>
         public string province { get; set; }
         /// <summary>
-        /// 市
+        /// Thành phố
         /// </summary>
         public string city { get; set; }
         /// <summary>
-        /// 县
+        /// Huyện
         /// </summary>
         public string county { get; set; }
         /// <summary>
-        /// 地址
+        /// Địa chỉ
         /// </summary>
         public string address { get; set; }
         public int? queno { get; set; }
         /// <summary>
-        /// 转诊标识：是否为转诊患者
+        /// Dấu hiệu chuyển viện:Có phải bệnh nhân chuyển viện hay không
         /// </summary>
         public string zzbs { get; set; }
     }
@@ -32,187 +32,187 @@ namespace Newtouch.Domain.DTO.OutputDto
     public class OutPatientRegistrationInfoDTO
     {
         /// <summary>
-        /// 门诊号
+        /// Số ngoại trú
         /// </summary>
         public string mzh { get; set; }
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         public string ys { get; set; }
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         public string ysxm { get; set; }
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ks { get; set; }
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ksmc { get; set; }
         /// <summary>
-        /// 病人性质
+        /// Tính chất bệnh nhân
         /// </summary>
         public string brxz { get; set; }
         /// <summary>
-        /// 病人性质
+        /// Tính chất bệnh nhân
         /// </summary>
         public string brxzmc { get; set; }
         /// <summary>
-        /// 病人姓名
+        /// Họ tên bệnh nhân
         /// </summary>
         public string brxm { get; set; }
         /// <summary>
-        /// 婚姻状况
+        /// Tình trạng hôn nhân
         /// </summary>
         public string maritalStatus { get; set; }
         /// <summary>
-        /// 婚姻状况
+        /// Tình trạng hôn nhân
         /// </summary>
         public string maritalStatusValue { get; set; }
         /// <summary>
-        /// 证件类型
+        /// Loại giấy tờ
         /// </summary>
         public string zjlx { get; set; }
         /// <summary>
-        /// 证件类型
+        /// Loại giấy tờ
         /// </summary>
         public string zjlxValue { get; set; }
         /// <summary>
-        /// 证件号
+        /// Số giấy tờ
         /// </summary>
         public string zjh { get; set; }
         /// <summary>
-        /// 身份证号码
+        /// Số CMND
         /// </summary>
         public string idCardNo { get; set; }
         /// <summary>
-        /// 联系号码
+        /// Số liên hệ
         /// </summary>
         public string contactNum { get; set; }
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string sex { get; set; }
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string sexValue { get; set; }
         /// <summary>
-        /// 出生日期
+        /// Ngày sinh
         /// </summary>
         public string birth { get; set; }
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string status { get; set; }
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string statusValue { get; set; }
         /// <summary>
-        /// 省
+        /// Tỉnh
         /// </summary>
         public string province { get; set; }
         /// <summary>
-        /// 市
+        /// Thành phố
         /// </summary>
         public string city { get; set; }
         /// <summary>
-        /// 县
+        /// Huyện
         /// </summary>
         public string county { get; set; }
         /// <summary>
-        /// 地址
+        /// Địa chỉ
         /// </summary>
         public string address { get; set; }
         /// <summary>
-        /// 挂号时间
+        /// Thời gian đăng ký khám
         /// </summary>
         public string ghsj { get; set; }
         /// <summary>
-        /// 紧急联系人
+        /// Người liên hệ khẩn cấp
         /// </summary>
         public string contPerName { get; set; }
         /// <summary>
-        /// 紧急联系人电话
+        /// Số điện thoại người liên hệ khẩn cấp
         /// </summary>
         public string contPerPhoneNum { get; set; }
         /// <summary>
-        /// 紧急联系人关系
+        /// Quan hệ người liên hệ khẩn cấp
         /// </summary>
         public string contPerRel { get; set; }
         /// <summary>
-        /// 紧急联系人关系
+        /// Quan hệ người liên hệ khẩn cấp
         /// </summary>
         public string contPerRelValue { get; set; }
         /// <summary>
-        /// 最后更新时间
+        /// Thời gian cập nhật lần cuối
         /// </summary>
         public string updateTime { get; set; }
 
         /// <summary>
-        /// 门急诊标志
+        /// Cờ khám ngoại trú/cấp cứu
         /// </summary>
         public string mjzbz { get; set; }
 
         /// <summary>
-        /// 门急诊标志
+        /// Cờ khám ngoại trú/cấp cứu
         /// </summary>
         public string mjzbzValue { get; set; }
 
         /// <summary>
-        /// 就诊标志
+        /// Cờ khám bệnh
         /// </summary>
         public string jiuzhenbz { get; set; }
 
         /// <summary>
-        /// 就诊标志
+        /// Cờ khám bệnh
         /// </summary>
         public string jiuzhenbzValue { get; set; }
 
         /// <summary>
-        /// 挂号操作时间
+        /// Thời gian thao tác đăng ký khám
         /// </summary>
         public string operatingTime { get; set; }
 
         /// <summary>
-        /// 医保结算号（前置）
+        /// Số quyết toán BHYT(tiền xử lý)
         /// </summary>
         public string ybjsh { get; set; }
 
         /// <summary>
-        /// 复诊标志 1复诊
+        /// Cờ tái khám 1Tái khám
         /// </summary>
         public string fzbz { get; set; }
 
         /// <summary>
-        /// 社保编号
+        /// Số bảo hiểm xã hội
         /// </summary>
         public string sbbh { get; set; }
 
         /// <summary>
-        /// 参保地编码
+        /// Mã nơi tham gia bảo hiểm
         /// </summary>
         public string cbdbm { get; set; }
 
         /// <summary>
-        /// 拼音（患者姓名首拼）
+        /// Pinyin(Chữ cái đầu pinyin họ tên bệnh nhân)
         /// </summary>
         public string py { get; set; }
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
 
         public string nlshow { get; set; }
         /// <summary>
-        /// 挂号来源标签 2020-3-4 新增
+        /// Nhãn nguồn đăng ký khám 2020-3-4 Thêm mới
         /// </summary>
         public string ghlybz { get; set; }
 

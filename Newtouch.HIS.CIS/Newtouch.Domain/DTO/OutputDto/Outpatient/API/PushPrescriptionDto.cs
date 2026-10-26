@@ -4,20 +4,20 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// 推送处方
+    /// Đẩy đơn thuốc
     /// </summary>
     public class PrescriptionAPIDto
     {
         /// <summary>
-        /// 1 药品 2项目
+        /// 1 Thuốc 2Hạng mục
         /// </summary>
         public int cflx { get; set; }
         /// <summary>
-        /// 处方类型细分 EnumCflx
+        /// Phân loại chi tiết loại đơn thuốc EnumCflx
         /// </summary>
         public int cflxxf { get; set; }
         /// <summary>
-        /// 处方类型名称
+        /// Tên loại đơn thuốc
         /// </summary>
         public string cflxmc { get; set; }
         /// <summary>
@@ -34,26 +34,26 @@ namespace Newtouch.Domain.DTO.OutputDto
         public bool? djbz { get; set; }
 
         /// <summary>
-        /// 单一挂号可能有不同的医生给开处方
+        /// Một lần đăng ký khám có thể có các bác sĩ khác nhau kê đơn
         /// </summary>
         public string ys { get; set; }
 
         /// <summary>
-        /// 单一挂号可能有不同的医生给开处方
+        /// Một lần đăng ký khám có thể có các bác sĩ khác nhau kê đơn
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// 领药药房Code
+        /// Nhà thuốc lĩnh thuốcCode
         /// </summary>
         public string lyyf { get; set; }
 
         /// <summary>
-        /// 药品明细
+        /// Chi tiết thuốc
         /// </summary>
         public List<MedicineItemVO> AddMedicineItems { get; set; }
         /// <summary>
-        /// 项目明细
+        /// Chi tiết hạng mục
         /// </summary>
         public List<TreamentItemVO> AddTreamentItems { get; set; }
     }
