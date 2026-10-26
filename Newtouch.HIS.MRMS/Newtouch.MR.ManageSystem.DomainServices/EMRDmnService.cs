@@ -24,7 +24,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
         #region EMR 相关
 
         /// <summary>
-        /// 获取患者病历树
+        /// Lấy cây bệnh án của bệnh nhân
         /// </summary>
         /// <param name="OrgId"></param>
         /// <param name="zyh"></param>
@@ -50,7 +50,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
         }
 
         /// <summary>
-        /// 获取无病案病人列表
+        /// Lấy bệnh nhân chưa có bệnh ánngườiDanh sách
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="OrgId"></param>
@@ -102,13 +102,13 @@ and not exists(select 1 from mr_basy m with(nolock) where a.organizeid=m.organiz
                 }
             }
 
-            //在院
+            //Đang nằm viện
             if (type == Convert.ToInt32(EnumZYBZ.Bqz))
             {
                 sql += " and zybz in(" + Convert.ToInt32(EnumZYBZ.Bqz) + "," + Convert.ToInt32(EnumZYBZ.Zq) + ")";
 
             }
-            //出院（已结账、待结账）
+            //Xuất viện (đã thanh toán, chờ thanh toán）
             else if (type == Convert.ToInt32(EnumZYBZ.Ycy) || type == Convert.ToInt32(EnumZYBZ.Djz))
             {
                 sql += " and zybz in(" + Convert.ToInt32(EnumZYBZ.Ycy) + "," + Convert.ToInt32(EnumZYBZ.Djz) + ") ";
@@ -204,13 +204,13 @@ and not exists(select 1 from mr_basy m with(nolock) where a.organizeid=m.organiz
                 sql += " and cqrq between '" + kssj + "' and '" + jssj + "'+' 23:59:59'  ";
             }
 
-            //在院
+            //Đang nằm viện
             if (type == Convert.ToInt32(EnumZYBZ.Bqz))
 			{
 				sql += " and zybz in(" + Convert.ToInt32(EnumZYBZ.Bqz) + "," + Convert.ToInt32(EnumZYBZ.Zq) + ")";
 
 			}
-			//出院（已结账、待结账）
+			//Xuất viện (đã thanh toán, chờ thanh toán）
 			else if (type == Convert.ToInt32(EnumZYBZ.Ycy) || type == Convert.ToInt32(EnumZYBZ.Djz))
 			{
 				sql += " and zybz in(" + Convert.ToInt32(EnumZYBZ.Ycy) + "," + Convert.ToInt32(EnumZYBZ.Djz) + ") ";
@@ -224,7 +224,7 @@ and not exists(select 1 from mr_basy m with(nolock) where a.organizeid=m.organiz
 
 			}
 
-			if (blzt != ((int)EnumRecordStu.wtj).ToString()) //尚未提交
+			if (blzt != ((int)EnumRecordStu.wtj).ToString()) //Chưa nộp
 			{
 				sql += " and isnull(RecordStu,0)=@blzt ";
 				para.Add(new SqlParameter("@blzt", blzt));

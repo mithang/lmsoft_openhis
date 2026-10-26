@@ -46,22 +46,22 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
             //object[] oplist = new[]{
             //    new{
             //        group="",
-            //        name="放射室",
+            //        name="Phòng X-quang",
             //        Code="07"
             //    },
             //    new {
-            //        group="病案科室一",
-            //        name="妇产科",
+            //        group="Khoa bệnh án1",
+            //        name="Khoa Sản phụ",
             //        Code="00000005"
             //    },
             //    new{
-            //        group="病案科室二",
-            //        name="收费室",
+            //        group="Khoa bệnh án2",
+            //        name="Phòng thu phí",
             //        Code="00000009"
             //    },
             //    new{
-            //        group="病案科室三",
-            //        name="药房",
+            //        group="Khoa bệnh án3",
+            //        name="Nhà thuốc",
             //        Code="00000003"
             //    },
 
@@ -78,7 +78,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
             return Content(data.ToJson());
         }
 
-        //获取病案科室下拉框内容
+        //LấyKhoa bệnh ánNội dung hộp thả xuống
         public ActionResult GetDicDeptList(Pagination pagination, string keyword)
         {
             var oplist = _MrdicdeptRepo.GetDicDeptList(OrganizeId);
@@ -94,7 +94,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
 
         }
 
-        //新增 更新 病案科室his科室关系表
+        //Thêm mới Cập nhật Khoa bệnh ánhisKhoaQuan hệBảng
         public ActionResult SubmitForm(string hisdept, string hisdeptname, string baksId) {
             MrreldeptEntity entity= new MrreldeptEntity();
             entity.hisdept = hisdept;
@@ -109,7 +109,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
         }
 
         /// <summary>
-        /// 分页获取病案列表
+        /// Lấy danh sách bệnh án theo trang
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -127,7 +127,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
         }
 
         /// <summary>
-        /// 新增/修改 病案信息
+        /// Thêm mới/Sửa đổi Thông tin bệnh án
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -143,7 +143,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
         }  
 
         /// <summary>
-        /// 查询单条病案信息
+        /// Tìm kiếmThông tin bệnh án đơn lẻ
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -154,7 +154,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
         }
 
         /// <summary>
-        /// 删除病案信息
+        /// XóaThông tin bệnh án
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

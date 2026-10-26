@@ -14,23 +14,23 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
 		/// </summary>
 		public string id { set; get; }
 		/// <summary>
-		/// 住院号
+		/// Số nhập viện
 		/// </summary>
 		public string zyh { set; get; }
 		/// <summary>
-		/// 手术名称
+		/// Tên phẫu thuật
 		/// </summary>
 		public string ssmc { get; set; }
 		/// <summary>
-		/// 麻醉方法
+		/// Phương pháp gây mê
 		/// </summary>
 		public string mzfs { get; set; }
 		/// <summary>
-		/// 手术医师
+		/// Bác sĩ phẫu thuật
 		/// </summary>
 		public string ssys { get; set; }
 		/// <summary>
-		/// 手术日期
+		/// Ngày phẫu thuật
 		/// </summary>
 		public DateTime? ssrq { get; set; }
 	}

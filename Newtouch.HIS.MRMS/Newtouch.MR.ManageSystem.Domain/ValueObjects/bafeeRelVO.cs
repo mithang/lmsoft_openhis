@@ -11,7 +11,7 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
     public class bafeeRelVO : IEntity<bafeeRelEntity>
     {
         /// <summary>
-        /// 大类名称
+        /// Tên nhóm lớn
         /// </summary>
         public string name { get; set; }
         public string Id { get; set; }

@@ -1,5 +1,5 @@
 ﻿@{
-	ViewBag.Title = "收费大类";
+	ViewBag.Title = "Nhóm thu phí lớn";
 	Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -41,7 +41,7 @@
 
 <div style="width:100%;">
 	<div class="dv-left">
-		<div class="dv-left-title">收费大类</div>
+		<div class="dv-left-title">Nhóm thu phí lớn</div>
 		<div class="dv-left-tree" id="FeeTreeList"></div>
 	</div>
     <div class="dv-rightt">
@@ -52,7 +52,7 @@
                 </div>
                 <div class="btn-group">
                     <a id="btn_add" class="btn btn-primary" onclick="btn_add()" style="display:none;">
-                        <i class="fa fa-plus"></i>新增
+                        <i class="fa fa-plus"></i>Thêm mới
                     </a>
                 </div>
             </div>
@@ -72,7 +72,7 @@
 	$(".dv-left-tree").height($(window).height() - 70);
 
 	$(function () {
-		$(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+		$(window).resize(function () {//Điều chỉnh cửa sổ trình duyệtgiờTính lại chiều rộng và chiều cao
 			$(".dv-body").height($(window).height());
 			$(".dv-body").width($(window).width());
 		});
@@ -80,13 +80,13 @@
 		//$('#gridList1').newtouchLocalDataGrid(null, orderList);
 		getFeeTreeList();
 		GridInit();
-		//隐藏新增按钮
+		//ẨnThêm mớinút bấm
 
 	});
 
 
 
-	//加载树
+	//Tải cây
 	var treeNodeSelected = "";
 	function getFeeTreeList() {
 		$("#FeeTreeList").treeview({
@@ -100,7 +100,7 @@
 				$('#gridList1').jqGrid('setGridParam', {
 					postData: { id:id }
 				}).trigger("reloadGrid");
-				//显示新增按钮
+				//Hiển thịThêm mớinút bấm
 				$("#btn_add").attr("style", "display:block;");
 			},
 		});
@@ -117,7 +117,7 @@
 		
 	}
 
-	//级联选中所有子节点
+	//Chọn liên tiếp tất cả các nút conmụcnút
 	function checkAllSon(node) {
 		$('#FeeTreeList').treeview('checkNode', node.nodeId, { silent: true });
 		if (node.nodes != null && node.nodes.length > 0) {
@@ -126,7 +126,7 @@
 			}
 		}
 	}
-	//级联取消所有子节点
+	//Hủy chọn liên tiếp tất cả các nút conmụcnút
 	function uncheckAllSon(node) {
 		$('#FeeTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
 		if (node.nodes != null && node.nodes.length > 0) {
@@ -145,13 +145,13 @@
 			height: $(window).height() - 118,
 			colModel: [
 				{ label: "Id", name: "Id", hidden: true },
-				{ label: "收费大类名称", name: "name", width: 150, align: 'left' },
-				{ label: "收费项目", name: "sfxm", width: 120, align: 'left' },
-				{ label: "收费项目名称", name: "sfxmmc", width: 350, align: 'left' },
-				//{ label: "收费大类", name: "feetypecode", width: 180, align: 'left' },
+				{ label: "Tên nhóm thu phí lớn", name: "name", width: 150, align: 'left' },
+				{ label: "Hạng mục thu phí", name: "sfxm", width: 120, align: 'left' },
+				{ label: "Tên hạng mục thu phí", name: "sfxmmc", width: 350, align: 'left' },
+				//{ label: "Nhóm thu phí lớn", name: "feetypecode", width: 180, align: 'left' },
 				{
-					label: "操作", name: "", width: 120, align: 'center', formatter(val, option, row) {
-                        return "<a class='btn btn-default' style='width:50px;font-weight:bold;' onclick=btn_delete('" + row.Id + "')>删除当前</a>" ;
+					label: "Thao tác", name: "", width: 120, align: 'center', formatter(val, option, row) {
+                        return "<a class='btn btn-default' style='width:50px;font-weight:bold;' onclick=btn_delete('" + row.Id + "')>XóaHiện tại</a>" ;
 					}
 				}
 			],
@@ -174,7 +174,7 @@
 	function btn_add() {
 		//var keyValue = $("#gridList1").jqGridRowValue().Id;
 		//if (!!!keyValue) {
-		//    $.modalAlert("请选中一条信息", 'warning');
+		//    $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
 		//    return false;
 		//}
 		var postData = treeNodeSelected;
@@ -183,7 +183,7 @@
 		var name = treeNodeSelected.text;
 		$.modalOpen({
 			id: "updateForm",
-			title: "新增项目收费大类",
+			title: "Thêm mớiHạng mụcNhóm thu phí lớn",
 			url: "/RecordManage/MrFeeItem/Form?keyValue=" + keyValue+"&code="+code+"&name="+name,
 			postData: postData,
 			width: "800px",
@@ -205,21 +205,21 @@
 	}
 
 	function btn_delete(keyValue) {
-		window.$.modalConfirm("确定要删除吗？", function (flag) {
+		window.$.modalConfirm("Bạn có chắc chắn muốn xóa không?？", function (flag) {
 			if (!flag) {
 				return false;
 			}
 			return true;
 		});
 		if (!!!keyValue) {
-			window.$.modalAlert("请选中一条信息", 'warning');
+			window.$.modalAlert("Vui lòng chọn một bản ghi", 'warning');
 			return false;
 		}
 		window.$.deleteForm({
 			url: "/RecordManage/MrFeeItem/DeleteForm",
 			param: { keyValue: keyValue },
 			success: function () {
-				$.modalMsg("删除成功", "success");
+				$.modalMsg("Xóa thành công", "success");
 				$('#gridList1').jqGrid('setGridParam', {
 					postData: { id: treeNodeSelected.value }
 				}).trigger("reloadGrid");

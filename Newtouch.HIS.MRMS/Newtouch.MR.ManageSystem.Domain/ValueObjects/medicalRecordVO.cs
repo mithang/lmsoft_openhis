@@ -36,15 +36,15 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
     public class BlTemplateVo
     {
         /// <summary>
-        /// 文书、模板Id
+        /// Văn bản, mẫuId
         /// </summary>
         public string templateId { get; set; }
         /// <summary>
-        /// 文书、模板名称
+        /// Văn bản, mẫuTên
         /// </summary>
         public string templateName { get; set; }
         /// <summary>
-        /// 文书内容
+        /// Nội dung văn bản
         /// </summary>
         public string xmldata { get; set; }
 

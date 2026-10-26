@@ -6,14 +6,14 @@ using FrameworkBase.MultiOrg.Domain.IRepository;
 namespace Newtouch.MR.ManageSystem.Web.Controllers
 {
     /// <summary>
-    /// 首页
+    /// Trang chủ
     /// </summary>
     public class HomeController : FrameworkBase.MultiOrg.Web.Controllers.HomeController
     {
         private readonly ISysConfigRepo _sysConfigRepo;
         
         /**
-         * 同步系统参数配置
+         * Đồng bộ cấu hình tham số hệ thống
          */ 
         public ActionResult SyncSysConfigParams(string orgId)
         {

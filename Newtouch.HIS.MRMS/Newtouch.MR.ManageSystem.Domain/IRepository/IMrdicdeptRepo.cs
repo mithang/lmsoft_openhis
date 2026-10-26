@@ -6,34 +6,34 @@ using Newtouch.Core.Common;
 namespace Newtouch.MR.ManageSystem.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-11-20 13:45
-    /// 描 述：病案科室
+    /// Người tạo：chl
+    /// Ngày：2019-11-20 13:45
+    /// Mô tả: Khoa bệnh án
     /// </summary>
     public interface IMrdicdeptRepo : IRepositoryBase<MrdicdeptEntity>
     {
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu (thêm mới, sửa đổi）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         int SubmitForm(MrdicdeptEntity entity, string keyValue);
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         int DeleteForm(string keyValue);
 
         /// <summary>
-        /// 获取病案列表
+        /// LấyDanh sách bệnh án
         /// </summary>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         IList<MrdicdeptEntity> GetDicDeptList(string organizeId);
 
         /// <summary>
-        /// 分页获取病案列表
+        /// Lấy danh sách bệnh án theo trang
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="keyword"></param>

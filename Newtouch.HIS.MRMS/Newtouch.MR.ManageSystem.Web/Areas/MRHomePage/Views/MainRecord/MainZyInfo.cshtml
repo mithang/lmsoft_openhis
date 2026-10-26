@@ -29,7 +29,7 @@
     <div>
         <table class="form">
             <tr>
-                <th class="formTitle">血型</th>
+                <th class="formTitle">Nhóm máu</th>
                 <td class="formValue">
                     <select id="XX" name="XX" class="form-control" data-enumtype="EnumBloodType"></select>
                     <input style="height:0px;border-width:1px;" class="form-control" />
@@ -39,109 +39,109 @@
                     <select id="RH" name="RH" class="form-control" data-enumtype="EnumBloodTypeRH"></select>
                     <input style="height:0px;border-width:1px;" class="form-control" />
                 </td>
-                <th class="formTitle">药物过敏</th>
+                <th class="formTitle">Dị ứng thuốc</th>
                 <td class="formValue">
                     <select id="YWGM" name="YWGM" class="form-control" data-enumtype="EnumHorN"></select>
                     <input style="height:0px;border-width:1px;" class="form-control" />
                 </td>
-                <th class="formTitle">过敏药物</th>
+                <th class="formTitle">Thuốc dị ứng</th>
                 <td class="formValue" colspan="3"><input id="GMYW" name="GMYW" class="form-control" /></td>
             </tr>
             <tr>
-                <th class="formTitle">病理诊断</th>
+                <th class="formTitle">Chẩn đoán bệnh lý</th>
                 <td class="formValue" colspan="5"><input id="BLZD" name="BLZD" attr-zddm="" attr-ICD10="" class="form-control" /></td>
-                <th class="formTitle">疾病编码</th>
+                <th class="formTitle">Mã bệnh</th>
                 <td class="formValue"><input id="BLZDDM" name="BLZDDM" attr-zddm="" attr-ICD10="" class="form-control" /></td>
-                <th class="formTitle">病理号</th>
+                <th class="formTitle">Số bệnh lý</th>
                 <td class="formValue"><input id="BLH" name="BLH" class="form-control" /></td>
             </tr>
             <tr>
-                <th class="formTitle">损伤、中毒<br />的外部原因</th>
+                <th class="formTitle">Tổn thương, ngộ độc<br />nguyên nhân bên ngoài</th>
                 <td class="formValue" colspan="5"><input id="WBYY" name="WBYY" class="form-control" /></td>
-                <th class="formTitle">疾病编码</th>
+                <th class="formTitle">Mã bệnh</th>
                 <td class="formValue"><input id="H23" name="H23" class="form-control" /></td>
-                <th class="formTitle">死亡患者尸检</th>
+                <th class="formTitle">Khám nghiệm tử thi bệnh nhân tử vong</th>
                 <td class="formValue">
                     <select id="SWHZSJ" name="SWHZSJ" class="form-control" data-enumtype="EnumYorN"></select>
                     <input style="height:0px;border-width:1px;" class="form-control" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">离院方式</th>
+                <th class="formTitle">Hình thức rời viện</th>
                 <td class="formValue">
                     <select id="LYFS" name="LYFS" class="form-control" data-enumtype="EnumLyfs"></select>
                     <input style="height:0px;border-width:1px;" class="form-control" />
                 </td>
-                <th class="formTitle" colspan="2">医嘱转院拟接收医疗机构名称</th>
+                <th class="formTitle" colspan="2">Chuyển viện theo y lệnh, cơ sở y tế dự kiến tiếp nhậnTên tổ chức</th>
                 <td class="formValue" colspan="2"><input id="YZZY_YLJG" name="YZZY_YLJG" class="form-control" /></td>
-                <th class="formTitle" colspan="2">医嘱转社区卫生服务机构/乡镇卫生院<br />拟接收医疗机构名称</th>
+                <th class="formTitle" colspan="2">Chuyển theo y lệnh đến cơ sở dịch vụ y tế cộng đồng/Trạm y tế xã/thị trấn<br />Cơ sở y tế dự kiến tiếp nhậnTên tổ chức</th>
                 <td class="formValue" colspan="2"><input id="WSY_YLJG" name="WSY_YLJG" class="form-control" /></td>
             </tr>
             <tr>
-                <th class="formTitle" colspan="2">是否有出院31天内再住院计划</th>
+                <th class="formTitle" colspan="2">Có xuất viện hay không31ngàykế hoạch tái nhập viện trong</th>
                 <td class="formValue">
                     <select id="SFZZYJH" name="SFZZYJH" class="form-control" data-enumtype="EnumHorN"></select>
                     <input style="height:0px;border-width:1px;" class="form-control" />
                 </td>
-                <th class="formTitle">目的</th>
+                <th class="formTitle">Mục đích</th>
                 <td class="formValue" colspan="2"><input id="MD" name="MD" class="form-control" /></td>
             </tr>
             <tr>
-                <th class="formTitle" colspan="2">颅脑损伤患者昏迷时间&nbsp;&nbsp;</th>
+                <th class="formTitle" colspan="2">Bệnh nhân chấn thương sọ não hôn mêthời gian&nbsp;&nbsp;</th>
                 <td class="formValue" colspan="7">
-                    <span class="spanleft">入院前</span><input id="RYQ_T" name="RYQ_T" class="form-control" style="width:10%;float:left;" /><span class="spanleft">天</span>
-                    <input id="RYQ_XS" name="RYQ_XS" class="form-control" style="width:10%;float:left;" /><span class="spanleft">小时</span>
-                    <input id="RYQ_F" name="RYQ_F" class="form-control" style="width:10%;float:left;" /><span class="spanleft">分钟</span>
-                    <span class="spanleft" style="padding-left:20px;">入院后</span><input id="RYH_T" name="RYH_T" class="form-control" style="width:10%;float:left;" /><span class="spanleft">天</span>
-                    <input id="RYH_XS" name="RYH_XS" class="form-control" style="width:10%;float:left;" /><span class="spanleft">小时</span>
-                    <input id="RYH_F" name="RYH_F" class="form-control" style="width:10%;float:left;" /><span class="spanleft">分钟</span>
+                    <span class="spanleft">Trước nhập viện</span><input id="RYQ_T" name="RYQ_T" class="form-control" style="width:10%;float:left;" /><span class="spanleft">ngày</span>
+                    <input id="RYQ_XS" name="RYQ_XS" class="form-control" style="width:10%;float:left;" /><span class="spanleft">giờ</span>
+                    <input id="RYQ_F" name="RYQ_F" class="form-control" style="width:10%;float:left;" /><span class="spanleft">phút</span>
+                    <span class="spanleft" style="padding-left:20px;">Sau nhập viện</span><input id="RYH_T" name="RYH_T" class="form-control" style="width:10%;float:left;" /><span class="spanleft">ngày</span>
+                    <input id="RYH_XS" name="RYH_XS" class="form-control" style="width:10%;float:left;" /><span class="spanleft">giờ</span>
+                    <input id="RYH_F" name="RYH_F" class="form-control" style="width:10%;float:left;" /><span class="spanleft">phút</span>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">病情分型</th>
+                <th class="formTitle">Phân loại tình trạng bệnh</th>
                 <td class="formValue">
                     <select id="BQFX" name="BQFX" class="form-control" data-enumtype="EnumBqfx"></select>
                     <input style="height:0px;border-width:1px;" class="form-control" />
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue" colspan="3"></td>
-                <th class="formTitle">临床路径管理</th>
+                <th class="formTitle">Quản lý lộ trình lâm sàng</th>
                 <td class="formValue">
                     <select id="SSLCLJ" name="SSLCLJ" class="form-control" data-enumtype="EnumHorN"></select>
                     <input style="height:0px;border-width:1px;" class="form-control" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">科主任</th>
+                <th class="formTitle">Trưởng khoa</th>
                 <td class="formValue"><input id="KZR" name="KZR" class="form-control" /></td>
-                <th class="formTitle">(副)主任医师</th>
+                <th class="formTitle">(Phó)Bác sĩ trưởng khoa</th>
                 <td class="formValue"><input id="ZRYS" name="ZRYS" class="form-control" /></td>
-                <th class="formTitle">主治医师</th>
+                <th class="formTitle">Bác sĩ điều trị</th>
                 <td class="formValue"><input id="ZZYS" name="ZZYS" class="form-control" /></td>
-                <th class="formTitle">住院医师</th>
+                <th class="formTitle">Bác sĩ nội trú</th>
                 <td class="formValue"><input id="ZYYS" name="ZYYS" class="form-control" /></td>
             </tr>
             <tr>
-                <th class="formTitle">责任护士</th>
+                <th class="formTitle">Điều dưỡng phụ trách</th>
                 <td class="formValue"><input id="ZRHS" name="ZRHS" class="form-control" /></td>
-                <th class="formTitle">进修医师</th>
+                <th class="formTitle">Bác sĩ tu nghiệp</th>
                 <td class="formValue"><input id="JXYS" name="JXYS" class="form-control" /></td>
-                <th class="formTitle">实习医师</th>
+                <th class="formTitle">Bác sĩ thực tập</th>
                 <td class="formValue"><input id="SXYS" name="SXYS" class="form-control" /></td>
-                <th class="formTitle">编码员</th>
+                <th class="formTitle">Nhân viên mã hóa</th>
                 <td class="formValue"><input id="BMY" name="BMY" class="form-control" /></td>
             </tr>
             <tr>
-                <th class="formTitle">病案质量</th>
+                <th class="formTitle">Chất lượng bệnh án</th>
                 <td class="formValue">
                     <select id="BAZL" name="BAZL" class="form-control" style="border:none;" data-enumtype="EnumBazl"></select>
                     <input style="height:0px;border-width:1px;" class="form-control" />
                 </td>
-                <th class="formTitle">质控医师</th>
+                <th class="formTitle">Bác sĩ kiểm soát chất lượng</th>
                 <td class="formValue"><input id="ZKYS" name="ZKYS" class="form-control" /></td>
-                <th class="formTitle">质控护士</th>
+                <th class="formTitle">Điều dưỡng kiểm soát chất lượng</th>
                 <td class="formValue"><input id="ZKHS" name="ZKHS" class="form-control" /></td>
-                <th class="formTitle">质控日期</th>
+                <th class="formTitle">Ngày kiểm soát chất lượng</th>
                 <td class="formValue">
                     <input id="ZKRQ" type="text" class="form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
@@ -152,7 +152,7 @@
 
 </div>
 <script>
-    //诊断
+    //Chẩn đoán
     $("#BLZD").zdFloatingSelector({
         zdlx: "WM",
         width: 600,

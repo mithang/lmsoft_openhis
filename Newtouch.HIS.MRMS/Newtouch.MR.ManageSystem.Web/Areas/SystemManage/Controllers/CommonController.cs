@@ -23,7 +23,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.SystemManage.Controllers
 #pragma warning restore CS0649 // Field 'CommonController._SysDepartmentRepo' is never assigned to, and will always have its default value null
 
         /// <summary>
-        /// 获取系统诊断列表
+        /// Lấy hệ thốngDanh sách chẩn đoán
         /// </summary>
         /// <returns></returns>
         public ActionResult GetDiagList()
@@ -33,7 +33,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 诊断 检索
+        /// Chẩn đoán Truy vấn
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 手术 检索
+        /// Phẫu thuật Truy vấn
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>	
@@ -58,7 +58,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.SystemManage.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
         /// <summary>
-        /// 麻醉方式
+        /// Phương pháp gây mê
         /// </summary>
         /// <returns></returns>
         public ActionResult GetAnesList(string keyword)
@@ -91,7 +91,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.SystemManage.Controllers
             return Content(ety.ToJson());
         }
         /// <summary>
-        /// 国籍
+        /// Quốc tịch
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -101,7 +101,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.SystemManage.Controllers
             return Content(ety.ToJson());
         }
         /// <summary>
-        /// 民族
+        /// Dân tộc
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -112,7 +112,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 岗位人员列表
+        /// Vị tríngườiDanh sách nhân viên
         /// </summary>
         /// <param name="dutyCode"></param>
         /// <param name="keyword"></param>

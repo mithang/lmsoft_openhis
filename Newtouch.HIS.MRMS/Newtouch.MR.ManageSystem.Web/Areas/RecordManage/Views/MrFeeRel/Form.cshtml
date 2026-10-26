@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "收费大类详细信息";
+    ViewBag.Title = "Thông tin chi tiết nhóm thu phí lớn";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -9,32 +9,32 @@
     <div style="padding-top: 20px; margin-right: 30px;">
         <table class="form">
             <tr>
-                <th class="formTitle">收费大类：</th>
+                <th class="formTitle">Nhóm thu phí lớn：</th>
                 <td class="formValue formDdlSelectorTd">
                     <select id="feetypecode" name="feetypecode" class="form-control" onchange="FeeChanged()">
-                        <option value=""> ==请选择== </option>
+                        <option value=""> ==Vui lòng chọn== </option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">搜索：</th>
+                <th class="formTitle">Tìm kiếm：</th>
                 <td class="formValue">
-                    <input id="txt_keyword" type="text" class="form-control" placeholder="收费项目/收费大类" style="width: 180px;float:left;">
+                    <input id="txt_keyword" type="text" class="form-control" placeholder="Hạng mục thu phí/Nhóm thu phí lớn" style="width: 180px;float:left;">
                    
                         <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                     
                 </td>
             </tr>
             <tr>
-                @*<th class="formTitle">列表：</th>*@
+                @*<th class="formTitle">Danh sách：</th>*@
                 <table id="gridList"></table>
                 <div id="gridPager"></div>
             </tr>
             <tr>
-                @*<th class="formTitle">按钮：</th>*@
+                @*<th class="formTitle">nút bấm：</th>*@
                 <td class="formValue formDdlSelectorTd">
-                    <a class='btn btn-default' id="submit" style='width:80px;background:#00CD66;color:#eee;height:20px;font-size:13px;padding-top:5px;' onclick="saveSelected();"><span class="glyphicon glyphicon-ok">保存已选</span></a>
-                    <a class='btn btn-default' id="submit" style='width:80px;background:#00CD66;color:#eee;height:20px;font-size:13px;padding-top:5px;' onclick="saveAll();"><span class="glyphicon glyphicon-ok">保存全部</span></a>
+                    <a class='btn btn-default' id="submit" style='width:80px;background:#00CD66;color:#eee;height:20px;font-size:13px;padding-top:5px;' onclick="saveSelected();"><span class="glyphicon glyphicon-ok">Lưu các mục đã chọn</span></a>
+                    <a class='btn btn-default' id="submit" style='width:80px;background:#00CD66;color:#eee;height:20px;font-size:13px;padding-top:5px;' onclick="saveAll();"><span class="glyphicon glyphicon-ok">Lưu tất cả</span></a>
 
                 </td>
             </tr>
@@ -87,10 +87,10 @@
             height: $(window).height() - 250,
             colModel: [
                 { label: "Id", name: "Id", hidden: true },
-                { label: "收费项目", name: "sfxm", width: 80, align: 'left' },
-                { label: "收费项目名称", name: "sfxmmc", width: 100, align: 'left' },
-                { label: "收费大类", name: "feetypecode", width: 80, align: 'left' },
-                { label: "收费大类名称", name: "name", width: 100, align: 'left' }
+                { label: "Hạng mục thu phí", name: "sfxm", width: 80, align: 'left' },
+                { label: "Tên hạng mục thu phí", name: "sfxmmc", width: 100, align: 'left' },
+                { label: "Nhóm thu phí lớn", name: "feetypecode", width: 80, align: 'left' },
+                { label: "Tên nhóm thu phí lớn", name: "name", width: 100, align: 'left' }
 
             ],
             sortname: "ID desc",
@@ -102,21 +102,21 @@
                 btn_edit();
             },
             onSelectRow: function (row) {
-                //获取多选勾选的Id
+                //Lấy các mục đã chọn nhiềuId
                 var rowIds = $('#gridList').jqGrid('getGridParam', 'selarrrow');
                 idList = rowIds;
             },
             onSelectAll: function (rowids, statue) {
                 if (statue == true) {
-                    //全选
+                    //Chọn tất cả
                     idList = rowids;
                 } else {
-                    //清空
+                    //Xóa sạch
                     idList = [];
                 }
             },
             gridComplete: function () {
-                //默认全选
+                //Mặc định chọn tất cả
                 //var count = $("#gridList").getGridParam("reccount");
                 //for (var i = 1; i <= count; i++) {
                 //    $("#gridList").jqGrid('setSelection', i);
@@ -127,7 +127,7 @@
             $("#gridList").jqGrid('setGridParam', {
                 postData: { keyword: $("#txt_keyword").val(), code:""}, page: 1
             }).trigger('reloadGrid');
-            //获取全部列表
+            //LấyTất cảDanh sách
             //var code = $("#feetypecode option:selected").val();
             //var allIdList = window.$("#gridList").getDataIDs();
             //var dataList = [];
@@ -135,14 +135,14 @@
             //    var dataObj = window.$("#gridList").getRowData(allIdList[i]);
             //    dataList.push(dataObj);
             //    if (dataObj.feetypecode == code) {
-            //        //选中
+            //        //Đã chọn
             //        $("#gridList").jqGrid('setSelection', allIdList[i]);
             //    }
             //}
         });
     }
 
-    //更换收费大类时,重新加载列表
+    //Thay đổiNhóm thu phí lớngiờ,Tải lại danh sách
     function FeeChanged() {
         var code = $("#feetypecode option:selected").val();
         $("#gridList").jqGrid('setGridParam', {
@@ -150,7 +150,7 @@
         }).trigger('reloadGrid');
     }
 
-    //保存已选
+    //Lưu các mục đã chọn
     function saveSelected() {
         var code = $("#feetypecode option:selected").val();
         var allIdList = window.$("#gridList").getDataIDs();
@@ -164,7 +164,7 @@
 
     }
 
-    //保存全部
+    //Lưu tất cả
     function saveAll() {
         var allIdList = window.$("#gridList").getDataIDs();
         var code = $("#feetypecode option:selected").val();
@@ -179,7 +179,7 @@
 
     function save(postData) {
         if (postData.length==0) {
-            window.$.modalAlert("请选中一条信息", 'warning');
+            window.$.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return false;
         }
         $.submitForm({

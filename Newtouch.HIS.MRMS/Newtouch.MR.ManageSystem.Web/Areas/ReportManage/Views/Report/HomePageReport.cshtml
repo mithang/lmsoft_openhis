@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "卫计统4-1住院病案首页";
+    ViewBag.Title = "Thống kê y tế 4-1 nằm việnTrang đầu bệnh án";
     Layout = "~/Views/Shared/_Index.cshtml";
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
     var reportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
@@ -11,11 +11,11 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">住院号：</th>
+                <th class="formTitle">Số nhập viện：</th>
                 <td class="formValue">
                     <input id="zyh" name="zyh" type="text" autocomplete="off" class="form-control" />
                 </td>
-                <th class="formTitle">出院日期：</th>
+                <th class="formTitle">Ngày xuất viện：</th>
                 <td class="formValue">
                     <input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -31,7 +31,7 @@
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tìm kiếm" style="width:55px" />
                 </td>
                 <th></th>
                 <td></td>
@@ -54,14 +54,14 @@
 
     function submit() {
         if ($('#ksrq').val().length == 0 || $('#jsrq').val().length == 0) {
-            $.modalAlert("请选择时间范围", "error");
+            $.modalAlert("Vui lòng chọn khoảng thời gian", "error");
             return;
         }
 
         //var url = reportServerHOST + 'Pages/ReportViewer.aspx?%2fNewtouch.Report.MRMS%2f%E6%B8%9D%E5%8D%AB%E8%AE%A1%E7%BB%9F4-1%E4%BD%8F%E9%99%A2%E7%97%85%E6%A1%88%E9%A6%96%E9%A1%B5&rs:Command=Render&orgId=' + orgId;
         var url = '@reportUrl' + "?tempCode=" + "1283" + "&orgId=" + orgId + "&systemCode=" + '@reportSystemCode';
         url += "&zyh=" + $('#zyh').val() + "&cyksrq=" + $('#ksrq').val() + "&cyjsrq=" + $('#jsrq').val();
-        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        setTimeout("$.loading(true, 'Đang yêu cầu trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
 
     }
@@ -76,7 +76,7 @@
 
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }

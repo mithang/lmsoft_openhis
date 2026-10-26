@@ -4,9 +4,9 @@ using Newtouch.MR.ManageSystem.Domain.DTO;
 using Newtouch.MR.ManageSystem.Domain.DTO.OutputDto;
 using Newtouch.MR.ManageSystem.Domain.ValueObjects;
 using Newtouch.MR.ManageSystem.Domain.Entity;
-#pragma warning disable CS0105 // “Newtouch.MR.ManageSystem.Domain.ValueObjects”的 using 指令以前在此命名空间中出现过
+#pragma warning disable CS0105 // “Newtouch.MR.ManageSystem.Domain.ValueObjects”lệnh using đã xuất hiện trước đây trong không gian tên này
 using Newtouch.MR.ManageSystem.Domain.ValueObjects;
-#pragma warning restore CS0105 // “Newtouch.MR.ManageSystem.Domain.ValueObjects”的 using 指令以前在此命名空间中出现过
+#pragma warning restore CS0105 // “Newtouch.MR.ManageSystem.Domain.ValueObjects”lệnh using đã xuất hiện trước đây trong không gian tên này
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +22,14 @@ namespace Newtouch.MR.ManageSystem.Domain.IDomainServices
         IList<SysOpListDto> OpList(string orgId, string keyword, bool type = true);
         IList<SysAnesListDto> AnesList(string orgId, string keyword);
         /// <summary>
-        /// 愈合等级
+        /// liềnvết mổ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         IList<SysDicDto> NotchGradeList(string orgId, string keyword);
         /// <summary>
-        /// 病案通用字典
+        /// Từ điển chung của bệnh án
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -37,35 +37,35 @@ namespace Newtouch.MR.ManageSystem.Domain.IDomainServices
         /// <returns></returns>
         IList<SysDicDto> DicCommonList(string orgId, string keyword, string Rlue, string code = null);
         /// <summary>
-        /// 系统病人性质
+        /// Bệnh nhân hệ thốngngườiTính chất
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         IList<SysBrxzVO> BrxzList(string orgId, string keyword);
         /// <summary>
-        /// 系统-国籍
+        /// Hệ thống-Quốc tịch
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         IList<SysDicDto> DicNationalityList(string orgId, string keyword);
         /// <summary>
-        /// 系统-民族
+        /// Hệ thống-Dân tộc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         IList<SysDicDto> DicNationsList(string orgId, string keyword);
         /// <summary>
-        /// 获取病历类型对应表
+        /// Lấy bảng tương ứng loại bệnh án
         /// </summary>
         /// <param name="bllxId"></param>
         /// <param name="OrgId"></param>
         /// <returns></returns>
         string GetBllxTB(string bllx);
         /// <summary>
-        /// 人员（岗位）
+        /// ngườiviên (vị trí）
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="dutyCode"></param>
@@ -73,7 +73,7 @@ namespace Newtouch.MR.ManageSystem.Domain.IDomainServices
         /// <returns></returns>
         List<SysDutyStaffVO> GetStaffByDutyCode(string orgId, string dutyCode, string keyword = null);
         /// <summary>
-        /// 获取his科室列表
+        /// Lấy danh sách khoa HIS
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="code"></param>
@@ -81,7 +81,7 @@ namespace Newtouch.MR.ManageSystem.Domain.IDomainServices
         IList<SysDicDto> GetDeptList(string orgId, string code);
 
         /// <summary>
-        /// 获取his收费大类
+        /// LấyhisNhóm thu phí lớn
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>

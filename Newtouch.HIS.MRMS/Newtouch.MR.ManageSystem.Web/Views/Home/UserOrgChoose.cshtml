@@ -1,7 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_Index.cshtml";
 
-    //是否页面加载时就必须选择Org
+    //Có bắt buộc phải chọn khi tải trang hay khôngOrg
     var mediOrgList = ViewBag.MediOrgList as IList<FrameworkBase.MultiOrg.Domain.Entity.SysOrganizeVEntity>;
 }
 
@@ -28,7 +28,7 @@
             type: "post",
             dataType: "json",
             success: function (data) {
-                cookieRemove(); //必须选择医疗机构
+                cookieRemove(); //Bắt buộc phải chọn cơ sở y tế
 
                 top.top.location.href = top.top.location.href;
             }
@@ -43,7 +43,7 @@
         }
         var chooseOrgVal = top.$.cookie(chooseOrgKey);
         if (chooseOrgVal != null) {
-            //用完立remove
+            //Sau khi dùng xong thì xóa
             top.$.cookie(chooseOrgKey, '', { path: "/", expires: -1 });
         }
     }

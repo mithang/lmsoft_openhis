@@ -34,39 +34,39 @@
             height: $(window).height() - 120,
             colModel: [
                 { label: "Id", name: "Id", hidden: true },
-                { label: "病案号", name: "BAH", width: 60, align: 'left' },
-                { label: "住院号", name: "ZYH", width: 60, align: 'left' },
-                { label: "手术及<br />操作编码", name: "SSJCZBM", width: 80, align: 'center' },
-                { label: "手术及<br />操作日期", name: "SSJCZRQ", width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: "手术<br />级别", name: "SSJB", width: 60, align: 'center' },
+                { label: "Số bệnh án", name: "BAH", width: 60, align: 'left' },
+                { label: "Số nhập viện", name: "ZYH", width: 60, align: 'left' },
+                { label: "Phẫu thuật và<br />Thao tácMã", name: "SSJCZBM", width: 80, align: 'center' },
+                { label: "Phẫu thuật và<br />Thao tácNgày", name: "SSJCZRQ", width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: "Phẫu thuật<br />Cấp độ", name: "SSJB", width: 60, align: 'center' },
                 //{ label: "CYQK", name: "CYQK", hidden: true },
-                { label: "手术及操作名称", name: "SSJCZMC", width: 150, align: 'center' },
+                { label: "Tên phẫu thuật và thao tác", name: "SSJCZMC", width: 150, align: 'center' },
                 { label: "SZ", name: "SZ", hidden: true },
-                { label: "主刀医生", name: "SZMC", width: 50, align: 'center' },
+                { label: "Bác sĩ mổ chính", name: "SZMC", width: 50, align: 'center' },
                 { label: "YZ", name: "YZ", hidden: true },
-                { label: "I助", name: "YZMC", width: 50, align: 'center' },
+                { label: "IPhụ", name: "YZMC", width: 50, align: 'center' },
                 { label: "EZ", name: "EZ", hidden: true },
-                { label: "II助", name: "EZMC", width: 50, align: 'center' },
+                { label: "IIPhụ", name: "EZMC", width: 50, align: 'center' },
                 { label: "QKDJ", name: "QKDJ", hidden: true },
                 { label: "QKYHLB", name: "QKYHLB", hidden: true },
-                { label: "切口愈<br />合等级", name: "QKYHDJ", width: 50, align: 'center' },
+                { label: "Cấp độ liền<br />vết mổ", name: "QKYHDJ", width: 50, align: 'center' },
                 //{
-                //    label: "切口愈<br />合等级", name: "QKYHDJ", width: 50, align: 'center', formatter: function (row, option, data) {
+                //    label: "Cấp độ liền<br />vết mổ", name: "QKYHDJ", width: 50, align: 'center', formatter: function (row, option, data) {
                 //        return data.QKDJ + "/" + data.QKYLB;
                 //    }
                 //},
                 { label: "MZFS", name: "MZFS", hidden: true },
-                { label: "麻醉方式", name: "MZFSMS", width: 100, align: 'center' },
+                { label: "Phương pháp gây mê", name: "MZFSMS", width: 100, align: 'center' },
                 { label: "MZYS", name: "MZYS", hidden: true },
-                { label: "麻醉医生", name: "MZYSMC", width: 50, align: 'center' },
+                { label: "Bác sĩ gây mê", name: "MZYSMC", width: 50, align: 'center' },
                 { label: "zt", name: "zt", hidden: true },
                 {
-                    label: "状态", name: "ztsm", width: 50, align: 'center', formatter: function (row, option, data) {
+                    label: "Trạng thái", name: "ztsm", width: 50, align: 'center', formatter: function (row, option, data) {
                         if (data.zt == "0") {
-                            return "作废";
+                            return "Hủy bỏ";
                         }
                         else {
-                            return "正常";
+                            return "Bình thường";
                         }
                     }
                 }
@@ -95,7 +95,7 @@
             loadComplete: function () {
 
             },
-            /*caption: "手术列表",*/
+            /*caption: "Danh sách phẫu thuật",*/
             
             //rowNum: 15,
             //pager: "#gridzdPager",

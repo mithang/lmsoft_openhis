@@ -21,7 +21,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
         }
 
         /// <summary>
-        /// 分页获取his科室 病案科室列表
+        /// Phân trangLấy khoa HIS Khoa bệnh ánDanh sách
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>

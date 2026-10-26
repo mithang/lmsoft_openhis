@@ -3,12 +3,12 @@
 namespace Newtouch.MR.ManageSystem.Web.Controllers
 {
     /// <summary>
-    /// 系统错误 友好体验
+    /// Lỗi hệ thống, trải nghiệm thân thiện
     /// </summary>
     public class ErrorController : Controller
     {
         /// <summary>
-        /// 异常发送 错误页面
+        /// Ngoại lệ gửi đến trang lỗi
         /// </summary>
         /// <returns></returns>
         public ActionResult HttpError()
@@ -17,7 +17,7 @@ namespace Newtouch.MR.ManageSystem.Web.Controllers
         }
 
         /// <summary>
-        /// 404提醒页面
+        /// 404Trang nhắc nhở
         /// </summary>
         /// <returns></returns>
         public ActionResult NotFound()
@@ -27,7 +27,7 @@ namespace Newtouch.MR.ManageSystem.Web.Controllers
         }
 
         /// <summary>
-        /// 403提醒页面
+        /// 403Trang nhắc nhở
         /// </summary>
         /// <returns></returns>
         public ActionResult Forbidden()

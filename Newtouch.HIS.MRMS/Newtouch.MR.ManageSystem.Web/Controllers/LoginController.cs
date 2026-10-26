@@ -12,12 +12,12 @@ using Newtouch.Tools;
 namespace Newtouch.MR.ManageSystem.Web.Controllers
 {
     /// <summary>
-    /// 登录登出
+    /// Đăng nhậpĐăng xuất
     /// </summary>
     public class LoginController : FrameworkBase.MultiOrg.Web.Controllers.LoginController
     {
         /// <summary>
-        /// 登出
+        /// Đăng xuất
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -34,7 +34,7 @@ namespace Newtouch.MR.ManageSystem.Web.Controllers
         #region 统一授权登录
 
         /// <summary>
-        /// 统一授权登录
+        /// Ủy quyền thống nhấtĐăng nhập
         /// </summary>
         /// <param name="access_token"></param>
         /// <param name="returnUrl"></param>
@@ -43,7 +43,7 @@ namespace Newtouch.MR.ManageSystem.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(access_token))
             {
-                return RedirectToAction("Index", "Login");  //缺少令牌
+                return RedirectToAction("Index", "Login");  //Thiếu mã thông báo
             }
 
             var eOpr = OperatorProvider.GetCurrent();
@@ -61,9 +61,9 @@ namespace Newtouch.MR.ManageSystem.Web.Controllers
             var aaa = ConfigurationHelper.GetAppConfigValue("UAUserInfoGetAPI");
             if (string.IsNullOrWhiteSpace(aaa))
             {
-                return RedirectToAction("Index", "Login");  //未配置身份换取的API地址
+                return RedirectToAction("Index", "Login");  //Chưa cấu hình đổi danh tínhAPIĐịa chỉ
             }
-            //向API请求换取身份
+            //Yêu cầu API đổi danh tính
             var sw = new Stopwatch();
             sw.Start();
             var reqObj = new
@@ -78,7 +78,7 @@ namespace Newtouch.MR.ManageSystem.Web.Controllers
             sw.Reset();
             if (apiResp.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                return RedirectToAction("Index", "Login");  //身份换取失败
+                return RedirectToAction("Index", "Login");  //Đổi danh tính thất bại
             }
             sw.Start();
             string account = "", organizeId = "";
@@ -105,7 +105,7 @@ namespace Newtouch.MR.ManageSystem.Web.Controllers
         }
 
         /// <summary>
-        /// 统一授权获取跳转地址
+        /// Ủy quyền thống nhất lấy chuyển hướngĐịa chỉ
         /// </summary>
         /// <param name="appId"></param>
         /// <returns></returns>
@@ -133,7 +133,7 @@ namespace Newtouch.MR.ManageSystem.Web.Controllers
                 }
                 else
                 {
-                    addr = null;    //视为null
+                    addr = null;    //Được xem lànull
                 }
             }
             return Content(new AjaxResult { state = ResultType.success.ToString(), data = addr }.ToJson());

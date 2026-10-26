@@ -10,8 +10,8 @@ using System.Reflection;
 namespace Newtouch.MR.ManageSystem.Infrastructure
 {
     /// <summary>
-    /// 常用到的（放Repo、DmnService都不合适的，但又要请求数据库的）
-    /// 比如获取唯一编号（自增，但有不能重复）
+    /// Thường dùng (đặt ở Repo, DmnService đều không phù hợp, nhưng lại cần yêu cầuCơ sở dữ liệucủa）
+    /// Ví dụ lấy mã số duy nhất (tự tăng, nhưng không được trùng lặp）
     /// </summary>
     public class EFDBBaseFuncHelper
     {
@@ -23,7 +23,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
         private IDatabaseFactory _databaseFactory;
 
         /// <summary>
-        /// 默认DB上下文
+        /// Ngữ cảnh DB mặc định
         /// </summary>
         public static EFDBBaseFuncHelper Instance
         {
@@ -36,7 +36,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
         }
 
         /// <summary>
-        /// 指定DB上下文
+        /// Chỉ định ngữ cảnh DB
         /// </summary>
         /// <param name="dbType"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
         {
             if (!dbType.HasValue)
             {
-                dbType = EnumDBFactoryType.DefaultDB;  //默认
+                dbType = EnumDBFactoryType.DefaultDB;  //Mặc định
             }
             IDatabaseFactory databaseFactory = null;
             switch (dbType)
@@ -58,9 +58,9 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
 
         #region 方法
 
-        //-------------------------------------示例------------------------------------------------
+        //-------------------------------------Ví dụ------------------------------------------------
         ///// <summary>
-        ///// 获取主键字段唯一Id
+        ///// LấyKhóa chínhTrường duy nhấtId
         ///// </summary>
         ///// <param name="tableName"></param>
         ///// <returns></returns>
@@ -78,13 +78,13 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
         //    return outParameter.Value.ToString();
         //}
         /// <summary>
-        /// 获取 字段/业务 唯一值
+        /// Lấy trường/Giá trị duy nhất nghiệp vụ
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgId"></param>
         /// <param name="initFormat"></param>
         /// <param name="dateFlag"></param>
-        /// <returns>string类型</returns>
+        /// <returns>stringLoại</returns>
         public string GetNewFieldUniqueValue(string fieldName, string orgId, string initFormat = "", bool dateFlag = false)
         {
             var tpl = GetNewFieldUniqueObjectValue(fieldName, orgId, initFormat, dateFlag);
@@ -125,13 +125,13 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
         //    return outParameter.Value.ToString();
         //}
         /// <summary>
-        /// 获取 字段/业务 唯一值
+        /// Lấy trường/Giá trị duy nhất nghiệp vụ
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgId"></param>
         /// <param name="initFormat"></param>
         /// <param name="dateFlag"></param>
-        /// <returns>string类型</returns>
+        /// <returns>stringLoại</returns>
         public string GetNewFieldUniqueValueEMR(string fieldName, string orgId, string initFormat = "", bool dateFlag = false)
         {
             var tpl = GetNewFieldUniqueObjectValue(fieldName, orgId, initFormat, dateFlag);
@@ -202,7 +202,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
 
         /// <summary>        
 
-        /// 获取对应的枚举描述（中文）        
+        /// Lấy mô tả enum tương ứng (tiếng Trung）        
 
         /// </summary>        
 
@@ -242,7 +242,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
     }
 
     /// <summary>
-    /// 上下文 类型
+    /// Ngữ cảnh Loại
     /// </summary>
     public enum EnumDBFactoryType
     {

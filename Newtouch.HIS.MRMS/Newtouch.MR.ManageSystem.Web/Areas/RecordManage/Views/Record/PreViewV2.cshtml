@@ -29,7 +29,7 @@
     var bllx = $.request('bllx');
 
     $(function () {
-        // 创建编辑器
+        // Tạo trình soạn thảo
         HMEditorLoader.createEditorAsync({
             container: "#editorContainer",
             id: id,
@@ -39,19 +39,19 @@
                 border: '1px solid #ddd'
             },
             editorConfig: {
-                // 编辑器配置项
+                // Hạng mục cấu hình trình soạn thảo
             },
-            // 模式设置
-            designMode: false,  // 是否启用设计模式
+            // Đặt chế độ
+            designMode: false,  // Có bật chế độ thiết kế hay không
             allowModifyDatasource: true,
-            reviseMode: false,  // 是否启用修订模式
-            readOnly: false,     // 是否启用只读模式
-            customParams: {     // 自定义参数
+            reviseMode: false,  // Có bật chế độ sửa đổi hay không
+            readOnly: false,     // Có bật chế độ chỉ đọc hay không
+            customParams: {     // Tham số tùy chỉnh
 
             }
         })
             .then(function (result) {
-                // 编辑器初始化完成
+                // Khởi tạo trình soạn thảo hoàn tất
                 editorInstance = result; console.log(12);
                 $.ajax({
                     type: "POST",
@@ -72,7 +72,7 @@
                 })
             })
             .catch(function (error) {
-                console.error("编辑器初始化失败:", error);
+                console.error("Khởi tạo trình soạn thảo thất bại:", error);
             });
     });
 </script>

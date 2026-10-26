@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "病案首页";
+    ViewBag.Title = "Trang đầu bệnh án";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -25,7 +25,7 @@
         url += "&zyh=" + zyh;// + "&bah=" + bah;
         location.href = url;
 
-        //setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        //setTimeout("$.loading(true, 'Đang yêu cầu trang báo cáo...');", 10);
         //$("#iframerightiframerightiframerightttt").attr('src', url);
     }
 
@@ -39,7 +39,7 @@
 
     //});
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }

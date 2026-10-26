@@ -21,7 +21,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
 
         }
         /// <summary>
-        /// 获取病案收费大类三级分类的编码名称
+        /// Lấy bệnh ánNhóm thu phí lớnphân loại cấp 3 củaMãTên
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -91,7 +91,7 @@ where a.zt='1' ";
         }
 
         /// <summary>
-        /// 获取一级收费大类
+        /// Lấy nhóm thu phí lớn cấp 1
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
@@ -107,7 +107,7 @@ where zt='1'  and organizeid=@orgId and  Lev=1";
         }
 
         /// <summary>
-        /// 获取二级收费大类
+        /// Lấy nhóm thu phí lớn cấp 2
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>

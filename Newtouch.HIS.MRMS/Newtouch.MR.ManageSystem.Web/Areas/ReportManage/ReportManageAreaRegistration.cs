@@ -28,7 +28,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.ReportManage
                 "ReportManage_default",
                 "ReportManage/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
-                , new[] { "Newtouch.MR.ManageSystem.Web.Areas.ReportManage.Controllers", "FrameworkBase.MultiOrg.Web.Areas.ReportManage.Controllers" } //指定命名空间
+                , new[] { "Newtouch.MR.ManageSystem.Web.Areas.ReportManage.Controllers", "FrameworkBase.MultiOrg.Web.Areas.ReportManage.Controllers" } //Chỉ định không gian tên
             );
         }
     }

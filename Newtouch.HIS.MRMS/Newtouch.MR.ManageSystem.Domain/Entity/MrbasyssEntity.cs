@@ -6,9 +6,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.MR.ManageSystem.Domain.Entity
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-11-20 11:05
-    /// 描 述：病案首页手术记录表
+    /// Người tạo：chl
+    /// Ngày：2019-11-20 11:05
+    /// Mô tả: Bảng ghi phẫu thuật trang đầu bệnh án
     /// </summary>
     [Table("mr_basy_ss")]
     public class MrbasyssEntity : IEntity<MrbasyssEntity>
@@ -39,71 +39,71 @@ namespace Newtouch.MR.ManageSystem.Domain.Entity
         public int SSOrder { get; set; }
 
         /// <summary>
-        /// 手术及操作编码
+        /// Mã phẫu thuật và thao tác
         /// </summary>
         /// <returns></returns>
         public string SSJCZBM { get; set; }
 
         /// <summary>
-        /// 手术及操作日期
+        /// Ngày phẫu thuật và thao tác
         /// </summary>
         /// <returns></returns>
         public DateTime SSJCZRQ { get; set; }
 
         /// <summary>
-        /// 手术级别
+        /// Cấp độ phẫu thuật
         /// </summary>
         /// <returns></returns>
         public string SSJB { get; set; }
 
         /// <summary>
-        /// 手术及操作名称
+        /// Tên phẫu thuật và thao tác
         /// </summary>
         /// <returns></returns>
         public string SSJCZMC { get; set; }
 
         /// <summary>
-        /// 术者
+        /// Người phẫu thuật
         /// </summary>
         /// <returns></returns>
         public string SZ { get; set; }
 
         /// <summary>
-        /// I助
+        /// IPhụ
         /// </summary>
         /// <returns></returns>
         public string YZ { get; set; }
 
         /// <summary>
-        /// II助
+        /// IIPhụ
         /// </summary>
         /// <returns></returns>
         public string EZ { get; set; }
 
         /// <summary>
-        /// 切口等级
+        /// Cấp độ vết mổ
         /// </summary>
         /// <returns></returns>
         public string QKDJ { get; set; }
 
         /// <summary>
-        /// 切口愈合类别
+        /// Loại liền vết mổ
         /// </summary>
         /// <returns></returns>
         public string QKYHLB { get; set; }
         /// <summary>
-        /// 切口愈合描述
+        /// Mô tả liền vết mổ
         /// </summary>
         public string QKYHDJ { get; set; }
 
         /// <summary>
-        /// 麻醉方式
+        /// Phương pháp gây mê
         /// </summary>
         /// <returns></returns>
         public string MZFS { get; set; }
 
         /// <summary>
-        /// 麻醉医师
+        /// Bác sĩ gây mê
         /// </summary>
         /// <returns></returns>
         public string MZYS { get; set; }

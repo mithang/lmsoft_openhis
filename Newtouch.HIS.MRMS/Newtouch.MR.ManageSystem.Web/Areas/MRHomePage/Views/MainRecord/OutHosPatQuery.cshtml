@@ -1,32 +1,32 @@
 ﻿@using Newtouch.MR.ManageSystem.Infrastructure
 @{
-    ViewBag.Title = "出院患者查询";
+    ViewBag.Title = "Bệnh nhân xuất việnTìm kiếm";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <div class="panel" style="padding-left:5px;">
     <table class="form">
         <tr>
-            <td class="formTitle">出院时间：</td>
+            <td class="formTitle">Thời gian xuất viện：</td>
             <td class="formValue" colspan="3">
                 <input id="txt_ksrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.ToString("yyyy-MM-01")">
                 <span style="float:left;">_</span>
                 <input id="txt_jsrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")">
             </td>
-            @*<td class="formTitle">病案状态：</td>
+            @*<td class="formTitle">Trạng thái bệnh án：</td>
         <td class="formValue formDdlSelectorTd">
             <select class="form-control" id="bazt" data-enumtype="Enumbazt"></select>
         </td>*@
-            <td class="formTitle">出院天数>=</td>
+            <td class="formTitle">Số ngày xuất viện>=</td>
             <td class="formValue">
                 <input id="txt_cyts" name="txt_keyword" class="form-control" style="width:50%;float:left;" />
             </td>
             <td></td>
             <td class="formTitle" rowspan="2">
-                <input type="button" class="btn btn-primary btn-md" style="padding:3px 20px 3px 20px;float:left;" id="btn_cysearch" value="查询" />
+                <input type="button" class="btn btn-primary btn-md" style="padding:3px 20px 3px 20px;float:left;" id="btn_cysearch" value="Tìm kiếm" />
             </td>
         </tr>
         <tr>
-            <td class="formTitle">姓名/住院号：</td>
+            <td class="formTitle">Họ tên/Số nhập viện：</td>
             <td class="formValue" colspan="3">
                 <input id="txt_keyword" name="txt_keyword" class="form-control"  />
             </td>
@@ -70,56 +70,56 @@
             height:240,
              colModel: [
                  { label: "Id", name: "Id", hidden: true },
-                 //{ label: "病案号", name: "bah", width: 70, align: 'left' },
-                 { label: "患者姓名", name: "xm", width: 60, align: 'left' },
-                 //{ label: "病历号", name: "blh", width: 80, align: 'left' },
+                 //{ label: "Số bệnh án", name: "bah", width: 70, align: 'left' },
+                 { label: "Họ tên bệnh nhân", name: "xm", width: 60, align: 'left' },
+                 //{ label: "Số bệnh án", name: "blh", width: 80, align: 'left' },
                  {
-                     label: "性别", name: "sex", width: 30, align: 'left', formatter: function (val) {
+                     label: "Giới tính", name: "sex", width: 30, align: 'left', formatter: function (val) {
                          if (val == '@((int)EnumSex.M)') {
-                             return "男";
+                             return "Nam";
                          }
                          else if (val == '@((int)EnumSex.F)') {
-                             return "女";
+                             return "Nữ";
                          }
                          else {
-                             return "未知"
+                             return "Không rõ"
                          }
                      }
                  },
-                 //{ label: "出生日期", name: "birth", width: 30, align: 'left' },
-                 { label: "住院号", name: "zyh", width: 60, align: 'left' },
-                 { label: "病区", name: "bqmc", width: 80, align: 'left' },
-                 { label: "床号", name: "BedCode", width: 50, align: 'left' },
-                 { label: "出院天数", name: "cyts", width: 50, align: 'left' },
-                 //{ label: "出院日期", name: "cqrq", width: 100, align: 'left', editable: false, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                 //{ label: "诊断", name: "zdmc", width: 120, align: 'left' },
+                 //{ label: "Ngày sinh", name: "birth", width: 30, align: 'left' },
+                 { label: "Số nhập viện", name: "zyh", width: 60, align: 'left' },
+                 { label: "Khu bệnh", name: "bqmc", width: 80, align: 'left' },
+                 { label: "Số giường", name: "BedCode", width: 50, align: 'left' },
+                 { label: "Số ngày xuất viện", name: "cyts", width: 50, align: 'left' },
+                 //{ label: "Ngày xuất viện", name: "cqrq", width: 100, align: 'left', editable: false, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                 //{ label: "Chẩn đoán", name: "zdmc", width: 120, align: 'left' },
                  { label: "RecordStu", name: "RecordStu",  hidden:true },
                 {
-                    label: "病案状态", name: "RecordStuMS", width: 70, align: 'center', formatter: function (val,option,row) {
+                    label: "Trạng thái bệnh án", name: "RecordStuMS", width: 70, align: 'center', formatter: function (val,option,row) {
                         if (row.RecordStu == '@((int)EnumRecordStu.ytj)') {
-                            return "已提交";
+                            return "Đã nộp";
                         }
                         else if (row.RecordStu == '@((int)EnumRecordStu.th)') {
-                            return "已退回";
+                            return "Đã trả lại";
                         }
                         else if (row.RecordStu == '@((int)EnumRecordStu.wtj)') {
-                            return "未提交";
+                            return "Chưa nộp";
                         }
                         else if (row.RecordStu == '@((int)EnumRecordStu.yqs)') {
-                            return "已签收";
+                            return "Đã ký nhận";
                         }
                         else return ""
 
                     }
                 },
                 {
-                    label: "详情", name: "", width: 80, align: 'center', formatter(val, option, row) {
-                        return "<a class='btn btn-default' style='width:50px;font-weight:bold;' onclick='basyAddedit(" + option.rowId + ")'>病案编辑</a>";
+                    label: "Chi tiết", name: "", width: 80, align: 'center', formatter(val, option, row) {
+                        return "<a class='btn btn-default' style='width:50px;font-weight:bold;' onclick='basyAddedit(" + option.rowId + ")'>Sửa đổi bệnh án</a>";
                         @*if (row.RecordStu == '@((int)EnumRecordStu.yqs)') {
-                            return "<a class='btn btn-default' style='width:50px;font-weight:bold;float:left;' onclick='basyAddedit(" + option.rowId + ")'>病案编辑</a>";
+                            return "<a class='btn btn-default' style='width:50px;font-weight:bold;float:left;' onclick='basyAddedit(" + option.rowId + ")'>Sửa đổi bệnh án</a>";
                         }
                         else if (row.RecordStu == '@((int)EnumRecordStu.bagd)') {
-                            return "<a class='btn btn-default' style='width:50px;font-weight:bold;float:left;' onclick='basyShow(" + option.rowId + ")'>查看</a>";
+                            return "<a class='btn btn-default' style='width:50px;font-weight:bold;float:left;' onclick='basyShow(" + option.rowId + ")'>Xem</a>";
                         }
                         else
                             return ""*@
@@ -141,7 +141,7 @@
     function basyAddedit(rowid) {
         var rowdata = $('#gridcyList').jqGrid('getRowData', rowid);
         var pat = "【"+rowdata.zyh + "-" + rowdata.xm + "】";
-        top.top.$.Newtouchtab.addTabWithOutMenu({ name: "病案首页" + pat, enName: "", url: "/MRHomePage/MainRecord/Main?keyValue=&zyh=" + rowdata.zyh });
+        top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Trang đầu bệnh án" + pat, enName: "", url: "/MRHomePage/MainRecord/Main?keyValue=&zyh=" + rowdata.zyh });
 
         $.modalClose();
     }

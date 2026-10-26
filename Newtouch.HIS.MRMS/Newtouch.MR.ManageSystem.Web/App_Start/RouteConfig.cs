@@ -4,12 +4,12 @@ using System.Web.Routing;
 namespace Newtouch.MR.ManageSystem.Web
 {
     /// <summary>
-    /// 路由注册
+    /// Đăng ký định tuyến
     /// </summary>
     public class RouteConfig
     {
         /// <summary>
-        /// 路由注册
+        /// Đăng ký định tuyến
         /// </summary>
         /// <param name="routes"></param>
         public static void RegisterRoutes(RouteCollection routes)

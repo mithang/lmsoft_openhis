@@ -1,6 +1,6 @@
 ﻿@using Newtouch.MR.ManageSystem.Infrastructure
 @{
-    ViewBag.Title = "病案首页列表";
+    ViewBag.Title = "Danh sách trang đầu bệnh án";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -48,34 +48,34 @@
     <div style="padding-left:10px;">
         <table class="form">
 			<tr>
-				<th class="formTitle">出院时间</th>
+				<th class="formTitle">Thời gian xuất viện</th>
 				<td class="formValue" colspan="2">
 					<input id="txt_ksrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.ToString("yyyy-MM-01")">
 					<span style="float:left;">_</span>
 					<input id="txt_jsrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")">
 				</td>
-				@*<td class="formTitle">病案状态：</td>
+				@*<td class="formTitle">Trạng thái bệnh án：</td>
 		<td class="formValue formDdlSelectorTd">
 			<select class="form-control" id="bazt" data-enumtype="Enumbazt">
-				<option value="">===全部===</option>
+				<option value="">===Tất cả===</option>
 			</select>
 		</td>*@
-				@*<td class="formTitle">病区：</td>
+				@*<td class="formTitle">Khu bệnh：</td>
 		<td class="formValue formDdlSelectorTd">
 			<select id="bqlist" name="bqlist" class="form-control " style="float:left;">
-				<option value=""> ==请选择== </option>
+				<option value=""> ==Vui lòng chọn== </option>
 			</select>
 		</td>*@
-				@*<th class="formTitle">出院天数 >=</th>
+				@*<th class="formTitle">Số ngày xuất viện >=</th>
 				<td class="formValue">
 					<input id="txt_cyts" name="txt_keyword" class="form-control" style="width:50%;float:left;" />
 				</td>*@
-				<th class="formTitle">身份证号</th>
+				<th class="formTitle">Số chứng minh nhân dân</th>
 				<td class="formValue">
 					<input id="txt_sfzh" name="txt_keyword" class="form-control" style="width:100%;float:left;" />
 				</td>
 
-				<th class="formTitle">出院科室</th>
+				<th class="formTitle">Khoa xuất viện</th>
 				<td class="formValue">
 					<input id="txt_cykb" name="txt_keyword" class="form-control" style="width:50%;float:left;" />
 				</td>
@@ -84,21 +84,21 @@
 				<td class="formValue"></td>*@
 				<td class="formTitle"></td>
 				<td class="formValue" rowspan="2">
-					<button id="btn_addnew" type="button" class="btn" onclick="btn_cycx()"><span>新建病案</span></button>
+					<button id="btn_addnew" type="button" class="btn" onclick="btn_cycx()"><span>Tạo mới bệnh án</span></button>
 				</td>
 			</tr>
             <tr>
-                <th class="formTitle">姓名/住院号/病案号</th>
+                <th class="formTitle">Họ tên/Số nhập viện/Số bệnh án</th>
                 <td class="formValue" colspan="2">
                     <input id="txt_keyword" name="txt_keyword" class="form-control" />
                 </td>
 
                 <th class="formTitle"></th>
                 <td class="formTitle">
-                    <input type="button" class="btn btn-primary btn-md" style="padding:3px 20px 3px 20px;float:left;" id="btn_search" value="病案查询" />
+                    <input type="button" class="btn btn-primary btn-md" style="padding:3px 20px 3px 20px;float:left;" id="btn_search" value="Tìm kiếm bệnh án" />
                 </td>
                 <td class="formTitle">
-                    <input type="button" class="btn btn-primary btn-md" style="padding:3px 20px 3px 20px;float:left;" onclick="btn_excel()" id="btn_excel" value="导出" />
+                    <input type="button" class="btn btn-primary btn-md" style="padding:3px 20px 3px 20px;float:left;" onclick="btn_excel()" id="btn_excel" value="Xuất dữ liệu" />
                 </td>
             </tr>
         </table>
@@ -135,84 +135,84 @@
             height: $(window).height() - 185,
             colModel: [
                 { label: "Id", name: "Id", hidden: true },
-                { label: "病案号", name: "BAH", width: 60, align: 'left' },
-                { label: "患者姓名", name: "XM", width: 50, align: 'left' },
+                { label: "Số bệnh án", name: "BAH", width: 60, align: 'left' },
+                { label: "Họ tên bệnh nhân", name: "XM", width: 50, align: 'left' },
                 {
-                    label: "性别", name: "XB", width: 30, align: 'left', formatter: function (val) {
+                    label: "Giới tính", name: "XB", width: 30, align: 'left', formatter: function (val) {
                         if (val == '@((int)EnumSex.M)') {
-                            return "男";
+                            return "Nam";
                         }
                         else if (val == '@((int)EnumSex.F)') {
-                            return "女";
+                            return "Nữ";
                         }
                         else {
-							return "未知";
+							return "Không rõ";
                         }
                     }
                 },
-                { label: "年龄", name: "NL", width: 30, align: 'left' },
-                { label: "住院号", name: "ZYH", width: 40, align: 'left' },
-                { label: "病区", name: "RYKB", width: 80, align: 'left' },
-                { label: "出院科室", name: "CYKB", width: 80, align: 'left' },
-                { label: "出院床号", name: "CYCH", width: 50, align: 'left' },
-                { label: "诊断", name: "MZZD", width: 100, align: 'left' },
-                { label: "出院时间", name: "CYSJ", width: 120, align: 'left' },
+                { label: "Tuổi", name: "NL", width: 30, align: 'left' },
+                { label: "Số nhập viện", name: "ZYH", width: 40, align: 'left' },
+                { label: "Khu bệnh", name: "RYKB", width: 80, align: 'left' },
+                { label: "Khoa xuất viện", name: "CYKB", width: 80, align: 'left' },
+                { label: "Số giường xuất viện", name: "CYCH", width: 50, align: 'left' },
+                { label: "Chẩn đoán", name: "MZZD", width: 100, align: 'left' },
+                { label: "Thời gian xuất viện", name: "CYSJ", width: 120, align: 'left' },
                 {
-                    label: "签收时间", name: "CommitTime", width: 100, align: 'left', formatter: function (val) {
+                    label: "Ký nhậnthời gian", name: "CommitTime", width: 100, align: 'left', formatter: function (val) {
                         return val.replace("T", " ");
                     } },
-                { label: "归档时间", name: "GDRQ", width: 110 , align: 'left' },
-                //{ label: "出院天数", name: "cyts", width: 100, align: 'left' },
-                @*{ label: "签收状态", name: "RecordStu", width: 60, align: 'left', formatter: function (val) {
+                { label: "Lưu trữthời gian", name: "GDRQ", width: 110 , align: 'left' },
+                //{ label: "Số ngày xuất viện", name: "cyts", width: 100, align: 'left' },
+                @*{ label: "Trạng thái ký nhận", name: "RecordStu", width: 60, align: 'left', formatter: function (val) {
                         if (val == '@((int)EnumRecordStu.yqs)') {
-                            return "已签收";
+                            return "Đã ký nhận";
                         }
                         else if (val == '@((int)EnumRecordStu.wtj)') {
-                            return "未提交";
+                            return "Chưa nộp";
                         }
                         else if (val == '@((int)EnumRecordStu.ytj)') {
-                            return "已提交";
+                            return "Đã nộp";
                         }
                         else if (val == '@((int)EnumRecordStu.th)') {
-                            return "退回";
+                            return "Trả lại";
                         }
                         else return ""
 
                     } },*@
                 {
-                    label: "病案状态", name: "bazt", width: 60, align: 'left', formatter: function (val) {
+                    label: "Trạng thái bệnh án", name: "bazt", width: 60, align: 'left', formatter: function (val) {
                         if (val == '@((int)Enumbazt.dlr)') {
-                            return "待录入";
+                            return "Chờ nhập";
                         }
                         else if (val == '@((int)Enumbazt.lrz)') {
-                            return "待归档";
+                            return "ChờLưu trữ";
                         }
                         else if (val == '@((int)Enumbazt.gd)') {
-                            return "已归档";
+                            return "Đã lưu trữ";
                         }
                         else return ""
 
                     }
                 },
                 {
-                    label: "详情", name: "", width: 160, align: 'center', formatter(val, option, row) {
+                    label: "Chi tiết", name: "", width: 160, align: 'center', formatter(val, option, row) {
                         var gd = "";
                         if (row.bazt == '@((int)Enumbazt.gd)') {
                             
-                            gd = "<a class='btn btn-default' id='" + option.rowId+"_gd' style='width:30px;font-weight:bold;textalign:center;margin-left:5px' onclick='guidang(" + option.rowId + ")'>撤销</a>";
+                            gd = "<a class='btn btn-default' id='" + option.rowId+"_gd' style='width:30px;font-weight:bold;textalign:center;margin-left:5px' onclick='guidang(" + option.rowId + ")'>Thu hồi</a>";
                             
                         }
                         else {
-                            gd = "<a class='btn btn-default'  id='" + option.rowId +"_gd' style='width:30px;font-weight:bold;textalign:center;margin-left:5px' onclick='guidang(" + option.rowId + ")'>归档</a>";
+                            gd = "<a class='btn btn-default'  id='" + option.rowId +"_gd' style='width:30px;font-weight:bold;textalign:center;margin-left:5px' onclick='guidang(" + option.rowId + ")'>Lưu trữ</a>";
                         }
-                        return "<a class='btn btn-default' style='width:50px;font-weight:bold;textalign:center;' onclick='basyShow(" + option.rowId + ")'>查看详细</a>" + gd + "<a class='btn btn-default' style='width:70px;font-weight:bold;textalign:center;margin-left:5px' onclick='CXguidang(" + option.rowId + ")'>撤销并退回</a>";
+                        return "<a class='btn btn-default' style='width:50px;font-weight:bold;textalign:center;' onclick='basyShow(" + option.rowId + ")'>Xem chi tiết</a>" + gd + "<a class='btn btn-default' style='width:70px;font-weight:bold;textalign:center;margin-left:5px' onclick='CXguidang(" + option.rowId + ")'>Thu hồivàTrả lại</a>";
 
                     }
                 }
             ],
             loadComplete: function () {
             },
-            caption: "病案列表",
+            caption: "Danh sách bệnh án",
             sortname: "Id desc",
             rowNum: 10,
             pager: "#gridPager",
@@ -239,7 +239,7 @@
     function btn_cycx() {
         $.modalOpen({
             id: "Form",
-            title: "签收病历患者查询",
+            title: "Bệnh nhân ký nhận bệnh ánTìm kiếm",
             url: "/MRHomePage/MainRecord/OutHosPatQuery",
             width: "750px",
             height: "450px",
@@ -250,16 +250,16 @@
 
     function basyShow(rowid) {
         var rowdata = $('#gridList').jqGrid('getRowData', rowid);
-        var menuname = "病案首页" + "【" + rowdata.XM +"-"+ rowdata.ZYH + "】"
+        var menuname = "Trang đầu bệnh án" + "【" + rowdata.XM +"-"+ rowdata.ZYH + "】"
         top.top.$.Newtouchtab.addTabWithOutMenu({ name: menuname, enName: "", url: "/MRHomePage/MainRecord/Main?keyValue=" + rowdata.Id + "&zyh=" + rowdata.ZYH });
     }
 
     function guidang(rowid) {
         var gdzt = "#" + rowid + "_gd";
-        if ($(gdzt).text() == "归档") {
+        if ($(gdzt).text() == "Lưu trữ") {
             var rowdata = $('#gridList').jqGrid('getRowData', rowid);
             //console.info("rowdata:" + rowdata.Id, rowdata.ZYH,rowdata.XM);
-            $.modalConfirm("确认归档？",
+            $.modalConfirm("Xác nhậnLưu trữ？",
                 function (flag) {
                     if (flag) {
                         $.ajax({
@@ -272,15 +272,15 @@
                                 if (d == 1) {
                                     //GridInit();
                                     
-                                    $.modalAlert("归档成功", 'success');
+                                    $.modalAlert("Lưu trữthành công", 'success');
                                     GridInit();
                                     $("#gridList").resetSelection();
                                     $("#gridList").trigger("reloadGrid");
-                                    $(gdzt).text("撤销");
+                                    $(gdzt).text("Thu hồi");
                                 }
                             },
                             error: function () {
-                                $.modalAlert("归档失败", "error");
+                                $.modalAlert("Lưu trữthất bại", "error");
                             }
                         });
                     }
@@ -292,7 +292,7 @@
         else {
             var rowdata = $('#gridList').jqGrid('getRowData', rowid);
             //console.info("rowdata:" + rowdata.Id, rowdata.ZYH,rowdata.XM);
-            $.modalConfirm("确认撤销归档吗？",
+            $.modalConfirm("Xác nhậnThu hồiLưu trữkhông？",
                 function (flag) {
                     if (flag) {
                         $.ajax({
@@ -305,15 +305,15 @@
                                 if (d == 1) {
                                     //GridInit();
                                     
-                                    $.modalAlert("撤销成功", 'success');
+                                    $.modalAlert("Thu hồithành công", 'success');
                                     GridInit();
                                     $("#gridList").resetSelection();
                                     $("#gridList").trigger("reloadGrid");
-                                    $(gdzt).text("归档");
+                                    $(gdzt).text("Lưu trữ");
                                 }
                             },
                             error: function () {
-                                $.modalAlert("撤销失败", "error");
+                                $.modalAlert("Thu hồithất bại", "error");
                             }
                         });
                     }
@@ -331,8 +331,8 @@
 
     function CXguidang(rowid){
         var rowdata = $('#gridList').jqGrid('getRowData', rowid);
-        if (rowdata.bazt != "已归档") {
-            $.modalAlert("并未归档！", 'warning');
+        if (rowdata.bazt != "Đã lưu trữ") {
+            $.modalAlert("ChưaLưu trữ！", 'warning');
             return false;
         }
         else {
@@ -344,7 +344,7 @@
                 async: false,
                 success: function (data) {
                     if (data == 1) {
-                        $.modalAlert("撤销并退回成功", 'success');
+                        $.modalAlert("Thu hồivàTrả lạithành công", 'success');
                         $("#gridList").resetSelection();
                         $("#gridList").trigger("reloadGrid");
 

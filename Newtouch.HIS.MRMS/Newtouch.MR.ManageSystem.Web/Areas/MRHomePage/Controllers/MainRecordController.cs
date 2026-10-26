@@ -191,31 +191,31 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.MRHomePage.Controllers
             var data = "";
             if (dto!=null && dto.Count>0)
             {
-                //结算病人信息
+                //Thông tin bệnh nhân đã thanh toán
                 var jsbrxx = _MainRecordDmnService.SettlementQuery(zyh, this.OrganizeId);
-                //是否同步动态参数信息
+                //Có đồng bộ thông tin tham số động hay không
                 var dtcsxx = _MainRecordDmnService.DiagnosticSave(Code, this.OrganizeId);
 
-                //判断是否结算病人
+                //Phán đoán có phải bệnh nhân đã thanh toán hay không
                 if (jsbrxx.Count > 0)
                 {
-                    //参数修改时间为空时取创建时间
+                    //Khi thời gian sửa đổi tham số trống thì lấy thời gian tạo
                     var uptime = dtcsxx[0].LastModifyTime.ToString() == null || dtcsxx[0].LastModifyTime.ToString() == "" ? dtcsxx[0].CreateTime : dtcsxx[0].LastModifyTime;
-                    //判断结算时间大于参数的修改或创建时间
+                    //Phán đoán thời gian thanh toán lớn hơn thời gian sửa đổi hoặc tạo của tham số
                     if ((jsbrxx[0].CreateTime > uptime) && (dtcsxx[0].Value == "OFF" || dtcsxx[0].Value == "off"))
                     {
                         data = "已结算病人不能添加诊断信息";
                     }
-                    //判断结算时间小于参数的修改或创建时间
+                    //Phán đoán thời gian thanh toán nhỏ hơn thời gian sửa đổi hoặc tạo của tham số
                     else if ((jsbrxx[0].CreateTime < uptime) && (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on"))
                     {
-                        //保存诊断
+                        //Lưu chẩn đoán
                         _MainRecordDmnService.ZdListSubmit(dto, OrganizeId);
                         data = "诊断信息保存成功";
                     }
                     else
                     {
-                        //return Success("不能添加诊断信息");
+                        //return Success("Không thể thêm thông tin chẩn đoán");
                         data = "不能添加诊断信息";
                     }
                 }
@@ -256,32 +256,32 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.MRHomePage.Controllers
             if(zddto!=null&&zddto.Count>0)
             {
                 //_MainRecordDmnService.ZdListSubmit(zddto, OrganizeId);
-                //结算病人信息
+                //Thông tin bệnh nhân đã thanh toán
                 var jsbrxx = _MainRecordDmnService.SettlementQuery(zyh, this.OrganizeId);
-                //是否同步动态参数信息
+                //Có đồng bộ thông tin tham số động hay không
                 var dtcsxx = _MainRecordDmnService.DiagnosticSave(Code, this.OrganizeId);
 
-                //判断是否结算病人
+                //Phán đoán có phải bệnh nhân đã thanh toán hay không
                 if (jsbrxx.Count > 0)
                 {
-                    //参数修改时间为空时取创建时间
+                    //Khi thời gian sửa đổi tham số trống thì lấy thời gian tạo
                     var uptime = dtcsxx[0].LastModifyTime.ToString() == null || dtcsxx[0].LastModifyTime.ToString() == "" ? dtcsxx[0].CreateTime : dtcsxx[0].LastModifyTime;
-                    //判断结算时间大于参数的修改或创建时间
+                    //Phán đoán thời gian thanh toán lớn hơn thời gian sửa đổi hoặc tạo của tham số
                     if ((jsbrxx[0].CreateTime > uptime) && (dtcsxx[0].Value == "OFF" || dtcsxx[0].Value == "off"))
                     {
-                        //data = "已结算病人不能添加诊断信息";
+                        //data = "Bệnh nhân đã thanh toánngườiKhông thể thêm thông tin chẩn đoán";
                     }
-                    //判断结算时间小于参数的修改或创建时间
+                    //Phán đoán thời gian thanh toán nhỏ hơn thời gian sửa đổi hoặc tạo của tham số
                     else if ((jsbrxx[0].CreateTime < uptime) && (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on"))
                     {
-                        //保存诊断
+                        //Lưu chẩn đoán
                         _MainRecordDmnService.ZdListSubmit(zddto, OrganizeId);
-                        //data = "诊断信息保存成功";
+                        //data = "Lưu thông tin chẩn đoán thành công";
                     }
                     else
                     {
-                        //return Success("不能添加诊断信息");
-                        //data = "不能添加诊断信息";
+                        //return Success("Không thể thêm thông tin chẩn đoán");
+                        //data = "Không thể thêm thông tin chẩn đoán";
                     }
                 }
             }
@@ -293,7 +293,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.MRHomePage.Controllers
         }
 
 
-        //------------------归档按钮
+        //------------------Lưu trữnút bấm
         public ActionResult guidang(string dataId,string ZYH,string XM) {
            var data= _MrbasyRepo.Updatebazt(dataId,ZYH,XM);
             return Content(data.ToJson());
@@ -318,7 +318,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.MRHomePage.Controllers
             ViewBag.OrgId = this.OrganizeId;
             ViewBag.topOrgId = Constants.TopOrganizeId;
             ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
-            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //是否是医院管理员
+            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //Có phải quản trị viên bệnh viện hay không
             ViewBag.CurUserCode = this.UserIdentity.UserCode;
             ViewBag.curUsergh = UserIdentity.rygh;
         }

@@ -1,7 +1,7 @@
 ﻿
 @{
 
-    ViewBag.Title = "病案科室";
+    ViewBag.Title = "Khoa bệnh án";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -42,13 +42,13 @@
                 <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
             </div>
             <div class="btn-group">
-                <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+                <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
             </div>
             <div class="btn-group">
-                <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+                <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa đổi</a>
             </div>
             <div class="btn-group">
-                <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>删除</a>
+                <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
             </div>
         </div>
         <div class="search">
@@ -56,7 +56,7 @@
                 <tr>
                     <td>
                         <div class="input-group">
-                            <input id="txt_keyword" type="text" class="form-control" placeholder="病案代码/病案名称" style="width: 120px;">
+                            <input id="txt_keyword" type="text" class="form-control" placeholder="Mã bệnh án/Tên bệnh án" style="width: 120px;">
                             <span class="input -group-btn">
                                 <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                             </span>
@@ -75,7 +75,7 @@
 </div>
 <div id="dv_Medlist" class="gridPanel dv-right" style="margin-left:50px;">
     <div class="topPanel">
-        <p class="formTitle" style="width:110px;font-size:22px;background:rgba(215, 242, 252, 0.86);text-align:center;">关联科室</p>
+        <p class="formTitle" style="width:110px;font-size:22px;background:rgba(215, 242, 252, 0.86);text-align:center;">Khoa liên kết</p>
     </div>
         <div class="gridPanel">
             <table id="gridList"></table>
@@ -90,7 +90,7 @@
         </div>*@
 
     <script>
-        //$(window).resize(function () {//浏览器窗口调整大小时重新加载jqGrid的宽
+        //$(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt thì tải lại chiều rộng của jqGrid
         //    window.initLayout("div_Patlist");
         //    window.initLayout("dv_Medlist");
         //});
@@ -109,8 +109,8 @@
                 height: $(window).height() - 195,
                 colModel: [
                     { label: "Id", name: "Id", hidden: true },
-                    { label: "病案科室代码", name: "ksbm", width: 163, align: 'left' },
-                    { label: "病案科室名称", name: "ksmc", width: 163, align: 'left' }
+                    { label: "Bệnh ánMã khoa", name: "ksbm", width: 163, align: 'left' },
+                    { label: "Tên khoa bệnh án", name: "ksmc", width: 163, align: 'left' }
                 ],
                 sortname: "ID desc",
                 rowNum: 10,
@@ -138,13 +138,13 @@
                 height: $(window).height() - 166,
                 colModel: [
                     { label: "Id", name: "Id", hidden: true },
-                    { label: "HIS代码", name: "hisdept", width: 100, align: 'left' },
-                    { label: "HIS名称", name: "hisdeptname", width: 120, align: 'left' },
-                    { label: "病案代码", name: "baksId", width: 120, align: 'left' },
-                    { label: "病案名称", name: "baksName", width: 120, align: 'left', editable: true, edittype: "select", editoptions: { dataUrl: "/RecordManage/MrDept/GetDicDeptList" } },
+                    { label: "HISMã", name: "hisdept", width: 100, align: 'left' },
+                    { label: "HISTên", name: "hisdeptname", width: 120, align: 'left' },
+                    { label: "Mã bệnh án", name: "baksId", width: 120, align: 'left' },
+                    { label: "Tên bệnh án", name: "baksName", width: 120, align: 'left', editable: true, edittype: "select", editoptions: { dataUrl: "/RecordManage/MrDept/GetDicDeptList" } },
                     {
-                        label: "操作", name: "", width: 120, align: 'left', formatter(val, option, row) {
-                            return "<a class='btn btn-default' style='width:50px;font-weight:bold;float:left;' onclick=save('" + row.hisdept + "','" + row.hisdeptname + "','" + option.rowId + "')>保存</a>";
+                        label: "Thao tác", name: "", width: 120, align: 'left', formatter(val, option, row) {
+                            return "<a class='btn btn-default' style='width:50px;font-weight:bold;float:left;' onclick=save('" + row.hisdept + "','" + row.hisdeptname + "','" + option.rowId + "')>Lưu</a>";
                         }
                     }
                 ],
@@ -161,11 +161,11 @@
             });
         }
 
-        //保存
+        //Lưu
         function save(hisdept, hisdeptname, val) {
             var baksId = $("#" + val + "_baksName option:selected").val();
             if (baksId == 0) {
-                $.modalAlert("请选择病案科室", 'warning');
+                $.modalAlert("Vui lòng chọnKhoa bệnh án", 'warning');
                 return false;
             }
             else {
@@ -181,11 +181,11 @@
             }
         }
 
-        //新增
+        //Thêm mới
         function btn_add() {
             window.$.modalOpen({
                 id: "Form",
-                title: "新增病案科室",
+                title: "Thêm mớiKhoa bệnh án",
                 url: "/RecordManage/MrDept/Form",
                 width: "500px",
                 height: "350px",
@@ -200,16 +200,16 @@
             });
         }
 
-        //更新
+        //Cập nhật
         function btn_edit() {
             var keyValue = $("#gridList1").jqGridRowValue().Id;
             if (!!!keyValue) {
-                $.modalAlert("请选中一条信息", 'warning');
+                $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
                 return false;
             }
             $.modalOpen({
                 id: "updateForm",
-                title: "修改病案科室",
+                title: "Sửa đổiKhoa bệnh án",
                 url: "/RecordManage/MrDept/Form?keyValue=" + keyValue,
                 width: "500px",
                 height: "350px",
@@ -224,9 +224,9 @@
             });
         }
 
-        //删除
+        //Xóa
         function btn_delete() {
-            window.$.modalConfirm("确定要删除吗？", function (flag) {
+            window.$.modalConfirm("Bạn có chắc chắn muốn xóa không?？", function (flag) {
                 if (!flag) {
                     return false;
                 }
@@ -234,15 +234,15 @@
             });
             var keyValue = window.$("#gridList1").jqGridRowValue().Id;
             if (!!!keyValue) {
-                window.$.modalAlert("请选中一条信息", 'warning');
+                window.$.modalAlert("Vui lòng chọn một bản ghi", 'warning');
                 return false;
             }
             window.$.deleteForm({
                 url: "/RecordManage/MrDept/DeleteData",
                 param: { keyValue: keyValue },
                 success: function () {
-                    $.modalMsg("删除成功", "success");
-                    $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                    $.modalMsg("Xóa thành công", "success");
+                    $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết củagrid
                     $("#btn_search").trigger("click");
                     $("#gridList").resetSelection();
                     $("#gridList").trigger("reloadGrid");

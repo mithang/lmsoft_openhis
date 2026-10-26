@@ -13,21 +13,21 @@ namespace Newtouch.MR.ManageSystem.DomainServices
 {
     class RecordDmnService : DmnServiceBase, IRecordDmnService
     {
-#pragma warning disable CS0649 // 从未对字段“RecordDmnService._CommonDmnService”赋值，字段将一直保持其默认值 null
+#pragma warning disable CS0649 // Chưa từng gán giá trị cho trường“RecordDmnService._CommonDmnService”gán giá trị, trường sẽ luôn giữ giá trị mặc định của nó null
         private readonly ICommonDmnService _CommonDmnService;
-#pragma warning restore CS0649 // 从未对字段“RecordDmnService._CommonDmnService”赋值，字段将一直保持其默认值 null
-#pragma warning disable CS0169 // 从不使用字段“RecordDmnService._EMRDmnService”
+#pragma warning restore CS0649 // Chưa từng gán giá trị cho trường“RecordDmnService._CommonDmnService”gán giá trị, trường sẽ luôn giữ giá trị mặc định của nó null
+#pragma warning disable CS0169 // Không bao giờ sử dụng trường“RecordDmnService._EMRDmnService”
         private readonly IEMRDmnService _EMRDmnService;
-#pragma warning restore CS0169 // 从不使用字段“RecordDmnService._EMRDmnService”
+#pragma warning restore CS0169 // Không bao giờ sử dụng trường“RecordDmnService._EMRDmnService”
         public RecordDmnService(IDefaultDatabaseFactory databaseFactory) : base(databaseFactory)
         {
         }
 
         /// <summary>
-        ///锁定/解锁病历编辑
+        ///Khóa/Mở khóa sửa đổi bệnh án
         /// </summary>
         /// <param name="blId"></param>
-        /// <param name="blgxId">病历关系Id</param>
+        /// <param name="blgxId">Quan hệ bệnh ánId</param>
         /// <param name="OrgId"></param>
         /// <param name="user"></param>
         public void LockRecord(string blid, string bllx, string OrganizeId, string UserCode, int isLock)
@@ -61,7 +61,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
             
             switch (bllx.Substring(0,1))
             {
-                //入院病历
+                //Bệnh án nhập viện
                 case "1":
                     var rybl = bl_ryblGetByID(blid,organizeId);
                     medicalRecordVO.blxtml = rybl.blxtml;
@@ -69,7 +69,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
                     medicalRecordVO.IsLock = rybl.IsLock;
                     medicalRecordVO.LastModifierCode = rybl.LastModifierCode;
                     break;
-                //病程记录
+                //Ghi chép diễn biến bệnh
                 case "2":
                     var bcjl = bl_bcjlGetByID(blid,organizeId);
                     medicalRecordVO.blxtml = bcjl.blxtml;
@@ -77,7 +77,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
                     medicalRecordVO.IsLock = bcjl.IsLock;
                     medicalRecordVO.LastModifierCode = bcjl.LastModifierCode;
                     break;
-                //医疗文书
+                //Văn bản y tế
                 case "3":
                     var ylws = bl_zqwsGetByID(blid, organizeId);
                     medicalRecordVO.blxtml = ylws.blxtml;
@@ -85,7 +85,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
                     medicalRecordVO.IsLock = ylws.IsLock;
                     medicalRecordVO.LastModifierCode = ylws.LastModifierCode;
                     break;
-                //护理记录
+                //Ghi chép điều dưỡng
                 case "4":
                     var hljl = bl_hljlGetByID(blid, organizeId);
                     medicalRecordVO.blxtml = hljl.blxtml;
@@ -93,7 +93,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
                     medicalRecordVO.IsLock = hljl.IsLock;
                     medicalRecordVO.LastModifierCode = hljl.LastModifierCode;
                     break;
-                //病案首页
+                //Trang đầu bệnh án
                 case "5":
                     var basy = bl_basyGetByID(blid,organizeId);
                     medicalRecordVO.blxtml = basy.blxtml;
@@ -101,7 +101,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
                     medicalRecordVO.IsLock = basy.IsLock;
                     medicalRecordVO.LastModifierCode = basy.LastModifierCode;
                     break;
-                //康复评估
+                //Đánh giá phục hồi chức năng
                 case "6":
                     var kfpg = bl_basyGetByID(blid, organizeId);
                     medicalRecordVO.blxtml = kfpg.blxtml;

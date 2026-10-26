@@ -106,7 +106,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
 			return flag;
 		}
 
-		//树选择显示项目列表
+		//Hiển thị danh sách hạng mục theo lựa chọn trên cây
 		public ActionResult GetPagintionListById(Pagination pagination, string id)
 		{
 			var pat = _MrFeeRelDmnService.GetPagintionListById(pagination, OrganizeId, id);
@@ -121,7 +121,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
 			return Content(data.ToJson());
 		}
 
-		//显示未分类项目
+		//Hiển thị hạng mục chưa phân loại
 		public ActionResult GetPagintionItem(Pagination pagination, string code, string keyword,string hissfdl) {
 
 			var pat = _MrFeeRelDmnService.GetPagintionItem(pagination, OrganizeId, keyword,hissfdl,code);

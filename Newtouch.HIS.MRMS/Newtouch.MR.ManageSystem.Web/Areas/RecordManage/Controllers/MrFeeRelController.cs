@@ -38,7 +38,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
             return Content(data.ToJson());
         }
 
-        //获取二级和三级收费大类
+        //Lấy cấp 2vàCấp 3Nhóm thu phí lớn
         public ActionResult GetFeeSel(string orgId)
         {
             var result = _MrFeeRelDmnService.GetFeeSel(OrganizeId);

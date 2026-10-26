@@ -70,7 +70,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
         }
 
         /// <summary>
-        /// 获取病历树
+        /// Lấy cây bệnh án
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -121,11 +121,11 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
             currentFileName = ConfigurationHelper.GetAppConfigValue("DcWriterFileRoter") + bllj + blxtmc_yj.Trim() + ".html";
             currentFileName = currentFileName.Replace("~", "");
             currentFileName = currentFileName.Replace("/", "\\");
-            if(System.IO.File.Exists(currentFileName) == false)//如果不存在就打开默认模板
+            if(System.IO.File.Exists(currentFileName) == false)//Nếu không tồn tại thì mở mẫu mặc định
             {
                 currentFileName = ConfigurationHelper.GetAppConfigValue("DcWriterFileRoter") + "\\File\\Template\\" + "newFile.html";
             }
-            // 加载模板
+            // Tải mẫu
             string htmldata = System.IO.File.ReadAllText(currentFileName);
             BlTemplateVo vo = new BlTemplateVo();
             vo.xmldata = htmldata;
@@ -140,7 +140,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
         {
             try
             {
-                //如果找不到加载的xml就默认为空白的xml
+                //Nếu không tìm thấy xml tải thì mặc định là xml trốngxml
                 ViewBag.blid = blid;
                 ViewBag.bllx = bllx;
                 ViewBag.zyh = zyh;
@@ -148,7 +148,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
                 string currentFileName = ConfigurationHelper.GetAppConfigValue("DcWriterFileRoter") + "\\File\\Template\\" + "newFile.xml";
                 string bllj = "";
                 string blxtmc_yj = "";
-                // 加载文件
+                // Tải tệp
                 WebWriterControlEngine eng;
                 if (engine == null)
                 {
@@ -185,12 +185,12 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
                 currentFileName = currentFileName.Replace("~", "");
                 currentFileName = currentFileName.Replace("/", "\\");
                 //currentFileName = Server.MapPath(bllj + blxtmc_yj.Trim() + ".xml");
-                if (System.IO.File.Exists(currentFileName) == false)//如果不存在就打开默认模板
+                if (System.IO.File.Exists(currentFileName) == false)//Nếu không tồn tại thì mở mẫu mặc định
                 {
                     currentFileName = ConfigurationHelper.GetAppConfigValue("DcWriterFileRoter") + "\\File\\Template\\" + "newFile.xml";
                     //currentFileName = Server.MapPath(BlTemplatePath + "newFile.xml");
                 }
-                // 加载模板
+                // Tải mẫu
                 eng.LoadDocument(currentFileName, null);
                 var Zybrjbxx = GetEMRZybrjbxxByZYH(zyh);
                 XMLDataBind(Zybrjbxx, eng);
@@ -218,8 +218,8 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
 
         #region 数据初始化
         /// <summary>
-        /// 根据住院号获取病人基本信息
-        /// 实体必须是可序列化的才能在病历控件里绑定上数据所以使用ZybrjbxxVO
+        /// Lấy thông tin cơ bản của bệnh nhân theo số nhập viện
+        /// Thực thể phải có thể tuần tự hóa mớitạiràng buộc dữ liệu trong điều khiển bệnh án nên sử dụngZybrjbxxVO
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -230,7 +230,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
         #endregion 
 
         /// <summary>
-        /// 根据住院号获取病人基本信息
+        /// Lấy thông tin cơ bản của bệnh nhân theo số nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -285,67 +285,67 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
             {
                 engine.SetRegisterCode("04DD8DFEA57F329DAECA2E1BA6EFF0FFBAD96AEAC18BE949A1241CE1EF917A3C65D8B37D5F6E79E9CEBECF27B0A7CE6F66DC0CE1B2892C2C8D6AC6C8D3AD8BD50D1777AC3B57D7988D785AFA2915480A1E8B38F99330C0A4ACCCAB8155A414B35DFFD72CC1EFB4FE4FF4D52485A7BB70A0DE88DBE1A1D1FB7637963FFCCDAB1021B570B8050A76C3C5BA968A9941265505AA4071C4722B817C3BF0750A4CA809270559130AEDCF6561327034D85DBB29F8A8C1CDC323889085D2FACCAE941A2D3A6D7EBE44782B2977D367E84690C849533CC9E546A41F0AD5");
             }
-            //设置注册码
-            //基础版注册码
-            //升级版注册码（添加格式加载）
+            //Đặt mã đăng ký
+            //Mã đăng ký bản cơ bản
+            //Mã đăng ký bản nâng cấp (thêm tải định dạng）
             // engine.SetRegisterCode("040149FF0AA70373F1D129EEEC0D495F734089A6530C102319381C25EAA3E07E86EBA8F8FFF3C9EDACB7574B418743218FEA078B710058C3A657F8C2F057A0B6AC54519E0FA0A5601AF1E2AE33BC207C5C45BBDFAA0583865F6EF983A182B3D285ED06AC9C8241A353");
 
-            //临时
+            //tạm thờigiờ
             // engine.SetRegisterCode("0402FE07A67E7CB3C6661C89C5873DA1BBEF4EBC8A6552B48C439FC8F6EF784264256136139729863B65CE84452B1665D304F7CD2D4C2AAEA499E3972ACC7D21F0C6260C7322448AB9B568103F9B59B561F817E6772E3FE9A73490208FA1163E46");
 
 
-            //编辑器ID
+            //Trình soạn thảoID
             engine.Options.ControlName = "myWriterControl";
 
-            //违禁关键字
+            //Từ khóa bị cấm
             engine.Options.ExcludeKeywords = "月经,子宫,卵巢";
-            // 是否显示输入域状态标签
+            // Có hiển thị nhãn trạng thái trường nhập hay không
             engine.DocumentOptions.ViewOptions.ShowInputFieldStateTag = true;
-            // 文本输入域数据异常时的高亮度文本色            
+            // Dữ liệu trường nhập văn bản bất thườnggiờmàu văn bản nổi bật của            
             engine.DocumentOptions.ViewOptions.FieldInvalidateValueBackColor = Color.Yellow;
-            // 用Tab键在各个输入域之间切换
+            // Dùng phím Tabtạichuyển đổi giữa các trường nhập
             engine.DocumentOptions.BehaviorOptions.MoveFocusHotKey = MoveFocusHotKeys.Tab;
-            //表单视图模式 Strict:严格视图模式
+            //Chế độ xem biểu mẫu Strict:Chế độ xem nghiêm ngặt
             engine.ControlOptions.FormView = FormViewMode.Strict;
-            //显示段落标记
+            //Hiển thị dấu đoạn văn
             engine.DocumentOptions.ViewOptions.ShowParagraphFlag = false;
-            //是否显示输入域状态标签
+            //Có hiển thị nhãn trạng thái trường nhập hay không
             engine.DocumentOptions.ViewOptions.ShowInputFieldStateTag = true;
-            //是否允许视图加密显示
+            //Có cho phép hiển thị mã hóa chế độ xem hay không
             engine.DocumentOptions.ViewOptions.EnableEncryptView = true;
             engine.DocumentOptions.BehaviorOptions.EnableDataBinding = false;
-            // 是否显示无边框的表格暗线
+            // Có hiển thị đường mờ của bảng không viền hay không
             engine.DocumentOptions.ViewOptions.ShowCellNoneBorder = false;
-            //输入域边框颜色设置
+            //Đặt màu viền trường nhập
             engine.DocumentOptions.ViewOptions.FieldBorderColor = Color.Black;
-            //输入域背景文字的输出模式 Underline：输出下划线
+            //Chế độ xuất văn bản nền trường nhập Underline: xuất gạch dưới
             engine.Options.BackgroundTextOutputMode = DCBackgroundTextOutputMode.Underline;
-            //内容呈现模式 NormalHtmlEditable：以普通的HTML模式显示可编辑的文档
+            //Chế độ trình bày nội dung NormalHtmlEditable: vớiThông thườngchế độ HTML hiển thị tài liệu có thể sửa đổi
             engine.Options.ContentRenderMode = WebWriterControlRenderMode.NormalHtmlEditable;
-            //引用路径
+            //Đường dẫn tham chiếu
             engine.Options.ServicePageURL = this.Url.Action("HandleDCWriterServicePage");
-            //工作区域背景色
+            //Màu nền khu vực làm việc
             engine.Options.WorkspaceBackColorString = "#B1CAEB";
-            //工作区域背景图片
+            //Hình nền khu vực làm việc
             //engine.Options.WorkspaceBackgroundImage = "Workspace-Background.jpg";
-            //边框样式
+            //Kiểu viền
             engine.BorderStyle = "0px solid black";
             return engine;
         }
 
-        //设置编辑器的引用路径
+        //Đặt đường dẫn tham chiếu của trình soạn thảo
         public ActionResult HandleDCWriterServicePage()
         {
             var url = new DCWriterActionResult();
             return url;
         }
 
-        //处理操作结果生成一个带文档内容的编辑器
+        //Xử lýThao tácKết quả tạo ra một trình soạn thảo có nội dung tài liệu
         private class DCWriterActionResult : ActionResult
         {
             public override void ExecuteResult(ControllerContext context)
             {
-                //在web中显示文档内容的WEB控件
+                //tạiwebđiều khiển WEB hiển thị nội dung tài liệu trong
                 DCSoft.Writer.Controls.WebWriterControl.HandleService();
             }
         }
@@ -355,7 +355,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
         /// </summary>
         /// <param name="blid"></param>
         /// <param name="bllx"></param>
-        /// <param name="isLock">1请求编辑病历2请求解锁病历</param>
+        /// <param name="isLock">1Yêu cầu sửa đổi bệnh án, 2 yêu cầu mở khóa bệnh án</param>
         /// <returns></returns>
         public ActionResult LockRecord(string blid, string bllx, int isToLock)
         {
@@ -475,7 +475,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers
             ViewBag.OrgId = this.OrganizeId;
             ViewBag.topOrgId = Constants.TopOrganizeId;
             ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
-            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //是否是医院管理员
+            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //Có phải quản trị viên bệnh viện hay không
             ViewBag.CurUserCode = this.UserIdentity.UserCode;
             ViewBag.curUsergh = UserIdentity.rygh;
         }

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "出院登记表";
+    ViewBag.Title = "Bảng đăng ký xuất viện";
     Layout = "~/Views/Shared/_Index.cshtml";
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
     var reportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
@@ -9,11 +9,11 @@
 	<div class="panel panel-default">
 		<table class="form">
 			<tr>
-				<th class="formTitle">住院号：</th>
+				<th class="formTitle">Số nhập viện：</th>
 				<td class="formValue">
 					<input id="zyh" name="zyh" type="text" autocomplete="off" class="form-control" />
 				</td>
-				<th class="formTitle">出院日期：</th>
+				<th class="formTitle">Ngày xuất viện：</th>
 				<td class="formValue" style="padding-left:20px;">
 					<input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
 						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -28,17 +28,17 @@
 						   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refReport(); } })"
 						   value="@DateTime.Now.ToString("yyyy-MM-dd")" />
 				</td>
-				<th class="formTitle" style="padding-left:20px;">签收状态：</th>
+				<th class="formTitle" style="padding-left:20px;">Trạng thái ký nhận：</th>
 				<td class="formValue">
 					<select id="blzt" class="form-control" style="width:90px">
-						<option value="4">==全部==</option>
-						<option value="3">已签收</option>
-						<option value="1">未签收</option>
+						<option value="4">==Tất cả==</option>
+						<option value="3">Đã ký nhận</option>
+						<option value="1">Chưa ký nhận</option>
 					</select>
 				</td>
 				<th class="formTitle"></th>
 				<td class="formValue" style="padding-left:20px;">
-					<input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+					<input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tìm kiếm" style="width:55px" />
 				</td>
 				<th></th>
 				<td></td>
@@ -61,7 +61,7 @@
 
     function submit() {
         if ($('#ksrq').val().length == 0 || $('#jsrq').val().length == 0) {
-            $.modalAlert("请选择时间范围", "error");
+            $.modalAlert("Vui lòng chọn khoảng thời gian", "error");
             return;
         }
 
@@ -74,7 +74,7 @@
 			    var orgId = data.orgId;
 			    var url = '@reportUrl' + "?tempCode=" + "1285" + "&orgId=" + orgId + "&systemCode=" + '@reportSystemCode';
 				url += "&zyh=" + $('#zyh').val() + "&kssj=" + $('#ksrq').val() + "&jssj=" + $('#jsrq').val() + "&blzt=" + $('#blzt').val();
-				setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+				setTimeout("$.loading(true, 'Đang yêu cầu trang báo cáo...');", 10);
 				$("#iframerightiframerightiframerightttt").attr('src', url);
 			}
 		});
@@ -91,7 +91,7 @@
 
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }

@@ -18,7 +18,7 @@ namespace Newtouch.MR.ManageSystem.Web.Areas.RecordManage
                 "RecordManage_default",
                 "RecordManage/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
-                , new[] { "Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers", "FrameworkBase.MultiOrg.Web.Areas.RecordManage.Controllers" } //指定命名空间
+                , new[] { "Newtouch.MR.ManageSystem.Web.Areas.RecordManage.Controllers", "FrameworkBase.MultiOrg.Web.Areas.RecordManage.Controllers" } //Chỉ định không gian tên
             );
 
         }

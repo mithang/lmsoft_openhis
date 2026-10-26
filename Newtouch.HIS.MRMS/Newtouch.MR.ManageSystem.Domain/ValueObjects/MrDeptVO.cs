@@ -9,27 +9,27 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
     public class MrDeptVO
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         public string Id { get; set; }
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string organizeId { get; set; }
         /// <summary>
-        /// 病案科室ID
+        /// Khoa bệnh ánID
         /// </summary>
         public string baksId { get; set; }
         /// <summary>
-        /// 病案科室名称
+        /// Tên khoa bệnh án
         /// </summary>
         public string baksName { get; set; }
         /// <summary>
-        /// his科室编号
+        /// hisMã số khoa
         /// </summary>
         public string hisdept { get; set; }
         /// <summary>
-        /// his科室名称
+        /// hisTên khoa
         /// </summary>
         public string hisdeptname { get; set; }
     }

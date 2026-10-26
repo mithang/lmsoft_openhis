@@ -14,7 +14,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="请输入账号" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Vui lòng nhập tài khoản" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -22,10 +22,10 @@
                 </td>
                 <td style="padding-left: 10px;">
                     <div id="time_horizon" class="btn-group">
-                        <a class="btn btn-default" data-value="1">今天</a>
-                        <a class="btn btn-default active" data-value="2">近7天</a>
-                        <a class="btn btn-default" data-value="3">近1个月</a>
-                        <a class="btn btn-default" data-value="4">近3个月</a>
+                        <a class="btn btn-default" data-value="1">Hôm nay</a>
+                        <a class="btn btn-default active" data-value="2">7 ngày gần đây</a>
+                        <a class="btn btn-default" data-value="3">1 tháng gần đây</a>
+                        <a class="btn btn-default" data-value="4">3 tháng gần đây</a>
                     </div>
                 </td>
             </tr>
@@ -48,22 +48,22 @@
             url: "/SystemManage/SysLog/GetPagintionGridJson",
             height: $(window).height() - 128,
             colModel: [
-                { label: '主键', name: 'Id', hidden: true },
+                { label: 'Khóa chính', name: 'Id', hidden: true },
                 {
-                    label: '日期', name: 'Date', width: 120, align: 'left',
+                    label: 'Ngày', name: 'Date', width: 120, align: 'left',
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: '账号', name: 'Account', width: 80, align: 'left' },
-                { label: '姓名', name: 'NickName', width: 80, align: 'left' },
-                { label: '操作菜单', name: 'ModuleName', width: 100, align: 'left' },
+                { label: 'Tài khoản', name: 'Account', width: 80, align: 'left' },
+                { label: 'Họ tên', name: 'NickName', width: 80, align: 'left' },
+                { label: 'Thao tácMenu', name: 'ModuleName', width: 100, align: 'left' },
                 {
-                    label: '操作类型', name: 'Type', width: 80, align: 'left',
+                    label: 'Thao tácLoại', name: 'Type', width: 80, align: 'left',
                     formatter: function (cellvalue) {
                         return $.enum.getDescByName("DbLogType", cellvalue);
                     }
                 },
                 {
-                    label: 'IP地址', name: 'IPAddress', width: 230, align: 'left',
+                    label: 'IPĐịa chỉ', name: 'IPAddress', width: 230, align: 'left',
                     formatter: function (cellvalue, options, rowObject) {
                         if (cellvalue && IPAddressName) {
                             return cellvalue + ";" + rowObject.IPAddressName;
@@ -73,7 +73,7 @@
                         }
                     }
                 },
-                { label: '日志内容', name: 'Description', width: 300, align: 'left' }
+                { label: 'Nội dung nhật ký', name: 'Description', width: 300, align: 'left' }
             ],
             pager: "#gridPager",
             sortname: 'Date desc',
@@ -98,7 +98,7 @@
             }).trigger('reloadGrid');
         });
 
-        //回车触发查询事件
+        //Nhấn Enter kích hoạt sự kiện tìm kiếm
         $('#txt_keyword').keydownEnterEvent(function () {
             $('#btn_search').trigger('click');
         })

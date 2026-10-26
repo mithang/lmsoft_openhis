@@ -7,27 +7,27 @@ using System;
 namespace Newtouch.MR.ManageSystem.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-11-20 11:05
-    /// 描 述：病案首页
+    /// Người tạo：chl
+    /// Ngày：2019-11-20 11:05
+    /// Mô tả: Trang đầu bệnh án
     /// </summary>
     public interface IMrbasyRepo : IRepositoryBase<MrbasyEntity>
     {
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu (thêm mới, sửa đổi）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         int SubmitForm(MrbasyEntity entity, string keyValue);
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         int DeleteForm(string keyValue);
 
 		/// <summary>
-		/// 获取病人住院信息
+		/// Lấy bệnhngườiThông tin nhập viện
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="organizeId"></param>
@@ -37,7 +37,7 @@ namespace Newtouch.MR.ManageSystem.Domain.IRepository
 
 
         /// <summary>
-        /// 修改归档状态
+        /// Sửa đổi trạng thái lưu trữ
         /// </summary>
         /// <param name="dataId"></param>
         /// <param name="ZYH"></param>

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "病案收费大类详情";
+    ViewBag.Title = "Bệnh ánNhóm thu phí lớnChi tiết";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -9,23 +9,23 @@
     <div style="padding-top: 20px; margin-right: 30px;">
         <table class="form">
             <tr>
-                <th class="formTitle">一级收费大类：</th>
+                <th class="formTitle">Cấp 1Nhóm thu phí lớn：</th>
                 <td class="formValue formDdlSelectorTd">
                     <select id="code1" name="code1" class="form-control" onchange="FeeOneChanged()">
-                        <option value=""> ==请选择== </option>
+                        <option value=""> ==Vui lòng chọn== </option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">二级收费大类：</th>
+                <th class="formTitle">Cấp 2Nhóm thu phí lớn：</th>
                 <td class="formValue formDdlSelectorTd">
                     <select id="code2" name="code2" class="form-control ">
-                        <option value=""> ==请选择== </option>
+                        <option value=""> ==Vui lòng chọn== </option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">名称：</th>
+                <th class="formTitle">Tên：</th>
                 <td class="formValue">
                     <input id="name" name="name" type="text" class="form-control" />
                 </td>
@@ -96,7 +96,7 @@
         });
     }
 
-    //一级大类修改事件,获取二级大类下拉框内容
+    //Nhóm lớn cấp 1Sửa đổiSự kiện,Lấy nội dung hộp thả xuống nhóm lớn cấp 2
     function FeeOneChanged() {
         var parentCode = $("#code1 option:selected").val();
          $("#code2").bindSelect({

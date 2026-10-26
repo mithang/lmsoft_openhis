@@ -9,11 +9,11 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
     public class feeSelVO
     {
         /// <summary>
-        /// 收费大类编号
+        /// Nhóm thu phí lớnMã số
         /// </summary>
         public string code { get; set; }
         /// <summary>
-        /// 收费大类名称
+        /// Tên nhóm thu phí lớn
         /// </summary>
         public string name { get; set; }
     }

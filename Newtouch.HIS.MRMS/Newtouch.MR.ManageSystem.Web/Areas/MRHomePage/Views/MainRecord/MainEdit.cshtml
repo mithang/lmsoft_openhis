@@ -20,11 +20,11 @@
 <form id="frm_edit">
     <div id="dv_edit" style="background-color:#ffffff;">
         <ul class="nav nav-tabs navb-bg" id="myTab" style="position:fixed;top:0;z-index:100009;width:100%;">
-            <li role="presentation"><a href="#linkpat" role="tab" data-toggle="tab">患者信息</a></li>
-            <li role="presentation"><a href="#linkzyinfo" role="tab" data-toggle="tab">住院信息</a></li>
-            <li role="presentation"><a href="#linkfee" role="tab" data-toggle="tab">费用信息</a></li>
-            <li role="presentation"><a href="#linkzd" role="tab" data-toggle="tab">诊断列表</a></li>
-            <li role="presentation"><a href="#linkop" role="tab" data-toggle="tab">手术列表</a></li>
+            <li role="presentation"><a href="#linkpat" role="tab" data-toggle="tab">Thông tin bệnh nhân</a></li>
+            <li role="presentation"><a href="#linkzyinfo" role="tab" data-toggle="tab">Thông tin nhập viện</a></li>
+            <li role="presentation"><a href="#linkfee" role="tab" data-toggle="tab">Thông tin phí</a></li>
+            <li role="presentation"><a href="#linkzd" role="tab" data-toggle="tab">Danh sách chẩn đoán</a></li>
+            <li role="presentation"><a href="#linkop" role="tab" data-toggle="tab">Danh sách phẫu thuật</a></li>
 
 
         </ul>
@@ -45,16 +45,16 @@
                 @Html.Partial("MainFeeInfo")
             </div>
             <div style="margin-top:5px;margin-bottom:3px;width:100%;height:30px; float:right;position: fixed;bottom:6px;">
-                @*<a class='btn btn-default' style='width:80px;background:#c1958f;color:#eee;height:20px;font-size:13px;padding-top:5px;margin-right:15px;float:right;' onclick="submitArrange();"><span class="glyphicon glyphicon-remove">重置</span></a>
-            <a class='btn btn-default' style='width:80px;background:#00CD66;color:#eee;height:20px;font-size:13px;padding-top:5px;margin-right:15px;float:right;' onclick="submitArrange();"><span class="glyphicon glyphicon-ok">保存首页</span></a>*@
+                @*<a class='btn btn-default' style='width:80px;background:#c1958f;color:#eee;height:20px;font-size:13px;padding-top:5px;margin-right:15px;float:right;' onclick="submitArrange();"><span class="glyphicon glyphicon-remove">Đặt lại</span></a>
+            <a class='btn btn-default' style='width:80px;background:#00CD66;color:#eee;height:20px;font-size:13px;padding-top:5px;margin-right:15px;float:right;' onclick="submitArrange();"><span class="glyphicon glyphicon-ok">LưuTrang chủ</span></a>*@
                 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
            {
                ShowKeyList = new int[] { 2, 3, 6, 7,9 },
-               F2Text="保存基本信息",
-               F3Text = "保存诊断",
-               F6Text = "保存手术",
-               F7Text = "完整病案保存",
-               F9Text = "同步费用"
+               F2Text="LưuThông tin cơ bản",
+               F3Text = "Lưu chẩn đoán",
+               F6Text = "LưuPhẫu thuật",
+               F7Text = "Bệnh án đầy đủLưu",
+               F9Text = "Đồng bộ phí"
            })
             </div>
         </div>
@@ -217,12 +217,12 @@
     }
 
     function amountcheck(str) {
-        //金额 只允许正数
+        //Số tiền chỉ cho phép số dương
         //var exp = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/; 
-        //金额 允许正（+）负数
+        //Số tiền cho phép số dương（+）số âm
         //var exp = /(^([+-]?)[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^([+-]?)(0){1}$)|(^([+-]?)[0-9]\.[0-9]([0-9])?$)/; 
 
-        //金额 允许正负数
+        //Số tiền cho phép số dương và số âm
         var exp = /(^([-]?)[1-9]([0-9]+)?(\.[0-9]{1,4})?$)|(^([-]?)(0){1}$)|(^([-]?)[0-9]\.[0-9]([0-9])?$)/;
         if (exp.test(str)) {
             return true;
@@ -230,7 +230,7 @@
             return false;
         }
     }
-    //费用格式校验
+    //Kiểm tra định dạng phí
     function amtCheck() {
         var jecheck = "";
         $("#dv_fee input[attr-desc]").each(
@@ -239,7 +239,7 @@
                 var fee = $(this).val();
                 if (fee != "" && fee != undefined) {
                     if (!amountcheck(fee)) {
-                        jecheck += $(this).attr('attr-desc') + "格式有误；";
+                        jecheck += $(this).attr('attr-desc') + "Định dạng sai；";
                     }
                 }
             }
@@ -247,7 +247,7 @@
 
         return jecheck;
     }
-    //患者信息参数
+    //Thông tin bệnh nhânTham số
     function getfromPara() {
         var para = $("#frm_edit").formSerialize();
         savecitycode(para);
@@ -267,7 +267,7 @@
         return para;
     }
 
-    //功能键操作区
+    //Phím chức năngThao tácQuận
     function newtouch_event_f2() {
         if (!$('#frm_edit').formValid()) {
             return false;
@@ -285,14 +285,14 @@
             param: para,
             success: function (data) {
                 if (data.state == "success") {
-                    $.modalAlert("患者信息保存成功", 'success');
+                    $.modalAlert("Thông tin bệnh nhânLưuthành công", 'success');
                 } else {
                     $.modalAlert(data.message, 'warning');
                 }
             }
         })
     }
-    //诊断保存
+    //Chẩn đoánLưu
     function newtouch_event_f3() {
       //debugger
         var msg = "";
@@ -309,11 +309,11 @@
             url: "/MRHomePage/MainRecord/SubmitZdList",
             data: { dto: rows, zyh: $("#ZYH").val(), "Code": "DiagnosticSave" },
             type: "post",
-            loading: "正在提交数据...",
+            loading: "Đang gửi dữ liệu...",
             success: function (data) {
                 var obj = JSON.parse(data);
                 if (obj.data == "") {
-                    $.modalAlert("诊断信息保存成功", 'success');
+                    $.modalAlert("Lưu thông tin chẩn đoán thành công", 'success');
                 }
                 else {
                     window.setTimeout(function () {
@@ -327,7 +327,7 @@
                             $.modalAlert(obj.data, 'warning');
                         }
                         //if (obj.state == "success") {
-                        //    $.modalAlert("诊断信息保存成功", 'success');
+                        //    $.modalAlert("Lưu thông tin chẩn đoán thành công", 'success');
                         //    jQuery("#gridzdList").jqGrid().trigger('reloadGrid');
                         //}
                         //else {
@@ -339,7 +339,7 @@
         });
         
     }
-    //手术列表
+    //Danh sách phẫu thuật
     function newtouch_event_f6() {
         //debugger
         var msg = "";
@@ -354,13 +354,13 @@
         $.ajax({
             url: "/MRHomePage/MainRecord/SubmitOpList",
             data: { dto: rows },
-            loading: "正在提交数据...",
+            loading: "Đang gửi dữ liệu...",
             type: "post",
             success: function (data) {
                 window.setTimeout(function () {
                     var obj = JSON.parse(data);
                     if (obj.state == "success") {
-                        $.modalAlert("手术信息保存成功", 'success');
+                        $.modalAlert("Thông tin phẫu thuậtLưuthành công", 'success');
                         jQuery("#gridopList").jqGrid().trigger('reloadGrid');
                     }
                     else {
@@ -396,7 +396,7 @@
     }
 
     function newtouch_event_f7() {
-        //患者基本信息
+        //Thông tin cơ bản của bệnh nhân
         if (!$('#frm_edit').formValid()) {
             return false;
         }
@@ -419,13 +419,13 @@
                     $.ajax({
                         url: "/MRHomePage/MainRecord/SubmitMR?keyValue=" + keyValue,
                         data: { zddto: zdrows, opdto: oprows, zyh: $("#ZYH").val(), "Code": "DiagnosticSave" },
-                        loading: "正在提交数据...",
+                        loading: "Đang gửi dữ liệu...",
                         type: "post",
                         success: function (data) {
                             window.setTimeout(function () {
                                 var obj = JSON.parse(data);
                                 if (obj.state == "success") {
-                                    $.modalAlert("保存成功", 'success');
+                                    $.modalAlert("Lưuthành công", 'success');
                                     jQuery("#gridopList").jqGrid().trigger('reloadGrid');
                                     jQuery("#gridzdList").jqGrid().trigger('reloadGrid');
                                 }
@@ -446,16 +446,16 @@
     }
 
     function newtouch_event_f9() {
-        $.modalConfirm("同步数据会重置页面，请确认是否重置？", function (flag) {
+        $.modalConfirm("Đồng bộ dữ liệu sẽĐặt lạitrang, vui lòng xác nhận có hay khôngĐặt lại？", function (flag) {
             if (flag) {
                 $.ajax({
                     url: "/MRHomePage/MainRecord/GetFormJsonFee?keyValue=" + keyValue,
                     data: { zyh: zyh },
-                    loading: "正在同步数据...",
+                    loading: "đangtạiĐồng bộ dữ liệu...",
                     type: "post",
                     success: function (data) {
                         SyncFee(data);
-                        $.modalAlert("同步完成", 'success');
+                        $.modalAlert("Đồng bộ hoàn tất", 'success');
                     }
                 });
 

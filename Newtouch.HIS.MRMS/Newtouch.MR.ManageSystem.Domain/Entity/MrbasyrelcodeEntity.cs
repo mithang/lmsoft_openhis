@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 namespace Newtouch.MR.ManageSystem.Domain.Entity
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-11-20 11:05
-    /// 描 述：病案首页基础信息字典关联项
+    /// Người tạo：chl
+    /// Ngày：2019-11-20 11:05
+    /// Mô tả: Trang đầu bệnh ánHạng mục liên kết từ điển thông tin cơ bản
     [Table("mr_basy_rel_code")]
     public class MrbasyrelcodeEntity:IEntity<MrbasyrelcodeEntity>
     {
@@ -21,179 +21,179 @@ namespace Newtouch.MR.ManageSystem.Domain.Entity
         public string OrganizeId { get; set; }
         public string SYId { get; set; }
         /// <summary>
-        /// 医疗付款方式
+        /// Hình thức thanh toán y tế
         /// </summary>
         /// <returns></returns>
         public string YLFKFS { get; set; }
         /// <summary>
-        /// 病案号
+        /// Số bệnh án
         /// </summary>
         /// <returns></returns>
         public string BAH { get; set; }
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         /// <returns></returns>
         public string XB { get; set; }
         /// <summary>
-        /// 国籍
+        /// Quốc tịch
         /// </summary>
         /// <returns></returns>
         public string GJ { get; set; }
         /// <summary>
-        /// 民族
+        /// Dân tộc
         /// </summary>
         /// <returns></returns>
         public string MZ { get; set; }
         /// <summary>
-        /// 职业
+        /// Nghề nghiệp
         /// </summary>
         /// <returns></returns>
         public string ZY { get; set; }
         /// <summary>
-        /// 婚姻
+        /// Hôn nhân
         /// </summary>
         /// <returns></returns>
         public string HY { get; set; }
         /// <summary>
-        /// 关系
+        /// Quan hệ
         /// </summary>
         /// <returns></returns>
         public string GX { get; set; }
         /// <summary>
-        /// 入院途径
+        /// Đường nhập viện
         /// </summary>
         /// <returns></returns>
         public string RYTJ { get; set; }
         /// <summary>
-        /// 入院科别
+        /// Khoa nhập viện
         /// </summary>
         /// <returns></returns>
         public string RYKB { get; set; }
         /// <summary>
-        /// 入院病房
+        /// Phòng bệnh nhập viện
         /// </summary>
         /// <returns></returns>
         public string RYBF { get; set; }
 
         /// <summary>
-        /// 转科科别
+        /// Khoa chuyển đến
         /// </summary>
         /// <returns></returns>
         public string ZKKB { get; set; }
         /// <summary>
-        /// 代码：科室代码
+        /// Mã: Mã khoa
         /// </summary>
         /// <returns></returns>
         public string CYKB { get; set; }
 
         /// <summary>
-        /// 出院病房
+        /// Phòng bệnh xuất viện
         /// </summary>
         /// <returns></returns>
         public string CYBF { get; set; }
         /// <summary>
-        /// 疾病编码
+        /// Mã bệnh
         /// </summary>
         /// <returns></returns>
         public string BLZDDM { get; set; }
         /// <summary>
-        /// 代码：病人来源代码
+        /// Mã: Mã nguồn bệnh nhân
         /// </summary>
         /// <returns></returns>
         public string BRLY { get; set; }
         /// <summary>
-        /// 药物过敏
+        /// Dị ứng thuốc
         /// </summary>
         /// <returns></returns>
         public string YWGM { get; set; }
         /// <summary>
-        /// 血型
+        /// Nhóm máu
         /// </summary>
         /// <returns></returns>
         public string XX { get; set; }
 
         /// <summary>
-        /// 代码：Rh
+        /// Mã：Rh
         /// </summary>
         /// <returns></returns>
         public string RH { get; set; }        
         /// <summary>
-        /// 科主任
+        /// Trưởng khoa
         /// </summary>
         /// <returns></returns>
         public string KZR { get; set; }
 
         /// <summary>
-        /// 主任（副主任）医师
+        /// Bác sĩ trưởng khoa (phó trưởng khoa)
         /// </summary>
         /// <returns></returns>
         public string ZRYS { get; set; }
 
         /// <summary>
-        /// 主治医师
+        /// Bác sĩ điều trị
         /// </summary>
         /// <returns></returns>
         public string ZZYS { get; set; }
 
         /// <summary>
-        /// 住院医师
+        /// Bác sĩ nội trú
         /// </summary>
         /// <returns></returns>
         public string ZYYS { get; set; }
 
         /// <summary>
-        /// 责任护士
+        /// Điều dưỡng phụ trách
         /// </summary>
         /// <returns></returns>
         public string ZRHS { get; set; }
 
         /// <summary>
-        /// 进修医师
+        /// Bác sĩ tu nghiệp
         /// </summary>
         /// <returns></returns>
         public string JXYS { get; set; }
 
         /// <summary>
-        /// 实习医师
+        /// Bác sĩ thực tập
         /// </summary>
         /// <returns></returns>
         public string SXYS { get; set; }
 
         /// <summary>
-        /// 编码员
+        /// Nhân viên mã hóa
         /// </summary>
         /// <returns></returns>
         public string BMY { get; set; }
 
         /// <summary>
-        /// 代码：病案质量
+        /// Mã: Chất lượng bệnh án
         /// </summary>
         /// <returns></returns>
         public string BAZL { get; set; }
 
         /// <summary>
-        /// 质控医师
+        /// Bác sĩ kiểm soát chất lượng
         /// </summary>
         /// <returns></returns>
         public string ZKYS { get; set; }
 
         /// <summary>
-        /// 质控护士
+        /// Điều dưỡng kiểm soát chất lượng
         /// </summary>
         /// <returns></returns>
         public string ZKHS { get; set; }
         /// <summary>
-        /// 离院方式
+        /// Hình thức rời viện
         /// </summary>
         /// <returns></returns>
         public string LYFS { get; set; }
         /// <summary>
-        /// 病情分型 1 病危 2 病重 3 疑难 4 抢救 5 一般
+        /// Phân loại tình trạng bệnh: 1 Nguy kịch, 2 Nặng, 3 Khó, 4 Cấp cứu, 5 Thông thường
         /// </summary>
         public string BQFX { get; set; }
         /// <summary>
-        /// 是否有出院31天内再住院计划手术情况
+        /// Có kế hoạch tái nhập viện và phẫu thuật trong 31 ngày sau xuất viện hay không
         /// </summary>
         /// <returns></returns>
         public string SFZZYJH { get; set; }

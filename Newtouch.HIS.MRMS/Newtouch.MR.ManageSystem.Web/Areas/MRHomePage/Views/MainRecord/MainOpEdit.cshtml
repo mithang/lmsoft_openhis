@@ -34,68 +34,68 @@
 
 
 <div id="dv_opedit">
-    <a class="btn  " id="sscz">手<br />术<br />管<br />理<br /><span class="glyphicon glyphicon-edit"></span></a>
+    <a class="btn  " id="sscz">Phẫu<br />thuật<br />Quản<br />lý<br /><span class="glyphicon glyphicon-edit"></span></a>
     <div class="dv-left">
         <div class="dv-left-tb" id="tb_opedit" style="padding-top:10px;height:365px;">
             <div><input type="hidden" id="op_rowid" name="op_rowid" /></div>
             <table class="form" style="width:95%;">
                 <tr>
-                    <th class="formTitle "><span class="required">*</span>手术及操作：</th>
+                    <th class="formTitle "><span class="required">*</span>Phẫu thuật vàThao tác：</th>
                     <td class="formValue">
                         <input id="op_ssdm" name="op_ssdm" class="form-control required" attr-ssdm="" attr-ssjb="" autocomplete="off" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle "><span class="required">*</span>手术及操作日期：</th>
+                    <th class="formTitle "><span class="required">*</span>Ngày phẫu thuật và thao tác：</th>
                     <td class="formValue">
                         <input id="op_ssrq" type="text" class="form-control input-wdatepicker formClearIgnore required" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd H:00:00',maxDate:'#F{\'%y-%M-%d\'}'})" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle "><span class="required">*</span>主刀医生：</th>
+                    <th class="formTitle "><span class="required">*</span>Bác sĩ mổ chính：</th>
                     <td class="formValue">
                         <input id="op_zdys" name="op_zdys" class="form-control"  />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle ">I助：</th>
+                    <th class="formTitle ">IPhụ：</th>
                     <td class="formValue">
                         <input id="op_sszl1" name="op_sszl1" class="form-control "  />
 
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle ">II助：</th>
+                    <th class="formTitle ">IIPhụ：</th>
                     <td class="formValue">
                         <input id="op_sszl2" name="op_sszl2" class="form-control"  />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle ">切口愈合等级：</th>
+                    <th class="formTitle ">Cấp độ liềnvết mổ：</th>
                     <td class="formValue">
                         <select id="op_yhdj" name="op_yhdj" class="form-control ">
-                            <option value="">请选择</option>
+                            <option value="">Vui lòng chọn</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle ">切口愈合类别：</th>
+                    <th class="formTitle ">Loại liền vết mổ：</th>
                     <td class="formValue">
                         <select id="op_yhlb" name="op_yhlb" class="form-control ">
-                            <option value="">请选择</option>
+                            <option value="">Vui lòng chọn</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle ">麻醉方式：</th>
+                    <th class="formTitle ">Phương pháp gây mê：</th>
                     <td class="formValue">
                         <select id="op_mzfs" name="op_mzfs" class="form-control ">
-                            <option>请选择</option>
+                            <option>Vui lòng chọn</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle ">麻醉医生：</th>
+                    <th class="formTitle ">Bác sĩ gây mê：</th>
                     <td class="formValue">
                         <input id="op_mzys" name="op_mzys" class="form-control " />
                         @*<input id="op_sszl2" name="op_sszl2" class="form-control" />*@
@@ -104,9 +104,9 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input id="btn_submit_op" type="button" class="btn btn-default" value="保存" style="width:50px;background-color:#9cf7cc;float:right;margin-right:10px;" />
-                        <input id="btn_del_op" type="button" class="btn btn-default" value="删除" style="width:50px;background-color:#9cf7cc;float:right;margin-right:10px;" />
-                        <input id="btn_reset_op" type="button" class="btn btn-default" value="重置" style="width:50px;background-color:#9cf7cc;float:right;margin-right:10px;" />
+                        <input id="btn_submit_op" type="button" class="btn btn-default" value="Lưu" style="width:50px;background-color:#9cf7cc;float:right;margin-right:10px;" />
+                        <input id="btn_del_op" type="button" class="btn btn-default" value="Xóa" style="width:50px;background-color:#9cf7cc;float:right;margin-right:10px;" />
+                        <input id="btn_reset_op" type="button" class="btn btn-default" value="Đặt lại" style="width:50px;background-color:#9cf7cc;float:right;margin-right:10px;" />
                     </td>
                 </tr>
             </table>
@@ -152,35 +152,35 @@
             debugger
             getopdata();
             if (!!!opdata.SSJCZBM) {
-                $.modalAlert("请选择手术项目", 'error');
+                $.modalAlert("Vui lòng chọnPhẫu thuậtHạng mục", 'error');
                 return false;
             }
             if (!!!opdata.SZ) {
-                $.modalAlert("请选择主刀医生", 'error');
+                $.modalAlert("Vui lòng chọnBác sĩ mổ chính", 'error');
                 return false;
             }
             if (!!!opdata.SSJCZRQ) {
-                $.modalAlert("请选择手术日期", 'error');
+                $.modalAlert("Vui lòng chọnNgày phẫu thuật", 'error');
                 return false;
             }
-            if (opdata.QKYHDJ.indexOf("请选择")>-1) {
+            if (opdata.QKYHDJ.indexOf("Vui lòng chọn")>-1) {
                 opdata.QKYHDJ = "";
             }
             if (opdata.SSJCZBM != null && opdata.SSJCZBM != undefined && opdata.SSJCZBM != "") {
                 var $grid = $("#gridopList");
                 var gridids = $grid.jqGrid('getDataIDs');
-                //在行号序列中获取最大的编号
+                //Lấy số lớn nhất trong dãy số thứ tự dòng
                 var maxRowId = 0;
                 if (gridids.length>0) {
                     maxRowId = Math.max.apply(Math, $grid.jqGrid('getDataIDs'));
                 }
 
-                var rowid = $("#op_rowid").val(); //是否属于修改诊断
+                var rowid = $("#op_rowid").val(); //Có phải sửa đổi chẩn đoán hay không
                 if (rowid != null && rowid != undefined && rowid != "" && parseInt(rowid) > 0) {
                     var rowdata = $grid.jqGrid("getRowData", rowid);
                     if (opdata.SSJCZBM == rowdata.SSJCZBM) {
                         $grid.jqGrid("setRowData", rowid, opdata);
-                        $.modalAlert("录入成功", 'success');
+                        $.modalAlert("Nhập thành công", 'success');
 
                         return true;
                     }
@@ -193,12 +193,12 @@
                     $("#op_rowid").val(maxRowId + 1);
                 }
                 else {
-                    $.modalAlert("手术已录入", 'error');
+                    $.modalAlert("Phẫu thuậtđã được nhập", 'error');
                 }
 
             }
             else {
-                $.modalAlert("请选择手术", 'warning');
+                $.modalAlert("Vui lòng chọnPhẫu thuật", 'warning');
             }
 
         });
@@ -210,10 +210,10 @@
                 opdata.zt = 0;
                 opdata.ztsm = '作废';
                 jQuery("#gridopList").jqGrid("setRowData", rowid, opdata);
-                $.modalAlert("作废成功", 'success');
+                $.modalAlert("Hủy bỏ thành công", 'success');
             }
             else {
-                $.modalAlert("请选择手术记录", 'warning');
+                $.modalAlert("Vui lòng chọnPhẫu thuậtGhi chép", 'warning');
             }
         });
 
