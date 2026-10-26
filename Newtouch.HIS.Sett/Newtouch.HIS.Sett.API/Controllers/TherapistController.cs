@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// Cập nhật đ ề xuất của chuyển 换trạng thái
+        /// Cập nhật trạng thái chuyển đổi của đề xuất
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

@@ -28,11 +28,11 @@ namespace Newtouch.HIS.Sett.Request.Booking.Request
         /// </summary>
         //public string PresType { get; set; }
         /// <summary>
-        /// Loại đ ơn thuốc说明
+        /// Mô tả loại đơn thuốc
         /// </summary>
         public string PresTypeName { get; set; }
         /// <summary>
-        /// 开立thời gian
+        /// Thời gian lập
         /// </summary>
         public string PresTime { get; set; }
     }

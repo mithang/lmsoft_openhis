@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.HIS.Sett.Request.Therapist
 {
     /// <summary>
-    /// chờ chuyển 换 điều trị đ ề xuất tra cứu
+    /// Tra cứu đề xuất điều trị chuyển đổi đang chờ
     /// </summary>
     public class TherapistSuggestionQueryRequest : OrgRequestBase
     {
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Sett.Request.Therapist
         public string mzzyh { get; set; }
 
         /// <summary>
-        /// 开立của起始thời gian lọc
+        /// Lọc thời gian bắt đầu lập
         /// </summary>
         [Required]
         public DateTime? startTime { get; set; }

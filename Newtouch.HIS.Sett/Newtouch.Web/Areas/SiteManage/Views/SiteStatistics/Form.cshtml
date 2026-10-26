@@ -280,7 +280,7 @@
         else {
             CRGridList();//Khai báoThông tin thu nhập
             ajaxCR();//Yêu cầu dữ liệu thu nhập
-            loadlastmonthcbxx();//Yêu cầutrêntháng的Chi phíThông tin
+            loadlastmonthcbxx();//Yêu cầutrênthángcủaChi phíThông tin
         }
         $('#siteId,#year,#month').change(function () {
             if (keyValue == "") {
@@ -787,7 +787,7 @@
                 }
                 rowData = rowDataArr[0];  //Thông quarowData.newidLấy dữ liệu dòng này từ mảng đối tượng
                 editingNewid = rowData.Id;    //Dòng đang sửa
-                //Tuần tự hóa tớiChỉnh sửa域trong
+                //Tuần tự hóa tớiChỉnh sửatrườngtrong
                 $('#cblb').val(rowData.cblb).trigger("change");
                 $('#kmmc').val(rowData.kmcode).trigger("change");
                 $('#je').val(rowData.je);
@@ -846,7 +846,7 @@
         }
     };
 
-    //Nút重置
+    //Nút đặt lại
     function bottomButtonsReset() {
         $('#btn_bottombutton_add').removeAttr('disabled');
         $('#btn_bottombutton_edit').attr('disabled', 'disabled');
@@ -887,7 +887,7 @@
                         }
                     }
                 }
-                cbjson.remove(matchedIndex);   //移除
+                cbjson.remove(matchedIndex);   //Loại bỏ
 
                 //lại đưaxmHiển thị mảng tớigrid
                 fillDataToGrid();
@@ -895,7 +895,7 @@
         }
     };
 
-    //向CbGridList grid里填充Dữ liệu
+    //Điền dữ liệu vào grid CbGridList
     function fillDataToGrid() {
         $("#CbGridList").resetSelection();
         $("#CbGridList").clearGridData();

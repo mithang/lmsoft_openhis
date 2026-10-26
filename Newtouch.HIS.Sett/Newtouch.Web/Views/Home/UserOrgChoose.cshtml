@@ -43,7 +43,7 @@
         }
         var chooseOrgVal = top.$.cookie(chooseOrgKey);
         if (chooseOrgVal != null) {
-            //用完立remove
+            //Dùng xong xóa ngay (remove)
             top.$.cookie(chooseOrgKey, '', { path: "/", expires: -1 });
         }
     }

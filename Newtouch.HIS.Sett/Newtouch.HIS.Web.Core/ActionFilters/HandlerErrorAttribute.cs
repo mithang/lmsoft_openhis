@@ -6,7 +6,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Web.Core.ActionFilters
 {
     /// <summary>
-    /// 全局bất thư ờng bắt 
+    /// Bắt bất thường toàn cục 
     /// </summary>
     public class HandlerErrorAttribute : HandleErrorAttribute
     {
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Web.Core.ActionFilters
                     AppLogger.Instance.Error(context.Exception.Message, context.Exception);
                 }
             }
-            //Nếu không là nghiệp vụ nhắc nhở, không 记 nhật ký 
+            //Nếu không là nhắc nhở nghiệp vụ, không ghi nhật ký 
 
             if (context.RequestContext.HttpContext.Request.IsAjaxRequest())
             {

@@ -6,7 +6,7 @@
     public class ActResultDTO
     {
         /// <summary>
-        /// xây dựng hàm 初始化
+        /// Hàm khởi tạo
         /// </summary>
         public ActResultDTO()
         {

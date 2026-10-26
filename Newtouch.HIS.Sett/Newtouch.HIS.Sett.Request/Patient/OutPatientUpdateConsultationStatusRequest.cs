@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Sett.Request.Patient
         public string jiuzhenbz { get; set; }
 
         /// <summary>
-        /// 看诊bác sĩ
+        /// Bác sĩ khám bệnh
         /// </summary>
         public string jzys { get; set; }
     }

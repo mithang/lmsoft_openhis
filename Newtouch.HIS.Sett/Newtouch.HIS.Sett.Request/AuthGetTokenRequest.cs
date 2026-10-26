@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Sett.Request
 {
     /// <summary>
-    /// 以关键thông tin(ngư ời dùng 名, mật khẩu V.v.) đ ổi lấy truy cập 令牌
+    /// Bằng thông tin quan trọng (tên người dùng, mật khẩu v.v.) đổi lấy mã truy cập
     /// </summary>
     public class AuthGetTokenRequest : RequestBase
     {

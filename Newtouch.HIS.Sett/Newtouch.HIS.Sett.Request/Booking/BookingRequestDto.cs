@@ -43,12 +43,12 @@ namespace Newtouch.HIS.Sett.Request
         /// </summary>
         public  string outDate { get; set; }
         /// <summary>
-        /// 起始khám bệnh ngày 
+        /// Ngày khám bệnh bắt đầu 
         /// </summary>
         public string FromoutDate { get; set; }
         public string ys { get; set; }
         /// <summary>
-        /// Loại ngoại trú thông thư ờng chuyên gia副高V.v.
+        /// Loại ngoại trú thông thường chuyên gia phó cao cấp v.v.
         /// </summary>
         public string regType { get; set; }
         /// <summary>
@@ -56,11 +56,11 @@ namespace Newtouch.HIS.Sett.Request
         /// </summary>
         public string ghpbId { get; set; }
         /// <summary>
-        /// mz_ghpb_schedule đ ặt lịch vừa 定ngày程id
+        /// mz_ghpb_schedule đ ặt lịch vừa xác địnhngày trình id
         /// </summary>
         public string scheduId { get; set; }
         /// <summary>
-        /// Đ ăng ký khám性质 tự trả BHYTV.v. brxz V.v.同
+        /// Đ ăng ký khámtính chất tự trả BHYTV.v. brxz v.v. cùng
         /// </summary>
         public string ghxz { get; set; }
         /// <summary>
@@ -96,8 +96,8 @@ namespace Newtouch.HIS.Sett.Request
         /// </summary>
         public string ghrq { get; set; }
         /// <summary>
-        /// Đ ăng ký khám来源辅助 dấu hiệu Quận分 cùng một 来源của khác nhau 标记bệnh nhân
-        /// 体检 dùng 
+        /// Đ ăng ký khámnguồnphụ trợ dấu hiệu phân biệt cùng một nguồncủa khác nhau đánh dấubệnh nhân
+        /// Dùng khám sức khỏe 
         /// </summary>
         public string ghlybz { get; set; }
     }

@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                     , par.keyword
                     , par.pagination);
 
-                // này là分trangtra cứu
+                // đây là tra cứu phân trang
                 resp.data = new
                 {
                     pagination = par.pagination,
@@ -163,7 +163,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                     , par.keyword
                     , par.pagination);
 
-                // này là分trangtra cứu
+                // đây là tra cứu phân trang
                 resp.data = new
                 {
                     pagination = par.pagination,
@@ -194,7 +194,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                 var list = _patientBasicInfoDmnService.InPatientQuery(this.UserIdentity.OrganizeId
                     , ref flag, ref msg, null, par.zyh);
 
-                // này là分trangtra cứu
+                // đây là tra cứu phân trang
                 resp.data = list == null && list.Count > 0 ? null : list[0];
 
                 if (resp.data != null)
@@ -388,7 +388,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// Nhập viện một ngày清
+        /// Quyết toán trong ngày nhập viện
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Sett.API.App_Start
     public class DependencyResolver
     {
         /// <summary>
-        /// chú thích 入web APIĐiều khiển thiết bị / qua 滤 thiết bị 
+        /// chú thích đưa vào web API bộ điều khiển / bộ lọc 
         /// </summary>
         /// <param name="config">HttpConfiguration</param>
         public static void RegisteWebApiComponent()
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Sett.API.App_Start
             // bộ nhớ đ ệm 
             builder.RegisterType<SERedisCache>().As<ICache>().InstancePerLifetimeScope();
 
-            //API ngư ời dùng thân phận 解析 thiết bị 
+            //API bộ phân giải thân phận người dùng 
             builder.RegisterType<HISAPIUserIdentityResolver>().As<IUserIdentityResolver<Identity>>().InstancePerLifetimeScope();
 
             #region IOC注册底层
@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Sett.API.App_Start
             #endregion
 
             #region IOC, then registe yours
-            //DLL nơi tại của绝 đ ối với 路径
+            //Đường dẫn tuyệt đối nơi đặt DLL
             var repoAssembly = Assembly.Load("Newtouch.HIS.Repository");
             builder.RegisterAssemblyTypes(repoAssembly)
                 .Where(t => t.Name.EndsWith("Repo") || t.Name.EndsWith("Repository"))
@@ -70,10 +70,10 @@ namespace Newtouch.HIS.Sett.API.App_Start
                 .AsImplementedInterfaces().InstancePerLifetimeScope();
             #endregion
 
-            // đ ăng ký Autofac qua 滤 thiết bị 提供 chư ơng trình.
+            // đăng ký bộ lọc Autofac cung cấp chương trình.
             builder.RegisterWebApiFilterProvider(GlobalConfiguration.Configuration);
 
-            // Đ ặt依赖解析 thiết bị -Dependency Resolver
+            // Đặt bộ phân giải phụ thuộc -Dependency Resolver
             var container = builder.Build();
             var resolver = new AutofacWebApiDependencyResolver(container);
             GlobalConfiguration.Configuration.DependencyResolver = resolver;

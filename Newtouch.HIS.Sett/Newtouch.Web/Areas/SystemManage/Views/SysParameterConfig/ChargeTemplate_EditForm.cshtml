@@ -271,7 +271,7 @@
                 }
             });
             if (returnFlag) {
-                return; //不能重复Thêm
+                return; //Không thể thêm trùng lặp
             }
             btn_addItem($thistr);
         },
@@ -350,7 +350,7 @@
         }
         var postData = $("#form1").formSerialize();
 
-        //Phương thức thanh toán json串
+        //Chuỗi json phương thức thanh toán
         var xmArr = new Array();
         var rowIds = $("#xmDetailListGridList").getDataIDs();
         $.each(rowIds, function (idx, val) {
@@ -378,7 +378,7 @@
         }
         postData['xmListStr'] = JSON.stringify(xmArr);
         debugger
-        postData['sfmbbh'] = keyValue;  //Khóa chính，决定是Thêm mới还是Sửa
+        postData['sfmbbh'] = keyValue;  //Khóa chính, quyết định là thêm mới hay sửa
         postData['ks'] = $('#dllDepartment').val();
         postData['mzzybz'] = $('#mzzybz').val();
         postData['py'] = $('#py').val();

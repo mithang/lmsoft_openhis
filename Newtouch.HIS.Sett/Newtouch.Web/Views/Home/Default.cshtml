@@ -243,7 +243,7 @@
             //var randomScalingFactor = function () { return Math.round(Math.random() * 100) };
             var OutpatientList = [];
             var InpatientList = [];
-            //折线图 Lấy số người khám bệnh
+            //Biểu đồ đường lấy số người khám bệnh
             if (data) {
                 OutpatientList = data.OutpatientList;
                 InpatientList = data.InpatientList
@@ -313,7 +313,7 @@
 
         function GetLeaveChart(data) {
             //var randomScalingFactor = function () { return Math.round(Math.random() * 100) };
-            //饼状图 Lấy số người khám bệnh
+            //Biểu đồ tròn lấy số người khám bệnh
             var outpatientCount = 0;
             var inpatientCount = 0;
             if (data.OutpatientList != null) {
@@ -425,7 +425,7 @@
                 xAxis: {
                     categories: rtnobj.str,
                     labels: {
-                        rotation: 10, //倾斜的角度
+                        rotation: 10, //Góc nghiêng
                     }
                 },
                 yAxis: {

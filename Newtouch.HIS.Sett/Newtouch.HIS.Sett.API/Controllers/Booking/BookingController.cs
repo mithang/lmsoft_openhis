@@ -74,7 +74,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             DefaultResponse resp = new DefaultResponse();
             if (dto != null)
             {
-                //Tham số规范性校验
+                //Kiểm tra tính hợp quy của tham số
                 resp = dto.FormatCheck(dto.methodcode);
                 if (resp.code == ResponseResultCode.SUCCESS)
                 {
@@ -107,7 +107,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                                     httpresp = CreateResponse(resp);
                                 }
                             }
-                            else if(dto.optype=="3") // 2020-2-19 Vàhis登记Đ ồng bộ không 强制 cần yêu cầu số giấy tờ không phải trống 
+                            else if(dto.optype=="3") // 2020-2-19 Vàhisđăng kýĐ ồng bộ không bắt buộc cần yêu cầu số giấy tờ không được trống 
                             {
                                 if (dto.paradata != null && dto.paradata.ContainsKey("xm") && dto.paradata.ContainsKey("xb") && dto.paradata.ContainsKey("csrq"))
                                 {
@@ -155,7 +155,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                         case "Y009"://Lịch trực ngoại trú
                             httpresp = GetMzpbSchedule(dto);
                             break;
-                        case "Y010": //Lịch trực ngoại trú详细 nguồn số thông tin
+                        case "Y010": //Thông tin nguồn số chi tiết lịch trực ngoại trú
                             httpresp = GetMzpbScheduleDetail(dto);
                             break;
                         case "Y011":
@@ -928,10 +928,10 @@ namespace Newtouch.HIS.Sett.API.Controllers
             {
                 //Bệnh nhân thân phận xác minh
                 var pat = _BookingDmnService.GetPatInfo(para.OrgId, para.kh, null, null).FirstOrDefault();
-                // lịch trực hiệu lực性xác minh
+                // xác minh tính hiệu lực của lịch trực
                 if (pat!= null)
                 {
-                    // chỉ 限 đ ặt lịch khi ngày sau đ ó của hiệu lực đ ặt lịch 
+                    // chỉ giới hạn đặt lịch trong ngày sau đó có hiệu lực đặt lịch 
                     string nowday = DateTime.Now.ToString("yyyy-MM-dd");
                     
                     var pb = _BookingDmnService.GetMzpbSchedule(para.OrgId, null, null, null, null, null,
@@ -1027,7 +1027,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
             Action<BookingRequestDto, DefaultResponse> ac = (req, resp) =>
             {
-                //校验 đ ặt lịch thông tin có hay không nhất quán, đ ặt lịch trạng thái
+                //Kiểm tra thông tin đặt lịch có nhất quán hay không, trạng thái đặt lịch
                 var record = _MzghbookRepo.FindEntity(p =>
                     p.BookId.ToString() == para.bookId && p.OrganizeId == para.OrgId && p.zt == "1");
                 if (record != null)

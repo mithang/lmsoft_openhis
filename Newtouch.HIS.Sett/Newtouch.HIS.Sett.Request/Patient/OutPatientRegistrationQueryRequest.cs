@@ -40,12 +40,12 @@ namespace Newtouch.HIS.Sett.Request.Patient
         public string jiuzhenbz { get; set; }
 
         /// <summary>
-        /// Từ khóa có thể 匹配 mzh blh xm
+        /// Từ khóa có thể khớp mzh blh xm
         /// </summary>
         public string keyword { get; set; }
 
         /// <summary>
-        /// 分trang
+        /// Phân trang
         /// </summary>
         public Pagination pagination { get; set; }
 

@@ -29,13 +29,13 @@ namespace Newtouch.HIS.Sett.Request.Booking.Response
         public int BookId { get; set; }
 
         /// <summary>
-        /// đ ặt lịch trạng thái 1 Đ ã约 2 Đ ãĐ ăng ký khám 3 Đ ãhủy đ ặt lịch enumMzyyzt
+        /// đ ặt lịch trạng thái 1 Đã đặt lịch 2 Đ ãĐ ăng ký khám 3 Đ ãhủy đ ặt lịch enumMzyyzt
         /// </summary>
         /// <returns></returns>
         public string BookStatus { get; set; }
 
         /// <summary>
-        /// Lịch trực ngoại trú ngày程
+        /// Lịch trực ngoại trú ngày trình
         /// </summary>
         /// <returns></returns>
         public int ScheduId { get; set; }
@@ -82,7 +82,7 @@ namespace Newtouch.HIS.Sett.Request.Booking.Response
 
         public string RegName { get; set; }
         /// <summary>
-        /// Thời gian đoạn 0 không có 1全ngày 2 buổi sáng 3 buổi chiều
+        /// Thời gian đoạn 0 không có 1 cả ngày 2 buổi sáng 3 buổi chiều
         /// </summary>
         /// <returns></returns>
         public int? Period { get; set; }
@@ -112,7 +112,7 @@ namespace Newtouch.HIS.Sett.Request.Booking.Response
         public decimal? RegFee { get; set; }
 
         /// <summary>
-        /// Đ ã付chi phí
+        /// Đã trả chi phí
         /// </summary>
         /// <returns></returns>
         public decimal? PayFee { get; set; }

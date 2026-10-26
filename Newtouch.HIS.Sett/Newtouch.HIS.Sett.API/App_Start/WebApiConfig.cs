@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Sett.API.App_Start
         /// <param name="config"></param>
         public static void Register(HttpConfiguration config)
         {
-            //启 dùng 跨 lĩnh vực 
+            //Bật liên miền 
             var cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);
 
@@ -35,10 +35,10 @@ namespace Newtouch.HIS.Sett.API.App_Start
             config.Formatters.JsonFormatter.SupportedMediaTypes.Clear();
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json"));
 
-            //全局 đ ăng ký Filters
+            //Đăng ký Filters toàn cục
             config.Filters.Add(new Newtouch.HIS.API.Common.Filter.TokenDecryptFilterAttribute());
 
-            //依赖 chú thích 入
+            //Chú thích phụ thuộc đưa vào
             DependencyResolver.RegisteWebApiComponent();
 
             // Here: 

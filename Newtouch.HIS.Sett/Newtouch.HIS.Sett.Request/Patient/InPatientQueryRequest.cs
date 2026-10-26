@@ -25,17 +25,17 @@ namespace Newtouch.HIS.Sett.Request
         public string bqCode { get; set; }
 
         /// <summary>
-        /// Dấu hiệu đang nằm viện(nhiều dùng tiếng anh逗 số 分割)
+        /// Dấu hiệu đang nằm viện (nhiều dùng dấu phẩy tiếng Anh phân tách)
         /// </summary>
         public string zybz { get; set; }
 
         /// <summary>
-        /// Từ khóa có thể 匹配 zyh blh xm
+        /// Từ khóa có thể khớp zyh blh xm
         /// </summary>
         public string keyword { get; set; }
 
         /// <summary>
-        /// 分trang
+        /// Phân trang
         /// </summary>
         public Pagination pagination { get; set; }
 

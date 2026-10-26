@@ -3,18 +3,18 @@
 namespace Newtouch.HIS.Sett.Request
 {
     /// <summary>
-    /// Chung消息bản tin yêu cầu
+    /// Yêu cầu bản tin tin nhắn chung
     /// </summary>
     public class MqGeneralTaskRequestDto : RequestBase
     {
         /// <summary>
-        /// 消息主 nội dung 
+        /// Nội dung chính tin nhắn 
         /// </summary>
         public string body { get; set; }
     }
 
     /// <summary>
-    /// MqGeneralTaskRequestDto.body反 tuần tự hóa nội dung 
+    /// Nội dung giải tuần tự hóa MqGeneralTaskRequestDto.body 
     /// </summary>
     public class MqGeneralTaskBody
     {
@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Sett.Request
         public string OperationType { get; set; }
 
         /// <summary>
-        /// nội dung,action truyền 参
+        /// nội dung, tham số truyền action
         /// </summary>
         public string Content { get; set; }
     }

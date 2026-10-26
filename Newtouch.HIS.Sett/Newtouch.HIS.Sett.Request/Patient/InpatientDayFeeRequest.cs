@@ -21,11 +21,11 @@ namespace Newtouch.HIS.Sett.Request.Patient
         /// </summary>
         public DateTime jssj { get; set; }
         /// <summary>
-        /// mỗi trang hiển thị dòng数
+        /// Số dòng hiển thị mỗi trang
         /// </summary>
         public int pageSize { get; set; }
         /// <summary>
-        /// Khi trư ớc trang数
+        /// Số trang hiện tại
         /// </summary>
         public int pageNum { get; set; }
     }

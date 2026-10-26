@@ -83,7 +83,7 @@
             if (!keyword) {
                 return null;
             }
-            //Duyệt nguồn dữ liệu，用keywordđể lọc ra kết quả
+            //Duyệt nguồn dữ liệu, dùng keyword để lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {

@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public string Title { get; set; }
         /// <summary>
-        /// Thời gian đoạn 0 không có 1全ngày 2 buổi sáng 3 buổi chiều
+        /// Thời gian đoạn 0 không có 1 cả ngày 2 buổi sáng 3 buổi chiều
         /// </summary>
         public string Period { get; set; }
         public string PeriodDesc { get; set; }
@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public decimal? GhFee { get; set; }
         /// <summary>
-        /// chẩn đoán và điều trị 费
+        /// Phí chẩn đoán và điều trị
         /// </summary>
         public decimal? ZLFee { get; set; }
         /// <summary>
@@ -57,11 +57,11 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string Zlxm { get; set; }
         public string ZlxmName { get; set; }
         /// <summary>
-        /// 星 kỳ 
+        /// Thứ 
         /// </summary>
         public int? Weekdd { get; set; }
         /// <summary>
-        /// nguồn số 总数
+        /// Tổng số nguồn số
         /// </summary>
         public int? TotalNum { get; set; }
         /// <summary>

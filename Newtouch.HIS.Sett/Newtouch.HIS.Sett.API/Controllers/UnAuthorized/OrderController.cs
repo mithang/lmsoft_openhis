@@ -219,7 +219,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CommonExecute(ac, request);
         }
         /// <summary>
-        /// xin 延giờ khóa đ ơn hàng 
+        /// xin gia hạn khóa đơn hàng 
         /// </summary>
         /// <param name="apireq"></param>
         /// <returns></returns>
@@ -297,7 +297,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                 IList<int> jsnmList = null;
                 if (ordermz != null && ordermz.info != null && ordermz.mx.Count() > 0)
                 {
-                    //Lấy虚拟số hóa đ ơn
+                    //Lấy đơn số hóa ảo
                     //var fph = _outPatientDmnService.GetInvoiceListByEmpNo(request.AppId, apireq.OrganizeId);
 
                     IList<int> cfnmList = ordermz.mx.Select(p => Convert.ToInt32(p.cfxmmx)).Distinct().ToList();
@@ -343,7 +343,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// xin 延giờ khóa đ ơn hàng 
+        /// xin gia hạn khóa đơn hàng 
         /// </summary>
         /// <param name="apireq"></param>
         /// <returns></returns>
@@ -381,7 +381,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
         #region privare method
         /// <summary>
-        /// Lấy yêu cầu 来源
+        /// Lấy nguồn yêu cầu
         /// </summary>
         /// <param name="AppID"></param>
         /// <returns></returns>

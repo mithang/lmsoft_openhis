@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Sett.Request.Therapist
         public string jyId { get; set; }
 
         /// <summary>
-        /// chuyển 换 dấu hiệu 
+        /// Dấu hiệu chuyển đổi 
         /// </summary>
         public string zhbz { get; set; }
     }

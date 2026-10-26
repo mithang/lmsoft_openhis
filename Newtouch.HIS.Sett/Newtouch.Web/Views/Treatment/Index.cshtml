@@ -70,7 +70,7 @@
             gridview: true,
             grouping: true,// Có hay khôngĐiểmNhóm,mặc định làfalse
             groupingView: {
-                groupField: ['zhmccode'], // 按照哪一列进DòngĐiểmNhóm
+                groupField: ['zhmccode'], // Nhóm dòng theo cột nào
                 //groupText: ['<b>{0}</b>'],
                 groupColumnShow: [false],
             },
@@ -118,7 +118,7 @@
 
         var rowKey = $("#gridList").jqGrid('getGridParam', "selrow");
         var rowData = $("#gridList").jqGrid("getRowData", rowKey);//Theo phần trênrowKeyLấy tất cả dữ liệu của dòng này
-        var zhcode = rowData.zhcode; //获得制定列的值 （ReservationTime为colModel的name）
+        var zhcode = rowData.zhcode; //Lấy giá trị của cột đã chỉ định (ReservationTime là name của colModel)
 
 
         var keyValue = $("#gridList").jqGridRowValue().Id;

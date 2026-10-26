@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Web.Core.Url
         }
 
         /// <summary>
-        /// Quay lại带phiên bản phần mềm số củaUri
+        /// Quay lại kèm phiên bản phần mềm số của Uri
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>

@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public string Title { get; set; }
         /// <summary>
-        /// nguồn số 总数
+        /// Tổng số nguồn số
         /// </summary>
         public int? TotalNum { get; set; }
         /// <summary>

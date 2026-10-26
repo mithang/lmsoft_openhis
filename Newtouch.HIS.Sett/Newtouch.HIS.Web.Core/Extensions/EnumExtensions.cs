@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Web.Core.Extensions
         }
 
         /// <summary>
-        /// 提供một phần tùy chọn 
+        /// Cung cấp một phần tùy chọn 
         /// </summary>
         /// <param name="enumeration"></param>
         /// <param name="someValues"></param>

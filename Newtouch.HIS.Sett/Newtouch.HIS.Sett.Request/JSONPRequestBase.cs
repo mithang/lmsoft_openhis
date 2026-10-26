@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Sett.Request
     public class JSONPRequestBase : RequestBase
     {
         /// <summary>
-        /// jsonp lần 调 hàm 
+        /// Hàm gọi lại jsonp 
         /// </summary>
         //[Required] // hỗ trợ jsonp
         public string jsonpCallback { get; set; }

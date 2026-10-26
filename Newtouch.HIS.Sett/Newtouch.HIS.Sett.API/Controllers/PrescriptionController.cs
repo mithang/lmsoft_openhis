@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// Số khám ngoại trú dư ới CủaĐ ơn thuốc thông tin tất cả重写 yêu cầu 
+        /// Yêu cầu viết lại tất cả thông tin đơn thuốc dưới số khám ngoại trú 
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -76,7 +76,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                 if (string.IsNullOrWhiteSpace(par.AheadCancelCf))
                 {
                     //Hủy bỏ tất cả các của chưa thu phí đơn thuốc
-                    var cfList = _outPatientUniversalDmnService.GetValidCfListByMzh(this.UserIdentity.OrganizeId, par.mzh, cfzt: "0", cfly: "1");   //Chưa thu phí 来 tự ngoại trú trạm bác sĩ
+                    var cfList = _outPatientUniversalDmnService.GetValidCfListByMzh(this.UserIdentity.OrganizeId, par.mzh, cfzt: "0", cfly: "1");   //Chưa thu phí đến từ trạm bác sĩ ngoại trú
 
                     if (cfList != null && cfList.Count > 0)
                     {
@@ -87,7 +87,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                 else
                 {
                     //Hủy bỏ một phần chỉ đ ịnh CủaĐ ơn thuốc
-                    var cfList = _outPatientUniversalDmnService.GetValidCfListByMzh(this.UserIdentity.OrganizeId, par.mzh, cfzt: "0", cfly: "1", cfhs: par.AheadCancelCf);   //Chưa thu phí 来 tự ngoại trú trạm bác sĩ
+                    var cfList = _outPatientUniversalDmnService.GetValidCfListByMzh(this.UserIdentity.OrganizeId, par.mzh, cfzt: "0", cfly: "1", cfhs: par.AheadCancelCf);   //Chưa thu phí đến từ trạm bác sĩ ngoại trú
 
                     if (cfList != null && cfList.Count > 0)
                     {
@@ -96,7 +96,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                     }
                 }
 
-                //再thêm mới
+                //Thêm mới lại
                 IList<string> updateSkipSettledCfhList;
                 add(par.PrescriptionList, par.mzh, par.ys, out updateSkipSettledCfhList);
 
@@ -149,7 +149,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             Action<PrescriptionCancelByOutNoRequest, DefaultResponse> ac = (req, resp) =>
             {
                 //Hủy bỏ tất cả các của chưa thu phí đơn thuốc
-                var cfList = _outPatientUniversalDmnService.GetValidCfListByMzh(this.UserIdentity.OrganizeId, par.mzh, cfzt: "0", cfly: "1");   //Chưa thu phí 来 tự ngoại trú trạm bác sĩ
+                var cfList = _outPatientUniversalDmnService.GetValidCfListByMzh(this.UserIdentity.OrganizeId, par.mzh, cfzt: "0", cfly: "1");   //Chưa thu phí đến từ trạm bác sĩ ngoại trú
 
                 if (cfList != null && cfList.Count > 0)
                 {
@@ -194,7 +194,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(response);
         }
         /// <summary>
-        /// 代煎费hạng mục tạo
+        /// Tạo hạng mục phí sắc thuốc hộ
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -260,7 +260,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                     jl = p.jl,
                     jldw = p.jldw,
                     czh = p.zh,
-                    dj = -1,    //CISbác sĩ không có定价của quyền hạn -1 phía sau sẽ cập nhật là từ điển giá
+                    dj = -1,    //Bác sĩ CIS không có quyền hạn định giá -1 phía sau sẽ cập nhật là từ điển giá
                     yfCode = p.yfCode,
                     zzfbz = p.zzfbz,
                     pcCode=p.pcCode
@@ -298,7 +298,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                     sl = p.sl,
                     zzll = p.zll,
                     dw = p.dw,
-                    dj = -1,    //CISbác sĩ không có定价của quyền hạn -1 phía sau sẽ cập nhật là từ điển giá
+                    dj = -1,    //Bác sĩ CIS không có quyền hạn định giá -1 phía sau sẽ cập nhật là từ điển giá
                     zzfbz = p.zzfbz,
                     ztId=p.ztId,
                     ztmc=p.ztmc,
@@ -311,7 +311,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                 if (newEntity.sl <= 0)
                 {
                     //throw new ArgumentsRequiredException("sl");
-                    newEntity.sl = 0; // phía sau theo 'Đ ơn vị计 lư ợng 数'Tính
+                    newEntity.sl = 0; // phía sau tính theo 'Đơn vị tính số lượng'
                     if ((newEntity.dczll ?? 0) <= 0)
                     {
                         throw new ArgumentsRequiredException("dczll");

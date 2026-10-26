@@ -4,7 +4,7 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Sett.Rehab
 {
     /// <summary>
-    /// 全局 qua 滤 thiết bị đ ăng ký 
+    /// Đăng ký bộ lọc toàn cục 
     /// </summary>
     public class FilterConfig
     {
@@ -14,10 +14,10 @@ namespace Newtouch.HIS.Sett.Rehab
         /// <param name="filters"></param>
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            //Hệ thống truy cập thống kê và 踪 nhật ký 
+            //Thống kê truy cập hệ thống và nhật ký theo dõi 
             filters.Add(new StatisticsTrackerAttribute());
 
-            //全局bất thư ờng bắt 
+            //Bắt bất thường toàn cục 
             filters.Add(new HandlerErrorAttribute());
 
 

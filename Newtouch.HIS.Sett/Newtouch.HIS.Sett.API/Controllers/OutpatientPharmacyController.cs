@@ -75,7 +75,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// Ngoại trú xếp thuốc thuốc详细tra cứu
+        /// Tra cứu chi tiết thuốc xếp thuốc ngoại trú
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -127,7 +127,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// xếp thuốc sau cập nhậtmz_cf bảng của xếp thuốc ngày, xếp thuốc nhân sự,领药窗口, dấu hiệu phát thuốc 
+        /// xếp thuốc sau cập nhậtmz_cf bảng của xếp thuốc ngày, xếp thuốc nhân sự,cửa sổ nhận thuốc, dấu hiệu phát thuốc 
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -280,7 +280,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// Phát thuốc ngoại trú tra cứu hiển thị子 bảng thông tin
+        /// Tra cứu phát thuốc ngoại trú hiển thị thông tin bảng con
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>

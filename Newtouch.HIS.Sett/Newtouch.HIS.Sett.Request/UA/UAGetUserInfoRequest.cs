@@ -3,12 +3,12 @@
 namespace Newtouch.HIS.Sett.Request.UA
 {
     /// <summary>
-    /// 以 truy cập 令牌 đ ổi lấy ngư ời dùng thân phận thông tin
+    /// Bằng mã truy cập đổi lấy thông tin thân phận người dùng
     /// </summary>
     public class UAGetUserInfoRequest : RequestBase
     {
         /// <summary>
-        /// truy cập 令牌
+        /// Mã truy cập
         /// </summary>
         public string access_token { get; set; }
     }

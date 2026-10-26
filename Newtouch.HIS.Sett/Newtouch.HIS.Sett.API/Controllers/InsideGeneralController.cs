@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// mq gọi 入口
+        /// cổng vào gọi mq
         /// </summary>
         /// <param name="requestDto"></param>
         /// <returns></returns>

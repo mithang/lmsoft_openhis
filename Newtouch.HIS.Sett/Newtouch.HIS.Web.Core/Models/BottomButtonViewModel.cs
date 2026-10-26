@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Web.Core.Models
         }
 
         /// <summary>
-        /// Hiển thị của nhanh 键danh sách
+        /// Danh sách phím nhanh hiển thị
         /// </summary>
         public int[] ShowKeyList { get; set; }
 

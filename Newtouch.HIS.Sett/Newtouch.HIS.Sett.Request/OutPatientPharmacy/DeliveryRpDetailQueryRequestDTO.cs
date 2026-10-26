@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Sett.Request.OutPatientPharmacy
         public string cfh { get; set; }
 
         /// <summary>
-        /// 领药 nhà thuốc 
+        /// Nhà thuốc nhận thuốc 
         /// </summary>
         public string lyyf { get; set; }
 

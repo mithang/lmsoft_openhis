@@ -311,12 +311,12 @@
         }
 
         $(function () {
-            //Home/IndexTảiKhi强制ChọnY tếCơ sở
+            //Khi tải Home/Index bắt buộc chọn cơ sở y tế
             @Html.Raw(needChooseOrg ? "setTimeout('showSwitchOrgPrompt(true);', 1200)" : "")
         });
     </script>
     <script type="text/javascript">
-        //Home/IndexTải trangHoàn thànhSau đó 再Tảiiframe
+        //Sau khi tải trang Home/Index hoàn thành thì tải lại iframe
         $(window).load(function () {
             $('.mainContent .Newtouch_iframe').each(function () {
                 if (!!!$(this).attr('src') && !!$(this).attr('data-id')) {

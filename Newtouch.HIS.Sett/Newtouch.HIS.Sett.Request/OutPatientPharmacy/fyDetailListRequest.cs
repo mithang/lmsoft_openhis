@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.HIS.Sett.Request.OutPatientPharmacy
 {
     /// <summary>
-    /// Giao diệnquay lạichi tiết đ ơn thuốc初步thông tin
+    /// Thông tin sơ bộ chi tiết đơn thuốc giao diện trả lại
     /// </summary>
     public class fyDetailListRequest
     {
@@ -51,7 +51,7 @@
         public int cfnm { get; set; }
 
         /// <summary>
-        /// 药厂tên
+        /// Tên hãng dược
         /// </summary>
         public string ycmc { get; set; }
 

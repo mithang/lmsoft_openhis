@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Sett.Request.SelfService
 		/// </summary>
 		public string OrganizeId { get; set; }
 		/// <summary>
-		/// 票据 số (mã nội bộ quyết toán)
+		/// Số chứng từ (mã nội bộ quyết toán)
 		/// </summary>
 		public string RECEIPT_NO { get; set; }
 	}

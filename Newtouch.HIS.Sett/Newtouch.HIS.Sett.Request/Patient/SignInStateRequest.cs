@@ -3,7 +3,7 @@
 namespace Newtouch.HIS.Sett.Request
 {
     /// <summary>
-    /// 签 đ ến trạng thái
+    /// Trạng thái điểm danh
     /// </summary>
     public class SignInStateRequest : RequestBase
     {

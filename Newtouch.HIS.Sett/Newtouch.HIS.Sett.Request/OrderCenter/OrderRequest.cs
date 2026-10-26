@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Sett.Request
         /// </summary>
         public string PayLsh { get; set; }
         /// <summary>
-        /// thanh toán 者 thân phận thông tin
+        /// Thông tin thân phận người thanh toán
         /// </summary>
         public string PayerId { get; set; }
         /// <summary>

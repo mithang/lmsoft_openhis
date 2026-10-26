@@ -45,7 +45,7 @@
             width: 250,
             clickautotrigger: true,
             filter: function (keyword) {
-                //Duyệt nguồn dữ liệu，用keywordđể lọc ra kết quả
+                //Duyệt nguồn dữ liệu, dùng keyword để lọc ra kết quả
                 var resultObjArr = new Array();
 
                 $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
@@ -84,7 +84,7 @@
             width: 250,
             clickautotrigger: true,
             filter: function (keyword) {
-                //Duyệt nguồn dữ liệu，用keywordđể lọc ra kết quả
+                //Duyệt nguồn dữ liệu, dùng keyword để lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysDepartList, function (idx, val) {
                     if ((val.py && val.py.indexOf(keyword.toLowerCase()) >= 0)

@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Sett.Request.SelfService
 	public class queryRegistDeptMarkReqDTO
 	{
 		/// <summary>
-		/// 看诊thời gian
+		/// Thời gian khám bệnh
 		/// </summary>
 		public string VisitDate { get; set; }
 		/// <summary>

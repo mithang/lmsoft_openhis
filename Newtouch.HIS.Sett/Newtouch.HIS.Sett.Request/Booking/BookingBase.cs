@@ -56,7 +56,7 @@ namespace Newtouch.HIS.Sett.Request.Booking
         }
 
         /// <summary>
-        /// 遍历 chỉ đ ịnh thuộc tính của thuộc tính 
+        /// Duyệt thuộc tính đã chỉ định của thuộc tính 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="type"></param>

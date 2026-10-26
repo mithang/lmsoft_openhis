@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Sett.Rehab
 
             App_Start.DependencyResolver.RegisteWebApiComponent();
 
-            //Dữ liệu kho 链接释放
+            //Giải phóng liên kết kho dữ liệu
             Web.Core.HttpModules.AspNetObjectContextDisposalModule.Register(() =>
             {
                 Infrastructure.EF.DatabaseFactoryDisposeHelper.TryDisposeDBContext<INewtouchDatabaseFactory, NewtouchDbContext>();

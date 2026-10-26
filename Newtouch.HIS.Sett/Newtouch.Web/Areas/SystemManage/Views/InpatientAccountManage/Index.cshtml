@@ -8,7 +8,7 @@
     var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
     var curOpr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
 
-    //预交金Hoàn tiềnCó sử dụng hay khôngSố chứng từ
+    //Số chứng từ tiền tạm ứng hoàn tiền có sử dụng hay không
     var openRefundpzh = SysConfigReader.Bool("Account_Refund_pzh");
 }
 <form id="form1">
@@ -278,7 +278,7 @@
                 height: "200px",
                 callBack: function (iframeId) {
                     top.frames[iframeId].ReceiptConfirm();
-                }//điểm cửa sổXác nhận的CallbackHàm
+                }//điểm cửa sổXác nhậncủaCallbackHàm
             });
         } else {
             $.modalAlert("Vui lòng chọn bệnh nhân", 'warning');
@@ -669,20 +669,20 @@
         }
 
         if (payMoney <= 0) {
-            //不CầncầnDi độngThanh toán
+            //Không cần thanh toán di động
             payingOrFailed = null;
             return true;
         }
 
         if ((payingOrFailed === null || payingOrFailed === true) && payMoney > 0) {
             payMoney = parseFloat(payMoney).toFixed(2);
-            var out_trade_no = (new Date()).getTime().toString();   //Có hay không有问题？
+            var out_trade_no = (new Date()).getTime().toString();   //Có vấn đề hay không?
             ToPay(out_trade_no, 'Nạp tiền tạm ứng', payMoney, djjesszffs);
             payingOrFailed = true;
         }
-        return !(payingOrFailed === true); //Thanh toántrong 返回true，否thì返回false
+        return !(payingOrFailed === true); //Đang thanh toán trả về true, nếu không thì trả về false
     }
-    //发起Thanh toán
+    //Khởi tạo thanh toán
     function ToPay(out_trade_no, subject, total_amount, djjesszffs) {
         var title = '付款码Thanh toán-' + (subject.length <= 15 ? subject : subject.substring(0, 12) + "...");
         var url = "/PayManage/MicroPay/MicroPay";
@@ -705,7 +705,7 @@
             }
         });
     }
-    //Thanh toánThành công-继续GửiQuyết toán
+    //Thanh toán thành công - tiếp tục gửi quyết toán
     var outTradeNo;
     function PaySuccessHandle(data) {
         payingOrFailed = false;

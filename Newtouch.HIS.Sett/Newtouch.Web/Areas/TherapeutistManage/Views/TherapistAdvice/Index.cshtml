@@ -101,7 +101,7 @@
 <link href="~/Content/css/floatingselector.css" rel="stylesheet" />
 <script type="text/javascript">
     var zljyflag = 0;
-    var isLoadingIIII = false;  //Có hay khôngĐangTrong从后台Đang tải dữ liệu
+    var isLoadingIIII = false;  //Có đang tải dữ liệu từ máy chủ hay không
     var brlx = 2; //1Khám ngoại trú 2Nội trú
     var delRowDataIds = [];
     var kflocaldata = "";
@@ -170,7 +170,7 @@
                 height: "600px",
                 callBack: function (iframeId) {
                     top.frames[iframeId].PatDbGrid(); //Trong sự kiện cửa sổ bật lên
-                }//điểm cửa sổXác nhận的CallbackHàm
+                }//điểm cửa sổXác nhậncủaCallbackHàm
             });
         }
        
@@ -182,13 +182,13 @@
         GetPatZLJYAjax(selePatInfo.mzh);
     }
 
-    //Nội trúChọn的Bệnh nhân callback
+    //Callback bệnh nhân được chọn nội trú
     function getPatInfoAjax(selePatInfo) {
         $('#mzzyh').val(selePatInfo.zyh);
         brxz = selePatInfo.brxz;
         GetPatZLJYAjax(selePatInfo.zyh)
     }
-    //TheoChọn的Bệnh nhânTảiThông tin bệnh nhân及Điều trịDanh sách đề xuất
+    //Theo bệnh nhân được chọn tải thông tin bệnh nhân và danh sách đề xuất điều trị
     function GetPatZLJYAjax(mzzyh) {
         //$.loading(true, "Đang yêu cầu dữ liệu...");
         $.ajax({
@@ -270,12 +270,12 @@
             datatype: 'local',
             data: kflocaldata,
             height: $(window).height() - 230,
-            //altRows: true,//隔Dòng换色
-            shrinkToFit: true,   //true:按比例Khởi tạo列Chiều rộng false:Sử dụngcolModel指定chiều rộng của度
+            //altRows: true,//cáchDòngđổimàu
+            shrinkToFit: true,   //true: khởi tạo chiều rộng cột theo tỷ lệ, false: sử dụng chiều rộng do colModel chỉ định
             autowidth: true,
-            rownumbers: true,  //Có hay không显示STT
+            rownumbers: true,  //Có hiển thị STT hay không
             multiselect: true,
-            editurl: "clientArray",  //DòngChỉnh sửa不向服务器GửiDữ liệu
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu tới máy chủ
             unwritten: false,
             colModel: [
                 { label: 'jyId', name: 'jyId', width: 120, align: 'center', hidden: true },
@@ -336,11 +336,11 @@
                 { label: '<span class="required"></span>嘱托', name: 'bz', width: 400, editwidth: '100%', align: 'center', editable: true },
                 { label: 'Thao tác', name: 'action', width: 100, align: 'center' }
             ],
-            editinputwidthborder: false,    //Có hay khôngCầncần边框 mặc định làtrue
-            editinputborderradius: false,   //Có hay khôngCầncần边框圆角 Mặc địnhtrue（有圆角）
+            editinputwidthborder: false,    //Có cần viền hay không, mặc định là true
+            editinputborderradius: false,   //Có cần bo góc viền hay không, mặc định true (có bo góc)
             pager: "#gridzljyPager",
             loadComplete: function () {
-                ////自动Kích hoạtMớiĐiều trịĐề xuất
+                ////Tự động kích hoạt đề xuất điều trị mới
                 //if (kflocaldata && kflocaldata.length == 0) {
                 //    newZljyRowData();
                 //}
@@ -359,7 +359,7 @@
             //Mở chế độ chỉnh sửa
             $("#gridzljy").jqGrid('editRow', String(this), false, initRehabInlineFunc);
 
-            //Dấu hiệuĐiều trịĐề xuất颜色
+            //Màu sắc dấu hiệu đề xuất điều trị
             @*//var cfColor = getCfColor(@Html.Raw(((int)EnumCflx.RehabPres).ToString()),cfh);
             //$('#gridzljy tr[id="' +  String(this) + '"]').css('border-left-color',cfColor);*@
             //$('#gridzljy tr[id="' +  String(this) + '"]').css('border-left-style','solid');
@@ -370,7 +370,7 @@
     }
     //Khởi tạo Lớp nổi
     function initRehabInlineFunc(rowid) {
-        //部Điểm列只读
+        //Cột bộ phận chỉ đọc
         //$("#" + rowid + "_pcmc").attr('readonly','true');
 
         //var currlineCfh = $("#gridzljy").getRowData(rowid).cfh;
@@ -477,10 +477,10 @@
     }
 
     function newZljyAfterRowData(selRowId) {
-        //LấyHiện tạiThêm的处方Số
+        //Lấy số đơn thuốc vừa thêm hiện tại
         var selRowData = $("#gridzljy").getRowData(selRowId);
 
-        //Mới加一Dòng
+        //Thêm mới một dòng
         var dataRow = {
             jyId: null, //Chưa lưu vào cơ sở dữ liệu
             action: getRehbActionStr()
@@ -556,7 +556,7 @@
     //function newtouch_event_f6() {
     //    var selRowIds = $("#gridzljy").jqGrid('getGridParam', 'selarrrow');
     //    if (selRowIds.length == 0) {
-    //        $.modalAlert("Vui lòng trướcĐã chọnCầnXóa的Đề xuất", 'warning');
+    //        $.modalAlert("Vui lòng trướcĐã chọnCầnXóacủaĐề xuất", 'warning');
     //        return;
     //    }
     //    for (var i = 0; i < selRowIds.length; i++) {

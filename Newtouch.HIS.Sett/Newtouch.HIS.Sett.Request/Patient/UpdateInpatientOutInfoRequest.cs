@@ -29,11 +29,11 @@ namespace Newtouch.HIS.Sett.Request
         /// </summary>
         public string cyzd { get; set; }
         ///// <summary>
-        ///// Xuất viện病情
+        ///// Tình trạng xuất viện
         ///// </summary>
         //public string cybq { get; set; }
         /// <summary>
-        /// 主治bác sĩ
+        /// Bác sĩ điều trị chính
         /// </summary>
         public string doctor { get; set; }
         ///// <summary>
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Sett.Request
         ///// </summary>
         //public short? ryzd { get; set; }
         ///// <summary>
-        ///// Nhập viện病情
+        ///// Tình trạng nhập viện
         ///// </summary>
         //public string rybq { get; set; }
         /// <summary>

@@ -26,29 +26,29 @@ namespace Newtouch.HIS.Sett.Request.Prescription
         public string cfh { get; set; }
 
         /// <summary>
-        /// 领药 nhà thuốc 
+        /// Nhà thuốc nhận thuốc 
         /// </summary>
         public string lyyf { get; set; }
 
         /// <summary>
-        /// trong 药贴数
+        /// Số thuốc dán trong
         /// </summary>
         public int? ts { get; set; }
 
         /// <summary>
-        /// trong 药代煎 dấu hiệu 1 cần代煎
+        /// Dấu hiệu sắc thuốc hộ trong thuốc, 1 cần sắc thuốc hộ
         /// </summary>
         public bool? djbz { get; set; }
 
         /// <summary>
         /// Xóa Chi tiết thuốc
-        /// Xóa có thể以 mã 来 phán đoán duy nhất 
+        /// Xóa có thể dùng mã để phán đoán duy nhất 
         /// </summary>
         public IList<PrescriptionMedicineItemDTO> DeleteMedicineItems { get; set; }
 
         /// <summary>
         /// Xóa Chi tiết hạng mục điều trị
-        /// Xóa có thể以 mã 来 phán đoán duy nhất 
+        /// Xóa có thể dùng mã để phán đoán duy nhất 
         /// </summary>
         public IList<PrescriptionTreamentItemDTO> DeleteTreamentItems { get; set; }
 

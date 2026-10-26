@@ -4,7 +4,7 @@ using Newtouch.HIS.API.Common;
 namespace Newtouch.HIS.Sett.Request
 {
     /// <summary>
-    /// Sửa入Quận chẩn đoán bản tin yêu cầu
+    /// Sửa yêu cầu bản tin chẩn đoán nhập viện
     /// </summary>
     public class ModifyRyDiagnosisRequestDTO : RequestBase
     {
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Sett.Request
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Khi trư ớc đ ăng nhập 者
+        /// Người đăng nhập hiện tại
         /// </summary>
         public string userCode { get; set; }
 
@@ -36,17 +36,17 @@ namespace Newtouch.HIS.Sett.Request
     {
 
         /// <summary>
-        /// 入Quận chẩn đoán1 tên
+        /// Tên chẩn đoán nhập viện 1
         /// </summary>
         public string ryzdmc { get; set; }
 
         /// <summary>
-        /// 入Quận chẩn đoán1 mã
+        /// Mã chẩn đoán nhập viện 1
         /// </summary>
         public string ryzddm { get; set; }
 
         /// <summary>
-        /// 入Quận chẩn đoán1ICD10
+        /// ICD10 chẩn đoán nhập viện 1
         /// </summary>
         public string ryzdICD10 { get; set; }
 

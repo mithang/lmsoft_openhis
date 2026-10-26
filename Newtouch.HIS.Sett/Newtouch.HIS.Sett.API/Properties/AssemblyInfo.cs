@@ -16,7 +16,7 @@ using System.Runtime.InteropServices;
 
 // Đ ặt ComVisible thành false sẽ làm cho các kiểu trong assembly này 
 // đ ối với COM thành phần không hiển thị.Nếu cần
-// từ COM truy cập này assembly trong của một loại loại,vui lòng针 đ ối với này loại sẽ ComVisible Đ ặt thuộc tính thành true.
+// từ COM truy cập này assembly trong của một loại loại,vui lòng đối với loại này sẽ ComVisible Đ ặt thuộc tính thành true.
 [assembly: ComVisible(false)]
 
 // Nếu hạng mục này hư ớng tới COM công khai,thì các GUID dùng cho typelib của ID
@@ -26,10 +26,10 @@ using System.Runtime.InteropServices;
 //
 //      Phiên bản chính
 //      Phiên bản phụ
-// nội bộ 版 bản số 
-// 修订版 bản 
+// nội bộ phiên bản số 
+// Bản sửa đổi 
 //
-// Có thể chỉ đ ịnh tất cả các giá trị, cũng có thể sử dụng"Số hiệu sửa đ ổi"Và" nội bộ 版 bản số "Giá trị mặc đ ịnh của,
+// Có thể chỉ đ ịnh tất cả các giá trị, cũng có thể sử dụng"Số hiệu sửa đ ổi"Và" nội bộ phiên bản số "Giá trị mặc đ ịnh của,
 // Phư ơng thức sử dụng như sau "*":
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

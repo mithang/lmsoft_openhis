@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
         #region 配药操作
         /// <summary>
-        /// Tra cứu ngư ời dùng thực hiện 配药 theo thời gian bắt đ ầu thời gian kết thúc lấy nhập viện bệnh nhân y lệnh,thuốc,số lư ợngV.v.Thông tin
+        /// Tra cứu ngư ời dùng thực hiện cấp phát thuốc theo thời gian bắt đ ầu thời gian kết thúc lấy nhập viện bệnh nhân y lệnh,thuốc,số lư ợngV.v.Thông tin
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -108,7 +108,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(response);
         }
 
-        //Tra cứu ngư ời dùng thực hiện 配药 配药thao tác sau sửa phát thuốc ghi chú trạng thái
+        //Tra cứu ngư ời dùng thực hiện cấp phát thuốc cấp phát thuốcthao tác sau sửa phát thuốc ghi chú trạng thái
         [HttpPost]
         [Route("WaitingDispenseDispenseUPBQPYyzzxTotal")]
         public HttpResponseMessage WaitingDispenseDispenseUPBQPYyzzxTotal(WaitingDispenseBQPYyzzxZTDispenseRequest par)

@@ -31,7 +31,7 @@
         public string gg { get; set; }
 
         /// <summary>
-        /// 频 số 
+        /// Tần suất 
         /// </summary>
         public string ph { get; set; }
 

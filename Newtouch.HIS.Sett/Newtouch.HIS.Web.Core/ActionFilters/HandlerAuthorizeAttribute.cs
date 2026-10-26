@@ -37,7 +37,7 @@ namespace System.Web.Mvc
             var operatorModel = OperatorProvider.GetCurrent();
             if (operatorModel == null)
             {
-                // không nên进来 //NênHandlerLoginAttribute của trư ớc thực hiện 
+                // không nên vào //Nên thực hiện trước HandlerLoginAttribute 
                 WebHelper.WriteCookie("Newtouch_login_error", "overdue");
                 filterContext.Result = new RedirectResult("/Login/Index");
                 return;

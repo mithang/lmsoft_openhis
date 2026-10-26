@@ -14,7 +14,7 @@ using System.Reflection;
 namespace Newtouch.HIS.Sett.Rehab.App_Start
 {
     /// <summary>
-    /// 依赖 chú thích 入cấu hình
+    /// Cấu hình chú thích phụ thuộc đưa vào
     /// </summary>
     public class DependencyResolver
     {

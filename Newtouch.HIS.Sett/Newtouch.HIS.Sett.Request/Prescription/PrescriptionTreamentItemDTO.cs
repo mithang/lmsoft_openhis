@@ -26,7 +26,7 @@
         public int? zxcs { get; set; }
 
         /// <summary>
-        /// điều trị lư ợng (总)
+        /// Lượng điều trị (tổng)
         /// </summary>
         public int? zll { get; set; }
 

@@ -14,7 +14,7 @@ using Newtouch.HIS.API.Common.Filter;
 namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
     /// <summary>
-    /// 统 một ủy quyền 认证
+    /// Xác thực ủy quyền thống nhất
     /// </summary>
     [RoutePrefix("api/UA")]
     public class UAController : ApiControllerBase<UAController>
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
         }
 
         /// <summary>
-        /// 以 truy cập 令牌 đ ổi lấy ngư ời dùng thân phận thông tin
+        /// Bằng mã truy cập đổi lấy thông tin thân phận người dùng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -108,7 +108,7 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
         }
 
         /// <summary>
-        /// Ngoại trú bệnh nhântra cứugiao diện预热
+        /// Giao diện tra cứu bệnh nhân ngoại trú khởi động trước
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

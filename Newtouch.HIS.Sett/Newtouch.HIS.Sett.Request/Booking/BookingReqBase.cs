@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Sett.Request
 
         public new string AppId { get; set; }
         /// <summary>
-        /// ID tổ chức(Đ ã定 vị đ ến 具体 bệnh viện)
+        /// ID tổ chức (đã định vị đến bệnh viện cụ thể)
         /// </summary>
         [APIRequired]
         public string OrganizeId { get; set; }
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Sett.Request
         /// </summary>
         public string user { get; set; }
         /// <summary>
-        /// 入参
+        /// Tham số đầu vào
         /// </summary>
         public Dictionary<string, string> paradata { get; set; }
 

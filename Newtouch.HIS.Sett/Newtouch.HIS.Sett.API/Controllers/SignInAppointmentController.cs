@@ -14,7 +14,7 @@ using Newtouch.HIS.Sett.Request.Patient;
 namespace Newtouch.HIS.Sett.API.Controllers
 {
     /// <summary>
-    /// đ ặt lịch 签 đ ến 
+    /// đặt lịch điểm danh 
     /// </summary>
     [RoutePrefix("api/SignInAppointment")]
     [DefaultAuthorize]
@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         private readonly ISysPatBasicInfoApp _sysPatBasicInfoApp;
 
         /// <summary>
-        /// 签 đ ến 
+        /// Điểm danh 
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
 
 
         /// <summary>
-        /// 签 đ ến trạng thái sửa
+        /// Sửa trạng thái điểm danh
         /// </summary>
         /// <param name="par"></param>
         /// <returns></returns>

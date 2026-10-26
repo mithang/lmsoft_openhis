@@ -24,15 +24,15 @@ namespace Newtouch.HIS.Sett.API
             // tới ngữ cảnh đ ăng ký bảng 
             DefaultDbContext.PartialTBRegister(DefaultDbContextTBRegister.Registe);
 
-            // đ ăng ký 释放dữ liệu kho 链接
+            // đăng ký giải phóng liên kết kho dữ liệu
             FrameworkBase.API.ApiControllerBaseEx.RegisterDBContextDisposer(() => {
-                //释放DefaultDbContext
+                //Giải phóng DefaultDbContext
                 Newtouch.Infrastructure.EF.DatabaseFactoryDisposeHelper.TryDisposeDBContext<IDefaultDatabaseFactory, DefaultDbContext>();
             });
 
             IEntityEx.RegisterCurUserCodeGetter(() =>
             {
-                //Tại基 loại 认证 ngư ời dùng thân phận giờ写 trên của
+                //Tại lớp cơ sở xác thực thân phận người dùng khi viết ở trên
                 var account = HttpContext.Current.Items["API_UserIdentity_Account"];
                 return account == null ? null : account.ToString();
             });

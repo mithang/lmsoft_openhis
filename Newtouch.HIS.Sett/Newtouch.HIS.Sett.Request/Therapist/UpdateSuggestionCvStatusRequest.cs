@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.HIS.Sett.Request.Therapist
 {
     /// <summary>
-    /// Cập nhật đ ề xuất của chuyển 换trạng thái
+    /// Cập nhật trạng thái chuyển đổi của đề xuất
     /// </summary>
     public class UpdateSuggestionCvStatusRequest : OrgRequestBase
     {

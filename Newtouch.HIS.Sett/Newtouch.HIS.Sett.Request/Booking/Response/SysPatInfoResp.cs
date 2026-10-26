@@ -10,17 +10,17 @@ namespace Newtouch.HIS.Sett.Request.Booking.Response
     {
         public int patid { get; set; }
         /// <summary>
-        /// ID tổ chức(có具体 nghiệp vụ của bệnh viện)
+        /// ID tổ chức (có nghiệp vụ cụ thể của bệnh viện)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Bệnh nhân nhất 近của性质xt_brxz.brxz
+        /// Tính chất gần nhất của bệnh nhân xt_brxz.brxz
         /// </summary>
         public string brxz { get; set; }
 
         /// <summary>
-        /// bản viện 磁số thẻ(bao gồmBHYT nghỉ hưu bệnh nhân),hoặcBHYTsố thẻ
+        /// số thẻ từ của bệnh viện (bao gồm bệnh nhân BHYT nghỉ hưu), hoặc số thẻ BHYT
         /// </summary>
         public string blh { get; set; }
 

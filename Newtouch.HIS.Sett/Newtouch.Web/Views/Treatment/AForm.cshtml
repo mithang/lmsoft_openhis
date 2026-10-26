@@ -117,7 +117,7 @@
 
     var sfxmmc = "";//Tên hạng mục thu phí
     var sfxmdm = "";//Hạng mục thu phíMã
-    var price = ""; //价格
+    var price = ""; //Giá cả
 
     var zlxmpy = "";//Phiên âm
     var sfdl = ""; //Nhóm thu phí lớn
@@ -179,7 +179,7 @@
                     $.modalAlert("TênVàMã số为Bắt buộc项！", 'warning');
                     return;
                 }
-                //Xét文本框trong的Mã sốVàChi tiết表trong的Mã sốCó hay không一致
+                //Kiểm tra mã số trong hộp văn bản và mã số trong bảng chi tiết có nhất quán hay không
                 var jjzhcode = $("#MXTable").getCol("zhcode", false);
 
                 var jjzhcodelie = $("#zhcode").val();
@@ -312,8 +312,8 @@
         var rowData = $('#MXTable').jqGrid('getRowData');
 
         //var needRefundData = $("#gridList").jqGrid('getRowData_AllLine', true);
-        //Xử lý少一Dòngbug
-        var allOrgId = $('#MXTable').jqGrid('getDataIDs'); //这里Lấy tất cả các dòng Khóa chínhid 是全的
+        //Xử lý bug thiếu một dòng
+        var allOrgId = $('#MXTable').jqGrid('getDataIDs'); //Ở đây lấy khóa chính id của tất cả các dòng là đầy đủ
         rowData.push($('#MXTable').jqGrid('getRowData', allOrgId[allOrgId.length - 1]));
 
         var dataset = JSON.stringify(rowData);

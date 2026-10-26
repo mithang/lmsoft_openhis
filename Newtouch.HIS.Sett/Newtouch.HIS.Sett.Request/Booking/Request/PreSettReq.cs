@@ -22,16 +22,16 @@ namespace Newtouch.HIS.Sett.Request.Booking.Request
         //[Required(AllowEmptyStrings = false, ErrorMessage = "OrderNo is required")]
         public string OrderNo { get; set; }
         /// <summary>
-        /// 0:Tự trả 1:职工 2: cư dân 3: nghỉ hưu 11:BHYT thông thư ờng
+        /// 0:Tự trả 1:nhân viên 2: cư dân 3: nghỉ hưu 11:BHYT thông thư ờng
         /// </summary>
         public string PatType { get; set; }
         public string Mzh { get; set; }
         /// <summary>
-        /// số đ ặt lịch Đ ăng ký khám预结比 truyền 
+        /// số đ ặt lịch Đ ăng ký khámtỷ lệ quyết toán trước truyền 
         /// </summary>
         public int? BookID { get; set; }
         /// <summary>
-        /// Có hay khôngkhi NgàyĐ ăng ký khám性质 Y:Là N:Không Đ ăng ký khám预结比 truyền 
+        /// Có hay khôngkhi NgàyĐ ăng ký khámtính chất Y:Là N:Không Đ ăng ký khámtỷ lệ quyết toán trước truyền 
         /// </summary>
         public string IsBooking { get; set; }
     }

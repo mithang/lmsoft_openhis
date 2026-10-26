@@ -206,7 +206,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// khám bệnh khoa lịch trực 详细
+        /// chi tiết lịch trực khoa khám bệnh
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -487,7 +487,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// 建 thẻ 
+        /// Tạo thẻ 
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -575,7 +575,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// chờ thanh toán phí 账 đ ơn 
+        /// hóa đơn chờ thanh toán phí 
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -707,7 +707,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// Đ ăng ký khám/Đ ơn thuốc预quyết toán
+        /// Đăng ký khám/Đơn thuốc quyết toán trước
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -805,7 +805,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                     {
                         zje = Convert.ToDecimal(req.TotalAmount),
                         ssk = Convert.ToDecimal(req.PayFee),
-                        zffs1 = (req.AppID == "Alipay" ? "10" : "11"),//11微信,10 thanh toán 宝
+                        zffs1 = (req.AppID == "Alipay" ? "10" : "11"),//11 WeChat, 10 Alipay
                         zfje1 = Convert.ToDecimal(req.PayFee),
                         zhaoling = 0
                     };
@@ -866,7 +866,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
                                 }
                             }
                         }
-                        //异步 đ ẩy Đ ơn thuốcthu phí thành công của thông báo cho nhà thuốc kho thuốc (Hủymq của cách dùng)
+                        //bất đồng bộ đ ẩy Đ ơn thuốcthu phí thành công của thông báo cho nhà thuốc kho thuốc (Hủy cách dùng mq)
                         //notifyPDS(jsnmList[0], DateTime.Now, cfnmlist, patInfo.fph, orgId, req.AppID);
                         resp.data = new SettResp() { RegId = jsnmList[0].ToString(), xjzf = req.TotalAmount, ybzf = 0.00.ToDecimal(), grzf = req.TotalAmount };
                         resp.msg = "";
@@ -905,7 +905,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
             return base.CreateResponse(resp);
         }
         /// <summary>
-        /// đ ối với 账
+        /// đối với hóa đơn
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -943,7 +943,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// Quyết toán thành công đ ẩy trạng thái至 nhà thuốc 
+        /// Quyết toán thành công đẩy trạng thái tới nhà thuốc 
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="sfrq"></param>

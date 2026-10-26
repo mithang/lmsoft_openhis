@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Sett.Request.HospitalizationPharmacy
 
     #region 发药
     /// <summary>
-    /// 接受khu bệnh,nhập viện phát thuốc khu bệnh
+    /// Tiếp nhận khu bệnh, phát thuốc nhập viện khu bệnh
     /// </summary>
     public class WaitingDispenseBQMedicineDispenseRequest : RequestBase
     {
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Sett.Request.HospitalizationPharmacy
         public string zyyf { get; set; }
     }
     /// <summary>
-    /// 接受khu bệnh,nhập viện phát thuốc bệnh nhân
+    /// Tiếp nhận khu bệnh, phát thuốc nhập viện bệnh nhân
     /// </summary>
     public class WaitingDispenseMedicineDispenseRequest : OrgRequestBase
     {
@@ -27,11 +27,11 @@ namespace Newtouch.HIS.Sett.Request.HospitalizationPharmacy
     }
 
     /// <summary>
-    /// 接受khu bệnh,nhập viện phát thuốc nhân sự thông tin chi tiết
+    /// Tiếp nhận khu bệnh, phát thuốc nhập viện nhân sự thông tin chi tiết
     /// </summary>
     public class WaitingDispenseBRXXMedicineDispenseRequest : OrgRequestBase
     {//Newtouch.Common
-        public Pagination pagination { get; set; } //分trang
+        public Pagination pagination { get; set; } //Phân trang
         public string organizeId { get; set; }// ngư ời dùng quyền hạn 
         public string zyyf { get; set; }// ngư ời dùng Đ ăng nhập loại 
         public string Bq { get; set; }//Khu bệnh
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Sett.Request.HospitalizationPharmacy
         public string ypCode { get; set; }//ThuốcCode
         public string Kssj { get; set; }//Thời gian bắt đ ầu
         public string Jssj { get; set; }//Thời gian kết thúc
-        public string Cl { get; set; } //长 tạm 
+        public string Cl { get; set; } //dài hạn/tạm thời 
         public string Fyzt { get; set; }// phát thuốc trạng thái
     }
     #endregion
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Sett.Request.HospitalizationPharmacy
     #region 配药
 
     /// <summary>
-    /// Khu bệnh bệnh nhân配药
+    /// Cấp phát thuốc bệnh nhân khu bệnh
     /// </summary>
     public class WaitingDispenseBQBRPYMedicineDispenseRequest : RequestBase
     {
@@ -60,14 +60,14 @@ namespace Newtouch.HIS.Sett.Request.HospitalizationPharmacy
     }
 
     /// <summary>
-    /// Tra cứu ngư ời dùng 配药 hoàn thành,sửa phát thuốc 备足trạng thái
+    /// Tra cứu ngư ời dùng cấp phát thuốc hoàn thành,sửa phát thuốc chuẩn bị đủtrạng thái
     /// </summary>
     public class WaitingDispenseBQPYyzzxZTDispenseRequest : OrgRequestBase
     {
-        public string pyry { get; set; } //配药 nhân sự 
-        public string pyrq { get; set; } //配药 ngày 
+        public string pyry { get; set; } //Nhân sự cấp phát thuốc 
+        public string pyrq { get; set; } //Ngày cấp phát thuốc 
         public string yzId { get; set; } // y lệnh thực hiện ID
-        public string tdrq { get; set; } // 提档 ngày, 建档 ngày 
+        public string tdrq { get; set; } // Ngày rút hồ sơ, ngày lập hồ sơ 
         public string fybz { get; set; } // Khi trư ớc phát thuốc trạng thái
         public string ypdj { get; set; }//Thu ốcĐ ơn giá
         public string ypje { get; set; } //ThuốcSố tiền
@@ -78,18 +78,18 @@ namespace Newtouch.HIS.Sett.Request.HospitalizationPharmacy
 
     #region 病区发药查询
     /// <summary>
-    /// 接受khu bệnh, gọi bệnh nhân
+    /// Tiếp nhận khu bệnh, gọi bệnh nhân
     /// </summary>
     public class WaitingDispenseBRCXXXMedicineDispenseRequest : OrgRequestBase
     {//Newtouch.Common
-        public Pagination pagination { get; set; } //分trang
+        public Pagination pagination { get; set; } //Phân trang
         public string Bq { get; set; }//Khu bệnh
         public string Zyh { get; set; }//Bệnh nhân
-        public string zyyf { get; set; }//住 phòng phát thuốc 
+        public string zyyf { get; set; }//Phát thuốc nội trú 
         public string ypCode { get; set; }//ThuốcCode
         public string Kssj { get; set; }//Thời gian bắt đ ầu
         public string Jssj { get; set; }//Thời gian kết thúc
-        public string Cl { get; set; } //长 tạm 
+        public string Cl { get; set; } //dài hạn/tạm thời 
         public string Fyzt { get; set; }// phát thuốc trạng thái
 
         public List<ModelBQBRYZZXTYInfoVO> YpTymxxxList { get; set; }// trả thuốc chi tiết tập hợp List
@@ -98,7 +98,7 @@ namespace Newtouch.HIS.Sett.Request.HospitalizationPharmacy
 
     #region 退药
     /// <summary>
-    /// 接受 trả thuốc tra cứu của dòng vụ 
+    /// Tiếp nhận tra cứu dòng vụ trả thuốc 
     /// </summary>
     public class WaitingDispenseBRTYXXMedicineDispenseRequest : OrgRequestBase
     {
@@ -109,18 +109,18 @@ namespace Newtouch.HIS.Sett.Request.HospitalizationPharmacy
         public string ypCode { get; set; }//ThuốcCode
         public string Kssj { get; set; }//Thời gian bắt đ ầu
         public string Jssj { get; set; }//Thời gian kết thúc
-        public string Cl { get; set; } //长 tạm 
+        public string Cl { get; set; } //dài hạn/tạm thời 
         public List<ModelBQBRYZZXTYInfoVO> YpTymxxxList { get; set; }// trả thuốc chi tiết tập hợp List
 
     }
 
     /// <summary>
-    /// 接收 trả thuốc chi tiết bảng, y lệnh lô số bảng có thể trả thuốc của bản ghi 
+    /// Tiếp nhận bảng chi tiết trả thuốc, bản ghi có thể trả thuốc của bảng lô số y lệnh 
     /// </summary>
     public class ModelBQBRYZZXTYInfoVO
     {
         public string yszyzid { get; set; } // y lệnh ID yszyzid bác sĩ nhóm y lệnh ID
-        public DateTime? tdrq { get; set; } // trả lại 档 ngày 
+        public DateTime? tdrq { get; set; } // Ngày trả lại hồ sơ 
         public string ypCode { get; set; } //ThuốcCode
 
 

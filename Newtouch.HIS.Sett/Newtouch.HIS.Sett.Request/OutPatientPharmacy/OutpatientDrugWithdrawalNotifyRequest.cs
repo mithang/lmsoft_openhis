@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Sett.Request.OutPatientPharmacy
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 成 nhóm số 
+        /// Số nhóm 
         /// </summary>
         public string czh { get; set; }
 

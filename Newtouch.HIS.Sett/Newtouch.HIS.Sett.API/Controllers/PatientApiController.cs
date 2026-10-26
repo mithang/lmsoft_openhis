@@ -17,7 +17,7 @@ using System.Web.Http;
 namespace Newtouch.HIS.Sett.API.Controllers
 {
     /// <summary>
-    /// đ ối với ngoài giao diện bệnh nhân thông tin không có需 thân phận thông tin
+    /// đối với giao diện bên ngoài, thông tin bệnh nhân không cần thông tin thân phận
     /// </summary>
     [RoutePrefix("api/PatientAnon")]
     [IgnoreTokenDecrypt]
@@ -202,7 +202,7 @@ namespace Newtouch.HIS.Sett.API.Controllers
         }
 
         /// <summary>
-        /// Tra cứu nhập viện bệnh nhân账 đ ơn 
+        /// Tra cứu hóa đơn bệnh nhân nhập viện 
         /// </summary>
         /// <param name="apireq"></param>
         /// <returns></returns>

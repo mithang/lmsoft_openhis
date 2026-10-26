@@ -94,7 +94,7 @@ namespace Newtouch.HIS.Web.Controllers
                     // throw new FailedException("Hệ thống nhân sự thông tin không tồn tại tại,vui lòng liên hệ quản trị viên ");
                     //}
                     operatorModel.rygh = userEntity.Account;  // trư ớc mặc đ ịnh như vậy 
-                    operatorModel.OrganizeId = "2"; // một 妇婴của东 viện 
+                    operatorModel.OrganizeId = "2"; // một bệnh viện phụ sản nhi phía Đông 
                     OperatorProvider.AddCurrent(operatorModel);
                     logEntity.F_Account = userEntity.Account;
                     //logEntity.F_NickName = userEntity.F_RealName;

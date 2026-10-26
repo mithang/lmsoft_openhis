@@ -13,7 +13,7 @@ using Newtouch.Common;
 namespace Newtouch.HIS.Web.Core.ActionFilters
 {
     /// <summary>
-    /// Hệ thống truy cập thống kê và 踪 nhật ký 
+    /// Thống kê truy cập hệ thống và nhật ký theo dõi 
     /// </summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class StatisticsTrackerAttribute : ActionFilterAttributeBase
@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Web.Core.ActionFilters
                 var costMSec = (DateTime.Now - enterTime.Value).Milliseconds;
                 var ip = "";
                 var isAjax = filterContext.RequestContext.HttpContext.Request.IsAjaxRequest();
-                //响 nên trạng thái mã 
+                //Mã trạng thái phản hồi 
                 int responseStatusCode = 200;
                 string responseSubCode = null;
                 string responseSubMsg = null;
@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Web.Core.ActionFilters
                     requestForm = filterContext.HttpContext.Request.Form;   //form biểu mẫu gửi của dữ liệu
                 }
 
-                // đ ăng nhập ngư ời dùng 标示
+                // Định danh người dùng đăng nhập
                 var op = OperatorProvider.GetCurrent();
                 string userIdentity = op != null ? op.UserCode : null;
 
@@ -132,7 +132,7 @@ namespace Newtouch.HIS.Web.Core.ActionFilters
         #region private methods
 
         /// <summary>
-        /// Lấy路由tham số
+        /// Lấy tham số định tuyến
         /// </summary>
         /// <param name="rDict"></param>
         /// <returns></returns>

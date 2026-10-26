@@ -7,7 +7,7 @@
     var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
     //Nơi thuộc BHYT，Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
     var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
-    //Khám bệnh凭证LoạiCó hay không从Bảo hiểm y tế端Lấy
+    //Loại chứng từ khám bệnh có lấy từ phía BHYT hay không
     var YB_Jzpzl = SysConfigReader.String("YB_Jzpzl");
 }
 @if (openYbSett == true)
@@ -23,8 +23,8 @@
             <option value="6">Quét mặt</option>
         }
         <option value="4">Chứng minh nhân dân</option>
-        @*<option value="1">Tự trả磁卡</option>
-            <option value="0">测试磁卡</option>*@
+        @*<option value="1">Thẻ từ tự trả</option>
+            <option value="0">Thẻ từ thử nghiệm</option>*@
     </select>
     <input id="ckzddzsm" type="checkbox"  /><label for="zddzsm">(终端)扫码</label>
 </div>
@@ -35,7 +35,7 @@
     var ybkCardType = "@((int)EnumCardType.YBJYK)";
     var medicalInsurance = '@medicalInsurance';
     var cqPatInfo = {};//Bệnh nhânĐọc thẻThông tin，confirmformSử dụng
-    var errmsg = "";//Đọc thẻ错误提示
+    var errmsg = "";//Nhắc lỗi đọc thẻ
     var brxzobj = { brxz: "1", brxzmc: "Thông thườngBảo hiểm y tế" };
     $('#readCard i').click(function () {
          $.loading(true, 'ĐangTrongĐọc thẻ，Vui lòng đợi…');
@@ -53,7 +53,7 @@
                      GetSHReadCardIno(khxx);
                  }
                  break;
-             case "tongyong"://ChungSử dụng国家Bảo hiểm y tế
+             case "tongyong"://Sử dụng chung BHYT quốc gia
                  var khxx = { "sbkh": "", "sfzh": "", "name": "", "ecToken": "" };
                  if ($('#readCardCardType').val() == "4") {
                      $.loading(false);
@@ -76,12 +76,12 @@
          var jzpzlx = $('#readCardCardType').val();
          var url ="http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_S000";
          var payoptype = { "cardtype": "1","orgId":'@(opr.OrganizeId)', "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', "businessType": "01101", "officeId": "0201", "officeName": "Trong科" };
-         if (jzpzlx=="0") {//磁条卡
+         if (jzpzlx=="0") {//Thẻ từ
              payoptype.cardtype = "0";
              payoptype.carddata = khxx.sbkh;
              url = "http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_SM01";
          }
-         if (jzpzlx == "2") {//保障卡
+         if (jzpzlx == "2") {//Thẻ bảo đảm
              payoptype.cardtype = "1";
          }
          if (jzpzlx == "3") {//Chứng từ điện tử
@@ -91,7 +91,7 @@
              payoptype.ecQrChannel = "1";
              url = "http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_SE01";
          }
-         if (jzpzlx == "4") {//Chứng minh nhân dân Hiện tại为止Chỉ có thể用国家Bảo hiểm y tế
+         if (jzpzlx == "4") {//Chứng minh nhân dân cho đến hiện tại chỉ có thể dùng BHYT quốc gia
              payoptype.sfzh = khxx.sbkh;
              GetReadCardInfo(payoptype);
              return;
@@ -138,8 +138,8 @@
                      cqPatInfo.carddata = "";
                  }
                  cqPatInfo.kh = sm01Info.kh;
-                 var bkbz = sm01Info.accountattr.substr(11, 1);//帮困 G、A
-                 var gbbz = sm01Info.accountattr.substr(1, 1);//干保 1
+                 var bkbz = sm01Info.accountattr.substr(11, 1);//Trợ giúp khó khăn G, A
+                 var gbbz = sm01Info.accountattr.substr(1, 1);//Bảo hiểm cán bộ 1
                  var resultObjArr = new Array();
                  if (bkbz == "G" || bkbz == "A" || gbbz == "1") {
                      cqPatInfo.ybVer = "shanghaiV5";
@@ -233,7 +233,7 @@
             payoptype.mdtrt_cert_no = sbkobj.carddata;
         }
 
-         if (jzpzlx === "1") {//院Trong卡
+         if (jzpzlx === "1") {//Thẻ trong viện
              $.loading(false);
              $.modalAlert("院Trong卡Đọc thẻ接口Chưa开通", 'error');
          }
@@ -268,7 +268,7 @@
                              case "02"://Chứng minh nhân dân
                                  jzpzlx = '4';
                                  break;
-                             case "03"://社保卡
+                             case "03"://Thẻ bảo hiểm xã hội
                                  jzpzlx = '2';
                                  sbkobj.sbkh = cardecinfo.mdtrt_cert_no;
                                  payoptype.mdtrt_cert_type = cardecinfo.mdtrt_cert_type;
@@ -287,7 +287,7 @@
                              }
                          }
                      } else
-                         cardInfo2 = yibaoCardInfo.output.insuinfo[0];//参保Thông tin
+                         cardInfo2 = yibaoCardInfo.output.insuinfo[0];//Thông tin tham gia bảo hiểm
                      if (jzpzlx !== "3") {
                          cardInfo3 = yibaoCardInfo.output.cardecinfo;//Thông tin thẻ
                          cqPatInfo.sbkh = sbkobj.sbkh;
@@ -331,12 +331,12 @@
          }
     }
 
-    //监控Đọc thẻLoại
+    //Theo dõi loại đọc thẻ
     $("#readCardCardType").change(function () {
         klxchoose();
     })
 
-    //展示相应的弹窗
+    //Hiển thị cửa sổ bật tương ứng
     function klxchoose() {
         var jzpzlx = $('#readCardCardType').val();
         switch (jzpzlx) {
