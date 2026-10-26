@@ -23,7 +23,7 @@ namespace Newtouch.OR.ManageSystem.DomainServices
 
         }
         /// <summary>
-        /// 获取病区列表
+        /// Lấy danh sách khu bệnh
         /// </summary>
         /// <param name="bqcode"></param>
         /// <param name="orgId"></param>
@@ -50,7 +50,7 @@ where zt='1' and organizeid=@orgId
             });
         }
         /// <summary>
-        /// 获取手术字典列表
+        /// Lấy danh sách từ điển phẫu thuật
         /// </summary>
         /// <param name="bqcode"></param>
         /// <param name="orgId"></param>
@@ -109,7 +109,7 @@ where zt='1' and organizeid=@orgId  and ssdm in(select col from dbo.f_split(@ssd
             });
         }
         /// <summary>
-        /// 院内职工
+        /// Nhân viên trong viện
         /// </summary>
         /// <param name="rygh"></param>
         /// <param name="orgId"></param>
@@ -151,7 +151,7 @@ where organizeid=@orgId and zt='1' ";
         }
 
         /// <summary>
-        /// 获取手术人员字典列表
+        /// Lấy danh sách từ điển nhân viên phẫu thuật
         /// </summary>
         /// <param name="bqcode"></param>
         /// <param name="orgId"></param>
@@ -173,7 +173,7 @@ where organizeid=@orgId and zt='1' ";
         //        }
 
         /// <summary>
-        /// 获取手术室字典列表
+        /// Lấy danh sách từ điển phòng mổ
         /// </summary>
         /// <param name="bqcode"></param>
         /// <param name="orgId"></param>
@@ -195,7 +195,7 @@ where organizeid=@orgId and zt='1' ";
 
 
         /// <summary>
-        /// 获取切口等级字典列表
+        /// Lấy danh sách từ điển cấp độ vết mổ
         /// </summary>
         /// <param name="bqcode"></param>
         /// <param name="orgId"></param>

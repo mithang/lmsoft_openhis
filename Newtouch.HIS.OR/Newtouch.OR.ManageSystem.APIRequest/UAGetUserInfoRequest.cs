@@ -8,12 +8,12 @@ using Newtouch.HIS.API.Common;
 namespace Newtouch.OR.ManageSystem.APIRequest
 {
     /// <summary>
-    /// 以访问令牌换取用户身份信息
+    /// Đổi mã truy cập lấy thông tin danh tính người dùng
     /// </summary>
     public class UAGetUserInfoRequest : RequestBase
     {
         /// <summary>
-        /// 访问令牌
+        /// Mã truy cập
         /// </summary>
         public string access_token { get; set; }
     }

@@ -18,7 +18,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.SystemManage
                 "SystemManage_default",
                 "SystemManage/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
-                , new[] { "Newtouch.OR.ManageSystem.Web.Areas.SystemManage.Controllers", "FrameworkBase.MultiOrg.Web.Areas.SystemManage.Controllers" } //指定命名空间
+                , new[] { "Newtouch.OR.ManageSystem.Web.Areas.SystemManage.Controllers", "FrameworkBase.MultiOrg.Web.Areas.SystemManage.Controllers" } //Chỉ định không gian tên
             );
         }
     }

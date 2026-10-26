@@ -9,23 +9,23 @@ namespace Newtouch.OR.ManageSystem.Domain
     public class PagingData<T>
     {
         /// <summary>
-        /// 排序方式asc需要你服务器按顺序排序，desc倒序排序
+        /// Cách sắp xếpasccần máy chủ của bạn sắp xếp theo thứ tự，descSắp xếp ngược
         /// </summary>
         public string order { get; set; }
         /// <summary>
-        /// 起始行，比如你数据库有100条数据，offset等于10表示你服务器需要从第10条数据返回结果
+        /// Dòng bắt đầu，ví dụ cơ sở dữ liệu của bạn có100bản ghi，offsetbằng10có nghĩa là máy chủ của bạn cần bắt đầu từ10bản ghi để trả kết quả
         /// </summary>
         public int offset { get; set; }
         /// <summary>
-        /// 每次读取多少条数据
+        /// Số bản ghi đọc mỗi lần
         /// </summary>
         public int limit { get; set; }
         /// <summary>
-        /// 用户在输入框搜索的关键词
+        /// Từ khóa người dùng tìm kiếm trong ô nhập
         /// </summary>
         public string search { get; set; }
         /// <summary>
-        /// 分页时你可以传入你的自定义参数，例如你想每次往服务器请求时带action="getlist"参数function(params) { return params }
+        /// Khi phân trang, bạn có thể truyền tham số tùy chỉnh của mình，ví dụ khi bạn muốn mỗi lần yêu cầu máy chủ đều kèm theoaction="getlist"Tham sốfunction(params) { return params }
         /// </summary>
         public T queryParams { get; set; }
     }

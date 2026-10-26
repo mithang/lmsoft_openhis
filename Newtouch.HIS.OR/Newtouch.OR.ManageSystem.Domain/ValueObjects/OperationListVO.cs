@@ -10,7 +10,7 @@ namespace Newtouch.OR.ManageSystem.Domain.ValueObjects
     public class OperationDicVO
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         /// <returns></returns>
         [Key]

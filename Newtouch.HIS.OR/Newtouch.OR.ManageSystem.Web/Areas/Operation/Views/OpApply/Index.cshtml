@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "手术申请";
+    ViewBag.Title = "Đăng ký phẫu thuật";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -15,7 +15,7 @@
 <div class="panel">
     <div id="dv_left" class="panel panel-default" style="width:40%;float:left;padding-right:5px;">
         <div class="panel-heading">
-            <span style="font-weight:bold;width:50px;">住院患者</span>
+            <span style="font-weight:bold;width:50px;">Bệnh nhân nội trú</span>
         </div>
         <div class="topPanel">
             <div class="search">
@@ -23,12 +23,12 @@
                     <tr>
                         <td class="formValue formDdlSelectorTd">
                             <select id="bqlist" name="bqlist" class="form-control " style="width:95%;float:left;">
-                                <option value="">   选择病区   </option>
+                                <option value="">   Chọn khu bệnh   </option>
                             </select>
                         </td>
                         <td rowspan="2">
                             <div class="input-group">
-                                <input id="txt_keyword" type="text" class="form-control" placeholder="患者姓名/住院号" style="width: 150px;">
+                                <input id="txt_keyword" type="text" class="form-control" placeholder="Tên bệnh nhân/Số nhập viện" style="width: 150px;">
                                 <span class="input-group-btn" style="width:200px;">
                                     <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                                 </span>
@@ -45,8 +45,8 @@
     </div>
     <div id="dv_right" class="panel panel-default" style="width:58%;float:right; padding-right: 10px; bottom: 10px;background-color:white;">
         <ul class="nav nav-tabs navb-bg" id="myTab" style="position:fixed; top: 0;z-index:100009;">
-            <li role="presentation"><a href="#linkpat" role="tab" data-toggle="tab">患者信息</a></li>
-            <li role="presentation"><a href="#linkop" role="tab" data-toggle="tab">手术申请</a></li>
+            <li role="presentation"><a href="#linkpat" role="tab" data-toggle="tab">Thông tin bệnh nhân</a></li>
+            <li role="presentation"><a href="#linkop" role="tab" data-toggle="tab">Đăng ký phẫu thuật</a></li>
         </ul>
         <div class="tab-content" >
             <div id="dv-pat" style="display: none; padding: 50px 10px 10px 10px;" >
@@ -79,23 +79,23 @@
             height: $(window).height() - 170,
             colModel: [
                 { label: "Id", name: "Id", hidden: true },
-                { label: "姓名", name: "xm", width: 60, align: 'left' },
-                { label: "住院号", name: "zyh", width: 60, align: 'left'  },
-                { label: "入院诊断", name: "zdmc", width: 130, align: 'left' },
-                { label: "入院日期", name: "ryrq", width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: "Họ tên", name: "xm", width: 60, align: 'left' },
+                { label: "Số nhập viện", name: "zyh", width: 60, align: 'left'  },
+                { label: "Chẩn đoán khi nhập viện", name: "zdmc", width: 130, align: 'left' },
+                { label: "Ngày nhập viện", name: "ryrq", width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
                 { label: "nl", name: "nl", hidden: true },
                 { label: "WardName", name: "WardName", hidden: true },
                 { label: "BedCode", name: "BedCode", hidden: true },
                 {
                     label: "sex", name: "sex", hidden: true, formatter: function (val) {
                         if (val == "1") {
-                            return "男";
+                            return "Nam";
                         }
                         else if (val == 2) {
-                            return "女";
+                            return "Nữ";
                         }
                         else {
-                            return "未知"
+                            return "Không xác định"
                         }
                     }
                 },
@@ -118,12 +118,12 @@
                     $("#sq_ryzdmc").html(rowData.zdmc);
                     $("#sq_bqmc").html(rowData.WardName);
                     $("#sq_bedcode").html(rowData.BedCode);
-                    //加载申请手术列表
+                    //Tải danh sách phẫu thuật đăng ký
                     $("#gridListOP").resetSelection();
                     $("#gridListOP").jqGrid('setGridParam', {
-                        postData: { 'zyh': rowData.zyh }, //发送数据
+                        postData: { 'zyh': rowData.zyh }, //Gửi dữ liệu
                         page: 1
-                    }).trigger("reloadGrid"); //重新载入
+                    }).trigger("reloadGrid"); //Tải lại
                 }
             },
             loadComplete: function () {
@@ -179,7 +179,7 @@
         $('#myTab a:first').trigger('click'); 
     }
 
-    //申请手术按钮
+    //Nút đăng ký phẫu thuật
     function showOpApply() {
         //debugger
         $.ajax({

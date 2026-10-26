@@ -12,16 +12,16 @@ using System.Linq;
 namespace Newtouch.OR.ManageSystem.Repository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-11-06 10:22
-    /// 描 述：手术人员
+    /// Tạo lập：chl
+    /// Ngày tạo：2019-11-06 10:22
+    /// Mô tả：Nhân viên phẫu thuật
     /// </summary>
     public class ORStaffRepo : RepositoryBase<ORStaffEntity>, IORStaffRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">EFFactory ngữ cảnh</param>
         public ORStaffRepo(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {
@@ -29,10 +29,10 @@ namespace Newtouch.OR.ManageSystem.Repository
         }
 
         /// <summary>
-        /// 获取分页实体列表
+        /// Lấy danh sách thực thể phân trang
         /// </summary>
-        /// <param name="pagination">分页</param>
-        /// <param name="keyword">筛选关键字</param>
+        /// <param name="pagination">Phân trang</param>
+        /// <param name="keyword">Từ khóa lọc</param>
         public IList<ORStaffEntity> GetPagintionList(Pagination pagination, string keyword,string organizeId)
         {
             var sql = new StringBuilder();
@@ -57,10 +57,10 @@ namespace Newtouch.OR.ManageSystem.Repository
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public int SubmitForm(ORStaffEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -90,9 +90,9 @@ namespace Newtouch.OR.ManageSystem.Repository
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public int DeleteForm(string keyValue)
         {
             var dbEntity = this.FindEntity(keyValue);
@@ -104,7 +104,7 @@ namespace Newtouch.OR.ManageSystem.Repository
 
 
 		/// <summary>
-		/// 获取医生人员列表
+		/// Lấy danh sách bác sĩ
 		/// </summary>
 		/// <param name="organizeId"></param>
 		/// <returns></returns>
@@ -128,7 +128,7 @@ namespace Newtouch.OR.ManageSystem.Repository
 
 
 		/// <summary>
-		/// 获取浮窗人员列表
+		/// Lấy danh sách nhân viên cửa sổ nổi
 		/// </summary>
 		/// <param name="organizeId"></param>
 		/// <returns></returns>

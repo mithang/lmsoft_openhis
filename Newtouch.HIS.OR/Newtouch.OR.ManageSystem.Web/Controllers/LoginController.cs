@@ -14,12 +14,12 @@ using Newtouch.Tools;
 namespace Newtouch.OR.ManageSystem.Web.Controllers
 {
     /// <summary>
-    /// 登录登出
+    /// Đăng nhập/Đăng xuất
     /// </summary>
     public class LoginController : FrameworkBase.MultiOrg.Web.Controllers.LoginController
     {
         /// <summary>
-        /// 登出
+        /// Đăng xuất
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -37,7 +37,7 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         #region 统一授权登录
 
         /// <summary>
-        /// 统一授权登录
+        /// Đăng nhập ủy quyền thống nhất
         /// </summary>
         /// <param name="access_token"></param>
         /// <param name="returnUrl"></param>
@@ -46,7 +46,7 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(access_token))
             {
-                return RedirectToAction("Index", "Login"); //缺少令牌
+                return RedirectToAction("Index", "Login"); //Thiếu mã thông báo
             }
 
             var eOpr = OperatorProvider.GetCurrent();
@@ -65,10 +65,10 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
             var aaa = ConfigurationHelper.GetAppConfigValue("UAUserInfoGetAPI");
             if (string.IsNullOrWhiteSpace(aaa))
             {
-                return RedirectToAction("Index", "Login"); //未配置身份换取的API地址
+                return RedirectToAction("Index", "Login"); //chưa cấu hình đổi danh tínhAPIĐịa chỉ
             }
 
-            //向API请求换取身份
+            //tớiAPIyêu cầu đổi danh tính
             var sw = new Stopwatch();
             sw.Start();
             var reqObj = new
@@ -84,7 +84,7 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
             sw.Reset();
             if (apiResp.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                return RedirectToAction("Index", "Login"); //身份换取失败
+                return RedirectToAction("Index", "Login"); //Đổi danh tính thất bại
             }
 
             sw.Start();
@@ -114,7 +114,7 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         }
 
         /// <summary>
-        /// 统一授权获取跳转地址
+        /// Lấy địa chỉ chuyển hướng ủy quyền thống nhất
         /// </summary>
         /// <param name="appId"></param>
         /// <returns></returns>
@@ -143,7 +143,7 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
                 }
                 else
                 {
-                    addr = null; //视为null
+                    addr = null; //Coi lànull
                 }
             }
 
@@ -151,7 +151,7 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         }
 
         /// <summary>
-        /// 统一授权预热（预热打开CIS页面）
+        /// Làm nóng ủy quyền thống nhất（Mở làm nóngCISTrang）
         /// </summary>
         /// <param name="opr"></param>
         public static void UALoginPre(OperatorModel opr)

@@ -24,12 +24,12 @@ namespace Newtouch.OR.ManageSystem.API
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
-            //向上下文注册表
+            //Đăng ký bảng vào ngữ cảnh
             DefaultDbContext.PartialTBRegister(DefaultDbContextTBRegister.Registe);
 
-            //注册 释放数据库链接
+            //Đăng ký Giải phóng kết nối cơ sở dữ liệu
             FrameworkBase.API.ApiControllerBaseEx.RegisterDBContextDisposer(()=> {
-                //释放DefaultDbContext
+                //Giải phóngDefaultDbContext
                 var key = "AspNetObjectContextDisposalModule_Dispose_Flag_" + typeof(DefaultDbContext).Name;
                 if (HttpContext.Current != null || HttpContext.Current.Items[key] != null)
                 {
@@ -43,7 +43,7 @@ namespace Newtouch.OR.ManageSystem.API
 
             IEntityEx.RegisterCurUserCodeGetter(() =>
             {
-                //在基类认证用户身份时写上的
+                //được ghi khi lớp cơ sở xác thực danh tính người dùng
                 var account = HttpContext.Current.Items["API_UserIdentity_Account"];
                 return account == null ? null : account.ToString();
             });

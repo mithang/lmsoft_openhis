@@ -5,7 +5,7 @@ using Newtouch.HIS.API.Common.Models;
 namespace Newtouch.OR.ManageSystem.API.App_Start
 {
     /// <summary>
-    /// 用户身份解析
+    /// Phân giải danh tính người dùng
     /// </summary>
     public class UserIdentityResolver : IUserIdentityResolver<Identity>
     {

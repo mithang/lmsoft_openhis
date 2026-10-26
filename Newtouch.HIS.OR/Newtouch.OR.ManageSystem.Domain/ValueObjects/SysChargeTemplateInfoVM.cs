@@ -10,7 +10,7 @@ namespace Newtouch.OR.ManageSystem.Domain.ValueObjects
     public class SysChargeTemplateInfoVM
     {
         /// <summary>
-        /// 模板实体
+        /// Thực thể mẫu
         /// </summary>
         public SysChargeTemplateDto TemplateEntity { get; set; }
 

@@ -11,7 +11,7 @@ using Newtouch.OR.ManageSystem.APIRequest;
 namespace Newtouch.OR.ManageSystem.API.Controllers
 {
 	/// <summary>
-	/// 统一授权认证
+	/// Xác thực ủy quyền thống nhất
 	/// </summary>
 	[RoutePrefix("api/UA")]
     public class UAController : ApiControllerBase<UAController>
@@ -23,7 +23,7 @@ namespace Newtouch.OR.ManageSystem.API.Controllers
         }
 
         /// <summary>
-        /// 以访问令牌换取用户身份信息
+        /// Đổi mã truy cập lấy thông tin danh tính người dùng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -75,7 +75,7 @@ namespace Newtouch.OR.ManageSystem.API.Controllers
                 }
                 else
                 {
-                    //更新过期时间 120?
+                    //Cập nhật thời gian hết hạn 120?
                     RedisHelper.KeyExpire(req.access_token, new TimeSpan(0, 120, 0));
                     //
                     resp.data = new

@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.OR.ManageSystem.APIRequest
 {
     /// <summary>
-    /// 医疗机构API请求基类
+    /// Cơ sở y tếAPILớp cơ sở của yêu cầu
     /// </summary>
     public class OrgJSONRequestBase : JSONRequestBase
     {
         /// <summary>
-        /// 医疗机构Id
+        /// Cơ sở y tếId
         /// </summary>
         [Required]
         public string OrganizeId { get; set; }

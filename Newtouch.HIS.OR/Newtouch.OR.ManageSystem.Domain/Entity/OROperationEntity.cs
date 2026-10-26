@@ -6,22 +6,22 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.OR.ManageSystem.Domain.Entity
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-10-31 14:15
-    /// 描 述：手术字典表
+    /// Tạo lập：chl
+    /// Ngày tạo：2019-10-31 14:15
+    /// Mô tả：Bảng từ điển phẫu thuật
     /// </summary>
     [Table("OR_Operation")]
     public class OROperationEntity : IEntity<OROperationEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         /// <returns></returns>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织结构
+        /// Cơ cấu tổ chức
         /// </summary>
         /// <returns></returns>
         public string OrganizeId { get; set; }
@@ -51,31 +51,31 @@ namespace Newtouch.OR.ManageSystem.Domain.Entity
         public string ssjb { get; set; }
 
         /// <summary>
-        /// 状态     1:有效  0：无效
+        /// Trạng thái     1:Hiệu lực  0：Không hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         /// <returns></returns>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         /// <returns></returns>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa
         /// </summary>
         /// <returns></returns>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改者
+        /// Người sửa
         /// </summary>
         /// <returns></returns>
         public string LastModifierCode { get; set; }

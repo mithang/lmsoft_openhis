@@ -14,9 +14,9 @@ namespace Newtouch.OR.ManageSystem.Repository
 	public class ORApplyInfoExpandRepo : RepositoryBase<ORApplyInfoExpandEntity>, IORApplyInfoExpandRepo
 	{
 		/// <summary>
-		/// 默认构造函数
+		/// Hàm khởi tạo mặc định
 		/// </summary>
-		/// <param name="databaseFactory">EF上下文工厂</param>
+		/// <param name="databaseFactory">EFFactory ngữ cảnh</param>
 		public ORApplyInfoExpandRepo(IDefaultDatabaseFactory databaseFactory)
 			: base(databaseFactory)
 		{
@@ -24,10 +24,10 @@ namespace Newtouch.OR.ManageSystem.Repository
 		}
 
 		/// <summary>
-		/// 保存表单（新增、修改）
+		/// Lưu biểu mẫu（Thêm mới、Sửa）
 		/// </summary>
-		/// <param name="entity">实体对象</param>
-		/// <param name="keyValue">主键值</param>
+		/// <param name="entity">Đối tượng thực thể</param>
+		/// <param name="keyValue">Giá trị khóa chính</param>
 		public int SubmitForm(ORApplyInfoExpandEntity entity, string keyValue)
 		{
 			//if (!string.IsNullOrEmpty(keyValue))
@@ -43,16 +43,16 @@ namespace Newtouch.OR.ManageSystem.Repository
 		}
 
 		/// <summary>
-		/// 删除数据
+		/// Xóa dữ liệu
 		/// </summary>
-		/// <param name="keyValue">主键值</param>
+		/// <param name="keyValue">Giá trị khóa chính</param>
 		public void DeleteForm(string keyValue, string orgId)
 		{
 			Delete(p => p.Applyno == keyValue);
 		}
 		
 		/// <summary>
-		/// 根据申请编号获取多个手术信息
+		/// Lấy thông tin nhiều ca phẫu thuật theo số đơn đăng ký
 		/// </summary>
 		/// <param name="orgId"></param>
 		/// <param name="applyNo"></param>

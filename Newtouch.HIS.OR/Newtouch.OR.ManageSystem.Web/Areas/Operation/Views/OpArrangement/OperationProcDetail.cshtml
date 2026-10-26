@@ -7,7 +7,7 @@
     * {
         box-sizing: border-box;
     }
-    /* 将正文和文档的高度设置为100%，以启用“整页选项卡” */
+    /* Đặt chiều cao của nội dung và tài liệu thành100%，để bật“Tab toàn trang” */
     body,
     html {
         height: 100%;
@@ -21,10 +21,10 @@
 
     .container {
         background-color: #ffffff !important;
-        height: 100vh; /*元素的高度与 window 的高度相同*/
+        height: 100vh; /*Chiều cao của phần tử bằng window chiều cao của*/
     }
 
-    /* 样式选项卡链接 */
+    /* Liên kết tab kiểu */
     .tablink {
         background-color: #C1CDCD;
         color: black;
@@ -42,7 +42,7 @@
             background-color: #C1CDCD;
         }
 
-    /* 设置选项卡内容的样式（并添加高度：全页内容为100%） */
+    /* Đặt kiểu cho nội dung tab（và thêm chiều cao：Nội dung toàn trang là100%） */
     .tabcontent {
         color: black;
         display: none;
@@ -110,7 +110,7 @@
         <div class="col-sm-4 heightfull" style="background-color: #daebe885; ">
             <div class="panel panel-danger" style="height:40%;">
                 <div class="panel-heading">
-                    <h3 class="panel-title">患者信息</h3>
+                    <h3 class="panel-title">Thông tin bệnh nhân</h3>
                 </div>
                 <div class="panel-body">
                     @Html.Partial("_PatientCard")
@@ -118,13 +118,13 @@
             </div>
             <div class="panel panel-info" style="width: 100%; height: 55%;  ">
                 <div class="panel-heading">
-                    <h3 class="panel-title">手术申请详情</h3>
+                    <h3 class="panel-title">Chi tiết đăng ký phẫu thuật</h3>
                 </div>
                 <div class="panel-body">
                     <form id="formapplyinfo" class="form-horizontal" role="form" style="height:100%;">
                         <div class="form-group">
                             <label for="applyno" class="col-sm-4 showContentlabel">
-                                手术申请单号
+                                Số đơn đăng ký phẫu thuật
                             </label>
                             <div class="col-sm-8">
                                 <input id="applyno" class="showContent" type="text" value="" disabled>
@@ -132,7 +132,7 @@
                         </div>
                         <div class="form-group">
                             <label for="ssmcn" class="col-sm-4 showContentlabel">
-                                申请手术名称
+                                Tên phẫu thuật đăng ký
                             </label>
                             <div class="col-sm-8">
                                 <input id="ssmcn" class="showContent" type="text" value="" disabled>
@@ -140,7 +140,7 @@
                         </div>
                         <div class="form-group">
                             <label for="ysxm" class="col-sm-4 showContentlabel">
-                                申请主刀医生
+                                Bác sĩ phẫu thuật chính đăng ký
                             </label>
                             <div class="col-sm-8">
                                 <input id="ysxm" class="showContent" type="text" value="" disabled>
@@ -148,7 +148,7 @@
                         </div>
                         <div class="form-group">
                             <label for="sssj" class="col-sm-4 showContentlabel">
-                                申请手术时间
+                                Thời gian phẫu thuật đăng ký
                             </label>
                             <div class="col-sm-8">
                                 <input id="sssj" class="showContent" type="text" value="" disabled>
@@ -156,7 +156,7 @@
                         </div>
                         <div class="form-group">
                             <label for="sqzt" class="col-sm-4 showContentlabel">
-                                申请状态
+                                Trạng thái đăng ký
                             </label>
                             <div class="col-sm-8">
                                 <input id="sqzt" class="showContent" type="text" value="" disabled>
@@ -169,99 +169,99 @@
         </div>
         <div class="col-sm-8 heightfull">
             <button class="tablink" onclick="openPage('arrange', this, '#daebe885')" id="defaultOpen">
-                <span>手术排班</span>
+                <span>Xếp lịch phẫu thuật</span>
             </button>
             @*<button class="tablink" onclick="openPage('register', this, '#b7d7e8')">
-                <span>手术登记</span>
+                <span>Đăng ký phẫu thuật</span>
             </button>*@
 
             <div id="arrange" class="tabcontent row" >
                 <form id="formarrange" class="form-horizontal col-sm-12" role="form">
                     <div class="panel-heading" style="border-bottom-color:#90cbb7;border-bottom-left-radius:20px;">
                         <span class="glyphicon glyphicon-tags" style="color: rgb(255, 140, 60);"></span>
-                        <span style="font-weight:bold;font-size:14px;padding-left:10px;">手术安排</span>
+                        <span style="font-weight:bold;font-size:14px;padding-left:10px;">Sắp xếp phẫu thuật</span>
                     </div>
                     <div class="form-group" style="padding-top:5px;">
-                        <label class="col-sm-2 control-label"><span class="required">*</span>拟手术名称：</label>
+                        <label class="col-sm-2 control-label"><span class="required">*</span>Tên phẫu thuật dự kiến：</label>
                         <div class="col-sm-9" style="height:20%;">
                             <select id="sel_ssmc" name="sel_ssmc" class="form-control" multiple="multiple" disabled>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label"><span class="required">*</span>手术时间：</label>
+                        <label class="col-sm-2 control-label"><span class="required">*</span>Thời gian phẫu thuật：</label>
                         <div class="col-sm-3">
                             <input id="sssj2" type="text" class="form-control input-wdatepicker formClearIgnore required" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">麻醉方式：</label>
+                        <label class="col-sm-2 control-label">Phương pháp gây mê：</label>
                         <div class="col-sm-3">
                             <select id="mzfs" name="mzfs" class="form-control required">
-                                <option value="">===请选择=== </option>
-                                <option value="1"> 全身麻醉 </option>
-                                <option value="2">局部麻醉</option>
-                                <option value="3">针刺麻醉</option>
-                                <option value="4">复合麻醉</option>
+                                <option value="">===Vui lòng chọn=== </option>
+                                <option value="1"> Gây mê toàn thân </option>
+                                <option value="2">Gây tê cục bộ</option>
+                                <option value="3">Gây mê bằng châm cứu</option>
+                                <option value="4">Gây mê phối hợp</option>
                             </select>
                         </div>
-                        <label class="col-sm-2 control-label">手术部位：</label>
+                        <label class="col-sm-2 control-label">Vị trí phẫu thuật：</label>
                         <div class="col-sm-2">
                             <input id="ssbw" type="text" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label"><span class="required">*</span>手术室：</label>
+                        <label class="col-sm-2 control-label"><span class="required">*</span>Phòng mổ：</label>
                         <div class="col-sm-3">
                             <select id="oproom" name="oproom" class="form-control required">
-                                <option value="">===请选择=== </option>
+                                <option value="">===Vui lòng chọn=== </option>
                             </select>
                         </div>
-                        <label class="col-sm-2 control-label">台次：</label>
+                        <label class="col-sm-2 control-label">Lượt mổ：</label>
                         <div class="col-sm-3">
                             <input id="sstc" type="text" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label"><span class="required">*</span>是否隔离：</label>
+                        <label class="col-sm-2 control-label"><span class="required">*</span>Có cách ly không：</label>
                         <div class="col-sm-2">
                             <select id="isgl" name="isgl" class="form-control required">
-                                <option value="2">否</option>
-                                <option value="1">是 </option>
+                                <option value="2">Không</option>
+                                <option value="1">Có </option>
 
                             </select>
                         </div>
                     </div>
                     <div class="panel-heading" style="border-bottom-color:#90cbb7;border-bottom-left-radius:20px;">
                         <span class="glyphicon glyphicon-tags" style="color: rgb(255, 140, 60);"></span>
-                        <span style="font-weight:bold;font-size:14px;padding-left:10px;">医护人员安排</span>
+                        <span style="font-weight:bold;font-size:14px;padding-left:10px;">Sắp xếp nhân viên y tế</span>
                     </div>
                     <div class="form-group" style="padding-top:5px;">
-                        <label class="col-sm-2 control-label"><span class="required">*</span>主刀医生：</label>
+                        <label class="col-sm-2 control-label"><span class="required">*</span>Bác sĩ phẫu thuật chính：</label>
                         <div class="col-sm-2">
                             <input id="code1" class="required" type="hidden" />
                             <input id="ysgh" attr-code="" attr-zjm="" name="ysgh" type="text" class="form-control required" autocomplete="off" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">一助：</label>
+                        <label class="col-sm-2 control-label">Phụ tá 1：</label>
                         <div class="col-sm-2">
                             <input id="zlys1" type="hidden" />
                             <input id="zlys1name" attr-code="" attr-zjm="" name="zlys1name" type="text" class="form-control" autocomplete="off" />
                         </div>
-                        <label class="col-sm-2 control-label">二助：</label>
+                        <label class="col-sm-2 control-label">Phụ tá 2：</label>
                         <div class="col-sm-2">
                             <input id="zlys2" type="hidden" />
                             <input id="zlys2name" attr-code="" attr-zjm="" name="zlys2name" type="text" class="form-control" autocomplete="off" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">巡回护士：</label>
+                        <label class="col-sm-2 control-label">Y tá lưu động：</label>
                         <div class="col-sm-2">
                             <input id="xhhs" type="hidden" />
                             <input id="xhhsname" attr-code="" attr-zjm="" name="xhhsname" type="text" class="form-control" autocomplete="off" />
                         </div>
-                        <label class="col-sm-2 control-label">洗手护士：</label>
+                        <label class="col-sm-2 control-label">Y tá rửa tay：</label>
                         <div class="col-sm-2">
                             <input id="xshs" type="hidden" />
                             <input id="xshsname" attr-code="" attr-zjm="" name="xshsname" type="text" class="form-control" autocomplete="off" />
@@ -270,25 +270,25 @@
                     </div>
                     <div class="panel-heading" style="border-bottom-color:#90cbb7;border-bottom-left-radius:20px;">
                         <span class="glyphicon glyphicon-tags" style="color: rgb(255, 140, 60);"></span>
-                        <span style="font-weight:bold;font-size:14px;padding-left:10px;">请仔细核对以上手术安排</span>
+                        <span style="font-weight:bold;font-size:14px;padding-left:10px;">Vui lòng kiểm tra kỹ lịch phẫu thuật trên</span>
                     </div>
                     <div class="form-group" style="padding-top:25px;">
                         <div class="col-sm-3">
                         </div>
                         <div class="col-sm-3" id="submit">
-                            <a class='btn btn-default  btn-lg  btn-block' style="border: 1px solid #398439; color: #398439;" onclick="submitArrange();"><i class="fa fa-check"></i> 保存排班</a>
+                            <a class='btn btn-default  btn-lg  btn-block' style="border: 1px solid #398439; color: #398439;" onclick="submitArrange();"><i class="fa fa-check"></i> Lưu xếp lịch</a>
                         </div>
                         <div class="col-sm-2">
                         </div>
                         <div class="col-sm-3" id="cancel">
-                            <a class='btn btn-default btn-lg  btn-block' style="border: 1px solid #ac2925; color: #ac2925;" onclick="cancelArrange();"><i class="fa fa-remove"></i> 取消排班</a>
+                            <a class='btn btn-default btn-lg  btn-block' style="border: 1px solid #ac2925; color: #ac2925;" onclick="cancelArrange();"><i class="fa fa-remove"></i> Hủy xếp lịch</a>
                         </div>
                     </div>
                     @*<div class="form-group">
                         <div class="col-sm-8">
                         </div>
                         <div class="col-sm-3" id="print">
-                            <a class='btn btn-default btn-lg btn-block' style="border: 1px solid #398439;" onclick="printArrange();"><i class="fa fa-angle-double-left"></i> 打印通知单</a>
+                            <a class='btn btn-default btn-lg btn-block' style="border: 1px solid #398439;" onclick="printArrange();"><i class="fa fa-angle-double-left"></i> In phiếu thông báo</a>
                         </div>
                     </div>*@
                 </form>
@@ -363,7 +363,7 @@
     });
 
     function processResultsData(resultData) {
-        //返回最终数据data 给dataArray
+        //Trả về dữ liệu cuối cùngdata chodataArray
         var jsonObj = JSON.parse(resultData);
         var dataArray = [];
         for (var i = 0; i < resultData.length; i++) {
@@ -382,27 +382,27 @@
 
     }
     function openPage(pageName, elmnt, color) {
-        // 默认情况下，使用class=“tabcontent”隐藏所有元素
+        // Trong trường hợp mặc định，Sử dụngclass=“tabcontent”Ẩn tất cả các phần tử
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
         for (i = 0; i < tabcontent.length; i++) {
             tabcontent[i].style.display = "none";
         }
 
-        // 删除所有标签链接/按钮的背景色
+        // Xóa tất cả các liên kết thẻ/Màu nền của nút
         tablinks = document.getElementsByClassName("tablink");
         for (i = 0; i < tablinks.length; i++) {
             tablinks[i].style.backgroundColor = "";
         }
 
-        // 显示特定选项卡内容
+        // Hiển thị nội dung tab cụ thể
         document.getElementById(pageName).style.display = "block";
 
-        // 将特定颜色添加到用于打开选项卡内容的按钮
+        // Thêm màu cụ thể vào nút dùng để mở nội dung tab
         elmnt.style.backgroundColor = color;
     }
 
-    // 获取id为=“defaultOpen”的元素并单击它
+    // Lấyidcho=“defaultOpen”phần tử và nhấp vào nó
     document.getElementById("defaultOpen").click();
 
     var applyInfo = {};
@@ -412,7 +412,7 @@
             data: { keyValue: "" },
             dataType: "json",
             success: function (data) {
-                //手术申请信息
+                //Thông tin đăng ký phẫu thuật
                 arrangeInfo = data;
 
                 $("#ysxm").val(data.ysxm);
@@ -442,7 +442,7 @@
         });
     }
 
-    /****************手术排班*********** */
+    /****************Xếp lịch phẫu thuật*********** */
     function getSelectBind() {
         $("#oproom").bindSelect({
             url: "/Operation/Common/GetRoomlist",
@@ -519,7 +519,7 @@
 		    dataType: "json",
 		    success: function (data) {
                 $("#formarrange").formSerialize(data);
-			    //手术排班信息
+			    //Thông tin xếp lịch phẫu thuật
 			    if (data.sssj != null) {
 				    $("#sssj2").val(data.sssj.replace("T", " "));
 			    }
@@ -536,7 +536,7 @@
                 $("#xhhs").val(data.xhhs);
 			    $("#ssbw").val(data.ssbw);
 			    $("#sstc").val(data.oporder);
-			    //按钮显示隐藏
+			    //Hiển thị/ẩn nút
 			    if (data.sqzt == '@((int)EnumSSzt.dpb)') {
 				    $("#cancel").hide();
                     $("#submit").show();
@@ -563,7 +563,7 @@
 		    }
 	    });
     }
-    //保存排班
+    //Lưu xếp lịch
     function submitArrange() {
         var arrangeObj = {
             ApplyId: arrangeInfo.Id,
@@ -595,11 +595,11 @@
             zt: 1,
         }
         if (arrangeObj.sssj == "" || arrangeObj.oproom == "" || !arrangeObj.ysgh || !arrangeObj.ysxm) {
-            $.modalAlert("请填写手术时间、手术室、主刀医生", 'warning');
+            $.modalAlert("Vui lòng nhập thời gian phẫu thuật、Phòng mổ、Bác sĩ phẫu thuật chính", 'warning');
             return false;
         }
 
-            //不可填
+            //Không thể nhập
             $("#sssj2").attr("disabled", "disabled");
             $("#mzfs").attr("disabled", "disabled");
             $("#ssbw").attr("readonly", true);
@@ -623,9 +623,9 @@
 
 
     }
-    //取消排班
+    //Hủy xếp lịch
     function cancelArrange() {
-        $.modalConfirm("确定要取消吗？", function (flag) {
+        $.modalConfirm("Bạn có chắc chắn muốn hủy không?？", function (flag) {
             if (!flag) {
                 return false;
             }
@@ -633,14 +633,14 @@
         });
         var keyValue = $.request("keyValue");
         if (!!!keyValue) {
-            window.$.modalAlert("取消安排失败", 'warning');
+            window.$.modalAlert("Hủy sắp xếp thất bại", 'warning');
             return false;
         }
         $.deleteForm({
             url: "/Operation/OpArrangement/DeleteForm",
             param: { keyValue: keyValue },
             success: function () {
-                $.modalMsg("取消成功", "success");
+                $.modalMsg("Hủy thành công", "success");
                 getArrangeInfo();
             }
         });

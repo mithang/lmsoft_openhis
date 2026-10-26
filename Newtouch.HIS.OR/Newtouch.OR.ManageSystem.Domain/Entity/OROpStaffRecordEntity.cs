@@ -6,9 +6,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.OR.ManageSystem.Domain.Entity
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-11-06 10:22
-    /// 描 述：手术人员记录
+    /// Tạo lập：chl
+    /// Ngày tạo：2019-11-06 10:22
+    /// Mô tả：Hồ sơ nhân viên phẫu thuật
     /// </summary>
     [Table("OR_OpStaffRecord")]
     public class OROpStaffRecordEntity : IEntity<OROpStaffRecordEntity>
@@ -20,38 +20,38 @@ namespace Newtouch.OR.ManageSystem.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         /// <returns></returns>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 手术登记号
+        /// Số đăng ký phẫu thuật
         /// </summary>
         /// <returns></returns>
         public string ssxh { get; set; }
 
         /// <summary>
-        /// 人员类别 1 主刀医生 2助理医生 3巡回护士 4洗手护士 
+        /// Loại nhân viên 1 Bác sĩ phẫu thuật chính 2Bác sĩ phụ tá 3Y tá lưu động 4Y tá rửa tay 
         /// </summary>
         /// <returns></returns>
         public string rylb { get; set; }
 
         /// <summary>
-        /// 工号
+        /// Mã nhân viên
         /// </summary>
         /// <returns></returns>
         public string rygh { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         /// <returns></returns>
         public string ryxm { get; set; }
 
         /// <summary>
-        /// 序号
+        /// Số thứ tự
         /// </summary>
         /// <returns></returns>
         public int px { get; set; }
@@ -63,31 +63,31 @@ namespace Newtouch.OR.ManageSystem.Domain.Entity
         public string memo { get; set; }
 
         /// <summary>
-        /// 状态     1:有效  0：无效
+        /// Trạng thái     1:Hiệu lực  0：Không hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         /// <returns></returns>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         /// <returns></returns>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa
         /// </summary>
         /// <returns></returns>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改者
+        /// Người sửa
         /// </summary>
         /// <returns></returns>
         public string LastModifierCode { get; set; }

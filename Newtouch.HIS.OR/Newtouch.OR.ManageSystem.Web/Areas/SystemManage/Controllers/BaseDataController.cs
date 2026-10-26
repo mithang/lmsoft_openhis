@@ -22,7 +22,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.SystemManage.Controllers
 
 
 		/// <summary>
-		/// 诊断 检索
+		/// Chẩn đoán Tìm kiếm
 		/// </summary>
 		/// <param name="keyword"></param>
 		/// <returns></returns>
@@ -37,7 +37,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 手术 检索
+        /// Phẫu thuật Tìm kiếm
         /// </summary>
         /// <param name="organizeId"></param>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.SystemManage.Controllers
         }
 
 		/// <summary>
-		/// 浮框 医生人员列表 检索
+		/// Khung nổi Danh sách bác sĩ Tìm kiếm
 		/// </summary>
 		/// <param name="organizeId"></param>
 		/// <returns></returns>

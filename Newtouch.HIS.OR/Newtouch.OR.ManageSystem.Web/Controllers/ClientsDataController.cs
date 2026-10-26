@@ -11,7 +11,7 @@ using Newtouch.OR.ManageSystem.Infrastructure;
 namespace Newtouch.OR.ManageSystem.Web.Controllers
 {
     /// <summary>
-    /// Home/Index加载时 默认加载的 缓存数据
+    /// Home/IndexKhi tải được tải mặc định Dữ liệu bộ nhớ đệm
     /// </summary>
     public class ClientsDataController : FrameworkBase.MultiOrg.Web.Controllers.ClientsDataController
     {
@@ -33,7 +33,7 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         }
 
         /// <summary>
-        /// 获取同步的部分
+        /// Lấy phần đồng bộ
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -50,7 +50,7 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         }
 
         /// <summary>
-        /// 获取异步的部分
+        /// Lấy phần không đồng bộ
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -59,7 +59,7 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         {
             var opr = OperatorProvider.GetCurrent();
             object sysStaffDutyList = null, doctorInHosBookkeep = null;
-            doctorInHosBookkeep = _sysUserDmnService.GetStaffByDutyCode(opr.OrganizeId??"1", "Doctor");//住院记账获取门诊医生
+            doctorInHosBookkeep = _sysUserDmnService.GetStaffByDutyCode(opr.OrganizeId??"1", "Doctor");//Lấy bác sĩ ngoại trú để ghi sổ nội trú
             var data = new
             {
                 itemDetails = this.GetItemDetailsList(),

@@ -50,7 +50,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存操作
+        /// Lưu thao tác
         /// </summary>
         /// <param name="moduleEntity"></param>
         /// <param name="keyValue"></param>
@@ -69,7 +69,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 诊断 检索
+        /// Chẩn đoán Tìm kiếm
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

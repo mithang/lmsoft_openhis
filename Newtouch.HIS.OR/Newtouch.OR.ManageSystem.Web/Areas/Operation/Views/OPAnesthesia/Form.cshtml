@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "麻醉方式详细信息";
+    ViewBag.Title = "Thông tin chi tiết phương pháp gây mê";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -9,19 +9,19 @@
     <div style="padding-top: 20px; margin-right: 30px;">
         <table class="form">
             <tr>
-                <th class="formTitle">麻醉代码：</th>
+                <th class="formTitle">Mã gây mê：</th>
                 <td class="formValue">
                     <input id="AnesCode" name="AnesCode" type="text" class="form-control" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">麻醉名称：</th>
+                <th class="formTitle">Tên gây mê：</th>
                 <td class="formValue">
                     <input id="AnesName" name="AnesName" type="text" onchange="getZjm()" class="form-control" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">助记码：</th>
+                <th class="formTitle">Mã ghi nhớ：</th>
                 <td class="formValue">
                     <input id="Aneszjm" name="Aneszjm" type="text" readonly="true" class="form-control" />
                 </td>
@@ -63,7 +63,7 @@
         });
     }
 
-    //获取手术名称首拼音
+    //Lấy chữ cái đầu phiên âm của tên phẫu thuật
     function getZjm() {
         var AnesName = $("#AnesName").val();
         if (AnesName) {

@@ -24,7 +24,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation
                 "Operation_default",
                 "Operation/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
-                , new[] { "Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers", "FrameworkBase.MultiOrg.Web.Areas.Operation.Controllers" } //指定命名空间
+                , new[] { "Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers", "FrameworkBase.MultiOrg.Web.Areas.Operation.Controllers" } //Chỉ định không gian tên
             );
         }
     }

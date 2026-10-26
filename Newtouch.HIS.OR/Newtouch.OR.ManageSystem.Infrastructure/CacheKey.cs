@@ -1,7 +1,7 @@
 ﻿namespace Newtouch.OR.ManageSystem.Infrastructure
 {
     /// <summary>
-    /// 缓存Key
+    /// Bộ nhớ đệmKey
     /// </summary>
     public class CacheKey
     {

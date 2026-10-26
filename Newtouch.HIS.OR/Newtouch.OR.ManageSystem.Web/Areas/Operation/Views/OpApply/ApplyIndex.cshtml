@@ -1,6 +1,6 @@
 ﻿@using Newtouch.OR.ManageSystem.Infrastructure
 @{
-    ViewBag.Title = "手术申请New";
+    ViewBag.Title = "Đăng ký phẫu thuậtNew";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -15,7 +15,7 @@
 
     .container {
         background-color: #ffffff !important;
-        height: 100vh; /*元素的高度与 window 的高度相同*/
+        height: 100vh; /*Chiều cao của phần tử bằng window chiều cao của*/
     }
 
     .form-control {
@@ -34,7 +34,7 @@
         border: 1px solid #ddd;
         background-color: #fff;
         padding: 10px;
-        box-shadow: 10px 10px 0px #ddd; /*水平和垂直阴影*/
+        box-shadow: 10px 10px 0px #ddd; /*Bóng ngang và dọc*/
     }
 
     .patcard {
@@ -87,14 +87,14 @@
             <div class="row toolbar" id="toolbar" style="height:5%;">
                 <div class="col-sm-5">
                     <select id="bqlist" name="bqlist" class="form-control ">
-                        <option value="">   全部病区   </option>
+                        <option value="">   Tất cả các khu bệnh   </option>
                     </select>
                 </div>
                 <div class="col-sm-6">
                     <div class="row">
                         <div class="col-sm-11">
                             <div class="input-group">
-                                <input id="txt_keyword" type="text" class="form-control" placeholder="患者姓名/住院号">
+                                <input id="txt_keyword" type="text" class="form-control" placeholder="Tên bệnh nhân/Số nhập viện">
                                 <span id="btn-search" class="input-group-addon btn-success"><i class="fa fa-search"></i></span>
                             </div>
                         </div>
@@ -112,17 +112,17 @@
                 @Html.Partial("_PatientCard")
             <div class="row" style="padding-top: 10px; padding-left: 10px; height: 70%; width: 99%;">
                 <ul class="nav nav-tabs navb-bg" id="myTab">
-                    <li role="presentation"><a href="#linkpat" role="tab" data-toggle="tab">手术列表</a></li>
-                    <li role="presentation"><a href="#linkop" role="tab" data-toggle="tab">手术申请</a></li>
+                    <li role="presentation"><a href="#linkpat" role="tab" data-toggle="tab">Danh sách phẫu thuật</a></li>
+                    <li role="presentation"><a href="#linkop" role="tab" data-toggle="tab">Đăng ký phẫu thuật</a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="dv-pat" style="display: none; width:95%;">
                         <div class="row" style="padding:10px 10px;">
                             <div id="time_horizon" class="btn-group col-sm-11">
-                                <a class="btn btn-default active" data-value="">全部</a>
-                                <a class="btn btn-default" data-value="@((int)EnumSqzt.dsh)">已申请</a>
-                                <a class="btn btn-default" data-value="@((int)EnumSqzt.ypb)">已审核</a>
-                                <a class="btn btn-default" data-value="@((int)EnumSqzt.yqx)">已取消</a>
+                                <a class="btn btn-default active" data-value="">Tất cả</a>
+                                <a class="btn btn-default" data-value="@((int)EnumSqzt.dsh)">Đã gửi đơn</a>
+                                <a class="btn btn-default" data-value="@((int)EnumSqzt.ypb)">Đã xét duyệt</a>
+                                <a class="btn btn-default" data-value="@((int)EnumSqzt.yqx)">Đã hủy</a>
                             </div>
                         </div>
                         <div class="col-sm-12">
@@ -176,7 +176,7 @@
                 case "#linkop":
                     var zyh = $("#zyh").val();
                     if (!zyh) {
-                        $.modalAlert("患者信息不可为空", 'warning');
+                        $.modalAlert("Thông tin bệnh nhân không được để trống", 'warning');
                         return;
                     }
                     $("#dv-pat").hide();
@@ -195,12 +195,12 @@
     function patOpTableRefresh() {
         $('#tabel_patop').bootstrapTable('refresh', { queryParams: queryParams });
     }
-    //请求的参数
+    //Tham số yêu cầu
     function queryParams(params) {
         var data = {
-            //每页多少条数据
+            //Số bản ghi mỗi trang
             limit: params.limit,
-            //请求第几页
+            //Yêu cầu trang thứ mấy
             offset: params.offset,
             order: params.order,
             sort: params.sort,
@@ -222,58 +222,58 @@
         var height = $(window).height() - $('.card').height()-20;
         return height;
     }
-    //患者列表 col定义
+    //Danh sách bệnh nhân colĐịnh nghĩa
     var patListColumns = [{
         field: 'Id',
         title: 'Id',
         visible: false
     }, {
         field: 'xm',
-        title: '姓名',
+        title: 'Họ tên',
         halign: "center",
         align: 'left',
         valign: 'middle',
         formatter: function (value, row, index) {
-            return row.sex == "1" ? "<i class='fa fa-male colorgreen' title='男'></i> " + row.xm : "<i class='fa fa-female colorgreen' title='女'></i> " + row.xm;
+            return row.sex == "1" ? "<i class='fa fa-male colorgreen' title='Nam'></i> " + row.xm : "<i class='fa fa-female colorgreen' title='Nữ'></i> " + row.xm;
         }
     }, {
         field: 'sex',
-        title: '性别',
+        title: 'Giới tính',
         halign: "center",
         align: 'center',
         valign: 'middle',
         visible: false,
         formatter: function (value, row, index) {
-            return row.sex == "1" ? "男" : "女";
+            return row.sex == "1" ? "Nam" : "Nữ";
         }
     }, {
         field: 'nl',
-        title: '年龄',
+        title: 'Tuổi',
         halign: "center",
         align: 'center',
         valign: 'middle',
     }, {
         field: 'zyh',
-        title: '住院号',
+        title: 'Số nhập viện',
         halign: "center",
         align: 'center',
         valign: 'middle',
     }, {
         field: 'zdmc',
-        title: '入院诊断',
+        title: 'Chẩn đoán khi nhập viện',
         halign: "center",
         align: 'left',
         valign: 'middle',
     }, {
         field: 'ryrq',
-        title: '入院日期',
+        title: 'Ngày nhập viện',
         halign: "center",
         align: 'center',
         valign: 'middle',
         visible: false
     }, {
         field: 'WardName',
-        title: '病区',
+        title: 'Khu bệnh',
         halign: "center",
         align: 'center',
         valign: 'middle',
@@ -284,31 +284,31 @@
     function PatListTableLoad() {
         $('#table').bootstrapTable('destroy').bootstrapTable({
             url: '/Operation/OpApply/GetPatGridList',
-            method: 'POST',                      //数据请求方式
+            method: 'POST',                      //Phương thức yêu cầu dữ liệu
             contentType: "application/x-www-form-urlencoded",
            // classes: "table table-bordered table-striped table-hover",
             search: false,
-            striped: true, //是否显示行间隔色
-            toolbar: '#toolbar',            //工具按钮用哪个容器 #toolbar
+            striped: true, //Có hiển thị màu xen kẽ các dòng không
+            toolbar: '#toolbar',            //Nút công cụ dùng vùng chứa nào #toolbar
             //toolbarAlign: 'left',
-            //******分页设置****
+            //******Cài đặt phân trang****
             queryParams: queryParams,
-            pagination: true,                   //是否显示分页（*）
-            pageNumber: 1,                      //初始化加载第一页，默认第一页,并记录
-            pageSize: 20,                       //每页的记录行数（*）
-            pageList: [20, 50, 100],            //可供选择的每页的行数（*）
+            pagination: true,                   //Có hiển thị phân trang không（*）
+            pageNumber: 1,                      //Tải khởi tạo trang đầu tiên，Mặc định trang đầu tiên,và ghi lại
+            pageSize: 20,                       //Số dòng bản ghi mỗi trang（*）
+            pageList: [20, 50, 100],            //Số dòng mỗi trang có thể chọn（*）
             paginationHAlign: "left",
             paginationDetailHAlign: "right",
-            //sortable: true,                     //是否启用排序
-            //sortOrder: "asc",                   //排序方式
-            sidePagination: 'client',           //分页方式：client客户端分页，server服务端分页（*）
+            //sortable: true,                     //Có bật sắp xếp không
+            //sortOrder: "asc",                   //Cách sắp xếp
+            sidePagination: 'client',           //Phương thức phân trang：clientPhân trang phía máy khách，serverPhân trang phía máy chủ（*）
             showPaginationSwitch: false,
-            //******分页设置****
-            //******表格头部设置****
-            showHeader: true,                   //显示表格头部
-            theadClasses: "tableth",        //这里设置表头样式
-            //******表格头部设置****
-            showRefresh: false,//刷新按钮
+            //******Cài đặt phân trang****
+            //******Cài đặt tiêu đề bảng****
+            showHeader: true,                   //Hiển thị tiêu đề bảng
+            theadClasses: "tableth",        //Đặt kiểu tiêu đề bảng tại đây
+            //******Cài đặt tiêu đề bảng****
+            showRefresh: false,//Nút làm mới
             height: getPatListTableHeight(),
             columns: patListColumns,
             onDblClickRow: function (row, $element, field) {
@@ -321,7 +321,7 @@
 
 
 
-    /***************患者手术列表*************** */
+    /***************Danh sách phẫu thuật của bệnh nhân*************** */
     var patOpColumns = [{
         field: 'Id',
         title: 'Id',
@@ -332,13 +332,13 @@
             visible: false
         }, {
         field: 'ssmcn',
-        title: '手术名称',
+        title: 'Tên phẫu thuật',
         halign: "center",
         align: 'left',
         valign: 'middle'
         }, {
             field: 'sssj',
-            title: '手术时间',
+            title: 'Thời gian phẫu thuật',
             halign: "center",
             align: 'left',
             valign: 'middle',
@@ -348,33 +348,33 @@
         },
         {
             field: 'sqztmc',
-            title: '手术状态',
+            title: 'Trạng thái phẫu thuật',
             halign: "center",
             align: 'center',
             valign: 'middle',
             formatter: function (value, row, index) {
                 if (row.sqzt == (@((int)EnumSqzt.dsh))) {
-                    return "已申请";
+                    return "Đã gửi đơn";
                 }
                 else if (row.sqzt == (@((int)EnumSqzt.ypb))) {
-                    return "已排班";
+                    return "Đã xếp lịch";
                 }
                 else if (row.sqzt == (@((int)EnumSqzt.yqx))) {
-                    return "已取消申请";
+                    return "Đã hủy đăng ký";
                 }
                 else {
-                    return "状态异常";
+                    return "Trạng thái bất thường";
                 }
             }
         }, {
             field: 'ysxm',
-            title: '主刀医生',
+            title: 'Bác sĩ phẫu thuật chính',
             halign: "center",
             align: 'left',
             valign: 'middle'
         }, {
             field: 'LastModifyTime',
-            title: '最近更新',
+            title: 'Cập nhật gần nhất',
             halign: "center",
             align: 'left',
             valign: 'middle',
@@ -386,42 +386,42 @@
             }
         }, {
             field: 'Applyno',
-            title: '手术申请号',
+            title: 'Số đơn đăng ký phẫu thuật',
             align: 'left',
             valign: 'middle'
         }, {
         field: 'nl',
-        title: '详情',
+        title: 'Chi tiết',
         halign: "center",
         align: 'center',
         valign: 'middle',
         formatter: function (value, row, index) {
             if (row.sqzt == (@((int)EnumSqzt.dsh))) {
-                return "<a class='btn btn-info btnopr' onclick='showDetail(\"" + row.Id + "\")'>&nbsp;详 情&nbsp;</a>&nbsp;&nbsp;<a class='btn btn-danger btnopr' onclick='applyCancel(\"" + row.Id + "\")'>&nbsp;作 废&nbsp;</a>";
+                return "<a class='btn btn-info btnopr' onclick='showDetail(\"" + row.Id + "\")'>&nbsp;Chi tiết&nbsp;</a>&nbsp;&nbsp;<a class='btn btn-danger btnopr' onclick='applyCancel(\"" + row.Id + "\")'>&nbsp;Hủy bỏ&nbsp;</a>";
             }
             else {
-                return "<a class='btn btn-info btnopr' onclick='showDetail(\"" + row.Id + "\")'>&nbsp;详 情&nbsp;</a>";
+                return "<a class='btn btn-info btnopr' onclick='showDetail(\"" + row.Id + "\")'>&nbsp;Chi tiết&nbsp;</a>";
             }
         }
     }];
     function PatOpTableLoad() {
         $('#tabel_patop').bootstrapTable('destroy').bootstrapTable({
             url: '/Operation/OpApply/GetGridListOP',
-            method: 'POST',                      //数据请求方式
+            method: 'POST',                      //Phương thức yêu cầu dữ liệu
             contentType: "application/x-www-form-urlencoded",
             //classes: "table table-bordered table-striped table-hover",
             search: false,
-            striped: true, //是否显示行间隔色
+            striped: true, //Có hiển thị màu xen kẽ các dòng không
             queryParams: queryParams,
-            pagination: false,                   //是否显示分页（*）
+            pagination: false,                   //Có hiển thị phân trang không（*）
             uniqueId:"Id",
-            //sortable: true,                     //是否启用排序
-            //sortOrder: "asc",                   //排序方式
-            //******表格头部设置****
-            showHeader: true,                   //显示表格头部
-            theadClasses: "tableth",        //这里设置表头样式
-            //******表格头部设置****
-            showRefresh: false,//刷新按钮
+            //sortable: true,                     //Có bật sắp xếp không
+            //sortOrder: "asc",                   //Cách sắp xếp
+            //******Cài đặt tiêu đề bảng****
+            showHeader: true,                   //Hiển thị tiêu đề bảng
+            theadClasses: "tableth",        //Đặt kiểu tiêu đề bảng tại đây
+            //******Cài đặt tiêu đề bảng****
+            showRefresh: false,//Nút làm mới
             /* height: getTableHeight(),*/
             columns: patOpColumns,
         }).bootstrapTable("hideLoading");
@@ -449,7 +449,7 @@
     });
 
     function processResultsData(resultData) {
-        //返回最终数据data 给dataArray
+        //Trả về dữ liệu cuối cùngdata chodataArray
         var jsonObj = JSON.parse(resultData);
         var dataArray = [];
         for (var i = 0; i < resultData.length; i++) {
@@ -490,11 +490,11 @@
         });
     }
 
-    //申请手术按钮
+    //Nút đăng ký phẫu thuật
     function showOpApply() {
         var zyh = $("#zyh").val();
         if (!zyh) {
-            $.modalAlert("患者信息不可为空", 'warning');
+            $.modalAlert("Thông tin bệnh nhân không được để trống", 'warning');
             return;
         }
         $('#myTab [href="#linkop"').trigger('click');
@@ -512,7 +512,7 @@
         });
 
     }
-    //查看手术申请详情
+    //Xem chi tiết đăng ký phẫu thuật
     function showDetail(rowid) {
         var rowData=$('#tabel_patop').bootstrapTable("getRowByUniqueId", rowid);
         /*var rowData = $('#table').bootstrapTable('getSelections');*/
@@ -538,7 +538,7 @@
             dataType: "json",
             success: function (data) {
                 $("#formapply").formSerialize(data);
-                //$("#Applyno").html("手术申请编号：" + data.Applyno);
+                //$("#Applyno").html("Số đơn đăng ký phẫu thuật：" + data.Applyno);
                 if (data.sssj != null) {
                     $("#sssj").val(data.sssj.replace("T", " "));
                 }
@@ -552,11 +552,11 @@
         });
     }
 
-    //撤销手术申请详情
+    //Chi tiết hủy đăng ký phẫu thuật
     function applyCancel(rowid) {
         var rowData = $('#tabel_patop').bootstrapTable("getRowByUniqueId", rowid);
         $.deleteForm({
-            prompt:"注：请确认是否撤销此项手术申请？",
+            prompt:"Lưu ý：Vui lòng xác nhận có hủy đăng ký phẫu thuật này không?？",
             url: "/Operation/OpApply/DeleteApply",
             param: { keyValue: rowData.Applyno },
             success: function () {
@@ -565,7 +565,7 @@
         });
     }
 
-    //多选取值
+    //Lấy giá trị khi chọn nhiều
     function getMultiSelectText(id) {
         return $.map($("#" + id).select2('data'), function (value) {
             return value.text

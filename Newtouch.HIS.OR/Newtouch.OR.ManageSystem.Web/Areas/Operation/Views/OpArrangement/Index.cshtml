@@ -2,13 +2,13 @@
 @using Newtouch.Tools
 
 @{
-    ViewBag.Title = "手术排班";
+    ViewBag.Title = "Xếp lịch phẫu thuật";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
     .container {
         background-color: #ffffff !important;
-        height: 100vh; /*元素的高度与 window 的高度相同*/
+        height: 100vh; /*Chiều cao của phần tử bằng window chiều cao của*/
         width: 99%;
     }
 
@@ -29,11 +29,11 @@
         border-bottom-right-radius: 5px;
         border-bottom-left-radius: 5px;
     }*/
-    /*解决设置表头列宽无效*/
+    /*Khắc phục việc đặt độ rộng cột tiêu đề không có hiệu lực*/
     /* #table{
             table-layout: fixed;
         }*/
-    /*解决固定表头后,表头与表内容不对齐*/
+    /*Khắc phục sau khi cố định tiêu đề,Tiêu đề và nội dung bảng không thẳng hàng*/
     .table_list_box {
         table-layout: fixed !important;
     }
@@ -65,47 +65,47 @@
             <div class="row toolbar" id="toolbar" style="height: 5%; width: 99%;">
                 <table class="form">
                     <tr>
-                        <td class="formTitle">手术日期：</td>
+                        <td class="formTitle">Ngày phẫu thuật：</td>
                         <td class="formValue" colspan="2">
                             <input id="txt_ksrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.ToString("yyyy-MM-01")">
                             <span style="float:left;">_</span>
                             <input id="txt_jsrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd")">
                         </td>
-                        <td class="formTitle">手术状态：</td>
+                        <td class="formTitle">Trạng thái phẫu thuật：</td>
                         <td class="formValue formDdlSelectorTd">
                             <select class="form-control" id="sszt" data-enumtype="EnumSSzt">
-                                <option value="">===全部===</option>
+                                <option value="">===Tất cả===</option>
                             </select>
                         </td>
-                        <td class="formTitle">病区：</td>
+                        <td class="formTitle">Khu bệnh：</td>
                         <td class="formValue formDdlSelectorTd">
                             <select id="bqlist" name="bqlist" class="form-control " style="float:left;">
-                                <option value=""> ==请选择== </option>
+                                <option value=""> ==Vui lòng chọn== </option>
                             </select>
                         </td>
                         <td class="formTitle"></td>
                         <td class="formValue"></td>
                     </tr>
                     <tr>
-                        <th class="formTitle">患者姓名/住院号：</th>
+                        <th class="formTitle">Tên bệnh nhân/Số nhập viện：</th>
                         <td class="formValue" colspan="2">
                             <input id="txt_keyword" name="txt_keyword" class="form-control" />
                         </td>
-                        <td class="formTitle">主刀医生：</td>
+                        <td class="formTitle">Bác sĩ phẫu thuật chính：</td>
                         <td class="formValue formDdlSelectorTd">
                             <input id="stafflist" value="undefined" type="hidden" />
                             <input id="staffname" attr-code="" attr-zjm="" name="staffname" type="text" class="form-control required" autocomplete="off" />
 
                         </td>
-                        <td class="formTitle">手术室：</td>
+                        <td class="formTitle">Phòng mổ：</td>
                         <td class="formValue formDdlSelectorTd">
                             <select id="roomlist" name="roomlist" class="form-control ">
-                                <option value=""> ==请选择== </option>
+                                <option value=""> ==Vui lòng chọn== </option>
                             </select>
                         </td>
                         <td class="formTitle"></td>
                         <td class="formTitle">
-                            <a class="btn btn-primary btn-md btn-block" id="btn_search" value=""><i class="fa fa-search"></i> 查 询</a>
+                            <a class="btn btn-primary btn-md btn-block" id="btn_search" value=""><i class="fa fa-search"></i> Tra cứu</a>
                         </td>
                     </tr>
                 </table>
@@ -157,7 +157,7 @@
     function arrangeShow(rowid) {
         var rowData = $('#tabel_sspb').bootstrapTable("getRowByUniqueId", rowid);
         keyValue = rowData.Id;
-        var menuname = "手术排班-" + rowData.xm;
+        var menuname = "Xếp lịch phẫu thuật-" + rowData.xm;
 
         top.top.$.Newtouchtab.addTabWithOutMenu({ name: menuname, enName: "", url: "/Operation/OpArrangement/OperationProcDetail?keyValue=" + keyValue + "&zyh=" + rowData.zyh });
     //    top.top.$.Newtouchtab.addTabWithOutMenu({ name: menuname, enName: "", url: "/Operation/OpArrangement/ArrangementDetail?keyValue=" + keyValue });
@@ -165,12 +165,12 @@
     function registOperation(rowid) {
         var rowData = $('#tabel_sspb').bootstrapTable("getRowByUniqueId", rowid);
         keyValue = rowData.Id;
-        var menuname = "手术登记";
+        var menuname = "Đăng ký phẫu thuật";
         top.top.$.Newtouchtab.addTabWithOutMenu({ name: menuname, enName: "", url: "/Operation/OpRegister/Index?keyValue=" + keyValue + "&zyh=" + rowData.zyh });
     }
 
     function arrangeCancel(val) {
-        window.$.modalConfirm("确定要取消吗？", function (flag) {
+        window.$.modalConfirm("Bạn có chắc chắn muốn hủy không?？", function (flag) {
             if (!flag) {
                 return false;
             }
@@ -182,14 +182,14 @@
 			var keyValue = $("#gridList").jqGridRowValue().Id;
         }
         if (!!!keyValue) {
-            window.$.modalAlert("请选中一条信息", 'warning');
+            window.$.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return false;
         }
         window.$.deleteForm({
             url: "/Operation/OpArrangement/DeleteForm",
             param: { keyValue: keyValue },
             success: function () {
-                $.modalMsg("取消成功", "success");
+                $.modalMsg("Hủy thành công", "success");
                 $("#gridList").trigger("reloadGrid");
             }
         });
@@ -213,12 +213,12 @@
         $('#tabel_sspb').bootstrapTable('refresh', { queryParams: queryParams });
     }
 
-    //请求的参数
+    //Tham số yêu cầu
     function queryParams(params) {
         var data = {
-            //每页多少条数据
+            //Số bản ghi mỗi trang
             limit: params.limit,
-            //请求第几页
+            //Yêu cầu trang thứ mấy
             offset: params.offset,
             order: params.order,
             sort: params.sort,
@@ -245,7 +245,7 @@
         visible: false
     }, {
         field: 'Applyno',
-        title: '申请编号',
+        title: 'Số đơn đăng ký',
         halign: "center",
         align: 'left',
         valign: 'middle',
@@ -253,13 +253,13 @@
         unitWidth: "%",
     }, {
         field: 'xm',
-        title: '患者姓名',
+        title: 'Tên bệnh nhân',
         halign: "center",
         align: 'left',
         valign: 'middle',
     }, {
         field: 'xb',
-        title: '性别',
+        title: 'Giới tính',
         halign: "center",
         align: 'center',
         valign: 'middle',
@@ -270,66 +270,66 @@
         }
     }, {
         field: 'nl',
-        title: '年龄',
+        title: 'Tuổi',
         halign: "center",
         align: 'center',
         valign: 'middle',
     }, {
         field: 'zyh',
-        title: '住院号',
+        title: 'Số nhập viện',
         halign: "center",
         align: 'center',
         valign: 'middle',
     }, {
         field: 'bq',
-        title: '病区',
+        title: 'Khu bệnh',
         halign: "center",
         align: 'center',
         valign: 'middle',
     }, {
         field: 'ch',
-        title: '床号',
+        title: 'Số giường',
         halign: "center",
         align: 'center',
         valign: 'middle',
     }, {
         field: 'zd',
-        title: '诊断',
+        title: 'Chẩn đoán',
         halign: "center",
         align: 'left',
         valign: 'middle',
     }, {
         field: 'sqzt',
-        title: '手术状态',
+        title: 'Trạng thái phẫu thuật',
         halign: "center",
         align: 'left',
         valign: 'middle',
         formatter: function (value, row, index) {
             if (row.sqzt == @((int) EnumSSzt.dpb)) {
-                return "待排班";
+                return "Chờ xếp lịch";
             }
             else if (row.sqzt == @((int) EnumSSzt.ypb)) {
-                return "已排班";
+                return "Đã xếp lịch";
             }
             else if (row.sqzt == @((int) EnumSSzt.yzf)) {
-                return "已作废";
+                return "Đã hủy";
             }
             else if (row.sqzt == @((int) EnumSSzt.yzx)) {
-                return "已登记";
+                return "Đã đăng ký";
             }
             else {
-                return "待排班";
+                return "Chờ xếp lịch";
             }
         }
     }, {
         field: 'ssmc',
-        title: '手术名称',
+        title: 'Tên phẫu thuật',
         halign: "center",
         align: 'left',
         valign: 'middle',
     }, {
         field: 'sssj',
-        title: '手术时间',
+        title: 'Thời gian phẫu thuật',
         halign: "center",
         align: 'left',
         valign: 'middle',
@@ -338,25 +338,25 @@
         }
     }, {
         field: 'ysxm',
-        title: '主刀医生',
+        title: 'Bác sĩ phẫu thuật chính',
         halign: "center",
         align: 'center',
         valign: 'middle'
     }, {
         field: '',
-        title: '详情',
+        title: 'Chi tiết',
         halign: "center",
         align: 'center',
         valign: 'middle',
         formatter: function (value, row, index) {
             if (row.sqzt == '@((int)EnumSSzt.ypb)') {
-                return "<a class='btn btn-info btnopr'  onclick='arrangeShow(\"" + row.Id + "\")'>排班详情</a> <a class='btn btn-default btnopr' onclick='arrangeCancel(\"" + row.Id + "\")'>取消排班</a> <a class='btn btn-warning btnopr' onclick='registOperation(\"" + row.Id + "\")'>登 记</a>";
+                return "<a class='btn btn-info btnopr'  onclick='arrangeShow(\"" + row.Id + "\")'>Chi tiết xếp lịch</a> <a class='btn btn-default btnopr' onclick='arrangeCancel(\"" + row.Id + "\")'>Hủy xếp lịch</a> <a class='btn btn-warning btnopr' onclick='registOperation(\"" + row.Id + "\")'>Đăng ký</a>";
             }
             else if (row.sqzt == '@((int)EnumSSzt.dpb)' || row.sqzt == "" || row.sqzt == null) {
-                return "<a class='btn btn-success btnopr' onclick='arrangeShow(\"" + row.Id + "\")'>排 班</a>";
+                return "<a class='btn btn-success btnopr' onclick='arrangeShow(\"" + row.Id + "\")'>Xếp lịch</a>";
             }
             else if (row.sqzt=='@((int)EnumSSzt.yzx)') {
-                return "<a class='btn btn-info btnopr' onclick='arrangeShow(\"" + row.Id + "\")'>登记详情</a>";
+                return "<a class='btn btn-info btnopr' onclick='arrangeShow(\"" + row.Id + "\")'>Chi tiết đăng ký</a>";
             }
             return "";
         }
@@ -364,32 +364,32 @@
     function TableInit() {
         $('#tabel_sspb').bootstrapTable('destroy').bootstrapTable({
             url: '/Operation/OpArrangement/GetGridList',
-            method: 'POST',                      //数据请求方式
+            method: 'POST',                      //Phương thức yêu cầu dữ liệu
             contentType: "application/x-www-form-urlencoded",
             // classes: "table table-bordered table-striped table-hover",
             search: false,
-            striped: true, //是否显示行间隔色
-            toolbar: '#toolbar',            //工具按钮用哪个容器 #toolbar
+            striped: true, //Có hiển thị màu xen kẽ các dòng không
+            toolbar: '#toolbar',            //Nút công cụ dùng vùng chứa nào #toolbar
             //toolbarAlign: 'left',
             uniqueId: "Id",
-            //******分页设置****
+            //******Cài đặt phân trang****
             queryParams: queryParams,
-            pagination: true,                   //是否显示分页（*）
-            pageNumber: 1,                      //初始化加载第一页，默认第一页,并记录
-            pageSize: 10,                       //每页的记录行数（*）
-            pageList: [20, 50, 100],            //可供选择的每页的行数（*）
+            pagination: true,                   //Có hiển thị phân trang không（*）
+            pageNumber: 1,                      //Tải khởi tạo trang đầu tiên，Mặc định trang đầu tiên,và ghi lại
+            pageSize: 10,                       //Số dòng bản ghi mỗi trang（*）
+            pageList: [20, 50, 100],            //Số dòng mỗi trang có thể chọn（*）
             paginationHAlign: "left",
             paginationDetailHAlign: "right",
-            //sortable: true,                     //是否启用排序
-            //sortOrder: "asc",                   //排序方式
-            sidePagination: 'client',           //分页方式：client客户端分页，server服务端分页（*）
+            //sortable: true,                     //Có bật sắp xếp không
+            //sortOrder: "asc",                   //Cách sắp xếp
+            sidePagination: 'client',           //Phương thức phân trang：clientPhân trang phía máy khách，serverPhân trang phía máy chủ（*）
             showPaginationSwitch: false,
-            //******分页设置****
-            //******表格头部设置****
-            showHeader: true,                   //显示表格头部
-            theadClasses: "tableth",        //这里设置表头样式
-            //******表格头部设置****
-            showRefresh: false,//刷新按钮
+            //******Cài đặt phân trang****
+            //******Cài đặt tiêu đề bảng****
+            showHeader: true,                   //Hiển thị tiêu đề bảng
+            theadClasses: "tableth",        //Đặt kiểu tiêu đề bảng tại đây
+            //******Cài đặt tiêu đề bảng****
+            showRefresh: false,//Nút làm mới
             height: getPatListTableHeight(),
             columns: tableCols,
             onDblClickRow: function (row, $element, field) {

@@ -25,13 +25,13 @@ namespace Newtouch.OR.ManageSystem.DomainServices
             sql += "(case when datediff(yy,csrq,getdate())>=1 then convert(varchar(3),datediff(yy,csrq,getdate()))+'岁' else convert(varchar(2),datediff(mm,csrq,getdate()))+'个月' end  )nl,";
             var para = new List<SqlParameter>();
             if (sqzt == "4" || sqzt=="已登记")
-            { //已登记
+            { //Đã đăng ký
                 sql += "d.ssjb,a.ssmc as ssmc,d.ssdm,c.sssj as sssqsj,b.sssj as ssapsj,a.sskssj,a.ssjssj,a.oproom,a.oporder,a.AnesCode,a.ssbw,a.qkdj,a.isgl,a.isjun,a.shuxl,a.shixl,a.zrxl,a.zcxl,a.ryzd,a.ryzdmc,";
                 sql += "ysgh=(select rygh from [dbo].[OR_OpStaffRecord] where ssxh=a.ssxh and rylb='1' and px='1' and zt='1'),zlys1 = (select rygh from[dbo].[OR_OpStaffRecord] where ssxh = a.ssxh and rylb = '2' and px = '1' and zt='1'),zlys2=(select rygh from[dbo].[OR_OpStaffRecord] where ssxh = a.ssxh and rylb = '2' and px = '2' and zt='1'),xhhs=(select rygh from[dbo].[OR_OpStaffRecord] where ssxh = a.ssxh and rylb = '3' and px = '1' and zt='1'),xshs=(select rygh from[dbo].[OR_OpStaffRecord] where ssxh = a.ssxh and rylb = '4' and px = '1' and zt='1'),mzys=(select rygh from[dbo].[OR_OpStaffRecord] where ssxh = a.ssxh and rylb = '5' and px = '1' and zt='1')";
 				sql += ",ysxm=(select ryxm from [dbo].[OR_OpStaffRecord] where ssxh=a.ssxh and rylb='1' and px='1' and zt='1'), zlys1name = (select ryxm from[dbo].[OR_OpStaffRecord] where ssxh = a.ssxh and rylb = '2' and px = '1' and zt = '1'), zlys2name = (select ryxm from[dbo].[OR_OpStaffRecord] where ssxh = a.ssxh and rylb = '2' and px = '2' and zt = '1'), xhhsname = (select ryxm from[dbo].[OR_OpStaffRecord] where ssxh = a.ssxh and rylb = '3' and px = '1' and zt = '1'), xshsname = (select ryxm from[dbo].[OR_OpStaffRecord] where ssxh = a.ssxh and rylb = '4' and px = '1' and zt = '1'), mzysname = (select ryxm from[dbo].[OR_OpStaffRecord] where ssxh = a.ssxh and rylb = '5' and px = '1' and zt = '1')";
 			}
             else
-            {//已排班
+            {//Đã xếp lịch
                 sql += "d.ssjb,b.ssmc,d.ssdm,c.sssj as sssqsj,b.sssj as ssapsj,a.sskssj,a.ssjssj,b.oproom,b.oporder,b.AnesCode,b.ssbw,a.qkdj,c.isgl,a.isjun,a.shuxl,a.shixl,a.zrxl,a.zcxl,b.zd as ryzd,b.zd as ryzdmc,";
                 sql += "b.ysgh,b.zlys1,b.zlys2,b.xhhs,b.xshs,";
                 sql += "c.mzys";
@@ -55,7 +55,7 @@ namespace Newtouch.OR.ManageSystem.DomainServices
 
 
         /// <summary>
-        /// 手术登记页,获取已排班已登记状态的手术排班列表
+        /// Trang đăng ký phẫu thuật,Lấy danh sách xếp lịch phẫu thuật ở trạng thái đã xếp lịch và đã đăng ký
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>

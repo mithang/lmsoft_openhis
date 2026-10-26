@@ -9,7 +9,7 @@ using Newtouch.HIS.API.Common.Models;
 namespace Newtouch.OR.ManageSystem.API.Controllers
 {
     /// <summary>
-    /// 授权认证
+    /// Xác thực ủy quyền
     /// </summary>
     [RoutePrefix("api/Auth")]
     public class AuthController : ApiControllerBase<AuthController>
@@ -21,7 +21,7 @@ namespace Newtouch.OR.ManageSystem.API.Controllers
         }
 
         /// <summary>
-        /// 以关键信息（用户名、密码等）换取访问令牌
+        /// Bằng thông tin quan trọng（Tên đăng nhập、Mật khẩu, v.v.）đổi lấy mã truy cập
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -31,9 +31,9 @@ namespace Newtouch.OR.ManageSystem.API.Controllers
         {
             Action<AuthGetTokenRequest, DefaultResponse> ac = (req, resp) =>
             {
-                //1、由request验证出用户身份
+                //1、bởirequestxác minh danh tính người dùng
 
-                //2、身份存储在Redis（有一定的过期时间）
+                //2、Danh tính được lưu trongRedis（có thời gian hết hạn nhất định）
                 var identity = new UserIdentity()
                 {
                     AppId = request.AppId,
@@ -45,7 +45,7 @@ namespace Newtouch.OR.ManageSystem.API.Controllers
                 };
                 var token = SaveIdentity(identity);
 
-                //3、返回key
+                //3、Trả vềkey
                 resp.data = new
                 {
                     token = token

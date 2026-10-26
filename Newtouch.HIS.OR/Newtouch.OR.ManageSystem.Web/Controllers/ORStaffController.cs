@@ -7,16 +7,16 @@ using FrameworkBase.MultiOrg.Web;
 namespace Newtouch.OR.ManageSystem.Web.Controllers
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-11-06 10:22
-    /// 描 述：手术人员
+    /// Tạo lập：chl
+    /// Ngày tạo：2019-11-06 10:22
+    /// Mô tả：Nhân viên phẫu thuật
     /// </summary>
     public class ORStaffController : OrgControllerBase
     {
         private readonly IORStaffRepo _oRStaffRepo;
 
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
         /// <param name="oRStaffRepo"></param>
         public ORStaffController(IORStaffRepo oRStaffRepo)
@@ -25,9 +25,9 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         }
 
         /// <summary>
-        /// 获取实体
+        /// Lấy thực thể
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult GetFormJson(string keyValue)
         {
@@ -36,10 +36,10 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult SubmitForm(ORStaffEntity entity, string keyValue)
         {
@@ -48,9 +48,9 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult DeleteForm(string keyValue)
         {

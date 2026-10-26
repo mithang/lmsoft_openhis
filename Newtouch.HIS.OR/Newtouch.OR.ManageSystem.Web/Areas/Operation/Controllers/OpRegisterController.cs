@@ -43,26 +43,26 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
             //        applyno="ss0000001",
             //        oparrangeno="20191001002",
             //        xm="张三",
-            //        xb="男",
+            //        xb="Nam",
             //        nl="26",
             //        zyh="001",
             //        patid="12345",
-            //        bq="一病区",
+            //        bq="Khu bệnh 1",
             //        ch="C098",
             //        rysj="2019-10-1",
-            //        ryzd="阑尾炎",
+            //        ryzd="Viêm ruột thừa",
             //        sqssrq="2019-10-1 10:00",
-            //        sqssmc="阑尾切除术1",
-            //        sqzdys="医生1",
-            //        sqzt="已审核",
+            //        sqssmc="Cắt ruột thừa1",
+            //        sqzdys="Bác sĩ1",
+            //        sqzt="Đã xét duyệt",
             //        sssj="2019-10-1 10:00",
-            //        ssmc="阑尾切除术1",
-            //        zdys="医生1",
+            //        ssmc="Cắt ruột thừa1",
+            //        zdys="Bác sĩ1",
             //        yszs1="ys01",
             //        yszs2="ys02",
-            //        xshs="hs01",  //洗手护士
-            //        xhhs="hs02",  //巡回护士
-            //        ssroom="手术室1",
+            //        xshs="hs01",  //Y tá rửa tay
+            //        xhhs="hs02",  //Y tá lưu động
+            //        ssroom="Phòng mổ1",
             //        ssno="2"
             //    }
             //};
@@ -108,31 +108,31 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
             }
             var ssxh = "";
 			if (!(string.IsNullOrWhiteSpace(keyValue) || keyValue == "null"))
-			{//修改
+			{//Sửa
 				ssxh = entity.ssxh;
 			}
 			else
-			{//新增
+			{//Thêm mới
 				ssxh = EFDBBaseFuncHelper.GetOPSsxh(OrganizeId);
 			}
 			//var ssxh = "S20191127A000002";
-			//修改员工记录表
+			//Sửa bảng hồ sơ nhân viên
 			List<OROpStaffRecordEntity> staffRecordList = getStaffRecordList(entity, ssxh);
 			foreach (var ent in staffRecordList)
 			{
 				_OROpStaffRecordRepo.SubmitForm(ent, "");
 			}
-			//修改排班状态(已登记)
+			//Sửa trạng thái xếp lịch(Đã đăng ký)
 			_ORArrangementRepo.UpdateSqzt(entity.arrangeId, "4");
-			//修改登记表
+			//Sửa bảng đăng ký
 			_ORRegistrationRepo.SubmitForm(entity, keyValue, ssxh);
 			return Success("操作成功。");
         }
 
-        //根据医护人员信息获取员工记录列表
+        //Lấy danh sách hồ sơ nhân viên theo thông tin nhân viên y tế
         public List<OROpStaffRecordEntity> getStaffRecordList(RegistrationListVO entity,string ssxh) {
             List<OROpStaffRecordEntity> list = new List<OROpStaffRecordEntity>();
-            //主刀医生
+            //Bác sĩ phẫu thuật chính
             if (!string.IsNullOrWhiteSpace(entity.ysgh))
             {
                 OROpStaffRecordEntity staff = new OROpStaffRecordEntity();
@@ -145,7 +145,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
                 staff.OrganizeId = OrganizeId;
                 list.Add(staff);
             }
-            //一助
+            //Phụ tá 1
             if (!string.IsNullOrWhiteSpace(entity.zlys1))
             {
                 OROpStaffRecordEntity staff = new OROpStaffRecordEntity();
@@ -158,7 +158,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
                 staff.OrganizeId = OrganizeId;
                 list.Add(staff);
             }
-            //二助
+            //Phụ tá 2
             if (!string.IsNullOrWhiteSpace(entity.zlys2))
             {
                 OROpStaffRecordEntity staff = new OROpStaffRecordEntity();
@@ -171,7 +171,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
                 staff.OrganizeId = OrganizeId;
                 list.Add(staff);
             }
-            //巡回护士
+            //Y tá lưu động
 
             if (!string.IsNullOrWhiteSpace(entity.xhhs))
             {
@@ -185,7 +185,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
                 staff.OrganizeId = OrganizeId;
                 list.Add(staff);
             }
-            //洗手护士
+            //Y tá rửa tay
             if (!string.IsNullOrWhiteSpace(entity.xshs))
             {
                 OROpStaffRecordEntity staff = new OROpStaffRecordEntity();
@@ -198,7 +198,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
                 staff.OrganizeId = OrganizeId;
                 list.Add(staff);
             }
-            //麻醉医师
+            //Bác sĩ gây mê
             if (!string.IsNullOrWhiteSpace(entity.mzys))
             {
                 OROpStaffRecordEntity staff = new OROpStaffRecordEntity();
@@ -216,14 +216,14 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
 
         public ActionResult DeleteData(string keyValue,string arrangeId,string ssxh)
         {
-            //修改排班状态(已排班)
+            //Sửa trạng thái xếp lịch(Đã xếp lịch)
             _ORArrangementRepo.UpdateSqzt(arrangeId, "2");
-            //修改人员登记
+            //Sửa đăng ký nhân viên
             var list=_OROpStaffRecordRepo.getIdBySsxh(ssxh);
             foreach (var obj in list) {
                 _OROpStaffRecordRepo.DeleteForm(obj.Id);
             }
-            //修改登记状态为3已作废,状态为0
+            //Sửa trạng thái đăng ký thành3Đã hủy,Trạng thái là0
             _ORRegistrationRepo.DeleteForm(keyValue);
             return Success("操作成功。");
         }

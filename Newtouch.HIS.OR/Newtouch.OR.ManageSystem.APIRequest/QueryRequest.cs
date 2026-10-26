@@ -14,7 +14,7 @@ namespace Newtouch.OR.ManageSystem.APIRequest
         public string jsrq { get; set; }
         public string zyh { get; set; }
         /// <summary>
-        /// 1 待登记 2已登记 3 登记作废
+        /// 1 Chờ đăng ký 2Đã đăng ký 3 Hủy đăng ký
         /// </summary>
         public string djzt { get; set; }
 

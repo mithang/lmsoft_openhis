@@ -13,7 +13,7 @@ namespace Newtouch.OR.ManageSystem.Domain.IDomainServices
     public interface IOPApplyDmnService
     {
         /// <summary>
-        /// 获取在院患者
+        /// Lấy bệnh nhân đang nằm viện
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -24,7 +24,7 @@ namespace Newtouch.OR.ManageSystem.Domain.IDomainServices
         /// <returns></returns>
         IList<PatListVO> GetPatList(string keyword, string zyh,string bq, string ysgh, string OrgId, int type);
         /// <summary>
-        /// 手术申请列表
+        /// Danh sách đăng ký phẫu thuật
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -38,7 +38,7 @@ namespace Newtouch.OR.ManageSystem.Domain.IDomainServices
         /// <returns></returns>
         OpApplySubmitDTO GetOpApplybyApplyNo(string applyNo, string orgId);
         /// <summary>
-        /// 手术申请提交
+        /// Gửi đăng ký phẫu thuật
         /// </summary>
         /// <param name="dto"></param>
         /// <param name="keyValue"></param>

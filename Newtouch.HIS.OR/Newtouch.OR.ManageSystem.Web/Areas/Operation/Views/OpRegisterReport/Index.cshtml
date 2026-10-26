@@ -1,5 +1,5 @@
 ﻿@{
-	ViewBag.Title = "手术登记本";
+	ViewBag.Title = "Sổ đăng ký phẫu thuật";
 	Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -8,7 +8,7 @@
 	<div class="panel panel-default">
 		<table class="form">
 			<tr>
-				<th class="formTitle">出院日期：</th>
+				<th class="formTitle">Ngày xuất viện：</th>
 				<td class="formValue">
 					<input id="strDate" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
 						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -25,7 +25,7 @@
 
 				<th class="formTitle"></th>
 				<td class="formValue" style="padding-left:20px;">
-					<input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+					<input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
 				</td>
 				<th></th>
 				<td></td>
@@ -48,13 +48,13 @@
 
     function submit() {
 		if ($('#strDate').val().length == 0 || $('#endDate').val().length == 0) {
-			$.modalAlert("请选择时间范围", "error");
+			$.modalAlert("Vui lòng chọn khoảng thời gian", "error");
 			return;
 		}
 
 		var url = reportServerHOST + 'Pages/ReportViewer.aspx?%2fNewtouch.Report.OR%2f%e6%89%8b%e6%9c%af%e7%99%bb%e8%ae%b0%e6%9f%a5%e8%af%a2&rs:Command=Render&orgId=' + orgId;
 		url += '&strDate=' + $('#strDate').val() + '&endDate=' + $('#endDate').val();
-		setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+		setTimeout("$.loading(true, 'Đang yêu cầu trang báo cáo...');", 10);
 		$("#iframerightiframerightiframerightttt").attr('src', url);
 
     }
@@ -69,7 +69,7 @@
 
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }
