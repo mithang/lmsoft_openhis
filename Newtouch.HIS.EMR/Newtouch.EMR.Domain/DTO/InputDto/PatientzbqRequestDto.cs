@@ -5,7 +5,7 @@ using System;
 namespace Newtouch.EMR.Domain.DTO
 {
     /// <summary>
-    /// 请求在病区病人信息参数
+    /// Tham số thông tin bệnh nhân ở khu bệnh trong yêu cầu
     /// </summary>
     public class PatientzbqRequestDto
     {

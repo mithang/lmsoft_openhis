@@ -24,12 +24,12 @@ namespace Newtouch.EMR.API
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
-            //向上下文注册表
+            //Đăng ký vào sổ đăng ký ngữ cảnh
             DefaultDbContext.PartialTBRegister(DefaultDbContextTBRegister.Registe);
 
-            //注册 释放数据库链接
+            //Đăng ký và giải phóng liên kết cơ sở dữ liệu
             FrameworkBase.API.ApiControllerBaseEx.RegisterDBContextDisposer(()=> {
-                //释放DefaultDbContext
+                //Giải phóng DefaultDbContext
                 var key = "AspNetObjectContextDisposalModule_Dispose_Flag_" + typeof(DefaultDbContext).Name;
                 if (HttpContext.Current != null || HttpContext.Current.Items[key] != null)
                 {
@@ -43,7 +43,7 @@ namespace Newtouch.EMR.API
 
             IEntityEx.RegisterCurUserCodeGetter(() =>
             {
-                //在基类认证用户身份时写上的
+                //Được ghi khi xác thực danh tính người dùng ở lớp cơ sở
                 var account = HttpContext.Current.Items["API_UserIdentity_Account"];
                 return account == null ? null : account.ToString();
             });

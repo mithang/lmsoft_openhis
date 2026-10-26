@@ -28,7 +28,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
             return View();
         }
         /// <summary>
-        /// 病历类型树
+        /// Cây loại bệnh án
         /// </summary>
         /// <returns></returns>
         public ActionResult GetBllxTree()
@@ -50,7 +50,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
             return Content(treeList.TreeGridJson(null));
         }
         /// <summary>
-        /// 规则列表
+        /// Danh sách quy tắc
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -61,7 +61,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 明细
+        /// Chi tiết
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
@@ -72,7 +72,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 新增
+        /// Thêm mới
         /// </summary>
         /// <param name="ZkxmMXListVO"></param>
         /// <returns></returns>
@@ -82,7 +82,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
             return Success();
         }
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>

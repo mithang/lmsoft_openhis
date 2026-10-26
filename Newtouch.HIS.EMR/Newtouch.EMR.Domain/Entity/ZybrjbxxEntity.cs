@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2018-08-30 11:31
-    /// 描 述：住院患者信息
+    /// Người tạo: chl
+    /// Ngày: 2018-08-30 11:31
+    /// Mô tả: Thông tin bệnh nhân nội trú
     /// </summary>
     [Table("zy_brjbxx")]
     public class ZybrjbxxEntity : IEntity<ZybrjbxxEntity>
@@ -221,36 +221,36 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public string zt { get; set; }
         /// <summary>
-        /// 文档状态
+        /// Trạng thái tài liệu
         /// </summary>
         public string RecordStu { get; set; }
         /// <summary>
-        /// 提交时间
+        /// Thời gian gửi
         /// </summary>
         public DateTime? CommitTime { get; set; }
         /// <summary>
-        /// 提交人
+        /// Người gửi
         /// </summary>
         public string Commitor { get; set; }
         /// <summary>
-        /// 病房
+        /// Phòng bệnh
         /// </summary>
         public string bfNo { get; set; }
         /// <summary>
-        /// 民族
+        /// Dân tộc
         /// </summary>
         public string mz { get; set; }
         /// <summary>
-        /// 国籍
+        /// Quốc tịch
         /// </summary>
         public string gj { get; set; }
         /// <summary>
-        /// 职业
+        /// Nghề nghiệp
         /// </summary>
         public string zy { get; set; }
 
         /// <summary>
-        /// 年龄显示
+        /// Hiển thị tuổi
         /// </summary>
         public string nlshow { get; set; }
     }

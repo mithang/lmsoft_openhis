@@ -93,7 +93,7 @@ where OrganizeId=@orgId and ZYH=@zyh and zt='1'
             });
         }
         /// <summary>
-        /// 入院诊断保存
+        /// Lưu chẩn đoán lúc vào viện
         /// </summary>
         /// <param name="zdlist"></param>
         /// <param name="orgId"></param>
@@ -140,7 +140,7 @@ from YB_Inp_PatRegInfo_Diag a where a.RegId=@Id and a.OrganizeId=@orgId and a.zt
             return errmsg;
         }
         /// <summary>
-        /// 出院诊断保存
+        /// Lưu chẩn đoán lúc ra viện
         /// </summary>
         /// <param name="zdlist"></param>
         /// <param name="orgId"></param>

@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// 创 建：hyj
-    /// 日 期：2018-09-20 18:23
-    /// 描 述：病案首页
+    /// Người tạo: hyj
+    /// Ngày: 2018-09-20 18:23
+    /// Mô tả: Trang đầu hồ sơ bệnh án
     /// </summary>
     [Table("ba_basy")]
     public class BabasyEntity : IEntity<BabasyEntity>

@@ -5,12 +5,12 @@ using System.Collections.Generic;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 帮助类
+    /// Lớp trợ giúp
     /// </summary>
     public partial class CommmHelper
     {
         /// <summary>
-        /// 将枚举转换成字典
+        /// Chuyển enum thành từ điển
         /// </summary>
         /// <typeparam name="TEnum"></typeparam>
         /// <returns></returns>
@@ -27,7 +27,7 @@ namespace Newtouch.Infrastructure
             return dic;
         }
         /// <summary>
-        /// 计算年龄
+        /// Tính tuổi
         /// </summary>
         /// <param name="birthDate"></param>
         /// <param name="now"></param>

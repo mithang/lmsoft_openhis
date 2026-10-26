@@ -5,7 +5,7 @@ namespace Newtouch.EMR.Infrastructure
     public class SiteHispatinfoAPIHelper: SiteAPIRequestHelperBase<SiteHispatinfoAPIHelper>
     {
         /// <summary>
-        /// 域Addr配置 的 Key
+        /// Key cấu hình Addr của miền
         /// </summary>
         private readonly static string _domainConfigKey = "SiteSettAPIHost";
 

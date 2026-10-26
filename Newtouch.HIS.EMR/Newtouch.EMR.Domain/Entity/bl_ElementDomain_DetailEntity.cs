@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// 结构化明细表
+    /// Bảng chi tiết có cấu trúc
     /// </summary>
     [Table("bl_ElementDomain_Detail")]
     public class bl_ElementDomain_DetailEntity : IEntity<bl_ElementDomain_DetailEntity>

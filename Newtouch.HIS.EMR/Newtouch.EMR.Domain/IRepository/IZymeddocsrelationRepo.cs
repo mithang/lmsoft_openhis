@@ -6,26 +6,26 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.EMR.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2018-09-11 10:46
-    /// 描 述：患者病历文书关系表
+    /// Người tạo: chl
+    /// Ngày: 2018-09-11 10:46
+    /// Mô tả: Bảng quan hệ văn bản bệnh án của bệnh nhân
     /// </summary>
     public interface IZymeddocsrelationRepo : IRepositoryBase<ZymeddocsrelationEntity>
     {
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu (thêm mới, sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void SubmitForm(ZymeddocsrelationEntity entity, string keyValue);
    
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void DeleteForm(string keyValue);
         /// <summary>
-        /// 新增/修改病人病历关系树
+        /// Thêm mới/sửa cây quan hệ bệnh án của bệnh nhân
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="zyh"></param>

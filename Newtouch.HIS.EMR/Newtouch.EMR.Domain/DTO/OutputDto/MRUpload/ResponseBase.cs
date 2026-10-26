@@ -9,12 +9,12 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
     public class ResponseBase
     {
         /// <summary>
-        /// 接口返回代码
+        /// Mã trả về của giao diện
         /// </summary>
         public string code { get; set; }
         public string message { get; set; }
         /// <summary>
-        /// 接口响应数据
+        /// Dữ liệu phản hồi của giao diện
         /// </summary>
         public string data { get; set; }
     }

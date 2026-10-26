@@ -35,21 +35,21 @@
 <body>
     <div class="text">
         <img src="@SiteUrl.GetStaticResourceScriptUrl("~/img/error_170503.png")" />
-        <div class="Prompt">程序员开小差了，请联系管理员&nbsp;&nbsp;&nbsp;<a style="cursor:pointer;" title="查看异常详情" onclick="showException(); return false;">异常详情</a></div>
+        <div class="Prompt">Lập trình viên đã lơ là, vui lòng liên hệ quản trị viên&nbsp;&nbsp;&nbsp;<a style="cursor:pointer;" title="Xem chi tiết ngoại lệ" onclick="showException(); return false;">Chi tiết ngoại lệ</a></div>
     </div>
 
     <div style="display: none">
         @if (Model != null && Model.Exception != null)
         {
-            <h2><strong>页面访问时抛出异常： @Model.Exception.GetType().Name</strong></h2>
+            <h2><strong>Khi truy cập trang đã xảy ra ngoại lệ: @Model.Exception.GetType().Name</strong></h2>
             <br />
             <p>
-                在执行 @Model.ControllerName 控制器的 @Model.ActionName 操作的时候抛出该异常。
+                Khi thực thi thao tác @Model.ActionName của bộ điều khiển @Model.ControllerName thì ném ra ngoại lệ này.
             </p>
-            <p>错误详情:</p>
+            <p>Chi tiết lỗi:</p>
             <p>@Model.Exception.Message</p>
             <div class="ep-info-holder ep-intro closed J_ExpanHolder">
-                <h4>调用堆栈</h4>
+                <h4>Ngăn xếp lời gọi</h4>
                 <div class="info">
                     @Html.Raw(Model.Exception.StackTrace)
                 </div>
@@ -88,7 +88,7 @@
                 //exStackTrace = exStackTrace.replace('\\r\\n', '<br/>');
                 top.layer.open({
                     type: 1,
-                    title: '异常详情',
+                    title: 'Chi tiết ngoại lệ',
                     area: ['700px', '500px'],
                     closeBtn: 1,
                     shadeClose: true,
@@ -102,7 +102,7 @@
     {
         <script type="text/javascript">
             function showException() {
-                alert('未知异常');
+                alert('Ngoại lệ không xác định');
             }
         </script>
     }

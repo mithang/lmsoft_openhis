@@ -4,9 +4,9 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.EMR.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2021-03-01 15:24
-    /// 描 述：出院小结-诊断
+    /// Người tạo: chl
+    /// Ngày: 2021-03-01 15:24
+    /// Mô tả: Tóm tắt ra viện - Chẩn đoán
     /// </summary>
     public interface IYBInpOutHosSummariesDiagRepo : IRepositoryBase<YBInpOutHosSummariesDiagEntity>
     {

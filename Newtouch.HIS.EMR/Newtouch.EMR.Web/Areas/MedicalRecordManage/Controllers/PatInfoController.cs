@@ -28,7 +28,7 @@ using System.Web.WebPages;
 namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 {
     /// <summary>
-    /// 住院患者病历
+    /// Bệnh án bệnh nhân nội trú
     /// </summary>
     public class PatInfoController : OrgControllerBase
     {
@@ -78,7 +78,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 获取在病区的病人
+        /// Lấy bệnh nhân đang ở khu bệnh
         /// </summary>
         /// <param name="bqCode"></param>
         /// <param name="ys"></param>
@@ -107,7 +107,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         /// <summary>
-        /// 获取已出区病人
+        /// Lấy bệnh nhân đã ra khu
         /// </summary>
         /// <param name="bqCode"></param>
         /// <param name="ys"></param>
@@ -135,7 +135,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Content(data.ToJson());
         }
         /// <summary>
-        ///  获取医生分管的病人
+        /// Lấy bệnh nhân do bác sĩ phụ trách
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="bqCode"></param>
@@ -195,7 +195,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         /// <summary>
-        /// 获取病历树
+        /// Lấy cây bệnh án
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -259,7 +259,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 获取病历大类
+        /// Lấy loại lớn bệnh án
         /// </summary>
         /// <returns></returns>
         public ActionResult GetMedRecordType()
@@ -270,7 +270,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             //    var qxz = new
             //    {
             //        id = "",
-            //        text = "==请选择=="
+            // text = "==Vui lòng chọn=="
             //    };
             //    data.Add(qxz);
             //}
@@ -289,7 +289,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 获取病历模板列表
+        /// Lấy danh sách mẫu bệnh án
         /// </summary>
         /// <param name="mbqx"></param>
         /// <param name="bllx"></param>
@@ -348,7 +348,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         #endregion
 
         /// <summary>
-        /// 病历提交病案
+        /// Bệnh án gửi hồ sơ bệnh án
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -366,7 +366,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         /// <summary>
-        /// 病历退回
+        /// Bệnh án bị trả lại
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -396,7 +396,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             ViewBag.OrgId = this.OrganizeId;
             ViewBag.topOrgId = Constants.TopOrganizeId;
             ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
-            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //是否是医院管理员
+            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //Có phải quản trị viên bệnh viện hay không
             ViewBag.CurUserCode = this.UserIdentity.UserCode;
             ViewBag.curUsergh = UserIdentity.rygh;
         }
@@ -426,7 +426,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 规则判断
+        /// Phán đoán quy tắc
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="bllx"></param>
@@ -456,7 +456,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 }
                 
             }
-            if (newblbz == "F") //是否有申请记录
+            if (newblbz == "F") //Có bản ghi đề nghị hay không
             {
                 var checkapplyrecord = _mrblapplyrecordRepo.FindEntity(p =>p.zyh==zyh && p.bllx == bllx && p.OrganizeId == this.OrganizeId && p.zt == "1" && p.wcsj >= DateTime.Now);
                 if (checkapplyrecord != null)
@@ -479,7 +479,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 病历申请
+        /// Đề nghị bệnh án
         /// </summary>
         /// <param name="applyVo"></param>
         /// <returns></returns>
@@ -511,7 +511,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return View();
         }
 
-        //获取病历质控达标情况
+        //Lấy tình hình đạt chuẩn kiểm soát chất lượng bệnh án
         public ActionResult GetMrqcScore(string zyh, string bllxId)
         {
             string token = AuthenManageHelper.GetToken();

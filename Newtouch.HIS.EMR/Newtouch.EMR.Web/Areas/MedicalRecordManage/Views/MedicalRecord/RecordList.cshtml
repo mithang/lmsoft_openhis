@@ -122,7 +122,7 @@
     {
         $.modalOpen({
             id: "Form",
-            title: "检验、检查报告",
+            title: "Xét nghiệm、Báo cáo kiểm tra",
             url: "/MedicalRecordManage/MedicalRecord/Form?mzzyh=" + $.request('zyh') + "&type=zy&ryrq=" + "@ViewBag.ryrq",
             width: "900px",
             height: "600px",
@@ -136,7 +136,7 @@
         alert($.request('zyh'));
         $.modalOpen({
             id: "Form",
-            title: "医嘱",
+            title: "Y lệnh",
             url: "/MedicalRecordManage/MedicalRecord/YZForm?zyh=" + $.request('zyh') + "&type=zy" + "&doctype=" + $.request("doctype"),
             width: "1100px",
             height: "600px",
@@ -156,7 +156,7 @@
     });
 
 	function GetQueryValue(queryName) {
-		var query = decodeURI(window.location.search.substring(1));//将url转码，如果不是当前地址链接，可以在这里填写需要的链接
+		var query = decodeURI(window.location.search.substring(1));//Giải mã url, nếu không phải liên kết địa chỉ hiện tại thì có thể điền liên kết cần thiết tại đây
 		var vars = query.split("&");//分割字符串，将url切割成数组形式的对象
 		for (var i = 0; i < vars.length; i++) {
 			var pair = vars[i].split("=");//再次分割成数组
@@ -184,11 +184,11 @@
             onnodedbclick: function (item) {
                 if (item.Ex1 != 'p') {
                     $("#blid").val(item.id + "|" + blid);
-                    if (doctype==".html")//新编辑器病历格式
+                    if (doctype==".html")//Định dạng bệnh án trình soạn thảo mới
                         loadbackBl(item.id + "|" + blid);
                     else
                         $("#history").trigger("click");
-                    //top.top.$.Newtouchtab.addTabWithOutMenu({ name: "病历操作", enName: "", url: "/MedicalRecordManage/MedicalRecord/PreView?blid=" + item.id + "&bllx=" + item.value + "&zyh=" + "@ViewBag.zyh" + "&mzh=" + "@ViewBag.mzh" + "&jzbl=1&blid2=" + blId + "&bllx2=" + bllx + "&blxtmc_yj=" + blxtmc_yj, AppId: "EMR" });
+                    //top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Bệnh ánThao tác", enName: "", url: "/MedicalRecordManage/MedicalRecord/PreView?blid=" + item.id + "&bllx=" + item.value + "&zyh=" + "@ViewBag.zyh" + "&mzh=" + "@ViewBag.mzh" + "&jzbl=1&blid2=" + blId + "&bllx2=" + bllx + "&blxtmc_yj=" + blxtmc_yj, AppId: "EMR" });
                 }
             }
         });

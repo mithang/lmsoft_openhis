@@ -8,33 +8,33 @@ using System.Threading.Tasks;
 namespace Newtouch.EMR.Infrastructure.EnumMR
 {
 	/// <summary>
-	/// 在院标志
+	/// Cờ đang ở viện
 	/// </summary>
 	public enum EnumZYBZ
 	{
 		/// <summary>
-		/// 入院登记
+		/// Đăng ký vào viện
 		/// </summary>
 		Xry = 0,
 		/// <summary>
-		/// 病区中
+		/// Đang ở khu bệnh
 		/// </summary>
 		Bqz = 1,
 		/// <summary>
-		/// 病区出院（出病区）（待结账）
+		/// Ra khu bệnh (rời khu bệnh) (chờ thanh toán)
 		/// </summary>
 		Djz = 2,
 		/// <summary>
-		/// 已出院（出院结算）
+		/// Đã ra viện (thanh toán ra viện)
 		/// </summary>
 		Ycy = 3,
 		/// <summary>
-		/// 转区
+		/// Chuyển khu
 		/// </summary>
 		Zq = 7,
 
 		/// <summary>
-		/// 作废记录/取消入院
+		/// Hủy bản ghi / Hủy nhập viện
 		/// </summary>
 		Wry = 9,
 	}
@@ -46,7 +46,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 		F = 2
 	}
 	/// <summary>
-	/// 病案状态
+	/// Trạng thái hồ sơ bệnh án
 	/// </summary>
 	public enum Enumbazt
 	{
@@ -54,28 +54,28 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 		dlr = 1,
 		[Description("已录入")]
 		lrz = 2,
-		//[Description("已归档")]
+		//[Description("Đã lưu trữ")]
 		//gd = 3
 	}
 
 	///// <summary>
-	///// 病历状态 与EMR通用
+	///// Trạng thái bệnh án - dùng chung với EMR
 	///// </summary>
 	//public enum EnumRecordStu
 	//{
-	//    [Description("未提交")]
+	// [Description("Chưa gửi")]
 	//    wtj = 0,
-	//    [Description("已提交")]
+	// [Description("Đã gửi")]
 	//    ytj = 1,
-	//    [Description("退回")]
+	// [Description("Trả lại")]
 	//    th = 2,
-	//    [Description("已签收")]
+	// [Description("Đã ký nhận")]
 	//    yqs = 3,
-	//    //[Description("病案归档")]
-	//    //bagd = 4
+	//    //[Description("Lưu trữ hồ sơ bệnh án")]
+	// bagd = 4
 	//}
 	/// <summary>
-	/// 血型
+	/// Nhóm máu
 	/// </summary>
 	public enum EnumBloodType
 	{
@@ -94,7 +94,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 	}
 
 	/// <summary>
-	/// 死亡患者尸检
+	/// Khám nghiệm tử thi bệnh nhân tử vong
 	/// </summary>
 	public enum EnumSwhzsj
 	{
@@ -121,17 +121,17 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 
 	//public enum EnumRytj
 	//{
-	//    [Description("急诊")]
+	// [Description("Cấp cứu")]
 	//    JZ = 1,
-	//    [Description("门诊")]
+	// [Description("Ngoại trú")]
 	//    MZ = 2,
-	//    [Description("其他医疗机构转入")]
+	// [Description("Chuyển đến từ cơ sở y tế khác")]
 	//    QTOrg = 3,
-	//    [Description("其他")]
+	// [Description("Khác")]
 	//    QT = 9
 	//}
 	/// <summary>
-	/// 关系
+	/// Quan hệ
 	/// </summary>
 	public enum EnumGx
 	{
@@ -155,7 +155,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 		qt
 	}
 	/// <summary>
-	/// 是或否
+	/// Có hoặc không
 	/// </summary>
 	public enum EnumYorN
 	{
@@ -167,7 +167,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 
 
 	/// <summary>
-	/// 是或否
+	/// Có hoặc không
 	/// </summary>
 	public enum EnumNewYorN
 	{
@@ -189,7 +189,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 		w = 4
 	}
 	/// <summary>
-	/// 否或是
+	/// Không hoặc có
 	/// </summary>
 	public enum EnumNorY
 	{
@@ -199,7 +199,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 		Y = 2
 	}
 	/// <summary>
-	/// 有或无
+	/// Có hoặc không
 	/// </summary>
 	public enum EnumHorN
 	{
@@ -209,8 +209,8 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 		Has = 2
 	}
 	/// <summary>
-	/// 输血反应
-	/// 1.是  2.否  3.未输
+	/// Phản ứng truyền máu
+	/// 1. Có, 2. Không, 3. Chưa truyền
 	/// </summary>
 	public enum EumSYFY
 	{
@@ -222,7 +222,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 		Non = 3
 	}
 	/// <summary>
-	///入院病情 1	有 2	临床未确定 3	情况不明 4	无
+	///Tình trạng bệnh lúc vào viện: 1 Có, 2 Lâm sàng chưa xác định, 3 Không rõ tình hình, 4 Không
 	/// </summary>
 	public enum EnumRybq
 	{
@@ -237,8 +237,8 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 	}
 
 	/// <summary>
-	/// 出院情况
-	/// 1	治愈 2	好转 3	未愈4	死亡5	其他
+	/// Tình hình ra viện
+	/// 1 Khỏi, 2 Đỡ, 3 Chưa khỏi, 4 Tử vong, 5 Khác
 	/// </summary>
 	public enum EnumCyqk
 	{
@@ -254,7 +254,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 		qt = 5
 	}
 	/// <summary>
-	/// 诊断类型-主从
+	/// Loại chẩn đoán - chính/phụ
 	/// </summary>
 	public enum EnumZdlxbs
 	{
@@ -265,7 +265,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
         
     }
     /// <summary>
-	/// 诊断类型-主从
+	/// Loại chẩn đoán - chính/phụ
 	/// </summary>
 	public enum EnumZyZdlxbs
     {
@@ -277,22 +277,22 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
     }
 
     /// <summary>
-    /// 入院途径
+    /// Đường vào viện
     /// </summary>
     public enum EnumRYTJ
 	{
 		/// <summary>
-		/// 门诊
+		/// Ngoại trú
 		/// </summary>
 		[Description("门诊")]
 		mz = 1,
 		/// <summary>
-		/// 急诊
+		/// Cấp cứu
 		/// </summary>
 		[Description("急诊")]
 		jz = 2,
 		/// <summary>
-		/// 其他医疗机构转入
+		/// Chuyển đến từ cơ sở y tế khác
 		/// </summary>
 		[Description("其他医疗机构转入")]
 		qtyljg = 3,
@@ -302,60 +302,60 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 		//[Description("120")]
 		//jj120,
 		/// <summary>
-		/// 其他
+		/// Khác
 		/// </summary>
 		[Description("其他")]
 		Else = 9,
 	}
 	///// <summary>
-	///// 病历类型
+	///// Loại bệnh án
 	///// </summary>
 	//public enum EnumBllx
 	//{
-	//    /// <summary>
-	//    /// 住院病历
-	//    /// </summary>
-	//    [Description("住院病历")]
+	// <summary>
+	//    /// Bệnh án nội trú
+	// </summary>
+	// [Description("Bệnh án nội trú")]
 	//    zybl = 1,
 
-	//    /// <summary>
-	//    /// 病程记录
-	//    /// </summary>
-	//    [Description("病程记录")]
+	// <summary>
+	//    /// Ghi chép diễn biến bệnh
+	// </summary>
+	// [Description("Ghi chép diễn biến bệnh")]
 	//    bcjl = 2,
 
-	//    /// <summary>
-	//    /// 医疗文书
-	//    /// </summary>
-	//    [Description("医疗文书")]
+	// <summary>
+	//    /// Văn bản y tế
+	// </summary>
+	// [Description("Văn bản y tế")]
 	//    ylws = 3,
 
-	//    /// <summary>
-	//    /// 护理记录
-	//    /// </summary>
-	//    [Description("护理记录")]
+	// <summary>
+	//    /// Ghi chép điều dưỡng
+	// </summary>
+	// [Description("Ghi chép điều dưỡng")]
 	//    hljl = 4,
 
-	//    /// <summary>
-	//    /// 病案首页
-	//    /// </summary>
-	//    /// 
-	//    [Description("病案首页")]
+	// <summary>
+	//    /// Trang đầu hồ sơ bệnh án
+	// </summary>
+	// 
+	// [Description("Trang đầu hồ sơ bệnh án")]
 	//    basy = 5
 	//}
 	/// <summary>
-	/// 诊断类型
+	/// Loại chẩn đoán
 	/// </summary>
 	//public enum EnumZdlx2
 	//{
-	//    [Description("西医诊断")]
+	// [Description("Chẩn đoán Tây y")]
 	//    WM = 1,
-	//    [Description("中医诊断")]
+	// [Description("Chẩn đoán Đông y")]
 	//    TCM = 2
 
 	//}
 	/// <summary>
-	/// 病案质量
+	/// Chất lượng hồ sơ bệnh án
 	/// </summary>
 	public enum EnumBazl
 	{
@@ -367,14 +367,14 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 		III
 	}
 	/// <summary>
-	/// 离院方式
+	/// Hình thức rời viện
 	/// </summary>
 	public enum EnumLyfs
 	{
 		[Description("医嘱离院")]
 		yzly = 1,
 		/// <summary>
-		/// 急诊
+		/// Cấp cứu
 		/// </summary>
 		[Description("医嘱转院")]
 		yzzy,
@@ -388,7 +388,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 		other = 9,
 	}
 	/// <summary>
-	/// 病情分型
+	/// Phân loại tình trạng bệnh
 	/// </summary>
 	public enum EnumBqfx
 	{
@@ -404,7 +404,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 		yb
 	}
 	/// <summary>
-	/// 临床路径变异原因
+	/// Nguyên nhân biến thể của lộ trình lâm sàng
 	/// </summary>
 	public enum EnumBYYY
 	{
@@ -416,7 +416,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 		xtyy
 	}
 	/// <summary>
-	/// 检查情况
+	/// Tình hình kiểm tra
 	/// </summary>
 	public enum EnumJBQK
 	{
@@ -436,7 +436,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 		MRI = 7
 	}
 	/// <summary>
-	/// 检查情况
+	/// Tình hình kiểm tra
 	/// </summary>
 	public enum EnumJCQK
 	{
@@ -451,7 +451,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 	}
 
 	/// <summary>
-	///抗菌药物使用情况 
+	///Tình hình sử dụng thuốc kháng khuẩn 
 	/// </summary>
 	public enum EnumKJYWSYQK
 	{
@@ -468,7 +468,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 	}
 
 	/// <summary>
-	///输液反映 0未输 2无 3有
+	///Phản ứng truyền dịch: 0 Chưa truyền, 2 Không, 3 Có
 	/// </summary>
 	public enum EnumSYFY
 	{
@@ -481,7 +481,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 	}
 
 	/// <summary>
-	///输血反映 0未输 2无 3有
+	///Phản ứng truyền máu: 0 Chưa truyền, 2 Không, 3 Có
 	/// </summary>
 	public enum EnumSXFY
 	{
@@ -494,7 +494,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 	}
 
 	/// <summary>
-	///住院跌倒伤害程度 0未输 2无 3有
+	///Mức độ tổn thương do ngã khi nằm viện: 0 Chưa nhập, 2 Không, 3 Có
 	/// </summary>
 	public enum EnumZYDD_SHCD
 	{
@@ -509,7 +509,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 	}
 
 	/// <summary>
-	///跌倒或坠床的原因
+	///Nguyên nhân ngã hoặc rơi khỏi giường
 	/// </summary>
 	public enum EnumZYDD_YY
 	{
@@ -524,7 +524,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 	}
 
 	/// <summary>
-	///压疮分期
+	///Phân giai đoạn loét do tì đè
 	/// </summary>
 	public enum EnumYCFQ
 	{
@@ -538,7 +538,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 		forth = 4
 	}
     /// <summary>
-	///实施临床路径 1中医 2西医 3否
+	///Thực hiện lộ trình lâm sàng: 1 Đông y, 2 Tây y, 3 Không
 	/// </summary>
 	public enum EnumZYSSLCLJ
     {

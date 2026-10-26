@@ -7,7 +7,7 @@ using UserIdentity = Newtouch.EMR.API.Models.UserIdentity;
 namespace Newtouch.EMR.API.App_Start
 {
     /// <summary>
-    /// 用户身份解析
+    /// Phân giải danh tính người dùng
     /// </summary>
     public class UserIdentityResolver : IUserIdentityResolver<Identity>
     {

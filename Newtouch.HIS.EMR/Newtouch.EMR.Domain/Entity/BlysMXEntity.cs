@@ -5,9 +5,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// 创 建：mhz
-    /// 日 期：2023-04-17 11:24
-    /// 描 述：元素
+    /// Người tạo: mhz
+    /// Ngày: 2023-04-17 11:24
+    /// Mô tả: Phần tử
     /// </summary>
     [Table("bl_ysmx")]
     public class BlysMXEntity : IEntity<BlysMXEntity>

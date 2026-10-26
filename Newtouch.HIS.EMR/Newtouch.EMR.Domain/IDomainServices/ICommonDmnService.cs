@@ -15,21 +15,21 @@ namespace Newtouch.EMR.Domain.IDomainServices
     public interface ICommonDmnService
     {
         /// <summary>
-        /// 根据病历类型Id获取病历大类名称标识
+        /// Lấy tên và cờ loại lớn của bệnh án theo Id loại bệnh án
         /// </summary>
         /// <param name="bllxId"></param>
         /// <param name="OrgId"></param>
         /// <returns></returns>
         string GetBllxmcFlag(string bllxId, string OrgId);
         /// <summary>
-        /// 获取病历类型对应表
+        /// Lấy bảng tương ứng loại bệnh án
         /// </summary>
         /// <param name="bllxId"></param>
         /// <param name="OrgId"></param>
         /// <returns></returns>
         string GetBllxTB(int bllx);
         /// <summary>
-        /// 通过bllx获取病历大类相关信息
+        /// Lấy thông tin liên quan đến loại lớn bệnh án qua bllx
         /// </summary>
         /// <param name="OrgId"></param>
         /// <param name="Code"></param>
@@ -37,18 +37,18 @@ namespace Newtouch.EMR.Domain.IDomainServices
         /// <returns></returns>
         IList<MedRecordTypeVO> GetSysItemDicBybllx(string Code, int bllx);
         /// <summary>
-        /// 获取模板对应岗位信息
+        /// Lấy thông tin vị trí tương ứng với mẫu
         /// </summary>
         /// <returns></returns>
         IList<BlmbqxkzEntity> GetblmbDuty(string blmbId, OperatorModel user);
         /// <summary>
-        /// 判断是否为模板管理员
+        /// Phán đoán có phải quản trị viên mẫu hay không
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
         bool GetIsblManager(OperatorModel user);
         /// <summary>
-        /// 诊断
+        /// Chẩn đoán
         /// </summary>  
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -61,11 +61,11 @@ namespace Newtouch.EMR.Domain.IDomainServices
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
-        /// <param name="type">是否优化查询 1 是 0 否</param>
+        /// <param name="type">Có tối ưu truy vấn hay không: 1 Có, 0 Không</param>
         /// <returns></returns>
         IList<SysOpListDto> OpList(string orgId, string keyword, bool type = true);
         /// <summary>
-        /// 分页手术列表
+        /// Danh sách phẫu thuật phân trang
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -74,14 +74,14 @@ namespace Newtouch.EMR.Domain.IDomainServices
         IList<SysOpListDto> OpListPage(Pagination pagination, string orgId, string keyword);
         IList<SysAnesListDto> AnesList(string orgId, string keyword);
         /// <summary>
-        /// 愈合等级
+        /// Cấp độ liền vết thương
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         IList<SysDicDto> NotchGradeList(string orgId, string keyword);
         /// <summary>
-        /// 病案通用字典
+        /// Từ điển dùng chung của hồ sơ bệnh án
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -89,28 +89,28 @@ namespace Newtouch.EMR.Domain.IDomainServices
         /// <returns></returns>
         IList<SysDicDto> DicCommonList(string orgId, string keyword, string Rlue, string code = null);
         ///// <summary>
-        ///// 系统病人性质
+        ///// Tính chất bệnh nhân của hệ thống
         ///// </summary>
         ///// <param name="orgId"></param>
         ///// <param name="keyword"></param>
         ///// <returns></returns>
         //IList<SysBrxzVO> BrxzList(string orgId, string keyword);
         /// <summary>
-        /// 系统-国籍
+        /// Hệ thống - Quốc tịch
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         IList<SysDicDto> DicNationalityList(string orgId, string keyword);
         /// <summary>
-        /// 系统-民族
+        /// Hệ thống - Dân tộc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         IList<SysDicDto> DicNationsList(string orgId, string keyword);
         /// <summary>
-        /// 人员（岗位）
+        /// Nhân sự (vị trí)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="dutyCode"></param>
@@ -118,14 +118,14 @@ namespace Newtouch.EMR.Domain.IDomainServices
         /// <returns></returns>
         List<SysDutyStaffVO> GetStaffByDutyCode(string orgId, string dutyCode, string keyword = null);
         /// <summary>
-        /// 获取his科室列表
+        /// Lấy danh sách khoa của his
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="code"></param>
         /// <returns></returns>
         IList<SysDicDto> GetDeptList(string orgId, string code);
         /// <summary>
-        /// 获取病区列表
+        /// Lấy danh sách khu bệnh
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="code"></param>
@@ -133,7 +133,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
         IList<SysDicDto> GetWardList(string orgId, string code);
         IList<MedRecordTypeVO> GetSysItemDic(string OrgId, string Code, string bllxId, string DetailCode = null);
         /// <summary>
-        /// 获取病历大类
+        /// Lấy loại lớn bệnh án
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="code"></param>
@@ -142,16 +142,16 @@ namespace Newtouch.EMR.Domain.IDomainServices
         IList<SysDicDto> GetDutyList(string orgId, string code);
         IList<SysDicMarkDto> GetDutyListRelbllx(string orgId, string bllx, string dutycode);
         /// <summary>
-        /// 获取病历类型
+        /// Lấy loại bệnh án
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="bllx">Id or bllx</param>
         /// <param name="keyword"></param>
-        /// <param name="type">1 root 2 子目录</param>
+        /// <param name="type">1 root, 2 Thư mục con</param>
         /// <returns></returns>
         IList<BaseBllxVO> GetBllxListDetail(string orgId,string bllx=null,string keyword=null,string type=null);
         /// <summary>
-        /// 获取员工信息（签名）
+        /// Lấy thông tin nhân viên (chữ ký)
         /// </summary>
         /// <param name="user"></param>
         /// <param name="orgId"></param>
@@ -159,14 +159,14 @@ namespace Newtouch.EMR.Domain.IDomainServices
         IList<StaffVO> StaffInfo(string user, string orgId);
 
         /// <summary>
-        /// 病区
+        /// Khu bệnh
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         IList<xt_bq> GetInpatientArea(string orgId, string keyword);
         /// <summary>
-        /// 中医症候
+        /// Chứng hậu Đông y
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -175,7 +175,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
 
         #region 医嘱打印
         /// <summary>
-        /// 长期医嘱打印
+        /// In y lệnh dài hạn
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

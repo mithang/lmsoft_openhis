@@ -14,22 +14,22 @@ namespace Newtouch.EMR.Domain.Entity
         public string sj { get; set; }
         public string zyh { get; set; }
         /// <summary>
-        /// 护理类型 0一般 1危重 2手术
+        /// Loai dieu duong: 0 Thong thuong, 1 Nguy kich, 2 Phau thuat
         /// </summary>
         public string bllx { get; set; }
         /// <summary>
-        /// 摄入摄出量类型 0摄入 1摄出
+        /// Loai luong dua vao/thai ra: 0 Dua vao, 1 Thai ra
         /// </summary>
         public string srsclx { get; set; }
         public string mc { get; set; }
         public string ml { get; set; }
         public string dw { get; set; }
         /// <summary>
-        /// 途径
+        /// Duong dung
         /// </summary>
         public string tj { get; set; }
         /// <summary>
-        /// 颜色形状
+        /// Mau sac va hinh dang
         /// </summary>
         public string ysxz { get; set; }
         public System.DateTime CreateTime { get; set; }

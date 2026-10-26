@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2018-09-20 14:48
-    /// 描 述：模板权限控制表
+    /// Người tạo: chl
+    /// Ngày: 2018-09-20 14:48
+    /// Mô tả: Bảng kiểm soát quyền mẫu
     /// </summary>
     [Table("bl_mbqxkz")]
     public class BlmbqxkzEntity : IEntity<BlmbqxkzEntity>
@@ -30,17 +30,17 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public string dutyCode { get; set; }
         /// <summary>
-        /// 岗位名称
+        /// Tên vị trí công tác
         /// </summary>
         /// <returns></returns>
         public string dutyName { get; set; }
         /// <summary>
-        /// 0 无权限 1 只读权限 2 读写权限 3 完全控制
+        /// 0 Không có quyền, 1 Quyền chỉ đọc, 2 Quyền đọc/ghi, 3 Kiểm soát toàn bộ
         /// </summary>
         /// <returns></returns>
         public int ctrlLevel { get; set; }
         /// <summary>
-        /// 权限控制等级描述
+        /// Mô tả cấp độ kiểm soát quyền
         /// </summary>
         /// <returns></returns>
         public string ctrlLevelDesc { get; set; }

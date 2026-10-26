@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2018-09-11 10:46
-    /// 描 述：患者病历文书关系表
+    /// Người tạo: chl
+    /// Ngày: 2018-09-11 10:46
+    /// Mô tả: Bảng quan hệ văn bản bệnh án của bệnh nhân
     /// </summary>
     [Table("zy_meddocs_relation")]
     public class ZymeddocsrelationEntity : IEntity<ZymeddocsrelationEntity>
@@ -35,22 +35,22 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public string blId { get; set; }
         /// <summary>
-        /// 病历类型Id
+        /// Id loại bệnh án
         /// </summary>
         /// <returns></returns>
         public string mbId { get; set; }
         /// <summary>
-        /// 病历名称
+        /// Tên bệnh án
         /// </summary>
         /// <returns></returns>
         public string blmc { get; set; }
         /// <summary>
-        /// 病历标题
+        /// Tiêu đề bệnh án
         /// </summary>
         /// <returns></returns>
         public string blbt { get; set; }
         /// <summary>
-        /// 是否已签名 0 未签 1 已签
+        /// Đã ký hay chưa: 0 Chưa ký, 1 Đã ký
         /// </summary>
         /// <returns></returns>
         public int? blzt { get; set; }
@@ -70,12 +70,12 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public DateTime? blrq { get; set; }
         /// <summary>
-        /// 父节点
+        /// Nút cha
         /// </summary>
         /// <returns></returns>
         public string ParentId { get; set; }
         /// <summary>
-        /// 是否父节点 0 否 1 是
+        /// Có phải nút cha hay không: 0 Không, 1 Có
         /// </summary>
         /// <returns></returns>
         public int? IsParent { get; set; }
@@ -111,15 +111,15 @@ namespace Newtouch.EMR.Domain.Entity
         public string zt { get; set; }
         public string bllx { get; set; }
         /// <summary>
-        /// 医保上传标志 0 未上传 1 已上传
+        /// Cờ tải lên bảo hiểm y tế: 0 Chưa tải lên, 1 Đã tải lên
         /// </summary>
         public string YbUploadFlag { get; set; }
         /// <summary>
-        /// 计划状态 
+        /// Trạng thái kế hoạch 
         /// </summary>
         public string PlanStu { get; set; }
         /// <summary>
-        /// 前段加载数据源
+        /// Frontend tải nguồn dữ liệu
         /// </summary>
         public string DataSource { get; set; }
 
@@ -127,7 +127,7 @@ namespace Newtouch.EMR.Domain.Entity
 
         public string OldXmlConten { get; set; }
         /// <summary>
-        /// 文书格式类型--html/xml
+        /// Loại định dạng văn bản -- html/xml
         /// </summary>
         public string doctype { get; set; }
     }

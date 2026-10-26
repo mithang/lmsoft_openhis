@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Index.cshtml";
     var EmrEdiForUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("EmrEdiForUrl");
 }
-@*<script src="~/Content/framework-ui.js"></script>
+@**@<script src="~/Content/framework-ui.js"></script>
     <script src="~/Content/framework-clientdata.js"></script>
     <script src="~/Content/framework-clientdata.framepage.js"></script>*@
 <script src="@Html.Raw(EmrEdiForUrl)ServicePage.aspx?wasmres=dcwriter5.js"></script>
@@ -14,7 +14,7 @@
         <div class="topPanel">
             <div class="toolbar " style="float:right;">
                 <div class="btn btn-default">
-                    <a id="printDoc" authorize="yes" onclick="PrintDoc()"><i class="glyphicon glyphicon-print"></i>打印</a>
+                    <a id="printDoc" authorize="yes" onclick="PrintDoc()"><i class="glyphicon glyphicon-print"></i>In</a>
                     <script language=javascript>
                         function PrintDoc() {
                             var ctl = document.getElementById("myWriterControl");
@@ -28,7 +28,7 @@
                 </div>
                 <div class="btn">
                     <input type="checkbox" id="idJumpPrint" name="idJumpPrint" onclick="JumpPrint();" />
-                    <label for="idJumpPrint">续打</label>
+                    <label for="idJumpPrint">In tiếp</label>
                     <script language=javascript>
 						function JumpPrint() {
 							var flag = document.getElementById("idJumpPrint").checked;
@@ -78,7 +78,7 @@
 
     $(function ($) {
         setTimeout(function () {
-            // 提交按钮的点击操作
+            // Thao tác nhấp nút gửi
             $("#printDoc").trigger('click');
         }, 1000); // 延迟1秒钟
     });
@@ -98,14 +98,14 @@
 		}
 	});
 
-	//-------------病历编辑器5.0------------------//
+	//-------------Trình soạn thảo bệnh án 5.0------------------//
 	function WriterControl_OnLoad(rootElement) {
 	    var ctl = document.getElementById("myWriterControl");
 	    ctl.LoadDocumentFromBase64String('@ViewBag.WriterControlXmlData', 'xml');
 	    ctl.LoadPrintPreview();
 	}
 	function GetQueryValue(queryName) {
-		var query = decodeURI(window.location.search.substring(1));//将url转码，如果不是当前地址链接，可以在这里填写需要的链接
+		var query = decodeURI(window.location.search.substring(1));//Giải mã url, nếu không phải liên kết địa chỉ hiện tại thì có thể điền liên kết cần thiết tại đây
 		var vars = query.split("&");//分割字符串，将url切割成数组形式的对象
 		for (var i = 0; i < vars.length; i++) {
 			var pair = vars[i].split("=");//再次分割成数组
@@ -121,7 +121,7 @@
 		BindingDCWriterClientControl(ctl);
 		if (ctl != null) {
 			if (ctl.getAttribute("ismobiledevice") != "true") {
-				// 对于移动设备不设置控件高度
+				// Đối với thiết bị di động thì không đặt chiều cao điều khiển
 				//var s1 = document.documentElement.currentStyle;
 				//var s2 = document.body.currentStyle ;
 				var h = document.documentElement.clientHeight - ctl.offsetTop - 20;
@@ -157,7 +157,7 @@
 				debugger;
 				console.log("打印字体处理");
 				var styleDom = document.createElement("style");
-				// 解决宋体打印问题
+				// 解决宋体In问题
 				var cssStr = "@@font-face {font-family: 宋体;src: local('宋体');}";
 				styleDom.innerHTML = cssStr;
 				var page = PrintPreviewDoc.querySelector("div[pageindex]");
@@ -170,7 +170,7 @@
 				console.log("DocumentLoad")
 				var doc = ctl.GetContentDocument();
 				var styleDom = document.createElement("style");
-				// 解决宋体打印问题
+				// 解决宋体In问题
 				var cssStr = "@@font-face {font-family: 宋体;src: local('宋体');}";
 				styleDom.innerHTML = cssStr;
 				var page = doc.querySelector("div[pageindex]");

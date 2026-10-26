@@ -8,23 +8,23 @@ using Newtouch.EMR.Domain.ValueObjects.MedicalRecord;
 namespace Newtouch.EMR.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2018-09-05 11:34
-    /// 描 述：病历模板列表
+    /// Người tạo: chl
+    /// Ngày: 2018-09-05 11:34
+    /// Mô tả: Danh sách mẫu bệnh án
     /// </summary>
     public interface IBlmblbRepo : IRepositoryBase<BlmblbEntity>
     {
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu (thêm mới, sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void SubmitForm(BlmblbEntity entity, string keyValue);
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void DeleteForm(string keyValue);
         BlmblbEntity GetTemplateById(string ID);
         BlmblbEntity GetTemplateByBllxId(string ID, string OrganizeId);

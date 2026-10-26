@@ -12,7 +12,7 @@ namespace Newtouch.EMR.Domain.ValueObjects
     public class PatListVO: ZybrjbxxEntity
     {
         /// <summary>
-        /// 是否默认选中
+        /// Có chọn mặc định hay không
         /// </summary>
         public int isCheck { get; set; }
         public int? cyts { get; set; }

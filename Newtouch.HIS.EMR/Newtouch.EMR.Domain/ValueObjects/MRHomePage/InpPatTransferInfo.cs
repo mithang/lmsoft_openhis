@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
 {
     /// <summary>
-    /// 来源CIS [zy_cwsyjlk]
+    /// Nguồn từ CIS [zy_cwsyjlk]
     /// </summary>
     public class InpPatTransferInfo
     {
@@ -26,7 +26,7 @@ namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
         public string TransDeptCode { get; set; }
         public string TransWardCode { get; set; }
         /// <summary>
-        /// status 1 当前 2 转床 3 转区 4 出区 5 取消入区
+        /// status: 1 Hiện tại, 2 Chuyển giường, 3 Chuyển khu, 4 Ra khu, 5 Hủy vào khu
         /// </summary>
         public string Status { get; set; }
         public string zt { get; set; }

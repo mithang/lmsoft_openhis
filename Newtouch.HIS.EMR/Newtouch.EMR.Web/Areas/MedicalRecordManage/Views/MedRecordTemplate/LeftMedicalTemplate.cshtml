@@ -13,13 +13,13 @@
             <tr>
                 <td class="formValue formDdlSelectorTd">
                     <select class="form-control" style="width:45px;height:17px;" id="mbqx" onchange="mbqxquery()">
-                        <option value="0" selected="selected">通用</option>
-                        <option value="1">个人</option>
-                        <option value="2">科室</option>
+                        <option value="0" selected="selected">Dùng chung</option>
+                        <option value="1">Cá nhân</option>
+                        <option value="2">Khoa</option>
                     </select>
                 </td>
                 <td class="formValue">
-                    <input id="txt_keyword" type="text" class="form-control" onblur="mbqxquery()" onkeypress="keypress()" placeholder="模板名称" style="width:80px;height:17px;">
+                    <input id="txt_keyword" type="text" class="form-control" onblur="mbqxquery()" onkeypress="keypress()" placeholder="Tên mẫu" style="width:80px;height:17px;">
                 </td>
             </tr>
         </table>
@@ -57,15 +57,15 @@
             height: $(window).height() - 60,
             width: $(window).width()-20,
             colModel: [
-                { label: "病历模板Id", name: "Id", key: true, hidden: true },
+                { label: "Mẫu bệnh ánId", name: "Id", key: true, hidden: true },
                 { label: "Turl", name: "Turl", hidden: true },
-                { label: "病历模板", name: "mbmc",width:30 },
+                { label: "Mẫu bệnh án", name: "mbmc",width:30 },
             ],
             onSelectRow: function (rowid, status) {
                 if (status == true) {
                     debugger;
                     var rowData = $("#gridList").jqGrid('getRowData', rowid);
-                    if (rowData.isLeaf == false || rowData.isLeaf == "false") {//禁用条件
+                    if (rowData.isLeaf == false || rowData.isLeaf == "false") {//Điều kiện vô hiệu hóa
                     } else {
                         var param = { 'mbmc': rowData.mbmc, 'Turl': rowData.Turl };
                         window.parent.postMessage(param, '*');
@@ -74,7 +74,7 @@
             },
             onRightClickRow: function (rowid, irow, icol, e) {
                 var rowData = $("#gridList").jqGrid('getRowData', rowid);
-                if (rowData.isLeaf == false || rowData.isLeaf == "false") {//禁用条件
+                if (rowData.isLeaf == false || rowData.isLeaf == "false") {//Điều kiện vô hiệu hóa
                 } else {
                     initrightMenu(rowData);
                 }
@@ -83,14 +83,14 @@
 
         });
     }
-    //右键菜单
+    //Menu chuột phải
     function initrightMenu(rowData) {
        var p = '.gridPanel tr[id=' + rowData.Id + ']';
         var menu = new BootstrapMenu(p, {
-            //fetchElementData获取元数据
+            //fetchElementDataLấy metadata
             fetchElementData: function ($rowElem) {
                 var data = rowData;
-                return data;    //return的目的是给下面的onClick传递参数
+                return data;    //Mục đích của return là truyền tham số cho onClick bên dưới
             },
             actions: [{
                 name: '<span class="glyphicon glyphicon-remove" style="color: rgb(28, 179, 173); font-size: 13px;"></span> 删除模板',
@@ -101,7 +101,7 @@
                         param: { keyValue: rowData.Id },
                         success: function (data) {
                             if (data.state == "success") {
-                                $.modalAlert('删除成功', 'success');
+                                $.modalAlert('Xóa thành công', 'success');
                             }
                             else {
                                 $.modalAlert(data.message, 'error');

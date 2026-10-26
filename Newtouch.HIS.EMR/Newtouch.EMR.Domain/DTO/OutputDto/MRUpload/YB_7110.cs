@@ -9,67 +9,67 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
     public class YB_7110
     {
         /// <summary>
-        /// 就诊流水号
+        /// Số thứ tự khám bệnh
         /// </summary>
         /// <returns></returns>
         public string AKC190 { get; set; }
 
         /// <summary>
-        /// 入院记录流水号
+        /// Số thứ tự hồ sơ vào viện
         /// </summary>
         /// <returns></returns>
         public string BKF263 { get; set; }
 
         /// <summary>
-        /// 住院流水号
+        /// Số thứ tự nhập viện
         /// </summary>
         /// <returns></returns>
         public string BKC191 { get; set; }
 
         /// <summary>
-        /// 入院诊断分类
+        /// Phân loại chẩn đoán lúc vào viện
         /// </summary>
         /// <returns></returns>
         public string BKF260 { get; set; }
 
         /// <summary>
-        /// 主从诊断标识1 主要诊断；2 其他诊断；3 病理诊断
+        /// Cờ chẩn đoán chính/phụ: 1 Chẩn đoán chính; 2 Chẩn đoán khác; 3 Chẩn đoán bệnh lý
         /// </summary>
         /// <returns></returns>
         public string BKF718 { get; set; }
 
         /// <summary>
-        /// 诊断顺位
+        /// Thứ tự chẩn đoán
         /// </summary>
         /// <returns></returns>
         public string BKF512 { get; set; }
 
         /// <summary>
-        /// 西医诊断编码
+        /// Mã chẩn đoán Tây y
         /// </summary>
         /// <returns></returns>
         public string BKF857 { get; set; }
 
         /// <summary>
-        /// 西医诊断名称
+        /// Tên chẩn đoán Tây y
         /// </summary>
         /// <returns></returns>
         public string BKF856 { get; set; }
 
         /// <summary>
-        /// 中医病名代码
+        /// Mã tên bệnh Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF460 { get; set; }
 
         /// <summary>
-        /// 中医病名
+        /// Tên bệnh Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF459 { get; set; }
 
         /// <summary>
-        /// 中医证候代码
+        /// Mã chứng hậu Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF475 { get; set; }
@@ -81,7 +81,7 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         public string BKF474 { get; set; }
 
         /// <summary>
-        /// 诊断日期时间
+        /// Ngày giờ chẩn đoán
         /// </summary>
         /// <returns></returns>
         public string BKF510 { get; set; }

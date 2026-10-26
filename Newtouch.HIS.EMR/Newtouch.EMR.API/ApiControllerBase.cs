@@ -4,7 +4,7 @@ using Newtouch.EMR.API.Models;
 namespace Newtouch.EMR.API
 {
     /// <summary>
-    /// API Controll 基类
+    /// Lớp cơ sở API Controller
     /// </summary>
     public class ApiControllerBase<TControllerType> : FrameworkBase.API.ApiControllerBase<TControllerType>
     {
@@ -14,7 +14,7 @@ namespace Newtouch.EMR.API
         }
 
         /// <summary>
-        /// 用户身份
+        /// Danh tính người dùng
         /// </summary>
         public UserIdentity UserIdentity
         {

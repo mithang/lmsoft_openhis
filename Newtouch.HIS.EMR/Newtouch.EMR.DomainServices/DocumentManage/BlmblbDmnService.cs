@@ -41,7 +41,7 @@ namespace Newtouch.EMR.DomainServices
             _BlmbqxkzRepo = BlmbqxkzRepo;
         }
         /// <summary>
-        /// 病历模板列表
+        /// Danh sách mẫu bệnh án
         /// </summary>
         /// <param name="mbqx"></param>
         /// <param name="bllx"></param>
@@ -130,7 +130,7 @@ namespace Newtouch.EMR.DomainServices
 
         }
         /// <summary>
-        /// 模板岗位权限控制维护
+        /// Bảo trì kiểm soát quyền vị trí của mẫu
         /// </summary>
         /// <param name="list"></param>
         /// <param name="user"></param>
@@ -226,17 +226,17 @@ where a.zt=1 and a.OrganizeId=@OrgId
 
         }
         /// <summary>
-        /// 文件操作
+        /// Thao tác tệp
         /// </summary>
         /// <param name="srcPath"></param>
         /// <param name="aimPath"></param>
         /// <param name="newName"></param>
-        /// <param name="type">0 复制  1 移动</param>
+        /// <param name="type">0 Sao chép, 1 Di chuyển</param>
         /// <returns></returns>
         public bool CopyDir(string srcPath, string aimPath, string newName,int type)
         {
             bool flag = false;
-            // 检查目标目录是否以目录分割字符结束如果不是则添加
+            // Kiểm tra thư mục đích có kết thúc bằng ký tự phân tách thư mục hay không, nếu không thì thêm vào
             if (aimPath[aimPath.Length - 1] != Path.DirectorySeparatorChar)
             {
                 aimPath += Path.DirectorySeparatorChar;
@@ -246,7 +246,7 @@ where a.zt=1 and a.OrganizeId=@OrgId
                 newName = Path.GetFileName(srcPath);
             }
 
-            // 判断模板目录是否存在如果不存在则新建
+            // Phán đoán thư mục mẫu có tồn tại hay không, nếu không thì tạo mới
             if (!Directory.Exists(aimPath))
             {
                 Directory.CreateDirectory(aimPath);
@@ -256,7 +256,7 @@ where a.zt=1 and a.OrganizeId=@OrgId
             {
                 File.Delete(aimPath + newName);
             }
-            //文件存在则直接复制
+            //Nếu tệp tồn tại thì sao chép trực tiếp
             if (File.Exists(srcPath) && !(File.Exists(aimPath + newName)))
             {
                 if (type == 0)
@@ -306,7 +306,7 @@ and a.zt='1' and b.zt='1' and c.zt='1'
 
         #endregion
         /// <summary>
-        /// 病历模板列表
+        /// Danh sách mẫu bệnh án
         /// </summary>
         /// <param name="mbqx"></param>
         /// <param name="bllx"></param>
@@ -352,7 +352,7 @@ select id,bllx,mbmc mbmc,bllxId ParentId,mblj Turl,99 px from (select Id, Organi
         }
 
         /// <summary>
-        /// 患者已有模板的病历
+        /// Bệnh án theo mẫu đã có của bệnh nhân
         /// </summary>
         /// <param name="OrgId"></param>
         /// <param name="zyh"></param>

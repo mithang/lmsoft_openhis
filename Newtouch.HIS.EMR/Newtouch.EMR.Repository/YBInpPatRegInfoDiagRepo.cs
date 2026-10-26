@@ -7,16 +7,16 @@ using Newtouch.Infrastructure;
 namespace Newtouch.EMR.Repository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2021-03-01 15:24
-    /// 描 述：入院登记-诊断
+    /// Người tạo: chl
+    /// Ngày: 2021-03-01 15:24
+    /// Mô tả: Đăng ký vào viện - Chẩn đoán
     /// </summary>
     public class YBInpPatRegInfoDiagRepo : RepositoryBase<YBInpPatRegInfoDiagEntity>, IYBInpPatRegInfoDiagRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public YBInpPatRegInfoDiagRepo(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {

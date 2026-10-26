@@ -19,7 +19,7 @@ namespace Newtouch.EMR.DomainServices
         }
 
         /// <summary>
-        /// 已就诊 就诊中 列表( 已就诊： 只能查看自己名下的患者)
+        /// Danh sách đã khám, đang khám (đã khám: chỉ được xem bệnh nhân thuộc tên mình)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -104,7 +104,7 @@ AND jzzt<>" + ((int)EnumJzzt.NotYetTreate).ToString() + @"
 
 
         /// <summary>
-        /// 获取患者病历树
+        /// Lấy cây bệnh án của bệnh nhân
         /// </summary>
         /// <param name="OrgId"></param>
         /// <param name="zyh"></param>

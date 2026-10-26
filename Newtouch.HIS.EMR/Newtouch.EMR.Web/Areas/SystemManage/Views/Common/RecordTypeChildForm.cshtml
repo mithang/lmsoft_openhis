@@ -7,35 +7,35 @@
 <form id="form1">
     <table class="form" style="width:95%;">
         <tr>
-            <th class="formTitle" style="height: 35px;"><span class="required">*</span>病历大类</th>
+            <th class="formTitle" style="height: 35px;"><span class="required">*</span>Loại lớn bệnh án</th>
             <td class="formValue" style="padding-top: 1px;">
                 <select id="ParentId" name="ParentId" class="form-control required"></select>
             </td>
         </tr>
         <tr>
-            <th class="formTitle">排序</th>
+            <th class="formTitle">Sắp xếp</th>
             <td class="formValue">
                 <input id="px" name="px" type="text" class="form-control" />
             </td>
         </tr>
         <tr>
-            <th class="formTitle"><span class="required">*</span>子目录说明</th>
+            <th class="formTitle"><span class="required">*</span>Giải thích thư mục con</th>
             <td class="formValue">
                 <input id="bllxmc" name="bllxmc" type="text" class="form-control required" />
             </td>
         </tr>
         <tr>
-            <th class="formTitle" style="height: 35px;">状态</th>
+            <th class="formTitle" style="height: 35px;">Trạng thái</th>
             <td class="formValue" style="padding-top: 1px;">
                 <div class="ckbox">
-                    <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                    <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Có hiệu lực</label>
                 </div>
             </td>
         </tr>
         <tr>
             <th class="formTitle"></th>`
             <td class="formValue">
-                <input id="btn_submit" name="btn_submit" type="button" value="提交" onclick="submitForm()" class="btn btn-primary" style="width:80px;text-align:center;float:right;" />
+                <input id="btn_submit" name="btn_submit" type="button" value="Gửi" onclick="submitForm()" class="btn btn-primary" style="width:80px;text-align:center;float:right;" />
             </td>
         </tr>
     </table>
@@ -69,7 +69,7 @@
             param: postData,
             success: function (data) {
                 if (data.state == "success") {
-                    $.modalMsg('保存成功', 'success');
+                    $.modalMsg('Lưu thành công', 'success');
                     $.currentWindow().$("#gridList").resetSelection();
                     $.currentWindow().$("#gridList").trigger("reloadGrid");
                 }

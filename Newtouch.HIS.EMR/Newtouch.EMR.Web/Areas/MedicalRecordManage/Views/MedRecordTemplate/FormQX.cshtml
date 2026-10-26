@@ -43,86 +43,86 @@
     <div class="widget-body">
         <div id="wizard" class="wizard" data-target="#wizard-steps" style="border-left: none; border-top: none; border-right: none;">
             <ul class="steps">
-                <li data-target="#step-1" class="active"><span class="step">1</span>模板基本信息<span class="chevron"></span></li>
-                <li data-target="#step-2"><span class="step">2</span>模板控制<span class="chevron"></span></li>
+                <li data-target="#step-1" class="active"><span class="step">1</span>MẫuThông tin cơ bản<span class="chevron"></span></li>
+                <li data-target="#step-2"><span class="step">2</span>Điều khiển mẫu<span class="chevron"></span></li>
             </ul>
         </div>
         <div class="step-content" id="wizard-steps" style="border-left: none; border-bottom: none; border-right: none;">
             <div class="step-pane active" id="step-1" style="margin: 10px; margin-bottom: 0px;">
-                @*<div class="alert alert-danger" style="text-align: left; margin-bottom: 10px;">
+                @**@<div class="alert alert-danger" style="text-align: left; margin-bottom: 10px;">
                     <i class="fa fa-warning alert-dismissible" style="position: relative; top: 1px; font-size: 15px; padding-right: 5px;"></i>
-                    请维护模板相关信息，用于创建或修改病历文书！
+                    Vui lòng bảo trì thông tin liên quan đến mẫu để tạo hoặc sửa văn bản bệnh án!
                     </div>*@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table class="form">
                             <tr>
-                                <td class="formTitle"><span class="required">*</span>模板大类：</td>
+                                <td class="formTitle"><span class="required">*</span>Loại lớn mẫu:</td>
                                 <td class="formValue formDdlSelectorTd">
                                     <select id="bllx" name="bllx" class="form-control required" data-EnumType="EnumBllx">
-                                        <option value="">==请选择==</option>
+                                        <option value="">==Vui lòng chọn==</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle"><span class="required">*</span>模板权限：</th>
+                                <th class="formTitle"><span class="required">*</span>Quyền mẫu:</th>
                                 <td class="formValue formDdlSelectorTd">
                                     <select id="mbqx" name="mbqx" class="form-control required" data-EnumType="Enummbqx"></select>
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle"><span class="required">*</span>模板名称：</th>
+                                <th class="formTitle"><span class="required">*</span>Tên mẫu:</th>
                                 <td class="formValue">
-                                    <input id="mbmc" name="mbmc" type="text" class="form-control required" placeholder="请输入模板名称" />
+                                    <input id="mbmc" name="mbmc" type="text" class="form-control required" placeholder="Vui lòng nhập tên mẫu" />
                                 </td>
                             </tr>
                             <tr>
-                                <td class="formTitle"><span class="required">*</span>模板编码：</td>
+                                <td class="formTitle"><span class="required">*</span>Mã mẫu:</td>
                                 <td class="formValue">
-                                    <input id="mbbm" name="mbbm" type="text" class="form-control required" placeholder="请输入编码" />
+                                    <input id="mbbm" name="mbbm" type="text" class="form-control required" placeholder="Vui lòng nhập mã" />
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle">所属科室：</th>
+                                <th class="formTitle">Khoa thuộc về:</th>
                                 <td class="formValue formDdlSelectorTd">
                                     <select id="ksbm" name="ksbm" class="form-control">
-                                        <option value="">==请选择==</option>
+                                        <option value="">==Vui lòng chọn==</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle">所属医生：</th>
+                                <th class="formTitle">Bác sĩ thuộc về:</th>
                                 <td class="formValue formDdlSelectorTd">
-                                    <input id="ysgh" name="ysgh" type="text" readonly="readonly" class="form-control" placeholder="请输入医生工号" />
+                                    <input id="ysgh" name="ysgh" type="text" readonly="readonly" class="form-control" placeholder="Vui lòng nhập mã nhân viên bác sĩ" />
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle">模板路径：</th>
+                                <th class="formTitle">Đường dẫn mẫu:</th>
                                 <td class="formValue">
-                                    <input id="mblj" name="mblj" type="text" class="form-control required" placeholder="请输入模板路径" />
+                                    <input id="mblj" name="mblj" type="text" class="form-control required" placeholder="Vui lòng nhập đường dẫn mẫu" />
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle">是否为空：</th>
+                                <th class="formTitle">Có trống hay không:</th>
                                 <td class="formValue">
                                     <div class="ckbox">
-                                        <input id="Isempty" name="Isempty" type="checkbox" checked="checked"><label for="Isempty">是</label>
+                                        <input id="Isempty" name="Isempty" type="checkbox" checked="checked"><label for="Isempty">Có</label>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <th class="formTitle" valign="top" style="padding-top: 5px;">
-                                    引用路径：
+                                    Đường dẫn tham chiếu:
                                 </th>
                                 <td class="formValue">
                                     <textarea id="Memo" name="Memo" class="form-control" style="height: 60px;" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             <tr>
-                                <th class="formTitle" style="height: 35px;">状态：</th>
+                                <th class="formTitle" style="height: 35px;">Trạng thái:</th>
                                 <td class="formValue" style="padding-top: 1px;">
                                     <div class="ckbox">
-                                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Có hiệu lực</label>
                                     </div>
                                     <input id="OrganizeId" name="OrganizeId" type="hidden" />
                                 </td>
@@ -135,7 +135,7 @@
             <div class="step-pane" id="step-2">
                 <div class="alert alert-danger" style="text-align: left; margin-bottom: 10px;">
                     <i class="fa fa-warning alert-dismissible" style="position: relative; top: 1px; font-size: 15px; padding-right: 5px;"></i>
-                    若需实施配置权限，请保证启用当前岗位权限控制。
+                    Nếu cần thực hiện cấu hình quyền, vui lòng đảm bảo đã bật kiểm soát quyền vị trí hiện tại.
                 </div>
                 <div style="margin-left:10px">
                     <table id="gridList"></table>
@@ -144,11 +144,11 @@
             </div>
         </div>
         <div class="form-button" id="wizard-actions">
-            <a id="btn_last" disabled class="btn btn-default btn-prev">上一步</a>
-            <a id="btn_next" class="btn btn-default btn-next">下一步</a>
-            <a id="btn_finish" class="btn btn-default" style="display: none;" onclick="submitForm()">完成</a>
+            <a id="btn_last" disabled class="btn btn-default btn-prev">Bước trước</a>
+            <a id="btn_next" class="btn btn-default btn-next">Bước tiếp</a>
+            <a id="btn_finish" class="btn btn-default" style="display: none;" onclick="submitForm()">Hoàn thành</a>
         </div>
-        @*<input id="ck_edit" type="checkbox" checked="checked" onclick="setCheck()" disabled="disabled" />*@
+        @**@<input id="ck_edit" type="checkbox" checked="checked" onclick="setCheck()" disabled="disabled" />*@
     </div>
 </form>
 
@@ -193,12 +193,12 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         //$("#bllx").bindSelect({
         //    url: "/DocumentManage/PatInfo/GetMedRecordType"
         //});
 
-        //组织对应的科室下拉框加载
+        //Tải hộp thả xuống khoa tương ứng với tổ chức
         $("#ksbm").bindSelect({
             url: "/MedicalRecordManage/MedRecordTemplate/GetSysDept"
         });
@@ -262,7 +262,7 @@
     });
 
 
-    //控制关系加载
+    //Điều khiển tải quan hệ
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -270,16 +270,16 @@
             postData: { mbId: keyValue },
             height: $(window).height() - 200,
             colModel: [
-                { label: '关系主键', name: 'Id', hidden: true },
-                { label: '岗位主键', name: 'dutyCode', hidden: true },
-                { label: '岗位名称', name: 'dutyName', width: 160, align: 'center' },
+                { label: 'Khóa chính quan hệ', name: 'Id', hidden: true },
+                { label: 'Khóa chính vị trí', name: 'dutyCode', hidden: true },
+                { label: 'Tên vị trí công tác', name: 'dutyName', width: 160, align: 'center' },
                 {
-                    label: "启用", name: "zt", width: 100, align: "center", formatter: function (cellvalue, options, rowobject) {
+                    label: "Bật", name: "zt", width: 100, align: "center", formatter: function (cellvalue, options, rowobject) {
                         return cellvalue == '1' ? '<i class=\"fa fa-toggle-on\"  onclick="ctrlEnable(' + cellvalue + ',' + options.rowId + ')"></i>' : '<i class=\"fa fa-toggle-off\"  onclick="ctrlEnable(' + cellvalue + ',' + options.rowId + ')"></i>';
                     }
                 },
                 {
-                    label: '只读权限', name: 'ctrlLevel', width: 100, align: 'center',
+                    label: 'Quyền chỉ đọc', name: 'ctrlLevel', width: 100, align: 'center',
                     formatter: function (val, options, rowObject) {
                         if (val == '@((int)EnummbqxFp.read)') {
                             if (rowObject.zt == 0) {
@@ -302,7 +302,7 @@
                     }
                 },
                 {
-                    label: '读写权限', name: 'ctrlLevel', width: 100, align: 'center',
+                    label: 'Quyền đọc/ghi', name: 'ctrlLevel', width: 100, align: 'center',
                     formatter: function (val, options, rowObject) {
                         if (val == '@((int)EnummbqxFp.edit)') {
                             if (rowObject.zt == 1) {
@@ -323,7 +323,7 @@
                     }
                 },
                 {
-                    label: '康复启用', name: 'kfEnable', width: 100, align: 'center',
+                    label: 'Bật phục hồi chức năng', name: 'kfEnable', width: 100, align: 'center',
                     formatter: function (val, options, rowObject) {
                         if (val == '@((int)EnummbqxFp.edit)') {
                             if (rowObject.zt == 1) {
@@ -343,10 +343,10 @@
                         }
                     }
                 }
-                //{ label: '创建人', name: 'CreatorCode', width: 100, align: 'left' },
-                //{ label: '创建时间', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                //{ label: '最后修改', name: 'LastModifierCode', width: 100, align: 'left' },
-                //{ label: '最后修改时间', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                //{ label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
+                //{ label: 'Thời gian tạo', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                //{ label: 'Sửa đổi lần cuối', name: 'LastModifierCode', width: 100, align: 'left' },
+                //{ label: 'Thời gian sửa đổi lần cuối', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
             ],
             viewrecords: true
         });
@@ -354,7 +354,7 @@
 
     function ctrlEnable(val, rowId) {
         //debugger
-        //启用则可选
+        //Nếu bật thì có thể chọn
         if (val == 1) {
             $("#gridList").find("input[name='ck_read_" + rowId + "']").attr("disabled", true);
             $("#gridList").find("input[name='ck_edit_" + rowId + "']").attr("disabled", true);
@@ -366,7 +366,7 @@
             $("#gridList").jqGrid('setCell', rowId, "zt", 1);
         }
     }
-    //setval 目的值
+    //Giá trị mục đích setval
     function setCheckRead(rowId) {
         var checked = $("#gridList").find("input[name='ck_read_" + rowId + "']").is(':checked');
         if (checked)//选中当前
@@ -391,7 +391,7 @@
         }
 
         if ($('#mbqx').val() == '@((int)Enummbqx.dept)' && $('#ksbm').val() == "") {
-            $.modalMsg('请选择科室', 'error');
+            $.modalMsg('Vui lòng chọn khoa', 'error');
             return false;
         }
 
@@ -401,8 +401,8 @@
             param: postData,
             success: function (data) {
                 if (data.state == "success") {
-                    AcceptClick(); //保存权限
-                    $.modalMsg('保存成功', 'success');
+                    AcceptClick(); //Lưu quyền
+                    $.modalMsg('Lưu thành công', 'success');
                 }
                 else {
                     $.modalMsg(data.message, 'error');

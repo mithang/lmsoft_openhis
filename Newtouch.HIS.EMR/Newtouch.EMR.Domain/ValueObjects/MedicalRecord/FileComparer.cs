@@ -14,7 +14,7 @@ namespace Newtouch.EMR.Domain.ValueObjects.MedicalRecord
         {
             //FileInfo fi1 = o1 as FileInfo;
             //FileInfo fi2 = o2 as FileInfo;
-            return y.LastWriteTime.CompareTo(x.LastWriteTime);//递减
+            return y.LastWriteTime.CompareTo(x.LastWriteTime);//Giảm dần
         }
     }
 }

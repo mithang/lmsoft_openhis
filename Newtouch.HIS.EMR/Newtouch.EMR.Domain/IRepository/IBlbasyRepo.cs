@@ -6,23 +6,23 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.EMR.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：hyj
-    /// 日 期：2018-09-19 19:07
-    /// 描 述：病案首页
+    /// Người tạo: hyj
+    /// Ngày: 2018-09-19 19:07
+    /// Mô tả: Trang đầu hồ sơ bệnh án
     /// </summary>
     public interface IBlbasyRepo : IRepositoryBase<BlbasyEntity>
     {
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu (thêm mới, sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void SubmitForm(BlbasyEntity entity, string keyValue);
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void DeleteForm(string keyValue);
         BlbasyEntity bl_basyGetByID(string ID);
 

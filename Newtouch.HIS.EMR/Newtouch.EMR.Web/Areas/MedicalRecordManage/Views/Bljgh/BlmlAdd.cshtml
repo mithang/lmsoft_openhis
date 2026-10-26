@@ -8,27 +8,27 @@
     <input id="Bllx" name="ElementId" class="form-control" type="hidden" />
     <table class="form" style="width:95%;">
         <tr>
-            <th class="formTitle"><span class="tipSpan">*</span>表名(English)：</th>
+            <th class="formTitle"><span class="tipSpan">*</span>Tên bảng(English)：</th>
             <td class="formValue">
                 <input id="Table_EngLish_Name" name="Table_EngLish_Name" type="text" class="form-control required" />
             </td>
 
         </tr>
         <tr>
-            <th class="formTitle"><span class="tipSpan">*</span>表名称：</th>
+            <th class="formTitle"><span class="tipSpan">*</span>Tên bảng:</th>
             <td class="formValue">
                 <input id="Table_Name" name="Table_EngLish_Name" type="text" class="form-control required" />
             </td>
         </tr>
         <tr>
-            <th class="formTitle"><span class="tipSpan">*</span>正则匹配：</th>
+            <th class="formTitle"><span class="tipSpan">*</span>Khớp biểu thức chính quy:</th>
             <td class="formValue">
                 <input id="Regex" name="Regex" type="text" class="form-control required" />
             </td>
 
         </tr>
         <tr>
-            <th class="formTitle">排序：</th>
+            <th class="formTitle">Sắp xếp:</th>
             <td class="formValue">
                 <input id="Px" name="Px" type="text" class="form-control" />
             </td>
@@ -69,7 +69,7 @@
             param: postData,
             success: function (data) {
                 if (data.state == "success") {
-                    $.modalMsg('保存成功', 'success');
+                    $.modalMsg('Lưu thành công', 'success');
                     debugger;
                     // $.currentWindow().$("#YsTree").trigger("reload()");
                     callbak();

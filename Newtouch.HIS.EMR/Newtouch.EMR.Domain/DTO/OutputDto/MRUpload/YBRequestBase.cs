@@ -19,31 +19,31 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
     public class YBRequest<T>
     {
         /// <summary>
-        /// 交易代码
+        /// Mã giao dịch
         /// </summary>
         public string MSGNO { get; set; }
         /// <summary>
-        /// 定点医疗机构编码
+        /// Mã cơ sở y tế chỉ định
         /// </summary>
         public string AKB020 { get; set; }
         /// <summary>
-        /// 操作员编号
+        /// Mã nhân viên thao tác
         /// </summary>
         public string OPERID { get; set; }
         /// <summary>
-        /// 操作员姓名
+        /// Họ tên nhân viên thao tác
         /// </summary>
         public string OPERNAME { get; set; }
         /// <summary>
-        /// 业务周期号 操作员签到时，中心返回给 his 的业务周期号
+        /// Số chu kỳ nghiệp vụ: khi nhân viên thao tác đăng nhập, trung tâm trả về cho his số chu kỳ nghiệp vụ
         /// </summary>
         public string PERIODNO { get; set; }
         /// <summary>
-        /// 发送方交易流水号 由 HIS 填入，采用定点医疗机构编码+时间 yyyymmddhh24miss+序 列
+        /// Số thứ tự giao dịch của bên gửi do HIS điền, dùng mã cơ sở y tế chỉ định + thời gian yyyymmddhh24miss + số thứ tự
         /// </summary>
         public string MSGID { get; set; }
         /// <summary>
-        /// 东软提供(暂时为空)
+        /// Do Đông Nhuyễn cung cấp (tạm thời để trống)
         /// </summary>
         public string GRANTID { get; set; }
     }

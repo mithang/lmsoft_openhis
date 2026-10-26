@@ -4,9 +4,9 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.EMR.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2020-03-13 11:29
-    /// 描 述：病案首页-手术记录
+    /// Người tạo: chl
+    /// Ngày: 2020-03-13 11:29
+    /// Mô tả: Trang đầu hồ sơ bệnh án - Ghi chép phẫu thuật
     /// </summary>
     public interface IMrbasyssRepo : IRepositoryBase<MrbasyssEntity>
     {

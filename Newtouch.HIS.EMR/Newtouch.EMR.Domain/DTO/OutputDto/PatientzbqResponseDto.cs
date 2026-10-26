@@ -4,7 +4,7 @@
 namespace Newtouch.EMR.Domain.DTO
 {
     /// <summary>
-    /// 住院患者一览 在病区的病人返回对象集合
+    /// Danh sách bệnh nhân nội trú - tập hợp đối tượng trả về của bệnh nhân đang ở khu bệnh
     /// </summary>
     public class PatientzbqResponseDto
     {
@@ -25,7 +25,7 @@ namespace Newtouch.EMR.Domain.DTO
         public string gms { get; set; }
     }
     /// <summary>
-    /// 住院患者一览 已出区的病人返回对象集合
+    /// Danh sách bệnh nhân nội trú - tập hợp đối tượng trả về của bệnh nhân đã ra khu
     /// </summary>
     public class PatientycqResponseDto
     {
@@ -50,15 +50,15 @@ namespace Newtouch.EMR.Domain.DTO
         public int zybz { get; set; }
         public string blh { get; set; }
         /// <summary>
-        /// 文档状态
+        /// Trạng thái tài liệu
         /// </summary>
         public string RecordStu { get; set; }
         /// <summary>
-        /// 提交时间
+        /// Thời gian gửi
         /// </summary>
         public DateTime? CommitTime { get; set; }
         /// <summary>
-        /// 提交人
+        /// Người gửi
         /// </summary>
         public string Commitor { get; set; }
     }

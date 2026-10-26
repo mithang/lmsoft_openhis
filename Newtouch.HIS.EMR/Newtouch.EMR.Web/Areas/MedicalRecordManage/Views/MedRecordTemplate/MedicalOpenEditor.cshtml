@@ -28,17 +28,17 @@
             <table>
                 <tr>
                     <td>
-                        <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+                        <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
                     </td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" style="width:45px;height:17px;" id="mbqx" onchange="mbqxquery()">
-                            <option value="0" selected="selected">通用</option>
-                            <option value="1">个人</option>
-                            <option value="2">科室</option>
+                            <option value="0" selected="selected">Dùng chung</option>
+                            <option value="1">Cá nhân</option>
+                            <option value="2">Khoa</option>
                         </select>
                     </td>
                     <td class="formValue">
-                        <input id="txt_keyword" type="text" class="form-control" onblur="mbqxquery()" onkeypress="leftkeypress()" placeholder="模板名称" style="width:80px;height:17px;">
+                        <input id="txt_keyword" type="text" class="form-control" onblur="mbqxquery()" onkeypress="leftkeypress()" placeholder="Tên mẫu" style="width:80px;height:17px;">
                     </td>
                 </tr>
             </table>
@@ -47,20 +47,20 @@
     <div id="dv_Medlist" class="gridPanel" style="height:100%;overflow-y: hidden;" frameborder="0" scrolling="auto">
         <table id="gridList"></table>
     </div>
-    @*<iframe id="mainIframeleft" style="height:100%;" name="mainIframe" src="/MedicalRecordManage/MedRecordTemplate/LeftMedicalTemplate" frameborder="0" scrolling="auto"></iframe>*@
+    @**@<iframe id="mainIframeleft" style="height:100%;" name="mainIframe" src="/MedicalRecordManage/MedRecordTemplate/LeftMedicalTemplate" frameborder="0" scrolling="auto"></iframe>*@
 
 </div>
 <div class="design-template-wrapper" id="editorContainer">
 
 </div>
 <div style="width:13%;height:800px;float:right; overflow: hidden;border-radius: 4px;background: white;">
-    @*<iframe id="mainIframeright" style="height:100%;" name="mainIframe" src="/MedicalRecordManage/MedRecordTemplate/RightMedicalTemplate" frameborder="0" scrolling="auto" overflow: hidden;"></iframe>*@
+    @**@<iframe id="mainIframeright" style="height:100%;" name="mainIframe" src="/MedicalRecordManage/MedRecordTemplate/RightMedicalTemplate" frameborder="0" scrolling="auto" overflow: hidden;"></iframe>*@
     <div class="topPanel">
         <div class="search">
             <table>
                 <tr>
                     <td class="formValue">
-                        <input id="txt_yskeyword" type="text" class="form-control" onblur="yssx()" onkeypress="rightkeypress()" placeholder="元素名称" style="width:100%;height:17px;">
+                        <input id="txt_yskeyword" type="text" class="form-control" onblur="yssx()" onkeypress="rightkeypress()" placeholder="Tên phần tử" style="width:100%;height:17px;">
                     </td>
                 </tr>
             </table>
@@ -73,13 +73,13 @@
 
 <script>
     var editorInstance;
-    var mburl = "";//"\\File\\Template\\出院病历\\测试出院病历模板1.xml";
-    //******************left侧病历模板 BEGIN**************//
+    var mburl = "";//"\\File\\Template\\Ra việnBệnh án\\测试Ra việnMẫu bệnh án1.xml";
+    //******************Bên trái mẫu bệnh án BEGIN**************//
     $(function () {
         gridList();
         gridListYs();
     })
-    //模板类型查询
+    //Loại mẫuTra cứu
     function mbqxquery() {
         mbmxquery();
     }
@@ -88,13 +88,13 @@
         if (event.keyCode == 13)
             mbmxquery();
     }
-    //模板类型
+    //Loại mẫu
     function mbmxquery() {
         $("#gridList").jqGrid('setGridParam', {
             postData: { keyValue: $("#txt_keyword").val(), mbqx: $("#mbqx").val() },
         }).trigger('reloadGrid');
     }
-    //模板列表
+    //Danh sách mẫu
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -106,14 +106,14 @@
             height: $(window).height() - 100,
             width: $(window).width() - 20,
             colModel: [
-                { label: "病历模板Id", name: "Id", key: true, hidden: true },
+                { label: "Mẫu bệnh ánId", name: "Id", key: true, hidden: true },
                 { label: "Turl", name: "Turl", hidden: true },
-                { label: "病历模板", name: "mbmc", width: 30 },
+                { label: "Mẫu bệnh án", name: "mbmc", width: 30 },
             ],
             onSelectRow: function (rowid, status) {
                 if (status == true) {
                     var rowData = $("#gridList").jqGrid('getRowData', rowid);
-                    if (rowData.isLeaf == false || rowData.isLeaf == "false") {//禁用条件
+                    if (rowData.isLeaf == false || rowData.isLeaf == "false") {//Điều kiện vô hiệu hóa
                     } else {
                         var param = { 'mbmc': rowData.mbmc, 'Turl': rowData.Turl, 'Id': rowData.Id };
                         mburl = rowData.Turl.replace(/\\/g, "\\");
@@ -123,21 +123,21 @@
             },
             onRightClickRow: function (rowid, irow, icol, e) {
                 var rowData = $("#gridList").jqGrid('getRowData', rowid);
-                if (rowData.isLeaf == false || rowData.isLeaf == "false") {//禁用条件
+                if (rowData.isLeaf == false || rowData.isLeaf == "false") {//Điều kiện vô hiệu hóa
                 } else {
                     initrightMenu(rowData);
                 }
             }
         });
     }
-    //文书模板右键菜单
+    //Menu chuột phải mẫu văn bản
     function initrightMenu(rowData) {
         var p = '.gridPanel tr[id=' + rowData.Id + ']';
         var menu = new BootstrapMenu(p, {
-            //fetchElementData获取元数据
+            //fetchElementDataLấy metadata
             fetchElementData: function ($rowElem) {
                 var data = rowData;
-                return data;    //return的目的是给下面的onClick传递参数
+                return data;    //Mục đích của return là truyền tham số cho onClick bên dưới
             },
             actions: [{
                 name: '<span class="glyphicon glyphicon-remove" style="color: rgb(28, 179, 173); font-size: 13px;"></span> 删除模板',
@@ -148,7 +148,7 @@
                         param: { keyValue: rowData.Id },
                         success: function (data) {
                             if (data.state == "success") {
-                                $.modalAlert('删除成功', 'success');
+                                $.modalAlert('Xóa thành công', 'success');
                             }
                             else {
                                 $.modalAlert(data.message, 'error');
@@ -161,7 +161,7 @@
             ]
         });
     }
-    //新建模板操作
+    //Tạo mớiMẫuThao tác
     function btn_add() {
         $.modalOpen({
             id: "Form",
@@ -175,7 +175,7 @@
             }
         });
     }
-    //保存病历模板
+    //LưuMẫu bệnh án
     function saveBaseTemplateHtml(params) {
         $.ajax({
             type: "POST",
@@ -185,19 +185,19 @@
             async: false,
             success: function (respdata) {
                 if (respdata.state == "error")
-                    $.modalAlert("病历模板保存失败:" + respdata.message,'error');
+                    $.modalAlert("Lưu mẫu bệnh án thất bại:" + respdata.message,'error');
                 else
-                    $.modalAlert("病历模板保存成功", 'success');
+                    $.modalAlert("Lưu mẫu bệnh án thành công", 'success');
             },
             error: function (request, error, ex) {
-                $.modalAlert('保存失败:' + ex, 'error');
+                $.modalAlert('Lưu thất bại:' + ex, 'error');
             }
         });
     }
 
-    //******************left侧病历模板  END **************//
+    //******************Bên trái mẫu bệnh án  END **************//
 
-    //******************right右侧元素list Begin***********//
+    //******************Danh sách phần tử bên phải Begin***********//
     function rightkeypress() {
         if (event.keyCode == 13)
             yssx();
@@ -224,8 +224,8 @@
                 { label: "BindingPath", name: "BindingPath", hidden: true },
                 { label: "TypeName", name: "TypeName", hidden: true },
                 { label: "yslx", name: "yslx", hidden: true },
-                { label: "元素控件", name: "ysmc" },
-                { label: "元素code", name: "yscode", hidden: true },
+                { label: "Điều khiển phần tử", name: "ysmc" },
+                { label: "Phần tửcode", name: "yscode", hidden: true },
             ],
             onSelectRow: function (rowid, status) {
                 if (status == true) {
@@ -253,9 +253,9 @@
 
         });
     }
-    //******************right右侧元素list END**********//
+    //******************Danh sách phần tử bên phải END**********//
 
-    // 创建编辑器
+    // Tạo trình soạn thảo
     HMEditorLoader.createEditorAsync({
         container: "#editorContainer",
         style: {
@@ -264,25 +264,25 @@
             border: '1px solid #ddd'
         },
         editorConfig: {
-            // 编辑器配置项
+            // Mục cấu hình trình soạn thảo
         },
-        // 模式设置
-        designMode: true,  // 是否启用设计模式
+        // Cài đặt chế độ
+        designMode: true,  // Có bật chế độ thiết kế hay không
         allowModifyDatasource: true,
-        reviseMode: false,  // 是否启用修订模式
-        readOnly: false,     // 是否启用只读模式
-        customParams: {     // 自定义参数
+        reviseMode: false,  // Có bật chế độ sửa đổi hay không
+        readOnly: false,     // Có bật chế độ chỉ đọc hay không
+        customParams: {     // Tham số tùy chỉnh
 
         }
     })
      .then(function (result) {
-         // 编辑器初始化完成
+         // Khởi tạo trình soạn thảo hoàn thành
          editorInstance = result;
          editorInstance.onToolbarCommandComplete = function (command, type, data) {
              debugger;
-             // 根据命令类型执行不同操作
+             // Thực hiện thao tác khác nhau theo loại lệnh
              if (command === 'save') {
-                 //alert('保存命令执行完成');
+                 //alert('Thực thi lệnh lưu đã hoàn thành');
                  let obj = editorInstance.getDocHtml();
                  if (obj && obj.length > 0) {
                      const base64str = htmlToBase64(obj[0]['html']);
@@ -290,20 +290,20 @@
                  }
              }
          };
-         // 设置默认内容
-         //editorInstance.editor.setData(`<p style='height:300px;position:relative;'>开始制作模板内容</p>`);
+         // Đặt nội dung mặc định
+         //editorInstance.editor.setData(`<p style='height:300px;position:relative;'>Bắt đầu tạo nội dung mẫu</p>`);
      })
      .catch(function (error) {
          console.error("编辑器初始化失败:", error);
      });
 
     function htmlToBase64(htmlString) {
-        // 对于现代浏览器
+        // Đối với trình duyệt hiện đại
         return btoa(unescape(encodeURIComponent(htmlString)));
     }
 
     //var doc = {
-    //    "doc_type": "入院记录",
+    //    "doc_type": "Ghi chép vào viện",
     //    "datasource": [
     //      {
     //          "code": "DE08.10.052.001",
@@ -311,11 +311,11 @@
     //      },
     //      {
     //          "code": "DE02.01.040.00",
-    //          "name": "性别",
+    //          "name": "Giới tính",
     //      }
     //    ]
     //};
-    //加载文书模板
+    //Tải mẫu văn bản
     function LoadMedTemplate(param)
     {
         $.ajax({
@@ -335,7 +335,7 @@
                 //editorInstance.setTemplateDatasource(doc);
             },
             error: function (request, error, ex) {
-                $.modalAlert('病历加载失败:' + ex, 'error');
+                $.modalAlert('Tải bệnh án thất bại:' + ex, 'error');
             }
         });
     }
@@ -354,31 +354,31 @@
             var datasource = {
                 name: param.ysdata.ysmc,
                 code: param.ysdata.yscode,
-                nodeName: '纯文本',         // 节点类型
-                autoLable: false            // 是否自动添加数据元标题
+                nodeName: '纯文本',         // Loại nút
+                autoLable: false            // Có tự động thêm tiêu đề phần tử dữ liệu hay không
             };
             switch (param.ysdata.yslx) {
-                case '1'://下拉
+                case '1'://Thả xuống
                     datasource.nodeName = '下拉';
                     datasource.dictList = param.mxlist;
                     break;
-                case '2'://下拉多选
+                case '2'://Thả xuống chọn nhiều
                     datasource.nodeName = '下拉多选';
                     datasource.dictList = param.mxlist;
                     break;
                 case '3':
                 case '4':
-                case '5'://日期
+                case '5'://Ngày
                     datasource.nodeName = '时间';
                     break;
-                case '6'://数值
+                case '6'://Giá trị số
                     datasource.nodeName = '数字文本';
                     break;
-                case '7'://数值
+                case '7'://Giá trị số
                     datasource.dictList = param.mxlist;
                     datasource.nodeName = '单选';
                     break;
-                case '8'://数值
+                case '8'://Giá trị số
                     datasource.dictList = param.mxlist;
                     datasource.nodeName = '多选';
                     break;

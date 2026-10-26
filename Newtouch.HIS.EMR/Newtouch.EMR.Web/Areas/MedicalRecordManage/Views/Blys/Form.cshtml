@@ -14,11 +14,11 @@
         <div class="panel-body" style="padding-top: 20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">上级元素：</th>
+                    <th class="formTitle">Phần tử cấp trên:</th>
                     <td class="formValue">
 
                         <select id="yssjid" name="yssjid" class="form-control">
-                            @*<option value="29D0F655-CE99-4101-8C2F-6AA19A8AAE6C" selected>病人基本信息</option>*@
+                            @**@<option value="29D0F655-CE99-4101-8C2F-6AA19A8AAE6C" selected>Thông tin cơ bản của bệnh nhân</option>*@
                         </select>
                     </td>
                     <th class="formTitle"></th>
@@ -26,7 +26,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="tipSpan">*</span>元素名称：</th>
+                    <th class="formTitle"><span class="tipSpan">*</span>Tên phần tử:</th>
                     <td class="formValue">
                         <input id="ysmc" name="ysmc" type="text" class="form-control required" />
                     </td>
@@ -36,66 +36,66 @@
                 </tr>
 
                 <tr>
-                    <th class="formTitle"><span class="tipSpan">*</span>背景文字：</th>
+                    <th class="formTitle"><span class="tipSpan">*</span>Văn bản nền:</th>
                     <td class="formValue">
                         <input id="BackgroundText" name="BackgroundText" type="text" class="form-control required" />
                     </td>
-                    <th class="formTitle">备注：</th>
+                    <th class="formTitle">Ghi chú:</th>
                     <td class="formValue">
                         <input id="Description" name="Description" type="text" class="form-control" />
                     </td>
                 </tr>
 
                 <tr>
-                    <th class="formTitle"><span class="tipSpan">*</span>数据源：</th>
+                    <th class="formTitle"><span class="tipSpan">*</span>Nguồn dữ liệu:</th>
                     <td class="formValue">
                         <input id="DataSource" name="DataSource" type="text" class="form-control required" />
                     </td>
-                    <th class="formTitle"><span class="tipSpan">*</span>元素标识：</th>
+                    <th class="formTitle"><span class="tipSpan">*</span>Định danh phần tử:</th>
                     <td class="formValue">
                         <input id="yscode" name="yscode" type="text" class="form-control required" />
                     </td>
                 </tr>
 
                 <tr>
-                    <th class="formTitle"><span class="tipSpan">*</span>是否自动更新：</th>
+                    <th class="formTitle"><span class="tipSpan">*</span>Có tự động cập nhật hay không:</th>
                     <td class="formValue">
                         <select id="AutoUpdate" name="AutoUpdate" class="form-control required">
-                            <option value="true" selected>是</option>
-                            <option value="false">否</option>
+                            <option value="true" selected>Có</option>
+                            <option value="false">Không</option>
                         </select>
-                        @*<input id="AutoUpdate" name="AutoUpdate" type="text" class="form-control required" />*@
+                        @**@<input id="AutoUpdate" name="AutoUpdate" type="text" class="form-control required" />*@
                     </td>
-                    <th class="formTitle"><span class="tipSpan">*</span>是否只读：</th>
+                    <th class="formTitle"><span class="tipSpan">*</span>Có chỉ đọc hay không:</th>
                     <td class="formValue">
                         <select id="Readonly" name="Readonly" class="form-control required">
-                            <option value="true" selected>是</option>
-                            <option value="false">否</option>
+                            <option value="true" selected>Có</option>
+                            <option value="false">Không</option>
                         </select>
-                        @*<input id="Readonly" name="Readonly" type="text" class="form-control required" />*@
+                        @**@<input id="Readonly" name="Readonly" type="text" class="form-control required" />*@
                     </td>
                 </tr>
 
 
 
-                @*<tr>
-                    <th class="formTitle"><span class="tipSpan">*</span>是否下拉：</th>
+                @**@<tr>
+                    <th class="formTitle"><span class="tipSpan">*</span>Có thả xuống hay không:</th>
                     <td class="formValue">
                         <input id="ListSource" name="ListSource" type="text" class="form-control required" value="0" />
                     </td>
-                    <th class="formTitle">元素值：</th>
+                    <th class="formTitle">Giá trị phần tử:</th>
                     <td class="formValue">
                         <input id="Value" name="Value" type="text" class="form-control" />
                     </td>
                 </tr>*@
                 <tr>
-                    <th class="formTitle">允许编辑：</th>
+                    <th class="formTitle">Cho phép sửa:</th>
                     <td class="formValue">
                         <select id="UserEditable" name="UserEditable" class="form-control">
-                            <option value="true" selected>是</option>
-                            <option value="false">否</option>
+                            <option value="true" selected>Có</option>
+                            <option value="false">Không</option>
                         </select>
-                        @*<input id="UserEditable" name="UserEditable" type="text" class="form-control" />*@
+                        @**@<input id="UserEditable" name="UserEditable" type="text" class="form-control" />*@
                     </td>
                     <th class="formTitle">EditStyle：</th>
                     <td class="formValue">
@@ -108,32 +108,32 @@
                     <td class="formValue">
                         <input id="Style" name="Style" type="text" class="form-control" />
                     </td>
-                    <th class="formTitle">路径：</th>
+                    <th class="formTitle">Đường dẫn:</th>
                     <td class="formValue">
                         <input id="BindingPath" name="BindingPath" type="text" class="form-control" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="tipSpan">*</span>元素类型：</th>
+                    <th class="formTitle"><span class="tipSpan">*</span>Loại phần tử:</th>
                     <td class="formValue">
                         <select id="TypeName" name="TypeName" class="form-control required">
-                            <option value="System.String" selected>字符串（String）</option>
-                            <option value="System.Text">文本（text）</option>
-                            @*<option value="System.Boolean">布尔</option>*@
-                            <option value="System.Numeric">数字</option>
-                            <option value="System.DateTime" >时间</option>
-                            @*<option value="System.Date" >日期</option>*@
+                            <option value="System.String" selected>Chuỗi (String)</option>
+                            <option value="System.Text">Văn bản (text)</option>
+                            @**@<option value="System.Boolean">Boolean</option>*@
+                            <option value="System.Numeric">Số</option>
+                            <option value="System.DateTime" >Thời gian</option>
+                            @**@<option value="System.Date" >Ngày</option>*@
                         </select>
-                        @*<input id="TypeName" name="TypeName" type="text" class="form-control required"  />*@
+                        @**@<input id="TypeName" name="TypeName" type="text" class="form-control required"  />*@
                     </td>
-                    <th class="formTitle">格式：</th>
+                    <th class="formTitle">Định dạng:</th>
                     <td class="formValue">
                         <input id="Format" name="Format" type="text" class="form-control" />
                     </td>
                 </tr>
             </table>
             <div class="btn-group" style="float:right;margin-top:50px">
-                <a class="btn btn-primary" onclick="btn_edit()" id="tijiao">新增</a>
+                <a class="btn btn-primary" onclick="btn_edit()" id="tijiao">Thêm mới</a>
             </div>
         </div>
         </div>

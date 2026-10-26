@@ -82,7 +82,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 读取病历模板
+        /// Đọc mẫu bệnh án
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="blId"></param>
@@ -90,7 +90,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <returns></returns>
         public ActionResult GetFormJson(string keyValue, string blId,string bllx)
         {
-            if (!string.IsNullOrWhiteSpace(blId)) //保存个人模板
+            if (!string.IsNullOrWhiteSpace(blId)) //Lưu mẫu cá nhân
             {
                 var mod = _BlmblbDmnService.BlConvertToTemplate(OrganizeId, blId, bllx, 1);
                 var bllxDic = _CommonDmnService.GetBllxListDetail(OrganizeId, bllx).FirstOrDefault();
@@ -117,11 +117,11 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             }
         }
         /// <summary>
-        /// 修改/新增模板
+        /// Sửa/thêm mới mẫu
         /// </summary>
         /// <param name="blmb"></param>
         /// <param name="keyValue"></param>
-        /// <param name="mbly">模板来源</param>
+        /// <param name="mbly">Nguồn mẫu</param>
         /// <returns></returns>
         public ActionResult submitForm(BlmblbEntity blmb,string keyValue,int? mbly)
         {
@@ -153,9 +153,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
             _BlmblbRepo.SubmitForm(blmb, keyValue);
 
-            if (mbly != null && mbly == 0)  //病历转模板标志，文件迁移操作
+            if (mbly != null && mbly == 0)  //Cờ chuyển bệnh án thành mẫu, thao tác di chuyển tệp
             {
-                //文件迁移
+                //Di chuyển tệp
                 if (!string.IsNullOrWhiteSpace(blmb.Memo))
                 {
                     blmb.mblj = Server.MapPath(blmb.mblj);
@@ -172,7 +172,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             ety.zt = "0";
             _BlmblbRepo.SubmitForm(ety, keyValue);
             return Success();
-            ////文件迁移
+            ////Di chuyển tệp
             //var delpath = Server.MapPath(ConfigurationHelper.GetAppConfigValue("BlTemplateDelPath"));
             //var cutpath = Server.MapPath(ety.mblj);
             //var flag = _BlmblbDmnService.CopyDir(cutpath, delpath, "",1);
@@ -181,7 +181,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             //    return Success();
             //}
             //else
-            //    return Error("删除模板异常，请联系管理员");
+            // return Error("Xóa mẫu bất thường, vui lòng liên hệ quản trị viên");
         }
 
         public ActionResult GetSysDept()
@@ -221,7 +221,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             OperatorModel user = this.UserIdentity;
            // submitForm(mbInfo, mbId, mbly);
 
-            //新增时根据编码获取mbId 
+            //Khi thêm mới, lấy mbId theo mã 
             if (string.IsNullOrWhiteSpace(mbId))
             {
                 mbId = _BlmblbRepo.FindEntity(p => p.mbbm == mbbm && p.OrganizeId == OrganizeId && p.zt == "1").Id;
@@ -236,10 +236,10 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         public ActionResult TemplateEdit()
         {
-            //根据id获取模板
-            //如果找不到加载的xml就默认为空白的xml
+            //Lấy mẫu theo id
+            //Nếu không tìm thấy xml đã tải thì mặc định dùng xml trống
             string currentFileName = Server.MapPath(BlTemplatePath + "newFile.xml");
-            // 加载文件
+            // Tải tệp
             WebWriterControlEngine eng = GetControlEngine();
             if (this.Request.HttpMethod != "GET")
             {
@@ -247,8 +247,8 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 bool loaded = false;
                 if (sd == "保存文档" && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
                 {
-                    // 用户点击了“保存文档”按钮，
-                    // 则试图从WEB请求中加载文档然后保存
+                    // Người dùng đã nhấn nút “Lưu tài liệu”, 
+                    // thì cố gắng tải tài liệu từ yêu cầu WEB rồi lưu lại
                     loaded = eng.LoadDocumentFromRequestFormData();
                     if (loaded)
                     {
@@ -269,56 +269,56 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         private WebWriterControlEngine GetControlEngine()
         {
             WebWriterControlEngine engine = new WebWriterControlEngine();
-            //编辑器ID
+            //ID trình soạn thảo
             engine.Options.ClientID = "myWriterControl";
-            //违禁关键字
+            //Từ khóa bị cấm
             engine.Options.ExcludeKeywords = "月经,子宫,卵巢";
-            // 是否显示输入域状态标签
+            // Có hiển thị nhãn trạng thái của vùng nhập hay không
             engine.DocumentOptions.ViewOptions.ShowInputFieldStateTag = true;
-            // 文本输入域数据异常时的高亮度文本色            engine.DocumentOptions.ViewOptions.FieldInvalidateValueBackColor = Color.Yellow;
-            // 用Tab键在各个输入域之间切换
+            // Màu văn bản nổi bật khi dữ liệu vùng nhập văn bản bất thường            engine.DocumentOptions.ViewOptions.FieldInvalidateValueBackColor = Color.Yellow;
+            // Dùng phím Tab để chuyển giữa các vùng nhập
             engine.DocumentOptions.BehaviorOptions.MoveFocusHotKey = MoveFocusHotKeys.Tab;
-            //表单视图模式 Strict:严格视图模式
+            //Chế độ xem biểu mẫu Strict: Chế độ xem nghiêm ngặt
             engine.ControlOptions.FormView = FormViewMode.Strict;
-            //显示段落标记
+            //Hiển thị dấu đoạn văn
             engine.DocumentOptions.ViewOptions.ShowParagraphFlag = false;
-            //是否显示输入域状态标签
+            //Có hiển thị nhãn trạng thái của vùng nhập hay không
             engine.DocumentOptions.ViewOptions.ShowInputFieldStateTag = true;
-            //是否允许视图加密显示
+            //Có cho phép hiển thị mã hóa ở chế độ xem hay không
             engine.DocumentOptions.ViewOptions.EnableEncryptView = true;
 
-            //输入域背景文字的输出模式 Underline：输出下划线
+            //Chế độ xuất văn bản nền của vùng nhập Underline: Xuất gạch dưới
             engine.Options.BackgroundTextOutputMode = DCBackgroundTextOutputMode.Underline;
-            //内容呈现模式 NormalHtmlEditable：以普通的HTML模式显示可编辑的文档
+            //Chế độ trình bày nội dung NormalHtmlEditable: Hiển thị tài liệu có thể chỉnh sửa theo chế độ HTML thông thường
             engine.Options.ContentRenderMode = WebWriterControlRenderMode.NormalHtmlEditable;
-            //引用路径
+            //Đường dẫn tham chiếu
             engine.Options.ServicePageURL = this.Url.Action("HandelDCWriterServicePage");
-            //工作区域背景色
+            //Màu nền khu vực làm việc
             engine.Options.WorkspaceBackColorString = "#B1CAEB";
-            //工作区域背景图片
+            //Hình nền khu vực làm việc
             engine.Options.WorkspaceBackgroundImage = "Workspace-Background.jpg";
-            //边框样式
+            //Kiểu đường viền
             engine.BorderStyle = "1px solid black";
             return engine;
         }
-        //设置编辑器的引用路径
+        //Đặt đường dẫn tham chiếu của trình soạn thảo
         public ActionResult HandelDCWriterServicePage()
         {
             return new DCWriterActionResult();
         }
 
-        //处理操作结果生成一个带文档内容的编辑器
+        //Xử lý kết quả thao tác để tạo một trình soạn thảo có nội dung tài liệu
         private class DCWriterActionResult : ActionResult
         {
             public override void ExecuteResult(ControllerContext context)
             {
-                //在web中显示文档内容的WEB控件
+                //Điều khiển WEB hiển thị nội dung tài liệu trên web
                 DCSoft.Writer.Controls.WebWriterControl.HandleService();
             }
         }
         public void IsExistDir(string path)
         {
-            if (Directory.Exists(Server.MapPath(path)) == false)//如果不存在就创建file文件夹
+            if (Directory.Exists(Server.MapPath(path)) == false)//Nếu không tồn tại thì tạo thư mục file
             {
                 Directory.CreateDirectory(Server.MapPath(path));
             }
@@ -335,7 +335,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         {
             //DCwriterServer dcControl = new DCwriterServer();
             //dcControl.MedicalTemplate();
-            //WebWriterControlEngine eng = dcControl.DCWControl;//这是上一步创建的引擎 
+            //WebWriterControlEngine eng = dcControl.DCWControl;//Đây là engine được tạo ở bước trước 
             //eng.Options.ClientContextMenuType = WebClientContextMenuType.Custom;
             //ViewBag.WriterControlHtml = eng.GetAllContentHtml();
             //eng.Dispose();
@@ -349,8 +349,8 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             public override void ExecuteResult(ControllerContext context)
             {
                 WebWriterControlServicePageExecuter executer = new WebWriterControlServicePageExecuter();
-                executer.CrossDomainSettings.Enabled = true;//是否跨域
-                executer.EventSaveFileContent = new DCSoft.Writer.WriterSaveFileContentEventHandler(My_SaveFileContent);//事件
+                executer.CrossDomainSettings.Enabled = true;//Có vượt miền hay không
+                executer.EventSaveFileContent = new DCSoft.Writer.WriterSaveFileContentEventHandler(My_SaveFileContent);//Sự kiện
                 executer.EventReadFileContent = new DCSoft.Writer.WriterReadFileContentEventHandler(My_ReadFileContent);
                 if (executer.HandleService())
                 {
@@ -400,7 +400,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
                     byte[] bs = System.IO.File.ReadAllBytes($"{ml}{tempaleUrl}");
                     args.ResultBinary = bs;
-                    //args.Message = "加载以后的返回信息";//传递给前端的信息 
+                    //args.Message = "Thông tin trả về sau khi tải";//Thông tin truyền cho frontend 
                     args.Handled = true;
                 }
 

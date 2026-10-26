@@ -6,9 +6,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2021-03-01 15:24
-    /// 描 述：出院小结-诊断
+    /// Người tạo: chl
+    /// Ngày: 2021-03-01 15:24
+    /// Mô tả: Tóm tắt ra viện - Chẩn đoán
     /// </summary>
     [Table("YB_Inp_OutHosSummaries_Diag")]
     public class YBInpOutHosSummariesDiagEntity : IEntity<YBInpOutHosSummariesDiagEntity>
@@ -16,73 +16,73 @@ namespace Newtouch.EMR.Domain.Entity
         [Key]
         public string Id { get; set; }
         /// <summary>
-        /// 就诊流水号
+        /// Số thứ tự khám bệnh
         /// </summary>
         /// <returns></returns>
         public string AKC190 { get; set; }
 
         /// <summary>
-        /// 居民健康卡号
+        /// Số thẻ sức khỏe cư dân
         /// </summary>
         /// <returns></returns>
         public string BKF636 { get; set; }
 
         /// <summary>
-        /// 住院流水号
+        /// Số thứ tự nhập viện
         /// </summary>
         /// <returns></returns>
         public string BKC191 { get; set; }
 
         /// <summary>
-        /// 诊断分类1 入院诊断；2 出院诊断
+        /// Phân loại chẩn đoán: 1 Chẩn đoán lúc vào viện; 2 Chẩn đoán lúc ra viện
         /// </summary>
         /// <returns></returns>
         public string BKF417 { get; set; }
 
         /// <summary>
-        /// 主从诊断标识1 主要诊断；2 其他诊断；3 病理诊断
+        /// Cờ chẩn đoán chính/phụ: 1 Chẩn đoán chính; 2 Chẩn đoán khác; 3 Chẩn đoán bệnh lý
         /// </summary>
         /// <returns></returns>
         public string BKF718 { get; set; }
 
         /// <summary>
-        /// 诊断顺位
+        /// Thứ tự chẩn đoán
         /// </summary>
         /// <returns></returns>
         public string BKF512 { get; set; }
 
         /// <summary>
-        /// 西医诊断编码
+        /// Mã chẩn đoán Tây y
         /// </summary>
         /// <returns></returns>
         public string BKF857 { get; set; }
 
         /// <summary>
-        /// 西医诊断名称
+        /// Tên chẩn đoán Tây y
         /// </summary>
         /// <returns></returns>
         public string BKF856 { get; set; }
 
         /// <summary>
-        /// 中医病名代码
+        /// Mã tên bệnh Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF460 { get; set; }
 
         /// <summary>
-        /// 中医病名
+        /// Tên bệnh Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF459 { get; set; }
 
         /// <summary>
-        /// 中医证候代码
+        /// Mã chứng hậu Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF475 { get; set; }
 
         /// <summary>
-        /// 中医证候
+        /// Chứng hậu Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF474 { get; set; }
@@ -123,7 +123,7 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public string zt { get; set; }
         /// <summary>
-        /// 出院小结主Id
+        /// Id chính của tóm tắt ra viện
         /// </summary>
         public string OutId { get; set; }
 

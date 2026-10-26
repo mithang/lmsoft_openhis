@@ -99,49 +99,49 @@
         <div class="tabBodyItem tabBodyCurrent">
             <div id="ctglDiv" style="background-color:#eee;">
                 <div id="toolbar-ct" style="padding-left:20px;">
-                    <a class="btn  " onclick="btn_add()" style="width:25px;height:30px;" title="添加">
+                    <a class="btn  " onclick="btn_add()" style="width:25px;height:30px;" title="Thêm">
                         <i class="fa fa-plus"></i>
                     </a>
                     <a class="btn  " onclick="btn_delete()" style="width:25px;height:30px;">
-                        <img src="~/Content/img/icon/eraser.png" title="删除" />
+                        <img src="~/Content/img/icon/eraser.png" title="Xóa" />
                     </a>
                     <a class="btn  " onclick="btn_edit()" style="width:25px;height:30px;">
-                        <img src="~/Content/img/icon/copy.png" title="编辑" />
+                        <img src="~/Content/img/icon/copy.png" title="Sửa" />
                     </a>
                 </div>
                 <div>
                     <div style="padding-left:20px;" class="btn-group">
-                        <a id="1" class="btn btn-default active"><i class="fa "></i>个人</a>
-                        <a id="2" class="btn btn-default"><i class="fa "></i>科室</a>
-                        <a id="0" class="btn btn-default"><i class="fa "></i>全院</a>
+                        <a id="1" class="btn btn-default active"><i class="fa "></i>Cá nhân</a>
+                        <a id="2" class="btn btn-default"><i class="fa "></i>Khoa</a>
+                        <a id="0" class="btn btn-default"><i class="fa "></i>Toàn viện</a>
                     </div>
                     <div id="BqTreeList" style="width:158px;padding-top:10px;" ></div>
                 </div>
             </div>
         </div>
         <div class="tabBodyItem">
-            @*<input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox">
+            @**@<input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox">
             <table>
                 <tr>
                     <td class="formValue formDdlSelectorTd">
                         <select id="bllx" name="bllx" class="form-control">
-                            <option value="">==请选择诊断==</option>
+                            <option value="">==Vui lòng chọn chẩn đoán==</option>
                         </select>
                     </td>
                 </tr>
             </table>*@
             @Html.Partial("DiagList")
         </div>
-        @*<div class="tabBodyItem">
-            <p>我是Tab选项卡3的内容</p>
+        @**@<div class="tabBodyItem">
+            <p>Tôi là nội dung của tab 3</p>
             <p></p>
         </div>
         <div class="tabBodyItem">
-            <p>我是Tab选项卡4的内容</p>
+            <p>Tôi là nội dung của tab 4</p>
             <p></p>
         </div>
         <div class="tabBodyItem">
-            <p>我是Tab选项卡5的内容</p>
+            <p>Tôi là nội dung của tab 5</p>
             <p></p>
         </div>*@
     </div>
@@ -199,7 +199,7 @@
         var PartCTID = $("#ctglDiv").find(".bbit-tree-selected").find(".bbit-tree-node-text").attr("data-id");
         var Isparent = $("#ctglDiv").find(".bbit-tree-selected").find(".bbit-tree-node-text").attr("data-value");
         if (PartCTID == null ||Isparent!= "parent") {
-            $.modalConfirm("当前未选择目录，是否创建目录？",
+            $.modalConfirm("Hiện tại chưa chọn thư mục, có tạo thư mục hay không?",
                     function (flag) {
                         if (flag) {
                             $.modalOpen({
@@ -268,15 +268,15 @@
     }
 
 
-    //删除
+    //Xóa
     function btn_delete() {
         var delCTID = $("#ctglDiv").find(".bbit-tree-selected").find(".bbit-tree-node-text").attr("data-id");
         if (delCTID === undefined)
         {
-            $.modalMsg("请选择要删除的词条", 'warning');
+            $.modalMsg("Vui lòng chọn từ mục cần xóa", 'warning');
             return;
         }
-        $.modalConfirm("确定要删除吗？",
+        $.modalConfirm("Bạn có chắc muốn xóa không?",
             function (flag) {
                 if (flag) {
                     $.najax({
@@ -286,7 +286,7 @@
                         type: "POST",
                         success: function () {
                             $.loading(false);
-                            $.modalMsg("删除成功", 'success');
+                            $.modalMsg("Xóa thành công", 'success');
                         }
                     });
                     debugger

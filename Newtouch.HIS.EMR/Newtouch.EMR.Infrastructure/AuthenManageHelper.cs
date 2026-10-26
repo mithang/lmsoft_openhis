@@ -16,15 +16,15 @@ namespace Newtouch.EMR.Infrastructure
 {
     public class AuthenManageHelper
     {
-        public readonly static string SiteTokenAPIHost = ConfigurationManager.AppSettings["SiteTokenAPIHost"];//token站点
-        public readonly static string SiteConmonAPIHost = ConfigurationManager.AppSettings["SiteConmonAPIHost"]; //api中心站点
-        public readonly static string appId = ConfigurationManager.AppSettings["AppId"];//api中心站点访问appid
-        public readonly static string accessAppId = ConfigurationManager.AppSettings["Token_ApiManage"];//api中心站点访问appid
-        //用户登陆缓存token
+        public readonly static string SiteTokenAPIHost = ConfigurationManager.AppSettings["SiteTokenAPIHost"];//Trạm token
+        public readonly static string SiteConmonAPIHost = ConfigurationManager.AppSettings["SiteConmonAPIHost"]; //Trạm trung tâm api
+        public readonly static string appId = ConfigurationManager.AppSettings["AppId"];//appid truy cập trạm trung tâm api
+        public readonly static string accessAppId = ConfigurationManager.AppSettings["Token_ApiManage"];//appid truy cập trạm trung tâm api
+        //Token đệm khi người dùng đăng nhập
         public static string userCacheToken = "";
 
         /// <summary>
-        /// 获取中心接口api token
+        /// Lấy api token của giao diện trung tâm
         /// </summary>
         /// <returns></returns>
         public static string GetToken()
@@ -75,9 +75,9 @@ namespace Newtouch.EMR.Infrastructure
                 ApiManageResponse<T> apiResp = JsonConvert.DeserializeObject<ApiManageResponse<T>>(response);
                 if (apiResp.HttpStatus == (int)HttpStatusCode.Unauthorized)
                 {
-                    //鉴权失败 刷新token
+                    //Xác thực quyền thất bại, làm mới token
                     token = GetUserTokenRefesh(user, token);
-                    //重新请求接口
+                    //Yêu cầu lại giao diện
                     response = HttpMethods.HttpPostWithToken(uri, data, token);
                     apiResp = JsonConvert.DeserializeObject<ApiManageResponse<T>>(response);
                 }
@@ -115,7 +115,7 @@ namespace Newtouch.EMR.Infrastructure
             return Token.BusData.data.Token;
         }
         /// <summary>
-        /// 用户登陆后获取api通用 token
+        /// Sau khi người dùng đăng nhập, lấy token chung của api
         /// </summary>
         /// <returns></returns>
         public static string GetUserToken(OperatorModel user)
@@ -163,7 +163,7 @@ namespace Newtouch.EMR.Infrastructure
             return userCacheToken;
         }
         ///// <summary>
-        ///// 接口请求
+        ///// Yêu cầu giao diện
         ///// </summary>
         ///// <param name="data"></param>
         ///// <param name="uri"></param>
@@ -171,11 +171,11 @@ namespace Newtouch.EMR.Infrastructure
         ///// <returns></returns>
         //public static string HttpPost(string data, string uri, string token)
         //{
-        //    //先根据用户请求的uri构造请求地址
+        //    //Trước tiên, dựa vào uri yêu cầu của người dùng để tạo địa chỉ yêu cầu
         //    string serviceUrl = string.Format(uri);
-        //    //创建Web访问对象
+        //    //Tạo đối tượng truy cập Web
         //    HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(serviceUrl);
-        //    //把用户传过来的数据转成“UTF-8”的字节流
+        //    //Chuyển dữ liệu người dùng truyền đến thành luồng byte “UTF-8”
         //    byte[] buf = System.Text.Encoding.GetEncoding("UTF-8").GetBytes(data);
 
         //    myRequest.Method = "POST";
@@ -187,18 +187,18 @@ namespace Newtouch.EMR.Infrastructure
         //    {
         //        myRequest.Headers.Add("Authorization", "Bearer " + token);
         //    }
-        //    //发送请求
+        //    //Gửi yêu cầu
         //    Stream stream = myRequest.GetRequestStream();
         //    stream.Write(buf, 0, buf.Length);
         //    stream.Close();
 
-        //    //获取接口返回值
-        //    //通过Web访问对象获取响应内容
+        //    //Lấy giá trị trả về của giao diện
+        //    //Lấy nội dung phản hồi qua đối tượng truy cập Web
         //    HttpWebResponse myResponse = (HttpWebResponse)myRequest.GetResponse();
-        //    //通过响应内容流创建StreamReader对象，因为StreamReader更高级更快
+        //    //Tạo đối tượng StreamReader qua luồng nội dung phản hồi, vì StreamReader cao cấp hơn và nhanh hơn
         //    StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.UTF8);
-        //    //string returnXml = HttpUtility.UrlDecode(reader.ReadToEnd());//如果有编码问题就用这个方法
-        //    string result = reader.ReadToEnd();//利用StreamReader就可以从响应内容从头读到尾
+        //    //string returnXml = HttpUtility.UrlDecode(reader.ReadToEnd());//Nếu có vấn đề về mã hóa thì dùng phương pháp này
+        // string result = reader.ReadToEnd();//Dùng StreamReader là có thể đọc nội dung phản hồi từ đầu đến cuối
         //    reader.Close();
         //    myResponse.Close();
         //    return result;

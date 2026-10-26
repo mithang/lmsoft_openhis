@@ -8,13 +8,13 @@
 <div class="topPanel">
     <div class="toolbar">
         <div class="btn-group">
-            <a id="mb-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
+            <a id="mb-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="mb-edit" authorize="yes" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+            <a id="mb-edit" authorize="yes" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>删除</a>
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
         </div>
     </div>
     <div class="search">
@@ -22,7 +22,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="模板名称/模板编码" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Tên mẫu/Mã mẫu" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -50,11 +50,11 @@
             url: "/MedicalRecordManage/MedRecordTemplate/GetGridJson",
             height: $(window).height() - 128,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: "病历类型", name: "bllx", hidden: true },
-                 { label: '模板名称', name: 'mbmc', width: 150, align: 'left' },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: "Loại bệnh án", name: "bllx", hidden: true },
+                 { label: 'Tên mẫu', name: 'mbmc', width: 150, align: 'left' },
                  {
-                    label: "来源", name: "Memo", width: 30, align: 'left', formatter: function (val) {
+                    label: "Nguồn", name: "Memo", width: 30, align: 'left', formatter: function (val) {
                         if (val != "" && val!=null)
                         {
                             return "[转]";
@@ -65,10 +65,10 @@
                         }
                     }
                  },
-                 { label: "模板权限", name: "mbqx", align: 'left', hidden: true },
-                { label: "模板类型", name: "bllxmc", width: 120, align: 'left' },
+                 { label: "Quyền mẫu", name: "mbqx", align: 'left', hidden: true },
+                { label: "Loại mẫu", name: "bllxmc", width: 120, align: 'left' },
                  {
-                     label: '权限配置', name: 'mbqxmc', width: 80, align: 'center',
+                     label: 'Cấu hình quyền', name: 'mbqxmc', width: 80, align: 'center',
                      formatter: function (val, options, rowObject) {
                          if (rowObject.mbqx== '@Html.Raw(((int)Enummbqx.prv))')
                              return "个人"
@@ -78,23 +78,23 @@
                              return "通用";
                      }
                  },
-                 { label: '路径', name: 'mblj', width: 200, align: 'left' },
-                 { label: '是否为空', name: 'Isempty', width: 60, align: 'center',
+                 { label: 'Đường dẫn', name: 'mblj', width: 200, align: 'left' },
+                 { label: 'Có trống hay không', name: 'Isempty', width: 60, align: 'center',
                     formatter: function (cellvalue) { return cellvalue == "1" ? "是" : "否"; }
                 },
                 {
-                    label: '是否上传医保', name: 'IsYB', width: 80, align: 'center',
+                    label: 'Có tải lên bảo hiểm y tế hay không', name: 'IsYB', width: 80, align: 'center',
                     formatter: function (cellvalue) { return cellvalue == "1" ? "是" : "否"; }
                 },
                 {
-                    label: '业务类型', name: 'mzbz', width: 80, align: 'center',
+                    label: 'Loại nghiệp vụ', name: 'mzbz', width: 80, align: 'center',
                     formatter: function (cellvalue) { return cellvalue == "1" ? "门诊" : "住院"; }
                 },
-                 { label: "有效", name: "zt", width: 50, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
-                 { label: '创建人', name: 'CreatorCode', width: 100, align: 'center' },
-                 { label: '创建时间', name: 'CreateTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                 { label: '最后修改', name: 'LastModifierCode', width: 100, align: 'center' },
-                 { label: '最后修改时间', name: 'LastModifyTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
+                 { label: "Có hiệu lực", name: "zt", width: 50, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                 { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'center' },
+                 { label: 'Thời gian tạo', name: 'CreateTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                 { label: 'Sửa đổi lần cuối', name: 'LastModifierCode', width: 100, align: 'center' },
+                 { label: 'Thời gian sửa đổi lần cuối', name: 'LastModifyTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
             ],
             pager: "#gridPager",
             sortname: 'CreateTime desc',
@@ -107,7 +107,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -116,7 +116,7 @@
     {
         return true;
         if ('@opeator.IsRoot' == 'False' && '@opeator.IsAdministrator' == 'False' && '@opeator.IsHospAdministrator' == 'False') {
-            if (ysgh != '@opeator.rygh') {  //仅个人模板可修改删除
+            if (ysgh != '@opeator.rygh') {  //Chỉ mẫu cá nhân mới có thể sửa/xóa
                 return false;
             }
             else {
@@ -130,7 +130,7 @@
     function btn_edit() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) { 
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
 
@@ -152,7 +152,7 @@
         }
         else
         {
-            $.modalAlert("权限不足，如需请联系管理员", 'warning');
+            $.modalAlert("Không đủ quyền, nếu cần vui lòng liên hệ quản trị viên", 'warning');
         }
             return;
     }
@@ -175,7 +175,7 @@
     function btn_delete() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
             return;
         }
         var rowData = $("#gridList").jqGrid("getRowData", keyValue);
@@ -185,7 +185,7 @@
                 param: { keyValue: keyValue },
                 success: function (data) {
                     if (data.state == "success") {
-                        $.modalAlert('删除成功', 'success');
+                        $.modalAlert('Xóa thành công', 'success');
                     }
                     else {
                         $.modalAlert(data.message, 'error');
@@ -195,7 +195,7 @@
             })
         }
         else {
-            $.modalAlert("权限不足，如需请联系管理员", 'warning');
+            $.modalAlert("Không đủ quyền, nếu cần vui lòng liên hệ quản trị viên", 'warning');
             
         }
     }

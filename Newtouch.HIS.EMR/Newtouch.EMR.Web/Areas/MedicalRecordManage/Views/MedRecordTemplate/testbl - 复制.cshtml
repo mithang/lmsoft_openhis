@@ -30,15 +30,15 @@
     }
 </style>
 <script src="https://editor.huimei.com/hmEditor/iframe/HmEditorIfame.js"></script>
-@*<script src="http://127.0.0.1:3071/hmEditor/iframe/HmEditorIfame.js"></script>*@
-<!-- 编辑器窗口 -->
+@**@<script src="http://127.0.0.1:3071/hmEditor/iframe/HmEditorIfame.js"></script>*@
+<!-- Cửa sổ trình soạn thảo -->
 <div class="design-template-wrapper" *ngIf="editorDisplay">
     <div class="wrapper" id="editorContainer">
 
     </div>
 
 </div>
-@*<div id="editorContainer"></div>
+@**@<div id="editorContainer"></div>
     <script>
         window.onload = function () {
             HMEditorLoader.createEditorAsync({
@@ -51,10 +51,10 @@
                 editorConfig: {
                     contentsCss: []
                 },
-                // 模式设置
-                designMode: false,  // 是否启用设计模式
-                reviseMode: false,  // 是否启用修订模式
-                readOnly: false,     // 是否启用只读模式
+                // Cài đặt chế độ
+                designMode: false,  // Có bật chế độ thiết kế hay không
+                reviseMode: false,  // Có bật chế độ sửa đổi hay không
+                readOnly: false,     // Có bật chế độ chỉ đọc hay không
                 editShowPaddingTopBottom: true,
                 customParams: { departmentCode: '0001', doctorCode: '0001' }
                 //sdkHost: "http://127.0.0.1:3071/hmEditor"
@@ -66,7 +66,7 @@
 
 
     </script>*@
-@*<div id="editorContainer" style="width: 1050px; height: calc(100vh - 5px); border: 1px solid #ccc;"></div>*@
+@**@<div id="editorContainer" style="width: 1050px; height: calc(100vh - 5px); border: 1px solid #ccc;"></div>*@
 
 <script>
         //fetch("http://127.0.0.1:3071/hmEditor/demo/file/admission_record.html")
@@ -99,9 +99,9 @@
         .then(function(editor) {
             var editorInstance = editor;
             mockDemoContent().then(function (demoContent) {
-                // 设置病历内容
+                // Đặt nội dung bệnh án
                 editorInstance.setDocContent({
-                    code: 'doc001', // 病历ID
+                    code: 'doc001', // Bệnh ánID
                     docTplName: '测试病历名称',
                     docContent: demoContent
                 });

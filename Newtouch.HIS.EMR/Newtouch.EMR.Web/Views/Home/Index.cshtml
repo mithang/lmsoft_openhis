@@ -3,7 +3,7 @@
     Layout = null;
     //是否页面加载时就必须选择Org
     var mediOrgList = ViewBag.MediOrgList as IList<FrameworkBase.MultiOrg.Domain.Entity.SysOrganizeVEntity>;
-    //是否页面加载时就必须选择Org
+    //Có phải khi trang tải thì bắt buộc phải chọn Org hay không
     var needChooseOrg = (ViewBag.NeedChooseOrg as bool?) ?? false;
 }
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
     <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache,no-store, must-revalidate">
     <META HTTP-EQUIV="pragma" CONTENT="no-cache">
     <META HTTP-EQUIV="expires" CONTENT="0">
-    <title>EMR管理系统</title>
+    <title>Hệ thống quản lý EMR</title>
     <link rel="shortcut icon" href="@SiteUrl.GetStaticResourceScriptUrl("~/img/newtouchcloud.ico")">
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
     @Html.Partial("_FrontReference")
@@ -52,7 +52,7 @@
                                     <b>@Html.Raw(ViewBag.OrgName)</b>
                                     @if (mediOrgList != null && mediOrgList.Count > 1)
                                     {
-                                        <i id="iSwitchOrg" title="切换机构" class="fa fa-hospital-o"></i>
+                                        <i id="iSwitchOrg" title="Chuyển tổ chức" class="fa fa-hospital-o"></i>
                                     }
                                 </a>
                             </li>
@@ -71,7 +71,7 @@
     </div>
     <div id="loadingPage" style="display: none;">
         <div class="loading-shade"></div>
-        <div class="loading-content" onclick="$.loading(false)">数据加载中，请稍后…</div>
+        <div class="loading-content" onclick="$.loading(false)">Đang tải dữ liệu, vui lòng chờ…</div>
     </div>
     <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/index.common.js")"></script>
     <script src="@SiteUrl.GetStaticResourceScriptUrl("~/Content/js/index.js", false)"></script>
@@ -316,7 +316,7 @@
         });
     </script>
     <script type="text/javascript">
-        //Home/Index页面加载完成之后 再加载iframe
+        //Sau khi trang Home/Index tải hoàn thành thì tải iframe
         $(window).load(function () {
             $('.mainContent .Newtouch_iframe').each(function () {
                 if (!!!$(this).attr('src') && !!$(this).attr('data-id')) {

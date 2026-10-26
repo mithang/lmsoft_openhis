@@ -30,14 +30,14 @@
                         return ret;
                     }
                     else {
-                        $.modalAlert("上传失败，请查看日志", "error");
+                        $.modalAlert("Tải lên thất bại, vui lòng xem nhật ký", "error");
                     }
                 }
             });
         }
         return 0;
     }
-    //病案首页
+    //Trang đầu hồ sơ bệnh án
     function GetbasyData(zyh,jydm) {
         var ret = 0;
         if (!!jydm) {
@@ -51,7 +51,7 @@
                         ret = Upload(data);
                     }
                     else {
-                        $.modalAlert("上传失败，请查看日志", "error");
+                        $.modalAlert("Tải lên thất bại, vui lòng xem nhật ký", "error");
                     }
                 }
             });
@@ -62,7 +62,7 @@
 
     function Upload(jsondata) {
         $.najax({
-            url: "http://127.0.0.1:33333/api/QHDSmartCheck/MedicalRecordUpload",//智能审核
+            url: "http://127.0.0.1:33333/api/QHDSmartCheck/MedicalRecordUpload",//Xét duyệt thông minh
             dataType: "json",
             data: jsondata,      
             type: "POST",
@@ -71,19 +71,19 @@
                 if (!!ajaxdata) {
                     var resp = JSON.parse(ajaxdata);
                     if (resp.code == "-1") {
-                        $.modalAlert("上传失败" + resp.message, "error");
+                        $.modalAlert("Tải lên thất bại" + resp.message, "error");
                     }
                     else {
-                        $.modalAlert("上传成功", "success");
+                        $.modalAlert("Tải lên thành công", "success");
                         return 1;
                     }
                 }
                 else
-                    $.modalAlert("上传失败，请查看日志", "error");
+                    $.modalAlert("Tải lên thất bại, vui lòng xem nhật ký", "error");
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                $.modalAlert("上传失败." + jqXHR.readyState + ";" + errorThrown, "error");
+                $.modalAlert("Tải lên thất bại." + jqXHR.readyState + ";" + errorThrown, "error");
             },
         });
 

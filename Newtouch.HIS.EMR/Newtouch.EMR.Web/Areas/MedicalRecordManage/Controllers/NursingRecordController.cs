@@ -16,9 +16,9 @@ using Newtouch.Domain.ValueObjects;
 namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 {
     /// <summary>
-    /// 创 建：mhz
-    /// 日 期：2023-04-24 15:46
-    /// 描 述：护理记录录入
+    /// Người tạo: mhz
+    /// Ngày: 2023-04-24 15:46
+    /// Mô tả: Nhập ghi chép điều dưỡng
     /// </summary>
     public class NursingRecordController : OrgControllerBase
     {
@@ -27,7 +27,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         private readonly INursingRecordWZDmnService _nursingRecordWZDmnService;
         private readonly INursingRecordSSDmnService _nursingRecordSSDmnService;
         /// <summary>
-        /// 护理查询
+        /// Tra cứu điều dưỡng
         /// </summary>
         /// <returns></returns>
         public override ActionResult Index()
@@ -87,7 +87,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Success("操作成功。");
         }
         /// <summary>
-        /// 获取病区人员执行树
+        /// Lấy cây thực hiện của nhân sự khu bệnh
         /// </summary>
         /// <returns></returns>
         public ActionResult GetPatWardTree(string zyzt, string keyword)
@@ -138,7 +138,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Content(treeList.TreeViewJson(null));
         }
         /// <summary>
-        /// 提交保存护理录入
+        /// Gửi lưu dữ liệu điều dưỡng đã nhập
         /// </summary>
         /// <param name="moduleEntity"></param>
         /// <param name="keyValue"></param>
@@ -154,7 +154,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Success("保存成功。");
         }
         /// <summary>
-        /// 提交保存护理录入
+        /// Gửi lưu dữ liệu điều dưỡng đã nhập
         /// </summary>
         /// <param name="moduleEntity"></param>
         /// <param name="keyValue"></param>
@@ -170,7 +170,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Success("保存成功。");
         }
         /// <summary>
-        /// 提交保存护理录入
+        /// Gửi lưu dữ liệu điều dưỡng đã nhập
         /// </summary>
         /// <param name="moduleEntity"></param>
         /// <param name="keyValue"></param>
@@ -186,7 +186,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Success("保存成功。");
         }
         /// <summary>
-        /// 分页查询
+        /// Tra cứu phân trang
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kssj"></param>
@@ -227,7 +227,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 作废
+        /// Hủy
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

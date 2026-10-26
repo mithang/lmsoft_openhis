@@ -14,15 +14,15 @@ namespace Newtouch.EMR.Domain.ValueObjects
         public string RelDutys { get; set; }
         public string RelDutysDesc { get; set; }
         /// <summary>
-        /// 病历类型简码
+        /// Mã ngắn loại bệnh án
         /// </summary>
         public string bllxcode { get; set; }
         /// <summary>
-        /// 关联数据表 为空时默认
+        /// Bảng dữ liệu liên kết, mặc định khi trống
         /// </summary>
         public string relTB { get; set; }
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
         public DateTime CreateTime { get; set; }
@@ -31,17 +31,17 @@ namespace Newtouch.EMR.Domain.ValueObjects
         public string LastModifierCode { get; set; }
         public string zt { get; set; }
         /// <summary>
-        /// 目录层级 初始层级1
+        /// Cấp thư mục, cấp ban đầu là 1
         /// </summary>
         public string MenuLev { get; set; }
         /// <summary>
-        /// 目录层级名称 默认一级时间 以※分隔
+        /// Tên cấp thư mục, mặc định cấp một là thời gian, phân tách bằng ※
         /// </summary>
         public string MenuLevName { get; set; }
         public string ParentId { get; set; }
         public string IsRoot { get; set; }
         /// <summary>
-        /// 门诊模板标识 1 门诊 
+        /// Cờ mẫu ngoại trú: 1 Ngoại trú 
         /// </summary>
         public string mzbz { get; set; }
     }

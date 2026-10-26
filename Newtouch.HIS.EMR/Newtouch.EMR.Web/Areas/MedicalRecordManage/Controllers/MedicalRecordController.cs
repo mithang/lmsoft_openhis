@@ -62,7 +62,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         public static string BlTemplatePath = ConfigurationHelper.GetAppConfigValue("BlTemplatePath");
         public static string BlBackupFilePath = ConfigurationHelper.GetAppConfigValue("BlBackupFilePath");
         /// <summary>
-        /// 保留历史备份天数
+        /// Số ngày giữ lại sao lưu lịch sử
         /// </summary>
         public static string KeepBackupFileDays = ConfigurationHelper.GetAppConfigValue("KeepBackupFileDays");
         public static string BlFilePath = ConfigurationHelper.GetAppConfigValue("BlFilePath");
@@ -90,81 +90,81 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 engine.SetRegisterCode("04455074BCB9C1C2D934F6A1917C5E4DB28ED240705112755E26C8005EEF67C8AE11A0C72E1581C3C6A24AD380DA4C0E6B6B7CB464D9C5CC7EB28C674BF80A80C360E8F1F80CA3D033ADCDA69235345E14EF3B941DCB47D846B06E604C48E63A1BF4700CC01AE7C9E5");
             }
 
-            engine.BorderStyle = "1px solid white";//边框样式
+            engine.BorderStyle = "1px solid white";//Kiểu đường viền
 
-            //编辑器ID
+            //ID trình soạn thảo
             engine.Options.ControlName = "myWriterControl";
-            //内容呈现模式 NormalHtmlEditable：以普通的HTML模式显示可编辑的文档
+            //Chế độ trình bày nội dung NormalHtmlEditable: Hiển thị tài liệu có thể chỉnh sửa theo chế độ HTML thông thường
             engine.Options.ContentRenderMode = WebWriterControlRenderMode.NormalHtmlEditable;
-            //引用路径
+            //Đường dẫn tham chiếu
             engine.Options.ServicePageURL = this.Url.Action("HandleDCWriterServicePage");
-            //工作区域背景色
+            //Màu nền khu vực làm việc
             //engine.Options.WorkspaceBackColorString = "#00a0ea";
-            //边框样式
-            engine.Options.WorkspaceBackColor = ColorTranslator.FromHtml("#7cb9e8");//背景色  
+            //Kiểu đường viền
+            engine.Options.WorkspaceBackColor = ColorTranslator.FromHtml("#7cb9e8");//Màu nền  
             engine.Options.IndentHtmlCode = false;
-            engine.Options.ImageDataEmbedInHtml = true;// 打印显示医学表达式
-            engine.Options.ClientContextMenuType = WebClientContextMenuType.SystemDefault;// 显示系统默认右键菜单
+            engine.Options.ImageDataEmbedInHtml = true;// In hiển thị biểu thức y học
+            engine.Options.ClientContextMenuType = WebClientContextMenuType.SystemDefault;// Hiển thị menu chuột phải mặc định của hệ thống
 
-            // 文本输入域数据异常时的高亮度文本色            
+            // Màu văn bản nổi bật khi dữ liệu vùng nhập văn bản bất thường            
             //engine.DocumentOptions.ViewOptions.FieldInvalidateValueBackColor = Color.Yellow;
             //engine.DocumentOptions.ViewOptions.PreserveBackgroundTextWhenPrint = true;
             engine.DocumentOptions.ViewOptions.FieldBackColor = Color.Transparent;
             engine.DocumentOptions.ViewOptions.FieldFocusedBackColor = Color.White;
 
-            // 用Tab键在各个输入域之间切换
+            // Dùng phím Tab để chuyển giữa các vùng nhập
             //engine.DocumentOptions.BehaviorOptions.MoveFocusHotKey = MoveFocusHotKeys.Tab;
             //engine.DocumentOptions.BehaviorOptions.AcceptDataFormats = WriterDataFormats.Text;
-            engine.DocumentOptions.BehaviorOptions.ParagraphFlagFollowTableOrSection = true;// 取消插入表格后空行显示
+            engine.DocumentOptions.BehaviorOptions.ParagraphFlagFollowTableOrSection = true;// Hủy hiển thị dòng trống sau khi chèn bảng
 
-            //显示段落标记
+            //Hiển thị dấu đoạn văn
             // engine.DocumentOptions.ViewOptions.ShowParagraphFlag = false;
 
-            ////违禁关键字
+            ////Từ khóa bị cấm
             //engine.Options.ExcludeKeywords = "月经,子宫,卵巢";
-            //表单视图模式 Strict:严格视图模式
+            //Chế độ xem biểu mẫu Strict: Chế độ xem nghiêm ngặt
             //engine.ControlOptions.FormView = FormViewMode.Strict;
-            //是否显示输入域状态标签
+            //Có hiển thị nhãn trạng thái của vùng nhập hay không
             //engine.DocumentOptions.ViewOptions.ShowInputFieldStateTag = true;
-            //是否允许视图加密显示
+            //Có cho phép hiển thị mã hóa ở chế độ xem hay không
             //engine.DocumentOptions.ViewOptions.EnableEncryptView = true;
             //engine.DocumentOptions.BehaviorOptions.EnableDataBinding = false;
-            // 是否显示无边框的表格暗线
+            // Có hiển thị đường mờ của bảng không có viền hay không
             //engine.DocumentOptions.ViewOptions.ShowCellNoneBorder = false;
-            //输入域边框颜色设置
+            //Cài đặt màu viền vùng nhập
             //engine.DocumentOptions.ViewOptions.FieldBorderColor = Color.Black;
             //engine.DocumentOptions.ViewOptions.ShowGridLine = true;
-            //输入域背景文字的输出模式 Underline：输出下划线
+            //Chế độ xuất văn bản nền của vùng nhập Underline: Xuất gạch dưới
             //engine.Options.BackgroundTextOutputMode = DCBackgroundTextOutputMode.None;
-            //工作区域背景图片
+            //Hình nền khu vực làm việc
             //engine.Options.WorkspaceBackgroundImage = "Workspace-Background.jpg";
             //engine.DocumentOptions.BehaviorOptions.OutputFieldBorderTextToContentText = false;
-            //留痕相关设置
+            //Cài đặt liên quan đến lưu vết
             engine.DocumentOptions.SecurityOptions.ShowLogicDeletedContent = true;
             engine.DocumentOptions.SecurityOptions.ShowPermissionMark = true;
             engine.DocumentOptions.SecurityOptions.ShowPermissionTip = true;
-            //签名警告
+            //Cảnh báo chữ ký
             engine.DocumentOptions.SecurityOptions.ShowFlagForOnlySoftwareSign = false;
 
-            engine.Options.UseDCWriterMiniJS = DCBooleanValueHasDefault.Default;//是否启用被压缩的DCWriterMini.js文件
-            engine.Options.CompressSessionData = true;//是否压缩服务器端的会话数据
+            engine.Options.UseDCWriterMiniJS = DCBooleanValueHasDefault.Default;//Có bật tệp DCWriterMini.js đã nén hay không
+            engine.Options.CompressSessionData = true;//Có nén dữ liệu phiên phía máy chủ hay không
             engine.Options.CurrentLoadOptions = WebWriterControlLoadDocumentOptions.CompressSessionData;
-            //engine.Options.UseClassAttribute = true; //用户自定义属性信息
+            //engine.Options.UseClassAttribute = true; //Thông tin thuộc tính tùy chỉnh của người dùng
             //engine.Options.UseDCWriterMiniJS = DCBooleanValueHasDefault.False;
             return engine;
         }
-        //设置编辑器的引用路径
+        //Đặt đường dẫn tham chiếu của trình soạn thảo
         public ActionResult HandleDCWriterServicePage()
         {
             return new DCWriterActionResult();
         }
 
-        //处理操作结果生成一个带文档内容的编辑器
+        //Xử lý kết quả thao tác để tạo một trình soạn thảo có nội dung tài liệu
         private class DCWriterActionResult : ActionResult
         {
             public override void ExecuteResult(ControllerContext context)
             {
-                //在web中显示文档内容的WEB控件
+                //Điều khiển WEB hiển thị nội dung tài liệu trên web
                 DCSoft.Writer.Controls.WebWriterControl.HandleService();
             }
         }
@@ -174,20 +174,20 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         #region  dc编辑器病历文书操作
         [ValidateInput(false)]
         /// <summary>
-        /// 根据模板ID新增病历
+        /// Thêm mới bệnh án theo ID mẫu
         /// </summary>
         /// <param name="mbbh"></param>
         /// <param name="zyh"></param>
         /// <returns></returns>
         public ActionResult MedicalRecordEdiForAdd(string mbbh, string zyh, string mzh = null,string submitXml=null)
         {
-            //根据id获取模板
-            //如果找不到加载的xml就默认为空白的xml
+            //Lấy mẫu theo id
+            //Nếu không tìm thấy xml đã tải thì mặc định dùng xml trống
             string currentFileName = Server.MapPath(BlTemplatePath + "newFile.xml");
             var mb = _bl_mblbRepo.GetTemplateById(mbbh);
             string errormsg = "";
             string bllxmc = mb.bllxmc; // _CommonDmnService.GetBllxTB(mb.bllx);
-                                       // 加载文件
+                                       // Tải tệp
             WebWriterControlEngine eng;
             if (engine == null)
             {
@@ -207,8 +207,8 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 if (mb != null && !string.IsNullOrWhiteSpace(mb.mblj))
                 {
                     currentFileName = Server.MapPath(mb.mblj);
-                    // 加载模板
-                    if (System.IO.File.Exists(currentFileName) == false)//如果不存在就打开默认模板
+                    // Tải mẫu
+                    if (System.IO.File.Exists(currentFileName) == false)//Nếu không tồn tại thì mở mẫu mặc định
                     {
                         currentFileName = Server.MapPath(BlTemplatePath + "newFile.xml");
                     }
@@ -230,12 +230,12 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                         //var Zybrjbxx = GetZybrjbxxByZYH(zyh);
                         //engHTML = XMLDataBind(Zybrjbxx, currentFileName);
 
-                        //获取模板病程元素name
+                        //Lấy name phần tử diễn biến bệnh của mẫu
                         XTextElementList xTextElements = eng.Document.GetElementsByName("emr_bcrq");
                         if (xTextElements.Count > 0)
                         {
                             XTextInputFieldElement xTextInput = xTextElements[0] as XTextInputFieldElement;
-                            //新建病程模板时，使用当前日期
+                            //Khi tạo mẫu diễn biến bệnh mới, dùng ngày hiện tại
                             xTextInput.InnerText = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         }
                         XMLDataBind(Zybrjbxx, eng);
@@ -257,10 +257,10 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 {
                     try
                     {
-                        // 用户点击了“保存文档”按钮，
-                        // 则试图从WEB请求中加载文档然后保存
+                        // Người dùng đã nhấn nút “Lưu tài liệu”, 
+                        // thì cố gắng tải tài liệu từ yêu cầu WEB rồi lưu lại
                         //loaded = eng.LoadDocumentFromRequestFormData();
-                        //病历编辑器5.0方式
+                        //Cách dùng trình soạn thảo bệnh án 5.0
                         loaded = string.IsNullOrWhiteSpace(submitXml) ? false : true;
 
                         if (loaded)
@@ -271,7 +271,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                             {
                                 DataSource = mbety.DataSource;
                             }
-                            string path = BlFilePath + DateTime.Now.ToString("yyyy/MM/dd/") + ywid + "/";//win10电脑有问题
+                            string path = BlFilePath + DateTime.Now.ToString("yyyy/MM/dd/") + ywid + "/";//Máy tính win10 có vấn đề
                             path = $"{BlFilePath}{DateTime.Now.ToString("yyyy")}/{DateTime.Now.ToString("MM")}/{DateTime.Now.ToString("dd")}/{ywid}/";
                             IsExistDir(path);
                             string BLMC = DateTime.Now.ToString("ddHHmm") + mb.mbmc.Replace("模板", "");
@@ -385,8 +385,8 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
                 if (sd == "保存为pdf" && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
                 {
-                    // 用户点击了“保存文档”按钮，
-                    // 则试图从WEB请求中加载文档然后保存
+                    // Người dùng đã nhấn nút “Lưu tài liệu”, 
+                    // thì cố gắng tải tài liệu từ yêu cầu WEB rồi lưu lại
                     loaded = eng.LoadDocumentFromRequestFormData();
                     if (loaded)
                     {
@@ -402,8 +402,8 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
                 if (sd == "保存为html" && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
                 {
-                    // 用户点击了“保存文档”按钮，
-                    // 则试图从WEB请求中加载文档然后保存
+                    // Người dùng đã nhấn nút “Lưu tài liệu”, 
+                    // thì cố gắng tải tài liệu từ yêu cầu WEB rồi lưu lại
                     loaded = eng.LoadDocumentFromRequestFormData();
                     if (loaded)
                     {
@@ -435,14 +435,14 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         [ValidateInput(false)]
         /// <summary>
-        /// 根据病历ID编辑ID--修改病历
+        /// Sửa bệnh án theo ID bệnh án -- sửa bệnh án
         /// </summary>
         /// <param name="blid"></param>
         /// <param name="zyh"></param>
         /// <returns></returns>
         public ActionResult MedicalRecordEdit(string blid, string bllx, string zyh, string message = null, string mzh = null,string submitXml=null)
         {
-            //如果找不到加载的xml就默认为空白的xml
+            //Nếu không tìm thấy xml đã tải thì mặc định dùng xml trống
             string currentFileName = Server.MapPath(BlTemplatePath + "newFile.xml");
             string bllj = "";
             string blxtmc_yj = "";
@@ -450,13 +450,13 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             string mbId = "";
             int isupload = 0;
 
-            //历史备份
+            //Sao lưu lịch sử
             string nameblxtmc = "";
             string lujing = "";
             string Getaddress = Server.MapPath(BlBackupFilePath);
 
 
-            // 加载文件
+            // Tải tệp
             WebWriterControlEngine eng;
             if (engine == null)
             {
@@ -482,7 +482,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     bllj = mr.blxtml;
                     blxtmc_yj = mr.blxtmc_yj;
 
-                    //备份文件名称
+                    //Tên tệp sao lưu
                     nameblxtmc = DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + zyh + "-" + mr.blxtmc_yj;
                     lujing = mr.blxtml;
 
@@ -492,12 +492,12 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     }
 
                     currentFileName = Server.MapPath(bllj + blxtmc_yj.Trim() + ".xml");
-                    if (System.IO.File.Exists(currentFileName) == false)//如果不存在就打开默认模板
+                    if (System.IO.File.Exists(currentFileName) == false)//Nếu không tồn tại thì mở mẫu mặc định
                     {
                         currentFileName = Server.MapPath(BlTemplatePath + "newFile.xml");
                     }
 
-                    // 加载模板
+                    // Tải mẫu
                     eng.LoadDocument(currentFileName, null);
                     LockRecord(blid, bllx, 1);
                 }
@@ -541,11 +541,11 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 if ((sd == "保存文档" || sd == "上传医保") && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
                 {
 
-                    // 用户点击了“保存文档”按钮，
-                    // 则试图从WEB请求中加载文档然后保存
+                    // Người dùng đã nhấn nút “Lưu tài liệu”, 
+                    // thì cố gắng tải tài liệu từ yêu cầu WEB rồi lưu lại
                     try {
                         //loaded = eng.LoadDocumentFromRequestFormData();
-                        //病历编辑器5.0方式
+                        //Cách dùng trình soạn thảo bệnh án 5.0
                         loaded = string.IsNullOrWhiteSpace(submitXml) ? false : true;
                     }
                     catch (Exception er) {
@@ -682,8 +682,8 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
                 if (sd == "保存为pdf" && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
                 {
-                    // 用户点击了“保存文档”按钮，
-                    // 则试图从WEB请求中加载文档然后保存
+                    // Người dùng đã nhấn nút “Lưu tài liệu”, 
+                    // thì cố gắng tải tài liệu từ yêu cầu WEB rồi lưu lại
                     loaded = eng.LoadDocumentFromRequestFormData();
                     if (loaded)
                     {
@@ -693,8 +693,8 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 }
                 if (sd == "保存为html" && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
                 {
-                    // 用户点击了“保存文档”按钮，
-                    // 则试图从WEB请求中加载文档然后保存
+                    // Người dùng đã nhấn nút “Lưu tài liệu”, 
+                    // thì cố gắng tải tài liệu từ yêu cầu WEB rồi lưu lại
                     loaded = eng.LoadDocumentFromRequestFormData();
                     if (loaded)
                     {
@@ -702,20 +702,20 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                         eng.LoadDocument(currentFileName + blxtmc_hj.Trim() + ".html", "html");
                     }
                 }
-                //查找加载备份文件
+                //Tìm và tải tệp sao lưu
                 if (sd == "history")
                 {
                     if (!string.IsNullOrWhiteSpace(this.Request.Form["blid"]) && this.Request.Form["blid"].Contains("|"))
                     {
                         nameblxtmc = this.Request.Form["blid"].Split('|')[0];
                         blid = this.Request.Form["blid"].Split('|')[1];
-                        //查找备份
+                        //Tìm sao lưu
                         string backuplj = Server.MapPath(BlBackupFilePath + zyh + "/" + nameblxtmc.Trim() + ".xml");
-                        if (System.IO.File.Exists(backuplj) == false)//如果不存在就打开默认模板
+                        if (System.IO.File.Exists(backuplj) == false)//Nếu không tồn tại thì mở mẫu mặc định
                         {
                             backuplj = Server.MapPath(BlTemplatePath + "newFile.xml");
                         }
-                        // 加载模板
+                        // Tải mẫu
                         eng.LoadDocument(backuplj, null);
                     }
                     else
@@ -733,7 +733,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             ViewBag.mzh = mzh;
             ViewBag.blxtmc_yj = blxtmc_yj;
             //ViewBag.userid = this.UserIdentity.UserId;
-            //ViewBag.username = this.UserIdentity.UserName;//不可再赋值用户 会导致护理文书保存失败
+            //ViewBag.username = this.UserIdentity.UserName;//Không được gán lại người dùng, sẽ làm lưu văn bản điều dưỡng thất bại
             //string oldstr = "span style=&quot;color:black;font-size:9pt;background-color:white";
             //string tip = "style=\"position:relative;left:4px;top:1px";
             eng.Options.LogUserEditTrack = true;
@@ -742,7 +742,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             eng.Options.CurrentUserPermissionLevel = 0;
             eng.Options.ClientMachineName = "123";
             eng.Options.ExcludeLogicDeleted = true;
-            eng.Options.OutputOriginUserTrackInfos = true; //获取留痕列表
+            eng.Options.OutputOriginUserTrackInfos = true; //Lấy danh sách lưu vết
             eng.DocumentOptions.SecurityOptions.EnablePermission = true;
             eng.DocumentOptions.SecurityOptions.EnableLogicDelete = true;
             eng.DocumentOptions.SecurityOptions.ShowLogicDeletedContent = false;
@@ -760,14 +760,14 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             ViewBag.userName = this.UserIdentity.UserName;
             if (!string.IsNullOrWhiteSpace(nameblxtmc.Trim()))
             {
-                //判断路径是否存在，创建目录
+                //Kiểm tra đường dẫn có tồn tại hay không, tạo thư mục
                 string path = Getaddress + zyh;
                 if (Directory.Exists(path) == false)
                 {
                     Directory.CreateDirectory(path);
                 }
                 path = path + "\\";
-                //保存备份文件地址
+                //Lưu địa chỉ tệp sao lưu
                 eng.SaveDocument(path + nameblxtmc.Trim() + ".xml", null);
             }
 
@@ -778,11 +778,11 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return View();
         }
         /// <summary>
-        /// 病历文书锁定-解锁，不可多人书写同一文书
+        /// Khóa - mở khóa văn bản bệnh án, không để nhiều người cùng viết một văn bản
         /// </summary>
         /// <param name="blid"></param>
         /// <param name="bllx"></param>
-        /// <param name="isLock">1请求编辑病历2请求解锁病历</param>
+        /// <param name="isLock">1 Yêu cầu sửa bệnh án, 2 Yêu cầu mở khóa bệnh án</param>
         /// <returns></returns>
         public ActionResult LockRecord(string blid, string bllx, int isToLock)
         {
@@ -830,7 +830,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Success("解锁成功");
         }
         /// <summary>
-        /// 病历文书预览
+        /// Xem trước văn bản bệnh án
         /// </summary>
         /// <param name="jzbl"></param>
         /// <param name="blid"></param>
@@ -874,7 +874,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             }
             else
             {
-                //如果找不到加载的xml就默认为空白的xml
+                //Nếu không tìm thấy xml đã tải thì mặc định dùng xml trống
                 ViewBag.blid = blid;
                 ViewBag.bllx = bllx;
                 ViewBag.zyh = zyh;
@@ -883,7 +883,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 string currentFileName = Server.MapPath(BlTemplatePath + "newFile.xml");
                 string bllj = "";
                 blxtmc_yj = "";
-                // 加载文件
+                // Tải tệp
                 //WebWriterControlEngine eng ;
                 if (engine == null)
                 {
@@ -934,11 +934,11 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     }
                 }
                 currentFileName = Server.MapPath(bllj + blxtmc_yj.Trim() + ".xml");
-                if (System.IO.File.Exists(currentFileName) == false)//如果不存在就打开默认模板
+                if (System.IO.File.Exists(currentFileName) == false)//Nếu không tồn tại thì mở mẫu mặc định
                 {
                     currentFileName = Server.MapPath(BlTemplatePath + "newFile.xml");
                 }
-                // 加载模板
+                // Tải mẫu
                 eng.LoadDocument(currentFileName, null);
                 eng.Options.ContentRenderMode = WebWriterControlRenderMode.PagePreviewHtml;
 
@@ -973,11 +973,11 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
         public ActionResult PreViewEdit(string blid, string bllx)
         {
-            //如果找不到加载的xml就默认为空白的xml
+            //Nếu không tìm thấy xml đã tải thì mặc định dùng xml trống
             string currentFileName = Server.MapPath(BlTemplatePath + "newFile.xml");
             string bllj = "";
             string blxtmc_yj = "";
-            // 加载文件
+            // Tải tệp
             WebWriterControlEngine eng;
             if (engine == null)
             {
@@ -992,11 +992,11 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             blxtmc_yj = MedicalRecord.blxtmc_yj;
 
             currentFileName = Server.MapPath(bllj + blxtmc_yj + ".xml");
-            if (System.IO.File.Exists(currentFileName) == false)//如果不存在就打开默认模板
+            if (System.IO.File.Exists(currentFileName) == false)//Nếu không tồn tại thì mở mẫu mặc định
             {
                 currentFileName = Server.MapPath(BlTemplatePath + "newFile.xml");
             }
-            // 加载模板
+            // Tải mẫu
             eng.LoadDocument(currentFileName, null);
             eng.Options.ContentRenderMode = WebWriterControlRenderMode.PagePreviewHtml;
             string oldstr = "span style=&quot;color:black;font-size:9pt;background-color:white";
@@ -1007,7 +1007,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         /// <summary>
-        /// 病历打印视图
+        /// Chế độ xem in bệnh án
         /// </summary>
         /// <param name="jzbl"></param>
         /// <param name="blid"></param>
@@ -1053,7 +1053,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
 
 
-                //如果找不到加载的xml就默认为空白的xml
+                //Nếu không tìm thấy xml đã tải thì mặc định dùng xml trống
                 ViewBag.blid = blid;
                 ViewBag.bllx = bllx;
                 ViewBag.zyh = zyh;
@@ -1064,7 +1064,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 string currentFileName = Server.MapPath(BlTemplatePath + "newFile.xml");
                 string bllj = "";
                 blxtmc_yj = "";
-                // 加载文件
+                // Tải tệp
                 //WebWriterControlEngine eng ;
                 if (engine == null)
                 {
@@ -1115,11 +1115,11 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     }
                 }
                 currentFileName = Server.MapPath(bllj + blxtmc_yj.Trim() + ".xml");
-                if (System.IO.File.Exists(currentFileName) == false)//如果不存在就打开默认模板
+                if (System.IO.File.Exists(currentFileName) == false)//Nếu không tồn tại thì mở mẫu mặc định
                 {
                     currentFileName = Server.MapPath(BlTemplatePath + "newFile.xml");
                 }
-                // 加载模板
+                // Tải mẫu
                 eng.LoadDocument(currentFileName, null);
                 eng.Options.ContentRenderMode = WebWriterControlRenderMode.PagePreviewHtml;
 
@@ -1160,7 +1160,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return View();
         }
         /// <summary>
-        /// 历史病历文书treeV1
+        /// Cây văn bản bệnh án lịch sử treeV1
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="mzh"></param>
@@ -1172,7 +1172,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             foreach (var lx in BLLX)
             {
                 FieldInfo field = lx.GetType().GetField(lx.ToString());
-                object[] objs = field.GetCustomAttributes(typeof(DescriptionAttribute), false);    //获取描述属性         
+                object[] objs = field.GetCustomAttributes(typeof(DescriptionAttribute), false);    //Lấy thuộc tính mô tả         
                 DescriptionAttribute descriptionAttribute = (DescriptionAttribute)objs[0];
                 treeList.Add(new TreeViewModel()
                 {
@@ -1223,7 +1223,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         }
         /// <summary>
-        /// 历史病历文书treeV2
+        /// Cây văn bản bệnh án lịch sử treeV2
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="mzh"></param>
@@ -1281,7 +1281,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
         
         /// <summary>
-        /// 备份历史病历记录
+        /// Sao lưu bản ghi bệnh án lịch sử
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="blxtmc_yj"></param>
@@ -1304,7 +1304,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             }
             if (string.IsNullOrWhiteSpace(KeepBackupFileDays))
             {
-                KeepBackupFileDays = "0"; //默认只保留当天
+                KeepBackupFileDays = "0"; //Mặc định chỉ giữ lại trong ngày
             }
             else
             {
@@ -1383,7 +1383,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
         
         /// <summary>
-        /// 病历保存时相应表操作，数据存储
+        /// Thao tác bảng tương ứng khi lưu bệnh án, lưu trữ dữ liệu
         /// </summary>
         /// <param name="bllx"></param>
         /// <param name="mbbh"></param>
@@ -1407,7 +1407,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             medicalRecord.OrganizeId = OrganizeId;
             medicalRecord.bllx = bllx;
             medicalRecord.dzbl_id = "R" + EFDBBaseFuncHelper.Instance.GetNewFieldUniqueValue("YB_Inp_PatRegInfo.dzbl_id", OrganizeId, "{0:D10}", false);
-            //插入病人病历关系表
+            //Chèn vào bảng quan hệ bệnh án của bệnh nhân
             var Entity = new ZymeddocsrelationEntity();
             Entity.Id = Guid.NewGuid().ToString();
             Entity.zyh = zyh;
@@ -1432,12 +1432,12 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
         
         /// <summary>
-        /// 病历存储路径是否存在
+        /// Đường dẫn lưu trữ bệnh án có tồn tại hay không
         /// </summary>
         /// <param name="path"></param>
         public void IsExistDir(string path)
         {
-            if (Directory.Exists(Server.MapPath(path)) == false)//如果不存在就创建file文件夹
+            if (Directory.Exists(Server.MapPath(path)) == false)//Nếu không tồn tại thì tạo thư mục file
             {
                 Directory.CreateDirectory(Server.MapPath(path));
             }
@@ -1447,8 +1447,8 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         #region 病历编辑器-数据源初始化
         /// <summary>
-        /// 根据住院号获取病人基本信息
-        /// 实体必须是可序列化的才能在病历控件里绑定上数据所以使用ZybrjbxxVO
+        /// Lấy thông tin cơ bản của bệnh nhân theo số nhập viện
+        /// Thực thể phải có thể tuần tự hóa mới liên kết được dữ liệu trong điều khiển bệnh án, vì vậy dùng ZybrjbxxVO
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -1547,7 +1547,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Zybrjbxx;
         }
         /// <summary>
-        /// 根据住院号获取病人基本信息-病案首页
+        /// Lấy thông tin cơ bản của bệnh nhân theo số nhập viện - trang đầu hồ sơ bệnh án
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -1613,7 +1613,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return ba;
         }
         /// <summary>
-        /// 获取门诊患者信息
+        /// Lấy thông tin bệnh nhân ngoại trú
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -1623,7 +1623,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         /// <summary>
-        /// 住院病历加载病人基本信息
+        /// Bệnh án nội trú tải thông tin cơ bản của bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -1793,7 +1793,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         #region 医保上传
         /// <summary>
-        /// 文本域数据保存 及上传
+        /// Lưu dữ liệu vùng văn bản và tải lên
         /// </summary>
         /// <param name="list"></param>
         private string FieldDataSave(XTextElementList list, string ybbm, string dzblId, string sd, string zyh = null)
@@ -1811,7 +1811,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             QHDSmartCheckInput rootinput = new QHDSmartCheckInput();
             switch (ybbm)
             {
-                case "7100"://入院记录   
+                case "7100"://Ghi chép vào viện   
                     rootinput.jydm = "7100";
                     YBInpPatRegInfoEntity _ryjl = _yBInpPatRegInfoRepo.FindEntity(dzblId);
                     if (_ryjl == null)
@@ -1846,7 +1846,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     _yBInpPatRegInfoRepo.SubmitRegInfo(_ryjl);
                     zyh = _ryjl.AKC190;
                     #region 入院诊断
-                    var zdlist = GetDocumentDiag(list); //获取入院信息中诊断列表
+                    var zdlist = GetDocumentDiag(list); //Lấy danh sách chẩn đoán trong thông tin vào viện
                     msg = _yBInterfaceDmnService.YBInhosDiagInfoSave(zdlist, OrganizeId, dzblId, zyh);
                     #endregion
                     if (isupload == 1 && !string.IsNullOrWhiteSpace(msg))
@@ -1854,7 +1854,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                         return msg;
                     }
                     break;
-                case "7110"://入院记录诊断
+                case "7110"://Chẩn đoán ghi chép vào viện
                     rootinput.jydm = "7110";
                     if (isupload == 1)
                     {
@@ -1874,7 +1874,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                         rootinput.jsondata = JsonConvert.SerializeObject(YBJKDATA);
                     }
                     break;
-                case "7200"://首次病程记录
+                case "7200"://Ghi chép diễn biến bệnh lần đầu
                     rootinput.jydm = "7200";
                     YBInpCourseDiseaseEntity _bcjl = _yBInpCourseDiseaseRepo.FindEntity(dzblId);
                     if (_bcjl == null)
@@ -1908,7 +1908,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     }
                     _yBInpCourseDiseaseRepo.Submit(_bcjl);
                     break;
-                case "7500"://出院小结信息
+                case "7500"://Thông tin tóm tắt ra viện
                     rootinput.jydm = "7500";
                     YBInpOutHosSummariesEntity _cyxj = _yBInpOutHosSummariesRepo.FindEntity(dzblId);
                     if (_cyxj == null)
@@ -1943,7 +1943,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     _yBInpOutHosSummariesRepo.Submit(_cyxj);
                     zyh = _cyxj.AKC190;
                     #region 出院诊断
-                    var cyzdlist = GetDocumentDiag(list); //获取入院信息中诊断列表
+                    var cyzdlist = GetDocumentDiag(list); //Lấy danh sách chẩn đoán trong thông tin vào viện
                     msg = _yBInterfaceDmnService.YBOuthosDiagInfoSave(cyzdlist, OrganizeId, dzblId, zyh);
                     #endregion
                     if (isupload == 1 && !string.IsNullOrWhiteSpace(msg))
@@ -1951,7 +1951,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                         return msg;
                     }
                     break;
-                case "7510"://出院小结诊断
+                case "7510"://Chẩn đoán tóm tắt ra viện
                     rootinput.jydm = "7510";
                     if (isupload == 1)
                     {
@@ -2025,7 +2025,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             {
                 switch (ybbm)
                 {
-                    case "7100"://入院记录   
+                    case "7100"://Ghi chép vào viện   
                         YBInpPatRegInfoEntity _ryjl = _yBInpPatRegInfoRepo.FindEntity(dzblId);
                         if (_ryjl == null)
                         {
@@ -2041,7 +2041,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                         _yBInpPatRegInfoRepo.SubmitRegInfo(_ryjl);
                         zyh = _ryjl.AKC190;
                         #region 入院诊断
-                        var zdlist = GetDocumentDiag(list); //获取入院信息中诊断列表
+                        var zdlist = GetDocumentDiag(list); //Lấy danh sách chẩn đoán trong thông tin vào viện
                         msg = _yBInterfaceDmnService.YBInhosDiagInfoSave(zdlist, OrganizeId, dzblId, zyh);
                         #endregion
                         if (isupload == 1 && !string.IsNullOrWhiteSpace(msg))
@@ -2049,7 +2049,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                             return msg;
                         }
                         break;
-                    case "7200"://首次病程记录
+                    case "7200"://Ghi chép diễn biến bệnh lần đầu
                         YBInpCourseDiseaseEntity _bcjl = _yBInpCourseDiseaseRepo.FindEntity(dzblId);
                         if (_bcjl == null)
                         {
@@ -2064,7 +2064,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                         }
                         _yBInpCourseDiseaseRepo.Submit(_bcjl);
                         break;
-                    case "7500"://出院小结信息
+                    case "7500"://Thông tin tóm tắt ra viện
                         YBInpOutHosSummariesEntity _cyxj = _yBInpOutHosSummariesRepo.FindEntity(dzblId);
                         if (_cyxj == null)
                         {
@@ -2080,7 +2080,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                         _yBInpOutHosSummariesRepo.Submit(_cyxj);
                         zyh = _cyxj.AKC190;
                         #region 出院诊断
-                        var cyzdlist = GetDocumentDiag(list); //获取入院信息中诊断列表
+                        var cyzdlist = GetDocumentDiag(list); //Lấy danh sách chẩn đoán trong thông tin vào viện
                         msg = _yBInterfaceDmnService.YBOuthosDiagInfoSave(cyzdlist, OrganizeId, dzblId, zyh);
                         #endregion
                         if (isupload == 1 && !string.IsNullOrWhiteSpace(msg))
@@ -2104,7 +2104,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return msg;
         }
         /// <summary>
-        /// 根据方法名获取相应病历信息
+        /// Lấy thông tin bệnh án tương ứng theo tên phương pháp
         /// </summary>
         /// <param name="jydm"></param>
         /// <param name="blId"></param>
@@ -2232,7 +2232,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
 
         /// <summary>
-        /// 更新上传状态
+        /// Cập nhật trạng thái tải lên
         /// </summary>
         /// <returns></returns>
         public ActionResult UpdateYBUploadStu(string blId)
@@ -2308,7 +2308,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         #region 病历文本数据提取
         /// <summary>
-        /// 获取文档诊断列表
+        /// Lấy danh sách chẩn đoán của tài liệu
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
@@ -2318,7 +2318,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             if (list != null && list.Count > 0)
             {
                 int px = 0;
-                //诊断个数
+                //Số lượng chẩn đoán
                 var docdiag = list.FindAll(p => p.ID.Contains("zyzd_") && p.ID.Contains("_zyzd_") == false && p.ID.Contains("_name") == false);
                 if (docdiag != null && docdiag.Count > 0)
                 {
@@ -2327,7 +2327,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                         if (!string.IsNullOrWhiteSpace(item.FormulaValue) || !string.IsNullOrWhiteSpace(item.InnerText))
                         {
                             px += 1;
-                            //诊断详情
+                            //Chi tiết chẩn đoán
                             DiagnoseDocDTO dto = new DiagnoseDocDTO();
                             dto.icd10 = item.FormulaValue ?? item.InnerText;
                             dto.zdCode = item.FormulaValue ?? item.InnerText;
@@ -2450,7 +2450,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         /// <summary>
-        /// 医嘱查询
+        /// Tra cứu y lệnh
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -2471,31 +2471,31 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         #endregion
 
         #region  多份病历合并
-        //合并病程
+        //Hợp nhất diễn biến bệnh
         public ActionResult MergeView(string jzbl, string blid, string bllx, string blid2, string bllx2, string blxtmc_yj, string zyh, string message, string mzh = null)
         {
 
-            //1.根据zyh读取所有病程记录
+            //1. Đọc tất cả ghi chép diễn biến bệnh theo zyh
             OperatorModel user = this.UserIdentity;
-            var list = _ZybrjbxxDmnService.GetPatMedRecordTree(this.OrganizeId, zyh, user.rygh).OrderBy(p => p.Blrq).ToList();//病程记录列表树
-            var urlList = new List<string>();//病程url地址
+            var list = _ZybrjbxxDmnService.GetPatMedRecordTree(this.OrganizeId, zyh, user.rygh).OrderBy(p => p.Blrq).ToList();//Cây danh sách ghi chép diễn biến bệnh
+            var urlList = new List<string>();//Địa chỉ url diễn biến bệnh
 
-            //设置xml路径
-            string currentFileName = "";//合并病程记录读取路径
-            string fileUrl = Server.MapPath("~/file/住院病历/Merge/" + zyh);//文件夹路径
+            //Đặt đường dẫn xml
+            string currentFileName = "";//Đường dẫn đọc ghi chép diễn biến bệnh đã hợp nhất
+            string fileUrl = Server.MapPath("~/file/住院病历/Merge/" + zyh);//Đường dẫn thư mục
             if (!Directory.Exists(fileUrl))
-            {//创建文件夹
+            {//Tạo thư mục
                 Directory.CreateDirectory(fileUrl);
             }
             string saveUrl = fileUrl + "/" + zyh + "病程记录合并_.xml";
 
-            // 创建一个合并的 document
+            // Tạo một document đã hợp nhất
             XmlDocument result = new XmlDocument();
-            // 创建根元素
+            // Tạo phần tử gốc
             XmlElement root = result.CreateElement("root");
             result.AppendChild(root);
 
-            //获取病历类型
+            //Lấy loại bệnh án
             var bllxList = _CommonDmnService.GetBllxListDetail(OrganizeId).Where(p => p.bllxmc == "病程记录" && p.ParentId != null).Select(p => p.bllx).ToList();
 
             foreach (var obj in list)
@@ -2504,7 +2504,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 //if (bllxList.IndexOf(obj.bllx) != -1 && obj.ctrlLevel != -1 && bllxList.IndexOf(obj.parentbllx) == -1)
                 if ((obj.bllx == "2" || obj.bllx == "2019") && obj.ctrlLevel != -1 && (obj.parentbllx != "2011" || obj.parentbllx != "2012"))
                 {
-                    //病程记录
+                    //Ghi chép diễn biến bệnh
                     var date = obj.Blrq.ToDate();
                     string _month = "00" + date.Month.ToString();
                     _month = _month.Substring(_month.Length - 2);
@@ -2518,9 +2518,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     XmlElement rootA = doc.DocumentElement;
                     foreach (XmlNode node in rootA.ChildNodes)
                     {
-                        // 先导入节点
+                        // Nhập nút trước
                         XmlNode n = result.ImportNode(node, true);
-                        // 然后，插入指定的位置
+                        // Sau đó, chèn vào vị trí đã chỉ định
                         root.AppendChild(n);
                     }
 
@@ -2534,25 +2534,25 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             //for (int i = 1; i < urlList.Count; i++)
             //{
             //	xTextDocument.LoadUseAppendModeFromString(System.IO.File.ReadAllText(urlList[i]), "xml");
-            //	//xTextDocument.Body.AppendContentElement(doc_ch);
+            //	xTextDocument.Body.AppendContentElement(doc_ch);
 
             //}
 
             //xTextDocument.RefreshDocument();
             //xTextDocument.SaveToFile(saveUrl, "xml");
 
-            //2.合并多个病程记录并保存至本地
+            //2. Hợp nhất nhiều ghi chép diễn biến bệnh và lưu về máy cục bộ
             switch (urlList.Count)
             {
                 case 0:
                     break;
-                case 1://直接读取病程记录地址
+                case 1://Đọc trực tiếp địa chỉ ghi chép diễn biến bệnh
                     currentFileName = urlList[0];
                     break;
-                case 2://合并2个病程
+                case 2://Hợp nhất 2 diễn biến bệnh
                     MergeXML(urlList[0], urlList[1], saveUrl);
                     break;
-                default://合并前两个病程，拿保存的病程和其余病程挨个合并
+                default://Hợp nhất hai diễn biến bệnh đầu tiên, lấy diễn biến bệnh đã lưu hợp nhất lần lượt với các diễn biến bệnh còn lại
                     MergeXML(urlList[0], urlList[1], saveUrl);
                     for (var i = 2; i < urlList.Count; i++)
                     {
@@ -2561,7 +2561,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     break;
             }
 
-            //3.打开病程记录
+            //3. Mở ghi chép diễn biến bệnh
             WebWriterControlEngine eng;
             if (jzbl != "" && jzbl != null)
             {
@@ -2601,11 +2601,11 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
                 currentFileName = currentFileName == "" ? saveUrl : currentFileName;
                 //string currentFileName = "D:/Code/emr/Code/Newtouch.EMR/Newtouch.EMR.Web/File/住院病历/Merge/03192/03192病程记录_合并.xml";
-                if (System.IO.File.Exists(currentFileName) == false)//如果不存在就打开默认模板
+                if (System.IO.File.Exists(currentFileName) == false)//Nếu không tồn tại thì mở mẫu mặc định
                 {
                     currentFileName = Server.MapPath(BlTemplatePath + "newFile.xml");
                 }
-                // 加载模板
+                // Tải mẫu
                 eng.LoadDocument(currentFileName, null);
                 eng.Options.ContentRenderMode = WebWriterControlRenderMode.PagePreviewHtml;
 
@@ -2641,16 +2641,16 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             //         XmlDocument docb = new XmlDocument();
             //         docb.Load(readUrlB);
 
-            //         // 分别获取两个文档的根元素，以便于合并
+            //         // Lấy lần lượt phần tử gốc của hai tài liệu để tiện hợp nhất
             //         XmlElement rootA = doca.DocumentElement;
             //         XmlElement rootB = docb.DocumentElement;
 
-            //         // 创建一个合并的 document
+            //         // Tạo một document đã hợp nhất
             //         XmlDocument result = new XmlDocument();
 
-            //         //创建头文件
+            //         //Tạo tệp tiêu đề
             //         XmlNode xmlnode = result.CreateNode(XmlNodeType.XmlDeclaration, "", "");
-            //         // 创建根元素
+            //         // Tạo phần tử gốc
             //         XmlElement root = result.CreateElement("XTextDocument");
             //         root.SetAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
             //         root.SetAttribute("xmlns:xsd", "http://www.w3.org/2001/XMLSchema");
@@ -2659,12 +2659,12 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
             //         foreach (XmlNode nodeA in rootA.ChildNodes)
             //         {
-            //             // 先导入节点
+            //             // Nhập nút trước
             //             XmlNode n = result.ImportNode(nodeA, true);
-            //             // 然后，插入指定的位置
-            //             //root.AppendChild(n);  
+            //             // Sau đó, chèn vào vị trí đã chỉ định
+            // root.AppendChild(n);  
 
-            //             //插入第二个xml文档的XElements元素
+            //             //Chèn phần tử XElements của tài liệu xml thứ hai
             //             if (nodeA.Name == "XElements") //rootA.ChildNodes[1]
             //             {
             //                 XmlElement XElements = result.CreateElement("XElements");
@@ -2677,7 +2677,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             //                         {
             //                             if (j == 1)//rootB.ChildNodes[1].ChildNodes[1]
             //                             {
-            //                                 //XmlElement Element = result.CreateElement("Element");
+            // XmlElement Element = result.CreateElement("Element");
             //                                 var cnEle = nodeA.ChildNodes[j];
             //                                 XmlNode Element = result.ImportNode(cnEle, true);
 
@@ -2685,20 +2685,20 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             //                                 {
             //                                     if (k == 2)//rootB.ChildNodes[1].ChildNodes[1].ChildNodes[2]
             //                                     {
-            //                                         //第一个文档
-            //                                         //var cnA = rootA.ChildNodes[i].ChildNodes[j].ChildNodes[k];
-            //                                         //XmlNode nA = result.ImportNode(cnA, true);
-            //                                         //Element.AppendChild(nA);
-            //                                         //第二个文档
+            //                                         //Tài liệu thứ nhất
+            // var cnA = rootA.ChildNodes[i].ChildNodes[j].ChildNodes[k];
+            // XmlNode nA = result.ImportNode(cnA, true);
+            // Element.AppendChild(nA);
+            //                                         //Tài liệu thứ hai
             //                                         var cnB = rootB.ChildNodes[i].ChildNodes[j].ChildNodes[k];
             //                                         XmlNode nB = result.ImportNode(cnB, true);
             //                                         Element.AppendChild(nB);
             //                                     }
             //                                     else
             //                                     {
-            //                                         //var cn = nodeA.ChildNodes[j].ChildNodes[k];
-            //                                         //XmlNode nA = result.ImportNode(cn, true);
-            //                                         //Element.AppendChild(nA);
+            // var cn = nodeA.ChildNodes[j].ChildNodes[k];
+            // XmlNode nA = result.ImportNode(cn, true);
+            // Element.AppendChild(nA);
             //                                     }
             //                                 }
             //                                 XElements.AppendChild(Element);
@@ -2710,16 +2710,16 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             //                                 XElements.AppendChild(nA);
             //                             }
             //                         }
-            //                         //var cn = rootB.ChildNodes[1].ChildNodes[1].ChildNodes[2];
-            //                         //XmlNode nB = result.ImportNode(cn, true);
-            //                         //root.AppendChild(nB);
+            // var cn = rootB.ChildNodes[1].ChildNodes[1].ChildNodes[2];
+            // XmlNode nB = result.ImportNode(cn, true);
+            // root.AppendChild(nB);
             //                     }
             //                     else
             //                     {
-            //                         //root.AppendChild(n);
-            //                         //var cn = rootA.ChildNodes[i];
-            //                         //XmlNode nA = result.ImportNode(cn, true);
-            //                         //root.AppendChild(nA);
+            // root.AppendChild(n);
+            // var cn = rootA.ChildNodes[i];
+            // XmlNode nA = result.ImportNode(cn, true);
+            // root.AppendChild(nA);
             //                     }
             //                 }
 
@@ -2746,7 +2746,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             //}
             //else
             //{
-            //return Error("修改锁定状态失败");只针对护理记录单
+            //return Error("Sửa trạng thái khóa thất bại"); chỉ áp dụng cho phiếu ghi chép điều dưỡng
             //}
         }
         #endregion
@@ -2760,19 +2760,19 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         {
             return View();
         }
-        //加载病历模板
+        //Tải mẫu bệnh án
         public ActionResult LoadTemplateHtml(string mbbh, string zyh, string mzh = null)
         {
-            //根据id获取模板
-            //如果找不到加载的xml就默认为空白的xml
+            //Lấy mẫu theo id
+            //Nếu không tìm thấy xml đã tải thì mặc định dùng xml trống
             BlTemplateVo vo = new BlTemplateVo();
             string currentFileName = Server.MapPath(BlTemplatePath + "newFile.html");
             var mb = _bl_mblbRepo.GetTemplateById(mbbh);
             if (mb != null && !string.IsNullOrWhiteSpace(mb.mblj)) {
                 mb.mblj = mb.mblj.Replace("xml", "html");
                 currentFileName = Server.MapPath(mb.mblj);
-                // 加载模板
-                if (System.IO.File.Exists(currentFileName) == false)//如果不存在就打开默认模板
+                // Tải mẫu
+                if (System.IO.File.Exists(currentFileName) == false)//Nếu không tồn tại thì mở mẫu mặc định
                 {
                     currentFileName = Server.MapPath(BlTemplatePath + "newFile.html");
                 }
@@ -2795,7 +2795,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             vo.templateName = mb.mbmc;
             return Content(vo.ToJson());
         }
-        //病历保存
+        //Lưu bệnh án
         public ActionResult SavePatientBl(List<Blyyjgh> docData, string mbbh, string zyh, string mzh = null, string submitData=null )
         {
             string ywid = zyh.Trim();
@@ -2809,7 +2809,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             {
                 DataSource = mbety.DataSource;
             }
-            string path = BlFilePath + DateTime.Now.ToString("yyyy/MM/dd/") + ywid + "/";//win10电脑有问题
+            string path = BlFilePath + DateTime.Now.ToString("yyyy/MM/dd/") + ywid + "/";//Máy tính win10 có vấn đề
             path = $"{BlFilePath}{DateTime.Now.ToString("yyyy")}/{DateTime.Now.ToString("MM")}/{DateTime.Now.ToString("dd")}/{ywid}/";
             IsExistDir(path);
             string BLMC = DateTime.Now.ToString("ddHHmm") + mbety.mbmc.Replace("模板", "").Trim();
@@ -2854,15 +2854,15 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             };
             return Content(data.ToJson());
         }
-        //加载患者病历
+        //Tải bệnh án của bệnh nhân
         public ActionResult LoadMedicalRecordHtml(string blid, string bllx, string zyh, string mzh = null, string submitData = null)
         {
-            //如果找不到加载的html模板就默认为空白的html
+            //Nếu không tìm thấy mẫu html đã tải thì mặc định dùng html trống
             string currentFileName = Server.MapPath(BlTemplatePath + "newFile.html");
             string bllj = "";
             string blxtmc_yj = "";
-            bool lockd = false; //病历书写占用锁定
-            //历史备份
+            bool lockd = false; //Khóa chiếm dụng khi viết bệnh án
+            //Sao lưu lịch sử
             string nameblxtmc = "";
             string lujing = "";
             string Getaddress = Server.MapPath(BlBackupFilePath);
@@ -2878,29 +2878,29 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             }
             bllj = mr.blxtml;
             blxtmc_yj = mr.blxtmc_yj;
-            //备份文件名称
+            //Tên tệp sao lưu
             nameblxtmc = DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + zyh + "-" + mr.blxtmc_yj;
             lujing = mr.blxtml;
             if (mr.IsLock == 1 && mr.LastModifierCode != this.UserIdentity.UserCode)
                 lockd = true;
             currentFileName = Server.MapPath(mr.blxtml + mr.blxtmc_yj.Trim() + ".html");
-            if (System.IO.File.Exists(currentFileName) == false)//如果不存在就打开默认模板
+            if (System.IO.File.Exists(currentFileName) == false)//Nếu không tồn tại thì mở mẫu mặc định
             {
                 currentFileName = Server.MapPath(BlTemplatePath + "newFile.xml");
             }
-            // 加载模板
+            // Tải mẫu
             string htmldata = System.IO.File.ReadAllText(currentFileName);
             LockRecord(blid, bllx, 1);
             if (!string.IsNullOrWhiteSpace(nameblxtmc.Trim()))
             {
-                //判断路径是否存在，创建目录
+                //Kiểm tra đường dẫn có tồn tại hay không, tạo thư mục
                 string path = Getaddress + zyh;
                 if (Directory.Exists(path) == false)
                 {
                     Directory.CreateDirectory(path);
                 }
                 path = path + "\\";
-                //保存备份文件地址
+                //Lưu địa chỉ tệp sao lưu
                 System.IO.File.WriteAllText(path + nameblxtmc.Trim() + ".html", htmldata);
             }
             BlTemplateVo vo = new BlTemplateVo();
@@ -2911,7 +2911,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             vo.bllj = bllj;
             return Content(vo.ToJson());
         }
-        //更新病历
+        //Cập nhật bệnh án
         public ActionResult UpdatePatientBl(List<Blyyjgh> docData, string blid,string bllx,string bllj,string blxtmc_yj, string zyh, string mzh = null, string submitData = null)
         {
             string currentFileName = Server.MapPath(bllj);
@@ -2968,13 +2968,13 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             {
                 string nameblxtmc = backValue.Split('|')[0];
                 string blid = backValue.Split('|')[1];
-                //查找备份
+                //Tìm sao lưu
                 string backuplj = Server.MapPath(BlBackupFilePath + zyh + "/" + nameblxtmc.Trim() + doctype);
-                if (System.IO.File.Exists(backuplj) == false)//如果不存在就打开默认模板
+                if (System.IO.File.Exists(backuplj) == false)//Nếu không tồn tại thì mở mẫu mặc định
                 {
                     backuplj = Server.MapPath(BlTemplatePath + "newFile"+ doctype);
                 }
-                // 加载模板
+                // Tải mẫu
                 string htmldata = System.IO.File.ReadAllText(backuplj);
                 var data = new
                 {

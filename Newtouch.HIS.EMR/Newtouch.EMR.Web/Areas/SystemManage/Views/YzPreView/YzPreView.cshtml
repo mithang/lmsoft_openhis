@@ -11,7 +11,7 @@
         <div class="topPanel">
             <div class="toolbar " style="float:right;">
                 <div class="btn btn-default">
-                    <a authorize="yes" onclick="PrintDoc()"><i class="glyphicon glyphicon-print"></i>打印</a>
+                    <a authorize="yes" onclick="PrintDoc()"><i class="glyphicon glyphicon-print"></i>In</a>
                     <script language=javascript>
                         function PrintDoc() {
                             var ctl = document.getElementById("myWriterControl");
@@ -22,7 +22,7 @@
                 </div>
                 <div class="btn">
                     <input type="checkbox" id="idJumpPrint" name="idJumpPrint" onclick="JumpPrint();" />
-                    <label for="idJumpPrint">续打</label>
+                    <label for="idJumpPrint">In tiếp</label>
                     <script language=javascript>
 						function JumpPrint() {
 							var flag = document.getElementById("idJumpPrint").checked;
@@ -34,7 +34,7 @@
                 </div>
                 <div class="btn">
                     <input type="checkbox" id="AreaPrint" name="AreaPrint" onclick="AreaPrints();" />
-                    <label for="AreaPrint">区域选择打印</label>
+                    <label for="AreaPrint">Chọn vùng để in</label>
                     <script language=javascript>
                         function AreaPrints() {
 							var flag = document.getElementById("AreaPrint").checked;
@@ -116,7 +116,7 @@
             //var ctl = document.getElementById("myWriterControl");
             //ctl.preserveScrollPosition = true;
             //var fileName = hljldmblj;
-            //在服务器端响应控件的EventReadFileContent事件，即可使用AJAX模式加载文档。
+            //Khi phía máy chủ phản hồi sự kiện EventReadFileContent của điều khiển, có thể tải tài liệu ở chế độ AJAX.
             //ctl.LoadDocumentFromFile(fileName, null);
             //dcdatabinding();
             setTimeout(function () { dcdatabinding(); }, 200)
@@ -170,7 +170,7 @@
             //    //BindingDCWriterClientControl(ctl);
             //    ctl.EventAfterPrintPreview = function (PrintPreviewDoc) {
             //        var styleDom = document.createElement("style");
-            //        // 解决宋体打印问题
+            //        // 解决宋体In问题
             //        var cssStr = "@@font-face {font-family: 宋体;src: local('宋体');}";
             //        styleDom.innerHTML = cssStr;
             //        var page = PrintPreviewDoc.querySelector("div[pageindex]");
@@ -181,7 +181,7 @@
             //}
             FileOpen();
         }
-        //-------------病历编辑器5.0------------------//
+        //-------------Trình soạn thảo bệnh án 5.0------------------//
         function WriterControl_OnLoad(rootElement) {
             debugger;
             var ctl = document.getElementById("myWriterControl");

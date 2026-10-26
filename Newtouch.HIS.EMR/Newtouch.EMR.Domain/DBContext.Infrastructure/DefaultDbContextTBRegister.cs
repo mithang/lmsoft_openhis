@@ -11,12 +11,12 @@ namespace Newtouch.EMR.Domain.DBContext.Infrastructure
     public class DefaultDbContextTBRegister
     {
         /// <summary>
-        /// 注册表（底层已经注册了一部分）
+        /// Sổ đăng ký (tầng dưới đã đăng ký một phần)
         /// </summary>
         /// <param name="modelBuilder"></param>
         public static void Registe(DbModelBuilder modelBuilder)
         {
-            //注册新表
+            //Đăng ký bảng mới
             //modelBuilder.Entity<SysUserEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<ZybrjbxxEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<BlmblbEntity>().RegisterTable().HasKey(p => p.Id);
@@ -55,9 +55,9 @@ namespace Newtouch.EMR.Domain.DBContext.Infrastructure
             modelBuilder.Entity<bl_hljl_wzEntity>().RegisterTable().HasKey(p => p.Id);
             modelBuilder.Entity<bl_hljl_ssEntity>().RegisterTable().HasKey(p => p.Id);
 
-            //质控规则
+            //Quy tắc kiểm soát chất lượng
             modelBuilder.Entity<MrWritingRulesEntity>().RegisterTable().HasKey(p => p.Id);
-            //病历申请记录
+            //Bản ghi đề nghị bệnh án
             modelBuilder.Entity<MrBlApplyRecordEntity>().RegisterTable().HasKey(p => p.Id);
         }
 

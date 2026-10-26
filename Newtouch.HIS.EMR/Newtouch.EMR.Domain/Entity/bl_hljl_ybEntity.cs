@@ -11,179 +11,179 @@ namespace Newtouch.EMR.Domain.Entity
         [Key]
         public string Id { get; set; }
         /// <summary>
-        /// 日期
+        /// Ngay
         /// </summary>
         public string rq { get; set; }
         /// <summary>
-        /// 时间
+        /// Thoi gian
         /// </summary>
         public string sj { get; set; }
         /// <summary>
-        /// 住院号
+        /// So nhap vien
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// 姓名
+        /// Ho ten
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// 护理等级 1 特级 2 一级 3 二级 4 三级
+        /// Cap do dieu duong: 1 Dac biet, 2 Cap mot, 3 Cap hai, 4 Cap ba
         /// </summary>
         public string hldj { get; set; }
         /// <summary>
-        /// 护理类型 1基础护理 2特殊护理 3辩证施护 4其他
+        /// Loai dieu duong: 1 Dieu duong co ban, 2 Dieu duong dac biet, 3 Dieu duong theo bien chung, 4 Khac
         /// </summary>
         public string hllx { get; set; }
         /// <summary>
-        /// 过敏史
+        /// Tien su di ung
         /// </summary>
         public string gms { get; set; }
         /// <summary>
-        /// 体重
+        /// Can nang
         /// </summary>
         public string tz { get; set; }
         /// <summary>
-        /// 体温
+        /// Nhiet do
         /// </summary>
         public string tw { get; set; }
         /// <summary>
-        /// 呼吸频率
+        /// Tan so ho hap
         /// </summary>
         public string hxpl { get; set; }
         /// <summary>
-        /// 脉率
+        /// Mach
         /// </summary>
         public string ml { get; set; }
         /// <summary>
-        /// 收缩压
+        /// Huyet ap tam thu
         /// </summary>
         public string ssy { get; set; }
         /// <summary>
-        /// 舒张压
+        /// Huyet ap tam truong
         /// </summary>
         public string szy { get; set; }
         /// <summary>
-        /// 血氧饱和度
+        /// Do bao hoa oxy trong mau
         /// </summary>
         public string xybhd { get; set; }
         /// <summary>
-        /// 吸氧
+        /// Tho oxy
         /// </summary>
         public string xy { get; set; }
         /// <summary>
-        /// 足背动脉搏动
+        /// Mach dong mach mu chan
         /// </summary>
         public string zbdmbz { get; set; }
         /// <summary>
-        /// 饮食情况 1良好 2一般 3较差
+        /// Tinh hinh an uong: 1 Tot, 2 Binh thuong, 3 Kem
         /// </summary>
         public string ysqk { get; set; }
         /// <summary>
-        /// 导管护理描述
+        /// Mo ta cham soc ong thong
         /// </summary>
         public string dghl { get; set; }
         /// <summary>
-        /// 气管护理描述
+        /// Mo ta cham soc khi quan
         /// </summary>
         public string qghl { get; set; }
         /// <summary>
-        /// 体位护理
+        /// Cham soc tu the
         /// </summary>
         public string twhl { get; set; }
         /// <summary>
-        /// 皮肤护理
+        /// Cham soc da
         /// </summary>
         public string pfhl { get; set; }
         /// <summary>
-        /// 营养护理
+        /// Cham soc dinh duong
         /// </summary>
         public string yyhl { get; set; }
         /// <summary>
-        /// 饮食指导 01普通饮食 02软食 03半流食 04流食 05禁食 06禁食水 07鼻饲饮食 08低盐低脂饮食 09糖尿病饮食 99其他
+        /// Huong dan an uong: 01 An thuong, 02 An mem, 03 An nua long, 04 An long, 05 Nhin an, 06 Nhin an va nuoc, 07 An qua ong mui, 08 An it muoi it mo, 09 An cho benh tieu duong, 99 Khac
         /// </summary>
         public string yszd { get; set; }
         /// <summary>
-        /// 心理护理 1根据病人心理状况实施心理护理 2家属心理支持
+        /// Cham soc tam ly: 1 Thuc hien cham soc tam ly theo trang thai tam ly cua benh nhan, 2 Ho tro tam ly cho gia dinh
         /// </summary>
         public string xlhl { get; set; }
         /// <summary>
-        /// 安全护理 1勤巡视病房 2加床档 3约束四肢
+        /// Cham soc an toan: 1 Thuong xuyen tuan tra phong benh, 2 Them thanh chan giuong, 3 Co dinh tu chi
         /// </summary>
         public string aqhl { get; set; }
         /// <summary>
-        /// 简要病情
+        /// Tinh trang benh tom tat
         /// </summary>
         public string jybq { get; set; }
         /// <summary>
-        /// 护理观察项目名称
+        /// Ten hang muc quan sat dieu duong
         /// </summary>
         public string hlgcxm { get; set; }
         /// <summary>
-        /// 护理观察结果
+        /// Ket qua quan sat dieu duong
         /// </summary>
         public string hlgcjg { get; set; }
         /// <summary>
-        /// 护理操作名称
+        /// Ten thao tac dieu duong
         /// </summary>
         public string hlczmc { get; set; }
         /// <summary>
-        /// 护理操作项目类目名称
+        /// Ten danh muc hang muc thao tac dieu duong
         /// </summary>
         public string hlczxmmc { get; set; }
         /// <summary>
-        /// 护理观察结果
+        /// Ket qua quan sat dieu duong
         /// </summary>
         public string hlczjg { get; set; }
         /// <summary>
-        /// 发出手术安全核对表
+        /// Phat bang kiem tra an toan phau thuat
         /// </summary>
         public string fcssaqb { get; set; }
         /// <summary>
-        /// 收回手术安全核对表
+        /// Thu hoi bang kiem tra an toan phau thuat
         /// </summary>
         public string shssaqb { get; set; }
         /// <summary>
-        /// 发出手术风险评估表
+        /// Phat bang danh gia rui ro phau thuat
         /// </summary>
         public string fcssfxpgb { get; set; }
         /// <summary>
-        /// 收回手术风险评估表
+        /// Thu hoi bang danh gia rui ro phau thuat
         /// </summary>
         public string shssfxpgb { get; set; }
         /// <summary>
-        /// 隔离标志
+        /// Co cach ly
         /// </summary>
         public string glbz { get; set; }
         /// <summary>
-        /// 隔离种类 1消化道隔离 2呼吸道隔离 3接触隔离 4血液-体液隔离 5严密隔离 6昆虫隔离 7保护性隔离
+        /// Loai cach ly: 1 Cach ly duong tieu hoa, 2 Cach ly duong ho hap, 3 Cach ly tiep xuc, 4 Cach ly mau - dich co the, 5 Cach ly nghiem ngat, 6 Cach ly con trung, 7 Cach ly bao ve
         /// </summary>
         public string glzl { get; set; }
         /// <summary>
-        /// 护士签名
+        /// Chu ky dieu duong
         /// </summary>
         public string hsqm { get; set; }
         /// <summary>
-        /// 护士签名时间 
+        /// Thoi gian ky cua dieu duong 
         /// </summary>
         public string hsqmrqsj { get; set; }
         /// <summary>
-        /// 意识
+        /// Y thuc
         /// </summary>
         public string ys { get; set; }
         /// <summary>
-        /// 瞳孔-左
+        /// Dong tu - trai
         /// </summary>
         public string tk_z { get; set; }
         /// <summary>
-        /// 瞳孔-右
+        /// Dong tu - phai
         /// </summary>
         public string tk_y { get; set; }
         /// <summary>
-        /// 对光反应-左
+        /// Phan ung voi anh sang - trai
         /// </summary>
         public string dgfs_z { get; set; }
         /// <summary>
-        /// 对光反应-右
+        /// Phan ung voi anh sang - phai
         /// </summary>
         public string dgfs_y { get; set; }
         public System.DateTime CreateTime { get; set; }

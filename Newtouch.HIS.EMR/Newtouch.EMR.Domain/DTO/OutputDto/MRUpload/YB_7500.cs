@@ -8,133 +8,133 @@ using System.Threading.Tasks;
 namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
 {
     /// <summary>
-    /// 出院小结信息
+    /// Thông tin tóm tắt ra viện
     /// </summary>
     public class YB_7500
     {
         /// <summary>
-        /// 就诊流水号 
+        /// Số thứ tự khám bệnh 
         /// 1
-        /// 医疗机构内部记录患者本次就诊信息的唯一标识，与医保系统关联必须
+        /// Định danh duy nhất ghi nội bộ của cơ sở y tế về thông tin khám lần này của bệnh nhân, bắt buộc phải liên kết với hệ thống bảo hiểm y tế
         /// </summary>
         [Required]
         public string AKC190 { get; set; }
         /// <summary>
-        /// 居民健康卡号
+        /// Số thẻ sức khỏe cư dân
         /// </summary>
         public string BKF636 { get; set; }
         /// <summary>
-        /// 住院流水号 
+        /// Số thứ tự nhập viện 
         /// 1
         /// </summary>
         [Required]
         public string BKC191 { get; set; }
         /// <summary>
-        /// 科室代码
+        /// Mã khoa
         /// </summary>
         public string AKF001 { get; set; }
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// 1
         /// </summary>
         [Required]
         public string AKF002 { get; set; }
         /// <summary>
-        /// 病区名称
+        /// Tên khu bệnh
         /// 1
         /// </summary>
         [Required]
         public string AKE021 { get; set; }
         /// <summary>
-        /// 病床号
+        /// Số giường bệnh
         /// 1
         /// </summary>
         [Required]
         public string BKB410 { get; set; }
         /// <summary>
-        /// 入院日期 格式：yyyymmddhhmiss
+        /// Ngày vào viện, định dạng: yyyymmddhhmiss
         /// 1
         /// </summary>
         [Required]
         public string BKC192 { get; set; }
         /// <summary>
-        /// 出院日期 格式：yyyymmddhhmiss
+        /// Ngày ra viện, định dạng: yyyymmddhhmiss
         /// 1
         /// </summary>
         [Required]
         public string AKC194 { get; set; }
         /// <summary>
-        /// 实际住院天数
+        /// Số ngày nằm viện thực tế
         /// 1
         /// </summary>
         [Required]
         public string BKF668 { get; set; }
         /// <summary>
-        /// 入院情况
+        /// Tình hình lúc vào viện
         /// 1
         /// </summary>
         [Required]
         public string BKF264 { get; set; }
         /// <summary>
-        /// 阳性辅助检查结果
+        /// Kết quả kiểm tra bổ trợ dương tính
         /// </summary>
         public string BKF378 { get; set; }
         /// <summary>
-        /// 诊疗过程描述
+        /// Mô tả quá trình chẩn trị
         /// </summary>
         public string BKF420 { get; set; }
         /// <summary>
-        /// 出院情况
+        /// Tình hình ra viện
         /// 1
         /// </summary>
         [Required]
         public string BKF758 { get; set; }
         /// <summary>
-        /// 出院时症状与体征
+        /// Triệu chứng và dấu hiệu lúc ra viện
         /// </summary>
         public string BKF139 { get; set; }
         /// <summary>
-        /// 出院医嘱
+        /// Y lệnh ra viện
         /// </summary>
         public string BKF759 { get; set; }
         /// <summary>
-        /// 治疗结果代码
+        /// Mã kết quả điều trị
         /// </summary>
         public string BKF439 { get; set; }
         /// <summary>
-        /// 住院医生编号
+        /// Mã bác sĩ nội trú
         /// </summary>
         public string BKF050 { get; set; }
         /// <summary>
-        /// 住院医师姓名
+        /// Họ tên bác sĩ nội trú
         /// 1
         /// </summary>
         [Required]
         public string BKF692 { get; set; }
         /// <summary>
-        /// 上级医师姓名
+        /// Họ tên bác sĩ cấp trên
         /// 1
         /// </summary>
         [Required]
         public string BKF267 { get; set; }
         /// <summary>
-        /// 签字日期时间(住院医师)
+        /// Ngày giờ ký (bác sĩ nội trú)
         /// </summary>
         public string BKF254 { get; set; }
         /// <summary>
-        /// 中医四诊观察结果描述
+        /// Mô tả kết quả quan sát tứ chẩn Đông y
         /// </summary>
         public string BKF473 { get; set; }
         /// <summary>
-        /// 治则治法
+        /// Nguyên tắc và phương pháp điều trị
         /// </summary>
         public string BKF440 { get; set; }
         /// <summary>
-        /// 中药煎煮方法
+        /// Phương pháp sắc thuốc Đông y
         /// </summary>
         public string BKF451 { get; set; }
         /// <summary>
-        /// 中药用药方法
+        /// Cách dùng thuốc Đông y
         /// </summary>
         public string BKF457 { get; set; }
     }

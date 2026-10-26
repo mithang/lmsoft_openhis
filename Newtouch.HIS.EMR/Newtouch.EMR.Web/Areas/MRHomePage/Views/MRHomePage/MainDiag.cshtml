@@ -5,53 +5,53 @@
 <div id="dv_edit_diag">
 	<div style="width:65%;float:left;padding-left:10px;">
 		<table id="gridzdList"></table>
-		@*<div id="gridzdPager"></div>*@
+		@**@<div id="gridzdPager"></div>*@
 	</div>
 	<div class="dv_tip" style="width:30%;float:right;padding-right:10px;border:2px solid #a6e6a5;height:400px;">
 		<div><input type="hidden" id="zd_rowid" name="zd_rowid" /></div>
 		<div style="padding:50px 20px 50px 20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle "><span style="color:red;">*</span> 类别：</th>
+                    <th class="formTitle "><span style="color:red;">*</span> Loại:</th>
                     <td class="formValue">
-                        <label><input type="radio" id="radioTreating" checked="checked" name="optionsRadios" class="optionsRadios formClearIgnore" value="WM" ) />西医</label>
-                        <label><input type="radio" id="radioTreated" name="optionsRadios" class="optionsRadios formClearIgnore" value="TCM" />中医</label>
+                        <label><input type="radio" id="radioTreating" checked="checked" name="optionsRadios" class="optionsRadios formClearIgnore" value="WM" ) />Tây y</label>
+                        <label><input type="radio" id="radioTreated" name="optionsRadios" class="optionsRadios formClearIgnore" value="TCM" />Đông y</label>
                     </td>
                 </tr>
                 <tr id="xyzdlx">
-                    <th class="formTitle ">诊断类型：</th>
+                    <th class="formTitle ">Loại chẩn đoán:</th>
                     <td class="formValue">
                         <select name="zdlx" id="zdlx" class="form-control" data-enumtype="EnumZdlxbs">
                         </select>
                     </td>
                 </tr>
                 <tr id="zyzdlx" style="display:none">
-                    <th class="formTitle ">诊断类型：</th>
+                    <th class="formTitle ">Loại chẩn đoán:</th>
                     <td class="formValue">
                         <select name="zdlx2" id="zdlx2" class="form-control" data-enumtype="EnumZyZdlxbs">
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle "><span style="color:red;">*</span> 出院诊断：</th>
+                    <th class="formTitle "><span style="color:red;">*</span> Chẩn đoán lúc ra viện:</th>
                     <td class="formValue">
                         <input id="zd_cyzd" name="zd_cyzd" class="form-control" attr-zddm="" attr-ICD10="" autocomplete="off" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle ">出院情况：</th>
+                    <th class="formTitle ">Tình hình ra viện:</th>
                     <td class="formValue">
                         <select id="zd_cyqk" name="zd_cyqk" class="form-control" data-enumtype="EnumCyqk"></select>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle ">入院病情：</th>
+                    <th class="formTitle ">Tình trạng bệnh lúc vào viện:</th>
                     <td class="formValue">
                         <select id="zd_rybq" name="zd_rybq" class="form-control" data-enumtype="EnumRybq"></select>
                     </td>
                 </tr>
-                @*<tr>
-            <th class="formTitle ">次序</th>
+                @**@<tr>
+            <th class="formTitle ">Thứ tự</th>
             <td class="formValue">
                 <input id="zd_px" name="zd_px" class="form-control" />
             </td>
@@ -59,19 +59,19 @@
                 <tr>
                     <th class="formTitle "></th>
                     <td class="formValue">
-                        <input id="btn_submit_zd" type="button" class="btn btn-default" value="保存" style="width:80px;background-color:#9cf7cc;float:right;position:center;" />
+                        <input id="btn_submit_zd" type="button" class="btn btn-default" value="Lưu" style="width:80px;background-color:#9cf7cc;float:right;position:center;" />
                     </td>
                 </tr>
                 <tr>
                     <th class="formTitle "></th>
                     <td class="formValue">
-                        <input id="btn_del_zd" type="button" class="btn btn-default" value="删除诊断" style="width:80px;background-color:#9cf7cc;float:right;position:center;" />
+                        <input id="btn_del_zd" type="button" class="btn btn-default" value="XóaChẩn đoán" style="width:80px;background-color:#9cf7cc;float:right;position:center;" />
                     </td>
                 </tr>
                 <tr>
                     <th class="formTitle "></th>
                     <td class="formValue">
-                        <input id="btn_reset_zd" type="button" class="btn btn-default" value="刷新列表" style="width:80px;background-color:#9cf7cc;float:right;position:center;" />
+                        <input id="btn_reset_zd" type="button" class="btn btn-default" value="Làm mới danh sách" style="width:80px;background-color:#9cf7cc;float:right;position:center;" />
                     </td>
                 </tr>
             </table>
@@ -127,19 +127,19 @@
                     zddata.ZDOrder = 1;
                 }
 
-				var rowid = $("#zd_rowid").val(); //是否属于修改诊断
+				var rowid = $("#zd_rowid").val(); //Có thuộc về sửa chẩn đoán hay không
 				if (rowid != null && rowid != undefined && rowid != "" && parseInt(rowid) > 0) {
 					var rowdata = $grid.jqGrid("getRowData", rowid);
 					if (zddata.JBDM == rowdata.JBDM) {
 						$grid.jqGrid("setRowData", rowid, zddata);
-						$.modalAlert("录入成功", 'success');
+						$.modalAlert("Nhập thành công", 'success');
 						DelteJQ()
 						return true;
 					}
 				}
 
 				//debugger
-				//新增
+				//Thêm mới
 				var result = checkZddm(zddata);
 				if (result) {
 					$grid.jqGrid("addRowData", maxRowId + 1, zddata, 'last');
@@ -147,12 +147,12 @@
 					//addlist.push(zddata.JBDM);
 				}
 				else {
-					$.modalAlert("主要诊断/主病已存在或相同诊断已存在。", 'error');
+					$.modalAlert("Chẩn đoán chính/Bệnh chính đã tồn tại hoặc chẩn đoán giống nhau đã tồn tại.", 'error');
 				}
 
 			}
 			else {
-				$.modalAlert("请选择诊断", 'warning');
+				$.modalAlert("Vui lòng chọn chẩn đoán", 'warning');
 			}
 
 		});
@@ -164,13 +164,13 @@
 				zddata.zt = 0;
 				zddata.ztsm = '作废';
 				jQuery("#gridzdList").jqGrid("setRowData", rowid, zddata);
-				$.modalAlert("作废成功", 'success');
+				$.modalAlert("Hủy thành công", 'success');
 				//jQuery("#gridzdList").jqGrid("setCell", rowid, "zt", "0");
 				//debugger
-				//jQuery("#gridzdList").jqGrid("setCell", rowid, "ztsm", "作废");
+				//jQuery("#gridzdList").jqGrid("setCell", rowid, "ztsm", "Hủy");
 			}
 			else {
-				$.modalAlert("请选择诊断", 'warning');
+				$.modalAlert("Vui lòng chọn chẩn đoán", 'warning');
 			}
 		});
 		$("#btn_reset_zd").click(function () {
@@ -225,14 +225,14 @@
 			colModel: [
 				{ label: "Id", name: "Id", hidden: true },
 				//{
-				//    label: "操作", name: "编辑", width: 60, align: 'center', formatter: function (row, option, data) {
+				//    label: "Thao tác", name: "Sửa", width: 60, align: 'center', formatter: function (row, option, data) {
 				//        debugger
 				//        return '<input type="button" onclick="btn_edit(' + option.rowid + ')" />';
 				//    }
 				//},
                 { label: "ZDLB", name: "ZDLB", width: 60, align: 'left', editor: "text", hidden: true },
                 {
-                    label: "诊断类别", name: "ZDLBMC", width: 60, align: 'left', editor: "text", formatter: function (row, option, data) {
+                    label: "Loại chẩn đoán", name: "ZDLBMC", width: 60, align: 'left', editor: "text", formatter: function (row, option, data) {
                         if (data.ZDLB == "WM") {
                             return "西医";
                         }
@@ -241,18 +241,18 @@
                         }
                     }
                 },
-                { label: "病案号", name: "BAH", width: 60, align: 'left', editor: "text" },
-				{ label: "住院号", name: "ZYH", width: 60, align: 'left', editor: "text" },
-				{ label: "出院诊断", name: "JBMC", width: 180, align: 'left', editor: "text" },
-				{ label: "疾病编码", name: "JBDM", width: 80, align: 'left', editor: "text" },
+                { label: "Số hồ sơ bệnh án", name: "BAH", width: 60, align: 'left', editor: "text" },
+				{ label: "Số nhập viện", name: "ZYH", width: 60, align: 'left', editor: "text" },
+				{ label: "Chẩn đoán lúc ra viện", name: "JBMC", width: 180, align: 'left', editor: "text" },
+				{ label: "Mã bệnh", name: "JBDM", width: 80, align: 'left', editor: "text" },
 				{ label: "RYBQ", name: "RYBQ", hidden: true },
-				{ label: "入院病情", name: "RYBQMS", width: 60, align: 'left', editor: "text" },
+				{ label: "Tình trạng bệnh lúc vào viện", name: "RYBQMS", width: 60, align: 'left', editor: "text" },
 				{ label: "CYQK", name: "CYQK", hidden: true },
-				{ label: "出院情况", name: "CYQKMS", width: 60, align: 'left', editor: "text" },
+				{ label: "Tình hình ra viện", name: "CYQKMS", width: 60, align: 'left', editor: "text" },
 				{ label: "ZDOrder", name: "ZDOrder", hidden: true },
                 { label: "ZDLX", name: "ZDLX", width: 50, hidden: true },
 				{
-					label: "诊断类型", name: "Zdlxmc", width: 80, align: 'left', editor: "text", formatter: function (row, option, data) {
+					label: "Loại chẩn đoán", name: "Zdlxmc", width: 80, align: 'left', editor: "text", formatter: function (row, option, data) {
 					    if (data.ZDLB == "TCM" && data.ZDLX=="1")
 						{
 						    return "主病";
@@ -275,7 +275,7 @@
 				},
 				{ label: "zt", name: "zt", hidden: true },
 				{
-					label: "状态", name: "ztsm", width: 50, align: 'center', editor: "text", formatter: function (row, option, data) {
+					label: "Trạng thái", name: "ztsm", width: 50, align: 'center', editor: "text", formatter: function (row, option, data) {
 						if (data.zt == "0") {
 							return "作废";
 						}
@@ -307,7 +307,7 @@
 			loadComplete: function () {
 
 			},
-			/*caption: "诊断列表",*/
+			/*caption: "Danh sách chẩn đoán",*/
 			sortname: "ZDOrder asc",
 			//rowNum: 15,
 			//pager: "#gridzdPager",
@@ -349,7 +349,7 @@
 	//function btn_edit(val) {
 	//    alert(val);
 	//}
-	//提示结算病人不能添加诊断
+	//Nhắc nhở bệnh nhân đã quyết toán không thể thêm chẩn đoán
 	function SettlementQuery() {
 		$.ajax({
 			//url: "/MRHomePage/MRHomePage/SettlementQuery",
@@ -363,7 +363,7 @@
 				if (result[0].Value == 'off' || result[0].Value == 'OFF') {
 					//$("#btn_submit_zd").attr("disabled", "true");
 					//$("#btn_del_zd").attr("disabled", "true");
-					$.modalAlert("已结算病人不能添加诊断", 'warning');
+					$.modalAlert("Bệnh nhân đã thanh toán không thể thêm chẩn đoán", 'warning');
 				}
 			}
 		})

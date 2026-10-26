@@ -40,7 +40,7 @@
     <div class="panel_body" style="padding:0px 5px 0px 5px;height:100%;">
         <div id="dv_tip" class="dv_tip" style="height:70px;border:solid 2px #74e8b5;border-radius:5px;">
             <div style="height:100%;width:10%;float:left;">
-                <div style="font-size:10px;font-weight:bold;color:#4bc9e5;width:80px; height:0px"><span class="required">*</span>姓名:</div>
+                <div style="font-size:10px;font-weight:bold;color:#4bc9e5;width:80px; height:0px"><span class="required">*</span>Họ tên:</div>
                 <p style="padding-top:10px;padding-left:20px;">
                     <input id="XM" name="XM" value="" style="font-size:18px;font-weight:bold;color:#4bc9e5;width:150px;" />
                 </p>
@@ -48,31 +48,31 @@
             <div style="height:100%;width:85%;float:left;padding-left:30px;">
                 <table class="form">
 					<tr>
-						<th class="formTitle">住院号</th>
+						<th class="formTitle">Số nhập viện</th>
 						<td class="formValue"><input id="BAH" name="BAH" class="form-control" readonly="readonly" style="border:none;" /></td>
-						@*<th class="formTitle">入院途径</th>
+						@**@<th class="formTitle">Đường vào viện</th>
 						<td>
 							<div style="width:150px; float:left; padding:0px;">
 								<select id="RYTJ1" name="RYTJ" data-enumtype="EnumRYTJ" class="form-control">
-									<option>请选择</option>
+									<option>Vui lòng chọn</option>
 								</select>
 							</div>
 						</td>*@
-						<th class="formTitle"><span class="required">*</span>医疗付款方式</th>
+						<th class="formTitle"><span class="required">*</span>Phương thức thanh toán y tế</th>
 						<td class="formValue formDdlSelectorTd required" colspan="2">
 							<select id="YLFKFS" name="YLFKFS" class="form-control" style="border:none;">
-								<option value="1">自费</option>
-								<option value="2">医保</option>
+								<option value="1">Tự trả</option>
+								<option value="2">Bảo hiểm y tế</option>
 							</select>
 						</td>
 						<td><input id="ZYH" name="ZYH" type="hidden" /></td>
 					</tr>
                     <tr>
-                        <th class="formTitle">首页登记号</th>
+                        <th class="formTitle">Số đăng ký trang đầu</th>
                         <td class="formValue"><input id="PATID" name="PATID" class="form-control" style="border:none;" readonly="readonly" /></td>
-                        <th class="formTitle"><span class="required">*</span>病案号</th>
+                        <th class="formTitle"><span class="required">*</span>Số hồ sơ bệnh án</th>
                         <td class="formValue"><input id="JKKH" name="JKKH" class="form-control" style="border:none;" /></td>
-                        <th class="formTitle"><span class="required">*</span> 住院次数</th>
+                        <th class="formTitle"><span class="required">*</span> Số lần nhập viện</th>
                         <td class="formValue"><input id="ZYCS" name="ZYCS" class="form-control required" style="border:none;" readonly="readonly" /></td>
                         <th></th>
                         <td></td>
@@ -83,145 +83,145 @@
         <div style="padding-bottom:30px;">
             <table class="form" style="height:100%;">
                 <tr>
-                    <th class="formTitle "><span class="required">*</span> 性别</th>
+                    <th class="formTitle "><span class="required">*</span> Giới tính</th>
                     <td class="formValue" colspan="2">
                         <div style="float:left; width:70px" class="formValue">
                             <select id="XB" name="XB" class="form-control select required" data-enumtype="EnumMRSex">
-                                <option>请选择</option>
+                                <option>Vui lòng chọn</option>
                             </select>
                             <input style="height:0px;border-width:1px;" class="form-control" />
                         </div>
                         <span style="float:left; width:55px; height:100%; line-height:40px; margin-left:5px;">1.男 &nbsp;&nbsp;2.女</span>
                     </td>
-                    <th class="formTitle"><span class="required">*</span>国籍</th>
+                    <th class="formTitle"><span class="required">*</span>Quốc tịch</th>
                     <td class="formValue"><input id="GJ" name="GJ" class="form-control" /></td>
-                    <th class="formTitle "><span class="required">*</span>民族</th>
+                    <th class="formTitle "><span class="required">*</span>Dân tộc</th>
                     <td class="formValue" colspan="2"><input id="MZ" name="MZ" class="form-control" /></td>
-                    <th class="formTitle"><span class="required">*</span>籍贯</th>
+                    <th class="formTitle"><span class="required">*</span>Quê quán</th>
                     <td class="formValue" colspan="2"><input id="GG" name="GG" class="form-control" /></td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="required">*</span> 出生日期</th>
+                    <th class="formTitle"><span class="required">*</span> Ngày sinh</th>
                     <td class="formValue" colspan="2">
                         <input id="CSRQ" type="text" class="form-control input-wdatepicker formClearIgnore required" disabled="disabled" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span> 年龄</th>
+                    <th class="formTitle"><span class="required">*</span> Tuổi</th>
                     <td class="formValue"><input id="NL" name="NL" class="form-control required"  onkeyup="this.value=this.value.replace(/\D/g,'')"/></td>
-                    <th class="formTitle " style="text-align:right;" colspan="2">(年龄不足1周岁的)年龄</th>
+                    <th class="formTitle " style="text-align:right;" colspan="2">(Đối với người dưới 1 tuổi)Tuổi</th>
                     <td class="formValue"><input id="BZYZSNL" name="BZYZSNL" class="form-control" onkeyup="this.value=this.value.replace(/\D/g,'')" /></td>
-                    <th class="formTitle " style="text-align:right;" colspan="2">(年龄不足1月者)年龄</th>
+                    <th class="formTitle " style="text-align:right;" colspan="2">Tuổi (đối với người dưới 1 tháng tuổi)</th>
                     <td class="formValue"><input id="BZYYSNL" name="BZYYSNL" class="form-control"  onkeyup="this.value=this.value.replace(/\D/g,'')"/></td>
-                    <th class="formTitle "><span class="required">*</span>职业</th>
+                    <th class="formTitle "><span class="required">*</span>Nghề nghiệp</th>
                     <td class="formValue" colspan="2"><input id="ZY" name="ZY" attr-code="" class="form-control required" /></td>
                 </tr>
                 <tr></tr>
                 <tr>
-                    <th class="formTitle "><span class="required">*</span> 身份证号</th>
+                    <th class="formTitle "><span class="required">*</span> Số chứng minh nhân dân</th>
                     <td class="formValue" colspan="2">
                         <input id="SFZH" name="SFZH" class="form-control required text-uppercase"  />
                     </td>
                     <td colspan="2"></td>
-                    <th class="formTitle ">新生儿出生体重</th>
+                    <th class="formTitle ">Cân nặng lúc sinh của trẻ sơ sinh</th>
                     <td class="formValue">
                         <input id="XSECSTZ" name="XSECSTZ" class="form-control"  onkeyup="value=value.replace(/[^\d.]/g,'')"/>
                     </td>
                     <td>g</td>
-                    <th class="formTitle ">新生儿入院体重</th>
+                    <th class="formTitle ">Cân nặng lúc vào viện của trẻ sơ sinh</th>
                     <td class="formValue"><input id="XSERYTZ" name="XSERYTZ" class="form-control"  onkeyup="value=value.replace(/[^\d.]/g,'')"/></td>
                     <td>g</td>
                 </tr>
                 <tr>
 
-                    <th class="formTitle "><span class="required">*</span>出生地</th>
+                    <th class="formTitle "><span class="required">*</span>Nơi sinh</th>
                     <td class="formValue" colspan="6">
-                        @*<input id="CSD" name="CSD" value="重庆市渝中区" class="form-control" />*@
+                        @**@<input id="CSD" name="CSD" value="重庆市渝中区" class="form-control" />*@
                         <div id="citylist_CSD">
                             <select name="province" class="form-control select" style="width:22%;">
-                                <option>请选择</option>
+                                <option>Vui lòng chọn</option>
                             </select>
                             <select name="city" class="form-control select" style="width:28%;">
-                                <option>请选择</option>
+                                <option>Vui lòng chọn</option>
                             </select>
                             <select name="area" class="form-control select" style="width:28%;">
-                                <option>请选择</option>
+                                <option>Vui lòng chọn</option>
                             </select>
                             <input id="CSD" name="CSD" class="form-control" style="padding-bottom:0px;width:18%;float:left;" />
                         </div>
                     </td>
-                    <th class="formTitle"><span class="required">*</span>婚姻状况</th>
+                    <th class="formTitle"><span class="required">*</span>Tình trạng hôn nhân</th>
                     <td class="formValue" colspan="5">
                         <div style="float:left; width:80px;">
                             <input id="HY" name="HY" class="form-control required"/>
                         </div>
-                        <span style="float:left; width:200px; height:100%; line-height:20px; margin-left:20px;">1.未婚&nbsp;&nbsp;2.已婚&nbsp;&nbsp;3.丧偶&nbsp;&nbsp;4.离婚&nbsp;&nbsp;9.其他</span>
+                        <span style="float:left; width:200px; height:100%; line-height:20px; margin-left:20px;">1.Chưa kết hôn&nbsp;&nbsp;2.Đã kết hôn&nbsp;&nbsp;3.Góa vợ/chồng&nbsp;&nbsp;4.Ly hôn&nbsp;&nbsp;9.Khác</span>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle "><span class="required">*</span>现住址</th>
+                    <th class="formTitle "><span class="required">*</span>Địa chỉ hiện tại</th>
                     <td class="formValue" colspan="6">
-                        @*<input id="XZZ" name="XZZ" value="重庆市渝中区" class="form-control" />*@
+                        @**@<input id="XZZ" name="XZZ" value="重庆市渝中区" class="form-control" />*@
                         <div id="citylist_XZZ">
                             <select name="province" class="form-control select" style="width:22%;">
-                                <option>请选择</option>
+                                <option>Vui lòng chọn</option>
                             </select>
                             <select name="city" class="form-control select" style="width:28%;">
-                                <option>请选择</option>
+                                <option>Vui lòng chọn</option>
                             </select>
                             <select name="area" class="form-control select" style="width:28%;">
-                                <option>请选择</option>
+                                <option>Vui lòng chọn</option>
                             </select>
                             <input id="XZZ" name="XZZ" class="form-control" style="padding-bottom:0px;width:18%;float:left;" />
                         </div>
                     </td>
-                    <th class="formTitle "><span class="required">*</span>电话</th>
+                    <th class="formTitle "><span class="required">*</span>Điện thoại</th>
                     <td class="formValue" colspan="2"><input id="DH" name="DH" class="form-control" onkeyup="this.value=this.value.replace(/\D/g,'')"/></td>
-                    <th class="formTitle "><span class="required">*</span>邮编</th>
+                    <th class="formTitle "><span class="required">*</span>Mã bưu chính</th>
                     <td class="formValue">
                         <input id="XZZYB" name="XZZYB" class="form-control" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle "><span class="required">*</span>户口地址</th>
+                    <th class="formTitle "><span class="required">*</span>Địa chỉ hộ khẩu</th>
                     <td class="formValue" colspan="6">
-                        @*<input id="HKDZ" name="HKDZ" style="float:left;width:80%;" value="重庆市渝中区" class="form-control" />*@
+                        @**@<input id="HKDZ" name="HKDZ" style="float:left;width:80%;" value="重庆市渝中区" class="form-control" />*@
                         <div id="citylist_HKDZ" class="citys">
                             <select name="province" class="form-control select required" style="width:22%;">
-                                <option>请选择</option>
+                                <option>Vui lòng chọn</option>
                             </select>
                             <select name="city" class="form-control select" style="width:28%;">
-                                <option>请选择</option>
+                                <option>Vui lòng chọn</option>
                             </select>
                             <select name="area" class="form-control select" style="width:28%;">
-                                <option>请选择</option>
+                                <option>Vui lòng chọn</option>
                             </select>
                             <input id="HKDZ" name="HKDZ" class="form-control required" style="padding-bottom:0px;width:18%;float:left;" />
                         </div>
                     </td>
-                    <th class="formTitle ">邮编</th>
+                    <th class="formTitle ">Mã bưu chính</th>
                     <td class="formValue">
                         <input id="HKDYB" name="HKDYB" class="form-control" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>工作单位及地址</th>
+                    <th class="formTitle"><span class="required">*</span>Đơn vị công tác và địa chỉ</th>
                     <td class="formValue" colspan="4">
                         <input id="GZDWJDZ" name="GZDWJDZ" class="form-control" />
                     </td>
-                    <th class="formTitle "><span class="required">*</span>单位电话</th>
+                    <th class="formTitle "><span class="required">*</span>Điện thoại đơn vị</th>
                     <td class="formValue"><input id="DWDH" name="DWDH" class="form-control" onkeyup="this.value=this.value.replace(/\D/g,'')"/></td>
-                    <th class="formTitle "><span class="required">*</span>邮编</th>
+                    <th class="formTitle "><span class="required">*</span>Mã bưu chính</th>
                     <td class="formValue">
                         <input id="DWYB" name="DWYB" value="-" class="form-control" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>联系人</th>
+                    <th class="formTitle"><span class="required">*</span>Người liên hệ</th>
                     <td class="formValue"><input id="LXRXM" name="LXRXM" class="form-control" /></td>
-                    <th class="formTitle "><span class="required">*</span>关系</th>
+                    <th class="formTitle "><span class="required">*</span>Quan hệ</th>
                     <td class="formValue "><input id="GX" name="GX" class="form-control" /></td>
-                    <th class="formTitle "><span class="required">*</span>电话</th>
+                    <th class="formTitle "><span class="required">*</span>Điện thoại</th>
                     <td class="formValue"><input id="LXRDH" name="LXRDH" class="form-control"  onkeyup="this.value=this.value.replace(/\D/g,'')"/></td>
-                    <th class="formTitle "><span class="required">*</span>地址</th>
+                    <th class="formTitle "><span class="required">*</span>Địa chỉ</th>
                     <td class="formValue formDdlSelectorTd" colspan="5">
                         <div id="citylist_LXRDZ" class="citys">
                             <select name="province" class="form-control select" style="width:22%;">
@@ -239,83 +239,83 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>入院途径</th>
+                    <th class="formTitle"><span class="required">*</span>Đường vào viện</th>
                     <td class="formValue" colspan="1">
                         <div style="float:left; width:100px" class="formValue">
                             <select id="RYTJ" name="RYTJ" class="form-control select required" data-enumtype="EnumRYTJ">
-                                <option>请选择</option>
+                                <option>Vui lòng chọn</option>
                             </select>
                             <input style="height:0px;border-width:1px;" class="form-control" />
                         </div>
 
                     </td>
-                    <th class="formTitle" colspan="2">其他医疗机构转入</th>
+                    <th class="formTitle" colspan="2">Chuyển đến từ cơ sở y tế khác</th>
                     <td class="formValue"><input id="QTYLJGZR" name="QTYLJGZR" class="form-control" /></td>
                 </tr>
 
                 <tr>
-                    <th class="formTitle "><span class="required">*</span>入院时间</th>
+                    <th class="formTitle "><span class="required">*</span>Thời gian vào viện</th>
                     <td class="formValue" colspan="2">
                         <input id="RYSJ" type="text" class="form-control input-wdatepicker formClearIgnore required" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle "><span class="required">*</span>入院科别</th>
+                    <th class="formTitle "><span class="required">*</span>Khoa vào viện</th>
                     <td class="formValue formDdlSelectorTd" colspan="2">
                         <input id="RYKB" name="RYKB" attr-ksdm="" class="form-control" data-code=""  type="hidden" />
                         <input id="RYBF" name="RYBF" attr-ksdm=""/>
                     </td>
-                    <th class="formTitle ">床号</th>
+                    <th class="formTitle ">Số giường</th>
                     <td class="formValue">
                         <input id="RYCH" name="RYCH" class="form-control" maxlength="10" size="5" />
                     </td>
-                    <th class="formTitle ">转科科别</th>
+                    <th class="formTitle ">Khoa chuyển đến</th>
                     <td class="formValue" colspan="2">
                         <input id="ZKKB" name="ZKKB" class="form-control" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle ">出院时间</th>
+                    <th class="formTitle ">Thời gian ra viện</th>
                     <td class="formValue" colspan="2">
                         <input id="CYSJ" name="CYSJ" type="text" class="form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle ">出院科别</th>
+                    <th class="formTitle ">Khoa ra viện</th>
                     <td class="formValue" colspan="2">
                         <input id="CYKB" name="CYKB" class="form-control" type="hidden" />
                         <input id="CYBF" name="CYBF" attr-ksdm=""/>
                     </td>
-                    <th class="formTitle ">床号</th>
+                    <th class="formTitle ">Số giường</th>
                     <td class="formValue">
                         <input id="CYCH" name="CYCH" class="form-control" maxlength="10" />
                     </td>
-                    <th class="formTitle ">实际住院</th>
+                    <th class="formTitle ">Nằm viện thực tế</th>
                     <td class="formValue">
                         <input id="SJZYTS" name="SJZYTS" class="form-control" onkeyup="this.value=this.value.replace(/\D/g,'')"/>
                     </td>
-                    <td>天</td>
+                    <td>Ngày</td>
                 </tr>
                 <tr>
-                    <th class="formTitle "><span class="required">*</span> 门(急)诊诊断(中医)</th>
+                    <th class="formTitle "><span class="required">*</span> Chẩn đoán ngoại trú (cấp cứu)(Đông y)</th>
                     <td class="formValue" colspan="4">
                         <input id="MZZD" name="MZZD" value="" attr-zddm="" attr-ICD10="" class="form-control" />
                     </td>
-                    <th class="formTitle "><span class="required">*</span> 疾病编码</th>
+                    <th class="formTitle "><span class="required">*</span> Mã bệnh</th>
                     <td class="formValue" colspan="4">
                         <input id="MZZDDM" name="MZZDDM" class="form-control required" attr-zddm="" attr-ICD10="" autocomplete="off" />
-                        @*<input id="JBBM" name="JBBM" class="form-control" />*@
+                        @**@<input id="JBBM" name="JBBM" class="form-control" />*@
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle "><span class="required">*</span> 门(急)诊诊断(西医)</th>
+                    <th class="formTitle "><span class="required">*</span> Chẩn đoán ngoại trú (cấp cứu)(Tây y)</th>
                     <td class="formValue" colspan="4">
                         <input id="RYZD" name="RYZD" value="" attr-zddm="" attr-ICD10="" class="form-control" />
                     </td>
-                    <th class="formTitle "><span class="required">*</span> 疾病编码</th>
+                    <th class="formTitle "><span class="required">*</span> Mã bệnh</th>
                     <td class="formValue" colspan="4">
                         <input id="RYZDDM" name="RYZDDM" class="form-control required" attr-zddm="" attr-ICD10="" autocomplete="off" />
-                        @*<input id="JBBM" name="JBBM" class="form-control" />*@
+                        @**@<input id="JBBM" name="JBBM" class="form-control" />*@
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle ">实施临床路径</th>
+                    <th class="formTitle ">Thực hiện lộ trình lâm sàng</th>
                     <td class="formValue" colspan="2">
                         <div style="width:65px; float:left; padding:0px;">
                             <select id="ZYSSLCLJ" name="ZYSSLCLJ" data-enumtype="EnumZYSSLCLJ" class="form-control" style="width:50px">
@@ -324,9 +324,9 @@
                             <input style="height:0px;border-width:1px;" class="form-control" />
 
                         </div>
-                        <span style="float:left;padding-top: 5px;margin-left:14px;">1.中医&nbsp;&nbsp;2.西医&nbsp;&nbsp;3.否</span>
+                        <span style="float:left;padding-top: 5px;margin-left:14px;">1.Đông y&nbsp;&nbsp;2.Tây y&nbsp;&nbsp;3.Không</span>
                     </td>
-                    <th class="formTitle ">使用医疗机构中药制剂</th>
+                    <th class="formTitle ">Sử dụng chế phẩm thuốc Đông y của cơ sở y tế</th>
                     <td class="formValue" colspan="2">
                         <div style="width:65px; float:left; padding:0px;">
                             <select id="SYYLJGZYZJ" name="SYYLJGZYZJ" data-enumtype="EnumYorN" class="form-control" style="width:50px">
@@ -335,9 +335,9 @@
                             <input style="height:0px;border-width:1px;" class="form-control" />
 
                         </div>
-                        <span style="float:left;padding-top: 5px;margin-left:14px;">1.是&nbsp;&nbsp;2.否</span>
+                        <span style="float:left;padding-top: 5px;margin-left:14px;">1. Có&nbsp;&nbsp;2. Không</span>
                     </td>
-                    <th class="formTitle "> 使用中医诊疗设备</th>
+                    <th class="formTitle "> Sử dụng thiết bị chẩn trị Đông y</th>
                     <td class="formValue" colspan="2">
                         <div style="width:65px; float:left; padding:0px;">
                             <select id="SYZYZLSB" name="SYZYZLSB" data-enumtype="EnumYorN" class="form-control" style="width:50px">
@@ -346,9 +346,9 @@
                             <input style="height:0px;border-width:1px;" class="form-control" />
 
                         </div>
-                        <span style="float:left;padding-top: 5px;margin-left:14px;">1.是&nbsp;&nbsp;2.否</span>
+                        <span style="float:left;padding-top: 5px;margin-left:14px;">1. Có&nbsp;&nbsp;2. Không</span>
                     </td>
-                    <th class="formTitle "> 使用中医诊疗技术</th>
+                    <th class="formTitle "> Sử dụng kỹ thuật chẩn trị Đông y</th>
                     <td class="formValue" colspan="2">
                         <div style="width:65px; float:left; padding:0px;">
                             <select id="SYZYZLJS" name="SYZYZLJS" data-enumtype="EnumYorN" class="form-control" style="width:50px">
@@ -357,11 +357,11 @@
                             <input style="height:0px;border-width:1px;" class="form-control" />
 
                         </div>
-                        <span style="float:left;padding-top: 5px;margin-left:14px;">1.是&nbsp;&nbsp;2.否</span>
+                        <span style="float:left;padding-top: 5px;margin-left:14px;">1. Có&nbsp;&nbsp;2. Không</span>
                     </td>
-                    @*<th class="formTitle "> 辩证施护</th>*@
+                    @**@<th class="formTitle "> Điều dưỡng theo biện chứng</th>*@
                     <td class="formValue" colspan="2">
-                        <span style="float:left;padding-left:0px;padding-top: 5px; width:50px" class="formTitle">辩证施护</span>
+                        <span style="float:left;padding-left:0px;padding-top: 5px; width:50px" class="formTitle">Điều dưỡng theo biện chứng</span>
                         <div style="width:65px; float:left; padding:0px;">
                             <select id="BZSH" name="BZSH" data-enumtype="EnumYorN" class="form-control" style="width:50px">
                                 <option style="display :none"></option>
@@ -369,27 +369,27 @@
                             <input style="height:0px;border-width:1px;" class="form-control" />
 
                         </div>
-                        <span style="float:left;padding-top: 5px;margin-left:5px;">1.是&nbsp;&nbsp;2.否</span>
+                        <span style="float:left;padding-top: 5px;margin-left:5px;">1. Có&nbsp;&nbsp;2. Không</span>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="9">
                         <div style="width:265px; float:left;" class="formValue">
-                            <span style="float:left;padding-right:15px;padding-top: 5px; width:120px" class="formTitle">住院期间是否病危或病重</span>
+                            <span style="float:left;padding-right:15px;padding-top: 5px; width:120px" class="formTitle">Trong thời gian nằm viện có nguy kịch hoặc nặng hay không</span>
                             <div style="width:65px; float:left; padding:0px;">
                                 <select id="BWHBZ" name="BWHBZ" data-enumtype="EnumYorN" class="form-control">
                                     <option style="display :none"></option>
                                 </select>
                                 <input style="height:0px;border-width:1px;" class="form-control" />
                             </div>
-                            <span style="float:left;padding-top: 5px;margin-left:14px;">1.是&nbsp;&nbsp;2.否</span>
+                            <span style="float:left;padding-top: 5px;margin-left:14px;">1. Có&nbsp;&nbsp;2. Không</span>
                         </div>
                         <div style="width:125px; float:left;" class="formValue">
-                            <span style="float:left;padding-right:10px;padding-top: 5px;" >抢救次数</span>
+                            <span style="float:left;padding-right:10px;padding-top: 5px;" >Số lần cấp cứu</span>
                             <input id="QJCS" name="QJCS" style="height:25px;border-width:1px; width:60px;float:left;" class="form-control" onkeyup="this.value=this.value.replace(/\D/g,'')" />
                         </div>
                         <div style="width:125px; float:left;" class="formValue">
-                            <span style="float:left;padding-right:10px;padding-top: 5px;" >成功次数</span>
+                            <span style="float:left;padding-right:10px;padding-top: 5px;" >Số lần thành công</span>
                             <input id="QJCGCS" name="QJCGCS" style="height:25px;border-width:1px; width:60px;float:left;" class="form-control" onkeyup="this.value=this.value.replace(/\D/g,'')" />
                         </div>
                     </td>
@@ -400,8 +400,8 @@
     </div>
 
 </div>
-@*<div style="border-bottom:2px solid #cca5a5;border-radius:10px;">
-        <span style="padding-left:10px;font-size:15px;font-weight:bold;">住院信息</span>
+@**@<div style="border-bottom:2px solid #cca5a5;border-radius:10px;">
+        <span style="padding-left:10px;font-size:15px;font-weight:bold;">Thông tin nội trú</span>
     </div>
     @Html.Partial("MainZyInfo")*@
 <script>
@@ -415,7 +415,7 @@
     });
 
     /************************数据绑定*******************************************/
-    //门诊诊断
+    //Ngoại trúChẩn đoán
     $("#MZZD").zdFloatingSelector({
         zdlx: "TCM",
         //ybnhlx: ybnhlx,
@@ -434,7 +434,7 @@
             $("#MZZDDM").val($this.attr('data-icd10'));
         }
     });
-    /*入院诊断*/
+    /*Chẩn đoán lúc vào viện*/
     $("#RYZD").zdFloatingSelector({
         zdlx: "WM",
         //ybnhlx: ybnhlx,
@@ -502,7 +502,7 @@
             $("#HY").val($this.attr('data-name'));
         }
     });
-    /************************地址联动*******************************************/
+    /************************Liên động địa chỉ*******************************************/
     $('#citylist_XZZ').citys({
         province: '',
         city: '',

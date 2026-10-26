@@ -11,57 +11,57 @@
     <table class="form" style="width:100%">
         <tbody>
             <tr>
-                <th class="formTitle" style="width:40px;padding-right:0px">姓名：</th>
+                <th class="formTitle" style="width:40px;padding-right:0px">Họ tên:</th>
                 <td class="formValue" style="width:80px">
                     <input id="PatName" name="PatName" type="text" class="form-control" readonly="readonly" />
                 </td>
-                <th class="formTitle" style="width:60px;padding-right:0px">住院号：</th>
+                <th class="formTitle" style="width:60px;padding-right:0px">Số nhập viện:</th>
                 <td class="formValue" style="width:80px">
                     <input id="Zyh" name="zyh" type="text" class="form-control" readonly="readonly" />
                 </td>
-                <th class="formTitle" style="width:40px;padding-right:0px">床号：</th>
+                <th class="formTitle" style="width:40px;padding-right:0px">Số giường:</th>
                 <td class="formValue" style="width:80px">
                     <input id="Bed" name="Bed" type="text" class="form-control" readonly="readonly" />
                 </td>
 
             </tr>
             <tr>
-                <th class="formTitle" style="width:40px;padding-right:0px">申请科室：</th>
+                <th class="formTitle" style="width:40px;padding-right:0px">Khoa đề nghị:</th>
                 <td class="formValue" style="width:80px">
                     <input id="ApplyDeptName" name="ApplyDeptName" type="text" class="form-control" readonly="readonly" />
                     <input hidden="hidden" id="ApplyDept" name="ApplyDept" />
                     <input hidden="hidden" id="bllx" name="bllx" />
                 </td>
-                <th class="formTitle" style="width:40px;padding-right:0px">申请医师：</th>
+                <th class="formTitle" style="width:40px;padding-right:0px">Bác sĩ đề nghị:</th>
                 <td class="formValue" style="width:80px">
                     <input id="ApplyDoctorName" name="ApplyDoctorName" type="text" class="form-control" readonly="readonly" />
                     <input hidden="hidden" id="ApplyDoctor" name="ApplyDoctor" />
                 </td>
-                <th class="formTitle" style="width:60px;padding-right:0px">申请类型：</th>
+                <th class="formTitle" style="width:60px;padding-right:0px">Loại đề nghị:</th>
                 <td class="formValue" style="width:80px">
                     <select id="ApplyType" name="ApplyType" class="form-control required">
-                        <option value="0">新建病历</option>
-                        <option value="1">修改病历</option>
+                        <option value="0">Tạo bệnh án mới</option>
+                        <option value="1">Sửa bệnh án</option>
                     </select>
                 </td>
 
             </tr>
             <tr>
-                <th class="formTitle" style="width:40px;padding-right:0px">申请病历名称：</th>
+                <th class="formTitle" style="width:40px;padding-right:0px">Tên bệnh án đề nghị:</th>
                 <td class="formValue" style="width:80px">
                     <input id="MedicalName" name="MedicalName" type="text" class="form-control" readonly="readonly" />
                 </td>
-                <th class="formTitle" style="width:40px;padding-right:0px">病历质控完成时间：</th>
+                <th class="formTitle" style="width:40px;padding-right:0px">Thời gian hoàn thành kiểm soát chất lượng bệnh án:</th>
                 <td class="formValue" style="width:80px">
                     <input id="CompletionDate" name="CompletionDate" type="text" class="form-control" readonly="readonly" />
                 </td>
-                <th class="formTitle" style="width:40px;padding-right:0px">申请完成时间：</th>
+                <th class="formTitle" style="width:40px;padding-right:0px">Thời gian hoàn thành đề nghị:</th>
                 <td class="formValue" style="width:80px">
                     <input id="ApplyCompletionDate" name="ApplyCompletionDate" type="text" class="form-control input-wdatepicker required" style="float:left;" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle" style="width:60px;padding-right:0px"><span class="required">*</span>申请原因：</th>
+                <th class="formTitle" style="width:60px;padding-right:0px"><span class="required">*</span>Lý do đề nghị:</th>
                 <td class="formValue" style="width:80px">
                     <input id="ApplyReason" name="ApplyReason" type="text" class="form-control required" />
                 </td>

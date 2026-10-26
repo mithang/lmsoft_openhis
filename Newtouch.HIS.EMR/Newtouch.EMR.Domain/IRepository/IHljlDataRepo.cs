@@ -20,7 +20,7 @@ namespace Newtouch.EMR.Domain.IRepository
         IList<HljldataVO> HljlLoadData(Pagination pagination, string zyh,string blId,string orgId,string kssj,string jssj);
         #endregion
         /// <summary>
-        /// 模板权限控制
+        /// Kiểm soát quyền mẫu
         /// </summary>
         /// <param name="blId"></param>
         /// <param name="mbbh"></param>

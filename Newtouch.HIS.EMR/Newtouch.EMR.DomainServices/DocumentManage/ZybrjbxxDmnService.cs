@@ -54,7 +54,7 @@ namespace Newtouch.EMR.DomainServices
         }
 
         /// <summary>
-        ///  同步his病人信息接口（API）
+        /// Giao diện đồng bộ thông tin bệnh nhân his (API)
         /// </summary>
         /// <param name="lastUpdate"></param>
         /// <param name="user"></param>
@@ -129,7 +129,7 @@ namespace Newtouch.EMR.DomainServices
             }
         }
         /// <summary>
-        /// 同步his患者信息（数据库）
+        /// Đồng bộ thông tin bệnh nhân his (cơ sở dữ liệu)
         /// </summary>
         /// <param name="OrgId"></param>
         /// <param name="Bdate"></param>
@@ -217,7 +217,7 @@ namespace Newtouch.EMR.DomainServices
         }
 
         /// <summary>
-        /// 获取已出区的病人对象集合
+        /// Lấy tập hợp đối tượng bệnh nhân đã ra khu
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -390,7 +390,7 @@ FROM    dbo.zy_brjbxx zyxx  with(nolock)
         }
 
         /// <summary>
-        /// 获取患者病历树
+        /// Lấy cây bệnh án của bệnh nhân
         /// </summary>
         /// <param name="OrgId"></param>
         /// <param name="zyh"></param>
@@ -436,7 +436,7 @@ FROM    dbo.zy_brjbxx zyxx  with(nolock)
         }
 
         /// <summary>
-        /// 获取病人列表
+        /// Lấy danh sách bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="OrgId"></param>
@@ -499,13 +499,13 @@ FROM    dbo.zy_brjbxx zyxx  with(nolock)
                 para.Add(new SqlParameter("@bq", bq));
             }
 
-            //在院
+            //Đang ở viện
             if (type == Convert.ToInt32(EnumZYBZ.Bqz))
             {
                 sql += " and zybz in(" + Convert.ToInt32(EnumZYBZ.Bqz) + "," + Convert.ToInt32(EnumZYBZ.Zq) + ")";
 
             }
-            //出院（已结账、待结账）
+            //Ra viện (đã thanh toán, chờ thanh toán)
             else if (type == Convert.ToInt32(EnumZYBZ.Ycy) || type == Convert.ToInt32(EnumZYBZ.Djz))
             {
                 sql += " and zybz in(" + Convert.ToInt32(EnumZYBZ.Ycy) + "," + Convert.ToInt32(EnumZYBZ.Djz) + ") ";
@@ -518,7 +518,7 @@ FROM    dbo.zy_brjbxx zyxx  with(nolock)
                 }
 
             }
-            //是否提交
+            //Đã gửi hay chưa
             if (!string.IsNullOrWhiteSpace(appId) && appId == "MRMS")
             {
                 sql += " and isnull(RecordStu,0)=@blzt ";
@@ -581,10 +581,10 @@ FROM    dbo.zy_brjbxx zyxx  with(nolock)
 
 
         /// <summary>
-        /// 删除病历（逻辑删除）
+        /// Xóa bệnh án (xóa logic)
         /// </summary>
         /// <param name="blId"></param>
-        /// <param name="blgxId">病历关系Id</param>
+        /// <param name="blgxId">Id quan hệ bệnh án</param>
         /// <param name="OrgId"></param>
         /// <param name="user"></param>
         public void UpdtPatMedRecord(string blId, string blgxId, string OrgId, OperatorModel user)
@@ -631,7 +631,7 @@ FROM    dbo.zy_brjbxx zyxx  with(nolock)
         }
         #endregion
         /// <summary>
-        /// 获取病案首页病人基本信息
+        /// Lấy thông tin cơ bản của bệnh nhân trên trang đầu hồ sơ bệnh án
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -706,7 +706,7 @@ where cwcode = @cw and zt = '1' and OrganizeId = @orgId and bqcode=@bq  ";
             return "";
         }
 
-        /*查询病历编辑权限*/
+        /*Tra cứu quyền sửa bệnh án*/
         public string selectBJQX(string blId, string blgxId, string OrganizeId, OperatorModel user)
         {
             string sql = @"exec usp_selectBjqx @blId=@blId,@OrganizeId=@OrganizeId,@user=@user";

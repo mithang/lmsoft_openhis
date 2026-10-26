@@ -52,7 +52,7 @@
                 { label: "ID", name: "Id", hidden: true, key: true },
                 { label: 'bllx', name: 'bllx', width: 80, align: 'center', hidden: true },
                 {
-                    label: '病历名称', name: 'bllxmc', width: 100, align: 'left', formatter: function (cellvalue, options, rowobject) {
+                    label: 'Tên bệnh án', name: 'bllxmc', width: 100, align: 'left', formatter: function (cellvalue, options, rowobject) {
                         if (rowobject.IsRoot != 1) {
                             return '<span class="glyphicon glyphicon-file" style="color:#6ff3ad; font-size: 13px;"></span> ' + rowobject.bllxmc;
                         }
@@ -62,7 +62,7 @@
                     }
                 },
                 {
-                    label: '病历名称', name: 'bllxmc1', width: 80, align: 'center', hidden: true, formatter: function (cellvalue, options, rowobject) {
+                    label: 'Tên bệnh án', name: 'bllxmc1', width: 80, align: 'center', hidden: true, formatter: function (cellvalue, options, rowobject) {
                         return rowobject.bllxmc;
                     }
                 }
@@ -87,10 +87,10 @@
             colModel: [
                 { label: "Id", name: "Id", hidden: true, key: true },
                 { label: "Bllx", name: "Bllx", hidden: true, },
-                { label: "病历类型", name: "RulesType", width: 100, align: "center", },
-                { label: "天数限制", name: "RulesDay", width: 100, align: "center", },
-                { label: "说明", name: "Remark", width: 200, align: "center", },
-                { label: "显示顺序", name: "Px", width: 80, align: "left" },
+                { label: "Loại bệnh án", name: "RulesType", width: 100, align: "center", },
+                { label: "Giới hạn số ngày", name: "RulesDay", width: 100, align: "center", },
+                { label: "Giải thích", name: "Remark", width: 200, align: "center", },
+                { label: "Thứ tự hiển thị", name: "Px", width: 80, align: "left" },
             ],
             unwritten: false,
             viewrecords: true,
@@ -101,7 +101,7 @@
     function newtouch_event_f2() {
         var seleRow = $("#gridList").jqGridRowValue();
         if (!!!seleRow.bllx) {
-            $.modalAlert("请选中一项病历类型", "error");
+            $.modalAlert("Vui lòng chọn một loại bệnh án", "error");
             return;
         }
         $.modalOpen({
@@ -121,7 +121,7 @@
     function btn_edit() {
         var seleRow = $("#gridRightList").jqGridRowValue();
         if (!!!seleRow.Id) {
-            $.modalAlert("请选中一条规则项", "error");
+            $.modalAlert("Vui lòng chọn một hạng mục quy tắc", "error");
             return;
         }
         $.modalOpen({
@@ -139,17 +139,17 @@
     function newtouch_event_f4() {
         var seleRow = $("#gridRightList").jqGridRowValue();
         if (!!!seleRow.Id) {
-            $.modalAlert("请选中一条要删除的病历规则", "error");
+            $.modalAlert("Vui lòng chọn một quy tắc bệnh án cần xóa", "error");
             return;
         }
-        $.modalConfirm("是否删除该条规则", function (flag) {
+        $.modalConfirm("Có xóa quy tắc này hay không", function (flag) {
             if (flag) {
                 $.najax({
                     url: "/MedicalRecordManage/MedicalRules/RulesDel",
                     data: { Id: seleRow.Id },
                     dataType: "json",
                     success: function (res) {
-                        $.modalAlert("删除成功", 'warning');
+                        $.modalAlert("Xóa thành công", 'warning');
                         $("#gridRightList").jqGrid('setGridParam', {
                             postData: { keyword: seleRow.Bllx },
                         }).trigger('reloadGrid');

@@ -11,7 +11,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
     public interface IOutpatientDmnService
     {
         /// <summary>
-        /// 门诊已就诊列表
+        /// Danh sách ngoại trú đã khám
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -23,14 +23,14 @@ namespace Newtouch.EMR.Domain.IDomainServices
         /// <returns></returns>
         IList<TreatEntityVO> GetTreatingOrTreatedList(Pagination pagination, string orgId, int mjzbz, string rygh, DateTime? kzrq, string keyword);
         /// <summary>
-        /// 根据门诊号获取患者就诊信息
+        /// Lấy thông tin khám của bệnh nhân theo số ngoại trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
         /// <returns></returns>
         TreatEntityVO GetPatMzbymzh(string orgId, string mzh,string rygh);
         /// <summary>
-        /// 门诊病历树
+        /// Cây bệnh án ngoại trú
         /// </summary>
         /// <param name="OrgId"></param>
         /// <param name="mzh"></param>

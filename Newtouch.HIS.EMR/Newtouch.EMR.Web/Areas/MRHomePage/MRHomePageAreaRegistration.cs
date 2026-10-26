@@ -18,7 +18,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage
                 "MRHomePage_default",
                 "MRHomePage/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
-                , new[] { "Newtouch.EMR.Web.Areas.MRHomePage.Controllers", "FrameworkBase.MultiOrg.Web.Areas.MRHomePage.Controllers" } //指定命名空间
+                , new[] { "Newtouch.EMR.Web.Areas.MRHomePage.Controllers", "FrameworkBase.MultiOrg.Web.Areas.MRHomePage.Controllers" } //Chỉ định không gian tên
             );
         }
     }

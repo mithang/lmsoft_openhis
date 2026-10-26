@@ -12,7 +12,7 @@ namespace Newtouch.EMR.Domain.Entity
         [Key]
         public string Id { get; set; }
         /// <summary>
-        /// 病历类型标识
+        /// Dinh danh loai benh an
         /// </summary>
         public string bllx { get; set; }
         public string bllxmc { get; set; }       
@@ -23,33 +23,33 @@ namespace Newtouch.EMR.Domain.Entity
         public string zt { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 关联岗位
+        /// Chuc vu lien ket
         /// </summary>
         public string RelDutys { get; set; }
         /// <summary>
-        /// 病历类型简码
+        /// Ma ngan loai benh an
         /// </summary>
         public string bllxcode { get; set; }
         /// <summary>
-        /// 排序
+        /// Sap xep
         /// </summary>
         public int? px { get; set; }
         /// <summary>
-        /// 关联数据表 为空时默认
+        /// Bang du lieu lien ket, mac dinh khi trong
         /// </summary>
         public string relTB { get; set; }
         /// <summary>
-        /// 目录层级 初始层级1
+        /// Cap thu muc, cap ban dau la 1
         /// </summary>
         public string MenuLev { get; set; }
         /// <summary>
-        /// 目录层级名称 默认一级时间 以※分隔
+        /// Ten cap thu muc, mac dinh cap mot la thoi gian, phan tach bang ※
         /// </summary>
         public string MenuLevName { get; set; }
         public string ParentId { get; set; }
         public string IsRoot { get; set; }
         /// <summary>
-        /// 门诊模板标识 1 门诊 
+        /// Dinh danh mau ngoai tru, 1 la ngoai tru 
         /// </summary>
         public string mzbz { get; set; }
     }

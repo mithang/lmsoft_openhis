@@ -33,7 +33,7 @@ namespace Newtouch.EMR.DomainServices
         {
         }
         /// <summary>
-        /// 获取全部病人树信息
+        /// Lấy toàn bộ thông tin cây bệnh nhân
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
@@ -50,11 +50,11 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
             {
                 switch (zyzt)
                 {
-                    case "zy"://在院：不是已出院，不是作废记录，不是取消入院
+                    case "zy"://Đang ở viện: không phải đã ra viện, không phải bản ghi bị hủy, không phải hủy nhập viện
                         sql += " and b.zybz in (SELECT * FROM dbo.f_split(@zybz, ','))";
                         par.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Bqz));
                         break;
-                    case "cy"://出院：已出院状态
+                    case "cy"://Ra viện: trạng thái đã ra viện
                         sql += " and b.zybz in (SELECT * FROM dbo.f_split(@zybz, ','))";
                         par.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Ycy + "," + (int)EnumZYBZ.Djz));
                         break;
@@ -88,10 +88,10 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
             return this.FirstOrDefault<InpWardPatTreeVO>(sql, par.ToArray());
         }
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu (thêm mới, sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(bl_hljl_ybEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -122,7 +122,7 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
             }
         }
         /// <summary>
-        /// 护理分页查询
+        /// Truy vấn phân trang điều dưỡng
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -147,13 +147,13 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
 
         }
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void DeleteForm(string keyValue)
         {
             var dbEntity = this.FindEntity(keyValue);
-            dbEntity.zt = "0";  //无效
+            dbEntity.zt = "0";  //Không có hiệu lực
             dbEntity.Modify(keyValue);
             this.Update(dbEntity);
         }
@@ -170,8 +170,8 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
                 srscl.zyh = zyh;
                 srscl.rq = rq;
                 srscl.sj = sj;
-                srscl.bllx = bllx; //0 一般 1 危重 2 手术
-                srscl.srsclx = "0";//摄入量 0 摄出量 1
+                srscl.bllx = bllx; //0 Thông thường, 1 Nguy kịch, 2 Phẫu thuật
+                srscl.srsclx = "0";//Lượng đưa vào 0, lượng thải ra 1
                 srscl.OrganizeId = orgId;
                 db.Insert(srscl);
                 db.Commit();
@@ -220,8 +220,8 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
                 srscl.zyh = zyh;
                 srscl.rq = rq;
                 srscl.sj = sj;
-                srscl.bllx = bllx; //0 一般 1 危重 2 手术
-                srscl.srsclx = "1";//摄入量 0 摄出量 1
+                srscl.bllx = bllx; //0 Thông thường, 1 Nguy kịch, 2 Phẫu thuật
+                srscl.srsclx = "1";//Lượng đưa vào 0, lượng thải ra 1
                 srscl.OrganizeId = orgId;
                 db.Insert(srscl);
                 db.Commit();

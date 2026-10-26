@@ -14,16 +14,16 @@ using System.Linq;
 namespace Newtouch.EMR.Repository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2018-09-11 10:46
-    /// 描 述：患者病历文书关系表
+    /// Người tạo: chl
+    /// Ngày: 2018-09-11 10:46
+    /// Mô tả: Bảng quan hệ văn bản bệnh án của bệnh nhân
     /// </summary>
     public class ZymeddocsrelationRepo : RepositoryBase<ZymeddocsrelationEntity>, IZymeddocsrelationRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public ZymeddocsrelationRepo(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {
@@ -35,10 +35,10 @@ namespace Newtouch.EMR.Repository
             return this.IQueryable().Where(p => p.OrganizeId == orgId && p.zt == "1"&&p.zyh==zyh).OrderBy(p => p.CreateTime).ToList();
         }
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu (thêm mới, sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(ZymeddocsrelationEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -61,16 +61,16 @@ namespace Newtouch.EMR.Repository
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void DeleteForm(string keyValue)
         {
             this.Delete(p => p.Id == keyValue);
         }
 
         /// <summary>
-        /// 更新患者病历关系
+        /// Cập nhật quan hệ bệnh án của bệnh nhân
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="zyh"></param>
@@ -79,12 +79,12 @@ namespace Newtouch.EMR.Repository
         /// <param name="OrgId"></param>
         public void SubmitEntity(ZymeddocsrelationEntity entity)
         {
-            //查找唯一病历
+            //Tìm bệnh án duy nhất
             var ety = FindEntity(p => p.blId == entity.blId && p.OrganizeId == entity.OrganizeId);
 
             if (ety != null)
             {
-                //校验病历信息
+                //Kiểm tra thông tin bệnh án
                 if (ety.zyh == entity.zyh && ety.mbId == entity.mbId)
                 {
                     ety.blzt = entity.blzt;

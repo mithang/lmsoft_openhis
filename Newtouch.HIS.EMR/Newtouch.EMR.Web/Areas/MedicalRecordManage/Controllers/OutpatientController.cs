@@ -59,7 +59,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
         }
 
         /// <summary>
-        /// 获取病历树
+        /// Lấy cây bệnh án
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>

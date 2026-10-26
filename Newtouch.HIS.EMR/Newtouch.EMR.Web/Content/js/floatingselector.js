@@ -1,4 +1,4 @@
-﻿/* newtouch 浮层选择器 */
+﻿/* Bộ chọn lớp nổi newtouch */
 $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
     var defaults = {
         height: 400,
@@ -10,16 +10,16 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
         url: null,
         ajaxmethod: 'GET',
         ajaxreqdata: null,
-        //function post 或者 jsonp 
+        //function post hoặc jsonp 
         ajaxsync: false,
         ajaxparameters: null,
         //function get
         isjsonp: false,
-        //是否使用jsonp
+        //Có sử dụng jsonp hay không
         isinputchangetriggered: true,
-        //是input change触发的（比如 单击按钮 浮层出来，就是传false）
+        //Do input change kích hoạt (ví dụ nhấp nút thì lớp nổi xuất hiện, tức là truyền false)
         inputtextcheck: null,
-        //由input change触发，可先验证输入的文本 function
+        //Do input change kích hoạt, có thể kiểm tra trước văn bản đã nhập function
         mutiselect: false,
     };
     var options = $.extend(defaults, options);
@@ -34,7 +34,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
         }
     }
     if (!options.id) {
-        //随机生成id
+        //Tạo ngẫu nhiên id
         var idtemp = Math.random().toString();
         var idtemp = idtemp.replace(/\./, "");
         options.id = "divfloat_" + idtemp;
@@ -44,8 +44,8 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
         return;
     }
 
-    options.$this.attr('data-releatednfs', 'true'); //关联浮层
-    //创建浮层
+    options.$this.attr('data-releatednfs', 'true'); //Lớp nổi liên kết
+    //Tạo lớp nổi
     options.create = function () {
         var $divContainer = $('body').find('div#' + options.id + '');
         if ($divContainer.length == 0) {
@@ -55,35 +55,35 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                 height: (options.height + 8),
                 width: options.width
             });
-            //add by sunny 20180807 频次每行对齐
+            //add by sunny 20180807 Căn lề mỗi dòng tần suất
             var className = "ui-nfs-container";
             if (options.className !== undefined) {
                 className = options.className
             }
             $divContainer.append('<div class="' + className+'"><ul></ul>');
-            //如果多选，增加确定关闭按钮
+            //Nếu chọn nhiều, thêm nút xác nhận đóng
             if (options.mutiselect) {
-                $divContainer.append('<div class="ui-nfs-container_bottom" style="float: right;width: 95px;margin-top: -5px;"><input type="button" class="btn btn-primary btn_submit"  value="确定" style="display:table-cell;margin-right: 10px;"><input type = "button"  class= "btn btn-primary btn_close" value = "关闭" style = "display:table-cell;" ></div>');
+                $divContainer.append('<div class="ui-nfs-container_bottom" style="float: right;width: 95px;margin-top: -5px;"><input type="button" class="btn btn-primary btn_submit"  value="Xác nhận" style="display:table-cell;margin-right: 10px;"><input type = "button"  class= "btn btn-primary btn_close" value = "Đóng" style = "display:table-cell;" ></div>');
             }
             $divContainer.append('</div >');
             if (options.tableWidth) {
                 $divContainer.find('ul').css('width', options.tableWidth);
             }
             options.container = $divContainer;
-            options.bindclick();//绑定多选的确认关闭事件
+            options.bindclick();//Ràng buộc sự kiện xác nhận đóng của chọn nhiều
         }
         else {
             options.container = $divContainer;
         }
 
     };
-    //给浮层定位（根据element的位置）
+    //Định vị lớp nổi (theo vị trí của element)
     options.location = function () {
         if (options.X && options.Y) {
             options.container.css('left', options.X);
             options.container.css('top', options.Y);
         } else {
-            //根据options.$this的坐标 来定位
+            //Định vị theo tọa độ của options.$this
             var thisDomPoint = getDOMPositionPoint(options.$this[0]);
 
             if (options.width > ($(document).width() / 2 + $(document).width() / 4)) {
@@ -97,14 +97,14 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
             }
 
             if (($(document).height() - thisDomPoint.t - options.$this.height() - 5) < options.height) {
-                //下方不够用,置到上方
+                //Phía dưới không đủ chỗ, đặt lên phía trên
                 options.container.css('top', (thisDomPoint.t - options.height - 3) + "px");
             } else {
                 options.container.css('top', (thisDomPoint.t + options.$this.height() + 2) + "px");
             }
         }
     };
-    //加载数据
+    //Tải dữ liệu
     options.loaddata = function () {
         if (!options.url) {
             if (options.filter) {
@@ -115,11 +115,11 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                 } (options.funcBindRowData)(resultObjArr);
             }
         } else {
-            //通过接口获取数据
+            //Lấy dữ liệu qua giao diện
             var thisUrl = options.url;
             var thisReqData = null;
             if (options.ajaxparameters) {
-                var thisParameters = options.ajaxparameters(options.$this); //谁触发的，返回给页面
+                var thisParameters = options.ajaxparameters(options.$this); //Ai kích hoạt thì trả về cho trang
                 if (thisParameters) {
                     thisUrl += "?" + thisParameters;
                 }
@@ -139,7 +139,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                     cache: false,
                     success: function (data) {
                         if (data && data.length && data.length > 0) {
-                            //防止错乱呈现
+                            //Ngăn hiển thị lộn xộn
                             if (!!options.lastRequestMark && options.lastRequestMark != (thisUrl + (!!thisReqData ? thisReqData.toString() : ''))) {
                                 return;
                             }
@@ -155,7 +155,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                     }
                 });
             } else {
-                //jsonp加载数据
+                //jsonp Tải dữ liệu
                 $.ajax({
                     url: thisUrl,
                     dataType: 'JSONP',
@@ -165,7 +165,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                     success: function (data) {
                         if (data && data.code == "10000" && data.data) {
 
-                            //防止错乱呈现
+                            //Ngăn hiển thị lộn xộn
                             if (!!options.lastRequestMark && options.lastRequestMark != (thisUrl + (!!thisReqData ? thisReqData.toString() : ''))) {
                                 return;
                             }
@@ -187,11 +187,11 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
             }
         }
     };
-    //得到返回结果，遍历呈现之
+    //Nhận kết quả trả về, duyệt và hiển thị
     options.funcBindRowData = function (resultObjArr) {
         if (resultObjArr) {
             if (options.container) {
-                options.container.find('ul').html(''); //清除当前tbody内容
+                options.container.find('ul').html(''); //Xóa nội dung tbody hiện tại
             }
             if (options.height) {
                 options.container.find('ul').css('height', (options.height - 33));
@@ -200,7 +200,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                 var liHtml = '<li>' + resultObjArr[i][options.showtext] + "</li>";
                 var $li = $(liHtml);
                 $.each(options.attrcols, function () {
-                    $li.attr('data-' + this, resultObjArr[i][this]);   //data- 属性赋值
+                    $li.attr('data-' + this, resultObjArr[i][this]);   //Gán giá trị thuộc tính data-
                 });
                 var itemActived = false;
                 if (typeof options.checkItemActivity === 'function') {
@@ -214,29 +214,29 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
         }
     }
     var selectorsList = [];
-    //bind单击选中事件
+    //bind Sự kiện chọn khi nhấp
     options.binddbclickchooseevent = function () {
         if (options.container && options.itemdbclickhandler) {
             options.container.unbind();
             options.container.on('click', 'ul li',
                 function () {
-                    if (options.mutiselect) { //多选
-                        if ($(this).hasClass('active')) { //取消选中
+                    if (options.mutiselect) { //Chọn nhiều
+                        if ($(this).hasClass('active')) { //Hủy chọn
                             $(this).removeClass('active');
-                        } else { //选中 
+                        } else { //Đã chọn 
                             $(this).addClass('active');
                         };
-                    } else //单选
+                    } else //Chọn đơn
                     {
-                        options.itemdbclickhandler($(this), options.$this); //谁触发的，返回给页面
+                        options.itemdbclickhandler($(this), options.$this); //Ai kích hoạt thì trả về cho trang
                         if (options.isinputchangetriggered) {
-                            options.$this.trigger('focus'); //如果是input本身的change触发 给文本框焦点
+                            options.$this.trigger('focus'); //Nếu do change của chính input kích hoạt, đặt tiêu điểm cho hộp văn bản
                         }
                         if (options.itemdbclickhandleComplete) {
                             ;
-                            options.itemdbclickhandleComplete($(this)); //双击一行 处理完之后
+                            options.itemdbclickhandleComplete($(this)); //Sau khi xử lý xong việc nhấp đúp một dòng
                         }
-                        options.container.find('ul').html(''); //清除当前tbody内容
+                        options.container.find('ul').html(''); //Xóa nội dung tbody hiện tại
                         options.container.hide();
                     }
                 });
@@ -244,7 +244,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
     }
 
     options.bindclick = function () {
-        //确定 
+        //Xác nhận 
         options.container.find('.btn_submit').click(function () {
             selectorsList = [];
             options.container.find('li').each(function () {
@@ -252,28 +252,28 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                     selectorsList.push($(this));
                 }
             });
-            options.itemdbclickhandler(selectorsList, options.$this); //谁触发的，返回给页面
+            options.itemdbclickhandler(selectorsList, options.$this); //Ai kích hoạt thì trả về cho trang
             options.container.find('.btn_close').trigger('click');
         });
 
-        //关闭
+        //Đóng
         options.container.find('.btn_close').click(function () {
             if (options.isinputchangetriggered) {
-                options.$this.trigger('focus'); //如果是input本身的change触发 给文本框焦点
+                options.$this.trigger('focus'); //Nếu do change của chính input kích hoạt, đặt tiêu điểm cho hộp văn bản
             }
-            options.container.find('ul').html(''); //清除当前tbody内容
+            options.container.find('ul').html(''); //Xóa nội dung tbody hiện tại
             options.container.hide();
         });
     }
 
     options.okload = function () {
         if (!options.container) {
-            options.create(); //创建浮层
+            options.create(); //Tạo lớp nổi
         }
-        options.location(); //定位
-        options.container.show(); //定位好 再显示
-        options.loaddata(); //加载数据
-        options.binddbclickchooseevent(); //双击选中事件  //应该是触发一次就可以了
+        options.location(); //Định vị
+        options.container.show(); //Định vị xong rồi hiển thị
+        options.loaddata(); //Tải dữ liệu
+        options.binddbclickchooseevent(); //Sự kiện chọn khi nhấp đúp  //chỉ cần kích hoạt một lần là được
     }
 
     if (options.isinputchangetriggered) {
@@ -283,7 +283,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
 
                 options.prveValue = options.$this.val();
                 if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                    return; //没到最小长度，隐藏之
+                    return; //Chưa đạt độ dài tối thiểu, ẩn đi
                 }
                 if (typeof options.inputtextcheck === 'function') {
                     if (!(options.inputtextcheck(options.$this.val()))) {
@@ -298,7 +298,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
 
                 options.prveValue = options.$this.val();
                 if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                    return; //没到最小长度，隐藏之
+                    return; //Chưa đạt độ dài tối thiểu, ẩn đi
                 }
                 if (typeof options.inputtextcheck === 'function') {
                     if (!(options.inputtextcheck(options.$this.val()))) {
@@ -309,24 +309,24 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
             });
         }
 
-        options.$this.keyup(function (event) { //必须是keyup
+        options.$this.keyup(function (event) { //Phải là keyup
             event = event || window.event;
             if (event.keyCode == 38 || event.keyCode == 40 || event.keyCode == 13) {
                 return;
             }
             if (options.$this.val() == options.prveValue && options.$this.val().length == options.prveValue.length) {
-                return; //值没有变  则不触发
+                return; //Giá trị không thay đổi thì không kích hoạt
             }
 
-            //先隐藏
+            //Ẩn trước
             if (options.container) {
-                options.container.find('ul').html(''); //清除当前ul内容
+                options.container.find('ul').html(''); //Xóa nội dung ul hiện tại
             }
             $('body div.ui-nfs:visible').hide();
 
             options.prveValue = options.$this.val();
             if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                return; //没到最小长度，隐藏之
+                return; //Chưa đạt độ dài tối thiểu, ẩn đi
             }
             if (typeof options.inputtextcheck === 'function') {
                 if (!(options.inputtextcheck(options.$this.val()))) {
@@ -336,38 +336,38 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
             options.okload();
         });
 
-        //bind键盘上下事件
+        //bind Sự kiện phím lên xuống
         options.$this.keydown(function (event) {
             event = event || window.event;
             if (event.keyCode == 37 || event.keyCode == 39 && options.container) {
-                var $trs = options.container.find('ul li'); //当前浮层中的所有tr
+                var $trs = options.container.find('ul li'); //Tất cả tr trong lớp nổi hiện tại
                 if ($trs.length == 0) {
-                    return; //没有行
+                    return; //Không có dòng
                 }
-                var curActiveIndex = -1; //当前active的行
+                var curActiveIndex = -1; //Dòng active hiện tại
                 for (iiiiii = 0; iiiiii < $trs.length; iiiiii++) {
                     if ($($trs[iiiiii]).hasClass('active')) {
                         curActiveIndex = iiiiii;
                     }
                 }
-                var dstnIndex = 0; //目标index
+                var dstnIndex = 0; //index đích
                 if (curActiveIndex == -1) {
                     dstnIndex = 0;
                 } else {
                     if (event.keyCode == 37) {
-                        //alert("按了←键！");
+                        //alert("Đã nhấn phím ←!");
                         dstnIndex = curActiveIndex - 1;
                     }
                     if (event.keyCode == 39) {
-                        //alert("按了 →键！");
+                        //alert("Đã nhấn phím →!");
                         dstnIndex = curActiveIndex + 1;
                     }
                     //if (event.keyCode == 38) {
-                    //    //alert("按了↑键！");
+                    //    //alert("Đã nhấn phím ↑!");
                     //    dstnIndex = curActiveIndex - 1;
                     //}
                     //if (event.keyCode == 40) {
-                    //    //alert("按了↓键！");
+                    //    //alert("Đã nhấn phím ↓!");
                     //    dstnIndex = curActiveIndex + 1;
                     //}
                     if (dstnIndex < 0) {
@@ -377,7 +377,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                     }
                 }
 
-                //调整sroll的位置
+                //Điều chỉnh vị trí sroll
                 var scrollTop = $trs[dstnIndex].offsetTop;
                 $trs.parents('.ui-nfs tbody').scrollTop(scrollTop - 50);
 
@@ -388,7 +388,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                 stopPropagation(event);
             } else if (event.keyCode == 13) {
                 if (options.container) {
-                    var $activeTrs = options.container.find('ul li.active'); //当前浮层中的所有li
+                    var $activeTrs = options.container.find('ul li.active'); //Tất cả li trong lớp nổi hiện tại
                     if ($activeTrs.length == 1) {
                         $activeTrs.trigger('click');
                     }
@@ -396,7 +396,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
             }
         });
 
-        //单击其他 隐藏浮层
+        //Nhấp vào nơi khác, ẩn lớp nổi
         $(document).click(function (e) {
             e = e || window.event;
             $target = $(e.target);
@@ -408,16 +408,16 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
             }
         })
     } else {
-        //由click事件来触发
+        //Do sự kiện click kích hoạt
         options.$this.click(function () {
             if (options.container) {
-                options.container.find('ul li').html(''); //清除当前tbody内容
+                options.container.find('ul li').html(''); //Xóa nội dung tbody hiện tại
             }
             $('body div.ui-nfs:visible').hide();
             options.okload();
         });
 
-        //单击其他 隐藏浮层
+        //Nhấp vào nơi khác, ẩn lớp nổi
         $(document).click(function (e) {
             e = e || window.event;
             $target = $(e.target);
@@ -432,7 +432,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
 
 };
 
-/* 频次浮层选择器 */
+/* Bộ chọn lớp nổi tần suất */
 $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
     var defaults = {
         height: 400,
@@ -443,12 +443,12 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
         fiter: null,
         url: null,
         ajaxmethod: 'GET',
-        ajaxreqdata: null,  //function post 或者 jsonp 
+        ajaxreqdata: null,  //function post hoặc jsonp 
         ajaxsync: false,
         ajaxparameters: null,    //function get
-        isjsonp: false,  //是否使用jsonp
-        isinputchangetriggered: true,    //是input change触发的（比如 单击按钮 浮层出来，就是传false）
-        inputtextcheck: null,   //由input change触发，可先验证输入的文本 function
+        isjsonp: false,  //Có sử dụng jsonp hay không
+        isinputchangetriggered: true,    //Do input change kích hoạt (ví dụ nhấp nút thì lớp nổi xuất hiện, tức là truyền false)
+        inputtextcheck: null,   //Do input change kích hoạt, có thể kiểm tra trước văn bản đã nhập function
     };
     var options = $.extend(defaults, options);
     options.$this = $(this);
@@ -462,7 +462,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
         }
     }
     if (!options.id) {
-        //随机生成id
+        //Tạo ngẫu nhiên id
         var idtemp = Math.random().toString();
         var idtemp = idtemp.replace(/\./, "");
         console.log(idtemp);
@@ -473,9 +473,9 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
         return;
     }
 
-    options.$this.attr('data-releatednfs', 'true'); //关联浮层
+    options.$this.attr('data-releatednfs', 'true'); //Lớp nổi liên kết
 
-    //创建浮层
+    //Tạo lớp nổi
     options.create = function () {
         var $divContainer = $('body').find('div#' + options.id + '');
         if ($divContainer.length == 0) {
@@ -485,7 +485,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
                 height: (options.height + 2),
                 width: options.width
             });
-            //add by sunny 20180807 频次每行对齐
+            //add by sunny 20180807 Căn lề mỗi dòng tần suất
             var className = "ui-nfs-container";
             if (options.className !== undefined) {
                 className = options.className
@@ -497,14 +497,14 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
         }
         options.container = $divContainer;
     };
-    //给浮层定位（根据element的位置）
+    //Định vị lớp nổi (theo vị trí của element)
     options.location = function () {
         if (options.X && options.Y) {
             options.container.css('left', options.X);
             options.container.css('top', options.Y);
         }
         else {
-            //根据options.$this的坐标 来定位
+            //Định vị theo tọa độ của options.$this
             var thisDomPoint = getDOMPositionPoint(options.$this[0]);
 
             if (options.width > ($(document).width() / 2 + $(document).width() / 4)) {
@@ -520,7 +520,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
             }
 
             if (($(document).height() - thisDomPoint.t - options.$this.height() - 5) < options.height) {
-                //下方不够用,置到上方
+                //Phía dưới không đủ chỗ, đặt lên phía trên
                 options.container.css('top', (thisDomPoint.t - options.height - 3) + "px");
             }
             else {
@@ -528,7 +528,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
             }
         }
     };
-    //加载数据
+    //Tải dữ liệu
     options.loaddata = function () {
         if (!options.url) {
             if (options.filter) {
@@ -542,11 +542,11 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
             }
         }
         else {
-            //通过接口获取数据
+            //Lấy dữ liệu qua giao diện
             var thisUrl = options.url;
             var thisReqData = null;
             if (options.ajaxparameters) {
-                var thisParameters = options.ajaxparameters(options.$this);  //谁触发的，返回给页面
+                var thisParameters = options.ajaxparameters(options.$this);  //Ai kích hoạt thì trả về cho trang
                 if (thisParameters) {
                     thisUrl += "?" + thisParameters;
                 }
@@ -567,7 +567,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
                     success: function (data) {
                         if (data && data.length && data.length > 0) {
 
-                            //防止错乱呈现
+                            //Ngăn hiển thị lộn xộn
                             if (!!options.lastRequestMark
                                 && options.lastRequestMark != (thisUrl + (!!thisReqData ? thisReqData.toString() : ''))) {
                                 //console.log("skip bind data");
@@ -588,7 +588,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
                 });
             }
             else {
-                //jsonp加载数据
+                //jsonp Tải dữ liệu
                 $.ajax({
                     url: thisUrl,
                     dataType: 'JSONP',
@@ -598,7 +598,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
                     success: function (data) {
                         if (data && data.code == "10000" && data.data) {
 
-                            //防止错乱呈现
+                            //Ngăn hiển thị lộn xộn
                             if (!!options.lastRequestMark
                                 && options.lastRequestMark != (thisUrl + (!!thisReqData ? thisReqData.toString() : ''))) {
                                 return;
@@ -623,11 +623,11 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
             }
         }
     };
-    //得到返回结果，遍历呈现之
+    //Nhận kết quả trả về, duyệt và hiển thị
     options.funcBindRowData = function (resultObjArr) {
         if (resultObjArr) {
             if (options.container) {
-                options.container.find('ul').html(''); //清除当前tbody内容
+                options.container.find('ul').html(''); //Xóa nội dung tbody hiện tại
             }
             if (options.height) {
                 options.container.find('ul').css('height', (options.height - 33));
@@ -636,7 +636,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
                 var liHtml = '<li>' + resultObjArr[i][options.showtext] + "</li>";
                 var $li = $(liHtml);
                 $.each(options.attrcols, function () {
-                    $li.attr('data-' + this, resultObjArr[i][this]);   //data- 属性赋值
+                    $li.attr('data-' + this, resultObjArr[i][this]);   //Gán giá trị thuộc tính data-
                 });
                 var itemActived = false;
                 if (typeof options.checkItemActivity === 'function') {
@@ -653,21 +653,21 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
             }
         }
     }
-    //bind单击选中事件
+    //bind Sự kiện chọn khi nhấp
     options.binddbclickchooseevent = function () {
         if (options.container && options.itemdbclickhandler) {
             options.container.unbind();
             options.container.on('click', 'ul li', function () {
-                options.itemdbclickhandler($(this), options.$this); //谁触发的，返回给页面
+                options.itemdbclickhandler($(this), options.$this); //Ai kích hoạt thì trả về cho trang
                 if (options.isinputchangetriggered) {
-                    //如果是input本身的change触发 给文本框焦点
+                    //Nếu do change của chính input kích hoạt, đặt tiêu điểm cho hộp văn bản
                     options.focusfromdbclickitem = true;
                     options.$this.trigger('focus');
                 }
                 if (options.itemdbclickhandleComplete) {
-                    options.itemdbclickhandleComplete($(this));    //双击一行 处理完之后
+                    options.itemdbclickhandleComplete($(this));    //Sau khi xử lý xong việc nhấp đúp một dòng
                 }
-                options.container.find('ul').html(''); //清除当前tbody内容
+                options.container.find('ul').html(''); //Xóa nội dung tbody hiện tại
                 options.container.hide();
             });
         }
@@ -676,12 +676,12 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
     options.okload = function () {
         //debugger
         if (!options.container) {
-            options.create(); //创建浮层
+            options.create(); //Tạo lớp nổi
         }
-        options.location();   //定位
-        options.container.show();   //定位好 再显示
-        options.loaddata();   //加载数据
-        options.binddbclickchooseevent();   //双击选中事件  //应该是触发一次就可以了
+        options.location();   //Định vị
+        options.container.show();   //Định vị xong rồi hiển thị
+        options.loaddata();   //Tải dữ liệu
+        options.binddbclickchooseevent();   //Sự kiện chọn khi nhấp đúp  //chỉ cần kích hoạt một lần là được
     }
 
     if (options.isinputchangetriggered) {
@@ -691,7 +691,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
 
                 options.prveValue = options.$this.val();
                 if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                    return; //没到最小长度，隐藏之
+                    return; //Chưa đạt độ dài tối thiểu, ẩn đi
                 }
                 if (typeof options.inputtextcheck === 'function') {
                     if (!(options.inputtextcheck(options.$this.val()))) {
@@ -705,7 +705,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
         else if (options.focusautotrigger === true) {
             options.$this.focus(function (event) {
                 if (options.focusfromdbclickitem === true) {
-                    options.focusfromdbclickitem = false;   //不能循环触发focus
+                    options.focusfromdbclickitem = false;   //Không được kích hoạt focus theo vòng lặp
                     return;
                 }
 
@@ -713,7 +713,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
 
                 options.prveValue = options.$this.val();
                 if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                    return; //没到最小长度，隐藏之
+                    return; //Chưa đạt độ dài tối thiểu, ẩn đi
                 }
                 if (typeof options.inputtextcheck === 'function') {
                     if (!(options.inputtextcheck(options.$this.val()))) {
@@ -725,25 +725,25 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
             });
         }
 
-        options.$this.keyup(function (event) {   //必须是keyup
+        options.$this.keyup(function (event) {   //Phải là keyup
             event = event || window.event;
             if (event.keyCode == 38 || event.keyCode == 40 || event.keyCode == 13) {
                 return;
             }
 
             if (options.$this.val() == options.prveValue && options.$this.val().length == options.prveValue.length) {
-                return; //值没有变  则不触发
+                return; //Giá trị không thay đổi thì không kích hoạt
             }
 
-            //先隐藏
+            //Ẩn trước
             if (options.container) {
-                options.container.find('ul').html(''); //清除当前ul内容
+                options.container.find('ul').html(''); //Xóa nội dung ul hiện tại
             }
             $('body div.ui-nfs:visible').hide();
 
             options.prveValue = options.$this.val();
             if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                return; //没到最小长度，隐藏之
+                return; //Chưa đạt độ dài tối thiểu, ẩn đi
             }
             if (typeof options.inputtextcheck === 'function') {
                 if (!(options.inputtextcheck(options.$this.val()))) {
@@ -754,39 +754,39 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
             options.okload();
         });
 
-        //bind键盘上下事件
+        //bind Sự kiện phím lên xuống
         options.$this.keydown(function (event) {
             event = event || window.event;
             if (event.keyCode == 37 || event.keyCode == 39 && options.container) {
-                var $trs = options.container.find('ul li');    //当前浮层中的所有tr
+                var $trs = options.container.find('ul li');    //Tất cả tr trong lớp nổi hiện tại
                 if ($trs.length == 0) {
-                    return; //没有行
+                    return; //Không có dòng
                 }
-                var curActiveIndex = -1;    //当前active的行
+                var curActiveIndex = -1;    //Dòng active hiện tại
                 for (iiiiii = 0; iiiiii < $trs.length; iiiiii++) {
                     if ($($trs[iiiiii]).hasClass('active')) {
                         curActiveIndex = iiiiii;
                     }
                 }
-                var dstnIndex = 0;  //目标index
+                var dstnIndex = 0;  //index đích
                 if (curActiveIndex == -1) {
                     dstnIndex = 0;
                 }
                 else {
                     if (event.keyCode == 37) {
-                        //alert("按了←键！");
+                        //alert("Đã nhấn phím ←!");
                         dstnIndex = curActiveIndex - 1;
                     }
                     if (event.keyCode == 39) {
-                        //alert("按了 →键！");
+                        //alert("Đã nhấn phím →!");
                         dstnIndex = curActiveIndex + 1;
                     }
                     //if (event.keyCode == 38) {
-                    //    //alert("按了↑键！");
+                    //    //alert("Đã nhấn phím ↑!");
                     //    dstnIndex = curActiveIndex - 1;
                     //}
                     //if (event.keyCode == 40) {
-                    //    //alert("按了↓键！");
+                    //    //alert("Đã nhấn phím ↓!");
                     //    dstnIndex = curActiveIndex + 1;
                     //}
                     if (dstnIndex < 0) {
@@ -797,7 +797,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
                     }
                 }
 
-                //调整sroll的位置
+                //Điều chỉnh vị trí sroll
                 var scrollTop = $trs[dstnIndex].offsetTop;
                 $trs.parents('.ui-nfs tbody').scrollTop(scrollTop - 50);
 
@@ -809,7 +809,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
             }
             else if (event.keyCode == 13) {
                 if (options.container) {
-                    var $activeTrs = options.container.find('ul li.active');    //当前浮层中的所有li
+                    var $activeTrs = options.container.find('ul li.active');    //Tất cả li trong lớp nổi hiện tại
                     if ($activeTrs.length == 1) {
                         $activeTrs.trigger('click');
                     }
@@ -817,7 +817,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
             }
         });
 
-        //单击其他 隐藏浮层
+        //Nhấp vào nơi khác, ẩn lớp nổi
         $(document).click(function (e) {
             e = e || window.event;
             $target = $(e.target);
@@ -830,17 +830,17 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
         })
     }
     else {
-        //由click事件来触发
+        //Do sự kiện click kích hoạt
         options.$this.click(function () {
             if (options.container) {
-                options.container.find('ul li').html(''); //清除当前tbody内容
+                options.container.find('ul li').html(''); //Xóa nội dung tbody hiện tại
             }
             $('body div.ui-nfs:visible').hide();
 
             options.okload();
         });
 
-        //单击其他 隐藏浮层
+        //Nhấp vào nơi khác, ẩn lớp nổi
         $(document).click(function (e) {
             e = e || window.event;
             $target = $(e.target);

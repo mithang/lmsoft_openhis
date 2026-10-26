@@ -7,9 +7,9 @@ using FrameworkBase.MultiOrg.Domain.Entity;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2021-03-01 15:24
-    /// 描 述：病程记录
+    /// Người tạo: chl
+    /// Ngày: 2021-03-01 15:24
+    /// Mô tả: Ghi chép diễn biến bệnh
     /// </summary>
     [Table("YB_Inp_CourseDisease")]
     public class YBInpCourseDiseaseEntity : IEntity<YBInpCourseDiseaseEntity>
@@ -17,7 +17,7 @@ namespace Newtouch.EMR.Domain.Entity
         [Key]
         public string Id { get; set; }
         /// <summary>
-        /// 就诊流水号
+        /// Số thứ tự khám bệnh
         /// </summary>
         /// <returns></returns>
         [Description("就诊流水号")]
@@ -25,7 +25,7 @@ namespace Newtouch.EMR.Domain.Entity
         public string AKC190 { get; set; }
 
         /// <summary>
-        /// 住院流水号
+        /// Số thứ tự nhập viện
         /// </summary>
         /// <returns></returns>
         [Description("住院流水号")]
@@ -33,13 +33,13 @@ namespace Newtouch.EMR.Domain.Entity
         public string BKC191 { get; set; }
 
         /// <summary>
-        /// 科室代码
+        /// Mã khoa
         /// </summary>
         /// <returns></returns>
         public string AKF001 { get; set; }
 
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         /// <returns></returns>
         [Description("科室名称")]
@@ -47,7 +47,7 @@ namespace Newtouch.EMR.Domain.Entity
         public string AKF002 { get; set; }
 
         /// <summary>
-        /// 病区名称
+        /// Tên khu bệnh
         /// </summary>
         /// <returns></returns>
         [Description("病区名称")]
@@ -55,7 +55,7 @@ namespace Newtouch.EMR.Domain.Entity
         public string AKE021 { get; set; }
 
         /// <summary>
-        /// 病床号
+        /// Số giường bệnh
         /// </summary>
         /// <returns></returns>
         [Description("病床号")]
@@ -63,7 +63,7 @@ namespace Newtouch.EMR.Domain.Entity
         public string BKB410 { get; set; }
 
         /// <summary>
-        /// 记录日期时间 格式：yyyymmddhhmiss
+        /// Ngày giờ ghi chép, định dạng: yyyymmddhhmiss
         /// </summary>
         /// <returns></returns>
         [Description("记录日期时间")]
@@ -71,7 +71,7 @@ namespace Newtouch.EMR.Domain.Entity
         public string BKF737 { get; set; }
 
         /// <summary>
-        /// 主诉
+        /// Lý do vào viện chính
         /// </summary>
         /// <returns></returns>
         [Description("主诉")]
@@ -79,7 +79,7 @@ namespace Newtouch.EMR.Domain.Entity
         public string BKF476 { get; set; }
 
         /// <summary>
-        /// 病例特点
+        /// Đặc điểm ca bệnh
         /// </summary>
         /// <returns></returns>
         [Description("病例特点")]
@@ -87,103 +87,103 @@ namespace Newtouch.EMR.Domain.Entity
         public string BKF108 { get; set; }
 
         /// <summary>
-        /// 中医“四诊”观察结果
+        /// Kết quả quan sát “tứ chẩn” Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF458 { get; set; }
 
         /// <summary>
-        /// 诊断依据
+        /// Căn cứ chẩn đoán
         /// </summary>
         /// <returns></returns>
         public string BKF419 { get; set; }
 
         /// <summary>
-        /// 初步诊断-西医诊断编码
+        /// Chẩn đoán sơ bộ - Mã chẩn đoán Tây y
         /// </summary>
         /// <returns></returns>
         public string BKF748 { get; set; }
 
         /// <summary>
-        /// 初步诊断-西医诊断名称
+        /// Chẩn đoán sơ bộ - Tên chẩn đoán Tây y
         /// </summary>
         /// <returns></returns>
         public string BKF126 { get; set; }
 
         /// <summary>
-        /// 初步诊断-中医病名代码
+        /// Chẩn đoán sơ bộ - Mã tên bệnh Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF128 { get; set; }
 
         /// <summary>
-        /// 初步诊断-中医病名
+        /// Chẩn đoán sơ bộ - Tên bệnh Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF127 { get; set; }
 
         /// <summary>
-        /// 初步诊断-中医证候代码
+        /// Chẩn đoán sơ bộ - Mã chứng hậu Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF130 { get; set; }
 
         /// <summary>
-        /// 初步诊断-中医证候
+        /// Chẩn đoán sơ bộ - Chứng hậu Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF129 { get; set; }
 
         /// <summary>
-        /// 鉴别诊断-西医诊断编码
+        /// Chẩn đoán phân biệt - Mã chẩn đoán Tây y
         /// </summary>
         /// <returns></returns>
         public string BKF856 { get; set; }
 
         /// <summary>
-        /// 鉴别诊断-西医诊断名称
+        /// Chẩn đoán phân biệt - Tên chẩn đoán Tây y
         /// </summary>
         /// <returns></returns>
         public string BKF857 { get; set; }
 
         /// <summary>
-        /// 鉴别诊断-中医病名代码
+        /// Chẩn đoán phân biệt - Mã tên bệnh Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF855 { get; set; }
 
         /// <summary>
-        /// 鉴别诊断-中医病名
+        /// Chẩn đoán phân biệt - Tên bệnh Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF854 { get; set; }
 
         /// <summary>
-        /// 鉴别诊断-中医证候代码
+        /// Chẩn đoán phân biệt - Mã chứng hậu Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF204 { get; set; }
 
         /// <summary>
-        /// 鉴别诊断-中医证候
+        /// Chẩn đoán phân biệt - Chứng hậu Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF203 { get; set; }
 
         /// <summary>
-        /// 诊疗计划
+        /// Kế hoạch chẩn trị
         /// </summary>
         /// <returns></returns>
         public string BKF421 { get; set; }
 
         /// <summary>
-        /// 治则治法
+        /// Nguyên tắc và phương pháp điều trị
         /// </summary>
         /// <returns></returns>
         public string BKF440 { get; set; }
 
         /// <summary>
-        /// 住院医师编号
+        /// Mã bác sĩ nội trú
         /// </summary>
         /// <returns></returns>
         [Description("住院医师编号")]
@@ -191,7 +191,7 @@ namespace Newtouch.EMR.Domain.Entity
         public string BKF693 { get; set; }
 
         /// <summary>
-        /// 住院医师姓名
+        /// Họ tên bác sĩ nội trú
         /// </summary>
         /// <returns></returns>
         [Description("住院医师姓名")]
@@ -199,7 +199,7 @@ namespace Newtouch.EMR.Domain.Entity
         public string BKF692 { get; set; }
 
         /// <summary>
-        /// 上级医师姓名
+        /// Họ tên bác sĩ cấp trên
         /// </summary>
         /// <returns></returns>
         [Description("上级医师姓名")]

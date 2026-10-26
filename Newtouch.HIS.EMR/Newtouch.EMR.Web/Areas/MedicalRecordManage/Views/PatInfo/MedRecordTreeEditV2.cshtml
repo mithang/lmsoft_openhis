@@ -18,22 +18,22 @@
     <div style="width:76%;float:right;margin:5px 10px;">
         <table class="form" style="padding-right:15px;">
             <tr>
-                <th class="formTitle">病历类型</th>
+                <th class="formTitle">Loại bệnh án</th>
                 <td class="formValue">
                     <input id="bllxmc" name="bllxmc" type="text" class="form-control required" readonly="readonly" />
                     <input id="bllx" name="bllx" type="hidden" />
                 </td>
-                <th class="formTitle">病历时间</th>
+                <th class="formTitle">Thời gian bệnh án</th>
                 <td class="formValue" colspan="2">
                     <input id="blsj" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">模板权限</th>
+                <th class="formTitle">Quyền mẫu</th>
                 <td class="formValue">
                     <select id="mbqx" name="mbqx" class="form-control required" data-EnumType="Enummbqx"></select>
                 </td>
-                <th class="formTitle">关键字</th>
+                <th class="formTitle">Từ khóa</th>
                 <td class="formValue">
                     <input id="txt_keyword" name="txt_keyword" type="text" class="form-control" />
                 </td>
@@ -100,7 +100,7 @@
         });
     }
 
-    //双击病历大类处理
+    //Xử lý nhấp đúp loại lớn bệnh án
     function treeProcess(id) {
         $.najax({
             url: "/SystemManage/Common/GetBllxbyId",
@@ -123,7 +123,7 @@
         var mbData = $("#mbgridList").jqGrid('getRowData', mbRowId);
         if (mbRowId != null) {
 
-            //入院病例、出院病例、首次病程、病案首页不能重复新建
+            //Bệnh án vào viện, bệnh án ra viện, bệnh trình đầu tiên, trang đầu hồ sơ bệnh án không được tạo mới trùng lặp
             var isRepeat = false;
             var bllx = $("#bllx").val();
             if (bllx == "3032" || bllx == "3033" || bllx == "5") {
@@ -150,18 +150,18 @@
                     top.top.$.Newtouchtab.addTabWithOutMenu({ name: mbData.mbmc, enName: "", url: mbData.mblj + "?mbbh=" + mbRowId + "&keyValue=&zyh=" + $("#zyh").val(), AppId: "EMR" });
                 }
                 else {
-                    if ('@ViewBag.openEditorSwitch' == "ON") //新版编辑器
+                    if ('@ViewBag.openEditorSwitch' == "ON") //Trình soạn thảo phiên bản mới
                         top.top.$.Newtouchtab.addTabWithOutMenu({ name: "病历操作" + "<span class='fa fa-times-circle quit' style='display: none;padding-left:2px;' ></span>", enName: "", url: "/MedicalRecordManage/MedicalRecord/MedicalRecordEdiForAddV2?mbbh=" + mbRowId + "&zyh=" + $("#zyh").val() + "&mzh=" + $("#mzh").val() + "&doctype=" + ".html", AppId: "EMR" });
                     else
                         top.top.$.Newtouchtab.addTabWithOutMenu({ name: "病历操作", enName: "", url: "/MedicalRecordManage/MedicalRecord/MedicalRecordEdiForAdd?mbbh=" + mbRowId + "&zyh=" + $("#zyh").val() + "&mzh=" + $("#mzh").val(), AppId: "EMR" });
 
-                    //top.top.$.Newtouchtab.addTabWithOutMenu({ name: "病历操作", enName: "", url: "/MedicalRecordManage/MedicalRecord/MedicalRecordEdiForAdd?mbbh=" + mbRowId + "&zyh=" + $("#zyh").val() + "&mzh=" + $("#mzh").val(), AppId: "EMR" });
+                    //top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Bệnh ánThao tác", enName: "", url: "/MedicalRecordManage/MedicalRecord/MedicalRecordEdiForAdd?mbbh=" + mbRowId + "&zyh=" + $("#zyh").val() + "&mzh=" + $("#mzh").val(), AppId: "EMR" });
                 }
             }
             $.modalClose();
         }
         else {
-            $.modalAlert("请选择病历模板", 'warning');
+            $.modalAlert("Vui lòng chọn mẫu bệnh án", 'warning');
         }
     }
 
@@ -173,18 +173,18 @@
             postData: { mbqx: $("#mbqx").val(), bllx: bllx },
             height: $(window).height()-200,
             colModel: [
-                { label: "模板ID", name: "Id", hidden: true, key: true },
-                { label: "模板加载方式", name: "LoadWay", hidden: true },
-                { label: "模板路径", name: "mblj", hidden: true },
+                { label: "ID mẫu", name: "Id", hidden: true, key: true },
+                { label: "Cách tải mẫu", name: "LoadWay", hidden: true },
+                { label: "Đường dẫn mẫu", name: "mblj", hidden: true },
                 { label: "bllx", name: "bllx", width: 30, hidden: true },
                 {
-                    label: '模板类型', name: 'bllxmc', hidden: true,align: 'center'
+                    label: 'Loại mẫu', name: 'bllxmc', hidden: true,align: 'center'
                 },
                 {
-                    label: '模板名称', name: 'mbmc', width: 230, align: 'left'
+                    label: 'Tên mẫu', name: 'mbmc', width: 230, align: 'left'
                 },
                 {
-                    label: "来源", name: "Memo", width: 30, align: 'left', formatter: function (val) {
+                    label: "Nguồn", name: "Memo", width: 30, align: 'left', formatter: function (val) {
                         if (val != "" && val != null) {
                             return "[转]";
                         }
@@ -194,15 +194,15 @@
                     }
                 },
                 {
-                    label: "模板性质", name: "Isempty", width: 60, align: "center", formatter: function (cellvalue) {
+                    label: "Tính chất mẫu", name: "Isempty", width: 60, align: "center", formatter: function (cellvalue) {
                         if (cellvalue == "1")
                             return "空模板";
                         else
                             return '定制模板';
                     }
                 },
-                { label: '创建日期', name: 'CreateTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '修改日期', name: 'LastModifierTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Ngày tạo', name: 'CreateTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Ngày sửa', name: 'LastModifierTime', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
 
             ], onSelectRow: function (row) {
                 var rowData = $('#mbgridList').jqGrid('getRowData', row);
@@ -214,7 +214,7 @@
                 var mbData = $("#mbgridList").jqGrid('getRowData', mbRowId);;
                 debugger
                 if (mbRowId != null) {
-                    //入院病例、出院病例、首次病程、病案首页不能重复新建
+                    //Bệnh án vào viện, bệnh án ra viện, bệnh trình đầu tiên, trang đầu hồ sơ bệnh án không được tạo mới trùng lặp
                     var isRepeat = false;
                     var bllx = $("#bllx").val();
                     if (bllx == "3032" || bllx == "3033" || bllx == "5") {
@@ -261,7 +261,7 @@
                                 top.top.$.Newtouchtab.addTabWithOutMenu({ name: mbData.mbmc, enName: "", url: mbData.mblj + "?mbbh=" + mbRowId + "&keyValue=&zyh=" + $("#zyh").val(), AppId: "EMR" });
                             }
                             else {
-                                if ('@ViewBag.openEditorSwitch' == "ON") //新版编辑器
+                                if ('@ViewBag.openEditorSwitch' == "ON") //Trình soạn thảo phiên bản mới
                                     top.top.$.Newtouchtab.addTabWithOutMenu({ name: "病历操作" + "<span class='fa fa-times-circle quit' style='display: none;padding-left:2px;' ></span>", enName: "", url: "/MedicalRecordManage/MedicalRecord/MedicalRecordEdiForAddV2?mbbh=" + mbRowId + "&zyh=" + $("#zyh").val() + "&mzh=" + $("#mzh").val() + "&doctype=" + ".html", AppId: "EMR" });
                                 else
                                     top.top.$.Newtouchtab.addTabWithOutMenu({ name: "病历操作", enName: "", url: "/MedicalRecordManage/MedicalRecord/MedicalRecordEdiForAdd?mbbh=" + mbRowId + "&zyh=" + $("#zyh").val() + "&mzh=" + $("#mzh").val(), AppId: "EMR" });
@@ -295,7 +295,7 @@
                 }
 
                 else {
-                    $.modalAlert("请选择病历模板", 'warning');
+                    $.modalAlert("Vui lòng chọn mẫu bệnh án", 'warning');
                 }
         }
         });

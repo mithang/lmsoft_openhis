@@ -6,16 +6,16 @@ using FrameworkBase.MultiOrg.Repository;
 namespace Newtouch.EMR.Repository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2020-03-13 11:29
-    /// 描 述：病案首页-手术记录
+    /// Người tạo: chl
+    /// Ngày: 2020-03-13 11:29
+    /// Mô tả: Trang đầu hồ sơ bệnh án - Ghi chép phẫu thuật
     /// </summary>
     public class MrbasyssRepo : RepositoryBase<MrbasyssEntity>, IMrbasyssRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public MrbasyssRepo(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {

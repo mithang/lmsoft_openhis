@@ -15,9 +15,9 @@ using Newtouch.Core.Common;
 namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 {
     /// <summary>
-    /// 创 建：hyj
-    /// 日 期：2018-09-07 15:46
-    /// 描 述：词条管理
+    /// Người tạo: hyj
+    /// Ngày: 2018-09-07 15:46
+    /// Mô tả: Quản lý từ mục
     /// </summary>
     public class BlctglController : OrgControllerBase
     {
@@ -27,7 +27,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         private char[] trimstr = { ' ', '-', '\'', '\"', '\\', '\n', '\r' };
 
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc định
         /// </summary>
         /// <param name="blctglRepo"></param>
         public BlctglController(IBlctglRepo blctglRepo)
@@ -90,9 +90,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         }
         /// <summary>
-        /// 获取实体
+        /// Lấy thực thể
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult GetFormJson(string keyValue)
         {
@@ -110,10 +110,10 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu (thêm mới, sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult SubmitForm(BlctglEntity entity, string keyValue)
         {
@@ -154,9 +154,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
 
         public ActionResult DeleteForm(string delCTID)
@@ -174,7 +174,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return View();
         }
         /// <summary>
-        /// 诊断列表
+        /// Danh sách chẩn đoán
         /// </summary>
         /// <returns></returns>
         public ActionResult ShowDiagList()
@@ -183,7 +183,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         ///// <summary>
-        ///// 诊断 检索
+        ///// Chẩn đoán - Truy xuất
         ///// </summary>
         ///// <param name="keyword"></param>
         ///// <returns></returns>
@@ -201,7 +201,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         //        data.Add(obj);
         //    }
         //    return Content(data.ToJson());
-        //    //return Json(list, JsonRequestBehavior.AllowGet);
+        // return Json(list, JsonRequestBehavior.AllowGet);
         //}
 
         public ActionResult GetDiagnosisGrid(Pagination pagination,string keyword,int? zdlx)

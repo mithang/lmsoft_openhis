@@ -11,49 +11,49 @@ namespace Newtouch.EMR.Domain.IDomainServices
     public interface IYBInterfaceDmnService
     {
         /// <summary>
-        /// 入院病历医保接口
+        /// Giao diện bảo hiểm y tế của bệnh án vào viện
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="dzblId"></param>
         /// <returns></returns>
         YB_7100 GetRyblInfo(string orgId, string dzblId);
         /// <summary>
-        /// 入院病历诊断
+        /// Chẩn đoán bệnh án vào viện
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="dzblId"></param>
         /// <returns></returns>
         IList<YB_7110> GetRyblZdInfo(string orgId, string dzblId);
         /// <summary>
-        /// 病程记录
+        /// Ghi chép diễn biến bệnh
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="dzblId"></param>
         /// <returns></returns>
         YB_7200 GetBcjlInfo(string orgId, string dzblId);
         /// <summary>
-        /// 出院小结
+        /// Tóm tắt ra viện
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="dzblId"></param>
         /// <returns></returns>
         YB_7500 GetCyxjInfo(string orgId, string dzblId);
         /// <summary>
-        /// 出院小结
+        /// Tóm tắt ra viện
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="dzblId"></param>
         /// <returns></returns>
         IList<YB_7510> GetCyxjZdInfo(string orgId, string dzblId);
         /// <summary>
-        /// 病案首页诊断
+        /// Chẩn đoán trang đầu hồ sơ bệnh án
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
         /// <returns></returns>
         IList<YB_7610> GetBasyZdInfo(string orgId, string zyh);
         /// <summary>
-        /// 入院诊断保存
+        /// Lưu chẩn đoán lúc vào viện
         /// </summary>
         /// <param name="zdlist"></param>
         /// <param name="orgId"></param>
@@ -61,7 +61,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
         /// <param name="zyh"></param>
         string YBInhosDiagInfoSave(List<DiagnoseDocDTO> zdlist, string orgId, string dzblId, string zyh);
         /// <summary>
-        /// 出院诊断保存
+        /// Lưu chẩn đoán lúc ra viện
         /// </summary>
         /// <param name="zdlist"></param>
         /// <param name="orgId"></param>

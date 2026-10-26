@@ -19,7 +19,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         private readonly IBlysRepo _blysRepo;
       
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc định
         /// </summary>
         /// <param name="blysRepo"></param>
         public BlysController(IBlysRepo blysRepo)
@@ -33,7 +33,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult GetGridJson(string keyValue)
         {
@@ -95,9 +95,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
 
         /// <summary>
-        /// 获取实体
+        /// Lấy thực thể
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult GetFormJson(string keyValue)
         {
@@ -106,10 +106,10 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu (thêm mới, sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult SubmitForm(BlysEntity entity, string keyValue)
         {
@@ -144,9 +144,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public ActionResult DeleteForm(string delYSID)
         {
@@ -167,9 +167,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             try
             {
 
-                XmlDocument xmlDoc = new XmlDocument();//新建XML文件
+                XmlDocument xmlDoc = new XmlDocument();//Tạo tệp XML mới
 
-                //判断文件是否存在
+                //Phán đoán tệp có tồn tại hay không
                 if (System.IO.File.Exists(filePath))
                 {
                     System.IO.File.Delete(filePath);

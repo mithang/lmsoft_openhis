@@ -13,7 +13,7 @@
             if (String(fieldid.id).indexOf("zyzd_") != -1 && String(fieldid.id).indexOf("_zyzd_") == -1) {
                 $.modalOpen({
                     id: "Form",
-                    title: "诊断列表",
+                    title: "Danh sách chẩn đoán",
                     url: "/MedicalRecordManage/Blctgl/DiagList",
                     width: "750px",
                     height: "640px",
@@ -82,7 +82,7 @@
                 if (String(nameval.value).indexOf("ys_click") != -1) {
                     $.modalOpen({
                         id: "Form",
-                        title: "医生列表",
+                        title: "Danh sách bác sĩ",
                         url: "/MedicalRecordManage/MedicalRecord/Doctor",
                         width: "550px",
                         height: "450px",
@@ -102,31 +102,31 @@
     dcWriter.ondocumentkeydown = function (eventObject) {
 
     };
-    //签名-双击文本域
+    //Chữ ký-Nhấp đúp vào vùng văn bản
     function Signaturedefault(id, imgbase64, rygh, name) {
         id = id + Math.random();
         var obj = {
             "id":id,
-            "base64Img": imgbase64,//图片base64 （优先png格式）
-            "scope": "InputField",//签名范围 InputField:输入域;TableCell:单元格; TableRow:表格行; Table:表格; Section:文档节; Body: 文档;
+            "base64Img": imgbase64,//Hình ảnh base64 （Ưu tiên định dạng png）
+            "scope": "InputField",//Phạm vi chữ ký InputField: Trường nhập; TableCell: Ô; TableRow: Dòng bảng; Table: Bảng; Section: Tiết tài liệu; Body: Tài liệu;
             "userID":  rygh,
             "userName":  name,
-            "imageInFrontOfText": "false",//默认false
-            "clientName": "home-pc",//客户端名
-            "width": "50",//签名图片宽度
-            "height": "25",//签名图片高度
-            "providerName": "1", //1:软签 2：诺安签名
+            "imageInFrontOfText": "false",//Mặc địnhfalse
+            "clientName": "home-pc",//Tên máy khách
+            "width": "50",//Chiều rộng hình ảnh chữ ký
+            "height": "25",//Chiều cao hình ảnh chữ ký
+            "providerName": "1", //1:Chữ ký mềm 2：诺安Chữ ký
         };
         var ctl = document.getElementById("myWriterControl");
         ctl.CASignature(obj, function (result) {
             if (result.success == "true") {
-                ctl.LoadDocumentFromString(result.result, "xml");// result.strxml: 签名后的Xml文档
+                ctl.LoadDocumentFromString(result.result, "xml");// result.strxml: Tài liệu Xml sau khi chữ ký
             } else {
-                $.modalMsg("签名失败：" + result.message, 'error');
+                $.modalMsg("Ký thất bại:" + result.message, 'error');
             }
         });
     }
-    //电子签名-button
+    //Nút chữ ký điện tử
     function Signature() {
         if (!!signInput) {
             $.najax({
@@ -139,29 +139,29 @@
                     var data = JSON.parse(jsonData);
                     var obj = {
                         "id": signInput + Math.random(),
-                        "base64Img": data.imgbase64,//图片base64 （优先png格式）
-                        "scope": "InputField",//签名范围 InputField:输入域;TableCell:单元格; TableRow:表格行; Table:表格; Section:文档节; Body: 文档;
+                        "base64Img": data.imgbase64,//Hình ảnh base64 （Ưu tiên định dạng png）
+                        "scope": "InputField",//Phạm vi chữ ký InputField: Trường nhập; TableCell: Ô; TableRow: Dòng bảng; Table: Bảng; Section: Tiết tài liệu; Body: Tài liệu;
                         "userID": data.rygh,
                         "userName": data.name,
-                        "imageInFrontOfText": "false",//默认false
-                        "clientName": "home-pc",//客户端名
-                        "width": "50",//签名图片宽度
-                        "height": "25",//签名图片高度
-                        "providerName": "1", //1:软签 2：诺安签名
+                        "imageInFrontOfText": "false",//Mặc địnhfalse
+                        "clientName": "home-pc",//Tên máy khách
+                        "width": "50",//Chiều rộng hình ảnh chữ ký
+                        "height": "25",//Chiều cao hình ảnh chữ ký
+                        "providerName": "1", //1:Chữ ký mềm 2：诺安Chữ ký
                     };
                     var ctl = document.getElementById("myWriterControl");
                     ctl.CASignature(obj, function (result) {
                         if (result.success == "true") {
-                            ctl.LoadDocumentFromString(result.result, "xml");// result.strxml: 签名后的Xml文档
+                            ctl.LoadDocumentFromString(result.result, "xml");// result.strxml: Tài liệu Xml sau khi chữ ký
                         } else {
-                            $.modalMsg("签名失败：" + result.message, 'error');
+                            $.modalMsg("Ký thất bại:" + result.message, 'error');
                         }
                     });
                 }
             });
         }
         else {
-            $.modalMsg("请选中待签名文本域", 'warning');
+            $.modalMsg("Vui lòng chọn vùng văn bản chờ ký", 'warning');
         }
     }
 
@@ -201,14 +201,14 @@
         //        dataType: "json",
         //        data: { Elements: list },
         //        async: true,
-        //        loadingtext: "保存中，请稍后...",
+        //        loadingtext: "Đang lưu, vui lòng đợi...",
         //        success: function (ajaxresp) {
         //            $.modalMsg(ajaxresp, 'success');
         //        }
         //    });
         //});
 
-        //插入表格
+        //Chèn bảng
         $("#inserttab").click(function () {
             if ($("#table").attr("style") == "display:block") {
                 $("#table").attr("style", "display:none");
@@ -225,7 +225,7 @@
             document.getElementById('myWriterControl').DCExecuteCommand('inserttable', true, tt);
             $("#table").attr("style", "display:none");
         })
-        //字体颜色
+        //Màu chữ
         $("#backcolor").click(function () {
             if ($("#bcolor").attr("style") == "display:block") {
                 $("#bcolor").attr("style", "display:none");
@@ -274,7 +274,7 @@
         }).mouseout(function () {
             $("#bcolor").attr("style", "display:none");
         })
-        //字体颜色
+        //Màu chữ
         $("#fontcolor").click(function () {
             if ($("#fcolor").attr("style") == "display:block") {
                 $("#fcolor").attr("style", "display:none");
@@ -319,7 +319,7 @@
         }).mouseout(function () {
             $("#fcolor").attr("style", "display:none");
         })
-        //字体
+        //Phông chữ
         $("#fontfa").click(function () {
             if ($("#fontf").attr("style") == "display:block") {
                 $("#fontf").attr("style", "display:none");
@@ -348,7 +348,7 @@
         }).mouseout(function () {
             $("#fontf").attr("style", "display:none");
         })
-        //字体大小
+        //Cỡ chữ
         $("#fontsize").click(function () {
             if ($("#fontsizeli").attr("style") == "display:block") {
                 $("#fontsizeli").attr("style", "display:none");
@@ -405,7 +405,7 @@
         }).mouseout(function () {
             $("#fontsizeli").attr("style", "display:none");
         })
-        //段前距
+        //Khoảng cách trước đoạn
         $("#rowspacingup").click(function () {
             if ($("#rowspacingup1").attr("style") == "display:block") {
                 $("#rowspacingup1").attr("style", "display:none");
@@ -438,7 +438,7 @@
         }).mouseout(function () {
             $("#rowspacingup1").attr("style", "display:none");
         })
-        //段后距
+        //Khoảng cách sau đoạn
         $("#rowspacingdown").click(function () {
             if ($("#rowspacingdown1").attr("style") == "display:block") {
                 $("#rowspacingdown1").attr("style", "display:none");
@@ -471,7 +471,7 @@
         }).mouseout(function () {
             $("#rowspacingdown1").attr("style", "display:none");
         })
-        //行间距
+        //Khoảng cách dòng
         $("#lineheight").click(function () {
             if ($("#lineheight1").attr("style") == "display:block") {
                 $("#lineheight1").attr("style", "display:none");
@@ -512,21 +512,21 @@
         }).mouseout(function () {
             $("#lineheight1").attr("style", "display:none");
         })
-        //痕迹查看
+        //Xem vết tích
         $("#lhyl").click(function () {
             debugger;
             var ctl = document.getElementById("myWriterControl");
             ctl.UserLoginByParameter('@ViewBag.user', '@ViewBag.userName', 2);
             $("#toolShow").click();
-            $("#lhyl").css("display", "none");  //痕迹查看
-            $("#blyl").css("display", "none");   //病历预览
-            $("#returnblbj").css("display", "block");  //返回修改
-            $("#lhlb").css("display", "block"); //痕迹列表
-            $("#toolShow").css("display", "none"); //工具栏
+            $("#lhyl").css("display", "none");  //Xem vết tích
+            $("#blyl").css("display", "none");   //Xem trước bệnh án
+            $("#returnblbj").css("display", "block");  //Quay lại sửa
+            $("#lhlb").css("display", "block"); //Danh sách vết tích
+            $("#toolShow").css("display", "none"); //Thanh công cụ
             //ctl.LoadPrintPreviewWithPermissionMark();
 
         });
-        //病历预览
+        //Xem trước bệnh án
         $("#blyl").click(function () {
             $("#toolShow").click();
             $("#lhyl").css("display", "none");
@@ -536,7 +536,7 @@
                 var ctl = document.getElementById("myWriterControl");
                 ctl.LoadPrintPreview();
         });
-        //返回修改
+        //Quay lại sửa
         $("#returnblbj").click(function () {
             $("#toolShow").click();
             $("#lhyl").css("display", "block");
@@ -550,7 +550,7 @@
             ctl.CleanViewMode();
 
         });
-        //痕迹列表
+        //Danh sách vết tích
         $("#lhlb").click(function () {
             setPopUp();
         })
@@ -567,8 +567,8 @@
         ////    var contentHtml = document.getElementById('myWriterControl_Frame').contentDocument;
         ////}
         //var res = ctl.InComplexViewMode()
-        var modifyRecord = [] //修改记录
-        //在文件刚加载时调用获取修改记录(异步)
+        var modifyRecord = [] //SửaBản ghi
+        //Khi tệp vừa tải thì gọi lấy bản ghi sửa (không đồng bộ)
         if (bool) {
             modifyRecord = ctl.GetDocumentUserTrackInfos(bool);
         } else {
@@ -966,7 +966,7 @@
     //            "CopyInTextFormatOnly": false,
     //            "CloneWithoutElementBorderStyle": true,
     //            "CloneWithoutLogicDeletedContent": false,
-    //            "GridLinePreviewText": "电子病历文档编辑器。",
+    //            "GridLinePreviewText": "Trình soạn thảo tài liệu bệnh án điện tử.",
     //            "ClearFieldValueWhenCopy": false,
     //            "KeepTableWidthWhenInsertDeleteColumn": true,
     //            "FixSizeWhenInsertImage": true,
@@ -989,7 +989,7 @@
     //}
 
 
-    //-------------病历编辑器5.0------------------//
+    //-------------Trình soạn thảo bệnh án 5.0------------------//
     function WriterControl_OnLoad(rootElement) {
         var ctl = document.getElementById("myWriterControl");
         ctl.LoadDocumentFromBase64String('@ViewBag.WriterControlXmlData', 'xml');
@@ -1004,7 +1004,7 @@
         var ctl = document.getElementById("myWriterControl");
         if (ctl != null) {
             if (ctl.getAttribute("ismobiledevice") != "true") {
-                // 对于移动设备不设置控件高度
+                // Đối với thiết bị di động thì không đặt chiều cao điều khiển
                 //var s1 = document.documentElement.currentStyle;
                 //var s2 = document.body.currentStyle ;
                 var h = document.documentElement.clientHeight - ctl.offsetTop - 20;
@@ -1020,14 +1020,14 @@
     window.setTimeout(SetCtlHeight, 300);
     window.setInterval(SetCtlHeight, 1000);
 
-    //纯文本复制
+    //Sao chép văn bản thuần
     function EventBeforePaste() {
         debugger;
-         // 获得控件容器元素
+         // Lấy phần tử chứa điều khiển
         var ctl = document.getElementById("myWriterControl");
         // 绑定控件
         //BindingDCWriterClientControl(ctl);
-        // 创建编辑器框架
+        // Tạo khung trình soạn thảo
         //ctl.BuildFrame(function () {
         //    ctl.LoadDocumentFromString(xmlstr, "xml");
         //});
@@ -1041,10 +1041,10 @@
             else {
                 console.log("找到编辑器的剪切板");
             }
-            var text = ctl.SelectionText();  //选择内容，也可以是XML、HTML内容，可以根据当前病历编号对其格式化或加密        
-            clipboardData.setData('Text', text);//把自己构造的数据填入剪切板  
+            var text = ctl.SelectionText();  //Chọn nội dung, cũng có thể là nội dung XML, HTML, có thể định dạng hoặc mã hóa nó theo số hiệu bệnh án hiện tại        
+            clipboardData.setData('Text', text);//Điền dữ liệu tự xây dựng vào bảng tạm  
             console.log("选择的内容是：" + text);
-            return false;//拦截复制    
+            return false;//Chặn sao chép    
         }
         ctl.EventBeforePaste = function (e) {
             if (!e) return;
@@ -1055,10 +1055,10 @@
             } else {
                 console.log("粘贴时找到编辑器的剪切板");
             }
-            var pastedText = clipboardData.getData("Text");//获取剪切板数据       
+            var pastedText = clipboardData.getData("Text");//Lấy dữ liệu bảng tạm       
             pastedText = pastedText.replace(/[\[\]]/g, "")//去除输入域的前后边框      
-            ctl.DCExecuteCommand('Spechars', false, pastedText);//插入纯文本     
-            return false;//拦截粘贴   
+            ctl.DCExecuteCommand('Spechars', false, pastedText);//Chèn văn bản thuần     
+            return false;//Chặn dán   
         }
         function Copy() {
             var ctl = document.getElementById("myWriterControl");
@@ -1123,8 +1123,8 @@
     }
 
     /*
-    * 插入表格 btn:选择触发器,jquery对象
-   opt:表格选项,{min:[最小列数,最小行数],max:[最大列数,最大行数],insert:确认选择后回调事件}
+    * Nút chèn bảng: trình kích hoạt lựa chọn, đối tượng jquery
+   opt:Tùy chọn bảng, {min:[số cột tối thiểu, số dòng tối thiểu], max:[số cột tối đa, số dòng tối đa], insert: sự kiện callback sau khi xác nhận lựa chọn}
     */
     var insertTable = function (btn, opt) {
         if (!btn) { return; }
@@ -1173,7 +1173,7 @@
                 mPos;//鼠标位置
             this.btn.click(function () {
                 if (!T.isInit.create) { T.init(); }//初始化弹框
-                if (!T.isInit.bind) { B(); }//初始化事件
+                if (!T.isInit.bind) { B(); }//Khởi tạo sự kiện
                 m = $(this);
                 if (T.box.is(":hidden")) {
                     pos = {
@@ -1224,7 +1224,7 @@
                     })
                     T.status.text(T.nowSize[0] + '列 x ' + T.nowSize[1] + '行');
                 })
-                //单击确认插入表格
+                //Nhấp xác nhận chèn bảng
                 T.box.click(function () {
                     if (T.nowSize[0] > 0 && T.nowSize[0] <= T.maxSize[0] && T.nowSize[1] > 0 && T.nowSize[1] <= T.maxSize[1]) {
                         var rows = T.nowSize[1],
@@ -1234,7 +1234,7 @@
                 })
             }
         },
-        //调整背景区域
+        //Điều chỉnh vùng nền
         setBg: function (size, t) {
             if (t == 0) {
                 this.inBox.width(size + 'em');
@@ -1248,7 +1248,7 @@
         hide: function () {
             var T = this;
             this.box.fadeOut(100, function () {
-                //重置
+                //Đặt lại
                 T.setBg(T.minSize[0], 0);
                 T.setBg(T.minSize[1], 1);
                 T.pickLight.css({
@@ -1262,8 +1262,8 @@
         min: [4, 4],
         max: [20, 20],
         insert: function (rows, cols) {
-            //这里只返回所选行数rows和列数cols,插入后的效果和样式需自定义,以下只是做简单的示例
-            //alert('插入了一个'+rows+'行'+cols+'列的表格');
+            //Tại đây chỉ trả về số dòng rows và số cột cols đã chọn, hiệu ứng và kiểu sau khi chèn cần tùy chỉnh, dưới đây chỉ là ví dụ đơn giản
+            //alert('Đã chèn một bảng '+rows+' dòng '+cols+' cột');
 
             var ttt = rows + "," + cols;
 
@@ -1288,7 +1288,7 @@
         var disX = 0;
         var disY = 0;
         document.onmousedown = function (ev) {  //鼠标按下
-            var oEvent = ev || event;       //判断浏览器兼容
+            var oEvent = ev || event;       //Kiểm tra tính tương thích của trình duyệt
             disX = oEvent.clientX - myWriterControl_Dialog.offsetLeft;    //鼠标横坐标点到div的offsetLeft距离
             disY = oEvent.clientY - myWriterControl_Dialog.offsetTop;     //鼠标纵坐标点到div的offsetTop距离
             document.onmousemove = function (ev) {      //鼠标移动
@@ -1307,10 +1307,10 @@
                 else if (t > document.documentElement.clientHeight - div.offsetHeight) {
                     t = document.documentElement.clientHeight - div.offsetHeight;
                 }
-                div.style.left = l + 'px';      //确定DIV的左边位置
-                div.style.top = t + 'px';       //确定DIV的上边位置
+                div.style.left = l + 'px';      //Xác nhận vị trí bên trái của DIV
+                div.style.top = t + 'px';       //Xác nhận vị trí phía trên của DIV
             }
-            document.onmouseup = function () {      //当鼠标松开后关闭移动事件和自身事件
+            document.onmouseup = function () {      //Khi nhả chuột thì đóng sự kiện di chuyển và sự kiện của chính nó
                 document.onmousemove = null;
                 document.onmouseup = null;
             }

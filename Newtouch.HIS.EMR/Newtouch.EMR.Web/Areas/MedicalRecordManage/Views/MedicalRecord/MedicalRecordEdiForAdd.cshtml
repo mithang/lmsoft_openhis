@@ -15,18 +15,18 @@
 
 <form method="post" id="addBlForm">
     <span id="toolDiv">
-        <input  type="submit" name="saveDocument" id="saveXml" value="保存文档" class="edtBtn" style="background-image: url(/Content/img/tupian/-_保存.ico);background-repeat: no-repeat;background-size: 30%;padding-left: 30px;height: 30px;" />
+        <input  type="submit" name="saveDocument" id="saveXml" value="Lưu tài liệu" class="edtBtn" style="background-image: url(/Content/img/tupian/-_保存.ico);background-repeat: no-repeat;background-size: 30%;padding-left: 30px;height: 30px;" />
         @Html.Partial("_DCSW.ToolList")
-        @*<a href="#" class="easyui-linkbutton" title="文档校验" data-options="plain:true" onclick="MyValueValidate();">文档校验</a>
+        @**@<a href="#" class="easyui-linkbutton" title="Kiểm tra tài liệu" data-options="plain:true" onclick="MyValueValidate();">Kiểm tra tài liệu</a>
         <select id="validateResult" onchange="validateResult_Click();"></select>*@
 
         <input type="hidden" value="医生签名" class="edtBtn" style="width: 50px;" onclick="Signature()" />
         @Html.Partial("_DCSW.SaveAS")
     </span>
-    <a id="toolShow" class="btn btn-primary" style="float:right;margin:5px 5px 5px 0px;"><i></i>工具栏</a>
+    <a id="toolShow" class="btn btn-primary" style="float:right;margin:5px 5px 5px 0px;"><i></i>Thanh công cụ</a>
     @if (!string.IsNullOrWhiteSpace(ViewBag.zyh))
     {
-        <input id="upload" name="saveDocument" type="submit" class="btn btn-primary" style="float:left;margin:5px 10px 5px 5px;display:none;" value="上传医保" />
+        <input id="upload" name="saveDocument" type="submit" class="btn btn-primary" style="float:left;margin:5px 10px 5px 5px;display:none;" value="Tải lên bảo hiểm y tế" />
     }
     <div style="clear:both;"></div>
     @*@Html.Raw(ViewBag.WriterControlHtml)*@

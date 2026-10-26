@@ -3,12 +3,12 @@
 <script src="~/Content/richtext/summernote.js"></script>
 <div class="note-toolbar panel-heading">
     <div class="note-btn-group btn-group note-font">
-        <button type="button" class="note-btn btn btn-default btn-sm note-btn-bold" tabindex="-1" title="" data-original-title="粗体 (CTRL+B)" onclick="document.getElementById('myWriterControl').DCExecuteCommand('bold', true, null);"><i class="note-icon-bold"></i></button>
-        <button type="button" class="note-btn btn btn-default btn-sm note-btn-underline" tabindex="-1" title="" data-original-title="下划线 (CTRL+U)" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Underline', true, null);"><i class="note-icon-underline"></i></button>
-        <button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="清除格式 (CTRL+\)"><i class="note-icon-eraser"></i></button>
+        <button type="button" class="note-btn btn btn-default btn-sm note-btn-bold" tabindex="-1" title="" data-original-title="In đậm (CTRL+B)" onclick="document.getElementById('myWriterControl').DCExecuteCommand('bold', true, null);"><i class="note-icon-bold"></i></button>
+        <button type="button" class="note-btn btn btn-default btn-sm note-btn-underline" tabindex="-1" title="" data-original-title="Gạch dưới (CTRL+U)" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Underline', true, null);"><i class="note-icon-underline"></i></button>
+        <button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Xóa định dạng (CTRL+\)"><i class="note-icon-eraser"></i></button>
     </div>
     <div class="note-btn-group btn-group note-fontname">
-        <button type="button" class="note-btn btn btn-default btn-sm dropdown-toggle" tabindex="-1" data-toggle="dropdown" title="" data-original-title="字体" aria-expanded="false">
+        <button type="button" class="note-btn btn btn-default btn-sm dropdown-toggle" tabindex="-1" data-toggle="dropdown" title="" data-original-title="Phông chữ" aria-expanded="false">
             <span class="note-current-fontname"><span class="l-btn-icon icon-fontfa" style="width:12px;height:12px;"></span>&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="note-icon-caret"></span>
         </button>        
         <div class="dropdown-menu note-check dropdown-fontname">
@@ -16,14 +16,14 @@
     </div>
     <div class="note-btn-group btn-group note-color">
         <div class="note-btn-group btn-group note-color">
-            <button type="button" class="note-btn btn btn-default btn-sm note-current-color-button" tabindex="-1" title="" data-original-title="最近使用" data-backcolor="#FFFF00"><i class="note-icon-font note-recent-color" style="background-color: rgb(255, 255, 0);"></i></button>
-            <button type="button" class="note-btn btn btn-default btn-sm dropdown-toggle" tabindex="-1" data-toggle="dropdown" title="" data-original-title="更多"><span class="note-icon-caret"></span></button>
+            <button type="button" class="note-btn btn btn-default btn-sm note-current-color-button" tabindex="-1" title="" data-original-title="Dùng gần đây" data-backcolor="#FFFF00"><i class="note-icon-font note-recent-color" style="background-color: rgb(255, 255, 0);"></i></button>
+            <button type="button" class="note-btn btn btn-default btn-sm dropdown-toggle" tabindex="-1" data-toggle="dropdown" title="" data-original-title="Thêm"><span class="note-icon-caret"></span></button>
             <div class="dropdown-menu">
                 <li>
                     <div class="btn-group">
-                        <div class="note-palette-title">背景</div>
+                        <div class="note-palette-title">Nền</div>
                         <div>    
-                            <button type="button" class="note-color-reset btn btn-default" data-event="backColor" data-value="inherit">透明    </button>  
+                            <button type="button" class="note-color-reset btn btn-default" data-event="backColor" data-value="inherit">Trong suốt    </button>  
                         </div>
                         <div class="note-holder" data-event="backColor">
                             <div class="note-color-palette">
@@ -31,9 +31,9 @@
                         </div>
                     </div>
                     <div class="btn-group">
-                        <div class="note-palette-title">前景</div>
+                        <div class="note-palette-title">Phía trước</div>
                         <div>
-                            <button type="button" class="note-color-reset btn btn-default" data-event="foreColor" data-value="black">默认    </button>
+                            <button type="button" class="note-color-reset btn btn-default" data-event="foreColor" data-value="black">Mặc định    </button>
                         </div>
                         <div class="note-holder" data-event="foreColor">
                             <div class="note-color-palette">
@@ -45,27 +45,27 @@
         </div>
     </div>
     <div class="note-btn-group btn-group note-para">
-        <button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="无序列表 (CTRL+SHIFT+NUM7)"><i class="note-icon-unorderedlist"></i></button>
-        <button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="有序列表 (CTRL+SHIFT+NUM8)"><i class="note-icon-orderedlist"></i></button>
+        <button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Danh sách không thứ tự (CTRL+SHIFT+NUM7)"><i class="note-icon-unorderedlist"></i></button>
+        <button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Danh sách có thứ tự (CTRL+SHIFT+NUM8)"><i class="note-icon-orderedlist"></i></button>
         <div class="note-btn-group btn-group">
-            <button type="button" class="note-btn btn btn-default btn-sm dropdown-toggle" tabindex="-1" data-toggle="dropdown" title="" data-original-title="段落"><i class="note-icon-align-left"></i> <span class="note-icon-caret"></span></button>
+            <button type="button" class="note-btn btn btn-default btn-sm dropdown-toggle" tabindex="-1" data-toggle="dropdown" title="" data-original-title="Đoạn văn"><i class="note-icon-align-left"></i> <span class="note-icon-caret"></span></button>
             <div class="dropdown-menu">
                 <div class="note-btn-group btn-group note-align">
-                    <button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="左对齐 (CTRL+SHIFT+L)"><i class="note-icon-align-left"></i></button>
-                    <button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="居中对齐 (CTRL+SHIFT+E)"><i class="note-icon-align-center"></i></button>
-                    <button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="右对齐 (CTRL+SHIFT+R)"><i class="note-icon-align-right"></i></button>
-                    <button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="两端对齐 (CTRL+SHIFT+J)"><i class="note-icon-align-justify"></i></button>
+                    <button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Căn trái (CTRL+SHIFT+L)"><i class="note-icon-align-left"></i></button>
+                    <button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Căn giữa (CTRL+SHIFT+E)"><i class="note-icon-align-center"></i></button>
+                    <button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Căn phải (CTRL+SHIFT+R)"><i class="note-icon-align-right"></i></button>
+                    <button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Căn đều hai bên (CTRL+SHIFT+J)"><i class="note-icon-align-justify"></i></button>
                 </div>
                 <div class="note-btn-group btn-group note-list">
-                    <button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="减少缩进 (CTRL+[)"><i class="note-icon-align-outdent"></i></button>
-                    <button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="增加缩进 (CTRL+])"><i class="note-icon-align-indent"></i></button>
+                    <button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Giảm thụt lề (CTRL+[)"><i class="note-icon-align-outdent"></i></button>
+                    <button type="button" class="note-btn btn btn-default btn-sm" tabindex="-1" title="" data-original-title="Tăng thụt lề (CTRL+])"><i class="note-icon-align-indent"></i></button>
                 </div>
             </div>
         </div>
     </div>
     <div class="note-btn-group btn-group note-table">
         <div class="note-btn-group btn-group">
-            <button type="button" class="note-btn btn btn-default btn-sm dropdown-toggle" tabindex="-1" data-toggle="dropdown" title="" data-original-title="表格"><i class="note-icon-table"></i> <span class="note-icon-caret"></span></button>
+            <button type="button" class="note-btn btn btn-default btn-sm dropdown-toggle" tabindex="-1" data-toggle="dropdown" title="" data-original-title="Bảng"><i class="note-icon-table"></i> <span class="note-icon-caret"></span></button>
             <div class="dropdown-menu note-table">
                 <div class="note-dimension-picker">
                     <div class="note-dimension-picker-mousecatcher" data-event="insertTable" data-value="1x1" style="width: 10em; height: 10em;"></div>
@@ -78,7 +78,7 @@
     </div>
 </div>
 <script>
-    //字体
+    //Phông chữ
     var fontname = ['黑体', '楷体', '宋体', '微软雅黑','Arial', 'Arial Black', 'Comic Sans MS', 'Courier New',
         'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande',
         'Tahoma', 'Times New Roman', 'Verdana'];
@@ -96,7 +96,7 @@
     var corlorhtml = "";
     var backcorlorhtml = "";
     $(function () { 
-        //字体
+        //Phông chữ
         if (fontname.length > 0) {
             for (var i = 0; i < fontname.length; i++) {
                 fontnamehtml += '<li><a href="#" data-value="' + fontname[i] + '" class=""><i class="note-icon-check" ></i> <span style="font-family: ' + fontname[i] + '">' + fontname[i] + '</span></a></li>';
@@ -106,7 +106,7 @@
         $("div .dropdown-fontname a").click(function (e) {
             document.getElementById('myWriterControl').DCExecuteCommand('FontName', true, $(this).attr("data-value"));
         })
-        //背景色
+        //Màu nền
         if (corlor.length > 0) {
             for (var c = 0; c < corlor.length; c++) {
                // debugger

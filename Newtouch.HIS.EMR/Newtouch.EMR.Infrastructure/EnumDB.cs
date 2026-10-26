@@ -3,43 +3,43 @@
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 模板使用权限
+    /// Quyền sử dụng mẫu
     /// </summary>
     public enum Enummbqx
     {
         /// <summary>
-        /// 通用
+        /// Dùng chung
         /// </summary>
         [Description("通用")]
         pub=0,
         /// <summary>
-        /// 个人
+        /// Cá nhân
         /// </summary>
         [Description("个人")]
         prv =1,
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         [Description("科室")]
         dept =2
     }
     /// <summary>
-    /// 模板权限分配
+    /// Phân bổ quyền mẫu
     /// </summary>
     public enum EnummbqxFp
     {
         /// <summary>
-        /// 无任何权限
+        /// Không có quyền nào
         /// </summary>
         [Description("无权限")]
         non = 0,
         /// <summary>
-        /// 只读
+        /// Chỉ đọc
         /// </summary>
         [Description("只读")]
         read = 1,
         /// <summary>
-        /// 读写
+        /// Đọc/ghi
         /// </summary>
         [Description("读写")]
         edit = 2
@@ -53,7 +53,7 @@ namespace Newtouch.Infrastructure
         F =2
     }
     /// <summary>
-    /// 病历状态
+    /// Trạng thái bệnh án
     /// </summary>
     public enum EnumRecordStu
     {
@@ -65,7 +65,7 @@ namespace Newtouch.Infrastructure
         th = 2,
         [Description("已签收")]
         yqs = 3,
-        //[Description("病案归档")]
+        //[Description("Lưu trữ hồ sơ bệnh án")]
         //bagd = 4
     }
 
@@ -79,124 +79,124 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 婚否
+    /// Đã kết hôn hay chưa
     /// </summary>
     public enum EnumHF
     {
         /// <summary>
-        /// 未婚
+        /// Chưa kết hôn
         /// </summary>
         [Description("未婚")]
         wh = 0,
         /// <summary>
-        /// 已婚
+        /// Đã kết hôn
         /// </summary>
         [Description("已婚")]
         yh,
         /// <summary>
-        /// 不详
+        /// Không rõ
         /// </summary>
         [Description("不详")]
         UnKnown = 9,
     }
 
     /// <summary>
-    /// 门诊就诊状态
+    /// Trạng thái khám ngoại trú
     /// </summary>
     public enum EnumJzzt
     {
         /// <summary>
-        /// 未就诊
+        /// Chưa khám
         /// </summary>
         [Description("未就诊")]
         NotYetTreate = 1,
         /// <summary>
-        /// 就诊中
+        /// Đang khám
         /// </summary>
         [Description("就诊中")]
         Treating = 2,
         /// <summary>
-        /// 就诊结束
+        /// Khám kết thúc
         /// </summary>
         [Description("就诊结束")]
         Treated = 3,
     }
     /// <summary>
-    /// 病历大类及模板 业务标志
+    /// Loại lớn bệnh án và mẫu - cờ nghiệp vụ
     /// </summary>
     public enum EnumMzbz
     {
         /// <summary>
-        /// 住院
+        /// Nội trú
         /// </summary>
         [Description("住院")]
         zy = 0,
         /// <summary>
-        /// 门诊
+        /// Ngoại trú
         /// </summary>
         [Description("门诊")]
         mz = 1,
         /// <summary>
-        /// 不限
+        /// Không giới hạn
         /// </summary>
         [Description("不限")]
         all = 2,
     }
     /// <summary>
-    /// 门诊类型 mjzbz
+    /// Loại ngoại trú mjzbz
     /// </summary>
     public enum EnumOutPatientType
     {
         /// <summary>
-        /// 普通门诊
+        /// Ngoại trú thông thường
         /// </summary>
         [Description("门诊")]
         generalOutpat = 1,
         /// <summary>
-        /// 急诊
+        /// Cấp cứu
         /// </summary>
         [Description("急诊")]
         emerDiagnosis = 2,
         ///// <summary>
-        ///// 专家门诊
+        ///// Phòng khám chuyên gia
         ///// </summary>
-        //[Description("专家门诊")]
+        //[Description("Phòng khám chuyên gia")]
         //expertOutpat = 3,
         ///// <summary>
-        ///// 专家门诊
+        ///// Phòng khám chuyên gia
         ///// </summary>
-        //[Description("特病门诊")]
+        //[Description("Phòng khám bệnh đặc biệt")]
         //SpecialOutpat = 4,
         ///// <summary>
-        ///// 重大疾病门诊
+        ///// Phòng khám bệnh nặng
         ///// </summary>
-        //[Description("重大疾病门诊")]
+        //[Description("Phòng khám bệnh nặng")]
         //MajorDiseases = 5,
         ///// <summary>
-        ///// 慢性病门诊
+        ///// Phòng khám bệnh mạn tính
         ///// </summary>
-        //[Description("慢性病门诊")]
+        //[Description("Phòng khám bệnh mạn tính")]
         //ChronicDisease = 6
     }
     /// <summary>
-    /// 模板加载方式
+    /// Cách tải mẫu
     /// </summary>
     public enum EnummbqxTempLoadWay
     {
         /// <summary>
-        /// 通用
+        /// Dùng chung
         /// </summary>
         [Description("都昌编辑器")]
         DcWriter = 0,
         /// <summary>
-        /// 个人
+        /// Cá nhân
         /// </summary>
         [Description("独立视图")]
         View = 1
     }
 
     /// <summary>
-	/// 使用标志
+	/// Cờ sử dụng
 	/// </summary>
 	public enum EnumSybz
     {
@@ -227,17 +227,17 @@ namespace Newtouch.Infrastructure
     public enum ApplyStatusEnum
     {
         /// <summary>
-        /// 未批准
+        /// Chưa phê duyệt
         /// </summary>
         [Description("未批准")]
         wpz = 0,
         /// <summary>
-        /// 已审批
+        /// Đã phê duyệt
         /// </summary>
         [Description("已审批")]
         ysp = 1,
         /// <summary>
-        /// 退回
+        /// Trả lại
         /// </summary>
         [Description("退回")]
         th = 2

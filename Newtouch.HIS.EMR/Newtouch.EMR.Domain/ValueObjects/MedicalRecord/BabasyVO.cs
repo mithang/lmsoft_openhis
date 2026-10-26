@@ -50,7 +50,7 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string xb { get; set; }
         /// <summary>
-        /// 出生日期
+        /// Ngày sinh
         /// </summary>
         /// <returns></returns>
         public string csny { get; set; }
@@ -60,32 +60,32 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string nl { get; set; }
         /// <summary>
-        /// 职业
+        /// Nghề nghiệp
         /// </summary>
         /// <returns></returns>
         public string zy { get; set; }
         /// <summary>
-        /// 婚姻状况
+        /// Tình trạng hôn nhân
         /// </summary>
         /// <returns></returns>
         public string hyzk { get; set; }
         /// <summary>
-        /// 出生地
+        /// Nơi sinh
         /// </summary>
         /// <returns></returns>
         public string csdz { get; set; }
         /// <summary>
-        /// 民族
+        /// Dân tộc
         /// </summary>
         /// <returns></returns>
         public string mz { get; set; }
         /// <summary>
-        /// 国籍
+        /// Quốc tịch
         /// </summary>
         /// <returns></returns>
         public string gj { get; set; }
         /// <summary>
-        /// 身份证
+        /// Chứng minh nhân dân
         /// </summary>
         /// <returns></returns>
         public string sfzhm { get; set; }
@@ -110,12 +110,12 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string brfb { get; set; }
         /// <summary>
-        /// 户口地址
+        /// Địa chỉ hộ khẩu
         /// </summary>
         /// <returns></returns>
         public string hkdz { get; set; }
         /// <summary>
-        /// 户口邮编
+        /// Mã bưu chính hộ khẩu
         /// </summary>
         /// <returns></returns>
         public string hkyb { get; set; }
@@ -130,12 +130,12 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string gx { get; set; }
         /// <summary>
-        /// 联系地址
+        /// Địa chỉ liên hệ
         /// </summary>
         /// <returns></returns>
         public string lxdz { get; set; }
         /// <summary>
-        /// 联系电话
+        /// Số điện thoại liên hệ
         /// </summary>
         /// <returns></returns>
         public string lxdh { get; set; }
@@ -155,12 +155,12 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public DateTime? rysj { get; set; }
         /// <summary>
-        /// 入院途径
+        /// Đường vào viện
         /// </summary>
         /// <returns></returns>
         public string rytj { get; set; }
         /// <summary>
-        /// 入院病情
+        /// Tình trạng bệnh lúc vào viện
         /// </summary>
         /// <returns></returns>
         public string rybq { get; set; }
@@ -171,12 +171,12 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string cyks { get; set; }
         /// <summary>
-        /// 出院日期
+        /// Ngày ra viện
         /// </summary>
         /// <returns></returns>
         public DateTime? cyrq { get; set; }
         /// <summary>
-        /// 出院时间
+        /// Thời gian ra viện
         /// </summary>
         /// <returns></returns>
         public DateTime? cysj { get; set; }
@@ -186,37 +186,37 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string mzzd { get; set; }
         /// <summary>
-        /// 门诊医生
+        /// Bác sĩ ngoại trú
         /// </summary>
         /// <returns></returns>
         public string mzys { get; set; }
         /// <summary>
-        /// 入院诊断
+        /// Chẩn đoán lúc vào viện
         /// </summary>
         /// <returns></returns>
         public string ryzd { get; set; }
         /// <summary>
-        /// 住院医生
+        /// Bác sĩ nội trú
         /// </summary>
         /// <returns></returns>
         public string ryys { get; set; }
         /// <summary>
-        /// 确诊日期
+        /// Ngày xác định chẩn đoán
         /// </summary>
         /// <returns></returns>
         public string qzrq { get; set; }
         /// <summary>
-        /// 出院诊断
+        /// Chẩn đoán lúc ra viện
         /// </summary>
         /// <returns></returns>
         public string cydz { get; set; }
         /// <summary>
-        /// 出院情况
+        /// Tình hình ra viện
         /// </summary>
         /// <returns></returns>
         public string cyqk { get; set; }
         /// <summary>
-        /// 出院诊断
+        /// Chẩn đoán lúc ra viện
         /// </summary>
         /// <returns></returns>
         public string cyzd { get; set; }
@@ -251,7 +251,7 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string blh { get; set; }
         /// <summary>
-        /// 过敏药物
+        /// Thuốc gây dị ứng
         /// </summary>
         /// <returns></returns>
         public string gmyw { get; set; }
@@ -781,12 +781,12 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string cyzdmc { get; set; }
         /// <summary>
-        /// 出生地-省csd_s
+        /// Nơi sinh - tỉnh csd_s
         /// </summary>
         /// <returns></returns>
         public string csd_s { get; set; }
         /// <summary>
-        /// 出生地-县csd_x
+        /// Nơi sinh - huyện csd_x
         /// </summary>
         /// <returns></returns>
         public string csd_x { get; set; }
@@ -811,7 +811,7 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string szqxn { get; set; }
         /// <summary>
-        /// 其他诊断
+        /// Chẩn đoán khác
         /// </summary>
         /// <returns></returns>
         public string qtzd { get; set; }
@@ -836,12 +836,12 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string cybs { get; set; }
         /// <summary>
-        /// 转科科室
+        /// Khoa chuyển đến
         /// </summary>
         /// <returns></returns>
         public string zkks { get; set; }
         /// <summary>
-        /// 年龄单位
+        /// Đơn vị tuổi
         /// </summary>
         /// <returns></returns>
         public string nldw { get; set; }
@@ -961,7 +961,7 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string lxdhdbr { get; set; }
         /// <summary>
-        /// 护理级别
+        /// Cấp độ điều dưỡng
         /// </summary>
         /// <returns></returns>
         public string hljb { get; set; }
@@ -1006,7 +1006,7 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string zrys { get; set; }
         /// <summary>
-        /// 新生儿出生体重
+        /// Cân nặng lúc sinh của trẻ sơ sinh
         /// </summary>
         /// <returns></returns>
         public string tz_xsecs { get; set; }
@@ -1036,12 +1036,12 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string zzyb { get; set; }
         /// <summary>
-        /// 门诊诊断mzzd_icd
+        /// Chẩn đoán ngoại trú mzzd_icd
         /// </summary>
         /// <returns></returns>
         public string mzzd_icd { get; set; }
         /// <summary>
-        /// 病理诊断icd
+        /// Chẩn đoán bệnh lý icd
         /// </summary>
         /// <returns></returns>
         public string blzd_icd { get; set; }
@@ -1156,7 +1156,7 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string hkdt { get; set; }
         /// <summary>
-        /// 户口地县
+        /// Huyện nơi đăng ký hộ khẩu
         /// </summary>
         /// <returns></returns>
         public string hkdx { get; set; }
@@ -1166,7 +1166,7 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string xzdt { get; set; }
         /// <summary>
-        /// 现住地县
+        /// Huyện nơi ở hiện tại
         /// </summary>
         /// <returns></returns>
         public string xzdx { get; set; }
@@ -1271,7 +1271,7 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string lclj_mc { get; set; }
         /// <summary>
-        /// 病危病重告知标识
+        /// Cờ thông báo nguy kịch/nặng
         /// </summary>
         /// <returns></returns>
         public string bwbz_gzbz { get; set; }
@@ -1286,12 +1286,12 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string tnmfq { get; set; }
         /// <summary>
-        /// 籍贯-省市jg_s
+        /// Quê quán - tỉnh/thành phố jg_s
         /// </summary>
         /// <returns></returns>
         public string jg_s { get; set; }
         /// <summary>
-        /// 籍贯-区市jg_qs
+        /// Quê quán - quận/thành phố jg_qs
         /// </summary>
         /// <returns></returns>
         public string jg_qs { get; set; }
@@ -1371,7 +1371,7 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string basy_bb { get; set; }
         /// <summary>
-        /// 现住地省
+        /// Tỉnh nơi ở hiện tại
         /// </summary>
         /// <returns></returns>
         public string xzds { get; set; }
@@ -1601,32 +1601,32 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string ylfffs { get; set; }
         /// <summary>
-        /// 户口（省）
+        /// Hộ khẩu (tỉnh)
         /// </summary>
         /// <returns></returns>
         public string hkdz_s { get; set; }
         /// <summary>
-        /// 入院病房
+        /// Phòng bệnh lúc vào viện
         /// </summary>
         /// <returns></returns>
         public string rybf { get; set; }
         /// <summary>
-        /// 出院病房
+        /// Phòng bệnh lúc ra viện
         /// </summary>
         /// <returns></returns>
         public string cybf { get; set; }
         /// <summary>
-        /// 实际住院天数
+        /// Số ngày nằm viện thực tế
         /// </summary>
         /// <returns></returns>
         public string sjzyts { get; set; }
         /// <summary>
-        /// 门诊诊断疾病名称
+        /// Tên bệnh chẩn đoán ngoại trú
         /// </summary>
         /// <returns></returns>
         public string mzzd_jbmc_zy { get; set; }
         /// <summary>
-        /// 门诊诊断疾病编码
+        /// Mã bệnh chẩn đoán ngoại trú
         /// </summary>
         /// <returns></returns>
         public string mzzd_jbbm_zy { get; set; }
@@ -1711,7 +1711,7 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string bzlzf_zy { get; set; }
         /// <summary>
-        /// 入院诊断疾病编码
+        /// Mã bệnh chẩn đoán lúc vào viện
         /// </summary>
         /// <returns></returns>
         public string ryzd_jbbm { get; set; }
@@ -1741,12 +1741,12 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string zdfhqk_bcylc { get; set; }
         /// <summary>
-        /// 现住地信息
+        /// Thông tin nơi ở hiện tại
         /// </summary>
         /// <returns></returns>
         public string xzzxx { get; set; }
         /// <summary>
-        /// 户口信息
+        /// Thông tin hộ khẩu
         /// </summary>
         /// <returns></returns>
         public string hkdxx { get; set; }
@@ -1763,29 +1763,29 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 出院病情
+        /// Tình trạng bệnh lúc ra viện
         /// </summary>
         public string cybq { get; set; }
         /// <summary>
-        /// 入院情况
+        /// Tình hình lúc vào viện
         /// </summary>
         public string ryqk { get; set; }
         /// <summary>
-        /// 出生地-区市csd_qs
+        /// Nơi sinh - quận/thành phố csd_qs
         /// </summary>
         /// <returns></returns>
         public string csd_qs { get; set; }
         /// <summary>
-        /// 现住地-区市csd_qs
+        /// Nơi ở hiện tại - quận/thành phố csd_qs
         /// </summary>
         /// <returns></returns>
         public string xzd_qs { get; set; }
         /// <summary>
-        /// 医疗机构代码
+        /// Mã cơ sở y tế
         /// </summary>
         public string yljgdm { get; set; }
         /// <summary>
-        /// 医疗机构名称
+        /// Tên cơ sở y tế
         /// </summary>
         public string yljgmc { get; set; }
     }

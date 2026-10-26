@@ -34,10 +34,10 @@
             <table class="form">
                 <tr>
                     <td id="xm" class="formValue" colspan="2"><span class="glyphicon glyphicon-user"></span><label id="xmlb" style="font-weight:bold;font-size:18px;padding-left:5px;"></label><span id="xb"></span></td>
-                    <td id="zyh" class="formValue"><label>住院号：</label><label id="zyhlb"></label></td>
-                    <td class="formValue"><label>床号：</label><span id="sp_cw"></span></td>
-                    <td class="formValue" colspan="2"><label>诊断：</label><span id="sp_zd"></span></td>
-                    <td id="ks" class="formValue" colspan="2"><label>科室：</label><label id="kslb"></label></td>
+                    <td id="zyh" class="formValue"><label>Số nhập viện:</label><label id="zyhlb"></label></td>
+                    <td class="formValue"><label>Số giường:</label><span id="sp_cw"></span></td>
+                    <td class="formValue" colspan="2"><label>Chẩn đoán:</label><span id="sp_zd"></span></td>
+                    <td id="ks" class="formValue" colspan="2"><label>Khoa:</label><label id="kslb"></label></td>
                     <td></td>
                 </tr>
             </table>
@@ -45,7 +45,7 @@
         <hr />
         <table class="form">
             <tr>
-                <th class="formTitle">记录范围：</th>
+                <th class="formTitle">Phạm vi ghi chép:</th>
                 <td class="formValue" style="height:30px;" colspan="2">
                     <input id="txt_ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:40%;float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { LoadGrid()}})" value="@DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd")" />
                     <span style="padding:15px 15px;">_</span>  <input id="txt_jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:40%;float:right;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { LoadGrid() } })" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
@@ -53,10 +53,10 @@
                 <td class="formValue" colspan="3">
                     <div id="dv_prew">
                         <a id="Printbl" class="btn btn-primary" style="padding-left:5px;" onclick="Printbl()">
-                            <i class="glyphicon glyphicon-print"></i> 预览打印
+                            <i class="glyphicon glyphicon-print"></i> Xem trước khi in
                         </a>
                         <a id="a_edit" class="btn btn-primary" style="display:none;" onclick="BtnEdit()">
-                            <i class="fa fa-pencil-square-o"></i> 编辑
+                            <i class="fa fa-pencil-square-o"></i> Sửa
                         </a>
                         <span id="a_tipshow"  class="btn btn-default" style="display:none;"></span>
                     </div>
@@ -64,16 +64,16 @@
                 <td class="formValue" colspan="3">
                     <div id="dv_tj" style="float:right;padding-right:20px;">
                         <a id="tjyh" class="btn btn-default" onclick="addTCMRowData()">
-                            F6:新增行
+                            F6:Thêm dòng mới
                         </a>
                         <a id="btn_submitrow" class="btn btn-default" style="margin-left:5px;" onclick="BtnSubmit(1,null)">
-                            F2:保存更新
+                            F2:Lưu cập nhật
                         </a>
-                        @*<a id="BtnSubmit" class="btn btn-default" style="margin-left:5px;" onclick="BtnSubmit()">
-                            F3:全部更新
+                        @**@<a id="BtnSubmit" class="btn btn-default" style="margin-left:5px;" onclick="BtnSubmit()">
+                            F3:Cập nhật tất cả
                         </a>*@
                         <a id="btn_back" class="btn btn-primary" style="margin-left:5px;" onclick="editover()">
-                            返回
+                            Quay lại
                         </a>
                     </div>
                 </td>
@@ -113,7 +113,7 @@
             $(".dv-body").width($(window).width());
         });
         window.hljlView = true;
-        document.onkeydown = hotkey; //当onkeydown 事件发生时调用hotkey函数
+        document.onkeydown = hotkey; //Khi sự kiện onkeydown xảy ra thì gọi hàm hotkey
         HljlCtrlQx(blId,mbbh);
         pageInit();        
         $("#dv_tj").hide();
@@ -131,7 +131,7 @@
                 { label: "Id", name: "Id", width: 60, hidden: true },
                 { label: "blId", name: "blId", width: 60, hidden: true },
                 {
-                    label: '记录<br />日期', name: "jlwzsj", width: 100, editwidth: '100%',
+                    label: 'Ngày<br />ghi chép', name: "jlwzsj", width: 100, editwidth: '100%',
                     align: 'center',
                     editable: true, formatter: "date",
                     formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' },
@@ -152,7 +152,7 @@
                 },
                
                 {
-                    label: "时间<br />备注", name: 'jlrq', align: 'center', width: 50, editable: true,
+                    label: "Thời gian<br />ghi chú", name: 'jlrq', align: 'center', width: 50, editable: true,
                     align: 'center',
                     editable: true, formatter: "date",
                     formatoptions: { srcformat: 'H:m:s', newformat: 'H:m:s' },
@@ -171,32 +171,32 @@
                         return (typeof (cellvalue) == "undefined") ? "" : cellvalue;
                     }
                 },
-                { label: "体温<br />℃", name: 'tw', align: 'center', width: 40, editable: true},
-                { label: "脉搏<br />次/分", name: 'mb', align: 'center', width: 30, editable: true }
-                , { label: "呼吸<br />次/分", name: 'hx', align: 'center', width: 30, editable: true},
-                { label: "血压<br />mmHg", name: 'xy', align: 'center', width: 60, editable: true },
-                { label: "氧饱和度 %", name: 'ybhd', align: 'center', width: 40, editable: true },
-                { label: "持续<br />心电监测", name: 'cxxdjc', align: 'center', width: 50, editable: true },
-                { label: "吸氧<br />L/分", name: 'xroyx', align: 'center', width: 30, editable: true },
-                { label: "基护<br />级别", name: 'hljb', align: 'center', width: 50, editable: true },
-                { label: "协助<br />进食/水", name: 'xzjs', align: 'center', width: 50, editable: true },
-                { label: "拍背及<br />有效咳痰", name: 'pbjyxkt', align: 'center', width: 60, editable: true },
-                { label: "压疮预防", name: 'ycyf', align: 'center', width: 50, editable: true },
-                { label: "跌倒预防", name: 'ddyf', align: 'center', width: 50, editable: true },
-                { label: "其他基护", name: 'qtjh', align: 'center', width: 50, editable: true },
-                { label: "专科护理", name: 'zkhl', align: 'center', width: 50, editable: true },
-                { label: "导管分类<br />/措施", name: 'dglb', align: 'center', width: 60, editable: true },
-                { label: "护理<br />指导", name: 'hlzd', align: 'center', width: 50, editable: true },
-                { label: "尿量<br />ml", name: 'nl', align: 'center', width:30, editable: true },
-                { label: "胃液<br />ml", name: 'wy', align: 'center', width: 30, editable: true },
+                { label: "Nhiệt độ<br />℃", name: 'tw', align: 'center', width: 40, editable: true},
+                { label: "Mạch<br />lần/phút", name: 'mb', align: 'center', width: 30, editable: true }
+                , { label: "Hô hấp<br />lần/phút", name: 'hx', align: 'center', width: 30, editable: true},
+                { label: "Huyết áp<br />mmHg", name: 'xy', align: 'center', width: 60, editable: true },
+                { label: "Độ bão hòa oxy %", name: 'ybhd', align: 'center', width: 40, editable: true },
+                { label: "Theo dõi<br />điện tâm đồ liên tục", name: 'cxxdjc', align: 'center', width: 50, editable: true },
+                { label: "Thở oxy<br />L/phút", name: 'xroyx', align: 'center', width: 30, editable: true },
+                { label: "Cấp độ<br />chăm sóc cơ bản", name: 'hljb', align: 'center', width: 50, editable: true },
+                { label: "Hỗ trợ<br />ăn uống/nước", name: 'xzjs', align: 'center', width: 50, editable: true },
+                { label: "Vỗ lưng và<br />ho khạc đờm hiệu quả", name: 'pbjyxkt', align: 'center', width: 60, editable: true },
+                { label: "Phòng ngừa loét do tì đè", name: 'ycyf', align: 'center', width: 50, editable: true },
+                { label: "Phòng ngừa ngã", name: 'ddyf', align: 'center', width: 50, editable: true },
+                { label: "Chăm sóc cơ bản khác", name: 'qtjh', align: 'center', width: 50, editable: true },
+                { label: "Điều dưỡng chuyên khoa", name: 'zkhl', align: 'center', width: 50, editable: true },
+                { label: "Phân loại ống thông<br />/biện pháp", name: 'dglb', align: 'center', width: 60, editable: true },
+                { label: "Hướng dẫn<br />điều dưỡng", name: 'hlzd', align: 'center', width: 50, editable: true },
+                { label: "Lượng nước tiểu<br />ml", name: 'nl', align: 'center', width:30, editable: true },
+                { label: "Dịch dạ dày<br />ml", name: 'wy', align: 'center', width: 30, editable: true },
                 {
-                    label: "病情观察/护理措施效果", name: 'bqhlcontent', width: 350, editable: true, edittype: "textarea",
+                    label: "Theo dõi tình trạng bệnh/hiệu quả biện pháp điều dưỡng", name: 'bqhlcontent', width: 350, editable: true, edittype: "textarea",
                     editoptions:
                     {
                         rows: 5,
                     }
                 },
-                { label: "签名", name: 'hsqm', align: 'center', width: 80, editable: true },
+                { label: "Chữ ký", name: 'hsqm', align: 'center', width: 80, editable: true },
                     { label: "zt", name: 'zt', width: 80, hidden: true, editable: true },
                     { label: "CreateTime", name: 'CreateTime', width: 80, hidden: true, editable: true },
                     { label: "CreatorCode", name: 'CreatorCode', width: 80, hidden: true, editable: true },
@@ -204,13 +204,13 @@
                     { label: "LastModifierCode", name: 'LastModifierCode', width: 80, hidden: true, editable: true },
                 { label: "OrganizeId", name: 'OrganizeId', width: 80, hidden: true, editable: true },
                 {
-                    label: "操作", name: 'caozuo', width: 150, hidden: true, formatter(val, option, row) {
+                    label: "Thao tác", name: 'caozuo', width: 150, hidden: true, formatter(val, option, row) {
                         var ht = "";
                         if (!!row.Id) {
                             ht = "<input class='btn btn-default btn-md btn_add' type='button' value='更新' onclick='updRowData($(this).parent().parent().attr(\"id\"))'/> <input class='btn btn-default btn-md btn_del' type='button' value='删除' onclick='deletesubmit($(this).parent().parent().attr(\"id\"))'/>";
                         }
                         else {
-                            ht = "<input class='btn btn-default btn-md btn_del' type='button' value=' ━ ' title='移除行' onclick='deleteRowData($(this).parent().parent().attr(\"id\"))'/> <input class='btn btn-default btn-md btn_add' type='button' value=' ✚ ' title='新增行' onclick='addRowData($(this).parent().parent().attr(\"id\"))'/> ";
+                            ht = "<input class='btn btn-default btn-md btn_del' type='button' value=' ━ ' title='Xóa dòng' onclick='deleteRowData($(this).parent().parent().attr(\"id\"))'/> <input class='btn btn-default btn-md btn_add' type='button' value=' ✚ ' title='Thêm dòng mới' onclick='addRowData($(this).parent().parent().attr(\"id\"))'/> ";
                         }
                         return ht;
 
@@ -244,7 +244,7 @@
 
     (function ($) {
         $.jgrid && $.jgrid.extend({
-            // 表格编辑完，数据保存完后，编辑状态还在，调用该方法清除该状态。
+            // Sau khi sửa xong bảng, lưu xong dữ liệu, trạng thái sửa vẫn còn, gọi phương thức này để xóa trạng thái đó.
             acceptChangedCells: function () {
                 this.each(function () {
                     var $t = this;
@@ -306,7 +306,7 @@
             async: false,
             success: function (data) {
                 if (!!data && data.state == "success") {
-                    $.modalMsg("删除成功", 'success');
+                    $.modalMsg("Xóa thành công", 'success');
                 }
                 else {
                     $.modalMsg(data.message, 'error');
@@ -343,7 +343,7 @@
         if (!!rowid) {
             var row = $("#gridList").getRowData(rowid);
             if (row.jlwzsj == null || row.jlwzsj == '' || !row.jlrq) {
-                $.modalAlert("记录日期及时间备注不可为空", 'warning');
+                $.modalAlert("Ghi chú ngày và giờ ghi chép không được để trống", 'warning');
                 return;
             }
             arrayData.push(row);
@@ -352,7 +352,7 @@
             for (var i = 0; i < rows.length; i++) {
                 var rowData = $("#gridList").getRowData(rows[i].rn);
                 if (rowData.jlwzsj == null || rowData.jlwzsj == '' || !rowData.jlrq) {
-                    $.modalAlert("记录日期及时间备注不可为空", 'warning');
+                    $.modalAlert("Ghi chú ngày và giờ ghi chép không được để trống", 'warning');
                     return;
                 }
                 arrayData.push(rowData);             
@@ -360,7 +360,7 @@
         }
         
         
-        if (arrayData.length == 0) { $.modalMsg('未找到待提交的记录', 'warning'); return; }
+        if (arrayData.length == 0) { $.modalMsg('Không tìm thấy bản ghi chờ gửi', 'warning'); return; }
         
         $.ajax({
             url:"/MedicalRecordManage/TemplateDesign/BtnSubmit",
@@ -369,11 +369,11 @@
             data: { "data": arrayData, mbbh: mbbh, zyh: zyh, totals: totals},
                type:"POST",
             success: function (req) {
-                $.modalMsg('提交成功', 'success');
+                $.modalMsg('Gửi thành công', 'success');
                 editover();
                },
                error:function(){
-                   $.modalMsg('提交失败', 'error');
+                   $.modalMsg('Gửi thất bại', 'error');
                }
            });
     }
@@ -390,7 +390,7 @@
         $("#Infodiv").show();
         $("#a_edit").hide();
 
-        //第一次点击编辑时添加一行
+        //Khi nhấp sửa lần đầu thì thêm một dòng
         function once() {
             if (flag) {
                 addRowData();
@@ -420,7 +420,7 @@
                         //}
                         //else {
                         //    $("#a_tipshow").show();
-                        //    $("#a_tipshow").html("【工号："+json.LastModifierCode + "】正在编辑中...");
+                        //    $("#a_tipshow").html("【Mã nhân viên："+json.LastModifierCode + "】Đang sửa...");
                         //}
                         
                     }
@@ -480,7 +480,7 @@
             }
         }
     } 
-    //编辑结束预览模式
+    //Kết thúc chế độ xem trước khi sửa
     function editover() {
         window.hljlView = true;
         jQuery("#gridList").setGridParam().hideCol("caozuo").trigger("reloadGrid");

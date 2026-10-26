@@ -8,12 +8,12 @@
             <tr>
                 <td class="formValue formDdlSelectorTd">
                     <select id="zdlx" name="zdlx" class="form-control" data-EnumType="EnumZdlx">
-                        <option value="WM">西医</option>
+                        <option value="WM">Tây y</option>
                     </select>
                 </td>
                 <td>
                     <div class="input-group" style="float:left;">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="诊断简拼/名称" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Mã ghép vần chẩn đoán/Tên" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -29,7 +29,7 @@
 </div>
 <div class="alert alert-danger" style="text-align: left; margin-bottom: 5px;">
     <i class="fa fa-warning alert-dismissible" style="position: relative; bottom: 1px; font-size: 10px; padding-right: 5px;"></i>
-    若未选中一条新的诊断信息，【确认】后会清空当前诊断信息。若要保留，请点击【关闭】。
+    Nếu chưa chọn một thông tin chẩn đoán mới, sau khi 【Xác nhận】 sẽ xóa sạch thông tin chẩn đoán hiện tại. Nếu muốn giữ lại, vui lòng nhấp vào 【Đóng】.
 </div>
 <script>
 
@@ -51,7 +51,7 @@
             height: 375, //$(window).height() - 228,
             colModel: [
                 { label: "icd10", name: "icd10", width: 150 },
-                { label: "诊断名称", name: "zdName", width: 200 },
+                { label: "Tên chẩn đoán", name: "zdName", width: 200 },
             ],
             pager: "#gridPager",
             sortname: 'zdName',
@@ -64,7 +64,7 @@
         var rowData;
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         //if (!(seleRowid)) {
-        //    $.modalConfirm("未选择新的诊断，确认清空？",
+        //    $.modalConfirm("Chưa chọn chẩn đoán mới, xác nhận xóa trống?",
         //        function (flag) {
         //            if (flag) {
         //                rowData= "1";
@@ -73,7 +73,7 @@
         //                rowData= "0";
         //            }
         //        });
-        //    //$.modalAlert("请选中一条信息", 'warning');
+        //    //$.modalAlert("Vui lòng chọn một thông tin", 'warning');
         //    //return;
         //}
         if (seleRowid != null && seleRowid != undefined) {

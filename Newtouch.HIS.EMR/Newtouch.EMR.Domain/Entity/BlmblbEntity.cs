@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2018-09-05 11:34
-    /// 描 述：病历模板列表
+    /// Người tạo: chl
+    /// Ngày: 2018-09-05 11:34
+    /// Mô tả: Danh sách mẫu bệnh án
     /// </summary>
     [Table("bl_mblb")]
     public class BlmblbEntity : IEntity<BlmblbEntity>
@@ -20,56 +20,56 @@ namespace Newtouch.EMR.Domain.Entity
         [Key]
         public string Id { get; set; }
         /// <summary>
-        /// 组织机构ID
+        /// ID tổ chức
         /// </summary>
         /// <returns></returns>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 0 通用 1个人 2科室
+        /// 0 Dùng chung, 1 Cá nhân, 2 Khoa
         /// </summary>
         /// <returns></returns>
         public int? mbqx { get; set; }
         /// <summary>
-        /// 模板编码
+        /// Mã mẫu
         /// </summary>
         public string mbbm { get; set; }
         /// <summary>
-        /// 模板名称
+        /// Tên mẫu
         /// </summary>
         /// <returns></returns>
         public string mbmc { get; set; }
         /// <summary>
-        /// 病历类型ID
+        /// ID loại bệnh án
         /// </summary>
         /// <returns></returns>
         public string bllxId { get; set; }
         /// <summary>
-        /// 病历类型
+        /// Loại bệnh án
         /// </summary>
         /// <returns></returns>
         public string bllxmc { get; set; }
         /// <summary>
-        /// 科室编码
+        /// Mã khoa
         /// </summary>
         /// <returns></returns>
         public string ksbm { get; set; }
         /// <summary>
-        /// 医生编码
+        /// Mã bác sĩ
         /// </summary>
         /// <returns></returns>
         public string ysgh { get; set; }
         /// <summary>
-        /// 模板路径
+        /// Đường dẫn mẫu
         /// </summary>
         /// <returns></returns>
         public string mblj { get; set; }
         /// <summary>
-        /// 拼音码
+        /// Mã bính âm
         /// </summary>
         /// <returns></returns>
         public string py { get; set; }
         /// <summary>
-        /// 是否为空模板0 否 1 是
+        /// Có phải mẫu trống hay không: 0 Không, 1 Có
         /// </summary>
         /// <returns></returns>
         public int? Isempty { get; set; }
@@ -106,27 +106,27 @@ namespace Newtouch.EMR.Domain.Entity
 
         public string bllx { get; set; }
         /// <summary>
-        /// 是否上传医保
+        /// Có tải lên bảo hiểm y tế hay không
         /// </summary>
         public string IsYB { get; set; }
         /// <summary>
-        /// 关联医保方法
+        /// Phương pháp liên kết bảo hiểm y tế
         /// </summary>
         public string Ybbm { get; set; }
         /// <summary>
-        /// 门诊模板标识 1 门诊 
+        /// Cờ mẫu ngoại trú: 1 Ngoại trú 
         /// </summary>
         public string mzbz { get; set; }
         /// <summary>
-        /// 是否启用数据源加载
+        /// Có bật tải nguồn dữ liệu hay không
         /// </summary>
         public string EnableDataLoad { get; set; }
         /// <summary>
-        /// 绑定数据源
+        /// Liên kết nguồn dữ liệu
         /// </summary>
         public string DataSource { get; set; }
         /// <summary>
-        /// 模板加载方式
+        /// Cách tải mẫu
         /// </summary>
         public int? LoadWay { get; set; }
     }

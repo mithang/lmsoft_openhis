@@ -12,16 +12,16 @@ using System;
 namespace Newtouch.EMR.Repository
 {
     /// <summary>
-    /// 创 建：hyj
-    /// 日 期：2018-10-12 17:43
-    /// 描 述：元素表
+    /// Người tạo: hyj
+    /// Ngày: 2018-10-12 17:43
+    /// Mô tả: Bảng phần tử
     /// </summary>
     public class BlysRepo : RepositoryBase<BlysEntity>, IBlysRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public BlysRepo(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {
@@ -62,10 +62,10 @@ where  b.zt='1' and (b.OrganizeId=@orgId or b.OrganizeId='*')
             return this.FindList<BlysMXEntity>(sqlstr.ToString(), para.ToArray());
         }
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu (thêm mới, sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(BlysEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -102,9 +102,9 @@ where  b.zt='1' and (b.OrganizeId=@orgId or b.OrganizeId='*')
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void DeleteForm(string keyValue)
         {
             //  this.Delete(p => p.Id == keyValue);

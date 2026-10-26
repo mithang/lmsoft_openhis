@@ -15,7 +15,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
         BasyVO GetMainRecord(string orgId, string mainId);
         BasyVO GetMainRecordbybrjbxx(string orgId, string zyh);
         /// <summary>
-        /// 住院费用
+        /// Chi phí nằm viện
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -24,19 +24,19 @@ namespace Newtouch.EMR.Domain.IDomainServices
         IList<PatZDListVO> GetDiagLsit(string orgId, string bah, string zyh);
         IList<BasyOpDto> GetOPLsit(string orgId, string bah, string zyh);
         /// <summary>
-        /// 保存诊断列表
+        /// Lưu danh sách chẩn đoán
         /// </summary>
         /// <param name="list"></param>
         void ZdListSubmit(List<BasyZdDto> list, string orgId);
         /// <summary>
-        /// 保存手术列表
+        /// Lưu danh sách phẫu thuật
         /// </summary>
         /// <param name="list"></param>
         /// <param name="orgId"></param>
         void OpListSubmit(List<BasyOpDto> list, string orgId);
         void PatBasicSubmit(BasyVO vo, BasyRelVO reldto, string blmbId, string orgId, string user, string username = null);
         /// <summary>
-        /// 病案列表
+        /// Danh sách hồ sơ bệnh án
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -49,22 +49,22 @@ namespace Newtouch.EMR.Domain.IDomainServices
         /// <returns></returns>
         IList<BasyVO> PatMainList(Pagination pagination, string orgId, string cyksrq, string cyjsrq, string bazt, string bq, string keyword, string cyts);
         /// <summary>
-        ///  获取患者出院诊断
+        /// Lấy chẩn đoán ra viện của bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
-        /// <param name="zdlb">诊断类别 1入院诊断2出院诊断</param>
+        /// <param name="zdlb">Loại chẩn đoán: 1 Chẩn đoán lúc vào viện, 2 Chẩn đoán lúc ra viện</param>
         /// <returns></returns>
         IList<PatZDListVO> GetPatHisZDInfo(string bah, string zyh, string orgId, int? zdlb);
         /// <summary>
-        /// 获取患者手术列表
+        /// Lấy danh sách phẫu thuật của bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<BasyOpDto> GetPatHisOperInfo(string bah, string zyh, string orgId);
         /// <summary>
-        /// 获取上传医保病案信息
+        /// Lấy thông tin hồ sơ bệnh án tải lên bảo hiểm y tế
         /// </summary>
         /// <param name="OrgId"></param>
         /// <param name="zyh"></param>
@@ -76,7 +76,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
         IList<PatZDListVO> SettlementQuery(string zyh, string orgId);
         List<ButtonEnableVO> DiagnosticSave(string Code, string orgId);
         /// <summary>
-        /// 把病案的诊断同步到出区诊断表
+        /// Đồng bộ chẩn đoán của hồ sơ bệnh án sang bảng chẩn đoán ra khu
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

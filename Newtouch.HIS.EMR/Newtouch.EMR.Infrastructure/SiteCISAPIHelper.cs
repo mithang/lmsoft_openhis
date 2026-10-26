@@ -4,12 +4,12 @@ using Newtouch.Common.Web;
 namespace Newtouch.EMR.Infrastructure
 {
     /// <summary>
-    /// CIS API请求帮助类
+    /// Lớp trợ giúp yêu cầu CIS API
     /// </summary>
     public class SiteCISAPIHelper : SiteAPIRequestHelperBase<SiteCISAPIHelper>
     {
         /// <summary>
-        /// 域Addr配置 的 Key
+        /// Key cấu hình Addr của miền
         /// </summary>
         private readonly static string _domainConfigKey = "SiteCISAPIHost";
 
@@ -21,24 +21,24 @@ namespace Newtouch.EMR.Infrastructure
     }
 
     /// <summary>
-    /// 同步住院病人信息
+    /// Đồng bộ thông tin bệnh nhân nội trú
     /// </summary>
     public class InpatientPatientInfoDTO
     {
         /// <summary>
-        /// 组织机构id
+        /// id tổ chức
         /// </summary>
         public string orgId { get; set; }
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// 用户工号
+        /// Mã nhân viên của người dùng
         /// </summary>
         public string rygh { get; set; }
         /// <summary>
-        /// 用户名
+        /// Tên người dùng
         /// </summary>
         public string username { get; set; }
         public string GetMAC { get; set; }

@@ -18,19 +18,19 @@
 </style>
 <form method="post" id="addBlForm" style="background-color:#ffffff">
     <span id="toolDiv" style="background-color:white;">
-        <input type="submit" name="saveDocument" id="saveXml" value="保存文档" class="edtBtn" style="background-image: url(/Content/img/tupian/-_保存.ico);background-repeat: no-repeat;background-size: 25%;padding-left: 30px;height: 22px;" />
+        <input type="submit" name="saveDocument" id="saveXml" value="Lưu tài liệu" class="edtBtn" style="background-image: url(/Content/img/tupian/-_保存.ico);background-repeat: no-repeat;background-size: 25%;padding-left: 30px;height: 22px;" />
         @Html.Partial("_DCSW.ToolList")
         @*@Html.Partial("_ToolBar")*@
         @Html.Partial("_DCSW.SaveAS")
     </span>
-    <a id="toolShow" class="btn btn-primary btfloatRight" style="margin:5px 5px 5px 0px;"><i></i>工具栏</a>
-    <a id="lhlb" class="btn btn-primary btfloatRight" style="margin:5px 5px 5px 0px;display:none;">痕迹列表</a>
-    <a id="returnblbj" class="btn btn-primary btfloatRight" style="margin:5px 5px 5px 0px;display:none;">返回修改</a>
-    <a id="lhyl" class="btn btn-primary btfloatRight" style="margin:5px 5px 5px 0px;">痕迹查看</a>
-    <a id="blyl" class="btn btn-primary btfloatRight" style="margin:5px 5px 5px 0px;">病历预览</a>
+    <a id="toolShow" class="btn btn-primary btfloatRight" style="margin:5px 5px 5px 0px;"><i></i>Thanh công cụ</a>
+    <a id="lhlb" class="btn btn-primary btfloatRight" style="margin:5px 5px 5px 0px;display:none;">Danh sách vết tích</a>
+    <a id="returnblbj" class="btn btn-primary btfloatRight" style="margin:5px 5px 5px 0px;display:none;">Quay lại sửa</a>
+    <a id="lhyl" class="btn btn-primary btfloatRight" style="margin:5px 5px 5px 0px;">Xem vết tích</a>
+    <a id="blyl" class="btn btn-primary btfloatRight" style="margin:5px 5px 5px 0px;">Xem trước bệnh án</a>
     @if (!string.IsNullOrWhiteSpace(ViewBag.zyh))
     {
-        <input id="upload" name="saveDocument" type="submit" class="btn btn-primary" style="float:left;margin:5px 10px 5px 5px;display:none;" value="上传医保" />
+        <input id="upload" name="saveDocument" type="submit" class="btn btn-primary" style="float:left;margin:5px 10px 5px 5px;display:none;" value="Tải lên bảo hiểm y tế" />
     }
     <input type="submit" name="saveDocument" id="history" value="history" class="edtBtn" style="display:none;" />
 
@@ -64,7 +64,7 @@
 </div>
 <div id="list" style="display: none;position: absolute; top: 60px; right: 3px; background-color: #fff; padding: 3px;box-shadow: 0 0 5px rgba(0,0,0,0.5);">
     <div class="tabheader" style="line-height: 22px; border-bottom: 1px solid #ddd;">
-        <span style="font-size: 16px; color: #000; padding-top: 10px;" class="formTitle">病历修改记录</span>
+        <span style="font-size: 16px; color: #000; padding-top: 10px;" class="formTitle">Bản ghi sửa bệnh án</span>
         <span style="position: absolute; right: 20px; top: 10px; cursor: pointer;" onclick="document.querySelector('#list').style.display = 'none'">X</span>
     </div>
     <div class="tabbody" style="height: 500px;width: 300px; overflow-y: auto;">
@@ -72,7 +72,7 @@
     </div>
 </div>
 
-@*<div id="treeDIV2">
+@**@<div id="treeDIV2">
         @Html.Action("YXFHlist", "Blctgl")
     </div>*@
 <script>
@@ -92,7 +92,7 @@
         });
         //top.$("a.menuTab span").show();
         top.$("a.menuTab span").click(function () {
-            $.modalConfirm("病历正在编辑...是否关闭页面？", function (flag) {
+            $.modalConfirm("Bệnh án đang được sửa...Có đóng trang hay không?", function (flag) {
                 if (flag) {
                     setTimeout(function () {
                         $.najax({
@@ -143,7 +143,7 @@
                         Upload(data);
                     }
                     else {
-                        $.modalAlert("上传失败，请查看日志", "error");
+                        $.modalAlert("Tải lên thất bại, vui lòng xem nhật ký", "error");
                     }
                 }
             });
@@ -152,7 +152,7 @@
 
     function Upload(jsondata) {
         $.ajax({
-            url: "http://127.0.0.1:33333/api/QHDSmartCheck/MedicalRecordUpload",//智能审核
+            url: "http://127.0.0.1:33333/api/QHDSmartCheck/MedicalRecordUpload",//Xét duyệt thông minh
             dataType: "json",
             data: jsondata,
             type: "POST",
@@ -162,15 +162,15 @@
                 if (!!ajaxdata) {
                     var resp = JSON.parse(ajaxdata);
                     if (resp.code == "-1") {
-                        $.modalAlert("上传失败" + resp.message, "error");
+                        $.modalAlert("Tải lên thất bại" + resp.message, "error");
                     }
                     else {
-                        $.modalAlert("上传成功", "success");
+                        $.modalAlert("Tải lên thành công", "success");
                         return 1;
                     }
                 }
                 else
-                    $.modalAlert("上传失败，请查看日志", "error");
+                    $.modalAlert("Tải lên thất bại, vui lòng xem nhật ký", "error");
 
             }
         });
@@ -178,7 +178,7 @@
         return 0;
     }
 
-    //-------------病历编辑器5.0------------------//
+    //-------------Trình soạn thảo bệnh án 5.0------------------//
     function WriterControl_OnLoad(rootElement) {
         var ctl = document.getElementById("myWriterControl");
         ctl.LoadDocumentFromBase64String('@ViewBag.WriterControlXmlData', 'xml');

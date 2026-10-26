@@ -29,7 +29,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         private static string LinkToMRMS = ConfigurationHelper.GetAppConfigValue("EnableLinkToMRMS");
         // GET: SystemManage/Common
         /// <summary>
-        /// 病案大类维护页面
+        /// Trang bảo trì loại lớn hồ sơ bệnh án
         /// </summary>
         /// <returns></returns>
         public ActionResult RecordType()
@@ -231,7 +231,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取系统诊断列表
+        /// Lấy danh sách chẩn đoán của hệ thống
         /// </summary>
         /// <returns></returns>
         public ActionResult GetDiagList()
@@ -241,7 +241,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 诊断 检索
+        /// Chẩn đoán - Truy xuất
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -276,7 +276,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 手术 检索
+        /// Phẫu thuật - Truy xuất
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -299,7 +299,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
         /// <summary>
-        /// 麻醉方式
+        /// Phương pháp gây mê
         /// </summary>
         /// <returns></returns>
         public ActionResult GetAnesList(string keyword)
@@ -340,7 +340,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         }
 
 
-        //查询病区
+        //Tra cứu khu bệnh
         public ActionResult GetInpatientArea(string keyword)
         {
             var ety = _CommonDmnService.GetInpatientArea(OrganizeId, keyword);
@@ -354,7 +354,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         //    return Content(ety.ToJson());
         //}
         /// <summary>
-        /// 国籍
+        /// Quốc tịch
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -364,7 +364,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
             return Content(ety.ToJson());
         }
         /// <summary>
-        /// 民族
+        /// Dân tộc
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -375,7 +375,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 岗位人员列表
+        /// Danh sách nhân sự theo vị trí
         /// </summary>
         /// <param name="dutyCode"></param>
         /// <param name="keyword"></param>
@@ -387,7 +387,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 岗位列表
+        /// Danh sách vị trí
         /// </summary>
         /// <param name="dutyCode"></param>
         /// <param name="keyword"></param>

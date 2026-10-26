@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "检验、检查报告表单页";
+    ViewBag.Title = "Trang biểu mẫu báo cáo xét nghiệm, kiểm tra";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -40,30 +40,30 @@
 <form id="formPatSer" style="margin:2px;margin-top:10px;">
 	<div style="background-color: #e9f6fe !important;height:36px;width:100%">
 		<ul class="nav nav-tabs navb-bg" id="myTab" style="position:fixed;top:0;z-index:100009;width:99%">
-			<li role="presentation"><a href="#jy" role="tab" data-toggle="tab">检验</a></li>
-			<li role="presentation"><a href="#jc" role="tab" data-toggle="tab">检查</a></li>
+			<li role="presentation"><a href="#jy" role="tab" data-toggle="tab">Xét nghiệm</a></li>
+			<li role="presentation"><a href="#jc" role="tab" data-toggle="tab">Kiểm tra</a></li>
 		</ul>
-			@*<input id="jy" name="jy" type="button" value="检验" class="selected" />
-			<input id="jc" name="jc" type="button" value="检查" class="noselected" />*@
+			@**@<input id="jy" name="jy" type="button" value="Xét nghiệm" class="selected" />
+			<input id="jc" name="jc" type="button" value="Kiểm tra" class="noselected" />*@
 	</div>
     <div class="gridPanel" id="jyjgmx">
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">申请单时间范围：</th>
+                    <th class="formTitle">Khoảng thời gian phiếu đề nghị:</th>
                     <td class="formValue" colspan="2">
                         <input id="jy_kssj" type="text" class="form-control input-wdatepicker" style="width:30%;  float:left;" value="@DateTime.Now.AddDays(-15).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         <span style="margin-left:1%;float:left">—</span>
                         <input id="jy_jssj" type="text" class="form-control input-wdatepicker" style="width:30%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     </td>
-                    <th class="formTitle">组套名称：</th>
+                    <th class="formTitle">Tên bộ xét nghiệm:</th>
                     <td class="formValue">
-                        <input id="jy_ztmc" type="text" class="form-control" placeholder="组套名称" />
+                        <input id="jy_ztmc" type="text" class="form-control" placeholder="Tên bộ xét nghiệm" />
                     </td>
                     <td class="formValue">
                         &nbsp;&nbsp;
-                        <input type="button" id="btn_jysearch" class="btn btn-primary" value=" 查 询 " />
-                        @*<a href="~/File/CQLisApp.rar">CQLisApp</a>*@
+                        <input type="button" id="btn_jysearch" class="btn btn-primary" value=" Tra cứu " />
+                        @**@<a href="~/File/CQLisApp.rar">CQLisApp</a>*@
                     </td>
                 </tr>
             </table>
@@ -71,12 +71,12 @@
         <div class="gridPanel">
             <table id="jyGridList"></table>
             <div id="jyGridPager" style="padding-right:20%"></div>
-            <div id="tsjy" style="color:blue">请双击一条已完成的数据来查看明细</div>
+            <div id="tsjy" style="color:blue">Vui lòng nhấp đúp vào một dữ liệu đã hoàn thành để xem chi tiết</div>
         </div>
         <div id="jydc" style="height:50px" class="hide">
-            <input type="checkbox" id="gxyc" name="gxyc" style="float:left" onclick="gxycclick(this)"  />异常结果勾选
-            <input type="button" id="jgdc" name="jgdc" class="btn btn-md btn-primary" style="float:right;  margin-right:100px;" value="结果导入" class="noselected" />
-            <input type="button" id="xmjgdc" name="xmjgdc" class="btn btn-md btn-primary" style="float:right; margin-right:60px;" value="项目+结果导入" class="noselected" />
+            <input type="checkbox" id="gxyc" name="gxyc" style="float:left" onclick="gxycclick(this)"  />Đánh dấu kết quả bất thường
+            <input type="button" id="jgdc" name="jgdc" class="btn btn-md btn-primary" style="float:right;  margin-right:100px;" value="Nhập kết quả" class="noselected" />
+            <input type="button" id="xmjgdc" name="xmjgdc" class="btn btn-md btn-primary" style="float:right; margin-right:60px;" value="Hạng mục+Nhập kết quả" class="noselected" />
         </div>
         <div class="gridPanel">
             <table id="jyMxGridList"></table>
@@ -86,18 +86,18 @@
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">申请单时间范围：</th>
+                    <th class="formTitle">Khoảng thời gian phiếu đề nghị:</th>
                     <td class="formValue" colspan="2">
                         <input id="jc_kssj" type="text" class="form-control input-wdatepicker" style="width:30%;  float:left;" value="@DateTime.Now.AddDays(-15).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         <span style="margin-left:1%;float:left">—</span>
                         <input id="jc_jssj" type="text" class="form-control input-wdatepicker" style="width:30%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     </td>
-                    <th class="formTitle">组套名称：</th>
+                    <th class="formTitle">Tên bộ xét nghiệm:</th>
                     <td class="formValue">
-                        <input id="jc_ztmc" type="text" class="form-control" placeholder="组套名称" />
+                        <input id="jc_ztmc" type="text" class="form-control" placeholder="Tên bộ xét nghiệm" />
                     </td>
                     <td class="formTitle">
-                        <input type="button" id="btn_jcsearch" class="btn btn-md btn-primary" value="查询" />
+                        <input type="button" id="btn_jcsearch" class="btn btn-md btn-primary" value="Tra cứu" />
                     </td>
 
                 </tr>
@@ -106,14 +106,14 @@
         <div class="gridPanel">
             <table id="jcGridList" rel="formPatSer"></table>
             <div id="jcGridPager" style="padding-right:20%"></div>
-            <div id="tsjc" style="color:blue">请双击一条已完成的数据来查看明细</div>
+            <div id="tsjc" style="color:blue">Vui lòng nhấp đúp vào một dữ liệu đã hoàn thành để xem chi tiết</div>
         </div>
 		<div style="height:50px">
-			<input id="dc" class="btn btn-md btn-primary" name="dc" type="button" style="float:right; width:100px;  margin-right:100px;" value="导入" />
+			<input id="dc" class="btn btn-md btn-primary" name="dc" type="button" style="float:right; width:100px;  margin-right:100px;" value="Nhập" />
 			
 		</div>
 		<div id="jcjgdiv">
-			<label style="">文字报告：</label>
+			<label style="">Báo cáo bằng văn bản:</label>
 			<textarea name="" cols="15" rows="4" id="jcjgtext" readonly style="width:95%;height:100px; border:none; resize:none"></textarea>
 		</div>
         <div class="gridPanel">
@@ -127,7 +127,7 @@
     var mzzyh = $.request("mzzyh");
     var type = $.request("type");
 	var jyzt;
-	var jlxx = null;//记录tab选中的
+	var jlxx = null;//Tab bản ghi đã chọn
 	$('#myTab a:first').trigger('click'); //初始化显示哪个tab
     $(function () {
 		jyGridList();
@@ -143,7 +143,7 @@
         var ztmc = $('#jc_ztmc').val();
         $("#jcGridList").jqGrid('setGridParam', {
             postData: { mzzyh: mzzyh, type: type, ztmc: ztmc, kssj: kssj, jssj: jssj },
-        }).trigger('reloadGrid'); //重新加载当前表格
+        }).trigger('reloadGrid'); //Tải lại bảng hiện tại
     });
 
     $('#btn_jysearch').click(function () {
@@ -152,7 +152,7 @@
         var ztmc = $('#jy_ztmc').val();
         $("#jyGridList").jqGrid('setGridParam', {
             postData: { mzzyh: mzzyh, type: type, ztmc: ztmc, kssj: kssj, jssj: jssj },
-        }).trigger('reloadGrid'); //重新加载当前表格
+        }).trigger('reloadGrid'); //Tải lại bảng hiện tại
     });
 
     function jyGridList() {
@@ -168,15 +168,15 @@
             //height: $(window).height() - 170,
             height: 125,
             colModel: [
-                { label: '姓名', name: 'xm', align: 'center', hidden: true },
-                { label: '申请单号', name: 'lissqdh', align: 'center', width: '160px' },
-                { label: '组套名称', name: 'ztmc', align: 'center', width: '170px' },
-                { label: '申请时间', name: 'sqsj', align: 'center', width: '160px' },
-                { label: '申请单状态', name: 'syncStatus', align: 'center', width: '160px' },
+                { label: 'Họ tên', name: 'xm', align: 'center', hidden: true },
+                { label: 'Số phiếu đề nghị', name: 'lissqdh', align: 'center', width: '160px' },
+                { label: 'Tên bộ xét nghiệm', name: 'ztmc', align: 'center', width: '170px' },
+                { label: 'Thời gian đề nghị', name: 'sqsj', align: 'center', width: '160px' },
+                { label: 'Trạng thái phiếu đề nghị', name: 'syncStatus', align: 'center', width: '160px' },
                 {
-                    label: "操作", name: "", align: "center", width: '150',
+                    label: "Thao tác", name: "", align: "center", width: '150',
                     formatter: function (cellvalue, options, rowobject) {
-                        return "<a href=\#\" onclick='jyrecall1(\"" + rowobject.lissqdh + "\",\"" + rowobject.syncStatus + "\")'' title='lis报告' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>查看报告</a>";
+                        return "<a href=\#\" onclick='jyrecall1(\"" + rowobject.lissqdh + "\",\"" + rowobject.syncStatus + "\")'' title='Báo cáo LIS' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>Xem báo cáo</a>";
                     }
                 }
             ],
@@ -199,15 +199,15 @@
             //height: $(window).height() - 170,
             height: 175,
             colModel: [
-                { label: '姓名', name: 'xm', align: 'center', hidden: true },
-                { label: '申请单号', name: 'lissqdh', align: 'center', width: '160px' },
-                { label: '组套名称', name: 'ztmc', align: 'center', width: '170px' },
-                { label: '申请时间', name: 'sqsj', align: 'center', width: '160px' },
-                { label: '申请单状态', name: 'syncStatus', align: 'center', width: '160px' },
+                { label: 'Họ tên', name: 'xm', align: 'center', hidden: true },
+                { label: 'Số phiếu đề nghị', name: 'lissqdh', align: 'center', width: '160px' },
+                { label: 'Tên bộ xét nghiệm', name: 'ztmc', align: 'center', width: '170px' },
+                { label: 'Thời gian đề nghị', name: 'sqsj', align: 'center', width: '160px' },
+                { label: 'Trạng thái phiếu đề nghị', name: 'syncStatus', align: 'center', width: '160px' },
                 {
-                    label: "操作", name: "", align: "center", width: '150',
+                    label: "Thao tác", name: "", align: "center", width: '150',
                     formatter: function (cellvalue, options, rowobject) {
-                        return "<a href=\#\" onclick='jcrecall1(\"" + rowobject.lissqdh + "\",\"" + rowobject.syncStatus + "\")'' title='查看报告' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>查看报告</a>";
+                        return "<a href=\#\" onclick='jcrecall1(\"" + rowobject.lissqdh + "\",\"" + rowobject.syncStatus + "\")'' title='Xem báo cáo' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>Xem báo cáo</a>";
                     }
                 }
             ],
@@ -219,13 +219,13 @@
 
     function jcrecall1(sqdh, syncStatus) {
         if (syncStatus != "已完成") {
-            $.modalAlert("当前状态不是已完成状态不能查看报告", 'warning');
+            $.modalAlert("Trạng thái hiện tại không phải trạng thái đã hoàn thành nên không thể xem báo cáo", 'warning');
             return;
         }
         else {
             //$.modalOpen({
             //    id: "medicaljgForm",
-            //    title: "检查报告",
+            //    title: "Báo cáo kiểm tra",
             //    url: "http://116.63.189.68:8088/WebSearch.aspx?ReqNO='" + sqdh + "'",
             //    width: "1000px",
             //    height: "1000px",
@@ -239,11 +239,11 @@
 
     function jyrecall1(lissqdh, syncStatus) {
         if (syncStatus != "已完成") {
-            $.modalAlert("当前状态不是已完成状态不能查看报告", 'warning');
+            $.modalAlert("Trạng thái hiện tại không phải trạng thái đã hoàn thành nên không thể xem báo cáo", 'warning');
             return;
         } else {
             $.ajax({
-                url: "http://127.0.0.1:22228/api/CQSmartCheck/GetLisReport",//lis报告
+                url: "http://127.0.0.1:22228/api/CQSmartCheck/GetLisReport",//Báo cáo LIS
                 dataType: "json",
                 data: { type: type, brxx_id: lissqdh },
                 type: "POST",
@@ -259,7 +259,7 @@
 		if (jlxx == "#jy") {
             var $jyGridList = $("#jyGridList");
             if ($jyGridList.jqGridRowValue().syncStatus != "已完成") {
-                $.modalAlert("当前状态不是已完成状态不能查看报告", 'warning');
+                $.modalAlert("Trạng thái hiện tại không phải trạng thái đã hoàn thành nên không thể xem báo cáo", 'warning');
                 return;
             }
             else {
@@ -275,11 +275,11 @@
                     //width: $(window).width() - 10,
                     height: 120,
                     colModel: [
-                        { label: '项目名称', name: 'xmmc', align: 'left', width: '180px' },
-                        { label: '检验结果', name: 'jyjg', align: 'left', width: '180px' },
-                        { label: '高低标记', name: 'gdbj', align: 'left', width: '100px' },
-                        { label: '参考值范围', name: 'ckzfw', align: 'left', width: '120px' },
-                        { label: '单位', name: 'dw', align: 'left', width: '180px' }
+                        { label: 'Tên hạng mục', name: 'xmmc', align: 'left', width: '180px' },
+                        { label: 'Kết quả xét nghiệm', name: 'jyjg', align: 'left', width: '180px' },
+                        { label: 'Cờ cao/thấp', name: 'gdbj', align: 'left', width: '100px' },
+                        { label: 'Khoảng giá trị tham khảo', name: 'ckzfw', align: 'left', width: '120px' },
+                        { label: 'Đơn vị', name: 'dw', align: 'left', width: '180px' }
                     ],
                     sortname: 'sqsj desc',
                     viewrecords: true,
@@ -293,7 +293,7 @@
         else {
             var $jcGridList = $("#jcGridList");
             if ($jcGridList.jqGridRowValue().syncStatus != "已完成") {
-                $.modalAlert("当前状态不是已完成状态不能查看报告", 'warning');
+                $.modalAlert("Trạng thái hiện tại không phải trạng thái đã hoàn thành nên không thể xem báo cáo", 'warning');
                 return;
             }
             else {
@@ -325,7 +325,7 @@
                 //    //width: $(window).width() - 10,
                 //    height: 175,
                 //    colModel: [
-                //        { label: '检查结果', name: 'jcjg', align: 'left', width: '840px' },
+                //        { label: 'Kết quả kiểm tra', name: 'jcjg', align: 'left', width: '840px' },
                 //    ],
                 //    sortname: 'sqsj desc',
                 //    viewrecords: true,
@@ -423,7 +423,7 @@
 			console.log("检查结果",$("#jcjgtext").val());
 			$.currentWindow().document.getElementById('myWriterControl').DCExecuteCommand('Spechars', true, $("#jcjgtext").val());
 		} else {
-			$.modalAlert("该申请单号无检查结果显示无法导入内容", 'warning');
+			$.modalAlert("Số phiếu đề nghị này không có kết quả kiểm tra hiển thị nên không thể nhập nội dung", 'warning');
 			return;
 		}
 		
@@ -433,8 +433,8 @@
         //rowIds = $('#jyMxGridList').jqGrid('getGridParam', 'selarrrow');
         rowIds = getids();
         if (rowIds.length < 1) {
-			//alert("请至少选择一行检验结果导出！");
-			$.modalAlert("请至少选择一行检验结果导出！", 'warning');
+			//alert("Vui lòng chọn ít nhất một dòng kết quả xét nghiệm để xuất!");
+			$.modalAlert("Vui lòng chọn ít nhất một dòng kết quả xét nghiệm để xuất!", 'warning');
         }
         else {
             var jg = "";
@@ -450,8 +450,8 @@
         //rowIds = $('#jyMxGridList').jqGrid('getGridParam', 'selarrrow');
         rowIds = getids();
         if (rowIds.length < 1) {
-			//alert("请至少选择一行检验结果导出！");
-			$.modalAlert("请至少选择一行检验结果导出！", 'warning');
+			//alert("Vui lòng chọn ít nhất một dòng kết quả xét nghiệm để xuất!");
+			$.modalAlert("Vui lòng chọn ít nhất một dòng kết quả xét nghiệm để xuất!", 'warning');
         }
         else {
             var jg = jyzt;

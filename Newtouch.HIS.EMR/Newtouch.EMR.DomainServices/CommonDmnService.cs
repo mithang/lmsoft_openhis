@@ -70,7 +70,7 @@ namespace Newtouch.EMR.DomainServices
         }
 
         /// <summary>
-        /// 病历类型+岗位权限控制
+        /// Loại bệnh án + kiểm soát quyền vị trí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="bllx"></param>
@@ -95,12 +95,12 @@ order by b.id desc ";
             });
         }
         /// <summary>
-        /// 根据关键字查询病历类型列表
+        /// Tra cứu danh sách loại bệnh án theo từ khóa
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="bllx"></param>
         /// <param name="keyword"></param>
-        /// <param name="type">1 root 2 子目录</param>
+        /// <param name="type">1 root, 2 Thư mục con</param>
         /// <returns></returns>
         public IList<BaseBllxVO> GetBllxListDetail(string orgId, string bllx = null, string keyword = null, string type = null)
         {
@@ -164,7 +164,7 @@ where a.[OrganizeId]=@orgId and a.zt='1'
 
         #region bllx old(int)
         /// <summary>
-        /// 根据病历类型Id获取病历大类名称标识
+        /// Lấy tên và cờ loại lớn của bệnh án theo Id loại bệnh án
         /// </summary>
         /// <param name="bllxId"></param>
         /// <param name="OrgId"></param>
@@ -178,7 +178,7 @@ where a.[OrganizeId]=@orgId and a.zt='1'
         }
 
         /// <summary>
-        /// 获取病历类型对应表
+        /// Lấy bảng tương ứng loại bệnh án
         /// </summary>
         /// <param name="bllxId"></param>
         /// <param name="OrgId"></param>
@@ -214,7 +214,7 @@ where a.[OrganizeId]=@orgId and a.zt='1'
         }
 
         /// <summary>
-        /// 通过bllx获取病历大类相关信息
+        /// Lấy thông tin liên quan đến loại lớn bệnh án qua bllx
         /// </summary>
         /// <param name="OrgId"></param>
         /// <param name="Code"></param>
@@ -268,7 +268,7 @@ where a.[OrganizeId]=@orgId and a.zt='1'
 
 
         /// <summary>
-        /// 获取模板对应岗位信息
+        /// Lấy thông tin vị trí tương ứng với mẫu
         /// </summary>
         /// <returns></returns>
         public IList<BlmbqxkzEntity> GetblmbDuty(string blmbId, OperatorModel user)
@@ -284,7 +284,7 @@ where a.[OrganizeId]=@orgId and a.zt='1'
 
         }
         /// <summary>
-        /// 判断角色是否为病历模板管理员
+        /// Phán đoán vai trò có phải quản trị viên mẫu bệnh án hay không
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
@@ -355,7 +355,7 @@ and zt = '1'
 
         }
         /// <summary>
-        /// 获取根目录病历大类
+        /// Lấy loại lớn bệnh án của thư mục gốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="code"></param>
@@ -383,7 +383,7 @@ where OrganizeId=@orgId and zt='1' and isroot='1'
             });
         }
         /// <summary>
-        /// 岗位列表
+        /// Danh sách vị trí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="code"></param>
@@ -451,7 +451,7 @@ order by zdCode";
             //           });
         }
         /// <summary>
-        /// 手术字典列表
+        /// Danh sách từ điển phẫu thuật
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -515,7 +515,7 @@ where OrganizeId=@orgId and zt='1'
         }
 
         /// <summary>
-        /// 麻醉方式列表
+        /// Danh sách phương pháp gây mê
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -538,7 +538,7 @@ where OrganizeId=@orgId ";
             });
         }
         /// <summary>
-        /// 切口等级
+        /// Cấp độ vết mổ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -561,7 +561,7 @@ where OrganizeId=@orgId ";
             });
         }
         /// <summary>
-        /// 通用字典
+        /// Từ điển dùng chung
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -609,7 +609,7 @@ where zt='1' ";
             });
         }
         /// <summary>
-        /// 民族
+        /// Dân tộc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -630,7 +630,7 @@ where zt='1' ";
             });
         }
         /// <summary>
-        /// 根据DutyCode（职位）查询员工列表
+        /// Tra cứu danh sách nhân viên theo DutyCode (chức vụ)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="dutyCode"></param>

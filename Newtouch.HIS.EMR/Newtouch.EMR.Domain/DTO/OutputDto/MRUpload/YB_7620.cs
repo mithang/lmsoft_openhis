@@ -7,98 +7,98 @@ using System.Threading.Tasks;
 namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
 {
     /// <summary>
-    /// 住院病案首页手术麻醉信息
+    /// Thông tin phẫu thuật và gây mê trên trang đầu hồ sơ bệnh án nội trú
     /// </summary>
     public class YB_7620
     {
         /// <summary>
-        /// 住院病案首页手术麻醉信息
+        /// Thông tin phẫu thuật và gây mê trên trang đầu hồ sơ bệnh án nội trú
         /// 1
         /// </summary>
         public string AKC190 { get; set; }
         /// <summary>
-        /// 病案流水号
+        /// Số thứ tự hồ sơ bệnh án
         /// 1
         /// </summary>
         public string BKF303 { get; set; }
         /// <summary>
-        /// 住院流水号
+        /// Số thứ tự nhập viện
         /// 1
         /// </summary>
         public string BKC191 { get; set; }
         /// <summary>
-        /// 手术序号
+        /// Số thứ tự phẫu thuật
         /// 1
         /// </summary>
         public string BKF919 { get; set; }
         /// <summary>
-        /// 手术操作代码 手术及操作(ICD-9-CM-3)
+        /// Mã thủ thuật phẫu thuật - Phẫu thuật và thủ thuật (ICD-9-CM-3)
         /// 1
         /// </summary>
         public string BKF720 { get; set; }
         /// <summary>
-        /// 手术操作名称
+        /// Tên thủ thuật phẫu thuật
         /// 1
         /// </summary>
         public string BKF721 { get; set; }
         /// <summary>
-        /// 手术操作日期时间 格式：yyyymmddhhmiss
+        /// Ngày giờ thủ thuật phẫu thuật, định dạng: yyyymmddhhmiss
         /// 1
         /// </summary>
         public string BKF723 { get; set; }
         /// <summary>
-        /// 手术操作类别 1 手术 2 操作
+        /// Loại thủ thuật phẫu thuật: 1 Phẫu thuật, 2 Thủ thuật
         /// 1
         /// </summary>
         public string BKF922 { get; set; }
         /// <summary>
-        /// 手术主次关系 1 主要手术；0 次要手术
+        /// Quan hệ chính/phụ của phẫu thuật: 1 Phẫu thuật chính; 0 Phẫu thuật phụ
         /// </summary>
         public string BKF960 { get; set; }
         /// <summary>
-        /// 手术级别 参考《手术级别》
+        /// Cấp độ phẫu thuật, tham khảo “Cấp độ phẫu thuật”
         /// 1
         /// </summary>
         public string BKF773 { get; set; }
         /// <summary>
-        /// 手术切口类别代码 参考《手术切口类别》
+        /// Mã loại vết mổ phẫu thuật, tham khảo “Loại vết mổ phẫu thuật”
         /// 1
         /// </summary>
         public string BKF283 { get; set; }
         /// <summary>
-        /// 切口等级
+        /// Cấp độ vết mổ
         /// </summary>
         public string BKF920 { get; set; }
         /// <summary>
-        /// 切口愈合等级代码
+        /// Mã cấp độ liền vết mổ
         /// </summary>
         public string BKF257 { get; set; }
         /// <summary>
-        /// 愈合等级
+        /// Cấp độ liền vết thương
         /// </summary>
         public string BKF921 { get; set; }
         /// <summary>
-        /// 手术者代码
+        /// Mã phẫu thuật viên
         /// </summary>
         public string BKF724 { get; set; }
         /// <summary>
-        /// 手术者姓名
+        /// Họ tên phẫu thuật viên
         /// </summary>
         public string BKF725 { get; set; }
         /// <summary>
-        /// Ⅰ助姓名
+        /// Họ tên phụ mổ I
         /// </summary>
         public string BKC769 { get; set; }
         /// <summary>
-        /// Ⅱ助姓名
+        /// Họ tên phụ mổ II
         /// </summary>
         public string BKC770 { get; set; }
         /// <summary> 
-        /// 麻醉方式 参考《麻醉方式》
+        /// Phương pháp gây mê, tham khảo “Phương pháp gây mê”
         /// </summary>
         public string BKC772 { get; set; }
         /// <summary>
-        /// 麻醉医师
+        /// Bác sĩ gây mê
         /// </summary>
         public string BKF732 { get; set; }
         

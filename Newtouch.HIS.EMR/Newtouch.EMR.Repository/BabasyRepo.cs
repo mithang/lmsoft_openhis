@@ -13,16 +13,16 @@ using System;
 namespace Newtouch.EMR.Repository
 {
     /// <summary>
-    /// 创 建：hyj
-    /// 日 期：2018-09-20 18:23
-    /// 描 述：选项明细表
+    /// Người tạo: hyj
+    /// Ngày: 2018-09-20 18:23
+    /// Mô tả: Bảng chi tiết lựa chọn
     /// </summary>
     public class BabasyRepo : RepositoryBase<BabasyEntity>, IBabasyRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public BabasyRepo(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {
@@ -30,10 +30,10 @@ namespace Newtouch.EMR.Repository
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu (thêm mới, sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(BabasyVO entity, string keyValue)
         {
             var dbEntity = new BabasyEntity();
@@ -780,9 +780,9 @@ namespace Newtouch.EMR.Repository
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void DeleteForm(string keyValue)
         {
             this.Delete(p => p.zid == keyValue);

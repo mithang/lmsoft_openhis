@@ -1,21 +1,21 @@
 ﻿@using Newtouch.Common.Operator;
-@*<a href="#" class="easyui-linkbutton" title="放大" data-options="iconCls:'icon-align-left',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('ZoomIn', true, null);">放大</a>
-            <a href="#" class="easyui-linkbutton" title="缩小" data-options="iconCls:'icon-align-left',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('ZoomOut', true, null);">缩小</a>
-            <a href="#" class="easyui-linkbutton" title="是否显示标尺" data-options="iconCls:'icon-align-left',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('RuleVisible', true, null);">是否显示标尺</a>*@
+@**@<a href="#" class="easyui-linkbutton" title="Phóng to" data-options="iconCls:'icon-align-left',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('ZoomIn', true, null);">Phóng to</a>
+            <a href="#" class="easyui-linkbutton" title="Thu nhỏ" data-options="iconCls:'icon-align-left',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('ZoomOut', true, null);">Thu nhỏ</a>
+            <a href="#" class="easyui-linkbutton" title="Có hiển thị thước hay không" data-options="iconCls:'icon-align-left',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('RuleVisible', true, null);">Có hiển thị thước hay không</a>*@
 
 
-        <a href="#" class="easyui-linkbutton" title="居左对齐" data-options="iconCls:'icon-align-left',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('AlignMiddleLeft', false, null);">居左</a>
-        <a href="#" class="easyui-linkbutton" title="居右对齐" data-options="iconCls:'icon-align-right',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('AlignMiddleRight', false, null);">居右</a>
-        <a href="#" class="easyui-linkbutton" title="居中对齐" data-options="iconCls:'icon-align-center',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('AlignMiddleCenter', false, null);">居中</a>
+        <a href="#" class="easyui-linkbutton" title="Căn trái" data-options="iconCls:'icon-align-left',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('AlignMiddleLeft', false, null);">Căn trái</a>
+        <a href="#" class="easyui-linkbutton" title="Căn phải" data-options="iconCls:'icon-align-right',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('AlignMiddleRight', false, null);">Căn phải</a>
+        <a href="#" class="easyui-linkbutton" title="Căn giữa" data-options="iconCls:'icon-align-center',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('AlignMiddleCenter', false, null);">Căn giữa</a>
 
-    <a href="#" class="easyui-linkbutton" title="上标" data-options="iconCls:'icon-superscript',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Superscript', true, null);">上标</a>
-    <a href="#" class="easyui-linkbutton" title="下标" data-options="iconCls:'icon-subscript',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Subscript', true, null);">下标</a>
-    <a href="#" class="easyui-linkbutton" title="加粗" data-options="iconCls:'icon-bold',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('bold', true, null);">加粗</a>
-    <a href="#" class="easyui-linkbutton" title="大写" data-options="iconCls:'icon-uppercase-font',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('ToupperCase', false, null);">大写</a>
-    <a href="#" class="easyui-linkbutton" title="小写" data-options="iconCls:'icon-lowercase-font',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('TolowerCase', false, null);">小写</a>
-    <a href="#" class="easyui-linkbutton" title="斜体" data-options="iconCls:'icon-italic',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Italic', true, null);">斜体</a>
+    <a href="#" class="easyui-linkbutton" title="Chỉ số trên" data-options="iconCls:'icon-superscript',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Superscript', true, null);">Chỉ số trên</a>
+    <a href="#" class="easyui-linkbutton" title="Chỉ số dưới" data-options="iconCls:'icon-subscript',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Subscript', true, null);">Chỉ số dưới</a>
+    <a href="#" class="easyui-linkbutton" title="In đậm" data-options="iconCls:'icon-bold',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('bold', true, null);">In đậm</a>
+    <a href="#" class="easyui-linkbutton" title="Chữ hoa" data-options="iconCls:'icon-uppercase-font',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('ToupperCase', false, null);">Chữ hoa</a>
+    <a href="#" class="easyui-linkbutton" title="Chữ thường" data-options="iconCls:'icon-lowercase-font',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('TolowerCase', false, null);">Chữ thường</a>
+    <a href="#" class="easyui-linkbutton" title="In nghiêng" data-options="iconCls:'icon-italic',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Italic', true, null);">In nghiêng</a>
 
-    <a href="#" class="easyui-linkbutton" title="字体大小" id="fontsize" data-options="iconCls:'icon-fontsize',plain:true">字体大小</a>
+    <a href="#" class="easyui-linkbutton" title="Cỡ chữ" id="fontsize" data-options="iconCls:'icon-fontsize',plain:true">Cỡ chữ</a>
     <div class="panel combo-p" id="fontsizeli" style="display: none;">
         <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 114px;">
             <div id="font10" class="combobox-item" style="font-size: 10px; cursor: pointer;">10px</div>
@@ -33,7 +33,7 @@
     </div>
 
 
-    <a href="#" class="easyui-linkbutton" title="字体" data-options="iconCls:'icon-fontfa',plain:true" id="fontfa">字体</a>
+    <a href="#" class="easyui-linkbutton" title="Phông chữ" data-options="iconCls:'icon-fontfa',plain:true" id="fontfa">Phông chữ</a>
     <div class="panel combo-p" id="fontf" style="display: none;">
         <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 114px;">
             <div id="fontfh" class="combobox-item" style="font-size: 10px; cursor: pointer; font-family: 黑体;">黑体</div>
@@ -43,15 +43,15 @@
         </div>
     </div>
 
-    <a href="#" class="easyui-linkbutton" title="清除字号" data-options="iconCls:'icon-eraser-font',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('removefontsize', true, 'inherit');">清除字号</a>
-    <a href="#" class="easyui-linkbutton" title="清除字体" data-options="iconCls:'icon-eraser-font',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('removeformat', true, 'inherit');">清除字体</a>
+    <a href="#" class="easyui-linkbutton" title="Xóa cỡ chữ" data-options="iconCls:'icon-eraser-font',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('removefontsize', true, 'inherit');">Xóa cỡ chữ</a>
+    <a href="#" class="easyui-linkbutton" title="Xóa phông chữ" data-options="iconCls:'icon-eraser-font',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('removeformat', true, 'inherit');">Xóa phông chữ</a>
 
-    <a href="#" class="easyui-linkbutton" title="删除线" data-options="iconCls:'icon-strikethrough',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Strikethrough', false, null);">删除线</a>
-    <a href="#" class="easyui-linkbutton" title="下划线" data-options="iconCls:'icon-underline',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Underline', false, null);">下划线</a>
-    <a href="#" class="easyui-linkbutton" title="字符边框" data-options="iconCls:'icon-zfbk',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Fontborder', true, null);">字符边框</a>
+    <a href="#" class="easyui-linkbutton" title="Gạch ngang" data-options="iconCls:'icon-strikethrough',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Strikethrough', false, null);">Gạch ngang</a>
+    <a href="#" class="easyui-linkbutton" title="Gạch dưới" data-options="iconCls:'icon-underline',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Underline', false, null);">Gạch dưới</a>
+    <a href="#" class="easyui-linkbutton" title="Viền ký tự" data-options="iconCls:'icon-zfbk',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Fontborder', true, null);">Viền ký tự</a>
 
 
-    <a href="#" class="easyui-linkbutton" title="背景色" data-options="iconCls:'icon-fontbg',plain:true" id="backcolor">背景色</a>
+    <a href="#" class="easyui-linkbutton" title="Màu nền" data-options="iconCls:'icon-fontbg',plain:true" id="backcolor">Màu nền</a>
     <div class="panel combo-p" id="bcolor" style="display: none;">
         <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 72px;">
             <div id="bcolor1" class="combobox-item fontcolor" style="background-color: black;"></div>
@@ -66,7 +66,7 @@
         </div>
     </div>
 
-    <a href="#" class="easyui-linkbutton" title="字体颜色" data-options="iconCls:'icon-fontf',plain:true" id="fontcolor">字体颜色</a>
+    <a href="#" class="easyui-linkbutton" title="Màu chữ" data-options="iconCls:'icon-fontf',plain:true" id="fontcolor">Màu chữ</a>
 
 
     <div class="panel combo-p" id="fcolor" style="display: none;">
@@ -84,37 +84,37 @@
 
 
 
-    <a href="#" class="easyui-linkbutton" title="段前距" id="rowspacingup" data-options="iconCls:'icon-dqj',plain:true">段前距</a>
-    <a href="#" class="easyui-linkbutton" title="段后距" id="rowspacingdown" data-options="iconCls:'icon-dhj',plain:true">段后距</a>
-    <a href="#" class="easyui-linkbutton" title="行间距" id="lineheight" data-options="iconCls:'icon-hjj',plain:true">行间距</a>
-    <a href="#" class="easyui-linkbutton" title="有序列表" data-options="iconCls:'icon-numbers',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('insertorderedlist', true, null);">有序列表</a>
-    <a href="#" class="easyui-linkbutton" title="无序列表" data-options="iconCls:'icon-bullets',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('insertunorderedlist', true, null);">无序列表</a>
-    <a href="#" class="easyui-linkbutton" title="首行缩进" data-options="iconCls:'icon-inde',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Indent', true, null);">首行缩进</a>
+    <a href="#" class="easyui-linkbutton" title="Khoảng cách trước đoạn" id="rowspacingup" data-options="iconCls:'icon-dqj',plain:true">Khoảng cách trước đoạn</a>
+    <a href="#" class="easyui-linkbutton" title="Khoảng cách sau đoạn" id="rowspacingdown" data-options="iconCls:'icon-dhj',plain:true">Khoảng cách sau đoạn</a>
+    <a href="#" class="easyui-linkbutton" title="Khoảng cách dòng" id="lineheight" data-options="iconCls:'icon-hjj',plain:true">Khoảng cách dòng</a>
+    <a href="#" class="easyui-linkbutton" title="Danh sách có thứ tự" data-options="iconCls:'icon-numbers',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('insertorderedlist', true, null);">Danh sách có thứ tự</a>
+    <a href="#" class="easyui-linkbutton" title="Danh sách không thứ tự" data-options="iconCls:'icon-bullets',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('insertunorderedlist', true, null);">Danh sách không thứ tự</a>
+    <a href="#" class="easyui-linkbutton" title="Thụt đầu dòng" data-options="iconCls:'icon-inde',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Indent', true, null);">Thụt đầu dòng</a>
 
-<a href="#" class="easyui-linkbutton" title="插入行" data-options="iconCls:'icon-inserth',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_insertrowup', true, null);">插入行</a>
-<a href="#" class="easyui-linkbutton" title="插入列" data-options="iconCls:'icon-insertl',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_insertcolumnleft', true, null);">插入列</a>
-<a href="#" title="删除行" class="easyui-linkbutton" style="margin-top: 5px;" data-options="iconCls:'icon-delh',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_deleterow', true, null);">删除行</a>
+<a href="#" class="easyui-linkbutton" title="Chèn dòng" data-options="iconCls:'icon-inserth',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_insertrowup', true, null);">Chèn dòng</a>
+<a href="#" class="easyui-linkbutton" title="Chèn cột" data-options="iconCls:'icon-insertl',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_insertcolumnleft', true, null);">Chèn cột</a>
+<a href="#" title="Xóa dòng" class="easyui-linkbutton" style="margin-top: 5px;" data-options="iconCls:'icon-delh',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_deleterow', true, null);">Xóa dòng</a>
 
-<a href="#" title="删除列" class="easyui-linkbutton" data-options="iconCls:'icon-dell',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_deletecolumn', true, null);">删除列</a>
-<a href="#" title="拆分成行" class="easyui-linkbutton" data-options="iconCls:'icon-chaifen',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('splittorows', true, null);">拆分成行</a>
-<a href="#" title="拆分成列" class="easyui-linkbutton" data-options="iconCls:'icon-chaifen',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('splittocols', true, null);">拆分成列</a>
-
-
-
-@*<a href="#" title="右合并单元格" class="easyui-linkbutton" data-options="iconCls:'icon-hebing',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('mergeright', true, null);">右合并单元格</a>
-
-    <a href="#" title="下合并单元格" class="easyui-linkbutton" data-options="iconCls:'icon-hebing',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('mergedown', true, null);">下合并单元格</a>
-    <a href="#" class="easyui-linkbutton" title="分页符" data-options="iconCls:'icon-fyf-large'" style="border: 0; " onclick="document.getElementById('myWriterControl').DCExecuteCommand('InsertPageBreak', false, null);">分页符</a>
-    <a href="#" class="easyui-linkbutton l-btn l-btn-large" title="插入图片" data-options="iconCls:'icon-picture-large' " style="border: 0; " onclick="document.getElementById('myWriterControl').DCExecuteCommand('DCInsertImage', true, null);">插入图片</a>
-    <a href="#" class="easyui-linkbutton" title="插入表格" id="insert_table" data-options="iconCls:'icon-table-large'" style="border: 0; ">插入表格</a>
-    <a href="#" class="easyui-linkbutton" title="删除表格" data-options="iconCls:'icon-tabledel-large'" style="border: 0;" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_deletetable', true, null);">删除表格</a>*@
+<a href="#" title="Xóa cột" class="easyui-linkbutton" data-options="iconCls:'icon-dell',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_deletecolumn', true, null);">Xóa cột</a>
+<a href="#" title="Tách thành dòng" class="easyui-linkbutton" data-options="iconCls:'icon-chaifen',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('splittorows', true, null);">Tách thành dòng</a>
+<a href="#" title="Tách thành cột" class="easyui-linkbutton" data-options="iconCls:'icon-chaifen',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('splittocols', true, null);">Tách thành cột</a>
 
 
-<a href="#" class="easyui-linkbutton" title="插入日期" data-options="iconCls:'icon-data-large'" style="border: 0; " onclick="document.getElementById('myWriterControl').DCExecuteCommand('Date', false, null);">插入日期</a>
-<a href="#" class="easyui-linkbutton" title="插入时间" data-options="iconCls:'icon-time-large'" style="border: 0; " onclick="document.getElementById('myWriterControl').DCExecuteCommand('Time', false, null);">插入时间</a>
-<a href="#" class="easyui-linkbutton" title="插入签名" style="border: 0; " onclick="crqm()">插入签名</a>
+
+@**@<a href="#" title="Gộp ô sang phải" class="easyui-linkbutton" data-options="iconCls:'icon-hebing',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('mergeright', true, null);">Gộp ô sang phải</a>
+
+    <a href="#" title="Gộp ô xuống dưới" class="easyui-linkbutton" data-options="iconCls:'icon-hebing',plain:true" onclick="document.getElementById('myWriterControl').DCExecuteCommand('mergedown', true, null);">Gộp ô xuống dưới</a>
+    <a href="#" class="easyui-linkbutton" title="Dấu ngắt trang" data-options="iconCls:'icon-fyf-large'" style="border: 0; " onclick="document.getElementById('myWriterControl').DCExecuteCommand('InsertPageBreak', false, null);">Dấu ngắt trang</a>
+    <a href="#" class="easyui-linkbutton l-btn l-btn-large" title="Chèn hình ảnh" data-options="iconCls:'icon-picture-large' " style="border: 0; " onclick="document.getElementById('myWriterControl').DCExecuteCommand('DCInsertImage', true, null);">Chèn hình ảnh</a>
+    <a href="#" class="easyui-linkbutton" title="Chèn bảng" id="insert_table" data-options="iconCls:'icon-table-large'" style="border: 0; ">Chèn bảng</a>
+    <a href="#" class="easyui-linkbutton" title="Xóa bảng" data-options="iconCls:'icon-tabledel-large'" style="border: 0;" onclick="document.getElementById('myWriterControl').DCExecuteCommand('Table_deletetable', true, null);">Xóa bảng</a>*@
+
+
+<a href="#" class="easyui-linkbutton" title="Chèn ngày" data-options="iconCls:'icon-data-large'" style="border: 0; " onclick="document.getElementById('myWriterControl').DCExecuteCommand('Date', false, null);">Chèn ngày</a>
+<a href="#" class="easyui-linkbutton" title="Chèn thời gian" data-options="iconCls:'icon-time-large'" style="border: 0; " onclick="document.getElementById('myWriterControl').DCExecuteCommand('Time', false, null);">Chèn thời gian</a>
+<a href="#" class="easyui-linkbutton" title="Chèn chữ ký" style="border: 0; " onclick="crqm()">Chèn chữ ký</a>
 <label id="bl_czyxm" style="display:none">@OperatorProvider.GetCurrent().UserName</label>
-@*<a href="#" class="easyui-linkbutton" title="插入签名" data-options="iconCls:'icon-time-large'" style="border: 0; " onclick="document.getElementById('myWriterControl').DCExecuteCommand('Name', true, $("#bl_czyxm").html());">插入签名</a>*@
+@**@<a href="#" class="easyui-linkbutton" title="Chèn chữ ký" data-options="iconCls:'icon-time-large'" style="border: 0; " onclick="document.getElementById('myWriterControl').DCExecuteCommand('Name', true, $("#bl_czyxm").html());">Chèn chữ ký</a>*@
 
 
 <style>
@@ -132,11 +132,11 @@
 <div class="panel combo-p" id="table" style="display: none;">
     <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 78px; border: 0;">
         <input type="text" id="row" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
-               onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" placeholder="行" autocomplete="off" style="float: left; width: 20px; margin-right: 10px;" />
+               onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" placeholder="Dòng" autocomplete="off" style="float: left; width: 20px; margin-right: 10px;" />
         *
         <input type="text" id="column" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
-               onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" placeholder="列" autocomplete="off" style="width: 20px; margin-left: 10px;" />
-        <input type="button" id="qd" style="width: 78px;" value="确定" />
+               onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" placeholder="Cột" autocomplete="off" style="width: 20px; margin-left: 10px;" />
+        <input type="button" id="qd" style="width: 78px;" value="Xác nhận" />
     </div>
 </div>
 

@@ -12,7 +12,7 @@ using Newtouch.EMR.Domain.IDomainServices;
 namespace Newtouch.EMR.Web.Controllers
 {
     /// <summary>
-    /// 首页
+    /// Trang chủ
     /// </summary>
     public class HomeController : FrameworkBase.MultiOrg.Web.Controllers.HomeController
     {
@@ -38,7 +38,7 @@ namespace Newtouch.EMR.Web.Controllers
         }
 
         /// <summary>
-        /// 获取业务字段的随机产生值（自增+Format）
+        /// Lấy giá trị phát sinh ngẫu nhiên của trường nghiệp vụ (tự tăng + Format)
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgIdIsStar"></param>
@@ -64,16 +64,16 @@ namespace Newtouch.EMR.Web.Controllers
             }
             return Content(new AjaxResult { state = ResultType.success.ToString(), message = null, data = value }.ToJson());
         }
-        /**
-        * 同步系统参数配置
+        /*
+Đồng bộ cấu hình tham số hệ thống
         */ 
         public ActionResult SyncSysConfigParams(string orgId)
         {
-            //基础数据
+            //Dữ liệu cơ sở
             var sysConfigBaseEntities = _sysConfigRepo.GetList("", "*").ToList();
-            //组织机构自带数据
+            //Dữ liệu sẵn có của tổ chức
             var sysConfigEntities = _sysConfigRepo.GetList("", orgId).ToList();
-            //根据code 去重
+            //Loại bỏ trùng lặp theo code
             var sysConfigCodes = new HashSet<string>(sysConfigEntities.Select(entity => entity.Code));
             var filteredEntities = sysConfigBaseEntities
                 .Where(baseEntity => !sysConfigCodes.Contains(baseEntity.Code))

@@ -21,42 +21,42 @@ namespace Newtouch.EMR.DCWriter
 
             WebWriter.Options.ControlName = "myWriterControl";
             WebWriter.DocumentOptions.ViewOptions.ShowInputFieldStateTag = false;
-            //数据校验不通过时候的背景色
+            //Màu nền khi kiểm tra dữ liệu không đạt
             WebWriter.DocumentOptions.ViewOptions.FieldInvalidateValueBackColor = Color.Yellow;
             WebWriter.DocumentOptions.BehaviorOptions.AcceptDataFormats = WriterDataFormats.Text;
 
             WebWriter.DocumentOptions.ViewOptions.PreserveBackgroundTextWhenPrint = true;
-            //用Tab键在各个输入域之间切换
+            //Dùng phím Tab để chuyển giữa các vùng nhập
             WebWriter.DocumentOptions.BehaviorOptions.MoveFocusHotKey = MoveFocusHotKeys.Tab;
-            //文档中显示段落符号的标记
+            //Dấu hiệu hiển thị ký hiệu đoạn văn trong tài liệu
             WebWriter.DocumentOptions.ViewOptions.ShowParagraphFlag = false;
-            //是否显示输入域状态标签
+            //Có hiển thị nhãn trạng thái của vùng nhập hay không
             WebWriter.DocumentOptions.ViewOptions.ShowInputFieldStateTag = true;
-            //是否关闭加密显示
+            //Có tắt hiển thị mã hóa hay không
             WebWriter.DocumentOptions.ViewOptions.EnableEncryptView = true;
-            //是否显示输入域状态标签
+            //Có hiển thị nhãn trạng thái của vùng nhập hay không
             //WebWriter.Options.BackgroundTextOutputMode = DCBackgroundTextOutputMode.Underline;
-            //内容的呈现方式
+            //Cách trình bày nội dung
             WebWriter.Options.ContentRenderMode = WebWriterControlRenderMode.NormalHtmlEditable;
 
             //DCControl.Options.ReferencePath = "dcwriterreference";
             WebWriter.Options.WorkspaceBackColorString = "#B1CAEB";
-            WebWriter.Options.WorkspaceBackColor = ColorTranslator.FromHtml("#f2f2f2");//背景色     
-            WebWriter.BorderStyle = "1px solid black";//边框样式
+            WebWriter.Options.WorkspaceBackColor = ColorTranslator.FromHtml("#f2f2f2");//Màu nền     
+            WebWriter.BorderStyle = "1px solid black";//Kiểu đường viền
             WebWriter.Options.ServicePageURL = "/MedicalRecord/HandleDCWriterServicePage";
             WebWriter.Options.IndentHtmlCode = false;
-            WebWriter.DocumentOptions.BehaviorOptions.ParagraphFlagFollowTableOrSection = true;// 取消插入表格后空行显示
-            WebWriter.Options.ImageDataEmbedInHtml = true;// 打印显示医学表达式
-            WebWriter.Options.ClientContextMenuType = WebClientContextMenuType.SystemDefault;// 显示系统默认右键菜单
+            WebWriter.DocumentOptions.BehaviorOptions.ParagraphFlagFollowTableOrSection = true;// Hủy hiển thị dòng trống sau khi chèn bảng
+            WebWriter.Options.ImageDataEmbedInHtml = true;// In hiển thị biểu thức y học
+            WebWriter.Options.ClientContextMenuType = WebClientContextMenuType.SystemDefault;// Hiển thị menu chuột phải mặc định của hệ thống
             WebWriter.DocumentOptions.BehaviorOptions.OutputFieldBorderTextToContentText = false;
-            //留痕相关设置
+            //Cài đặt liên quan đến lưu vết
             WebWriter.DocumentOptions.SecurityOptions.ShowLogicDeletedContent = true;
             WebWriter.DocumentOptions.SecurityOptions.ShowPermissionMark = true;
             WebWriter.DocumentOptions.SecurityOptions.ShowPermissionTip = true;
 
-            WebWriter.Options.UseDCWriterMiniJS = DCBooleanValueHasDefault.Default;//是否启用被压缩的DCWriterMini.js文件
-            WebWriter.Options.CompressSessionData = true;//是否压缩服务器端的会话数据
-            WebWriter.Options.CurrentLoadOptions = WebWriterControlLoadDocumentOptions.CompressSessionData;//压缩服务器端会话数据    
+            WebWriter.Options.UseDCWriterMiniJS = DCBooleanValueHasDefault.Default;//Có bật tệp DCWriterMini.js đã nén hay không
+            WebWriter.Options.CompressSessionData = true;//Có nén dữ liệu phiên phía máy chủ hay không
+            WebWriter.Options.CurrentLoadOptions = WebWriterControlLoadDocumentOptions.CompressSessionData;//Nén dữ liệu phiên phía máy chủ    
 
             return WebWriter;
         }

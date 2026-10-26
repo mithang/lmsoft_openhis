@@ -9,7 +9,7 @@ using System.Web.Http;
 namespace Newtouch.EMR.API.Controllers
 {
     /// <summary>
-    /// 授权认证
+    /// Ủy quyền và xác thực
     /// </summary>
     [RoutePrefix("api/Auth")]
     public class AuthController : ApiControllerBase<AuthController>
@@ -21,7 +21,7 @@ namespace Newtouch.EMR.API.Controllers
         }
 
         /// <summary>
-        /// 以关键信息（用户名、密码等）换取访问令牌
+        /// Đổi thông tin quan trọng (tên người dùng, mật khẩu...) lấy mã truy cập
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -31,9 +31,9 @@ namespace Newtouch.EMR.API.Controllers
         {
             Action<AuthGetTokenRequest, DefaultResponse> ac = (req, resp) =>
             {
-                //1、由request验证出用户身份
+                //1. Xác minh danh tính người dùng từ request
 
-                //2、身份存储在Redis（有一定的过期时间）
+                //2. Danh tính lưu trong Redis (có thời gian hết hạn nhất định)
                 var identity = new UserIdentity()
                 {
                     AppId = request.AppId,
@@ -45,7 +45,7 @@ namespace Newtouch.EMR.API.Controllers
                 };
                 var token = SaveIdentity(identity);
 
-                //3、返回key
+                //3. Trả về key
                 resp.data = new
                 {
                     token = token

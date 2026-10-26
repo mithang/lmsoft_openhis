@@ -5,7 +5,7 @@ using System.Web.Mvc;
 namespace Newtouch.EMR.Web.Controllers
 {
     /// <summary>
-    /// Home/Index加载时 默认加载的 缓存数据
+    /// Dữ liệu đệm tải mặc định khi tải Home/Index
     /// </summary>
     public class ClientsDataController : FrameworkBase.MultiOrg.Web.Controllers.ClientsDataController
     {
@@ -27,7 +27,7 @@ namespace Newtouch.EMR.Web.Controllers
         }
 
         /// <summary>
-        /// 获取同步的部分
+        /// Lấy phần đồng bộ
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -41,7 +41,7 @@ namespace Newtouch.EMR.Web.Controllers
         }
 
         /// <summary>
-        /// 获取异步的部分
+        /// Lấy phần không đồng bộ
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -50,8 +50,8 @@ namespace Newtouch.EMR.Web.Controllers
         {
             var data = new
             {
-                ysdataList = _blysRepo.GetYsTreeV2(OrganizeId, ""),//病历元素
-                ysmxdataList = _blysRepo.GetYsMX(OrganizeId, ""), //元素明细
+                ysdataList = _blysRepo.GetYsTreeV2(OrganizeId, ""),//Phần tử bệnh án
+                ysmxdataList = _blysRepo.GetYsMX(OrganizeId, ""), //Chi tiết phần tử
                 itemDetails = this.GetItemDetailsList(),
                 enums = this.GetEnumList("Newtouch.EMR.Infrastructure"),
             };

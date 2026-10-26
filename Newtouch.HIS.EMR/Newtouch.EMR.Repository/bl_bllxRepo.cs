@@ -10,16 +10,16 @@ using Newtouch.Infrastructure;
 namespace Newtouch.EMR.Repository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2018-08-30 11:31
-    /// 描 述：病历大类
+    /// Người tạo: chl
+    /// Ngày: 2018-08-30 11:31
+    /// Mô tả: Loại lớn bệnh án
     /// </summary>
     public class bl_bllxRepo : RepositoryBase<bl_bllxEntity>, Ibl_bllxRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public bl_bllxRepo(IDefaultDatabaseFactory databaseFactory)
             : base(databaseFactory)
         {
@@ -27,10 +27,10 @@ namespace Newtouch.EMR.Repository
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu (thêm mới, sửa đổi)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(bl_bllxEntity entity, string keyValue)
         {
             string sql = "";

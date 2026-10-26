@@ -25,7 +25,7 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public string RulesType { get; set; }
         /// <summary>
-        /// 暂填天数  应用正则
+        /// Số ngày điền tạm - áp dụng biểu thức chính quy
         /// </summary>
         /// <returns></returns>
         public int RulesDay { get; set; }

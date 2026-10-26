@@ -9,51 +9,51 @@ namespace Newtouch.EMR.Domain.ValueObjects.API
     public class MrApplyWritingVo
     {
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string PatName { get; set; }
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string Zyh { get; set; }
         /// <summary>
-        /// 床号
+        /// Số giường
         /// </summary>
         public string Bed { get; set; }
         /// <summary>
-        /// 申请科室
+        /// Khoa đề nghị
         /// </summary>
         public string ApplyDeptName { get; set; }
         /// <summary>
-        /// 申请医师
+        /// Bác sĩ đề nghị
         /// </summary>
         public string ApplyDoctorName { get; set; }
         /// <summary>
-        /// 申请科室代码
+        /// Mã khoa đề nghị
         /// </summary>
         public string ApplyDept { get; set; }
         /// <summary>
-        /// 申请医师代码
+        /// Mã bác sĩ đề nghị
         /// </summary>
         public string ApplyDoctor { get; set; }
         /// <summary>
-        /// 申请类型 1：修改病历 0：新建病历
+        /// Loại đề nghị: 1 Sửa bệnh án, 0 Tạo bệnh án mới
         /// </summary>
         public string ApplyType { get; set; }
         /// <summary>
-        /// 病历名称
+        /// Tên bệnh án
         /// </summary>
         public string MedicalName { get; set; }
         /// <summary>
-        /// 质控完成时间
+        /// Thời gian hoàn thành kiểm soát chất lượng
         /// </summary>
         public DateTime CompletionDate { get; set; }
         /// <summary>
-        /// 申请完成时间
+        /// Thời gian hoàn thành đề nghị
         /// </summary>
         public DateTime ApplyCompletionDate { get; set; }
         /// <summary>
-        /// 申请原因
+        /// Lý do đề nghị
         /// </summary>
         public string ApplyReason { get; set; }
         public DateTime? Ryrq { get; set; }

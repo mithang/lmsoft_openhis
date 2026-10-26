@@ -47,7 +47,7 @@
         });
         //top.$("a.menuTab span").show();
         top.$("a.menuTab span").click(function () {
-            $.modalConfirm("病历正在编辑...是否关闭页面？", function (flag) {
+            $.modalConfirm("Bệnh án đang được sửa...Có đóng trang hay không?", function (flag) {
                 if (flag) {
                     setTimeout(function () {
                         HMEditorLoader.destroyEditor(id);
@@ -73,7 +73,7 @@
         });
 
 
-        // 创建编辑器
+        // Tạo trình soạn thảo
         HMEditorLoader.createEditorAsync({
             container: "#editorContainer",
             id:id,
@@ -83,19 +83,19 @@
                 border: '1px solid #ddd'
             },
             editorConfig: {
-                // 编辑器配置项
+                // Mục cấu hình trình soạn thảo
             },
-            // 模式设置
-            designMode: false,  // 是否启用设计模式
+            // Cài đặt chế độ
+            designMode: false,  // Có bật chế độ thiết kế hay không
             allowModifyDatasource: true,
-            reviseMode: false,  // 是否启用修订模式
-            readOnly: false,     // 是否启用只读模式
-            customParams: {     // 自定义参数
+            reviseMode: false,  // Có bật chế độ sửa đổi hay không
+            readOnly: false,     // Có bật chế độ chỉ đọc hay không
+            customParams: {     // Tham số tùy chỉnh
 
             }
         })
         .then(function (result) {
-            // 编辑器初始化完成
+            // Khởi tạo trình soạn thảo hoàn thành
             editorInstance = result;
             $.ajax({
                 type: "POST",
@@ -115,7 +115,7 @@
                 }
             })
             editorInstance.onToolbarCommandComplete = function (command, type, data) {
-                // 根据命令类型执行不同操作
+                // Thực hiện thao tác khác nhau theo loại lệnh
                 if (command === 'save') {
                     let obj = editorInstance.getDocHtml();
                     if (obj && obj.length > 0) {
@@ -140,7 +140,7 @@
     function htmlToBase64(htmlString) {
         return btoa(unescape(encodeURIComponent(htmlString)));
     }
-    //保存病历
+    //LưuBệnh án
     function saveBaseTemplateHtml(params) {
         $.loading(true, "病历保存中...");
         $.ajax({
@@ -150,16 +150,16 @@
             dataType: "json",
             async: false,
             success: function (respdata) {
-                $.modalAlert("病历保存成功", 'success');
+                $.modalAlert("Lưu bệnh án thành công", 'success');
             },
             error: function (request, error, ex) {
                 $.loading(false);
-                $.modalAlert('病历保存失败:' + ex, 'error');
+                $.modalAlert('Lưu bệnh án thất bại:' + ex, 'error');
             }
         });
         $.loading(false);
     }
-    //加载备份历史病历
+    //Tải bệnh án lịch sử sao lưu
     function loadbackBl(backValue)
     {
         $.ajax({
@@ -178,13 +178,13 @@
                         docTplName: templateName,
                         docContent: respdata.htmldata
                     });
-                    $.modalAlert('加载完成', 'success');
+                    $.modalAlert('Tải hoàn thành', 'success');
                 }
                
             }
         })
     }
-    //医嘱插入文书
+    //Y lệnh chèn văn bản
     function insertDataAtCursor(data)
     {
         editorInstance.insertDataAtCursor(data);

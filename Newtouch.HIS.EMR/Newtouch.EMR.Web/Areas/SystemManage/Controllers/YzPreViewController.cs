@@ -34,7 +34,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         {
             //DCwriterServer dcControl = new DCwriterServer();
             //dcControl.Init();
-            //WebWriterControlEngine eng = dcControl.DCWControl;//这是上一步创建的引擎 
+            //WebWriterControlEngine eng = dcControl.DCWControl;//Đây là engine được tạo ở bước trước 
             //ViewBag.WriterControlHtml = eng.GetAllContentHtml();
             //eng.Dispose();
             return View();
@@ -47,8 +47,8 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
             public override void ExecuteResult(ControllerContext context)
             {
                 WebWriterControlServicePageExecuter executer = new WebWriterControlServicePageExecuter();
-                executer.CrossDomainSettings.Enabled = true;//是否跨域
-               // executer.EventSaveFileContent = new DCSoft.Writer.WriterSaveFileContentEventHandler(My_SaveFileContent);//事件
+                executer.CrossDomainSettings.Enabled = true;//Có vượt miền hay không
+               // executer.EventSaveFileContent = new DCSoft.Writer.WriterSaveFileContentEventHandler(My_SaveFileContent);//Sự kiện
                 executer.EventReadFileContent = new DCSoft.Writer.WriterReadFileContentEventHandler(My_ReadFileContent);
                 if (executer.HandleService())
                 {
@@ -56,7 +56,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
                 }
             }
             /// <summary>
-            /// 加载模板
+            /// Tải mẫu
             /// </summary>
             /// <param name="eventSender"></param>
             /// <param name="args"></param>
@@ -73,13 +73,13 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
                     byte[] bs = System.IO.File.ReadAllBytes($"{ml}{filename}");
                     args.ResultBinary = bs;
                     
-                    //args.Message = "加载以后的返回信息";//传递给前端的信息 
+                    //args.Message = "Thông tin trả về sau khi tải";//Thông tin truyền cho frontend 
                     args.Handled = true;
                 }
 
             }
             /// <summary>
-            /// 保存模板
+            /// Lưu mẫu
             /// </summary>
             /// <param name="sender"></param>
             /// <param name="args"></param>
