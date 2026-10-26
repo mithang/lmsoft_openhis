@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "输液信息";
+    ViewBag.Title = "Thông tin truyền dịch";
     Layout = "~/Views/Shared/_mobileIndex.cshtml";
 }
 <style>
@@ -37,16 +37,16 @@
             <span style="margin-left:0.1rem;">@ViewBag.patInfo.kh</span>
         </h1>
         <div style="font-size:0.35rem;color:#808080; margin-top:0.1rem;">
-            <span>座号/床号：</span>
+            <span>Số ghế/Số giường:</span>
             <span style="color:#ff6a00;font-size:0.4rem;">@ViewBag.patInfo.seatNum</span>
         </div>
         <div style="font-size:0.35rem;color:#808080; margin-top:0.1rem;">
             <div>
-                <span>开始时间：</span>
+                <span>Thời gian bắt đầu:</span>
                 <span>@(ViewBag.patInfo.sykssj == null ? "" : ((DateTime)ViewBag.patInfo.sykssj).ToString("yyyy-MM-dd HH:mm:ss"))</span>
             </div>
             <div>
-                <span>结束时间：</span>
+                <span>Thời gian kết thúc:</span>
                 <span>@(ViewBag.patInfo.syjssj == null ? "" : ((DateTime)ViewBag.patInfo.syjssj).ToString("yyyy-MM-dd HH:mm:ss"))</span>
             </div>
         </div>
@@ -59,24 +59,24 @@
                 <li>
                     <div style="width:100%;display:inline-block;">
                         <div style="float:left;vertical-align:middle;color:#ff0000; font-size:0.45rem; line-height:1.5rem;">
-                            组：<span>@item.groupNo</span>
+                            Nhóm:<span>@item.groupNo</span>
                         </div>
                         <div style="float:right;">
                             <div style="font-size:0.4rem;text-align:right;color:#000000;">@item.ypmc</div>
                             <div>
-                                收费时间：<span>@item.sfsj.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                                Thời gian thu phí:<span>@item.sfsj.ToString("yyyy-MM-dd HH:mm:ss")</span>
                             </div>
                             <div>
-                                处方号：<span>@item.cfh</span>
+                                Số đơn thuốc:<span>@item.cfh</span>
                             </div>
                         </div>
                     </div>
                     <div style="width:100%;display:inline-block;">
                         <div>
-                            规格:<span style="margin-right:0.1rem;">@item.ypgg</span>
-                            数量:<span style="margin-right:0.1rem;">@item.slStr</span>
-                            用量:<span style="margin-right:0.1rem;">@item.ylStr</span>
-                            剂量:<span>@item.jlStr</span>
+                            Quy cách:<span style="margin-right:0.1rem;">@item.ypgg</span>
+                            Số lượng:<span style="margin-right:0.1rem;">@item.slStr</span>
+                            Lượng dùng:<span style="margin-right:0.1rem;">@item.ylStr</span>
+                            Liều lượng:<span>@item.jlStr</span>
                         </div>
                     </div>
                 </li>

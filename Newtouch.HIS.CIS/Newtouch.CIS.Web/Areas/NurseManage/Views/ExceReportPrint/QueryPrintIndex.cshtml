@@ -48,23 +48,23 @@
     <div class="dv-left">
         <div class="panel panel-default">
             <div class="panel-heading navb-bg">
-                筛选条件
+                Điều kiện lọc
             </div>
             <table class="form" style="width:95%">
                 <tbody>
                     <tr>
-                        <th class="formTitle">姓名/住院号：</th>
+                        <th class="formTitle">Họ tên/Số nhập viện:</th>
                         <td class="formValue">
                             <input id="keyword" type="text" class="form-control">
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">在院状态：</th>
+                        <th class="formTitle">Trạng thái tại viện:</th>
                         <td class="formValue formDdlSelectorTd">
                             <select class="form-control" id="zyzt">
-                                <option value="">全部</option>
-                                <option value="zy" selected>在院</option>
-                                <option value="cy">出院</option>
+                                <option value="">Tất cả</option>
+                                <option value="zy" selected>Tại viện</option>
+                                <option value="cy">Xuất viện</option>
                             </select>
                         </td>
                     </tr>
@@ -72,22 +72,22 @@
             </table>
         </div>
         <div class="dv-left-title">
-            患者列表
+            Danh sách bệnh nhân
         </div>
         <div class="dv-left-tree" id="PatTreeList"></div>
     </div>
     <div class="dv-right">
         <table class="form" style="background-color:white">
             @*<tr>
-                <td class="formTitle">姓名：</td>
+                <td class="formTitle">Họ tên:</td>
                 <td class="formValue"><label id="hzxm"></label></td>
-                <td class="formTitle">性别：</td>
+                <td class="formTitle">Giới tính:</td>
                 <td class="formValue" style="width:170px"><label id="sex"></label></td>
-                <td class="formTitle">年龄：</td>
+                <td class="formTitle">Tuổi:</td>
                 <td class="formValue"><label id="nl"></label></td>
             </tr>*@
             <tr>
-                <td class="formTitle"> 执行日期：</td>
+                <td class="formTitle"> Ngày thực hiện:</td>
                 <td class="formValue">
                     <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" style="width:100%;"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"
@@ -101,13 +101,13 @@
                                onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd 23:59:59")" />
                     </td>
                 <td class="formTitle">
-                    执行类别：
+                    Loại thực hiện:
                 </td>
                 <td class="formValue">
                     <select class="form-control" id="zxdlb">
-                        <option value="">请选择</option>
-                        <option value="ypbj">药品标签</option>
-                        <option value="jyztdy">检验组套标签</option>
+                        <option value="">Vui lòng chọn</option>
+                        <option value="ypbj">Nhãn thuốc</option>
+                        <option value="jyztdy">Nhãn bộ mẫu xét nghiệm</option>
                     </select>
 
                 </td>
@@ -115,19 +115,19 @@
 
                     <div class="btn-group">
                         <a id="btn_search" class="btn btn-primary">
-                            查询
+                            Tra cứu
                         </a>
                     </div>
-                    <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="qb" />全部</label>
-                    <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" value="2" />长期</label>
-                    <label><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" value="1" />临时</label>
+                    <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="qb" />Tất cả</label>
+                    <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" value="2" />Dài hạn</label>
+                    <label><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" value="1" />Tạm thời</label>
                 </td>
 
                 <td class="formTitle">
                     
                     <div class="btn-group">
                         <a id="ExecutionChecked" class="btn btn-primary" onclick="ExecutionChecked()">
-                            <i class="fa fa-pencil-square-o"></i>打印
+                            <i class="fa fa-pencil-square-o"></i>In
                         </a>
                     </div>
                 </td>
@@ -150,7 +150,7 @@
     var zyh = "";
 
     $(function () {
-        $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+        $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt thì tính lại chiều rộng và chiều cao
             $(".dv-body").height($(window).height());
             $(".dv-body").width($(window).width());
         });
@@ -159,7 +159,7 @@
         getPatTreeList();
         gridList("");
 
-        //搜索病人信息
+        //Tìm kiếm thông tin bệnh nhân
         $('#keyword').keyup(function () {
             getPatTreeList();
         });
@@ -179,7 +179,7 @@
             //        zyh = item.value;
             //        $('#hzxm').html(item.Ex4);
             //        $('#sex').html($.getGender(item.Ex2));
-            //        $('#nl').html(item.Ex3+"岁");
+            //        $('#nl').html(item.Ex3+"tuổi");
             //        $('#gridList').jqGrid('setGridParam', {
             //            postData: { zyh: zyh, zxsj: $('#txt_zxrq').val(), zxdlb: $('#zxdlb').val()  }
             //        }).trigger("reloadGrid");
@@ -228,9 +228,9 @@
 
         var patzyh = "";
 
-        //当前选中父节点
+        //Nút cha đang được chọn hiện tại
         var len = 0;
-        var single = 0; //是否单个子节点
+        var single = 0; //Có phải là nút con đơn lẻ không
 
         if (item != null && item.Ex1 == "p") {
             patlistFath = item.ChildNodes;
@@ -242,7 +242,7 @@
             single = 1;
         }
 
-        //选中节点
+        //Nút đã chọn
         for (var i = 0; i < patlist.length; i++) {
             if (patlist[i].Ex1 == "c") {
                 patzyh += patlist[i].value + ",";
@@ -290,7 +290,7 @@
         $('#gridList').newtouchLocalDataGrid(null, orderList);
     }
 
-    //级联选中所有子节点
+    //Chọn xếp tầng tất cả các nút con
     function checkAllSon(node) {
         $('#BqTreeList').treeview('checkNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -299,7 +299,7 @@
             }
         }
     }
-    //级联取消所有子节点
+    //Hủy chọn xếp tầng tất cả các nút con
     function uncheckAllSon(node) {
         $('#BqTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -320,14 +320,14 @@
             url: "@Url.Action("QueryExecDetailGridJson")",
             height: $(window).height() - 125,
             colModel: [
-                { label: '医嘱ID', name: 'yzId', align: 'center', width: 50, key: true, hidden: true },
-                { label: '姓名', name: 'hzxm', align: 'center', width: 50 },
-                { label: '长临', name: 'clbz', align: 'center', width: 30},
-                { label: '医嘱号', name: 'yzh', align: 'center', width: 120 },
-	            { label: '领药序号', name: 'lyxh', align: 'center',width: 60  },
-                { label: '分组号', name: 'zh', align: 'center', width: 50 },
+                { label: 'Y lệnhID', name: 'yzId', align: 'center', width: 50, key: true, hidden: true },
+                { label: 'Họ tên', name: 'hzxm', align: 'center', width: 50 },
+                { label: 'Dài hạn, tạm thời', name: 'clbz', align: 'center', width: 30},
+                { label: 'Số y lệnh', name: 'yzh', align: 'center', width: 120 },
+	            { label: 'Số thứ tự nhận thuốc', name: 'lyxh', align: 'center',width: 60  },
+                { label: 'Số nhóm', name: 'zh', align: 'center', width: 50 },
                 {
-                    label: '是否计费', name: 'isjf', align: 'center', width: 50, formatter: function (val) {
+                    label: 'Có tính phí không', name: 'isjf', align: 'center', width: 50, formatter: function (val) {
                         if (val == "0") {
                             return "否";
                         }
@@ -336,10 +336,10 @@
                         }
                     }
                 },
-                { label: '医嘱', name: 'yznr', align: 'center', width: 250 },
-                { label: '最后执行时间', name: 'zxsj', align: 'center', width: 120, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '审核者', name: 'shz', align: 'center', width: 55 },
-                { label: '执行者', name: 'zxz', align: 'center', width: 55 },
+                { label: 'Y lệnh', name: 'yznr', align: 'center', width: 250 },
+                { label: 'Thời gian thực hiện lần cuối', name: 'zxsj', align: 'center', width: 120, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Người duyệt', name: 'shz', align: 'center', width: 55 },
+                { label: 'Người thực hiện', name: 'zxz', align: 'center', width: 55 },
                 { label: 'yzlx', name: 'yzlx', align: 'center', hidden: true },
                 { label: 'ypyfdm', name: 'ypyfdm', align: 'center', hidden: true }
             ],
@@ -354,7 +354,7 @@
                     var rowData = $("#gridList").jqGrid('getRowData', rowIndex);
                     var ids = $("#gridList").jqGrid('getRowData_AllLine');
 
-                    liststu = s; //同步状态
+                    liststu = s; //Trạng thái đồng bộ
                     for (var i = 0; i < ids.length; i++) {
                     	if ("zld" == $('#zxdlb').val()) {
 		                    if (ids[i].lyxh == rowData.lyxh && ids[i].lyxh != "") {
@@ -395,15 +395,15 @@
                 if (list.length > 0) {
 
                     for (j = j; j < list.length; j++) {
-                        if (liststu) //同组选中
+                        if (liststu) //Chọn cùng nhóm
                         {
                             j = j + 1;
                             $("#gridList").jqGrid("setSelection", list[j - 1], true);
 
                         }
-                        else { //同组取消选中
+                        else { //Hủy chọn cùng nhóm
                             //j = j + 1;
-                            $("#gridList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow
+                            $("#gridList").jqGrid("setSelection", list[j], false);      //Hủy không kích hoạtonselectrow
                         }
 
                     }
@@ -416,23 +416,23 @@
             },
         });
     }
-    //刷新医嘱
+    //Làm mới y lệnh
     function RefreshOrder() {
         $('#gridList').jqGrid("clearGridData");
         getOrderExecutionList(null, null);
     }
 
-    //打印
+    //In
     function ExecutionChecked() {
-        //选中的id
+        //đã chọnid
         var selRowIds = jQuery("#gridList").jqGrid("getGridParam", "selarrrow");
         if (selRowIds == null || selRowIds.length == 0) {
-            $.modalAlert("请先选中需打印的医嘱", 'warning');
+            $.modalAlert("Vui lòng chọn trước y lệnh cần in", 'warning');
             return;
         }
         var zxdlb = $('#zxdlb').val();
         if (!zxdlb) {
-            $.modalAlert("请先选择执行单类别", 'warning');
+            $.modalAlert("Vui lòng chọn trước loại phiếu thực hiện", 'warning');
             return;
         }
         var printed = [];
@@ -444,7 +444,7 @@
         var orgId = '@(ViewBag.OrgId)';
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
-                if ($.inArray(rowData.yzh, printed) < 0) {//同一批已打印过，则不再弹出
+                if ($.inArray(rowData.yzh, printed) < 0) {//Cùng một lô đã in rồi thì không bật lên nữa
                     if (zxdlb === "jyd" || zxdlb === "jcd") {
                         var rpturl = zxdlb === "jyd" ? reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%E8%B4%B5%E5%AE%89%E4%BD%8F%E9%99%A2%E6%A3%80%E9%AA%8C%E7%94%B3%E8%AF%B7%E5%8D%95&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&yzdh=" + rowData.yzh + "&zyh=" + zyh + "&orgId=" + orgId + "&yzzt=2" : reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%E4%BD%8F%E9%99%A2%E6%A3%80%E6%9F%A5%E7%94%B3%E8%AF%B7%E5%8D%95&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&yzdh=" + rowData.yzh + "&zyh=" + zyh + "&orgId=" + orgId;
                         $.ajax({
@@ -459,9 +459,9 @@
                             }
                         });
                         //window.open(reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%E8%B4%B5%E5%AE%89%E4%BD%8F%E9%99%A2%E6%A3%80%E9%AA%8C%E7%94%B3%E8%AF%B7%E5%8D%95&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&yzdh=" + rowData.yzh + "&zyh=" + zyh + "&orgId=" + orgId + "&yzzt=2", "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
-                    }  else if (zxdlb === "zsz") {//注射证
+                    }  else if (zxdlb === "zsz") {//Chứng nhận tiêm
                         window.open(reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%E8%B4%B5%E5%AE%89%E4%BD%8F%E9%99%A2%E6%B3%A8%E5%B0%84%E5%8D%95&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&yzdh=" + rowData.yzh + "&zyh=" + zyh + "&orgId=" + orgId, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
-                    } else if (zxdlb === "whd") {//雾化单
+                    } else if (zxdlb === "whd") {//Phiếu khí dung
                         window.open(reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%E8%B4%B5%E5%AE%89%E4%BD%8F%E9%99%A2%E9%9B%BE%E5%8C%96%E5%8D%95&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&yzdh=" + rowData.yzh + "&zyh=" + zyh + "&orgId=" + orgId, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
                     } else if (rowData.yzlx == '@((int)EnumYzlx.Yp)' || rowData.yzlx == '@((int)EnumYzlx.Cydy)' || rowData.yzlx=='@((int)EnumYzlx.zcy)') {
                         //window.open(reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%E9%95%BF%E4%B8%B4%E5%8C%BB%E5%98%B1%E8%8D%AF%E5%93%81%E7%94%B3%E8%AF%B7%E5%8D%95&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&lyxh=0&zxrq=" + $('#txt_zxrq').val() + "&yzh=" + rowData.yzh + "&orgId=" + orgId, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");

@@ -1,6 +1,6 @@
 ﻿@model dynamic
 @{
-    ViewBag.Title = "瓶贴打印";
+    ViewBag.Title = "In nhãn chai";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
@@ -35,39 +35,39 @@
 </style>
 <form>
     <div style="position:fixed;top:321px;left:50px;cursor:pointer;">
-        <img id="print" src="@SiteUrl.GetStaticResourceScriptUrl("~/img/print.png")" title="打印" alt="打印" />
+        <img id="print" src="@SiteUrl.GetStaticResourceScriptUrl("~/img/print.png")" title="In" alt="In" />
     </div>
     <table id="tb_pat">
         <tr>
-            <th style="width:37px;">姓名：</th>
+            <th style="width:37px;">Họ tên:</th>
             <td style="width:50px;">@ViewBag.patInfo.patientName</td>
-            <th style="width:55px;">床/座号：</th>
+            <th style="width:55px;">Giường/Số ghế:</th>
             <td style="width:75px;">@ViewBag.patInfo.seatNum</td>
             <th rowspan="3" style="width: 50px; height: 49px;">
                 <img id="imgqr" src="@ViewBag.src" />
             </th>
         </tr>
         <tr>
-            <th>年龄：</th>
+            <th>Tuổi:</th>
             <td></td>
-            <th>配药：</th>
+            <th>Pha thuốc:</th>
             <td>@ViewBag.patInfo.dispenserName</td>
         </tr>
         <tr>
-            <th>执行：</th>
+            <th>Thực hiện:</th>
             <td>@ViewBag.patInfo.executorName</td>
-            <th>时间：</th>
+            <th>Thời gian:</th>
             <td></td>
         </tr>
         <tr><td style="border-bottom:1px solid #000000;border-top:1px solid #000000; padding:1px 0;" colspan="5"></td></tr>
     </table>
     <table id="tb_yp">
         <tr>
-            <th style="width:100px;">药品</th>
-            <th style="width:52px;">规格</th>
-            <th style="width:40px;">用量</th>
-            <th style="width:40px;">数量</th>
-            <th style="width:40px;">剂量</th>
+            <th style="width:100px;">Thuốc</th>
+            <th style="width:52px;">Quy cách</th>
+            <th style="width:40px;">Lượng dùng</th>
+            <th style="width:40px;">Số lượng</th>
+            <th style="width:40px;">Liều lượng</th>
         </tr>
         <tr><td style="border-bottom:1px solid #000000; padding:1px 0;" colspan="5"></td></tr>
         @foreach (var item in ViewBag.drugs)

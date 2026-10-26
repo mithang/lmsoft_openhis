@@ -18,7 +18,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         private readonly IOutpatientQueryDmnService _outpatientQueryDmnService;
         #region 页面
         /// <summary>
-        /// 门诊就诊记录
+        /// Hồ sơ khám ngoại trú
         /// </summary>
         /// <returns></returns>
         public ActionResult ConsultRecord()
@@ -29,7 +29,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
 
         /// <summary>
-        /// 门诊就诊详情
+        /// Chi tiết khám ngoại trú
         /// </summary>
         /// <returns></returns>
         public ActionResult ConsultDetail()
@@ -39,7 +39,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             return View();
         }
         /// <summary>
-        /// 查询门诊详细资料
+        /// Tra cứu thông tin chi tiết ngoại trú
         /// </summary>
         /// <returns></returns>
         public ActionResult QueryOutpatientDetail()
@@ -49,7 +49,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             return View();
         }
         /// <summary>
-        /// 查询门诊预约记录
+        /// Tra cứu hồ sơ hẹn khám ngoại trú
         /// </summary>
         /// <returns></returns>
         public ActionResult QueryOutpatientReservation()

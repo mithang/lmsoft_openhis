@@ -37,7 +37,7 @@ namespace Newtouch.CIS.Web.Areas.QueueManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 排队状态修改
+        /// Sửa trạng thái xếp hàng
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="calledstu"></param>

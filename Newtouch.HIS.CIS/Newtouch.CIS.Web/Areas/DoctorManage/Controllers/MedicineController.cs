@@ -51,7 +51,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// 医嘱保存
+        /// Lưu y lệnh
         /// </summary>
         /// <param name="reqdoctorservices"></param>
         /// <param name="deldata"></param>
@@ -71,7 +71,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// 修改医嘱时，根据医嘱Id获取详情
+        /// Khi sửa y lệnh, dựa theo y lệnhIdLấy chi tiết
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="yzlx"></param>
@@ -105,7 +105,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             
         }
         /// <summary>
-        /// 医嘱诊断
+        /// Chẩn đoán y lệnh
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -116,7 +116,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             return View();
         }
         /// <summary>
-        /// 构造并调用接口 获取最新库存数量
+        /// Xây dựng và gọi giao diện Lấy số lượng tồn kho mới nhất
         /// </summary>
         /// <param name="ypcode"></param>
         /// <returns></returns>
@@ -135,7 +135,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                 var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/query", request, autoAppendToken: false);
                 if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS && apires.data != null)
                 {
-                    StockQueryResponseDTO successDoOrder = Tools.Json.ToObject<StockQueryResponseDTO>(apires.data.ToString()); //接口返回数据 
+                    StockQueryResponseDTO successDoOrder = Tools.Json.ToObject<StockQueryResponseDTO>(apires.data.ToString()); //Dữ liệu giao diện trả về 
                     if (successDoOrder != null && successDoOrder.drugStockInfos.Count > 0)
                     {
                         //List<DrugStockInfo> successDoOrderYp = Tools.Json.ToList<DrugStockInfo>();
@@ -163,7 +163,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// 事前提醒
+        /// Nhắc nhở trước
         /// </summary>
         /// <param name="reqdoctorservices"></param>
         /// <returns></returns>
@@ -196,7 +196,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             return Success();
         }
         /// <summary>
-        /// 事前审核接口
+        /// Giao diện duyệt trước
         /// </summary>
         /// <param name="reqdoctorservices"></param>
         /// <returns></returns>
@@ -212,7 +212,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             return Success(response);
         }
         /// <summary>
-        /// 审核单据删除
+        /// Xóa chứng từ duyệt
         /// </summary>
         /// <returns></returns>
         public ActionResult DeletePriorReview(string zyh,string yzid,string yzlx,string GetMAC)
@@ -221,7 +221,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             return Success(response);
         }
         /// <summary>
-        /// 诊断查询服务接口
+        /// Giao diện dịch vụ tra cứu chẩn đoán
         /// </summary>
         /// <returns></returns>
         public ActionResult GetDiagnoseData()
@@ -230,7 +230,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             return Success(response);
         }
         /// <summary>
-        /// 病案审核服务
+        /// Dịch vụ duyệt bệnh án
         /// </summary>
         /// <param name="reqdoctorservices"></param>
         /// <returns></returns>
@@ -240,7 +240,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             return Success(response);
         }
         /// <summary>
-        /// DRG服务
+        /// DRGDịch vụ
         /// </summary>
         /// <param name="reqdoctorservices"></param>
         /// <returns></returns>
@@ -252,7 +252,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         
         
         /// <summary>
-        /// 获取医嘱合理用药信息接口
+        /// Lấy giao diện thông tin sử dụng thuốc hợp lý của y lệnh
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="yzId"></param>
@@ -261,7 +261,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// <exception cref="FailedException"></exception>
         public ActionResult GetYzHlyy(List<DoctorServiceRequestDto> reqdoctorservices, string yzh)
         {
-            // 创建一个外部的 request 实例，只需要一个
+            // Tạo một bên ngoài request thể hiện, chỉ cần một
             var request = new EngineReq
             {
                 Type = "prescription",
@@ -321,7 +321,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                 string yzId = null;
                 var yzlx = doctorServiceRequestDto.yzlb;
 
-                // 根据医嘱类型获取 yzId
+                // Lấy theo loại y lệnh yzId
                 if (yzlx.Equals("长"))
                 {
                     var entity = _inpatientLongTermOrderRepo.FindEntity(p =>
@@ -339,7 +339,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                 var data = _doctorserviceApp.GetYZDetail(zyh, yzId, yzlx, OrganizeId);
                 var orgId = XMLSerializer.GenerateShortUUIDFromString(OrganizeId);
 
-                // 更新 patient 信息
+                // Cập nhật patient Thông tin
                 request.Patient.DepartID = data.patientInfo.ksdm;
                 request.Patient.Department = data.patientInfo.ksmc;
                 request.Patient.PatientNo = data.patientInfo.zyh + '_' + orgId;
@@ -352,7 +352,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                 request.Patient.DocName = data.patientInfo.ysxm;
                 
                 var pres = new Prescription();
-                // 循环添加 prescriptions
+                // Thêm theo vòng lặp prescriptions
                 data.DoctorServiceUIRequestDto.ForEach(val =>
                 {
                     var ypjx = _medicalRecordDmnService.GetYpjx(val.xmdm, UserIdentity.OrganizeId);
@@ -367,7 +367,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                         PackUnit = val.dw,
                         UnitPrice = "",
                         Amount = "",
-                        GroupNo = val.zh.ToString(), // 表示同组
+                        GroupNo = val.zh.ToString(), // Biểu thị cùng nhóm
                         FirstUse = "",
                         PrepForm = ypjx ?? "",
                         AdminRoute = val.yfmcval,
@@ -392,7 +392,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                 });
                 prescriptions.Add(pres);
             } 
-            // 把 prescriptions 添加到 request
+            // 把 prescriptions Thêm vào request
             request.Prescriptions = prescriptions;
             var hlyyProxy = new HlyyProxy();
             var engineRes = hlyyProxy.engine(request);
@@ -400,7 +400,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
        
         /// <summary>
-        /// 获取合理用药药品说明书
+        /// Lấy hướng dẫn sử dụng thuốc hợp lý
         /// </summary>
         /// <param name="drugId"></param>
         /// <returns></returns>

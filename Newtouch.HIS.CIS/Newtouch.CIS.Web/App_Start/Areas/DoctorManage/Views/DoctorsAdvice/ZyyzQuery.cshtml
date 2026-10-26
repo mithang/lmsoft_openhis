@@ -17,9 +17,9 @@
         border: 1px solid #ddd;
     }
 </style>
-@*导航栏*@
+@*Thanh điều hướng*@
 <ul class="nav nav-tabs navb-bg" id="myTab" style="position:fixed;top:0;z-index:100009;width:99%">
-    <li role="presentation"><a href="#linkyzcx" role="tab" data-toggle="tab">医嘱查询</a></li>
+    <li role="presentation"><a href="#linkyzcx" role="tab" data-toggle="tab">Tra cứu y lệnh</a></li>
 </ul>
 <div id="divPatientBasicInfo" style="position: fixed;top: 0px;z-index: 100009;width: 29%;line-height: 40px;font-size: 18px;white-space: nowrap;text-overflow: ellipsis;background: #e9f6fe;right: 1.2%;text-align:right;padding-right: 18px;display:none;color:#07bbf1;">
 </div>
@@ -32,12 +32,12 @@
 <script>
     window.alldataArray = [];
     var transferbool = false;
-    $('#myTab a:first').trigger('click'); //初始化显示哪个tab
+    $('#myTab a:first').trigger('click'); //Khởi tạo hiển thị mục nàotab
 
     var currentobj = JSON.parse(sessionStorage.getItem('currentobj'));
     if (currentobj) {
         //sessionStorage.removeItem("currentobj");
-        $('#myTab a:first').trigger('click'); //初始化显示哪个tab
+        $('#myTab a:first').trigger('click'); //Khởi tạo hiển thị mục nàotab
         showPatientBasicInfo();
     }
 
@@ -60,11 +60,11 @@
         });
     }
 
-    //验证当前操作是否存在病人
+    //Xác minh thao tác hiện tại có bệnh nhân không
     function patobjValidate() {
-        //当前是否选中病人
+        //Hiện có chọn bệnh nhân không
         if (currentobj == undefined || currentobj.zyh == "" || isNaN(currentobj.zyh)) {
-            $.modalAlert("缺少病人", 'warning');
+            $.modalAlert("Thiếu bệnh nhân", 'warning');
             return false;
         }
         return true;
@@ -132,10 +132,10 @@
     }
 
     function confirm(TargetHref) {
-        $.modalConfirm("当前页面还有医嘱数据未保存，是否仍需跳转?", function (flag) {
+        $.modalConfirm("Trang hiện tại còn dữ liệu y lệnh chưa lưu, có vẫn cần chuyển trang không?", function (flag) {
             if (flag) {
                 transferbool = true;
-                $('#myTab a[href="' + TargetHref + '"]').trigger('click'); //初始化显示哪个tab
+                $('#myTab a[href="' + TargetHref + '"]').trigger('click'); //Khởi tạo hiển thị mục nàotab
             }
             return false;
         });
@@ -143,10 +143,10 @@
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             $('#floatPreTemplateTree').hide();
             var targetHref = $(e.target).attr('href');
-            if (targetHref.indexOf('linkjy') == -1 && targetHref.indexOf('linkjc') == -1) {     //检验检查页
+            if (targetHref.indexOf('linkjy') == -1 && targetHref.indexOf('linkjc') == -1) {     //Trang xét nghiệm kiểm tra
                 $('#floatInspectTemplateTree').hide();
             } else {
-                $('#floatInspectTemplateTree').show();   //显示检验检查模板树
+                $('#floatInspectTemplateTree').show();   //Hiển thị cây mẫu xét nghiệm kiểm tra
             }
             transferPage($(this).attr('href'));
             transferbool = false;
@@ -234,7 +234,7 @@
         { color: '#2d61d9', zhcolor: ['#17194c', '#002c8b', '#2d61db', '#6a8ee4', '#97b8e5'] }
     ];
 
-    //获取处方呈现颜色
+    //Lấy màu hiển thị đơn thuốc
     function getZhColor(zh) {
         var matched = $.jsonWhere(cfColorArr, function (v) {
             if (v.zh === zh) {
@@ -260,14 +260,14 @@
             cfColorArr.push({ zh: zh, color: thisColor });
             return thisColor;
         }
-        return '#ddd';  //颜色用完了 默认一个颜色
+        return '#ddd';  //Đã hết màu Mặc định một màu
     }
 
-    //计算频次数量
+    //Tính số lượng tần suất
     function getpcsl(zxcs, zxzq, zxzqdw)
     {
         if (isNaN(zxzqdw) || zxzqdw=="") {
-            $.modalAlert("执行周期单位不能为空", 'error');
+            $.modalAlert("Đơn vị chu kỳ thực hiện không được trống", 'error');
             return;
         }
         var rtnsl;
@@ -288,16 +288,16 @@
         return rtnsl;
     }
 
-    //计算药品数量
+    //Tính số lượng thuốc
     function getypsl(jlzhxs, zyzhxs, ypjl, dwlb, zxcs, zxzq, zxzqdw, ts, qzfs)
     {
         var zysl = 0;
         if (isNaN(dwlb) || dwlb == "") {
-            $.modalAlert("单位类别不能为空", 'error');
+            $.modalAlert("Loại đơn vị không được trống", 'error');
             return;
         }
-        var qzint = ypjl * ts;//默认住院单位 ，不需转换
-        if (dwlb == 1) {//剂量单位 转换成剂量单位
+        var qzint = ypjl * ts;//Đơn vị nhập viện mặc định , không cần chuyển đổi
+        if (dwlb == 1) {//Đơn vị liều lượng Chuyển đổi thành đơn vị liều lượng
             qzint = (ypjl * ts / jlzhxs / zyzhxs);
         }
         if (qzfs == "day") {
@@ -312,7 +312,7 @@
         patobjValidate();
         $.modalOpen({
             id: "CurrentdayView",
-            title: "当日医嘱列表",
+            title: "Danh sách y lệnh trong ngày",
             url: "/DoctorManage/Orginal/CurrentdayView?zyh=" + currentobj.zyh,
             width: "800px",
             height: "370px",
@@ -322,11 +322,11 @@
         });
     }
 
-    //另存为模板
+    //Lưu thành mẫu khác
     function saveAsTemplate(mbObj,mxList){
         $.modalOpen({
             id: "Form",
-            title: "套餐",
+            title: "Gói",
             url: "/DoctorManage/DoctorsAdvice/Form",
             width: "400px",
             height: "300px",
@@ -345,7 +345,7 @@
                     data: { mbObj: mbObj, mxList: mxList },
                     type: "POST",
                     success: function (data) {
-                        $.modalMsg("保存成功", 'success');
+                        $.modalMsg("Lưu thành công", 'success');
                         $("#beveltabs a:first").trigger('click');
                     }
                 });
@@ -353,7 +353,7 @@
         });
     }
 
-    //清空 所有文本、处方、历史处方、grid列表
+    //Xóa sạch Tất cả văn bản, đơn thuốc, đơn thuốc lịch sử,gridDanh sách
     function newtouch_event_f4() {
         window.alldataArray = [];
     }

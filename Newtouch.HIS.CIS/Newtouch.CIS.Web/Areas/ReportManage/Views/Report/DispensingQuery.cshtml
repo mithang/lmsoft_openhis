@@ -2,7 +2,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Form.cshtml";
 
-    //收据报表链接
+    //Liên kết báo cáo biên lai
     //var reportUrl = SysConfigReader.OrgReportLink();
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
     var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
@@ -11,18 +11,18 @@
 <form>
         <div class="panel panel-default">
             <div class="panel-heading navb-bg">
-                筛选条件
+                Điều kiện lọc
             </div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">查询日期：</th>
+                    <th class="formTitle">Ngày tra cứu:</th>
                     <td class="formValue" colspan="2">
                         <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         <span style="margin-left:1%;float:left">—</span>
                         <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     </td>
                     <td class="formValue">
-                        <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="查询" />
+                        <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tra cứu" />
                     </td>
                     <th class="formTitle"></th>
                     <td class="formValue"></td>
@@ -37,13 +37,13 @@
                 <table id="gridJSMXList"></table>
                 <div id="gridPatPager"></div>
             </div>
-        <input type="button" id="HZQD" class="btn btn-primary" style="width:60px;float:right;" value="打印" />
+        <input type="button" id="HZQD" class="btn btn-primary" style="width:60px;float:right;" value="In" />
 
 </form>
 
 <script>
     var bysj = "";
-    var last = "";//上一个组号
+    var last = "";//Số nhóm trước
 
     $(function () {
         gridList();
@@ -56,10 +56,10 @@
             height: 180,
             postData: getpostData(),
             colModel: [
-                { label: '摆药时间', name: 'bysj', width: 150, align: 'left' },
-                { label: '护理单元', name: 'hldy', width: 100, align: 'left' },
-                { label: '调剂者', name: 'tjz', width: 80, align: 'left' },
-                { label: '医嘱数目', name: 'yzsm', width: 60, align: 'left' },
+                { label: 'Thời gian xếp thuốc', name: 'bysj', width: 150, align: 'left' },
+                { label: 'Đơn vị điều dưỡng', name: 'hldy', width: 100, align: 'left' },
+                { label: 'Người pha chế', name: 'tjz', width: 80, align: 'left' },
+                { label: 'Số lượng y lệnh', name: 'yzsm', width: 60, align: 'left' },
             ],
             pager: "#gridPager",
             sortname: 'bysj desc',
@@ -76,7 +76,7 @@
         });
 
         $("#btn_search").click(function () {
-            $('#gridJSMXList').jqGrid("clearGridData");//先清空明细
+            $('#gridJSMXList').jqGrid("clearGridData");//Xóa chi tiết trước
             $gridList.jqGrid('setGridParam', {
                 postData: getpostData(),
                 url: "/NurseManage/WardMaintenance/GetDispensingItems",
@@ -92,7 +92,7 @@
         };
     }
     var lastxm = null;
-    //单击事件
+    //Sự kiện nhấn
     function btn_selectrow() {
 
         var bysj = $("#gridList").jqGridRowValue().bysj;
@@ -110,29 +110,29 @@
             height: $(window).height() - 370,
             colModel: [
                 {
-                    label: '姓名', name: 'xm', width: 60,  align: 'center',
+                    label: 'Họ tên', name: 'xm', width: 60,  align: 'center',
                     cellattr: function (rowId, tv, rawObject, cm, rdata) {
                         return 'id=\'xm' + rowId + "\'";
                     }
                 },
-                { label: '床标号', name: 'cw', width: 50, align: 'left' },
-                { label: '病人ID', name: 'zyh', width: 50, align: 'left' },
-                { label: '同组', name: 'zh', align: 'center', width: 30 },
-                { label: '医嘱', name: 'yznr', width: 160, align: 'left' },
-                { label: '剂量', name: 'jl', width: 50, align: 'left' },
-                { label: '频次', name: 'pc', width: 50, align: 'left' },
-                { label: '数量', name: 'sl', width: 40, align: 'left' },
-                { label: '单位', name: 'dw', width: 40, align: 'left' },
-                { label: '执行时间', name: 'zxsj', width: 140, align: 'left' },
-                { label: '药品名称', name: 'ypmc', width: 160, align: 'left' },
-                { label: '规格', name: 'ypgg', width: 80, align: 'left' },
-                { label: '厂家', name: 'ycmc', width: 120, align: 'left' },
-                { label: '应收(元)', name: 'ys', width: 50, align: 'left' },
-                { label: '实收(元)', name: 'ss', width: 50, align: 'left' },
-                { label: '开始时间', name: 'kssj', width: 140, align: 'left' },
-                { label: '停止时间', name: 'tzsj', width: 140, align: 'left' },
-                { label: '给药途径', name: 'jytj', width: 50, align: 'left' },
-                { label: '费别', name: 'fb', width: 50, align: 'left' },
+                { label: 'Số hiệu giường', name: 'cw', width: 50, align: 'left' },
+                { label: 'Bệnh nhânID', name: 'zyh', width: 50, align: 'left' },
+                { label: 'Cùng nhóm', name: 'zh', align: 'center', width: 30 },
+                { label: 'Y lệnh', name: 'yznr', width: 160, align: 'left' },
+                { label: 'Liều lượng', name: 'jl', width: 50, align: 'left' },
+                { label: 'Tần suất', name: 'pc', width: 50, align: 'left' },
+                { label: 'Số lượng', name: 'sl', width: 40, align: 'left' },
+                { label: 'Đơn vị', name: 'dw', width: 40, align: 'left' },
+                { label: 'Thời gian thực hiện', name: 'zxsj', width: 140, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 160, align: 'left' },
+                { label: 'Quy cách', name: 'ypgg', width: 80, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'ycmc', width: 120, align: 'left' },
+                { label: 'Phải thu(đồng)', name: 'ys', width: 50, align: 'left' },
+                { label: 'Thực thu(đồng)', name: 'ss', width: 50, align: 'left' },
+                { label: 'Thời gian bắt đầu', name: 'kssj', width: 140, align: 'left' },
+                { label: 'Thời gian dừng', name: 'tzsj', width: 140, align: 'left' },
+                { label: 'Đường dùng thuốc', name: 'jytj', width: 50, align: 'left' },
+                { label: 'Loại phí', name: 'fb', width: 50, align: 'left' },
             ],
             pager: "#gridPatPager",
             sortname: 'xm,zh desc',
@@ -145,14 +145,14 @@
 
                     debugger
                     var rowData = $("#gridJSMXList").jqGrid('getRowData', ids[i]);
-                    //组号生成特殊符号
+                    //Số nhóm sinh ra ký tự đặc biệt
                     if (rowData.zh == "") {
                         continue;
                     }
                     if (rowData.zh != typeof (undefined) && rowData.zh !== "" && rowData.zh !== null) {
                         if (last == rowData.zh) {
                             returnval = "中间";
-                            if (i == (ids.length - 1)) {//最后一个
+                            if (i == (ids.length - 1)) {//Cuối cùng
                                 returnval = "结束";
                                 last = "";
                             }
@@ -172,10 +172,10 @@
                                 continue;
                             }
                             //else {
-                            //    returnval = "结束";
+                            //    returnval = "Kết thúc";
                             //}
                         }
-                        $("#gridJSMXList").setCell(ids[i], "zh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell 设置单元格样式 值 或属性
+                        $("#gridJSMXList").setCell(ids[i], "zh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell Đặt kiểu ô Giá trị hoặc thuộc tính
 
                     }
                     last = rowData.zh;
@@ -186,20 +186,20 @@
     }
     function setlastrowzuhaoid(rowid,last) {
         var lastrow = parseInt(rowid);
-        $("#gridJSMXList").setCell(lastrow, "zh", last);//setCell 设置单元格样式 值 或属性
+        $("#gridJSMXList").setCell(lastrow, "zh", last);//setCell Đặt kiểu ô Giá trị hoặc thuộc tính
     }
     function MergerStatistics(gridName, CellName) {
-        //得到显示到界面的id集合
+        //Nhận được hiển thị lên giao diệnidTập hợp
         var mya = $("#" + gridName + "").getDataIDs();
-        //当前显示多少条
+        //Hiện hiển thị bao nhiêu mục
         var length = mya.length;
         for (var i = 0; i < length; i++) {
-            //从上到下获取一条信息
+            //Lấy một thông tin từ trên xuống dưới
             var before = $("#" + gridName + "").jqGrid('getRowData', mya[i]);
-            //定义合并行数
+            //Định nghĩa số dòng gộp
             var rowSpanTaxCount = 1;
             for (j = i + 1; j <= length; j++) {
-                //和上边的信息对比 如果值一样就合并行数+1 然后设置rowspan 让当前单元格隐藏
+                //So sánh với thông tin phía trên Nếu giá trị giống nhau thì gộp số dòng+1 Sau đó đặtrowspan Để ô hiện tại bị ẩn
                 var end = $("#" + gridName + "").jqGrid('getRowData', mya[j]);
                 var cellNames = CellName.split(",");
                 for (var n = 0; n < cellNames.length; n++) {
@@ -210,7 +210,7 @@
                         rowSpanTaxCount = 1;
                         break;
                     }
-                    $("#" + cellNames[0] + "" + mya[i] + "").attr("rowspan", rowSpanTaxCount);//最后合并需要合并的行与合并的行数
+                    $("#" + cellNames[0] + "" + mya[i] + "").attr("rowspan", rowSpanTaxCount);//Cuối cùng gộp các dòng cần gộp với số dòng gộp
                     $("#" + cellNames[0] + "" + mya[i] + "").attr("position", "relative");
                     $("#" + cellNames[0] + "" + mya[i] + "").attr("top", "50%");
                     $("#" + cellNames[0] + "" + mya[i] + "").attr("transform", "translateY(-50%)");
@@ -222,34 +222,34 @@
         }
 
     }
-    //结算明细 jGrid声明
+    //Chi tiết thanh toán jGridKhai báo
     //$('#gridJSMXList').newtouchLocalDataGrid({
     //    height: $(window).height() - 370,
-    //    caption: "药品医嘱信息",
+    //    caption: "Thông tin y lệnh thuốc",
     //    pager: "#gridPatPager",
     //    sortname: 'zh',
     //    viewrecords: true,
     //    colModel: [
 
-    //        { label: '姓名', name: 'xm', width: 60, align: 'left' },
-    //        { label: '床标号', name: 'cw', width: 50, align: 'left' },
-    //        { label: '病人ID', name: 'zyh', width: 50, align: 'left' },
-    //        { label: '同组', name: 'zh', align: 'center', width: 30 },
-    //        { label: '医嘱', name: 'yznr', width: 160, align: 'left' },
-    //        { label: '剂量', name: 'jl', width: 50, align: 'left' },
-    //        { label: '频次', name: 'pc', width: 50, align: 'left' },
-    //        { label: '数量', name: 'sl', width: 40, align: 'left' },
-    //        { label: '单位', name: 'dw', width: 40, align: 'left' },
-    //        { label: '执行时间', name: 'zxsj', width: 140, align: 'left' },
-    //        { label: '药品名称', name: 'ypmc', width: 160, align: 'left' },
-    //        { label: '规格', name: 'ypgg', width: 80, align: 'left' },
-    //        { label: '厂家', name: 'ycmc', width: 120, align: 'left' },
-    //        { label: '应收(元)', name: 'ys', width: 50, align: 'left' },
-    //        { label: '实收(元)', name: 'ss', width: 50, align: 'left' },
-    //        { label: '开始时间', name: 'kssj', width: 140, align: 'left' },
-    //        { label: '停止时间', name: 'tzsj', width: 140, align: 'left' },
-    //        { label: '给药途径', name: 'jytj', width: 50, align: 'left' },
-    //        { label: '费别', name: 'fb', width: 50, align: 'left' },
+    //        { label: 'Họ tên', name: 'xm', width: 60, align: 'left' },
+    //        { label: 'Số hiệu giường', name: 'cw', width: 50, align: 'left' },
+    //        { label: 'Bệnh nhânID', name: 'zyh', width: 50, align: 'left' },
+    //        { label: 'Cùng nhóm', name: 'zh', align: 'center', width: 30 },
+    //        { label: 'Y lệnh', name: 'yznr', width: 160, align: 'left' },
+    //        { label: 'Liều lượng', name: 'jl', width: 50, align: 'left' },
+    //        { label: 'Tần suất', name: 'pc', width: 50, align: 'left' },
+    //        { label: 'Số lượng', name: 'sl', width: 40, align: 'left' },
+    //        { label: 'Đơn vị', name: 'dw', width: 40, align: 'left' },
+    //        { label: 'Thời gian thực hiện', name: 'zxsj', width: 140, align: 'left' },
+    //        { label: 'Tên thuốc', name: 'ypmc', width: 160, align: 'left' },
+    //        { label: 'Quy cách', name: 'ypgg', width: 80, align: 'left' },
+    //        { label: 'Nhà sản xuất', name: 'ycmc', width: 120, align: 'left' },
+    //        { label: 'Phải thu(đồng)', name: 'ys', width: 50, align: 'left' },
+    //        { label: 'Thực thu(đồng)', name: 'ss', width: 50, align: 'left' },
+    //        { label: 'Thời gian bắt đầu', name: 'kssj', width: 140, align: 'left' },
+    //        { label: 'Thời gian dừng', name: 'tzsj', width: 140, align: 'left' },
+    //        { label: 'Đường dùng thuốc', name: 'jytj', width: 50, align: 'left' },
+    //        { label: 'Loại phí', name: 'fb', width: 50, align: 'left' },
     //    ],
     //    gridComplete: function () {
     //        var returnval = "";
@@ -257,27 +257,27 @@
     //        for (i = 0; i < ids.length; i++) {
     //            debugger
     //            var rowData = $("#gridJSMXList").jqGrid('getRowData', ids[i]);
-    //            //组号生成特殊符号
+    //            //Số nhóm sinh ra ký tự đặc biệt
     //            if (rowData.zh == "") {
     //                continue;
     //            }
     //            if (rowData.zh != typeof (undefined) && rowData.zh !== "" && rowData.zh !== null) {
     //                if (last == rowData.zh) {
-    //                    returnval = "中间";
-    //                    if (i == (ids.length - 1)) {//最后一个
-    //                        returnval = "结束";
+    //                    returnval = "Ở giữa";
+    //                    if (i == (ids.length - 1)) {//Cuối cùng
+    //                        returnval = "Kết thúc";
     //                        last = "";
     //                    }
     //                    var rowDatas = $("#gridJSMXList").jqGrid('getRowData', ids[i + 1]);
     //                    if (rowData.zh != rowDatas.zh || rowDatas.zh == "") {
-    //                        returnval = "结束";
+    //                        returnval = "Kết thúc";
     //                        last = "";
     //                    }
     //                }
     //                else if (last !== rowData.zh) {
-    //                    returnval = "开始";
+    //                    returnval = "Bắt đầu";
     //                }
-    //                $("#gridJSMXList").setCell(ids[i], "zh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell 设置单元格样式 值 或属性
+    //                $("#gridJSMXList").setCell(ids[i], "zh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell Đặt kiểu ô Giá trị hoặc thuộc tính
 
     //            }
     //            last = rowData.zh;
@@ -287,12 +287,12 @@
 
     function setlastrowzuhao(rowid) {
         var lastrow = parseInt(rowid) - 1;
-        $("#gridJSMXList").setCell(lastrow, "zh", '<img src="../../../../Content/img/结束.png" />');//setCell 设置单元格样式 值 或属性
+        $("#gridJSMXList").setCell(lastrow, "zh", '<img src="../../../../Content/img/Kết thúc.png" />');//setCell Đặt kiểu ô Giá trị hoặc thuộc tính
     }
-    //打印汇总清单
+    //In bảng tổng hợp
 
     var curUserCode = '@(ViewBag.CurUserCode)';
-    //打印明细
+    //In chi tiết
     var srcUrl = "";
     $("#HZQD").click(function () {
         var reportServerHOST = '@ViewBag.ReportServerHOST';
@@ -302,7 +302,7 @@
         var uri = '@reportUrl' + "?tempCode=45" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&orgId=" + '@curOpr.OrganizeId' + "&bysj=" + $("#gridList").jqGridRowValue().bysj;
         window.open(uri);
 
-        //var urldy = "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f药品医嘱信息打印&rs:Command=Render&rc:Stylesheet=MyStyleSheet&orgId=" + orgId + "&bysj=" + $("#gridList").jqGridRowValue().bysj;
+        //var urldy = "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2fIn thông tin y lệnh thuốc&rs:Command=Render&rc:Stylesheet=MyStyleSheet&orgId=" + orgId + "&bysj=" + $("#gridList").jqGridRowValue().bysj;
         //if (urldy.StartWith('/')) {
         //    urldy = urldy.substr(1);
         //}
@@ -321,33 +321,33 @@
         window.open(uri, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
     }
 
-    //发票补打
+    //In bù hóa đơn
     function supplementprintFp(jsnm) {
         tempJSNM = jsnm;
         $.modalOpen({
             id: "InvoiceNoPanel",
-            title: "选发票号",
+            title: "Chọn số hóa đơn",
             url: "/OutpatientManage/OutpatientReg/ChooseInvoice",
             width: "300px",
             height: "200px",
             callBack: function (iframeId) {
-                top.frames[iframeId].checkFPH();//窗口点确定的回调函数
+                top.frames[iframeId].checkFPH();//Hàm gọi lại khi nhấn xác định trên cửa sổ
             }
         });
 
     }
 
     var tempJSNM;
-    //补打，选择了新的发票号
+    //In bù, đã chọn số hóa đơn mới
     function chooseFPHSuccessCallback(fph) {
-        //更新结算记录的发票号为新发票号
+        //Cập nhật số hóa đơn của hồ sơ thanh toán thành số hóa đơn mới
         $.najax({
             type: "POST",
             url: "/HospitalizationManage/Settlement/UpdateSettInvoiceNo",
             data: { jsnm: tempJSNM, fph: fph },
             dataType: "json",
             success: function (data) {
-                //打印
+                //In
                 printFp(tempJSNM);
             }
         });

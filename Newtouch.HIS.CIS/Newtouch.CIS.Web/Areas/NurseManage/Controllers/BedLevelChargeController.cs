@@ -16,7 +16,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         private readonly ILevelChargeDmnService _ilevelChargeDmnService;
         private readonly IInpatientBedLevelChargeItemRepo _inpatientBedBaseChargeItemRepo;
         /// <summary>
-        /// 等级费用列表
+        /// Danh sách chi phí theo cấp độ
         /// </summary>
         /// <param name="aa"></param>
         /// <returns></returns>

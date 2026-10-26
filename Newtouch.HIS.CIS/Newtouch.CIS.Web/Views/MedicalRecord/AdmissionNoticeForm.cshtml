@@ -12,26 +12,26 @@
     <div style="padding-top: 20px; margin-right: 55px;">
         <table class="form">
             <tr>
-                <th class="formTitle">门诊号：</th>
+                <th class="formTitle">Số khám ngoại trú:</th>
                 <td class="formValue">
                     <input id="mzh" type="text" disabled="disabled" class="form-control" />
                 </td>
-                <th class="formTitle">病人姓名：</th>
+                <th class="formTitle">Tên bệnh nhân:</th>
                 <td class="formValue">
                     <input id="xm" type="text" class="form-control" />
                 </td>
-                <th class="formTitle">性别：</th>
+                <th class="formTitle">Giới tính:</th>
                 <td class="formValue">
                     <input id="xb" type="text" class="form-control" />
                 </td>
             </tr>
             <tr>
 
-                <th class="formTitle">年龄：</th>
+                <th class="formTitle">Tuổi:</th>
                 <td class="formValue">
                     <input id="nl" type="text" class="form-control" />
                 </td>
-                <th class="formTitle">日期：</th>
+                <th class="formTitle">Ngày:</th>
                 <td class="formValue">
                     <input id="rq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -40,37 +40,37 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">初步诊断：</th>
+                <th class="formTitle">Chẩn đoán sơ bộ:</th>
                 <td class="formValue" colspan="5">
                     <input id="cbzd" type="text" class="form-control" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">拟收住科室：</th>
+                <th class="formTitle">Khoa dự kiến nhập viện:</th>
                 <td class="formValue">
                     <input id="ks" type="text" class="form-control" />
                 </td>
-                <th class="formTitle">拟收住床位：</th>
+                <th class="formTitle">Giường bệnh dự kiến nhập viện:</th>
                 <td class="formValue">
                     <input id="cw" type="text" class="form-control" />
                 </td>
-                <th class="formTitle">家庭住址：</th>
+                <th class="formTitle">Địa chỉ nhà:</th>
                 <td class="formValue">
                     <input id="jtzz" type="text" class="form-control" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">工作单位：</th>
+                <th class="formTitle">Đơn vị công tác:</th>
                 <td class="formValue" colspan="5">
                     <input id="gzdw" type="text" class="form-control" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">预交押金：</th>
+                <th class="formTitle">Tiền đặt cọc tạm ứng:</th>
                 <td class="formValue" colspan="2">
                     <input id="yjj" type="text" class="form-control" />
                 </td>
-                <th class="formTitle">签证医师：</th>
+                <th class="formTitle">Bác sĩ ký chứng nhận:</th>
                 <td class="formValue" colspan="2">
                     <input id="qzys" type="text" class="form-control" />
                 </td>
@@ -94,10 +94,10 @@
                 <td class="formValue" colspan="2"></td>
                 <th class="formTitle"></th>
                 <td class="formValue">
-                    <input type="button" class="form-control" value="保存" onclick="baocun()" />
+                    <input type="button" class="form-control" value="Lưu" onclick="baocun()" />
                 </td>
                 <td class="formValue">
-                    <input type="button" class="form-control" value="打印住院通知单" onclick="dayin()" />
+                    <input type="button" class="form-control" value="In phiếu thông báo nhập viện" onclick="dayin()" />
                 </td>
             </tr>
         </table>
@@ -105,7 +105,7 @@
 </form>
 
 <script>
-    //valid的扩展样式
+    //validkiểu mở rộng của
     var valOptions = {
         errorPlacement: function (error, element) {
             element.parents('.formValue').addClass('has-error');
@@ -140,7 +140,7 @@
     }
     function baocun() {
         if (!$('#form1').formValid(valOptions)) {
-            $.modalAlert("必填信息未完善", 'warning');
+            $.modalAlert("Thông tin bắt buộc chưa hoàn thiện", 'warning');
             return;
         }
         var postData = $("#form1").formSerialize();

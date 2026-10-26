@@ -25,7 +25,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 房间维护
+        /// Bảo trì phòng
         /// </summary>
         /// <returns></returns>
         public ActionResult RoomForm()
@@ -34,7 +34,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 附加属性
+        /// Thuộc tính bổ sung
         /// </summary>
         /// <returns></returns>
         public ActionResult AttributesPlusBedForm()
@@ -53,7 +53,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return null;
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -93,7 +93,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 床位费绑定
+        /// Liên kết phí giường bệnh
         /// </summary>
         /// <returns></returns>
         public ActionResult BedBindingCostForm(string bedCode)
@@ -103,7 +103,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取病区费用  
+        /// Lấy chi phí khu bệnh  
         /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
@@ -126,7 +126,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 医生绑定
+        /// Liên kết bác sĩ
         /// </summary>
         /// <returns></returns>
         public ActionResult DoctorBindingForm(string zyh)
@@ -136,7 +136,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取病区费用
+        /// Lấy chi phí khu bệnh
         /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
@@ -165,7 +165,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -180,7 +180,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Success("保存成功。");
         }
         /// <summary>
-        /// 患者出区
+        /// Bệnh nhân xuất khu
         /// </summary>
         /// <param name="patOutAreaVO"></param>
         /// <returns></returns>
@@ -213,7 +213,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return View();
         }
         /// <summary>
-        /// 出区诊断
+        /// Chẩn đoán xuất khu
         /// </summary>
         /// <returns></returns>
         public ActionResult OutAreaDiagnoosis()
@@ -221,7 +221,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return View();
         }
         /// <summary>
-        /// 出区诊断--患者出区
+        /// Chẩn đoán xuất khu--Bệnh nhân xuất khu
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -231,7 +231,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return View();
         }
         /// <summary>
-        /// 保存 出区诊断--患者出区
+        /// Lưu Chẩn đoán xuất khu--Bệnh nhân xuất khu
         /// </summary>
         /// <param name="patOutAreaVO"></param>
         /// <returns></returns>

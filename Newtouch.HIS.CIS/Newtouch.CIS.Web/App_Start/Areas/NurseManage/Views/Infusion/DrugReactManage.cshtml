@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "不良反应药品管理";
+    ViewBag.Title = "Quản lý thuốc phản ứng bất lợi";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -54,25 +54,25 @@
 </style>
 <div class="panel panel-default">
     <div class="panel-heading navb-bg">
-        筛选条件
+        Điều kiện lọc
     </div>
     <div style="padding: 2px;">
         <table class="form">
             <tr>
-                <td class="formTitle">卡号：</td>
+                <td class="formTitle">Số thẻ:</td>
                 <td class="formValue">
-                    <input type="text" class="form-control" id="cardno" placeholder="卡号" />
+                    <input type="text" class="form-control" id="cardno" placeholder="Số thẻ" />
                 </td>
-                <td class="formTitle">创建时间：</td>
+                <td class="formTitle">Thời gian tạo:</td>
                 <td class="formValue">
                     <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" style="width:80%; float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.ToString("yyyy-MM-01")">
                 </td>
-                <td class="formTitle" style="width:10px">至</td>
+                <td class="formTitle" style="width:10px">đến</td>
                 <td class="formValue">
                     <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" style="width:80%; float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.ToString("yyyy-MM-dd")">
                 </td>
                 <td class="formTitle">
-                    <input type="button" class="btn btn-primary btn-md" id="btn_search" value="查询" />
+                    <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
                 </td>                
                 <td class="formTitle"></td>
                 <td class="formTitle"></td>
@@ -87,7 +87,7 @@
 <div id="TabGrid">
     <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
         <li role="presentation" class="active">
-            <a id="linkSearch" role="tab" data-toggle="tab">新增药品不良反应</a>
+            <a id="linkSearch" role="tab" data-toggle="tab">Thêm phản ứng bất lợi của thuốc mới</a>
         </li>
         <li style="float:right">
             <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
@@ -98,121 +98,121 @@
             <table class="form">
                 <tr>
                     <td colspan="6">
-                        <h1>药品不良反应报告</h1>
+                        <h1>Báo cáo phản ứng bất lợi của thuốc</h1>
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">报告类型：</td>
+                    <td class="formTitle">Loại báo cáo:</td>
                     <td class="formValue">
                         <div class="ckbox">
-                            <input id="ch0_1" name="ch0" type="checkbox" autocomplete="off"><label for="ch0_1">首次报告</label>
+                            <input id="ch0_1" name="ch0" type="checkbox" autocomplete="off"><label for="ch0_1">Báo cáo lần đầu</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch0_2" name="ch0" type="checkbox" autocomplete="off"><label for="ch0_2">跟踪报告</label>
+                            <input id="ch0_2" name="ch0" type="checkbox" autocomplete="off"><label for="ch0_2">Báo cáo theo dõi</label>
                         </div>
                     </td>
-                    <td class="formTitle">报告性质：</td>
+                    <td class="formTitle">Tính chất báo cáo:</td>
                     <td class="formValue">
                         <div class="ckbox">
-                            <input id="ch1_1" name="ch1" type="checkbox" autocomplete="off"><label for="ch1_1">新的</label>
+                            <input id="ch1_1" name="ch1" type="checkbox" autocomplete="off"><label for="ch1_1">Mới</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch1_2" name="ch1" type="checkbox" autocomplete="off"><label for="ch1_2">严重</label>
+                            <input id="ch1_2" name="ch1" type="checkbox" autocomplete="off"><label for="ch1_2">Nghiêm trọng</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch1_3" name="ch1" type="checkbox" autocomplete="off"><label for="ch1_3">一般</label>
+                            <input id="ch1_3" name="ch1" type="checkbox" autocomplete="off"><label for="ch1_3">Thông thường</label>
                         </div>
                     </td>
-                    <td class="formTitle">编码：</td>
+                    <td class="formTitle">Mã:</td>
                     <td class="formValue">
                         <input type="text" class="form-control" id="cardno" placeholder="" />
                     </td>
                 </tr>
                 <tr>                    
-                    <td class="formTitle">报告单位类别：</td>
+                    <td class="formTitle">Loại đơn vị báo cáo:</td>
                     <td class="formValue" colspan="3">
                         <div class="ckbox">
-                            <input id="ch2_1" name="ch2" type="checkbox" autocomplete="off"><label for="ch2_1">医疗机构</label>
+                            <input id="ch2_1" name="ch2" type="checkbox" autocomplete="off"><label for="ch2_1">Cơ sở y tế</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch2_2" name="ch2" type="checkbox" autocomplete="off"><label for="ch2_2">经营企业</label>
+                            <input id="ch2_2" name="ch2" type="checkbox" autocomplete="off"><label for="ch2_2">Doanh nghiệp kinh doanh</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch2_3" name="ch2" type="checkbox" autocomplete="off"><label for="ch2_3">成产企业</label>
+                            <input id="ch2_3" name="ch2" type="checkbox" autocomplete="off"><label for="ch2_3">Doanh nghiệp sản xuất</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch2_4" name="ch2" type="checkbox" autocomplete="off"><label for="ch2_4">个人</label>
+                            <input id="ch2_4" name="ch2" type="checkbox" autocomplete="off"><label for="ch2_4">Cá nhân</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch2_5" name="ch2" type="checkbox" autocomplete="off"><label for="ch2_5">其他</label>
+                            <input id="ch2_5" name="ch2" type="checkbox" autocomplete="off"><label for="ch2_5">Khác</label>
                         </div>
                     </td>
                     <td class="formTitle"></td>
                     <td class="formTitle"></td>
                 </tr>
                 <tr>
-                    <td class="formTitle">姓名：</td>
+                    <td class="formTitle">Họ tên:</td>
                     <td class="formValue">
-                        <input type="text" class="form-control" id="name" placeholder="姓名" />
+                        <input type="text" class="form-control" id="name" placeholder="Họ tên" />
                     </td>
-                    <td class="formTitle">性别：</td>
+                    <td class="formTitle">Giới tính:</td>
                     <td class="formValue">
                         <div class="ckbox">
-                            <input id="sex_1" name="sex" type="checkbox" autocomplete="off"><label for="sex_1">男</label>
+                            <input id="sex_1" name="sex" type="checkbox" autocomplete="off"><label for="sex_1">Nam</label>
                         </div>
                         <div class="ckbox">
-                            <input id="sex_2" name="sex" type="checkbox" autocomplete="off"><label for="sex_2">女</label>
+                            <input id="sex_2" name="sex" type="checkbox" autocomplete="off"><label for="sex_2">Nữ</label>
                         </div>
                     </td>
-                    <td class="formTitle">出生日期：</td>
+                    <td class="formTitle">Ngày sinh:</td>
                     <td class="formValue">
                         <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { RefreshOrder() } })" value="">
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">民族：</td>
+                    <td class="formTitle">Dân tộc:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="lb">
-                            <option value="">汉</option>
+                            <option value="">Hán</option>
                         </select>
                     </td>
-                    <td class="formTitle">体重：</td>
+                    <td class="formTitle">Cân nặng:</td>
                     <td class="formValue">
                         <input type="text" class="form-control" id="weight" placeholder="" />
                     </td>
-                    <td class="formTitle">联系方式：</td>
+                    <td class="formTitle">Phương thức liên hệ:</td>
                     <td class="formValue">
                         <input type="text" class="form-control" id="phone" placeholder="" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">原患疾病：</td>
+                    <td class="formTitle">Bệnh đã mắc trước đây:</td>
                     <td class="formValue">
                         <input type="text" class="form-control" id="yhjb" placeholder="" />
                     </td>
-                    <td class="formTitle">医院名称：</td>
+                    <td class="formTitle">Tên bệnh viện:</td>
                     <td class="formValue">
                         <input type="text" class="form-control" id="yymc" placeholder="" />
                     </td>
-                    <td class="formTitle">病历号：</td>
+                    <td class="formTitle">Số hồ sơ bệnh án:</td>
                     <td class="formValue">
                         <input type="text" class="form-control" id="blh" placeholder="" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">既往药品不良反应：</td>
+                    <td class="formTitle">Phản ứng bất lợi của thuốc trong quá khứ:</td>
                     <td class="formValue">
                         <div class="ckbox">
-                            <input id="ch3_1" name="ch3" type="checkbox" autocomplete="off"><label for="ch3_1">有</label>
+                            <input id="ch3_1" name="ch3" type="checkbox" autocomplete="off"><label for="ch3_1">Có</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch3_2" name="ch3" type="checkbox" autocomplete="off"><label for="ch3_2">无</label>
+                            <input id="ch3_2" name="ch3" type="checkbox" autocomplete="off"><label for="ch3_2">Không có</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch3_3" name="ch3" type="checkbox" autocomplete="off"><label for="ch3_3">不详</label>
+                            <input id="ch3_3" name="ch3" type="checkbox" autocomplete="off"><label for="ch3_3">Không rõ</label>
                         </div>
                     </td>
-                    <td class="formTitle">描述：</td>
+                    <td class="formTitle">Mô tả:</td>
                     <td class="formValue">
                         <input type="text" class="form-control" id="jwblms" placeholder="" />
                     </td>                    
@@ -220,19 +220,19 @@
                     <td class="formTitle"></td>
                 </tr>
                 <tr>
-                    <td class="formTitle">家族药品不良反应：</td>
+                    <td class="formTitle">Phản ứng bất lợi của thuốc trong gia đình:</td>
                     <td class="formValue">
                         <div class="ckbox">
-                            <input id="ch4_1" name="ch4" type="checkbox" autocomplete="off"><label for="ch4_1">有</label>
+                            <input id="ch4_1" name="ch4" type="checkbox" autocomplete="off"><label for="ch4_1">Có</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch4_2" name="ch4" type="checkbox" autocomplete="off"><label for="ch4_2">无</label>
+                            <input id="ch4_2" name="ch4" type="checkbox" autocomplete="off"><label for="ch4_2">Không có</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch4_3" name="ch4" type="checkbox" autocomplete="off"><label for="ch4_3">不详</label>
+                            <input id="ch4_3" name="ch4" type="checkbox" autocomplete="off"><label for="ch4_3">Không rõ</label>
                         </div>
                     </td>
-                    <td class="formTitle">描述：</td>
+                    <td class="formTitle">Mô tả:</td>
                     <td class="formValue">
                         <input type="text" class="form-control" id="jzblms" placeholder="" />
                     </td>
@@ -240,28 +240,28 @@
                     <td class="formTitle"></td>
                 </tr>
                 <tr>
-                    <td class="formTitle">相关重要信息：</td>
+                    <td class="formTitle">Thông tin quan trọng liên quan:</td>
                     <td class="formValue" colspan="4">
                         <div class="ckbox">
-                            <input id="ch5_1" name="ch5" type="checkbox" autocomplete="off"><label for="ch5_1">吸烟史</label>
+                            <input id="ch5_1" name="ch5" type="checkbox" autocomplete="off"><label for="ch5_1">Tiền sử hút thuốc</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch5_2" name="ch5" type="checkbox" autocomplete="off"><label for="ch5_2">饮酒史</label>
+                            <input id="ch5_2" name="ch5" type="checkbox" autocomplete="off"><label for="ch5_2">Tiền sử uống rượu</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch5_3" name="ch5" type="checkbox" autocomplete="off"><label for="ch5_3">妊娠期</label>
+                            <input id="ch5_3" name="ch5" type="checkbox" autocomplete="off"><label for="ch5_3">Thời kỳ mang thai</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch5_4" name="ch5" type="checkbox" autocomplete="off"><label for="ch5_4">肝病史</label>
+                            <input id="ch5_4" name="ch5" type="checkbox" autocomplete="off"><label for="ch5_4">Tiền sử bệnh gan</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch5_5" name="ch5" type="checkbox" autocomplete="off"><label for="ch5_5">肾病史</label>
+                            <input id="ch5_5" name="ch5" type="checkbox" autocomplete="off"><label for="ch5_5">Tiền sử bệnh thận</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch5_6" name="ch5" type="checkbox" autocomplete="off"><label for="ch5_6">过敏史</label>
+                            <input id="ch5_6" name="ch5" type="checkbox" autocomplete="off"><label for="ch5_6">Tiền sử dị ứng</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch5_7" name="ch5" type="checkbox" autocomplete="off"><label for="ch5_7">其他</label>
+                            <input id="ch5_7" name="ch5" type="checkbox" autocomplete="off"><label for="ch5_7">Khác</label>
                         </div>
                     </td>
                     <td class="formTitle"></td>
@@ -274,225 +274,225 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">不良反应/事件名称：</td>
+                    <td class="formTitle">Phản ứng bất lợi/Tên sự kiện:</td>
                     <td class="formValue">
                         <input type="text" class="form-control" id="jwsj" placeholder="" />
                     </td>
-                    <td class="formTitle" colspan="2">不良反应/事件发生时间：</td>
+                    <td class="formTitle" colspan="2">Phản ứng bất lợi/Thời gian xảy ra sự kiện:</td>
                     <td class="formValue">
                         <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="">
                     </td>
                     <td class="formTitle"></td>
                 </tr>
                 <tr>
-                    <td class="formTitle" colspan="2">不良反应/事件过程描述（包括症状，体征，临床检验等）及处理情况：</td>
+                    <td class="formTitle" colspan="2">Phản ứng bất lợi/Mô tả quá trình sự kiện (bao gồm triệu chứng, dấu hiệu, xét nghiệm lâm sàng, v.v.) và tình hình xử lý:</td>
                     <td class="formValue" colspan="4">
                         <input type="text" class="form-control" id="gcms" placeholder="" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle" colspan="2">不良反应/事件的结果：</td>
+                    <td class="formTitle" colspan="2">Phản ứng bất lợi/Kết quả của sự kiện:</td>
                     <td class="formValue" colspan="4">
                         <div class="ckbox">
-                            <input id="ch6_1" name="ch6" type="checkbox" autocomplete="off"><label for="ch6_1">痊愈</label>
+                            <input id="ch6_1" name="ch6" type="checkbox" autocomplete="off"><label for="ch6_1">Khỏi hẳn</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch6_2" name="ch6" type="checkbox" autocomplete="off"><label for="ch6_2">好转</label>
+                            <input id="ch6_2" name="ch6" type="checkbox" autocomplete="off"><label for="ch6_2">Đỡ hơn</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch6_3" name="ch6" type="checkbox" autocomplete="off"><label for="ch6_3">未好转</label>
+                            <input id="ch6_3" name="ch6" type="checkbox" autocomplete="off"><label for="ch6_3">Chưa đỡ hơn</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch6_4" name="ch6" type="checkbox" autocomplete="off"><label for="ch6_4">不详</label>
+                            <input id="ch6_4" name="ch6" type="checkbox" autocomplete="off"><label for="ch6_4">Không rõ</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch6_5" name="ch6" type="checkbox" autocomplete="off"><label for="ch6_5">有后遗症</label>
+                            <input id="ch6_5" name="ch6" type="checkbox" autocomplete="off"><label for="ch6_5">Có di chứng</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch6_6" name="ch6" type="checkbox" autocomplete="off"><label for="ch6_6">死亡</label>
+                            <input id="ch6_6" name="ch6" type="checkbox" autocomplete="off"><label for="ch6_6">Tử vong</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch6_7" name="ch6" type="checkbox" autocomplete="off"><label for="ch6_7">直接死亡</label>
+                            <input id="ch6_7" name="ch6" type="checkbox" autocomplete="off"><label for="ch6_7">Tử vong trực tiếp</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle" colspan="2">停药或减量后，反应/事件是否消失或减轻？</td>
+                    <td class="formTitle" colspan="2">Sau khi ngừng thuốc hoặc giảm liều, phản ứng/Sự kiện có biến mất hoặc giảm nhẹ không?</td>
                     <td class="formValue" colspan="4">
                         <div class="ckbox">
-                            <input id="ch7_1" name="ch7" type="checkbox" autocomplete="off"><label for="ch7_1">是</label>
+                            <input id="ch7_1" name="ch7" type="checkbox" autocomplete="off"><label for="ch7_1">Có</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch7_2" name="ch7" type="checkbox" autocomplete="off"><label for="ch7_2">否</label>
+                            <input id="ch7_2" name="ch7" type="checkbox" autocomplete="off"><label for="ch7_2">Không</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch7_3" name="ch7" type="checkbox" autocomplete="off"><label for="ch7_3">不明</label>
+                            <input id="ch7_3" name="ch7" type="checkbox" autocomplete="off"><label for="ch7_3">Không rõ</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch7_4" name="ch7" type="checkbox" autocomplete="off"><label for="ch7_4">未停药或未减量</label>
+                            <input id="ch7_4" name="ch7" type="checkbox" autocomplete="off"><label for="ch7_4">Chưa ngừng thuốc hoặc chưa giảm liều</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle" colspan="2">再次使用可疑药品后是否再次出现同样反应/事件？</td>
+                    <td class="formTitle" colspan="2">Sau khi dùng lại thuốc nghi ngờ, có xuất hiện lại phản ứng tương tự không/Sự kiện?</td>
                     <td class="formValue" colspan="4">
                         <div class="ckbox">
-                            <input id="ch8_1" name="ch8" type="checkbox" autocomplete="off"><label for="ch8_1">是</label>
+                            <input id="ch8_1" name="ch8" type="checkbox" autocomplete="off"><label for="ch8_1">Có</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch8_2" name="ch8" type="checkbox" autocomplete="off"><label for="ch8_2">否</label>
+                            <input id="ch8_2" name="ch8" type="checkbox" autocomplete="off"><label for="ch8_2">Không</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch8_3" name="ch8" type="checkbox" autocomplete="off"><label for="ch8_3">不明</label>
+                            <input id="ch8_3" name="ch8" type="checkbox" autocomplete="off"><label for="ch8_3">Không rõ</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch8_4" name="ch8" type="checkbox" autocomplete="off"><label for="ch8_4">未再使用</label>
+                            <input id="ch8_4" name="ch8" type="checkbox" autocomplete="off"><label for="ch8_4">Chưa dùng lại</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle" colspan="2">对原患疾病影响？</td>
+                    <td class="formTitle" colspan="2">Ảnh hưởng đến bệnh đã mắc trước đây?</td>
                     <td class="formValue" colspan="4">
                         <div class="ckbox">
-                            <input id="ch9_1" name="ch9" type="checkbox" autocomplete="off"><label for="ch9_1">不明显</label>
+                            <input id="ch9_1" name="ch9" type="checkbox" autocomplete="off"><label for="ch9_1">Không rõ ràng</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch9_2" name="ch9" type="checkbox" autocomplete="off"><label for="ch9_2">病程延长</label>
+                            <input id="ch9_2" name="ch9" type="checkbox" autocomplete="off"><label for="ch9_2">Bệnh kéo dài</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch9_3" name="ch9" type="checkbox" autocomplete="off"><label for="ch9_3">病情加重</label>
+                            <input id="ch9_3" name="ch9" type="checkbox" autocomplete="off"><label for="ch9_3">Bệnh nặng thêm</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch9_4" name="ch9" type="checkbox" autocomplete="off"><label for="ch9_4">导致后遗症</label>
+                            <input id="ch9_4" name="ch9" type="checkbox" autocomplete="off"><label for="ch9_4">Gây di chứng</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch9_5" name="ch9" type="checkbox" autocomplete="off"><label for="ch9_5">导致死亡</label>
+                            <input id="ch9_5" name="ch9" type="checkbox" autocomplete="off"><label for="ch9_5">Gây tử vong</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle" rowspan="2" colspan="2">关联性评价（报告人评价）</td>
+                    <td class="formTitle" rowspan="2" colspan="2">Đánh giá tính liên quan (đánh giá của người báo cáo)</td>
                     <td class="formValue" colspan="4">
                         <div class="ckbox">
-                            <input id="ch10_1" name="ch10" type="checkbox" autocomplete="off"><label for="ch10_1">肯定</label>
+                            <input id="ch10_1" name="ch10" type="checkbox" autocomplete="off"><label for="ch10_1">Chắc chắn</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch10_2" name="ch10" type="checkbox" autocomplete="off"><label for="ch10_2">很可能</label>
+                            <input id="ch10_2" name="ch10" type="checkbox" autocomplete="off"><label for="ch10_2">Rất có thể</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch10_3" name="ch10" type="checkbox" autocomplete="off"><label for="ch10_3">可能</label>
+                            <input id="ch10_3" name="ch10" type="checkbox" autocomplete="off"><label for="ch10_3">Có thể</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch10_4" name="ch10" type="checkbox" autocomplete="off"><label for="ch10_4">可能无关</label>
+                            <input id="ch10_4" name="ch10" type="checkbox" autocomplete="off"><label for="ch10_4">Có thể không liên quan</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch10_5" name="ch10" type="checkbox" autocomplete="off"><label for="ch10_5">待评价</label>
+                            <input id="ch10_5" name="ch10" type="checkbox" autocomplete="off"><label for="ch10_5">Chờ đánh giá</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch10_6" name="ch10" type="checkbox" autocomplete="off"><label for="ch10_6">无法评价</label>
+                            <input id="ch10_6" name="ch10" type="checkbox" autocomplete="off"><label for="ch10_6">Không thể đánh giá</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td class="formValue" colspan="4">
                         <div class="ckbox">
-                            <input id="ch11_1" name="ch11" type="checkbox" autocomplete="off"><label for="ch11_1">肯定</label>
+                            <input id="ch11_1" name="ch11" type="checkbox" autocomplete="off"><label for="ch11_1">Chắc chắn</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch11_2" name="ch11" type="checkbox" autocomplete="off"><label for="ch11_2">很可能</label>
+                            <input id="ch11_2" name="ch11" type="checkbox" autocomplete="off"><label for="ch11_2">Rất có thể</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch11_3" name="ch11" type="checkbox" autocomplete="off"><label for="ch11_3">可能</label>
+                            <input id="ch11_3" name="ch11" type="checkbox" autocomplete="off"><label for="ch11_3">Có thể</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch11_4" name="ch11" type="checkbox" autocomplete="off"><label for="ch11_4">可能无关</label>
+                            <input id="ch11_4" name="ch11" type="checkbox" autocomplete="off"><label for="ch11_4">Có thể không liên quan</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch11_5" name="ch11" type="checkbox" autocomplete="off"><label for="ch11_5">待评价</label>
+                            <input id="ch11_5" name="ch11" type="checkbox" autocomplete="off"><label for="ch11_5">Chờ đánh giá</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch11_6" name="ch11" type="checkbox" autocomplete="off"><label for="ch11_6">无法评价</label>
+                            <input id="ch11_6" name="ch11" type="checkbox" autocomplete="off"><label for="ch11_6">Không thể đánh giá</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle" rowspan="2">报告人信息</td>
-                    <td class="formTitle">联系电话：</td>
+                    <td class="formTitle" rowspan="2">Thông tin người báo cáo</td>
+                    <td class="formTitle">Số điện thoại liên hệ:</td>
                     <td class="formValue">
                         <input type="text" class="form-control" id="lxdh" placeholder="" />
                     </td>                
-                    <td class="formTitle">职业：</td>
+                    <td class="formTitle">Nghề nghiệp:</td>
                     <td class="formValue" colspan="2">
                         <div class="ckbox">
-                            <input id="ch12_1" name="ch12" type="checkbox" autocomplete="off"><label for="ch12_1">医生</label>
+                            <input id="ch12_1" name="ch12" type="checkbox" autocomplete="off"><label for="ch12_1">Bác sĩ</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch12_2" name="ch12" type="checkbox" autocomplete="off"><label for="ch12_2">医师</label>
+                            <input id="ch12_2" name="ch12" type="checkbox" autocomplete="off"><label for="ch12_2">Bác sĩ</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch12_3" name="ch12" type="checkbox" autocomplete="off"><label for="ch12_3">护士</label>
+                            <input id="ch12_3" name="ch12" type="checkbox" autocomplete="off"><label for="ch12_3">Y tá</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch12_4" name="ch12" type="checkbox" autocomplete="off"><label for="ch12_4">其他</label>
+                            <input id="ch12_4" name="ch12" type="checkbox" autocomplete="off"><label for="ch12_4">Khác</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">电子邮箱：</td>
+                    <td class="formTitle">Email:</td>
                     <td class="formValue">
                         <input type="text" class="form-control" id="email" placeholder="" />
                     </td>
-                    <td class="formTitle">签名：</td>
+                    <td class="formTitle">Chữ ký:</td>
                     <td class="formValue">
                         <input type="text" class="form-control" id="signname" placeholder="" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle" rowspan="2">报告单位信息</td>
-                    <td class="formTitle">单位名称：</td>
+                    <td class="formTitle" rowspan="2">Thông tin đơn vị báo cáo</td>
+                    <td class="formTitle">Tên đơn vị:</td>
                     <td class="formValue">
                         <input type="text" class="form-control" id="dwmc" placeholder="" />
                     </td>
-                    <td class="formTitle">联系人：</td>
+                    <td class="formTitle">Người liên hệ:</td>
                     <td class="formValue">
                         <input type="text" class="form-control" id="lxr" placeholder="" />
                     </td>                   
                 </tr>
                 <tr>
-                    <td class="formTitle">电话：</td>
+                    <td class="formTitle">Điện thoại:</td>
                     <td class="formValue">
                         <input type="text" class="form-control" id="phone" placeholder="" />
                     </td>
-                    <td class="formTitle">报告日期：</td>
+                    <td class="formTitle">Ngày báo cáo:</td>
                     <td class="formValue">
                         <input id="bgrq" type="text" class="form-control input-wdatepicker" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { RefreshOrder() } })" value="">
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle" colspan="2">生产企业请填写信息来源：</td>
+                    <td class="formTitle" colspan="2">Doanh nghiệp sản xuất vui lòng điền nguồn thông tin:</td>
                     <td class="formValue" colspan="4">
                         <div class="ckbox">
-                            <input id="ch13_1" name="ch13" type="checkbox" autocomplete="off"><label for="ch13_1">医疗机构</label>
+                            <input id="ch13_1" name="ch13" type="checkbox" autocomplete="off"><label for="ch13_1">Cơ sở y tế</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch13_2" name="ch13" type="checkbox" autocomplete="off"><label for="ch13_2">经营企业</label>
+                            <input id="ch13_2" name="ch13" type="checkbox" autocomplete="off"><label for="ch13_2">Doanh nghiệp kinh doanh</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch13_3" name="ch13" type="checkbox" autocomplete="off"><label for="ch13_3">个人</label>
+                            <input id="ch13_3" name="ch13" type="checkbox" autocomplete="off"><label for="ch13_3">Cá nhân</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch13_4" name="ch13" type="checkbox" autocomplete="off"><label for="ch13_4">文献报道</label>
+                            <input id="ch13_4" name="ch13" type="checkbox" autocomplete="off"><label for="ch13_4">Báo cáo tài liệu</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch13_5" name="ch13" type="checkbox" autocomplete="off"><label for="ch13_5">上市后研究</label>
+                            <input id="ch13_5" name="ch13" type="checkbox" autocomplete="off"><label for="ch13_5">Nghiên cứu sau khi lưu hành</label>
                         </div>
                         <div class="ckbox">
-                            <input id="ch13_6" name="ch13" type="checkbox" autocomplete="off"><label for="ch13_6">其他</label>
+                            <input id="ch13_6" name="ch13" type="checkbox" autocomplete="off"><label for="ch13_6">Khác</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                <td class="formTitle">备注：</td>
+                <td class="formTitle">Ghi chú:</td>
                 <td class="formValue" colspan="5">
                     <input type="text" class="form-control" id="remark" placeholder="" />
                 </td>
@@ -510,7 +510,7 @@
 <script>
     var kflocaldata = new Array();
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt thì tải lạijqGridchiều rộng của
         $(window).resize(function () {
 
         });
@@ -528,12 +528,12 @@
         Initial();
     });
 
-    //初始化
+    //Khởi tạo
     function Initial() {
         gridList();
         TabGridHide();
         $('#TabGrid input[type=checkbox]').bind('click', function () {
-            //当前的checkbox是否选中
+            //hiện tạicheckboxCó chọn không
             if (this.checked) {
                 var id = this.id;
                 var name = id.substr(0, id.length - 2);
@@ -544,7 +544,7 @@
         });
     }
 
-    //隐藏搜索框并显示箭头
+    //Ẩn hộp tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         $("#TabGrid").animate({ left: tabGridwith },
@@ -554,7 +554,7 @@
                 });
     }
 
-    //类别
+    //Loại
     function getLbSelectTree() {
         $("#lb").newtouchBindSelect({
             datasource: function () {
@@ -576,7 +576,7 @@
         });
     }
 
-    //主表信息
+    //Thông tin bảng chính
     function gridList() {
         var $gridList = $("#gridListPatient");
         $gridList.dataGrid({
@@ -585,18 +585,18 @@
             height: $(window).height() - document.getElementById('gridListPatient').offsetTop - 120,
             colModel: [
                 { label: 'Id', name: 'Id', key: true, hidden: true },
-                { label: '卡号', name: 'Name', width: 50, align: 'center' },
-                { label: '姓名', name: 'py', width: 100, align: 'center' },
-                { label: '不良反应记录', name: 'py', width: 50, align: 'center' },
-                { label: '门诊号', name: 'py', width: 100, align: 'center' },
-                { label: '病历号', name: 'py', width: 100, align: 'center' },
-                { label: '患者类型', name: 'py', width: 50, align: 'center' },
-                { label: '农合卡号', name: 'py', width: 100, align: 'center' },
-                { label: '性别', name: 'py', width: 50, align: 'center' },
-                { label: '电话', name: 'py', width: 50, align: 'center' },
-                { label: '家庭地址', name: 'py', width: 100, align: 'center' },
-                { label: '家庭邮编', name: 'py', width: 50, align: 'center' },
-                { label: '创建日期', name: 'py', width: 100, align: 'center' }
+                { label: 'Số thẻ', name: 'Name', width: 50, align: 'center' },
+                { label: 'Họ tên', name: 'py', width: 100, align: 'center' },
+                { label: 'Hồ sơ phản ứng bất lợi', name: 'py', width: 50, align: 'center' },
+                { label: 'Số khám ngoại trú', name: 'py', width: 100, align: 'center' },
+                { label: 'Số hồ sơ bệnh án', name: 'py', width: 100, align: 'center' },
+                { label: 'Loại bệnh nhân', name: 'py', width: 50, align: 'center' },
+                { label: 'Số thẻ hợp tác nông thôn', name: 'py', width: 100, align: 'center' },
+                { label: 'Giới tính', name: 'py', width: 50, align: 'center' },
+                { label: 'Điện thoại', name: 'py', width: 50, align: 'center' },
+                { label: 'Địa chỉ nhà', name: 'py', width: 100, align: 'center' },
+                { label: 'Mã bưu điện gia đình', name: 'py', width: 50, align: 'center' },
+                { label: 'Ngày tạo', name: 'py', width: 100, align: 'center' }
             ],
             pager: "#gridPager1",
             rowNum: '15',
@@ -614,40 +614,40 @@
         });
     }
 
-    //相关药品
+    //Thuốc liên quan
     function gridXGYP() {
         var $gridXGYP = $("#gridXGYP");
         $gridXGYP.jqGrid({
             datatype: 'local',
             data: kflocaldata,
             height: 100,
-            //altRows: true,//隔行换色
-            shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
+            //altRows: true,//Đổi màu xen kẽ các dòng
+            shrinkToFit: true,   //true:Khởi tạo chiều rộng cột theo tỷ lệ false:Sử dụngcolModelchiều rộng đã chỉ định
             autowidth: true,
-            rownumbers: true,  //是否显示序号
+            rownumbers: true,  //Có hiển thị số thứ tự không
             multiselect: true,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
                 { label: 'cfId', name: 'cfId', hidden: true },
-                { label: '批准文号', name: 'cfh', width: 150, align: 'center', editrules: { required: true } },
+                { label: 'Số phê duyệt', name: 'cfh', width: 150, align: 'center', editrules: { required: true } },
                 {
-                    label: '商品名称', name: 'xmmc', width: 160, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true
+                    label: 'Tên thương mại', name: 'xmmc', width: 160, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true
                 },
                 {
-                    label: '通用名称(含剂型)', name: 'dj', width: 150, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true
+                    label: 'Tên chung(Bao gồm dạng bào chế)', name: 'dj', width: 150, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true
                 },
-                { label: '生产厂家', name: 'dw', width: 120, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
-                { label: '成产批号', name: 'dwjls', width: 100, editwidth: '100%', align: 'center', editable: true },
-                { label: '用法用量', name: 'jjcl', width: 80, editwidth: '100%', align: 'center', editable: true },
+                { label: 'Nhà sản xuất', name: 'dw', width: 120, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
+                { label: 'Số lô sản xuất', name: 'dwjls', width: 100, editwidth: '100%', align: 'center', editable: true },
+                { label: 'Cách dùng và liều lượng', name: 'jjcl', width: 80, editwidth: '100%', align: 'center', editable: true },
                 
-                { label: '操作', name: 'action', width: 100, align: 'center' }
+                { label: 'Thao tác', name: 'action', width: 100, align: 'center' }
             ],
-            editinputwidthborder: false,    //是否需要边框 默认为true
-            editinputborderradius: false,   //是否需要边框圆角 默认true（有圆角）
+            editinputwidthborder: false,    //Có cần viền không mặc định làtrue
+            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue(có bo góc)
             pager: "#gridXGYPPager",
             loadComplete: function () {
-                ////自动触发新处方
+                ////Tự động kích hoạt đơn thuốc mới
                 //if (kflocaldata && kflocaldata.length == 0) {
                 //    newRehPresData();
                 //}
@@ -658,14 +658,14 @@
         });
     }
 
-    //启用行内编辑
+    //Bật chỉnh sửa trong dòng
     function EnableRehabInlineEditBox(){
         var ids = $("#gridXGYP").getDataIDs();
         $.each(ids, function () {
-            //打开编辑模式
+            //Mở chế độ chỉnh sửa
             $("#gridkfcf").jqGrid('editRow', String(this), false, initRehabInlineFunc);
 
-            //标识处方颜色
+            //Đánh dấu màu đơn thuốc
             var cfh = $("#gridkfcf").getRowData(String(this)).cfh;
             $('#gridkfcf tr[id="' +  String(this) + '"]').css('border-left-color','white');
             $('#gridkfcf tr[id="' +  String(this) + '"]').css('border-left-style','solid');
@@ -677,7 +677,7 @@
     function newsfxmData() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("请选中一条膳食信息", 'warning');
+            $.modalAlert("Vui lòng chọn một thông tin suất ăn", 'warning');
             return;
         }
          var dataRow = {
@@ -694,24 +694,24 @@
 
     function saveData() {
 
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấy tất cả các dòngId，duyệt để khung chỉnh sửa ở trạng thái lưu
         var rowIds = $gridMxList.jqGrid('getDataIDs');
         if (rowIds < 1) {
-            $.modalAlert("当前没有保存的膳食内容", 'warning');
+            $.modalAlert("Hiện không có nội dung suất ăn đã lưu", 'warning');
             return;
         }
         for (var i = 0; i < rowIds.length; i++) {
             var saveResult = $gridMxList.saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
             if (!saveResult) {
-                EnableInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-                return;   //保存失败，则return
+                EnableInlineEditBox();    //Khởi động lại và bật chỉnh sửa Nếu không, lần sauSavethì sẽ trả vềfalse
+                return;   //Lưu thất bại, thìreturn
             }
         }
 
         var gridMxData = $gridMxList.jqGrid('getRowData_AllLine', null, true);
         if (gridMxData.length < 1) {
-            $.modalAlert("当前没有保存的医嘱内容", 'warning');
+            $.modalAlert("Hiện không có nội dung y lệnh đã lưu", 'warning');
         }
 
         $.each(gridMxData, function () {
@@ -726,13 +726,13 @@
             type: "POST",
             async: false,
             success: function (data) {
-                $.modalMsg("保存成功", "success");
+                $.modalMsg("Lưu thành công", "success");
                 $(".hiding").click();
             }
         });
     }
 
-    //新增
+    //Thêm mới
     function newtouch_event_f7() {
         $("#TabGrid").animate({ left: '0px' }, "slow");
         gridXGYP();

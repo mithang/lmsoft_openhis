@@ -7,13 +7,13 @@
         <div style="width:1000px;padding: 2px 0;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">日期：</th>
+                    <th class="formTitle">Ngày:</th>
                     <td class="formValue" colspan="2">
                         <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         <span style="margin-left:1%;float:left">—</span>
                         <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     </td>
-                    <th class="formTitle">住院号：</th>
+                    <th class="formTitle">Số nhập viện:</th>
                     <td class="formValue">
                         <input id="zyh" type="text" class="form-control" />
                     </td>
@@ -47,16 +47,16 @@
             height: $(window).height() - 120,
             colModel: [
                 { label: "Id", name: "Id", hidden: true },
-                { label: "住院号", name: "zyh", width: 80, align: 'left' },
-                { label: "姓名", name: "xm", width: 80, align: 'left' },
-                { label: "开始日期", name: "kssj", width: 150, align: 'left'},
-                { label: "手术医嘱", name: "yznr", width: 180, align: 'left' },
-                { label: "开嘱医生", name: "ysmc", width: 80, align: 'left' },
-                { label: "手术日期", name: "aprq", width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
-                { label: "手术医生", name: "surgeonName", width: 80, align: 'left' },
-                { label: "手术地点", name: "ssAddr", width: 100, align: 'left' },
-                { label: "安排状态", name: "ztmc", width: 80, align: 'left' },
-                { label: "备注", name: "remark", width: 120, align: 'left' }
+                { label: "Số nhập viện", name: "zyh", width: 80, align: 'left' },
+                { label: "Họ tên", name: "xm", width: 80, align: 'left' },
+                { label: "Ngày bắt đầu", name: "kssj", width: 150, align: 'left'},
+                { label: "Y lệnh phẫu thuật", name: "yznr", width: 180, align: 'left' },
+                { label: "Bác sĩ ra y lệnh", name: "ysmc", width: 80, align: 'left' },
+                { label: "Ngày phẫu thuật", name: "aprq", width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i', newformat: 'Y-m-d H:i' } },
+                { label: "Bác sĩ phẫu thuật", name: "surgeonName", width: 80, align: 'left' },
+                { label: "Địa điểm phẫu thuật", name: "ssAddr", width: 100, align: 'left' },
+                { label: "Trạng thái sắp xếp", name: "ztmc", width: 80, align: 'left' },
+                { label: "Ghi chú", name: "remark", width: 120, align: 'left' }
             ],
             rowNum: 10,
             pager: "#gridPager",
@@ -80,7 +80,7 @@
     }).trigger("reloadGrid");
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var kssj = $("#kssj").val();
         var jssj = $("#jssj").val();
@@ -96,11 +96,11 @@
     function InpatientVitalSignsForm(lsyzId) {
         $.modalOpen({
             id: "ArrangeForm",
-            title: "手术安排录入",
+            title: "Nhập lịch phẫu thuật",
             url: "/DoctorManage/Operation/ArrangeForm?lsyzId=" + lsyzId,
             width: "800px",
             height: "510px",
-            showleftlalbel: !!!lsyzId,  //新增时显示 '确认并关闭按钮'
+            showleftlalbel: !!!lsyzId,  //Hiển thị khi thêm mới 'Nút xác nhận và đóng'
             leftlalbelcheckedasClose: false,
             callBack: function (iframeId, isClose) {
                 var ret = top.frames[iframeId].AcceptClick(function () {

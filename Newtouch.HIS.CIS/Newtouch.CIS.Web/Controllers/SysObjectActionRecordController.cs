@@ -6,14 +6,14 @@ using System.Web.Mvc;
 namespace Newtouch.CIS.Web.Controllers
 {
     /// <summary>
-    /// 通用对象操作记录
+    /// Hồ sơ thao tác đối tượng chung
     /// </summary>
     public class SysObjectActionRecordController : OrgControllerBase
     {
         private readonly ISysObjectActionRecordRepo _sysObjectActionRecordRepo;
 
         /// <summary>
-        /// 添加操作记录
+        /// Thêm hồ sơ thao tác
         /// </summary>
         /// <returns></returns>
         public ActionResult Add(SysObjectActionRecordEntity entity)

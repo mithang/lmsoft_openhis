@@ -1,7 +1,7 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "病区房间床位维护";
+    ViewBag.Title = "Bảo trì phòng, giường bệnh khu bệnh";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -56,7 +56,7 @@
 </style>
 <div class="dv-body">
     <div class="dv-left">
-        <div class="dv-left-title">病区列表</div>
+        <div class="dv-left-title">Danh sách khu bệnh</div>
         <table id="gridBqList"></table>
     </div>
     <div class="dv-right">
@@ -68,22 +68,22 @@
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="AddRoom()">
-                            <i class="fa fa-plus"></i>房间新建
+                            <i class="fa fa-plus"></i>Tạo phòng mới
                         </a>
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="UpdateRoom()">
-                            <i class="fa fa-pencil-square-o"></i>房间修改
+                            <i class="fa fa-pencil-square-o"></i>Sửa phòng
                         </a>
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="AttributesPlusRoom()">
-                            <i class="fa fa-pencil-square-o"></i>附加属性
+                            <i class="fa fa-pencil-square-o"></i>Thuộc tính bổ sung
                         </a>
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="DeleteRoom()">
-                            <i class="fa fa-trash-o"></i>房间删除
+                            <i class="fa fa-trash-o"></i>Xóa phòng
                         </a>
                     </div>
                 </div>
@@ -104,27 +104,27 @@
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="AddBed()">
-                            <i class="fa fa-plus"></i>床位新建
+                            <i class="fa fa-plus"></i>Tạo giường bệnh mới
                         </a>
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="UpdateBed()">
-                            <i class="fa fa-pencil-square-o"></i>床位修改
+                            <i class="fa fa-pencil-square-o"></i>Sửa giường bệnh
                         </a>
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="AttributesPlusBed()">
-                            <i class="fa fa-pencil-square-o"></i>附加属性
+                            <i class="fa fa-pencil-square-o"></i>Thuộc tính bổ sung
                         </a>
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="AddCosts()">
-                            <i class="fa fa-pencil-square-o"></i>关联收费项目
+                            <i class="fa fa-pencil-square-o"></i>Hạng mục thu phí liên quan
                         </a>
                     </div>
                     <div class="btn-group">
                         <a authorize="yes" class="btn btn-primary" onclick="DeleteBed()">
-                            <i class="fa fa-trash-o"></i>床位删除
+                            <i class="fa fa-trash-o"></i>Xóa giường bệnh
                         </a>
                     </div>
                 </div>
@@ -208,7 +208,7 @@
     var rightWidth = $(".Newtouch_iframe", parent.document).width() - $(".dv-left").width() - 25;
     $(".dv-right").width(rightWidth);
     $(function() {
-        $(window).resize(function() { //浏览器窗口调整大小时重新计算宽高
+        $(window).resize(function() { //Khi thay đổi kích thước cửa sổ trình duyệt thì tính lại chiều rộng và chiều cao
             $(".dv-body").height($(window).height());
             $(".dv-body")($(window).width());
         });
@@ -216,14 +216,14 @@
         $('#gridBqList').newtouchLocalDataGrid(null, bqList);
     });
 
-    //病区 
+    //Khu bệnh 
     $('#gridBqList').newtouchLocalDataGrid({
         width: $(".dv-left").width(),
         height: $(window).height() - 70,
         unwritten: false,
         colModel: [
-            { label: '编码', name: 'bqCode', width: 80, align: 'center' },
-            { label: '病区', name: 'bqName', width: 80, align: 'center' }
+            { label: 'Mã', name: 'bqCode', width: 80, align: 'center' },
+            { label: 'Khu bệnh', name: 'bqName', width: 80, align: 'center' }
         ],
         rownumbers: false,
         ondblClickRow: function(rowid) {
@@ -232,17 +232,17 @@
         }
     });
 
-    //房间 
+    //Phòng 
     $('#gridRoomList').newtouchLocalDataGrid({
         height: $(window).height() - 145,
         unwritten: false,
         colModel: [
-            { label: '房间号', name: 'roomNo', align: 'center', width: 120 },
-            { label: '名称', name: 'roomName', align: 'center', width: 120 },
-            { label: '病区', name: 'bqName', align: 'center', width: 120 },
-            { label: '等级', name: 'roomlevel', align: 'center', width: 120 },
-            { label: '科室', name: 'roomDept', align: 'center', width: 120 },
-            { label: '状态', name: 'roomZt', align: 'center', width: 120 }
+            { label: 'Số phòng', name: 'roomNo', align: 'center', width: 120 },
+            { label: 'Tên', name: 'roomName', align: 'center', width: 120 },
+            { label: 'Khu bệnh', name: 'bqName', align: 'center', width: 120 },
+            { label: 'Cấp độ', name: 'roomlevel', align: 'center', width: 120 },
+            { label: 'Khoa', name: 'roomDept', align: 'center', width: 120 },
+            { label: 'Trạng thái', name: 'roomZt', align: 'center', width: 120 }
         ],
         rownumbers: false,
         ondblClickRow: function(rowid) {
@@ -250,7 +250,7 @@
         }
     });
 
-    //床位信息展示
+    //Hiển thị thông tin giường bệnh
     function ShowBedList() {
         $("#gridRoomList").setGridHeight(($(window).height() - 100) / 2 - 35);
         $("#dv_bed_grid").show(400);
@@ -259,29 +259,29 @@
         $('#gridBedList').newtouchLocalDataGrid(null, bedList);
     }
 
-    //床位
+    //Giường bệnh
     $('#gridBedList').newtouchLocalDataGrid({
         height: ($(window).height() - 100) / 2 - 45,
         width: rightWidth,
         shrinkToFit: true,
         unwritten: false,
         colModel: [
-            { label: '床号', name: 'bedNo', align: 'center', width: 100 },
-            { label: '床位类型', name: 'bedType', align: 'center', width: 80 },
-            { label: '特殊标志', name: 'tsbz', align: 'center', width: 100 },
-            { label: '是否启用', name: 'zt', align: 'center', width: 80 },
-            { label: '是否占床', name: 'sfzc', align: 'center', width: 100 },
-            { label: '住院医生', name: 'zysy', align: 'left', width: 100 },
-            { label: '主治医生', name: 'zzys', align: 'left', width: 100 },
-            { label: '主任医生', name: 'zrys', align: 'left', width: 100 }
+            { label: 'Số giường', name: 'bedNo', align: 'center', width: 100 },
+            { label: 'Loại giường bệnh', name: 'bedType', align: 'center', width: 80 },
+            { label: 'Dấu hiệu đặc biệt', name: 'tsbz', align: 'center', width: 100 },
+            { label: 'Có bật không', name: 'zt', align: 'center', width: 80 },
+            { label: 'Có chiếm giường không', name: 'sfzc', align: 'center', width: 100 },
+            { label: 'Bác sĩ nhập viện', name: 'zysy', align: 'left', width: 100 },
+            { label: 'Bác sĩ điều trị chính', name: 'zzys', align: 'left', width: 100 },
+            { label: 'Bác sĩ trưởng', name: 'zrys', align: 'left', width: 100 }
         ],
         rownumbers: false
     });
 
-    //房间列表扩大缩小
+    //Phóng to, thu nhỏ danh sách phòng
     function roomShowOrClose(v) {
         switch (v) {
-        case 0: //收起
+        case 0: //Thu gọn
             if ($("#dv_room_grid").css('display') !== 'none') {
                 if ($("#dv_bed_grid").css('display') === 'none') {
                     $("#gridRoomList").setGridHeight(($(window).height() - 100) / 2 - 35);
@@ -300,7 +300,7 @@
                 }
             }
             break;
-        case 1: //展开
+        case 1: //Mở rộng
             if ($("#dv_room_grid").css('display') === 'none') {
                 $("#dv_room_grid").show(400);
                 $('#gridRoomList').jqGrid("clearGridData");
@@ -319,21 +319,21 @@
         }
     }
 
-    //添加病房
+    //Thêm phòng bệnh
     function AddRoom() {
         var keyValue = $("#gridBqList").jqGridRowValue().bqCode;
         if (!!!keyValue) {
-            $.modalAlert("请选中一病区", 'warning');
+            $.modalAlert("Vui lòng chọn một khu bệnh", 'warning');
             return;
         }
         OpenRoomForm("");
     }
 
-    //修改病房
+    //Sửa phòng bệnh
     function UpdateRoom() {
         var keyValue = $("#gridRoomList").jqGridRowValue().roomNo;
         if (!!!keyValue) {
-            $.modalAlert("请选中一病房", 'warning');
+            $.modalAlert("Vui lòng chọn một phòng bệnh", 'warning');
             return;
         }
         OpenRoomForm(keyValue);
@@ -343,7 +343,7 @@
     function DeleteRoom() {
         var keyValue = $("#gridRoomList").jqGridRowValue().roomNo;
         if (!!!keyValue) {
-            $.modalAlert("请选中一病房", 'warning');
+            $.modalAlert("Vui lòng chọn một phòng bệnh", 'warning');
             return;
         }
         $.deleteForm({
@@ -355,16 +355,16 @@
         });
     }
 
-    //附加属性
+    //Thuộc tính bổ sung
     function AttributesPlusRoom() {
         var keyValue = $("#gridRoomList").jqGridRowValue().roomNo;
         if (!!!keyValue) {
-            $.modalAlert("请选中一病房", 'warning');
+            $.modalAlert("Vui lòng chọn một phòng bệnh", 'warning');
             return;
         }
         $.modalOpen({
             id: "AttributesPlusRoomForm",
-            title: "病床附加属性",
+            title: "Thuộc tính bổ sung của giường bệnh",
             url: "/NurseManage/WardMaintenance/AttributesPlusRoomForm?keyWord=" + keyValue,
             width: "500px",
             height: "550px",
@@ -392,42 +392,42 @@
         });
     }
 
-    //刷新病房
+    //Làm mới phòng bệnh
     function RefreshRoom() {
         $('#gridRoomList').jqGrid("clearGridData");
         $('#gridRoomList').newtouchLocalDataGrid(null, roomList);
     }
 
-    //添加病房
+    //Thêm phòng bệnh
     function AddBed() {
         var keyValue = $("#gridRoomList").jqGridRowValue().roomNo;
         if (!!!keyValue) {
-            $.modalAlert("请选中一病房", 'warning');
+            $.modalAlert("Vui lòng chọn một phòng bệnh", 'warning');
             return;
         }
         OpenBedForm("");
     }
 
-    //修改病房
+    //Sửa phòng bệnh
     function UpdateBed() {
         var keyValue = $("#gridBedList").jqGridRowValue().bedNo;
         if (!!!keyValue) {
-            $.modalAlert("请选中一病床", 'warning');
+            $.modalAlert("Vui lòng chọn một giường bệnh", 'warning');
             return;
         }
         OpenBedForm(keyValue);
     }
 
-    //床位附加属性
+    //Thuộc tính bổ sung của giường bệnh
     function AttributesPlusBed() {
         var keyValue = $("#gridBedList").jqGridRowValue().bedNo;
         if (!!!keyValue) {
-            $.modalAlert("请选中一病床", 'warning');
+            $.modalAlert("Vui lòng chọn một giường bệnh", 'warning');
             return;
         }
         $.modalOpen({
             id: "AttributesPlusBedForm",
-            title: "病房附加属性",
+            title: "Thuộc tính bổ sung của phòng bệnh",
             url: "/NurseManage/WardMaintenance/AttributesPlusBedForm?keyWord=" + keyValue,
             width: "500px",
             height: "550px",
@@ -443,7 +443,7 @@
     function DeleteBed() {
         var keyValue = $("#gridBedList").jqGridRowValue().bedNo;
         if (!!!keyValue) {
-            $.modalAlert("请选中一病床", 'warning');
+            $.modalAlert("Vui lòng chọn một giường bệnh", 'warning');
             return;
         }
         $.deleteForm({
@@ -455,7 +455,7 @@
         });
     }
 
-    //刷新床位
+    //Làm mới giường bệnh
     function RefreshBed() {
         $('#gridBedList').jqGrid("clearGridData");
         $('#gridBedList').newtouchLocalDataGrid(null, bedList);
@@ -477,16 +477,16 @@
         });
     }
 
-    //关联收费项目
+    //Hạng mục thu phí liên quan
     function AddCosts() {
         var keyValue = $("#gridBedList").jqGridRowValue().bedNo;
         if (!!!keyValue) {
-            $.modalAlert("请选中一病床", 'warning');
+            $.modalAlert("Vui lòng chọn một giường bệnh", 'warning');
             return;
         }
         $.modalOpen({
             id: "BedBindingCostForm",
-            title: "维护床位费",
+            title: "Bảo trì phí giường bệnh",
             url: "/NurseManage/WardMaintenance/BedBindingCostForm?keyValue" + keyValue + "&zyh=''" ,
             width: "500px",
             height: "480px",

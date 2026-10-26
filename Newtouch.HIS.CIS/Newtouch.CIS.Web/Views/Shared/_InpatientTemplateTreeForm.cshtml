@@ -1,12 +1,12 @@
 ﻿@using Newtouch.Infrastructure;
 <div id="floatLeftMostPartDiv" style="display:none;">
-    <div data-href="personal" data-type=@Html.Raw(((int)EnumTcfw.Person).ToString()) class=""><span>个人</span></div>
-    <div data-href="department" data-type=@Html.Raw(((int)EnumTcfw.Dept).ToString()) class=""><span>科室</span></div>
+    <div data-href="personal" data-type=@Html.Raw(((int)EnumTcfw.Person).ToString()) class=""><span>Cá nhân</span></div>
+    <div data-href="department" data-type=@Html.Raw(((int)EnumTcfw.Dept).ToString()) class=""><span>Khoa</span></div>
     @if (ViewBag.bhbq)
     {
-    <div data-href="ward" data-type=@Html.Raw(((int)EnumTcfw.Ward).ToString()) class=""><span>病区</span></div>
+    <div data-href="ward" data-type=@Html.Raw(((int)EnumTcfw.Ward).ToString()) class=""><span>Khu bệnh</span></div>
     }
-    <div data-href="hospital" data-type=@Html.Raw(((int)EnumTcfw.Hosp).ToString()) class=""><span>全院</span></div>
+    <div data-href="hospital" data-type=@Html.Raw(((int)EnumTcfw.Hosp).ToString()) class=""><span>Toàn viện</span></div>
 </div>
 <div id="floatPreTemplateTree" style="display:none;">
     <div class="ui-layout-west">
@@ -18,7 +18,7 @@
     var pageFlag = "";
     function SetCurrentPageyzlx(page) {
         pageFlag = page;
-        //模拟点击tab
+        //Mô phỏng nhấntab
         //$("#beveltabs a:first").trigger('click');
         if ('@ViewBag.bhbq' == "False") {
             $('#floatLeftMostPartDiv div').css("height","33.33%");
@@ -32,7 +32,7 @@
     $("#floatLeftMostPartDiv div").on("click", function (e) {
         e.preventDefault();
         if ($(this).hasClass('activepart')) {
-            //再点击 隐藏
+            //Nhấn lại Ẩn
             $("#floatLeftMostPartDiv div").removeClass("activepart");
             $('#floatPreTemplateTree').hide();
         } else {
@@ -48,7 +48,7 @@
             onnodeclick: function (item) {
                 $.modalOpen({
                     id: "TemplatePresForm",
-                    title: "套餐明细",
+                    title: "Chi tiết gói",
                     url: "/DoctorManage/DoctorsAdvice/TemplatePresForm?tcId=" + item.id + "&tclx=" + pageFlag,
                     width: "800px",
                     height: "650px",
@@ -61,7 +61,7 @@
                                 dataType: "json",
                                 data: { idList: idlist },
                                 type: "POST",
-                                loadingtext: "模板引用中，请稍后...",
+                                loadingtext: "Đang trích dẫn mẫu, vui lòng đợi...",
                                 success: function (resp) {
                                     debugger
                                     $.modalClose("TemplatePresForm");
@@ -99,7 +99,7 @@
                                         var l = resp;
                                         for (var i = 0; i < l.length; i++) {
                                             l[i].Id = Math.random().toString() + new Date().getMilliseconds();
-                                            l[i].yzzt = 0;//默认未审
+                                            l[i].yzzt = 0;//Mặc định chưa duyệt
                                             l[i].action = getActionStr;
                                             l[i].zyh = currentobj.zyh;
                                             l[i].kssj = $.getTime();

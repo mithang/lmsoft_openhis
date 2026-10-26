@@ -7,7 +7,7 @@
     <div style="background-color: #fff;">
         <table id="gridjy"></table>
     </div>
-    @*divGridjy-旧版*@
+    @*divGridjy-Phiên bản cũ*@
     <div id="divGridjy" style="display:none;">
         <table id="alreadyJYAppliedList"></table>
     </div>
@@ -17,13 +17,13 @@
     <table class="form">
         <tr>
             <td class="formTitle">
-                临床印象
+                Ấn tượng lâm sàng
             </td>
             <td class="formValue">
                 <input id="txt_jy_lcyx" name="txt_jy_lcyx" type="text" class="form-control" />
             </td>
             <td class="formTitle">
-                申请备注
+                Ghi chú yêu cầu
             </td>
             <td class="formValue">
                 <input id="txt_jy_sqbz" name="txt_jy_sqbz" type="text" class="form-control" />
@@ -34,10 +34,10 @@
         <tr>
             <td colspan="4"></td>
             <td>
-                <input type="button" class="btn btn-primary" value="返回病历" style="display:table-cell" onclick="SaveInspectionbyZt()" />
+                <input type="button" class="btn btn-primary" value="Quay lại bệnh án" style="display:table-cell" onclick="SaveInspectionbyZt()" />
             </td>
             <td class="formValue">
-                <input type="button" class="btn btn-primary" value="F3：保存申请单" style="display:table-cell" onclick="SaveInspectionbyZt('1')" />
+                <input type="button" class="btn btn-primary" value="F3: Lưu phiếu yêu cầu" style="display:table-cell" onclick="SaveInspectionbyZt('1')" />
             </td>
         </tr>
     </table>
@@ -46,7 +46,7 @@
 <script>
     var jyflag = 0;
     var jylocaldata = new Array();
-    var thsNewJyCfh = null; //处方号
+    var thsNewJyCfh = null; //Số đơn thuốc
     function init_Inspection() {
         jylocaldata = new Array();
         thsNewJyCfh = null;
@@ -60,14 +60,14 @@
             });
         }
         else {
-            window.alldataArray.jycf = new Array(); //方便后面使用$.each()
+            window.alldataArray.jycf = new Array(); //Để tiện sử dụng sau này$.each()
         }
 
         if (!!!thsNewJyCfh) {
             thsNewJyCfh = GetNewPresNo();
         }
 
-        if (jyflag == 0) {   //该页面初始化
+        if (jyflag == 0) {   //Khởi tạo trang này
             gridjy();
             gridAlreadyJYApplied();
             gridAlreadyJYGroupApplied();
@@ -82,31 +82,31 @@
         }
     }
 
-    //处方列表
+    //Danh sách đơn thuốc
     function gridjy() {
         var $gridjy = $("#gridjy");
         $gridjy.dataGrid({
-            caption: "选择组套",
+            caption: "Chọn bộ mẫu",
             height: 130,
             //multiselect: true,
             unwritten: false,
             colModel: [
-                { label: '项目名称', name: 'xmmc', width: 200, align: 'left' },
-                { label: '项目编码', name: 'xmCode', width: 120, align: 'left' },
+                { label: 'Tên hạng mục', name: 'xmmc', width: 200, align: 'left' },
+                { label: 'Mã hạng mục', name: 'xmCode', width: 120, align: 'left' },
                 {
-                    label: '单价', name: 'dj', width: 100, align: 'left', formatter: "number"
+                    label: 'Đơn giá', name: 'dj', width: 100, align: 'left', formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
-                { label: '单位', name: 'dw', width: 100, align: 'left' },
-                { label: '数量', name: 'sl', width: 80, align: 'left' },
+                { label: 'Đơn vị', name: 'dw', width: 100, align: 'left' },
+                { label: 'Số lượng', name: 'sl', width: 80, align: 'left' },
                 { label: 'zxks', name: 'zxks', width: 60, align: 'left', hidden: true },
-                { label: '执行科室', name: 'zxksmc', width: 80, align: 'left' },
-                { label: '是否医保', name: 'sfyb', width: 60, align: 'center' },
-                { label: '组套ID', name: 'ztId', width: 60, align: 'left', hidden: true },
-                { label: '组套名称', name: 'ztmc', width: 120, align: 'center' }
+                { label: 'Khoa thực hiện', name: 'zxksmc', width: 80, align: 'left' },
+                { label: 'Có phải bảo hiểm y tế không', name: 'sfyb', width: 60, align: 'center' },
+                { label: 'Bộ mẫuID', name: 'ztId', width: 60, align: 'left', hidden: true },
+                { label: 'Tên bộ mẫu', name: 'ztmc', width: 120, align: 'center' }
             ],
             gridComplete: function () {
-                //隐藏grid底部滚动条
+                //ẨngridThanh cuộn dưới cùng
                 $gridjy.closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
             }
             //onSelectRow: function (rowid, status) {
@@ -123,8 +123,8 @@
             if (status === true) {
                 var data = $("#gridjy").getRowData(this);
                 if (window.currPatientInfo.brxzCode != "" &&'@ViewBag.ControlbrxzCode'.indexOf(window.currPatientInfo.brxzCode) > -1 && data.sfyb == "否") {
-                    $.modalAlert("该患者为医保患者，不可选择自费项目【" + data.xmmc + "】", "warning");
-                    $("#gridjy").jqGrid('setSelection', rowid, false); //设置jqGrid选中
+                    $.modalAlert("Bệnh nhân này là bệnh nhân bảo hiểm y tế, không được chọn hạng mục tự trả【" + data.xmmc + "】", "warning");
+                    $("#gridjy").jqGrid('setSelection', rowid, false); //Cài đặtjqGridChọn
                     return false;
                 }
                 addJYRow(this);
@@ -142,10 +142,10 @@
         for (var i = 0; i < rowIds.length; i++) {
             var currRow = $("#alreadyJYAppliedList").getRowData(rowIds[i]);
             if (currRow.xmCode === sourceRowData.xmCode) {
-                return; //已添加过  //不能重复加
+                return; //Đã thêm rồi  //Không được thêm trùng lặp
             }
         }
-        //执行add
+        //Thực hiệnadd
         var aRowData = {};
         aRowData.xmmc = sourceRowData.xmmc;
         aRowData.xmCode = sourceRowData.xmCode;
@@ -166,14 +166,14 @@
         for (var i = 0; i < rowIds.length; i++) {
             var currRow = $("#alreadyJYAppliedList").getRowData(rowIds[i]);
             if (currRow.xmCode === sourceRowData.xmCode) {
-                //执行移除
+                //Thực hiện xóa bỏ
                 $('#alreadyJYAppliedList').jqGrid("delRowData", rowIds[i]);
                 return;
             }
         }
     }
 
-    //计算申请单金额
+    //Tính số tiền phiếu yêu cầu
     function CalculateInsPresJYAmount($grid) {
         var totalAmount = 0.00;
         var allData = $grid.jqGrid('getRowData_AllLine', null, true);
@@ -188,22 +188,22 @@
 
         });
         $grid.jqGrid("setCaption", "已开申请单明细，申请单总金额：" + "<label style='color:red;'>￥"
-            + totalAmount.toFixed(2) + "</label>");   //重置caption属性值
+            + totalAmount.toFixed(2) + "</label>");   //Đặt lạicaptionGiá trị thuộc tính
     }
 
     function gridAlreadyJYApplied() {
-        //init 已开申请单
+        //init Phiếu yêu cầu đã lập
         $('#alreadyJYAppliedList').newtouchLocalDataGrid({
             height: $(window).height() - 390,
             unwritten: false,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
-            caption: "已开申请单明细，申请单总金额：0.00",
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            caption: "Chi tiết phiếu đã lập, tổng số tiền phiếu:0.00",
             colModel: [
-                { label: '项目名称', name: 'xmmc', width: 200, align: 'left' },
-                { label: '项目编码', name: 'xmCode', width: 200, align: 'left' },
-                { label: '单价', name: 'dj', width: 120, align: 'left' },
+                { label: 'Tên hạng mục', name: 'xmmc', width: 200, align: 'left' },
+                { label: 'Mã hạng mục', name: 'xmCode', width: 200, align: 'left' },
+                { label: 'Đơn giá', name: 'dj', width: 120, align: 'left' },
                 {
-                    label: '数量', name: 'sl', width: 80, align: 'left', editable: true,editoptions: {
+                    label: 'Số lượng', name: 'sl', width: 80, align: 'left', editable: true,editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
@@ -213,41 +213,41 @@
                             }
                         ]
                     } },
-                { label: '单位', name: 'dw', width: 120, align: 'left' },
+                { label: 'Đơn vị', name: 'dw', width: 120, align: 'left' },
                 { label: 'zxks', name: 'zxks', width: 60, align: 'left', hidden: true },
-                { label: '执行科室', name: 'zxksmc', width: 120, align: 'left' },
-                { label: '组套ID', name: 'ztId', width: 60, align: 'left',  hidden: true },
-                { label: '组套名称', name: 'ztmc', width: 120, align: 'center' }]
+                { label: 'Khoa thực hiện', name: 'zxksmc', width: 120, align: 'left' },
+                { label: 'Bộ mẫuID', name: 'ztId', width: 60, align: 'left',  hidden: true },
+                { label: 'Tên bộ mẫu', name: 'ztmc', width: 120, align: 'center' }]
         });
     }
     function EnableInspectionInlineEditBox() {
         var ids = $("#alreadyJYAppliedList").getDataIDs();
         $.each(ids, function () {
             var rowid = String(this);
-            //打开编辑模式
+            //Mở chế độ chỉnh sửa
             $("#alreadyJYAppliedList").jqGrid('editRow', rowid, false);
         });
 
     }
 
-    //保存
+    //Lưu
     function SaveJY(savetodb, justUpdateAlldataArray) {
-        //作为一个新处方
+        //Dưới dạng một đơn thuốc mới
         var gridjyData = $("#alreadyJYAppliedList").jqGrid('getRowData_AllLine', null, true);
         $.each(gridjyData, function () {
             this.lcyx = $('#txt_jy_lcyx').val();
             this.sqbz = $('#txt_jy_sqbz').val();
             this.sl = $('#alreadyJYAppliedList input[name=sl]').val();
-            delete this.jqRowId;   //去掉jqRowId
+            delete this.jqRowId;   //Loại bỏjqRowId
         });
 
-        //清空临床印象、申请备注
+        //Xóa ấn tượng lâm sàng, ghi chú yêu cầu
         $('#txt_jc_lcyx').val('');
         $('#txt_jc_sqbz').val('');
 
         window.alldataArray.jycf = $.jsonWhere(window.alldataArray.jycf, function (icfmx) {
             if (!!!icfmx.cfId) {
-                return false;   //编辑列表里有
+                return false;   //Trong danh sách chỉnh sửa có
             }
             return true;
         });
@@ -259,18 +259,18 @@
         if (!(justUpdateAlldataArray == true)) {
             if (savetodb == '1') {
                 if (SaveData(false, function () {
-                    $.modalAlert("申请单保存成功", 'success');
+                    $.modalAlert("Lưu phiếu yêu cầu thành công", 'success');
                     thsNewJyCfh = GetNewPresNo();
                 })) {
                     $("#gridjy").clearGridData();
                     $('#alreadyJYAppliedList').clearGridData();
                 }
-                $("#alreadyJYAppliedList").jqGrid("setCaption", "已开申请单明细，申请单总金额：0.00");   //重置caption属性值
+                $("#alreadyJYAppliedList").jqGrid("setCaption", "已开申请单明细，申请单总金额：0.00");   //Đặt lạicaptionGiá trị thuộc tính
             }
             else {
-                //跳回病历页
-                $('#myTab [href="#linkbl"]').trigger('click'); //初始化显示哪个tab
-                //病例页重新加载处方，处方数据发生了变更
+                //Quay lại trang bệnh án
+                $('#myTab [href="#linkbl"]').trigger('click'); //Khởi tạo hiển thị mục nàotab
+                //Trang bệnh án tải lại đơn thuốc, dữ liệu đơn thuốc đã thay đổi
                 triggleActive();
             }
         }
@@ -280,23 +280,23 @@
     }
 
     /********************************************************/
-    //显示选择检验组合
+    //Hiển thị chọn tổ hợp xét nghiệm
     function gridAlreadyJYGroupApplied() {
         $('#alreadyJYAppliedGroupList').newtouchLocalDataGrid({
             height: $(window).height() - 410,
             unwritten: false,
-            caption: "已开申请单明细，申请单总金额：0.00",
+            caption: "Chi tiết phiếu đã lập, tổng số tiền phiếu:0.00",
             editurl: "clientArray",
             colModel: [
-                { label: '组套ID', name: 'ztId', width: 60, align: 'left', key: true, hidden: true },
+                { label: 'Bộ mẫuID', name: 'ztId', width: 60, align: 'left', key: true, hidden: true },
                 { label: 'mbId', name: 'mbId', width: 60, align: 'left', hidden: true },
-                { label: '组套名称', name: 'ztmc', width: 300, align: 'left' },
+                { label: 'Tên bộ mẫu', name: 'ztmc', width: 300, align: 'left' },
                 {
-                    label: '金额', name: 'zhje', width: 100, align: 'center', formatter: "number"
+                    label: 'Số tiền', name: 'zhje', width: 100, align: 'center', formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' } },
                 { label: 'zxksdm', name: 'zxksdm', width: 60, align: 'center', hidden: true },
-                { label: '执行科室', name: 'zxksmc', width: 150, align: 'center' },
-                { label: '操作', name: 'action', width: 150, align: 'center' },
+                { label: 'Khoa thực hiện', name: 'zxksmc', width: 150, align: 'center' },
+                { label: 'Thao tác', name: 'action', width: 150, align: 'center' },
             ],
             gridComplete: function () {
             }
@@ -304,17 +304,17 @@
     }
 
     function SaveInspectionbyZt(savetodb, justUpdateAlldataArray) {
-        //作为一个新处方
+        //Dưới dạng một đơn thuốc mới
         var gridjyData;
         var rowIds = $("#alreadyJYAppliedGroupList").jqGrid('getDataIDs');
        
-        //清空临床印象、申请备注
+        //Xóa ấn tượng lâm sàng, ghi chú yêu cầu
         $('#txt_jc_lcyx').val('');
         $('#txt_jc_sqbz').val('');
 
         window.alldataArray.jycf = $.jsonWhere(window.alldataArray.jycf, function (icfmx) {
             if (!!!icfmx.cfId) {
-                return false;   //编辑列表里有
+                return false;   //Trong danh sách chỉnh sửa có
             }
             return true;
         });
@@ -342,18 +342,18 @@
         if (!(justUpdateAlldataArray == true)) {
             if (savetodb == '1') {
                 if (SaveData(false, function () {
-                    $.modalAlert("申请单保存成功", 'success');
+                    $.modalAlert("Lưu phiếu yêu cầu thành công", 'success');
                     thsNewJyCfh = GetNewPresNo();
                 })) {
                     $("#gridjy").clearGridData();
                     $('#alreadyJYAppliedGroupList').clearGridData();
                 }
-                $("#alreadyJYAppliedGroupList").jqGrid("setCaption", "已开申请单明细，申请单总金额：0.00");   //重置caption属性值
+                $("#alreadyJYAppliedGroupList").jqGrid("setCaption", "已开申请单明细，申请单总金额：0.00");   //Đặt lạicaptionGiá trị thuộc tính
             }
             else {
-                //跳回病历页
-                $('#myTab [href="#linkbl"]').trigger('click'); //初始化显示哪个tab
-                //病例页重新加载处方，处方数据发生了变更
+                //Quay lại trang bệnh án
+                $('#myTab [href="#linkbl"]').trigger('click'); //Khởi tạo hiển thị mục nàotab
+                //Trang bệnh án tải lại đơn thuốc, dữ liệu đơn thuốc đã thay đổi
                 triggleActive();
             }
         }

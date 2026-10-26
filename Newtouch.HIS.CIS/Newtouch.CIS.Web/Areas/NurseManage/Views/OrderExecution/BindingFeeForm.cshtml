@@ -12,39 +12,39 @@
 </style>
 <div class="panel panel-default" style="margin-bottom:0;">
     <div class="panel-heading navb-bg">
-        住院患者信息
+        Thông tin bệnh nhân nhập viện
     </div>
     <table class="form" style="width:96%;">
         <tbody>
             <tr>
-                <th class="formTitle" style="width:48px;padding-right:4px">床号：</th>
+                <th class="formTitle" style="width:48px;padding-right:4px">Số giường:</th>
                 <td class="formValue" style="width:30px">
                     <label id="ch"></label>
                 </td>
 
-                <th class="formTitle" style="width:55px;padding-right:4px">住院号：</th>
+                <th class="formTitle" style="width:55px;padding-right:4px">Số nhập viện:</th>
                 <td class="formValue">
                     <input name="zyh" id="zyh" class="form-control inp_p" />
                     <input id="deptCode" type="text" style="display:none;" class="form-control" />
                     @*<label id="zyh"></label>*@
                 </td>
                 <td class="formValue">
-                    <input type="button" id="btn_zyh" class="btn btn-default" value="住院号" />
+                    <input type="button" id="btn_zyh" class="btn btn-default" value="Số nhập viện" />
                 </td>
 
-                <th class="formTitle" style="width:48px;padding-right:4px">姓名：</th>
+                <th class="formTitle" style="width:48px;padding-right:4px">Họ tên:</th>
                 <td class="formValue">
                     <label id="xm"></label>
                 </td>
-                <th class="formTitle" style="width:70px;padding-right:4px">医嘱内容：</th>
+                <th class="formTitle" style="width:70px;padding-right:4px">Nội dung y lệnh:</th>
                 <td class="formValue" style="width:300px">
                     <label id="yznr"></label>
                 </td>
-                <th class="formTitle" style="width:70px;padding-right:4px">医嘱性质：</th>
+                <th class="formTitle" style="width:70px;padding-right:4px">Tính chất y lệnh:</th>
                 <td class="formValue">
                     <select id="yzxz">
-                        <option value="1">临时</option>
-                        <option value="2">长期</option>
+                        <option value="1">Tạm thời</option>
+                        <option value="2">Dài hạn</option>
                     </select>
                 </td>
             </tr>
@@ -56,14 +56,14 @@
         <table class="form">
             <tr>
                 <td class="formTitle">
-                    <span class="napan">*</span>收费项目：
+                    <span class="napan">*</span>Hạng mục thu phí:
                 </td>
                 <td class="formValue">
                     <input id="sfxmmc" type="text" class="form-control form-an" autocomplete="off" />
                     <input id="sfxmCode" type="text" style="display:none;" class="form-control" />
                     <input id="sfdlCode" type="text" style="display:none;" class="form-control" />
                     <input id="sfdlmc" type="text" style="display:none;" class="form-control" />
-                    <!-- 医嘱类型 2项目 1药品 -->
+                    <!-- Loại y lệnh 2Hạng mục 1Thuốc -->
                     <input id="yzlx" type="text" style="display:none;" class="form-control" />
                     <input id="yfdm" type="text" style="display:none;" class="form-control" />
                     <input id="zfbl" type="text" style="display:none;" class="form-control" />
@@ -72,13 +72,13 @@
                     
                 </td>
                 <td class="formTitle">
-                    <span class="napan">*</span>数量：
+                    <span class="napan">*</span>Số lượng:
                 </td>
                 <td class="formValue">
                     <input type="text" id="sl" class="form-control form-an" />
                 </td>
                 <td class="formTitle">
-                    <span class="napan">*</span>频次：
+                    <span class="napan">*</span>Tần suất:
                 </td>
                 <td class="formValue">
                     <input id="pcmc" type="text" class="form-control form-an" autocomplete="off" />
@@ -89,7 +89,7 @@
                     <input id="gg" type="text" style="display:none;" class="form-control" />
                 </td>
                 <td class="formTitle">
-                    单位：
+                    Đơn vị:
                 </td>
                 <td class="formValue">
                     <label id="dw"></label>
@@ -136,7 +136,7 @@
     $('#btn_zyh').click(function () {
         $.modalOpen({
             id: "patSearch",
-            title: "住院患者查询",
+            title: "Tra cứu bệnh nhân nhập viện",
             url: "/PatientList/InPatSearchView?allowunselected=true&zybz=1,2,3,7&t=" + Math.random() + "&zyh=" + '',
             width: "700px",
             height: "600px",
@@ -161,7 +161,7 @@
         $('#zyh').val(zyh);
         gridListData();
     });
-    //加载收费项目
+    //Tải hạng mục thu phí
     function initControl() {
         $.ajax({
             url: "/NurseManage/OrderExecution/GetlsorcqyzData",
@@ -204,7 +204,7 @@
         //});
 
     }
-    //仅清除输入域的内容
+    //Chỉ xóa nội dung của vùng nhập
     function clearJZInfo() {
         newtouch_globalevent_f4(null, {
             container: "#BookKeep",
@@ -212,7 +212,7 @@
         });
     }
 
-    //删除其中一条数据
+    //Xóa một dữ liệu trong đó
     function delData() {
         var $gridList = $("#gridList");
         var id = $gridList.jqGrid("getGridParam", "selrow");
@@ -227,10 +227,10 @@
                 }
             }
             if (matchedIndex === -1) {
-                return; //应该是异常
+                return; //Có lẽ là bất thường
             }
-            xmjf.remove(matchedIndex);   //移除新记账
-            ////删除医嘱或停止医嘱
+            xmjf.remove(matchedIndex);   //Xóa ghi sổ mới
+            ////Xóa y lệnh hoặc dừng y lệnh
             //$.najax({
             //    url: "/NurseManage/OrderExecution/DeleteOrder",
             //    data: { yzxz: rowData.yzxz, yzh: yzh, zh: zh, ItemFeeVO: xmjf },
@@ -238,7 +238,7 @@
             //    type: "POST",
             //    //async: false,
             //    success: function (data) {
-            //        if (data.message == "保存成功！") {
+            //        if (data.message == "Lưu thành công!") {
             //            $.modalAlert(data.message, 'success');
             //        }
             //        else {
@@ -252,42 +252,42 @@
             fillDataToGrid();
         }
         else {
-            $.modalAlert("请选中一条数据！", 'error');
+            $.modalAlert("Vui lòng chọn một dữ liệu!", 'error');
         }
     }
 
-    //重新绑定grid
+    //Liên kết lạigrid
     function fillDataToGrid() {
         $('#gridList').jqGrid("clearGridData");
         $("#gridList").newtouchLocalDataGrid(null, xmjf);
     }
 
-    //绑定grid
+    //Liên kếtgrid
     function gridListData() {
         var $gridList = $("#gridList");
         $gridList.newtouchLocalDataGrid({
             height: $(window).height() - 250,
             unwritten: false,
             colModel: [
-                { label: "主键", name: "newid", hidden: true, key: true },
+                { label: "Khóa chính", name: "newid", hidden: true, key: true },
                 {
-                    label: '医嘱性质', name: 'yzxz', width: 50, align: 'left', editor: "text", formatter: function (val) {
+                    label: 'Tính chất y lệnh', name: 'yzxz', width: 50, align: 'left', editor: "text", formatter: function (val) {
                         return $.enum.getDescByValue("EnumYzxz", val);
                     }
                 },
-                { label: '收费项目', name: 'sfxmmc', width: 250, align: 'left', editor: "text" },
-                { label: '费用类别', name: 'dlmc', width: 100, align: 'left', editor: "text" },
-                { label: '单位', name: 'dw', width: 50, align: 'left', editor: "text" },
-                { label: '规格', name: 'gg', width: 100, align: 'left', editor: "text" },
+                { label: 'Hạng mục thu phí', name: 'sfxmmc', width: 250, align: 'left', editor: "text" },
+                { label: 'Loại chi phí', name: 'dlmc', width: 100, align: 'left', editor: "text" },
+                { label: 'Đơn vị', name: 'dw', width: 50, align: 'left', editor: "text" },
+                { label: 'Quy cách', name: 'gg', width: 100, align: 'left', editor: "text" },
 
-                { label: '频次', name: 'pcmc', width: 50, align: 'left', editor: "text" },
+                { label: 'Tần suất', name: 'pcmc', width: 50, align: 'left', editor: "text" },
 
                 {
-                    label: '单价', name: 'dj', width: 60, align: 'left', editor: "text", formatter: "number"
+                    label: 'Đơn giá', name: 'dj', width: 60, align: 'left', editor: "text", formatter: "number"
                     , formatoptions: { decimalPlaces: 4, defaultValue: '0.0000' }
                 },
-                { label: '数量', name: 'sl', width: 60, align: 'left', editor: "text" },
-                { label: '金额', name: 'je', width: 60, align: 'left', editor: "text" },
+                { label: 'Số lượng', name: 'sl', width: 60, align: 'left', editor: "text" },
+                { label: 'Số tiền', name: 'je', width: 60, align: 'left', editor: "text" },
                 { label: 'dl', name: 'dl', hidden: true },
                 { label: 'zfxz', name: 'zfxz', width: 100, align: 'left', editor: "text", hidden: true },
                 { label: 'zfbl', name: 'zfbl', width: 100, align: 'left', editor: "text", hidden: true },
@@ -335,14 +335,14 @@
 
 
 
-    //保存操作
+    //Lưu thao tác
     function btn_Save() {
         if ($("#xm").html() == "" && $("#zyh").val() == "") {
-            $.modalAlert("请选择病人并点击查询！", 'error');
+            $.modalAlert("Vui lòng chọn bệnh nhân và nhấn tra cứu!", 'error');
             return;
         }
         if (xmjf.length<1) {
-            $.modalAlert("请添加医嘱内容进行保存！", 'error');
+            $.modalAlert("Vui lòng thêm nội dung y lệnh để lưu!", 'error');
             return;
         }
         $.najax({
@@ -382,18 +382,18 @@
 
     function newtouch_event_f2() {
         if ($("#xm").html() == "" && $("#zyh").val() == "") {
-            $.modalAlert("请选择病人并点击查询！", 'error');
+            $.modalAlert("Vui lòng chọn bệnh nhân và nhấn tra cứu!", 'error');
             return;
         }
         var newRowData = getEditRowData();
         if (!(checkEditingRowData(newRowData))) {
-            //数据是否完善，检查必填项
+            //Dữ liệu có hoàn thiện không, kiểm tra các mục bắt buộc
             return;
         }
 
         newRowData.newid = Math.random().toString() + new Date().getMilliseconds();
 
-        xmjf.unshift(newRowData);   //作为新项添加 //”数组最前端“
+        xmjf.unshift(newRowData);   //Thêm dưới dạng mục mới //”Đầu mảng“
         fillDataToGrid();
         clearJZInfo();
 
@@ -401,7 +401,7 @@
     }
 
     $('#sl').keydownEnterEvent(function (event) {
-        if ($('#sl').hasClass('form-an-cur')) { //缺陷-由上一个enter过来的
+        if ($('#sl').hasClass('form-an-cur')) { //Khuyết điểm-Từ cái trướcenterđã qua
             $('#sl').removeClass('form-an-cur')
             return;
         }
@@ -417,7 +417,7 @@
     $('#pcmc').keydownEnterEvent(function (event) {
         //$('#btn_bottombutton_f2').trigger('click');
     });
-    //请求 编辑 行
+    //Yêu cầu Chỉnh sửa dòng
     function gridEditRow(rowid) {
         if (rowid) {
             var rowData = $("#gridList").jqGrid('getRowData', rowid);
@@ -426,12 +426,12 @@
                     return v && v.newid == rowData.newid;
                 });
                 if (!rowDataArr || rowDataArr.length == 0) {
-                    return; //为什么没找到
+                    return; //Tại sao không tìm thấy
                 }
                 rowData = rowDataArr[0];
-                //通过rowData.newid从对象数组中取出该行数据
-                editingNewid = rowData.newid;    //正在修改的行
-                //序列化至编辑域中
+                //Thông quarowData.newidLấy dữ liệu dòng này từ mảng đối tượng
+                editingNewid = rowData.newid;    //Dòng đang được sửa
+                //Tuần tự hóa vào vùng chỉnh sửa
                 $('#sl').val(rowData.sl);
                 $('#jzks').val(rowData.ksmc);
                 $('#jzks').attr('data-label', rowData.ks);
@@ -465,20 +465,20 @@
         }
     }
 
-    //修改按钮
+    //Nút sửa
     function newtouch_event_f3() {
         if (editingNewid) {
-            //提交修改
+            //Gửi sửa
             var data = getEditRowData();
             if (!(checkEditingRowData(data))) {
-                //数据是否完善，检查必填项
+                //Dữ liệu có hoàn thiện không, kiểm tra các mục bắt buộc
                 return;
             }
             var updategoon = function () {
                 data.newid = editingNewid;
-                //检查重复项
+                //Kiểm tra mục trùng lặp
 
-                //先在xm数组中找到之
+                //Trước tiên trongxmtìm nó trong mảng
                 var matchedIndex = -1;
                 for (var ii = 0; ii < xmjf.length; ii++) {
                     if (xmjf[ii].newid == data.newid) {
@@ -487,24 +487,24 @@
                     }
                 }
                 if (matchedIndex == -1) {
-                    return; //应该是异常
+                    return; //Có lẽ là bất thường
                 }
-                xmjf.remove(matchedIndex);   //移除该项
-                xmjf.unshift(data);   //作为新项添加    //”数组最前端“
+                xmjf.remove(matchedIndex);   //Xóa mục này
+                xmjf.unshift(data);   //Thêm dưới dạng mục mới    //”Đầu mảng“
 
-                //重新将xm数组呈现至grid
+                //Đặt lạixmMảng hiển thị tớigrid
                 fillDataToGrid();
 
                 clearJZInfo();
 
-                editingNewid = null;    //正在修改的行
+                editingNewid = null;    //Dòng đang được sửa
 
                 bottomButtonsReset();
 
                 //setTimeout("$('#sfxmmc').trigger('focus');$('#sfxmmc').trigger('click');", 100);
             }
             if (data && (parseFloat(data.dj) < '0' || parseFloat(data.dj) == '0')) {
-                $.modalConfirm("单价为0，确认是否修改", function (flag) {
+                $.modalConfirm("Đơn giá là0, xác nhận có sửa không", function (flag) {
                     if (!flag) {
                         return;
                     }
@@ -518,16 +518,16 @@
             }
         }
         else {
-            //申请修改 获取grid当前选中的那一行
+            //Yêu cầu sửa LấygridDòng đang được chọn hiện tại
             var seleId = $('#gridList').jqGrid('getGridParam', 'selrow');
             if (seleId) {
-                //请求修改该行
+                //Yêu cầu sửa dòng này
                 gridEditRow(seleId);
             }
         }
     }
 
-    //获取编辑域的对象数据
+    //Lấy dữ liệu đối tượng của vùng chỉnh sửa
     function getEditRowData() {
         var data = {
             sl: $('#sl').val(),
@@ -565,7 +565,7 @@
         return data;
     }
 
-    //检查正在编辑的数据（待提交）的完整性
+    //Kiểm tra tính đầy đủ của dữ liệu đang chỉnh sửa (chờ gửi)
     function checkEditingRowData(rowData) {
         var ryrq = new Date($('#ryrq').html());
         var cyrq = new Date($('#cyrq').html());
@@ -573,32 +573,32 @@
         var cqrq = $('#cqrq').html();
         var ztjsrq = new Date($('#ztjsrq').html());
         if (!rowData.tdrq) {
-            $.modalAlert("请选择记账日期", 'warning');
+            $.modalAlert("Vui lòng chọn ngày ghi sổ", 'warning');
         } else if (ryrq > new Date(rowData.tdrq)) {
-            $.modalAlert("记账日期不在住院期间<br/>入院日期：" + $('#ryrq').html(), 'warning');
+            $.modalAlert("Ngày ghi sổ không nằm trong thời gian nhập viện<br/>Ngày nhập viện:" + $('#ryrq').html(), 'warning');
         } else if (!!cyrq && cyrq < new Date(rowData.tdrq) && ryrq) {
-            $.modalAlert("记账日期不在住院期间<br/>出院日期：" + $('#cyrq').html(), 'warning');
+            $.modalAlert("Ngày ghi sổ không nằm trong thời gian nhập viện<br/>Ngày xuất viện:" + $('#cyrq').html(), 'warning');
         } else if (!!cqrq && cqrq < new Date(rowData.tdrq)) {
-            $.modalAlert("记账日期不能晚于出区日期<br/>出区日期：" + $('#cqrq').html(), 'warning');
+            $.modalAlert("Ngày ghi sổ không được muộn hơn ngày xuất khu<br/>Ngày xuất khu:" + $('#cqrq').html(), 'warning');
         }
         else if (!!ztjsrq && ztjsrq < new Date(rowData.tdrq)) {
-            $.modalAlert("记账日期不能晚于中途结算日期<br/>中途结算日期：" + $('#ztjsrq').html(), 'warning');
+            $.modalAlert("Ngày ghi sổ không được muộn hơn ngày thanh toán giữa chừng<br/>Ngày thanh toán giữa chừng:" + $('#ztjsrq').html(), 'warning');
         }
         else if (!rowData.dl || !rowData.dlmc || !rowData.sfxm || !rowData.sfxmmc
             || !rowData.dw) {
-            $.modalAlert("请选择收费项目", 'warning');
+            $.modalAlert("Vui lòng chọn hạng mục thu phí", 'warning');
         }
         else if (!rowData.dj) {
-            $.modalAlert("缺少项目单价信息", 'warning');
+            $.modalAlert("Thiếu thông tin đơn giá hạng mục", 'warning');
         }
         else if (!rowData.sl) {
-            $.modalAlert("请输入数量", 'warning');
+            $.modalAlert("Vui lòng nhập số lượng", 'warning');
         }
         else if (!rowData.pcmc) {
-            $.modalAlert("请选择频次", 'warning');
+            $.modalAlert("Vui lòng chọn tần suất", 'warning');
         }
         else if (!((/^[0-9]+([.]{1}[0-9]{1,2})?$/).test(rowData.sl)) || rowData.sl < 0) {
-            $.modalAlert("数量为整数或小数点后两位", 'warning');
+            $.modalAlert("Số lượng là số nguyên hoặc hai chữ số thập phân", 'warning');
         }
         else {
             return true;
@@ -606,7 +606,7 @@
         return false;
     }
 
-    //按钮重置
+    //Đặt lại nút
     function bottomButtonsReset() {
         $('#btn_bottombutton_f2').removeAttr('disabled');
         $('#btn_bottombutton_f3').attr('disabled', 'disabled');
@@ -624,15 +624,15 @@
             $("#zxzq").val($this.attr('data-zxzq'))
             $("#zxzqdw").val($this.attr('data-zxzqdw'));
             //if ($("#" + rowid + "_pcmc").val() == "ST") {
-            //    $("#" + rowid + "_yzlb").val("临");
+            //    $("#" + rowid + "_yzlb").val("Tạm thời");
             //}
         }
     });
-    //F9取消修改
+    //F9Hủy sửa
     function newtouch_event_f9() {
         clearJZInfo();
 
-        editingNewid = null;    //正在修改的行
+        editingNewid = null;    //Dòng đang được sửa
 
         $("#gridList").resetSelection();
 

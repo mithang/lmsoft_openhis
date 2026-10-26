@@ -10,7 +10,7 @@
     <div style="padding-top: 20px; margin-right: 55px;">
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>预约日期：</th>
+                <th class="formTitle"><span class="required">*</span>Ngày hẹn:</th>
                 <td class="formValue">
                     <input id="yyrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -19,16 +19,16 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>预约时间：</th>
+                <th class="formTitle"><span class="required">*</span>Thời gian hẹn:</th>
                 <td class="formValue">
                     <select id="yysj"  style="width:50px" class="form-control required">
-                        <option value="1">上午</option>
-                        <option value="2">下午</option>
+                        <option value="1">Buổi sáng</option>
+                        <option value="2">Buổi chiều</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">预约人电话：</th>
+                <th class="formTitle">Điện thoại người hẹn:</th>
                 <td class="formValue">
                     <input id="yylxfs" type="text" class="form-control" />
                 </td>
@@ -38,7 +38,7 @@
 </form>
 
 <script>
-    //valid的扩展样式
+    //validkiểu mở rộng của
     var valOptions = {
         errorPlacement: function (error, element) {
             element.parents('.formValue').addClass('has-error');
@@ -58,11 +58,11 @@
 
     function submitForm() {
         if (!$('#form1').formValid(valOptions)) {
-            $.modalAlert("必填信息未完善", 'warning');
+            $.modalAlert("Thông tin bắt buộc chưa hoàn thiện", 'warning');
             return;
         }
         if ($('#yyrq').val() < $.getDate()) {
-            $.modalAlert("预约日期必须大于当前日期！", 'warning');
+            $.modalAlert("Ngày hẹn phải lớn hơn ngày hiện tại!", 'warning');
             return;
         }
         var obj = new Object();

@@ -22,7 +22,7 @@ namespace Newtouch.CIS.Web.Controllers
         #region View 视图
         // GET: OutpatientNurse
         /// <summary>
-        /// 皮试执行页面
+        /// Trang thực hiện test da
         /// </summary>
         /// <returns></returns>
         public ActionResult PerformIndex()
@@ -30,7 +30,7 @@ namespace Newtouch.CIS.Web.Controllers
             return View();
         }
         /// <summary>
-        /// 皮试查询
+        /// Tra cứu test da
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 门诊处方查询
+        /// Tra cứu đơn thuốc ngoại trú
         /// </summary>
         /// <returns></returns>
         public ActionResult prescriptionquery()
@@ -50,7 +50,7 @@ namespace Newtouch.CIS.Web.Controllers
             return View();
         }
         /// <summary>
-        /// 门诊留观查询
+        /// Tra cứu lưu quan sát ngoại trú
         /// </summary>
         /// <returns></returns>
         public ActionResult observationQuery()
@@ -58,7 +58,7 @@ namespace Newtouch.CIS.Web.Controllers
             return View();
         }
         /// <summary>
-        /// 门诊划价
+        /// Định giá ngoại trú
         /// </summary>
         /// <returns></returns>
         public ActionResult OutpatientPricing()
@@ -68,7 +68,7 @@ namespace Newtouch.CIS.Web.Controllers
         #endregion
         
         #region 皮试
-        //皮试页面树控件
+        //Điều khiển cây của trang test da
         public ActionResult SkintestTree(string keyword, DateTime? kssj, DateTime? jssj, string type)
         {
             var wardTree = _OutpatientNurseDmnService.OutpatientNurseTreeVO(this.OrganizeId, keyword, kssj, jssj, type);
@@ -180,7 +180,7 @@ namespace Newtouch.CIS.Web.Controllers
 
         #region 门诊病历打印
         /// <summary>
-        /// 获取处方人员查询树
+        /// Lấy cây tra cứu nhân viên đơn thuốc
         /// </summary>
         /// <returns></returns>
         public ActionResult GetPatcfTree(string keyword)

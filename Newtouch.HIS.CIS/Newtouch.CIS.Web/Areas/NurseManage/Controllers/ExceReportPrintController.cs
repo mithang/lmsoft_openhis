@@ -20,7 +20,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         private readonly ISysConfigRepo _sysConfigRepo;
         private readonly IExceReportPrintDmnService _IExceReportPrintDmnService;
         /// <summary>
-        /// 获取病区人员执行树
+        /// Lấy cây thực hiện của nhân viên khu bệnh
         /// </summary>
         /// <returns></returns>
         public ActionResult GetPatWardTree(string zyzt, string keyword)
@@ -40,7 +40,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     string gender = itempat.sex == "1" ? "男" : "女";
                     TreeViewModel treepat = new TreeViewModel();
                     treepat.id = itempat.zyh;
-                    //床号 + 姓名(住院天数)+住院号 + 年龄 +性别+病人性质
+                    //Số giường + Họ tên(Số ngày nhập viện)+Số nhập viện + Tuổi +Giới tính+Tính chất bệnh nhân
                     treepat.text = itempat.BedNo + "-" + itempat.hzxm + "(" + itempat.inHosDays + "天)" + "-" + itempat.zyh + "-" + itempat.nl + "岁-" + gender + "-" + itempat.brxzmc;
                     treepat.value = itempat.zyh;
                     treepat.parentId = item.bqCode;
@@ -102,9 +102,9 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         public override ActionResult Index()
         {
-            //注射用法控制
+            //Kiểm soát cách dùng tiêm
             ViewBag.ControlzsyfCode = _sysConfigRepo.GetValueByCode("zsyfpz", OrganizeId);
-            //雾化用法控制
+            //Kiểm soát cách dùng khí dung
             ViewBag.ControlwhyfCode = _sysConfigRepo.GetValueByCode("whyfpz", OrganizeId);
             ViewBag.OrgId = this.OrganizeId;
             ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
@@ -112,9 +112,9 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         public  ActionResult QueryPrintIndex() {
-            //注射用法控制
+            //Kiểm soát cách dùng tiêm
             ViewBag.ControlzsyfCode = _sysConfigRepo.GetValueByCode("zsyfpz", OrganizeId);
-            //雾化用法控制
+            //Kiểm soát cách dùng khí dung
             ViewBag.ControlwhyfCode = _sysConfigRepo.GetValueByCode("whyfpz", OrganizeId);
             ViewBag.OrgId = this.OrganizeId;
             ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");

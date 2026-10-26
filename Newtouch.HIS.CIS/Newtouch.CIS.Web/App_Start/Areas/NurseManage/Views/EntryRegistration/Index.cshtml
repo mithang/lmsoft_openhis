@@ -1,7 +1,7 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "入区登记";
+    ViewBag.Title = "Đăng ký vào khu";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <script src="~/Content/js/BootstrapMenu.min.js"></script>
@@ -219,8 +219,8 @@
         <div class="dv-right-pat">
             <div class="nav-right">
                 <ul class="nav">
-                    <li role="presentation" class="active" id="li_new">新入区</li>
-                    <li role="presentation" id="li_turn">转区</li>
+                    <li role="presentation" class="active" id="li_new">Vào khu mới</li>
+                    <li role="presentation" id="li_turn">Chuyển khu</li>
                 </ul>
             </div>
             <ul class="ul_patInfo" id="ul_turn" style="display:none;"></ul>
@@ -241,9 +241,9 @@
                     <td class="td-info" id="labzyh"></td>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;床位显示：</td>
                     <td>
-                        <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="0" />全部</label>
+                        <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="0" />Tất cả</label>
                         &nbsp;
-                        <label><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" value="1" />空床</label>
+                        <label><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" value="1" />Giường trống</label>
                       
                     </td>
                 </tr>
@@ -259,24 +259,24 @@
 
 <script type="text/javascript">
     var eleDv;//
-    var zyh;//住院号
-    var bedCode;//床位代码
-    var bqdm = null;//病区代码
+    var zyh;//Số nhập viện
+    var bedCode;//Mã giường bệnh
+    var bqdm = null;//Mã khu bệnh
     var bedInfoStr = "";
-    var qqlx = 0;//0新入区，1转区
+    var qqlx = 0;//0Vào khu mới,1Chuyển khu
     var ysgh;
     var ysmc;
     $(document).ready(function () {
 
         DefaultCheck();
     });
-    //默认选中根节点.
+    //Mặc định chọn nút gốc.
     function DefaultCheck() {
-        var firstid = $("div[id^='wardTree_']:first").attr("id").replace("wardTree_", "");//根节点病区代码
+        var firstid = $("div[id^='wardTree_']:first").attr("id").replace("wardTree_", "");//Mã khu bệnh của nút gốc
         var addstyleid = 'wardTree_' + firstid;
         var item = new Object();
         item.id = firstid;
-        $("#" + addstyleid + "").addClass('bbit-tree-selected');//增加选中样式
+        $("#" + addstyleid + "").addClass('bbit-tree-selected');//Thêm kiểu đã chọn
         wardTree_onnodeclick(item);
         //$("div[id^='wardTree_']").each(function () {
         //    var tpath = $(this).attr("tpath");
@@ -295,7 +295,7 @@
     }
  
     $("#ul_bed").on("click", "li", function () {
-        //选中变色
+        //Chọn sẽ đổi màu
         $(this).siblings().css("background-color", "#AFEEEE").css("border", "1px solid #AFEEEE");
         //$("#ul_bed li,#ul_new li").css("background-color", "#bfbdbd").css("border", "1px solid #bfbdbd");
         $(this).css("background-color", "#00a0e9").css("border", "1px solid #00a0e9");
@@ -322,7 +322,7 @@
         getPatInitList(bqdm);
         //InitTZ();
     })
-    //初始化患者列表
+    //Khởi tạo danh sách bệnh nhân
     function getPatInitList(bqdm)
     {
         $.loading(true, "sss");
@@ -333,14 +333,14 @@
             data: { bqdm: bqdm, qqlx: qqlx },
             dataType: "json",
             async: true,
-            loadingtext: "数据查询中，请稍后...",
+            loadingtext: "Dữ liệu đang được tra cứu, vui lòng đợi...",
             success: function (ajaxresp) {
                 $("#ul_new").html("");
                 if (ajaxresp.rows.length > 0) {
                     $.each(ajaxresp.rows, function (n, item) {
                         var hzxb = "";
                         if (item.xb == "男") {
-                            //1男 2女 3混
+                            //1Nam 2Nữ 3混
                             hzxb = "fa-mars";
                         }
                         if (item.xb == "女") {
@@ -349,14 +349,14 @@
 
                         var title = "住院号：" + item.zyh + "; 年龄：" + item.nl + "岁; 性别：" + item.xb + "; 入院时间：" + item.ryrq + "; 入院诊断：" + item.zd + "";
                         var hidInfo = "{\"zyh\":\"" + item.zyh + "\",\"name\":\"" + item.xm + "\",\"xb\":\"" + item.xb + "\",\"type\":\"" + item.brxzmc + "\",\"ysgh\":\"" + item.ysgh + "\",\"ysmc\":\"" + item.ysmc + "\"}";
-                        $("#ul_new").append("<li draggable=\"true\" title=\"" + title + "\"><i class=\"fa " + hzxb + " li-sex\" aria-hidden=\"true\"></i><span>" + item.xm + "</span><span>" + item.nl + "岁</span><span>" + item.brxzmc + "</span><input type=\"hidden\" name=\"hid_patInfo\" value='" + hidInfo + "' /></li>");
+                        $("#ul_new").append("<li draggable=\"true\" title=\"" + title + "\"><i class=\"fa " + hzxb + " li-sex\" aria-hidden=\"true\"></i><span>" + item.xm + "</span><span>" + item.nl + "tuổi</span><span>" + item.brxzmc + "</span><input type=\"hidden\" name=\"hid_patInfo\" value='" + hidInfo + "' /></li>");
                     })
                     InitTZ(false);
                 }
             }
         });
     }
-    //初始化病床列表
+    //Khởi tạo danh sách giường bệnh
     function getBedInitList(bqdm,cwlb) {
        
         var strdata = "bqdm="+bqdm+"&cwlb=" + cwlb;
@@ -366,7 +366,7 @@
             dataType: "json",
             data:strdata,
             async: true,
-            loadingtext: "数据查询中，请稍后...",
+            loadingtext: "Dữ liệu đang được tra cứu, vui lòng đợi...",
             success: function (ajaxresp) {
                 $("#ul_bed").html("");
                 if (ajaxresp.rows.length > 0) {
@@ -378,7 +378,7 @@
                         if (item.sfzy) {
 
                             if (item.xb == "1") {
-                                //1男 2女 3混
+                                //1Nam 2Nữ 3混
                                 hzxb = "fa-mars";
                             }
                             if (item.xb == "2") {
@@ -389,7 +389,7 @@
                         }
                         else {
                             if (item.cwlx == "1") {
-                                //1男 2女 3混
+                                //1Nam 2Nữ 3混
                                 cwlx = "男";
                             }
                             if (item.cwlx == "2") {
@@ -398,7 +398,7 @@
                             if (item.cwlx == "3") {
                                 cwlx = "混";
                             }
-                            $("#ul_bed").append("<li bedNo=\"" + item.bfNo + "-" + item.cwmc + "\" cwCode=\"" + item.cwCode + "\" noPatient=\"true\" patXb=\"" + cwlx + "\">\<div class=\"dv-bed dv-bedNo\"><span class=\"dv-sp\" style=\"vertical-align: -50%;\">" + item.bfNo + "-" + item.cwmc + "</span></div><div class=\"dv-bed \"><i class=\"fa fa-bed border\" aria-hidden=\"true\" style=\"font-size:1.8rem; color:#ffffff\"></i><span class=\"dv-sp patName\">空床(" + cwlx + ")</span><i class=\"fa  patxb\" aria-hidden=\"true\" style=\"color:#ffffff\"></i></div><div class=\"dv-bed\"><i class=\"fa fa-user-md\" aria-hidden=\"true\" style=\"font-size:1.8rem;margin:7px 8px 5px 8px; color:#00a0e9\"></i><span class=\"dv-sp patDoctor\"></span></div><div class=\"dv-bed\"><span class=\"dv-sp patType\"></span></div><input type=\"hidden\" name=\"hid_patInfo\" value='" + hidInfo + "' /></li>");
+                            $("#ul_bed").append("<li bedNo=\"" + item.bfNo + "-" + item.cwmc + "\" cwCode=\"" + item.cwCode + "\" noPatient=\"true\" patXb=\"" + cwlx + "\">\<div class=\"dv-bed dv-bedNo\"><span class=\"dv-sp\" style=\"vertical-align: -50%;\">" + item.bfNo + "-" + item.cwmc + "</span></div><div class=\"dv-bed \"><i class=\"fa fa-bed border\" aria-hidden=\"true\" style=\"font-size:1.8rem; color:#ffffff\"></i><span class=\"dv-sp patName\">Giường trống(" + cwlx + ")</span><i class=\"fa  patxb\" aria-hidden=\"true\" style=\"color:#ffffff\"></i></div><div class=\"dv-bed\"><i class=\"fa fa-user-md\" aria-hidden=\"true\" style=\"font-size:1.8rem;margin:7px 8px 5px 8px; color:#00a0e9\"></i><span class=\"dv-sp patDoctor\"></span></div><div class=\"dv-bed\"><span class=\"dv-sp patType\"></span></div><input type=\"hidden\" name=\"hid_patInfo\" value='" + hidInfo + "' /></li>");
                         }
 
                     })
@@ -415,7 +415,7 @@
         getBedInitList(bqdm, $(this).val());
     });
 
-    //计算宽高
+    //Tính chiều rộng và chiều cao
     function CalculationHW() {
         $(".dv-body").height($(window).height());
         $(".dv-body").width($(window).width());
@@ -426,7 +426,7 @@
     }
     CalculationHW();
     //$(function () {
-    //    $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+    //    $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt thì tính lại chiều rộng và chiều cao
     //        CalculationHW();
     //    });
     //    $('#gridBqList').jqGrid("clearGridData");
@@ -443,7 +443,7 @@
     //    });
     //});
 
-    //拖拽和右键菜单事件加载
+    //Tải sự kiện kéo thả và menu chuột phải
     function InitTZ(isBed)
     {
         var eleDvTarget = $(".dv-right-bed li[noPatient=true]");
@@ -478,7 +478,7 @@
                 ev.dataTransfer.effectAllowed = "move";
                 ev.dataTransfer.setData("text", ev.target.innerHTML);
                 //ev.dataTransfer.setDragImage(ev.target, 0, 0);
-                eleDv = ev.target;//转床时
+                eleDv = ev.target;//Khi chuyển giường
                 eleBeDv = ev.target;
                 return true;
             };
@@ -513,7 +513,7 @@
                 } else {
 
                     if (item.xb !="null" && $(this).attr("patXb") != "混" && $(this).attr("patXb") != item.xb) {
-                        $.modalAlert("该患者不能入住\"" + $(this).attr("patXb") + "\"病床", 'warning');
+                        $.modalAlert("Bệnh nhân này không thể nhập viện\"" + $(this).attr("patXb") + "\"病床", 'warning');
                         return;
                     }
                     OpenRqdjForm();
@@ -524,9 +524,9 @@
         }
         var currentEv = null;
 
-        //右键菜单
+        //Menu chuột phải
         //var beds = {
-        //    'A02-1床': { bedNo: 'First row', description: 'Lorem ipsum dolor sit amet' },
+        //    'A02-1Giường': { bedNo: 'First row', description: 'Lorem ipsum dolor sit amet' },
         //    '1001-2001B': { bedNo: 'Second row', description: 'Nemo enim ipsam voluptatem quia voluptas' },
         //    '1001-2002A': { bedNo: 'Third row', description: 'Ut enim ad minima veniam' }
         //};
@@ -548,7 +548,7 @@
 
                     $.modalOpen({
                         id: "BedBindingCostForm",
-                        title: "维护床位费",
+                        title: "Bảo trì phí giường bệnh",
                         url: "/NurseManage/WardMaintenance/BedBindingCostForm?bedCode=" + row[0].cwCode,
                         width: "900px",
                         height: "500px",
@@ -572,7 +572,7 @@
 
                     $.modalOpen({
                         id: "BedBindingCostForm",
-                        title: "维护床位费",
+                        title: "Bảo trì phí giường bệnh",
                         url: "/NurseManage/WardMaintenance/BedBindingCostForm?bedCode=" + row[0].cwCode,
                         width: "900px",
                         height: "500px",
@@ -588,7 +588,7 @@
                 onClick: function (row) {
                     $.modalOpen({
                         id: "DoctorBindingForm",
-                        title: "绑定患者所属医生",
+                        title: "Liên kết bác sĩ phụ trách bệnh nhân",
                         url: "/NurseManage/WardMaintenance/DoctorBindingForm?zyh=" + row[0].zyh,
                         width: "500px",
                         height: "480px",
@@ -602,11 +602,11 @@
             }, {
                 name: '患者出区',
                 onClick: function (row) {
-                    $.modalConfirm("确定出区？", function (flag) {
+                    $.modalConfirm("Xác định xuất khu?", function (flag) {
                         if (flag) {
                             $.modalOpen({
                                 id: "OutAreaForm",
-                                title: "患者出区",
+                                title: "Bệnh nhân xuất khu",
                                 url: "/NurseManage/WardMaintenance/OutAreaForm?zyh=" + row[0].zyh,
                                 width: "500px",
                                 height: "480px",
@@ -623,11 +623,11 @@
             }, {
                 name: '患者转区',
                 onClick: function (row) {
-                    $.modalConfirm("确定转区？", function (flag) {
+                    $.modalConfirm("Xác định chuyển khu?", function (flag) {
                         if (flag) {
                             $.modalOpen({
                                 id: "ChangeAreaForm",
-                                title: "患者转区",
+                                title: "Bệnh nhân chuyển khu",
                                 url: "/NurseManage/EntryRegistration/ChangeAreaForm?zyh=" + row[0].zyh,
                                 width: "350px",
                                 height: "300px",
@@ -645,7 +645,7 @@
             }, {
                 name: '取消入区登记',
                 onClick: function (row) {
-                    $.modalConfirm("确定要取消入区登记吗？", function (flag) {
+                    $.modalConfirm("Bạn có chắc muốn hủy đăng ký vào khu không?", function (flag) {
                         if (flag) {
                             $.ajax({
                                 type: "GET",
@@ -653,7 +653,7 @@
                                 dataType: "json",
                                 success: function (ajaxresp) {
                                     if (ajaxresp.state == "success") {
-                                        $.modalMsg('取消成功', 'success');
+                                        $.modalMsg('Hủy thành công', 'success');
                                         getPatInitList(bqdm);
                                         getBedInitList(bqdm, 0);
                                     }
@@ -671,11 +671,11 @@
             ]
         });
     }
-    //弹出入区时间和危重类型输入框
+    //Bật lên hộp nhập thời gian vào khu và loại nguy kịch
     function OpenRqdjForm() {
         $.modalOpen({
             id: "RqdjForm",
-            title: "入区登记",
+            title: "Đăng ký vào khu",
             url: "/NurseManage/EntryRegistration/EntryAreaFrom?ysgh="+ysgh+"&ysmc="+ysmc,
             width: "500px",
             height: "400px",
@@ -695,10 +695,10 @@
                     url: "/EntryRegistration/EnterArea",
                     data: { enterArea: enterData },
                     dataType: "json",
-                    loadingtext: "患者入区中，请稍后...",
+                    loadingtext: "Bệnh nhân đang vào khu, vui lòng đợi...",
                     success: function (ajaxresp) {
                         if (ajaxresp.state == "success") {
-                            $.modalMsg('入区成功！', 'success');
+                            $.modalMsg('Vào khu thành công!', 'success');
                         }
                         else {
                             $.modalAlert(ajaxresp.message, 'warning');
@@ -716,19 +716,19 @@
         });
     }
 
-    //转床
+    //Chuyển giường
     function TransferBed(eleBeDv) {
-        $.modalConfirm("确定转床？", function (flag) {
+        $.modalConfirm("Xác định chuyển giường?", function (flag) {
             if (flag) {
                 $.najax({
                     type: "POST",
                     url: "/EntryRegistration/ChangeBed",
                     data: { zyh: zyh, bedCode: bedCode},
                     dataType: "json",
-                    loadingtext: "患者转床中，请稍后...",
+                    loadingtext: "Bệnh nhân đang chuyển giường, vui lòng đợi...",
                     success: function (ajaxresp) {
                         if (ajaxresp.state == "success") {
-                            $.modalMsg('转床成功！', 'success');
+                            $.modalMsg('Chuyển giường thành công!', 'success');
                         }
                         else {
                             $.modalAlert(ajaxresp.message, 'warning');

@@ -34,7 +34,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         #region  废弃代码  
         /// <summary>
-        /// 申领单号
+        /// Số phiếu lĩnh
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -45,7 +45,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 下拉物资信息
+        /// Thông tin vật tư thả xuống
         /// </summary>
         /// <param name="key"></param>
         /// <param name="slksbm"></param>
@@ -67,11 +67,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         /// <summary>
-        /// 下拉物资批号批次信息
+        /// Thông tin số lô, lô vật tư thả xuống
         /// </summary>
-        /// <param name="proId">物资ID</param>
-        /// <param name="gysId">供应商ID</param>
-        /// <param name="deliveryNo">配送单号</param>
+        /// <param name="proId">Vật tưID</param>
+        /// <param name="gysId">Nhà cung cấpID</param>
+        /// <param name="deliveryNo">Số phiếu giao hàng</param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         [HttpGet]
@@ -81,7 +81,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取库房
+        /// Lấy kho
         /// </summary>
         /// <returns></returns>
         public ActionResult GetDeptByKf(string keyword)
@@ -91,7 +91,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取病区
+        /// Lấy khu bệnh
         /// </summary>
         /// <returns></returns>
         public ActionResult GetDeptBy(string keyword)
@@ -122,7 +122,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         
 
         /// <summary>
-        /// 获取物资类型
+        /// Lấy loại vật tư
         /// </summary>
         /// <returns></returns>
         public ActionResult GetPatientTreeSelectJson()
@@ -154,10 +154,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(list.ToJson());
         }
         /// <summary>
-        /// 根据物资ID获取各批次库存
+        /// Theo vật tưIDLấy tồn kho của từng lô
         /// </summary>
         /// <param name="proId"></param>
-        /// <param name="zt">暂时有效的明细  true：是  false：否</param>
+        /// <param name="zt">Chi tiết tạm thời có hiệu lực  true: Có  false: Không</param>
         /// <returns></returns>
         public ActionResult GetWarehouseStorageDetail(string ks,string proId, string zt)
         {
@@ -165,7 +165,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 修改库存状态
+        /// Sửa trạng thái tồn kho
         /// </summary>
         /// <param name="ph"></param>
         /// <param name="pc"></param>
@@ -176,7 +176,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return _wZsldDmnService.UpdateZt(mxId, this.OrganizeId, zt) > 0 ? Success() : Error("修改查库存状态失败");
         }
         /// <summary>
-        /// 同步物资系统耗材
+        /// Đồng bộ vật tư tiêu hao của hệ thống vật tư
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="userCode"></param>
@@ -188,7 +188,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
         
         /// <summary>
-        /// 获取过期物资
+        /// Lấy vật tư quá hạn
         /// </summary>
         /// <returns></returns>
         [HttpGet]

@@ -26,7 +26,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         private readonly ISysConfigRepo _sysConfigRepo;
         private readonly IGroupPackageRepo _groupPackageRepo;
         /// <summary>
-        /// 康复
+        /// Phục hồi chức năng
         /// </summary>
         /// <returns></returns>
         public ActionResult RehabForm()
@@ -35,7 +35,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// 常规项目处方
+        /// Đơn thuốc hạng mục thông thường
         /// </summary>
         /// <returns></returns>
         public ActionResult RegularItemForm()
@@ -44,7 +44,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// 西药
+        /// Thuốc Tây y
         /// </summary>
         /// <returns></returns>
         public ActionResult WMForm()
@@ -53,7 +53,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// 中药
+        /// Thuốc Đông y
         /// </summary>
         /// <returns></returns>
         public ActionResult TCMForm()
@@ -62,7 +62,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// 处方模板树
+        /// Cây mẫu đơn thuốc
         /// </summary>
         /// <param name="mblx"></param>
         /// <param name="cflx"></param>
@@ -96,7 +96,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         
         
         /// <summary>
-        /// 获取处方模板
+        /// Lấy mẫu đơn thuốc
         /// </summary>
         /// <param name="mblx"></param>
         /// <param name="cflx"></param>
@@ -140,19 +140,19 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// 处方模板 明细列表
+        /// Mẫu đơn thuốc Danh sách chi tiết
         /// </summary>
         /// <param name="mbId"></param>
         /// <returns></returns>
         public ActionResult PresTemplateDetail()
         {
-            //医保控制code
+            //Kiểm soát bảo hiểm y tếcode
             ViewBag.ControlbrxzCode = _sysConfigRepo.GetValueByCode("ControlbrxzCode", OrganizeId);
             return View();
         }
 
         /// <summary>
-        /// 查询模板明细 json
+        /// Tra cứu chi tiết mẫu json
         /// </summary>
         /// <param name="mbId"></param>
         /// <param name="mxIdStr"></param>
@@ -180,7 +180,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
 
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <returns></returns>
         public ActionResult SaveData(PresTemplateEntity mbObj, List<PresTemplateDetailmxVo> mxList)
@@ -194,7 +194,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
                 mbObj.ysgh = this.UserIdentity.rygh;
             }
 
-            //模板表
+            //Bảng mẫu
             mbObj.OrganizeId = this.OrganizeId;
 
             var mbId = _presTemplateDmnService.SaveData(mbObj, mxList);
@@ -214,7 +214,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
 
             var treeList = new List<TreeViewModel>();
 
-            //处方模板
+            //Mẫu đơn thuốc
             treeList.Add(new TreeViewModel()
             {
                 id = cflx.ToString(),
@@ -225,14 +225,14 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
                 isexpand = (expandCflx ?? 0) != 0 ? (cflx == expandCflx ? true : false) : true,
                 complete = true,
             });
-            //处方模板明细
+            //Chi tiết mẫu đơn thuốc
             //var data = _presTemplateDmnService.SelectCfTemplateList(cflx,mblx,this.OrganizeId, this.UserIdentity.DepartmentCode, this.UserIdentity.rygh,mbKeyword);
             var data = _presTemplateRepo.IQueryable().Where(a => a.OrganizeId == this.OrganizeId && a.mblx == mblx && a.cflx == cflx && a.zt == "1" && a.mbmc.Contains(mbKeyword) && (mblx == 1 ? a.ysgh == this.UserIdentity.rygh : (mblx == 2 ? a.ksCode == this.UserIdentity.DepartmentCode : 1 == 1))).Select(a => new { a.mbmc, a.cflx, a.mbId, a.CreateTime, a.LastModifyTime }).OrderByDescending(a => a.CreateTime).ThenByDescending(a => a.LastModifyTime).ToList();
             foreach (var item in data)
             {
                 treeList.Add(new TreeViewModel()
                 {
-                    id = "",   //模板Id
+                    id = "",   //MẫuId
                     value = item.cflx.ToString(),
                     text = item.mbmc,
                     parentId = item.cflx.ToString(),

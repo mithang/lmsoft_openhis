@@ -56,20 +56,20 @@
             colModel: [
                 { label: 'mxId', name: 'mxId', hidden: true },
                 { label: 'px', name: 'px', hidden: true },
-                { label: '组号', name: 'zh', width: 60, align: 'left', hidden: cflx == WMPres ? null : true },
-                { label: '项目名称', name: 'xmmc', width: 120, align: 'left', hidden: (cflx == RehabPres || cflx == RegularItemPres|| cflx == Yyhc) ? null : true },
-                { label: '药品名称', name: 'ypmc', width: 120, align: 'left', hidden: cflx == WMPres ? null : cflx == TCMPres ? null : true },
-                { label: '规格', name: 'ypgg', width: 100, align: 'left', hidden: cflx == WMPres ? null : cflx == TCMPres ? null : true },
-                { label: '剂量（单位）', name: 'mcjl', width: 90, align: 'left', hidden: cflx == WMPres ? null : cflx == TCMPres ? null : true },
-                { label: '用法', name: 'yfmc', width: 70, align: 'left', hidden: (cflx == RehabPres || cflx == RegularItemPres|| cflx == Yyhc) ? true : null},
-                { label: '单价', name: 'dj', width: 60, align: 'left' , hidden: cflx == TCMPres ? true : null, formatter: "number"
+                { label: 'Số nhóm', name: 'zh', width: 60, align: 'left', hidden: cflx == WMPres ? null : true },
+                { label: 'Tên hạng mục', name: 'xmmc', width: 120, align: 'left', hidden: (cflx == RehabPres || cflx == RegularItemPres|| cflx == Yyhc) ? null : true },
+                { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left', hidden: cflx == WMPres ? null : cflx == TCMPres ? null : true },
+                { label: 'Quy cách', name: 'ypgg', width: 100, align: 'left', hidden: cflx == WMPres ? null : cflx == TCMPres ? null : true },
+                { label: 'Liều lượng (đơn vị)', name: 'mcjl', width: 90, align: 'left', hidden: cflx == WMPres ? null : cflx == TCMPres ? null : true },
+                { label: 'Cách dùng', name: 'yfmc', width: 70, align: 'left', hidden: (cflx == RehabPres || cflx == RegularItemPres|| cflx == Yyhc) ? true : null},
+                { label: 'Đơn giá', name: 'dj', width: 60, align: 'left' , hidden: cflx == TCMPres ? true : null, formatter: "number"
                     , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }},
-                { label: '每次治疗量', name: 'mczll', width: 70, align: 'left', hidden: (cflx == RehabPres || cflx == RegularItemPres|| cflx == Yyhc) ? null : true },
+                { label: 'Liều lượng mỗi lần điều trị', name: 'mczll', width: 70, align: 'left', hidden: (cflx == RehabPres || cflx == RegularItemPres|| cflx == Yyhc) ? null : true },
                 { label: 'pcCode', name: 'pcCode', hidden: true },
-                { label: '频次', name: 'pcmc', width: 70, align: 'left', hidden: cflx == TCMPres ? true : null},
-                { label: '数量', name: 'sl', width: 50, align: 'left' , hidden: cflx == TCMPres ? true : null},
-                { label: '部位', name: 'bw', width: 160, align: 'left', hidden: (cflx == RehabPres || cflx == RegularItemPres|| cflx == Yyhc) ? null : true  },
-                { label: '总量（单位）', name: 'zl', width: 100, align: 'left', hidden: (cflx == RehabPres || cflx == RegularItemPres) ? null : true, formatter: function (val, a, b) {
+                { label: 'Tần suất', name: 'pcmc', width: 70, align: 'left', hidden: cflx == TCMPres ? true : null},
+                { label: 'Số lượng', name: 'sl', width: 50, align: 'left' , hidden: cflx == TCMPres ? true : null},
+                { label: 'Vị trí', name: 'bw', width: 160, align: 'left', hidden: (cflx == RehabPres || cflx == RegularItemPres|| cflx == Yyhc) ? null : true  },
+                { label: 'Tổng số lượng (đơn vị)', name: 'zl', width: 100, align: 'left', hidden: (cflx == RehabPres || cflx == RegularItemPres) ? null : true, formatter: function (val, a, b) {
                     if((cflx == RehabPres || cflx == RegularItemPres|| cflx == Yyhc)){
                         return (b.mczll * b.sl) + '(' + b.dw + ')';
                     }
@@ -78,15 +78,15 @@
                     }
                 }
                 },
-                { label: '执行科室', name: 'zxks', hidden: true },
-                { label: '执行科室名称', name: 'zxksmc', width: 80, hidden: (cflx == RehabPres|| cflx == Yyhc) ? null : true },
-                { label: '是否医保', name: 'sfyb', width:80},
+                { label: 'Khoa thực hiện', name: 'zxks', hidden: true },
+                { label: 'Tên khoa thực hiện', name: 'zxksmc', width: 80, hidden: (cflx == RehabPres|| cflx == Yyhc) ? null : true },
+                { label: 'Có phải bảo hiểm y tế không', name: 'sfyb', width:80},
             ], onSelectRow: function (rowid, status) {
                 if (status === true) {
                     var data = $("#gridList").getRowData(rowid);
                     if (brxzCode!=""&&'@ViewBag.ControlbrxzCode'.indexOf(brxzCode) > -1 && data.sfyb == "否") {
-                        $.modalAlert("该患者为医保患者，不可选择自费项目【" + (data.xmmc == "" ? data.ypmc : data.xmmc) + "】", "warning");
-                        $("#gridList").jqGrid('setSelection', rowid, false); //设置jqGrid选中
+                        $.modalAlert("Bệnh nhân này là bệnh nhân bảo hiểm y tế, không được chọn hạng mục tự trả【" + (data.xmmc == "" ? data.ypmc : data.xmmc) + "】", "warning");
+                        $("#gridList").jqGrid('setSelection', rowid, false); //Cài đặtjqGridChọn
                         return false;
                     }
                 }
@@ -114,7 +114,7 @@
         }
         var data = getSelectRowData();
         if(!data || data.length==0){
-            $.modalAlert("请选择明细进行复制", 'warning');
+            $.modalAlert("Vui lòng chọn chi tiết để sao chép", 'warning');
             return;
         }
         debugger

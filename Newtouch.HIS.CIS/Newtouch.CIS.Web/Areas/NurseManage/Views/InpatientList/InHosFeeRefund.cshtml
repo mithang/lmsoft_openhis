@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "护士站患者中心-住院退费";
+    ViewBag.Title = "Trung tâm bệnh nhân trạm y tá-Hoàn phí nhập viện";
 }
 
 <div id="linkzytf" role="tabpanel" class="tab-pane" style="width:100%;margin-right: 5px; border:solid 1px #ddd; margin-top: 3px;">
@@ -16,13 +16,13 @@
      iframezytfinit.onload = function () {
          //$('#iframezytf').contents().find('#pane1').hide();
          $('#iframezytf').contents().find('#btnsyy').hide();
-         // 获取iframe元素
+         // LấyiframePhần tử
          var iframe = document.getElementById('iframezytf');
-         // 访问iframe中的window对象
+         // Truy cậpiframetrongwindowĐối tượng
          var iframeWindow = iframe.contentWindow;
          if (zytfzyh)
              iframeWindow.getPatInfoAjax({ zyh: zytfzyh });
-         $("#PatTreeList_" + zytfzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//选中
+         $("#PatTreeList_" + zytfzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//Chọn
      }
      function init_zytf(zyh)
      {
@@ -48,14 +48,14 @@
          //    $('#iframezytf').attr("src", tfdataUrl);
          //    fisttfload = false;
          //} else {
-         //    // 获取iframe元素
+         //    // LấyiframePhần tử
          //    var iframe = document.getElementById('iframezytf');
-         //    // 访问iframe中的window对象
+         //    // Truy cậpiframetrongwindowĐối tượng
          //    var iframeWindow = iframe.contentWindow;
          //    iframeWindow.$("#btn_search").trigger('click');
          //}
 
-         $("#PatTreeList_" + zytfzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//选中
+         $("#PatTreeList_" + zytfzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//Chọn
      }
      function getZytfTreeList() {
          $("#PatTreeList").treeview({
@@ -66,9 +66,9 @@
                  if (item.value && item.Ex1 == "c") {
                      debugger;
                      zytfzyh = item.value;
-                     // 获取iframe元素
+                     // LấyiframePhần tử
                      var iframe = document.getElementById('iframezytf');
-                     // 访问iframe中的window对象
+                     // Truy cậpiframetrongwindowĐối tượng
                      var iframeWindow = iframe.contentWindow;
                      iframeWindow.getPatInfoAjax({ zyh: item.value });
                      //$('#iframezytf').contents().find('#pane1').hide();

@@ -73,27 +73,27 @@
             datatype: 'local',
             data: localdata,
             height: $(window).height() - 200,
-            //altRows: true,//隔行换色
-            shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
+            //altRows: true,//Đổi màu xen kẽ các dòng
+            shrinkToFit: true,   //true:Khởi tạo chiều rộng cột theo tỷ lệ false:Sử dụngcolModelchiều rộng đã chỉ định
             autowidth: true,
-            rownumbers: true,  //是否显示序号
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            rownumbers: true,  //Có hiển thị số thứ tự không
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
                   {
                       label: 'Id', name: 'Id', width: 120, editwidth: '81%', align: 'center', hidden: true
                   },
                 {
-                    label: '<span class="required">*</span>收费项目', name: 'xmmc', width: 230, editwidth: '100%', align: 'center', editable: true, editrules: { required: true }
+                    label: '<span class="required">*</span>Hạng mục thu phí', name: 'xmmc', width: 230, editwidth: '100%', align: 'center', editable: true, editrules: { required: true }
                 },
                 {
                     label: 'zxksdm', name: 'zxksdm', editwidth: '100%', align: 'center', editable: true, hidden: true
                 },
 				{
-				    label: '<span class="required">*</span>执行科室', name: 'zxksmc', width: 100, editwidth: '100%', align: 'center', editable: true
+				    label: '<span class="required">*</span>Khoa thực hiện', name: 'zxksmc', width: 100, editwidth: '100%', align: 'center', editable: true
 				},
-                { label: '<span class="required">*</span>单位', name: 'dw', width: 50, editwidth: '100%', align: "center", editable: true },
-                { label: '<span class="required">*</span>单价', name: 'dj', width: 60, editwidth: '100%', align: "center", editable: true },
+                { label: '<span class="required">*</span>Đơn vị', name: 'dw', width: 50, editwidth: '100%', align: "center", editable: true },
+                { label: '<span class="required">*</span>Đơn giá', name: 'dj', width: 60, editwidth: '100%', align: "center", editable: true },
                 { label: 'xmdm', name: 'xmdm', width: 100, editwidth: '100%', align: 'center', editable: true, hidden: true },
                 { label: 'dwjls', name: 'dwjls', editwidth: '100%', align: 'center', editable: true, hidden: true },
                 {
@@ -105,16 +105,16 @@
                                 fn: function (e) {
                                     var cellval = $(this).val();
                                     if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                        $.modalAlert(zlltext + "为空，请确认。", 'warning');
+                                        $.modalAlert(zlltext + "trống, vui lòng xác nhận.", 'warning');
                                         return;
                                     }
                                     if (isNaN(cellval)) {
-                                        $.modalAlert(zlltext + "：请填写数字", 'warning');
+                                        $.modalAlert(zlltext + ": vui lòng nhập số", 'warning');
                                         $(this).val('')
                                         return;
                                     }
                                     if (parseInt(cellval) < 0) {
-                                        $.modalAlert(zlltext + "：大于0", 'warning');
+                                        $.modalAlert(zlltext + ": lớn hơn0", 'warning');
                                         $(this).val('')
                                         return;
                                     }
@@ -126,19 +126,19 @@
                         ]
                     }, editrules: { required: true }
                 },
-                { label: '<span class="required">*</span>频次', name: 'pcmc', width: 60, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
+                { label: '<span class="required">*</span>Tần suất', name: 'pcmc', width: 60, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
                 { label: 'pcCode', name: 'pcCode', editwidth: '100%', align: 'center', editable: true, hidden: true },
                 { label: 'zxcs', name: 'zxcs', editable: true, hidden: true },
                 { label: 'zxzq', name: 'zxzq', editable: true, hidden: true },
                 { label: 'zxzqdw', name: 'zxzqdw', editable: true, hidden: true },
-                { label: '部位', name: 'bw', width: 80, editwidth: '100%', align: "center", editable: true, hidden: '@ViewBag.bwhide' == "false" ? undefined : true },
-                { label: '总量', name: 'sl', editwidth: '100%', hidden: true, align: 'center', editable: true, editrules: { required: true } },
-                { label: '嘱托', name: 'ztnr', width: '@ViewBag.bwhide' == "false" ? 100 : 180, editwidth: '100%', align: 'center', editable: true },
-                { label: '操作', name: 'action', width: 30, align: 'center' },
+                { label: 'Vị trí', name: 'bw', width: 80, editwidth: '100%', align: "center", editable: true, hidden: '@ViewBag.bwhide' == "false" ? undefined : true },
+                { label: 'Tổng số lượng', name: 'sl', editwidth: '100%', hidden: true, align: 'center', editable: true, editrules: { required: true } },
+                { label: 'Dặn dò', name: 'ztnr', width: '@ViewBag.bwhide' == "false" ? 100 : 180, editwidth: '100%', align: 'center', editable: true },
+                { label: 'Thao tác', name: 'action', width: 30, align: 'center' },
                 { name: 'yzlx', hidden: true }
             ],
-            editinputwidthborder: false,    //是否需要边框 默认为true
-            editinputborderradius: false,   //是否需要边框圆角 默认true（有圆角）
+            editinputwidthborder: false,    //Có cần viền không mặc định làtrue
+            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue(có bo góc)
             pager: "gridkfxmPager",
             loadComplete: function () {
                 if (localdata && localdata.length == 0) {
@@ -148,13 +148,13 @@
             gridComplete: function () {
                 var ids = $("#gridkfxm").getDataIDs();
                 $.each(ids, function () {
-                    $gridkfxm.jqGrid('editRow', this, true, initKFInlineFunc);  //editRow：打开编辑模式 initKFInlineFunc:初始化浮层
+                    $gridkfxm.jqGrid('editRow', this, true, initKFInlineFunc);  //editRow: Mở chế độ chỉnh sửa initKFInlineFunc:Khởi tạo lớp nổi
 
-                    //给每次剂量单位填充option  （只能这么写简单，虽然我也知道这样写不好）
-                    var jldw = $("#" + this + "_redundant_jldw").val();    //剂量单位
-                    var dw = $("#" + this + "_dw").val();     //门诊单位
+                    //Điền đơn vị cho liều lượng mỗi lầnoption  (Chỉ có thể viết đơn giản như vậy, mặc dù tôi cũng biết viết như vậy không tốt)
+                    var jldw = $("#" + this + "_redundant_jldw").val();    //Đơn vị liều lượng
+                    var dw = $("#" + this + "_dw").val();     //Đơn vị khám ngoại trú
                     if (!!dw) {
-                        //这种找元素的方法不可取，但由于select没有id属性
+                        //Cách tìm phần tử này không nên dùng, nhưng vìselectKhông cóidThuộc tính
                         $("#" + this + "_mcjl").parent().next().children('select').html('');
                         if (jldw == dw) {
                             $("#" + this + "_mcjl").parent().next().children('select').append('<option>' + jldw + '</option>');
@@ -172,35 +172,35 @@
                             $($("#" + this + "_mcjl").parent().next().children('select')).val(selectedjldw).trigger('change')
                         }
                     }
-                    //隐藏grid底部滚动条
+                    //ẨngridThanh cuộn dưới cùng
                     $gridkfxm.closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
 
                 });
             }
         });
 
-        //二级菜单
+        //Menu cấp hai
         $gridkfxm.jqGrid('setGroupHeaders', {
             useColSpanStyle: true,
             groupHeaders: [
                 {
                     startColumnName: 'xmmc',
                     numberOfColumns: 4,
-                    titleText: '基本信息'
+                    titleText: 'Thông tin cơ bản'
                 }, {
                     startColumnName: 'dwjls',
                     numberOfColumns: 7,
-                    titleText: '项目用法'
+                    titleText: 'Cách dùng hạng mục'
                 }]
         });
-        //自定义按钮
+        //Nút tùy chỉnh
         $gridkfxm.navGrid('#gridkfxmPager',
             { edit: false, add: false, del: false, search: false, refresh: false, view: false, position: "left", cloneToTop: false })
             .navButtonAdd('#gridkfxmPager',
             {
                 buttonicon: "glyphicon glyphicon-new-window",
-                title: "新明细",
-                caption: "新明细",
+                title: "Chi tiết mới",
+                caption: "Chi tiết mới",
                 position: "first",
                 onClickButton: function () {
                     newKFPresData();
@@ -208,7 +208,7 @@
             })
     }
     function initKFInlineFunc(rowid) {
-        //部分列只读
+        //Một số cột chỉ đọc
         $("#" + rowid + "_dj").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_ypgg").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_dw").css('background-color', '#f6f7fb').attr('readonly', 'true');
@@ -216,7 +216,7 @@
         $("#" + rowid + "_pcmc").attr('readonly', 'true');
         $("#" + rowid + "_je").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_zxksmc").attr('autocomplete', 'off');
-        //药品浮层
+        //Lớp nổi thuốc
         $("#" + rowid + "_xmmc").sfxmFloatingSelector({
             width: 720,
             djDecimalPlaces: 4,
@@ -233,20 +233,20 @@
                 $("#" + rowid + "_dwjls").val($this.attr('data-dwjls'));
             }
         });
-        //执行科室浮层
+        //Lớp nổi khoa thực hiện
         $("#" + rowid + "_zxksmc").newtouchBatchFloatingSelector({
             height: 170,
             width: 300,
-            caption: "选择科室",
+            caption: "Chọn khoa",
             url: '/Rehab/GetSfxmZxksSelectJson',
             clickautotrigger: true,
             ajaxparameters: function ($thisinput) {
                 return 'sfxmCode=' + $("#" + rowid + "_xmCode").val();
             },
             colModel: [
-				{ label: '编号', name: 'Code', widthratio: 40 },
-				{ label: '名称', name: 'Name', widthratio: 60 },
-				{ label: '拼音', name: 'py', hidden: true }
+				{ label: 'Số hiệu', name: 'Code', widthratio: 40 },
+				{ label: 'Tên', name: 'Name', widthratio: 60 },
+				{ label: 'Phiên âm', name: 'py', hidden: true }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#" + rowid + "_zxksdm").val($thistr.find("td:eq(0)").html());
@@ -255,7 +255,7 @@
             },
         });
 
-        //频次浮层
+        //Lớp nổi tần suất
         $("#" + rowid + "_pcmc").pcFloatingSelector({
             showtext: 'yzpcmc',
             attrcols: ['yzpcmc', 'yzpcCode', 'zxcs', 'zxzq', 'zxzqdw'],
@@ -273,12 +273,12 @@
             calitemsl(rowid);
         });
 
-        //部位浮层
+        //Lớp nổi vị trí
         $("#" + rowid + "_bw").bwFloatingSelector({
             showtext: 'bwmc',
             attrcols: ['bwmc', 'bwCode'],
             checkItemActivity: function ($li, $thisinput) {
-                var selected = false;//默认没有选中当前值
+                var selected = false;//Mặc định không chọn giá trị hiện tại
                 var selectval = $thisinput.val();
                 if (selectval) {
                     selectval = selectval.split(',');
@@ -305,7 +305,7 @@
             },
         });
 
-        //嘱托浮层
+        //Lớp nổi dặn dò
         $("#" + rowid + "_ztnr").ztFloatingSelector({
             height: 100,
             itemdbclickhandler: function ($this) {
@@ -314,7 +314,7 @@
         });
     }
     function calitemsl(rowid) {
-        //单位计量数/每次治疗量*频次
+        //Số lượng đo của đơn vị/Liều lượng mỗi lần điều trị*Tần suất
         var dwjls = $("#" + rowid + "_dwjls").val();
         var mczll = $("#" + rowid + "_ypjl").val();
         var zxcs = $("#" + rowid + "_zxcs").val();
@@ -333,7 +333,7 @@
             return;
         } else if (mczll !== "" && dwjls !== "" && (parseInt(dwjls) > parseInt(mczll))) {
             rowid = rowid.substring(3);
-            $.modalAlert("第" + rowid + "行" + zlltext + "不能小于单位计量数", "warning");
+            $.modalAlert("Thứ" + rowid + "dòng" + zlltext + "Không được nhỏ hơn số lượng đo của đơn vị", "warning");
             $("#" + rowid + "_sl").val("");
             return false;
         } else {
@@ -351,10 +351,10 @@
         var qzint = Number(getpcsl(zxcs, zxzq, zxzqdw));
         return qzint * Math.floor(mczll / dwjls);
     }
-    //计算频次数量
+    //Tính số lượng tần suất
     function getpcsl(zxcs, zxzq, zxzqdw) {
         if (isNaN(zxzqdw) || zxzqdw == "") {
-            $.modalAlert("执行周期单位不能为空", 'error');
+            $.modalAlert("Đơn vị chu kỳ thực hiện không được trống", 'error');
             return;
         }
         var rtnsl;
@@ -375,7 +375,7 @@
         return rtnsl;
     }
 
-    //新处方 按钮
+    //Đơn thuốc mới Nút
     function newKFPresData() {
         var dataRow = {
             Id: Math.random().toString() + new Date().getMilliseconds(),
@@ -386,7 +386,7 @@
 
     }
 
-    //删除明细
+    //Xóa chi tiết
     function deleteKFRowData(selRowId) {
         if (!!selRowId) {
             $("#gridkfxm").jqGrid("delRowData", selRowId);
@@ -395,21 +395,21 @@
     }
 
     function getWMActionStr() {
-        return "<input class='btn btn-default btn-md btn_del' type='button' value='Delete' title='删除' onclick='deleteKFRowData($(this).parent().parent().attr(\"id\"))'/>";
+        return "<input class='btn btn-default btn-md btn_del' type='button' value='Delete' title='Xóa' onclick='deleteKFRowData($(this).parent().parent().attr(\"id\"))'/>";
     }
 
-    //保存
+    //Lưu
     function Save() {
-        if (ValidateI()) {//验证数据
-            //获取所有行Id，遍历使编辑框处于保存状态
+        if (ValidateI()) {//Xác thực dữ liệu
+            //Lấy tất cả các dòngId，duyệt để khung chỉnh sửa ở trạng thái lưu
             var rowIds = $("#gridkfxm").jqGrid('getDataIDs');
             for (var i = 0; i < rowIds.length; i++) {
                 if (calitemsl(rowIds[i])) {
                     var saveResult = $("#gridkfxm").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
                     if (!saveResult) {
-                        EnableIInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-                        return;   //保存失败，则return
+                        EnableIInlineEditBox();    //Khởi động lại và bật chỉnh sửa Nếu không, lần sauSavethì sẽ trả vềfalse
+                        return;   //Lưu thất bại, thìreturn
                     }
                 } else {
                     return;
@@ -417,9 +417,9 @@
             }
             var gridkfxmData = $("#gridkfxm").jqGrid('getRowData_AllLine', null, true);
             if (gridkfxmData.length < 1) {
-                $.modalAlert("当前没有保存的套餐内容", 'warning');
+                $.modalAlert("Hiện không có nội dung gói đã lưu", 'warning');
             }
-            $.each(gridkfxmData, function () {    //去掉action
+            $.each(gridkfxmData, function () {    //Loại bỏaction
                 for (var i = 0; i < $(this).length; i++) {
                     delete $(this)[i].action;
                 }
@@ -430,7 +430,7 @@
 
     function Delete() {
         if (mbId == null || mbId == "") {
-            $.modalAlert("缺少套餐", "warning");
+            $.modalAlert("Thiếu gói", "warning");
             return;
         }
         $.najax({
@@ -438,18 +438,18 @@
             dataType: "json",
         data: { mbId: mbId},
         type: "POST",
-        loadingtext: "套餐数据删除中，请稍后...",
+        loadingtext: "Dữ liệu gói đang được xóa, vui lòng đợi...",
             success: function (data) {
-                $.modalMsg("删除成功", 'success');
+                $.modalMsg("Xóa thành công", 'success');
                 $.currentWindow().$("#beveltabs a[id='current']").trigger('click');
                 location.href = "/TemplateManage/DoctorServiceTemplate/RehabForm?mbId=";
         }
     });
     }
 
-    //提交到后台
+    //Gửi về phía máy chủ
     function submitService(gridmedicineData) {
-        //套餐表
+        //Bảng gói
         var mbObj = {
             Id: mbId,
             tcfw: $('#mblx').val(),//$.currentWindow().$('#current').attr('data-type'),
@@ -461,9 +461,9 @@
         dataType: "json",
     data: { mbObj: mbObj, mbDetailList: gridmedicineData },
     type: "POST",
-    loadingtext: "套餐数据保存中，请稍后...",
+    loadingtext: "Dữ liệu gói đang được lưu, vui lòng đợi...",
     success: function (data) {
-        $.modalMsg("保存成功", 'success');
+        $.modalMsg("Lưu thành công", 'success');
         if(!mbId && data.data){
             mbId = data.data;
             $.currentWindow().expandyzlx = @Html.Raw(((int)EnumYzlx.rehab).ToString());
@@ -475,12 +475,12 @@
     });
     }
 
-    //验证
+    //Xác thực
     function ValidateI() {
-        //是否有数据
+        //Có dữ liệu không
         var data = $("#gridkfxm").jqGrid('getRowData_AllLine', null, true);
         if (data.length == 0) {
-            $.modalAlert("缺少套餐数据", 'warning');
+            $.modalAlert("Thiếu dữ liệu gói", 'warning');
             return false;
         }
         return true;

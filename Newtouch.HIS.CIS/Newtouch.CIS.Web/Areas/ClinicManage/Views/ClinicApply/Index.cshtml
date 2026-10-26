@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "远程诊疗管理";
+    ViewBag.Title = "Quản lý chẩn đoán điều trị từ xa";
     Layout = "~/Views/Shared/_Index.cshtml";
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
     var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
@@ -47,54 +47,54 @@
 <form name="form1">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">姓名：</th>
+                <th class="formTitle">Họ tên:</th>
                 <td class="formValue" style="width:10%;float:left;">
                     <input id="xm" type="text" class="form-control" style="width:90px;float:left;" />
                 </td>
-                <th class="formTitle">证件号：</th>
+                <th class="formTitle">Số giấy tờ:</th>
                 <td class="formValue" style="width:10%;float:left;">
                     <input id="zjh" type="text" class="form-control" style="width:90px;float:left;" />
                 </td>
-                <th class="formTitle">诊疗时间：</th>
+                <th class="formTitle">Thời gian chẩn đoán điều trị:</th>
                 <td class="formValue" style="width:10%">
                     <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            value="@DateTime.Now.ToString("yyyy-MM-01")" />
                 </td>
-                <td class="formValue" style="width:10%;float:left;"><label style="position:relative;top:5px;">至</label></td>
+                <td class="formValue" style="width:10%;float:left;"><label style="position:relative;top:5px;">đến</label></td>
                 <td class="formValue" style="width:10%;float:left;">
                     <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px;float:left;"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 </td>
-                <td class="formTitle">科室：</td>
+                <td class="formTitle">Khoa:</td>
                 <td class="formValue">
                     <input type="text" id="ks" class="form-control" autocomplete="off" style="width: 100px" />
                     <input type="text" id="ksCode" class="form-control" style="display:none;" />
                 </td>
-                <td class="formTitle">医生：</td>
+                <td class="formTitle">Bác sĩ:</td>
                 <td class="formValue">
                     <input id="txt_doctor" name="txt_doctor" type="text" data-StaffGh="" class="form-control required" />
                 </td>
                 <td style="width: 20px"></td>
-                <th class="formTitle">状态：</th>
+                <th class="formTitle">Trạng thái:</th>
                 <td class="formValue">
                     <select class="form-control" id="sqzt">
-                        <option value="0" selected>全部</option>
-                        <option value="1">待确认</option>
-                        <option value="2">就诊中</option>
-                        <option value="3">已结束</option>
-                        <option value="4">已退回</option>
+                        <option value="0" selected>Tất cả</option>
+                        <option value="1">Chờ xác nhận</option>
+                        <option value="2">Đang khám</option>
+                        <option value="3">Đã kết thúc</option>
+                        <option value="4">Đã trả lại</option>
                     </select>
                 </td>
                 <td class="formValue">
-                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="Tra cứu" />
                 </td>
             </tr>
         </table>
@@ -107,14 +107,14 @@
 <script>
     $(function () {
         initControl();
-        //查询列表
+        //Danh sách tra cứu
         gridList();
     });
 
 
     var ksCode = "";
     function initControl() {
-        //科室浮层
+        //Lớp nổi khoa
         $('#ks').ksFloatingSelector({
             itemdbclickhandler: function ($this) {
                 $('#ks').attr('data-code', $this.attr('data-Code'))
@@ -125,13 +125,13 @@
             },
         });
 
-        //医生浮层
+        //Lớp nổi bác sĩ
         $("#txt_doctor").dutyStaffFloatingSelector({
             dutyCode: 'Doctor'
         });
     }
 
-    //列表检索条件
+    //Điều kiện tìm kiếm danh sách
     function getPostData() {
         return postData = {
             xm: $("#xm").val(),
@@ -144,7 +144,7 @@
         }
     }
 
-    //申请列表查询
+    //Tra cứu danh sách yêu cầu
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -154,58 +154,58 @@
             url: "/ClinicManage/ClinicApply/GetClinicApplyGridJson",
             colModel: [
                 { label: 'Id', name: 'Id', width: 100, align: 'center', key:true,hidden: true },
-                { label: '姓名', name: 'xm', align: 'center', width: 100 },
+                { label: 'Họ tên', name: 'xm', align: 'center', width: 100 },
                 {
-                    label: '性别', name: 'xb', width: 120, align: 'center', formatter: function (val) {
+                    label: 'Giới tính', name: 'xb', width: 120, align: 'center', formatter: function (val) {
                         if (val == "1") {
                             return "男";
                         } else { return "女"; }
                     }
                 },
-                { label: '证件号', name: 'zjh', width: 160, align: 'center' },
-                { label: '病人性质', name: 'brxzmc', width: 120, align: 'center' },
-                { label: '科室', name: 'ks', width: 120, align: 'center', hidden: true },
-                { label: '医生', name: 'ysgh', width: 120, align: 'center', hidden: true },
-                { label: '申请科室', name: 'deptName', width: 120, align: 'center' },
-                { label: '申请医生', name: 'ysxm', width: 120, align: 'center' },
-                { label: '诊疗时间', name: 'jzsj', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '创建时间', name: 'CreateTime', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Số giấy tờ', name: 'zjh', width: 160, align: 'center' },
+                { label: 'Tính chất bệnh nhân', name: 'brxzmc', width: 120, align: 'center' },
+                { label: 'Khoa', name: 'ks', width: 120, align: 'center', hidden: true },
+                { label: 'Bác sĩ', name: 'ysgh', width: 120, align: 'center', hidden: true },
+                { label: 'Khoa yêu cầu', name: 'deptName', width: 120, align: 'center' },
+                { label: 'Bác sĩ yêu cầu', name: 'ysxm', width: 120, align: 'center' },
+                { label: 'Thời gian chẩn đoán điều trị', name: 'jzsj', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 120, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
                 {
-                    label: '状态', name: 'sqzt', align: 'center', width: 120, formatter: function (val) {
+                    label: 'Trạng thái', name: 'sqzt', align: 'center', width: 120, formatter: function (val) {
                         return $.enum.getDescByValue("Emunzlzt", val);
                     }},
                 {
-                    label: '操作区', name: 'action', width: 200, align: 'center', formatter: function (cellvalue, op, row) {
-                        if (row.sqzt == 1) {//待确认
-                            return "<a class='btn btn-default' onclick='accept(\"" + row.Id + "\")'>同意</a>"
-                                + "<a class='btn btn-default' onclick='back(\"" + row.Id + "\")'>退回</a>"
+                    label: 'Khu vực thao tác', name: 'action', width: 200, align: 'center', formatter: function (cellvalue, op, row) {
+                        if (row.sqzt == 1) {//Chờ xác nhận
+                            return "<a class='btn btn-default' onclick='accept(\"" + row.Id + "\")'>Đồng ý</a>"
+                                + "<a class='btn btn-default' onclick='back(\"" + row.Id + "\")'>Trả lại</a>"
                         }
-                        else if (row.sqzt == 2 ) {//就诊中 
-                            return "<a class='btn btn-default' onclick='detail(\"" + row.Id + "\")'>查看详情</a>"
-                                + "<a class='btn btn-default' onclick='enterMeeting(\"" + row.Id + "\")'>开始诊疗</a>"
-                                + "<a class='btn btn-default' onclick='closeMeeting(\"" + row.Id + "\")'>关闭会议</a>"
+                        else if (row.sqzt == 2 ) {//Đang khám 
+                            return "<a class='btn btn-default' onclick='detail(\"" + row.Id + "\")'>Xem chi tiết</a>"
+                                + "<a class='btn btn-default' onclick='enterMeeting(\"" + row.Id + "\")'>Bắt đầu chẩn đoán và điều trị</a>"
+                                + "<a class='btn btn-default' onclick='closeMeeting(\"" + row.Id + "\")'>Đóng cuộc họp</a>"
                         }   
-                        else if (row.sqzt == 3) {//已结束
-                            return "<a class='btn btn-default' onclick='detail(\"" + row.Id + "\")'>查看详情</a>"
-                                + "<a class='btn btn-default' onclick='closeMeeting(\"" + row.Id + "\")'>关闭会议</a>";
+                        else if (row.sqzt == 3) {//Đã kết thúc
+                            return "<a class='btn btn-default' onclick='detail(\"" + row.Id + "\")'>Xem chi tiết</a>"
+                                + "<a class='btn btn-default' onclick='closeMeeting(\"" + row.Id + "\")'>Đóng cuộc họp</a>";
                         }
 
                         else
                             return '';
                     },
                 },
-                { label: '卡号', name: 'kh', width: 120, align: 'center', hidden: true },
-                { label: '会议号', name: 'mettingId', width: 120, align: 'center', hidden: true },
-                { label: '申请流水号', name: 'sqlsh', width: 120, align: 'center', hidden: true },
+                { label: 'Số thẻ', name: 'kh', width: 120, align: 'center', hidden: true },
+                { label: 'Số phòng họp', name: 'mettingId', width: 120, align: 'center', hidden: true },
+                { label: 'Số giao dịch yêu cầu', name: 'sqlsh', width: 120, align: 'center', hidden: true },
 
             ],
             pager: "#gridPager",
             sortname: " CreateTime asc",
-            rownumbers: true,  //是否显示序号
+            rownumbers: true,  //Có hiển thị số thứ tự không
             viewrecords: true
         });
         $("#btn_search").click(function () {
-            $('#gridList').jqGrid("clearGridData");//先清空明细
+            $('#gridList').jqGrid("clearGridData");//Xóa chi tiết trước
             $gridList.jqGrid('setGridParam', {
                 postData:  getPostData(),
                 url: "/ClinicManage/ClinicApply/GetClinicApplyGridJson",
@@ -213,7 +213,7 @@
         });
     }
 
-    //同意
+    //Đồng ý
     function accept(id) {
 
         var rowData = $("#gridList").jqGrid('getRowData', id);
@@ -224,9 +224,9 @@
             dataType: "json",
             async: false,
             success: function (ajaxresp) {
-                $.modalMsg("操作成功", 'success');
+                $.modalMsg("Thao tác thành công", 'success');
 
-                $('#gridList').jqGrid("clearGridData");//先清空明细
+                $('#gridList').jqGrid("clearGridData");//Xóa chi tiết trước
                 $("#gridList").jqGrid('setGridParam', {
                     postData: getPostData(),
                     url: "/ClinicManage/ClinicApply/GetClinicApplyGridJson",
@@ -241,7 +241,7 @@
                     "device": ajaxresp.data.device,
                 };
 
-                //跳转到视频会议页面
+                //Chuyển đến trang họp video
                 var mettingUrl = ajaxresp.mettingUrl;
 
                 window.newWin=window.open(mettingUrl, "_blank", "height = 500, width = 950, top = 100, left = 50, toolbar = no, menubar = no, scrollbars = yes, resizable = yes, location = no, status = no");
@@ -255,7 +255,7 @@
     }
 
 
-    ////退回
+    ////Trả lại
     //function back(id) {
     //    $.najax({
     //        type: "POST",
@@ -264,9 +264,9 @@
     //        dataType: "json",
     //        async: false,
     //        success: function (ajaxresp) {
-    //            $.modalMsg("操作成功", 'success');
+    //            $.modalMsg("Thao tác thành công", 'success');
 
-    //            $('#gridList').jqGrid("clearGridData");//先清空明细
+    //            $('#gridList').jqGrid("clearGridData");//Xóa chi tiết trước
     //            $("#gridList").jqGrid('setGridParam', {
     //                postData: getPostData(),
     //                url: "/ClinicManage/ClinicApply/GetClinicApplyGridJson",
@@ -275,7 +275,7 @@
     //    });
     //}
 
-    //退回
+    //Trả lại
     function back(id) {
         var rowData = $("#gridList").jqGrid('getRowData', id);
         $.najax({
@@ -285,9 +285,9 @@
             dataType: "json",
             async: false,
             success: function (ajaxresp) {
-                $.modalMsg("操作成功", 'success');
+                $.modalMsg("Thao tác thành công", 'success');
 
-                $('#gridList').jqGrid("clearGridData");//先清空明细
+                $('#gridList').jqGrid("clearGridData");//Xóa chi tiết trước
                 $("#gridList").jqGrid('setGridParam', {
                     postData: getPostData(),
                     url: "/ClinicManage/ClinicApply/GetClinicApplyGridJson",
@@ -297,20 +297,20 @@
     }
 
 
-    //查看详情
+    //Xem chi tiết
     function detail(id) {
         
         window.location.href = "/MainBusiness/Index?pageType=yczl&Id="+id;
-        $('#myTab [href="#linkbl"').trigger('click'); //初始化显示哪个tab
+        $('#myTab [href="#linkbl"').trigger('click'); //Khởi tạo hiển thị mục nàotab
 
-        //跳转到病历页
-        //$('#myTab [href="#linkbl"').trigger('click'); //初始化显示哪个tab
+        //Chuyển đến trang bệnh án
+        //$('#myTab [href="#linkbl"').trigger('click'); //Khởi tạo hiển thị mục nàotab
 
-        //跳转到病历页
+        //Chuyển đến trang bệnh án
         //window.init_MedicalRecord();
     }
 
-    //进入会议
+    //Vào cuộc họp
     function enterMeeting(id) {
 
         var rowData = $("#gridList").jqGrid('getRowData', id);
@@ -321,9 +321,9 @@
             dataType: "json",
             async: false,
             success: function (ajaxresp) {
-                $.modalMsg("操作成功", 'success');
+                $.modalMsg("Thao tác thành công", 'success');
 
-                $('#gridList').jqGrid("clearGridData");//先清空明细
+                $('#gridList').jqGrid("clearGridData");//Xóa chi tiết trước
                 $("#gridList").jqGrid('setGridParam', {
                     postData: getPostData(),
                     url: "/ClinicManage/ClinicApply/GetClinicApplyGridJson",
@@ -338,7 +338,7 @@
                     "device": ajaxresp.data.device,
                 };
                 
-                //跳转到视频会议页面
+                //Chuyển đến trang họp video
                 var mettingUrl = ajaxresp.mettingUrl;
 
                 window.newWin=window.open(mettingUrl, "_blank", "height = 500, width = 950, top = 100, left = 50, toolbar = no, menubar = no, scrollbars = yes, resizable = yes, location = no, status = no");
@@ -369,7 +369,7 @@
                     "device": ajaxresp.data.device,
                 };
 
-                //关闭会议室
+                //Đóng phòng họp
                 var mettingUrl = ajaxresp.mettingUrl;
 
                 //window.newWin = window.open(mettingUrl, "_blank", "height = 500, width = 950, top = 100, left = 50, toolbar = no, menubar = no, scrollbars = yes, resizable = yes, location = no, status = no");
@@ -391,14 +391,14 @@
         $("#zcfsj").attr("title", "");
         var jzObject = window.currPatientInfo;
         //if (!!!jzObject || JSON.stringify(jzObject) == '{}') {
-        //    $.modalAlert("患者信息异常，当前病人已结束就诊。", 'warning');
+        //    $.modalAlert("Thông tin bệnh nhân bất thường, bệnh nhân hiện tại đã kết thúc khám.", 'warning');
         //    return;
         //}
         if (mrflag == 0) {
             clickjzid = jzObject.jzId;
-            reloadTreeView();   //加载树
+            reloadTreeView();   //Tải cây
             if (jzObject.jzId) {
-                //默认加载双击进来的就诊内容
+                //Mặc định tải nội dung khám được nhấn đúp vào
                 if ($('span[data-id="' + jzObject.jzId + '"]').length == 1) {
                     setTimeout("$('span[data-id=\"" + jzObject.jzId + "\"]').trigger('click');", 10);
                 }
@@ -407,7 +407,7 @@
                 }
             }
             mrflag = 1;
-            //获取最后收取诊查费时间
+            //Lấy thời gian thu phí khám lần cuối
             $.ajax({
                 type: "POST",
                 url: "/MedicalRecord/GetLastzcf",
@@ -460,15 +460,15 @@
         //    width: 300,
         //    height: 200,
         //    clickautotrigger: true,
-        //    caption: "选择诊断",
+        //    caption: "Chọn chẩn đoán",
         //    ajaxparameters: null,
         //    itemdbclickhandler: function ($thistr) {
         //        $($('#tablezyzd .zdText')[0]).val($thistr.attr('data-zdmc'));
         //        $($('#tablezyzd .zdText')[0]).attr("data-zdCode",$thistr.attr('data-zdCode'));
         //        $($('#tablezyzd .zdText')[0]).attr("data-icd10",$thistr.attr('data-icd10'));
         //    },
-        //    colModel: [{ label: '编码', name: 'zdCode', widthratio: 25 },
-        //    { label: '诊断名称', name: 'zdmc', widthratio: 50 },
+        //    colModel: [{ label: 'Mã', name: 'zdCode', widthratio: 25 },
+        //    { label: 'Tên chẩn đoán', name: 'zdmc', widthratio: 50 },
         //    { label: 'icd10', name: 'icd10', widthratio: 25}]
         //};
         //var options = $.extend(defaults, options);
@@ -480,15 +480,15 @@
         //    width: 300,
         //    height: 200,
         //    clickautotrigger: true,
-        //    caption: "选择诊断",
+        //    caption: "Chọn chẩn đoán",
         //    ajaxparameters: null,
         //    itemdbclickhandler: function ($thistr) {
         //        $($('#tablexyzd .zdText')[0]).val($thistr.attr('data-zdmc'));
         //        $($('#tablexyzd .zdText')[0]).attr("data-zdCode",$thistr.attr('data-zdCode'));
         //        $($('#tablexyzd .zdText')[0]).attr("data-icd10",$thistr.attr('data-icd10'));
         //    },
-        //    colModel: [{ label: '编码', name: 'zdCode', widthratio: 25 },
-        //    { label: '诊断名称', name: 'zdmc', widthratio: 50 },
+        //    colModel: [{ label: 'Mã', name: 'zdCode', widthratio: 25 },
+        //    { label: 'Tên chẩn đoán', name: 'zdmc', widthratio: 50 },
         //    { label: 'icd10', name: 'icd10', widthratio: 25 }]
         //};
         //var options2 = $.extend(defaults2, options2);

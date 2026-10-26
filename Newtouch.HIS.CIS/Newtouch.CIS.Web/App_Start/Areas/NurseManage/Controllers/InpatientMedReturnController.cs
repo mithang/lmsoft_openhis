@@ -30,7 +30,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(patList.ToJson());
         }
         /// <summary>
-        /// 获取病区人员发药树
+        /// Lấy cây phát thuốc của nhân viên khu bệnh
         /// </summary>
         /// <returns></returns>
         public ActionResult GetPatWardTree()

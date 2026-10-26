@@ -8,13 +8,13 @@
     <div style="padding-top: 20px; margin-right: 55px;">
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>套餐类型：</th>
+                <th class="formTitle"><span class="required">*</span>Loại gói:</th>
                 <td class="formValue formDdlSelectorTd">
                   <select id="mblx" class="form-control required" ></select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>套餐名称：</th>
+                <th class="formTitle"><span class="required">*</span>Tên gói:</th>
                 <td class="formValue">
                     <input type="text" id="mbmc" class="form-control required" placeholder="" />
                 </td>
@@ -23,7 +23,7 @@
     </div>
 </form>
 <script>
-//valid的扩展样式
+//validkiểu mở rộng của
     var valOptions = {
         errorPlacement: function (error, element) {
             element.parents('.formValue').addClass('has-error');
@@ -35,7 +35,7 @@
     });
     function submitForm() {
         if (!$('#form1').formValid(valOptions)) {
-            $.modalAlert("必填信息未完善", 'warning');
+            $.modalAlert("Thông tin bắt buộc chưa hoàn thiện", 'warning');
             return;
         }
         var obj = new Object();

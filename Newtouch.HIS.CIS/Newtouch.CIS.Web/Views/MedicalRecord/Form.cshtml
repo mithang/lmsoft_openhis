@@ -10,16 +10,16 @@
     <div style="padding-top: 20px; margin-right: 55px;">
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>模板类型：</th>
+                <th class="formTitle"><span class="required">*</span>Loại mẫu:</th>
                 <td class="formValue">
-                    @*@Html.DropDownList("mblx", EnumCfMbLx.department.ToDescSelectList(), "==请选择==", new { @class = "form-control required" })*@
+                    @*@Html.DropDownList("mblx", EnumCfMbLx.department.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control required" })*@
                     <select id="mblx" class="form-control required">
                         <option value="">==请选择==</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>模板名称：</th>
+                <th class="formTitle"><span class="required">*</span>Tên mẫu:</th>
                 <td class="formValue">
                     <input type="text" id="mbmc" class="form-control required" placeholder="" />
                 </td>
@@ -29,7 +29,7 @@
 </form>
 
 <script>
-    //valid的扩展样式
+    //validkiểu mở rộng của
     var valOptions = {
         errorPlacement: function (error, element) {
             element.parents('.formValue').addClass('has-error');
@@ -44,7 +44,7 @@
 
     function submitForm() {
         if (!$('#form1').formValid(valOptions)) {
-            $.modalAlert("必填信息未完善", 'warning');
+            $.modalAlert("Thông tin bắt buộc chưa hoàn thiện", 'warning');
             return;
         }
         var obj = new Object();

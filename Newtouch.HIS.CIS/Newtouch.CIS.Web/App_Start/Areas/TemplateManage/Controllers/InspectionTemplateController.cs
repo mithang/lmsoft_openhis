@@ -20,7 +20,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         // GET: TemplateManage/Inspection
         
         /// <summary>
-        /// 检验检查大类 下拉
+        /// Nhóm lớn xét nghiệm kiểm tra Thả xuống
         /// </summary>
         /// <returns></returns>
         public ActionResult GetCategoryList()
@@ -30,7 +30,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
         
         /// <summary>
-        /// 模板列表（查询）
+        /// Danh sách mẫu (tra cứu)
         /// </summary>
         /// <param name="zutaoType"></param>
         /// <returns></returns>
@@ -41,7 +41,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// 模板详情
+        /// Chi tiết mẫu
         /// </summary>
         /// <param name="mbId"></param>
         /// <returns></returns>
@@ -52,7 +52,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="ztobj"></param>
         /// <param name="ztxmlist"></param>
@@ -60,7 +60,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         public ActionResult SaveData(InspectionTemplateEntity mbobj, List<TemplateGroupPackageEntity> mbztlist)
         {
             mbobj.zt = mbobj.zt == "on" ? "1" : "0";
-            //模板表
+            //Bảng mẫu
             mbobj.OrganizeId = this.OrganizeId;
 
             _inspectionTemplateDmnService.SaveData(mbobj, mbztlist);
@@ -68,7 +68,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="mbId"></param>
         /// <returns></returns>
@@ -79,7 +79,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// 处方页的检验检查模板树
+        /// Cây mẫu xét nghiệm kiểm tra của trang đơn thuốc
         /// </summary>
         /// <returns></returns>
         public ActionResult GetTreeList(int jyjcmbLx)
@@ -89,7 +89,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             var dldata = alldldata.Select(a => new { a.dlmc }).Distinct().ToList();
             foreach (var item in dldata)
             {
-                //检验检查大类
+                //Nhóm lớn xét nghiệm kiểm tra
                 treeList.Add(new TreeViewModel()
                 {
                     id = item.dlmc,
@@ -102,7 +102,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
                 var mbdata = alldldata.Where(a => a.dlmc == item.dlmc).Select(a => new { a.mbId, a.mbmc }).ToList();
                 foreach (var mb in mbdata)
                 {
-                    //模板
+                    //Mẫu
                     var ztdata = _inspectionTemplateDmnService.GetTemplateDetailByMbId(this.OrganizeId, mb.mbId).Select(a => new { a.ztId, a.ztmc }).Distinct();
                     //bool hasChildren = ztdata.Count() > 0 ? true : false;
                     bool hasChildren = true;
@@ -116,7 +116,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
                         isexpand = hasChildren,
                         complete = true
                     });
-                    //组套
+                    //Bộ mẫu
                     foreach (var zt in ztdata)
                     {
                         treeList.Add(new TreeViewModel()
@@ -136,7 +136,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// 根据ztId查询组套下的收费项目
+        /// TheoztIdTra cứu hạng mục thu phí thuộc bộ mẫu
         /// </summary>
         /// <returns></returns>
         public ActionResult GetGPackageDetailByZtId(string ztId)

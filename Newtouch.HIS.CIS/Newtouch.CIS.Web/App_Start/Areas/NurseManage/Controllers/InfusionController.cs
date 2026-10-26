@@ -18,7 +18,7 @@ using Newtouch.Domain.ViewModels.Outpatient;
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
     /// <summary>
-    /// 输液管理
+    /// Quản lý truyền dịch
     /// </summary>
     public class InfusionController : OrgControllerBase
     {
@@ -29,7 +29,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         #region 视图
         /// <summary>
-        /// 注射执行
+        /// Thực hiện tiêm
         /// </summary>
         /// <returns></returns>
         public ActionResult Injection()
@@ -38,7 +38,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 注射历史查询
+        /// Tra cứu lịch sử tiêm
         /// </summary>
         /// <returns></returns>
         public ActionResult InfusionHistory()
@@ -47,7 +47,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 输液执行
+        /// Thực hiện truyền dịch
         /// </summary>
         /// <returns></returns>
         public ActionResult InjectionForm()
@@ -59,7 +59,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         #region 获取数据
 
         /// <summary>
-        /// 获取门诊患者列表
+        /// Lấy danh sách bệnh nhân ngoại trú
         /// </summary>
         /// <returns></returns>
         public ActionResult PatientListQuery(Pagination pagination, string kh, string fph, DateTime kssj, DateTime jssj)
@@ -75,7 +75,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取门诊患者列表 (待做皮试)
+        /// Lấy danh sách bệnh nhân ngoại trú (Test da chờ thực hiện)
         /// </summary>
         /// <returns></returns>
         public ActionResult PatientHistoryListQuery(Pagination pagination, string kh, string fph, DateTime kssj, DateTime jssj)
@@ -91,7 +91,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 根据卡号获取未结束输液信息
+        /// Lấy thông tin truyền dịch chưa kết thúc theo số thẻ
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
@@ -109,7 +109,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 根据卡号获取未结束输液信息
+        /// Lấy thông tin truyền dịch chưa kết thúc theo số thẻ
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
@@ -127,7 +127,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 同步处方信息
+        /// Đồng bộ thông tin đơn thuốc
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="fph"></param>
@@ -141,7 +141,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取岗位信息
+        /// Lấy thông tin vị trí
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -156,7 +156,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         #region 执行
 
         /// <summary>
-        /// 分组
+        /// Nhóm
         /// </summary>
         /// <param name="tags"></param>
         /// <param name="kh"></param>
@@ -169,10 +169,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 开始输液
+        /// Bắt đầu truyền dịch
         /// </summary>
         /// <param name="tags"></param>
-        /// <param name="seatNum">座号/床号</param>
+        /// <param name="seatNum">Số ghế/Số giường</param>
         /// <returns></returns>
         public ActionResult StartInfusion(List<long> tags, string seatNum)
         {
@@ -181,7 +181,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 结束输液
+        /// Kết thúc truyền dịch
         /// </summary>
         /// <param name="tags"></param>
         /// <returns></returns>
@@ -192,10 +192,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 设置座位号
+        /// Đặt số ghế
         /// </summary>
-        /// <param name="tag">目标ID</param>
-        /// <param name="seatNum">座位号</param>
+        /// <param name="tag">Mục tiêuID</param>
+        /// <param name="seatNum">Số ghế</param>
         /// <returns></returns>
         public ActionResult SetSeatNum(long tag, string seatNum)
         {
@@ -204,7 +204,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 打印瓶贴
+        /// In nhãn chai
         /// </summary>
         /// <returns></returns>
         public ActionResult PrintBottleLabel(string tags)
@@ -235,7 +235,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 生成输液查询二维码
+        /// Tạo mã QR tra cứu truyền dịch
         /// </summary>
         /// <param name="tags"></param>
         /// <returns></returns>
@@ -265,7 +265,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 执行
+        /// Thực hiện
         /// </summary>
         /// <param name="syIds"></param>
         /// <param name="zt"></param>

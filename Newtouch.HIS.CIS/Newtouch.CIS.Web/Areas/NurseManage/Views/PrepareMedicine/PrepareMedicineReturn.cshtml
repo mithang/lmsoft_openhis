@@ -51,33 +51,33 @@
         <div class="panel panel-default">
             <table class="form">
                 <tr>
-                    <th class="formTitle" style="width:70px;padding-right:12px;">状态：</th>
+                    <th class="formTitle" style="width:70px;padding-right:12px;">Trạng thái:</th>
                     <td class="formValue">
                         @*@Html.DropDownList("ksbyzt", EnumKSBYZT.sq.ToDescSelectList(), new { @class = "form-control form-an" })*@
                         <select id="ksbyzt" name="ksbyzt" class="form-control">
-                            @*<option value="0">全部</option>
-                            <option value="1">保存</option>
-                            <option value="3">提交</option>
-                            <option value="5">撤回</option>
-                            <option value="7">作废</option>*@
+                            @*<option value="0">Tất cả</option>
+                            <option value="1">Lưu</option>
+                            <option value="3">Gửi</option>
+                            <option value="5">Thu hồi</option>
+                            <option value="7">Hủy bỏ</option>*@
 
-                            <option value="0">全部</option>
-                            <option value="1">保存</option>
-                            <option value="2">已申请</option>
-                            <option value="3">已确认</option>
-                            <option value="4">撤回</option>
-                            <option value="5">退回</option>
-                            <option value="6">作废</option>
+                            <option value="0">Tất cả</option>
+                            <option value="1">Lưu</option>
+                            <option value="2">Đã yêu cầu</option>
+                            <option value="3">Đã xác nhận</option>
+                            <option value="4">Thu hồi</option>
+                            <option value="5">Trả lại</option>
+                            <option value="6">Hủy bỏ</option>
                         </select>
                     </td>
-                    <th class="formTitle">日期：</th>
+                    <th class="formTitle">Ngày:</th>
                     <td class="formValue" colspan="3">
                         <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-6).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         <span style="margin-left:1%;float:left">—</span>
                         <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     </td>
                     <td class="formValue title">
-                        <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="查询" />
+                        <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tra cứu" />
                     </td>
 
                 </tr>
@@ -91,7 +91,7 @@
         <div id="TabGrid">
             <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
                 <li role="presentation" class="active">
-                    <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">单据明细</a>
+                    <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">Chi tiết chứng từ</a>
                 </li>
                 <li style="float:right">
                     <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
@@ -105,11 +105,11 @@
             <span class="glyphicon glyphicon-chevron-left btn-lg"></span>
         </div>
         <div class="panel panel-default">
-            <input type="button" id="btn_delete" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="作废" />
-            <input type="button" id="btn_back" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="撤回" />
-            <input type="button" id="btn_submit" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="提交" />
-            <input type="button" id="btn_edit" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="修改" />
-            <input type="button" id="btn_add" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="新建" />
+            <input type="button" id="btn_delete" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Hủy bỏ" />
+            <input type="button" id="btn_back" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Thu hồi" />
+            <input type="button" id="btn_submit" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Gửi" />
+            <input type="button" id="btn_edit" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Sửa" />
+            <input type="button" id="btn_add" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Tạo mới" />
 
         </div>
     </form>
@@ -124,7 +124,7 @@
     $(function () {
         initControl();
         gridList();
-        //搜索框隐藏显示控制
+        //Kiểm soát ẩn/hiện hộp tìm kiếm
         $(".hiding,.rows,#dv_search,.toolbar").click(function () {
             TabGridHide();
         });
@@ -136,7 +136,7 @@
         TabGridHide();
     })
 
-    //隐藏搜索框并显示箭头
+    //Ẩn hộp tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -154,11 +154,11 @@
             postData: { thzt: $("#ksbyzt").val(), kssj: $("#kssj").val(), jssj: $("#jssj").val() },
             colModel: [
                 {
-                    label: '状态', name: 'thzt', width: 60, align: 'left', formatter: function (cellvalue) {
-                        //if (cellvalue == 1) return '保存';
-                        //else if (cellvalue == 3) return '提交';
-                        //else if (cellvalue == 5) return '撤回';
-                        //else if (cellvalue == 7) return '作废';
+                    label: 'Trạng thái', name: 'thzt', width: 60, align: 'left', formatter: function (cellvalue) {
+                        //if (cellvalue == 1) return 'Lưu';
+                        //else if (cellvalue == 3) return 'Gửi';
+                        //else if (cellvalue == 5) return 'Thu hồi';
+                        //else if (cellvalue == 7) return 'Hủy bỏ';
                         if (cellvalue == 1) return '未申请';
                         else if (cellvalue == 2) return '已申请';
                         else if (cellvalue == 3) return '已确认';
@@ -170,21 +170,21 @@
                     }
                 },
                 { label: 'Id', name: 'Id', hidden: true },
-                { label: '单据号', name: 'djh' },
-                { label: '退回药房', name: 'yfmc', width: 60, align: 'left' },
-                { label: '科室', name: 'ksmc', width: 80, align: 'left' },
-                { label: '病区', name: 'bqmc', width: 100, align: 'left' },
-                { label: '创建人', name: 'CreatorCode', width: 80, align: 'left' },
+                { label: 'Số chứng từ', name: 'djh' },
+                { label: 'Trả lại nhà thuốc', name: 'yfmc', width: 60, align: 'left' },
+                { label: 'Khoa', name: 'ksmc', width: 80, align: 'left' },
+                { label: 'Khu bệnh', name: 'bqmc', width: 100, align: 'left' },
+                { label: 'Người tạo', name: 'CreatorCode', width: 80, align: 'left' },
                 {
-                    label: '创建时间', name: 'CreateTime', width: 150, align: 'left', formatter: "date",
+                    label: 'Thời gian tạo', name: 'CreateTime', width: 150, align: 'left', formatter: "date",
                     formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
                 {
-                    label: '提交时间', name: 'tjsj', width: 150, align: 'left', formatter: "date",
+                    label: 'Thời gian gửi', name: 'tjsj', width: 150, align: 'left', formatter: "date",
                     formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: '退回原因', name: 'thyy', width: 60, align: 'left' },
+                { label: 'Lý do trả lại', name: 'thyy', width: 60, align: 'left' },
                 {
-                    label: "操作", name: "", align: "center", width: 150,
+                    label: "Thao tác", name: "", align: "center", width: 150,
                     formatter: function (cellvalue, options, rowobject) {
                         return '<input type="button" id="btn_rpt" onclick="rptdjmx(\'' + rowobject.Id + '\')" class="btn btn-info" style="width:100px;display:inline-block;"  value="打印单据明细"/>'
                     }
@@ -217,14 +217,14 @@
 
     //http://localhost:17105/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%E7%A7%91%E5%AE%A4%E5%A4%87%E8%8D%AF%E7%94%B3%E8%AF%B7%E5%8D%95&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&byId=ad4d9559-9e0a-4093-9000-9ee2cb6a26e0&orgId=
     //http://59.80.30.184:16015/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%E7%A7%91%E5%AE%A4%E5%A4%87%E8%8D%AF%E9%80%80%E5%9B%9E%E5%8D%95&rs:Command=Render
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
 
-    //单击事件
+    //Sự kiện nhấn
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấn, xóa chi tiết trước Tải lại tất cả chi tiết dòng đã chọn
         $.najax({
             type: "Get",
             url: "/PrepareMedicine/QueryPrepareMedicine",
@@ -238,21 +238,21 @@
             }
         });
     }
-    //单据明细
+    //Chi tiết chứng từ
     $('#gridDJMXInfo').newtouchLocalDataGrid({
         height: $(window).height() - 200,
         unwritten: false,
         sortable: false,
         colModel: [
-            { label: '药品名称', name: 'ypmc', width: 150, align: 'left' },
-            { label: '药品代码', name: 'ypdm', width: 60, align: 'right' },
-            { label: '药品类别', name: 'yplb', width: 80, align: 'left' },
-            { label: '退数量', name: 'tsl', width: 60, align: 'center' },
-            { label: '单位', name: 'dw', width: 90, align: 'right' },
-            { label: '规格', name: 'gg', width: 120, align: 'right' },
-            { label: '有效期', name: 'yxq', width: 100, align: 'right' },
-            //{ label: '有效期', name: 'yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-            { label: '生产厂家', name: 'sccj', width: 160, align: 'left' }
+            { label: 'Tên thuốc', name: 'ypmc', width: 150, align: 'left' },
+            { label: 'Mã thuốc', name: 'ypdm', width: 60, align: 'right' },
+            { label: 'Loại thuốc', name: 'yplb', width: 80, align: 'left' },
+            { label: 'Số lượng trả', name: 'tsl', width: 60, align: 'center' },
+            { label: 'Đơn vị', name: 'dw', width: 90, align: 'right' },
+            { label: 'Quy cách', name: 'gg', width: 120, align: 'right' },
+            { label: 'Thời hạn hiệu lực', name: 'yxq', width: 100, align: 'right' },
+            //{ label: 'Thời hạn hiệu lực', name: 'yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+            { label: 'Nhà sản xuất', name: 'sccj', width: 160, align: 'left' }
         ]
     });
 
@@ -260,11 +260,11 @@
 
     }
 
-    //新建
+    //Tạo mới
     $('#btn_add').click(function () {
         $.modalOpen({
             id: "OutAreaForm",
-            title: "科室备药退回",
+            title: "Trả lại thuốc dự trữ khoa",
             url: "/NurseManage/PrepareMedicine/PrepareMedicineReturnAdd",
             width: "95%",
             height: "95%",
@@ -275,25 +275,25 @@
         });
     });
 
-    //修改
+    //Sửa
     $('#btn_edit').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {
-            $.modalAlert("请选择需要修改的单据", 'warning');
+            $.modalAlert("Vui lòng chọn chứng từ cần sửa", 'warning');
             return;
         }
         if (selRowIds.length >= 2) {
-            $.modalAlert("只能选择一个单据进行修改", 'warning');
+            $.modalAlert("Chỉ được chọn một chứng từ để sửa", 'warning');
             return;
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
         if (rowData.thzt != "未申请") {
-            $.modalAlert("选中的单据不是未申请状态，不能修改", 'warning');
+            $.modalAlert("Chứng từ đã chọn không ở trạng thái chưa yêu cầu, không thể sửa", 'warning');
             return;
         }
         $.modalOpen({
             id: "OutAreaForm",
-            title: "科室备药退回",
+            title: "Trả lại thuốc dự trữ khoa",
             url: "/NurseManage//PrepareMedicine/PrepareMedicineReturnAdd?djId=" + rowData.Id,
             width: "95%",
             height: "95%",
@@ -304,20 +304,20 @@
         });
     });
 
-    //提交
+    //Gửi
     $('#btn_submit').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {
-            $.modalAlert("请选择需要提交的单据", 'warning');
+            $.modalAlert("Vui lòng chọn chứng từ cần gửi", 'warning');
             return;
         }
         if (selRowIds.length >= 2) {
-            $.modalAlert("只能选择一个单据进行提交", 'warning');
+            $.modalAlert("Chỉ được chọn một chứng từ để gửi", 'warning');
             return;
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
-        //if (rowData.thzt != "保存") {
-        //    $.modalAlert("选中的单据不是保存状态，不能提交", 'warning');
+        //if (rowData.thzt != "Lưu") {
+        //    $.modalAlert("Chứng từ đã chọn không ở trạng thái đã lưu, không thể gửi", 'warning');
         //    return;
         //}
         //var postData = rowData;
@@ -342,32 +342,32 @@
             dataType: "json",
             success: function (res) {
                 if (res.message == "成功") {
-                    $.modalMsg("单据提交成功！", 'success');
+                    $.modalMsg("Gửi chứng từ thành công!", 'success');
                     $('#gridDJMXInfo').jqGrid("clearGridData");
                     $gridList.jqGrid('setGridParam', {
                         postData: { thzt: $("#ksbyzt").val(), kssj: $("#kssj").val(), jssj: $("#jssj").val() },
                     }).trigger('reloadGrid');
                 } else {
-                    $.modalMsg("单据提交失败：" + res.message, 'warning');
+                    $.modalMsg("Gửi chứng từ thất bại:" + res.message, 'warning');
                 }
             }
         });
     });
 
-    //撤回
+    //Thu hồi
     $('#btn_back').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {
-            $.modalAlert("请选择需要撤回的单据", 'warning');
+            $.modalAlert("Vui lòng chọn chứng từ cần thu hồi", 'warning');
             return;
         }
         if (selRowIds.length >= 2) {
-            $.modalAlert("只能选择一个单据进行撤回", 'warning');
+            $.modalAlert("Chỉ được chọn một chứng từ để thu hồi", 'warning');
             return;
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
         if (rowData.thzt != "已申请") {
-            $.modalAlert("选中的单据不是已申请状态，不能撤回", 'warning');
+            $.modalAlert("Chứng từ đã chọn không ở trạng thái đã yêu cầu, không thể thu hồi", 'warning');
             return;
         }
         $.najax({
@@ -378,28 +378,28 @@
             success: function (res) {
                 if (res.message == "成功") {
                     $('#btn_search').trigger('click');
-                    $.modalAlert("单据撤回成功！", 'success');
+                    $.modalAlert("Thu hồi chứng từ thành công!", 'success');
                 } else {
-                    $.modalAlert("单据撤回失败：" + res.message, 'warning');
+                    $.modalAlert("Thu hồi chứng từ thất bại:" + res.message, 'warning');
                 }
             }
         });
     });
 
-    //作废
+    //Hủy bỏ
     $('#btn_delete').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {
-            $.modalAlert("请选择需要作废的单据", 'warning');
+            $.modalAlert("Vui lòng chọn chứng từ cần hủy", 'warning');
             return;
         }
         if (selRowIds.length >= 2) {
-            $.modalAlert("只能选择一个单据进行作废", 'warning');
+            $.modalAlert("Chỉ được chọn một chứng từ để hủy", 'warning');
             return;
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
         if (rowData.thzt != "未申请") {
-            $.modalAlert("请选择未申请的单据进行作废", 'warning');
+            $.modalAlert("Vui lòng chọn chứng từ chưa yêu cầu để hủy", 'warning');
             return;
         }
         $.najax({
@@ -410,9 +410,9 @@
             success: function (res) {
                 if (res.message == "成功") {
                     $('#btn_search').trigger('click');
-                    $.modalAlert("单据作废成功！", 'success');
+                    $.modalAlert("Hủy chứng từ thành công!", 'success');
                 } else {
-                    $.modalAlert("单据作废成功：" + res.message, 'warning');
+                    $.modalAlert("Hủy chứng từ thành công:" + res.message, 'warning');
                 }
             }
         });

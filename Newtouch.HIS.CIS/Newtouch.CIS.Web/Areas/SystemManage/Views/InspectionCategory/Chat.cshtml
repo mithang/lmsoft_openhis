@@ -191,8 +191,8 @@
                 </ul>
             </div>
             <div class="footer">
-                <textarea id="message" maxlength="800" rows="5" cols="40" style="width: 100%; resize: none; border: none; " placeholder="请在此输入要发送的内容..."></textarea>
-                <button id="sendbtn" class="sendbtn">发送</button>
+                <textarea id="message" maxlength="800" rows="5" cols="40" style="width: 100%; resize: none; border: none; " placeholder="Vui lòng nhập nội dung cần gửi tại đây..."></textarea>
+                <button id="sendbtn" class="sendbtn">Gửi</button>
             </div>
         </div>
     </div>
@@ -206,21 +206,21 @@
         </div>
             <div>
                 <input type="text" id="message" />
-                <input type="button" id="sendmessage" value="发送" />
+                <input type="button" id="sendmessage" value="Gửi" />
             </div>
     </div>*@
-<!--jQuery库是必需的,默认情况下在_Layout.cshtml引用. -->
-<!--引用SignalR库. -->
+<!--jQueryThư viện là bắt buộc,Theo mặc định tại_Layout.cshtmlTrích dẫn. -->
+<!--Trích dẫnSignalR库. -->
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
-<!--引用自动生成的SignalR 集线器(Hub)脚本.在运行的时候在浏览器的Source下可看到. -->
+<!--Trích dẫn được tạo tự độngSignalR Hub(Hub)Kịch bản.Khi chạy trong trình duyệtSourcedưới có thể nhìn thấy. -->
 <script src="~/signalr/hubs"></script>
 <script>
     $(function () {
-        // 引用自动生成的集线器代理 必须用小写字母开头.
+        // Trích dẫn proxy hub được tạo tự động Phải bắt đầu bằng chữ thường.
         var chat = $.connection.chatHub;
 
-        // 定义服务器端调用的客户端addNewMessageToPage来处理接收到的消息.
+        // Định nghĩa máy khách được gọi từ phía máy chủaddNewMessageToPageđể xử lý tin nhắn nhận được.
         chat.client.addNewMessageToPage = function (name, message) {
             if (name == $('#displayname').val()) {
                 $('#discussion').append('<li class="msgright"><p class="touxiangright">' + htmlEncode(name)+'</p><p class="msgcardright">' + htmlEncode(message) + '</p></li >');
@@ -228,29 +228,29 @@
             else {
                 $('#discussion').append('<li class="msgleft"><p class="touxiangleft">' + htmlEncode(name) +'</p><p class="msgcardleft">' + htmlEncode(message) + '</p></li >');
             }
-            // 将消息添加到ul上.
+            // Thêm tin nhắn vàoul上.
             //$('#discussion').append('<li class="msgleft"><p class="msgcardleft>' + htmlEncode(name)+htmlEncode(message)
             //    + '</p></li>');
         };
 
-        // 获取用户名.
+        // Lấy tên người dùng.
         $('#displayname').val(prompt('请输入你的名字:', ''));
 
-        // 设置焦点到输入框.
+        // Đặt tiêu điểm vào hộp nhập.
         $('#message').focus();
 
-        // 开始连接服务器 done函数表明建立连接成功后为发送按钮注册了一个click事件.
+        // Bắt đầu kết nối máy chủ doneHàm cho thấy sau khi kết nối thành công sẽ đăng ký một cho nút gửiclickSự kiện.
         $.connection.hub.start().done(function () {
             $('#sendbtn').click(function () {
-                // 调用服务器端集线器的Send方法 也要小写开头.
+                // Gọi hub phía máy chủSendPhương pháp cũng phải bắt đầu bằng chữ thường.
                 chat.server.send($('#displayname').val(), $('#message').val());
-                // 清空输入框信息并获取焦点.
+                // Xóa thông tin hộp nhập và lấy tiêu điểm.
                 $('#message').val('').focus();
             });
         });
     });
 
-    // 这个可选功能将html-encodes消息显示在页面上.
+    // Chức năng tùy chọn này sẽhtml-encodesTin nhắn hiển thị trên trang.
     function htmlEncode(value) {
         var encodedValue = $('<div />').text(value).html();
         return encodedValue;

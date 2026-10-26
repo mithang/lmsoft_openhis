@@ -13,7 +13,7 @@ using Newtouch.Tools;
 namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
-    /// 出诊管理
+    /// Quản lý khám bệnh
     /// </summary>
     public class VisitDeptSetController : OrgControllerBase
     {
@@ -23,7 +23,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         private readonly IVisitDeptSetApp _visitDeptSetApp;
 
         /// <summary>
-        /// 获取出诊医生信息
+        /// Lấy thông tin bác sĩ khám bệnh
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -46,7 +46,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取出诊明细
+        /// Lấy chi tiết khám bệnh
         /// </summary>
         /// <param name="ysgh"></param>
         /// <returns></returns>
@@ -57,7 +57,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 删除项目
+        /// Xóa hạng mục
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -67,7 +67,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 根据ID获取出诊科室信息
+        /// TheoIDLấy thông tin khoa khám bệnh
         /// </summary>
         /// <param name="ysgh"></param>
         /// <param name="keyValue"></param>
@@ -79,7 +79,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 表单提交
+        /// Gửi biểu mẫu
         /// </summary>
         /// <param name="vo"></param>
         /// <returns></returns>

@@ -35,7 +35,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(patList.ToJson());
         }
         /// <summary>
-        /// 获取病区人员发药树
+        /// Lấy cây phát thuốc của nhân viên khu bệnh
         /// </summary>
         /// <returns></returns>
         public ActionResult GetPatWardTree(string keyword)
@@ -55,7 +55,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     string gender = itempat.sex == "1" ? "男" : "女";
                     TreeViewModel treepat = new TreeViewModel();
                     treepat.id = itempat.zyh;
-                    //床号 + 姓名(住院天数)+住院号 + 年龄 +性别
+                    //Số giường + Họ tên(Số ngày nhập viện)+Số nhập viện + Tuổi +Giới tính
                     treepat.text = itempat.BedNo + "-"  + itempat.hzxm + "(" + itempat.inHosDays + "天)" + "-" + itempat.zyh+ "-" + itempat.nl + "岁-" + gender;
                     treepat.value = itempat.zyh;
                     treepat.parentId = item.bqCode;
@@ -105,7 +105,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
 
-        //--------------------------------------以下是：医嘱退药查询--------------------------------------
+        //--------------------------------------Dưới đây là: tra cứu trả thuốc y lệnh--------------------------------------
 
         public ActionResult Drug_withdrawal() {
             ViewBag.OrgId = this.OrganizeId;

@@ -3,7 +3,7 @@ var len = ['十'];
 var ydm = ['年', '月', '日'];
 var hm = ['时', '分'];
 function etchinese(s) {
-    //将单个数字转化成中文  
+    //Chuyển đổi một số đơn lẻ thành tiếng Trung  
     s = "" + s;
     var result = "";
     for (var i = 0; i < s.length; i++) {
@@ -12,7 +12,7 @@ function etchinese(s) {
     return result;
 }
 function specialcharacter(s) {
-    //对特殊情况进行处理，并调用etchinese(s)方法，返回相关的中文  
+    //Xử lý trường hợp đặc biệt, và gọietchinese(s)Phương pháp, trả về tiếng Trung liên quan  
     s = "" + s;
     var result = "";
     if (s.length == 2) {
@@ -26,7 +26,7 @@ function specialcharacter(s) {
     return etchinese(s)
 }
 function transformchinese(s) {
-    //验证输入的日期格式，并调用specialcharacter(s)方法，将相关数字转化为中文  
+    //Xác thực định dạng ngày đã nhập, và gọispecialcharacter(s)Phương pháp, chuyển đổi số liên quan thành tiếng Trung  
     var datePat = /^(\d{2}|\d{4})(\/|-)(\d{1,2})(\2)(\d{1,2})$/;
     var matchArray = s.match(datePat);
     var ok = "";
@@ -38,17 +38,17 @@ function transformchinese(s) {
 }  
 
 function transToChineseHM(hours, minutes) {
-    // 映射个位数用
+    // Ánh xạ chữ số hàng đơn vị dùng
     var onesPlace = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十']
-    // 两位数的个位数映射有点不同
+    // Ánh xạ chữ số hàng đơn vị của số có hai chữ số hơi khác
     var onesPlaceForTensDigit = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十']
-    // 映射十位数
+    // Ánh xạ chữ số hàng chục
     var tensPlace = ['', '十', '二十', '三十', '四十', '五十']
-    // 数字转化为中文函数
+    // Hàm chuyển đổi số thành tiếng Trung
     var t = num => num <= 10 ? onesPlace[num] : tensPlace[Math.floor(num / 10)] + onesPlaceForTensDigit[Math.floor(num % 10)]
-    // 数字时间转化为中文时间函数
+    // Hàm chuyển đổi thời gian số thành thời gian tiếng Trung
     return t(hours) + '点' + t(minutes) + '分';
-    //return hours < 6 ? '凌晨' + t(hours) + '点' + t(minutes) + '分' : hours < 12 ? '上午' + t(hours) + '点' + t(minutes) + '分' : hours < 18 ? '下午' + t(hours - 12) + '点' + t(minutes) + '分' : '晚上' + t(hours - 12) + '点' + t(minutes) + '分';
+    //return hours < 6 ? 'Rạng sáng' + t(hours) + 'điểm' + t(minutes) + 'phút' : hours < 12 ? 'Buổi sáng' + t(hours) + 'điểm' + t(minutes) + 'phút' : hours < 18 ? 'Buổi chiều' + t(hours - 12) + 'điểm' + t(minutes) + 'phút' : 'Buổi tối' + t(hours - 12) + 'điểm' + t(minutes) + 'phút';
 
 }
 

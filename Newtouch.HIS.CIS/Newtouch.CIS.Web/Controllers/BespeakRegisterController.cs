@@ -8,7 +8,7 @@ using System.Web.Mvc;
 namespace Newtouch.CIS.Web.Controllers
 {
     /// <summary>
-    /// 门诊预约
+    /// Hẹn khám ngoại trú
     /// </summary>
     public class BespeakRegisterController : OrgControllerBase
     {
@@ -19,7 +19,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 取消预约
+        /// Hủy lịch hẹn
         /// </summary>
         /// <param name="yyId"></param>
         /// <returns></returns>

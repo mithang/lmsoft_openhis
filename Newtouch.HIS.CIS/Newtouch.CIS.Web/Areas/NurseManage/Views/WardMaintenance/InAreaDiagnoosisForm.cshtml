@@ -1,26 +1,26 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "入区诊断";
+    ViewBag.Title = "Chẩn đoán vào khu";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <form id="form1">
     <div class="panel-default" style="padding-right:10px;">
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>诊断1：</th>
+                <th class="formTitle"><span class="required">*</span>Chẩn đoán1：</th>
                 <td class="formValue">
                     <input id="ryzdmc1" attr-zddm="" attr-ICD10="" name="ryzdmc1" type="text" class="form-control required" autocomplete="off" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">诊断2：</th>
+                <th class="formTitle">Chẩn đoán2：</th>
                 <td class="formValue">
                     <input id="ryzdmc2" attr-zddm="" attr-ICD10="" name="ryzdmc2" type="text" class="form-control" autocomplete="off" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">诊断3：</th>
+                <th class="formTitle">Chẩn đoán3：</th>
                 <td class="formValue">
                     <input id="ryzdmc3" attr-zddm="" attr-ICD10="" name="ryzdmc3" type="text" class="form-control" autocomplete="off" />
                 </td>
@@ -43,7 +43,7 @@
             type: "GET",
             url: "/NurseManage/WardMaintenance/GetPatRyDiagnosis?r=" + Math.random(),
             data: { zyh: '@ViewBag.zyh' },
-            loadingtext: "数据加载中，请稍后...",
+            loadingtext: "Dữ liệu đang được tải, vui lòng đợi...",
             dataType: "json",
             success: function(zdlist) {
                 $.each(zdlist, function (n, item) {
@@ -73,13 +73,13 @@
         ajaxparameters: function () {
             return "ryzd=" + $("#ryzdmc1").val() + "&ybnhlx=" + ybnhlx;
         },
-        caption: "入院诊断",
+        caption: "Chẩn đoán nhập viện",
         colModel: [
-            { label: '名称', name: 'zdmc', widthratio: 60 },
-            { label: '拼音', name: 'py', widthratio: 20 },
+            { label: 'Tên', name: 'zdmc', widthratio: 60 },
+            { label: 'Phiên âm', name: 'py', widthratio: 20 },
             { label: 'icd10', name: 'icd10', widthratio: 20 },
-            { label: '编号', name: 'zdbh', hidden: true },
-            { label: '内码', name: 'zdnm', hidden: true }
+            { label: 'Số hiệu', name: 'zdbh', hidden: true },
+            { label: 'Mã nội bộ', name: 'zdnm', hidden: true }
         ],
         itemdbclickhandler: function ($this) {
             $("#ryzdmc1").val($this.attr('data-zdmc')).attr("attr-zddm", $this.attr('data-zdbh')).attr("attr-ICD10", $this.attr('data-icd10'));
@@ -93,13 +93,13 @@
         ajaxparameters: function () {
             return "ryzd=" + $("#ryzdmc2").val() + "&ybnhlx=" + ybnhlx;
         },
-        caption: "入院诊断",
+        caption: "Chẩn đoán nhập viện",
         colModel: [
-            { label: '名称', name: 'zdmc', widthratio: 60 },
-            { label: '拼音', name: 'py', widthratio: 20 },
+            { label: 'Tên', name: 'zdmc', widthratio: 60 },
+            { label: 'Phiên âm', name: 'py', widthratio: 20 },
             { label: 'icd10', name: 'icd10', widthratio: 20 },
-            { label: '编号', name: 'zdbh', hidden: true },
-            { label: '内码', name: 'zdnm', hidden: true }
+            { label: 'Số hiệu', name: 'zdbh', hidden: true },
+            { label: 'Mã nội bộ', name: 'zdnm', hidden: true }
         ],
         itemdbclickhandler: function ($this) {
             $("#ryzdmc2").val($this.attr('data-zdmc')).attr("attr-zddm", $this.attr('data-zdbh')).attr("attr-ICD10", $this.attr('data-icd10'));
@@ -113,41 +113,41 @@
         ajaxparameters: function () {
             return "ryzd=" + $("#ryzdmc3").val() + "&ybnhlx=" + ybnhlx;
         },
-        caption: "入院诊断",
+        caption: "Chẩn đoán nhập viện",
         colModel: [
-            { label: '名称', name: 'zdmc', widthratio: 60 },
-            { label: '拼音', name: 'py', widthratio: 20 },
+            { label: 'Tên', name: 'zdmc', widthratio: 60 },
+            { label: 'Phiên âm', name: 'py', widthratio: 20 },
             { label: 'icd10', name: 'icd10', widthratio: 20 },
-            { label: '编号', name: 'zdbh', hidden: true },
-            { label: '内码', name: 'zdnm', hidden: true }
+            { label: 'Số hiệu', name: 'zdbh', hidden: true },
+            { label: 'Mã nội bộ', name: 'zdnm', hidden: true }
         ],
         itemdbclickhandler: function ($this) {
             $("#ryzdmc3").val($this.attr('data-zdmc')).attr("attr-zddm", $this.attr('data-zdbh')).attr("attr-ICD10", $this.attr('data-icd10'));
         }
     });
 
-    //backspance事件绑定
+    //backspanceLiên kết sự kiện
     $("#ryzdmc1").keyup(function (event) {
         if (event.keyCode === 8) {
             $("#ryzdmc1").val("").attr("attr-zddm", "").attr("attr-ICD10", "");
         }
     });
-    //backspance事件绑定
+    //backspanceLiên kết sự kiện
     $("#ryzdmc2").keyup(function (event) {
         if (event.keyCode === 8) {
             $("#ryzdmc2").val("").attr("attr-zddm", "").attr("attr-ICD10", "");
         }
     });
-    //backspance事件绑定
+    //backspanceLiên kết sự kiện
     $("#ryzdmc3").keyup(function (event) {
         if (event.keyCode === 8) {
             $("#ryzdmc3").val("").attr("attr-zddm", "").attr("attr-ICD10", "");
         }
     });
-    //保存入院诊断
+    //Lưu chẩn đoán nhập viện
     function SavaInArea() {
         if ($("#ryzdmc1").val() === "" || $("#ryzdmc1").attr("attr-zddm") === "") {
-            $.modalAlert('入院诊断1不能为空！', 'warning');
+            $.modalAlert('Chẩn đoán nhập viện1Không được trống!', 'warning');
             return;
         }
         var patInAreaVo = {
@@ -171,7 +171,7 @@
             async: false,
             success: function () {
                 if (ajaxresp.state==="success") {
-                    $.modalMsg('保存成功', 'success');
+                    $.modalMsg('Lưu thành công', 'success');
                 }
                 else {
                     $.modalAlert(ajaxresp.message, 'warning');

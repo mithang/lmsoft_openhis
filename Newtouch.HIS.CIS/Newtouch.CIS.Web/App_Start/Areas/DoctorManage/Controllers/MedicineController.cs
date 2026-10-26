@@ -36,7 +36,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// 修改医嘱时，根据医嘱Id获取详情
+        /// Khi sửa y lệnh, dựa theo y lệnhIdLấy chi tiết
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="yzlx"></param>
@@ -60,7 +60,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// 构造并调用接口 获取最新库存数量
+        /// Xây dựng và gọi giao diện Lấy số lượng tồn kho mới nhất
         /// </summary>
         /// <param name="ypcode"></param>
         /// <returns></returns>
@@ -79,7 +79,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                 var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/query", request, autoAppendToken: false);
                 if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS && apires.data != null)
                 {
-                    StockQueryResponseDTO successDoOrder = Tools.Json.ToObject<StockQueryResponseDTO>(apires.data.ToString()); //接口返回数据 
+                    StockQueryResponseDTO successDoOrder = Tools.Json.ToObject<StockQueryResponseDTO>(apires.data.ToString()); //Dữ liệu giao diện trả về 
                     if (successDoOrder != null && successDoOrder.drugStockInfos.Count > 0)
                     {
                         //List<DrugStockInfo> successDoOrderYp = Tools.Json.ToList<DrugStockInfo>();

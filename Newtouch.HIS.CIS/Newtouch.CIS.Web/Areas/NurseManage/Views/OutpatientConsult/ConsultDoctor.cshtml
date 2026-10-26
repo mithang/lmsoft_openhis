@@ -2,7 +2,7 @@
 @using Newtouch.Tools
 
 @{
-    ViewBag.Title = "分诊医生";
+    ViewBag.Title = "Bác sĩ phân loại";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -14,7 +14,7 @@
                 <tr>
                     <td>
                         <div class="input-group">
-                            <input id="txt_keyword" type="text" class="form-control" placeholder="科室名称/科室编码" style="width: 180px;">
+                            <input id="txt_keyword" type="text" class="form-control" placeholder="Tên khoa/Mã khoa" style="width: 180px;">
                             <span class="input-group-btn">
                                 <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                             </span>
@@ -54,8 +54,8 @@
             height: $(window).height() - 120,
             postData: { keyValue: $("#txt_keyword").val() },
             colModel: [
-                { label: '科室编码', name: 'Code', width: 70, align: 'left' },
-                { label: "科室名称", name: "Name", width: 70, align: "left" },
+                { label: 'Mã khoa', name: 'Code', width: 70, align: 'left' },
+                { label: "Tên khoa", name: "Name", width: 70, align: "left" },
             ],
             rownumbers:false,
             pager: "#gridPager",
@@ -81,20 +81,20 @@
         $gridmxList.dataGrid({
             //url: "/Consult/GetConsultListByDept",
             //postData: { ksCode: data.Code },
-            caption: "诊室医生",
+            caption: "Bác sĩ phòng khám",
             height: $(window).height() - 120,
             colModel: [
                // { label: "Id", name: "Id",hidden:true, key: true },
-                { label: "诊室编码", name: "zsCode", key: true   },
-                { label: '诊室名称', name: 'zsmc', width: 120, align: 'left' },
-                { label: '日期', name: 'rq', width: 120, align: 'left', hidden: true, formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }},
-                { label: '医生工号', name: 'gh', width: 80, align: 'left', editable: true ,hidden:true },
-				{ label: '医生', name: 'ysxm', width: 80, align: 'left', editwidth: '93%', editable: true },
-				{ label: '诊室楼层数', name: 'zslc', width: 60, align: 'left', editwidth: '93%', editable: true },
-				{ label: '诊室房号', name: 'zsfh', width: 60, align: 'left', editwidth: '93%', editable: true },
+                { label: "Mã phòng khám", name: "zsCode", key: true   },
+                { label: 'Tên phòng khám', name: 'zsmc', width: 120, align: 'left' },
+                { label: 'Ngày', name: 'rq', width: 120, align: 'left', hidden: true, formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }},
+                { label: 'Mã nhân viên bác sĩ', name: 'gh', width: 80, align: 'left', editable: true ,hidden:true },
+				{ label: 'Bác sĩ', name: 'ysxm', width: 80, align: 'left', editwidth: '93%', editable: true },
+				{ label: 'Số tầng phòng khám', name: 'zslc', width: 60, align: 'left', editwidth: '93%', editable: true },
+				{ label: 'Số phòng khám', name: 'zsfh', width: 60, align: 'left', editwidth: '93%', editable: true },
                 {
-                    label: '操作', name: 'operate', width: 70, align: 'center', formatter: function (cellvalue, options, cell) {
-                        return '<span style="color:#ff0000" onclick=\'ConsultInfo("' + cell.zsCode + '")\'>分诊信息</span>';
+                    label: 'Thao tác', name: 'operate', width: 70, align: 'center', formatter: function (cellvalue, options, cell) {
+                        return '<span style="color:#ff0000" onclick=\'ConsultInfo("' + cell.zsCode + '")\'>Thông tin phân loại</span>';
                     }
                 },
             ],
@@ -107,24 +107,24 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function() {
         $('#btn_search').trigger('click');
     });
 
-    //行编辑
+    //Chỉnh sửa dòng
     function EnableInlineEditBox() {
         var ids = $("#gridmxList").getDataIDs();
         $.each(ids, function () {
             var rowid = String(this);
-            //打开编辑模式
+            //Mở chế độ chỉnh sửa
             $("#gridmxList").jqGrid('editRow', rowid, false, initInlineFunc);
         })
     }
 
-    //诊室行编辑
+    //Chỉnh sửa dòng phòng khám
     function initInlineFunc(rowid) {
-        //医生浮层
+        //Lớp nổi bác sĩ
         $("#" + rowid + "_ysxm").newtouchFloatingSelector({
             url: '/SystemManage/SysStaff/GetStaffListByDutyCode',
             width: 300,
@@ -137,8 +137,8 @@
             colModel: [
                 { label: 'StaffGh', name: 'StaffGh', hidden: true },
                 { label: 'ks', name: 'ks', hidden: true },
-                { label: '医生名称', name: 'StaffName', widthratio: 48 },
-                { label: '科室名称', name: 'ksmc', widthratio: 50 },
+                { label: 'Tên bác sĩ', name: 'StaffName', widthratio: 48 },
+                { label: 'Tên khoa', name: 'ksmc', widthratio: 50 },
             ],
             itemdbclickhandler: function ($thistr, $thisinput) {
                 $("#" + rowid + "_ysxm").val($thistr.attr('data-StaffName'));
@@ -148,22 +148,22 @@
     }
 
 	
-    //保存
+    //Lưu
     function newtouch_event_f8() {
         var rowIds = $("#gridmxList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             var saveResult = $("#gridmxList").saveRow(rowIds[i], null, null, null,  function (callbackRowId) { }, null);
 
             if (!saveResult) {
-                EnableInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-                return;   //保存失败，则return
+                EnableInlineEditBox();    //Khởi động lại và bật chỉnh sửa Nếu không, lần sauSavethì sẽ trả vềfalse
+                return;   //Lưu thất bại, thìreturn
             }
         }
 
-        //项目
+        //Hạng mục
         var zsyslist = $("#gridmxList").jqGrid('getRowData_AllLine', null, true);
 
-        $.each(zsyslist, function (idx, val) {    //去掉action
+        $.each(zsyslist, function (idx, val) {    //Loại bỏaction
             //$("#txt_doctor").attr("data-StaffGh", "");
             //$.each(top.window.clients.sysStaffDutyList, function (idx2, val2) {
             //    if (val.ysxm == val2.StaffName) {
@@ -171,10 +171,10 @@
             //    }
             //})
             delete val.operate;
-            delete this.action;   //去掉action
+            delete this.action;   //Loại bỏaction
         })
 
-        //判断医生不重复
+        //Đánh giá bác sĩ không trùng lặp
         var flag = true;
         $.each(zsyslist, function (idx, val) {
             $.each(zsyslist, function (idx2, val2) {
@@ -185,14 +185,14 @@
             })
         })
 
-        //同科室医生重复
+        //Bác sĩ cùng khoa trùng lặp
         if (flag == false) {
-            $.modalAlert("医生不能分配多个诊室,请重新分配", 'warning');
-            EnableInlineEditBox();//重新编辑
-            ////清空
+            $.modalAlert("Bác sĩ không thể được phân nhiều phòng khám,Vui lòng phân lại", 'warning');
+            EnableInlineEditBox();//Chỉnh sửa lại
+            ////Xóa sạch
             //newtouch_globalevent_f4();
             //$("#gridmxList").clearGridData();
-            ////刷新
+            ////Làm mới
             //$("#gridmxList").jqGrid('setGridParam', {
             //    page: 1,
             //}).trigger('reloadGrid');
@@ -207,7 +207,7 @@
             type: "POST",
             success: function (data) {
                 if (data.length == 0) {
-                    //更新
+                    //Cập nhật
                     console.log(gridmxList);
                     $.najax({
                         url: "/NurseManage/OutpatientConsult/SaveConsultDoctor",
@@ -215,11 +215,11 @@
                         data: { zsyslist: zsyslist },
                         type: "POST",
                         success: function (data) {
-                            $.modalAlert("保存成功", 'warning');
-                            //清空
+                            $.modalAlert("Lưu thành công", 'warning');
+                            //Xóa sạch
                             newtouch_globalevent_f4();
                             $("#gridmxList").clearGridData();
-                            //刷新
+                            //Làm mới
                             $("#gridmxList").jqGrid('setGridParam', {
                                 page: 1,
                             }).trigger('reloadGrid');
@@ -228,13 +228,13 @@
                         }
                     });
                 } else {
-                    //医生与其他科室重复
-                    $.modalAlert("医生不能分配多个诊室,请重新分配", 'warning');
-                    EnableInlineEditBox();//重新编辑
-                    ////清空
+                    //Bác sĩ trùng lặp với khoa khác
+                    $.modalAlert("Bác sĩ không thể được phân nhiều phòng khám,Vui lòng phân lại", 'warning');
+                    EnableInlineEditBox();//Chỉnh sửa lại
+                    ////Xóa sạch
                     //newtouch_globalevent_f4();
                     //$("#gridmxList").clearGridData();
-                    ////刷新
+                    ////Làm mới
                     //$("#gridmxList").jqGrid('setGridParam', {
                     //    page: 1,
                     //}).trigger('reloadGrid');
@@ -246,15 +246,15 @@
         });
     }
 
-    //诊室信息弹出页（小屏）
+    //Trang bật lên thông tin phòng khám (màn hình nhỏ)
     function ConsultInfo(zsCode) {
         
         if (!zsCode) {
-            $.modalAlert("请选择诊室", 'warning');
+            $.modalAlert("Vui lòng chọn phòng khám", 'warning');
             return;
         }
         //if (!gh) {
-        //    $.modalAlert("请绑定医生", 'warning');
+        //    $.modalAlert("Vui lòng liên kết bác sĩ", 'warning');
         //    return;
         //}
         window.open("/NurseManage/OutpatientConsult/ConsultInfo?zsCode=" + zsCode, "_blank", "height = 500, width = 300, top = 100, left = 50, toolbar = no, menubar = no, scrollbars = yes, resizable = yes, location = no, status = no");

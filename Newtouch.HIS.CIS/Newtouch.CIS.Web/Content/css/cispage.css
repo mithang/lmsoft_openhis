@@ -8,7 +8,7 @@
 
 input::-ms-clear{display:none;}
 
-/*导航栏   start*/
+/*Thanh điều hướng   start*/
 #MyTabGrid > ul {
     width: 99%;
 }
@@ -44,11 +44,11 @@ ul.nav > li:after {
     background-color: #ffffff;
 }
 
-/*导航栏   end*/
+/*Thanh điều hướng   end*/
 .ui-datepicker {
     display: none;
 }
-/*病历页    start*/
+/*Trang bệnh án    start*/
 #linkbl .healthrecord {
     float: left;
     height: 100%;
@@ -81,18 +81,18 @@ ul.nav > li:after {
     top: 13px;
 }
 
-/*导航栏   end*/
+/*Thanh điều hướng   end*/
 
 
 
-/*navButtonAdd样式*/
+/*navButtonAddKiểu*/
 .ui-pg-table.ui-common-table.ui-pager-table.table .ui-pg-table.navtable.ui-common-table {
     float: right;
     margin-right: 379px;
     width: 185px;
 }
 
-/*隐藏分页控件*/
+/*Ẩn điều khiển phân trang*/
 #gridkfcfPager_center, #gridcgxmcfPager_center, #gridxycfPager_center, #gridzycfPager_center, #gridwzhccfPager_center {
     display: none;
 }
@@ -107,7 +107,7 @@ ul.nav > li:after {
     font-size: xx-small;
 }
 
-/*模板树*/
+/*Cây mẫu*/
 #floatPreTemplateTree,#floadHistoryPresTree{
     position: absolute;
     top: 52.4%;
@@ -168,7 +168,7 @@ ul.nav > li:after {
       
     }
 
-/*医嘱报告框*/
+/*Khung báo cáo y lệnh*/
 #floadLisReportTree{
     position: absolute;
     top: 46.4%;

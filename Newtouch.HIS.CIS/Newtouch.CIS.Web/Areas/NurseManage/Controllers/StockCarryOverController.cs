@@ -11,7 +11,7 @@ using Newtouch.Tools;
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
     /// <summary>
-    /// 库存结转
+    /// Chuyển kỳ tồn kho
     /// </summary>
     public class StockCarryOverController : OrgControllerBase
     {
@@ -19,7 +19,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         private readonly IKcKcjzDmnService _kcKcjzDmnService;
 
         /// <summary>
-        /// 给视图中OrganizeId的赋值
+        /// Cho trong khung nhìnOrganizeIdgán giá trị của
         /// </summary>
         /// <returns></returns>
         public override ActionResult Index()
@@ -29,7 +29,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取历史结转时间
+        /// Lấy thời gian chuyển kỳ lịch sử
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -40,7 +40,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 结转结束时间
+        /// Thời gian kết thúc chuyển kỳ
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -52,7 +52,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 查询上一次结转的时间
+        /// Tra cứu thời gian chuyển kỳ lần trước
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -63,7 +63,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 查询已结转物资信息
+        /// Tra cứu thông tin vật tư đã chuyển kỳ
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="jzsj"></param>
@@ -82,7 +82,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 结转
+        /// Chuyển kỳ
         /// </summary>
         /// <returns></returns>
         [HttpPost]

@@ -1,7 +1,7 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "医生绑定";
+    ViewBag.Title = "Liên kết bác sĩ";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -9,20 +9,20 @@
     <div class="panel panel-default" style="padding-right:10px;">
         <table class="form">
             <tr>
-                <th class="formTitle">医生分类：</th>
+                <th class="formTitle">Phân loại bác sĩ:</th>
                 <td class="formValue">
                     <select id="sel_doctorType" name="sel_doctorType" class="form-control required" data-EnumType="EnumYslx">
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">医生姓名：</th>
+                <th class="formTitle">Tên bác sĩ:</th>
                 <td class="formValue">
                     <input id="txt_doctor" name="txt_doctor" type="text" class="form-control required" />
                 </td>
             </tr>
             @*<tr>
-                    <th class="formTitle">备注：</th>
+                    <th class="formTitle">Ghi chú:</th>
                     <td class="formValue">
                         <textarea id="Description" name="Description" class="form-control" style="height: 60px;"></textarea>
                     </td>
@@ -65,7 +65,7 @@
         $("#txt_doctor").attr("data-StaffGh","");
     }
 
-    //添加
+    //Thêm
     function newtouch_event_f2() {
         var dataobj={
             Id: newGuid(),
@@ -78,7 +78,7 @@
         if ($("#sel_doctorType").val() == "1") {
             var ishy = getDocIsZTYS();
             if (ishy) {
-                $.modalAlert("该患者已经有住院医生，不可再添加！", 'warning');
+                $.modalAlert("Bệnh nhân này đã có bác sĩ nhập viện, không thể thêm nữa!", 'warning');
             }
             else {
                 $("#gridDoctorList").jqGrid("addRowData", undefined, dataobj, "last");
@@ -114,21 +114,21 @@
             { label: "Id", name: "Id", hidden: true },
             { label: "ysgh", name: "ysgh", hidden: true },
             { label: "Type", name: "Type", hidden: true },
-            { label: "医生姓名", name: "ysmc", width: 150, align: "center" },
-            { label: "医生分类", name: "TypeName", width: 150, align: "left" },
+            { label: "Tên bác sĩ", name: "ysmc", width: 150, align: "center" },
+            { label: "Phân loại bác sĩ", name: "TypeName", width: 150, align: "left" },
             {
-                label: "操作",
+                label: "Thao tác",
                 name: "doctorGh",
                 width: 50,
                 align: "center",
                 formatter: function (cellvalue) {
-                    return "<a href=\#\" onclick='DeleteDoctors($(this).parent().parent().attr(\"id\"))'' title='删除' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>删除</a>";
+                    return "<a href=\#\" onclick='DeleteDoctors($(this).parent().parent().attr(\"id\"))'' title='Xóa' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>Xóa</a>";
                 }
             }
         ]
     });
 
-    //删除医生
+    //Xóa bác sĩ
     function DeleteDoctors(selRowId) {
         if (!!selRowId) {
             $("#gridDoctorList").jqGrid("delRowData", selRowId);
@@ -150,7 +150,7 @@
         //}
         var ishy = getDocIsZTYS();
         if (!ishy) {
-            $.modalAlert("请先选择住院医生！", 'warning');
+            $.modalAlert("Vui lòng chọn trước bác sĩ nhập viện!", 'warning');
             return;
         }
         var rowIds = $("#gridDoctorList").jqGrid('getDataIDs');
@@ -166,7 +166,7 @@
             dataType: "json",
             async:false,
             success: function () {
-                $.modalAlert("保存成功", 'warning');
+                $.modalAlert("Lưu thành công", 'warning');
             }
         })
     }

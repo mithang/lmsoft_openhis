@@ -27,20 +27,20 @@
             unwritten: false,
             rownumbers: true,
             colModel: [
-                { label: '住院号', name: 'zyh', width: 40, align: 'left' },
-                { label: '姓名', name: 'xm', width: 50, align: 'left' },
-                { label: '性别', name: 'xb', width: 30, align: 'left' },
-                { label: '入院日期', name: 'ryrq', width: 70, align: 'left' },
-                { label: '出院日期', name: 'cyrq', width: 70, align: 'left' },
-                { label: '入院诊断', name: 'ryzd', width: 120, align: 'left' },
-                { label: '出院诊断', name: 'cyzd', width: 120, align: 'left' },
+                { label: 'Số nhập viện', name: 'zyh', width: 40, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 50, align: 'left' },
+                { label: 'Giới tính', name: 'xb', width: 30, align: 'left' },
+                { label: 'Ngày nhập viện', name: 'ryrq', width: 70, align: 'left' },
+                { label: 'Ngày xuất viện', name: 'cyrq', width: 70, align: 'left' },
+                { label: 'Chẩn đoán nhập viện', name: 'ryzd', width: 120, align: 'left' },
+                { label: 'Chẩn đoán xuất viện', name: 'cyzd', width: 120, align: 'left' },
             ],
             viewrecords: true,
             sortname: 'zh desc',
             ondblClickRow: function (rowid) {
                 var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
                 if (!(seleRowid)) {
-                    $.modalAlert("请选中一条信息", 'warning');
+                    $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
                     return;
                 }
                 var keyValue = $("#gridList").jqGridRowValue().zyh;
@@ -57,7 +57,7 @@
             onSelectRow: function (rowid, status) {
                 var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
                 if (!(seleRowid)) {
-                    $.modalAlert("请选中一条信息", 'warning');
+                    $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
                     return;
                 }
                 var keyValue = $("#gridList").jqGridRowValue().zyh;
@@ -80,20 +80,20 @@
     //    CalculateInsPresJYAmount();
     //}
 
-    //计算申请单金额
+    //Tính số tiền phiếu yêu cầu
     //function CalculateInsPresJYAmount() {
     //    var totalAmount = 0.00;
     //    var allData = $("#gridList").jqGrid('getRowData_AllLine', true, true);
     //    $.each(allData, function () {
     //        totalAmount += parseFloat(this.dj) * parseFloat(this.sl);
     //    });
-    //    $("#gridList").jqGrid("setCaption", "合计：" + "<label style='color:red;'>￥"
-    //        + totalAmount.toFixed(2) + "</label>");   //重置caption属性值
+    //    $("#gridList").jqGrid("setCaption", "Tổng cộng:" + "<label style='color:red;'>￥"
+    //        + totalAmount.toFixed(2) + "</label>");   //Đặt lạicaptionGiá trị thuộc tính
     //}
 
     function submitForm() {
         if (returnzyh==""){
-            $.modalAlert("请选择历史病人信息进行复制", 'warning');
+            $.modalAlert("Vui lòng chọn thông tin bệnh nhân lịch sử để sao chép", 'warning');
             return;
         }
        

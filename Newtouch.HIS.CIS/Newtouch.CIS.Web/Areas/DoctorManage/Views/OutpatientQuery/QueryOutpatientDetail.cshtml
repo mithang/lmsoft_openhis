@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "查询门诊详细资料";
+    ViewBag.Title = "Tra cứu thông tin chi tiết ngoại trú";
     Layout = "~/Views/Shared/_Index.cshtml";
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
     var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
@@ -47,11 +47,11 @@
 <form name="form1">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">日期：</th>
+                <th class="formTitle">Ngày:</th>
                 <td class="formValue" style="width:10%">
                     <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -65,8 +65,8 @@
                            value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 </td>
                 <td class="formValue">
-                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="查询" />
-                    <input type="button" id="btn_print" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="打印" />
+                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="Tra cứu" />
+                    <input type="button" id="btn_print" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="In" />
                 </td>
             </tr>
         </table>
@@ -78,7 +78,7 @@
     <div id="TabGrid">
         <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
             <li role="presentation" class="active">
-                <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">处方明细</a>
+                <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">Chi tiết đơn thuốc</a>
             </li>
             <li style="float:right">
                 <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
@@ -94,7 +94,7 @@
 </form>
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt thì tải lạijqGridchiều rộng của
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
@@ -107,10 +107,10 @@
             });
         });
         TabGridHide();
-        //查询列表
+        //Danh sách tra cứu
         gridList();
     });
-    //隐藏搜索框并显示箭头
+    //Ẩn hộp tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -119,7 +119,7 @@
             });
         }
     }
-    //门诊挂号结算查询
+    //Tra cứu thanh toán đăng ký khám ngoại trú
     function gridList() {
         var $gridJsList = $("#gridList");
         $gridJsList.dataGrid({
@@ -128,21 +128,21 @@
             width: "100px",
             url: "/DoctorManage/OutpatientQuery/GetOutpatientDetailGridJson",
             colModel: [
-                { label: '就诊时间', name: 'jzsj', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
-                { label: '门诊号码', name: 'mzh', width: 100, align: 'center' },
-                { label: '患者姓名', name: 'xm', align: 'center', width: 110 },
-                { label: '性别', name: 'xb', align: 'center', width: 50 },
-                { label: '病人性质', name: 'brxzmc', align: 'center', width: 100 },
-                { label: '就诊科室', name: 'jzks', width: 100, align: 'center' },
-                { label: '处方数', name: 'cfs', align: 'center', width: 50 },
-                { label: '处方金额', name: 'cfje', align: 'center', width: 80 },
-                { label: '检查数', name: 'jcs', align: 'center', width: 50 },
-                { label: '检查金额', name: 'jcje', align: 'center', width: 80 },
-                { label: '附加项目', name: 'fjxm', align: 'left', width: 50 },
+                { label: 'Thời gian khám', name: 'jzsj', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
+                { label: 'Số khám ngoại trú', name: 'mzh', width: 100, align: 'center' },
+                { label: 'Tên bệnh nhân', name: 'xm', align: 'center', width: 110 },
+                { label: 'Giới tính', name: 'xb', align: 'center', width: 50 },
+                { label: 'Tính chất bệnh nhân', name: 'brxzmc', align: 'center', width: 100 },
+                { label: 'Khoa khám', name: 'jzks', width: 100, align: 'center' },
+                { label: 'Số đơn thuốc', name: 'cfs', align: 'center', width: 50 },
+                { label: 'Số tiền đơn thuốc', name: 'cfje', align: 'center', width: 80 },
+                { label: 'Số lần kiểm tra', name: 'jcs', align: 'center', width: 50 },
+                { label: 'Số tiền kiểm tra', name: 'jcje', align: 'center', width: 80 },
+                { label: 'Hạng mục bổ sung', name: 'fjxm', align: 'left', width: 50 },
             ],
             pager: "#gridPager",
             sortname: " jzsj asc",
-            rownumbers: true,  //是否显示序号
+            rownumbers: true,  //Có hiển thị số thứ tự không
             viewrecords: true,
             ondblClickRow: function (rowid, iRow, iCol, e) {
                 btn_selectrow(rowid);
@@ -150,7 +150,7 @@
         });
 
         $("#btn_search").click(function () {
-            $('#gridList').jqGrid("clearGridData");//先清空明细
+            $('#gridList').jqGrid("clearGridData");//Xóa chi tiết trước
             $gridJsList.jqGrid('setGridParam', {
                 postData: { kssj: $("#kssj").val(), jssj: $("#jssj").val() },
                 url: "/DoctorManage/OutpatientQuery/GetOutpatientDetailGridJson",
@@ -158,7 +158,7 @@
         });
     }
         function btn_selectrow(rowId) {
-            $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+            $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấn, xóa chi tiết trước Tải lại tất cả chi tiết dòng đã chọn
             $.najax({
                 type: "Post",
                 url: "/DoctorManage/OutpatientQuery/GetOutpatientDetailMX",
@@ -171,7 +171,7 @@
                     $(".showbotton").click().trigger("click");
                 }
             });
-            //单据明细
+            //Chi tiết chứng từ
 
     }
         $('#gridDJMXInfo').newtouchLocalDataGrid({
@@ -180,21 +180,21 @@
             sortable: false,
             colModel: [
                 {
-                    label: '类别', name: 'cflx', width: 100, align: 'center', formatter: function (val) {
+                    label: 'Loại', name: 'cflx', width: 100, align: 'center', formatter: function (val) {
                         return $.enum.getDescByValue("EnumCflx", val);
                     }
                 },
-                { label: '处方号', name: 'cfh', width: 120, align: 'center' },
-                { label: '医生', name: 'ys', width: 80, align: 'center' },
-                { label: '开单日期', name: 'kdrq', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
-                { label: '项目名称', name: 'xmmc', width: 300, align: 'center' },
-                { label: '总量', name: 'zl', width: 80, align: 'center' },
-                { label: '药品用法', name: 'ypyf', width: 90, align: 'center' },
-                { label: '频次', name: 'yzpcmcsm', width: 90, align: 'center' },
-                { label: '单位', name: 'dw', width: 90, align: 'center' },
-                { label: '金额', name: 'je', width: 100, align: 'center' },
+                { label: 'Số đơn thuốc', name: 'cfh', width: 120, align: 'center' },
+                { label: 'Bác sĩ', name: 'ys', width: 80, align: 'center' },
+                { label: 'Ngày lập phiếu', name: 'kdrq', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
+                { label: 'Tên hạng mục', name: 'xmmc', width: 300, align: 'center' },
+                { label: 'Tổng số lượng', name: 'zl', width: 80, align: 'center' },
+                { label: 'Cách dùng thuốc', name: 'ypyf', width: 90, align: 'center' },
+                { label: 'Tần suất', name: 'yzpcmcsm', width: 90, align: 'center' },
+                { label: 'Đơn vị', name: 'dw', width: 90, align: 'center' },
+                { label: 'Số tiền', name: 'je', width: 100, align: 'center' },
                 {
-                    label: '收费状态', name: 'sfbz', width: 90, align: 'left', formatter: function (val, options, rowObject) {
+                    label: 'Trạng thái thu phí', name: 'sfbz', width: 90, align: 'left', formatter: function (val, options, rowObject) {
                         if (rowObject["tbz"])
                             return "已退费";
                         else if (rowObject["sfbz"])
@@ -203,7 +203,7 @@
                             return "未收费";
                     }
                 },
-                { label: '收费状态', name: 'tbz', width: 90, align: 'center',hidden:true }
+                { label: 'Trạng thái thu phí', name: 'tbz', width: 90, align: 'center',hidden:true }
             ]
         });
 

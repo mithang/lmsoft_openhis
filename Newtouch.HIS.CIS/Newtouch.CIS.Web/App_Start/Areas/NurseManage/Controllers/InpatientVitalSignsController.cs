@@ -17,7 +17,7 @@ using System.Web.Mvc;
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
     /// <summary>
-    /// 住院患者生命体征
+    /// Dấu hiệu sinh tồn của bệnh nhân nhập viện
     /// </summary>
     public class InpatientVitalSignsController : OrgControllerBase
     {
@@ -30,7 +30,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return View();
         }
         /// <summary>
-        /// 护理查询
+        /// Tra cứu điều dưỡng
         /// </summary>
         /// <returns></returns>
         public ActionResult QueryIndex()
@@ -39,7 +39,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 分页查询
+        /// Tra cứu phân trang
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kssj"></param>
@@ -59,7 +59,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 护理查询（按日期时间排序）
+        /// Tra cứu điều dưỡng (sắp xếp theo ngày giờ)
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -107,7 +107,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             //    list = treeList
             //};
 
-            //20190529回滚至之前的
+            //20190529Quay lại trạng thái trước đó
             var data = new
             {
                 patInfo = patInfo,
@@ -129,7 +129,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 提交保存护理录入
+        /// Gửi và lưu nhập điều dưỡng
         /// </summary>
         /// <param name="moduleEntity"></param>
         /// <param name="keyValue"></param>
@@ -146,7 +146,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 作废
+        /// Hủy bỏ
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -157,7 +157,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 体温单
+        /// Phiếu nhiệt độ
         /// </summary>
         /// <returns></returns>
         public ActionResult TemperatureChartIndex()
@@ -166,7 +166,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 体温单 全屏
+        /// Phiếu nhiệt độ Toàn màn hình
         /// </summary>
         /// <returns></returns>
         public ActionResult FullScreenTemperatureChartIndex()

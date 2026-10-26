@@ -1,7 +1,7 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "出区诊断";
+    ViewBag.Title = "Chẩn đoán xuất khu";
     Layout = "~/Views/Shared/_Form.cshtml";
     var isOpendiag = SysConfigReader.String("Inpatient_OutAre");
 }
@@ -17,15 +17,15 @@
 <form id="form1">
     <div class="container">
         <ul class="nav nav-tabs" role="tablist" id="myTab">
-            <li role="presentation"><a href="#xyzdInfo" role="tab" data-toggle="tab">西医诊断</a></li>
-            <li role="presentation"><a href="#zyzdInfo" role="tab" data-toggle="tab">中医诊断</a></li>
+            <li role="presentation"><a href="#xyzdInfo" role="tab" data-toggle="tab">Chẩn đoán Tây y</a></li>
+            <li role="presentation"><a href="#zyzdInfo" role="tab" data-toggle="tab">Chẩn đoán Đông y</a></li>
         </ul>
     </div>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane fade in active" id="xyzdInfo">
             <table id="tablezd" class="form">
                 <tr>
-                    <th class="formTitle">诊断时间：</th>
+                    <th class="formTitle">Thời gian chẩn đoán:</th>
                     <td class="formValue">
                         <input id="txt_zdsj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                                onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd ")" />
@@ -37,13 +37,13 @@
 
                     <th class="formTitle" style="margin-left:20px;">
                         <i id="zdCircle" class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>
-                        出院诊断：
+                        Chẩn đoán xuất viện:
                     </th>
                     <td class="formValue" colspan="2">
                         <input id="txt_cyzddm" type="hidden" />
                         <input id="txt_cyzd" name="txt_cyzd" type="text" class="form-control required zdinput" />
                     </td>
-                    <th class="formTitle">出院情况：</th>
+                    <th class="formTitle">Tình hình xuất viện:</th>
                     <td class="formValue">
                         <select id="txt_cyqk" name="txt_cyqk" class="form-control " data-EnumType="EnumCYQK"></select>
                     </td>
@@ -54,7 +54,7 @@
         <div id="zyzdInfo" role="tabpanel" class="tab-pane fade in">
             <table id="tablezyzd" class="form" style="width: 98%; border: 0">
                 <tr>
-                    <th class="formTitle">诊断时间：</th>
+                    <th class="formTitle">Thời gian chẩn đoán:</th>
                     <td class="formValue">
                         <input id="txt_zyzdsj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                                onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd ")" />
@@ -66,13 +66,13 @@
 
                     <th class="formTitle" style="margin-left:20px;">
                         <i id="zyzdCircle" class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>
-                        主病：
+                        Bệnh chính:
                     </th>
                     <td class="formValue" colspan="2">
                         <input id="txt_zycyzddm" type="hidden" />
                         <input id="txt_zycyzd" name="txt_zycyzd" type="text" class="form-control required zdinput" />
                     </td>
-                    <th class="formTitle">出院情况：</th>
+                    <th class="formTitle">Tình hình xuất viện:</th>
                     <td class="formValue">
                         <select id="txt_zycyqk" name="txt_zycyqk" class="form-control " data-EnumType="EnumCYQK"></select>
                     </td>
@@ -87,7 +87,7 @@
     var ybnhlx = "";
     var brxz = '@ViewBag.brxz';
     $('#myTab a:first').tab('show');
-    if(isopendiag =="OFF")//关闭诊断填写  诊断自电子病历病案填写同步
+    if(isopendiag =="OFF")//Đóng điền chẩn đoán  Chẩn đoán đồng bộ từ điền bệnh án bệnh án điện tử
     {
         $("#zdCircle").css("display", "none");
         $("#txt_cyzd").attr("disabled", true);
@@ -108,7 +108,7 @@
     $(function () {
         GetPatDiagnosis();
     });
-    //西医诊断
+    //Chẩn đoán Tây y
     $("#txt_cyzd").newtouchBatchFloatingSelector({
         height: 200,
         width: 600,
@@ -117,20 +117,20 @@
         ajaxparameters: function () {
             return "ryzd=" + $("#txt_cyzd").val() + "&zdlb=" + "WM";
         },
-        caption: "出院诊断",
+        caption: "Chẩn đoán xuất viện",
         colModel: [
-            { label: '名称', name: 'zdmc', widthratio: 60 },
-            { label: '拼音', name: 'py', widthratio: 20 },
+            { label: 'Tên', name: 'zdmc', widthratio: 60 },
+            { label: 'Phiên âm', name: 'py', widthratio: 20 },
             { label: 'icd10', name: 'icd10', widthratio: 20 },
-            { label: '编号', name: 'zdbh', hidden: true },
-            { label: '内码', name: 'zdnm', hidden: true }
+            { label: 'Số hiệu', name: 'zdbh', hidden: true },
+            { label: 'Mã nội bộ', name: 'zdnm', hidden: true }
         ],
         itemdbclickhandler: function ($this) {
             $("#txt_cyzd").val($this.attr('data-zdmc'));
             $("#txt_cyzddm").val($this.attr('data-icd10'));
         }
     });
-    //中医诊断
+    //Chẩn đoán Đông y
     $("#txt_zycyzd").newtouchBatchFloatingSelector({
         height: 200,
         width: 600,
@@ -139,13 +139,13 @@
         ajaxparameters: function () {
             return "ryzd=" + $("#txt_zycyzd").val()  + "&zdlb=" + "TCM";
         },
-        caption: "出院诊断",
+        caption: "Chẩn đoán xuất viện",
         colModel: [
-            { label: '名称', name: 'zdmc', widthratio: 60 },
-            { label: '拼音', name: 'py', widthratio: 20 },
+            { label: 'Tên', name: 'zdmc', widthratio: 60 },
+            { label: 'Phiên âm', name: 'py', widthratio: 20 },
             { label: 'icd10', name: 'icd10', widthratio: 20 },
-            { label: '编号', name: 'zdbh', hidden: true },
-            { label: '内码', name: 'zdnm', hidden: true }
+            { label: 'Số hiệu', name: 'zdbh', hidden: true },
+            { label: 'Mã nội bộ', name: 'zdnm', hidden: true }
         ],
         itemdbclickhandler: function ($this) {
             $("#txt_zycyzd").val($this.attr('data-zdmc'));
@@ -157,18 +157,18 @@
             type: "GET",
             url: "/NurseManage/WardMaintenance/GetPatDiagnosis?r=" + Math.random(),
             data: { zyh: '@ViewBag.zyh' },
-            loadingtext: "数据加载中，请稍后...",
+            loadingtext: "Dữ liệu đang được tải, vui lòng đợi...",
             dataType: "json",
             success: function(zdlist) {
                 $.each(zdlist,
                     function (n, item) {
-                        if (item.zddl == "TCM") {//中医诊断
+                        if (item.zddl == "TCM") {//Chẩn đoán Đông y
                             if (item.zdlx == "1") {
                                 $("#txt_zycyzd").val(item.zdmc);
                                 $("#txt_zycyzddm").val(item.zddm);
                                 $("#txt_zycyqk").val(item.cyqk).trigger("change");
                             }
-                            //辅助诊断
+                            //Chẩn đoán hỗ trợ
                             if (item.zdlx > "1") {
                                 $('#tablezyzd .plusToggleCircle').click();
                                 var number = item.px;
@@ -182,7 +182,7 @@
                                 $("#txt_cyzddm").val(item.zddm);
                                 $("#txt_cyqk").val(item.cyqk).trigger("change");
                             }
-                            //辅助诊断
+                            //Chẩn đoán hỗ trợ
                             if (item.zdlx > "1") {
                                 $('#tablezd .plusToggleCircle').click();
                                 var number = item.px;
@@ -237,7 +237,7 @@
             cyqkzdy: cyqkzdy
         }
         if (zyzd == "" || zyzddm=="") {
-            $.modalAlert('该患者没有出院诊断，不允许出区！', 'warning');
+            $.modalAlert('Bệnh nhân này không có chẩn đoán xuất viện, không được phép xuất khu!', 'warning');
             return;
         }
 
@@ -249,7 +249,7 @@
             async:false,
             success: function (ajaxresp) {
                 if (ajaxresp.state==="success") {
-                    $.modalMsg('保存成功', 'success');
+                    $.modalMsg('Lưu thành công', 'success');
                 }
                 else {
                     $.modalAlert(ajaxresp.message, 'warning');
@@ -263,7 +263,7 @@
 	    debugger;
 		var PatDxList = [];
 
-		//出院诊断
+		//Chẩn đoán xuất viện
 		var PatDxObj = {
 			zyh:'@ViewBag.zyh',
 			zdrq : $("#txt_zdsj").val(),
@@ -287,26 +287,26 @@
 	        cyqk: $("#txt_zycyqk").val()
 	    }
 	    if ((PatDxObj.zddm == "" || PatDxObj.zdmc == "") && (PatDxZyObj.zddm == "" || PatDxZyObj.zdmc == "")) {
-			$.modalAlert('该患者没有出院诊断，不允许出区！', 'warning');
+			$.modalAlert('Bệnh nhân này không có chẩn đoán xuất viện, không được phép xuất khu!', 'warning');
 			return;
 	    }
 	    if (PatDxObj.zddm != "")
 	        PatDxList.push(PatDxObj);
 	    if (PatDxZyObj.zddm)
 	        PatDxList.push(PatDxZyObj);
-		//自定义诊断
+		//Chẩn đoán tùy chỉnh
 		 @*PatDxObj = {
 				zyh:'@ViewBag.zyh',
 				zdrq : $("#txt_zdsj").val(),
 				zdlb:2,
-				zdlx:1,//自定义诊断由9改为1
-				zddm: "999999999",//自定义诊断代码默认999999999
+				zdlx:1,//Chẩn đoán tùy chỉnh bởi9Đổi thành1
+				zddm: "999999999",//Mã chẩn đoán tùy chỉnh mặc định999999999
 				zdmc: $("#txt_zdyzd").val(),
 				cyqk: $("#txt_cyqkzdy").val()
 			}
 		PatDxList.push(PatDxObj);*@
 
-		//西医辅助诊断
+		//Chẩn đoán hỗ trợ Tây y
 		var number = $('#tablezd .zdinput').length;
         for (var i = 2; i <= number; i++) {
 			 PatDxObj = {
@@ -322,7 +322,7 @@
 			}
 			PatDxList.push(PatDxObj);
         }
-	    //中医辅助诊断
+	    //Chẩn đoán hỗ trợ Đông y
 	    var number = $('#tablezyzd .zdinput').length;
 	    for (var i = 2; i <= number; i++) {
 	        PatDxObj = {
@@ -347,7 +347,7 @@
 			async: false,
 			success: function (ajaxresp) {
 				if (ajaxresp.state === "success") {
-					$.modalMsg('保存成功', 'success');
+					$.modalMsg('Lưu thành công', 'success');
 				}
 				else {
 					$.modalAlert(ajaxresp.message, 'warning');
@@ -357,21 +357,21 @@
 		});
 
 	}
-    //中医辅助诊断 新增icon
+    //Chẩn đoán hỗ trợ Đông y Thêm mớiicon
     $('#tablezyzd .plusToggleCircle').click(function () {
         var number = $('#tablezyzd .zdinput').length + 1;
         if (isopendiag == "OFF") {
-            var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;display:none; margin-left: 10px; color: #6ff3ad; font-size: large;"></i>主证：</th><td class="formValue" colspan="2"><input id="txt_zyfzzd' + number + 'dm" type="hidden" /><input id="txt_zyfzzd' + number + '" name="txt_zyfzzd' + number + '" type="text"  disabled="disabled" class="form-control required zdinput" /></td><th class="formTitle">出院情况：</th><td class="formValue"><select id="txt_zycyqk' + number + '" name="txt_zycyqk' + number + '"  disabled="disabled" class="form-control"><option value="1">治愈</option><option value="2">好转</option ><option value="3">未愈</option><option value="4">死亡</option><option value="5">其他</option></select ></select></td></tr>');
+            var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;display:none; margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Chứng chính:</th><td class="formValue" colspan="2"><input id="txt_zyfzzd' + number + 'dm" type="hidden" /><input id="txt_zyfzzd' + number + '" name="txt_zyfzzd' + number + '" type="text"  disabled="disabled" class="form-control required zdinput" /></td><th class="formTitle">Tình hình xuất viện:</th><td class="formValue"><select id="txt_zycyqk' + number + '" name="txt_zycyqk' + number + '"  disabled="disabled" class="form-control"><option value="1">Khỏi bệnh</option><option value="2">Đỡ hơn</option ><option value="3">Chưa khỏi</option><option value="4">Tử vong</option><option value="5">Khác</option></select ></select></td></tr>');
             $newTr.appendTo($(this).closest('table'));
         }
         else {
-            var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>主证：</th><td class="formValue" colspan="2"><input id="txt_zyfzzd' + number + 'dm" type="hidden" /><input id="txt_zyfzzd' + number + '" name="txt_zyfzzd' + number + '" type="text" class="form-control required zdinput" /></td><th class="formTitle">出院情况：</th><td class="formValue"><select id="txt_zycyqk' + number + '" name="txt_zycyqk' + number + '" class="form-control"><option value="1">治愈</option><option value="2">好转</option ><option value="3">未愈</option><option value="4">死亡</option><option value="5">其他</option></select ></select></td></tr>');
+            var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Chứng chính:</th><td class="formValue" colspan="2"><input id="txt_zyfzzd' + number + 'dm" type="hidden" /><input id="txt_zyfzzd' + number + '" name="txt_zyfzzd' + number + '" type="text" class="form-control required zdinput" /></td><th class="formTitle">Tình hình xuất viện:</th><td class="formValue"><select id="txt_zycyqk' + number + '" name="txt_zycyqk' + number + '" class="form-control"><option value="1">Khỏi bệnh</option><option value="2">Đỡ hơn</option ><option value="3">Chưa khỏi</option><option value="4">Tử vong</option><option value="5">Khác</option></select ></select></td></tr>');
             $newTr.appendTo($(this).closest('table'));
         }
-        //中医辅助诊断浮层
+        //Lớp nổi chẩn đoán hỗ trợ Đông y
         bindZyFzzdFloatingSelector(number);
     });
-    //中医症候浮层
+    //Lớp nổi hội chứng Đông y
     function bindZyFzzdFloatingSelector(number) {
         $("#txt_zyfzzd" + number).newtouchBatchFloatingSelector({
             height: 200,
@@ -381,13 +381,13 @@
             ajaxparameters: function () {
                 return "ryzd=" + $("#txt_zyfzzd" + number).val() + "&ybnhlx=" + ybnhlx + "&zdlb=" + "ZYZH";
             },
-            caption: "出院诊断",
+            caption: "Chẩn đoán xuất viện",
             colModel: [
-                { label: '名称', name: 'zdmc', widthratio: 60 },
-                { label: '拼音', name: 'py', widthratio: 20 },
+                { label: 'Tên', name: 'zdmc', widthratio: 60 },
+                { label: 'Phiên âm', name: 'py', widthratio: 20 },
                 { label: 'icd10', name: 'icd10', widthratio: 20 },
-                { label: '编号', name: 'zdbh', hidden: true },
-                { label: '内码', name: 'zdnm', hidden: true }
+                { label: 'Số hiệu', name: 'zdbh', hidden: true },
+                { label: 'Mã nội bộ', name: 'zdnm', hidden: true }
             ],
             itemdbclickhandler: function ($this) {
                 $("#txt_zyfzzd" + number).val($this.attr('data-zdmc'));
@@ -397,34 +397,34 @@
     }
 
 
-	//西医辅助诊断 新增icon
+	//Chẩn đoán hỗ trợ Tây y Thêm mớiicon
     $('#tablezd .plusToggleCircle').click(function () {
 		//var number = $('#tablexyzd .zdText').length + 1;
-		//var $newTr = $('<tr><th class="formTitle">副7</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">疑似</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
-		//var $newTr = $('<tr><th class="formTitle">副</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">疑似</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><th class="formTitle">常用诊断</th><td class="formValue"><input type="text"  id="xycyzdoption' + number + '" name="xycyzdoption' + number + '" class="form-control activeValue focusInput xycyzdoptionText" /></td></tr>');
+		//var $newTr = $('<tr><th class="formTitle">副7</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
+		//var $newTr = $('<tr><th class="formTitle">副</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><th class="formTitle">Chẩn đoán thường dùng</th><td class="formValue"><input type="text"  id="xycyzdoption' + number + '" name="xycyzdoption' + number + '" class="form-control activeValue focusInput xycyzdoptionText" /></td></tr>');
 	    var number = $('#tablezd .zdinput').length+ 1;
 
-	    //var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>辅助诊断' + number + '：</th><td class="formValue" colspan="2"><input id="txt_fzzd' + number + 'dm" type="hidden" /><input id="txt_fzzd' + number + '" name="txt_fzzd' + number + '" type="text" class="form-control required zdinput" /></td><th class="formTitle">出院情况' + number + '：</th><td class="formValue"><select id="txt_cyqk' + number + '" name="txt_cyqk' + number + '" class="form-control" data-EnumType="EnumCYQK"></select></td></tr>');
+	    //var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Chẩn đoán hỗ trợ' + number + '：</th><td class="formValue" colspan="2"><input id="txt_fzzd' + number + 'dm" type="hidden" /><input id="txt_fzzd' + number + '" name="txt_fzzd' + number + '" type="text" class="form-control required zdinput" /></td><th class="formTitle">Tình hình xuất viện' + number + '：</th><td class="formValue"><select id="txt_cyqk' + number + '" name="txt_cyqk' + number + '" class="form-control" data-EnumType="EnumCYQK"></select></td></tr>');
 		if (isopendiag == "OFF") {
-		    var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;display:none; margin-left: 10px; color: #6ff3ad; font-size: large;"></i>辅助诊断：</th><td class="formValue" colspan="2"><input id="txt_fzzd' + number + 'dm" type="hidden" /><input id="txt_fzzd' + number + '" name="txt_fzzd' + number + '" type="text"  disabled="disabled" class="form-control required zdinput" /></td><th class="formTitle">出院情况：</th><td class="formValue"><select id="txt_cyqk' + number + '" name="txt_cyqk' + number + '"  disabled="disabled" class="form-control"><option value="1">治愈</option><option value="2">好转</option ><option value="3">未愈</option><option value="4">死亡</option><option value="5">其他</option></select ></select></td></tr>');
+		    var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;display:none; margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Chẩn đoán hỗ trợ:</th><td class="formValue" colspan="2"><input id="txt_fzzd' + number + 'dm" type="hidden" /><input id="txt_fzzd' + number + '" name="txt_fzzd' + number + '" type="text"  disabled="disabled" class="form-control required zdinput" /></td><th class="formTitle">Tình hình xuất viện:</th><td class="formValue"><select id="txt_cyqk' + number + '" name="txt_cyqk' + number + '"  disabled="disabled" class="form-control"><option value="1">Khỏi bệnh</option><option value="2">Đỡ hơn</option ><option value="3">Chưa khỏi</option><option value="4">Tử vong</option><option value="5">Khác</option></select ></select></td></tr>');
 		    $newTr.appendTo($(this).closest('table'));
 		}
 		else
 		{
-		    var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>辅助诊断：</th><td class="formValue" colspan="2"><input id="txt_fzzd' + number + 'dm" type="hidden" /><input id="txt_fzzd' + number + '" name="txt_fzzd' + number + '" type="text" class="form-control required zdinput" /></td><th class="formTitle">出院情况：</th><td class="formValue"><select id="txt_cyqk' + number + '" name="txt_cyqk' + number + '" class="form-control"><option value="1">治愈</option><option value="2">好转</option ><option value="3">未愈</option><option value="4">死亡</option><option value="5">其他</option></select ></select></td></tr>');
+		    var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Chẩn đoán hỗ trợ:</th><td class="formValue" colspan="2"><input id="txt_fzzd' + number + 'dm" type="hidden" /><input id="txt_fzzd' + number + '" name="txt_fzzd' + number + '" type="text" class="form-control required zdinput" /></td><th class="formTitle">Tình hình xuất viện:</th><td class="formValue"><select id="txt_cyqk' + number + '" name="txt_cyqk' + number + '" class="form-control"><option value="1">Khỏi bệnh</option><option value="2">Đỡ hơn</option ><option value="3">Chưa khỏi</option><option value="4">Tử vong</option><option value="5">Khác</option></select ></select></td></tr>');
 		    $newTr.appendTo($(this).closest('table'));
 		}
 
-		//辅助诊断浮层
+		//Lớp nổi chẩn đoán hỗ trợ
 		bindFzzdFloatingSelector(number);
 	});
 
-	//删除icon
+	//Xóaicon
 	$('#form1').on('click', '.minusToggleCircle', function () {
 		$(this).closest('tr').remove();
 	})
 
-	//西医辅助诊断浮层
+	//Lớp nổi chẩn đoán hỗ trợ Tây y
 	function bindFzzdFloatingSelector(number) {
         $("#txt_fzzd" + number).newtouchBatchFloatingSelector({
             height: 200,
@@ -434,13 +434,13 @@
             ajaxparameters: function () {
                 return "ryzd=" + $("#txt_fzzd" + number).val() + "&ybnhlx=" + ybnhlx + "&zdlb=" + "WM";
             },
-            caption: "出院诊断",
+            caption: "Chẩn đoán xuất viện",
             colModel: [
-                { label: '名称', name: 'zdmc', widthratio: 60 },
-                { label: '拼音', name: 'py', widthratio: 20 },
+                { label: 'Tên', name: 'zdmc', widthratio: 60 },
+                { label: 'Phiên âm', name: 'py', widthratio: 20 },
                 { label: 'icd10', name: 'icd10', widthratio: 20 },
-                { label: '编号', name: 'zdbh', hidden: true },
-                { label: '内码', name: 'zdnm', hidden: true }
+                { label: 'Số hiệu', name: 'zdbh', hidden: true },
+                { label: 'Mã nội bộ', name: 'zdnm', hidden: true }
             ],
 			itemdbclickhandler: function ($this) {
 				$("#txt_fzzd" + number).val($this.attr('data-zdmc'));

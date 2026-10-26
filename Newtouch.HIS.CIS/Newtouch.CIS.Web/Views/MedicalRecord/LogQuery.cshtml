@@ -18,51 +18,51 @@
 <form name="form1">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
 	        <tr>
 		        
-		        <th class="formTitle">病例号/姓名：</th>
+		        <th class="formTitle">Số bệnh án/Họ tên:</th>
 		        <td class="formValue">
 			        <input type="text" class="form-control" id="txtxm" name="txtxm"/>
 		        </td>
-		        <td class="formTitle">医生姓名：</td>
+		        <td class="formTitle">Tên bác sĩ:</td>
 		        <td class="formValue">
 			        <input id="txt_doctor" name="txt_doctor" type="text" class="form-control required"/>
 		        </td>
 		        <td style="width: 20px"></td>
-		        <th class="formTitle" id="thCZRQ">操作日期：</th>
+		        <th class="formTitle" id="thCZRQ">Ngày thao tác:</th>
 		        <td class="formValue" colspan="3">
 			        <input id="txtCreateTimestart" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 42%; float: left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"/>
 			        <span style="margin-left: 2%; float: left;">—</span>
 			        <input id="txtCreateTimeEnd" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 41%; float: left; margin-left: 2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"/>
 		        </td>
 		        <td class="formValue" colspan="2">
-			        <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="查询"/>
-			        <input type="button" id="btn_export" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="导出"/>
+			        <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="Tra cứu"/>
+			        <input type="button" id="btn_export" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="Xuất"/>
 		        </td>
 	        </tr>
-            <tr><th class="formTitle">患者年龄：</th>
+            <tr><th class="formTitle">Tuổi bệnh nhân:</th>
 	            <td class="formValue">
 		            <select class="form-control" id="hznl">
-			            <option value="" selected>全部</option>
-			            <option value="1">大于35周岁</option>
+			            <option value="" selected>Tất cả</option>
+			            <option value="1">lớn hơn35tuổi tròn</option>
 		            </select>
 	            </td>
-	            <th class="formTitle">血糖血压：</th>
+	            <th class="formTitle">Đường huyết, huyết áp:</th>
 	            <td class="formValue">
 		            <select class="form-control" id="xtxy">
-			            <option value="" selected>全部</option>
-			            <option value="1">有值</option>
+			            <option value="" selected>Tất cả</option>
+			            <option value="1">Có giá trị</option>
 		            </select>
 	            </td>
 	            <td style="width: 20px"></td>
-	            <th class="formTitle">导出全部：</th>
+	            <th class="formTitle">Xuất tất cả:</th>
 	            <td class="formValue">
 		            <select class="form-control" id="qbdc">
-			            <option value="" selected>否</option>
-			            <option value="1">是</option>
+			            <option value="" selected>Không</option>
+			            <option value="1">Có</option>
 		            </select>
 	            </td>
 			</tr>
@@ -75,17 +75,17 @@
 </form>
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt thì tải lạijqGridchiều rộng của
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
-        //结算主记录
+        //Hồ sơ chính thanh toán
         gridJSListData();
     });
     $("#txt_doctor").dutyStaffFloatingSelector({
         dutyCode: 'Doctor'
     });
-    //门诊挂号结算查询
+    //Tra cứu thanh toán đăng ký khám ngoại trú
     function gridJSListData() {
         var $gridJsList = $("#gridJSList");
         $gridJsList.dataGrid({
@@ -94,34 +94,34 @@
             url: "@Url.Action("OutpatientPatientQuery")",
             colModel: [
                 { label: 'jzId', name: 'jzId', hidden: true, align: 'left' },
-                { label: '就诊日期', name: 'jzsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                //{ label: '日期', name: 'createtime', width: 140, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '门诊号', name: 'mzh', width: 100, align: 'left' },
-                { label: '姓名', name: 'xm', align: 'center', width: 80 },
-                { label: '家长姓名', name: 'jzxm', align: 'center', width: 80 },
-                { label: '电话号码', name: 'dhhm', align: 'center', width: 80 },
+                { label: 'Ngày khám', name: 'jzsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                //{ label: 'Ngày', name: 'createtime', width: 140, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Số khám ngoại trú', name: 'mzh', width: 100, align: 'left' },
+                { label: 'Họ tên', name: 'xm', align: 'center', width: 80 },
+                { label: 'Tên phụ huynh', name: 'jzxm', align: 'center', width: 80 },
+                { label: 'Số điện thoại', name: 'dhhm', align: 'center', width: 80 },
                 {
-                    label: '性别', name: 'xb', align: 'center', width: 50, formatter: function (val) {
+                    label: 'Giới tính', name: 'xb', align: 'center', width: 50, formatter: function (val) {
                         return $.getGender(val);
                     }
                 },
-                { label: '年龄', name: 'nlshow', align: 'center', width: 50 },
-                { label: '职业', name: 'zy', width: 80, align: 'left' },
-                { label: '地址', name: 'dz', width: 80, align: 'left' },
-                { label: '发病日期', name: 'fbsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                 { label: '体温', name: 'tiwen', width: 80, align: 'left' },
-                { label: '血压', name: 'xueya', width: 80, align: 'left' },
-                { label: '初复诊', name: 'cfz', width: 80, align: 'left' },
-                { label: '主要症状', name: 'zs', width: 80, align: 'left' },
-                { label: '诊断名称', name: 'zdmc', width: 80, align: 'left' },
-                { label: '处理', name: 'clfa', width: 80, align: 'left' },
-                { label: '医生签名', name: 'jzys', width: 80, align: 'left' },
-                { label: '有效证件号', name: 'sfzh', width: 130, align: 'left' },
-                { label: '电话', name: 'ContactNum', width: 100, align: 'left' },
-                { label: '科别', name: 'ghksmc', width: 80, align: 'left' },
-                { label: '血糖', name: 'xuetang', width: 80, align: 'left' },
-                { label: '现病史', name: 'xbs', width: 80, align: 'left' },
-                { label: '备注', name: 'bz', width: 100, align: 'left' },
+                { label: 'Tuổi', name: 'nlshow', align: 'center', width: 50 },
+                { label: 'Nghề nghiệp', name: 'zy', width: 80, align: 'left' },
+                { label: 'Địa chỉ', name: 'dz', width: 80, align: 'left' },
+                { label: 'Ngày khởi phát', name: 'fbsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                 { label: 'Nhiệt độ cơ thể', name: 'tiwen', width: 80, align: 'left' },
+                { label: 'Huyết áp', name: 'xueya', width: 80, align: 'left' },
+                { label: 'Khám lần đầu/tái khám', name: 'cfz', width: 80, align: 'left' },
+                { label: 'Triệu chứng chính', name: 'zs', width: 80, align: 'left' },
+                { label: 'Tên chẩn đoán', name: 'zdmc', width: 80, align: 'left' },
+                { label: 'Xử lý', name: 'clfa', width: 80, align: 'left' },
+                { label: 'Chữ ký bác sĩ', name: 'jzys', width: 80, align: 'left' },
+                { label: 'Số giấy tờ hợp lệ', name: 'sfzh', width: 130, align: 'left' },
+                { label: 'Điện thoại', name: 'ContactNum', width: 100, align: 'left' },
+                { label: 'Khoa', name: 'ghksmc', width: 80, align: 'left' },
+                { label: 'Đường huyết', name: 'xuetang', width: 80, align: 'left' },
+                { label: 'Bệnh sử hiện tại', name: 'xbs', width: 80, align: 'left' },
+                { label: 'Ghi chú', name: 'bz', width: 100, align: 'left' },
             ],
             pager: "#gridPager",
             sortname: " jzsj asc",
@@ -129,7 +129,7 @@
         });
 
         $("#btn_search").click(function () {
-            $('#gridJSList').jqGrid("clearGridData");//先清空明细
+            $('#gridJSList').jqGrid("clearGridData");//Xóa chi tiết trước
             $gridJsList.jqGrid('setGridParam', {
                 postData: getSearchPostData(),
                 url: '@Url.Action("OutpatientPatientQuery")'

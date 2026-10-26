@@ -8,9 +8,9 @@
 <div class="ui-layout" id="layout" style="height:100%;width:100%;">
     <div class="ui-layout-west">
         <ul id="beveltabs">
-            <li><a href="#" name="#personal" data-type=@Html.Raw(((int)EnumCfMbLx.personal).ToString())>个人</a></li>
-            <li><a href="#" name="#department" data-type=@Html.Raw(((int)EnumCfMbLx.department).ToString())>科室</a></li>
-            <li><a href="#" name="#hospital" data-type=@Html.Raw(((int)EnumCfMbLx.hospital).ToString())>全院</a></li>
+            <li><a href="#" name="#personal" data-type=@Html.Raw(((int)EnumCfMbLx.personal).ToString())>Cá nhân</a></li>
+            <li><a href="#" name="#department" data-type=@Html.Raw(((int)EnumCfMbLx.department).ToString())>Khoa</a></li>
+            <li><a href="#" name="#hospital" data-type=@Html.Raw(((int)EnumCfMbLx.hospital).ToString())>Toàn viện</a></li>
         </ul>
         <div id="treeContent">
             <div id="personal">
@@ -39,7 +39,7 @@
     var expandCflx = null;
 
     $("#beveltabs a").on("click", function (e) {
-        var tempExpandCflx = expandCflx;    //有效期为一次
+        var tempExpandCflx = expandCflx;    //Thời hạn hiệu lực là một lần
         expandCflx = null;
         $($(this).attr('name') + "Tree").treeview({
             height: $(window).height() - 100,
@@ -49,16 +49,16 @@
                 if(!item.value){
                     return;
                 }
-                if (item.value == '@Html.Raw(((int)@EnumCflx.RehabPres).ToString())') {   //康复
-                    $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/PresTemplate/RehabForm?mbId=" + item.Ex1);  //item.Ex1为模板Id
+                if (item.value == '@Html.Raw(((int)@EnumCflx.RehabPres).ToString())') {   //Phục hồi chức năng
+                    $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/PresTemplate/RehabForm?mbId=" + item.Ex1);  //item.Ex1làm mẫuId
                 }
-                if (item.value == '@Html.Raw(((int)@EnumCflx.RegularItemPres).ToString())') {   //常规项目
-                    $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/PresTemplate/RegularItemForm?mbId=" + item.Ex1);  //item.Ex1为模板Id
+                if (item.value == '@Html.Raw(((int)@EnumCflx.RegularItemPres).ToString())') {   //Hạng mục thông thường
+                    $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/PresTemplate/RegularItemForm?mbId=" + item.Ex1);  //item.Ex1làm mẫuId
                 }
-                else if (item.value == '@Html.Raw(((int)@EnumCflx.WMPres).ToString())') {   //西药
+                else if (item.value == '@Html.Raw(((int)@EnumCflx.WMPres).ToString())') {   //Thuốc Tây y
                     $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/PresTemplate/WMForm?mbId=" + item.Ex1);
                 }
-                else if (item.value == '@Html.Raw(((int)@EnumCflx.TCMPres).ToString())') {   //中药
+                else if (item.value == '@Html.Raw(((int)@EnumCflx.TCMPres).ToString())') {   //Thuốc Đông y
                     $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/PresTemplate/TCMForm?mbId=" + item.Ex1);
                 }
             }

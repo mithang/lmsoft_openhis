@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Common.Operator;
 @{
-    ViewBag.Title = "费用详细信息";
+    ViewBag.Title = "Thông tin chi tiết chi phí";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <script>
@@ -39,7 +39,7 @@
             });
         }
 
-        //项目浮层
+        //Lớp nổi hạng mục
         $('#sfxmmc').sfxmFloatingSelector({
             djDecimalPlaces: 4,
             showdwjls: true,
@@ -64,7 +64,7 @@
             url: "/NurseManage/BedLevelCharge/SubmitForm?keyValue=" + keyValue,
             param: data,
             success: function () {
-                $.currentWindow().$('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                $.currentWindow().$('#gridList').jqGrid("clearGridData"); //Xóa của chi tiếtgrid
                 $.currentWindow().$("#gridList").resetSelection();
                 $.currentWindow().$("#gridList").trigger("reloadGrid");
                 $.loading(false);
@@ -89,7 +89,7 @@
             zlsNames = zlsNames.substring(0, zlsNames.length - 1);
         }
         $('#sfxmList').val(zlsNames);
-        top.top.window.frames['SFXMSelect'].$.modalClose();   //关闭之
+        top.top.window.frames['SFXMSelect'].$.modalClose();   //Đóng nó
     }
 </script>
 <form id="form1">
@@ -97,23 +97,23 @@
         <div role="tabpanel" id="divPatInfo" class="tab-pane fade in active" style="padding-top: 20px; margin-right: 30px;">
             <table class="form" style="margin-top: 10px; width: 95%">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>收费项目：</th>
+                    <th class="formTitle"><span class="required">*</span>Hạng mục thu phí:</th>
                     <td class="formValue" colspan="5">
                         <input type="text" class="form-control form-an" id="sfxmmc" required />
                         <input type="hidden" class="form-control" id="sfxmCode" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>数量：</th>
+                    <th class="formTitle"><span class="required">*</span>Số lượng:</th>
                     <td class="formValue">
                         <input type="text" class="form-control form-an" id="sl" required />
                     </td>
-                    <th class="formTitle">有效</th>
+                    <th class="formTitle">Có hiệu lực</th>
                     <td class="formValue">
                         <div class="ckbox">
                             <input id="zt" type="checkbox" checked="checked"><label for="zt"></label>
                         </div>
-                    <th class="formTitle"><span class="required">*</span>等级：</th>
+                    <th class="formTitle"><span class="required">*</span>Cấp độ:</th>
                     <td class="formValue formDdlSelectorTd" style="width:110px !important">
                         <select class="form-control" id="LevelCode">
                         </select>

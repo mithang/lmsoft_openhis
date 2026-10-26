@@ -7,14 +7,14 @@
             <td class="formValue">
                 <select id="Template" class="form-control">
                     <option>
-                        全部
+                        Tất cả
                     </option>
                 </select>
             </td>
         </tr>
         <tr>
             <td class="formValue">
-                <input id="ztKeyword" type="text" class="form-control" placeholder="组套名称/简拼" />
+                <input id="ztKeyword" type="text" class="form-control" placeholder="Tên bộ mẫu/Viết tắt phiên âm" />
             </td>
         </tr>
     </table>
@@ -31,7 +31,7 @@
         jyjcparam = jyjcmbLx;
 		var TemplateId = $('#Template')[0].value;
 		var ztKeyword = $('#ztKeyword').val();
-        $("#divInspectTempTree").html(''); //先清空掉
+        $("#divInspectTempTree").html(''); //Xóa sạch trước
         $("#divInspectTempTree").treeview({
             height: $(window).height() - 100,
             slimscroll: false,
@@ -58,7 +58,7 @@
                         url: "/TemplateManage/InspectionTemplate/GetGPackageDetailByZtId",
                         postData: { ztId: item.id, mbId: item.parentnodes }
                     }).trigger("reloadGrid");
-                    $grid.jqGrid("setCaption", item.text);   //重置caption属性值
+                    $grid.jqGrid("setCaption", item.text);   //Đặt lạicaptionGiá trị thuộc tính
                 }
                 if ($griddetail) {
                     $griddetail.clearGridData();
@@ -91,22 +91,22 @@
     });
 
     /**
-     * ***********************套餐显示**********************************
+     * ***********************Hiển thị gói**********************************
      */
     function getActionDel(id) {
         return "<i class='fa fa-minus-square-o' style='font-size: large; color: #09a3ea;' onclick='deleteGroupData(\"" + id + "\")'></i>";
     }
     function getGroupInfo($grid, ztId, parentid) {
-        var ztcd = $grid.getDataIDs();//删除完项目之后再进行清空
+        var ztcd = $grid.getDataIDs();//Sau khi xóa xong hạng mục thì tiến hành xóa sạch
         if (ztcd.length==0) {
             lsid = "";
         }
         if (lsid == null || lsid == "") {
             lsid = parentid;
-        }//如果开始没有项目直接赋值
+        }//Nếu ban đầu không có hạng mục thì gán trực tiếp
         else {
                 if (parentid != lsid) {
-                    $.modalAlert("同一申请单不可开立多个项目大类", "warning");
+                    $.modalAlert("Cùng một phiếu yêu cầu không thể lập nhiều nhóm lớn hạng mục", "warning");
                     return;
                 }
         }
@@ -157,7 +157,7 @@
                             });
                         }
                         if (pdnr == "xtnr") {
-                            $.modalAlert("项目明细有相同内容", "warning");
+                            $.modalAlert("Chi tiết hạng mục có nội dung giống nhau", "warning");
                             return;
                         }
                         var zje = 0;
@@ -174,7 +174,7 @@
             }
         });
     }
-    //删除已选组套明细
+    //Xóa chi tiết bộ mẫu đã chọn
     function deleteGroupData(selRowId) {
         if (!!selRowId) {
             var $grid;

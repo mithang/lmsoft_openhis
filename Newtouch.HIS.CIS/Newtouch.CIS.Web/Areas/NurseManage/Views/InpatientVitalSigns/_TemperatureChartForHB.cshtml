@@ -17,18 +17,18 @@
 </style>
 @*<table id="tablBaseInfo" class="form" style="width:750px;">
     <tr style="display:none;">
-        <td class="formValue" colspan="4">日期：<label id="lblRq"></label></td>
+        <td class="formValue" colspan="4">Ngày:<label id="lblRq"></label></td>
     </tr>
     <tr>
-        <td class="formValue">姓名：<label id="lblXm" class="lblXm"></label></td>
-        <td class="formValue">病历号：<label id="lblBlh" class="lblBlh"></label></td>
-        <td class="formValue" style="display:none;">住院号：<label id="lblZyh" class="lblZyh"></label></td>
-        <td class="formValue">病区：<label id="lblBq" class="lblBq"></label></td>
+        <td class="formValue">Họ tên:<label id="lblXm" class="lblXm"></label></td>
+        <td class="formValue">Số hồ sơ bệnh án:<label id="lblBlh" class="lblBlh"></label></td>
+        <td class="formValue" style="display:none;">Số nhập viện:<label id="lblZyh" class="lblZyh"></label></td>
+        <td class="formValue">Khu bệnh:<label id="lblBq" class="lblBq"></label></td>
     </tr>
     <tr>
-        <td class="formValue">床位：<label id="lblCw" class="lblCw"></label></td>
-        <td class="formValue">入院日期：<label id="lblRqrq" class="lblRqrq"></label></td>
-        <td class="formValue" style="display:none">出区日期：<label id="lblCqrq" class="lblCqrq"></label></td>
+        <td class="formValue">Giường bệnh:<label id="lblCw" class="lblCw"></label></td>
+        <td class="formValue">Ngày nhập viện:<label id="lblRqrq" class="lblRqrq"></label></td>
+        <td class="formValue" style="display:none">Ngày xuất khu:<label id="lblCqrq" class="lblCqrq"></label></td>
     </tr>
 </table>*@
 <div id="3cbill">
@@ -42,27 +42,27 @@
                 <td>血压(mmHg)</td>
             </tr>
             <tr>
-                <td>血氧饱和度%</td>
+                <td>Độ bão hòa oxy máu%</td>
             </tr>
             <tr>
                 <td>氧流量(升/分)</td>
             </tr>
             <tr>
-                <td>大便次数</td>
+                <td>Số lần đại tiện</td>
             </tr>
             <tr>
                 <td>总入量(ml)</td>
-                @*<td>摄入量(ml)</td>*@
+                @*<td>Lượng đưa vào(ml)</td>*@
             </tr>
             <tr>
                 <td>总出量(ml)</td>
-                @*<td>小&nbsp;&nbsp;便(ml)</td>*@
+                @*<td>Tiểu&nbsp;&nbsp;tiện(ml)</td>*@
             </tr>
             <tr>
                 <td>引流量(ml)</td>
             </tr>
             @*<tr>
-                <td>输入液体量(ml)</td>
+                <td>Nhập lượng dịch(ml)</td>
             </tr>*@
             <tr>
                 <td>体&nbsp;&nbsp;重(kg)</td>
@@ -71,13 +71,13 @@
                 <td>身&nbsp;&nbsp;高(cm)</td>
             </tr>
             <tr>
-                <td>过敏史</td>
+                <td>Tiền sử dị ứng</td>
             </tr>
         </table>
     </div>
 </div>
 <script>
-    var billIndex = 0;//三测单分页标记
+    var billIndex = 0;//Dấu phân trang phiếu ba chỉ số
     var billpageks = [];
     var billpagejs = [];
     var $board = null
@@ -85,16 +85,16 @@
     var spc = 16;
     var sspace = 11;
     var sspacewidth = 14;
-    var outerspace = 3; //体温单外部留白
+    var outerspace = 3; //Khoảng trắng bên ngoài phiếu nhiệt độ
     var xouterspace = 3;
-    var bodyHeight = 800;   //整体的高度
+    var bodyHeight = 800;   //Chiều cao tổng thể
     var origin;
     //calc
     var sjStartTop;
     var contentStartTop;
     var contentStartLeft;
-    var ord = 0; //呼吸排序号
-    //血压、脉搏、呼吸、体温
+    var ord = 0; //Số thứ tự sắp xếp hô hấp
+    //Huyết áp, mạch, hô hấp, nhiệt độ
     var twArr = [42, 41, 40, 39, 38, 37, 36, 35, 34,33];
     var hxArr = [100,80, 70, 60, 50, 40, 30, 20, 10, 0];
     var mbArr = [180, 160, 140, 120, 100, 80, 60, 40, 20,0];
@@ -108,9 +108,9 @@
     var xyxzColor = 'corange';
     var wljwColor = 'cred';
 
-    //体温单content下边框的top坐标
+    //Phiếu nhiệt độcontentcủa viền dướitopTọa độ
     var twLastTop;
-    //体温单content右边框的left坐标
+    //Phiếu nhiệt độcontentcủa viền phảileftTọa độ
     var twLastLeft;
 
     var bottomtrCount = $('.bottomtbl tr').length;
@@ -121,7 +121,7 @@
     var ryrq;
     var chineseryrq = "";
     var ztItem = [];
-    //定位
+    //Định vị
     if (window.top == window.self) {
         $('#tablBaseInfo').css('marginLeft', 30);
     }
@@ -131,9 +131,9 @@
         //calc
         sjStartTop = origin.y + spc * 2;
         contentStartTop = origin.y + spc * 3;
-        contentStartLeft = origin.x + sspacewidth * 6;   //6格  //但得多给点宽度
+        contentStartLeft = origin.x + sspacewidth * 6;   //6ô  //Nhưng phải cho thêm chút chiều rộng
 
-        //体温单content下边框的top坐标
+        //Phiếu nhiệt độcontentcủa viền dướitopTọa độ
         twLastTop = contentStartTop + sspace * 5 * (twArr.length - 1);
 
         bodyLastTop = twLastTop + spc * bottomtrCount;
@@ -144,27 +144,27 @@
         tempKssj = null;
         $('#tablBaseInfo td label').html('');
         if (!kssj || !jssj || !zyh) {
-            $.modalAlert('请完善筛选条件', 'error');
+            $.modalAlert('Vui lòng hoàn thiện điều kiện lọc', 'error');
             return;
         }
         billIndex = 1;
-        $("#3cbill").empty();//清空三测单内容
+        $("#3cbill").empty();//Xóa nội dung phiếu ba chỉ số
         $.najax({
             url: "/NurseManage/InpatientVitalSigns/DrawData",
             data: { kssj: kssj, jssj: jssj, zyh: zyh, pagesize: 7 },
-            loadingtext: "体温单数据请求中，请稍后...",
+            loadingtext: "Dữ liệu phiếu nhiệt độ đang được yêu cầu, vui lòng đợi...",
             asnyc: false,
             success: function (data) {
                 //
                 if (!(data && data.list && data.list.length)) {
                     //draw([]);
                     if (!(data && data.patInfo)) {
-                        $.modalAlert('请选择住院号', 'warning');
+                        $.modalAlert('Vui lòng chọn số nhập viện', 'warning');
                         return;
                     }
                     //return;
                 }
-                //填充基本信息表格
+                //Điền bảng thông tin cơ bản
                 //if (data && data.patInfo) {
                 //    fillPatBaseInfo(data.patInfo);
                 //    ryrq = data.patInfo.ryrq;
@@ -175,7 +175,7 @@
                     data.list = [];
                 }
                 else {
-                    ord = 0; //呼吸排序号
+                    ord = 0; //Số thứ tự sắp xếp hô hấp
                     billpageks = [];
                     billpagejs = [];
                     billIndexData = [];
@@ -184,16 +184,16 @@
                 var printHasNext = true;
 				while (printHasNext) {
 					var billHtml = '';
-					billHtml += '<table id="tablBaseInfo"+billIndex+ class="form tablBaseInfo" style="width:750px;"><tr style="display:none;"><td class="formValue" colspan="4">日期：<label id="lblRq"+billIndex+ class="lblRq"></label></td></tr>';
-					billHtml += '<tr><td class="formValue">姓名：<label id="lblXm"+billIndex+ class="lblXm"></label></td><td class="formValue">病历号：<label id="lblBlh"+billIndex+ class="lblBlh"></label></td><td class="formValue" style="display:none;">住院号：<label id="lblZyh"+billIndex+ class="lblZyh"></label></td><td class="formValue">病区：<label id="lblBq"+billIndex+ class="lblBq"></label></td></tr>';
-					billHtml += '<tr><td class="formValue">床位：<label id="lblCw"+billIndex+ class="lblCw"></label></td><td class="formValue">入院日期：<label id="lblRqrq"+billIndex+ class="lblRqrq"></label></td><td class="formValue" style="display:none">出区日期：<label id="lblCqrq"+billIndex+ class="lblCqrq"></label></td></tr></table>';
+					billHtml += '<table id="tablBaseInfo"+billIndex+ class="form tablBaseInfo" style="width:750px;"><tr style="display:none;"><td class="formValue" colspan="4">Ngày:<label id="lblRq"+billIndex+ class="lblRq"></label></td></tr>';
+					billHtml += '<tr><td class="formValue">Họ tên:<label id="lblXm"+billIndex+ class="lblXm"></label></td><td class="formValue">Số hồ sơ bệnh án:<label id="lblBlh"+billIndex+ class="lblBlh"></label></td><td class="formValue" style="display:none;">Số nhập viện:<label id="lblZyh"+billIndex+ class="lblZyh"></label></td><td class="formValue">Khu bệnh:<label id="lblBq"+billIndex+ class="lblBq"></label></td></tr>';
+					billHtml += '<tr><td class="formValue">Giường bệnh:<label id="lblCw"+billIndex+ class="lblCw"></label></td><td class="formValue">Ngày nhập viện:<label id="lblRqrq"+billIndex+ class="lblRqrq"></label></td><td class="formValue" style="display:none">Ngày xuất khu:<label id="lblCqrq"+billIndex+ class="lblCqrq"></label></td></tr></table>';
 					
 					billHtml += '<div class="drawingboard" id="board' + billIndex + '" style="width:1139px;height:860px;">';
-					billHtml += '<table class="bottomtbl"><tr><td rowspan="2">呼吸(次/分)</td></tr><tr></tr>';
-                    billHtml += '<tr><td>血压(mmHg)</td></tr><tr><td>血氧饱和度%</td></tr><tr><td>氧流量(升/分)</td></tr>';
-                    billHtml += '<tr><td>大便次数</td></tr><tr><td>总入量(ml)</td></tr><tr><td>总出量(ml)</td></tr>';
-                    billHtml += '<tr><td>引流量(ml)</td></tr><tr><td>体&nbsp;&nbsp;重(kg)</td></tr>';
-                    billHtml += '<tr><td>身&nbsp;&nbsp;高(cm)</td></tr><tr><td>过敏史</td></tr></table></div><div style="text-align:center;"><span>第 ' + billIndex+' 页</span></div>';
+					billHtml += '<table class="bottomtbl"><tr><td rowspan="2">Hô hấp(lần/phút)</td></tr><tr></tr>';
+                    billHtml += '<tr><td>Huyết áp(mmHg)</td></tr><tr><td>Độ bão hòa oxy máu%</td></tr><tr><td>Lưu lượng oxy(lít/phút)</td></tr>';
+                    billHtml += '<tr><td>Số lần đại tiện</td></tr><tr><td>Tổng lượng vào(ml)</td></tr><tr><td>Tổng lượng ra(ml)</td></tr>';
+                    billHtml += '<tr><td>Lượng dịch dẫn lưu(ml)</td></tr><tr><td>Cân&nbsp;&nbsp;nặng(kg)</td></tr>';
+                    billHtml += '<tr><td>Chiều&nbsp;&nbsp;cao(cm)</td></tr><tr><td>Tiền sử dị ứng</td></tr></table></div><div style="text-align:center;"><span>Thứ ' + billIndex+' trang</span></div>';
 
 					billHtml += '  <div class="PageNext"></div>';
 
@@ -202,7 +202,7 @@
                     rqCellValueArrShow.splice(0, rqCellValueArrShow.length);
                     ztItem.splice(0, ztItem.length);
 
-					//填充基本信息表格
+					//Điền bảng thông tin cơ bản
 					if (data && data.patInfo) {
 						fillPatBaseInfo(data.patInfo);
 						ryrq = data.patInfo.ryrq;
@@ -215,7 +215,7 @@
                         var item = billIndexData[i];
                         var dd = $.getDate({ date: item.rq });
 
-                        //时间改为从数据库获取
+                        //Thời gian đổi thành lấy từ cơ sở dữ liệu
                         if (lastday != item.rq) {
                             rqCellValueArr.push(dd);
                             rqCellValueArrShow.push(item.showrq);
@@ -223,10 +223,10 @@
                             lastday = item.rq;
                         };
                         if (!billpageks[item.nowpage]) {
-                            billpageks[item.nowpage] = dd; //记录当前页的开始时间
+                            billpageks[item.nowpage] = dd; //Ghi lại thời gian bắt đầu của trang hiện tại
                         }
 
-                        billpagejs[item.nowpage] = dd; //记录当前页的结束时间
+                        billpagejs[item.nowpage] = dd; //Ghi lại thời gian kết thúc của trang hiện tại
                         if (item.brzt == '@((int)EnumHlbrzt.Ry)' || item.brzt == '@((int)EnumHlbrzt.Cy)' || item.brzt == '@((int)EnumHlbrzt.Zr)' || item.brzt == '@((int)EnumHlbrzt.Sw)') {
                             var ztshowstr = "";
                             if (!!item.brzt_hh) {
@@ -264,7 +264,7 @@
                         printHasNext = false;
                     }                    
 
-                    //重置下个开始时间
+                    //Đặt lại thời gian bắt đầu tiếp theo
                     if (printHasNext) {
                         billIndex++;
                     }
@@ -273,10 +273,10 @@
         });
     }
 
-    var tempData;    //使用setTimeout需要
+    var tempData;    //Sử dụngsetTimeoutcần
     var tempKssj;
     function draw(data, index) {
-        //先重置
+        //Đặt lại trước
         $board = $('#board' + index);
         $board.find('>*:not(table)').remove();
         $.each($('#board' + index + ' .bottomtbl tr'), function () {
@@ -285,17 +285,17 @@
         if (!rqCellValueArr || !rqCellValueArr.length) {
             //return;
         }
-        //样式
+        //Kiểu
         var docwd = $(document).width();
         var twdContentWidth = sspacewidth * 6 * (rqCellValueArr.length);
-        twdContentWidth += sspacewidth * 9; //做日期列
+        twdContentWidth += sspacewidth * 9; //Làm cột ngày
         if ((docwd - twdContentWidth).toFixed(2) > 50) {
             if (window.top != window.self) {
                 if (!rqCellValueArr || !rqCellValueArr.length) {
 
                 }
                 else {
-                    xouterspace = parseInt((docwd - twdContentWidth).toFixed(2) / 2);  //可以多留点白
+                    xouterspace = parseInt((docwd - twdContentWidth).toFixed(2) / 2);  //Có thể để thêm chút khoảng trắng
                 }
             }
             else {
@@ -310,11 +310,11 @@
         twLastLeft = contentStartLeft + sspacewidth * 6 * (rqCellValueArr.length);
         //
         if (!(window.isIE() && window.isIElte8())) {
-            //添加画布canvas
+            //Thêm khung vẽcanvas
             $('#board' + index).append('<canvas id="drawCanvas' + index + '" width="' + twLastLeft + '" height="' + (twLastTop + 10) + '"></canvas> ');
             checkCanvasAble();
         }
-        //画
+        //Vẽ
         tempData = data;
         if (canvasAble) {
             startDraw();
@@ -348,7 +348,7 @@
             startDraw3();
         }
         else {
-            $.loading(true, '连线绘制中，可能耗时较长，请稍后...');
+            $.loading(true, 'Đường nối đang được vẽ, có thể tốn thời gian, vui lòng đợi...');
             setTimeout("startDraw3();", 50);
         }
     }
@@ -365,42 +365,42 @@
         }
     }
 
-    //根据data重置画板 长高
+    //TheodataĐặt lại bảng vẽ chiều dài và chiều cao
     function drawTemplet(data) {
-        //画板的长宽
+        //Chiều dài và chiều rộng của bảng vẽ
         var totalwidth = $(window).width();
         var totalheight = bodyHeight;
         $board.css('width', totalwidth);
         $board.css('height', totalheight);
-        //时间点上边框
+        //Viền trên của thời điểm
         drawLine(origin.x, origin.y, twLastLeft - origin.x);
-        //右侧加一点空白
+        //Thêm một chút khoảng trắng bên phải
         drawLine(twLastLeft, origin.y, xouterspace).css('visibility', 'hidden');
-        //body上边框
+        //bodyViền trên
         drawLine(origin.x, sjStartTop, twLastLeft - origin.x);
-        //body上边框
+        //bodyViền trên
         drawLine(origin.x, sjStartTop - spc, twLastLeft - origin.x);
-        //body左边框
+        //bodyViền trái
         drawLine(origin.x, origin.y, bodyLastTop - origin.y, '', 'vline');
-        //content左边框
+        //contentViền trái
         drawLine(contentStartLeft, origin.y, bodyLastTop - origin.y, '', 'vline');
-        //content上边框
+        //contentViền trên
         drawLine(origin.x, contentStartTop, twLastLeft - origin.x);
 
-        //竖向画线
+        //Vẽ đường dọc
         var rqCellCount = rqCellValueArr.length;
         for (var i = 0; i < rqCellCount; i++) {
-            //右线
+            //Đường phải
             var left = contentStartLeft + sspacewidth * 6 * (i + 1);
             if (i == rqCellCount - 1) {
-                //最右侧画黑线
+                //Vẽ đường đen ở phía phải nhất
                 drawLine(left, origin.y, twLastTop - origin.y, '', 'vline');
             } else {
                 drawLine(left, origin.y, twLastTop - origin.y, 'cred', 'vline');
             }
-            //底部table画竖线
+            //Dưới cùngtableVẽ đường dọc
             drawLine(left, twLastTop, bodyLastTop - twLastTop, '', 'vline');
-            //中间5条时间点的线
+            //Ở giữa5đường của các thời điểm
             for (var j = 0; j < 5; j++) {
                 left = contentStartLeft + sspacewidth * 6 * i + sspacewidth * (j + 1);
                 if (j === 2) {
@@ -411,18 +411,18 @@
                 }
             }
         }
-        //横向画线
+        //Vẽ đường ngang
         for (var i = 0; i < (twArr.length - 1); i++) {
             var top = contentStartTop + sspace * 5 * (i + 1);
-            //最后一条左起origin
+            //Đường cuối cùng bắt đầu từ tráiorigin
             var left = i == (twArr.length - 1 - 1) ? origin.x : contentStartLeft;
-            //最后一条颜色默认
+            //Đường cuối cùng có màu mặc định
             var colr = i == (twArr.length - 1 - 1) ? '' : 'c666';
-            //最后一条不加粗
+            //Đường cuối cùng không in đậm
             var bold = i == (twArr.length - 1 - 1) ? '' : 'bold';
             drawLine(left, top, twLastLeft - left, colr, '', bold);
-            //左侧血压、脉搏、呼吸、体温
-            if (i == 0) {  //chl 42℃ 靠下方显示 不占用【体温】显示位置
+            //Huyết áp, mạch, hô hấp, nhiệt độ bên trái
+            if (i == 0) {  //chl 42℃ Hiển thị ở phía dưới Không chiếm vị trí hiển thị 【Nhiệt độ】
                 var ileft = left - ((contentStartLeft - origin.x) / 2) * 0 - 28;
                 $div = $('<div style="position:absolute;text-align:center;left:' + ileft + 'px;top:' + (top - (sspace * 3.5) - 1) + 'px;width:' + sspacewidth + 'px;height:' + spc + 'px;line-height:' + spc + 'px;">'
                     + twArr[i] + '℃</div>');
@@ -447,22 +447,22 @@
             //        + twArr[i + 1] + '℃</div>');
             //    $div.appendTo($board);
             //}
-            //中间的4条温度的线（在这条线之上）
+            //ở giữa4đường nhiệt độ (phía trên đường này)
             for (var j = 0; j < 4; j++) {
                 top = contentStartTop + sspace * 5 * i + sspace * (j + 1);
                 drawLine(contentStartLeft, top, twLastLeft - contentStartLeft);
             }
         }
-        //底部table画横线
+        //Dưới cùngtableVẽ đường ngang
         for (var i = 0; i < bottomtrCount-1; i++) {
             top = twLastTop + spc * (i + 2);
             var widthlength = twLastLeft - origin.x;
             if (i == bottomtrCount - 1-1) {
-                widthlength++;  //使其看似闭合
+                widthlength++;  //Để nó trông như khép kín
             }
             drawLine(origin.x, top, widthlength);
         }
-        //底部table  table的线和div难对其，所以用div画线
+        //Dưới cùngtable  tableđường vàdivKhó căn chỉnh, vì vậy dùngdivVẽ đường
         $board.find('.bottomtbl').css('width', twLastLeft - origin.x)
             .css('left', origin.x).css('top', twLastTop).show();
         $board.find('.bottomtbl td').css('width', contentStartLeft - origin.x)
@@ -478,20 +478,20 @@
             var thisxybhdpart2 = 0;
             var thisxyll = 0;
             var thisdbcs = "";
-            var thiszrl = 0;    //总入量(ml)
-            var thiszcl = 0;    //总出量(ml)
-            //var thissrl = 0;    //摄入量(ml)
-            //var thisxbl = 0;   //小便 计入总出量
+            var thiszrl = 0;    //Tổng lượng vào(ml)
+            var thiszcl = 0;    //Tổng lượng ra(ml)
+            //var thissrl = 0;    //Lượng đưa vào(ml)
+            //var thisxbl = 0;   //Nước tiểu Tính vào tổng lượng ra
             //var thisotl = 0;
-            var thisgmyw = "";  //过敏药物
-            var thisyll = 0;    //引流量
-            var thissrytl = 0;    //输入液体量
-            var thishx = 0;//呼吸
+            var thisgmyw = "";  //Thuốc dị ứng
+            var thisyll = 0;    //Lượng dịch dẫn lưu
+            var thissrytl = 0;    //Nhập lượng dịch
+            var thishx = 0;//Hô hấp
             var thissj = 0;
-            var thisgxy = 0;//高血压
-            var thisdxy = 0;//低血压
-            var thisgxypart2 = 0;//高血压
-            var thisdxypart2 = 0;//低血压
+            var thisgxy = 0;//Tăng huyết áp
+            var thisdxy = 0;//Hạ huyết áp
+            var thisgxypart2 = 0;//Tăng huyết áp
+            var thisdxypart2 = 0;//Hạ huyết áp
 
             if (rqData.length < 1) {
                 thistd += thistdhtml;
@@ -507,7 +507,7 @@
                 thistddown += thistdhtml;
                 thistddown += thistdhtml;
             } else {
-                //hss 修改于2019.08.22 呼吸显示bug修复
+                //hss Sửa vào2019.08.22 Hiển thị hô hấpbugSửa chữa
                 for (var k = 1; k < 7; k++) {
                     var f = false;
                     var hx = "";
@@ -519,8 +519,8 @@
                         }
                     });
                     if (!f) {
-                        thistd += thistdhtml; //呼吸上角标
-                        thistddown += thistdhtml;//呼吸下角标
+                        thistd += thistdhtml; //Chỉ số trên hô hấp
+                        thistddown += thistdhtml;//Chỉ số dưới hô hấp
                     } else if (ord % 2 == 0 && ord != 0) {
                         thistddown += '<td style="width:' + sspacewidth + 'px;height:' + spc + 'px;line-height:' + spc + 'px;">' + hx + '</td>';
                         thistd += thistdhtml;
@@ -639,7 +639,7 @@
             var $td = $('<td colspan="6" style="width:' + sspacewidth * 6 + 'px;height:' + spc + 'px;line-height:' + spc + 'px;">' + (!!thisyll ? thisyll : '') + '</td>');
             $td.appendTo($($board.find('.bottomtbl tr')[8]));
 
-            //输入液体量
+            //Nhập lượng dịch
             //var $td = $('<td colspan="3" style="width:' + sspacewidth * 3 + 'px;height:' + spc + 'px;line-height:' + spc + 'px;">' + (!!thissrytl ? thissrytl : '') + '</td><td colspan="3" style = "width:' + sspacewidth * 3 + 'px;height:' + spc + 'px;line-height:' + spc + 'px;" ></td>');
             //$td.appendTo($($board.find('.bottomtbl tr')[10]));
             var $td = $('<td colspan="6" style="width:' + sspacewidth * 6 + 'px;height:' + spc + 'px;line-height:' + spc + 'px;">' + (!!thistz ? thistz : '') + '</td>');
@@ -650,7 +650,7 @@
             $td.appendTo($($board.find('.bottomtbl tr')[11]));
         }
 
-        //写日期，住院天数和时间th
+        //Viết ngày, số ngày nhập viện và thời gianth
         {
             var left = origin.x;
             var top = origin.y;
@@ -670,7 +670,7 @@
                 + '时间' + '</div>');
             $div.appendTo($board);
         }
-        //写日期和时间点
+        //Viết ngày và thời điểm
         for (var i = 0; i < rqCellValueArr.length; i++) {
             var left = contentStartLeft + i * sspacewidth * 6;
             var top = origin.y;
@@ -696,22 +696,22 @@
             }
         }
 
-        //左侧血压、脉搏、呼吸、体温 竖线+文字
+        //Huyết áp, mạch, hô hấp, nhiệt độ bên trái Đường dọc+Văn bản
         for (var i = 0; i < 2; i++) {
             var left = origin.x + ((contentStartLeft - origin.x) / 2) * i;
             var top = contentStartTop;
             drawLine(left, top, twLastTop - contentStartTop, '', 'vline');
-            //文字
+            //Văn bản
             var $div;
             $div = $('<div style="position:absolute;text-align:center;left:' + left + 'px;top:' + top + 'px;width:' + ((contentStartLeft - origin.x) / 2) + 'px;height:' + spc * 1 + 'px;line-height:' + spc + 'px;">'
                 + (i == 0 ? '脉搏' : (i == 1 ? '体温' : '')) + '</div>');
             $div.appendTo($board);
-            //说明放下方
+            //Đặt giải thích ở phía dưới
             $div = $('<div style="position:absolute;text-align:center;left:' + left + 'px;top:' + (twLastTop - sspace * 3) + 'px;width:' + ((contentStartLeft - origin.x) / 2) + 'px;height:' + spc * 1 + 'px;line-height:' + spc + 'px;">'
                 + (i == 0 ? '(次/分)' : (i == 1 ? '(℃)' : '')) + '</div>');
             //$div = $('<div style="position:absolute;text-align:center;left:' + left + 'px;top:' + top + 'px;width:' + ((contentStartLeft - origin.x) / 2) + 'px;height:' + spc * 1 + 'px;line-height:' + spc + 'px;">'
-            //    + (i == 0 ? '脉搏(次/分)' : (i == 1 ? '体温<br/>(℃)' : '')) + '</div>');
-            //点在下方
+            //    + (i == 0 ? 'Mạch(lần/phút)' : (i == 1 ? 'Nhiệt độ cơ thể<br/>(℃)' : '')) + '</div>');
+            //Điểm ở phía dưới
             i == 0 ? drawDot(left + sspacewidth * 1.2, twLastTop - sspace, mbColor)
                 : (i == 1 ? drawX(left + sspacewidth * 1.8, twLastTop - sspace, twColor)
                     : '');
@@ -722,9 +722,9 @@
         }
     }
 
-    //画点
+    //Vẽ điểm
     function drawDataPoint(data) {
-        //画点
+        //Vẽ điểm
         for (var i = 0; i < data.length; i++) {
             if (data[i].rq && data[i].sj && data[i].sj % 2 == 0) {
                 drawTwPoint(data[i]);
@@ -736,9 +736,9 @@
         }
     }
 
-    //画连线
+    //Vẽ đường nối
     function drawDataLigature(data) {
-        //画连线
+        //Vẽ đường nối
         var tempArr;
         for (var i = 0; i < (tempArr = $.jsonWhere(data, function (v) { return v.twLocation || v.brzt== '@((int)EnumHlbrzt.Qj)'||v.brzt== '@((int)EnumHlbrzt.Jc)'||v.brzt== '@((int)EnumHlbrzt.Fy)'})).length - 1; i++)
         //for (var i = 0; i < (tempArr = data).length - 1; i++)
@@ -746,7 +746,7 @@
             if (tempArr[i].twLocation && tempArr[i + 1].twLocation) {
                 //if (tempArr[i].rq && ($.getDate({ date: tempArr[i].rq }) == $.getDate({ date: tempArr[i + 1].rq, ute: true })
                 //    || $.getDate({ date: $.dateAdd($.strToDate($.getDate({ date: tempArr[i].rq })), 'd', 1) }) == $.getDate({ date: tempArr[i + 1].rq, ute: true }))) {
-                    //间隔超过1天不画连线
+                    //Khoảng cách vượt quá1ngày thì không vẽ đường nối
                     if (tempArr[i + 1].brzt != '@((int)EnumHlbrzt.Jc)' && tempArr[i + 1].brzt != '@((int)EnumHlbrzt.Fy)') {
                         drawLigature(tempArr[i].twLocation, tempArr[i + 1].twLocation, twColor);
                     }
@@ -759,7 +759,7 @@
             if (tempArr[i].hxLocation && tempArr[i + 1].hxLocation) {
                 //if (tempArr[i].rq && ($.getDate({ date: tempArr[i].rq }) == $.getDate({ date: tempArr[i + 1].rq, ute: true })
                 //    || $.getDate({ date: $.dateAdd($.strToDate($.getDate({ date: tempArr[i].rq })), 'd', 1) }) == $.getDate({ date: tempArr[i + 1].rq, ute: true }))) {
-                    //间隔超过1天不画连线
+                    //Khoảng cách vượt quá1ngày thì không vẽ đường nối
                     if (tempArr[i+1].brzt != '@((int)EnumHlbrzt.Jc)'&& tempArr[i+1].brzt != '@((int)EnumHlbrzt.Fy)') {
                         drawLigature(tempArr[i].hxLocation, tempArr[i + 1].hxLocation, hxColor);
                     }                    
@@ -772,7 +772,7 @@
             if (tempArr[i].mbLocation && tempArr[i + 1].mbLocation) {
                 //if (tempArr[i].rq && ($.getDate({ date: tempArr[i].rq }) == $.getDate({ date: tempArr[i + 1].rq, ute: true })
                 //    || $.getDate({ date: $.dateAdd($.strToDate($.getDate({ date: tempArr[i].rq })), 'd', 1) }) == $.getDate({ date: tempArr[i + 1].rq, ute: true }))) {
-                    //间隔超过1天不画连线
+                    //Khoảng cách vượt quá1ngày thì không vẽ đường nối
                     if (tempArr[i+1].brzt != '@((int)EnumHlbrzt.Jc)'&& tempArr[i+1].brzt != '@((int)EnumHlbrzt.Fy)') {
                         drawLigature(tempArr[i].mbLocation, tempArr[i + 1].mbLocation, mbColor);
                     }     
@@ -783,7 +783,7 @@
             if (tempArr[i].xyszLocation && tempArr[i + 1].xyszLocation) {
                 if (tempArr[i].rq && ($.getDate({ date: tempArr[i].rq }) == $.getDate({ date: tempArr[i + 1].rq, ute: true })
                     || $.getDate({ date: $.dateAdd($.strToDate($.getDate({ date: tempArr[i].rq })), 'd', 1) }) == $.getDate({ date: tempArr[i + 1].rq, ute: true }))) {
-                    //间隔超过1天不画连线
+                    //Khoảng cách vượt quá1ngày thì không vẽ đường nối
                     drawLigature(tempArr[i].xyszLocation, tempArr[i + 1].xyszLocation, xyszColor);
                 }
             }
@@ -792,19 +792,19 @@
             if (tempArr[i].xyxzLocation && tempArr[i + 1].xyxzLocation) {
                 if (tempArr[i].rq && ($.getDate({ date: tempArr[i].rq }) == $.getDate({ date: tempArr[i + 1].rq, ute: true })
                     || $.getDate({ date: $.dateAdd($.strToDate($.getDate({ date: tempArr[i].rq })), 'd', 1) }) == $.getDate({ date: tempArr[i + 1].rq, ute: true }))) {
-                    //间隔超过1天不画连线
+                    //Khoảng cách vượt quá1ngày thì không vẽ đường nối
                     drawLigature(tempArr[i].xyxzLocation, tempArr[i + 1].xyxzLocation, xyxzColor);
                 }
             }
         }
-        //物理降温和体温连线
+        //Đường nối hạ nhiệt vật lý và nhiệt độ
         for (var i = 0; i < (tempArr = $.jsonWhere(data, function (v) { return v.twLocation })).length; i++) {
             if (tempArr[i].twLocation && tempArr[i].wljwLocation) {
-                drawLigature(tempArr[i].twLocation, tempArr[i].wljwLocation, 'cred', 'dotline');//虚线连接
+                drawLigature(tempArr[i].twLocation, tempArr[i].wljwLocation, 'cred', 'dotline');//Kết nối bằng đường nét đứt
             }
         }
     }
-    //chl 添加护理说明 页面说明添加 入院 出院 转院 死亡 42°线 定格显示  其他 35°线定格显示
+    //chl Thêm giải thích điều dưỡng Thêm giải thích trang Nhập viện Xuất viện Chuyển viện Tử vong 42°đường thẳng Hiển thị cố định khung  Khác 35°Hiển thị cố định khung đường thẳng
     function drawTwMemo() {
         if (ztItem.length > 0) {
             for (var i = 0; i < ztItem.length; i++) {
@@ -850,7 +850,7 @@
             }
         }
     }
-    //画体温点
+    //Vẽ điểm nhiệt độ
     function drawTwPoint(item) {
         if (item.tw) {
             var idx = getIndexOfRq(item.rq);
@@ -866,23 +866,23 @@
                 top = twLastTop;
             }
             else {
-                //*5是因为每1度占5格 .toFixed(2)是js减法bug
+                //*5là vì mỗi1độ chiếm5ô .toFixed(2)Cójsphép trừbug
                 top += (twArr[0] - item.tw).toFixed(2) * 5 * sspace;
             }
-            //让其居这个时间点 居中
+            //để nó căn vào thời điểm này căn giữa
             left += sspacewidth / 2;
             if ($.jsonWhere(twArr, function (v) { return v == item.tw }).length == 1
                 && item.tw != twArr[0] && item.tw != twArr[twArr.length - 1]) {
-                top = top + 0.5;    //正点呈现特殊，因为线高度2px
+                top = top + 0.5;    //Hiển thị đúng giờ là trường hợp đặc biệt, vì chiều cao của đường thẳng2px
             }
             item.twLocation = { x: left, y: top };
             drawX(left, top, twColor, item.tw);
-            //伪造title
+            //Giả mạotitle
             drawFalsifyTitle(left, top, item.tw);
         }
     }
 
-    //画脉搏点
+    //Vẽ điểm mạch
     function drawMbPoint(item) {
         if (item.mb) {
             var idx = getIndexOfRq(item.rq);
@@ -898,31 +898,31 @@
                 top = twLastTop;
             }
             else {
-                //*5是因为每20占5格 即每4占一格 .toFixed(2)是js减法bug
+                //*5là vì mỗi20chiếm5ô tức là mỗi4chiếm một ô .toFixed(2)Cójsphép trừbug
                 top += ((mbArr[0] - item.mb).toFixed(2) / 4).toFixed(2) * sspace;
             }
-            //让其居这个时间点 居中
+            //để nó căn vào thời điểm này căn giữa
             left += sspacewidth / 2;
             if ($.jsonWhere(mbArr, function (v) { return v == item.mb }).length == 1
                 && item.mb != mbArr[0] && item.mb != mbArr[mbArr.length - 1]) {
-                top = top + 0.5;    //正点呈现特殊，因为线高度2px
+                top = top + 0.5;    //Hiển thị đúng giờ là trường hợp đặc biệt, vì chiều cao của đường thẳng2px
             }
             item.mbLocation = { x: left, y: top };
             if (item.twLocation.x == left && item.twLocation.y == top) {
                 drawcircleX(left, top, mbColor)
-                //伪造title
+                //Giả mạotitle
                 drawFalsifyTitle(left, top, item.tw+"，"+ item.mb);
             }
             else {
                 drawDot(left, top, mbColor, item.mb);
-                //伪造title
+                //Giả mạotitle
                 drawFalsifyTitle(left, top, item.mb);
             }
 
         }
     }
 
-    //画呼吸点
+    //Vẽ điểm hô hấp
     function drawHxPoint(item) {
         if (item.hx) {
             var idx = getIndexOfRq(item.rq);
@@ -938,23 +938,23 @@
             //    top = twLastTop;
             //}
             //else {
-            //    //*5是因为每10占5格 即每2占一格 .toFixed(2)是js减法bug
+            //    //*5là vì mỗi10chiếm5ô tức là mỗi2chiếm một ô .toFixed(2)Cójsphép trừbug
             //    top += ((hxArr[0] - item.hx).toFixed(2) / 2).toFixed(2) * sspace;
             //}
-            //让其居这个时间点 居中
+            //để nó căn vào thời điểm này căn giữa
             left += sspacewidth / 2;
             if ($.jsonWhere(hxArr, function (v) { return v == item.hx }).length == 1
                 && item.hx != hxArr[0] && item.hx != hxArr[hxArr.length - 1]) {
-                top = top + 0.5;    //正点呈现特殊，因为线高度2px
+                top = top + 0.5;    //Hiển thị đúng giờ là trường hợp đặc biệt, vì chiều cao của đường thẳng2px
             }
             item.hxLocation = { x: left, y: top };
             drawSquare(left, top, hxColor, item.hx);
-            //伪造title
+            //Giả mạotitle
             drawFalsifyTitle(left, top, item.hx);
         }
     }
 
-    //画血压点
+    //Vẽ điểm huyết áp
     function drawXyPoint(item) {
         var idx = getIndexOfRq(item.rq);
         if (idx < 0) {
@@ -970,18 +970,18 @@
                 top = twLastTop;
             }
             else {
-                //*5是因为每20占5格 即每4占一格 .toFixed(2)是js减法bug
+                //*5là vì mỗi20chiếm5ô tức là mỗi4chiếm một ô .toFixed(2)Cójsphép trừbug
                 top += ((xyArr[0] - item.xysz).toFixed(2) / 4).toFixed(2) * sspace;
             }
-            //让其居这个时间点 居中
+            //để nó căn vào thời điểm này căn giữa
             left += sspacewidth / 2;
             if ($.jsonWhere(xyArr, function (v) { return v == item.xysz }).length == 1
                 && item.xysz != xyArr[0] && item.xysz != xyArr[xyArr.length - 1]) {
-                top = top + 0.5;    //正点呈现特殊，因为线高度2px
+                top = top + 0.5;    //Hiển thị đúng giờ là trường hợp đặc biệt, vì chiều cao của đường thẳng2px
             }
             item.xyszLocation = { x: left, y: top };
             drawUparrow(left, top, xyszColor, item.xysz);
-            //伪造title
+            //Giả mạotitle
             drawFalsifyTitle(left, top, item.xysz);
         }
         if (item.xyxz) {
@@ -994,23 +994,23 @@
                 top = twLastTop;
             }
             else {
-                //*5是因为每20占5格 即每4占一格 .toFixed(2)是js减法bug
+                //*5là vì mỗi20chiếm5ô tức là mỗi4chiếm một ô .toFixed(2)Cójsphép trừbug
                 top += ((xyArr[0] - item.xyxz).toFixed(2) / 4).toFixed(2) * sspace;
             }
-            //让其居这个时间点 居中
+            //để nó căn vào thời điểm này căn giữa
             left += sspacewidth / 2;
             if ($.jsonWhere(xyArr, function (v) { return v == item.xyxz }).length == 1
                 && item.xyxz != xyArr[0] && item.xyxz != xyArr[xyArr.length - 1]) {
-                top = top + 0.5;    //正点呈现特殊，因为线高度2px
+                top = top + 0.5;    //Hiển thị đúng giờ là trường hợp đặc biệt, vì chiều cao của đường thẳng2px
             }
             item.xyxzLocation = { x: left, y: top };
             drawDownarrow(left, top, xyxzColor, item.xyxz);
-            //伪造title
+            //Giả mạotitle
             drawFalsifyTitle(left, top, item.xyxz);
         }
     }
 
-    //画物理降温
+    //Vẽ hạ nhiệt vật lý
     function drawWljwPoint(item) {
         if (item.wljw) {
             var idx = getIndexOfRq(item.rq);
@@ -1026,23 +1026,23 @@
                 top = twLastTop;
             }
             else {
-                //*5是因为每1度占5格 .toFixed(2)是js减法bug
+                //*5là vì mỗi1độ chiếm5ô .toFixed(2)Cójsphép trừbug
                 top += (wljwArr[0] - item.wljw).toFixed(2) * 5 * sspace;
             }
-            //让其居这个时间点 居中
+            //để nó căn vào thời điểm này căn giữa
             left += sspacewidth / 2;
             if ($.jsonWhere(wljwArr, function (v) { return v == item.wljw }).length == 1
                 && item.wljw != wljwArr[0] && item.wljw != wljwArr[wljwArr.length - 1]) {
-                top = top + 0.5;    //正点呈现特殊，因为线高度2px
+                top = top + 0.5;    //Hiển thị đúng giờ là trường hợp đặc biệt, vì chiều cao của đường thẳng2px
             }
             item.wljwLocation = { x: left, y: top };
             drawRound(left, top, wljwColor, item.wljw);
-            //伪造title
+            //Giả mạotitle
             drawFalsifyTitle(left, top, item.wljw);
         }
     }
 
-    //type默认横线，传递false画竖线
+    //typeĐường ngang mặc định, truyềnfalseVẽ đường dọc
     function drawLine(left, top, length, colorClass, type, bold, zIndex) {
         var html = '<div style="position:absolute;left:' + left + 'px;top:' + top + 'px;';
         html += (type === 'vline' ? 'height' : 'width') + ":" + length + "px;";
@@ -1051,11 +1051,11 @@
         }
         html += '"';
         html += ' class="';
-        //默认横线
+        //Đường ngang mặc định
         var lineClass = (type === 'vline' ? 'vline' : 'line');
         lineClass = bold === 'bold' ? lineClass + "bold" : lineClass;
         html += ' ' + lineClass;
-        //颜色默认#999
+        //Màu mặc định#999
         html += ' ' + (!!colorClass ? colorClass : 'c999');
         html += '"';
         html += '>';
@@ -1065,15 +1065,15 @@
         return $html;
     }
 
-    //以(left, top)为中心画一个点
+    //Lấy(left, top)làm trung tâm vẽ một điểm
     function drawDot(left, top, colorClass) {
-        //考虑border呈现问题
-        left = left - 3;    //3为border的宽度
+        //Xem xétborderVấn đề hiển thị
+        left = left - 3;    //3làborderchiều rộng của
         top = top - 3;
         var html = '<div style="position:absolute;left:' + left + 'px;top:' + top + 'px;';
         html += '"';
         html += ' class="dot';
-        //颜色默认#999
+        //Màu mặc định#999
         html += ' ' + (!!colorClass ? colorClass : 'c999');
         html += '"';
         html += '>';
@@ -1083,12 +1083,12 @@
         return $html;
     }
 
-    //以(left, top)为中心画一个X
+    //Lấy(left, top)làm trung tâm vẽ mộtX
     function drawX(left, top, colorClass) {
         if (canvasdrawX(left, top, colorClass)) {
             return;
         }
-        //left - 1是因为length 2
+        //left - 1là vìlength 2
         drawLine(left - 0.5 - 1, top - 0.5, 2, colorClass);
         drawLine(left - 1.5 - 1, top - 1.5, 2, colorClass);
         drawLine(left - 2.5 - 1, top - 2.5, 2, colorClass);
@@ -1104,7 +1104,7 @@
         drawLine(left - 2.5 - 1, top + 2.5, 2, colorClass);
     }
 
-    //以(left, top)为中心画一个Square
+    //Lấy(left, top)làm trung tâm vẽ mộtSquare
     function drawSquare(left, top, colorClass) {
         if (canvasdrawSquare(left, top, colorClass)) {
             return;
@@ -1115,13 +1115,13 @@
         drawLine(left + 2.5, top - 2.5, 6, colorClass, 'vline');
     }
 
-    //以(left, top)为中心画一个上箭头
+    //Lấy(left, top)làm trung tâm vẽ một mũi tên lên
     function drawUparrow(left, top, colorClass) {
         if (canvasdrawUparrow(left, top, colorClass)) {
             return;
         }
-        top += 2;   //使箭头在线上
-        //left - 1是因为length 2
+        top += 2;   //để mũi tên nằm trên đường thẳng
+        //left - 1là vìlength 2
         drawLine(left - 1, top - 2, 2, colorClass);
         //
         drawLine(left + 1 - 1, top - 1, 2, colorClass);
@@ -1135,13 +1135,13 @@
         drawLine(left - 4 - 1, top + 2, 2, colorClass);
     }
 
-    //以(left, top)为中心画一个下箭头
+    //Lấy(left, top)làm trung tâm vẽ một mũi tên xuống
     function drawDownarrow(left, top, colorClass) {
         if (canvasdrawDownarrow(left, top, colorClass)) {
             return;
         }
-        top -= 2;   //使箭头在线上
-        //left - 1是因为length 2
+        top -= 2;   //để mũi tên nằm trên đường thẳng
+        //left - 1là vìlength 2
         drawLine(left - 1, top + 2, 2, colorClass);
         //
         drawLine(left + 1 - 1, top + 1, 2, colorClass);
@@ -1155,15 +1155,15 @@
         drawLine(left - 4 - 1, top - 2, 2, colorClass);
     }
 
-    //以(left, top)为中心画一个空心圆
+    //Lấy(left, top)làm trung tâm vẽ một vòng tròn rỗng
     function drawRound(left, top, colorClass) {
-        //考虑border呈现问题
-        left = left - 3;    //3为border的宽度
+        //Xem xétborderVấn đề hiển thị
+        left = left - 3;    //3làborderchiều rộng của
         top = top - 3;
         var html = '<div style="position:absolute;left:' + left + 'px;top:' + top + 'px;';
         html += '"';
         html += ' class="round';
-        //颜色默认#999
+        //Màu mặc định#999
         html += ' ' + (!!colorClass ? colorClass : 'c999');
         html += '"';
         html += '>';
@@ -1172,15 +1172,15 @@
         $html.appendTo($board);
         return $html;
     }
-    //以(left, top)为中心画一个空心圆X
+    //Lấy(left, top)làm trung tâm vẽ một vòng tròn rỗngX
     function drawcircleX(left, top, colorClass) {
-        //考虑border呈现问题
-        left = left - 3;    //3为border的宽度
+        //Xem xétborderVấn đề hiển thị
+        left = left - 3;    //3làborderchiều rộng của
         top = top - 3;
         var html = '<div style="position:absolute;left:' + left + 'px;top:' + top + 'px;';
         html += '"';
         html += ' class="circleX';
-        //颜色默认#999
+        //Màu mặc định#999
         //html += ' ' + (!!colorClass ? colorClass : 'c999');
         html += '"';
         html += '>';
@@ -1191,22 +1191,22 @@
     }
 
 
-    //两点画连线 p2.x 比 p1.x大
-    function drawLigature(p1, p2, colorClass, type) {//2021-2-5 增加type参数 dotline为虚线
+    //Hai điểm vẽ đường nối p2.x hơn p1.xlớn
+    function drawLigature(p1, p2, colorClass, type) {//2021-2-5 ThêmtypeTham số dotlinelà đường nét đứt
         if (canvasdrawLigature(p1, p2, colorClass, type)) {
             return;
         }
-        //x x之间多少个像素
+        //x xgiữa có bao nhiêu pixel
         var xDifference = parseInt(p2.x - p1.x);
-        //要画xDifference个像素点
+        //cần vẽxDifferencepixel
         for (var i = 0; i < xDifference; i++) {
             var left = p1.x + i;
             var dwspace = ((p2.y - p1.y) / xDifference);
             var pointCount = dwspace % 1 == 0 ? Math.abs(parseInt(dwspace)) : (Math.abs(parseInt(dwspace)) + 1);
             if (pointCount == 0) {
-                //这是横线 
+                //Đây là đường ngang 
                 var top = p1.y;
-                if (type == 'dotline') {//虚线
+                if (type == 'dotline') {//Đường nét đứt
                     drawLine(left, top, 1, colorClass, 'dotline', '', 2);
                 } else {
                     drawLine(left, top, 1, colorClass, '', '', 2);
@@ -1214,16 +1214,16 @@
             }
             else if (pointCount == 1) {
                 var top = p1.y + dwspace * i;
-                if (type == 'dotline') {//虚线
+                if (type == 'dotline') {//Đường nét đứt
                     drawLine(left, top, 1, colorClass, 'dotline', '', 2);
                 } else {
                     drawLine(left, top, 1, colorClass, '', '', 2);
                 }
             }
             else {
-                //pointCount点的数量
+                //pointCountSố lượng điểm
                 for (var j = 0; j < pointCount; j++) {
-                    left = left + (1.0 / pointCount);//已经累加了
+                    left = left + (1.0 / pointCount);//Đã được cộng dồn
                     var top = p1.y + dwspace * i + ((dwspace / pointCount) * j);
                     drawLine(left, top, 1, colorClass, '', '', 2);
                 }
@@ -1231,7 +1231,7 @@
         }
     }
 
-    //伪造title
+    //Giả mạotitle
     function drawFalsifyTitle(left, top, title) {
         if (!!title) {
             var html = '<div style="position:absolute;width:14px;height:14px;z-index:1;left:' + (left - 7) + 'px;top:' + (top - 7) + 'px;';
@@ -1262,9 +1262,9 @@
 
 </script>
 <script>
-    //全局变量
+    //Biến toàn cục
     var canvasAble = false;
-    //只调用一次即可
+    //Chỉ cần gọi một lần
     function checkCanvasAble() {
         try {
             var myCanvas = document.getElementById("drawCanvas" + billIndex);
@@ -1278,8 +1278,8 @@
         }
     }
 
-    //canvas两点画连线 p2.x 比 p1.x大
-    function canvasdrawLigature(p1, p2, colorClass, type) {//增加type参数,为dotline时画虚线
+    //canvasHai điểm vẽ đường nối p2.x hơn p1.xlớn
+    function canvasdrawLigature(p1, p2, colorClass, type) {//ThêmtypeTham số,làdotlinekhi đó vẽ đường nét đứt
         if (!canvasAble) {
             return false;
         }
@@ -1287,24 +1287,24 @@
         var context = myCanvas.getContext("2d");
         var clr = colorClass.substring(1);
         if (clr % 1 == 0) {
-            clr = '#' + clr;    //#333 666之类的
+            clr = '#' + clr;    //#333 666các loại tương tự
         }
-        if (type == 'dotline') {//画虚线
+        if (type == 'dotline') {//Vẽ đường nét đứt
             context.setLineDash([2, 3]);
         }
-        context.strokeStyle = clr;//线条颜色
-        context.lineWidth = 1;//设置线宽
+        context.strokeStyle = clr;//Màu đường thẳng
+        context.lineWidth = 1;//Thiết lập độ rộng nét vẽ
         context.beginPath();
         context.moveTo(p1.x, p1.y);
         context.lineTo(p2.x, p2.y);
-        context.stroke();//画线框
+        context.stroke();//Vẽ khung đường thẳng
         return true;
     }
 
-    //canvas以(left, top)为中心画一个下箭头
+    //canvasLấy(left, top)làm trung tâm vẽ một mũi tên xuống
     function canvasdrawDownarrow(left, top, colorClass) {
-        top -= 2;   //使箭头在线上
-        //left - 1是因为length 2
+        top -= 2;   //để mũi tên nằm trên đường thẳng
+        //left - 1là vìlength 2
         if (!canvasAble) {
             return false;
         }
@@ -1312,22 +1312,22 @@
         var context = myCanvas.getContext("2d");
         var clr = colorClass.substring(1);
         if (clr % 1 == 0) {
-            clr = '#' + clr;    //#333 666之类的
+            clr = '#' + clr;    //#333 666các loại tương tự
         }
-        context.strokeStyle = clr;//线条颜色
-        context.lineWidth = 2;//设置线宽
+        context.strokeStyle = clr;//Màu đường thẳng
+        context.lineWidth = 2;//Thiết lập độ rộng nét vẽ
         context.beginPath();
         context.moveTo(left + 4 + 1, top - 2 - 1);
         context.lineTo(left, top + 2);
         context.lineTo(left - 4 - 1, top - 2 - 1);
-        context.stroke();//画线框
+        context.stroke();//Vẽ khung đường thẳng
 
         return true;
     }
 
-    //canvas以(left, top)为中心画一个上箭头
+    //canvasLấy(left, top)làm trung tâm vẽ một mũi tên lên
     function canvasdrawUparrow(left, top, colorClass) {
-        top += 2;   //使箭头在线上
+        top += 2;   //để mũi tên nằm trên đường thẳng
         if (!canvasAble) {
             return false;
         }
@@ -1335,20 +1335,20 @@
         var context = myCanvas.getContext("2d");
         var clr = colorClass.substring(1);
         if (clr % 1 == 0) {
-            clr = '#' + clr;    //#333 666之类的
+            clr = '#' + clr;    //#333 666các loại tương tự
         }
-        context.strokeStyle = clr;//线条颜色
-        context.lineWidth = 2;//设置线宽
+        context.strokeStyle = clr;//Màu đường thẳng
+        context.lineWidth = 2;//Thiết lập độ rộng nét vẽ
         context.beginPath();
         context.moveTo(left + 4 + 1, top + 2 + 1);
         context.lineTo(left, top - 2);
         context.lineTo(left - 4 - 1, top + 2 + 1);
-        context.stroke();//画线框
+        context.stroke();//Vẽ khung đường thẳng
 
         return true;
     }
 
-    //canvas以(left, top)为中心画一个X
+    //canvasLấy(left, top)làm trung tâm vẽ mộtX
     function canvasdrawX(left, top, colorClass) {
         if (!canvasAble) {
             return false;
@@ -1357,21 +1357,21 @@
         var context = myCanvas.getContext("2d");
         var clr = colorClass.substring(1);
         if (clr % 1 == 0) {
-            clr = '#' + clr;    //#333 666之类的
+            clr = '#' + clr;    //#333 666các loại tương tự
         }
-        context.strokeStyle = clr;//线条颜色
-        context.lineWidth = 2;//设置线宽
+        context.strokeStyle = clr;//Màu đường thẳng
+        context.lineWidth = 2;//Thiết lập độ rộng nét vẽ
         context.beginPath();
         context.moveTo(left - 3, top + 3);
         context.lineTo(left + 3, top - 3);
         context.moveTo(left + 3, top + 3);
         context.lineTo(left - 3, top - 3);
-        context.stroke();//画线框
+        context.stroke();//Vẽ khung đường thẳng
 
         return true;
     }
 
-    //canvas以(left, top)为中心画一个Square
+    //canvasLấy(left, top)làm trung tâm vẽ mộtSquare
     function canvasdrawSquare(left, top, colorClass) {
         if (!canvasAble) {
             return false;
@@ -1380,10 +1380,10 @@
         var context = myCanvas.getContext("2d");
         var clr = colorClass.substring(1);
         if (clr % 1 == 0) {
-            clr = '#' + clr;    //#333 666之类的
+            clr = '#' + clr;    //#333 666các loại tương tự
         }
-        context.strokeStyle = clr;//线条颜色
-        context.lineWidth = 2;//设置线宽
+        context.strokeStyle = clr;//Màu đường thẳng
+        context.lineWidth = 2;//Thiết lập độ rộng nét vẽ
         context.beginPath();
         context.moveTo(left - 3, top - 3);
         context.lineTo(left + 3, top - 3);
@@ -1391,12 +1391,12 @@
         context.lineTo(left - 3, top + 3);
         //context.lineTo(left - 3, top - 3);
         context.closePath();
-        context.stroke();//画线框
+        context.stroke();//Vẽ khung đường thẳng
 
         return true;
     }
 
-    //获取rq在rqCellValueArr中index
+    //LấyrqtạirqCellValueArrtrongindex
     function getIndexOfRq(rq) {
         rq = $.getDate({ date: rq, ute: true });
         for (var iiIndex = 0; iiIndex < rqCellValueArr.length; iiIndex++) {

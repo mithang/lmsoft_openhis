@@ -23,13 +23,13 @@
     <form id="form1">
         <table class="form" style="margin-top:10px;">
             <tr>
-                <th class="formTitle"><span class="required">*</span>模板名称: </th>
+                <th class="formTitle"><span class="required">*</span>Tên mẫu: </th>
                 <td class="formValue">
                     <input id="mbmc" name="mbmc" type="text" class="form-control required" />
                 </td>
                 <td class="formValue">
-                    <input type="button" id="" class="btn btn-primary" value="保存" style="margin-left:20%; width:20%;" onclick="SaveSS()" />
-                    <input type="button" id="" class="btn btn-primary" value="删除" style="margin-left:10%; width:20%;" onclick="Delete()" />
+                    <input type="button" id="" class="btn btn-primary" value="Lưu" style="margin-left:20%; width:20%;" onclick="SaveSS()" />
+                    <input type="button" id="" class="btn btn-primary" value="Xóa" style="margin-left:10%; width:20%;" onclick="Delete()" />
                 </td>
                 <td colspan="2"></td>
             </tr>
@@ -40,7 +40,7 @@
 <script>
     var mbId = $.request("mbId");
     var localdata = [];
-    var deldata = [];//删除对象
+    var deldata = [];//Xóa đối tượng
     $(function () {
         gridssyz();
 		    if (mbId) {
@@ -69,23 +69,23 @@
         }
     });
 
-    //列表
+    //Danh sách
     function gridssyz() {
         var $gridssyz = $("#gridssyz");
         $gridssyz.jqGrid({
             datatype: 'local',
             data: localdata,
             height: $(window).height() - 200,
-            shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
+            shrinkToFit: true,   //true:Khởi tạo chiều rộng cột theo tỷ lệ false:Sử dụngcolModelchiều rộng đã chỉ định
             autowidth: true,
-            rownumbers: true,  //是否显示序号
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            rownumbers: true,  //Có hiển thị số thứ tự không
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
                 { label: 'Id', name: 'Id', align: 'center', hidden: true },
-                { name: 'DietBigType', hidden: true, editable: true },//大分类
+                { name: 'DietBigType', hidden: true, editable: true },//Nhóm lớn
                 {
-                    label: '<span class="required">*</span>膳食型号', name: 'ssxh', width: 100, editwidth: '80%', align: 'center', edittype: "select", editable: true, editoptions: {
+                    label: '<span class="required">*</span>Loại suất ăn', name: 'ssxh', width: 100, editwidth: '80%', align: 'center', edittype: "select", editable: true, editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
@@ -98,7 +98,7 @@
                                     if (dfl != undefined && dfl != "") {
                                         inityszsFloat(rowid, dfl);
                                     }
-                                    generateysinfo(rowid, $(this).val());//生成膳食类别和膳食指示,禁用文本框
+                                    generateysinfo(rowid, $(this).val());//Tạo loại suất ăn và chỉ định ăn uống,Vô hiệu hóa hộp văn bản
                                 }
                             }
                         ]
@@ -108,7 +108,7 @@
                 { label: 'ssxhdm', name: 'ssxhdm', hidden: true, editable: true, editrules: { required: true } },
                 { label: 'ssxhval', name: 'ssxhval', hidden: true, editable: true, editrules: { required: true } },
                 {
-                    label: '膳食类别', name: 'yslb', name: 'yslb', width: 100, editwidth: '70%', align: 'center', editable: true, edittype: "select", editoptions: {
+                    label: 'Loại suất ăn', name: 'yslb', name: 'yslb', width: 100, editwidth: '70%', align: 'center', editable: true, edittype: "select", editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
@@ -117,9 +117,9 @@
                                     var rowid = row.attr('id');
                                     $("#" + rowid + "_yslbdm").val($(this).val());
                                     if ($(this).find("option:selected").text() == "膳食自备") {
-                                        $("#" + rowid + "_yszs").val('').attr('disabled', 'true').css('background-color', '#f6f7fb');//禁用饮食指示
+                                        $("#" + rowid + "_yszs").val('').attr('disabled', 'true').css('background-color', '#f6f7fb');//Vô hiệu hóa chỉ định ăn uống
                                     } else {
-                                        $("#" + rowid + "_yszs").removeAttr('disabled').css('background-color', 'white');//禁用饮食指示
+                                        $("#" + rowid + "_yszs").removeAttr('disabled').css('background-color', 'white');//Vô hiệu hóa chỉ định ăn uống
                                     }
                                 }
                             }
@@ -130,13 +130,13 @@
                     name: 'yslbdm', width: 100, editwidth: '100%', hidden: true, editable: true
                 },
                 {
-                    label: '膳食指示', name: 'yszs', width: 100, editwidth: '100%', align: 'center', editable: true
+                    label: 'Chỉ định ăn uống', name: 'yszs', width: 100, editwidth: '100%', align: 'center', editable: true
                 },
                 {
                     name: 'yszsval', width: 100, editwidth: '100%', hidden: true, editable: true
                 },
                 {
-                    label: '剂量', name: 'ypjl', width: 55, editwidth: '100%', align: 'center', editable: true, editoptions: {
+                    label: 'Liều lượng', name: 'ypjl', width: 55, editwidth: '100%', align: 'center', editable: true, editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
@@ -146,11 +146,11 @@
                                     var rowid = row.attr('id');
                                     var dfl = $("#" + rowid + "_DietBigType").val();
                                     if (dfl == "YYBCJ" && cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                        $.modalAlert("剂量为空，请确认。", 'warning');
+                                        $.modalAlert("Liều lượng trống, vui lòng xác nhận.", 'warning');
                                         return;
                                     }
                                     if (isNaN(cellval)) {
-                                        $.modalAlert("剂量：请填写数字", 'warning');
+                                        $.modalAlert("Liều lượng: vui lòng nhập số", 'warning');
                                         $(this).val('')
                                         return;
                                     }
@@ -159,10 +159,10 @@
                         ]
                     }
                 },
-                { label: '<span class="required">*</span>频次', name: 'pcmc', width: 60, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
+                { label: '<span class="required">*</span>Tần suất', name: 'pcmc', width: 60, editwidth: '100%', align: 'center', editrules: { required: true }, editable: true },
                 { label: 'pcCode', name: 'pcCode', editwidth: '100%', align: 'center', editable: true, hidden: true },
                 {
-                    label: '能量密度', name: 'nlmd', width: 100, editwidth: '80%', align: 'center', edittype: "select", editable: true, editoptions: {
+                    label: 'Mật độ năng lượng', name: 'nlmd', width: 100, editwidth: '80%', align: 'center', edittype: "select", editable: true, editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
@@ -179,7 +179,7 @@
                 { label: 'nlmddm', name: 'nlmddm', editwidth: '100%', align: 'center', editable: true, hidden: true },
                 { label: 'yfmcval', name: 'yfmcval', width: 75, editwidth: '100%', align: 'center', editable: true, hidden: true },
                 {
-                    label: '<span class="required">*</span>用法', name: 'yfmc', width: 100, editwidth: '70%', align: 'center', edittype: "select", editable: true, editoptions: {
+                    label: '<span class="required">*</span>Cách dùng', name: 'yfmc', width: 100, editwidth: '70%', align: 'center', edittype: "select", editable: true, editoptions: {
                         dataEvents: [
                             {
                                 type: 'change',
@@ -198,13 +198,13 @@
                 { label: 'zxcs', name: 'zxcs', editable: true, hidden: true },
                 { label: 'zxzq', name: 'zxzq', editable: true, hidden: true },
                 { label: 'zxzqdw', name: 'zxzqdw', editable: true, hidden: true },
-                { label: '嘱托', name: 'ztnr', width: 140, editwidth: '100%', align: 'center', editable: true },
-                { label: '操作', name: 'action', width: 80, align: 'center' },
+                { label: 'Dặn dò', name: 'ztnr', width: 140, editwidth: '100%', align: 'center', editable: true },
+                { label: 'Thao tác', name: 'action', width: 80, align: 'center' },
                 { name: 'ysgh', hidden: true },
                 { name: 'yzlx', hidden: true }
             ],
-            editinputwidthborder: false,    //是否需要边框 默认为true
-            editinputborderradius: false,   //是否需要边框圆角 默认true（有圆角）
+            editinputwidthborder: false,    //Có cần viền không mặc định làtrue
+            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue(có bo góc)
             pager: "gridssyzPager",
             loadComplete: function () {
                 if (localdata && localdata.length == 0) {
@@ -213,30 +213,30 @@
             },
             gridComplete: function () {
                 EnableInlineEditBox();
-                //隐藏grid底部滚动条
+                //ẨngridThanh cuộn dưới cùng
                 $gridssyz.closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
             }
         });
 
-        //二级菜单
+        //Menu cấp hai
         $gridssyz.jqGrid('setGroupHeaders', {
             useColSpanStyle: true,
             groupHeaders: [
                 {
                     startColumnName: 'ssxh',
                     numberOfColumns: 6,
-                    titleText: '膳食信息'
+                    titleText: 'Thông tin suất ăn'
                 }]
         });
 
-        //自定义按钮
+        //Nút tùy chỉnh
         $gridssyz.navGrid('#gridssyzPager',
             { edit: false, add: false, del: false, search: false, refresh: false, view: false, position: "left", cloneToTop: false })
             .navButtonAdd('#gridssyzPager',
             {
                 buttonicon: "glyphicon glyphicon-new-window",
-                title: "新明细",
-                caption: "新明细",
+                title: "Chi tiết mới",
+                caption: "Chi tiết mới",
                 position: "first",
                 onClickButton: function () {
                     newPresData();
@@ -252,7 +252,7 @@
             searchdl: dfl,
             mutiselect: dfl == "PTSS",
             checkItemActivity: function ($li, $thisinput) {
-                var selected = false;//默认没有选中当前值
+                var selected = false;//Mặc định không chọn giá trị hiện tại
                 var selectval = $thisinput.val();
                 if (selectval) {
                     selectval = selectval.split(',');
@@ -288,17 +288,17 @@
         });
     }
 
-    //启用行内编辑
+    //Bật chỉnh sửa trong dòng
     function EnableInlineEditBox() {
         var ids = $("#gridssyz").getDataIDs();
         $.each(ids, function () {
             var rowid = String(this);
-            //打开编辑模式
+            //Mở chế độ chỉnh sửa
             $("#gridssyz").jqGrid('editRow', rowid, false, initInlineFunc);
         });
     }
 
-    //初始化 浮层
+    //Khởi tạo Lớp nổi
     function initInlineFunc(rowid) {
         var currentssxh=  $("#" + rowid + "_ssxhdm").val();
         $.najax({
@@ -307,7 +307,7 @@
             dataType: "json",
             type: "POST",
             success: function (data) {
-                var ysxhoption = "<option>请选择</option>";
+                var ysxhoption = "<option>Vui lòng chọn</option>";
                 if (data != undefined && data.length > 0) {
                     $.each(data, function (idx, val) {
                         if (currentssxh === val.Id) {
@@ -327,7 +327,7 @@
         Generatenlmdoption(rowid);
         var currlineId = $("#gridssyz").getRowData(rowid).Id;
         $("#" + rowid + "_pcmc").attr('readonly','true');
-        //频次浮层
+        //Lớp nổi tần suất
         $("#" + rowid + "_pcmc").pcFloatingSelector({
             showtext: 'yzpcmc',
             attrcols: ['yzpcmc', 'yzpcCode', 'zxcs', 'zxzq', 'zxzqdw'],
@@ -339,7 +339,7 @@
                 $("#" + rowid + "_zxzqdw").val($this.attr('data-zxzqdw'));
 
                 var pcCode = $("#" + rowid + "_pcCode").val();
-                //临时医嘱天数禁用
+                //Vô hiệu hóa số ngày của y lệnh tạm thời
                 if ('@ViewBag.pcStr' !== '' && pcCode !== '' && (!isNaN(pcCode)) &&
                     (('@ViewBag.pcStr').indexOf(pcCode) > -1)) {
                     $("#" + rowid + "_ts").css('background-color', '#f6f7fb').attr('readonly', 'true');
@@ -349,7 +349,7 @@
             },
         });
 
-        //嘱托浮层
+        //Lớp nổi dặn dò
         $("#" + rowid + "_ztnr").ztFloatingSelector({
             height: 100,
             itemdbclickhandler: function ($this) {
@@ -358,7 +358,7 @@
         });
     }
 
-    //新增 按钮
+    //Thêm mới Nút
     function newPresData() {
         var dataRow = {
              Id: Math.random().toString() + new Date().getMilliseconds(),
@@ -368,12 +368,12 @@
         $("#gridssyz").jqGrid("addRowData", undefined, dataRow, "first");
     }
 
-    //删除明细
+    //Xóa chi tiết
     function deleteRowData(selRowId, recalc) {
         if (!!selRowId) {
            var Id= $("#gridssyz").jqGrid('getRowData', selRowId).Id;
             $("#gridssyz").jqGrid("delRowData", selRowId);
-            if (Id.indexOf("0.")=='-1') {//记录下来，从数据库删除
+            if (Id.indexOf("0.")=='-1') {//Ghi lại, xóa khỏi cơ sở dữ liệu
                 deldata.push(Id);
             }
         }
@@ -383,15 +383,15 @@
         return "<input class='btn btn-default btn-md btn_del' type='button' value='Delete' onclick='deleteRowData($(this).parent().parent().attr(\"id\"))'/>";
       }
 
-      //保存
+      //Lưu
     function SaveSS() {
-        //if (Validatessyz()) {//验证数据
+        //if (Validatessyz()) {//Xác thực dữ liệu
         var mbmc = $('#mbmc').val();
         if (mbmc == "" && isNaN(mbmc)) {
-            $.modalAlert("缺少模板名称", "warning");
+            $.modalAlert("Thiếu tên mẫu", "warning");
             return false;
         }
-            //获取所有行Id，遍历使编辑框处于保存状态
+            //Lấy tất cả các dòngId，duyệt để khung chỉnh sửa ở trạng thái lưu
             var rowIds = $("#gridssyz").jqGrid('getDataIDs');
             var validationFailedArr = [];
             for (var i = 0; i < rowIds.length; i++) {
@@ -403,16 +403,16 @@
             }
             if (validationFailedArr != null && validationFailedArr.length > 0) {
                 for (var i = 0; i < validationFailedArr.length; i++) {
-                    $("#gridssyz").jqGrid('editRow', validationFailedArr[i], false, initInlineFunc);//打开编辑模式
+                    $("#gridssyz").jqGrid('editRow', validationFailedArr[i], false, initInlineFunc);//Mở chế độ chỉnh sửa
                 }
                 return;
             }
 
             var gridssyzData = $("#gridssyz").jqGrid('getRowData_AllLine', null, true);
             if (gridssyzData.length < 1) {
-                $.modalAlert("当前没有保存的套餐内容", 'warning');
+                $.modalAlert("Hiện không có nội dung gói đã lưu", 'warning');
             }
-            $.each(gridssyzData, function () {    //去掉action
+            $.each(gridssyzData, function () {    //Loại bỏaction
                 for (var i = 0; i < $(this).length; i++) {
                      delete $(this)[i].action;
                      $(this)[i].ysgh = '@ViewBag.ysgh';
@@ -425,9 +425,9 @@
         //}
     }
 
-    //提交到后台
+    //Gửi về phía máy chủ
     function submitService(gridssyzData) {
-        //套餐表
+        //Bảng gói
         var mbObj = {
             Id: mbId,
             tcfw: $.currentWindow().$('#current').attr('data-type'),
@@ -439,9 +439,9 @@
             dataType: "json",
             data: { mbObj: mbObj, mbDetailList: gridssyzData },
             type: "POST",
-            loadingtext: "套餐数据保存中，请稍后...",
+            loadingtext: "Dữ liệu gói đang được lưu, vui lòng đợi...",
             success: function (data) {
-                $.modalMsg("保存成功", 'success');
+                $.modalMsg("Lưu thành công", 'success');
                    if(!mbId && data.data){
                     mbId = data.data;
                     $.currentWindow().expandyzlx = @Html.Raw(((int)EnumYzlx.ssyz).ToString());
@@ -452,12 +452,12 @@
         });
     }
 
-    //验证
+    //Xác thực
     function Validatessyz(rowdata) {
-        //是否有数据
+        //Có dữ liệu không
         //var data = $("#gridssyz").jqGrid('getRowData_AllLine', null, true);
         //if (data.length==0) {
-        //    $.modalAlert("缺少套餐数据", 'warning');
+        //    $.modalAlert("Thiếu dữ liệu gói", 'warning');
         //    return false;
         //}
         var ssxh = rowdata.ssxhval;//$("#" + rowid + "_ssxhval").val();
@@ -468,32 +468,32 @@
         var nlmddm = rowdata.nlmddm;//$("#" + rowid + "_nlmddm").val();
         var ypjl = rowdata.ypjl;
         if (ssxh == "") {
-            $.modalAlert("缺少膳食型号", "warning");
+            $.modalAlert("Thiếu loại suất ăn", "warning");
             return false;
         }
         if (dbt == 'PTSS' && ssxh != '禁食' && yslb == '') {
-            $.modalAlert("缺少膳食类别", "warning");
+            $.modalAlert("Thiếu loại suất ăn", "warning");
             return false;
         }
         if ((dbt == 'CNYY' || dbt == 'YYBCJ') && yszs == '') {
-            $.modalAlert("缺少膳食指示", "warning");
+            $.modalAlert("Thiếu chỉ định ăn uống", "warning");
             return false;
         }
         if (dbt == "YYBCJ" && ypjl.replace(/(^\s*)|(\s*$)/g, "") == "") {
-            $.modalAlert("缺少剂量", 'warning');
+            $.modalAlert("Thiếu liều lượng", 'warning');
             return;
         }
         if (rowdata.pcCode == "") {
-            $.modalAlert("缺少频次", "warning");
+            $.modalAlert("Thiếu tần suất", "warning");
             return false;
         }
 
         if (dbt == 'CNYY' && nlmddm == '') {
-            $.modalAlert("缺少能量密度", "warning");
+            $.modalAlert("Thiếu mật độ năng lượng", "warning");
             return false;
         }
         if (ypyfdm == '') {
-            $.modalAlert("缺少膳食用法", "warning");
+            $.modalAlert("Thiếu cách dùng suất ăn", "warning");
             return false;
         }
         return true;
@@ -502,7 +502,7 @@
 
     function Delete() {
         if (mbId == null || mbId == "") {
-            $.modalAlert("缺少套餐", "warning");
+            $.modalAlert("Thiếu gói", "warning");
             return;
         }
             $.najax({
@@ -510,16 +510,16 @@
             dataType: "json",
             data: { mbId: mbId},
             type: "POST",
-            loadingtext: "套餐数据删除中，请稍后...",
+            loadingtext: "Dữ liệu gói đang được xóa, vui lòng đợi...",
             success: function (data) {
-                $.modalMsg("删除成功", 'success');
+                $.modalMsg("Xóa thành công", 'success');
                 $.currentWindow().$("#beveltabs a[id='current']").trigger('click');
                 location.href = "/TemplateManage/DoctorServiceTemplate/FoodForm?mbId=";
             }
         });
     }
 
-    //生成膳食类别
+    //Tạo loại suất ăn
     function generateysinfo(rowid, $thisval) {
         var currentyslb = $("#" + rowid + "_yslbdm").val();
         if (currentyslb !== "") {
@@ -533,8 +533,8 @@
                 type: "POST",
                 success: function (data) {
                     $("#" + rowid + "_ssxhval").parent().next().children('select').html('');
-                    //$("#" + rowid + "_yslbdm").val('');//清空膳食类别
-                    var yslboption = "<option>请选择</option>";
+                    //$("#" + rowid + "_yslbdm").val('');//Xóa loại suất ăn
+                    var yslboption = "<option>Vui lòng chọn</option>";
                     if (data != undefined && data.length > 0) {
                         $.each(data, function (idx, val) {
                             if (currentyslb == val.Id) {
@@ -553,14 +553,14 @@
         var dfl = $("#" + rowid + "_DietBigType").parent().next().children('select').find("option:selected").attr('data-DietBigType');
         var lastdfl = $("#" + rowid + "_DietBigType").val();
         $("#" + rowid + "_DietBigType").val(dfl);
-        if (lastdfl !== "" && lastdfl !== dfl) {//修改大分类，清空膳食指示
+        if (lastdfl !== "" && lastdfl !== dfl) {//Sửa nhóm lớn, xóa chỉ định ăn uống
             $("#" + rowid + "_yszs").val('');
             $("#" + rowid + "_yszsval").val('');
         }
-        if (dfl == "PTSS") {//普通膳食 频次QD，剂量，能量密度禁用
+        if (dfl == "PTSS") {//Suất ăn thường Tần suấtQD, liều lượng, mật độ năng lượng bị vô hiệu hóa
             var ssxh = $("#" + rowid + "_ssxhval").val();
             if (ssxh == "禁食") {
-                $("#" + rowid + "_yszs").attr('disabled', 'true').css('background-color', '#f6f7fb');//禁用膳食指示
+                $("#" + rowid + "_yszs").attr('disabled', 'true').css('background-color', '#f6f7fb');//Vô hiệu hóa chỉ định ăn uống
                 $("#" + rowid + "_yszs").val('');
                 $("#" + rowid + "_yszsval").val('');
             } else {
@@ -573,34 +573,34 @@
             $("#" + rowid + "_zxcs").val('3')
             $("#" + rowid + "_zxzq").val('1')
             $("#" + rowid + "_zxzqdw").val('0');
-            $("#" + rowid + "_ypjl").attr('disabled', 'true').css('background-color', '#f6f7fb');//禁用频次
-            $("#" + rowid + "_pcCode").parent().next().children('select').html('').attr('disabled', 'true').css('background-color', '#f6f7fb');//禁用能量密度
-        } else if (dfl == "CNYY") { //肠内营养 频次默认ST，可用，剂量500ml
+            $("#" + rowid + "_ypjl").attr('disabled', 'true').css('background-color', '#f6f7fb');//Vô hiệu hóa tần suất
+            $("#" + rowid + "_pcCode").parent().next().children('select').html('').attr('disabled', 'true').css('background-color', '#f6f7fb');//Vô hiệu hóa mật độ năng lượng
+        } else if (dfl == "CNYY") { //Dinh dưỡng đường ruột Tần suất mặc địnhST, có thể dùng, liều lượng500ml
             $("#" + rowid + "_ypjl").val('500').attr('disabled', 'true').css('background-color', '#f6f7fb');
-            $("#" + rowid + "_pcCode").parent().next().children('select').removeAttr('disabled').css('background-color', 'white');//解禁能量密度
-            $("#" + rowid + "_ypjl").removeAttr('disabled').css('background-color', 'white');//解禁频次
-            Generatenlmdoption(rowid);//生成能量密度下拉框
-            $("#" + rowid + "_yszs").removeAttr('disabled').css('background-color', 'white');//解禁膳食指示
-        } else if (dfl == "YYBCJ") { //营养补充剂 频次默认ST，禁用，用法默认口服，禁用，天数禁用
+            $("#" + rowid + "_pcCode").parent().next().children('select').removeAttr('disabled').css('background-color', 'white');//Bỏ cấm mật độ năng lượng
+            $("#" + rowid + "_ypjl").removeAttr('disabled').css('background-color', 'white');//Bỏ cấm tần suất
+            Generatenlmdoption(rowid);//Tạo hộp thả xuống mật độ năng lượng
+            $("#" + rowid + "_yszs").removeAttr('disabled').css('background-color', 'white');//Bỏ cấm chỉ định ăn uống
+        } else if (dfl == "YYBCJ") { //Chất bổ sung dinh dưỡng Tần suất mặc địnhST, bị vô hiệu hóa, cách dùng mặc định uống, bị vô hiệu hóa, số ngày bị vô hiệu hóa
             $("#" + rowid + "_pcmc").attr('disabled', 'true').css('background-color', '#f6f7fb');
             $("#" + rowid + "_pcmc").val('ST');
             $("#" + rowid + "_pcCode").val('00');
             $("#" + rowid + "_zxcs").val('1')
             $("#" + rowid + "_zxzq").val('1')
             $("#" + rowid + "_zxzqdw").val('1');
-            $("#" + rowid + "_yfmcval").parent().next().children('select').val('03');//默认口服
-            $("#" + rowid + "_pcCode").parent().next().children('select').html('').attr('disabled', 'true').css('background-color', '#f6f7fb');//禁用能量密度
+            $("#" + rowid + "_yfmcval").parent().next().children('select').val('03');//Mặc định uống
+            $("#" + rowid + "_pcCode").parent().next().children('select').html('').attr('disabled', 'true').css('background-color', '#f6f7fb');//Vô hiệu hóa mật độ năng lượng
         }
         
     }
 
-    ///生成药品用法下拉框
+    ///Tạo hộp thả xuống cách dùng thuốc
     function Generatessypyfoption(rowid) {
         var curyfdm = $("#" + rowid + "_ypyfdm").val();
-        var jxyf = top.top.clients.ypyf;//所有用法
+        var jxyf = top.top.clients.ypyf;//Tất cả cách dùng
         $("#" + rowid + "_yfmcval").parent().next().children('select').html('');
         if (top.clients.itemDetails) {
-            var yfoption = "<option>请选择</option>";
+            var yfoption = "<option>Vui lòng chọn</option>";
             $.each(top.clients.itemDetails, function (idx, val) {
                 if (val.Type === "CNYYYF") {
                     $.each(val.Items, function (key, val) {

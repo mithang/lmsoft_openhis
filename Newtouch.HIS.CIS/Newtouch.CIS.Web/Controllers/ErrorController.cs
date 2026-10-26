@@ -8,7 +8,7 @@ namespace Newtouch.CIS.Web.Controllers
     public class ErrorController : Controller
     {
         /// <summary>
-        /// 异常发送 错误页面
+        /// Gửi ngoại lệ Trang lỗi
         /// </summary>
         /// <returns></returns>
         public ActionResult HttpError()
@@ -17,7 +17,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 404提醒页面
+        /// 404Trang nhắc nhở
         /// </summary>
         /// <returns></returns>
         public ActionResult NotFound()
@@ -27,7 +27,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 403提醒页面
+        /// 403Trang nhắc nhở
         /// </summary>
         /// <returns></returns>
         public ActionResult Forbidden()

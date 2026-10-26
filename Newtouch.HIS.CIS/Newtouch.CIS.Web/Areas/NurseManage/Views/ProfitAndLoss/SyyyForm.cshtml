@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "新增/修改";
+    ViewBag.Title = "Thêm mới/Sửa";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
@@ -14,22 +14,22 @@
             <div role="tabpanel" class="tab-pane fade in active">
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>损益标志：</th>
+                        <th class="formTitle"><span class="required">*</span>Dấu hiệu lãi lỗ:</th>
                         <td class="formValue">
                             @Html.DropDownList("sybz", EnumSybz.Profit.ToDescSelectList(), new { @class = "form-control" })
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>损溢原因：</th>
+                        <th class="formTitle"><span class="required">*</span>Lý do lãi lỗ:</th>
                         <td class="formValue">
-                            <input id="syyy" name="syyy" type="text" class="form-control required" placeholder="请输入名称" />
+                            <input id="syyy" name="syyy" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle" style="height: 35px;">选项：</th>
+                        <th class="formTitle" style="height: 35px;">Tùy chọn:</th>
                         <td class="formValue" style="padding-top: 1px;">
                             <div class="ckbox">
-                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
+                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Có hiệu lực</label>
                             </div>
                         </td>
                     </tr>
@@ -54,7 +54,7 @@
         }
     });
 
-    //提交
+    //Gửi
     function AcceptClick(callback) {
         if (!DataValidate()) {
             return;
@@ -70,10 +70,10 @@
         });
     }
 
-    //数据效验
+    //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#syyy").val() === "") {
-            $.modalAlert("损溢原因必填", 'warning');
+            $.modalAlert("Lý do lãi lỗ là bắt buộc", 'warning');
             return false;
         }
         return true;

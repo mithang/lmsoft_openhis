@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "输液历史查询";
+    ViewBag.Title = "Tra cứu lịch sử truyền dịch";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -10,33 +10,33 @@
 </style>
 <div class="panel panel-default">
     <div class="panel-heading navb-bg">
-        筛选条件
+        Điều kiện lọc
     </div>
     <table class="form">
         <tr>
-            <td class="formTitle" style="display:none">卡号：</td>
+            <td class="formTitle" style="display:none">Số thẻ:</td>
             <td class="formValue" style="display:none">
-                <input type="text" class="form-control" id="txtkh" placeholder="卡号" />
+                <input type="text" class="form-control" id="txtkh" placeholder="Số thẻ" />
             </td>
-            <td class="formTitle">门诊号：</td>
+            <td class="formTitle">Số khám ngoại trú:</td>
             <td class="formValue">
-                <input type="text" class="form-control" id="txtmzh" placeholder="门诊号" />
+                <input type="text" class="form-control" id="txtmzh" placeholder="Số khám ngoại trú" />
             </td>
-            <td class="formTitle">发票号：</td>
+            <td class="formTitle">Số hóa đơn:</td>
             <td class="formValue">
-                <input type="text" class="form-control" id="txtfph" placeholder="发票号" />
+                <input type="text" class="form-control" id="txtfph" placeholder="Số hóa đơn" />
             </td>
-            <td class="formTitle"><span style="color:#ff0000;">*</span>收费时间：</td>
+            <td class="formTitle"><span style="color:#ff0000;">*</span>Thời gian thu phí:</td>
             <td class="formValue">
                 <input id="txtsfkssj" type="text" class="form-control input-wdatepicker" style="width:90%; float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" onfocus="    WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd 00:00:00")">
             </td>
-            <td class="formTitle" style="width:10px">至</td>
+            <td class="formTitle" style="width:10px">đến</td>
             <td class="formValue">
                 <input id="txtsfjssj" type="text" class="form-control input-wdatepicker" style="width:90%; float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" onfocus="    WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")">
             </td>
             <td class="formValue">
-                <input type="button" class="btn btn-primary btn-md" id="btn_search" value="查询" />
-                <input type="button" class="btn btn-primary btn-md" id="btn_cxexecute" value="执行撤销" />
+                <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
+                <input type="button" class="btn btn-primary btn-md" id="btn_cxexecute" value="Hủy thực hiện" />
             </td>
         </tr>
     </table>
@@ -54,7 +54,7 @@
     var $gridMxList = $("#gridRpList");
     var currentMzh = "";
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt thì tải lạijqGridchiều rộng của
         $(window).resize(function () {
 
         });
@@ -62,7 +62,7 @@
         $("#btn_search").click(function () {
             currentMzh = "";
             if ($("#txtsfkssj").val() === "" || $("#txtsfjssj").val() === "") {
-                $.modalMsg("收费时间不能为空", "warning");
+                $.modalMsg("Thời gian thu phí không được trống", "warning");
                 return;
             }
             $gridMxList.jqGrid("clearGridData");
@@ -76,12 +76,12 @@
 
         $("#btn_cxexecute").click(function () {
             if (currentMzh === "") {
-                $.modalMsg("请选择患者", "warning");
+                $.modalMsg("Vui lòng chọn bệnh nhân", "warning");
                 return;
             }
             var ids = getCheckedIds();
             if (ids == null || ids.length <= 0) {
-                $.modalMsg("请勾选要取消执行的药品", "warning");
+                $.modalMsg("Vui lòng chọn thuốc cần hủy thực hiện", "warning");
                 return;
             }
              $.najax({
@@ -105,7 +105,7 @@
     $('#txtmzh ,#txtfph,#txtsfkssj,#txtsfjssj').change(function () {
         currentMzh = "";
         if ($("#txtsfkssj").val() === "" || $("#txtsfjssj").val() === "") {
-            $.modalMsg("收费时间不能为空", "warning");
+            $.modalMsg("Thời gian thu phí không được trống", "warning");
             return;
         }
         $gridMxList.jqGrid("clearGridData");
@@ -116,9 +116,9 @@
         }).trigger('reloadGrid');
     });
 
-    //获取选中checkbox的ID
+    //Lấy mục đã chọncheckboxcủaID
     function getCheckedIds() {
-        var selRowIds = jQuery("#gridRpList").jqGrid("getGridParam", "selarrrow");//选中的id
+        var selRowIds = jQuery("#gridRpList").jqGrid("getGridParam", "selarrrow");//đã chọnid
         if (selRowIds == null || selRowIds.length === 0) return;
         var ids = "";
         var ypids = "";
@@ -130,34 +130,34 @@
         return ids + "|"+ypids;
     }
 
-    //回车事件绑定
+    //Liên kết sự kiện Enter
     $(window).keyup(function (event) {
         if (event.keyCode == 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //初始化
+    //Khởi tạo
     function Initial() {
         gridList();
     }
 
-    //组装患者信息查询条件
+    //Lắp ráp điều kiện tra cứu thông tin bệnh nhân
     function getGridPatPar() {
         return { kh: $("#txtkh").val(),mzh: $("#txtmzh").val(), fph: $("#txtfph").val(), kssj: $("#txtsfkssj").val(), jssj: $("#txtsfjssj").val() }
     }
 
-    //主表信息
+    //Thông tin bảng chính
     function gridList() {
-        //患者信息
+        //Thông tin bệnh nhân
         $gridList.dataGrid({
             url: "/NurseManage/Infusion/PatientHistoryListQuery",
             postData: getGridPatPar(),
             height: $(window).height() - document.getElementById('gridPatList').offsetTop - 70,
             colModel: [
-                { label: '姓名', name: 'xm', width: 80, align: 'center' },
-                { label: '卡号', name: 'kh', width: 100, align: 'center' ,hidden:true},
-                { label: '门诊号', name: 'mzh', width: 100, align: 'center' },
+                { label: 'Họ tên', name: 'xm', width: 80, align: 'center' },
+                { label: 'Số thẻ', name: 'kh', width: 100, align: 'center' ,hidden:true},
+                { label: 'Số khám ngoại trú', name: 'mzh', width: 100, align: 'center' },
             ],
             pager: "#gridPatPager",
             rowNum: '25',
@@ -172,7 +172,7 @@
                     }).trigger('reloadGrid');
             }
         });
-        //输液药品信息
+        //Thông tin thuốc truyền dịch
         var checkTrigger = false;
         var list = new Array();
         var liststu = false;
@@ -184,31 +184,31 @@
             colModel: [
                 { label: 'Id', name: 'Id', key: true, hidden: true },
                 { label: 'syzxId', name: 'syzxId', hidden: true },
-                { label: '姓名', name: 'xm', width: 30, align: 'center' },
-                { label: '组', name: 'groupNo', width: 30, align: 'center' },
-                { label: '收费时间', name: 'sfsj', width: 115, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
-                { label: '处方号', name: 'cfh', width: 110, align: 'center' },
+                { label: 'Họ tên', name: 'xm', width: 30, align: 'center' },
+                { label: 'Nhóm', name: 'groupNo', width: 30, align: 'center' },
+                { label: 'Thời gian thu phí', name: 'sfsj', width: 115, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
+                { label: 'Số đơn thuốc', name: 'cfh', width: 110, align: 'center' },
                 {
-                    label: '皮试标识', name: 'ispsbz', width: 50, align: 'center', formatter: function (val) {
+                    label: 'Dấu hiệu test da', name: 'ispsbz', width: 50, align: 'center', formatter: function (val) {
                         return val == 1 ? "是" : "否"
                     }
                 },
                 {
-                    label: '皮试结果', name: 'psjg', width: 50, align: 'center'
+                    label: 'Kết quả test da', name: 'psjg', width: 50, align: 'center'
                 },
                 {
-                    label: '留观标志', name: 'islgbz', width: 50, align: 'center', formatter: function (val) {
+                    label: 'Dấu hiệu lưu quan sát', name: 'islgbz', width: 50, align: 'center', formatter: function (val) {
                         return val == 1 ? "是" : "否"
                     }
                 },
-                { label: '座号/床号', name: 'seatNum', width: 50, align: 'center' },
-                { label: '药品名称', name: 'ypmc', width: 100, align: 'left' },
-                { label: '规格', name: 'ypgg', width: 50, align: 'left' },
-                { label: '用量', name: 'ylStr', width: 50, align: 'right',hidden:true },
-                { label: '数量', name: 'slStr', width: 50, align: 'right' },
-                { label: '剂量', name: 'jlStr', width: 50, align: 'right' },
-                { label: '输液开始', name: 'sykssj', width: 115, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
-                { label: '输液结束', name: 'syjssj', width: 115, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
+                { label: 'Số ghế/Số giường', name: 'seatNum', width: 50, align: 'center' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 100, align: 'left' },
+                { label: 'Quy cách', name: 'ypgg', width: 50, align: 'left' },
+                { label: 'Lượng dùng', name: 'ylStr', width: 50, align: 'right',hidden:true },
+                { label: 'Số lượng', name: 'slStr', width: 50, align: 'right' },
+                { label: 'Liều lượng', name: 'jlStr', width: 50, align: 'right' },
+                { label: 'Bắt đầu truyền dịch', name: 'sykssj', width: 115, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
+                { label: 'Kết thúc truyền dịch', name: 'syjssj', width: 115, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
             ],
             pager: "#gridRpPager",
             rowNum: '25',
@@ -220,7 +220,7 @@
                     var rowData = $("#gridRpList").jqGrid('getRowData', rowIndex);
                     var ids = $("#gridRpList").jqGrid('getRowData_AllLine');
 
-                    liststu = s; //同步状态
+                    liststu = s; //Trạng thái đồng bộ
                     for (var i = 0; i < ids.length; i++) {
                         if (ids[i].cfh == rowData.cfh && ids[i].cfh != "") {
                             if (s == true) {
@@ -244,15 +244,15 @@
                 if (list.length > 0) {
 
                     for (j = j; j < list.length; j++) {
-                        if (liststu) //同组选中
+                        if (liststu) //Chọn cùng nhóm
                         {
                             j = j + 1;
                             $("#gridRpList").jqGrid("setSelection", list[j - 1], true);
 
                         }
-                        else { //同组取消选中
+                        else { //Hủy chọn cùng nhóm
                             //j = j + 1;
-                            $("#gridRpList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow
+                            $("#gridRpList").jqGrid("setSelection", list[j], false);      //Hủy không kích hoạtonselectrow
                         }
 
                     }

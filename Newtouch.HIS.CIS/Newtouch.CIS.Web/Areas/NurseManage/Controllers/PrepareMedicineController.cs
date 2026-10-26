@@ -41,7 +41,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取新的损益单号
+        /// Lấy số phiếu lãi lỗ mới
         /// </summary>
         /// <returns></returns>
         public ActionResult initialSYDH(string djmc)
@@ -51,7 +51,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 根据类型加载损益原因
+        /// Tải lý do lãi lỗ theo loại
         /// </summary>
         /// <param name="sylx"></param>
         /// <returns></returns>
@@ -63,7 +63,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取责任人list
+        /// Lấy người chịu trách nhiệmlist
         /// </summary>
         /// <param name="inputCode"></param>
         /// <returns></returns>
@@ -74,7 +74,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 查询损益药品list
+        /// Tra cứu thuốc lãi lỗlist
         /// </summary>
         /// <param name="inputCode"></param>
         /// <returns></returns>
@@ -85,7 +85,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 提交报损报益
+        /// Gửi báo hao hụt, báo thừa
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>
@@ -112,7 +112,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         ///// <summary>
-        ///// 报损报溢 （保存）
+        ///// Báo hao hụt, báo thừa (Lưu)
         ///// </summary>
         ///// <param name="syxx"></param>
         ///// <returns></returns>
@@ -150,7 +150,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         //    }
         //    else
         //    {
-        //        throw new FailedException("损益信息不能为空");
+        //        throw new FailedException("Thông tin lãi lỗ không được trống");
         //    }
         //    var result = _medicineDmnService.SaveReportLossAndProfit(profitLossEntityList);
         //    return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
@@ -161,7 +161,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         #region 科室备药损益查询
 
         /// <summary>
-        /// 科室备药退回
+        /// Trả lại thuốc dự trữ khoa
         /// </summary>
         /// <returns></returns>
         public ActionResult ReportLossAndProfitQuery()
@@ -173,7 +173,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         /// <summary>
-        /// 报损报溢查询
+        /// Tra cứu báo hao hụt, báo thừa
         /// </summary>
         /// <returns></returns>
         public ActionResult SelectLossAndProditInfoList(Pagination pagination, string startTime, string endTime, string syyy, string inputCode, int syqk)
@@ -190,13 +190,13 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         /// <summary>
-        /// 批发价总金额、零售价总金额查询
+        /// Tra cứu tổng giá bán sỉ, tổng giá bán lẻ
         /// </summary>
-        /// <param name="startTime">开始时间</param>
-        /// <param name="endTime">结束时间</param>
-        /// <param name="syyy">损益原因</param>
-        /// <param name="inputCode">关键字</param>
-        /// <param name="syqk">损益情况</param>
+        /// <param name="startTime">Thời gian bắt đầu</param>
+        /// <param name="endTime">Thời gian kết thúc</param>
+        /// <param name="syyy">Lý do lãi lỗ</param>
+        /// <param name="inputCode">Từ khóa</param>
+        /// <param name="syqk">Tình hình lãi lỗ</param>
         /// <returns></returns>
         public ActionResult ComputePjzeAndLjze(string startTime, string endTime, string syyy, string inputCode, int syqk)
         {
@@ -207,7 +207,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         #region 科室备药退回
 
         /// <summary>
-        /// 科室备药退回
+        /// Trả lại thuốc dự trữ khoa
         /// </summary>
         /// <returns></returns>
         public ActionResult PrepareMedicineReturn()
@@ -218,7 +218,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 新建退回申请单
+        /// Tạo phiếu yêu cầu trả lại mới
         /// </summary>
         /// <returns></returns>
         public ActionResult PrepareMedicineReturnAdd() {
@@ -226,7 +226,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 保存科室备药退回
+        /// Lưu trả lại thuốc dự trữ khoa
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -238,7 +238,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 科室备药申请单：药品信息绑定
+        /// Phiếu yêu cầu thuốc dự trữ khoa: liên kết thông tin thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="yfbm"></param>
@@ -249,7 +249,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-        /// 科室备药药品填充查询
+        /// Tra cứu điền thuốc dự trữ khoa
         /// </summary>
         /// <param name="ypcodestr"></param>
         /// <param name="yfbmstr"></param>
@@ -260,7 +260,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-        /// 科室备药退回查询列表
+        /// Danh sách tra cứu trả lại thuốc dự trữ khoa
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="xm"></param>
@@ -285,7 +285,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 单据明细
+        /// Chi tiết chứng từ
         /// </summary>
         /// <param name="djId"></param>
         /// <returns></returns>
@@ -296,7 +296,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 备药单据提交
+        /// Gửi chứng từ thuốc dự trữ
         /// </summary>
         /// <param name="djmc"></param>
         /// <returns></returns>
@@ -311,7 +311,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Success(data);
         }
         /// <summary>
-        /// 根据ID查询单据列表
+        /// TheoIDTra cứu danh sách chứng từ
         /// </summary>
         /// <param name="djId"></param>
         /// <returns></returns>
@@ -322,7 +322,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-        /// 根据ID查询单据明细
+        /// TheoIDTra cứu chi tiết chứng từ
         /// </summary>
         /// <param name="djId"></param>
         /// <returns></returns>
@@ -332,7 +332,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-        /// 获取药品库存数量
+        /// Lấy số lượng tồn kho thuốc
         /// </summary>
         /// <param name="ypbm"></param>
         /// <param name="pc"></param>
@@ -349,7 +349,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 撤回
+        /// Thu hồi
         /// </summary>
         /// <param name="Djh"></param>
         /// <returns></returns>
@@ -360,7 +360,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Success(data);
         }
         /// <summary>
-        /// 作废
+        /// Hủy bỏ
         /// </summary>
         /// <param name="ById"></param>
         /// <returns></returns>
@@ -380,7 +380,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return View();
         }
 
-        //药品信息
+        //Thông tin thuốc
         public ActionResult GetypGridJson(Pagination pagination, MedicineInfoParam model, string keyword, string organizeId)
         {
             ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;

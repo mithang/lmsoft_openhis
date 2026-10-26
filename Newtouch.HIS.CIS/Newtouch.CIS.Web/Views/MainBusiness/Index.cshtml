@@ -3,21 +3,21 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Index.cshtml";
 
-    //开关：是否开放检验检查
+    //Công tắc: có mở xét nghiệm kiểm tra không
     var IsOpenJyJcSwitch = ViewBag.IsOpenJyJcSwitch as bool?;
-    //开关：门诊是否开放康复处方
+    //Công tắc: ngoại trú có mở đơn thuốc phục hồi chức năng không
     var isOpenKfcf = (ViewBag.ISOpenKfcf as bool?);
-    //开关：门诊是否开放常规项目处方
+    //Công tắc: ngoại trú có mở đơn thuốc hạng mục thông thường không
     var isOpenCgxmcf = (ViewBag.ISOpenCgxmcf as bool?);
-    //开关：门诊是否开放中药处方
+    //Công tắc: ngoại trú có mở đơn thuốc Đông y không
     var iSOpenZycf = (ViewBag.ISOpenZycf as bool?);
     var iSOpenZycfnew = (ViewBag.ISOpenZycfnew as bool?);
-    //开关：门诊是否开放医用耗材处方
+    //Công tắc: ngoại trú có mở đơn thuốc vật tư y tế không
     var iSOpenWzhc = (ViewBag.ISOpenWzhc as bool?);
-    //开关：预约挂号
+    //Công tắc: hẹn đăng ký khám
     var isOpenBespeakRegister = (ViewBag.ISOpenBespeakRegister as bool?);
 
-    //开关：中医馆
+    //Công tắc: phòng khám Đông y
     var cmmSwitch = (bool)SysConfigReader.Bool("cmmSwitch", false);
 }
 <style>
@@ -39,7 +39,7 @@
         overflow-x: hidden;
     }
 </style>
-@*导航栏*@
+@*Thanh điều hướng*@
 <link href="@SiteUrl.GetStaticResourceScriptUrl("~/Content/css/cispage.css", false)" rel="stylesheet" />
 
 <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/layout/jquery.layout.js")"></script>
@@ -49,12 +49,12 @@
 <script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/validate/jquery.validate.min.js")"></script>
 
 <ul class="nav nav-tabs navb-bg" id="myTab" style="position:fixed;top:0;z-index:100009;width:99%">
-    <li role="presentation" id="librlb"><a href="#linkbrlb" role="tab" data-toggle="tab">患者列表</a></li>
-    <li role="presentation"><a href="#linkbl" role="tab" data-toggle="tab">病历</a></li>
-    <li role="presentation"><a href="#linkxycf" role="tab" data-toggle="tab">西药处方</a></li>
+    <li role="presentation" id="librlb"><a href="#linkbrlb" role="tab" data-toggle="tab">Danh sách bệnh nhân</a></li>
+    <li role="presentation"><a href="#linkbl" role="tab" data-toggle="tab">Bệnh án</a></li>
+    <li role="presentation"><a href="#linkxycf" role="tab" data-toggle="tab">Đơn thuốc Tây y</a></li>
     @if (iSOpenZycf == true)
     {
-        <li role="presentation"><a href="#linkzycf" role="tab" data-toggle="tab">中药处方</a></li>
+        <li role="presentation"><a href="#linkzycf" role="tab" data-toggle="tab">Đơn thuốc Đông y</a></li>
     }
     @if (iSOpenZycfnew == true)
     {
@@ -62,29 +62,29 @@
     }
     @if (isOpenKfcf == true)
     {
-        <li role="presentation"><a href="#linkkfcf" role="tab" data-toggle="tab">康复处方</a></li>
+        <li role="presentation"><a href="#linkkfcf" role="tab" data-toggle="tab">Đơn thuốc phục hồi chức năng</a></li>
     }
     @if (isOpenCgxmcf == true)
     {
-        <li role="presentation"><a href="#linkcgxmcf" role="tab" data-toggle="tab">常规项目</a></li>
+        <li role="presentation"><a href="#linkcgxmcf" role="tab" data-toggle="tab">Hạng mục thông thường</a></li>
     }
     @if (iSOpenWzhc == true)
     {
-        <li role="presentation"><a href="#linkwzhccf" role="tab" data-toggle="tab">耗材</a></li>
+        <li role="presentation"><a href="#linkwzhccf" role="tab" data-toggle="tab">Vật tư tiêu hao</a></li>
     }
     @if (IsOpenJyJcSwitch == true)
     {
-        <li role="presentation" id="lijy"><a href="#linkjy" role="tab" data-toggle="tab">检验</a></li>
-        <li role="presentation" id="lijc"><a href="#linkjc" role="tab" data-toggle="tab">检查</a></li>
+        <li role="presentation" id="lijy"><a href="#linkjy" role="tab" data-toggle="tab">Xét nghiệm</a></li>
+        <li role="presentation" id="lijc"><a href="#linkjc" role="tab" data-toggle="tab">Kiểm tra</a></li>
     }
     @if (isOpenBespeakRegister == true)
     {
-        <li role="presentation" id="libespeakRegister"><a href="#linkbespeakRegister" role="tab" data-toggle="tab">预约</a></li>
+        <li role="presentation" id="libespeakRegister"><a href="#linkbespeakRegister" role="tab" data-toggle="tab">Hẹn</a></li>
     }
 
-    <!--ZYHY20230630电子处方-->
-    <!--<li role="presentation" id="linkmzdzcf"><a href="#linkmzdzcf" role="tab" data-toggle="tab">电子处方</a></li>-->
-    @*<li role="presentation"><a href="#linkdzcf" role="tab" data-toggle="tab">电子处方</a></li>*@
+    <!--ZYHY20230630Đơn thuốc điện tử-->
+    <!--<li role="presentation" id="linkmzdzcf"><a href="#linkmzdzcf" role="tab" data-toggle="tab">Đơn thuốc điện tử</a></li>-->
+    @*<li role="presentation"><a href="#linkdzcf" role="tab" data-toggle="tab">Đơn thuốc điện tử</a></li>*@
 </ul>
 <div id="divPatientBasicInfo"></div>
 @if (cmmSwitch) //中医馆内容
@@ -131,15 +131,15 @@
             @Html.Partial("~/Views/BespeakRegister/BespeakRegister.cshtml")
         }
 
-        <!--ZYHY20230630电子处方-->
+        <!--ZYHY20230630Đơn thuốc điện tử-->
         @*@Html.Partial("~/Views/Prescription/Dzcf.cshtml")*@
     </div>
 </div>
 
 <script>
-    //开关：是否开放生命体征
+    //Công tắc: có mở dấu hiệu sinh tồn không
     var IsVitalSignsSwitch = '@ViewBag.IsVitalSignsSwitch';
-    //登录人的岗位
+    //Vị trí của người đăng nhập
     var IsNurse = '@ViewBag.IsNurse';
     if (IsVitalSignsSwitch == 'ON' && IsNurse == "True") {
         $("#myTab li:not(#librlb)").css('display', 'none');
@@ -148,23 +148,23 @@
     }
 
     var pageType = $.request("pageType");
-    var Id = $.request("Id");//远程诊疗申请信息Id
+    var Id = $.request("Id");//Thông tin yêu cầu chẩn đoán điều trị từ xaId
     $(function () {
-        //show：是否呈现tab内容的事件
+        //show: Có hiển thị khôngtabsự kiện của nội dung
         $('a[data-toggle="tab"]').on('show.bs.tab',
             function (e) {
                 //console.log(e)
-                var targetHref = $(e.target).attr('href'); //e.target  激活的标签页
+                var targetHref = $(e.target).attr('href'); //e.target  Tab đang được kích hoạt
                 if (targetHref && targetHref.indexOf('linkbrlb') == -1) {
-                    //非患者列表页
+                    //Không phải trang danh sách bệnh nhân
                     if (!!!window.currPatientInfo || JSON.stringify(window.currPatientInfo) == '{}') {
-                        $.modalAlert("请先选择一个患者", 'warning');
+                        $.modalAlert("Vui lòng chọn trước một bệnh nhân", 'warning');
                         return false;
                     }
                     if (window.currPatientInfo &&
                         window.currPatientInfo.jzzt == '@((int)EnumJzzt.Treated)' &&
                         targetHref.indexOf('linkbl') == -1) {
-                        $.modalAlert("已结束就诊仅可查看", 'warning');
+                        $.modalAlert("Khám đã kết thúc chỉ có thể xem", 'warning');
                         return false;
                     }
                 }
@@ -172,15 +172,15 @@
                 if (relatedTargetHref) {
                     if (relatedTargetHref.indexOf('linkkfcf') != -1 && $("#gridkfcf:visible").length == 1) {
                         if ($("#gridkfcf").jqGrid('getDataIDs').length > 0) {
-                            //先保存
+                            //Lưu trước
                             SaveRehabPres(null, true);
                         } else {
                             var gridkfcfData = $("#gridkfcf").jqGrid('getRowData_AllLine', null, true);
-                            //保存数据
+                            //Lưu dữ liệu
                             window.alldataArray.kfcf = $.jsonWhere(window.alldataArray.kfcf,
                                 function(icfmx) {
                                     if (!!!icfmx.cfId) {
-                                        return false; //编辑列表里有
+                                        return false; //Trong danh sách chỉnh sửa có
                                     }
                                     for (var iIndex = 0; iIndex < gridkfcfData.length; iIndex++) {
                                         if (gridkfcfData[iIndex].cfh == icfmx.cfh) {
@@ -192,15 +192,15 @@
                         }
                     } else if (relatedTargetHref.indexOf('linkcgxmcf') != -1 && $("#gridcgxmcf:visible").length == 1) {
                         if ($("#gridcgxmcf").jqGrid('getDataIDs').length > 0) {
-                            //先保存
+                            //Lưu trước
                             SaveRegularItemPres(null, true);
                         } else {
                             var gridcgxmcfData = $("#gridcgxmcf").jqGrid('getRowData_AllLine', null, true);
-                            //保存数据
+                            //Lưu dữ liệu
                             window.alldataArray.cgxmcf = $.jsonWhere(window.alldataArray.cgxmcf,
                                 function(icfmx) {
                                     if (!!!icfmx.cfId) {
-                                        return false; //编辑列表里有
+                                        return false; //Trong danh sách chỉnh sửa có
                                     }
                                     for (var iIndex = 0; iIndex < gridcgxmcfData.length; iIndex++) {
                                         if (gridcgxmcfData[iIndex].cfh == icfmx.cfh) {
@@ -212,15 +212,15 @@
                         }
                     } else if (relatedTargetHref.indexOf('linkxycf') != -1 && $("#gridxycf:visible").length == 1) {
                         if ($("#gridxycf").jqGrid('getDataIDs').length > 0) {
-                            //先保存
+                            //Lưu trước
                             SaveWMPres(null, true);
                         } else {
                             var gridxycfData = $("#gridxycf").jqGrid('getRowData_AllLine', null, true);
-                            //保存数据
+                            //Lưu dữ liệu
                             window.alldataArray.xycf = $.jsonWhere(window.alldataArray.xycf,
                                 function(icfmx) {
                                     if (!!!icfmx.cfId) {
-                                        return false; //编辑列表里有
+                                        return false; //Trong danh sách chỉnh sửa có
                                     }
                                     for (var iIndex = 0; iIndex < gridxycfData.length; iIndex++) {
                                         if (gridxycfData[iIndex].cfh == icfmx.cfh) {
@@ -230,18 +230,18 @@
                                     return true;
                                 });
                         }
-                    }//20230704电子处方
+                    }//20230704Đơn thuốc điện tử
                     else if (relatedTargetHref.indexOf('linkdzcf') != -1 && $("#griddzcf:visible").length == 1) {
                         if ($("#griddzcf").jqGrid('getDataIDs').length > 0) {
-                            //先保存
+                            //Lưu trước
                             SaveWMPres1(null, true);
                         } else {
                             var griddzcfData = $("#griddzcf").jqGrid('getRowData_AllLine', null, true);
-                            //保存数据
+                            //Lưu dữ liệu
 							window.alldataArray.dzcf = $.jsonWhere(window.alldataArray.dzcf,
                                 function (icfmx) {
                                     if (!!!icfmx.cfId) {
-                                        return false; //编辑列表里有
+                                        return false; //Trong danh sách chỉnh sửa có
                                     }
                                     for (var iIndex = 0; iIndex < griddzcfData.length; iIndex++) {
                                         if (griddzcfData[iIndex].cfh == icfmx.cfh) {
@@ -254,15 +254,15 @@
                     }
                     else if (relatedTargetHref.indexOf('linkwzhccf') != -1 && $("#gridwzhccf:visible").length == 1) {
                         if ($("#gridwzhccf").jqGrid('getDataIDs').length > 0) {
-                            //先保存
+                            //Lưu trước
                             SaveConsumablesPres(null, true);
                         } else {
                             var gridwzhccfData = $("#gridwzhccf").jqGrid('getRowData_AllLine', null, true);
-                            //保存数据
+                            //Lưu dữ liệu
                             window.alldataArray.wzhccf = $.jsonWhere(window.alldataArray.wzhccf,
                                 function (icfmx) {
                                     if (!!!icfmx.cfId) {
-                                        return false; //编辑列表里有
+                                        return false; //Trong danh sách chỉnh sửa có
                                     }
                                     for (var iIndex = 0; iIndex < gridwzhccfData.length; iIndex++) {
                                         if (gridwzhccfData[iIndex].cfh == icfmx.cfh) {
@@ -275,15 +275,15 @@
                     }
                     else if (relatedTargetHref.indexOf('linkzycf') != -1 && $("#gridzycf:visible").length == 1) {
                         if ($("#gridzycf").jqGrid('getDataIDs').length > 0) {
-                            //先保存
+                            //Lưu trước
                             SaveTCMPres(null, true);
                         } else {
                             var gridzycfData = $("#gridzycf").jqGrid('getRowData_AllLine', null, true);
-                            //保存数据
+                            //Lưu dữ liệu
                             window.alldataArray.zycf = $.jsonWhere(window.alldataArray.zycf,
                                 function(icfmx) {
                                     if (!!!icfmx.cfId) {
-                                        return false; //编辑列表里有
+                                        return false; //Trong danh sách chỉnh sửa có
                                     }
                                     for (var iIndex = 0; iIndex < gridzycfData.length; iIndex++) {
                                         if (gridzycfData[iIndex].cfh == icfmx.cfh) {
@@ -295,16 +295,16 @@
                         }
                     } else if (relatedTargetHref.indexOf('linkzycfnew') != -1 && $("#gridzycfnew:visible").length == 1) {
                         if ($("#gridzycfnew").jqGrid('getDataIDs').length > 0) {
-                            //先保存
+                            //Lưu trước
                             SaveTCMPres(null, true);
                         } else {
                             var gridzycfData = $("#gridzycfnew").jqGrid('getRowData_AllLine', null, true);
                             if (gridzycfData.length > 0) {
-                                //保存数据
+                                //Lưu dữ liệu
                                 window.alldataArray.zycf = $.jsonWhere(window.alldataArray.zycf,
                                     function (icfmx) {
                                         if (!!!icfmx.cfId) {
-                                            return false; //编辑列表里有
+                                            return false; //Trong danh sách chỉnh sửa có
                                         }
                                         for (var iIndex = 0; iIndex < gridzycfnewData.length; iIndex++) {
                                             if (gridzycfnewData[iIndex].cfh == icfmx.cfh) {
@@ -317,7 +317,7 @@
                         }
                     } else if (relatedTargetHref.indexOf('linkjy') != -1) {
                         if ($("#alreadyJYAppliedList:visible").length == 1 && $("#alreadyJYAppliedList").jqGrid('getDataIDs').length > 0) {
-                            //先保存
+                            //Lưu trước
                             SaveJY(null, true);
                         }
                         else if ($("#alreadyJYAppliedGroupList:visible").length == 1 && $("#alreadyJYAppliedGroupList").jqGrid('getDataIDs').length > 0) {
@@ -325,26 +325,26 @@
                         }
                     } else if (relatedTargetHref.indexOf('linkjc') != -1) {
                         if ($("#alreadyJCAppliedList:visible").length == 1 && $("#alreadyJCAppliedList").jqGrid('getDataIDs').length > 0) {
-                            //先保存
+                            //Lưu trước
                             SaveJC(null, true);
                         }
                         else if ($("#alreadyJCAppliedGroupList:visible").length == 1 && $("#alreadyJCAppliedGroupList").jqGrid('getDataIDs').length > 0) {
                             SaveJCbyZT(null, true);
                         }
                     }
-                //ZYHY20230630电子处方
+                //ZYHY20230630Đơn thuốc điện tử
                 //}
                 //else if (relatedTargetHref.indexOf('linkmzdzcf') != -1 && $("#griddzcf:visible").length == 1) {
                 //    if ($("#griddzcf").jqGrid('getDataIDs').length > 0) {
-                //        //先保存
+                //        //Lưu trước
                 //        SaveWMPres(null, true);
                 //    } else {
                 //        var griddzcfData = $("#griddzcf").jqGrid('getRowData_AllLine', null, true);
-                //        //保存数据
+                //        //Lưu dữ liệu
                 //        window.alldataArray.xycf = $.jsonWhere(window.alldataArray.xycf,
                 //            function (icfmx) {
                 //                if (!!!icfmx.cfId) {
-                //                    return false; //编辑列表里有
+                //                    return false; //Trong danh sách chỉnh sửa có
                 //                }
                 //                for (var iIndex = 0; iIndex < griddzcfData.length; iIndex++) {
                 //                    if (griddzcfData[iIndex].cfh == icfmx.cfh) {
@@ -358,7 +358,7 @@
                 }
             });
 
-        //shown：tab内容呈现后的事件
+        //shown：tabSự kiện sau khi nội dung hiển thị
         $('a[data-toggle="tab"]').on('shown.bs.tab',
             function(e) {
                 cfLeftFloatHide();
@@ -371,16 +371,16 @@
                     targetHref.indexOf('linkzycf') == -1 &&
                     targetHref.indexOf('linkzycfnew') == -1 &&
                     targetHref.indexOf('linkwzhccf') == -1 &&
-                    //20230704电子处方
-                    targetHref.indexOf('linkdzcf') == -1 ) { //非处方页
+                    //20230704Đơn thuốc điện tử
+                    targetHref.indexOf('linkdzcf') == -1 ) { //Không phải trang đơn thuốc
                     $('#floatLeftMostPartDiv').hide();
                 } else {
-                    $('#floatLeftMostPartDiv').show(); //显示处方历史模板树
+                    $('#floatLeftMostPartDiv').show(); //Hiển thị cây mẫu lịch sử đơn thuốc
                 }
-                if (targetHref.indexOf('linkjy') == -1 && targetHref.indexOf('linkjc') == -1) { //检验检查页
+                if (targetHref.indexOf('linkjy') == -1 && targetHref.indexOf('linkjc') == -1) { //Trang xét nghiệm kiểm tra
                     $('#floatInspectTemplateTree').hide();
                 } else {
-                    $('#floatInspectTemplateTree').show(); //显示检验检查模板树
+                    $('#floatInspectTemplateTree').show(); //Hiển thị cây mẫu xét nghiệm kiểm tra
                 }
 
                 switch ($(this).attr('href')) {
@@ -429,16 +429,16 @@
                         break;
                 }
             });
-        if (pageType == "yczl") {//远程诊疗
-            //$('#myTab [href="#linkbl"').trigger('click'); //初始化显示哪个tab
+        if (pageType == "yczl") {//Chẩn đoán điều trị từ xa
+            //$('#myTab [href="#linkbl"').trigger('click'); //Khởi tạo hiển thị mục nàotab
             getyczlDetail(Id);
         } else {
-            $('#myTab a:first').trigger('click'); //初始化显示哪个tab
+            $('#myTab a:first').trigger('click'); //Khởi tạo hiển thị mục nàotab
         }
 
     });
 
-    //获取新的处方号
+    //Lấy số đơn thuốc mới
     function GetNewPresNo() {
         var newPresNo;
         $.najax({
@@ -467,7 +467,7 @@
         { color: '#2d61d9', zhcolor: ['#17194c', '#002c8b', '#2d61db', '#6a8ee4', '#97b8e5'] }
     ];
 
-    //获取处方呈现颜色
+    //Lấy màu hiển thị đơn thuốc
     function getCfColor(cflx, cfh) {
         var matched = $.jsonWhere(cfColorArr, function (v) {
             return v && v.cflx === cflx && v.cfh === cfh;
@@ -475,9 +475,9 @@
         if (matched && matched.length) {
             return matched[0].color;
         }
-        //cflx cfh尚未指定颜色
+        //cflx cfhChưa chỉ định màu
 
-        //这个cflx当前已对应的颜色
+        //cái nàycflxMàu đã tương ứng hiện tại
         var cflxmatched = $.jsonWhere(cfColorArr, function (v) {
             return v && v.cflx === cflx
         });
@@ -497,10 +497,10 @@
             cfColorArr.push({ cflx: cflx, cfh: cfh, color: thisColor });
             return thisColor;
         }
-        return '#ddd';  //颜色用完了 默认一个颜色
+        return '#ddd';  //Đã hết màu Mặc định một màu
     }
 
-    //释放占用
+    //Giải phóng chiếm dụng
     function releaseCfColor(cflx, cfh) {
         cfColorArr = $.jsonWhere(cfColorArr, function (v) {
             return !(v && v.cflx === cflx && v.cfh === cfh);
@@ -510,26 +510,26 @@
         });
     }
 
-    //获取处方组号呈现颜色
+    //Lấy màu hiển thị số nhóm đơn thuốc
     function getCfZhColor(cflx, cfh, zh) {
         var cfcolor = getCfColor(cflx, cfh);
         var matched = $.jsonWhere(cfSourceColorArr, function (v) {
             return v && v.color === cfcolor;
         });
         if (!matched || matched.length == 0) {
-            return '#ddd';  //未指定 默认一个颜色
+            return '#ddd';  //Chưa chỉ định Mặc định một màu
         }
-        var cfzhuseable = matched[0].zhcolor; //组号颜色可选范围
-        //开始了
+        var cfzhuseable = matched[0].zhcolor; //Phạm vi màu số nhóm có thể chọn
+        //Đã bắt đầu
         var matched = $.jsonWhere(cfzhColorArr, function (v) {
             return v && v.cflx === cflx && v.cfh === cfh && v.zh === zh;
         });
         if (matched && matched.length) {
             return matched[0].color;
         }
-        //cflx cfh zh尚未指定颜色
+        //cflx cfh zhChưa chỉ định màu
 
-        //这个cflx cfh当前已对应的颜色
+        //cái nàycflx cfhMàu đã tương ứng hiện tại
         var cflxmatched = $.jsonWhere(cfzhColorArr, function (v) {
             return v && v.cflx === cflx && v.cfh === cfh
         });
@@ -549,10 +549,10 @@
             cfzhColorArr.push({ cflx: cflx, cfh: cfh, zh: zh, color: thisColor });
             return thisColor;
         }
-        return '#ddd';  //颜色用完了 默认一个颜色
+        return '#ddd';  //Đã hết màu Mặc định một màu
     }
 
-    //释放占用
+    //Giải phóng chiếm dụng
     function releaseCfZhColor(cflx, cfh, zh) {
         cfzhColorArr = $.jsonWhere(cfzhColorArr, function (v) {
             return !(v && v.cflx === cflx && v.cfh === cfh && v.zh === zh);
@@ -568,7 +568,7 @@
             + '&nbsp;/&nbsp;' + window.currPatientInfo.xb
             + '&nbsp;/&nbsp;' + window.currPatientInfo.nlshow
             + '&nbsp;/&nbsp;' + window.currPatientInfo.brxzmc
-           // + '&nbsp;/&nbsp;<span title=' + window.currPatientInfo.province + "省" + window.currPatientInfo.city + "市" + window.currPatientInfo.county + "县" + window.currPatientInfo.address + '>' + window.currPatientInfo.address + "</span>"
+           // + '&nbsp;/&nbsp;<span title=' + window.currPatientInfo.province + "Tỉnh" + window.currPatientInfo.city + "Thành phố" + window.currPatientInfo.county + "Huyện" + window.currPatientInfo.address + '>' + window.currPatientInfo.address + "</span>"
             );
     }
 
@@ -581,7 +581,7 @@
     }
 
 	function checkItemActivity($li, $thisinput) {
-        var selected = false;//默认没有选中当前值
+        var selected = false;//Mặc định không chọn giá trị hiện tại
 		var selectval = $thisinput.val();
 
         if (selectval) {
@@ -597,7 +597,7 @@
 	}
 
 	function newcheckItemActivity($val, $thisinput) {
-		var selected = false;//默认没有选中当前值
+		var selected = false;//Mặc định không chọn giá trị hiện tại
 		var selectval = $thisinput.val();
 		if (selectval) {
 			selectval = selectval.split(',');
@@ -622,13 +622,13 @@
         }
         ypkcArr.push({ yfbmCode: yfbmCode, ypCode: ypCode, sl: sl });
     }
-    //库存检验
+    //Kiểm tra tồn kho
     function ypkccheck(yfbmCode, ypCode, sl) {
         for (var iIndex = 0; iIndex < ypkcArr.length; iIndex++) {
             if (ypkcArr[iIndex].yfbmCode == yfbmCode
                 && ypkcArr[iIndex].ypCode == ypCode) {
                 if (ypkcArr[iIndex].sl < sl) {
-                    return false;   //库存不足
+                    return false;   //Tồn kho không đủ
                 }
                 return true;
             }
@@ -651,7 +651,7 @@
     function updatePatInfo() {
         PatientBasicInfoModify($('#mzh').text());
     }
-    //弹框修改患者基本信息
+    //Hộp thoại sửa thông tin cơ bản bệnh nhân
     function PatientBasicInfoModify(mzh) {
         $.ajax({
             url: '/Login/GetUALoginAddres',
@@ -666,7 +666,7 @@
                         url = url + "&returnUrl=" + encodeURIComponent(returnUrl);
                     $.modalOpen({
                         id: "PatientBasicInfoModify",
-                        title: "基本信息修改",
+                        title: "Sửa thông tin cơ bản",
                         url: url,
                         width: "1000px",
                         height: "400px",
@@ -678,11 +678,11 @@
             }
         });
     }
-    //click：点击tab内容的事件
+    //click: Nhấntabsự kiện của nội dung
     $('a[data-toggle="tab"]').on('click', function (e, v) {
-        var currentlink = $('.nav-tabs').find("li.active a").attr("href");//当前页面
-        var targetlink = e.target.hash;//目标页面
-        if ((currentlink !== "#linkbrlb" || currentlink !== "#linkbl") && targetlink == "#linkbrlb") {//患者列表，门诊病历 不提示//其他页面有数据存在时弹窗提示
+        var currentlink = $('.nav-tabs').find("li.active a").attr("href");//Trang hiện tại
+        var targetlink = e.target.hash;//Trang đích
+        if ((currentlink !== "#linkbrlb" || currentlink !== "#linkbl") && targetlink == "#linkbrlb") {//Danh sách bệnh nhân, bệnh án ngoại trú Không nhắc nhở//Khi trang khác có dữ liệu tồn tại thì bật lên nhắc nhở
             if ($("#gridcgxmcf").jqGrid('getDataIDs').length > 0 || $("#gridkfcf").jqGrid('getDataIDs').length > 0
                 || $("#gridxycf").jqGrid('getDataIDs').length > 0 || $("#gridzycf").jqGrid('getDataIDs').length > 0
                 || $("#gridwzhccf").jqGrid('getDataIDs').length > 0
@@ -693,14 +693,14 @@
             }
         } else {
             transferbool = true;
-            $('#myTab a[href="' + $(this).attr("href") + '"]').tab('show')//初始化显示哪个tab
+            $('#myTab a[href="' + $(this).attr("href") + '"]').tab('show')//Khởi tạo hiển thị mục nàotab
         }
     });
     function confirm(TargetHref) {
-        $.modalConfirm("当前页面还有医嘱数据未保存，离开页面会清空数据，是否仍需跳转?", function (flag) {
+        $.modalConfirm("Trang hiện tại còn dữ liệu y lệnh chưa lưu, rời khỏi trang sẽ xóa dữ liệu, có vẫn cần chuyển trang không?", function (flag) {
             if (flag) {
                 transferbool = true;
-                $('#myTab a[href="' + TargetHref + '"]').tab('show')//.trigger('click'); //初始化显示哪个tab
+                $('#myTab a[href="' + TargetHref + '"]').tab('show')//.trigger('click'); //Khởi tạo hiển thị mục nàotab
             } else {
                 return false;
             }

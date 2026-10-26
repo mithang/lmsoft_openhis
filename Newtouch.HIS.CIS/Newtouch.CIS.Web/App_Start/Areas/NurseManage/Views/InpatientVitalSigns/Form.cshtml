@@ -33,11 +33,11 @@
                 <td class="formValue"></td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>日期：</td>
+                <td class="formTitle"><span class="required">*</span>Ngày:</td>
                 <td class="formValue">
                     <input id="rq" name="rq" type="text" class="required form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker()" value="@DateTime.Now.ToString("yyyy-MM-dd")">
                 </td>
-                <td class="formTitle"><span class="required">*</span>时间点：</td>
+                <td class="formTitle"><span class="required">*</span>Thời điểm:</td>
                 <td class="formValue" colspan="5">
                     <div>
                         <label class="radio-inline">
@@ -62,11 +62,11 @@
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>住院号：</td>
+                <td class="formTitle"><span class="required">*</span>Số nhập viện:</td>
                 <td class="formValue">
                     <input id="zyh" name="zyh" type="text" class="form-control required" placeholder="" />
                 </td>
-                <td class="formTitle">状态：</td>
+                <td class="formTitle">Trạng thái:</td>
                 <td class="formValue">
                     <select id="brzt" name="brzt" class="form-control" data-EnumType="EnumHlbrzt">
                         <option>==请选择==</option>
@@ -81,21 +81,21 @@
                 <td class="formValue" colspan="2">
                     <div>
                         <label class="radio-inline">
-                            <input type="radio" name="optionsTwclfs" value="1">口温
+                            <input type="radio" name="optionsTwclfs" value="1">Nhiệt độ miệng
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="optionsTwclfs" value="2">腋温
+                            <input type="radio" name="optionsTwclfs" value="2">Nhiệt độ nách
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="optionsTwclfs" value="3">肛温
+                            <input type="radio" name="optionsTwclfs" value="3">Nhiệt độ hậu môn
                         </label>
                     </div>
                 </td>
-                <td class="formTitle">血压上值：</td>
+                <td class="formTitle">Giá trị trên huyết áp:</td>
                 <td class="formValue">
                     <input id="xysz" name="xysz" type="text" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">血压下值：</td>
+                <td class="formTitle">Giá trị dưới huyết áp:</td>
                 <td class="formValue">
                     <input id="xyxz" name="xyxz" type="text" class="form-an form-control" placeholder="" />
                 </td>
@@ -103,10 +103,10 @@
             <tr>
                 <td class="formValue" colspan="2" style="padding-left:40px;">
                     <div class="ckbox">
-                        <input id="qbq" name="qbq" type="checkbox"><label for="qbq">起搏器</label>
+                        <input id="qbq" name="qbq" type="checkbox"><label for="qbq">Máy tạo nhịp</label>
                     </div>
                     <div class="ckbox">
-                        <input id="hxj" name="hxj" type="checkbox"><label for="hxj">呼吸机</label>
+                        <input id="hxj" name="hxj" type="checkbox"><label for="hxj">Máy thở</label>
                     </div>
                 </td>
                 <td class="formTitle">心率(次/分)：</td>
@@ -127,17 +127,17 @@
                 <td class="formValue">
                     <input id="tz" name="tz" type="text" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">测量说明：</td>
+                <td class="formTitle">Giải thích đo lường:</td>
                 <td class="formValue">
                     <input id="tzclbz" name="tzclbz" value="" type="text" class="form-an form-control" placeholder="" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">大便次数：</td>
+                <td class="formTitle">Số lần đại tiện:</td>
                 <td class="formValue">
                     <input id="dbcs" name="dbcs" type="text" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">说明：</td>
+                <td class="formTitle">Giải thích:</td>
                 <td class="formValue">
                     <input id="dbcsbz" name="dbcsbz" value="" type="text" class="form-an form-control" placeholder="" />
                 </td>
@@ -194,15 +194,15 @@
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">吸氧/流量L/min：</td>
+                <td class="formTitle">Thở oxy/Lưu lượngL/min：</td>
                 <td class="formValue">
                     <input id="xyll" name="xyll" type="text" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">吸氧说明：</td>
+                <td class="formTitle">Giải thích thở oxy:</td>
                 <td class="formValue">
                     <input id="xyfs" name="xyfs" value="" type="text" class="form-an form-control" placeholder="" />
                 </td>
-                <td class="formTitle">血氧饱和度：</td>
+                <td class="formTitle">Độ bão hòa oxy máu:</td>
                 <td class="formValue">
                     <input id="xybhd" name="xybhd" type="text" class="form-an form-control" placeholder="" />
                 </td>
@@ -211,7 +211,7 @@
     </div>
 </form>
 <div style="padding-left: 10px;margin-top: 10px;">
-    <span style="color:red;">说明：</span>血压测量单位：mmHg；摄入摄出测量单位：ml
+    <span style="color:red;">Giải thích:</span>Đơn vị đo huyết áp:mmHg; Đơn vị đo lượng vào ra:ml
 </div>
 <script type="text/javascript">
     var keyValue = $.request("smtzId");
@@ -264,7 +264,7 @@
     bindItemFloator("dbcsbz", "DefecationFreqMemo");
     bindItemFloator("xyfs", "OxygenUptakeMed");
     function bindItemFloator(inputId, itemType) {
-        //绑定字典
+        //Liên kết từ điển
         $("#" + inputId).newtouchFloatingSelector({
             height: 200,
             width: 330,
@@ -273,11 +273,11 @@
                 return $.itemDetails.getItems(itemType);
             },
             colModel: [
-                { label: '编码', name: 'Code', widthratio: 20 },
-                { label: '名称', name: 'Name', widthratio: 60 },
+                { label: 'Mã', name: 'Code', widthratio: 20 },
+                { label: 'Tên', name: 'Name', widthratio: 60 },
             ],
             itemdbclickhandler: function ($thistr, $thisinput) {
-                //保存时验证val和data-Name一致
+                //Xác thực khi lưuvalvàdata-NameNhất quán
                 $thisinput.attr('data-Code', $thistr.attr('data-Code'));
                 $thisinput.attr('data-Name', $thistr.attr('data-Name'));
                 $thisinput.val($thistr.attr('data-Name'));
@@ -289,7 +289,7 @@
     $('#zyh').click(function () {
         $.modalOpen({
             id: "patSearch",
-            title: "住院患者查询",
+            title: "Tra cứu bệnh nhân nhập viện",
             url: "/PatientList/InPatSearchView?zybz=1,2,3,7&t=" + Math.random() + "&zyh=" + '',
             width: "700px",
             height: "600px",
@@ -305,7 +305,7 @@
 <script type="text/javascript">
     function AcceptClick(callback) {
         if ($.trim($('#zyh').val()) == '' || $('#zyh').val() != $('#zyh').attr('data-zyh')) {
-            $.modalAlert("请选择住院患者", "warning");
+            $.modalAlert("Vui lòng chọn bệnh nhân nhập viện", "warning");
             return;
         }
         if (!$("#form1").formValid()) {
@@ -314,26 +314,26 @@
         var data = $("#form1").formSerialize();
         data.sj = $("[name=optionsSj]:checked").val() || null;
         data.twclfs = $("[name=optionsTwclfs]:checked").val() || null;
-        //字典
+        //Từ điển
         data.tzclbz = $('#tzclbz').val() == $('#tzclbz').attr('data-Name') ? $('#tzclbz').attr('data-Code') : null;
         data.dbcsbz = $('#dbcsbz').val() == $('#dbcsbz').attr('data-Name') ? $('#dbcsbz').attr('data-Code') : null;
         data.xyfs = $('#xyfs').val() == $('#xyfs').attr('data-Name') ? $('#xyfs').attr('data-Code') : null;
 
         if (!(data.sj == 4 || data.sj == 8 || data.sj == 12 || data.sj == 16
             || data.sj == 20 || data.sj == 24)) {
-            $.modalAlert("请选择时间点", "warning");
+            $.modalAlert("Vui lòng chọn thời điểm", "warning");
             return;
         }
 
         if (data.tw && !data.twclfs) {
-            $.modalAlert("请选择体温测量方式", "warning");
+            $.modalAlert("Vui lòng chọn phương pháp đo nhiệt độ cơ thể", "warning");
             return;
         }
         if (!data.tw && data.twclfs) {
             data.twclfs = null;
         }
         if (!data.brzt && !data.twclfs) {
-            $.modalAlert("请输入体温", "warning");
+            $.modalAlert("Vui lòng nhập nhiệt độ cơ thể", "warning");
             return;
         }
 
@@ -343,7 +343,7 @@
             close: false,
             success: function () {
                 newtouch_globalevent_f4();
-                //保存成功回调
+                //Gọi lại sau khi lưu thành công
                 callback();
                 if (true) {
                     //setTimeout("$('#zyh').trigger('click');", 2500);

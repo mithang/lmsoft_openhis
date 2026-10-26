@@ -6,7 +6,7 @@ using System.Web.Mvc;
 namespace Newtouch.CIS.Web
 {
     /// <summary>
-    /// Controller基类
+    /// ControllerLớp cơ sở
     /// </summary>
     [HandlerLogin]
     public abstract class ControllerBase : Controller
@@ -103,7 +103,7 @@ namespace Newtouch.CIS.Web
 
 
         /// <summary>
-        /// 获取权限Org
+        /// Lấy quyềnOrg
         /// </summary>
         /// <param name="throwFailedException"></param>
         /// <returns></returns>
@@ -114,11 +114,11 @@ namespace Newtouch.CIS.Web
             string orgId = null;
             if (opr.IsAdministrator || opr.IsRoot)
             {
-                orgId = Infrastructure.Constants.TopOrganizeId; //如果是系统管理员 则让其拉所有组织机构的数据
+                orgId = Infrastructure.Constants.TopOrganizeId; //Nếu là quản trị viên hệ thống thì để nó lấy tất cả dữ liệu tổ chức
             }
             else
             {
-                orgId = Common.Operator.OperatorProvider.GetCurrent().OrganizeId;   //默认用当前关联用户的OrganizeId
+                orgId = Common.Operator.OperatorProvider.GetCurrent().OrganizeId;   //Mặc định dùng của người dùng liên kết hiện tạiOrganizeId
             }
             if (throwFailedException && string.IsNullOrWhiteSpace(orgId))
             {

@@ -1,12 +1,12 @@
 ﻿    #linkjy .ui-jqgrid .ui-jqgrid-caption {
         text-align: center;
     }
-    /*内容td分隔线*/
+    /*Nội dungtdĐường phân cách*/
     #divGridjy .ui-jqgrid .ui-jqgrid-bdiv table.table-bordered td {
         border: solid 1px #ddd;
     }
 
-    /*内容td分隔线防止移位*/
+    /*Nội dungtdĐường phân cách chống dịch chuyển*/
     #divGridjy .table > tbody > tr > td, #divGridjy .table > thead > tr > th {
         padding: 0px;
     }

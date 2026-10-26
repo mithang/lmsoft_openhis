@@ -1,7 +1,7 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "出区诊断";
+    ViewBag.Title = "Chẩn đoán xuất khu";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -39,7 +39,7 @@
 </style>
 <div class="dv-body" style="background-color: white;">
     <div class="dv-left">
-        <div class="dv-left-title">病区列表</div>
+        <div class="dv-left-title">Danh sách khu bệnh</div>
         @*<table id="gridBqList"></table>*@
         @Html.Partial("_WardTreeForm")
     </div>
@@ -48,17 +48,17 @@
         <form name="form1">
             <div class="panel panel-default">
                 <div class="panel-heading navb-bg">
-                    筛选条件
+                    Điều kiện lọc
                 </div>
                 <div>
                     <table class="form">
                         <tr>
-                            <th class="formTitle">姓名：</th>
+                            <th class="formTitle">Họ tên:</th>
                             <td class="formValue">
-                                <input id="txt_name" type="text" class="form-control" placeholder="姓名" />
+                                <input id="txt_name" type="text" class="form-control" placeholder="Họ tên" />
                             </td>
                             <td class="formTitle">
-                                <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" />
+                                <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
                             </td>
                             <td colspan="4"></td>
 
@@ -79,13 +79,13 @@
 
         DefaultCheck();
     });
-    //默认选中根节点.
+    //Mặc định chọn nút gốc.
     function DefaultCheck() {
-        var firstid = $("div[id^='wardTree_']:first").attr("id").replace("wardTree_", "");//根节点病区代码
+        var firstid = $("div[id^='wardTree_']:first").attr("id").replace("wardTree_", "");//Mã khu bệnh của nút gốc
         var addstyleid = 'wardTree_' + firstid;
         var item = new Object();
         item.id = firstid;
-        $("#" + addstyleid + "").addClass('bbit-tree-selected');//增加选中样式
+        $("#" + addstyleid + "").addClass('bbit-tree-selected');//Thêm kiểu đã chọn
         wardTree_onnodeclick(item);
     }
     var bqdm = null;
@@ -99,21 +99,21 @@
         GetPatientList(bqdm);
         refleshPatientList();
     }
-    //刷新事件
+    //Sự kiện làm mới
     function refleshPatientList() {
         $("#btn_search").trigger('click');
     }
     $("#btn_search").click(function () {
         var keyValue = bqdm;
         if (!!!keyValue) {
-            $.modalAlert("请选中病区", 'warning');
+            $.modalAlert("Vui lòng chọn khu bệnh", 'warning');
             return;
         }
         $("#gridPatList").jqGrid('setGridParam', {
             postData: { keyword: $('#txt_name').val(), bqdm: bqdm },
-        }).trigger('reloadGrid'); //重新加载当前表格
+        }).trigger('reloadGrid'); //Tải lại bảng hiện tại
     });
-    // 查询条件
+    // Điều kiện tra cứu
     function getSearchPostData() {
         var keyword = $('#txt_name').val();
         //var ksrq = $('#txt_ksrq').val();
@@ -128,57 +128,57 @@
         Querydata["bqdm"] = bqdm;
         //alert(bqdm);
         $gridList.dataGrid({
-            //获取在院病人信息
+            //Lấy thông tin bệnh nhân tại viện
             url: "/EntryRegistration/GetINAreaPatlist",
             postData: Querydata,
             dataType: "json",
             height: $(window).height() - 155,
            //width: $(".Newtouch_iframe", parent.document).width() - $(".dv-left").width() - 5,
-            //autowidth: false,//根据父容器的宽度自动重算,默认false 不重算
-            //shrinkToFit: true,// 成比例缩放 默认为true
+            //autowidth: false,//Tự tính lại theo chiều rộng của vùng chứa cha,Mặc địnhfalse Không tính lại
+            //shrinkToFit: true,// Thu phóng theo tỷ lệ mặc định làtrue
             //multiselect: true,
             //unwritten:false,
             colModel: [
                { label: 'Id', name: 'Id', hidden: true },
-               { label: '住院号', name: 'zyh', align: 'center', width: 60 },
-               { label: '姓名', name: 'xm', align: 'center', width: 90 },
+               { label: 'Số nhập viện', name: 'zyh', align: 'center', width: 60 },
+               { label: 'Họ tên', name: 'xm', align: 'center', width: 90 },
                {
-                   label: '性别', name: 'sex', align: 'center', width: 50, formatter: function (val) {
+                   label: 'Giới tính', name: 'sex', align: 'center', width: 50, formatter: function (val) {
                        return $.getGender(val);
                    }
                },
-               { label: '年龄', name: 'nl', align: 'center', width: 50 },
-               { label: '床号', name: 'cwmc', align: 'center', width: 70 },
-               { label: '入院日期', name: 'ryrq', align: 'center', width: 85, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
-               { label: '费用类型', name: 'brxzmc', align: 'center', width: 80 },
-               { label: '入院诊断', name: 'zzdmc', align: 'center', width: 90 },
-               { label: '出院诊断', name: 'cyzdmc', align: 'center', width: 90 },
-               { label: '床位医生', name: 'ysxm', align: 'center', width: 90 },
+               { label: 'Tuổi', name: 'nl', align: 'center', width: 50 },
+               { label: 'Số giường', name: 'cwmc', align: 'center', width: 70 },
+               { label: 'Ngày nhập viện', name: 'ryrq', align: 'center', width: 85, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
+               { label: 'Loại chi phí', name: 'brxzmc', align: 'center', width: 80 },
+               { label: 'Chẩn đoán nhập viện', name: 'zzdmc', align: 'center', width: 90 },
+               { label: 'Chẩn đoán xuất viện', name: 'cyzdmc', align: 'center', width: 90 },
+               { label: 'Bác sĩ giường bệnh', name: 'ysxm', align: 'center', width: 90 },
                {
-                   label: "操作", name: "zyh", align: "center", width: 100,
+                   label: "Thao tác", name: "zyh", align: "center", width: 100,
                    formatter: function (cellvalue) {
-                       return "<a href=\#\" onclick='recall(\"" + cellvalue + "\")'' title='出区诊断' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>出区诊断</a>";
+                       return "<a href=\#\" onclick='recall(\"" + cellvalue + "\")'' title='Chẩn đoán ra khỏi khu' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>Chẩn đoán ra khỏi khu</a>";
                    }
                }
             ],
             pager: "#gridPager",
             sortname: 'zyh asc',
             viewrecords: true,
-            //loadComplete: function () { //隐藏grid底部滚动条
+            //loadComplete: function () { //ẨngridThanh cuộn dưới cùng
             //    $("#gridPatList").closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
             //}
         });
     }
 
-    //出院诊断
+    //Chẩn đoán xuất viện
     function recall(zyh) {
         if (zyh == null || zyh == "") {
-            $.modalAlert("请选择一个患者", 'warning');
+            $.modalAlert("Vui lòng chọn một bệnh nhân", 'warning');
             return;
         }
         $.modalOpen({
                     id: "OutAreaDiagnoosisForm",
-                    title: "患者出区",
+                    title: "Bệnh nhân xuất khu",
                     url: "/NurseManage/WardMaintenance/OutAreaDiagnoosisForm?zyh=" + zyh,
                     width: "500px",
                     height: "460px",

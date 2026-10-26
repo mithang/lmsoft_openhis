@@ -42,13 +42,13 @@
 <div class="dv-home-patInfo" style="display:none">
     <div style="height: 133px;width: 30px;float: left;margin-top: 150px;display: flex;align-items: center;">
         <ul id="tcbeveltabs">
-            <li><i href="#" name="#personal" class="fa fa-user-o fa-lg" title="个人" data-type=@Html.Raw(((int)EnumCfMbLx.personal).ToString())></i></li>
-            <li><i href="#" name="#department" class="fa fa-quora fa-lg" title="科室" data-type=@Html.Raw(((int)EnumCfMbLx.department).ToString())></i></li>
+            <li><i href="#" name="#personal" class="fa fa-user-o fa-lg" title="Cá nhân" data-type=@Html.Raw(((int)EnumCfMbLx.personal).ToString())></i></li>
+            <li><i href="#" name="#department" class="fa fa-quora fa-lg" title="Khoa" data-type=@Html.Raw(((int)EnumCfMbLx.department).ToString())></i></li>
             @*@if (ViewBag.bhbq)
             {
-        <li><i href="#" name="#ward" class="fa fa-bank fa-lg" title="病区" data-type=@Html.Raw(((int)EnumTcfw.Ward).ToString())></i></li>
+        <li><i href="#" name="#ward" class="fa fa-bank fa-lg" title="Khu bệnh" data-type=@Html.Raw(((int)EnumTcfw.Ward).ToString())></i></li>
             }*@
-            <li><i href="#" name="#hospital" class="fa fa-hospital-o fa-lg" title="全院" data-type=@Html.Raw(((int)EnumCfMbLx.hospital).ToString())></i></li>
+            <li><i href="#" name="#hospital" class="fa fa-hospital-o fa-lg" title="Toàn viện" data-type=@Html.Raw(((int)EnumCfMbLx.hospital).ToString())></i></li>
         </ul>
     </div>
     <div>
@@ -71,7 +71,7 @@
         
         //alert($(".dv-home-patInfo").offset().right);
         if ($("#tcbeveltabs li").hasClass('activepart')) {
-            //再点击 隐藏
+            //Nhấn lại Ẩn
             $("#tcbeveltabs li").removeClass("activepart");
             $(".dv-home-patInfo").animate({ right: '-160px' }, "slow");
         }
@@ -82,7 +82,7 @@
 
         $("#tcbeveltabs li").on("click", function (e) {
             if ($(this).hasClass('activepart')) {
-                //再点击 隐藏
+                //Nhấn lại Ẩn
                 $("#tcbeveltabs li").removeClass("activepart");
                 $(".dv-home-patInfo").animate({ right: '-160px' }, "slow");
                 //$('#treeContent').hide();
@@ -101,7 +101,7 @@
                     onnodeclick: function (item) {
                         $.modalOpen({
                             id: "TemplatePresForm",
-                            title: "套餐明细",
+                            title: "Chi tiết gói",
                             url: "/DoctorManage/DoctorsAdvice/TemplatePresForm?tcId=" + item.id + "&tclx=" + pageFlag,
                             width: "800px",
                             height: "650px",
@@ -114,7 +114,7 @@
                                         dataType: "json",
                                         data: { idList: idlist },
                                         type: "POST",
-                                        loadingtext: "模板引用中，请稍后...",
+                                        loadingtext: "Đang trích dẫn mẫu, vui lòng đợi...",
                                         success: function (resp) {
                                             $.modalClose("TemplatePresForm");
                                             $(".dv-home-patInfo").animate({ right: '-160px' }, "slow");
@@ -157,7 +157,7 @@
                                                 debugger;
                                                 for (var i = 0; i < l.length; i++) {
                                                     l[i].Id = Math.random().toString() + new Date().getMilliseconds();
-                                                    l[i].yzzt = 0;//默认未审
+                                                    l[i].yzzt = 0;//Mặc định chưa duyệt
                                                     l[i].action = getActionStr;
                                                     l[i].zyh = currentobj.zyh;
                                                     l[i].kssj = $.getTime();

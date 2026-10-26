@@ -33,14 +33,14 @@
         if (callbackType == 'json') {
             treeSeleData = $("#staffTree").getCheckedNodeObjArray();
             if (single == 'true' && treeSeleData.length > 1) {
-                $.modalAlert('最多选中一条', 'warning');
+                $.modalAlert('Chọn tối đa một bản ghi', 'warning');
                 return;
             }
         }
         else {
             treeSeleData = $("#staffTree").getCheckedNodes();
             if (single == 'true' && treeSeleData.length > 1) {
-                $.modalAlert('最多选中一条', 'warning');
+                $.modalAlert('Chọn tối đa một bản ghi', 'warning');
                 return;
             }
             treeSeleData = String(treeSeleData);

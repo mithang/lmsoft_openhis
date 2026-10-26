@@ -1,26 +1,26 @@
 ﻿@{
-    ViewBag.Title = "用法联动维护";
+    ViewBag.Title = "Bảo trì liên động cách dùng";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
 <form id="form1">
     <table class="form">
         <tr>
-            <th class="formTitle"><span class="required">*</span>药品用法：</th>
+            <th class="formTitle"><span class="required">*</span>Cách dùng thuốc:</th>
             <td class="formValue">
-                <input id="selyf" attr-yfCode="" class="form-control required" style="height: 30px;width:150px;" placeholder="请选择用法" />
+                <input id="selyf" attr-yfCode="" class="form-control required" style="height: 30px;width:150px;" placeholder="Vui lòng chọn cách dùng" />
             </td>
-            <th class="formTitle"><span class="required">*</span>收费项目：</th>
+            <th class="formTitle"><span class="required">*</span>Hạng mục thu phí:</th>
             <td class="formValue">
-                <input id="selitem" attr-xmCode="" class="form-control required" style="height: 30px;width:150px;" placeholder="请选择费用" />
+                <input id="selitem" attr-xmCode="" class="form-control required" style="height: 30px;width:150px;" placeholder="Vui lòng chọn chi phí" />
                 <input id="sfdlCode" type="hidden" value="" />
             </td>
         </tr>
         <tr>
-            <th class="formTitle"><span class="required">*</span>选项：</th>
+            <th class="formTitle"><span class="required">*</span>Tùy chọn:</th>
             <td class="formValue" style="padding-top: 1px;" colspan="3">
                 <div class="ckbox">
-                    <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt"> 有效</label>
+                    <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt"> Có hiệu lực</label>
                 </div>
             </td>
         </tr>
@@ -50,14 +50,14 @@
                         }
                     }
                     else {
-                        $.modalAlert("获取信息失败", 'error');
+                        $.modalAlert("Lấy thông tin thất bại", 'error');
                     }
                 }
             });
         };
     });
 
-    //用法 浮层
+    //Cách dùng Lớp nổi
     $("#selyf").yfFloatingSelector({
         itemdbclickhandler: function ($this) {
             $("#selyf").val($this.attr('data-yfmc'));
@@ -65,9 +65,9 @@
         }
     });
 
-    //收费项目 浮层
+    //Hạng mục thu phí Lớp nổi
     $('#selitem').sfxmFloatingSelector({
-        leftshift: 100, //整体左偏移
+        leftshift: 100, //Dịch trái tổng thể
         width: 650,
         ajaxparameters: function ($thisinput) {
             return "keyword=" + $.trim($thisinput.val());
@@ -82,11 +82,11 @@
     //submit
     function AcceptClick(callback) {
         if (!$("#selyf").val()) {
-            $.modalMsg('请选择用法', 'error', 1000);
+            $.modalMsg('Vui lòng chọn cách dùng', 'error', 1000);
             return;
         }
         if (!$("#selitem").val()) {
-            $.modalMsg('请选择收费项目', 'error', 1000);
+            $.modalMsg('Vui lòng chọn hạng mục thu phí', 'error', 1000);
             return;
         }
         $.najax({
@@ -102,7 +102,7 @@
             type: "POST",
             success: function (res) {
                 if (res.state === "success") {
-                    $.modalMsg("提交成功", 'success');
+                    $.modalMsg("Gửi thành công", 'success');
                     callback();
                 } else {
                     $.modalAlert(res.message, "error");

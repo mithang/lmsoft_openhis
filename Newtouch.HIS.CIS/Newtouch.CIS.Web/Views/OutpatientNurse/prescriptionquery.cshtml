@@ -2,15 +2,15 @@
 @{
     ViewBag.Title = "prescriptionquery";
     Layout = "~/Views/Shared/_Index.cshtml";
-    //获取打印处方配置
-    var mzcfdPrinturl = SysConfigReader.OrgReportLink("mzcfdPrint");  //处方单
-    var mzzcycfPrint = SysConfigReader.OrgReportLink("mzzcycfPrint");  //中草药处方单
-    var mzjyjcPrinturl = SysConfigReader.OrgReportLink("jcjyPrint");//检验检查单
-    var mzjcPrinturl = SysConfigReader.OrgReportLink("jcPrint");//检查检查单
-    var mzwhdPrinturl = SysConfigReader.OrgReportLink("whdPrint");//雾化单
-    var mzzszPrinturl = SysConfigReader.OrgReportLink("mzzszPrint");//注射单 zszPrint
-    var mzjzdPrinturl = SysConfigReader.OrgReportLink("jzdPrint");//就诊单
-    var mzcgcfPrinturl = SysConfigReader.OrgReportLink("mzcgcfPrint");//门诊常规项目处方单
+    //Lấy cấu hình in đơn thuốc
+    var mzcfdPrinturl = SysConfigReader.OrgReportLink("mzcfdPrint");  //Phiếu đơn thuốc
+    var mzzcycfPrint = SysConfigReader.OrgReportLink("mzzcycfPrint");  //Phiếu đơn thuốc thảo dược
+    var mzjyjcPrinturl = SysConfigReader.OrgReportLink("jcjyPrint");//Phiếu xét nghiệm kiểm tra
+    var mzjcPrinturl = SysConfigReader.OrgReportLink("jcPrint");//Phiếu kiểm tra
+    var mzwhdPrinturl = SysConfigReader.OrgReportLink("whdPrint");//Phiếu khí dung
+    var mzzszPrinturl = SysConfigReader.OrgReportLink("mzzszPrint");//Phiếu tiêm zszPrint
+    var mzjzdPrinturl = SysConfigReader.OrgReportLink("jzdPrint");//Phiếu khám
+    var mzcgcfPrinturl = SysConfigReader.OrgReportLink("mzcgcfPrint");//Phiếu đơn thuốc hạng mục thông thường ngoại trú
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
     var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
     var curOpr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
@@ -56,12 +56,12 @@
     <div class="dv-left">
         <div class="panel panel-default">
             <div class="panel-heading navb-bg">
-                筛选条件
+                Điều kiện lọc
             </div>
             <table class="form" style="width:95%">
                 <tbody>
                     <tr>
-                        <th class="formTitle">姓名/门诊号：</th>
+                        <th class="formTitle">Họ tên/Số khám ngoại trú:</th>
                         <td class="formValue">
                             <input id="keyword" type="text" class="form-control">
                         </td>
@@ -71,18 +71,18 @@
             </table>
         </div>
         <div class="dv-left-title">
-            患者列表
+            Danh sách bệnh nhân
         </div>
         <div class="dv-left-tree" id="PatTreeList"></div>
     </div>
     <div class="dv-right">
         <table class="form" style="background-color:white">
             <tr>
-                <td class="formTitle">姓名：</td>
+                <td class="formTitle">Họ tên:</td>
                 <td class="formValue"><label id="hzxm"></label></td>
-                <td class="formTitle">性别：</td>
+                <td class="formTitle">Giới tính:</td>
                 <td class="formValue" style="width:170px"><label id="sex"></label></td>
-                <td class="formTitle">年龄：</td>
+                <td class="formTitle">Tuổi:</td>
                 <td class="formValue"><label id="nl"></label></td>
                 <td class="formTitle"> <input id="mzh" hidden /></td>
                 <td class="formValue"></td>
@@ -90,7 +90,7 @@
                 <td class="formValue"></td>
             </tr>
             <tr>
-                <td class="formTitle"> 开立日期：</td>
+                <td class="formTitle"> Ngày lập:</td>
                 <td class="formValue" colspan="2">
                     <input id="txt_klrq" type="text" class="form-control input-wdatepicker" style="width:70%;"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -104,19 +104,19 @@
                                onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd 23:59:59")" />
                     </td>*@
                 <td class="formTitle">
-                    执行类别：
+                    Loại thực hiện:
                 </td>
                 <td class="formValue" colspan="2">
                     <select class="form-control" id="cfdlb">
-                        <option value="">请选择</option>
-                        <option value="xycf">西药处方单</option>
-                        <option value="zycf">中药处方单</option>
-                        <option value="jycf">检验处方单</option>
-                        <option value="jccf">检查处方单</option>
-                        <option value="zscf">注射处方单</option>
-                        @*<option value="sycf">输液处方单</option>*@
-                        <option value="kfcf">康复处方单</option>
-                        <option value="cgcf">常规处方单</option>
+                        <option value="">Vui lòng chọn</option>
+                        <option value="xycf">Phiếu đơn thuốc Tây y</option>
+                        <option value="zycf">Phiếu đơn thuốc Đông y</option>
+                        <option value="jycf">Phiếu đơn thuốc xét nghiệm</option>
+                        <option value="jccf">Phiếu đơn thuốc kiểm tra</option>
+                        <option value="zscf">Phiếu đơn thuốc tiêm</option>
+                        @*<option value="sycf">Phiếu đơn thuốc truyền dịch</option>*@
+                        <option value="kfcf">Phiếu đơn thuốc phục hồi chức năng</option>
+                        <option value="cgcf">Phiếu đơn thuốc thông thường</option>
                     </select>
 
                 </td>
@@ -124,7 +124,7 @@
 
                     <div class="btn-group">
                         <a id="btn_search" class="btn btn-primary">
-                            查询
+                            Tra cứu
                         </a>
                     </div>
 
@@ -132,10 +132,10 @@
 
                 <td class="formValue" colspan="3">
                     <a id="ExecutionChecked" class="btn btn-primary" onclick="bingliprit()">
-                        <i class="fa fa-pencil-square-o"></i>病历打印
+                        <i class="fa fa-pencil-square-o"></i>In bệnh án
                     </a>
                     <a id="ExecutionChecked" class="btn btn-primary" onclick="ExecutionChecked()">
-                        <i class="fa fa-pencil-square-o"></i>处方笺打印
+                        <i class="fa fa-pencil-square-o"></i>In đơn thuốc
                     </a>
 
                 </td>
@@ -155,14 +155,14 @@
     $(".dv-left-tree").height($(window).height() - 70);
     var jzid = "";
     $(function() {
-        $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+        $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt thì tính lại chiều rộng và chiều cao
             $(".dv-body").height($(window).height());
             $(".dv-body").width($(window).width());
         });
 
         getPatTreeList();
         gridList("");
-        //搜索病人信息
+        //Tìm kiếm thông tin bệnh nhân
         $('#keyword').keyup(function () {
             getPatTreeList();
         });
@@ -231,19 +231,19 @@
             url: "/OutpatientNurse/prescriptionfrom",
             height: $(window).height() - 125,
             colModel: [
-                { label: '处方明细ID', name: 'cfmxId', align: 'center', width: 50, key: true, hidden: true },
-                { label: '处方号', name: 'cfh', align: 'center', width: 140 },
+                { label: 'Chi tiết đơn thuốcID', name: 'cfmxId', align: 'center', width: 50, key: true, hidden: true },
+                { label: 'Số đơn thuốc', name: 'cfh', align: 'center', width: 140 },
                 { label: 'cfid', name: 'cfid', align: 'center', hidden: true },
                 { label: 'mzh', name: 'mzh', align: 'center', hidden: true },
                 { label: 'blh', name: 'blh', align: 'center', hidden: true },
-                { label: '组号', name: 'zh', align: 'center', width: 50 },
-                { label: '开始时间', name: 'kssj', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
-                { label: '处方内容', name: 'cfmxnr', align: 'left', width: 230 },
-                { label: '金额/元', name: 'je', align: 'right', width: 60 },
-                { label: '用法', name: 'ypyfmc', align: 'center', width: 60 },
+                { label: 'Số nhóm', name: 'zh', align: 'center', width: 50 },
+                { label: 'Thời gian bắt đầu', name: 'kssj', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
+                { label: 'Nội dung đơn thuốc', name: 'cfmxnr', align: 'left', width: 230 },
+                { label: 'Số tiền/đồng', name: 'je', align: 'right', width: 60 },
+                { label: 'Cách dùng', name: 'ypyfmc', align: 'center', width: 60 },
                 { label: 'ypcode', name: 'ypcode', align: 'center', hidden: true },
-                { label: '开立医生', name: 'ysmc', align: 'center', width: 60 },
-                { label: '处方类型', name: 'cflx', align: 'center', width: 60, formatter: function (val) { return val == 1 ? "西药处方" : val == 2 ? "中药处方" : val == 3 ? "康复处方" : val == 4 ? "检验处方" : val == 5 ? "检查处方" : val == 6 ?"常规处方":"" }},
+                { label: 'Bác sĩ lập', name: 'ysmc', align: 'center', width: 60 },
+                { label: 'Loại đơn thuốc', name: 'cflx', align: 'center', width: 60, formatter: function (val) { return val == 1 ? "西药处方" : val == 2 ? "中药处方" : val == 3 ? "康复处方" : val == 4 ? "检验处方" : val == 5 ? "检查处方" : val == 6 ?"常规处方":"" }},
                 { label: 'ypyfdm', name: 'yfcode', align: 'center', hidden: true },
                 { label: 'barcode', name: 'barcode', align: 'center', hidden: true }
             ],
@@ -262,7 +262,7 @@
                         checkTrigger = false;
                         return;
                     }
-                    liststu = s; //同步状态
+                    liststu = s; //Trạng thái đồng bộ
                     for (var i = 0; i < ids.length; i++) {
                         if ("xycf" == $('#cfdlb').val()) {
 		                    if (ids[i].cfh == rowData.cfh && ids[i].cfh != "") {
@@ -302,14 +302,14 @@
                 if (list.length > 0) {
 
                     for (j = j; j < list.length; j++) {
-                        if (liststu) //同组选中
+                        if (liststu) //Chọn cùng nhóm
                         {
                             j = j + 1;
                             $("#gridList").jqGrid("setSelection", list[j - 1], true);
                         }
-                        else { //同组取消选中
+                        else { //Hủy chọn cùng nhóm
                             //j = j + 1;
-                            $("#gridList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow
+                            $("#gridList").jqGrid("setSelection", list[j], false);      //Hủy không kích hoạtonselectrow
                         }
                     }
                 }
@@ -323,16 +323,16 @@
     }
 
     function ExecutionChecked() {
-        //选中的id
+        //đã chọnid
         var cfdlb = $('#cfdlb').val();
         var selRowIds = jQuery("#gridList").jqGrid("getGridParam", "selarrrow");
         if (selRowIds == null || selRowIds.length == 0) {
-            $.modalAlert("请先选中需打印的处方", 'warning');
+            $.modalAlert("Vui lòng chọn trước đơn thuốc cần in", 'warning');
             return;
         }
 
         if (!cfdlb) {
-            $.modalAlert("请先选择处方单类别", 'warning');
+            $.modalAlert("Vui lòng chọn trước loại phiếu đơn thuốc", 'warning');
             return;
         }
         var listarry = new Array();
@@ -381,7 +381,7 @@
     function bingliprit() {
         var mzh = $('#mzh').val();
         if (mzh == null || mzh == "") {
-            $.modalAlert("请选择病人！", "error");
+            $.modalAlert("Vui lòng chọn bệnh nhân!", "error");
             return;
         }
         window.open('@Html.Raw(reportUrl)' + "?tempCode=13&systemCode=CIS&mzh=" + mzh + "&orgId=" + '@curOpr.OrganizeId', "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");

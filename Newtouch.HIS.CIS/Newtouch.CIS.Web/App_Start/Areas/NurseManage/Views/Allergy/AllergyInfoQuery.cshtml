@@ -15,7 +15,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="姓名/病历号" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Họ tên/Số hồ sơ bệnh án" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -43,18 +43,18 @@
             height: $(window).height() - 120,
             postData: { keyword: $("#txt_keyword").val() },
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: '过敏药品code', name: 'ypCode', hidden:true },
-                { label: '姓名', name: 'xm', width: 100, align: 'left' },
-                { label: '出生日期', name: 'csrq', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '性别', name: 'sex', width: 50, align: 'left' },
-                { label: '病历号', name: 'blh', width: 120, align: 'left' },
-                { label: '皮试项目', name: "xmmc", width: 100, align: "left" },
-                { label: '过敏类型', name: "gmlxmc", width: 100, align: "left" },
-                { label: '过敏药品', name: 'gmyp', width: 100, align: 'left' },
-                { label: '备注', name: 'Remark', width: 150, align: 'center' },
-                { label: '创建人', name: 'CreatorName', width: 100, align: 'left' },
-                { label: '创建时间', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Thuốc dị ứngcode', name: 'ypCode', hidden:true },
+                { label: 'Họ tên', name: 'xm', width: 100, align: 'left' },
+                { label: 'Ngày sinh', name: 'csrq', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Giới tính', name: 'sex', width: 50, align: 'left' },
+                { label: 'Số hồ sơ bệnh án', name: 'blh', width: 120, align: 'left' },
+                { label: 'Hạng mục test da', name: "xmmc", width: 100, align: "left" },
+                { label: 'Loại dị ứng', name: "gmlxmc", width: 100, align: "left" },
+                { label: 'Thuốc dị ứng', name: 'gmyp', width: 100, align: 'left' },
+                { label: 'Ghi chú', name: 'Remark', width: 150, align: 'center' },
+                { label: 'Người tạo', name: 'CreatorName', width: 100, align: 'left' },
+                { label: 'Thời gian tạo', name: 'CreateTime', width: 80, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
             ],
             pager: "#gridPager",
             rowNum: '15',
@@ -68,7 +68,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })

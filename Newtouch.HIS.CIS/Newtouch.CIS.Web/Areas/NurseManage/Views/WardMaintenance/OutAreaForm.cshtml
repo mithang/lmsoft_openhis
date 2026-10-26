@@ -1,10 +1,10 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "病人出区";
+    ViewBag.Title = "Bệnh nhân xuất khu";
     Layout = "~/Views/Shared/_Form.cshtml";
     var isOpendiags = SysConfigReader.String("Inpatient_OutAre");
-    var isopenPriorReview = (ViewBag.isopenPriorReview);//是否开启智能审核
+    var isopenPriorReview = (ViewBag.isopenPriorReview);//Có bật duyệt thông minh không
     @*minDate: '%y-%M-%d 0:00:00', maxDate: '%y-%M-%d 23:59:59',*@
 }
 <style type="text/css">
@@ -20,61 +20,61 @@
     <div class="panel panel-default" style="padding-right:10px;">
         <table class="form">
             <tr>
-                <th class="formTitle">出院时间：</th>
+                <th class="formTitle">Thời gian xuất viện:</th>
                 <td class="formValue">
                     <input id="txt_cqrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss',  onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">出区方式：</th>
+                <th class="formTitle">Phương thức xuất khu:</th>
                 <td class="formValue">
                     <select id="sel_cqfs" name="sel_cqfs" class="form-control required">
-                        @* 20190313 改成字典可维护
-                                <option value="1">治愈</option>
-                            <option value="2">好转</option>
-                            <option value="3">转院</option>
-                            <option value="4">死亡</option>*@
+                        @* 20190313 Đổi thành từ điển có thể bảo trì
+                                <option value="1">Khỏi bệnh</option>
+                            <option value="2">Đỡ hơn</option>
+                            <option value="3">Chuyển viện</option>
+                            <option value="4">Tử vong</option>*@
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">诊断时间：</th>
+                <th class="formTitle">Thời gian chẩn đoán:</th>
                 <td class="formValue">
                     <input id="txt_zdsj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd ")" />
                 </td>
             </tr>
             @*<tr>
-                    <th class="formTitle">出院诊断：</th>
+                    <th class="formTitle">Chẩn đoán xuất viện:</th>
                     <td class="formValue">
                         <input id="txt_cyzddm" type="hidden" />
                         <input id="txt_cyzd" disabled="disabled" name="txt_cyzd" type="text" style="background-color:#edeaea" class="form-control required zdinput" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">辅助诊断1：</th>
+                    <th class="formTitle">Chẩn đoán hỗ trợ1：</th>
                     <td class="formValue">
                         <input id="txt_fzzd1dm" type="hidden" />
                         <input id="txt_fzzd1" disabled="disabled" name="txt_fzzd1" type="text" style="background-color:#edeaea" class="form-control required zdinput" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">辅助诊断2：</th>
+                    <th class="formTitle">Chẩn đoán hỗ trợ2：</th>
                     <td class="formValue">
                         <input id="txt_fzzd2dm" type="hidden" />
                         <input id="txt_fzzd2" disabled="disabled" name="txt_fzzd2" type="text" style="background-color:#edeaea" class="form-control required zdinput" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">辅助诊断3：</th>
+                    <th class="formTitle">Chẩn đoán hỗ trợ3：</th>
                     <td class="formValue">
                         <input id="txt_fzzd3dm" type="hidden" />
                         <input id="txt_fzzd3" disabled="disabled" name="txt_fzzd3" type="text" style="background-color:#edeaea" class="form-control required zdinput" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">自定义诊断：</th>
+                    <th class="formTitle">Chẩn đoán tùy chỉnh:</th>
                     <td class="formValue">
                         <textarea id="txt_zdyzd" disabled="disabled" name="txt_zdyzd" style="background-color:#edeaea" class="form-control zdinput" style="height: 60px;"></textarea>
                     </td>
@@ -83,8 +83,8 @@
     </div>
     <div class="container">
         <ul class="nav nav-tabs" role="tablist" id="myTab">
-            <li role="presentation"><a href="#xyzdInfo" role="tab" data-toggle="tab">西医诊断</a></li>
-            <li role="presentation"><a href="#zyzdInfo" role="tab" data-toggle="tab">中医诊断</a></li>
+            <li role="presentation"><a href="#xyzdInfo" role="tab" data-toggle="tab">Chẩn đoán Tây y</a></li>
+            <li role="presentation"><a href="#zyzdInfo" role="tab" data-toggle="tab">Chẩn đoán Đông y</a></li>
         </ul>
     </div>
     <div class="tab-content">
@@ -93,7 +93,7 @@
                 <tr>
                     <th class="formTitle">
                         <i id="zdCircle" class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="display:none;color: #6ff3ad; font-size: large;"></i>
-                        出院诊断：
+                        Chẩn đoán xuất viện:
                     </th>
                     <td class="formValue">
                         <input id="txt_cyzddm" type="hidden" />
@@ -108,7 +108,7 @@
 
                     <th class="formTitle">
                         <i id="zyzdCircle" class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="display:none;color: #6ff3ad; font-size: large;"></i>
-                        主病：
+                        Bệnh chính:
                     </th>
                     <td class="formValue">
                         <input id="txt_zycyzddm" type="hidden" />
@@ -126,7 +126,7 @@
     $(function () {
         GetPatDiagnosis();
 
-        //出区方式
+        //Phương thức xuất khu
         $("#sel_cqfs").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -140,7 +140,7 @@
                 return resultObjArr;
             }
         });
-        $("#sel_cqfs option[value='2']").prop("selected", true).trigger('change');//默认好转
+        $("#sel_cqfs option[value='2']").prop("selected", true).trigger('change');//Mặc định đỡ hơn
     })
     //$("#txt_cyzd").zdFloatingSelector({
     //    zdlx: "WM",
@@ -179,7 +179,7 @@
             type: "GET",
             url: "/NurseManage/WardMaintenance/GetPatDiagnosis?r=" + Math.random(),
             data: { zyh: '@ViewBag.zyh' },
-            loadingtext: "数据加载中，请稍后...",
+            loadingtext: "Dữ liệu đang được tải, vui lòng đợi...",
             dataType: "json",
             success: function (zdlist) {
                 //zdcnt = zdlist.length;
@@ -193,7 +193,7 @@
                             $("#txt_zycyzd").val(item.zdmc);
                             $("#txt_zycyzddm").val(item.zddm);
                         }
-                        //辅助诊断
+                        //Chẩn đoán hỗ trợ
                         if (item.zdlx > "1") {
                             $('#tablezyzd .plusToggleCircle').click();
                             var number = item.px;
@@ -205,7 +205,7 @@
                             $("#txt_cyzd").val(item.zdmc);
                             $("#txt_cyzddm").val(item.zddm);
                         }
-                        //辅助诊断
+                        //Chẩn đoán hỗ trợ
                         if (item.zdlx > "1") {
                             $('#tablezd .plusToggleCircle').click();
                             var number = item.px;
@@ -247,9 +247,9 @@
         var cyfs = $("#sel_cqfs").val();
         var cqsj = $("#txt_cqrq").val();
         //var zdrq = $("#txt_zdsj").val();
-        var zyzd = $("#txt_cyzd").val();//西医诊断
+        var zyzd = $("#txt_cyzd").val();//Chẩn đoán Tây y
         var zyzddm = $("#txt_cyzddm").val();
-        var zyzyzd = $("#txt_zycyzd").val();//中医诊断
+        var zyzyzd = $("#txt_zycyzd").val();//Chẩn đoán Đông y
         var zyzyzddm = $("#txt_zycyzddm").val();
         //var fzzd1 = $("#txt_fzzd1").val();
         //var fzzd1dm = $("#txt_fzzd1dm").val();
@@ -267,10 +267,10 @@
         }
         if ((zyzd == "" || zyzddm == "") && (zyzyzd == "" || zyzyzddm=="")) {
             if ('@isOpendiags' == 'OFF') {
-                $.modalAlert('该患者病案首页出院主诊断未录入，不允许出区！', 'warning');
+                $.modalAlert('Trang đầu bệnh án của bệnh nhân này chưa nhập chẩn đoán chính xuất viện, không được phép xuất khu!', 'warning');
             }
             else {
-                $.modalAlert('该患者没有出院主诊断，不允许出区！', 'warning');
+                $.modalAlert('Bệnh nhân này không có chẩn đoán chính xuất viện, không được phép xuất khu!', 'warning');
             }
             callBack();
         }
@@ -285,10 +285,10 @@
                     GetMAC = data.Data;
                 },
                 error: function (request, error, ex) {
-                    $.modalAlert("医保审核服务不可访问：[" + ex + "]", 'error');
+                    $.modalAlert("Dịch vụ duyệt bảo hiểm y tế không thể truy cập:[" + ex + "]", 'error');
                 }
             });
-            //病案质量审核服务
+            //Dịch vụ duyệt chất lượng bệnh án
             $.ajax({
                 url: "/DoctorManage/Medicine/GetBashData",
                 dataType: "json",
@@ -299,7 +299,7 @@
                 success: function (reqdata) {
                     if (reqdata) {
                         if (reqdata.message != "") {
-                            $.modalAlert("病案审核接口调用调用失败:" + reqdata.message, 'warning');
+                            $.modalAlert("Gọi giao diện duyệt bệnh án thất bại:" + reqdata.message, 'warning');
                         }
                     }
                 }
@@ -314,14 +314,14 @@
                 success: function (reqdata) {
                     if (reqdata) {
                         if (reqdata.message != "") {
-                            $.modalAlert("Drg接口调用失败:" + reqdata.message, 'warning');
+                            $.modalAlert("DrgGọi giao diện thất bại:" + reqdata.message, 'warning');
                         }
                     }
                 }
             });
         }
         if (zdcnt == 1) {
-            $.modalConfirm("当前出院诊断只有一条，确定出区？", function (flag) {
+            $.modalConfirm("Chẩn đoán xuất viện hiện tại chỉ có một, xác định xuất khu?", function (flag) {
                 if (flag) {
                     $.ajax({
                         type: "POST",
@@ -331,7 +331,7 @@
                         async: false,
                         success: function (ajaxresp) {
                             if (ajaxresp.state == "success") {
-                                $.modalMsg('出区成功', 'success');
+                                $.modalMsg('Xuất khu thành công', 'success');
                             }
                             else {
                                 $.modalAlert(ajaxresp.message, 'warning');
@@ -355,7 +355,7 @@
                 async: false,
                 success: function (ajaxresp) {
                     if (ajaxresp.state == "success") {
-                        $.modalMsg('出区成功', 'success');
+                        $.modalMsg('Xuất khu thành công', 'success');
                     }
                     else {
                         $.modalAlert(ajaxresp.message, 'warning');
@@ -368,17 +368,17 @@
 
 
     }
-    //中医辅助诊断 新增icon
+    //Chẩn đoán hỗ trợ Đông y Thêm mớiicon
     $('#tablezyzd .plusToggleCircle').click(function () {
         var number = $('#tablezyzd .zdinput').length + 1;
-        var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;display:none; margin-left: 10px; color: #6ff3ad; font-size: large;"></i>主证：</th><td class="formValue"><input id="txt_zyfzzd' + number + 'dm" type="hidden" /><input id="txt_zyfzzd' + number + '" name="txt_zyfzzd' + number + '" type="text"  disabled="disabled" style="background-color:#edeaea" class="form-control required zdinput" /></td></tr>');
+        var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;display:none; margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Chứng chính:</th><td class="formValue"><input id="txt_zyfzzd' + number + 'dm" type="hidden" /><input id="txt_zyfzzd' + number + '" name="txt_zyfzzd' + number + '" type="text"  disabled="disabled" style="background-color:#edeaea" class="form-control required zdinput" /></td></tr>');
         $newTr.appendTo($(this).closest('table'));
     });
 
-    //西医辅助诊断 新增icon
+    //Chẩn đoán hỗ trợ Tây y Thêm mớiicon
     $('#tablezd .plusToggleCircle').click(function () {
         var number = $('#tablezd .zdinput').length + 1;
-        var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;display:none; margin-left: 10px; color: #6ff3ad; font-size: large;"></i>辅助诊断：</th><td class="formValue"><input id="txt_fzzd' + number + 'dm" type="hidden" /><input id="txt_fzzd' + number + '" name="txt_fzzd' + number + '" type="text"  disabled="disabled" style="background-color:#edeaea" class="form-control required zdinput" /></td></tr>');
+        var $newTr = $('<tr><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="width:30px;display:none; margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Chẩn đoán hỗ trợ:</th><td class="formValue"><input id="txt_fzzd' + number + 'dm" type="hidden" /><input id="txt_fzzd' + number + '" name="txt_fzzd' + number + '" type="text"  disabled="disabled" style="background-color:#edeaea" class="form-control required zdinput" /></td></tr>');
         $newTr.appendTo($(this).closest('table'));
     });
 

@@ -41,27 +41,27 @@
                 <td class="formValue"></td>
             </tr>
             <tr>
-                <td class="formTitle">住院号：</td>
+                <td class="formTitle">Số nhập viện:</td>
                 <td class="formValue">
                     <label id="zyh" name="zyh">1</label>
                     <input type="hidden" id="operationId" />
                 </td>
-                <td class="formTitle">姓名：</td>
+                <td class="formTitle">Họ tên:</td>
                 <td class="formValue">
                     <label id="xm" name="xm">张三</label>
                 </td>
-                <td class="formTitle">手术：</td>
+                <td class="formTitle">Phẫu thuật:</td>
                 <td class="formValue" colspan="2">
-                    <label id="ssmc" name="ssmc">阑尾炎切除</label>
+                    <label id="ssmc" name="ssmc">Cắt ruột thừa</label>
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>手术日期：</td>
+                <td class="formTitle"><span class="required">*</span>Ngày phẫu thuật:</td>
                 <td class="formValue" colspan="2">
                     <input id="rq" name="rq" type="text" width="120" class="required form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" />
                 </td>
                 <td></td>
-                <td class="formTitle"><span class="required">*</span>手术地点：</td>
+                <td class="formTitle"><span class="required">*</span>Địa điểm phẫu thuật:</td>
                 <td class="formValue" colspan="2">
                     <select id="ssdd" name="ssdd" class="form-control required">
                         <option value="">==请选择==</option>
@@ -69,18 +69,18 @@
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">加急：</td>
+                <td class="formTitle">Khẩn:</td>
                 <td class="formValue" colspan="2">
                     <label class="radio-inline">
-                        <input type="radio" name="urgent" value="1">是
+                        <input type="radio" name="urgent" value="1">Có
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="urgent" value="0" checked="checked">否
+                        <input type="radio" name="urgent" value="0" checked="checked">Không
                     </label>
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>手术医生：</td>
+                <td class="formTitle"><span class="required">*</span>Bác sĩ phẫu thuật:</td>
                 <td class="formValue">
                     <input type="text" id="ssys" name="ssys" class="form-control form-an" onblur="getValue('ssys');" />
                     <input type="hidden" id="hssys" name="hssys" /><input type="hidden" id="hssysName" name="hssysName" />
@@ -88,7 +88,7 @@
             </tr>
             <tr id="tr_sszs"></tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>麻醉方式：</td>
+                <td class="formTitle"><span class="required">*</span>Phương pháp gây mê:</td>
                 <td class="formValue">
                     <select id="mzfs" name="mzfs" class="form-control required">
                         <option value="">==请选择==</option>
@@ -96,7 +96,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="formTitle" style="vertical-align:top;">注意事项：</td>
+                <td class="formTitle" style="vertical-align:top;">Lưu ý:</td>
                 <td class="formValue" colspan="3">
                     <textarea id="remark" name="remark" rows="5" class="form-an form-control"></textarea>
 
@@ -131,7 +131,7 @@
                     $("input:radio[name='urgent'][value='" + data.urgent + "']").attr("checked", "true");
                     $("#ssys").attr("data-label", data.surgeonId);
                     $("#ssys").val(data.surgeonName);
-                    $("#hssys").val(data.surgeonId);//临时存放手术医生信息
+                    $("#hssys").val(data.surgeonId);//Tạm thời lưu thông tin bác sĩ phẫu thuật
                     $("#hssysName").val(data.surgeonName);
                     setSszs(data.assistant,data.assistantName);
                     $("#mzfs").val(data.anesthesiaType).trigger("change");
@@ -164,23 +164,23 @@
 
 
 
-        //$("#ssdd").bindSelect({//绑定手术地点
+        //$("#ssdd").bindSelect({//Liên kết địa điểm phẫu thuật
         //    url: "/DoctorManage/Operation/getOperationDD"
         //});
-        //$("#mzfs").bindSelect({//绑定手术地点
+        //$("#mzfs").bindSelect({//Liên kết địa điểm phẫu thuật
         //    url: "/DoctorManage/Operation/getAnesthesiaType"
         //});
-        setSSzsHtml();//根据配置添加手术助手录入
+        setSSzsHtml();//Thêm nhập trợ lý phẫu thuật theo cấu hình
     }
 
     function bindItemFloator(inputId, itemType) {
-        //绑定字典
+        //Liên kết từ điển
         $("#" + inputId).newtouchFloatingSelector({
             height: 200,
             width: 300,
             clickautotrigger: true,
             filter: function (keyword) {
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu, dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
 
                 $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
@@ -194,20 +194,20 @@
                 return resultObjArr;
 
             },
-            caption: "医生",
+            caption: "Bác sĩ",
             colModel: [
         {
-            label: '工号', name: 'StaffGh', widthratio: 25
+            label: 'Mã nhân viên', name: 'StaffGh', widthratio: 25
         },
         {
-            label: '名称', name: 'StaffName', widthratio: 25
+            label: 'Tên', name: 'StaffName', widthratio: 25
         },
-        { label: '拼音', name: 'StaffPY', widthratio: 25 }
+        { label: 'Phiên âm', name: 'StaffPY', widthratio: 25 }
             ],
             itemdbclickhandler: function ($thistr) {
                 $("#" + inputId).attr("data-label", $thistr.find("td:eq(0)").html());
                 $("#" + inputId).val($thistr.find('td:eq(1)').html());
-                $("#h" + inputId).val($thistr.find("td:eq(0)").html());//写入临时存放信息
+                $("#h" + inputId).val($thistr.find("td:eq(0)").html());//Ghi thông tin lưu tạm thời
                 $("#h" + inputId + "Name").val($thistr.find('td:eq(1)').html());
                 return;
             }
@@ -231,7 +231,7 @@
 
     function setSSzsHtml(){
         var OperationAssistant = @OperationAssistant;
-        var content='<td class="formTitle">手术助手：</td><td class="formValue" colspan="5">';
+        var content='<td class="formTitle">Trợ lý phẫu thuật:</td><td class="formValue" colspan="5">';
         for (var i = 1; i <= OperationAssistant; i++) {
             content +='<input type="text" id="sszs' + i + '" class="form-control form-an zs" onblur="getValue(\'sszs'+i+
                 '\');" />'+
@@ -247,7 +247,7 @@
 
     function AcceptClick(callback) {
         if ($.trim(keyValue) == '') {
-            $.modalAlert("请选择手术医嘱", "warning");
+            $.modalAlert("Vui lòng chọn y lệnh phẫu thuật", "warning");
             return;
         }
         if (!$("#form1").formValid()) {
@@ -258,30 +258,30 @@
         data.zyh = $('#zyh').html();
         var ssrq = $("#rq").val();
         if ($.trim(ssrq) == "") {
-            $.modalAlert("请选择手术日期", "warning");
+            $.modalAlert("Vui lòng chọn ngày phẫu thuật", "warning");
             return;
         }
         data.aprq = $("#rq").val();
         var ssdd = $("#ssdd").val();
         if ($.trim(ssdd) == "") {
-            $.modalAlert("请填写手术地点", "warning");
+            $.modalAlert("Vui lòng điền địa điểm phẫu thuật", "warning");
             return;
         }
         data.ssAddr = ssdd;
         data.urgent = $('input:radio[name=urgent]:checked').val();
         if (!data.urgent || $.trim(data.urgent) == "") {
-            $.modalAlert("请选择是否加急", "warning");
+            $.modalAlert("Vui lòng chọn có khẩn không", "warning");
             return;
         }
-        //字典
+        //Từ điển
         data.surgeonId = $('#ssys').attr('data-label');
         if (!data.surgeonId || $.trim(data.surgeonId) == "") {
-            $.modalAlert("请选择手术医生", "warning");
+            $.modalAlert("Vui lòng chọn bác sĩ phẫu thuật", "warning");
             return;
         }
         data.surgeonName = $('#ssys').val();
         if (!data.surgeonName || $.trim(data.surgeonName) == "") {
-            $.modalAlert("请重新选择手术医生", "warning");
+            $.modalAlert("Vui lòng chọn lại bác sĩ phẫu thuật", "warning");
             return;
         }
 
@@ -308,7 +308,7 @@
         data.assistantName = sszsNames;
         data.anesthesiaType = $("#mzfs").val();
         if (!data.anesthesiaType || $.trim(data.anesthesiaType) == "") {
-            $.modalAlert("请选择麻醉方式", "warning");
+            $.modalAlert("Vui lòng chọn phương pháp gây mê", "warning");
             return;
         }
         data.remark = $('#remark').val();
@@ -334,7 +334,7 @@
             $("#sszs"+(i+1)).attr("data-label", sszsIds[i]);
             $("#sszs"+(i+1)).val(sszsNames[i]);
 
-            $("#hsszs"+(i+1)).val(sszsIds[i]);//临时存放信息
+            $("#hsszs"+(i+1)).val(sszsIds[i]);//Thông tin lưu tạm thời
             $("#hsszs"+(i+1)+"Name").val(sszsNames[i]);
         }
     }

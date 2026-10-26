@@ -3,20 +3,20 @@
 })
 $.clientsInit = function () {
     var extToClients = function (data) {
-        //遍历data的属性 扩展到window.clients
+        //Duyệtdatathuộc tính của Mở rộng đếnwindow.clients
         if (!!!window.clients) {
             window.clients = {};
         }
         for (dataitemName in data) {
             var itemdata = data[dataitemName];
             if (typeof (itemdata) == typeof ('abc')) {
-                //字符串则要使用eval方法
+                //Chuỗi thì cần sử dụngevalPhương pháp
                 itemdata = eval(itemdata);
             }
             window.clients[dataitemName] = itemdata;
         }
     }
-    //发ajax请求
+    //发ajaxYêu cầu
     var funcClientsAjax = function (url, async) {
         $.ajax({
             url: url,
@@ -30,8 +30,8 @@ $.clientsInit = function () {
         });
     };
 
-    //同步请求  //如菜单内容必须用同步方式
+    //Yêu cầu đồng bộ  //Nếu nội dung menu phải dùng phương thức đồng bộ
     funcClientsAjax("/ClientsData/GetClientsDataJson", false);
-    //异步请求
+    //Yêu cầu không đồng bộ
     //funcClientsAjax("/NewtouchClientsData/GetClientsDataJson", true);
 }

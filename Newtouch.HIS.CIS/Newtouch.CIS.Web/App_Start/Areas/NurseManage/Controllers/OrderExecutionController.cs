@@ -42,7 +42,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return View();
         }
         /// <summary>
-        /// 获取病区患者待执行医嘱树
+        /// Lấy cây y lệnh chờ thực hiện của bệnh nhân khu bệnh
         /// </summary>
         /// <param name="aa"></param>
         /// <returns></returns>
@@ -91,14 +91,14 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(treeList.TreeViewJson(null));
         }
         /// <summary>
-        /// 执行当前医嘱
+        /// Thực hiện y lệnh hiện tại
         /// </summary>
         /// <param name="orderList">yzid,yzxh,zyh,yzlx</param>
-        /// <param name="zxsj">执行时间</param>
+        /// <param name="zxsj">Thời gian thực hiện</param>
         /// <returns></returns>
         public ActionResult submitOrderExecutionList(IList<ApiResponseVO> orderList,DateTime Vzxsj)
         {
-            //调用接口返回
+            //Gọi giao diện trả về
             string result = doOrderExecution(orderList, Vzxsj);
             if (result.Split('|')[0].ToString() == "T")
             {
@@ -113,28 +113,28 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         }
         /// <summary>
-        /// 构造并调用接口
+        /// Xây dựng và gọi giao diện
         /// </summary>
         /// <param name="orderList">Apilist</param>
-        /// <param name="zxsj">执行时间</param>
+        /// <param name="zxsj">Thời gian thực hiện</param>
         /// <returns></returns>
         public string doOrderExecution(IList<ApiResponseVO> orderListAll, DateTime Vzxsj)
         {
             try
             {
                 OperatorModel user = this.UserIdentity;
-                //可以执行的医嘱
+                //Y lệnh có thể thực hiện
                 string IsOKOrderExecutionresult = _OrderExecutionDmnService.IsOKOrderExecution(orderListAll, Vzxsj);
                 if (IsOKOrderExecutionresult.Split('|')[0].ToString() == "T")
                 {
                     IList<ApiResponseVO> orderYPList = orderListAll.Where(a => (a.yzlx == Convert.ToInt32(EnumYzlx.Yp)) || (a.yzlx == Convert.ToInt32(EnumYzlx.Cydy))).ToList();
                     IList<ApiResponseVO> orderXMList = orderListAll.Where(a => (a.yzlx != Convert.ToInt32(EnumYzlx.Yp)) && (a.yzlx != Convert.ToInt32(EnumYzlx.Wz)) && (a.yzlx != Convert.ToInt32(EnumYzlx.Cydy))).ToList();
-                    ///领药序号
+                    ///Số thứ tự nhận thuốc
                     lyxh = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueIntValue("fyqqk_lyxh", this.OrganizeId);
                     
                     if (orderYPList.Count > 0)
                     {
-                        ///构造api接口 RequestJson
+                        ///Xây dựngapiGiao diện RequestJson
                         List<YzDetail> orderList = _OrderExecutionDmnService.GetapiList(user, orderYPList, Vzxsj, lyxh);
                         var OrderExecution = new
                         {
@@ -147,7 +147,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                         var apiOrderExecution = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Zyypyz/Yzzx", OrderExecution);
                         if (apiOrderExecution.code == APIRequestHelper.ResponseResultCode.SUCCESS && apiOrderExecution.data != null)
                         {
-                            RequestOrderExecMsgDto successDoOrder = Tools.Json.ToObject<RequestOrderExecMsgDto>(apiOrderExecution.data.ToString()); //接口返回数据 
+                            RequestOrderExecMsgDto successDoOrder = Tools.Json.ToObject<RequestOrderExecMsgDto>(apiOrderExecution.data.ToString()); //Dữ liệu giao diện trả về 
                             if (successDoOrder.Data != null && successDoOrder.IsSucceed == true && successDoOrder.Data.Count > 0)
                             {
                                 List<YzDetail> successDoOrderYp = Tools.Json.ToList<YzDetail>(successDoOrder.Data.ToString());
@@ -170,7 +170,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     }
                     if (orderXMList.Count > 0)
                     {
-                        //项目执行
+                        //Thực hiện hạng mục
                         string xmMsg = _OrderExecutionDmnService.OrderExecutionXM(user, orderXMList,lyxh, Vzxsj);
                         if (xmMsg.Split('|')[0].ToString() != "T")
                         {
@@ -192,17 +192,17 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         }
         /// <summary>
-        /// 执行临时，长期，全部医嘱
+        /// Thực hiện y lệnh tạm thời, dài hạn, tất cả
         /// </summary>
-        /// <param name="patlist">住院号</param>
-        /// <param name="yzxz">临时，长期，全部</param>
+        /// <param name="patlist">Số nhập viện</param>
+        /// <param name="yzxz">Tạm thời, dài hạn, tất cả</param>
         /// <param name="zxsj"></param>
         /// <returns></returns>
         public ActionResult submitOrderExecutionListbyPat(string patlist, int yzxz,DateTime Vzxsj)
         {
-            //获取执行全部医嘱
+            //Lấy tất cả y lệnh thực hiện
             List<ApiResponseVO> apiList = _OrderExecutionDmnService.GetAllYZ(patlist, yzxz,Vzxsj);
-            //接口返回 list 
+            //Giao diện trả về list 
             string result = doOrderExecution(apiList, Vzxsj);
             if (result.Split('|')[0].ToString() == "T")
             {

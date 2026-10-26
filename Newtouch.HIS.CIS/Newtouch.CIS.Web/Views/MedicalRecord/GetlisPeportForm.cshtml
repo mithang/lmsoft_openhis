@@ -1,6 +1,6 @@
 ﻿
 @{
-	ViewBag.Title = "检验报告异常值";
+	ViewBag.Title = "Giá trị bất thường của báo cáo xét nghiệm";
 	Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -9,17 +9,17 @@
 		<div>
 			<table class="form">
 				<tr>
-                    <th class="formTitle">申请单号：</th>
+                    <th class="formTitle">Số phiếu yêu cầu:</th>
 					<td class="formValue">
-						<input id="sqdhtx" type="text" class="form-control" placeholder="申请单号" />
+						<input id="sqdhtx" type="text" class="form-control" placeholder="Số phiếu yêu cầu" />
 					</td>
-					<th class="formTitle">组套名称：</th>
+					<th class="formTitle">Tên bộ mẫu:</th>
 					<td class="formValue">
-						<input id="ztmc" type="text" class="form-control" placeholder="组套名称" />
+						<input id="ztmc" type="text" class="form-control" placeholder="Tên bộ mẫu" />
 					</td>
 					<td class="formValue">
 						&nbsp;&nbsp;
-						<input id="ycbz" type="checkbox" checked placeholder="是否只查询异常" /><label for="ycbz">是否只查询异常</label>
+						<input id="ycbz" type="checkbox" checked placeholder="Có chỉ tra cứu bất thường không" /><label for="ycbz">Có chỉ tra cứu bất thường không</label>
 						&nbsp;&nbsp;
 						<input type="button" id="btn_search" class="btn btn-primary" value=" 查 询 " />
 					</td>
@@ -48,7 +48,7 @@
 		}
 		$("#gridList").jqGrid('setGridParam', {
 			postData: { mzzyh: mzzyh, type: type, ztmc: ztmc, ycbz: ycbz, sqdht: sqdht },
-		}).trigger('reloadGrid'); //重新加载当前表格
+		}).trigger('reloadGrid'); //Tải lại bảng hiện tại
 	});
 
 	function gridList() {
@@ -68,36 +68,36 @@
 			colModel: [
 				{ label: 'id', name: 'Id', align: 'center', key: true, hidden: true },
 				{ label: 'sqdlx', name: 'sqdlx', align: 'center', hidden: true },
-				{ label: '申请单号', name: 'sqdh', align: 'center', width: '130px' },
-				{ label: '组套名称', name: 'ztmc', align: 'center', width: '200px' },
-				{ label: '项目名称', name: 'xmzwmc', align: 'left', width: '130px' },
-				{ label: '结果值', name: 'jyjg', align: 'center', width: '40px' },
-				{ label: '结果异常', name: 'gdbj', align: 'center', width: '50px' },
-				{ label: '参考值底限', name: 'ckzdx', align: 'center', width: '60px' },
-				{ label: '参考值高限', name: 'ckzgx', align: 'center', width: '60px' },
-				{ label: '参考值范围', name: 'ckz', align: 'center', width: '80px' }
+				{ label: 'Số phiếu yêu cầu', name: 'sqdh', align: 'center', width: '130px' },
+				{ label: 'Tên bộ mẫu', name: 'ztmc', align: 'center', width: '200px' },
+				{ label: 'Tên hạng mục', name: 'xmzwmc', align: 'left', width: '130px' },
+				{ label: 'Giá trị kết quả', name: 'jyjg', align: 'center', width: '40px' },
+				{ label: 'Kết quả bất thường', name: 'gdbj', align: 'center', width: '50px' },
+				{ label: 'Giới hạn dưới giá trị tham khảo', name: 'ckzdx', align: 'center', width: '60px' },
+				{ label: 'Giới hạn trên giá trị tham khảo', name: 'ckzgx', align: 'center', width: '60px' },
+				{ label: 'Phạm vi giá trị tham khảo', name: 'ckz', align: 'center', width: '80px' }
 			],
             pager: "#gridPager",
             sortname: 'sqdh desc',
 			viewrecords: true,
 			unwritten: false,
 			loadComplete: function () {
-				var rowNum = $("#gridList").jqGrid('getGridParam', 'records'); //获取数据总条
+				var rowNum = $("#gridList").jqGrid('getGridParam', 'records'); //Lấy tổng số dữ liệu
 				if (rowNum==0) {
 					if ($("#norecords").html() == null) {
-						$("#gridList").parent().append("<div id='norecords' style='margin:10px;color:red;font-size:16px;'>无异常值项目!</div>");
+						$("#gridList").parent().append("<div id='norecords' style='margin:10px;color:red;font-size:16px;'>Hạng mục không có giá trị bất thường!</div>");
 					}
-					$("#norecords").show();//显示提示信息
+					$("#norecords").show();//Hiển thị thông tin nhắc nhở
 				} else {
 					$("#norecords").remove();
-					$("#norecords").hide();//隐藏提示信息
+					$("#norecords").hide();//Ẩn thông tin nhắc nhở
 				}
 			}
 		});
 	}
 
 	function addlistpubs() {
-        var selRowIds = $("#gridList").jqGrid("getGridParam", "selarrrow");//选中的id
+        var selRowIds = $("#gridList").jqGrid("getGridParam", "selarrrow");//đã chọnid
 
         var rowids = $("#gridList").jqGrid("getDataIDs");
         var rowData = new Array();
@@ -118,13 +118,13 @@
                 outstr += "组套[" + rowData[i].ztmc + "]";
             }
             
-			if (rowData[i].sqdlx=="4") {//为检验报告
+			if (rowData[i].sqdlx=="4") {//là báo cáo xét nghiệm
 				if (rowData[i].gdbj != '') {
                     outstr += "其中项目[" + rowData[i].xmzwmc + "]，结果为:" + rowData[i].jyjg + " " + rowData[i].gdbj + " 参考值，参考值范围为" + rowData[i].ckz + "；";
 				} else {
                     outstr += "其中项目[" + rowData[i].xmzwmc + "]，结果为:" + rowData[i].jyjg + "，参考值范围为" + rowData[i].ckz + "；";
 				}
-            } else if (rowData[i].sqdlx == "5") {//为检查报告
+            } else if (rowData[i].sqdlx == "5") {//là báo cáo kiểm tra
                 outstr += "其中项目[" + rowData[i].xmzwmc + "]，结果为:" + rowData[i].jyjg + "；";
 			}
 			

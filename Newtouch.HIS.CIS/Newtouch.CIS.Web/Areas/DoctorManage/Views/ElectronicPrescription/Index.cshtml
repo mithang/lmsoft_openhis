@@ -2,7 +2,7 @@
 @using Newtouch.Infrastructure;
 @using Newtouch.HIS.Web.Core.Extensions;
 @{
-    ViewBag.Title = "电子处方管理";
+    ViewBag.Title = "Quản lý đơn thuốc điện tử";
     Layout = "~/Views/Shared/_Index.cshtml";
     var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
 }
@@ -58,18 +58,18 @@
             <table class="form">
                 <tr>
 
-                    <th class="formTitle">订单时间：</th>
+                    <th class="formTitle">Thời gian đơn hàng:</th>
                     <td class="formValue" colspan="3">
                         <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                         <span style="margin-left:1%;float:left">—</span>
                         <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd 23:59:59")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">关键字：</th>
+                    <th class="formTitle">Từ khóa:</th>
                     <td class="formValue" colspan="3">
-                        <input id="xm" type="text" class="form-control" placeholder="门诊号/姓名" style="width:20%; float:left;" />
+                        <input id="xm" type="text" class="form-control" placeholder="Số khám ngoại trú/Họ tên" style="width:20%; float:left;" />
                     </td>
                     <td class="formValue title">
-                        <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="查询" />
+                        <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tra cứu" />
                     </td>
 
                 </tr>
@@ -83,7 +83,7 @@
         @*<div id="TabGrid">
             <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
                 <li role="presentation" class="active">
-                    <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">单据明细</a>
+                    <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">Chi tiết chứng từ</a>
                 </li>
                 <li style="float:right">
                     <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
@@ -97,10 +97,10 @@
             <span class="glyphicon glyphicon-chevron-left btn-lg"></span>
         </div>*@
         <div class="panel panel-default">
-            <input type="button" id="btn_back" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="处方撤销" />
-            <input type="button" id="btn_search_cf" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="处方查询" />
-            <input type="button" id="btn_search_exam" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="审核查询" />
-            <input type="button" id="btn_search_medicine" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="取药查询" />
+            <input type="button" id="btn_back" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Hủy đơn thuốc" />
+            <input type="button" id="btn_search_cf" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Tra cứu đơn thuốc" />
+            <input type="button" id="btn_search_exam" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Tra cứu duyệt" />
+            <input type="button" id="btn_search_medicine" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Tra cứu lấy thuốc" />
 
         </div>
     </form>
@@ -127,11 +127,11 @@
             colModel: [
 
                 { label: 'cfId', name: 'cfId', hidden: true ,key:true},
-                { label: '处方号', name: 'cfh', width: 120, align: 'left' },
-                { label: '门诊号', name: 'mzh', width: 120, align: 'left' },
-                { label: '姓名', name: 'xm', width: 120, align: 'left' },
+                { label: 'Số đơn thuốc', name: 'cfh', width: 120, align: 'left' },
+                { label: 'Số khám ngoại trú', name: 'mzh', width: 120, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 120, align: 'left' },
                 {
-                    label: '证件类型', name: 'zjlx', width: 120, align: 'left', formatter: function (cellvalue) {
+                    label: 'Loại giấy tờ', name: 'zjlx', width: 120, align: 'left', formatter: function (cellvalue) {
                         if (cellvalue == 1) return '居民身份证（户口簿）';
                         if (cellvalue == 2) return '中国人民解放军军官证';
                         if (cellvalue == 3) return '中国人民武装警察警官证';
@@ -156,21 +156,21 @@
                         else return '';
                     }
                 },
-                { label: '证件号', name: 'zjh', width: 120, align: 'left' },
+                { label: 'Số giấy tờ', name: 'zjh', width: 120, align: 'left' },
                 {
-                    label: '审核状态', name: 'shzt', width: 80, align: 'left', formatter: function (cellvalue) {
+                    label: 'Trạng thái duyệt', name: 'shzt', width: 80, align: 'left', formatter: function (cellvalue) {
                         if (cellvalue == '无效') return '未审核';
                         else if (cellvalue == '有效') return '已审核';
                         else return cellvalue;
                     }
                 },
-                { label: '药师审核意见', name: 'ysshyj', width: 80, align: 'left' },
-                { label: '取药状态', name: 'qyzt', width: 80, align: 'left' },
-                { label: '处方状态', name: 'cfzt', width: 80, align: 'left' },
-                { label: '挂号科室', name: 'ghks', width: 120, align: 'left' },
-                { label: '开单科室', name: 'kdks', width: 120, align: 'left' },
-                { label: '挂号日期', name: 'ghsj', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '处方开立日期', name: 'cfklrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Ý kiến duyệt của dược sĩ', name: 'ysshyj', width: 80, align: 'left' },
+                { label: 'Trạng thái lấy thuốc', name: 'qyzt', width: 80, align: 'left' },
+                { label: 'Trạng thái đơn thuốc', name: 'cfzt', width: 80, align: 'left' },
+                { label: 'Khoa đăng ký khám', name: 'ghks', width: 120, align: 'left' },
+                { label: 'Khoa lập phiếu', name: 'kdks', width: 120, align: 'left' },
+                { label: 'Ngày đăng ký khám', name: 'ghsj', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Ngày lập đơn thuốc', name: 'cfklrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
             ],
 
             multiselect: false,
@@ -199,7 +199,7 @@
     }
     
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -209,24 +209,24 @@
 
     }
 
-    //撤销
+    //Hủy bỏ
     $('#btn_back').click(function () {
         var rowData = $("#gridList").jqGridRowValue();
         if (rowData == null) {
-            $.modalAlert("请选择需要撤销的处方", 'warning');
+            $.modalAlert("Vui lòng chọn đơn thuốc cần hủy", 'warning');
             return;
         }
         if (rowData.shzt != "有效" && rowData.shzt != "已审核" ) {
-            $.modalAlert("请选择已上传电子处方", 'warning');
+            $.modalAlert("Vui lòng chọn đơn thuốc điện tử đã tải lên", 'warning');
             return;
         }
         if (rowData.qyzt != "未使用" ) {
-            $.modalAlert("请选择未取药电子处方", 'warning');
+            $.modalAlert("Vui lòng chọn đơn thuốc điện tử chưa lấy thuốc", 'warning');
             return;
         }
         $.modalOpen({
             id: "backForm",
-            title: "电子处方撤销",
+            title: "Hủy đơn thuốc điện tử",
             url: "/DoctorManage/ElectronicPrescription/backForm?hisId=" + rowData.mzh + "&cfh=" + rowData.cfh+"&cxys="+ '@(opr.rygh)',
             width: "20%",
             height: "20%",
@@ -246,17 +246,17 @@
         });
     });
 
-    //处方查询
+    //Tra cứu đơn thuốc
     $('#btn_search_cf').click(function () {
 
         var rowData = $("#gridList").jqGridRowValue();
         if (rowData == null) {
-            $.modalAlert("请选择需要查询的处方", 'warning');
+            $.modalAlert("Vui lòng chọn đơn thuốc cần tra cứu", 'warning');
             return;
         }
         $.modalOpen({
             id: "cfForm",
-            title: "电子处方查询",
+            title: "Tra cứu đơn thuốc điện tử",
             url: "/DoctorManage/ElectronicPrescription/cfForm?hisId=" + rowData.mzh + "&cfh=" + rowData.cfh,
             width: "90%",
             height: "90%",
@@ -265,20 +265,20 @@
         });
     });
 
-    //审核查询
+    //Tra cứu duyệt
     $('#btn_search_exam').click(function () {
         var rowData = $("#gridList").jqGridRowValue();
         if (rowData.length=="0") {
-            $.modalAlert("请选择需要查询的处方", 'warning');
+            $.modalAlert("Vui lòng chọn đơn thuốc cần tra cứu", 'warning');
             return;
         }
         if (rowData.shzt == "已撤回" ) {
-            $.modalAlert("已撤回的处方不可查询", 'warning');
+            $.modalAlert("Đơn thuốc đã thu hồi không thể tra cứu", 'warning');
             return;
         }
         $.modalOpen({
             id: "examForm",
-            title: "电子处方审核结果",
+            title: "Kết quả duyệt đơn thuốc điện tử",
             url: "/DoctorManage/ElectronicPrescription/examForm?hisId=" + rowData.mzh + "&cfh=" + rowData.cfh,
             width: "35%",
             height: "32%",
@@ -287,20 +287,20 @@
         });
     });
 
-    //取药查询
+    //Tra cứu lấy thuốc
     $('#btn_search_medicine').click(function () {
         var rowData = $("#gridList").jqGridRowValue();
         if (rowData.length=="0") {
-            $.modalAlert("请选择需要查询的处方", 'warning');
+            $.modalAlert("Vui lòng chọn đơn thuốc cần tra cứu", 'warning');
             return;
         }
         if (rowData.shzt == "已撤回") {
-            $.modalAlert("已撤回的处方不可查询", 'warning');
+            $.modalAlert("Đơn thuốc đã thu hồi không thể tra cứu", 'warning');
             return;
         }
         $.modalOpen({
             id: "medicineForm",
-            title: "电子处方取药结果",
+            title: "Kết quả lấy thuốc đơn thuốc điện tử",
             url: "/DoctorManage/ElectronicPrescription/medicineForm?hisId=" + rowData.mzh + "&cfh=" + rowData.cfh,
             width: "60%",
             height: "45%",

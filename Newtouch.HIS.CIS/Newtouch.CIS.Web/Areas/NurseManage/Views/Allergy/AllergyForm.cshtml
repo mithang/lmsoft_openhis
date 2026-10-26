@@ -1,7 +1,7 @@
 ﻿@using Newtouch.Infrastructure;
 @using Newtouch.HIS.Web.Core.Extensions;
 @{
-    ViewBag.Title = "过敏信息管理";
+    ViewBag.Title = "Quản lý thông tin dị ứng";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 @using Newtouch.HIS.Web.Core.Extensions;
@@ -9,12 +9,12 @@
     <div style="margin: 10px; margin-bottom: 0px;">
         <div class="alert alert-danger" style="text-align: left; margin-bottom: 10px;">
             <i class="fa fa-warning alert-dismissible" style="position: relative; top: 1px; font-size: 15px; padding-right: 5px;"></i>
-            请填写过敏信息！
+            Vui lòng điền thông tin dị ứng!
         </div>
         <div class="panel panel-default">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>药品</th>
+                    <th class="formTitle"><span class="required">*</span>Thuốc</th>
                     <td class="formValue">
                         <select id="ypCode" class="form-control required">
                             <option value="">===请选择===</option>
@@ -22,26 +22,26 @@
                     </td>                 
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>皮试结果</th>
+                    <th class="formTitle"><span class="required">*</span>Kết quả test da</th>
                     <td class="formValue">
                         <div class="ckbox">
-                            <input id="yin" name="checkbox0" type="checkbox" value="阴性" autocomplete="off" checked><label for="yin">阴性</label>
+                            <input id="yin" name="checkbox0" type="checkbox" value="阴性" autocomplete="off" checked><label for="yin">Âm tính</label>
                         </div>
                         <div class="ckbox">
-                            <input id="yang" name="checkbox0" type="checkbox" value="阳性" autocomplete="off"><label for="yang">阳性</label>
+                            <input id="yang" name="checkbox0" type="checkbox" value="阳性" autocomplete="off"><label for="yang">Dương tính</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">对本类药品过敏</th>
+                    <th class="formTitle">Dị ứng với loại thuốc này</th>
                     <td class="formValue">
                         <div class="ckbox" id="ksslb">
-                            <input id="0" name="checkbox1" type="checkbox" autocomplete="off"><label for="0">无</label>
+                            <input id="0" name="checkbox1" type="checkbox" autocomplete="off"><label for="0">Không có</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">备注：</th>
+                    <th class="formTitle">Ghi chú:</th>
                     <td class="formValue">
                         <textarea id="txt_remark" class="form-control required" style="width:98.5%;"></textarea>
                     </td>
@@ -60,7 +60,7 @@
     var xmmc = $.request("xmmc");
     $(function () {
         $("#form1 input[name='checkbox0']").bind('click', function () {
-            //当前的checkbox是否选中
+            //hiện tạicheckboxCó chọn không
             if (this.checked) {
                 $("#form1 input[name='checkbox0']").not(this).attr("checked", false);
             } else {
@@ -68,7 +68,7 @@
             }
         });
 
-        //绑定抗生素
+        //Liên kết kháng sinh
         $("#ypCode").bindSelect({
             url: "@Url.Action("GetKssYpListJson")",
             id: "ypCode",
@@ -89,17 +89,17 @@
                         $("#ksslb").html(_html);
                     }
                     else {
-                        $("#ksslb").html('<input id="0" name="checkbox1" type="checkbox" autocomplete="off"><label for="0">无</label>');
+                        $("#ksslb").html('<input id="0" name="checkbox1" type="checkbox" autocomplete="off"><label for="0">Không có</label>');
                     }
                 }
             });
         });
     });
 
-    //过敏信息确认
+    //Xác nhận thông tin dị ứng
     function AcceptClick(callBack) {
         if (!!!$("#ypCode").val() && !!!$("#txt_remark").val()) {
-            $.modalAlert("请选择过敏的药品或填写过敏信息！", 'warning');
+            $.modalAlert("Vui lòng chọn thuốc dị ứng hoặc điền thông tin dị ứng!", 'warning');
             return;
         }
         var postData = new Object();

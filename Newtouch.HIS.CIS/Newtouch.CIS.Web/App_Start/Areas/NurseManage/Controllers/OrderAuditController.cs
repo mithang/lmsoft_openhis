@@ -72,7 +72,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取病区患者待审核医嘱树
+        /// Lấy cây y lệnh chờ duyệt của bệnh nhân khu bệnh
         /// </summary>
         /// <param name="aa"></param>
         /// <returns></returns>

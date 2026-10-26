@@ -30,7 +30,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 房间维护
+        /// Bảo trì phòng
         /// </summary>
         /// <returns></returns>
         public ActionResult RoomForm()
@@ -39,7 +39,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 附加属性
+        /// Thuộc tính bổ sung
         /// </summary>
         /// <returns></returns>
         public ActionResult AttributesPlusBedForm()
@@ -91,7 +91,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return null;
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -132,7 +132,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 床位费绑定
+        /// Liên kết phí giường bệnh
         /// </summary>
         /// <returns></returns>
         public ActionResult BedBindingCostForm(string bedCode,string zyh)
@@ -143,7 +143,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取病区费用  
+        /// Lấy chi phí khu bệnh  
         /// </summary>
         /// <param name="bedCode"></param>
         /// <returns></returns>
@@ -162,12 +162,12 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         public ActionResult OutAreaForm(string zyh)
         {
             ViewBag.zyh = zyh;
-            ViewBag.isopenPriorReview = _sysConfigRepo.GetValueByCode("OpenPriorReview", OrganizeId);//是否开启事前审核接口
+            ViewBag.isopenPriorReview = _sysConfigRepo.GetValueByCode("OpenPriorReview", OrganizeId);//Có bật giao diện duyệt trước không
             return View();
         }
 
         /// <summary>
-        /// 医生绑定
+        /// Liên kết bác sĩ
         /// </summary>
         /// <returns></returns>
         public ActionResult DoctorBindingForm(string zyh)
@@ -177,7 +177,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
 		/// <summary>
-		/// 住院床卡
+		/// Thẻ giường nhập viện
 		/// </summary>
 		/// <param name="zyh"></param>
 		/// <returns></returns>
@@ -188,7 +188,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 		}
 
 		/// <summary>
-		/// 住院床卡打印
+		/// In thẻ giường nhập viện
 		/// </summary>
 		/// <param name="zyh"></param>
 		/// <returns></returns>
@@ -199,7 +199,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 		}
 
 		/// <summary>
-		/// 获取病区费用
+		/// Lấy chi phí khu bệnh
 		/// </summary>
 		/// <param name="zyh"></param>
 		/// <returns></returns>
@@ -216,7 +216,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取出区诊断
+        /// Lấy chẩn đoán xuất khu
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -233,7 +233,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取入院诊断
+        /// Lấy chẩn đoán nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -243,7 +243,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-        /// 中西医诊断
+        /// Chẩn đoán Đông Tây y
         /// </summary>
         /// <returns></returns>
         public ActionResult GetryzdSelect(string ryzd, string ybnhlx,string zdlb=null)
@@ -255,7 +255,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             List<ZDSelect> zdlist = new List<ZDSelect>();
             IList<SysDiagnosisVEntity> data = new List<SysDiagnosisVEntity>();
             IList<SysTCMSyndromeVEntity> zyzhdata = new List<SysTCMSyndromeVEntity>();
-            if (zdlb == "ZYZH")//中医症候
+            if (zdlb == "ZYZH")//Hội chứng Đông y
             {
                 zyzhdata = _sysTcmsyndromeRepo.GetList(this.OrganizeId, ryzd);
             }
@@ -285,7 +285,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(zdlist.ToJson());
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -301,7 +301,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 患者出区
+        /// Bệnh nhân xuất khu
         /// </summary>
         /// <param name="patOutAreaVO"></param>
         /// <returns></returns>
@@ -329,7 +329,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 出区诊断
+        /// Chẩn đoán xuất khu
         /// </summary>
         /// <returns></returns>
         public ActionResult OutAreaDiagnoosis()
@@ -338,7 +338,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 出区诊断--患者出区
+        /// Chẩn đoán xuất khu--Bệnh nhân xuất khu
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -350,7 +350,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 出区诊断--患者出区
+        /// Chẩn đoán xuất khu--Bệnh nhân xuất khu
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -362,7 +362,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 保存 出区诊断--患者出区
+        /// Lưu Chẩn đoán xuất khu--Bệnh nhân xuất khu
         /// </summary>
         /// <param name="patOutAreaVO"></param>
         /// <returns></returns>
@@ -380,7 +380,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 保存入区诊断
+        /// Lưu chẩn đoán vào khu
         /// </summary>
         /// <param name="patInAreaVo"></param>
         /// <returns></returns>
@@ -391,7 +391,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
 		/// <summary>
-		/// 保存出区诊断List
+		/// Lưu chẩn đoán xuất khuList
 		/// </summary>
 		/// <param name="patOutAreaVO"></param>
 		/// <returns></returns>
@@ -409,7 +409,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
 		/// <summary>
-		/// 保存住院床卡
+		/// Lưu thẻ giường nhập viện
 		/// </summary>
 		//[HttpPost]
 		//[HandlerAjaxOnly]

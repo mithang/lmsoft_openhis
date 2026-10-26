@@ -21,12 +21,12 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         private readonly IInpatientOrderPackageDmnService _inpatientOrderPackageDmnService;
         private readonly FrameworkBase.MultiOrg.Domain.IDomainServices.IBaseDataDmnService _iBaseDataDmnService;
         public override ActionResult Index() {
-            ViewBag.bhbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId, true);//住院医嘱套餐是否包含病区
+            ViewBag.bhbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId, true);//Gói y lệnh nhập viện có bao gồm khu bệnh không
             return View();
         }
         public ActionResult ItemForm()
         {
-            ViewBag.bwhide = _sysConfigRepo.GetValueByCode("bwhide", OrganizeId) ?? "false";//住院项目录入部位显示隐藏配置    
+            ViewBag.bwhide = _sysConfigRepo.GetValueByCode("bwhide", OrganizeId) ?? "false";//Cấu hình hiển thị/ẩn vị trí khi nhập hạng mục nhập viện    
             return View();
         }
         public ActionResult MedicineForm()
@@ -50,7 +50,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// 处方模板树
+        /// Cây mẫu đơn thuốc
         /// </summary>
         /// <param name="mblx"></param>
         /// <param name="cflx"></param>
@@ -86,7 +86,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
 
             var treeList = new List<TreeViewModel>();
 
-            //套餐
+            //Gói
             treeList.Add(new TreeViewModel()
             {
                 id = tclx.ToString(),
@@ -98,13 +98,13 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
                 complete = true,
             });
 
-            //套餐明细
+            //Chi tiết gói
             var data = _inpatientOrderPackageRepo.IQueryable().Where(a => a.OrganizeId == this.OrganizeId && a.tclx == tclx && a.tcfw == tcfw && a.zt == "1").Select(a => new { a.tcmc, a.tclx, a.Id, a.CreateTime, a.LastModifyTime }).OrderByDescending(a => a.CreateTime).OrderByDescending(a => a.LastModifyTime).ToList();
             foreach (var item in data)
             {
                 treeList.Add(new TreeViewModel()
                 {
-                    id = "",   //模板Id
+                    id = "",   //MẫuId
                     value = item.tclx.ToString(),
                     text = item.tcmc,
                     parentId = item.tclx.ToString(),
@@ -125,20 +125,20 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             switch (mbObj.tcfw) {
                 case (int)EnumTcfw.Person:
                     mbObj.ysgh = UserIdentity.rygh;
-                    break; //个人时，医生赋值
+                    break; //Khi là cá nhân, gán bác sĩ
                 case (int)EnumTcfw.Dept:
                     mbObj.DeptCode = UserIdentity.DepartmentCode;
-                    break; //科室时
+                    break; //Khi là khoa
                 case (int)EnumTcfw.Ward:
                     var bq = _iBaseDataDmnService.GetWardListByStaffGh(UserIdentity.rygh, OrganizeId).FirstOrDefault().bqCode;
                     mbObj.WardCode = bq;
-                    break; //病区时
+                    break; //Khi là khu bệnh
                 case (int)EnumTcfw.Hosp:
                     mbObj.ysgh = "*";
                     mbObj.DeptCode = "*";
                     mbObj.ysgh = "*";
                     break;
-                    //全院时
+                    //Khi là toàn viện
             }
           var mbId=  _inpatientOrderPackageDmnService.saveAsTemplate(mbObj, mbDetailList, OrganizeId);
             return Success(null, mbId);

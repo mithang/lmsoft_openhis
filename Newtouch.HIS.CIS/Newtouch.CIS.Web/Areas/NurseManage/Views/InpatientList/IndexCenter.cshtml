@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "护士站患者中心";
+    ViewBag.Title = "Trung tâm bệnh nhân trạm y tá";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <link href="@SiteUrl.GetStaticResourceScriptUrl("~/Content/css/cispage.css", false)" rel="stylesheet" />
@@ -25,24 +25,24 @@
 <div id="dv_patleft" class="dv-left" style="height:99%; position:fixed;top:1px;border-radius: 4px;box-shadow: 0 0 3px #808080 inset;">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form" style="width:95%">
             <tbody>
                 <tr id="srmTr">
-                    <th class="formTitle">姓名/住院号：</th>
+                    <th class="formTitle">Họ tên/Số nhập viện:</th>
                     <td class="formValue">
                         <input id="keyword" type="text" class="form-control">
                     </td>
                 </tr>
                 <tr id="zybzTr">
-                    <th class="formTitle">在院状态：</th>
+                    <th class="formTitle">Trạng thái tại viện:</th>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="zyzt">
-                            <option value="" id="qb">全部</option>
-                            <option value="zy" id="zy" selected>在院</option>
-                            <option value="cq" id="cq">出区</option>
-                            <option value="cy" id="cy">出院</option>
+                            <option value="" id="qb">Tất cả</option>
+                            <option value="zy" id="zy" selected>Tại viện</option>
+                            <option value="cq" id="cq">Xuất khu</option>
+                            <option value="cy" id="cy">Xuất viện</option>
                         </select>
                     </td>
                 </tr>
@@ -52,31 +52,31 @@
     <div class="dv-left-tree" id="PatTreeList"></div>
 </div>
 <div class="dv-right" style="height:95%;">
-    @*导航栏*@
+    @*Thanh điều hướng*@
     <ul class="nav nav-tabs  navb-bg" id="myTab" style="position:fixed;top:0px;z-index:100009;width:85%;">
-        <li role="presentation"><a href="#linkyzcx" role="tab" data-toggle="tab">医嘱查询</a></li>
-        <li role="presentation"><a href="#linkyzsh" role="tab" data-toggle="tab">医嘱审核</a></li>
+        <li role="presentation"><a href="#linkyzcx" role="tab" data-toggle="tab">Tra cứu y lệnh</a></li>
+        <li role="presentation"><a href="#linkyzsh" role="tab" data-toggle="tab">Duyệt y lệnh</a></li>
         <li role="presentation"><a href="#linkyzzx" role="tab" data-toggle="tab">医嘱执行(计费)</a></li>
         <li role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">费用清单/打印<b class="caret"></b></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Bảng kê chi phí/In<b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li role="presentation"><a href="#linkfyyrq" role="tab" data-toggle="tab">费用清单</a></li>
-                <li role="presentation"><a href="#linkzxddy" role="tab" data-toggle="tab">执行单打印</a></li>
+                <li role="presentation"><a href="#linkfyyrq" role="tab" data-toggle="tab">Bảng kê chi phí</a></li>
+                <li role="presentation"><a href="#linkzxddy" role="tab" data-toggle="tab">In phiếu thực hiện</a></li>
                 <li class="divider"></li>
             </ul>
         </li>
-        <li role="presentation"><a href="#linkyzty" role="tab" data-toggle="tab">医嘱退药</a></li>
-        <li role="presentation"><a href="#linkzyjz" role="tab" data-toggle="tab">住院记账</a></li>
-        <li role="presentation"><a href="#linkzytf" role="tab" data-toggle="tab">住院退费</a></li>
-        <li role="presentation"><a href="#linkzybl" role="tab" data-toggle="tab">住院病历</a></li>
+        <li role="presentation"><a href="#linkyzty" role="tab" data-toggle="tab">Trả thuốc y lệnh</a></li>
+        <li role="presentation"><a href="#linkzyjz" role="tab" data-toggle="tab">Ghi sổ nhập viện</a></li>
+        <li role="presentation"><a href="#linkzytf" role="tab" data-toggle="tab">Hoàn phí nhập viện</a></li>
+        <li role="presentation"><a href="#linkzybl" role="tab" data-toggle="tab">Bệnh án nhập viện</a></li>
         <li role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">更多<b class="caret"></b></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Thêm<b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li role="presentation"><a href="#linkrqdj" role="tab" data-toggle="tab">入区登记</a></li>
-                <li role="presentation"><a href="#linkcqzh" role="tab" data-toggle="tab">出区召回</a></li>
+                <li role="presentation"><a href="#linkrqdj" role="tab" data-toggle="tab">Đăng ký vào khu</a></li>
+                <li role="presentation"><a href="#linkcqzh" role="tab" data-toggle="tab">Thu hồi xuất khu</a></li>
                 <li class="divider"></li>
-                <li role="presentation"><a href="#linktwdlr" role="tab" data-toggle="tab">体温单录入</a></li>
-                <li role="presentation"><a href="#linkdtwdlr" role="tab" data-toggle="tab">多病人体温录入</a></li>
+                <li role="presentation"><a href="#linktwdlr" role="tab" data-toggle="tab">Nhập phiếu nhiệt độ</a></li>
+                <li role="presentation"><a href="#linkdtwdlr" role="tab" data-toggle="tab">Nhập nhiệt độ nhiều bệnh nhân</a></li>
                 <li class="divider"></li>
                 <li><a href="#">.....</a></li>
             </ul>
@@ -84,19 +84,19 @@
     </ul>
     <div style="margin-top:40px;">
         <div class="tab-content">
-            @Html.Partial("MedicalorderQuery")@*医嘱查询*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/OrderAudit.cshtml")@*医嘱审核*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/OrderExecution.cshtml")@*医嘱执行*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosMedReturn.cshtml")@*医嘱退药*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosBookkeep.cshtml")@*住院记账*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosFeeRefund.cshtml")@*住院退费*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosFee.cshtml")@*费用一日清*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosPrint.cshtml")@*执行单打印*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosBlWriting.cshtml")@*病历文书*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosRegistration.cshtml")@*入区登记*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosRecallOutArea.cshtml")@*患者出区*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosQueryIndex.cshtml")@*体温单录入*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosNursingInput.cshtml")@*多体温单录入*@
+            @Html.Partial("MedicalorderQuery")@*Tra cứu y lệnh*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/OrderAudit.cshtml")@*Duyệt y lệnh*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/OrderExecution.cshtml")@*Thực hiện y lệnh*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosMedReturn.cshtml")@*Trả thuốc y lệnh*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosBookkeep.cshtml")@*Ghi sổ nhập viện*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosFeeRefund.cshtml")@*Hoàn phí nhập viện*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosFee.cshtml")@*Bảng kê chi phí trong ngày*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosPrint.cshtml")@*In phiếu thực hiện*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosBlWriting.cshtml")@*Văn bản bệnh án*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosRegistration.cshtml")@*Đăng ký vào khu*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosRecallOutArea.cshtml")@*Bệnh nhân xuất khu*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosQueryIndex.cshtml")@*Nhập phiếu nhiệt độ*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosNursingInput.cshtml")@*Nhập nhiều phiếu nhiệt độ*@
         </div>
     </div>
 </div>
@@ -105,9 +105,9 @@
     window.alldataArray = [];
     var currentPage = "yzcx";
     var transferbool = false;
-    $('#myTab a:first').trigger('click'); //初始化显示哪个tab
-    var currentZyh = "";//住院号
-    var currentbq = "";//病区
+    $('#myTab a:first').trigger('click'); //Khởi tạo hiển thị mục nàotab
+    var currentZyh = "";//Số nhập viện
+    var currentbq = "";//Khu bệnh
     var currentobj = JSON.parse(sessionStorage.getItem('currentobj'));
     var fistblload = true;
     var fistload = true;
@@ -229,7 +229,7 @@
        
         getPatTreeList();
         //btn_search();
-        //搜索病人信息
+        //Tìm kiếm thông tin bệnh nhân
         //$('#keyword').keyup(function () {
         //    PageTree();
         //});

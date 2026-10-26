@@ -13,27 +13,27 @@ namespace Newtouch.CIS.Web
     public class MvcApplication : System.Web.HttpApplication
     {
         /// <summary>
-        /// 启动应用程序
+        /// Khởi động ứng dụng
         /// </summary>
         protected void Application_Start()
         {
-            //调用 AreaRegistration.RegisterAllAreas 方法让MVC应用程序在启动后会寻找所有继承自 AreaRegistration 的类，并为每个这样的类调用它们的 RegisterArea 方法
+            //Gọi AreaRegistration.RegisterAllAreas Phương pháp làm choMVCỨng dụng sau khi khởi động sẽ tìm tất cả các lớp kế thừa từ AreaRegistration lớp, và gọi của chúng cho mỗi lớp như vậy RegisterArea Phương pháp
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             App_Start.DependencyResolver.RegisteWebApiComponent();
 
-            //向上下文注册表
+            //Đăng ký vào bảng ngữ cảnh
             DefaultDbContext.PartialTBRegister(DefaultDbContextTBRegister.Registe);
 
-            //数据库链接释放
+            //Giải phóng liên kết cơ sở dữ liệu
             AspNetObjectContextDisposalModule.Register(() =>
             {
                 Newtouch.Infrastructure.EF.DatabaseFactoryDisposeHelper.TryDisposeDBContext<IDefaultDatabaseFactory, DefaultDbContext>();
             });
 
-            //权限验证向下层注册
+            //Xác thực quyền đăng ký xuống tầng dưới
             HandlerAuthorizeAttribute.Register((IList<string> roleIdList, string moduleId, string action) =>
             {
                 return DependencyDefaultInstanceResolver.GetInstance<IRoleAuthorizeApp>().ActionValidate(roleIdList, action);

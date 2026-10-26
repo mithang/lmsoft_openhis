@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "长临医嘱药品申请单";
+    ViewBag.Title = "Phiếu yêu cầu thuốc y lệnh dài hạn, tạm thời";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -14,7 +14,7 @@
     var thisorgId = '@(ViewBag.OrgId)';
     var curUsergh = '@(ViewBag.curUsergh)';
     var lyxh = $.request('lyxh');
-    //报表url地址
+    //Báo cáourlĐịa chỉ
     //var uri = '/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%e9%95%bf%e4%b8%b4%e5%8c%bb%e5%98%b1%e8%8d%af%e5%93%81%e7%94%b3%e8%af%b7%e5%8d%95&rs:Command=Render'
     var uri = '/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f长临医嘱药品申请单&rs:Command=Render'
     $(function () {
@@ -23,7 +23,7 @@
     function submit() {
         var url = getUrl();
 
-        //直接打开
+        //Mở trực tiếp
         location.href = url;
         return;
 
@@ -47,7 +47,7 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheetBlankPage";

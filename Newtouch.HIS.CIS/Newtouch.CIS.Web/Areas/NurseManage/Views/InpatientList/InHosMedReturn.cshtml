@@ -1,36 +1,36 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "护士站患者中心-医嘱退药";
-    var tysqPrinturl = SysConfigReader.OrgReportLink("tysqdPrint");//门诊常规项目处方单
+    ViewBag.Title = "Trung tâm bệnh nhân trạm y tá-Trả thuốc y lệnh";
+    var tysqPrinturl = SysConfigReader.OrgReportLink("tysqdPrint");//Phiếu đơn thuốc hạng mục thông thường ngoại trú
 }
 <div id="linkyzty" role="tabpanel" class="tab-pane" style="width:99%;margin-right: 5px; border:solid 1px #ddd; margin-top: 3px;">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">药名：</th>
+                    <th class="formTitle">Tên thuốc:</th>
                     <td class="formValue">
-                        <input id="txt_name" type="text" class="form-control" placeholder="药名" />
+                        <input id="txt_name" type="text" class="form-control" placeholder="Tên thuốc" />
                     </td>
-                    <th class="formTitle">开始日期：</th>
+                    <th class="formTitle">Ngày bắt đầu:</th>
                     <td class="formValue">
                         <input id="txt_ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refleshMedList(); } })" value="@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")" />
                     </td>
-                    <th class="formTitle">结束日期：</th>
+                    <th class="formTitle">Ngày kết thúc:</th>
                     <td class="formValue">
                         <input id="txt_jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refleshMedList(); } })" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" />
                     </td>
                     <td class="formTitle">
-                        <input type="button" id="btnty_search" class="btn btn-md btn-primary"  onclick="btnty_search()"  value="查询" />
+                        <input type="button" id="btnty_search" class="btn btn-md btn-primary"  onclick="btnty_search()"  value="Tra cứu" />
                     </td>
                     <td></td>
                     <td></td>
                     <td></td>
                     @*<td class="formTitle">
-                         <input type="button" id="btn_confirm" class="btn btn-md btn-primary" value="退药确认" />
+                         <input type="button" id="btn_confirm" class="btn btn-md btn-primary" value="Xác nhận trả thuốc" />
                         </td>*@
                 </tr>
             </table>
@@ -45,7 +45,7 @@
         </div>
         <div class="btn-group">
             <a authorize="yes" class="btn btn-primary" onclick="returnConfirm()">
-                <i class="fa fa-plus"></i>退药确认
+                <i class="fa fa-plus"></i>Xác nhận trả thuốc
             </a>
         </div>
     </div>
@@ -70,7 +70,7 @@
              tyzyh = zyh;
          //$('#gridYztyList').jqGrid("clearGridData");
          getYztyTreeList();
-         $("#PatTreeList_" + tyzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//选中
+         $("#PatTreeList_" + tyzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//Chọn
          if (fistyztyload) {
              gridYztyList(tyzyh);
              fistyztyload = false;
@@ -114,31 +114,31 @@
              editurl: "clientArray",
              height: $(window).height() - 200,
              colModel: [
-                 { label: '药品Id', name: 'Id', align: 'center', width: 100, hidden: true, key: true },
-                 { label: '患者姓名', name: 'hzxm', align: 'center', width: 100 },
-                 { label: '住院号', name: 'zyh', align: 'center', width: 70, },
+                 { label: 'ThuốcId', name: 'Id', align: 'center', width: 100, hidden: true, key: true },
+                 { label: 'Tên bệnh nhân', name: 'hzxm', align: 'center', width: 100 },
+                 { label: 'Số nhập viện', name: 'zyh', align: 'center', width: 70, },
                  { label: 'yzlx', name: 'yzlx', align: 'center', hidden: true, },
                  {
-                     label: '医嘱性质', name: 'yzxz', align: 'center', width: 100, formatter: function (cellvalue) {
+                     label: 'Tính chất y lệnh', name: 'yzxz', align: 'center', width: 100, formatter: function (cellvalue) {
                          if (cellvalue == 2) return "长期"; if (cellvalue == 1) return "临时";
                      }
                  },
-                 { label: '药品名称', name: 'ypmc', align: 'center', width: 180 },
+                 { label: 'Tên thuốc', name: 'ypmc', align: 'center', width: 180 },
                  {
-                     label: '执行日期', name: 'zxrq', align: 'center', width: 150, formatter: function (val)
+                     label: 'Ngày thực hiện', name: 'zxrq', align: 'center', width: 150, formatter: function (val)
                      { return $.getTime({ date: val }); }
                  },
-                 { label: '发药数量', name: 'ypsl', align: 'center', width: 80 },
-                 { label: '可退数量', name: 'ktsl', align: 'center', width: 80 },
+                 { label: 'Số lượng phát thuốc', name: 'ypsl', align: 'center', width: 80 },
+                 { label: 'Số lượng có thể trả', name: 'ktsl', align: 'center', width: 80 },
                  {
-                     label: '申请退药数量', name: 'tsl', align: 'center', width: 80, editable: true,
+                     label: 'Số lượng yêu cầu trả thuốc', name: 'tsl', align: 'center', width: 80, editable: true,
                      ditrules: { integer: true, minValue: 1 }, align: "left"
                  },
-                 { label: '药品单位', name: 'ypdw', align: 'center', width: 60 },
-                 { label: '药品单价', name: 'ypdj', align: 'center', width: 60 },
-                 //{ label: '医生', name: 'ysxm', align: 'center', width: 50 },
+                 { label: 'Đơn vị thuốc', name: 'ypdw', align: 'center', width: 60 },
+                 { label: 'Đơn giá thuốc', name: 'ypdj', align: 'center', width: 60 },
+                 //{ label: 'Bác sĩ', name: 'ysxm', align: 'center', width: 50 },
                  {
-                     label: '分组序号', name: 'fzxh', align: 'center', width: 70, formatter: function (val) {
+                     label: 'Số thứ tự nhóm', name: 'fzxh', align: 'center', width: 70, formatter: function (val) {
                          if (val != null)
                              return val; else return "";
                      }
@@ -162,7 +162,7 @@
                      var rowData = $("#gridYztyList").jqGrid('getRowData', rowIndex);
                      var ids = $("#gridYztyList").jqGrid('getRowData_AllLine');
 
-                     liststu = s; //同步状态
+                     liststu = s; //Trạng thái đồng bộ
                      for (var i = 0; i < ids.length; i++) {
                          if (ids[i].fzxh == rowData.fzxh && ids[i].fzxh != "" && ids[i].zxrq == rowData.zxrq) {
                              if (s == true) {
@@ -185,7 +185,7 @@
                  if (list.length > 0) {
 
                      for (j = j; j < list.length; j++) {
-                         if (liststu) //同组选中
+                         if (liststu) //Chọn cùng nhóm
                          {
                              j = j + 1;
                              $("#gridYztyList").jqGrid("setSelection", list[j - 1], true);
@@ -193,9 +193,9 @@
                              //});
                              $("#gridYztyList").editRow(list[j], null, null, null, function (callbackRowId) { });
                          }
-                         else { //同组取消选中
+                         else { //Hủy chọn cùng nhóm
                              //j = j + 1;
-                             $("#gridYztyList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow
+                             $("#gridYztyList").jqGrid("setSelection", list[j], false);      //Hủy không kích hoạtonselectrow
                              //$("#gridYztyList").saveRow(rowIndex, null, null, null, function (callbackRowId) { }, null, null);
                              var selectrowid = list[j];
                              $("#gridYztyList").saveRow(selectrowid, null, null, null, function (callbackRowId) { }, null, null);
@@ -219,7 +219,7 @@
 
          });
      }
-     //启用行内编辑框
+     //Bật khung chỉnh sửa trong dòng
      function EnableInlineEditBox(rowId) {
          if (rowId) {
              $("#gridYztyList").jqGrid('editRow', rowId, true, null, null, null, null, function (callbackRowId) {
@@ -235,36 +235,36 @@
      }
      function returnConfirm()
      {
-         $.modalConfirm("确认对当前选中药品申请退药？", function (flag) {
+         $.modalConfirm("Xác nhận yêu cầu trả thuốc đối với thuốc đang chọn hiện tại?", function (flag) {
              if (flag) {
 
-                 //获取所有行Id，遍历使编辑框处于保存状态
+                 //Lấy tất cả các dòngId，duyệt để khung chỉnh sửa ở trạng thái lưu
                  var rowIds = $("#gridYztyList").jqGrid('getDataIDs');
                  for (var i = 0; i < rowIds.length; i++) {
                      $("#gridYztyList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
                  }
                  var selRowIds = $("#gridYztyList").jqGrid('getGridParam', 'selarrrow');
-                 //判断退数量
+                 //Kiểm tra số lượng trả
                  for (var i = 0; i < selRowIds.length; i++) {
                      var rowData = $("#gridYztyList").jqGrid('getRowData', selRowIds[i]);
                      if (!rowData) {
                          break;
                      }
                      if (rowData.tsl.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                         //启用行内编辑框
+                         //Bật khung chỉnh sửa trong dòng
                          EnableInlineEditBox(selRowIds[i]);
-                         $.modalAlert("项目（" + rowData.ypmc + "）退数量为空，请确认。", 'warning');
+                         $.modalAlert("Hạng mục (" + rowData.ypmc + "）退数量为空，请确认。", 'warning');
                          return;
                      }
                      if (rowData.tsl <= 0 || isNaN(rowData.tsl) || rowData.tsl == "") {
-                         //启用行内编辑框
+                         //Bật khung chỉnh sửa trong dòng
                          EnableInlineEditBox(selRowIds[i]);
                          return;
                      }
                      if (parseInt(rowData.tsl) > parseInt(rowData.ktsl)) {
-                         //启用行内编辑框
+                         //Bật khung chỉnh sửa trong dòng
                          EnableInlineEditBox(selRowIds[i]);
-                         $.modalAlert("退数量大于可退数量，请确认<br/>" + rowData.ypmc, 'warning');
+                         $.modalAlert("Số lượng trả lớn hơn số lượng có thể trả, vui lòng xác nhận<br/>" + rowData.ypmc, 'warning');
                          return;
                      }
                  }
@@ -299,11 +299,11 @@
                          }
                          else {
                              setTimeout(function () {
-                                 $.modalMsg('退药成功', 'success');
+                                 $.modalMsg('Trả thuốc thành công', 'success');
                              }, 1000);
                              var ids = $("#gridYztyList").jqGrid("getGridParam", "selarrrow");
                              var zyh = $("#gridYztyList").jqGrid('getRowData', ids[0]).zyh;
-                             //先注释老报表打印 新报表还未做
+                             //Trước tiên chú thích việc in báo cáo cũ Báo cáo mới chưa làm
                              @*var rpturl = '@Html.Raw(tysqPrinturl)';
                              if (rpturl) {
                                  window.open(rpturl + "&zyh=" + zyh + "&tyxh=" + ajaxresp.data, "_blank", "height = 500, width = 1195, top = 100, left = 50, toolbar = no, menubar = no, scrollbars = yes, resizable = yes, location = no, status = no");
@@ -319,11 +319,11 @@
 
      }
 
-     //回车事件
+     //Sự kiện Enter
      $('#txt_name').keydownEnterEvent(function () {
          $('#btnty_search').trigger('click');
      })
-     //刷新列表
+     //Làm mới danh sách
      function refleshMedList() {
          $("#btnty_search").trigger('click');
      }

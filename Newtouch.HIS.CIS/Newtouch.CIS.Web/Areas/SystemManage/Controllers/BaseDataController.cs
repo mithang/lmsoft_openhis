@@ -19,7 +19,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         private readonly IOutpatientConsultDmnService _outpatientConsultDmnService;
 
         /// <summary>
-        /// 药品用法 检索
+        /// Cách dùng thuốc Tìm kiếm
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -56,7 +56,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
         /// <summary>
-        /// 科室 下拉 
+        /// Khoa Thả xuống 
         /// </summary>
         /// <returns></returns>
         public ActionResult SelectDepartmentList(string keyword, string zlks)
@@ -70,7 +70,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
 		/// <summary>
-		/// 诊断 检索
+		/// Chẩn đoán Tìm kiếm
 		/// </summary>
 		/// <param name="keyword"></param>
 		/// <returns></returns>
@@ -85,7 +85,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		}
 
 		/// <summary>
-		/// 症侯 检索
+		/// Hội chứng Tìm kiếm
 		/// </summary>
 		/// <param name="keyword"></param>
 		/// <returns></returns>
@@ -96,7 +96,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		}
 
 		/// <summary>
-		/// 获取代煎费
+		/// Lấy phí sắc thay
 		/// </summary>
 		/// <returns></returns>
 		public JsonResult GetDjFee()
@@ -106,7 +106,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		}
 
 		/// <summary>
-		/// 长临标志
+		/// Dấu hiệu dài hạn, tạm thời
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult GetYzlb()
@@ -119,7 +119,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		}
 
 		/// <summary>
-		/// 获取医生开药权限
+		/// Lấy quyền kê thuốc của bác sĩ
 		/// </summary>
 		/// <returns></returns>
 		public int GetPermissions(string tsypzl,string dlcode,string kssqxjb)
@@ -130,7 +130,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		}
 
         /// <summary>
-        /// 系统诊室
+        /// Phòng khám hệ thống
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

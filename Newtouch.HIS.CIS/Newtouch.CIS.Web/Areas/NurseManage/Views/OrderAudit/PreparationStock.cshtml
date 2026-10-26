@@ -15,13 +15,13 @@
         <div class="panel panel-default">
             <table class="form">
                 <tr>
-                    <th class="formTitle" style="width:70px;padding-right:12px;">药品：</th>
+                    <th class="formTitle" style="width:70px;padding-right:12px;">Thuốc:</th>
                     <td class="formValue">
                         <input type="text" id="ypmc" class="form-control" style="margin-left: 10%;" />
                     </td>
                     <th class="formTitle"></th>
                     <td class="formValue">
-                        <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="查询" />
+                        <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tra cứu" />
                     </td>
                     <th class="formTitle"></th>
                     <td class="formValue">
@@ -29,10 +29,10 @@
                     </td>
                     <th class="formTitle"></th>
                     <td class="formValue">
-                        <input type="button" id="btn_newsqd" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="生成申请单" />
+                        <input type="button" id="btn_newsqd" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tạo phiếu yêu cầu" />
                     </td>
                     <td class="formValue title">
-                        <input type="button" id="btn_newtyd" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="生成退药单" />
+                        <input type="button" id="btn_newtyd" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tạo phiếu trả thuốc" />
                     </td>
 
                 </tr>
@@ -61,14 +61,14 @@
             height: $(window).height() - 200,
             postData: { ypmc: $("#ypmc").val()},
             colModel: [
-                { label: '药品名称', name: 'ypmc',width: 300, align: 'left' },
-                { label: '药品代码', name: 'ypcode', width: 80, align: 'left' },
-                { label: '规格', name: 'ypgg', width: 100, align: 'left' },
-                { label: '简拼', name: 'py', width: 80, align: 'left' },
-                { label: '库存数量', name: 'kcsl', width: 80, align: 'left' },
-                { label: '来源药房', name: 'yfmc', width: 120, align: 'left' },
-                { label: '有效期', name: 'yxq', width: 150, align: 'left' },
-                { label: '生产厂家', name: 'ycmc', width: 200, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc',width: 300, align: 'left' },
+                { label: 'Mã thuốc', name: 'ypcode', width: 80, align: 'left' },
+                { label: 'Quy cách', name: 'ypgg', width: 100, align: 'left' },
+                { label: 'Viết tắt phiên âm', name: 'py', width: 80, align: 'left' },
+                { label: 'Số lượng tồn kho', name: 'kcsl', width: 80, align: 'left' },
+                { label: 'Nhà thuốc nguồn', name: 'yfmc', width: 120, align: 'left' },
+                { label: 'Thời hạn hiệu lực', name: 'yxq', width: 150, align: 'left' },
+                { label: 'Nhà sản xuất', name: 'ycmc', width: 200, align: 'left' },
                 { label: 'yfbmCode', name: 'yfbmCode', hidden: true },
             ],
 
@@ -91,7 +91,7 @@
         var yfmc = "";
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {
-            $.modalAlert("请选择需要申请的药品", 'warning');
+            $.modalAlert("Vui lòng chọn thuốc cần yêu cầu", 'warning');
             return;
         }
         for (var i = 0; i < selRowIds.length; i++) {
@@ -102,7 +102,7 @@
             }
             else {
                 if (yfbm != rowData.yfbmCode) {
-                    $.modalAlert("选择的药房不同，不能生成申请单", 'warning');
+                    $.modalAlert("Nhà thuốc đã chọn khác nhau, không thể tạo phiếu yêu cầu", 'warning');
                     return;
                 }
             }
@@ -111,7 +111,7 @@
         
         $.modalOpen({
             id: "OutAreaForm",
-            title: "科室备药申请",
+            title: "Yêu cầu thuốc dự trữ khoa",
             url: "/NurseManage/OrderAudit/Ward_Application?ypcode=" + ypcodestr + "&yfbm=" + yfbm + "&yfmc=" + yfmc,
             width: "95%",
             height: "95%",
@@ -127,7 +127,7 @@
         var yfmc = "";
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {
-            $.modalAlert("请选择需要退回的药品", 'warning');
+            $.modalAlert("Vui lòng chọn thuốc cần trả lại", 'warning');
             return;
         }
         for (var i = 0; i < selRowIds.length; i++) {
@@ -138,7 +138,7 @@
             }
             else {
                 if (yfbm != rowData.yfbmCode) {
-                    $.modalAlert("选择的药房不同，不能生成退药申请单", 'warning');
+                    $.modalAlert("Nhà thuốc đã chọn khác nhau, không thể tạo phiếu yêu cầu trả thuốc", 'warning');
                     return;
                 }
             }
@@ -147,7 +147,7 @@
 
         $.modalOpen({
             id: "OutAreaForm",
-            title: "科室备药退回申请",
+            title: "Yêu cầu trả lại thuốc dự trữ khoa",
             url: "/NurseManage/PrepareMedicine/PrepareMedicineReturnAdd?ypcode=" + ypcodestr + "&yfbm=" + yfbm + "&yfmc=" + yfmc,
             width: "95%",
             height: "95%",

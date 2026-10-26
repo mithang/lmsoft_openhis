@@ -19,7 +19,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         private readonly ISysConfigRepo _sysConfigRepo;
         private readonly IExceReportPrintDmnService _IExceReportPrintDmnService;
         /// <summary>
-        /// 获取病区人员发药树
+        /// Lấy cây phát thuốc của nhân viên khu bệnh
         /// </summary>
         /// <returns></returns>
         public ActionResult GetPatWardTree()
@@ -83,9 +83,9 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         public override ActionResult Index()
         {
 
-            //注射用法控制
+            //Kiểm soát cách dùng tiêm
             ViewBag.ControlzsyfCode = _sysConfigRepo.GetValueByCode("zsyfpz", OrganizeId);
-            //雾化用法控制
+            //Kiểm soát cách dùng khí dung
             ViewBag.ControlwhyfCode = _sysConfigRepo.GetValueByCode("whyfpz", OrganizeId);
             ViewBag.OrgId = this.OrganizeId;
             ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");

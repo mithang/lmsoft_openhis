@@ -53,7 +53,7 @@
 
 <div class="dv-body">
     <div class="dv-left">
-        <div class="dv-left-title">患者列表</div>
+        <div class="dv-left-title">Danh sách bệnh nhân</div>
         <div class="dv-left-tree" id="BqTreeList"></div>
     </div>
     <div class="dv-right">
@@ -65,29 +65,29 @@
                     </div>
                     <div class="btn-group">
                         <a id="AuditChecked" class="btn btn-primary" onclick="AuditChecked()">
-                            <i class="fa fa-pencil-square-o"></i>审核当前
+                            <i class="fa fa-pencil-square-o"></i>Duyệt hiện tại
                         </a>
                     </div>
                     <div class="btn-group">
                         <a id="AuditTemporary" class="btn btn-primary" onclick="AuditOrders(1)">
-                            <i class="fa fa-pencil-square-o"></i>审核临时
+                            <i class="fa fa-pencil-square-o"></i>Duyệt tạm thời
                         </a>
                     </div>
                     <div class="btn-group">
                         <a id="AuditLong" class="btn btn-primary" onclick="AuditOrders(2)">
-                            <i class="fa fa-pencil-square-o"></i>审核长期
+                            <i class="fa fa-pencil-square-o"></i>Duyệt dài hạn
                         </a>
                     </div>
                     <div class="btn-group">
                         <a id="AuditAll" class="btn btn-primary" onclick="AuditOrders(0)">
-                            <i class="fa fa-pencil-square-o"></i>审核全部
+                            <i class="fa fa-pencil-square-o"></i>Duyệt tất cả
                         </a>
                     </div>
                 </div>
                 @*<div class="toolbar" style="float:right;padding-right:10px;">
                     <div class="btn-group">
                         <a id="PSLR" class="btn btn-primary" style="float:right;padding-right:10px;" onclick="PSLR()">
-                            <i class="fa fa-pencil-square-o"></i>皮试录入
+                            <i class="fa fa-pencil-square-o"></i>Nhập test da
                         </a>
                     </div>
                 </div>*@
@@ -110,13 +110,13 @@
 
     $(function () {
         var zyhtimes = $.request("data");
-        var currentobj = JSON.parse(sessionStorage.getItem('currentpatobj'));//护士患者一览
+        var currentobj = JSON.parse(sessionStorage.getItem('currentpatobj'));//Tổng quan bệnh nhân của y tá
         if(currentobj)
         {
             zyhtimes = currentobj.zyh+',';
             sessionStorage.removeItem("currentpatobj");
         }
-        $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+        $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt thì tính lại chiều rộng và chiều cao
             $(".dv-body").height($(window).height());
             $(".dv-body").width($(window).width());
         });
@@ -149,9 +149,9 @@
         var patzyh = "";
         var patzyhItem = "";
 
-        //当前选中父节点
+        //Nút cha đang được chọn hiện tại
         var len = 0;
-        var single = 0; //是否单个子节点
+        var single = 0; //Có phải là nút con đơn lẻ không
 
         if (item != null && item.Ex1 == "p") {
             patlistFath = item.ChildNodes;
@@ -164,7 +164,7 @@
             single = 1;
         }
 
-        //选中节点
+        //Nút đã chọn
         for (var i = 0; i < patlist.length; i++) {
             if (patlist[i].Ex1 == "c") {
                 patzyh += patlist[i].value + ",";
@@ -214,7 +214,7 @@
         $('#gridList').newtouchLocalDataGrid(null, orderList);
     }
 
-    //级联选中所有子节点
+    //Chọn xếp tầng tất cả các nút con
     function checkAllSon(node) {
         $('#BqTreeList').treeview('checkNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -223,7 +223,7 @@
             }
         }
     }
-    //级联取消所有子节点
+    //Hủy chọn xếp tầng tất cả các nút con
     function uncheckAllSon(node) {
         $('#BqTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -245,23 +245,23 @@
             url: "/NurseManage/OrderAudit/GetGridJson",
             height: $(window).height()-130,
             colModel: [
-                { label: '医嘱ID', name: 'yzid', align: 'center', width: 30, hidden: true, key: true },
+                { label: 'Y lệnhID', name: 'yzid', align: 'center', width: 30, hidden: true, key: true },
                 { label: 'zyh', name: 'zyh', align: 'center', hidden: true },
-                { label: '患者姓名', name: 'hzxm', align: 'center', width: 60 },
-                { label: '医嘱项目', name: 'xmmc', align: 'center', width: 150 },
-                { label: '医嘱性质', name: 'yzxzsm', align: 'center', width: 50 },
+                { label: 'Tên bệnh nhân', name: 'hzxm', align: 'center', width: 60 },
+                { label: 'Hạng mục y lệnh', name: 'xmmc', align: 'center', width: 150 },
+                { label: 'Tính chất y lệnh', name: 'yzxzsm', align: 'center', width: 50 },
                 {
-                    label: '医嘱类型', name: 'yzlx', align: 'center', width: 50, formatter: function (val) {
+                    label: 'Loại y lệnh', name: 'yzlx', align: 'center', width: 50, formatter: function (val) {
                         return $.enum.getDescByValue("EnumYzlx",val);
                     }
                 },
-                { label: '开始时间', name: 'kssj', align: 'center', width: 109, formatter: function (val) { return $.getTime({ date: val }); } },
+                { label: 'Thời gian bắt đầu', name: 'kssj', align: 'center', width: 109, formatter: function (val) { return $.getTime({ date: val }); } },
                 {
-                    label: '医嘱内容', name: 'yzmc', align: 'center', width: 180, formatter: function (val) {
+                    label: 'Nội dung y lệnh', name: 'yzmc', align: 'center', width: 180, formatter: function (val) {
                         if (val != null)
                         {
                             if (val.indexOf("[停]") != -1) {
-                                return "<span style='color:red'>[停]</span>" + val.replace("[停]", "")
+                                return "<span style='color:red'>[Dừng]</span>" + val.replace("[停]", "")
                             }
                             else
                                 return val;
@@ -270,34 +270,34 @@
                         else return "";
                     }
                 },
-                { label: '剂量', name: 'yzjl', align: 'center', width: 40 },
-                { label: '用法', name: 'yfmc', align: 'center', width: 30 },
-                { label: '频次', name: 'yzpcmc', align: 'center', width: 30 },
-                { label: '单价', name: 'dj', align: 'center', width: 50 },
-                { label: '数量', name: 'sl', align: 'center', width: 50 ,hidden:true},
-                { label: '数量', name: 'slstr', align: 'center', width: 50 },
-                { label: '金额', name: 'je', align: 'center', width: 50 },
-                { label: '停止/作废时间', name: 'tzsj', align: 'center', width: 100, formatter: function (val) { if (val != null) return $.getTime({ date: val }); else return ""; } },
+                { label: 'Liều lượng', name: 'yzjl', align: 'center', width: 40 },
+                { label: 'Cách dùng', name: 'yfmc', align: 'center', width: 30 },
+                { label: 'Tần suất', name: 'yzpcmc', align: 'center', width: 30 },
+                { label: 'Đơn giá', name: 'dj', align: 'center', width: 50 },
+                { label: 'Số lượng', name: 'sl', align: 'center', width: 50 ,hidden:true},
+                { label: 'Số lượng', name: 'slstr', align: 'center', width: 50 },
+                { label: 'Số tiền', name: 'je', align: 'center', width: 50 },
+                { label: 'Dừng/Thời gian hủy bỏ', name: 'tzsj', align: 'center', width: 100, formatter: function (val) { if (val != null) return $.getTime({ date: val }); else return ""; } },
                 {
-                    label: '药品来源', name: 'yply', align: 'center', width: 50, formatter: function (val) {
+                    label: 'Nguồn thuốc', name: 'yply', align: 'center', width: 50, formatter: function (val) {
                         return $.enum.getDescByValue("EnumYply", val);
                     }
                 },
-                { label: '精麻', name: 'yztagName', align: 'center', width: 50 },
+                { label: 'Thuốc gây nghiện, thuốc hướng thần', name: 'yztagName', align: 'center', width: 50 },
                  {
-                     label: '是否计费', name: 'isjf', align: 'center', width: 50, formatter: function (val) {
+                     label: 'Có tính phí không', name: 'isjf', align: 'center', width: 50, formatter: function (val) {
                          return $.enum.getDescByValue("EnumSF", val);
                      }
                 },
                 {
-                    label: '是否皮试', name: 'ispscs', align: 'center', width: 50, formatter: function (val) {
+                    label: 'Có test da không', name: 'ispscs', align: 'center', width: 50, formatter: function (val) {
                          return $.enum.getDescByValue("EnumSF", val);
                      }
                 },
-                { label: '皮试结果', name: 'psjgms', align: 'center', width: 50, formatter: function (val) { if (val == "阳性") return "<span style='color:red;'>" + val + "</span>"; else if (!!val) return val; else return ""; } },
-                { label: '录入者', name: 'Creator', align: 'center', width: 50 },
-                { label: '医嘱性质编码', name: 'yzxz', align: 'center', hidden: true },
-                { label: '医嘱组号', name: 'zh', align: 'center', width: 70, formatter: function (val) { if (val != null) return val; else return ""; } },
+                { label: 'Kết quả test da', name: 'psjgms', align: 'center', width: 50, formatter: function (val) { if (val == "阳性") return "<span style='color:red;'>" + val + "</span>"; else if (!!val) return val; else return ""; } },
+                { label: 'Người nhập', name: 'Creator', align: 'center', width: 50 },
+                { label: 'Mã tính chất y lệnh', name: 'yzxz', align: 'center', hidden: true },
+                { label: 'Số nhóm y lệnh', name: 'zh', align: 'center', width: 70, formatter: function (val) { if (val != null) return val; else return ""; } },
                 { label: 'zh1', name: 'zh1', align: 'center', width: 70, hidden: true , formatter: function (val) { if (val != null) return val; else return ""; } }
                 , { label: 'ispscs', name: 'ispscs', align: 'center', hidden: true }
                 , { label: 'yzh', name: 'yzh', align: 'center', hidden: true }
@@ -305,10 +305,10 @@
                 , { label: 'psjg', name: 'psjg', align: 'center', hidden: true }
                 , { label: 'yfztbs', name: 'yfztbs', align: 'center', hidden: true },
                 {
-                    label: '操作', name: '', align: 'center', width: 70, formatter: function (val, row, option) {
-                        return "<a class='btn btn-default' onclick='PSLR(\"" + option.yzid + "\")'>皮试补录</a>"
+                    label: 'Thao tác', name: '', align: 'center', width: 70, formatter: function (val, row, option) {
+                        return "<a class='btn btn-default' onclick='PSLR(\"" + option.yzid + "\")'>Bổ sung test da</a>"
                         //if (option.ispscs == "1" && !option.psjg) {
-                        //    return "<a class='btn btn-default' onclick='PSLR(\"" + option.yzid + "\")'>皮试补录</a>"
+                        //    return "<a class='btn btn-default' onclick='PSLR(\"" + option.yzid + "\")'>Bổ sung test da</a>"
                         //}
                         //else
                         //    return "";
@@ -324,7 +324,7 @@
                     var len = 0;
                     var rowData = $("#gridList").jqGrid('getRowData', rowIndex);
                     var ids = $("#gridList").jqGrid('getRowData_AllLine');
-                    liststu = s; //同步状态
+                    liststu = s; //Trạng thái đồng bộ
                     if (rowData.yzlx == "检验" || rowData.yzlx == "检查") {
                         for (var i = 0; i < ids.length; i++) {
                             if (ids[i].zh1 == rowData.zh1 && ids[i].zh1 != "") {
@@ -369,15 +369,15 @@
                 if (list.length > 0) {
 
                     for (j = j; j < list.length; j++) {
-                        if (liststu) //同组选中
+                        if (liststu) //Chọn cùng nhóm
                         {
                             j = j + 1;
                             $("#gridList").jqGrid("setSelection", list[j - 1], true);
 
                         }
-                        else { //同组取消选中
+                        else { //Hủy chọn cùng nhóm
                             //j = j + 1;
-                            $("#gridList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow                       
+                            $("#gridList").jqGrid("setSelection", list[j], false);      //Hủy không kích hoạtonselectrow                       
                         }
 
                     }
@@ -391,18 +391,18 @@
         });
     }
 
-    //刷新医嘱
+    //Làm mới y lệnh
     function RefreshOrder() {
         $('#gridList').jqGrid("clearGridData");
         getOrderAuditList(null, null);
     }
 
-    //审核当前
+    //Duyệt hiện tại
     function AuditChecked() {
         var strYZID = [];
         var selRowIds = jQuery("#gridList").jqGrid("getGridParam", "selarrrow");
         if (selRowIds == null || selRowIds.length === 0) {
-            $.modalAlert("请先选中需审核的医嘱", 'warning');
+            $.modalAlert("Vui lòng chọn trước y lệnh cần duyệt", 'warning');
             return;
         }
         var tipyzs = "";
@@ -410,7 +410,7 @@
             var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
             strYZID.push({ yzid: rowData.yzid, yzxz: rowData.yzxz, yzlxmc: rowData.yzlx, zyh: rowData.zyh, zh1: rowData.zh1, zh: rowData.zh, ispscs: rowData.ispscs, yzh: rowData.yzh, yfztbs: rowData.yfztbs });
 
-            //2021-9-18 取消皮试结果判断
+            //2021-9-18 Hủy đánh giá kết quả test da
             //if (rowData.ispscs == "1" && rowData.psjg == "0") {
             //    strYZID.push({ yzid: rowData.yzid, yzxz: rowData.yzxz, yzlxmc: rowData.yzlx, zyh: rowData.zyh, zh1: rowData.zh1, zh: rowData.zh, ispscs: rowData.ispscs, yzh: rowData.yzh });
             //}
@@ -440,7 +440,7 @@
             success: function (ajaxresp) {
                 if (ajaxresp == "") {
                     setTimeout(function () {
-                        $.modalMsg('审核失败', 'error');
+                        $.modalMsg('Duyệt thất bại', 'error');
                     }, 1000);
                 }
                 else {
@@ -449,7 +449,7 @@
                             AuditTipsPs(JSON.parse(ajaxresp).data);
                         }
                         else {
-                            $.modalMsg('审核成功', 'success');
+                            $.modalMsg('Duyệt thành công', 'success');
                             
                         }
                         
@@ -462,7 +462,7 @@
             }
         });
     }
-    //审核临时  长期  全部
+    //Duyệt tạm thời  Dài hạn  Tất cả
     function AuditOrders(yzxz) {
         var selPatTrees = $("#BqTreeList").getCheckedNodeObjArray();
 
@@ -471,7 +471,7 @@
 
         //var selPatTrees = $('#BqTreeList').treeview('getChecked');
         if (selPatTrees == null || selPatTrees.length < 1) {
-            $.modalAlert("请先选中需审核的患者", 'warning');
+            $.modalAlert("Vui lòng chọn trước bệnh nhân cần duyệt", 'warning');
             return;
         }
         var patzyh = "";
@@ -482,7 +482,7 @@
             }
         }
         if (patzyh === "") {
-            $.modalAlert("请先选中需审核的患者", 'warning');
+            $.modalAlert("Vui lòng chọn trước bệnh nhân cần duyệt", 'warning');
             return;
         }      
 
@@ -490,7 +490,7 @@
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
             strYZID.push({ yzid: rowData.yzid, yzxz: rowData.yzxz, yzlxmc: rowData.yzlx, zyh: rowData.zyh, zh1: rowData.zh1, ispscs: rowData.ispscs, yzh: rowData.yzh });
-            //2021-9-18 取消皮试结果判断
+            //2021-9-18 Hủy đánh giá kết quả test da
             //if (rowData.ispscs == "1" && rowData.psjg == "0") {
             //    strYZID.push({ yzid: rowData.yzid, yzxz: rowData.yzxz, yzlxmc: rowData.yzlx, zyh: rowData.zyh, zh1: rowData.zh1, zh: rowData.zh, ispscs: rowData.ispscs, yzh: rowData.yzh });
             //}
@@ -521,7 +521,7 @@
             success: function (ajaxresp) {
                 if (ajaxresp == "") {
                     setTimeout(function () {
-                        $.modalMsg('审核失败', 'error');
+                        $.modalMsg('Duyệt thất bại', 'error');
                     }, 1000);
                 }
                 else {
@@ -530,7 +530,7 @@
                             AuditTipsPs(ajaxresp.data);
                         }
                         else {
-                            $.modalMsg('审核成功', 'success');
+                            $.modalMsg('Duyệt thành công', 'success');
                         }
 
                     }, 1000);
@@ -557,21 +557,21 @@
         else {
             selRowIds = jQuery("#gridList").jqGrid("getGridParam", "selarrrow");
             if (selRowIds.length > 1) {
-                $.modalAlert("皮试录入只能选中一个患者", 'warning');
+                $.modalAlert("Nhập test da chỉ được chọn một bệnh nhân", 'warning');
                 return;
             }
         }
         if (selRowIds == null || selRowIds.length < 1) {
-            $.modalAlert("请先选中需审核的患者", 'warning');
+            $.modalAlert("Vui lòng chọn trước bệnh nhân cần duyệt", 'warning');
             return;
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds);
         if (rowData.ispscs != "1") {
-            $.modalAlert("该医嘱无需皮试", 'warning');
+            $.modalAlert("Y lệnh này không cần test da", 'warning');
             return;
         }
         //if (rowData.ispscs == "1" && (rowData.psjg == "0" || rowData.psjg == "1")) {
-        //    $.modalAlert("当前结果无法修改，请转至皮试结果录入页。", 'warning');
+        //    $.modalAlert("Kết quả hiện tại không thể sửa, vui lòng chuyển đến trang nhập kết quả test da.", 'warning');
         //    return;
         //}
         zyh = rowData.zyh;
@@ -580,7 +580,7 @@
 
         $.modalOpen({
             id: "InpatientVitalSignsForm",
-            title: "皮试录入",
+            title: "Nhập test da",
             url: "/NurseManage/OrderAudit/Inputresults",
             width: "400px",
             height: "200px",
@@ -597,12 +597,12 @@
                         success: function (data) {
                             var s = JSON.stringify(data.message);
                             if (s = "皮试录入成功") {
-                                $.modalMsg('皮试录入成功', 'success');
+                                $.modalMsg('Nhập test da thành công', 'success');
                                 $('#gridList').jqGrid("clearGridData");
                                 getOrderAuditList(null, null);
                             }
                             else {
-                                $.modalMsg('录入失败或者已录入', 'error');
+                                $.modalMsg('Nhập thất bại hoặc đã nhập', 'error');
                                 $('#gridList').jqGrid("clearGridData");
                                 getOrderAuditList(null, null);
                             }
@@ -616,13 +616,13 @@
     function AuditTipsPs(ajaxresp) {
         $.modalOpen({
             id: "AuditTipsPs",
-            title: "皮试结果提示",
+            title: "Nhắc nhở kết quả test da",
             url: "/NurseManage/OrderAudit/AuditTips?ajaxresp=" + ajaxresp,
             width: "700px",
             height: "500px",
-            //showleftlalbel: !!!smtzId,  //新增时显示 '确认并关闭按钮'
+            //showleftlalbel: !!!smtzId,  //Hiển thị khi thêm mới 'Nút xác nhận và đóng'
             leftlalbelchecked: true,
-            //leftlabeltext: "连续录入",
+            //leftlabeltext: "Nhập liên tục",
             leftlalbelcheckedasClose: false,
             callBack: function (iframeId, isClose) {
                 $("#gridList").trigger("reloadGrid");

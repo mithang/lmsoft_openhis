@@ -1,8 +1,8 @@
 ﻿@{
-    ViewBag.Title = "注射输液执行";
+    ViewBag.Title = "Thực hiện tiêm truyền dịch";
     Layout = "~/Views/Shared/_Index.cshtml";
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
-    var mzzszPrinturl = SysConfigReader.OrgReportLink("mzzszPrint");//注射输液单 zszPrint
+    var mzzszPrinturl = SysConfigReader.OrgReportLink("mzzszPrint");//Phiếu tiêm truyền dịch zszPrint
     var curOpr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
 }
 <style>
@@ -17,33 +17,33 @@
 </style>
 <div class="panel panel-default">
     <div class="panel-heading navb-bg">
-        筛选条件
+        Điều kiện lọc
     </div>
     <table class="form">
         <tr>
-            <td class="formTitle" style="display:none">卡号：</td>
+            <td class="formTitle" style="display:none">Số thẻ:</td>
             <td class="formValue" style="display:none">
-                <input type="text" class="form-control" id="txtkh" placeholder="卡号" />
+                <input type="text" class="form-control" id="txtkh" placeholder="Số thẻ" />
             </td>
-            <td class="formTitle">门诊号：</td>
+            <td class="formTitle">Số khám ngoại trú:</td>
             <td class="formValue">
-                <input type="text" class="form-control" id="txtmzh" placeholder="门诊号" />
+                <input type="text" class="form-control" id="txtmzh" placeholder="Số khám ngoại trú" />
             </td>
-            <td class="formTitle">发票号：</td>
+            <td class="formTitle">Số hóa đơn:</td>
             <td class="formValue">
-                <input type="text" class="form-control" id="txtfph" placeholder="发票号" />
+                <input type="text" class="form-control" id="txtfph" placeholder="Số hóa đơn" />
             </td>
-            <td class="formTitle"><span style="color:#ff0000;">*</span>收费时间：</td>
+            <td class="formTitle"><span style="color:#ff0000;">*</span>Thời gian thu phí:</td>
             <td class="formValue">
                 <input id="txtsfkssj" type="text" class="form-control input-wdatepicker" style="width:90%; float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd 00:00:00")">
             </td>
-            <td class="formTitle" style="width:10px">至</td>
+            <td class="formTitle" style="width:10px">đến</td>
             <td class="formValue">
                 <input id="txtsfjssj" type="text" class="form-control input-wdatepicker" style="width:90%; float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")">
             </td>
             <td class="formValue">
-                <input type="button" class="btn btn-primary btn-md" id="btn_search" value="查询" />
-                <input type="button" class="btn btn-primary btn-md" id="btn_sync" value="同步处方" />
+                <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
+                <input type="button" class="btn btn-primary btn-md" id="btn_sync" value="Đồng bộ đơn thuốc" />
             </td>
         </tr>
     </table>
@@ -59,9 +59,9 @@
 <div style="margin-left:0.5%;">
     <table class="form" style="width:200px;float: left;">
         <tr>
-            <td class="formTitle">座号/床号：</td>
+            <td class="formTitle">Số ghế/Số giường:</td>
             <td class="formValue">
-                <input id="txtSeatNum" name="txtSeatNum" type="text" class="form-control" placeholder="座号/床号" value="" />
+                <input id="txtSeatNum" name="txtSeatNum" type="text" class="form-control" placeholder="Số ghế/Số giường" value="" />
             </td>
         </tr>
     </table>
@@ -86,12 +86,12 @@
     $("#btn_bottombutton_f4").attr("style", "display:none;");
     $(".toolbar").width(500);
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt thì tải lạijqGridchiều rộng của
         $(window).resize(function () {
 
         });
         Initial();
-        //同步
+        //Đồng bộ
         $("#btn_sync").click(function () {
             $.najax({
                 url: "@Url.Action("SyncSettRpDetail")",
@@ -108,7 +108,7 @@
         $("#btn_search").click(function () {
             currentMzh = "";
             if ($("#txtsfkssj").val() === "" || $("#txtsfjssj").val() === "") {
-                $.modalMsg("收费时间不能为空", "warning");
+                $.modalMsg("Thời gian thu phí không được trống", "warning");
                 return;
             }
             $gridMxList.jqGrid("clearGridData");
@@ -121,14 +121,14 @@
 
     });
 
-    //回车事件绑定
+    //Liên kết sự kiện Enter
     $(window).keyup(function (event) {
         if (event.keyCode == 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //初始化
+    //Khởi tạo
     function Initial() {
         gridList();
     }
@@ -136,7 +136,7 @@
     $('#txtmzh ,#txtfph,#txtsfkssj,#txtsfjssj').change(function () {
         currentMzh = "";
         if ($("#txtsfkssj").val() === "" || $("#txtsfjssj").val() === "") {
-            $.modalMsg("收费时间不能为空", "warning");
+            $.modalMsg("Thời gian thu phí không được trống", "warning");
             return;
         }
         $gridMxList.jqGrid("clearGridData");
@@ -146,22 +146,22 @@
             postData: getGridPatPar(),
         }).trigger('reloadGrid');
     });
-    //组装患者信息查询条件
+    //Lắp ráp điều kiện tra cứu thông tin bệnh nhân
     function getGridPatPar() {
         return { kh: $("#txtkh").val(), mzh: $("#txtmzh").val(), fph: $("#txtfph").val(), kssj: $("#txtsfkssj").val(), jssj: $("#txtsfjssj").val() }
     }
 
-    //主表信息
+    //Thông tin bảng chính
     function gridList() {
-        //患者信息
+        //Thông tin bệnh nhân
         $gridList.dataGrid({
             url: "/NurseManage/Infusion/PatientListQuery",
             postData: getGridPatPar(),
             height: $(window).height() - document.getElementById('gridPatList').offsetTop - 70,
             colModel: [
-                { label: '姓名', name: 'xm', width: 60, align: 'center' },
-                { label: '卡号', name: 'kh', width: 80, align: 'center', hidden: true },
-                { label: '门诊号', name: 'mzh', width: 100, align: 'center' },
+                { label: 'Họ tên', name: 'xm', width: 60, align: 'center' },
+                { label: 'Số thẻ', name: 'kh', width: 80, align: 'center', hidden: true },
+                { label: 'Số khám ngoại trú', name: 'mzh', width: 100, align: 'center' },
             ],
             pager: "#gridPatPager",
             rowNum: '25',
@@ -180,46 +180,46 @@
         var list = new Array();
         var liststu = false;
         var j = 0;
-        //输液药品信息
+        //Thông tin thuốc truyền dịch
         $gridMxList.dataGrid({
             url: "",
             height: $(window).height() - document.getElementById('gridRpList').offsetTop - 120,
             multiselect: true,
             colModel: [
                 { label: 'Id', name: 'Id', key: true, hidden: true },
-                { label: '姓名', name: 'xm', width: 30, align: 'center' },
-                { label: '组', name: 'groupNo', width: 30, align: 'center' },
-                { label: '处方号', name: 'cfh', width: 110, align: 'center' },
+                { label: 'Họ tên', name: 'xm', width: 30, align: 'center' },
+                { label: 'Nhóm', name: 'groupNo', width: 30, align: 'center' },
+                { label: 'Số đơn thuốc', name: 'cfh', width: 110, align: 'center' },
                 {
-                    label: '皮试标识', name: 'ispsbz', width: 50, align: 'center', formatter: function (val) {
+                    label: 'Dấu hiệu test da', name: 'ispsbz', width: 50, align: 'center', formatter: function (val) {
                         return val == 1 ? "是" : "否"
                     }
                 },
                 {
-                    label: '皮试结果', name: 'psjg', width: 50, align: 'center'
+                    label: 'Kết quả test da', name: 'psjg', width: 50, align: 'center'
                 },
                 {
-                    label: '留观标志', name: 'islgbz', width: 50, align: 'center', formatter: function (val) {
+                    label: 'Dấu hiệu lưu quan sát', name: 'islgbz', width: 50, align: 'center', formatter: function (val) {
                         return val == 1 ? "是" : "否"
                     }
                 },
-                { label: '总次数', name: 'zcs', width: 50, align: 'center' },
-                { label: '已执行次数', name: 'yzxcs', width: 80, align: 'center' },
-                { label: '床/座号', name: 'seatNum', width: 50, align: 'center' },
+                { label: 'Tổng số lần', name: 'zcs', width: 50, align: 'center' },
+                { label: 'Số lần đã thực hiện', name: 'yzxcs', width: 80, align: 'center' },
+                { label: 'Giường/Số ghế', name: 'seatNum', width: 50, align: 'center' },
 
-                { label: '药品名称', name: 'ypmc', width: 100, align: 'center' },
-                { label: '规格', name: 'ypgg', width: 50, align: 'left' },
-                { label: '用法', name: 'yfmc', width: 50, align: 'center' },
-                { label: '用量', name: 'ylStr', width: 50, align: 'center', hidden: true },
-                { label: '数量', name: 'slStr', width: 50, align: 'center' },
-                { label: '剂量', name: 'jlStr', width: 50, align: 'center' },
-                { label: '收费时间', name: 'sfsj', width: 115, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Tên thuốc', name: 'ypmc', width: 100, align: 'center' },
+                { label: 'Quy cách', name: 'ypgg', width: 50, align: 'left' },
+                { label: 'Cách dùng', name: 'yfmc', width: 50, align: 'center' },
+                { label: 'Lượng dùng', name: 'ylStr', width: 50, align: 'center', hidden: true },
+                { label: 'Số lượng', name: 'slStr', width: 50, align: 'center' },
+                { label: 'Liều lượng', name: 'jlStr', width: 50, align: 'center' },
+                { label: 'Thời gian thu phí', name: 'sfsj', width: 115, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
                 { label: 'cfId', name: 'cfId', hidden: true },
-                //{ label: '输液开始', name: 'sykssj', width: 115, align: 'center',hidden:true, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
-                //{ label: '输液结束', name: 'syjssj', width: 115, align: 'center', hidden: true, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                //{ label: '配药师', name: 'dispenserName', width: 50, align: 'left' },
-                //{ label: '执行人', name: 'executorName', width: 50, align: 'left' },
-                //{ label: '备注', name: 'remark', width: 100, align: 'left' }
+                //{ label: 'Bắt đầu truyền dịch', name: 'sykssj', width: 115, align: 'center',hidden:true, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
+                //{ label: 'Kết thúc truyền dịch', name: 'syjssj', width: 115, align: 'center', hidden: true, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                //{ label: 'Dược sĩ pha thuốc', name: 'dispenserName', width: 50, align: 'left' },
+                //{ label: 'Người thực hiện', name: 'executorName', width: 50, align: 'left' },
+                //{ label: 'Ghi chú', name: 'remark', width: 100, align: 'left' }
             ],
             pager: "#gridRpPager",
             rowNum: '25',
@@ -240,7 +240,7 @@
                     var rowData = $("#gridRpList").jqGrid('getRowData', rowIndex);
                     var ids = $("#gridRpList").jqGrid('getRowData_AllLine');
 
-                    liststu = s; //同步状态
+                    liststu = s; //Trạng thái đồng bộ
                     for (var i = 0; i < ids.length; i++) {
                         if (ids[i].groupNo == rowData.groupNo && ids[i].groupNo != "") {
                             if (s == true) {
@@ -264,15 +264,15 @@
                 if (list.length > 0) {
 
                     for (j = j; j < list.length; j++) {
-                        if (liststu) //同组选中
+                        if (liststu) //Chọn cùng nhóm
                         {
                             j = j + 1;
                             $("#gridRpList").jqGrid("setSelection", list[j - 1], true);
 
                         }
-                        else { //同组取消选中
+                        else { //Hủy chọn cùng nhóm
                             //j = j + 1;
-                            $("#gridRpList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow
+                            $("#gridRpList").jqGrid("setSelection", list[j], false);      //Hủy không kích hoạtonselectrow
                         }
 
                     }
@@ -290,7 +290,7 @@
     {
         var validpsMsg = "";
         var validlgMsg = "";
-        var selRowIds = jQuery("#gridRpList").jqGrid("getGridParam", "selarrrow");//选中的id
+        var selRowIds = jQuery("#gridRpList").jqGrid("getGridParam", "selarrrow");//đã chọnid
         if (selRowIds == null || selRowIds.length === 0) return;
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#gridRpList").jqGrid('getRowData', selRowIds[i]);
@@ -300,7 +300,7 @@
             if (rowData.ispsbz == "是" && rowData.psjg=="") {
                 validpsMsg = "处方号:" + rowData.cfh + "未做皮试";
             }
-            //if (rowData.islgbz == "是") {
+            //if (rowData.islgbz == "Có") {
 
             //}
 
@@ -308,7 +308,7 @@
         }
     }
 
-    //获取选中checkbox的ID
+    //Lấy mục đã chọncheckboxcủaID
     function getCheckedIds() {
         var allChk = $("#gridRpList input[type=checkbox]:checked");
         if (allChk.length == 0) return null;
@@ -320,28 +320,28 @@
     }
     function newtouch_event_f8() {
         if (currentMzh === "") {
-            $.modalMsg("请选择患者", "warning");
+            $.modalMsg("Vui lòng chọn bệnh nhân", "warning");
             return;
         }
         var ids = getCheckedIds();
-        //var selRowIds = $("#gridRpList").jqGrid("getGridParam", "selarrrow");//选中的id
+        //var selRowIds = $("#gridRpList").jqGrid("getGridParam", "selarrrow");//đã chọnid
         if (ids == null || ids.length <= 0) {
-            $.modalMsg("请勾选要登记留观的处方", "warning");
+            $.modalMsg("Vui lòng chọn đơn thuốc cần đăng ký lưu quan sát", "warning");
             return;
         }
         var idsstr = "";
-        var cfh = ""; //只限制选择单个处方进行登记
+        var cfh = ""; //Chỉ giới hạn chọn một đơn thuốc để đăng ký
         for (var i = 0; i < ids.length; i++) {
             var rowData = $("#gridRpList").jqGrid('getRowData', ids[i]);
             if (cfh != "") {
                 if (cfh != rowData.cfh) {
-                    $.modalMsg("只能选择单个处方进行留观登记", "warning");
+                    $.modalMsg("Chỉ được chọn một đơn thuốc để đăng ký lưu quan sát", "warning");
                     return;
                 }
             }
             cfh = rowData.cfh;
             if (rowData.islgbz != "是") {
-                $.modalMsg("只有处方中为留观的才可以进行留观登记", "warning");
+                $.modalMsg("Chỉ đơn thuốc có lưu quan sát mới được đăng ký lưu quan sát", "warning");
                 return;
             }
             idsstr += rowData.Id + ",";
@@ -349,7 +349,7 @@
         console.log(idsstr);
         $.modalOpen({
             id: "observationFrom",
-            title: "留观登记",
+            title: "Đăng ký lưu quan sát",
             url: "/NurseManage/Infusion/observationFrom?keyValue=" + idsstr,
             width: "1000px",
             height: "700px",
@@ -360,15 +360,15 @@
             }
         });
     }
-        //分组
+        //Nhóm
         function newtouch_event_f6() {
             if (currentMzh === "") {
-                $.modalMsg("请选择患者", "warning");
+                $.modalMsg("Vui lòng chọn bệnh nhân", "warning");
                 return;
             }
             var ids = getCheckedIds();
             if (ids == null || ids.length <= 0) {
-                $.modalMsg("请勾选要成组的药品", "warning");
+                $.modalMsg("Vui lòng chọn thuốc cần nhóm", "warning");
                 return;
             }
             $.najax({
@@ -388,20 +388,20 @@
             });
         }
 
-        //执行
+        //Thực hiện
         function newtouch_event_f7() {
             if (currentMzh === "") {
-                $.modalMsg("请选择患者", "warning");
+                $.modalMsg("Vui lòng chọn bệnh nhân", "warning");
                 return;
             }
             var ids = getCheckedIds();
             if (ids == null || ids.length <= 0) {
-                $.modalMsg("请勾选要执行的药品", "warning");
+                $.modalMsg("Vui lòng chọn thuốc cần thực hiện", "warning");
                 return;
             }
             var viladExe = ValidationExeCute();
             if (viladExe) {
-                $.modalConfirm(viladExe + "是否继续执行?", function (flag) {
+                $.modalConfirm(viladExe + "Có tiếp tục thực hiện không?", function (flag) {
                     if (flag) {
                         syExeCute(ids);
                     }
@@ -421,7 +421,7 @@
             }
             $.modalOpen({
                 id: "Form",
-                title: "输液执行",
+                title: "Thực hiện truyền dịch",
                 url: "/NurseManage/Infusion/InjectionForm?keyValue=" + keyValue + "&seatNum=" + $("#txtSeatNum").val(),
                 width: "500px",
                 height: "400px",
@@ -437,15 +437,15 @@
         });
         }
 
-        //开始输液
+        //Bắt đầu truyền dịch
         function newtouch_event_f4() {
             if (currentMzh === "") {
-                $.modalMsg("请选择患者", "warning");
+                $.modalMsg("Vui lòng chọn bệnh nhân", "warning");
                 return;
             }
             var ids = getCheckedIds();
             if (ids == null || ids.length <= 0) {
-                $.modalMsg("请勾选要开始输液的药品", "warning");
+                $.modalMsg("Vui lòng chọn thuốc cần bắt đầu truyền dịch", "warning");
                 return;
             }
             $.najax({
@@ -465,15 +465,15 @@
             });
         }
 
-        //结束输液
+        //Kết thúc truyền dịch
         function newtouch_event_f9() {
             if (currentMzh === "") {
-                $.modalMsg("请选择患者", "warning");
+                $.modalMsg("Vui lòng chọn bệnh nhân", "warning");
                 return;
             }
             var ids = getCheckedIds();
             if (ids == null || ids.length <= 0) {
-                $.modalMsg("请勾选要结束输液的药品", "warning");
+                $.modalMsg("Vui lòng chọn thuốc cần kết thúc truyền dịch", "warning");
                 return;
             }
             $.najax({
@@ -493,9 +493,9 @@
             });
         }
         function newtouch_event_f2() {
-            var selRowIds = jQuery("#gridRpList").jqGrid("getGridParam", "selarrrow");//选中的id
+            var selRowIds = jQuery("#gridRpList").jqGrid("getGridParam", "selarrrow");//đã chọnid
             if (selRowIds == null || selRowIds.length === 0) {
-                $.modalMsg("请选择输液药品", "warning");
+                $.modalMsg("Vui lòng chọn thuốc truyền dịch", "warning");
                 return;
             }
             //var cfh = "";
@@ -504,7 +504,7 @@
             //    var rowData = $("#gridRpList").jqGrid('getRowData', selRowIds[i]);
             //    if (cfh != "" && cfh != rowData.cfh)
             //    {
-            //        $.modalMsg("请选择同一组处方输液药品进行打印", "warning");
+            //        $.modalMsg("Vui lòng chọn thuốc truyền dịch cùng nhóm đơn thuốc để in", "warning");
             //        return;
             //    }
             //    cfh = rowData.cfh;
@@ -515,7 +515,7 @@
             for (var i = 0; i < selRowIds.length; i++) {
                 var rowData = $("#gridRpList").jqGrid('getRowData', selRowIds[i]);
                 if (groupNo != "" && groupNo != rowData.groupNo) {
-                    $.modalMsg("请选择同一组处方输液药品进行打印", "warning");
+                    $.modalMsg("Vui lòng chọn thuốc truyền dịch cùng nhóm đơn thuốc để in", "warning");
                     return;
                 }
                 cfh = rowData.groupNo;
@@ -529,15 +529,15 @@
             window.open(rpturl, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
         }
 
-        //打印
+        //In
         function newtouch_event_f10() {
             if (currentMzh === "") {
-                $.modalMsg("请选择患者", "warning");
+                $.modalMsg("Vui lòng chọn bệnh nhân", "warning");
                 return;
             }
-            var selRowIds = jQuery("#gridRpList").jqGrid("getGridParam", "selarrrow");//选中的id
+            var selRowIds = jQuery("#gridRpList").jqGrid("getGridParam", "selarrrow");//đã chọnid
             if (selRowIds == null || selRowIds.length === 0) {
-                $.modalMsg("请勾选要打印输液的药品", "warning");
+                $.modalMsg("Vui lòng chọn thuốc truyền dịch cần in", "warning");
                 return;
             }
             var cfh = "";
@@ -545,7 +545,7 @@
             for (var i = 0; i < selRowIds.length; i++) {
                 var rowData = $("#gridRpList").jqGrid('getRowData', selRowIds[i]);
                 if (cfh != "" && cfh != rowData.cfh) {
-                    $.modalMsg("请选择同一组处方输液药品进行打印", "warning");
+                    $.modalMsg("Vui lòng chọn thuốc truyền dịch cùng nhóm đơn thuốc để in", "warning");
                     return;
                 }
                 cfh = rowData.cfh;
@@ -553,14 +553,14 @@
             }
             //var ids = getCheckedIds();
             //if (ids == null || ids.length <= 0) {
-            //    $.modalMsg("请勾选要打印输液的药品", "warning");
+            //    $.modalMsg("Vui lòng chọn thuốc truyền dịch cần in", "warning");
             //    return;
             //}
             //var tmpIds = "";
             //for (var i = 0; i < ids.length; i++) {
             //    tmpIds += ids[i] + ",";
             //}
-            $.loading(true, '数据查询中，请稍后...');
+            $.loading(true, 'Dữ liệu đang được tra cứu, vui lòng đợi...');
 
             $.ajax({
                 url: "@Url.Action("PrintBottleLabel")",
@@ -573,7 +573,7 @@
                         $.loading(false);
                         $.modalOpen({
                             id: "PrintBottleLabel",
-                            title: "瓶贴打印",
+                            title: "In nhãn chai",
                             url: "/NurseManage/Infusion/PrintBottleLabel?tags=" + tmpIds,
                             width: "500px",
                             height: "480px",
@@ -587,7 +587,7 @@
                         //webPrint.PrintHtml(res);
                     }
                     else {
-                        $.modalAlert('打印内容数据加载失败', 'error');
+                        $.modalAlert('Tải dữ liệu nội dung in thất bại', 'error');
                         return;
                     }
                 },

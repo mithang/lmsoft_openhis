@@ -15,7 +15,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
     {
         private readonly ITreatmentPrintDmnService _iTreatmentPrintDmnService;
         /// <summary>
-        /// 获取病区人员执行树
+        /// Lấy cây thực hiện của nhân viên khu bệnh
         /// </summary>
         /// <returns></returns>
         public ActionResult GetPatWardTree()

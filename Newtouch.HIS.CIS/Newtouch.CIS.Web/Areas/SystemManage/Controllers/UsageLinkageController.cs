@@ -10,7 +10,7 @@ using System.Web.Mvc;
 namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
-    /// 用法联动维护
+    /// Bảo trì liên động cách dùng
     /// </summary>
     public class UsageLinkageController : OrgControllerBase
     {
@@ -19,7 +19,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         private readonly ISysUsageLinkageDmnService _sysUsageLinkageDmnService;
 
         /// <summary>
-        /// 获取主列表
+        /// Lấy danh sách chính
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="yfCode"></param>
@@ -40,7 +40,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 修改信息时，把信息带到新页面
+        /// Khi sửa thông tin, mang thông tin sang trang mới
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -53,7 +53,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -73,7 +73,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

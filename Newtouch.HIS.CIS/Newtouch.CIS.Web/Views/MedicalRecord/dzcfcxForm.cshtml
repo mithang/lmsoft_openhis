@@ -9,7 +9,7 @@
 		<table class="form">
 			
 			<tr>
-				<th class="formTitle"><span class="required">*</span>作废原因：</th>
+				<th class="formTitle"><span class="required">*</span>Lý do hủy:</th>
 				<td class="formValue">
 					<input type="text" id="zfyy" class="form-control required" placeholder="" />
 				</td>
@@ -27,7 +27,7 @@
 	};
 	function submitForm() {
 		if (!$('#form1').formValid(valOptions)) {
-			$.modalAlert("必填信息未完善", 'warning');
+			$.modalAlert("Thông tin bắt buộc chưa hoàn thiện", 'warning');
 			return;
 		}
 		var obj = new Object();

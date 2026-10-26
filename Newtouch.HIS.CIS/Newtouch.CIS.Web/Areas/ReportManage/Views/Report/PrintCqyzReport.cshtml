@@ -1,8 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "长期医嘱单";
+    ViewBag.Title = "Phiếu y lệnh dài hạn";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //报表地址
+    //Địa chỉ báo cáo
     var reportUrl = SysConfigReader.OrgReportLink("cqyzPrint");
 }
 
@@ -27,7 +27,7 @@
     function submit() {
         var url = getUrl();
 
-        //直接打开
+        //Mở trực tiếp
         location.href = url;
         return;
 
@@ -50,7 +50,7 @@
         }
         var srcUrl = uri;
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheetBlankPage";

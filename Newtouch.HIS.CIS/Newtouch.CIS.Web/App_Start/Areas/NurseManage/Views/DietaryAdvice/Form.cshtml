@@ -18,49 +18,49 @@
 </style>
 <table class="form" style="margin-top: 10px; padding-right: 10px;">
     <tr>
-        <td class="formTitle"><span class="req">*</span>膳食名称</td>
+        <td class="formTitle"><span class="req">*</span>Tên suất ăn</td>
         <td class="formValue">
             <input class="form-control" id="ssmc" required />
             <input type="hidden" id="py" />
         </td>
-        <td class="formTitle">膳食类别</td>
+        <td class="formTitle">Loại suất ăn</td>
         <td class="formValue" style="width:250px;">
             <div class="btn-group" data-toggle="buttons" id="sslb">
                 <label class="btn btn-default active" style="z-index:100">
-                    <input id=@("sslb"+Html.Raw(((int)EnumSSLB.lx).ToString())) type="radio" value=@Html.Raw(((int)EnumSSLB.lx).ToString()) name="lb" class="optionsRadios sslbOpt" checked="checked" />类型
+                    <input id=@("sslb"+Html.Raw(((int)EnumSSLB.lx).ToString())) type="radio" value=@Html.Raw(((int)EnumSSLB.lx).ToString()) name="lb" class="optionsRadios sslbOpt" checked="checked" />Loại
                 </label>
                 <label class="btn btn-default" style="z-index:100">
-                    <input id=@("sslb"+Html.Raw(((int)EnumSSLB.tsyq).ToString())) type="radio" value=@Html.Raw(((int)EnumSSLB.tsyq).ToString()) name="lb" class="optionsRadios sslbOpt" />特殊要求
+                    <input id=@("sslb"+Html.Raw(((int)EnumSSLB.tsyq).ToString())) type="radio" value=@Html.Raw(((int)EnumSSLB.tsyq).ToString()) name="lb" class="optionsRadios sslbOpt" />Yêu cầu đặc biệt
                 </label>
                 <label class="btn btn-default" style="z-index:100">
-                    <input id=@("sslb"+Html.Raw(((int)EnumSSLB.ssxh).ToString())) type="radio" value=@Html.Raw(((int)EnumSSLB.ssxh).ToString()) name="lb" class="optionsRadios sslbOpt" />膳食型号
+                    <input id=@("sslb"+Html.Raw(((int)EnumSSLB.ssxh).ToString())) type="radio" value=@Html.Raw(((int)EnumSSLB.ssxh).ToString()) name="lb" class="optionsRadios sslbOpt" />Loại suất ăn
                 </label>
             </div>
         </td>
     </tr>
     <tr>
-        <td class="formTitle">膳食大分类</td>
+        <td class="formTitle">Nhóm lớn suất ăn</td>
         <td class="formValue formDdlSelectorTd">
             <select class="form-control" id="ssdfl" style="width:161px !important"></select>
         </td>
-        <td class="formTitle">膳食组号</td>
+        <td class="formTitle">Số nhóm suất ăn</td>
         <td class="formValue">
             <input class="form-control" id="sszh" style="width:153px" />
         </td>
     </tr>
     <tr>
-        <td class="formTitle">绑定收费项目</td>
+        <td class="formTitle">Liên kết hạng mục thu phí</td>
         <td class="formValue">
             <div class="btn-group" data-toggle="buttons" id="bdsfxm">
                 <label class="btn btn-default" style="z-index:100">
-                    <input id="bdsfxmtrue" type="radio" value=true name="boolsfxm" class="optionsRadios bdsfxmOpt" />是
+                    <input id="bdsfxmtrue" type="radio" value=true name="boolsfxm" class="optionsRadios bdsfxmOpt" />Có
                 </label>
                 <label class="btn btn-default active" style="z-index:100">
-                    <input id="bdsfxmfalse" checked type="radio" value=false name="boolsfxm" class="optionsRadios bdsfxmOpt"/>否
+                    <input id="bdsfxmfalse" checked type="radio" value=false name="boolsfxm" class="optionsRadios bdsfxmOpt"/>Không
                 </label>
             </div>
         </td>
-        <td class="formTitle">所属膳食型号</td>
+        <td class="formTitle">Loại suất ăn thuộc về</td>
         <td class="formValue">
             <div class="form-group">
             </div>
@@ -72,7 +72,7 @@
     var keyValue = $.request("keyValue");
     var ssxhids = [];
     $(function () {
-        //根据姓名获得拼音
+        //Lấy phiên âm theo tên
         $('#ssmc').keyup(function () {
             $('#py').val($(this).toShouPin());
         });
@@ -187,7 +187,7 @@
                 type: "POST",
                 success: function (data) {
                     callBack();
-                    $.modalMsg("保存成功", 'success');
+                    $.modalMsg("Lưu thành công", 'success');
                     $.modalClose();
                 }
             });
@@ -199,15 +199,15 @@
         var sslb = $('#sslb input:radio:checked').val();
         var ssdfl = $('#ssdfl').val();
         if (ssmc == "") {
-            $.modalAlert("缺少膳食名称", "warning");
+            $.modalAlert("Thiếu tên suất ăn", "warning");
             return false
         }
         if ( sslb == "") {
-            $.modalAlert("未选中膳食类别", "warning");
+            $.modalAlert("Chưa chọn loại suất ăn", "warning");
             return false
         }
         if (ssdfl == "") {
-            $.modalAlert("未选中膳食大分类 ", "warning");
+            $.modalAlert("Chưa chọn nhóm lớn suất ăn ", "warning");
             return false
         }
         return true;

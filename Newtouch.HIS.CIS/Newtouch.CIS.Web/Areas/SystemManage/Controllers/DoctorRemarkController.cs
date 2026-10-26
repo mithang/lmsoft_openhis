@@ -15,7 +15,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         private readonly IBaseDataDmnService _baseDataDmnService;
 
         /// <summary>
-        /// 获取列表
+        /// Lấy danh sách
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -30,7 +30,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 修改信息时，把信息带到新页面
+        /// Khi sửa thông tin, mang thông tin sang trang mới
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -43,7 +43,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -56,7 +56,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -67,7 +67,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 系统嘱托 浮层
+        /// Dặn dò hệ thống Lớp nổi
         /// </summary>
         /// <returns></returns>
 

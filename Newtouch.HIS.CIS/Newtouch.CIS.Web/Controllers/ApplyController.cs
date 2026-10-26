@@ -12,7 +12,7 @@ namespace Newtouch.CIS.Web.Controllers
         private readonly IInspectionCategoryRepo _inspectionCategoryRepo;
 
         /// <summary>
-        /// 检验
+        /// Xét nghiệm
         /// </summary>
         /// <returns></returns>
         public ActionResult Inspection()
@@ -21,7 +21,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 检查
+        /// Kiểm tra
         /// </summary>
         /// <returns></returns>
         public ActionResult Examination()

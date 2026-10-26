@@ -1,13 +1,13 @@
-﻿//频次 通用 浮层选择器
+﻿//Tần suất Chung Bộ chọn lớp nổi
 $.fn.pcFloatingSelector = function (options) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 280,
 		height: 280,
 		//minlength: 2,
 		focusautotrigger: true,
 		className: "ui-pc-container",
-		caption: "选择频次",
+		caption: "Chọn tần suất",
 		url: '/SystemManage/BaseData/GetOrderFrequencyList',
 		ajaxparameters: function ($thisinput) {
 			return "";
@@ -18,23 +18,23 @@ $.fn.pcFloatingSelector = function (options) {
 	$(this).frequencyNewtouchFloatingSelector(options);
 }
 
-//药品用法 通用 浮层选择器
+//Cách dùng thuốc Chung Bộ chọn lớp nổi
 $.fn.yfFloatingSelector = function (options) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 250,
 		height: 200,
 		//minlength: 2,
 		focusautotrigger: true,
-		caption: "选择用法",
+		caption: "Chọn cách dùng",
 		url: '/SystemManage/SysBaseData/GetMedicineUsageList',
 		ajaxparameters: function ($thisinput) {
 			return "keyword=" + $.trim($thisinput.val());
 		},
 		itemdbclickhandler: null,
 		colModel: [
-			{ label: '代码', name: 'yfCode', widthratio: 60 },
-			{ label: '名称', name: 'yfmc', widthratio: 35 }
+			{ label: 'Mã', name: 'yfCode', widthratio: 60 },
+			{ label: 'Tên', name: 'yfmc', widthratio: 35 }
 		]
 	};
 	var options = $.extend(defaults, options);
@@ -42,65 +42,65 @@ $.fn.yfFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//收费项目 浮层（包括药品、项目，也可以非治疗项目）
+//Hạng mục thu phí Lớp nổi (bao gồm thuốc, hạng mục, cũng có thể không phải hạng mục điều trị)
 $.fn.sfxmFloatingSelector = function (options) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 	    width: 1550,
 		height: 380,
 		clickautotrigger: true,
 		url: '/SystemManage/BaseData/SelectSfxmYp',
-		ajaxparameters: null,   //请指定
-		itemdbclickhandler: null,   //请指定
-		djDecimalPlaces: 2,  //单价精度 默认2
-		searchType: null,   //仅控制列显隐，不参与筛选//检索目标 "yp,sfxm"、"yp"、"sfxm"、"yp.kc"、"sfxm.dwjls"、"yp,sfxm.dwjls"、"yp.kc,sfxm"、"yp.kc,sfxm.dwjls"
-		showColModel: null,   //可指定 [{name:;widthratio:;},{name:;widthratio:;}] widthratio可选
-		ypkccbjc: true,    //药品库存初步检查   是否被控制 是否库存0
+		ajaxparameters: null,   //Vui lòng chỉ định
+		itemdbclickhandler: null,   //Vui lòng chỉ định
+		djDecimalPlaces: 2,  //Độ chính xác đơn giá Mặc định2
+		searchType: null,   //Chỉ kiểm soát ẩn hiện cột, không tham gia lọc//Mục tiêu tìm kiếm "yp,sfxm"、"yp"、"sfxm"、"yp.kc"、"sfxm.dwjls"、"yp,sfxm.dwjls"、"yp.kc,sfxm"、"yp.kc,sfxm.dwjls"
+		showColModel: null,   //Có thể chỉ định [{name:;widthratio:;},{name:;widthratio:;}] widthratioCó thể chọn
+		ypkccbjc: true,    //Kiểm tra sơ bộ tồn kho thuốc   Có bị kiểm soát không Có tồn kho không0
 
 		colModel: [
-			{ label: '代码', name: 'sfxmCode', widthratio: 6 },
-			{ label: '名称', name: 'sfxmmc', widthratio: 6 },
+			{ label: 'Mã', name: 'sfxmCode', widthratio: 6 },
+			{ label: 'Tên', name: 'sfxmmc', widthratio: 6 },
 			{
-				label: '规格', name: 'gg', widthratio: 6
+				label: 'Quy cách', name: 'gg', widthratio: 6
 				, hidden: true
 			},
-			{ label: '医嘱类型', name: 'yzlx', hidden: true },
-			{ label: '首拼', name: 'py', widthratio: 5, hidden: true },
-			{ label: '收费大类', name: 'sfdlCode', hidden: true },
+			{ label: 'Loại y lệnh', name: 'yzlx', hidden: true },
+			{ label: 'Phiên âm đầu', name: 'py', widthratio: 5, hidden: true },
+			{ label: 'Nhóm lớn thu phí', name: 'sfdlCode', hidden: true },
 			{
-				label: '收费大类', name: 'sfdlmc'
+				label: 'Nhóm lớn thu phí', name: 'sfdlmc'
 				, widthratio: 6
 				, hidden: true
 			},
-			{ label: '单位', name: 'dw', widthratio: 3 },
+			{ label: 'Đơn vị', name: 'dw', widthratio: 3 },
 			{
-				label: '单价', name: 'dj', widthratio: 6, formatter: function (cellvalue) {
+				label: 'Đơn giá', name: 'dj', widthratio: 6, formatter: function (cellvalue) {
 					return (!!cellvalue || cellvalue == 0) ? (parseFloat(cellvalue).toFixed(options.djDecimalPlaces ? options.djDecimalPlaces : 2)) : '';
 				}
 			},
-			{ label: '计价策略', name: 'jjcl', hidden: true },
+			{ label: 'Chiến lược tính giá', name: 'jjcl', hidden: true },
 			{
-				label: '计量数', name: 'dwjls', widthratio: 8, formatter: function (cellvalue) {
+				label: 'Số lượng đo', name: 'dwjls', widthratio: 8, formatter: function (cellvalue) {
 					return !!cellvalue ? cellvalue : '';
 				}
 				, hidden: true
 			},
-			//{ label: '报销政策', name: 'zfxz', hidden: true },
+			//{ label: 'Chính sách hoàn trả', name: 'zfxz', hidden: true },
 			//{
-			//    label: '报销政策', name: 'zfxzmc', widthratio: 8, formatter: function (cellvalue, a, b) {
+			//    label: 'Chính sách hoàn trả', name: 'zfxzmc', widthratio: 8, formatter: function (cellvalue, a, b) {
 			//        return $.enum.getDescByValue("EnumZiFuXingZhi", b.zfxz);
 			//    }
 			//},
-			{ label: '报销政策', name: 'zfxz', hidden: true },
+			{ label: 'Chính sách hoàn trả', name: 'zfxz', hidden: true },
 			{
-				label: '报销政策', name: 'zfxzmc', widthratio: 5, formatter: function (cellvalue, a, b) {
+				label: 'Chính sách hoàn trả', name: 'zfxzmc', widthratio: 5, formatter: function (cellvalue, a, b) {
 					return $.enum.getDescByValue("EnumZiFuXingZhi", b.zfxz);
 				}
 			},
-			{ label: '自负比例', name: 'zfbl', widthratio: 3,hidden: true },
-			{ label: '特殊药品标志', name: 'tsypbz', hidden: true },
+			{ label: 'Tỷ lệ tự trả', name: 'zfbl', widthratio: 3,hidden: true },
+			{ label: 'Dấu hiệu thuốc đặc biệt', name: 'tsypbz', hidden: true },
 			{
-				label: '特殊药品标志', name: 'tsypbzmc', hidden: true, formatter: function (cellvalue, a, b) {
+				label: 'Dấu hiệu thuốc đặc biệt', name: 'tsypbzmc', hidden: true, formatter: function (cellvalue, a, b) {
 					return $.enum.getDescByValue("EnumYpsx", b.tsypbz);
 				}
 			},
@@ -132,7 +132,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 					return $.enum.getDescByValue("EnumKss", b.kssqxjb);
 				} },
 			{
-			    label: '医保限价', name: 'cxjje', formatter: function (cellvalue, a, b) {
+			    label: 'Giá giới hạn bảo hiểm y tế', name: 'cxjje', formatter: function (cellvalue, a, b) {
 					if (b.cxjje == null) {
 						return "0.00"
 					}
@@ -140,28 +140,28 @@ $.fn.sfxmFloatingSelector = function (options) {
 				}, widthratio: 4, hidden: true
 			},
 			{
-				label: '药房', name: 'yfbmmc', formatter: function (cellvalue, a, b) {
+				label: 'Nhà thuốc', name: 'yfbmmc', formatter: function (cellvalue, a, b) {
 					return b.yzlx === '1' && !!cellvalue ? cellvalue : '';
 				}, widthratio: 4, hidden: true
 			},
 			{
-				label: '库存', name: 'kcsl', formatter: function (cellvalue, a, b) {
+				label: 'Tồn kho', name: 'kcsl', formatter: function (cellvalue, a, b) {
 					return b.yzlx === '1'&&!!cellvalue ? cellvalue : '';
 				}, widthratio: 4, hidden: true
 			},
 			{
-				label: '库存', name: 'clkcsl', formatter: function (cellvalue, a, b) {
-					//给的kcsl是最小单位的，这里要显示门诊/住院单位的数量
+				label: 'Tồn kho', name: 'clkcsl', formatter: function (cellvalue, a, b) {
+					//给的kcsllà đơn vị tối thiểu, ở đây cần hiển thị ngoại trú/Số lượng đơn vị nhập viện
 					return b.yzlx === '1' ? (!!b.kcsl && !!b.cls ? (parseInt(b.kcsl / b.cls)) : '无') : '';
 				}, widthratio: 4, hidden: true
 			},
 			{
-				label: '抗生素', name: 'isKss', formatter: function (cellvalue, a, b) {
+				label: 'Kháng sinh', name: 'isKss', formatter: function (cellvalue, a, b) {
 					return cellvalue == '1' ? '是' : '否';
 				}, widthratio: 3, hidden: true
 			},
 			{
-				label: '单次剂量', name: 'jlfw', formatter: function (cellvalue, a, b) {
+				label: 'Liều đơn lần', name: 'jlfw', formatter: function (cellvalue, a, b) {
 					if (b.jlfwBegin || b.jlfwEnd) {
 						return b.jlfwBegin + "-" + b.jlfwEnd;
 					}
@@ -169,7 +169,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 				}, widthratio: 7, hidden: true
 			},
 			{
-				label: '频次范围', name: 'pcfw', formatter: function (cellvalue, a, b) {
+				label: 'Phạm vi tần suất', name: 'pcfw', formatter: function (cellvalue, a, b) {
 					if (b.pcfwBegin || b.pcfwEnd) {
 						return b.pcfwBegin + "-" + b.pcfwEnd;
 					}
@@ -177,24 +177,24 @@ $.fn.sfxmFloatingSelector = function (options) {
 				}, widthratio: 7, hidden: true
 			},
 			{
-				label: '控制', name: 'kzbz', formatter: function (cellvalue, a, b) {
+				label: 'Kiểm soát', name: 'kzbz', formatter: function (cellvalue, a, b) {
 					return cellvalue == '1' ? '控制' : '';
 				}, widthratio: 3, hidden: true
 			},
             {
-                label: '生产厂家', name: 'sccj'/*, hidden: true*/, formatter: function (cellvalue, a, b) {
+                label: 'Nhà sản xuất', name: 'sccj'/*, hidden: true*/, formatter: function (cellvalue, a, b) {
                     return cellvalue == undefined ? '' : cellvalue;
                 }, widthratio: 8
             },
-            { label: '国家医保代码', name: 'gjybdm', widthratio: 8 },
-			{ label: '备注', name: 'bz' }
+            { label: 'Mã bảo hiểm y tế quốc gia', name: 'gjybdm', widthratio: 8 },
+			{ label: 'Ghi chú', name: 'bz' }
 		]
 	};
 	var options = $.extend(defaults, options);
 
 	if (!!!options.searchType) {
 
-		options.searchType = "yp,sfxm"; //默认
+		options.searchType = "yp,sfxm"; //Mặc định
 	}
 	if (options.searchType && !!!options.showColModel) {
 	    var colsfxmmc = null;
@@ -274,7 +274,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 			}
 		});
 		if (!!colsfxmmc && !!colgg && !!colsfdlmc && !!coldwjls && !!colyfbmmc && !!colclkcsl && !!colkzbz) {
-			//已被占用50宽
+			//Đã bị chiếm50宽
 			switch (options.searchType) {
 				case "yp": 
 					colsfxmmc.widthratio = 10;
@@ -421,7 +421,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 	}
 
 	if (options.showColModel) {
-		//[{name:;widthratio:;},{name:;widthratio:;}] widthratio可选
+		//[{name:;widthratio:;},{name:;widthratio:;}] widthratioCó thể chọn
 		$.each(options.colModel, function () {
 			var thisCol = this;
 			var matchedShow = $.jsonWhere(options.showColModel, function (v) {
@@ -445,11 +445,11 @@ $.fn.sfxmFloatingSelector = function (options) {
 			
 			if ($iiithis.attr('data-yzlx') == '1') {
 				if ((!isNaN($iiithis.attr('data-clkcsl')) && parseInt($iiithis.attr('data-clkcsl')) <= 0) || $iiithis.attr('data-clkcsl') == '无') {
-					$.modalAlert("不能开立无库存药品", 'warning');
+					$.modalAlert("Không thể lập thuốc không có tồn kho", 'warning');
 					return false;
 				}
 				if ($iiithis.attr('data-kzbz') == '控制') {
-					$.modalAlert("不能开立控制药品", 'warning');
+					$.modalAlert("Không thể lập thuốc bị kiểm soát", 'warning');
 					return false;
 				}
 			}
@@ -459,15 +459,15 @@ $.fn.sfxmFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//系统科室 浮层选择器
+//Khoa hệ thống Bộ chọn lớp nổi
 $.fn.ksFloatingSelector = function (options) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 300,
 		height: 180,
 		//minlength: 2,
 		focusautotrigger: true,
-		caption: "选择科室",
+		caption: "Chọn khoa",
 		url: '/SystemManage/SysBaseData/SelectDepartmentList',
 		ajaxparameters: function ($thisinput) {
 		    if (!!!options.iszlks) {
@@ -478,22 +478,22 @@ $.fn.ksFloatingSelector = function (options) {
 		},
 		itemdbclickhandler: null,
 		colModel: [
-			{ label: '代码', name: 'Code', widthratio: 45 },
-			{ label: '名称', name: 'Name', widthratio: 50 }
+			{ label: 'Mã', name: 'Code', widthratio: 45 },
+			{ label: 'Tên', name: 'Name', widthratio: 50 }
 		]
 	};
 	var options = $.extend(defaults, options);
 
 	$(this).newtouchFloatingSelector(options);
 }
-//处方模板浮层
+//Lớp nổi mẫu đơn thuốc
 $.fn.cfzutaoFloatingSelector12 = function (options) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 350,
 		height: 280,
 		focusautotrigger: true,
-		caption: "选择组套",
+		caption: "Chọn bộ mẫu",
 		url: '/PresTemplate/GetCfmbList',
 		ajaxparameters: function ($thisinput) {
 			return "mblx="+ options.mblx + "&cflx="+options.cflx+"&expandCflx=null&mbKeyword=" + $.trim($thisinput.val());
@@ -501,13 +501,13 @@ $.fn.cfzutaoFloatingSelector12 = function (options) {
 		itemdbclickhandler: null,
 		colModel: [
 			{ label: 'cfmbId', name: 'mbId', hidden: true },
-			{ label: '模板名称', name: 'mbmc', widthratio: 30 },
+			{ label: 'Tên mẫu', name: 'mbmc', widthratio: 30 },
 			{
-				label: '处方类型',
+				label: 'Loại đơn thuốc',
 				name: 'cflx',
 				widthratio: 20,
 				formatter: function(value, options, row) {
-					// 将数字值转换为汉字
+					// Chuyển đổi giá trị số thành chữ Hán
 					const prescriptionTypes = {
 						1: "西药处方",
 						2: "中药处方",
@@ -516,11 +516,11 @@ $.fn.cfzutaoFloatingSelector12 = function (options) {
 						5: "康复处方",
 						6: "常规项目处方",
 					};
-					return prescriptionTypes[value] || "未知类型"; // 默认值为 "未知类型"
+					return prescriptionTypes[value] || "未知类型"; // Giá trị mặc định là "Loại không xác định"
 				}
 			},
-			{ label: '描述', name: 'Description', widthratio: 30, hidden: true},
-			{ label: '注意事项', name: 'Remark', widthratio: 30 ,hidden: true}
+			{ label: 'Mô tả', name: 'Description', widthratio: 30, hidden: true},
+			{ label: 'Lưu ý', name: 'Remark', widthratio: 30 ,hidden: true}
 		]
 	};
 	var options = $.extend(defaults, options);
@@ -528,14 +528,14 @@ $.fn.cfzutaoFloatingSelector12 = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//组套 浮层选择器
+//Bộ mẫu Bộ chọn lớp nổi
 $.fn.zutaoFloatingSelector = function (options) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 350,
 		height: 280,
 		focusautotrigger: true,
-		caption: "选择组套",
+		caption: "Chọn bộ mẫu",
 		url: '/TemplateManage/GroupPackage/SelectGroupPackageList',
 		ajaxparameters: function ($thisinput) {
 			return "type=" + options.type + "&keyword=" + $.trim($thisinput.val());
@@ -543,12 +543,12 @@ $.fn.zutaoFloatingSelector = function (options) {
 		itemdbclickhandler: null,
 		colModel: [
 			{ label: 'ztId', name: 'ztId', hidden: true },
-			{ label: '名称', name: 'ztmc', widthratio: 30 },
+			{ label: 'Tên', name: 'ztmc', widthratio: 30 },
 			{
-				label: '类型', name: 'Type', widthratio: 20, hidden: true
+				label: 'Loại', name: 'Type', widthratio: 20, hidden: true
 			},
-			{ label: '描述', name: 'Description', widthratio: 30 },
-			{ label: '注意事项', name: 'Remark', widthratio: 30 }
+			{ label: 'Mô tả', name: 'Description', widthratio: 30 },
+			{ label: 'Lưu ý', name: 'Remark', widthratio: 30 }
 		]
 	};
 	var options = $.extend(defaults, options);
@@ -556,9 +556,9 @@ $.fn.zutaoFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//系统部位 浮层选择器
+//Vị trí hệ thống Bộ chọn lớp nổi
 $.fn.bwFloatingSelector = function (options, data) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 300,
 		height: 250,
@@ -566,7 +566,7 @@ $.fn.bwFloatingSelector = function (options, data) {
 		isinputchangetriggered: false,
 		mutiselect: true,
         bwlx:"pt",
-		caption: "选择部位",
+		caption: "Chọn vị trí",
 		url: '/SystemManage/BodyParts/GetSysBodyParts',
 		ajaxparameters: function ($thisinput) {
 			return "";
@@ -576,9 +576,9 @@ $.fn.bwFloatingSelector = function (options, data) {
 	$(this).multiquencyNewtouchFloatingSelector(options, data);
 }
 
-//系统部位 浮层选择器
+//Vị trí hệ thống Bộ chọn lớp nổi
 $.fn.yxbwFloatingSelector = function (options, data) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 300,
 		height: 200,
@@ -586,7 +586,7 @@ $.fn.yxbwFloatingSelector = function (options, data) {
 		isinputchangetriggered: false,
 		bwlx: "jc",
 		mutiselect: true,
-		caption: "选择部位",
+		caption: "Chọn vị trí",
 		url: '/SystemManage/BodyParts/GetYxBodyParts',
 		ajaxparameters: function ($thisinput) {
 			return "";
@@ -597,22 +597,22 @@ $.fn.yxbwFloatingSelector = function (options, data) {
 }
 
 
-//系统嘱托 浮层选择器
+//Dặn dò hệ thống Bộ chọn lớp nổi
 $.fn.ztFloatingSelector = function (options) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 300,
 		height: 280,
 		focusautotrigger: true,
-		caption: "选择嘱托",
+		caption: "Chọn dặn dò",
 		url: '/SystemManage/DoctorRemark/GetSysDoctorRemark',
 		ajaxparameters: function ($thisinput) {
 			return "keyword=" + $.trim($thisinput.val());
 		},
 		itemdbclickhandler: null,
 		colModel: [
-			{ label: '代码', name: 'ztCode', widthratio: 45 },
-			{ label: '名称', name: 'ztmc', widthratio: 50 }
+			{ label: 'Mã', name: 'ztCode', widthratio: 45 },
+			{ label: 'Tên', name: 'ztmc', widthratio: 50 }
 		]
 	};
 	var options = $.extend(defaults, options);
@@ -620,22 +620,22 @@ $.fn.ztFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//医生站--》文字录入--》指示文本框按钮
+//Trạm bác sĩ--》Nhập văn bản--》Nút hộp văn bản chỉ định
 //$.fn.zsFloatingSelector = function (options) {
 //    var defaults = {
 //        width: 400,
 //        height: 400,
 //        focusautotrigger: true,
-//        caption: "手术内容",
+//        caption: "Nội dung phẫu thuật",
 //        url: '/SystemManage/DoctorRemark/surgery_record',
 //        ajaxparameters: function ($thisinput) {
 //            return "keyword=" + $.trim($thisinput.val());
 //        },
 //        itemdbclickhandler: null,
 //        colModel: [
-//            { label: '手术名称', name: 'ssmc', widthratio: 33 },
-//            { label: '手术时间', name: 'sssj', widthratio: 33 },
-//            { label: '主刀医生', name: 'Name', widthratio: 33 }
+//            { label: 'Tên phẫu thuật', name: 'ssmc', widthratio: 33 },
+//            { label: 'Thời gian phẫu thuật', name: 'sssj', widthratio: 33 },
+//            { label: 'Bác sĩ phẫu thuật chính', name: 'Name', widthratio: 33 }
 //        ]
 //    };
 //    var options = $.extend(defaults, options);
@@ -645,14 +645,14 @@ $.fn.ztFloatingSelector = function (options) {
 
 
 
-//诊断
+//Chẩn đoán
 $.fn.zdFloatingSelector = function (options) {
 	var defaults = {
 		url: '/SystemManage/SysBaseData/GetDiagnosisList',
 		width: 600,
 		height: 200,
 		clickautotrigger: true,
-		caption: "选择诊断",
+		caption: "Chọn chẩn đoán",
 		ajaxparameters: function ($thisinput) {
 			if (!!!options.ybnhlx) {
 				return "keyword=" + $thisinput.val() + "&zdlx=" + options.zdlx;
@@ -663,11 +663,11 @@ $.fn.zdFloatingSelector = function (options) {
 		},
 		itemdbclickhandler: null,
 		colModel: [
-			{ label: '代码', name: 'zdCode', hidden: true},
-			{ label: '名称', name: 'zdmc', widthratio: 60 },
-			{ label: '拼音', name: 'py', widthratio: 20 },
+			{ label: 'Mã', name: 'zdCode', hidden: true},
+			{ label: 'Tên', name: 'zdmc', widthratio: 60 },
+			{ label: 'Phiên âm', name: 'py', widthratio: 20 },
 			{ label: 'icd10', name: 'icd10', widthratio: 20 },
-			{ label: 'icd10附加码', name: 'icd10fjm', hidden: true }
+			{ label: 'icd10Mã bổ sung', name: 'icd10fjm', hidden: true }
 		]
 	};
 	var options = $.extend(defaults, options);
@@ -675,22 +675,22 @@ $.fn.zdFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//症候
+//Hội chứng
 $.fn.zyzhFloatingSelector = function (options) {
 	var defaults = {
 		url: '/SystemManage/SysBaseData/GetTCMSymptomsList',
 		width: 400,
 		height: 200,
 		clickautotrigger: true,
-		caption: "选择症候",
+		caption: "Chọn hội chứng",
 		ajaxparameters: function ($thisinput) {
 			return "keyword=" + $thisinput.val();
 		},
 		itemdbclickhandler: null,
 		colModel: [
-			{ label: '代码', name: 'zhCode', hidden: true },
-			{ label: '名称', name: 'zhmc', widthratio: 80 },
-			{ label: '拼音', name: 'py', widthratio: 20 },
+			{ label: 'Mã', name: 'zhCode', hidden: true },
+			{ label: 'Tên', name: 'zhmc', widthratio: 80 },
+			{ label: 'Phiên âm', name: 'py', widthratio: 20 },
 		]
 	};
 	var options = $.extend(defaults, options);
@@ -698,7 +698,7 @@ $.fn.zyzhFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//岗位人员选择器
+//Bộ chọn nhân viên vị trí
 $.fn.dutyStaffFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector({
 		url: '/SystemManage/SysStaff/GetStaffListByDutyCode',
@@ -711,11 +711,11 @@ $.fn.dutyStaffFloatingSelector = function (options) {
 		colModel: [
 			{ label: 'StaffGh', name: 'StaffGh', hidden: true },
 			{ label: 'ks', name: 'ks', hidden: true },
-			{ label: '医生名称', name: 'StaffName', widthratio: 48 },
-			{ label: '科室名称', name: 'ksmc', widthratio: 50 },
+			{ label: 'Tên bác sĩ', name: 'StaffName', widthratio: 48 },
+			{ label: 'Tên khoa', name: 'ksmc', widthratio: 50 },
 		],
 		itemdbclickhandler: function ($thistr, $thisinput) {
-			//保存时验证val和data-Name一致
+			//Xác thực khi lưuvalvàdata-NameNhất quán
 			$thisinput.attr('data-StaffGh', $thistr.attr('data-StaffGh'));
 			$thisinput.attr('data-ks', $thistr.attr('data-ks'));
 			$thisinput.attr('data-ksmc', $thistr.attr('data-ksmc'));
@@ -724,16 +724,16 @@ $.fn.dutyStaffFloatingSelector = function (options) {
 	});
 }
 
-//普通膳食指示
+//Chỉ định suất ăn thường
 $.fn.yszsFloatingSelector = function (options, data) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 300,
 		height: 280,
 		focusautotrigger: true,
 		isinputchangetriggered: false,
 		mutiselect: true,
-		caption: "选择指示",
+		caption: "Chọn chỉ định",
 		url: '/NurseManage/DietaryAdvice/GetyszsList',
 		ajaxparameters: function ($thisinput) {
 			return "keyword=" + options.searchdl;
@@ -743,16 +743,16 @@ $.fn.yszsFloatingSelector = function (options, data) {
 	$(this).multiFoodFloatingSelector(options, data);
 }
 
-//医嘱类别（长临） 浮层选择器
+//Loại y lệnh (dài hạn, tạm thời) Bộ chọn lớp nổi
 $.fn.yzlbFloatingSelector = function (options, data) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 100,
 		height: 40,
 		focusautotrigger: true,
 		isinputchangetriggered: false,
 		mutiselect: true,
-		caption: "选择医嘱类别",
+		caption: "Chọn loại y lệnh",
 		url: '/SystemManage/SysBaseData/GetYzlb',
 		ajaxparameters: function ($thisinput) {
 			return "";
@@ -763,23 +763,23 @@ $.fn.yzlbFloatingSelector = function (options, data) {
 }
 
 
-//系统诊室 浮层选择器
+//Phòng khám hệ thống Bộ chọn lớp nổi
 $.fn.zsFloatingSelector = function (options) {
-    //默认options
+    //Mặc địnhoptions
     var defaults = {
         width: 300,
         height: 180,
         //minlength: 2,
         focusautotrigger: true,
-        caption: "选择诊室",
+        caption: "Chọn phòng khám",
         url: '/SystemManage/SysBaseData/SelectConsultList',
         ajaxparameters: function ($thisinput) {
             return "ksCode=" + options.ksCode + "&keyword=" + $.trim($thisinput.val());
         },
         itemdbclickhandler: null,
         colModel: [
-            { label: '代码', name: 'Code', widthratio: 45 },
-            { label: '名称', name: 'Name', widthratio: 50 }
+            { label: 'Mã', name: 'Code', widthratio: 45 },
+            { label: 'Tên', name: 'Name', widthratio: 50 }
         ]
     };
     var options = $.extend(defaults, options);

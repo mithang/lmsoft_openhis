@@ -21,9 +21,9 @@
             datatype: 'local',
             data: localdata,
             height: $(window).height()-80,
-            shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
+            shrinkToFit: true,   //true:Khởi tạo chiều rộng cột theo tỷ lệ false:Sử dụngcolModelchiều rộng đã chỉ định
             autowidth: true,
-            rownumbers: true,  //是否显示序号
+            rownumbers: true,  //Có hiển thị số thứ tự không
             unwritten: false,
             colModel: [
                 { label: 'Apply_no', name: 'Apply_no', align: 'center' },
@@ -35,7 +35,7 @@
 
     function editLink(cellValue, options, rowdata, action) {
         var path = rowdata.PDF_path.replace("PrintPictur.aspx", "PrintPicture.aspx");
-        return "<a href='" + path + "' target='view_window'>详情超链接</a>";
+        return "<a href='" + path + "' target='view_window'>Liên kết chi tiết</a>";
     }
 </script>
 

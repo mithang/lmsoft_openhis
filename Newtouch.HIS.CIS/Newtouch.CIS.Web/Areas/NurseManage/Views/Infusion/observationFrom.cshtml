@@ -10,34 +10,34 @@
                 <tr>
                     <td>
                         <div class="panel-heading navb-bg">
-                            基础信息
+                            Thông tin cơ bản
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">姓名：</th>
+                    <th class="formTitle">Họ tên:</th>
                     <td class="formValue">
                         <label id="xm" class="formClearIgnore"></label>
                     </td>
-                    <th class="formTitle">性别：</th>
+                    <th class="formTitle">Giới tính:</th>
                     <td class="formValue">
                         <label id="xb" class="formClearIgnore"></label>
                     </td>
-                    <th class="formTitle">年龄：</th>
+                    <th class="formTitle">Tuổi:</th>
                     <td class="formValue">
                         <label id="nlshow" class="formClearIgnore"></label>
                     </td>
-                    <th class="formTitle">民族：</th>
+                    <th class="formTitle">Dân tộc:</th>
                     <td class="formValue">
                         <label id="mzmc" class="formClearIgnore"></label>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">身份证：</th>
+                    <th class="formTitle">Chứng minh nhân dân:</th>
                     <td class="formValue">
                         <label id="zjh" class="formClearIgnore"></label>
                     </td>
-                    <th class="formTitle">联系电话：</th>
+                    <th class="formTitle">Số điện thoại liên hệ:</th>
                     <td class="formValue">
                         <label id="lxdh" class="formClearIgnore"></label>
                     </td>
@@ -49,21 +49,21 @@
                 <tr>
                     <td>
                         <div class="panel-heading navb-bg">
-                            登记留观填写
+                            Điền đăng ký lưu quan sát
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <th class="formTitle" style="margin-left:20px;">
                         <i id="msCircle" class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>
-                        登记原因：
+                        Lý do đăng ký:
                     </th>
                     <td class="formValue" colspan="2">
                         <input id="txt_lgdjid" name="txt_lgdjid" type="hidden" />
                         <input id="txt_syxxid" name="txt_syxxid" type="hidden" />
                         <input id="txt_miaoshu" name="txt_miaoshu" type="text" class="form-control required msinput" />
                     </td>
-                    <th class="formTitle">留观时间：</th>
+                    <th class="formTitle">Thời gian lưu quan sát:</th>
                     <td class="formValue" colspan="3">
                         <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                         <span style="margin-left:1%;float:left">—</span>
@@ -75,20 +75,20 @@
     </form>
 <script>
     var syxxids = $.request("keyValue");
-    var PatDxObjdel = null;//记录作废数据
+    var PatDxObjdel = null;//Ghi lại dữ liệu đã hủy
     $(function() {
         getlgjl();
     });
-    //辅助诊断 新增icon
+    //Chẩn đoán hỗ trợ Thêm mớiicon
     $('#tabledjlg .plusToggleCircle').click(function () {
 
         var number = $('#tabledjlg .msinput').length;// + 1;
-        var $newTr = $("<tr><th class='formTitle' style='margin-left:20px;'><i id='" + number + "' class='fa fa-minus minusToggleCircle' aria-hidden='true' style='width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;'></i>登记原因：</th><td class='formValue' colspan='2'><input id='txt_lgdjid" + number + "' name='txt_lgdjid" + number + "' type='hidden'  /><input id='txt_syxxid" + number + "' name='txt_syxxid" + number + "' type='hidden'  /><input id='txt_miaoshu" + number + "' name='txt_miaoshu" + number + "' type='text' class='form-control required msinput' /></td><th class='formTitle'>留观时间：</th><td class='formValue' colspan='3'><input id='kssj" + number + "' type='text' class='form-control input-wdatepicker' style='width:42%; float:left;' value='@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")' onfocus='WdatePicker({ dateFmt: &quot;yyyy-MM-dd HH:mm:ss&quot; })' /><span style='margin-left:1%;float:left'>—</span><input id='jssj" + number + "' type='text' class='form-control input-wdatepicker' style='width:43%; float:left;margin-left:1%;' value='@DateTime.Now.AddMinutes(30).ToString("yyyy-MM-dd HH:mm:ss")' onfocus='WdatePicker({ dateFmt: &quot;yyyy-MM-dd HH:mm:ss&quot; })' /></td></tr>");
+        var $newTr = $("<tr><th class='formTitle' style='margin-left:20px;'><i id='" + number + "' class='fa fa-minus minusToggleCircle' aria-hidden='true' style='width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;'></i>Lý do đăng ký:</th><td class='formValue' colspan='2'><input id='txt_lgdjid" + number + "' name='txt_lgdjid" + number + "' type='hidden'  /><input id='txt_syxxid" + number + "' name='txt_syxxid" + number + "' type='hidden'  /><input id='txt_miaoshu" + number + "' name='txt_miaoshu" + number + "' type='text' class='form-control required msinput' /></td><th class='formTitle'>Thời gian lưu quan sát:</th><td class='formValue' colspan='3'><input id='kssj" + number + "' type='text' class='form-control input-wdatepicker' style='width:42%; float:left;' value='@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")' onfocus='WdatePicker({ dateFmt: &quot;yyyy-MM-dd HH:mm:ss&quot; })' /><span style='margin-left:1%;float:left'>—</span><input id='jssj" + number + "' type='text' class='form-control input-wdatepicker' style='width:43%; float:left;margin-left:1%;' value='@DateTime.Now.AddMinutes(30).ToString("yyyy-MM-dd HH:mm:ss")' onfocus='WdatePicker({ dateFmt: &quot;yyyy-MM-dd HH:mm:ss&quot; })' /></td></tr>");
 
         $newTr.appendTo($(this).closest('table'));
     });
 
-    //删除icon
+    //Xóaicon
     $('#form1').on('click', '.minusToggleCircle', function () {
         var id = this.id;
         PatDxObjdel = {
@@ -168,7 +168,7 @@
             lgjsrq: $("#jssj").val()
         };
         if (PatDxObj.miaoshu == "" || PatDxObj.miaoshu == "") {
-            $.modalAlert('还没有填写登记原因，不能进行保存', 'warning');
+            $.modalAlert('Chưa điền lý do đăng ký, không thể lưu', 'warning');
             return;
         }
         lgdjList.push(PatDxObj);
@@ -189,7 +189,7 @@
                 lgjsrq: $("#jssj"+i).val()
             };
             if (PatDxObj.miaoshu == "" || PatDxObj.miaoshu == "") {
-                $.modalAlert('还没有填写登记原因，不能进行保存', 'warning');
+                $.modalAlert('Chưa điền lý do đăng ký, không thể lưu', 'warning');
                 return;
             }
             lgdjList.push(PatDxObj);
@@ -202,7 +202,7 @@
 			async: false,
 			success: function (ajaxresp) {
 				if (ajaxresp.state === "success") {
-					$.modalMsg('保存成功', 'success');
+					$.modalMsg('Lưu thành công', 'success');
 				}
 				else {
 					$.modalAlert(ajaxresp.message, 'warning');

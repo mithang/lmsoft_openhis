@@ -43,7 +43,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         #region 获取数据
         /// <summary>
-        /// 获取门诊患者列表 (待做皮试)
+        /// Lấy danh sách bệnh nhân ngoại trú (Test da chờ thực hiện)
         /// </summary>
         /// <returns></returns>
         public ActionResult GetMzPatientListJson(Pagination pagination, string keyword, string ks, string kssj, string jssj, string zxzt)
@@ -63,7 +63,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取住院患者列表 (待做皮试)
+        /// Lấy danh sách bệnh nhân nhập viện (Test da chờ thực hiện)
         /// </summary>
         /// <returns></returns>
         public ActionResult GetZyPatientListJson(Pagination pagination, string keyword, string ks, string kssj, string jssj, string zxzt)
@@ -83,11 +83,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取门诊患者皮试项目
+        /// Lấy hạng mục test da của bệnh nhân ngoại trú
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Id"></param>
-        /// <param name="mzzybz">1门诊，2住院</param>
+        /// <param name="mzzybz">1Khám ngoại trú,2Nhập viện</param>
         /// <returns></returns>
         public ActionResult GetMzPatientPsItemsJson(Pagination pagination, string Id)
         {
@@ -106,11 +106,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取住院患者皮试项目
+        /// Lấy hạng mục test da của bệnh nhân nhập viện
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Id"></param>
-        /// <param name="mzzybz">1门诊，2住院</param>
+        /// <param name="mzzybz">1Khám ngoại trú,2Nhập viện</param>
         /// <returns></returns>
         public ActionResult GetZyPatientPsItemsJson(Pagination pagination, string zyh)
         {
@@ -129,7 +129,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取过敏信息
+        /// Lấy thông tin dị ứng
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -152,7 +152,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取抗生素药品信息
+        /// Lấy thông tin thuốc kháng sinh
         /// </summary>
         /// <returns></returns>
         public ActionResult GetKssYpListJson()
@@ -162,7 +162,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取抗生素药品类别
+        /// Lấy loại thuốc kháng sinh
         /// </summary>
         /// <returns></returns>
         public ActionResult GetKssYpLbJson(string ypCode)
@@ -192,7 +192,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         /// <summary>
-        /// 删除执行的过敏信息
+        /// Xóa thông tin dị ứng đã thực hiện
         /// </summary>
         /// <param name="xmCode"></param>
         /// <returns></returns>

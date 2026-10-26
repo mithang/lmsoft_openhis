@@ -41,35 +41,35 @@
 </style>
 <div class="dv-body">
     <div class="dv-left">
-        <div class="dv-left-title">患者列表</div>
+        <div class="dv-left-title">Danh sách bệnh nhân</div>
         <div class="dv-left-tree" id="BqTreeList"></div>
     </div>
     <div class="dv-right">
         <div class="dv-right-order">
             <div class="panel panel-default">
                 <div class="panel-heading navb-bg">
-                    筛选条件
+                    Điều kiện lọc
                 </div>
                 <table class="form">
                     <tr>
-                        <td class="formTitle"> 开始日期：</td>
+                        <td class="formTitle"> Ngày bắt đầu:</td>
                         <td class="formValue">
                             <input id="txt_ksrq" type="text" class="form-control input-wdatepicker" 
                                    onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                                    onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-01 ")" />
                         </td>
-                        <td class="formTitle"> 结束日期：</td>
+                        <td class="formTitle"> Ngày kết thúc:</td>
                         <td class="formValue">
                             <input id="txt_jsrq" type="text" class="form-control input-wdatepicker"
                                    onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                                    onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd ")" />
                         </td>
-                        <td class="formTitle"> 长临医嘱：</td>
+                        <td class="formTitle"> Y lệnh dài hạn, tạm thời:</td>
                         <td class="formValue">
                             @Html.DropDownList("clyz", EnumYzxz.Cq.ToDescSelectList(), "全部", new { @class = "form-control required" })
                         </td>
                         <td class="formValue">
-                            <input type="button" id="btn_print" class="btn btn-primary" value="打印" />
+                            <input type="button" id="btn_print" class="btn btn-primary" value="In" />
                         </td>
                     </tr>
                 </table>
@@ -90,7 +90,7 @@
     $(".dv-right").width(rightWidth);
     $(".dv-left-tree").height($(window).height() - 70);
     $(function () {
-        $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+        $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt thì tính lại chiều rộng và chiều cao
             $(".dv-body").height($(window).height());
             $(".dv-body").width($(window).width());
         });
@@ -124,9 +124,9 @@
 
         var patzyh = "";
 
-        //当前选中父节点
+        //Nút cha đang được chọn hiện tại
         var len = 0;
-        var single = 0; //是否单个子节点
+        var single = 0; //Có phải là nút con đơn lẻ không
 
         if (item != null && item.Ex1 == "p") {
             patlistFath = item.ChildNodes;
@@ -138,7 +138,7 @@
             single = 1;
         }
 
-        //选中节点
+        //Nút đã chọn
         for (var i = 0; i < patlist.length; i++) {
             if (patlist[i].Ex1 == "c") {
                 patzyh += patlist[i].value + ",";
@@ -185,7 +185,7 @@
         $('#gridList').newtouchLocalDataGrid(null, orderList);
     }
 
-    //级联选中所有子节点
+    //Chọn xếp tầng tất cả các nút con
     function checkAllSon(node) {
         $('#BqTreeList').treeview('checkNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -194,7 +194,7 @@
             }
         }
     }
-    //级联取消所有子节点
+    //Hủy chọn xếp tầng tất cả các nút con
     function uncheckAllSon(node) {
         $('#BqTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -205,28 +205,28 @@
     }
 
     function gridList(patzyh) {
-        var last = "";//上一个组号
+        var last = "";//Số nhóm trước
         var $gridList = $("#gridList");
         $gridList.dataGrid({
             postData: { zyh: patzyh,kssj: $('#txt_ksrq').val(), jssj: $('#txt_jsrq').val(), zyxz: $('#clyz').val()-1 },
             url: "@Url.Action("GetGridJson")",
             height: $(window).height() - 155,
             colModel: [
-                { label: '住院号', name: 'zyh', align: 'center', width: 50},
-                { label: '床号', name: 'bedcode', align: 'center', width: 50 },
-                { label: '患者姓名', name: 'hzxm', align: 'center', width: 70 },
+                { label: 'Số nhập viện', name: 'zyh', align: 'center', width: 50},
+                { label: 'Số giường', name: 'bedcode', align: 'center', width: 50 },
+                { label: 'Tên bệnh nhân', name: 'hzxm', align: 'center', width: 70 },
                 { label: ' ', name: 'clbz', align: 'center', width: 40, formatter: function (val) { if (val != null) return val; else return ""; } },
-                { label: '执行日期', name: 'zxrq', align: 'center', width: 70, formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                { label: '创建时间', name: 'createtime', align: 'center', width: 120, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: '医嘱', name: 'yznr', align: 'center', width: 200 },
-                { label: '成组', name: 'fzxh', align: 'center', width: 50 },
+                { label: 'Ngày thực hiện', name: 'zxrq', align: 'center', width: 70, formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: 'Thời gian tạo', name: 'createtime', align: 'center', width: 120, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Y lệnh', name: 'yznr', align: 'center', width: 200 },
+                { label: 'Thành nhóm', name: 'fzxh', align: 'center', width: 50 },
                 {
-                    label: '数量', name: 'mcsl', align: 'center', width: 60, formatter: function (val, o, b) {
+                    label: 'Số lượng', name: 'mcsl', align: 'center', width: 60, formatter: function (val, o, b) {
                         if (val != null) return val+b.dw; else return "";
                     }
                 },
-                { label: '状态', name: 'zt', align: 'center', width: 100, hidden: true },
-                { label: '录入者', name: 'lrz', align: 'center', width: 70 }
+                { label: 'Trạng thái', name: 'zt', align: 'center', width: 100, hidden: true },
+                { label: 'Người nhập', name: 'lrz', align: 'center', width: 70 }
             ],
             pager: "#gridPager",
             sortname: 'fzxh,zyh asc,createtime asc',
@@ -235,12 +235,12 @@
                 var ids = $gridList.jqGrid('getDataIDs');
                 for (i = 0; i < ids.length; i++) {
                     var rowData = $gridList.jqGrid('getRowData', ids[i]);
-                    //组号生成特殊符号
+                    //Số nhóm sinh ra ký tự đặc biệt
                     var returnval = "";
                     if (rowData.fzxh != typeof (undefined) && rowData.fzxh !== "" && rowData.fzxh !== null) {
                         if (last == rowData.fzxh) {
                             returnval = "中间";
-                            if (i == (ids.length - 1)) {//最后一个
+                            if (i == (ids.length - 1)) {//Cuối cùng
                                 returnval = "结束";
                                 last = "";
                             }
@@ -250,7 +250,7 @@
                             }
                             returnval = "开始";
                         }
-                        $("#gridList").setCell(ids[i], "fzxh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell 设置单元格样式 值 或属性
+                        $("#gridList").setCell(ids[i], "fzxh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell Đặt kiểu ô Giá trị hoặc thuộc tính
                     } else if (last !== rowData.fzxh && last !== "") {
                         setlastrowzuhao(ids[i]);
                     }
@@ -260,12 +260,12 @@
         });
     }
 
-    //设置上一行组号
+    //Đặt số nhóm của dòng trên
     function setlastrowzuhao(rowid) {
         var lastrow = parseInt(rowid) - 1;
-        $("#gridList").setCell(lastrow, "fzxh", '<img src="../../../../Content/img/结束.png" />');//setCell 设置单元格样式 值 或属性
+        $("#gridList").setCell(lastrow, "fzxh", '<img src="../../../../Content/img/Kết thúc.png" />');//setCell Đặt kiểu ô Giá trị hoặc thuộc tính
     }
-    //刷新医嘱
+    //Làm mới y lệnh
     function RefreshOrder() {
         getBqTreeList();
         $('#gridList').jqGrid("clearGridData");

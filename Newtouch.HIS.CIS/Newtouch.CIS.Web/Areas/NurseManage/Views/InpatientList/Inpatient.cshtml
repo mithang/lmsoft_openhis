@@ -1,10 +1,10 @@
 ﻿
 @model dynamic
 @{
-    ViewBag.Title = "护士患者一览";
+    ViewBag.Title = "Tổng quan bệnh nhân của y tá";
     Layout = "~/Views/Shared/_Index.cshtml";
     var pacsHost = SiteUrl.GetUrl("OuterPacsServiceHost", "");
-    //长期医嘱打印单是否显示签名
+    //Phiếu in y lệnh dài hạn có hiển thị chữ ký không
     var isShowSign = SysConfigReader.String("IS_ShowSigner");
     var curOpr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
 }
@@ -169,10 +169,10 @@
 
 <ul class="nav nav-tabs navb-bg" role="tablist">
     <li role="presentation" class="active" id="linkzbq">
-        <a href="#div_zbq" role="tab" data-toggle="tab">在病区</a>
+        <a href="#div_zbq" role="tab" data-toggle="tab">Tại khu bệnh</a>
     </li>
     <li role="presentation" id="linkycq">
-        <a href="#dev_ycq" role="tab" data-toggle="tab">已出区</a>
+        <a href="#dev_ycq" role="tab" data-toggle="tab">Đã xuất khu</a>
     </li>
     <li>
         <table class="form" style="width:460px">
@@ -184,16 +184,16 @@
                 </td>
                 <td class="formValue formDdlSelectorTd" style="width:90px">
                     <select id="sel_inpatienttype" class="form-control">
-                        <option value="">全部</option>
-                        <option value="@ViewBag.ysgh">分管</option>
+                        <option value="">Tất cả</option>
+                        <option value="@ViewBag.ysgh">Phụ trách</option>
                     </select>
                 </td>
                 <td>
-                    <input id="txt_cwmc" placeholder="输入床号" />
+                    <input id="txt_cwmc" placeholder="Nhập số giường" />
                 </td>
                 <td style="padding-left:20px;">
-                    <i class="fa fa-id-card-o" title="床卡模式" style="line-height:40px" hidden></i>
-                    <i class="fa fa-list" title="列表模式" style="line-height:40px"></i>
+                    <i class="fa fa-id-card-o" title="Chế độ thẻ giường" style="line-height:40px" hidden></i>
+                    <i class="fa fa-list" title="Chế độ danh sách" style="line-height:40px"></i>
                 </td>
             </tr>
         </table>
@@ -209,22 +209,22 @@
     <div id="dev_ycq">
         <table class="form" style="margin-left:5px;">
             <tr>
-                <th class="formTitle">出区开始日期：</th>
+                <th class="formTitle">Ngày bắt đầu xuất khu:</th>
                 <td class="formValue">
                     <input id="txt_ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@DateTime.Now.ToString("yyyy-MM-01")" />
                 </td>
-                <th class="formTitle">结束日期：</th>
+                <th class="formTitle">Ngày kết thúc:</th>
                 <td class="formValue">
                     <input id="txt_jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 </td>
-                <th class="formTitle" style="width:120px">住院号/姓名/卡号：</th>
+                <th class="formTitle" style="width:120px">Số nhập viện/Họ tên/Số thẻ:</th>
                 <td class="formValue">
-                    <input type="text" id="ycq_keyword" name="ycq_keyword" class="form-control" placeholder="最少1位字符" />
+                    <input type="text" id="ycq_keyword" name="ycq_keyword" class="form-control" placeholder="Ít nhất1ký tự" />
                 </td>
                 <td class="formTitle" colspan="2" style="padding-left:20px">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" style="margin-right:10px" />
-                    <input type="button" id="btn_printcq" onclick="printcq()" class="btn btn-md btn-primary" value="打印长期" style="margin-right:10px" />
-                    <input type="button" id="btn_printls" onclick="printls()" class="btn btn-md btn-primary" value="打印临时" style="margin-right:10px" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" style="margin-right:10px" />
+                    <input type="button" id="btn_printcq" onclick="printcq()" class="btn btn-md btn-primary" value="In dài hạn" style="margin-right:10px" />
+                    <input type="button" id="btn_printls" onclick="printls()" class="btn btn-md btn-primary" value="In tạm thời" style="margin-right:10px" />
                 </td>
                 <td></td>
                 <td></td>
@@ -256,7 +256,7 @@
                     localStorage.setItem("lastabq", $(this).val());
                 }
             });
-            if (!flag) {//下拉框找不到该选项就不选
+            if (!flag) {//Hộp thả xuống không tìm thấy tùy chọn đó thì không chọn
                 $(this).val("");
             }
         }
@@ -275,11 +275,11 @@
         var selectval = "";
         if (lastbqval == typeof (undefined) || lastbqval == "" || lastbqval == null || lastbqval == 'null') {
             if ('@ViewBag.bqval' !== "") {
-                //赋值
+                //Gán giá trị
                 selectval = '@ViewBag.bqval';
             }
         } else {
-            //赋值
+            //Gán giá trị
             selectval = lastbqval;
         }
         if (selectval !== "") {
@@ -294,22 +294,22 @@
     }
 
     function newtouch_event_f4() {
-        //开始时间，结束时间还原
+        //Khôi phục thời gian bắt đầu, thời gian kết thúc
         $('#txt_ksrq').val($.getDate());
         $('#txt_jsrq').val($.getDate());
         $('#ycq_keyword').val('');
-        clearSelectpatient();//清理当前选中对象
-        zbqPatientList = [];//清理病区中病人
+        clearSelectpatient();//Dọn dẹp đối tượng đang chọn hiện tại
+        zbqPatientList = [];//Dọn dẹp bệnh nhân trong khu bệnh
         init();
         $('#linkzbq').addClass("active");
         $('#linkycq').removeClass("active");
         $(".nav-tabs li[id='linkzbq']").trigger("click");
     }
-    //**************在病区**************
+    //**************Tại khu bệnh**************
 
     $(function () {
         init();
-        //搜索统计选项卡切换
+        //Chuyển tab thống kê tìm kiếm
         $(".nav-tabs li").click(function () {
             clearSelectpatient();
             if ($(this)[0].id === "linkzbq") {
@@ -346,7 +346,7 @@
         initycq();
     }
 
-    //**************已出区**************
+    //**************Đã xuất khu**************
 
     function initycq() {
         div_ycqList();
@@ -354,7 +354,7 @@
         $('#ycq_keyword').newtouchBatchFloatingSelector({
             width: 450,
             height: 200,
-            caption: "选择患者",
+            caption: "Chọn bệnh nhân",
             url: "@Url.Action("patientFloatingSelectorSource")",
             ajaxparameters: function ($thisinput) {
                 var keyword = $thisinput.val().trim();
@@ -364,18 +364,18 @@
                 $('#ycq_keyword').val($thistr.attr('data-zyh'));
             },
             colModel: [
-                { label: '主键', name: 'Id', hidden: true },
-                { label: '住院号', name: 'zyh', width: 100, align: 'center' },
-                { label: '病历号', name: 'blh', width: 90, align: 'center' },
-                { label: '姓名', name: 'xm', width: 80, align: 'center' },
-                { label: '出生年月', name: 'birth', hidden: true, width: 100, align: 'center' },
+                { label: 'Khóa chính', name: 'Id', hidden: true },
+                { label: 'Số nhập viện', name: 'zyh', width: 100, align: 'center' },
+                { label: 'Số hồ sơ bệnh án', name: 'blh', width: 90, align: 'center' },
+                { label: 'Họ tên', name: 'xm', width: 80, align: 'center' },
+                { label: 'Năm tháng sinh', name: 'birth', hidden: true, width: 100, align: 'center' },
                 {
-                    label: '性别', name: 'xb', width: 50, align: 'center', formatter: function (cellvalue) {
+                    label: 'Giới tính', name: 'xb', width: 50, align: 'center', formatter: function (cellvalue) {
                         return $.getGender(cellvalue);
                     }
                 },
-                { label: '年龄', name: 'birth', width: 50, align: 'center' },
-                { label: '入院日期', name: 'ryrq', hidden: true }
+                { label: 'Tuổi', name: 'birth', width: 50, align: 'center' },
+                { label: 'Ngày nhập viện', name: 'ryrq', hidden: true }
             ]
         });
     }
@@ -391,25 +391,25 @@
                 { label: 'Id', name: 'Id', hidden: true },
                 { label: 'brxzdm', name: 'brxzdm', hidden: true },
                 { label: 'brxzmc', name: 'brxzmc', hidden: true },
-                { label: '姓名', name: 'xm', align: 'center', width: 150 },
-                { label: '住院号', name: 'zyh', align: 'center', width: 80 },
-                { label: '卡号', name: 'cardno', align: 'center', width: 50 },
-                { label: '床号', name: 'cwmc', align: 'center', width: 80 },
+                { label: 'Họ tên', name: 'xm', align: 'center', width: 150 },
+                { label: 'Số nhập viện', name: 'zyh', align: 'center', width: 80 },
+                { label: 'Số thẻ', name: 'cardno', align: 'center', width: 50 },
+                { label: 'Số giường', name: 'cwmc', align: 'center', width: 80 },
                 {
-                    label: '性别', name: 'sex', align: 'center', width: 100, formatter: function (val) {
+                    label: 'Giới tính', name: 'sex', align: 'center', width: 100, formatter: function (val) {
                         return $.getGender(val);
                     }
                 },
-                { label: '年龄', name: 'nlShow', align: 'center', width: 70 },
-                { label: '入院诊断', name: 'zdmc', width: 80, align: 'left' },
-                { label: '入院日期', name: 'ryrq', align: 'center', width: 140, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
-                { label: '出区日期', name: 'cqrq', align: 'center', width: 140, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
-                { label: '床位医生', name: 'ysmc', align: 'center', width: 120 }
+                { label: 'Tuổi', name: 'nlShow', align: 'center', width: 70 },
+                { label: 'Chẩn đoán nhập viện', name: 'zdmc', width: 80, align: 'left' },
+                { label: 'Ngày nhập viện', name: 'ryrq', align: 'center', width: 140, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
+                { label: 'Ngày xuất khu', name: 'cqrq', align: 'center', width: 140, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
+                { label: 'Bác sĩ giường bệnh', name: 'ysmc', align: 'center', width: 120 }
             ],
             pager: "#div_ycqgridPager",
             sortname: 'cqrq desc',
             gridComplete: function () {
-                //隐藏grid底部滚动条
+                //ẨngridThanh cuộn dưới cùng
                 $("#div_ycqList").closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
             },
             onSelectRow: function (rowid) {
@@ -419,7 +419,7 @@
         });
     }
     function initInpatStu() {};
-    //获取已出区病人信息
+    //Lấy thông tin bệnh nhân đã xuất khu
     function ajaxrequestycq() {
         if (validateSearch()) {
             $('#div_ycqList').jqGrid('setGridParam', {
@@ -453,17 +453,17 @@
         function validateSearch() {
             var bqval = $('#sel_inpatientArea').val();
             if (bqval == "") {
-                $.modalAlert("病区未选择", 'warning');
+                $.modalAlert("Khu bệnh chưa được chọn", 'warning');
                 return false;
             }
             return true;
         }
 
-        //打印长期医嘱
+        //In y lệnh dài hạn
         function printcq() {
             var keyValue = $("#div_ycqList").jqGridRowValue().zyh;
             if (!!!keyValue) {
-                $.modalAlert("未选中病人","warning");
+                $.modalAlert("Chưa chọn bệnh nhân","warning");
                 return;
             }
             var isSign = "0";
@@ -474,11 +474,11 @@
            // window.open("/ReportManage/Report/PrintCqyzReport?zyh=" + keyValue+ "&isShowSign=" + isSign,"height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
         }
 
-        //打印临时医嘱
+        //In y lệnh tạm thời
         function printls() {
             var keyValue = $("#div_ycqList").jqGridRowValue().zyh;
             if (!!!keyValue) {
-                $.modalAlert("未选中病人", "warning");
+                $.modalAlert("Chưa chọn bệnh nhân", "warning");
                 return;
             }
             var isSign = "0";
@@ -489,7 +489,7 @@
             //window.open("/ReportManage/Report/PrintLsyzReport?zyh=" + keyValue+ "&isShowSign=" + isSign, "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
         }
 
-        //右键菜单事件
+        //Sự kiện menu chuột phải
         function InitTZ() {
             var menuNo = new BootstrapMenu('.ul-zbq li', {
                 fetchElementData: function ($rowElem) {
@@ -546,16 +546,16 @@
                     onClick: function (row) {
                          //金风易通 LIS 2024-4-28 chl
                         window.open("@pacsHost/doctor-api/api/viewer?type=1&pid=" + currentobj.blh + "&areaCode=" + "@curOpr.OrganizeId", "_blank");
-                        //测试链接
+                        //Liên kết kiểm tra
                         //window.open("@pacsHost/doctor-api/api/viewer?type=1&pid=JF566&areaCode=6d5752a7-234a-403e-aa1c-df8b45d3469f", "_blank");
 
                         //$.modalOpen({
                         //    id: "medicaljyForm",
-                        //    title: "LIS检验申请单列表",
+                        //    title: "LISDanh sách phiếu yêu cầu xét nghiệm",
                         //    url: "/MedicalRecord/LisSqdhQueryForm?mzzyh=" + currentobj.zyh + "&type=" + "zy",
                         //    width: "900px",
                         //    height: "600px",
-                        //    btn: ['', '关闭'],
+                        //    btn: ['', 'Đóng'],
                         //    btnclass: ['', 'btn btn-danger'],
                         //});
                     }
@@ -565,16 +565,16 @@
                     onClick: function (row) {
                         //金风易通 PACS 2024-4-28 chl
                         window.open("@pacsHost/doctor-api/api/viewer?pid=" + currentobj.blh + "&areaCode=" + "@curOpr.OrganizeId", "_blank");
-                        //测试链接
+                        //Liên kết kiểm tra
                         //window.open("@pacsHost/doctor-api/api/viewer?pid=1034097&areaCode=6d5752a7-234a-403e-aa1c-df8b45d3469f", "_blank");
 
                         //$.modalOpen({
                         //    id: "medicaljyForm",
-                        //    title: "PASC检查申请单列表",
+                        //    title: "PASCDanh sách phiếu yêu cầu kiểm tra",
                         //    url: "/MedicalRecord/PacsSqdhQueryForm?mzzyh=" + currentobj.zyh + "&type=" + "zy",
                         //    width: "800px",
                         //    height: "500px",
-                        //    btn: ['', '关闭'],
+                        //    btn: ['', 'Đóng'],
                         //    btnclass: ['', 'btn btn-danger'],
                         //});
                     }
@@ -582,11 +582,11 @@
                 , {
                     name: '患者出区',
                     onClick: function (row) {
-                        $.modalConfirm("确定出区？", function (flag) {
+                        $.modalConfirm("Xác định xuất khu?", function (flag) {
                             if (flag) {
                                 $.modalOpen({
                                     id: "OutAreaForm",
-                                    title: "患者出区",
+                                    title: "Bệnh nhân xuất khu",
                                     url: "/NurseManage/WardMaintenance/OutAreaForm?zyh=" + currentobj.zyh,
                                     width: "500px",
                                     height: "480px",

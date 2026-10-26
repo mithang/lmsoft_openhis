@@ -52,7 +52,7 @@
 
 <div class="dv-body">
     <div class="dv-left">
-        <div class="dv-left-title">患者列表</div>
+        <div class="dv-left-title">Danh sách bệnh nhân</div>
         <div class="dv-left-tree" id="BqTreeList"></div>
     </div>
     <div class="dv-right">
@@ -64,22 +64,22 @@
                     </div>
                     <div class="btn-group">
                         <a id="AuditChecked" class="btn btn-primary" onclick="AuditChecked()">
-                            <i class="fa fa-pencil-square-o"></i>审核当前
+                            <i class="fa fa-pencil-square-o"></i>Duyệt hiện tại
                         </a>
                     </div>
                     <div class="btn-group">
                         <a id="AuditTemporary" class="btn btn-primary" onclick="AuditOrders(1)">
-                            <i class="fa fa-pencil-square-o"></i>审核临时
+                            <i class="fa fa-pencil-square-o"></i>Duyệt tạm thời
                         </a>
                     </div>
                     <div class="btn-group">
                         <a id="AuditLong" class="btn btn-primary" onclick="AuditOrders(2)">
-                            <i class="fa fa-pencil-square-o"></i>审核长期
+                            <i class="fa fa-pencil-square-o"></i>Duyệt dài hạn
                         </a>
                     </div>
                     <div class="btn-group">
                         <a id="AuditAll" class="btn btn-primary" onclick="AuditOrders(0)">
-                            <i class="fa fa-pencil-square-o"></i>审核全部
+                            <i class="fa fa-pencil-square-o"></i>Duyệt tất cả
                         </a>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
     $(".dv-left-tree").height($(window).height()-70);
 
     $(function () {
-        $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+        $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt thì tính lại chiều rộng và chiều cao
             $(".dv-body").height($(window).height());
             $(".dv-body").width($(window).width());
         });
@@ -133,9 +133,9 @@
         var patzyh = "";
         var patzyhItem = "";
 
-        //当前选中父节点
+        //Nút cha đang được chọn hiện tại
         var len = 0;
-        var single = 0; //是否单个子节点
+        var single = 0; //Có phải là nút con đơn lẻ không
 
         if (item != null && item.Ex1 == "p") {
             patlistFath = item.ChildNodes;
@@ -148,7 +148,7 @@
             single = 1;
         }
 
-        //选中节点
+        //Nút đã chọn
         for (var i = 0; i < patlist.length; i++) {
             if (patlist[i].Ex1 == "c") {
                 patzyh += patlist[i].value + ",";
@@ -198,7 +198,7 @@
         $('#gridList').newtouchLocalDataGrid(null, orderList);
     }
 
-    //级联选中所有子节点
+    //Chọn xếp tầng tất cả các nút con
     function checkAllSon(node) {
         $('#BqTreeList').treeview('checkNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -207,7 +207,7 @@
             }
         }
     }
-    //级联取消所有子节点
+    //Hủy chọn xếp tầng tất cả các nút con
     function uncheckAllSon(node) {
         $('#BqTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -230,16 +230,16 @@
             url: "/NurseManage/OrderAudit/GetGridJson",
             height: $(window).height()-130,
             colModel: [
-                { label: '医嘱ID', name: 'yzid', align: 'center', width: 50, hidden: true,key:true },
-                { label: '医嘱项目', name: 'xmmc', align: 'center', width: 150 },
-                { label: '医嘱性质', name: 'yzxzsm', align: 'center', width: 50 },
-                { label: '开始时间', name: 'kssj', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
+                { label: 'Y lệnhID', name: 'yzid', align: 'center', width: 50, hidden: true,key:true },
+                { label: 'Hạng mục y lệnh', name: 'xmmc', align: 'center', width: 150 },
+                { label: 'Tính chất y lệnh', name: 'yzxzsm', align: 'center', width: 50 },
+                { label: 'Thời gian bắt đầu', name: 'kssj', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
                 {
-                    label: '医嘱内容', name: 'yznr', align: 'center', width: 300, formatter: function (val) {
+                    label: 'Nội dung y lệnh', name: 'yznr', align: 'center', width: 300, formatter: function (val) {
                         if (val != null)
                         {
                             if (val.indexOf("[停]") != -1) {
-                                return "<span style='color:red'>[停]</span>" + val.replace("[停]", "")
+                                return "<span style='color:red'>[Dừng]</span>" + val.replace("[停]", "")
                             }
                             else
                                 return val;
@@ -248,10 +248,10 @@
                         else return "";
                     }
                 },
-                { label: '停止/作废时间', name: 'tzsj', align: 'center', width: 120, formatter: function (val) { if (val != null) return $.getTime({ date: val }); else return ""; } },
-                { label: '录入者', name: 'Creator', align: 'center', width: 50 },
-                { label: '医嘱性质编码', name: 'yzxz', align: 'center', hidden: true },
-                { label: '医嘱组号', name: 'zh', align: 'center', width: 70, formatter: function (val) { if (val != null) return val; else return ""; } }
+                { label: 'Dừng/Thời gian hủy bỏ', name: 'tzsj', align: 'center', width: 120, formatter: function (val) { if (val != null) return $.getTime({ date: val }); else return ""; } },
+                { label: 'Người nhập', name: 'Creator', align: 'center', width: 50 },
+                { label: 'Mã tính chất y lệnh', name: 'yzxz', align: 'center', hidden: true },
+                { label: 'Số nhóm y lệnh', name: 'zh', align: 'center', width: 70, formatter: function (val) { if (val != null) return val; else return ""; } }
             ],
             pager: "#gridPager",
             sortname: 'zh desc',
@@ -263,7 +263,7 @@
                     var rowData = $("#gridList").jqGrid('getRowData', rowIndex);
                     var ids = $("#gridList").jqGrid('getRowData_AllLine');
 
-                    liststu = s; //同步状态
+                    liststu = s; //Trạng thái đồng bộ
                     for (var i = 0; i < ids.length; i++) {
                         if (ids[i].zh == rowData.zh && ids[i].zh != "") {
                             if (s == true) {
@@ -286,15 +286,15 @@
                 if (list.length > 0) {
 
                     for (j = j; j < list.length; j++) {
-                        if (liststu) //同组选中
+                        if (liststu) //Chọn cùng nhóm
                         {
                             j = j + 1;
                             $("#gridList").jqGrid("setSelection", list[j - 1], true);
 
                         }
-                        else { //同组取消选中
+                        else { //Hủy chọn cùng nhóm
                             //j = j + 1;
-                            $("#gridList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow                       
+                            $("#gridList").jqGrid("setSelection", list[j], false);      //Hủy không kích hoạtonselectrow                       
                         }
 
                     }
@@ -308,18 +308,18 @@
         });
     }
 
-    //刷新医嘱
+    //Làm mới y lệnh
     function RefreshOrder() {
         $('#gridList').jqGrid("clearGridData");
         getOrderAuditList(null, null)
     }
 
-    //审核当前
+    //Duyệt hiện tại
     function AuditChecked() {
         var strYZID = [];
         var selRowIds = jQuery("#gridList").jqGrid("getGridParam", "selarrrow");
         if (selRowIds == null || selRowIds.length == 0) {
-            $.modalAlert("请先选中需审核的医嘱", 'warning');
+            $.modalAlert("Vui lòng chọn trước y lệnh cần duyệt", 'warning');
             return;
         }
         for (var i = 0; i < selRowIds.length; i++) {
@@ -342,7 +342,7 @@
                 }
                 else {
                     setTimeout(function () {
-                        $.modalMsg('审核成功', 'success');
+                        $.modalMsg('Duyệt thành công', 'success');
                     }, 1000);
 
                 }
@@ -351,13 +351,13 @@
             }
         });
     }
-    //审核临时  长期  全部
+    //Duyệt tạm thời  Dài hạn  Tất cả
     function AuditOrders(yzxz) {
         var selPatTrees = $("#BqTreeList").getCheckedNodeObjArray();
 
         //var selPatTrees = $('#BqTreeList').treeview('getChecked');
         if (selPatTrees == null || selPatTrees.length < 1) {
-            $.modalAlert("请先选中需审核的患者", 'warning');
+            $.modalAlert("Vui lòng chọn trước bệnh nhân cần duyệt", 'warning');
             return;
         }
         var patzyh = "";
@@ -370,7 +370,7 @@
 
         if (patzyh == "")
         {
-            $.modalAlert("请先选中需审核的患者", 'warning');
+            $.modalAlert("Vui lòng chọn trước bệnh nhân cần duyệt", 'warning');
             return;
         }
         $.ajax({
@@ -388,7 +388,7 @@
                 }
                 else {
                     setTimeout(function () {
-                        $.modalMsg('审核成功', 'success');
+                        $.modalMsg('Duyệt thành công', 'success');
                     }, 1000);
 
                 }

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "中药处方单";
+    ViewBag.Title = "Phiếu đơn thuốc Đông y";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 
@@ -23,7 +23,7 @@
     function submit() {
         var url = getUrl();
 
-        //直接打开
+        //Mở trực tiếp
         location.href = url;
         return;
 
@@ -48,7 +48,7 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheetBlankPage";

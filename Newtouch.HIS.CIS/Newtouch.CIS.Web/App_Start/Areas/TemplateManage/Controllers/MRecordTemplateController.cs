@@ -21,7 +21,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         // GET: TemplateManage/MRecordTemplate
 
         /// <summary>
-        /// 病历模板树
+        /// Cây mẫu bệnh án
         /// </summary>
         /// <returns></returns>
         public ActionResult GetTreeList(int mblx)
@@ -34,7 +34,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             {
                 treeList.Add(new TreeViewModel()
                 {
-                    id = item.mbId,   //模板Id
+                    id = item.mbId,   //MẫuId
                     value = item.mbId,
                     text = item.mbmc,
                     parentId = null,
@@ -48,21 +48,21 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// 查询模板明细
+        /// Tra cứu chi tiết mẫu
         /// </summary>
         /// <param name="mbId"></param>
         /// <returns></returns>
         public ActionResult SelectTemplateDetailByMbId(string mbId)
         {
             var data = _mRecordTemplateDmnService.SelectTemplateDetailByMbId(mbId, this.OrganizeId);
-            data.xyzdList = data.xyzdList.OrderBy(a => a.zdlx).ToList();   //主诊断排在前面
-            data.zyzdList = data.zyzdList.OrderBy(a => a.zdlx).ToList();   //主诊断排在前面
+            data.xyzdList = data.xyzdList.OrderBy(a => a.zdlx).ToList();   //Chẩn đoán chính xếp trước
+            data.zyzdList = data.zyzdList.OrderBy(a => a.zdlx).ToList();   //Chẩn đoán chính xếp trước
 
             return Content(data.ToJson());
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <returns></returns>
         public ActionResult SaveData(MRTemplateEntity blmbObject, List<WMDiagnosisHtmlVO> xyzdList, List<TCMDiagnosisHtmlVO> zyzdList)
@@ -70,7 +70,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             blmbObject.OrganizeId = this.OrganizeId;
             if (blmbObject.mblx == (int)EnumCfMbLx.department)
             {
-                blmbObject.ks = this.UserIdentity.DepartmentCode;   //科室
+                blmbObject.ks = this.UserIdentity.DepartmentCode;   //Khoa
             }
             _mRecordTemplateDmnService.SaveData(blmbObject, xyzdList, zyzdList);
             return Success();

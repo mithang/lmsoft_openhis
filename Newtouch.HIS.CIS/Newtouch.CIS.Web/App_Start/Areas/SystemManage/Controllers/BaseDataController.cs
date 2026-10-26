@@ -16,7 +16,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         private readonly ISysDiagnosisRepo _sysDiagnosisRepo;
 
         /// <summary>
-        /// 药品用法 检索
+        /// Cách dùng thuốc Tìm kiếm
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -45,7 +45,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 科室 下拉 
+        /// Khoa Thả xuống 
         /// </summary>
         /// <returns></returns>
         public ActionResult SelectDepartmentList(string keyword)
@@ -55,7 +55,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 诊断 检索
+        /// Chẩn đoán Tìm kiếm
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -66,7 +66,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 症侯 检索
+        /// Hội chứng Tìm kiếm
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -77,7 +77,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取代煎费
+        /// Lấy phí sắc thay
         /// </summary>
         /// <returns></returns>
         public JsonResult GetDjFee()

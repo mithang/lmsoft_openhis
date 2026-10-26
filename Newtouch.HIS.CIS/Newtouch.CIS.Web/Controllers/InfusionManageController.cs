@@ -12,7 +12,7 @@ using Newtouch.HIS.Web.Core.Attributes;
 namespace Newtouch.CIS.Web.Controllers
 {
     /// <summary>
-    /// 输液管理 移动端
+    /// Quản lý truyền dịch Đầu di động
     /// </summary>
     public class InfusionManageController : Controller
     {
@@ -26,7 +26,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 输液信息查询
+        /// Tra cứu thông tin truyền dịch
         /// </summary>
         /// <param name="tags"></param>
         /// <param name="organizeId"></param>

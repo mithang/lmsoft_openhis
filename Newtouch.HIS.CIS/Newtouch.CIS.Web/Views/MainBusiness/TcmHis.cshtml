@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "中医馆";
+    ViewBag.Title = "Phòng khám Đông y";
     Layout = null;
 }
 
@@ -57,43 +57,43 @@
             cursor: pointer;
         }
 </style>
-<div id="zy_title">中医馆</div>
+<div id="zy_title">Phòng khám Đông y</div>
 <div id="zy_body">
     <ul>
         <li id="li_pushPatient" style="display: none;">
-            <a href="javascript:void(0);" style="color: #00fa9a;" id="a_ppt_write" attr-operate="write" value="PPT">推送患者</a>
+            <a href="javascript:void(0);" style="color: #00fa9a;" id="a_ppt_write" attr-operate="write" value="PPT">Đẩy bệnh nhân</a>
         </li>
         <li>
-            <div>电子病历</div>
+            <div>Bệnh án điện tử</div>
             <div>
-                <a href="javascript:void(0);" style="color:#00fa9a;" id="a_EMR_write" attr-operate="write" value="EMR">书写</a>
-                <a href="javascript:void(0);" style="color: #ffff00;" id="a_EMR_extract" attr-operate="extract" value="EMR">提取</a>
+                <a href="javascript:void(0);" style="color:#00fa9a;" id="a_EMR_write" attr-operate="write" value="EMR">Viết</a>
+                <a href="javascript:void(0);" style="color: #ffff00;" id="a_EMR_extract" attr-operate="extract" value="EMR">Trích xuất</a>
             </div>
         </li>
         <li>
-            <div>辨证论治</div>
+            <div>Biện chứng luận trị</div>
             <div>
-                <a href="javascript:void(0);" style="color:#00fa9a;" id="a_AE_write" attr-operate="write" value="AE">书写</a>
-                <a href="javascript:void(0);" style="color: #ffff00;" id="a_AE_extract" attr-operate="extract" value="AE">提取</a>
+                <a href="javascript:void(0);" style="color:#00fa9a;" id="a_AE_write" attr-operate="write" value="AE">Viết</a>
+                <a href="javascript:void(0);" style="color: #ffff00;" id="a_AE_extract" attr-operate="extract" value="AE">Trích xuất</a>
             </div>
         </li>
         <li value="K">
-            <a href="javascript:void(0);" style="color: #00fa9a;" id="a_K_write" attr-operate="write" value="K">知识库</a>
+            <a href="javascript:void(0);" style="color: #00fa9a;" id="a_K_write" attr-operate="write" value="K">Kho tri thức</a>
         </li>
         <li value="RC">
-            <a href="javascript:void(0);" style="color: #00fa9a;" id="a_RC_write" attr-operate="write" value="RC">远程会诊</a>
+            <a href="javascript:void(0);" style="color: #00fa9a;" id="a_RC_write" attr-operate="write" value="RC">Hội chẩn từ xa</a>
         </li>
         <li value="HEAL">
-            <a href="javascript:void(0);" style="color: #00fa9a;" id="a_HEAL_write" attr-operate="write" value="HEAL">治未病</a>
+            <a href="javascript:void(0);" style="color: #00fa9a;" id="a_HEAL_write" attr-operate="write" value="HEAL">Trị vị bệnh</a>
         </li>
         <li style="border-bottom: none;">
-            <a href="javascript:void(0);" style="color: #00fa9a;" id="a_PM_write" attr-operate="write" value="PM" title="默认一次推送30个药品，如需推送更多请点击多次">推送草药</a>
+            <a href="javascript:void(0);" style="color: #00fa9a;" id="a_PM_write" attr-operate="write" value="PM" title="Mặc định đẩy một lần30thuốc, nếu cần đẩy thêm vui lòng nhấn nhiều lần">Đẩy thảo dược</a>
         </li>
     </ul>
 </div>
 <script>
     $(function () {
-        //搜索框隐藏显示控制
+        //Kiểm soát ẩn/hiện hộp tìm kiếm
         $(".hiding,.rows,#myTab,#divPatientBasicInfo,.tab-content,.toolbar").click(function () {
             TabGridHide();
         });
@@ -108,12 +108,12 @@
         $("#zy_body li a").click(function () {
             var jzObject = window.currPatientInfo;
             switch ($(this).attr("value")) {
-                case "PPT"://推送患者
+                case "PPT"://Đẩy bệnh nhân
                     pushPatient(jzObject);
                     return;
-                case "EMR"://集成电子病历系统
+                case "EMR"://Hệ thống bệnh án điện tử tích hợp
                     if (!!!jzObject || JSON.stringify(jzObject) === '{}') {
-                        $.modalAlert("请先选择就诊病人", 'warning');
+                        $.modalAlert("Vui lòng chọn trước bệnh nhân khám", 'warning');
                         return;
                     }
                     if ($(this).attr("attr-operate") === "extract") {
@@ -123,9 +123,9 @@
                         getIntegrateEMRUrl(jzObject.mzh, jzObject.jzys);
                     }
                     return;
-                case "AE"://集成辩证论治系统
+                case "AE"://Tích hợp hệ thống biện chứng luận trị
                     if (!!!jzObject || JSON.stringify(jzObject) === '{}') {
-                        $.modalAlert("请先选择就诊病人", 'warning');
+                        $.modalAlert("Vui lòng chọn trước bệnh nhân khám", 'warning');
                         return;
                     }
                     if ($(this).attr("attr-operate") === "extract") {
@@ -134,31 +134,31 @@
                         getIntegrateAEUrl(jzObject.mzh, jzObject.jzys);
                     }
                     return;
-                case "K"://集成知识库系统
+                case "K"://Tích hợp hệ thống kho tri thức
                     getIntegrateKUrl();
                     return;
-                case "RC"://集成远程医疗系统
+                case "RC"://Tích hợp hệ thống y tế từ xa
                     if (!!!jzObject || JSON.stringify(jzObject) === '{}') {
-                        $.modalAlert("请先选择就诊病人", 'warning');
+                        $.modalAlert("Vui lòng chọn trước bệnh nhân khám", 'warning');
                         return;
                     }
                     IntegrateRC(jzObject.blh, jzObject.mzh, jzObject.jzys);
                     return;
-                case "HEAL"://集成治未病系统
+                case "HEAL"://Tích hợp hệ thống trị vị bệnh
                     if (!!!jzObject || JSON.stringify(jzObject) === '{}') {
-                        $.modalAlert("请先选择就诊病人", 'warning');
+                        $.modalAlert("Vui lòng chọn trước bệnh nhân khám", 'warning');
                         return;
                     }
                     getIntegrateHEALUrl(jzObject.blh, jzObject.mzh, jzObject.zjlx, jzObject.zjh);
                     return;
-                case "PM"://推送草药
+                case "PM"://Đẩy thảo dược
                     pushMedicineInfo();
                     return;
             }
         });
     });
 
-    //推送患者
+    //Đẩy bệnh nhân
     function pushPatient(selRowData) {
         $.najax({
             type: "Get",
@@ -169,7 +169,7 @@
         });
     }
 
-    //集成远程医疗
+    //Tích hợp y tế từ xa
     function IntegrateRC(blh, mzh, jzys) {
         $.najax({
             type: "Get",
@@ -182,16 +182,16 @@
         });
     }
 
-    //启动远程诊疗客户端
+    //Khởi động máy khách chẩn đoán điều trị từ xa
     function startClient(obd) {
         if (obd.patientId === "" || obd.patientId === "undefined") {
-            alert("请先选择一个患者");
+            alert("Vui lòng chọn trước một bệnh nhân");
             return;
         } else {
-            //当点击进来先开启客户端
+            //Khi nhấn vào thì mở máy khách trước
             //window.location.href="Ngarihealth://openid="+$("#doctorId").val();
 
-            //http get  请求地址以及携带参数
+            //http get  Địa chỉ yêu cầu và tham số mang theo
             var url = encodeURI("http://localhost:7009/open?openid=" + obd.doctorId + "&userName=" + obd.doctorName
                 + "&patientId=" + obd.patientId + "&patientName=" + obd.patientName
                 + "&mobile=" + obd.mobile + "&certid=" + obd.certid
@@ -247,19 +247,19 @@
                 });
             }
             function loopCall(a) {
-                //启动客户端
+                //Khởi động máy khách
                 window.location.href = "Ngarihealth://openid=" + obd.doctorId;
-                //延迟1秒 等客户端启动后再次调用 打开窗口
+                //Trì hoãn1giây Đợi máy khách khởi động rồi gọi lại Mở cửa sổ
                 setTimeout(callOtherArea(a), 1000);
             }
             callOtherArea(url);
         }
     }
 
-    //集成治未病
+    //Tích hợp trị vị bệnh
     function getIntegrateHEALUrl(blh, mzh, zjlx, zjh) {
         if (!blh) {
-            $.modalAlert("请选择就诊患者", 'error');
+            $.modalAlert("Vui lòng chọn bệnh nhân khám", 'error');
             return;
         }
         $.najax({
@@ -276,7 +276,7 @@
                 localStorage.setItem("hid_CmmIntegrateUrl", obj.data);
                 $.modalOpen({
                     id: "Form",
-                    title: "中医馆",
+                    title: "Phòng khám Đông y",
                     url: "/MainBusiness/CmmAlertForm",
                     width: "1050px",
                     height: "700px",
@@ -288,7 +288,7 @@
         });
     }
 
-    //集成知识库
+    //Tích hợp kho tri thức
     function getIntegrateKUrl() {
         $.najax({
             type: "Get",
@@ -303,7 +303,7 @@
                 localStorage.setItem("hid_CmmIntegrateUrl", obj.data);
                 $.modalOpen({
                     id: "Form",
-                    title: "中医馆",
+                    title: "Phòng khám Đông y",
                     url: "/MainBusiness/CmmAlertForm",
                     width: "1050px",
                     height: "700px",
@@ -315,14 +315,14 @@
         });
     }
 
-    //拉取处方
+    //Lấy đơn thuốc
     function extractIntegrateRp(mzh) {
         if (!mzh) {
-            $.modalAlert("请选择就诊患者", 'error');
+            $.modalAlert("Vui lòng chọn bệnh nhân khám", 'error');
             return;
         }
         if ($("#linkzycf") == null || $("#linkzycf").is(":hidden")) {
-            $.modalAlert("请打开中药处方选项卡", 'error');
+            $.modalAlert("Vui lòng mở tab đơn thuốc Đông y", 'error');
             return;
         }
         $.najax({
@@ -334,7 +334,7 @@
             success: function (ajaxresp) {
                 if (!!ajaxresp && ajaxresp.state === "success") {
                     if (!ajaxresp.data || ajaxresp.data.length === 0) {
-                        $.modalAlert("提取处方信息失败，请确保已保存处方", 'error');
+                        $.modalAlert("Trích xuất thông tin đơn thuốc thất bại, vui lòng đảm bảo đã lưu đơn thuốc", 'error');
                         return;
                     }
                     localStorage.setItem("hid_RpInfo", ajaxresp.data);
@@ -346,7 +346,7 @@
         });
     }
 
-    //推送草药
+    //Đẩy thảo dược
     function pushMedicineInfo() {
         $.najax({
             type: "Get",
@@ -354,13 +354,13 @@
             dataType: "json",
             success: function (ajaxresp) {
                 if (ajaxresp.state === "success") {
-                    $.modalAlert("草药推送至中医馆成功", 'success');
+                    $.modalAlert("Đẩy thảo dược đến phòng khám Đông y thành công", 'success');
                 }
             }
         });
     }
 
-    //集成辩证论治
+    //Tích hợp biện chứng luận trị
     function getIntegrateAEUrl(mzh, jzys) {
         var p = {
             mzh: mzh,
@@ -380,7 +380,7 @@
                 localStorage.setItem("hid_CmmIntegrateUrl", obj.data);
                 $.modalOpen({
                     id: "Form",
-                    title: "中医馆",
+                    title: "Phòng khám Đông y",
                     url: "/MainBusiness/CmmAlertForm",
                     width: "1050px",
                     height: "700px",
@@ -392,7 +392,7 @@
         });
     }
 
-    //集成电子病历系统
+    //Hệ thống bệnh án điện tử tích hợp
     function getIntegrateEMRUrl(mzh, jzys) {
         $.najax({
             type: "Get",
@@ -408,7 +408,7 @@
                 localStorage.setItem("hid_CmmIntegrateUrl", obj.data);
                 $.modalOpen({
                     id: "Form",
-                    title: "中医馆",
+                    title: "Phòng khám Đông y",
                     url: "/MainBusiness/CmmAlertForm",
                     width: "1050px",
                     height: "565px",
@@ -420,10 +420,10 @@
         });
     }
 
-    //提取电子病历
+    //Trích xuất bệnh án điện tử
     function extractIntegrateEMR(mzh) {
         if (!mzh) {
-            $.modalAlert("请选择就诊患者", 'error');
+            $.modalAlert("Vui lòng chọn bệnh nhân khám", 'error');
             return;
         }
         $.najax({
@@ -433,7 +433,7 @@
             dataType: "json",
             success: function (ajaxresp) {
                 if (!ajaxresp) {
-                    $.modalAlert("提取病历信息失败，请确保已保存病历", 'error');
+                    $.modalAlert("Trích xuất thông tin bệnh án thất bại, vui lòng đảm bảo đã lưu bệnh án", 'error');
                     return;
                 }
                 localStorage.setItem("hid_EMRRecordInfo", JSON.stringify(ajaxresp));
@@ -442,10 +442,10 @@
         });
     }
 
-    //提取诊断
+    //Trích xuất chẩn đoán
     function extractIntegrateDiagnosis(mzh) {
         if (!mzh) {
-            $.modalAlert("请选择就诊患者", 'error');
+            $.modalAlert("Vui lòng chọn bệnh nhân khám", 'error');
             return;
         }
         $.najax({
@@ -455,7 +455,7 @@
             dataType: "json",
             success: function (ajaxresp) {
                 if (!ajaxresp) {
-                    $.modalAlert("提取诊断信息失败，请确保已保诊断", 'error');
+                    $.modalAlert("Trích xuất thông tin chẩn đoán thất bại, vui lòng đảm bảo đã lưu chẩn đoán", 'error');
                     return;
                 }
                 localStorage.setItem("hid_DiagnosisInfo", JSON.stringify(ajaxresp));
@@ -464,7 +464,7 @@
         });
     }
 
-    //隐藏搜索框并显示箭头
+    //Ẩn hộp tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         if ($("#zy_title").is(":hidden")) {
             $("#zy_body").animate({ width: 'hide' }, "slow", function () {
@@ -473,37 +473,37 @@
         }
     }
 
-    //填充病历
+    //Điền bệnh án
     window.fillRecordInfo = function () {
         var record = localStorage.getItem("hid_EMRRecordInfo");
         var robj = JSON.parse(record);
         if (!robj) {
-            $.modalAlert("获取缓存病历信息失败", 'error');
+            $.modalAlert("Lấy thông tin bệnh án từ bộ nhớ đệm thất bại", 'error');
             return;
         }
-        var psy = robj.psyCheck; //体温(T)37℃;呼吸(R)120次/分;脉搏(P)120次/分;心率110次/分;收缩压/舒张压88/70mnHg
+        var psy = robj.psyCheck; //Nhiệt độ cơ thể(T)37℃;Hô hấp(R)120lần/phút;Mạch(P)120lần/phút;Nhịp tim110lần/phút;Huyết áp tâm thu/Huyết áp tâm trương88/70mnHg
         $("#ct").val(robj.psyCheck);
         if (psy !== "") {
             var ar = psy.split(";");
             if (ar != null && ar.length > 0) {
                 $.each(ar, function (index, item) {
                     if (item.indexOf("(T)") > -1 && item.indexOf("℃") > -1) {
-                        //体温
+                        //Nhiệt độ cơ thể
                         var tw = item.substring(item.indexOf("(T)") + 3);
                         tw = tw.substring(0, tw.indexOf("℃"));
                         $("#tiwen").val(tw);
                     } else if (item.indexOf("(P)") > -1) {
-                        //脉搏
+                        //Mạch
                         var mb = item.substring(item.indexOf("(P)") + 3);
                         mb = mb.replace("次/分", "");
                         $("#maibo").val(mb);
                     } else if (item.indexOf("(R)") > -1) {
-                        //呼吸
+                        //Hô hấp
                         var hx = item.substring(item.indexOf("(R)") + 3);
                         hx = hx.replace("次/分", "");
                         $("#huxi").val(hx);
                     } else if (item.indexOf("收缩压") > -1) {
-                        //收缩压 舒张压
+                        //Huyết áp tâm thu Huyết áp tâm trương
                         var ss = item.replace("收缩压/舒张压", "");
                         ss = ss.replace("mnHg", "");
                         if (ss.indexOf("/") > -1) {
@@ -523,12 +523,12 @@
         $("#jws").val(robj.anamnesis);
     }
 
-    //填充诊断
+    //Điền chẩn đoán
     window.fillDiagnosisInfo = function () {
         var record = localStorage.getItem("hid_DiagnosisInfo");
         var robj = JSON.parse(record);
         if (!robj) {
-            $.modalAlert("获取缓存诊断信息失败", 'error');
+            $.modalAlert("Lấy thông tin chẩn đoán từ bộ nhớ đệm thất bại", 'error');
             return;
         }
         if (robj.diagnosislist == null || robj.diagnosislist.length <= 0) return;
@@ -543,7 +543,7 @@
             var allzdTest;
             var tp;
             if (item.cate === "0") {
-                //西医诊断
+                //Chẩn đoán Tây y
                 emptyInput = new Array();
                 allzdTest = $('#tablexyzd .zdText');
                 if (!!allzdTest && allzdTest.length > 0) {
@@ -564,16 +564,16 @@
                     $(tp).attr("data-zdCode", item.localCode).attr("data-icd10", item.code).val(item.name);
                 }
             } else if (item.cate === "1") {
-                //中医诊断
+                //Chẩn đoán Đông y
                 var needNew = true;
                 if (zyzdArr.length > 0) {
                     for (var i = 0; i < zyzdArr.length; i++) {
                         if (zyzdArr[i].group === item.group) {
                             if (item.type === "0") {
-                                //疾病
+                                //Bệnh
                                 zyzdArr[i].jz = item;
                             } else if (item.type === "1") {
-                                //症候
+                                //Hội chứng
                                 zyzdArr[i].hz = item;
                             }
                             needNew = false;
@@ -588,10 +588,10 @@
                         group: item.group
                     };
                     if (item.type === "0") {
-                        //疾病
+                        //Bệnh
                         zd.jz = item;
                     } else if (item.type === "1") {
-                        //症候
+                        //Hội chứng
                         zd.hz = item;
                     }
                     zyzdArr.push(zd);
@@ -622,12 +622,12 @@
         }
     }
 
-    //填充处方
+    //Điền đơn thuốc
     window.fillRpInfo = function () {
         var record = localStorage.getItem("hid_RpInfo");
         var robj = JSON.parse(record);
         if (!robj) {
-            $.modalAlert("获取缓存处方信息失败", 'error');
+            $.modalAlert("Lấy thông tin đơn thuốc từ bộ nhớ đệm thất bại", 'error');
             return false;
         }
         if (robj.length === 0) return false;
@@ -642,7 +642,7 @@
         for (var i = 0; i < robj.length; i++) {
             var item = robj[i];
             var rowid = $("#gridzycf tr:last")[0].id;
-            //检查重复
+            //Kiểm tra trùng lặp
             var isRepeatedAdd = false;
             var addypCode = item.sfxmCode;
             $.each($("#gridzycf").getDataIDs(), function () {
@@ -654,7 +654,7 @@
                 }
             });
             if (isRepeatedAdd) {
-                $.modalAlert("单张处方下明细不能重复", 'warning');
+                $.modalAlert("Chi tiết trong một đơn thuốc không được trùng lặp", 'warning');
                 return false;
             }
             $("#" + rowid + "_zxks").val(item.yfbmCode);
@@ -666,10 +666,10 @@
             $("#" + rowid + "_mcjldw").val(item.jldw);
             $("#" + rowid + "_dw").val(item.dw);
             $("#" + rowid + "_Remark").val(item.note);
-            CalculateTCMEachLineSlANDJe(rowid);   //计算明细里的金额和处方金额
+            CalculateTCMEachLineSlANDJe(rowid);   //Tính số tiền trong chi tiết và số tiền đơn thuốc
 
             if (isMedicineSearchRelatedKC === 'True') {
-                //库存数量
+                //Số lượng tồn kho
                 var kcsl = parseInt(item.kcsl);
                 var cls = parseInt(item.cls);
                 var mzkcsl = !!kcsl && !!cls ? (parseInt(kcsl / cls)) : 0;

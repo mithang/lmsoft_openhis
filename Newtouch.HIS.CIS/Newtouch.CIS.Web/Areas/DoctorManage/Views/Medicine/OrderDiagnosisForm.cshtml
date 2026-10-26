@@ -1,14 +1,14 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "出区诊断";
+    ViewBag.Title = "Chẩn đoán xuất khu";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <form id="form1">
     <div class="panel-default" style="padding-right:10px;">
         <table id="tablezd" class="form">
             <tr>
-                <th class="formTitle">诊断时间：</th>
+                <th class="formTitle">Thời gian chẩn đoán:</th>
                 <td class="formValue">
                     <input id="txt_zdsj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:100%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" />
@@ -18,7 +18,7 @@
 					
 				<th class="formTitle" style="margin-left:20px;">
 					@*<i id="zdCircle" class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>*@
-					医嘱诊断：
+					Chẩn đoán y lệnh:
 				</th>
 				<td class="formValue" colspan="2">
 					<input id="txt_cyzddm" type="hidden" />
@@ -33,13 +33,13 @@
     $(function () {
     });
     //$(window).bind('beforeunload', function () {
-    //    alert("是否要离开");
+    //    alert("Có muốn rời đi không");
     //    if ($('#txt_zdsj').val() == null || $('#txt_zdsj').val() == "") {
-    //        $.modalAlert("需要填写时间！", "warning");
+    //        $.modalAlert("Cần điền thời gian!", "warning");
     //        return;
     //    }
     //    if ($('#txt_cyzddm').val() == null || $('#txt_cyzddm').val() == "") {
-    //        $.modalAlert("需要填写诊断！", "warning");
+    //        $.modalAlert("Cần điền chẩn đoán!", "warning");
     //        return;
     //    }
     //});
@@ -69,11 +69,11 @@
     function Orderdiagnosis() {
         var obj = new Object();
         if ($('#txt_zdsj').val() == null || $('#txt_zdsj').val() == "") {
-            $.modalAlert("需要填写时间！", "warning");
+            $.modalAlert("Cần điền thời gian!", "warning");
             return;
         }
         if ($('#txt_cyzddm').val() == null || $('#txt_cyzddm').val() == "") {
-            $.modalAlert("需要填写诊断！", "warning");
+            $.modalAlert("Cần điền chẩn đoán!", "warning");
             return;
         }
         obj.zdsj = $('#txt_zdsj').val();

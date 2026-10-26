@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "退药查询";
+    ViewBag.Title = "Tra cứu trả thuốc";
     Layout = "~/Views/Shared/_Index.cshtml";
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
     var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
@@ -52,12 +52,12 @@
     <div class="dv-left">
         <div class="panel panel-default">
             <div class="panel-heading navb-bg">
-                筛选条件
+                Điều kiện lọc
             </div>
             <table class="form" style="width:95%">
                 <tbody>
                     <tr>
-                        <th class="formTitle">姓名/住院号：</th>
+                        <th class="formTitle">Họ tên/Số nhập viện:</th>
                         <td class="formValue">
                             <input id="keyword" type="text" class="form-control">
                         </td>
@@ -66,7 +66,7 @@
             </table>
         </div>
         <div class="dv-left-title">
-            患者列表
+            Danh sách bệnh nhân
         </div>
         <div class="dv-left-tree" id="PatTreeList"></div>
     </div>
@@ -74,29 +74,29 @@
         <div class="dv-right-order">
             <div class="panel panel-default">
                 <div class="panel-heading navb-bg">
-                    筛选条件
+                    Điều kiện lọc
 
                 </div>
                 <div>
                     <table class="form">
                         <tr>
-                            <th class="formTitle">药品名称：</th>
+                            <th class="formTitle">Tên thuốc:</th>
                             <td class="formValue">
-                                <input id="txt_name" type="text" class="form-control" placeholder="药品名称" />
+                                <input id="txt_name" type="text" class="form-control" placeholder="Tên thuốc" />
                             </td>
-                            <th class="formTitle">开始日期：</th>
+                            <th class="formTitle">Ngày bắt đầu:</th>
                             <td class="formValue">
                                 <input id="txt_ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refleshMedList(); } })" value="@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")" />
                             </td>
-                            <th class="formTitle">结束日期：</th>
+                            <th class="formTitle">Ngày kết thúc:</th>
                             <td class="formValue">
                                 <input id="txt_jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refleshMedList(); } })" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" />
                             </td>
                             <td class="formTitle">
-                                <input type="button" id="btn_search" class="btn btn-md btn-primary" value="查询" />
+                                <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
                             </td>
                             @*<td class="formTitle">
-                            <input type="button" id="btn_confirm" class="btn btn-md btn-primary" value="退药确认" />
+                            <input type="button" id="btn_confirm" class="btn btn-md btn-primary" value="Xác nhận trả thuốc" />
                         </td>*@
                         </tr>
                     </table>
@@ -130,7 +130,7 @@
     var zyh = "";
     
     $(function () {
-        $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+        $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt thì tính lại chiều rộng và chiều cao
             $(".dv-body").height($(window).height());
             $(".dv-body").width($(window).width());
         });
@@ -139,7 +139,7 @@
         getPatTreeList();
         gridList("");
 
-        //搜索病人信息
+        //Tìm kiếm thông tin bệnh nhân
         $('#keyword').keyup(function () {
             getPatTreeList();
         });
@@ -180,12 +180,12 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_name').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
 
-    //刷新列表
+    //Làm mới danh sách
     function refleshMedList() {
         $("#btn_search").trigger('click');
     }
@@ -207,19 +207,19 @@
             editurl: "clientArray",
             height: $(window).height() - 170,
             colModel: [
-                { label: "主键", name: "Id", hidden: true, key: true },
-                { label: '姓名', name: 'hzxm', width: 100, align: 'left' },
-                { label: '退药申请单号', name: 'tydh', width: 80, align: 'left' },
-                { label: '床位名称', name: 'cwmc', width: 80, align: 'left' },
-                { label: '医嘱性质', name: 'yzxz', width: 60, align: 'center', formatter: function (cellvalue) { if (cellvalue == 2) return "长期"; if (cellvalue == 1) return "临时"; } },
-                { label: '药品名称', name: 'ypmc', width: 250, align: 'center' },
-                { label: '退药数量', name: 'tysl', width: 60, align: 'center' },
-                { label: '退药单位', name: 'ypdw', width: 60, align: 'center' },
-                { label: '退药申请时间', name: 'CreateTime', width: 120, align: 'left' }, 
-                { label: '退药记账时间', name: 'zxrq', width: 120, align: 'left' }, 
-                { label: '操作人', name: 'ysxm', width: 120, align: 'left' },
-                { label: '执行日期', name: 'zxrq', hidden: true },
-                { label: '药房是否审核', name: 'zt', hidden: true },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Họ tên', name: 'hzxm', width: 100, align: 'left' },
+                { label: 'Số phiếu yêu cầu trả thuốc', name: 'tydh', width: 80, align: 'left' },
+                { label: 'Tên giường bệnh', name: 'cwmc', width: 80, align: 'left' },
+                { label: 'Tính chất y lệnh', name: 'yzxz', width: 60, align: 'center', formatter: function (cellvalue) { if (cellvalue == 2) return "长期"; if (cellvalue == 1) return "临时"; } },
+                { label: 'Tên thuốc', name: 'ypmc', width: 250, align: 'center' },
+                { label: 'Số lượng trả thuốc', name: 'tysl', width: 60, align: 'center' },
+                { label: 'Đơn vị trả thuốc', name: 'ypdw', width: 60, align: 'center' },
+                { label: 'Thời gian yêu cầu trả thuốc', name: 'CreateTime', width: 120, align: 'left' }, 
+                { label: 'Thời gian ghi sổ trả thuốc', name: 'zxrq', width: 120, align: 'left' }, 
+                { label: 'Người thao tác', name: 'ysxm', width: 120, align: 'left' },
+                { label: 'Ngày thực hiện', name: 'zxrq', hidden: true },
+                { label: 'Nhà thuốc có duyệt không', name: 'zt', hidden: true },
                 { label: 'zyh', name: 'zyh', hidden: true },
             ],
             viewrecords: true,
@@ -239,7 +239,7 @@
                     var rowData = $("#gridList").jqGrid('getRowData', rowIndex);
                     var ids = $("#gridList").jqGrid('getRowData_AllLine');
 
-                    liststu = s; //同步状态
+                    liststu = s; //Trạng thái đồng bộ
                     for (var i = 0; i < ids.length; i++) {
                         if (ids[i].tydh == rowData.tydh && ids[i].tydh != "") {
                             if (s == true) {
@@ -263,15 +263,15 @@
                 if (list.length > 0) {
 
                     for (j = j; j < list.length; j++) {
-                        if (liststu) //同组选中
+                        if (liststu) //Chọn cùng nhóm
                         {
                             j = j + 1;
                             $("#gridList").jqGrid("setSelection", list[j - 1], true);
 
                         }
-                        else { //同组取消选中
+                        else { //Hủy chọn cùng nhóm
                            // j = j + 1;
-                            $("#gridList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow
+                            $("#gridList").jqGrid("setSelection", list[j], false);      //Hủy không kích hoạtonselectrow
                         }
 
                     }

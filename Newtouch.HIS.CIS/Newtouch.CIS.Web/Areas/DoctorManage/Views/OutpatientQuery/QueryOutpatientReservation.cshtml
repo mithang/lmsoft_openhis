@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "查询门诊预约记录";
+    ViewBag.Title = "Tra cứu hồ sơ hẹn khám ngoại trú";
     Layout = "~/Views/Shared/_Index.cshtml";
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
     var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
@@ -47,29 +47,29 @@
 <form name="form1">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            筛选条件
+            Điều kiện lọc
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">预约日期：</th>
+                <th class="formTitle">Ngày hẹn:</th>
                 <td class="formValue" style="width:10%">
                     <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            value="@DateTime.Now.ToString("yyyy-MM-dd")" />
-                </td><td class="formValue" style="width:10%;float:left;"><label style="position:relative;top:5px;">至</label></td>
+                </td><td class="formValue" style="width:10%;float:left;"><label style="position:relative;top:5px;">đến</label></td>
                 <td class="formValue" style="width:10%;float:left;">
                     <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px;float:left;"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 </td>
-                <th class="formTitle">预约姓名：</th>
+                <th class="formTitle">Tên người hẹn:</th>
                 <td class="formValue" style="width:10%;float:left;">
                     <input id="xm" type="text" class="form-control" style="width:90px;float:left;" />
                 </td>
                 <td class="formValue">
-                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="查询" />
+                    <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="Tra cứu" />
                 </td>
             </tr>
         </table>
@@ -81,10 +81,10 @@
 </form>
 <script>
     $(function () {
-        //查询列表
+        //Danh sách tra cứu
         gridList();
     });
-    //预约信息查询
+    //Tra cứu thông tin hẹn
     function gridList() {
         var $gridJsList = $("#gridList");
         $gridJsList.dataGrid({
@@ -94,24 +94,24 @@
             url: "/DoctorManage/OutpatientQuery/GetReservationGridJson",
             colModel: [
 
-                { label: '预约日期', name: 'yyrq', width: 80, align: 'center' },
-                { label: '预约时间', name: 'yysj', width: 80, align: 'center' },
-                { label: '门诊号码', name: 'mzh', width: 100, align: 'center' },
-                { label: '患者姓名', name: 'xm', align: 'center', width: 110 },
-                { label: '性别', name: 'xb', align: 'center', width: 50 },
-                { label: '预约人电话', name: 'yylxfs', align: 'center', width: 100 },
-                { label: '预约科室', name: 'yyks', width: 80, align: 'center' },
-                { label: '预约医生', name: 'yyys', align: 'center', width: 80 },
-                { label: '操作1', name: 'action', align: 'center', width: 100, formatter: function (val) { return "<input class='btn btn-default btn-md btn_add' type='button' value='修改时间' onclick='updateRow($(this).parent().parent().attr(\"id\"))'/>"; } },
-                { label: '操作2', name: 'action', align: 'left', width: 100, formatter: function (val) { return "<input class='btn btn-default btn-md btn_add' type='button' value='删除记录' onclick='deleteRow($(this).parent().parent().attr(\"id\"))'/>"; } },
+                { label: 'Ngày hẹn', name: 'yyrq', width: 80, align: 'center' },
+                { label: 'Thời gian hẹn', name: 'yysj', width: 80, align: 'center' },
+                { label: 'Số khám ngoại trú', name: 'mzh', width: 100, align: 'center' },
+                { label: 'Tên bệnh nhân', name: 'xm', align: 'center', width: 110 },
+                { label: 'Giới tính', name: 'xb', align: 'center', width: 50 },
+                { label: 'Điện thoại người hẹn', name: 'yylxfs', align: 'center', width: 100 },
+                { label: 'Khoa hẹn', name: 'yyks', width: 80, align: 'center' },
+                { label: 'Bác sĩ hẹn', name: 'yyys', align: 'center', width: 80 },
+                { label: 'Thao tác1', name: 'action', align: 'center', width: 100, formatter: function (val) { return "<input class='btn btn-default btn-md btn_add' type='button' value='Thời gian sửa' onclick='updateRow($(this).parent().parent().attr(\"id\"))'/>"; } },
+                { label: 'Thao tác2', name: 'action', align: 'left', width: 100, formatter: function (val) { return "<input class='btn btn-default btn-md btn_add' type='button' value='Xóa hồ sơ' onclick='deleteRow($(this).parent().parent().attr(\"id\"))'/>"; } },
             ],
             pager: "#gridPager",
             sortname: " yyrq asc",
-            rownumbers: true,  //是否显示序号
+            rownumbers: true,  //Có hiển thị số thứ tự không
             viewrecords: true
         });
         $("#btn_search").click(function () {
-            $('#gridList').jqGrid("clearGridData");//先清空明细
+            $('#gridList').jqGrid("clearGridData");//Xóa chi tiết trước
             $gridJsList.jqGrid('setGridParam', {
                 postData: { kssj: $("#kssj").val(), jssj: $("#jssj").val(), xm: $("#xm").val() },
                 url: "/DoctorManage/OutpatientQuery/GetReservationGridJson",
@@ -121,11 +121,11 @@
     function updateRow(rowid) {
         var rowData = $("#gridList").jqGrid('getRowData', rowid);
         if (rowData == null) {
-            $.modalMsg("未找到当前行", 'error');
+            $.modalMsg("Không tìm thấy dòng hiện tại", 'error');
         }
         $.modalOpen({
             id: "ReservationForm",
-            title: "预约看诊",
+            title: "Hẹn khám",
             url: "/MedicalRecord/ReservationForm?mzh=" + rowData.mzh,
             width: "400px",
             height: "300px",
@@ -153,7 +153,7 @@
     function deleteRow(rowid) {
         var rowData = $("#gridList").jqGrid('getRowData', rowid);
         if (rowData == null) {
-            $.modalMsg("未找到当前行", 'error');
+            $.modalMsg("Không tìm thấy dòng hiện tại", 'error');
         }
         $.ajax({
             url: "/MedicalRecord/DelReservationData",

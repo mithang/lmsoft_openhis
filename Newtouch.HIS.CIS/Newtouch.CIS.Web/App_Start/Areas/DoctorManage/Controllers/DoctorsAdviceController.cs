@@ -33,23 +33,23 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         [HandlerAuthorizeIgnore]
         public override ActionResult Index()
         {
-            //判断登陆者身份是否是护士
+            //Kiểm tra người đăng nhập có phải là y tá không
             var isDoctor = _sysUserDmnService.CheckStaffIsBelongDuty(UserIdentity.StaffId, "Doctor");
             if (!isDoctor)
             {
-                ViewBag.bhbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId, true);//住院医嘱套餐是否包含病区
-                //如果是护士，进入住院医嘱查看页面
+                ViewBag.bhbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId, true);//Gói y lệnh nhập viện có bao gồm khu bệnh không
+                //Nếu là y tá, vào trang xem y lệnh nhập viện
                 return View("ZyyzQuery");
             }
-            ViewBag.ysgh = UserIdentity.rygh;//医生工号
-            ViewBag.pcStr = _sysConfigRepo.GetValueByCode("FrequencyStr", OrganizeId)== "" ? "": _sysConfigRepo.GetValueByCode("FrequencyStr", OrganizeId);//临时频次
-            ViewBag.bhbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId,true);//住院医嘱套餐是否包含病区
-            ViewBag.zzlconfig = _sysConfigRepo.GetValueByCode("zllconfig", OrganizeId)=="" ? "每次治疗量": _sysConfigRepo.GetValueByCode("zllconfig", OrganizeId);//住院项目录入治疗量文本配置
-            ViewBag.bwhide = _sysConfigRepo.GetBoolValueByCode("bwhide", OrganizeId, false);//住院项目录入部位显示隐藏配置                                           
-            ViewBag.IsOpenJyJcSwitch = _sysConfigRepo.GetBoolValueByCode("OpenZYJyJcSwitch", this.OrganizeId,false);//是否开放检验检查
-            ViewBag.sfxmService = _sysConfigRepo.GetValueByCode("sfxmService", this.OrganizeId)=="" ? "cg" : _sysConfigRepo.GetValueByCode("sfxmService", this.OrganizeId);//是否开放检验检查
-            ViewBag.ISOpenSsyz= _sysConfigRepo.GetBoolValueByCode("ISOpenSsyzSwitch", this.OrganizeId, false);//是否开放膳食医嘱
-            //临时频次
+            ViewBag.ysgh = UserIdentity.rygh;//Mã nhân viên bác sĩ
+            ViewBag.pcStr = _sysConfigRepo.GetValueByCode("FrequencyStr", OrganizeId)== "" ? "": _sysConfigRepo.GetValueByCode("FrequencyStr", OrganizeId);//Tần suất tạm thời
+            ViewBag.bhbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId,true);//Gói y lệnh nhập viện có bao gồm khu bệnh không
+            ViewBag.zzlconfig = _sysConfigRepo.GetValueByCode("zllconfig", OrganizeId)=="" ? "每次治疗量": _sysConfigRepo.GetValueByCode("zllconfig", OrganizeId);//Cấu hình văn bản lượng điều trị khi nhập hạng mục nhập viện
+            ViewBag.bwhide = _sysConfigRepo.GetBoolValueByCode("bwhide", OrganizeId, false);//Cấu hình hiển thị/ẩn vị trí khi nhập hạng mục nhập viện                                           
+            ViewBag.IsOpenJyJcSwitch = _sysConfigRepo.GetBoolValueByCode("OpenZYJyJcSwitch", this.OrganizeId,false);//Có mở xét nghiệm kiểm tra không
+            ViewBag.sfxmService = _sysConfigRepo.GetValueByCode("sfxmService", this.OrganizeId)=="" ? "cg" : _sysConfigRepo.GetValueByCode("sfxmService", this.OrganizeId);//Có mở xét nghiệm kiểm tra không
+            ViewBag.ISOpenSsyz= _sysConfigRepo.GetBoolValueByCode("ISOpenSsyzSwitch", this.OrganizeId, false);//Có mở y lệnh suất ăn không
+            //Tần suất tạm thời
             var frequencyStr = _sysConfigRepo.GetValueByCode("FrequencyStr", OrganizeId) ?? "";
             if (!string.IsNullOrWhiteSpace(frequencyStr))
             {
@@ -62,29 +62,29 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
                 ViewBag.pcmc = pcInfo.yzpcmc;
             }
             #region 抗生素相关
-            ViewBag.IsQyKssKz = _sysConfigRepo.GetBoolValueByCode("openKssQxSwitch", OrganizeId);//是否启用抗生素
-            ViewBag.qxjb = "0";//抗生素权限级别(默认 0 非限制用药)
+            ViewBag.IsQyKssKz = _sysConfigRepo.GetBoolValueByCode("openKssQxSwitch", OrganizeId);//Có bật kháng sinh không
+            ViewBag.qxjb = "0";//Cấp độ quyền kháng sinh(Mặc định 0 Thuốc không bị hạn chế)
             SysStaffVEntity staff = _sysStaffRepo.GetValidStaffByGh(UserIdentity.rygh, OrganizeId);
             if (staff != null)
             {
                 switch (staff.zc)
                 {
                     case "ys":
-                        ViewBag.qxjb = "0";//医师 对应 非限制用药 0
+                        ViewBag.qxjb = "0";//Bác sĩ Tương ứng Thuốc không bị hạn chế 0
                         break;
                     case "zzys":
-                        ViewBag.qxjb = "1";//主治医师 对应 限制用药 1
+                        ViewBag.qxjb = "1";//Bác sĩ điều trị chính Tương ứng Thuốc bị hạn chế 1
                         break;
                     case "zrys":
-                        ViewBag.qxjb = "2";//主任医师 对应 特殊用药 2
+                        ViewBag.qxjb = "2";//Bác sĩ trưởng khoa Tương ứng Thuốc đặc biệt 2
                         break;
                     default:
-                        ViewBag.qxjb = "0";//医师 对应 非限制用药 0
+                        ViewBag.qxjb = "0";//Bác sĩ Tương ứng Thuốc không bị hạn chế 0
                         break;
                 }
             }
             #endregion 抗生素相关
-            //影像配置
+            //Cấu hình hình ảnh
             ViewBag.PACSCode = _sysConfigRepo.GetValueByCode("PACSCode", OrganizeId);
 
             #region 滴速
@@ -126,11 +126,11 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
 
         public ActionResult saveAsTemplate(InpatientOrderPackageEntity mbObj, List<InpatientOrderPackageVO> mxList)
         {
-            if (mbObj.tcfw==(int)EnumTcfw.Dept)//科室
+            if (mbObj.tcfw==(int)EnumTcfw.Dept)//Khoa
             {
                 mbObj.DeptCode=UserIdentity.DepartmentCode;
             }
-            if (mbObj.tcfw == (int)EnumTcfw.Ward)//病区
+            if (mbObj.tcfw == (int)EnumTcfw.Ward)//Khu bệnh
             {
                 mbObj.WardCode = _iBaseDataDmnService.GetWardListByStaffGh(UserIdentity.rygh, OrganizeId).FirstOrDefault().bqCode;
             }
@@ -140,7 +140,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
 
 
         /// <summary>
-        /// 模板树
+        /// Cây mẫu
         /// </summary>
         /// <returns></returns>
         public ActionResult GetTreeList(int tcfw,string yzlx)
@@ -191,7 +191,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
 
         /// <summary>
-        /// 医嘱查询
+        /// Tra cứu y lệnh
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -209,7 +209,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
 
         /// <summary>
-        /// 停止、作废医嘱
+        /// Dừng, hủy y lệnh
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="tzsj"></param>
@@ -220,7 +220,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
 
         /// <summary>
-        /// 删除未审核的医嘱
+        /// Xóa y lệnh chưa duyệt
         /// </summary>
         /// <param name="yzId"></param>
         /// <returns></returns>
@@ -230,7 +230,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
 
         /// <summary>
-        /// 撤DC
+        /// HủyDC
         /// </summary>
         /// <param name="yzId"></param>
         /// <returns></returns>
@@ -240,7 +240,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
 
         /// <summary>
-        /// 出院全停
+        /// Dừng toàn bộ khi xuất viện
         /// </summary>
         /// <returns></returns>
         public ActionResult AdviceLeaveHospitalStopSubmit(string zyh,DateTime tzsj) {
@@ -249,7 +249,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
 
         /// <summary>
-        /// 转区全停
+        /// Dừng toàn bộ khi chuyển khu
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -279,7 +279,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
 
         /// <summary>
-        /// 判断当前病人是否存在未审核的长期医嘱
+        /// Kiểm tra bệnh nhân hiện tại có y lệnh dài hạn chưa duyệt không
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -294,7 +294,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
 
         /// <summary>
-        /// 返回套餐范围
+        /// Trả về phạm vi gói
         /// </summary>
         /// <returns></returns>
         public ActionResult GettcfwContainWard()
@@ -326,7 +326,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
 
         /// <summary>
-        /// 选套餐明细
+        /// Chọn chi tiết gói
         /// </summary>
         /// <returns></returns>
         public ActionResult GetTemplatePresDetailByMbId(string mbId) {
@@ -334,7 +334,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
 
         /// <summary>
-        /// 医嘱查询生成医嘱类型下拉框时，配置的检验检查显示
+        /// Khi tra cứu y lệnh tạo hộp thả xuống loại y lệnh, hiển thị xét nghiệm kiểm tra đã cấu hình
         /// </summary>
         /// <returns></returns>
         public ActionResult GetyzlxContain() {

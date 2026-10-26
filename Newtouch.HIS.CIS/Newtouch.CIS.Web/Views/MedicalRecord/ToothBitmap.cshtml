@@ -1,11 +1,11 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "牙位图";
+    ViewBag.Title = "Sơ đồ vị trí răng";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
     .teeth-container {
-        /*background-image: url('../../Content/img/牙位图.png');*/
+        /*background-image: url('../../Content/img/Sơ đồ vị trí răng.png');*/
         width: 500px;
         height: 500px;
         background-size: cover;
@@ -711,14 +711,14 @@
             <table class="form">
                 <tr>
                     <td class="formValue">
-                        <input id="rpt_ywtqx" type="button" class="btn btn-primary" value="全选" onclick="ywtqx()">
-                        @*<input id="ywtqx_qx" type="button" style="width:50px" class="btn btn-primary" value="全选" onclick="ywtqx()">*@
+                        <input id="rpt_ywtqx" type="button" class="btn btn-primary" value="Chọn tất cả" onclick="ywtqx()">
+                        @*<input id="ywtqx_qx" type="button" style="width:50px" class="btn btn-primary" value="Chọn tất cả" onclick="ywtqx()">*@
                     </td>
                 </tr>
                 <tr>
                     <td class="formValue">
-                        <input id="rpt_ywtqc" type="button" class="btn btn-primary" value="清除" onclick="ywtqc()">
-                        @*<input id="ywtqc_qc" type="button" style="width:50px" class="btn btn-primary" value="清除" onclick="ywtqc()">*@
+                        <input id="rpt_ywtqc" type="button" class="btn btn-primary" value="Xóa" onclick="ywtqc()">
+                        @*<input id="ywtqc_qc" type="button" style="width:50px" class="btn btn-primary" value="Xóa" onclick="ywtqc()">*@
                     </td>
                 </tr>
             </table>
@@ -727,26 +727,26 @@
             <table class="form">
                 <tr>
                     <td class="formValue">
-                        <input id="rpt_hy" name="ywlx" onclick="ywlxxz('hy')" checked="checked" value="yw" type="radio"> 恒牙
-                        @*<input id="ywtqx_qx" type="button" style="width:50px" class="btn btn-primary" value="全选" onclick="ywtqx()">*@
+                        <input id="rpt_hy" name="ywlx" onclick="ywlxxz('hy')" checked="checked" value="yw" type="radio"> Răng vĩnh viễn
+                        @*<input id="ywtqx_qx" type="button" style="width:50px" class="btn btn-primary" value="Chọn tất cả" onclick="ywtqx()">*@
                     </td>
                 </tr>
                 <tr>
                     <td class="formValue">
-                        <input id="rpt_ry" name="ywlx" onclick="ywlxxz('ry')"  value="ry" type="radio"> 乳牙
-                        @*<input id="ywtqc_qc" type="button" style="width:50px" class="btn btn-primary" value="清除" onclick="ywtqc()">*@
+                        <input id="rpt_ry" name="ywlx" onclick="ywlxxz('ry')"  value="ry" type="radio"> Răng sữa
+                        @*<input id="ywtqc_qc" type="button" style="width:50px" class="btn btn-primary" value="Xóa" onclick="ywtqc()">*@
                     </td>
                 </tr>
                 <tr>
                     <td class="formValue">
-                        <input id="rpt_hhy" name="ywlx" onclick="ywlxxz('hhy')"  value="hhy" type="radio"> 混合牙
-                        @*<input id="ywtqc_qc" type="button" style="width:50px" class="btn btn-primary" value="清除" onclick="ywtqc()">*@
+                        <input id="rpt_hhy" name="ywlx" onclick="ywlxxz('hhy')"  value="hhy" type="radio"> Răng hỗn hợp
+                        @*<input id="ywtqc_qc" type="button" style="width:50px" class="btn btn-primary" value="Xóa" onclick="ywtqc()">*@
                     </td>
                 </tr>
                 <tr>
                     <td class="formValue">
-                        <input id="rpt_dsy" name="ywlx" onclick="ywlxxz('dsy')"  value="dsy" type="radio"> 多生牙
-                        @*<input id="ywtqc_qc" type="button" style="width:50px" class="btn btn-primary" value="清除" onclick="ywtqc()">*@
+                        <input id="rpt_dsy" name="ywlx" onclick="ywlxxz('dsy')"  value="dsy" type="radio"> Răng thừa
+                        @*<input id="ywtqc_qc" type="button" style="width:50px" class="btn btn-primary" value="Xóa" onclick="ywtqc()">*@
                     </td>
                 </tr>
             </table>
@@ -813,7 +813,7 @@
             $(".teeth-container").css("background-image", "url('../../Content/img/牙位图.png')");
             $(".rydivclick").css("opacity", "0");
         }
-        //$(".bg-ryt").css("background-image", "url('../../Content/img/乳牙图.png')");
+        //$(".bg-ryt").css("background-image", "url('../../Content/img/Sơ đồ răng sữa.png')");
         $('.divclick').click(function (e) {
             var val = $('input:radio[name="ywlx"]:checked').val();
             if (val == "yw" || val == "hhy" || val == "dsy") {

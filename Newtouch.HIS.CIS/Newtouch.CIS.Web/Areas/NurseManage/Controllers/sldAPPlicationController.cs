@@ -33,7 +33,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         //}
 
         ///// <summary>
-        ///// 申领单号
+        ///// Số phiếu lĩnh
         ///// </summary>
         ///// <returns></returns>
         //[HttpGet]
@@ -44,7 +44,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         //}
 
         ///// <summary>
-        ///// 下拉物资信息
+        ///// Thông tin vật tư thả xuống
         ///// </summary>
         ///// <param name="key"></param>
         ///// <param name="slksbm"></param>
@@ -66,11 +66,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         ///// <summary>
-        ///// 下拉物资批号批次信息
+        ///// Thông tin số lô, lô vật tư thả xuống
         ///// </summary>
-        ///// <param name="proId">物资ID</param>
-        ///// <param name="gysId">供应商ID</param>
-        ///// <param name="deliveryNo">配送单号</param>
+        ///// <param name="proId">Vật tưID</param>
+        ///// <param name="gysId">Nhà cung cấpID</param>
+        ///// <param name="deliveryNo">Số phiếu giao hàng</param>
         ///// <param name="keyword"></param>
         ///// <returns></returns>
         //[HttpGet]
@@ -80,7 +80,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         //}
 
         ///// <summary>
-        ///// 获取库房
+        ///// Lấy kho
         ///// </summary>
         ///// <returns></returns>
         //public ActionResult GetDeptByKf(string keyword)
@@ -90,7 +90,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         //}
 
         ///// <summary>
-        ///// 获取病区
+        ///// Lấy khu bệnh
         ///// </summary>
         ///// <returns></returns>
         //public ActionResult GetDeptBy(string keyword)

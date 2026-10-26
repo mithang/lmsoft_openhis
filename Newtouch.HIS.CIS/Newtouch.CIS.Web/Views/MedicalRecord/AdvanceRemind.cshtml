@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "开立处方(医嘱)事前提醒";
+    ViewBag.Title = "Lập đơn thuốc(Y lệnh)Nhắc nhở trước";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
@@ -20,23 +20,23 @@
             datatype: 'local',
             data: sqtxdata,
             height: $(window).height() - 80,
-            shrinkToFit: false,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
+            shrinkToFit: false,   //true:Khởi tạo chiều rộng cột theo tỷ lệ false:Sử dụngcolModelchiều rộng đã chỉ định
             autowidth: true,
-            rownumbers: false,  //是否显示序号
+            rownumbers: false,  //Có hiển thị số thứ tự không
             unwritten: false,
             colModel: [
-                { label: '处方号', name: 'AKC220', width: 80, align: 'center' },
-                { label: '药品/项目编码', name: 'AKE001', width: 80, align: 'center' },
-                { label: '医保药品/项目名称', name: 'AKE002', width: 120, align: 'center' },
-                { label: '违反规则名称', name: 'BZE868', width: 80, align: 'center'},
-                { label: '违规说明', name: 'AAE013', width: 150, align: 'center' },
+                { label: 'Số đơn thuốc', name: 'AKC220', width: 80, align: 'center' },
+                { label: 'Thuốc/Mã hạng mục', name: 'AKE001', width: 80, align: 'center' },
+                { label: 'Thuốc bảo hiểm y tế/Tên hạng mục', name: 'AKE002', width: 120, align: 'center' },
+                { label: 'Tên quy tắc vi phạm', name: 'BZE868', width: 80, align: 'center'},
+                { label: 'Giải thích vi phạm', name: 'AAE013', width: 150, align: 'center' },
                 {
-                    label: '违规级别', name: 'BAZ969', width: 60, align: 'center', formatter: function (cellvalue) {
+                    label: 'Cấp độ vi phạm', name: 'BAZ969', width: 60, align: 'center', formatter: function (cellvalue) {
                         return cellvalue == '01' ? '严重' : (cellvalue=='02' ? '警告':'提示')
                     }
                 },
                 {
-                    label: '限制级别', name: 'BAZ970', width: 60, align: 'center', formatter: function (cellvalue) {
+                    label: 'Cấp độ hạn chế', name: 'BAZ970', width: 60, align: 'center', formatter: function (cellvalue) {
                         if(cellvalue=='1'){
                             return '禁忌';
                         } else if (cellvalue=='2')
