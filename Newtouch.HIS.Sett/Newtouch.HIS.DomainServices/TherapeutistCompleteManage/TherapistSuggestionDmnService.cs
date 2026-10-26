@@ -101,7 +101,7 @@ namespace Newtouch.HIS.DomainServices.TherapeutistCompleteManage
         }
 
         /// <summary>
-        /// theo ngoại trú hoặc số nhập viện模糊tra cứu thông tin bệnh nhân(chuyên viên trị liệu đ ề xuất)
+        /// theo ngoại trú hoặc số nhập việnmờtra cứu thông tin bệnh nhân(chuyên viên trị liệu đ ề xuất)
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -214,7 +214,7 @@ FROM [NewtouchHIS_Sett].[dbo].[zls_zljy] AS A WITH ( NOLOCK )
         /// <param name="mzzyh"></param>
         /// <param name="orgId"></param>
         /// <param name="brlx"></param>
-        /// <param name="startTime">开立起始thời gian</param>
+        /// <param name="startTime">lậpbắt đầuthời gian</param>
         /// <returns></returns>
         public IList<TherapistSuggestionVO> GetTherapistSuggestionList(string mzzyh, string orgId, string brlx, DateTime startTime)
         {
@@ -249,7 +249,7 @@ and zljy.CreateTime >= @startTime";
         }
 
         /// <summary>
-        /// Cập nhật đ ề xuất của chuyển 换trạng thái
+        /// Cập nhật đ ề xuất của chuyển đổitrạng thái
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cvList"></param>

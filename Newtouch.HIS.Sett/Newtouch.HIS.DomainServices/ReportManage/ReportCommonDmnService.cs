@@ -86,7 +86,7 @@ namespace Newtouch.HIS.DomainServices
 					foreach (var old in olds)
 					{
 						old.Modify();
-						old.zt = "0";   //置là không hiệu lực
+						old.zt = "0";   //đặtlà không hiệu lực
 						db.Update(old);
 					}
 				}
@@ -338,7 +338,7 @@ and gh.OrganizeId=@orgId";
             return this.FindList<GetJyllk>(sql, new[] { new SqlParameter("@ksrq", ksrq), new SqlParameter("@jsrq", jsrq), new SqlParameter("@orgId", OrganizeId) });
         }
         /// <summary>
-        /// cửa cấp cứu大病Đ ăng ký khám kho 
+        /// cửa cấp cứubệnh nặngĐ ăng ký khám kho 
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ksrq"></param>
@@ -406,7 +406,7 @@ and ybjs.setl_time<=@jsrq and gh.OrganizeId=@orgId";
             return this.FindList<OutpatientRegistrationVO>(sql, new[] { new SqlParameter("@ksrq", ksrq), new SqlParameter("@jsrq", jsrq), new SqlParameter("@orgId", OrganizeId) });
         }
         /// <summary>
-        /// Lấy cửa cấp cứu大病加床thu phí dữ liệu
+        /// Lấy cửa cấp cứubệnh nặngthêm giườngthu phí dữ liệu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ksrq"></param>

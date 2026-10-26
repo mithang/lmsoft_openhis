@@ -110,7 +110,7 @@ namespace Newtouch.HIS.DomainServices
         }
         #region 订单查询&操作
         /// <summary>
-        /// thông qua VisitNo hủy bỏ超giờ khóa đ ơn hàng 
+        /// thông qua VisitNo hủy bỏquágiờ khóa đ ơn hàng 
         /// </summary>
         /// <param name="visitNo"></param>
         /// <param name="orgId"></param>
@@ -119,7 +119,7 @@ namespace Newtouch.HIS.DomainServices
         /// <returns></returns>
         public int ExpOrder(string visitNo, string orgId, string appId, List<OrderInfoEntity> expiredList = null)
         {
-            // hết hạn hủy bỏ 5 phút超giờ
+            // hết hạn hủy bỏ 5 phútquágiờ
             var expConfig = string.IsNullOrWhiteSpace(_LocdedOrderExpiredMinute) ? 5 : Convert.ToInt32(_LocdedOrderExpiredMinute);
             DateTime sj = DateTime.Now.AddMinutes(-expConfig);
             if (expiredList == null || expiredList.Count == 0)
@@ -355,7 +355,7 @@ where a.orderno=@orderNo and a.organizeId=@orgId and a.zt='1'
         public OrderInfoBaseVO OrderCreateMz(string kh, string mzh, string orgId, string appId, int patId, string dzId)
         {
             string msg = string.Empty;
-            //Tra cứu账 đ ơn 
+            //Tra cứusổ đ ơn 
             var cfmxData = _outChargeDmnService.GetNewAllUnSettedList(mzh, null, orgId);
             if (cfmxData == null || cfmxData.Count == 0)
             {
@@ -373,9 +373,9 @@ where a.orderno=@orderNo and a.organizeId=@orgId and a.zt='1'
             {
                 throw new FailedException($"订单号生成异常（已存在：{orderno}），请重试");
             }
-            //超giờ đ ơn hàng xử lý
+            //quágiờ đ ơn hàng xử lý
             ExpOrder(mzh, orgId, appId);
-            //Tra c ứuĐ ãcó hiệu lực đ ơn hàng: chờ thanh toán, Đ ã thanh toán, Đ ã锁定
+            //Tra c ứuĐ ãcó hiệu lực đ ơn hàng: chờ thanh toán, Đ ã thanh toán, Đ ãkhóa
             var unpayMxArr = cfmxData.Select(p => p.cfh).ToArray();
             var orderMz = _orderInfoRepo.IQueryable(p => p.VisitNo == mzh && p.CardNo == kh && p.OrderStu != (int)EnumOrderStatus.zf && p.OrganizeId == orgId && p.zt == "1");
             if (orderMz != null && orderMz.Count() > 0)
@@ -407,7 +407,7 @@ where a.orderno=@orderNo and a.organizeId=@orgId and a.zt='1'
                         {
                             return lockOrderList.FirstOrDefault().MapperTo<OrderInfoEntity, OrderInfoBaseVO>();
                         }
-                        // tại đ ây có thể 加入窗口 nhất 高 quyền hạn có thể hủy khác渠道 khóa đ ơn hàng 
+                        // tại đ ây có thể tham giacửa sổ nhất cao quyền hạn có thể hủy kháckênh khóa đ ơn hàng 
                         throw new FailedException($"订单已在其他渠道支付中，请稍后重试。");
                     }
                     else if (!left.Any(t => right.Any(b => b.cfh == t.cfh && b.cfje == t.cfje && b.cfxmmx == t.cfxmmx)))
@@ -488,7 +488,7 @@ where a.orderno=@orderNo and a.organizeId=@orgId and a.zt='1'
             throw new FailedException($"未找到该订单，请重新确认订单状态");
         }
         /// <summary>
-        /// xin 锁定延giờ
+        /// xin khóagia hạngiờ
         /// </summary>
         /// <param name="orderNo"></param>
         /// <param name="appId"></param>
@@ -549,7 +549,7 @@ where a.orderno=@orderNo and a.organizeId=@orgId and a.zt='1'
 
         #endregion
         /// <summary>
-        /// thanh toán trư ớc đ ơn hàng thông tin校验
+        /// thanh toán trư ớc đ ơn hàng thông tinkiểm tra
         /// </summary>
         public OrderInfoEntity PayOrderBefore(OrderInfoVO vo, string appId)
         {
@@ -672,7 +672,7 @@ where a.orderno=@orderNo and a.organizeId=@orgId and a.zt='1'
 
                         #endregion
 
-                        //异步 đ ẩy Đ ơn thuốcthu phí thành công của thông báo cho nhà thuốc kho thuốc 
+                        //bất đồng bộ đ ẩy Đ ơn thuốcthu phí thành công của thông báo cho nhà thuốc kho thuốc 
                         if (cflx == (int)EnumYiZhuXZ.YP || cflx == 0)
                         {
                             AppLogger.Info("");
@@ -692,7 +692,7 @@ where a.orderno=@orderNo and a.organizeId=@orgId and a.zt='1'
         }
 
         /// <summary>
-        /// 异步 đ ẩy Đ ơn thuốcthu phí thành công của thông báo cho nhà thuốc kho thuốc 
+        /// bất đồng bộ đ ẩy Đ ơn thuốcthu phí thành công của thông báo cho nhà thuốc kho thuốc 
         /// </summary>
         /// <param name="cfnmList"></param>
         private void notifyPDS(int jsnm, DateTime sfrq, IList<int> cfnmList, string Fph, string orgId, string appId)
@@ -746,7 +746,7 @@ where a.orderno=@orderNo and a.organizeId=@orgId and a.zt='1'
                         });
                         try
                         {
-                            t.Wait();  //Bất thư ờng抛出 đ ến tại đ ây 
+                            t.Wait();  //Bất thư ờngném ra đ ến tại đ ây 
                             AppLogger.Instance.Error(message, null);
                         }
                         catch (AggregateException aex)
@@ -790,9 +790,9 @@ where a.orderno=@orderNo and a.organizeId=@orgId and a.zt='1'
                 throw new FailedException("未找到待支付账单");
             }
             decimal zje = yzmxData.Sum(p => p.je);
-            //超giờ đ ơn hàng xử lý
+            //quágiờ đ ơn hàng xử lý
             ExpOrder(zyh, orgId, appId);
-            //Tra c ứuĐ ãcó hiệu lực đ ơn hàng: chờ thanh toán, Đ ã thanh toán, Đ ã锁定
+            //Tra c ứuĐ ãcó hiệu lực đ ơn hàng: chờ thanh toán, Đ ã thanh toán, Đ ãkhóa
             var orderInfo = _orderInfoRepo.IQueryable(p => p.VisitNo == zyh && p.CardNo == kh && p.OrderStu != (int)EnumOrderStatus.zf && p.OrganizeId == orgId && p.zt == "1");
             if (orderInfo != null && orderInfo.Count() > 0)
             {
@@ -820,7 +820,7 @@ where a.orderno=@orderNo and a.organizeId=@orgId and a.zt='1'
                     }
                     else
                     {
-                        // chờ thanh toán số tiền không nhất quán,hủy bỏ原 đ ơn hàng 
+                        // chờ thanh toán số tiền không nhất quán,hủy bỏgốc đ ơn hàng 
                         OrderCancel(lockedAppInfo, appId, "账单信息更新，作废原订单");
                     }
                 }
@@ -831,12 +831,12 @@ where a.orderno=@orderNo and a.organizeId=@orgId and a.zt='1'
                     {
                         return unpayOrderList.FirstOrDefault().MapperTo<OrderInfoEntity, OrderInfoBaseVO>();
                     }
-                    // chờ thanh toán số tiền không nhất quán,hủy bỏ原 đ ơn hàng 
+                    // chờ thanh toán số tiền không nhất quán,hủy bỏgốc đ ơn hàng 
                     OrderCancel(unpayOrderList.FirstOrDefault(), appId, "账单信息更新，作废原订单");
                 }
                 else if (unpayOrderList.Count() > 1)
                 {
-                    // chờ thanh toán số tiền không nhất quán,hủy bỏ原 đ ơn hàng 
+                    // chờ thanh toán số tiền không nhất quán,hủy bỏgốc đ ơn hàng 
                     OrderCancel(unpayOrderList.ToList(), appId, "账单信息更新，作废原订单");
                 }
             }

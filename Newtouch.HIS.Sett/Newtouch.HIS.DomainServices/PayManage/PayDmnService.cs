@@ -88,7 +88,7 @@ namespace Newtouch.HIS.DomainServices.PayManage
         }
 
         /// <summary>
-        /// Tra cứu具体 đ ơn hàng chi tiết
+        /// Tra cứucụ thể đ ơn hàng chi tiết
         /// </summary>
         /// <param name="OutTradeNo"></param>
         /// <param name="TradeNo"></param>

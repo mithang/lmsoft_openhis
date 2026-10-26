@@ -24,7 +24,7 @@ namespace Newtouch.HIS.DomainServices.NewFolder1
         }
 
         /// <summary>
-        /// Lấy bảo hiểm thư ơng mại 备案danh sách
+        /// Lấy bảo hiểm thư ơng mại đăng kýdanh sách
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>

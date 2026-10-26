@@ -160,7 +160,7 @@ where zyh=@zyh and OrganizeId=@orgId
             return list;
         }
         /// <summary>
-        /// phẫu thuật 浮 lớp 
+        /// phẫu thuật nổi lớp 
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

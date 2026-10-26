@@ -151,7 +151,7 @@ namespace Newtouch.HIS.DomainServices
                 int sl = Convert.ToInt32(data.Rows[i]["SL"]);
                 if (sl > 0)
                 {
-                    //Hạng mục của số lư ợng大于0 của才hiển thị
+                    //Hạng mục của số lư ợnglớn hơn0 củamớihiển thị
                     var gr = new GridZyXmYpjfb();
                     gr.ZYH = data.Rows[i]["ZYH"].ToString();
                     gr.SL = data.Rows[i]["SL"].ToString();
@@ -292,10 +292,10 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// theo thuốc và hạng mụcquay lại cùng một thực thể结构của dữ liệu loại 
+        /// theo thuốc và hạng mụcquay lại cùng một thực thểcấu trúccủa dữ liệu loại 
         /// </summary>
         /// <param name="data"></param>
-        /// <param name="type">Quận分có hay không là thuốc</param>
+        /// <param name="type">phân biệtcó hay không là thuốc</param>
         /// <returns></returns>
         public List<gridZyXmYpItemsjfb> ToModMx(DataTable data, string type)
         {
@@ -401,7 +401,7 @@ namespace Newtouch.HIS.DomainServices
             }
             try
             {
-                var db = new EFDbTransaction(this._databaseFactory);    // này như thế nào 开 giao dịch 
+                var db = new EFDbTransaction(this._databaseFactory);    // này như thế nào mở giao dịch 
                 db.Insert(YPList);
                 db.Commit();
             }

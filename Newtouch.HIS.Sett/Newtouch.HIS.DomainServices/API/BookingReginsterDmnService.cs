@@ -621,7 +621,7 @@ where a.zt='1'
             return FindList<MzAppointmentRecordListResp>(sql, para.ToArray());
         }
         /// <summary>
-        /// Hủy đ ặt lịch(限chưa quyết toán)
+        /// Hủy đ ặt lịch(chỉchưa quyết toán)
         /// </summary>
         /// <param name="dto"></param>
         public int CancelOutApp(MzAppointmentRecordReq req)
@@ -693,7 +693,7 @@ where a.zt='1'
 
         }
         /// <summary>
-        /// 建 thẻ 
+        /// Tạo thẻ 
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -753,7 +753,7 @@ where a.zt='1'
             vo.xb = req.Gender;
             vo.brxz = req.PatType;
             vo.py = CommmHelper.StrConvertToPinyin(req.Name, "1");
-            vo.isdsfly = "Y"; //Thứ ba 方健 thẻ không sửa một thẻ 通 cơ bản thông tin
+            vo.isdsfly = "Y"; //Bên thứ ba thẻ sức khỏe không sửa một thẻ thông cơ bản thông tin
 
             _PatientBasicInfoDmnService.SavePatBasicCardInfo(vo, OrgId, "");
             CardInfoReq kxx = new CardInfoReq();
@@ -912,7 +912,7 @@ update Xt_Order set OrderStatus=2 where jsnm=@jsnm and zt=1
                 feelistsql.Append(" and OrderStatus=1 ");
             }
             else {
-// //Tạm thời trư ớc 采 dùng xóa tại tạo chưa缴费 đ ơn hàng 
+// //Tạm thời trư ớc áp dùng xóa tại tạo chưanộp phí đ ơn hàng 
 //                string sql1 = @" delete Xt_OrderDetail from  Xt_OrderDetail a join Xt_Order b on a.OrderId=b.Id and (b.OrderStatus=0 or b.OrderStatus=3) where  b.CardNo=@CardNo and b.OrganizeId=@orgId
 //                            delete  from Xt_Order where CardNo=@CardNo and OrganizeId=@orgId  and (OrderStatus=0 or OrderStatus=3)
 //";
@@ -1056,7 +1056,7 @@ group by cfh,cftypename";
             return i;
         }
         /// <summary>
-        /// đ ơn hàng trạng thái重置
+        /// đ ơn hàng trạng tháiđặt lại
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -1072,7 +1072,7 @@ group by cfh,cftypename";
             return i;
         }
         /// <summary>
-        /// 预quyết toán
+        /// Dựquyết toán
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -1148,7 +1148,7 @@ group by cfh,cftypename";
                 var validCf = ValidFee(ghEntity.mzh, orgId);
                 if (!string.IsNullOrWhiteSpace(validCf))
                     throw new FailedException("门诊号:" + req.Mzh + "的处方订单已发生改变，请重新查询费用订单");
-                //Chi phí không có thay đ ổi 锁定账 đ ơn 
+                //Chi phí không có thay đ ổi khóasổ đ ơn 
                 string orderlock = @" update Xt_Order set orderstatus=@status where  OuttradeNo=@orderNo and organizeId=@orgId and zt=1";
                 var pars = new List<SqlParameter>();
                 pars.Add(new SqlParameter("@orgId", orgId));
@@ -1159,7 +1159,7 @@ group by cfh,cftypename";
                 {
                     //Qua BHYT
                     throw new FailedException("医保收费未开通");
-                    //BHYTquay lại lỗi需重置
+                    //BHYTquay lại lỗicầnđặt lại
                     CancalOrderReq cancalreq = new CancalOrderReq();
                     cancalreq.AppID = req.AppID;
                     cancalreq.HospitalID = req.HospitalID;
@@ -1221,7 +1221,7 @@ group by cfh,cftypename";
             //{
             //    zje = Convert.ToDecimal(req.TotalAmount),
             //    ssk = Convert.ToDecimal(req.PayFee),
-            // zffs1 = (req.AppID == "Alipay"? "10": "11"),//11微信,10 thanh toán 宝
+            // zffs1 = (req.AppID == "Alipay"? "10": "11"),//11WeChat,10 thanh toán Alipay
             //    zfje1 = Convert.ToDecimal(req.PayFee),
             //    zhaoling = 0
             //};
@@ -1256,7 +1256,7 @@ group by cfh,cftypename";
 
         }
         /// <summary>
-        /// đ ối với 账thông tin
+        /// đ ối với sổthông tin
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -1352,7 +1352,7 @@ where ghyy.zt=1 and ghyy.yyzt in ('2','5') and ghyy.OrganizeId=@orgId and ghyy.A
             //};
         }
         /// <summary>
-        /// Đ ăng ký khám预quyết toán xác minh
+        /// Đ ăng ký khámdựquyết toán xác minh
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -1466,7 +1466,7 @@ where   a.cfmxId is null or b.cfmxId is null";
 
         }
         /// <summary>
-        /// chờ 缴 đ ơn hàng tổng số tiền
+        /// chờ thanh toán đ ơn hàng tổng số tiền
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -1482,7 +1482,7 @@ and a.OrganizeId=@orgId  ";
                 , new SqlParameter("@status2", ((int)EnumOrderStatus.zfz).ToString())});
         }
         /// <summary>
-        /// Lấy chờ 缴mã nội bộ đ ơn thuốc
+        /// Lấy chờ thanh toánmã nội bộ đ ơn thuốc
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>

@@ -67,7 +67,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Sửatrang giờ, tải 选 trong dòng CủaĐ ối tư ợng
+        /// Sửatrang giờ, tải chọn trong dòng CủaĐ ối tư ợng
         /// </summary>
         /// <param name="keyvalue"></param>
         /// <returns></returns>

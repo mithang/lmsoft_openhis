@@ -270,7 +270,7 @@ order by q.insutype");
 		}
 
 		/// <summary>
-		/// Lấy清 tính đ ối với 总帐
+		/// Lấyquyết toán đ ối với sổ tổng
 		/// </summary>
 		/// <param name="organizeId">Mã cơ quan</param>
 		/// <param name="ksrq">Ngày bắt đ ầu</param>
@@ -308,7 +308,7 @@ order by q.insutype");
 		}
 
 		/// <summary>
-		/// Lấy清 tính chi tiết(trên 半một phần)
+		/// Lấyquyết toán chi tiết(trên nửamột phần)
 		/// </summary>
 		/// <param name="organizeId">Mã cơ quan</param>
 		/// <param name="ksrq">Ngày bắt đ ầu</param>
@@ -331,7 +331,7 @@ order by q.insutype");
 		}
 
 		/// <summary>
-		/// Lấy清 tính chi tiết(dư ới 半một phần)
+		/// Lấyquyết toán chi tiết(dư ới nửamột phần)
 		/// </summary>
 		/// <param name="organizeId">Mã cơ quan</param>
 		/// <param name="ksrq">Ngày bắt đ ầu</param>
@@ -354,7 +354,7 @@ order by q.insutype");
 		}
 
 		/// <summary>
-		/// Lấy清 tính xin 
+		/// Lấyquyết toán xin 
 		/// </summary>
 		/// <param name="organizeId">Mã cơ quan</param>
 		/// <param name="ksrq">Ngày bắt đ ầu</param>
@@ -377,7 +377,7 @@ order by q.insutype");
 		}
 
 		/// <summary>
-		/// Lấy清 tính trả lại 
+		/// Lấyquyết toán trả lại 
 		/// </summary>
 		/// <param name="organizeId">Mã cơ quan</param>
 		/// <param name="ksrq">Ngày bắt đ ầu</param>
@@ -398,7 +398,7 @@ order by q.insutype");
 		}
 
 		/// <summary>
-		/// Ngày đ ối với 账 lịch sử dữ liệu
+		/// Ngày đ ối với sổ lịch sử dữ liệu
 		/// </summary>
 		/// <param name="orgid"></param>
 		/// <param name="ksrq"></param>
@@ -430,7 +430,7 @@ order by q.insutype");
 			return list;
 		}
         /// <summary>
-		/// Ngày đ ối với 账 lịch sử dữ liệu
+		/// Ngày đ ối với sổ lịch sử dữ liệu
 		/// </summary>
 		/// <param name="orgid"></param>
 		/// <param name="ksrq"></param>

@@ -130,7 +130,7 @@ where c.organizeid=@orgId and c.zt='1' and c.CreateTime>=@zjdjrq ";
             return pat;
         }
         /// <summary>
-        /// 历 lần nhập viện
+        /// lịch sử lần nhập viện
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="orgId"></param>
@@ -470,7 +470,7 @@ group by zyh,zdCode,zdmc,zdlb,zdsj,rybq,cyqk,zdlx,zdly,sfsc
 
         #region 医保相关
         /// <summary>
-        /// 预quyết toán
+        /// dựquyết toán
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

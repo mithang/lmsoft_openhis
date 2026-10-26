@@ -39,7 +39,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// hàng loạt thêm成 bản thông tin
+        /// hàng loạt thêmthành bản thông tin
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="srxxId"></param>
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Thêm mới trạm 点收支 thống kê bảng 
+        /// Thêm mới trạm điểmthu chi thống kê bảng 
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="keyvalue"></param>
@@ -113,7 +113,7 @@ namespace Newtouch.HIS.DomainServices
 
                     srxxId = srxx.Id;
                     db.Insert(srxx);
-                    //Tổng cộng担成 bản tỷ lệ 
+                    //Tổng cộnggánhthành bản tỷ lệ 
 
                     var fcentity = db.FindEntity<SysConfigEntity>(p => p.Code == "jgssfdbl" && p.zt == "1" && p.OrganizeId == orgId);
                     if (fcentity != null)
@@ -134,7 +134,7 @@ namespace Newtouch.HIS.DomainServices
                         config.Create(true);
                         db.Insert(config);
                     }
-                    _cache.Remove("set:systemconfig_" + orgId);//清 trống cấu hình của bộ nhớ đ ệm,nếu không dư ới lần không 生效
+                    _cache.Remove("set:systemconfig_" + orgId);//xóa trống cấu hình của bộ nhớ đ ệm,nếu không dư ới lần không có hiệu lực
 
                     if (vo.srxxList != null && vo.srxxList.Count > 0)
                     {
@@ -177,7 +177,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Xem trạm 点收支 thống kê bảng 
+        /// Xem trạm điểmthu chi thống kê bảng 
         /// </summary>
         /// <param name="srxxId"></param>
         /// <param name="orgId"></param>
@@ -253,7 +253,7 @@ WHERE   cbxx.srxxId = @srxxId order by cbxx.cblb
         }
 
         /// <summary>
-        /// trạm 点收支 thống kê bảng -thu nhập thông tinchi tiết
+        /// trạm điểmthu chi thống kê bảng -thu nhập thông tinchi tiết
         /// </summary>
         /// <param name="site"></param>
         /// <param name="year"></param>
@@ -341,7 +341,7 @@ WHERE   cbxx.srxxId = @srxxId order by cbxx.cblb
         }
 
         /// <summary>
-        /// Xem trạm 点thu phí số tiềnchi tiết
+        /// Xem trạm điểmthu phí số tiềnchi tiết
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="siteId"></param>
@@ -386,7 +386,7 @@ WHERE   cbxx.srxxId = @srxxId order by cbxx.cblb
         }
 
         /// <summary>
-        /// Xem trạm 点thu phí số tiềnchi tiết
+        /// Xem trạm điểmthu phí số tiềnchi tiết
         /// </summary>
         /// <param name="siteId"></param>
         /// <param name="year"></param>
@@ -675,7 +675,7 @@ GROUP BY sfxm.sfxmCode,sfxm.sfxmmc ,fzlxmjfb.xm, fzlxmjfb.dj , fzlxmjfb.sl
         /// Tải lên tệp 
         /// </summary>
         /// <param name="file"></param>
-        /// <returns> tệp tải lên路径</returns>
+        /// <returns> tệp tải lênđường dẫn</returns>
         public string UploadFile(HttpPostedFileBase file, out string parth)
         {
             parth = "";
@@ -704,7 +704,7 @@ GROUP BY sfxm.sfxmCode,sfxm.sfxmmc ,fzlxmjfb.xm, fzlxmjfb.dj , fzlxmjfb.sl
         }
 
         /// <summary>
-        /// tệp 效验
+        /// tệp kiểm tra
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -733,7 +733,7 @@ GROUP BY sfxm.sfxmCode,sfxm.sfxmmc ,fzlxmjfb.xm, fzlxmjfb.dj , fzlxmjfb.sl
         }
 
         /// <summary>
-        /// 大小xác minh
+        /// kích thướcxác minh
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -751,7 +751,7 @@ GROUP BY sfxm.sfxmCode,sfxm.sfxmmc ,fzlxmjfb.xm, fzlxmjfb.dj , fzlxmjfb.sl
         #endregion
 
         /// <summary>
-        /// Lấy trên 个tháng của成 bản thông tin
+        /// Lấy trên cáitháng củathành bản thông tin
         /// </summary>
         /// <param name="site"></param>
         /// <param name="year"></param>

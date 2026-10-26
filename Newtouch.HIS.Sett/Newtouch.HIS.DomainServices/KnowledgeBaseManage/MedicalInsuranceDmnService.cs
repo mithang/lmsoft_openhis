@@ -18,7 +18,7 @@ namespace Newtouch.HIS.DomainServices.KnowledgeBaseManage
         }
 
         /// <summary>
-        /// LấyBHYT备案danh sách
+        /// LấyBHYTđăng kýdanh sách
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="ksrq"></param>

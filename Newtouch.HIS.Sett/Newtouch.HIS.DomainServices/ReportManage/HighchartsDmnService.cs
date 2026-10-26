@@ -586,7 +586,7 @@ GROUP BY cuser.Name ,
         }
 
         /// <summary>
-        /// Lấy平均chi phí(tổng chi phí/Tổng lư ợt ngư ời)
+        /// Lấybình quânchi phí(tổng chi phí/Tổng lư ợt ngư ời)
         /// </summary>
         /// <param name="year"></param>
         /// <param name="orgId"></param>
@@ -1104,7 +1104,7 @@ GROUP BY cuser.Name ,
         }
 
         /// <summary>
-        /// Lấy chuyên viên trị liệu平均 điều trị Lư ợt ngư ời(tổng lư ợt ngư ời/总số ngày)
+        /// Lấy chuyên viên trị liệubình quân điều trị Lư ợt ngư ời(tổng lư ợt ngư ời/tổngsố ngày)
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -1548,7 +1548,7 @@ GROUP BY cuser.Name ,
         }
 
         /// <summary>
-        /// Lấy chuyên viên trị liệu tháng đ ộ 平均 điều trị Lư ợt ngư ời(tổng lư ợt ngư ời/总số ngày)
+        /// Lấy chuyên viên trị liệu tháng đ ộ bình quân điều trị Lư ợt ngư ời(tổng lư ợt ngư ời/tổngsố ngày)
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -1867,7 +1867,7 @@ ELSE
 
 
         /// <summary>
-        /// Lấy tháng đ ộ 平均chi phí(tổng chi phí/Tổng lư ợt ngư ời)
+        /// Lấy tháng đ ộ bình quânchi phí(tổng chi phí/Tổng lư ợt ngư ời)
         /// </summary>
         /// <param name="year"></param>
         /// <param name="orgId"></param>
@@ -2627,7 +2627,7 @@ GROUP BY cuser.Name ,
         }
 
         /// <summary>
-        /// Lấy chuyên viên trị liệu nhập viện điều trị 平均Lư ợt ngư ời tổng lư ợt ngư ời/总số ngày
+        /// Lấy chuyên viên trị liệu nhập viện điều trị bình quânLư ợt ngư ời tổng lư ợt ngư ời/tổngsố ngày
         /// </summary>
         /// <param name="year"></param>
         /// <param name="orgId"></param>
@@ -2830,7 +2830,7 @@ DROP TABLE  #temp,#temp2;");
         }
 
         /// <summary>
-        /// Lấy điều trị của nhập viện平均chi phí
+        /// Lấy điều trị của nhập việnbình quânchi phí
         /// </summary>
         /// <param name="year"></param>
         /// <param name="orgId"></param>
@@ -3168,7 +3168,7 @@ SELECT  'Avg Rev.per Therapist' title ,
         }
 
         /// <summary>
-        /// Nhập viện tháng平均chi phí
+        /// Nhập viện thángbình quânchi phí
         /// </summary>
         /// <param name="year"></param>
         /// <param name="orgId"></param>
@@ -3352,7 +3352,7 @@ GROUP BY xm.ssry ,
         }
 
         /// <summary>
-        /// Lấy chuyên viên trị liệu nhập viện điều trị tháng đ ộ 平均Lư ợt ngư ời tổng lư ợt ngư ời/总số ngày
+        /// Lấy chuyên viên trị liệu nhập viện điều trị tháng đ ộ bình quânLư ợt ngư ời tổng lư ợt ngư ời/tổngsố ngày
         /// </summary>
         /// <param name="year"></param>
         /// <param name="orgId"></param>
@@ -3451,7 +3451,7 @@ DROP TABLE  #temp,#temp2;");
         #region Common
 
         /// <summary>
-        /// Ngoại trú nhập viện thống kê thu nhập đ ối với 比
+        /// Ngoại trú nhập viện thống kê thu nhập so sánh
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -3459,7 +3459,7 @@ DROP TABLE  #temp,#temp2;");
         {
             List<OutpatientSCNumVO> outpatientlist = GetOutpatientSalaryNum(orgId);
             List<InpatientSCNumVO> inpatientList = GetInpatientSalaryNum(orgId);
-            //放tại một Đ ối tư ợng,quay lại đ ến trang
+            //đặttại một Đ ối tư ợng,quay lại đ ến trang
             var visitNumBO = new SCNumBO
             {
                 OutpatientList = outpatientlist,

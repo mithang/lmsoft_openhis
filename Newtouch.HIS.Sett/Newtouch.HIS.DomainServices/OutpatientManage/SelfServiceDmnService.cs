@@ -256,7 +256,7 @@ WHERE   a.jsnm = @RECEIPT_NO
 		}
 
 		/// <summary>
-		/// Lấy nhập việnchi phí một ngày清
+		/// Lấy nhập việnchi phí một ngàyquyết toán
 		/// </summary>
 		/// <param name="dto"></param>
 		/// <returns></returns>

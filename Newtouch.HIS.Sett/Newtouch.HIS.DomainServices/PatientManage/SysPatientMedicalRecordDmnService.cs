@@ -171,7 +171,7 @@ order by a.zt desc, a.rq desc, a.CreateTime, b.CreateTime";
         }
         #region 卫健数据上传日志
         /// <summary>
-        /// 卫健tải lên nhật ký 
+        /// Ủy ban Y tếtải lên nhật ký 
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ksrq"></param>

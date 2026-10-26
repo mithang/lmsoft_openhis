@@ -50,7 +50,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Lấy phí đ ăng ký khám chẩn đoán và điều trị 费 phí thẻ từ phí làm thẻ
+        /// Lấy phí đ ăng ký khám chẩn đoán và điều trị phí phí thẻ từ phí làm thẻ
         /// </summary>
         /// <param name="ghxm">Loại đ ăng ký khám:Ngoại trú cấp cứu đ ặc biệt </param>
         /// <param name="isZzjm"> chuyển tuyến giảm trừ</param>
@@ -78,7 +78,7 @@ namespace Newtouch.HIS.DomainServices
             }
             if (!string.IsNullOrWhiteSpace(zlxm))
             {
-                //Và chẩn đoán và điều trị 费
+                //Và chẩn đoán và điều trị phí
                 var zlsfxmSql = new StringBuilder(@"select * from NewtouchHIS_Base..V_S_xt_sfxm where sfxmCode in('" + zlxm + "') and OrganizeId=@OrganizeId");
                 DbParameter[] param2 = {
                     new SqlParameter ("@OrganizeId",orgId)
@@ -160,7 +160,7 @@ namespace Newtouch.HIS.DomainServices
             }
             if (!string.IsNullOrWhiteSpace(zlxm))
             {
-                //Và chẩn đoán và điều trị 费
+                //Và chẩn đoán và điều trị phí
                 var zlsfxmSql = new StringBuilder(@"select * from NewtouchHIS_Base..V_S_xt_sfxm with(nolock)
 where sfxmCode in( select zlxm from mz_gh_zlxmzh with(nolock) where zt='1' and OrganizeId=@OrganizeId and zhcode='" + zlxm + "') and OrganizeId=@OrganizeId");
                 var zlsfxmEntity = FindList<SysChargeItemVEntity>(zlsfxmSql.ToString(), new SqlParameter[] { new SqlParameter("OrganizeId", orgId) });
@@ -257,7 +257,7 @@ and gh.CreateTime >= CONVERT(varchar(100), GETDATE(), 23) ");
         #endregion
 
         /// <summary>
-        /// Ngoại trú trả lại số (chưa结Đ ăng ký khám)
+        /// Ngoại trú trả lại số (chưakết toánĐ ăng ký khám)
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -279,7 +279,7 @@ and gh.CreateTime >= CONVERT(varchar(100), GETDATE(), 23) ");
                         //if (dbXmEntityList.Count > 0 || dbCfEntityList.Count > 0)
                         if (dbCfEntityList.Count > 0)
                         {
-                            // chỉ cần 开 qua Đ ơn thuốc thì không có thể trả lại 
+                            // chỉ cần kê qua Đ ơn thuốc thì không có thể trả lại 
                             throw new FailedException("就诊结束状态不能退号");
                         }
                     }
@@ -341,12 +341,12 @@ and gh.CreateTime >= CONVERT(varchar(100), GETDATE(), 23) ");
                         new SqlParameter(@"jsnm",jsnm),
                         new SqlParameter("@OrganizeId",OperatorProvider.GetCurrent().OrganizeId)
                     };
-            // theo jsnm tra cứu 出mz_jszffs
+            // theo jsnm tra cứu ramz_jszffs
             List<OutPatientSettlePayMethodVO> mzjszffsList = this.FindList<OutPatientSettlePayMethodVO>(strSql2.ToString(), param2);
             //Tính tổng số tiền thực thu
             if (mzjszffsList.Count > 1)
             {
-                // theo jsnm tra cứu 出mz_jszffs trong có几dòng quyết toán ngoại trú thanh toán bản ghi,nếu có nhiều dòng,thì số tiền相加
+                // theo jsnm tra cứu ramz_jszffs trong cómấydòng quyết toán ngoại trú thanh toán bản ghi,nếu có nhiều dòng,thì số tiềncộng lại
                 //Tính tổng số tiền thực thu
                 decimal ssk = 0m;
                 foreach (var mzjszffsItem in mzjszffsList)
@@ -394,7 +394,7 @@ and gh.CreateTime >= CONVERT(varchar(100), GETDATE(), 23) ");
             {
                 return true;
             }
-            //Hệ thống bệnh nhân tài khoản 收支 bản ghi tạm thời không 写
+            //Hệ thống bệnh nhân tài khoản thu chi bản ghi tạm thời không ghi
             #region 退款成功，插门诊结算，门诊结算明细。改门诊结算的jsnm.改结算明细内码
             //Chi tiết quyết toán ngoại trú_ trả lại (theo jsnm mz_jsmx)
             List<OutpatientSettlementDetailEntity> mzJsmxList = _outPatientSettleDetailRepo.SelectMzjsmxByJsnm(mzJs.jsnm, OperatorProvider.GetCurrent().OrganizeId);
@@ -450,7 +450,7 @@ and gh.CreateTime >= CONVERT(varchar(100), GETDATE(), 23) ");
                         jsdlItem.jsnm = mzJs.jsnm;
                         jsdlItem.jsrq = DateTime.Now;
                         jsdlItem.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;
-                        jsdlItem.Create(true);  // tự 增string khóa chính
+                        jsdlItem.Create(true);  // tự tăngstring khóa chính
                         db.Insert(jsdlItem);
                     }
                     //Ngoại trú trả lại số 
@@ -477,7 +477,7 @@ and gh.CreateTime >= CONVERT(varchar(100), GETDATE(), 23) ");
         }
 
         /// <summary>
-        /// check bệnh nhân có hay không có chờ quyết toánchi phí đăng ký khám bản ghi (không Quận分 một lần Đ ăng ký khám)
+        /// check bệnh nhân có hay không có chờ quyết toánchi phí đăng ký khám bản ghi (không phân biệt một lần Đ ăng ký khám)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="patid"></param>
@@ -492,7 +492,7 @@ and gh.CreateTime >= CONVERT(varchar(100), GETDATE(), 23) ");
         }
 
         /// <summary>
-        /// check bệnh nhân có hay không có chưa结chi phí bản ghi (không Quận分 một lần Đ ăng ký khám)
+        /// check bệnh nhân có hay không có chưakết toánchi phí bản ghi (không phân biệt một lần Đ ăng ký khám)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="patid"></param>
@@ -552,8 +552,8 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
         /// <param name="jzxh"></param>
         /// <param name="ghpbId"></param>
         /// <param name="feeRelated"></param>
-        /// <param name="brxz">Tính chất bệnh nhân由trang truyền qua 来,因là BHYTbệnh nhân có thể挂tự trả</param>
-        /// <param name="ybjsh">BHYT端số quyết toán</param>
+        /// <param name="brxz">Tính chất bệnh nhândotrang truyền qua tới,vìlà BHYTbệnh nhân có thểđăng kýtự trả</param>
+        /// <param name="ybjsh">BHYTđầusố quyết toán</param>
         /// <param name="mzh">Số khám ngoại trú</param>
         /// <param name="mzyyghid">Đ ặt lịch đ ăng ký khám ngoại trú ID Tư ơng ứngNewtouch_CIS.dbo.mz_yygh.Id</param>
         /// <returns></returns>
@@ -567,12 +567,12 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
             , string jzyy, string jzid, string jzlx, string bzbm, string bzmc, string mzyyghId,string isjm, out object newJszbInfo)
         {
             newJszbInfo = null;
-            //Số khám ngoại trú检重
+            //Số khám ngoại trúkiểm tra trùng
             if (_outpatientRegRepo.IQueryable(p => p.mzh == mzh).Any())
             {
                 throw new FailedException("门诊号重复");
             }
-            // cần quay lại(作là hóa đ ơn in của入参)
+            // cần quay lại(làmlà hóa đ ơn in củatham số đầu vào)
             int jsnm = 0;
             // theo patid lấy thông tin cơ bản bệnh nhân thực thể
             var brjbxxEntity = _sysPatBasicInfoRepository.GetInfoByPatid(patid.ToString(), orgId);
@@ -616,23 +616,23 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
             AssembleGhInfo(brjbxxEntity, gh);
             //LấyĐ ăng ký khám, chẩn đoán và điều trị hạng mụclist
             GHZGroupAndFeesVO ghFeeResult;
-            //Có thể quay lạiCount=0 挂 trống số 
+            //Có thể quay lạiCount=0 đăng ký trống số 
             var xmList = GetXmList(gh, isCkf, isGbf, out ghFeeResult, ghxm, zlxm, orgId);
             gh.ghf = ghFeeResult.ghfPrice;
             gh.zlf = ghFeeResult.zlfPrice;
             gh.ckf = ghFeeResult.ckfPrice;
             gh.gbf = ghFeeResult.gbfPrice;
-            //notSett true tạm thời không 结(ngoại trú thu phí giờ cùng nhau 结),nếu không结
+            //notSett true tạm thời không kết toán(ngoại trú thu phí giờ cùng nhau kết toán),nếu khôngkết toán
             bool? notSett = null;
 	        var medicalInsurance = _sysConfigRepo.GetValueByCode("Outpatient_MedicalInsurance", orgId);
 			if (brxz != "0" && gh.CardType == ((int)EnumCardType.YBJYK).ToString())
             {
-                // không phải tự trả(không cần BHYT thẻ) và nhiều 加 một lớp phán đoán dùng BHYT thẻ 
+                // không phải tự trả(không cần BHYT thẻ) và nhiều thêm một lớp phán đoán dùng BHYT thẻ 
                 notSett = (_sysConfigRepo.GetBoolValueByCode("Outpatient_ChargeFee_OpenYbSett", orgId) ?? false) && (_sysConfigRepo.GetBoolValueByCode("Outpatient_ChargeFee_yb_SettOnce", orgId) ?? false);
             }
             if (!(notSett == true))
             {
-                //贵安 Đ ăng ký khám ngoại trú không quyết toán
+                //Quý An Đ ăng ký khám ngoại trú không quyết toán
                 
 	            if (medicalInsurance == "guian")
 				{
@@ -673,11 +673,11 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
                 {
                     if (gh.ghzt == "0")
                     {
-                        //ghzt chờ quyết toán //Có tính phí hạng mục,nhưng này giờ không quyết toán,作là ngoại trú thu phí giờ 带入 của 
+                        //ghzt chờ quyết toán //Có tính phí hạng mục,nhưng này giờ không quyết toán,làmlà ngoại trú thu phí giờ mang vào của 
                         foreach (var xmItem in xmList)
                         {
                             xmItem.ghnm = gh.ghnm;
-                            xmItem.xmzt = "0";  //mz_xmchi tiết nơi 于chờ quyết toán trạng thái
+                            xmItem.xmzt = "0";  //mz_xmchi tiết nơi ởchờ quyết toán trạng thái
                             xmItem.ys = ys;
                             xmItem.ks = ks;
                             xmItem.ysmc = ysmc;
@@ -810,16 +810,16 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
                             }
                         }
                         UpdateCurrentFinancialInvoice(db, orgId, fph);
-						if (medicalInsurance != "chongqing") // bên trong mã觉得có问题,恒 sẽ báo lỗi,tạm thời跳 qua lixin 20191216 Trùng Khánh BHYT
+						if (medicalInsurance != "chongqing") // bên trong mãcảm thấycóvấn đề,luôn sẽ báo lỗi,tạm thờibỏ qua lixin 20191216 Trùng Khánh BHYT
 						{
 							//if (feeRelated.orglxjzfys.HasValue && feeRelated.xjzfys.HasValue)
 							//{
-							//	// cần 减去ghi sổ một phần V.v.Số tiền
+							//	// cần trừ đighi sổ một phần V.v.Số tiền
 							//	if (feeRelated.orglxjzfys.Value != jszbEntity.zje - 0)
 							//	{
 							//		throw new FailedException("ERROR_SETT_JE_ERROR", "Số tiền quyết toán bất thư ờng" + feeRelated.orglxjzfys.Value.ToString() + " không V.v.于" + jszbEntity.zje.ToString());
 							//	}
-							//	//orglxjzfys xjzfys zkbl zkje cần 保持 nhất quán 性
+							//	//orglxjzfys xjzfys zkbl zkje cần giữ nhất quán tính
 							//	var zkje = feeRelated.orglxjzfys.Value * Math.Abs(feeRelated.zkbl ?? 0) + Math.Abs(feeRelated.zkje ?? 0);
 							//	if (Math.Abs(zkje + feeRelated.xjzfys.Value - feeRelated.orglxjzfys.Value) > (decimal)0.01)
 							//	{
@@ -828,7 +828,7 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
 							//}
 							//else
 							//{
-							//	// cần 减去ghi sổ một phần V.v.Số tiền
+							//	// cần trừ đighi sổ một phần V.v.Số tiền
 							//	jszbEntity.xjzf = jszbEntity.zje - 0;
 							//}
 						}
@@ -848,7 +848,7 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
                         PaymentModelAccountReserveII(db, jszbEntity, feeRelated);
                     }
                 }
-                //else nếu không không có chi phí chi tiết không 必 cần tạo quyết toán
+                //else nếu không không có chi phí chi tiết không nhất thiết cần tạo quyết toán
 
                 //Thêm mới phí dịch vụ hạng mục(hủy)
                var result = db.Commit();
@@ -883,17 +883,17 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
             {
                 throw new FailedException("数据不完整");
             }
-            //Có hay không không có视có hay không tồn tại tại chưa结,có thể trùng lặp Đ ăng ký khám
+            //Có hay không không cóxemcó hay không tồn tại tại chưakết toán,có thể trùng lặp Đ ăng ký khám
             var regMulti = _sysConfigRepo.GetBoolValueByCode("Outpatient_Register_UnSetted_Multi", OrganizeId);
             if (!(regMulti == true))
             {
-                //Check có hay không có chưa结Đ ăng ký khám //?Đ ăng ký khám giờ đồng thời cần 挂 hai 个 số như thế nào 办
+                //Check có hay không có chưakết toánĐ ăng ký khám //?Đ ăng ký khám giờ đồng thời cần đăng ký hai cái số như thế nào làm
                 var hasUnsettedReg = CheckHasUnsettedRegister(OrganizeId, patid);
                 if (hasUnsettedReg)
                 {
                     throw new FailedException("存在历史未结挂号，不能新挂号");
                 }
-                //Check có hay không có chưa结của lịch sử,có thì không 允许挂 mới số 
+                //Check có hay không có chưakết toáncủa lịch sử,có thì không cho phépđăng ký mới số 
                 var hasUnsetted = CheckHasUnsetted(OrganizeId, patid);
                 if (hasUnsetted)
                 {
@@ -901,14 +901,14 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
                 }
             }
             //Lấykhi ngày, khi trư ớc lịch trực số thứ tự khám bệnh
-            //20180930由 truyền ghxm đ ổi là truyền ghpbid ghpbid duy nhất 
+            //20180930từ truyền ghxm đ ổi là truyền ghpbid ghpbid duy nhất 
             //Số thứ tự khám bệnh
             var jzxh = _outPatientDmnService.GetJzxh(ghpbId, ks, ys, "", UserCode, OrganizeId);
             //Số khám ngoại trú
             var ghpbIdStr = ghpbId.ToString().PadLeft(3, '0');
             if (ghpbIdStr.Length > 3)
             {
-                //维护至超 qua 999 của lịch trực giờ sẽ có trùng lặp 漏洞
+                //duy trìđếnvượt qua 999 của lịch trực giờ sẽ có trùng lặp lỗ hổng
                 ghpbIdStr = ghpbIdStr.Substring(ghpbIdStr.Length - 3, 3);
             }
             var mzh = DateTime.Now.ToString("yyMMdd") + ghpbIdStr + jzxh.ToString().PadLeft(4, '0');
@@ -916,7 +916,7 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
         }
 
         /// <summary>
-        /// theo Đ ã知jzxh Đ ăng ký khám ngày 得số khám ngoại trú
+        /// theo Đ ãbiếtjzxh Đ ăng ký khám ngày đượcsố khám ngoại trú
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="ghpbId"></param>
@@ -935,17 +935,17 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
             {
                 throw new FailedException("数据不完整");
             }
-            //Có hay không không có视có hay không tồn tại tại chưa结,có thể trùng lặp Đ ăng ký khám
+            //Có hay không không cóxemcó hay không tồn tại tại chưakết toán,có thể trùng lặp Đ ăng ký khám
             var regMulti = _sysConfigRepo.GetBoolValueByCode("Outpatient_Register_UnSetted_Multi", OrganizeId);
             if (!(regMulti == true))
             {
-                //Check có hay không có chưa结Đ ăng ký khám //?Đ ăng ký khám giờ đồng thời cần 挂 hai 个 số như thế nào 办
+                //Check có hay không có chưakết toánĐ ăng ký khám //?Đ ăng ký khám giờ đồng thời cần đăng ký hai cái số như thế nào làm
                 var hasUnsettedReg = CheckHasUnsettedRegister(OrganizeId, patid);
                 if (hasUnsettedReg)
                 {
                     throw new FailedException("存在历史未结挂号，不能新挂号");
                 }
-                //Check có hay không có chưa结của lịch sử,có thì không 允许挂 mới số 
+                //Check có hay không có chưakết toáncủa lịch sử,có thì không cho phépđăng ký mới số 
                 var hasUnsetted = CheckHasUnsetted(OrganizeId, patid);
                 if (hasUnsetted)
                 {
@@ -953,14 +953,14 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
                 }
             }
             //Lấykhi ngày, khi trư ớc lịch trực số thứ tự khám bệnh
-            //20180930由 truyền ghxm đ ổi là truyền ghpbid ghpbid duy nhất 
+            //20180930từ truyền ghxm đ ổi là truyền ghpbid ghpbid duy nhất 
             //Số thứ tự khám bệnh
             //var jzxh = _outPatientDmnService.GetJzxh(ghpbId, ks, ys, "", UserCode, OrganizeId);
             //Số khám ngoại trú
             var ghpbIdStr = ghpbId.ToString().PadLeft(3, '0');
             if (ghpbIdStr.Length > 3)
             {
-                //维护至超 qua 999 của lịch trực giờ sẽ có trùng lặp 漏洞
+                //duy trìđếnvượt qua 999 của lịch trực giờ sẽ có trùng lặp lỗ hổng
                 ghpbIdStr = ghpbIdStr.Substring(ghpbIdStr.Length - 3, 3);
             }
 
@@ -987,7 +987,7 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
             //var isAppointment = _outPatientDmnService.GetIsMzghBookSchedule(mjzbz, patid.ToString(),OrganizeId);
             if (!string.IsNullOrWhiteSpace(QueueNo))
             {
-                //采 dùng đ ặt lịch số thứ tự khám bệnh
+                //áp dùng đ ặt lịch số thứ tự khám bệnh
                 jzxh = Convert.ToInt16(QueueNo);
                 mzh = GetRegMzh(patid, ghpbId, ks, OrganizeId, UserCode, jzxh, OutDate);
             }
@@ -1002,7 +1002,7 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
         }
 
         /// <summary>
-        /// nhóm 装Đ ăng ký khám信thông tin, dùng cơ bản thông tin gán giá trị Đ ăng ký khám ngoại trú
+        /// lắp rápĐ ăng ký khámthông tin, dùng cơ bản thông tin gán giá trị Đ ăng ký khám ngoại trú
         /// </summary>
         /// <param name="brjbxx"></param>
         /// <param name="gh"></param>
@@ -1027,7 +1027,7 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
         #region 订单操作
 
         /// <summary>
-        /// 预定
+        /// đặt trước
         /// </summary>
         /// <param name="gh"></param>
         /// <param name="ssk"></param>
@@ -1057,7 +1057,7 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
             }
 
 
-            //Đ ăng ký khám ngoại trú bảng //规thì lỗi
+            //Đ ăng ký khám ngoại trú bảng //quy tắcthì lỗi
             gh.mzh = DateTime.Now.ToString("yyyyMMdd") + gh.jzxh.ToString().PadLeft(5, '0');  //Số khám ngoại trú
 
             gh.zjlx = brjbxx.zjlx;
@@ -1074,18 +1074,18 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
                 flzffy = 0,
                 jzfy = 0,
                 xjzf = ssk,
-                xjwc = 0,     //Sai lệch tiền mặt là指？
+                xjwc = 0,     //Sai lệch tiền mặt làchỉ？
                 zhjz = 0,
-                xjzffs = "0", //Phư ơng thức thanh toán tiền mặt:A giư ờng gia đ ình tài khoản 0 tiền mặt 1 POS 2 ngân hàng chuyển 账 3 预交tài khoản
+                xjzffs = "0", //Phư ơng thức thanh toán tiền mặt:A giư ờng gia đ ình tài khoản 0 tiền mặt 1 POS 2 ngân hàng chuyển khoản 3 tạm ứngtài khoản
                 fph = fph,
-                jszt = (int)EnumJieSuanZT.YJ,    //1 Đ ã quyết toán(chưa hoàn) 2 Đ ã hoàn 3 补收 4 补收又 trả lại 
+                jszt = (int)EnumJieSuanZT.YJ,    //1 Đ ã quyết toán(chưa hoàn) 2 Đ ã hoàn 3 thu bù 4 thu bùlại trả lại 
                 cxjsnm = 0,   // hủy bỏ mã nội bộ quyết toán
                 zh = 0,
                 fpdm = "",    // hóa đ ơn mã
                 jmbl = 0,
                 jmje = 0,
                 jylx = "1",    // giao dịch loại 1 Đ ăng ký khám ngoại trú
-                jch = 0,       //加床 số 
+                jch = 0,       //thêm giường số 
                 ghnm = gh.ghnm,
                 xm = gh.xm,
                 xb = gh.xb,
@@ -1095,7 +1095,7 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
                 zjh = gh.zjh,
                 OrganizeId = OperatorProvider.GetCurrent().OrganizeId
             };
-            //往Đ ăng ký khám hạng mục bảng 插 bản ghi 
+            //vàoĐ ăng ký khám hạng mục bảng chèn bản ghi 
             foreach (var ghxmItem in xmList)
             {
                 mzjs.zje += ghxmItem.je;
@@ -1111,7 +1111,7 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
         }
 
         /// <summary>
-        /// đ ơn hàng 预定xử lý
+        /// đ ơn hàng đặt trướcxử lý
         /// </summary>
         /// <param name="gh"></param>
         /// <param name="mzjs"></param>
@@ -1127,7 +1127,7 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
         }
 
         /// <summary>
-        /// Gửi正 kiểu đ ơn thao tác
+        /// Gửichính kiểu đ ơn thao tác
         /// </summary>
         /// <param name="gh"></param>
         private static void OrderCommitProcess(OutpatientRegistEntity gh)
@@ -1168,7 +1168,7 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
                 };
 
                 //ghxm.sfxmbh = sfxm.sfxmbh;
-                // phí dịch vụ Đ ơn giá tự trả tạm thời 写
+                // phí dịch vụ Đ ơn giá tự trả tạm thời ghi
                 ghxm.je = (sfxm.dj + ghxm.fwfdj) * ghxm.sl;
                 ghxm.jmbl = 0;  //Tỷ lệ giảm trừ 
                 ghxm.jmje = 0;  //Số tiền giảm trừ
@@ -1278,7 +1278,7 @@ select '1' from mz_cf(nolock)  where patid = @patid and OrganizeId = @orgId and 
             return xmList;
         }
         /// <summary>
-        /// Lấykhoa Tư ơng ứng医师số giấy tờ
+        /// Lấykhoa Tư ơng ứngbác sĩsố giấy tờ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ks"></param>
@@ -1403,7 +1403,7 @@ where ks=@ks and a.OrganizeId=@orgId and a.zt=1";
                 db.Insert(mzzfEntity2);
             }
 
-            //Thanh toán tạm ứng xây dựng thu chi tài khoản //Thanh toán tạm ứng nhất đ ịnh 作là thứ một phư ơng thức thanh toán 
+            //Thanh toán tạm ứng xây dựng thu chi tài khoản //Thanh toán tạm ứng nhất đ ịnh làmlà thứ một phư ơng thức thanh toán 
             if (mzzfEntity1 != null && mzzfEntity1.xjzffs == xtzffs.ZYYJZHZF)
             {
                 var accountEntity = db.IQueryable<SysAccountEntity>(p => p.patid == jszbEntity.patid).FirstOrDefault();
@@ -1510,7 +1510,7 @@ where ks=@ks and a.OrganizeId=@orgId and a.zt=1";
                 }
                 jszbEntity.xjzffs = feeRelated.djjesszffs;
             }
-            //Thanh toán tạm ứng xây dựng thu chi tài khoản //Thanh toán tạm ứng nhất đ ịnh 作là thứ một phư ơng thức thanh toán 
+            //Thanh toán tạm ứng xây dựng thu chi tài khoản //Thanh toán tạm ứng nhất đ ịnh làmlà thứ một phư ơng thức thanh toán 
             if (mzzfEntity1 != null && mzzfEntity1.xjzffs == xtzffs.ZYYJZHZF)
             {
                 decimal tye = 0;
@@ -1658,7 +1658,7 @@ where mzgh.mzh=@mzh and mzgh.OrganizeId=@orgId and mzgh.zt='1' ";
             return  this.FirstOrDefault<CqybGjbmInfoVo>(sqlstr, new[] { new SqlParameter("@mzh", mzh), new SqlParameter("@orgId", orgId) });
         }
         /// <summary>
-        /// Lấy bệnh viện dòng 政Quận划mã来 phán đoán có hay không nơi khác BHYT
+        /// Lấy bệnh viện dòng hành chính phân vùngmãđể phán đoán có hay không nơi khác BHYT
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

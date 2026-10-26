@@ -14,7 +14,7 @@ using System.Linq;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// ngư ời dùng vai trò quyền hạn 公 dùng DmnService
+    /// ngư ời dùng vai trò quyền hạn chung dùng DmnService
     /// </summary>
     public class UserRoleAuthDmnService : DmnServiceBase, IUserRoleAuthDmnService
     {

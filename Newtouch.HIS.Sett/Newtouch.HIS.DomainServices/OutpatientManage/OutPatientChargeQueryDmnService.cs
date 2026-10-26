@@ -83,12 +83,12 @@ namespace Newtouch.HIS.DomainServices
 
         /// <summary>
         /// Đ ăng ký khámthu phí tra cứu new SelectRegChargeQuery code
-        /// này tra cứucxjsnm là trả lại 票 bản ghi Củajsnm 
+        /// này tra cứucxjsnm là trả lại phiếu bản ghi Củajsnm 
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
         /// <param name="fph"></param>
-        /// <param name="syy">收银 viên </param>
+        /// <param name="syy">thu ngân viên </param>
         /// <param name="createTimestart"></param>
         /// <param name="createTimeEnd"></param>
         /// <returns></returns>
@@ -152,9 +152,9 @@ WHERE
                 sqlStr.AppendLine("AND (js.xm LIKE @xm or js.blh LIKE @blh or gh.mzh LIKE @xm or xx.py like @xm)");
                 paraList.Add(new SqlParameter("@xm", "%" + xm.Trim() + "%"));
                 paraList.Add(new SqlParameter("@blh", "%" + xm.Trim() + "%"));
-                // paraList.Add(new SqlParameter("@py", "%" + xm.Trim() + "%")); tra cứu效 tỷ lệ qua chậm loại bỏ lixin 20200114
+                // paraList.Add(new SqlParameter("@py", "%" + xm.Trim() + "%")); tra cứuhiệu suất tỷ lệ qua chậm loại bỏ lixin 20200114
             }
-            //if (!string.IsNullOrWhiteSpace(kh)) // tạm thời không có刷 thẻ 功 có thể hủy số thẻ tra cứu
+            //if (!string.IsNullOrWhiteSpace(kh)) // tạm thời không cóchức năng quét thẻ có thể hủy số thẻ tra cứu
             //{
             //    sqlStr.AppendLine("AND (gh.kh LIKE @kh or js.blh LIKE @blh )");
             //    paraList.Add(new SqlParameter("@kh", "%" + kh.Trim() + "%"));

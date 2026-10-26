@@ -128,7 +128,7 @@ namespace Newtouch.HIS.DomainServices
                         where a.zyh = @zyh and e.zhxz = @xtzhxz and e.zt = '1' and a.OrganizeId=@OrganizeId ";
             var parameters = new List<SqlParameter>() {
                 new SqlParameter("@zyh" , zyh)
-                //Nhập viện bệnh nhânV.v. cấp qua 来của, nhất đ ịnh Đ ãcó một '预缴 khoản tài khoản'
+                //Nhập viện bệnh nhânV.v. cấp qua tớicủa, nhất đ ịnh Đ ãcó một 'tạm ứng khoản tài khoản'
                 ,new SqlParameter("@xtzhxz" , ((int)EnumXTZHXZ.ZYYJKZH).ToString())
                 ,new SqlParameter("@OrganizeId" , orgId)
             };
@@ -155,7 +155,7 @@ namespace Newtouch.HIS.DomainServices
                     db.Update(zh);
                 }
 
-                //财务 biên lai 
+                //tài chính biên lai 
                 if (type == "insert")
                 {
                     db.Insert(cwsj);  // Thêm số chứng từ biên lai 
@@ -172,7 +172,7 @@ namespace Newtouch.HIS.DomainServices
             {
                 AppLogger.WriteEntityChangeRecordLog(vo.oldzh, zh, SysPatientAccountEntity.GetTableName(), vo.oldzh.zhbh.ToString());
             }
-            //财务 biên lai thay đ ổi nhật ký 
+            //tài chính biên lai thay đ ổi nhật ký 
             if(vo.oldcwsj != null && type == "update"){
                 AppLogger.WriteEntityChangeRecordLog(vo.oldcwsj, cwsj, FinanceReceiptEntity.GetTableName(), vo.oldcwsj.cwsjId.ToString());
             }

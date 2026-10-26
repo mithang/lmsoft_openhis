@@ -17,7 +17,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 检索thuốc(for dư ới 拉)
+        /// tìm kiếmthuốc(for thả xuống)
         /// </summary>
         /// <param name="keywrod"></param>
         /// <returns></returns>

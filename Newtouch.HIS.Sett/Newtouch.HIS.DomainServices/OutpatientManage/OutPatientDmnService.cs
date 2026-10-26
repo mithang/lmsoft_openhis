@@ -65,18 +65,18 @@ namespace Newtouch.HIS.DomainServices
         #region 挂号界面info
 
         /// <summary>
-        /// theo loại, BHYTĐ ặc biệt chờ 遇, 适 dùng BHYT biện pháp dấu hiệu, phạm vi刷选 lấy hiệu lực tính chất bệnh nhân by caishanshan 20161215
+        /// theo loại, BHYTđãi ngộ đặc biệt, áp dụng BHYT biện pháp dấu hiệu, phạm visàng lọc lấy hiệu lực tính chất bệnh nhân by caishanshan 20161215
         /// </summary>
         /// <param name="text"></param>
         /// <param name="ghlx">Loại đ ăng ký khám</param>
-        /// <param name="ybtsdy">BHYTĐ ặc biệt chờ 遇 dấu hiệu </param>
-        /// <param name="syybbf">适 dùng BHYT biện pháp dấu hiệu </param>
+        /// <param name="ybtsdy">BHYTđãi ngộ đặc biệt dấu hiệu </param>
+        /// <param name="syybbf">áp dụng BHYT biện pháp dấu hiệu </param>
         /// <param name="fw">Phạm viLọc</param>
         /// <param name="brxzList"></param>
         /// <returns></returns>
         public List<SysPatiNatureEntity2VO> GetValidBrxzList(string text, string ghlx = "", string ybtsdy = "", string syybbf = "", string fw = "", List<string> brxzList = null)
         {
-            //Bắt đ ầu theo từ khóa检索 bản ghi 
+            //Bắt đ ầu theo từ khóatìm kiếm bản ghi 
             string brxzs = string.Empty;
             StringBuilder strSql = new StringBuilder();
             strSql.Append(@"
@@ -90,7 +90,7 @@ namespace Newtouch.HIS.DomainServices
                 //    strSql.Append(" and brxzlb <> 1 ");
                 //}
             }
-            //BHYTĐ ặc biệt chờ 遇
+            //BHYTđãi ngộ đặc biệt
             if (!string.IsNullOrEmpty(ybtsdy))
             {
                 strSql.Append(" and ybtsdy =@ybtsdy");
@@ -100,7 +100,7 @@ namespace Newtouch.HIS.DomainServices
             {
                 strSql.Append(" and (mzzybz = '0' or mzzybz =@fw)");
             }
-            //Nếu chỉ đ ịnh tính chất bệnh nhân,另 dòng xử lý
+            //Nếu chỉ đ ịnh tính chất bệnh nhân,khác dòng xử lý
             if (brxzList != null && brxzList.Count > 0)
             {
                 foreach (string brxz in brxzList)
@@ -175,7 +175,7 @@ namespace Newtouch.HIS.DomainServices
                         left JOIN xt_brxz ON xt_brjbxx.brxz = xt_brxz.brxz and xt_brxz.OrganizeId=@orgId 
                 WHERE   xt_card.OrganizeId=@orgId
                         AND cardno=@kh
-            ");// tại đ ây sql modified by sunny không thể 完全hiển thị tại cơ bản thông tintrang trên 
+            ");// tại đ ây sql modified by sunny không thể hoàn toànhiển thị tại cơ bản thông tintrang trên 
             DbParameter[] param =
             {
                 new SqlParameter("@kh",kh),
@@ -330,7 +330,7 @@ namespace Newtouch.HIS.DomainServices
         /// Đ ăng ký khám lịch trực List
         /// </summary>
         /// <param name="keyword">Khoa/Bác sĩ</param>
-        /// <param name="mzlx">Loại ngoại trú phòng khám thông thư ờng/急症/Phòng khám chuyên gia</param>
+        /// <param name="mzlx">Loại ngoại trú phòng khám thông thư ờng/cấp cứu/Phòng khám chuyên gia</param>
         /// <returns></returns>
         public List<RegScheduleVO> GetRegScheduleList(string keyword, string mzlx, string orgId)
         {
@@ -362,7 +362,7 @@ namespace Newtouch.HIS.DomainServices
             var weekdayField = string.Empty;
             var weekday = DateTime.Now.DayOfWeek;
             MzpbZxsjVO currZxsj = null;
-            //定义buổi sáng buổi chiều của thời gian分布 2 buổi chiều 3 buổi sáng
+            //định nghĩabuổi sáng buổi chiều của thời gianphân bố 2 buổi chiều 3 buổi sáng
             //[{type:"2",startTime:"07:00:00",endTime:"12:00:00"},{type:"3",startTime:"13:00:00",endTime:"18:00:00"}]
             var zxsjConfigStr = _sysConfigRepo.GetValueByCode(Constants.xtmzpz.S20100, orgId);
             if (!string.IsNullOrWhiteSpace(zxsjConfigStr))
@@ -537,7 +537,7 @@ and a.OrganizeId=ks.OrganizeId and ks.zt='1' and a.czks=ks.Code ";
            string ks, DateTime? yykssj=null,DateTime? yyjssj=null)
         {
             string sql = "";
-            if (isfeegroup == "1") //1:启 dùng thu phí kết hợp 0:停 dùng 
+            if (isfeegroup == "1") //1:bật dùng thu phí kết hợp 0:dừng dùng 
             {
                 sql = @" select gb.Regtype,gs.Title,gb.AppId,cast(gb.BookId as int) BookId,
 gb.ScheduId,gs.ghlx,gs.zlxm,d.sfxmmc,gb.xm,gb.xb,gb.kh,xtxx.zjh,gb.mzh,gb.RegFee,
@@ -630,7 +630,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 			var weekdayField = string.Empty;
 			var weekday = pbrq.DayOfWeek;
 			MzpbZxsjVO currZxsj = null;
-			//定义buổi sáng buổi chiều của thời gian分布 2 buổi chiều 3 buổi sáng
+			//định nghĩabuổi sáng buổi chiều của thời gianphân bố 2 buổi chiều 3 buổi sáng
 			//[{type:"2",startTime:"07:00:00",endTime:"12:00:00"},{type:"3",startTime:"13:00:00",endTime:"18:00:00"}]
 			var zxsjConfigStr = _sysConfigRepo.GetValueByCode(Constants.xtmzpz.S20100, orgId);
 			if (!string.IsNullOrWhiteSpace(zxsjConfigStr))
@@ -765,7 +765,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         /// <param name="bacDto"></param>
         /// <param name="accDto"></param>
         /// <param name="orgId"></param>
-        /// <param name="isOptimaApi">Có hay khôngOptimagiao diện Tư ơng ứng củaghi sổ,mặc đ ịnh là trống,1 biểu thị là(kế hoạch ghi sổ không 做dữ liệu xử lý),null và0 biểu thị là không</param>
+        /// <param name="isOptimaApi">Có hay khôngOptimagiao diện Tư ơng ứng củaghi sổ,mặc đ ịnh là trống,1 biểu thị là(kế hoạch ghi sổ không làmdữ liệu xử lý),null và0 biểu thị là không</param>
         /// <param name="isClinic">Có hay không phòng khám ghi sổ,mặc đ ịnh là trống,1 biểu thị là(nhắc nhở bảo hiểm thư ơng mại số lần),null và2 biểu thị là không(nhắc nhở BHYT số lần)</param>
         public void SaveOutpatientAccountInfo(OutpatAccBasicInfoDto bacDto, List<OutpatAccGridInfoDto> accDto, string orgId, string isOptimaApi = null, string isClinic = null)
         {
@@ -776,7 +776,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                 isClinic = "1";
             }
 
-            List<DateTime> jzsjList = new List<DateTime>();//Ghi sổ ngày không trùng lặp 字符串,là BHYThoặc bảo hiểm thư ơng mại số lần thống kê chuẩn bị 
+            List<DateTime> jzsjList = new List<DateTime>();//Ghi sổ ngày không trùng lặp chuỗi ký tự,là BHYThoặc bảo hiểm thư ơng mại số lần thống kê chuẩn bị 
             var optimaId = new Dictionary<string, string>();
             //Quyết toánEntity
             var jsEntity = new SettlementEntityVO();
@@ -807,7 +807,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
 
             var sqlVo = GetOutPatChargeAccuDbvo(bacDto.patid, bacDto.brxz, accDto, out jsEntity, out jzjhmxList, jzjh, orgId, bacDto, out mzjs, out jzsjList, out optimaId, isOptimaApi, isClinic);
 
-            //Tính出quyết toán ngoại trú thông tin getMzJs
+            //Tínhraquyết toán ngoại trú thông tin getMzJs
             sqlVo.mz_js = mzjs;
 
             //Lấy chi tiết quyết toán
@@ -847,7 +847,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
         /// <param name="bacDto"></param>
         /// <param name="mzjsList"></param>
         /// <param name="jzsjList"></param>
-        /// <param name="isOptimaApi">Có hay khôngOptimagiao diện Tư ơng ứng củaghi sổ,mặc đ ịnh là trống,1 biểu thị là(kế hoạch ghi sổ không 做dữ liệu xử lý),null và0 biểu thị là không</param>
+        /// <param name="isOptimaApi">Có hay khôngOptimagiao diện Tư ơng ứng củaghi sổ,mặc đ ịnh là trống,1 biểu thị là(kế hoạch ghi sổ không làmdữ liệu xử lý),null và0 biểu thị là không</param>
         /// <param name="isClinic">Có hay không phòng khám ghi sổ,mặc đ ịnh là trống,1 biểu thị là(nhắc nhở bảo hiểm thư ơng mại số lần),null và0 biểu thị là không(nhắc nhở BHYT số lần)</param>
         public OutPatChargeSettInAccDataVo GetOutPatChargeAccuDbvo(int patid
             , string brxz
@@ -895,7 +895,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
             var ghnm = ghnmentity.ghnm;
             const decimal outJmbl = 0;
             const decimal outJmje = 0;
-            //循环 cần lưu của hạng mục dữ liệu
+            //lặp cần lưu của hạng mục dữ liệu
             if (gridDto.Count > 0)
             {
 
@@ -1312,13 +1312,13 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
             {
                 item.zje = sqlVo.mz_cfmxList.Where(p => p.cfnm == item.cfnm).Sum(p => p.dj * p.sl);
             }
-            //Thêm mỗi 个Đ ối tư ợng thực thể gán giá trị 
+            //Thêm mỗi cáiĐ ối tư ợng thực thể gán giá trị 
             return sqlVo;
 
         }
 
         /// <summary>
-        /// Chuyên viên trị liệulist kết hợp 成字符串
+        /// Chuyên viên trị liệulist kết hợp thànhchuỗi ký tự
         /// </summary>
         /// <param name="ysList"></param>
         /// <param name="ys"></param>
@@ -1807,10 +1807,10 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                             var ysArray = item.ysList.OrderBy(p => p.gh).ToList();
                             getYsKsInfo(ysArray, ref ys, ref ysmc, ref ks, ref ksmc);
                         }
-                        OutpatientPrescriptionEntity IsSameCF = null;//Đ ơn thuốc ngoại trú bảng, đ ể SửaĐ ơn thuốc备 dùng 
+                        OutpatientPrescriptionEntity IsSameCF = null;//Đ ơn thuốc ngoại trú bảng, đ ể SửaĐ ơn thuốcdự phòng dùng 
                         if (item.yzlx == "1" && item.czlx == "1")//Đ ơn thuốc đ ã sửa
                         {
-                            // ngày và chuyên viên trị liệu, phán đoán có hay không cùng một tờ Đ ơn thuốc. đ ể 避免 trùng lặp 取dữ liệu, trư ớc 取出来 
+                            // ngày và chuyên viên trị liệu, phán đoán có hay không cùng một tờ Đ ơn thuốc. đ ể tránh trùng lặp lấydữ liệu, trư ớc lấy ra 
                             //1.Lấykhi trư ớc Đ ơn thuốc nếu sửa trư ớc là cùng một tờ Đ ơn thuốc, phía sau xử lý,nếu không thêm mới
                             IsSameCF = item.yzlx == "1" ? FirstOrDefault<OutpatientPrescriptionEntity>(@"SELECT  cf.*
                                             FROM    dbo.mz_cf cf
@@ -2327,7 +2327,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
             foreach (var item in accDto)
             {
                 string ys = null, ysmc = null, ks = null, ksmc = null;//Khi trư ớc Đ ơn thuốc của bác sĩ
-                OutpatientPrescriptionEntity IsSameCF = null;//Đ ơn thuốc ngoại trú bảng, đ ể SửaĐ ơn thuốc备 dùng 
+                OutpatientPrescriptionEntity IsSameCF = null;//Đ ơn thuốc ngoại trú bảng, đ ể SửaĐ ơn thuốcdự phòng dùng 
                 if (item.ysList != null && item.ysList.Count() > 0)
                 {
                     var ysArray = item.ysList.OrderBy(p => p.gh).ToList();
@@ -2339,7 +2339,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                     updatejsmx = _outpatientSettlementDetailRepo.FindEntity(p => p.mxnm == item.xmnm);
                     if (item.yzlx == "1" && item.czlx == "1")//Đ ơn thuốc đ ã sửa
                     {
-                        // phán đoán jsnm, ngày và chuyên viên trị liệu, phán đoán có hay không cùng một tờ Đ ơn thuốc. đ ể 避免 trùng lặp 取dữ liệu, trư ớc 取出来 
+                        // phán đoán jsnm, ngày và chuyên viên trị liệu, phán đoán có hay không cùng một tờ Đ ơn thuốc. đ ể tránh trùng lặp lấydữ liệu, trư ớc lấy ra 
                         //1.Lấykhi trư ớc Đ ơn thuốc nếu sửa trư ớc là cùng một tờ Đ ơn thuốc, phía sau xử lý,nếu không thêm mới
                         IsSameCF = item.yzlx == "1" ? FirstOrDefault<OutpatientPrescriptionEntity>(@"SELECT  cf.*
                                             FROM    dbo.mz_cf cf
@@ -2812,7 +2812,7 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                     //           new[] { new SqlParameter("@cfmxnm", updatejsmx.cf_mxnm), new SqlParameter("@orgId", orgId) }) :
                     //           FirstOrDefault<string>("SELECT DISTINCT jzjhmxId FROM MZ_XM WHERE jsnm = @jsnm",
                     // new[] { new SqlParameter("@jsnm", jsnm) });// cần xóa củachi tiết kế hoạch ghi sổ id
-                    del_jsnm.Add(int.Parse(jsnm.ToString()));//Thêm trạng thái quyết toán,刷 mới bảng chính trạng thái và tổng số tiền
+                    del_jsnm.Add(int.Parse(jsnm.ToString()));//Thêm trạng thái quyết toán,làm mới mới bảng chính trạng thái và tổng số tiền
                     if (item.czlx == "2")
                     {
                         #region 删除
@@ -3145,10 +3145,10 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                 ys = ghIsExits.ys;
                 ks = ghIsExits.ks;
 
-                //Sửa: trư ớc 停 dùng,再thêm mới
+                //Sửa: trư ớc dừng dùng,lạithêm mới
                 if (!string.IsNullOrWhiteSpace(item.jzjhmxId) && (item.czlx == "1"))
                 {
-                    //停 dùng kế hoạch 
+                    //dừng dùng kế hoạch 
                     overAccountingPlan(item.jzjhmxId, orgId, userCode);
                 }
 
@@ -3175,10 +3175,10 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                 //else
                 //{
                 //    updatejsmx = _outpatientSettlementDetailRepo.FindEntity(int.Parse(item.jsmxnm.ToString()));
-                // if (item.czlx == "1")//Sửa, trư ớc 停 dùng khi trư ớc kế hoạch,再开启 mới kế hoạch 
+                // if (item.czlx == "1")//Sửa, trư ớc dừng dùng khi trư ớc kế hoạch,lạimở mới kế hoạch 
                 //    {
                 //        var updatemzxm = FirstOrDefault<OutpatientItemEntity>(@"select * from mz_xm where xmnm=@xmnm AND OrganizeId=@orgId", new[] { new SqlParameter("@xmnm", updatejsmx.mxnm), new SqlParameter("@orgId", orgId) });
-                // //停 dùng kế hoạch 
+                // //dừng dùng kế hoạch 
                 //        overAccountingPlan(updatemzxm.jzjhmxId, orgId, userCode);
                 // //Thêm mới kế hoạch 
                 //        var addvo = AddoutpatientAccountInfo(item, orgId, jzsjList, bacDto, ghnm, gridindex, sqlVo.mz_jzjh);
@@ -3264,14 +3264,14 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
             };
 
             var zje = item.Zje;
-            int zsl = 0;//总数
-            var dcsl = 0;// mỗi lần số lư ợng= điều trị lư ợng /Đ ơn vị计 lư ợng 数
+            int zsl = 0;//tổng số
+            var dcsl = 0;// mỗi lần số lư ợng= điều trị lư ợng /Đ ơn vịtính lư ợng số
             int? zzll = item.sl * item.zll;
             var zxzt = (int)EnumJzjhZXZT.None;
             if (item.sfxmCode != null)
             {
                 dcsl = CommmHelper.CalcSfxmSl(item.zll, item.dwjls, item.jjcl);
-                //总数
+                //tổng số
                 zsl = (dcsl * item.sl).ToInt();
                 zje = zsl * item.dj;
             }
@@ -3498,13 +3498,13 @@ left join [NewtouchHIS_Base].dbo.[V_S_xt_sfxm] e with(nolock) on gb.organizeid =
                 string yzxcssql = "SELECT count(*) FROM [dbo].[mz_jzjhmxzx] WHERE [jzjhmxId] = @jzjhmxId and [OrganizeId] = @orgId AND zt=1 ";
                 var yzxcs = db.FirstOrDefault<int>(yzxcssql, new[] { new SqlParameter("@jzjhmxId", jzjhmxId)
                                 , new SqlParameter("@orgId", orgId) });
-                //if (yzxcs == 0)//Chưa thực hiện qua thì nơi về联 bảng trạng thái置là0
+                //if (yzxcs == 0)//Chưa thực hiện qua thì nơi vềkết bảng trạng tháiđặtlà0
                 //{
                 //    delAccountingPlan(db, jzjhmxId, orgId, "1");
                 //    return;
                 //}
                 //1.Cập nhậtmz_xm
-                // theo jzjhmzid, thống kê thực hiện bảng số lư ợng và总 lư ợng 
+                // theo jzjhmzid, thống kê thực hiện bảng số lư ợng vàtổng lư ợng 
                 //var mxzx = db.FirstOrDefault<mxzxDto>(@"SELECT  ISNULL(SUM(zll), 0) zll ,
                 //                        ISNULL(CAST(SUM(sl) AS INT), 0) sl
                 //                        FROM [dbo].[mz_jzjhmxzx]
@@ -3731,7 +3731,7 @@ WHERE jzjhmx.OrganizeId=@orgId and jzjhmx.zt = '1' and xx.zt = '1'
                 strSql.Append(" AND jzjhmx.zxzt = @jhzxzt ");
                 pars.Add(new SqlParameter("@jhzxzt", zxzt.Value));
             }
-            if ((zsftx ?? 0) > 0)//再thu phí nhắc nhở 
+            if ((zsftx ?? 0) > 0)//lạithu phí nhắc nhở 
             {
                 strSql.Append(" AND datediff(day, jzjhmx.jzsj, jzjhmx.LastEexcutionTime) >= @zsftx");
                 pars.Add(new SqlParameter("@zsftx", zsftx.Value));

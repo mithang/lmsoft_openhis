@@ -17,7 +17,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// theo hạng mục thu phí lấy một lần 性材料 thu phí材料hạng mục综合
+        /// theo hạng mục thu phí lấy một lần vật liệu thu phívật liệuhạng mụctổng hợp
         /// </summary>
         /// <param name="sfxm"></param>
         /// <returns></returns>

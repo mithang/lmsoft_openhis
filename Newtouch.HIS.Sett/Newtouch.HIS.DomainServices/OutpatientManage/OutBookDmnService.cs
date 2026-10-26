@@ -31,7 +31,7 @@ namespace Newtouch.HIS.DomainServices.OutpatientManage
         {
         }
 
-        //分trang LấyĐ ăng ký khám lịch trực danh sách
+        //phântrang LấyĐ ăng ký khám lịch trực danh sách
         public IList<OutBookVO> GetPagintionList(Pagination pagination, string orgId, string keyword)
         {
             if (string.IsNullOrEmpty(orgId))
@@ -110,7 +110,7 @@ on ghpb.ys=staff.gh
 //left join NewtouchHIS_Base.[dbo].[V_S_xt_sfxm] zlsfxm on zlsfxm.sfxmCode=ghpb.zlxm and zlsfxm.OrganizeId = ghpb.OrganizeId
 //left join NewtouchHIS_Base.[dbo].[V_S_Sys_Staff] staff on ghpb.ys=staff.gh 
 //where 1=1 ";
-            // chẩn đoán và điều trị hạng mục打包là thu phí kết hợp 
+            // chẩn đoán và điều trị hạng mụcđóng góilà thu phí kết hợp 
             string sql = @"select ghpb.[ghpbId] ,ghpb.[OrganizeId],ghpb.[ks] ,ghpb.[ys],ghpb.[zt] ,ghpb.pbdesc,
 ghpb.[zhl] ,ghpb.[ghzb],ghpb.[CreatorCode] ,ghpb.[CreateTime] ,ghpb.[LastModifyTime],ghpb.[LastModifierCode] ,
 ghpb.[px],ghpb.[ghlx] ,ghpb.[zlxm] ,ghpb.[mjzbz],sfxm.sfxmmc,zlsfxm.zhmc zlxmmc,department.name as ksmz,staff.name as ysxm 

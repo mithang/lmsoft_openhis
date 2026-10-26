@@ -538,7 +538,7 @@ a.RegFee,a.IsBook,a.ghlx,a.zlxm,a.weekdd,a.IsCancel ";
         /// đ ặt lịch xin 
         /// </summary>
         /// <param name="orgId"></param>
-        /// <param name="scheduid"> lịch trực ngày程id</param>
+        /// <param name="scheduid"> lịch trực ngàytrìnhid</param>
         /// <param name="patid"></param>
         /// <param name="kh">Bệnh nhânSố thẻ</param>
         public decimal OutbookingApply(BookingRequestDto req, SysPatInfoVO patvo, MzpbScheduleVO pbvo)

@@ -39,7 +39,7 @@ namespace Newtouch.HIS.DomainServices.PatientManage
                     db.Update(zh);
                 }
 
-                //财务 biên lai 
+                //tài chính biên lai 
                 if (type == "insert")
                 {
                     db.Insert(cwsj);  // Thêm số chứng từ biên lai 
@@ -62,7 +62,7 @@ namespace Newtouch.HIS.DomainServices.PatientManage
             {
                 AppLogger.WriteEntityChangeRecordLog(vo.oldzh, zh, SysPatientAccountEntity.GetTableName(), vo.oldzh.zhCode.ToString());
             }
-            //财务 biên lai thay đ ổi nhật ký 
+            //tài chính biên lai thay đ ổi nhật ký 
             if (vo.oldcwsj != null && type == "update")
             {
                 AppLogger.WriteEntityChangeRecordLog(vo.oldcwsj, cwsj, FinanceReceiptEntity.GetTableName(), vo.oldcwsj.cwsjId.ToString());

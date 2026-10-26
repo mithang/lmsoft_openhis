@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// từ điển, từ điển 项 DmnService
+    /// từ điển, từ điển mục DmnService
     /// </summary>
     public class ItemDmnService : DmnServiceBase, IItemDmnService
     {
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Lấy hiệu lực từ điển 项 danh sách chỉ đ ịnh tổ chức
+        /// Lấy hiệu lực từ điển mục danh sách chỉ đ ịnh tổ chức
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
@@ -51,7 +51,7 @@ select Id from [NewtouchHIS_Base]..V_S_Sys_Items where Code = @code and zt = '1'
         }
 
         /// <summary>
-        /// Lấy tất cả các từ điển 项
+        /// Lấy tất cả các từ điển mục
         /// </summary>
         /// <param name="topOrgId"></param>
         /// <returns></returns>

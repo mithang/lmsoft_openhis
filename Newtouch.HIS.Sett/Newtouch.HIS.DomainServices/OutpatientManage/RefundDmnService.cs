@@ -122,11 +122,11 @@ namespace Newtouch.HIS.DomainServices
             sqlBuilder.AppendLine("ZHJZ,XJZFFS,ISNULL(MZ_FPDY.XFPH,MZ_JS.FPH) AS FPH,JSZT,CXJSNM,ZH,MZ_JS.CreatorCode,MZ_JS.CreateTime,FPDM,JMBL,JMJE,JYLX,YSK,ZL,XJWC,MZ_JS.FPH as oldFPH FROM MZ_JS WITH(NOLOCK)");
             sqlBuilder.AppendLine("LEFT JOIN ( ");
             sqlBuilder.AppendLine("    SELECT * FROM MZ_FPDY AS A_SET WITH(NOLOCK) WHERE CreateTime = (SELECT MAX(CreateTime) FROM MZ_FPDY AS B_SET WITH(NOLOCK) WHERE B_SET.JSNM = A_SET.JSNM and B_SET.OrganizeId=@OrganizeId) and A_SET.OrganizeId=@OrganizeId ");
-            //sqlBuilder.AppendLine(") AS MZ_FPDY ON MZ_JS.FPH = MZ_FPDY.FPH "); //Sửa成mã nội bộ quyết toán
+            //sqlBuilder.AppendLine(") AS MZ_FPDY ON MZ_JS.FPH = MZ_FPDY.FPH "); //Sửathànhmã nội bộ quyết toán
             sqlBuilder.AppendLine(") AS MZ_FPDY ON MZ_JS.JSNM = MZ_FPDY.JSNM ");
             //sqlBuilder.AppendLine(string.Format("WHERE BRNM = {0} AND LEN(ISNULL(MZ_JS.FPH,'')) > 0 AND JSZT <> 2 ", brnm));
             sqlBuilder.AppendLine(string.Format("WHERE PATID = {0}  AND JSZT <> 2 ", PATID));     //Không có hóa đ ơn cũng có thể hoàn phí.
-            sqlBuilder.AppendLine(" AND  NOT EXISTS  (select 1 FROM mz_js b WITH(NOLOCK) WHERE b.jszt='2' and b.cxjsnm=MZ_JS.jsnm and b.OrganizeId=@OrganizeId ) and MZ_JS.OrganizeId=@OrganizeId");      //Đ ã trả lại của hóa đ ơn tại hoàn phí界面 không 再hiển thị
+            sqlBuilder.AppendLine(" AND  NOT EXISTS  (select 1 FROM mz_js b WITH(NOLOCK) WHERE b.jszt='2' and b.cxjsnm=MZ_JS.jsnm and b.OrganizeId=@OrganizeId ) and MZ_JS.OrganizeId=@OrganizeId");      //Đ ã trả lại của hóa đ ơn tại hoàn phígiao diện không lạihiển thị
 
 
             if (!string.IsNullOrWhiteSpace(where))
@@ -462,7 +462,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// theo bệnh nhân mã nội bộ lấy除Đ ăng ký khám của ngoài của còn lại số lư ợng
+        /// theo bệnh nhân mã nội bộ lấytrừĐ ăng ký khám của ngoài của còn lại số lư ợng
         /// </summary>
         /// <param name="brnm"></param>
         /// <returns></returns>
@@ -555,7 +555,7 @@ and a.OrganizeId=@OrganizeId
             return _dataContext.Set<SysPatientNatureEntity>().FirstOrDefault(p => p.brxz == brxz && p.OrganizeId == OrganizeId);
         }
         /// <summary>
-        /// theo 首拼tra cứu hạng mục thu phí
+        /// theo chữ đầu ghép vầntra cứu hạng mục thu phí
         /// </summary>
         /// <param name="parm"></param>
         /// <returns></returns>
@@ -579,7 +579,7 @@ and a.OrganizeId=@OrganizeId
             return _dataContext.Set<SysPatientBasicInfoEntity>().FirstOrDefault(p => p.patid == patid && p.OrganizeId == OrganizeId);
 
         }
-        /// theo bảng 名lấy khóa chính
+        /// theo bảng tênlấy khóa chính
         public int GetPrimaryKeyByTableName(string tableName)
         {
             return EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt(tableName);
@@ -863,7 +863,7 @@ and a.OrganizeId=@OrganizeId
                     //        jsdl.jsrq = DateTime.Now;
                     //        jsdl.zt = "1";
                     //        jsdl.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;
-                    // jsdl.Create(true); // tự 增string khóa chính
+                    // jsdl.Create(true); // tự tăngstring khóa chính
                     //        db.Insert(jsdl);
                     // AppLogger.Info("Quyết toán loại lớn: " + jsdl.jsdlid.ToString());
                     //        // sqlStrList.Add(DAL_mz_jsdl.Instance.getInsertSql(jsdl));
@@ -1010,7 +1010,7 @@ GROUP BY A.patid, a.blh, A.xm, A.xb, A.csny, A.zjlx, A.zjh, A.dh, A.dybh, gh.mzh
         }
 
         /// <summary>
-        /// Bệnh nh ânĐ ăng ký ngoại trú,浮 lớp tra cứu thông tin bệnh nhân
+        /// Bệnh nh ânĐ ăng ký ngoại trú,nổi lớp tra cứu thông tin bệnh nhân
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>
@@ -1553,7 +1553,7 @@ left join cqyb_OutPut05 e on e.jsnm=d.jsnm and e.OrganizeId=d.OrganizeId where k
         #region 退费2018版
 
         /// <summary>
-        /// Hoàn phí ngoại trú quyết toán 主 bản ghi Query
+        /// Hoàn phí ngoại trú quyết toán chính bản ghi Query
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>
@@ -1745,7 +1745,7 @@ order by mzjs.CreateTime
         #endregion
 
         /// <summary>
-        /// Ngoại trú/Nhập viện kế hoạch 录入 bệnh nhân检索lọc
+        /// Ngoại trú/Nhập viện kế hoạch nhập bệnh nhântìm kiếmlọc
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>
@@ -1959,7 +1959,7 @@ ORDER BY mzjs.CreateTime
         }
         #endregion
         /// <summary>
-        /// Ngoại trú nhập viện tạm ứng bệnh nhân浮 lớp 
+        /// Ngoại trú nhập viện tạm ứng bệnh nhânnổi lớp 
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>

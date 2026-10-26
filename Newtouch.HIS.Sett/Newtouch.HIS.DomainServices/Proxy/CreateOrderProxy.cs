@@ -12,7 +12,7 @@ using Newtouch.His.OrderService.Contact.DTO;
 namespace Newtouch.HIS.DomainServices.Proxy
 {
     /// <summary>
-    /// 调 dư ới đ ơn giao diện
+    /// gọi dư ới đ ơn giao diện
     /// </summary>
     public class CreateOrderProxy
     {
@@ -50,7 +50,7 @@ namespace Newtouch.HIS.DomainServices.Proxy
 
 
         /// <summary>
-        /// nhóm 装 dư ới đ ơn bản tin
+        /// lắp ráp dư ới đ ơn bản tin
         /// </summary>
         /// <param name="gh">Thông tin đ ăng ký khám</param>
         /// <param name="ghxmList">Đ ăng ký khám hạng mụcchi tiết</param>
@@ -71,7 +71,7 @@ namespace Newtouch.HIS.DomainServices.Proxy
         }
 
         /// <summary>
-        /// nhóm 装 dư ới đ ơn bản tin
+        /// lắp ráp dư ới đ ơn bản tin
         /// </summary>
         /// <param name="orderid"> đ ơn hàng số </param>
         /// <returns></returns>
@@ -85,7 +85,7 @@ namespace Newtouch.HIS.DomainServices.Proxy
         }
 
         /// <summary>
-        /// nhóm 装 đ ơn hàng cơ bản thông tin
+        /// lắp ráp đ ơn hàng cơ bản thông tin
         /// </summary>
         /// <returns></returns>
         private static OrderBasicDTO BuildOrderBasicInfo(OutpatientSettlementEntity mzjs)
@@ -109,7 +109,7 @@ namespace Newtouch.HIS.DomainServices.Proxy
         }
 
         /// <summary>
-        /// nhóm 装 đ ơn hàng liên hệ 人thông tin
+        /// lắp ráp đ ơn hàng liên hệ ngườithông tin
         /// </summary>
         /// <param name="patid">Bệnh nhânID</param>
         /// <returns></returns>
@@ -133,7 +133,7 @@ namespace Newtouch.HIS.DomainServices.Proxy
         }
 
         /// <summary>
-        /// nhóm 装 đ ơn hàng 资源thông tin
+        /// lắp ráp đ ơn hàng tài nguyênthông tin
         /// </summary>
         /// <param name="ghxmList"></param>
         /// <returns></returns>

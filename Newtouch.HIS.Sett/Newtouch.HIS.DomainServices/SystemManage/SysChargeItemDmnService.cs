@@ -86,7 +86,7 @@ from(");
     and aaa.zt = '1' 
     and bbb.zt = '1'
 ", mzzybz ?? "0");
-            // này một tệ của logic có点复杂,tạm thời không 加. Cần dùng đ ến yfbm yfbm_yp
+            // này một tệ của logic cóchútphức tạp,tạm thời không thêm. Cần dùng đ ến yfbm yfbm_yp
             // và không Làxt_yp Củamzzybz trư ờng 
             //if (!string.IsNullOrWhiteSpace(mzzybz))
             //{
@@ -140,7 +140,7 @@ from(");
         }
 
         /// <summary>
-        /// Hạng mục检索
+        /// Hạng mụctìm kiếm
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>

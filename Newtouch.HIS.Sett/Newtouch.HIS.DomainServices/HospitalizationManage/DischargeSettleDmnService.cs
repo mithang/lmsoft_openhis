@@ -622,8 +622,8 @@ FROM
 				jszbEntity.fph = fph;
 				jszbEntity.jszt = ((int)EnumJieSuanZT.YJ).ToString();
 				jszbEntity.jsxz = "1";   //1:Quyết toán xuất viện 2:Quyết toán giữa chừng
-				jszbEntity.jsksrq = settpatInfo.ryrq;  //只 đ ối với quyết toán giữa chừng có意义
-				jszbEntity.jsjsrq = expectedcyrq;      //只 đ ối với quyết toán giữa chừng có意义
+				jszbEntity.jsksrq = settpatInfo.ryrq;  //chỉ đ ối với quyết toán giữa chừng cóý nghĩa
+				jszbEntity.jsjsrq = expectedcyrq;      //chỉ đ ối với quyết toán giữa chừng cóý nghĩa
 				jszbEntity.ysk = feeRelated.ssk;    //Tạm thu100  100 Trả lại tiền thừa20
 				jszbEntity.zl = feeRelated.zhaoling;   //Trả lại tiền thừa20
 				jszbEntity.OutTradeNo = outTradeNo;
@@ -693,7 +693,7 @@ FROM
 					//
 					mxzje += zyjsmx.jyje.Value;
 				}
-				////////////// không 再xác minh,không có意义, một 旦 không 相V.v.,流程 trả lại 很难
+				////////////// không lạixác minh,không cóý nghĩa, một khi không phù hợpV.v.,quy trình trả lại rất khó
 				//if (mxzje != feeRelated.zje)
 				//{
 				// throw new Exception("Quyết toán tổng số tiền bất thư ờng:"+ mxzje.ToString()+ " không V.v.于" + feeRelated.zje.ToString());
@@ -701,11 +701,11 @@ FROM
 
 				if (feeRelated.orglxjzfys.HasValue && feeRelated.xjzfys.HasValue)
 				{
-					// cần 减去ghi sổ một phần V.v.Số tiền
+					// cần trừ đighi sổ một phần V.v.Số tiền
 					if (feeRelated.orglxjzfys.Value != jszbEntity.zje - 0)
 					{
 
-						//贵安BHYT
+						//Quý AnBHYT
 						if (medicalInsurance == "guian")
 						{
 							if (jslx == "1" && (ybfeeRelated == null || ybfeeRelated.calc_xjzf != feeRelated.orglxjzfys.Value))
@@ -724,8 +724,8 @@ FROM
 				}
 				else
 				{
-					//???xjzf có必 cần gán giá trị 么
-					// cần 减去ghi sổ một phần V.v.Số tiền
+					//???xjzf cónhất thiết cần gán giá trị không
+					// cần trừ đighi sổ một phần V.v.Số tiền
 					jszbEntity.xjzf = jszbEntity.zje - 0;
 				}
 
@@ -779,7 +779,7 @@ FROM
 		{
 			var sql = @"select dljf.dl dlCode, sfdl.dlmc, dljf.je from (
 select dl, sum(je) je from( ";
-			if (ver == "2")//合 và chi phí của tổng cộng và không 合 và tổng chi phí sum保留 hai vị 小数 tồn tại tại không V.v. tình hình qua 渡 dùng 
+			if (ver == "2")//gộp và chi phí của tổng cộng và không gộp và tổng chi phí sumgiữ hai vị thập phân tồn tại tại không V.v. tình hình quá độ dùng 
 			{
 				sql += @" select dl, CONVERT(NUMERIC(10,2), isnull(je, 0)) je from [V_C_Sys_WsfZyXmjfb]
 where zyh = @zyh and OrganizeId = @orgId and zt= '1'
@@ -1099,7 +1099,7 @@ left join Ybjk_SN01_Mxxzy_Input (NOLOCK) fymx on xh=xmjfb.jfbbh and  fymx.mzzyh=
 			}
 			oldbrjbxx = brjbxx.Clone();
 			brjbxx.zybz = ((int)EnumZYBZ.Djz).ToString();
-			//brjbxx.cyrq = null; // không thể 重置
+			//brjbxx.cyrq = null; // không thể đặt lại
 			brjbxx.cyjdrq = null;
 			brjbxx.cyjdry = null;
 
@@ -1141,7 +1141,7 @@ left join Ybjk_SN01_Mxxzy_Input (NOLOCK) fymx on xh=xmjfb.jfbbh and  fymx.mzzyh=
 					db.Insert(jsmxEntity);
 				}
 
-				//Nếu trư ớc đ ó là thanh toán tạm ứng, cần 还 khoản 
+				//Nếu trư ớc đ ó là thanh toán tạm ứng, cần hoàn khoản 
 				var preYjjPayEntity = db.IQueryable<HospSettlementPaymentModelEntity>(p => p.jsnm == preSettlEntity.jsnm && p.xjzffs == xtzffs.ZYYJZHZF).FirstOrDefault();
 				if (preYjjPayEntity != null)
 				{
@@ -1271,10 +1271,10 @@ left join Ybjk_SN01_Mxxzy_Input (NOLOCK) fymx on xh=xmjfb.jfbbh and  fymx.mzzyh=
 				db.Insert(zfEntity2);
 			}
 
-			//Nếu只có một loại phư ơng thức thanh toán tồn tại 入js.xjzffs
+			//Nếuchỉcó một loại phư ơng thức thanh toán tồn tại vàojs.xjzffs
 			jszbEntity.xjzffs = zfEntity2 == null ? zfEntity1.xjzffs : null;
 
-			//Thanh toán tạm ứng xây dựng thu chi tài khoản //Thanh toán tạm ứng nhất đ ịnh 作là thứ một phư ơng thức thanh toán 
+			//Thanh toán tạm ứng xây dựng thu chi tài khoản //Thanh toán tạm ứng nhất đ ịnh làmlà thứ một phư ơng thức thanh toán 
 			if (zfEntity1 != null && zfEntity1.xjzffs == xtzffs.ZYYJZHZF)
 			{
 				var patid = db.IQueryable<HospPatientBasicInfoEntity>(p => p.zyh == jszbEntity.zyh && p.OrganizeId == jszbEntity.OrganizeId).Select(p => p.patid).FirstOrDefault();
@@ -1378,7 +1378,7 @@ left join Ybjk_SN01_Mxxzy_Input (NOLOCK) fymx on xh=xmjfb.jfbbh and  fymx.mzzyh=
 				jszbEntity.xjzffs = feeRelated.djjesszffs;
 			}
 
-			//Thanh toán tạm ứng xây dựng thu chi tài khoản //Thanh toán tạm ứng nhất đ ịnh 作là thứ một phư ơng thức thanh toán 
+			//Thanh toán tạm ứng xây dựng thu chi tài khoản //Thanh toán tạm ứng nhất đ ịnh làmlà thứ một phư ơng thức thanh toán 
 			if (zfEntity1 != null && zfEntity1.xjzffs == xtzffs.ZYYJZHZF)
 			{
 				var patid = db.IQueryable<HospPatientBasicInfoEntity>(p => p.zyh == jszbEntity.zyh && p.OrganizeId == jszbEntity.OrganizeId).Select(p => p.patid).FirstOrDefault();
@@ -1461,7 +1461,7 @@ left join Ybjk_SN01_Mxxzy_Input (NOLOCK) fymx on xh=xmjfb.jfbbh and  fymx.mzzyh=
 			InZyfymxxrDto dtoRes = new InZyfymxxrDto();
 			StringBuilder strsql = new StringBuilder();
 			IList<SqlParameter> inSqlParameterList = null;
-			//利 dùng 分trang去tra cứu,yka105 trư ờng sắp xếp,nhưng này trư ờng có thể thuốc và hạng mục sẽ trùng lặp, vì vậy thêm trư ớc 缀
+			//tận dụng phântrangđểtra cứu,yka105 trư ờng sắp xếp,nhưng này trư ờng có thể thuốc và hạng mục sẽ trùng lặp, vì vậy thêm tiền tố
 			strsql.Append(@"SELECT  'YP' +CONVERT(VARCHAR(18),ypjfb.jfbbh) 'yka105' ,
                                     'YP' +ypjfb.yp 'ykd125' ,
                                     ISNULL(yp.ypmc,'') 'ykd126' ,
@@ -1801,7 +1801,7 @@ FROM    [NewtouchHIS_Sett].[dbo].[zy_brjbxx] a
 		{
 			StringBuilder strsql = new StringBuilder();
 			IList<SqlParameter> inSqlParameterList = null;
-			//利 dùng 分trang去tra cứu,yka105 trư ờng sắp xếp,nhưng này trư ờng có thể thuốc và hạng mục sẽ trùng lặp, vì vậy thêm trư ớc 缀
+			//tận dụng phântrangđểtra cứu,yka105 trư ờng sắp xếp,nhưng này trư ờng có thể thuốc và hạng mục sẽ trùng lặp, vì vậy thêm tiền tố
 			strsql.Append(@"SELECT  'YP' + CONVERT(VARCHAR(20), ypjfb.jfbbh) 'cfh' ,
         'YP' + ypjfb.yp 'yynm' ,
         ISNULL(yp.ypmc, '') 'xmmc' ,
@@ -1937,7 +1937,7 @@ WHERE   xmjfb.zyh = @zyh
 			zfzje = Convert.ToDecimal(0.0000);
 			foreach (var item in ybdata)
 			{
-				item.cxmxlsh = "";// này trư ờng có thể恒Lànull, đ ể 
+				item.cxmxlsh = "";// này trư ờng có thểluônLànull, đ ể 
 				item.jbr = usercode;
 				if (!string.IsNullOrEmpty(item.sl.ToString()) && !string.IsNullOrEmpty(item.je.ToString()) && Convert.ToDecimal(item.sl) > 0 && Convert.ToDecimal(item.je) > 0)
 				{
@@ -2080,7 +2080,7 @@ WHERE   zybrxx.zt = '1'
 		/// </summary>
 		/// <param name="zyh"></param>
 		/// <param name="orgId"></param>
-		/// <param name="startTime"> gọi trư ớc đ ó vui lòng明确ngày bắt đ ầu</param>
+		/// <param name="startTime"> gọi trư ớc đ ó vui lòngxác định rõngày bắt đ ầu</param>
 		/// <param name="endTime"></param>
 		/// <param name="expectedCount"></param>
 		public void commitPartialSettle(string zyh, string orgId, DateTime startTime, DateTime endTime, InpatientSettFeeRelatedDTO feeRelated, CQZyjs05Dto ybfeeRelated, string jslx, InpatientSettleItemBO xmypjfbList, out int jsnm, int? expectedCount = null)
@@ -2175,8 +2175,8 @@ WHERE   zybrxx.zt = '1'
 
 				if (!(feeRelated.orglxjzfys.HasValue && feeRelated.xjzfys.HasValue))
 				{
-					//???xjzf có必 cần gán giá trị 么
-					// cần 减去ghi sổ một phần V.v.Số tiền
+					//???xjzf cónhất thiết cần gán giá trị không
+					// cần trừ đighi sổ một phần V.v.Số tiền
 					jsItem.xjzf = jsItem.zje - 0;
 				}
 
@@ -2268,9 +2268,9 @@ WHERE   zybrxx.zt = '1'
 		{
 			using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
 			{
-				//1. trư ớc tra cứu 出 tất cả các hủy bỏ của bản ghi 
+				//1. trư ớc tra cứu ra tất cả các hủy bỏ của bản ghi 
 				var cxztjsList = db.IQueryable<HospSettlementEntity>(p => p.zyh == zyh && p.OrganizeId == orgId && p.zt == "1" && p.jszt == "2").Select(p => p.cxjsnm);
-				//Đ ã产生của danh sách quyết toán jszt 1Đ ã quyết toán và là đ ược hủy bỏ 
+				//Đ ãphát sinhcủa danh sách quyết toán jszt 1Đ ã quyết toán và là đ ược hủy bỏ 
 				//Đ ã sắp xếp mới nhất của hiệu lực quyết toán xếp tại nhất trư ớc 
 				var ztjsList = db.IQueryable<HospSettlementEntity>(p => p.zyh == zyh && p.OrganizeId == orgId && p.zt == "1" && p.jszt == "1" && !cxztjsList.Contains(p.jsnm)).OrderByDescending(p => p.CreateTime).ToList();
 
@@ -2331,10 +2331,10 @@ WHERE   js.jsnm = @jsnm
 		/// <summary>
 		/// Lấy chưa phê duyệt chi tiết
 		/// </summary>
-		/// <param name="cfmxlshstr"> giao dịch số thứ tự 字符串</param>
+		/// <param name="cfmxlshstr"> giao dịch số thứ tự chuỗi ký tự</param>
 		/// <param name="orgId"></param>
 		/// <param name="FinalType"> phê duyệt loại </param>
-		/// <param name="highPrices">高thu phí giá</param>
+		/// <param name="highPrices">caothu phí giá</param>
 		/// <returns></returns>
 		public IList<RequestApprovalVO> sweep_expired_approvals(string cfmxlshstr, string orgId, string zyh)
 		{
@@ -2594,7 +2594,7 @@ WHERE   xmjfb.zyh = @zyh  and xmjfb.tdrq<@jssj
 		}
 
 		/// <summary>
-		/// LưuBHYT预quyết toán kết quả
+		/// LưuBHYTdựquyết toán kết quả
 		/// </summary>
 		/// <param name="YuJieSuan"></param>
 		public void SaveSett2303(CqybSett2303Entity YuJieSuan)
@@ -2610,7 +2610,7 @@ WHERE   xmjfb.zyh = @zyh  and xmjfb.tdrq<@jssj
         #endregion
 
         /// <summary>
-        /// theo số nhập viện lấyLIS/PACS报告chưa hoàn thành số lư ợng
+        /// theo số nhập viện lấyLIS/PACSbáo cáochưa hoàn thành số lư ợng
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>

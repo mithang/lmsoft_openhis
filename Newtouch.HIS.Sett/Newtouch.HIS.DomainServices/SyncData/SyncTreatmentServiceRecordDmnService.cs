@@ -78,17 +78,17 @@ where siteId = @orgId and tr.zt = '1' and isDeleted='0'";
             {
                 if (wtjlbz.Value)
                 {
-                    //true chỉ 问题 bản ghi 
+                    //true chỉ vấn đề bản ghi 
                     sql += " and isnull(wtjlbz,0) = 1";
                 }
                 else
                 {
-                    //false loại trừ 问题 bản ghi 
+                    //false loại trừ vấn đề bản ghi 
                     sql += " and isnull(wtjlbz,0) = 0";
                 }
             }
 
-            //确保 một dư ới không có xác nhận qua 
+            //đảm bảo một dư ới không có xác nhận qua 
             sql += " and jfbId is null";
 
             sql += " order by isnull(serviceDate,CreatedDate)";

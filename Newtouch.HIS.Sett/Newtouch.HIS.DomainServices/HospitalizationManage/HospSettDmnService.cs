@@ -18,7 +18,7 @@ using System.Text;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// Quyết toán nhập viện 实现
+    /// Quyết toán nhập viện thực hiện
     /// </summary>
     public class HospSettDmnService : DmnServiceBase, IHospSettDmnService
     {
@@ -162,7 +162,7 @@ namespace Newtouch.HIS.DomainServices
                 }
                 oldZybrjbxxEntity = zybrjbxxEntityList[0].Clone();
                 zybrjbxxEntityList[0].zybz = vo.zybz;
-                zybrjbxxEntityList[0].cyrq = vo.cyrq;   //Nên không có问题
+                zybrjbxxEntityList[0].cyrq = vo.cyrq;   //Nên không cóvấn đề
                 zybrjbxxEntityList[0].LastModifierCode = OperatorProvider.GetCurrent().UserCode;
                 zybrjbxxEntityList[0].LastModifyTime = DateTime.Now;
                 db.Update(zybrjbxxEntityList[0]);

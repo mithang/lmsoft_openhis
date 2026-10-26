@@ -215,7 +215,7 @@ GROUP BY d.zlsc,d.sl,d.xmnm,d.ttbz,d.ys,d.ysgh,d.jzsj,staff.Name,xx.xm,sfdl.dlmc
 
         #region 治疗师工作时间
         /// <summary>
-        /// Chuyên viên trị liệu工作thời gian sắp xếp danh sách
+        /// Chuyên viên trị liệulàm việcthời gian sắp xếp danh sách
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="year"></param>
@@ -338,7 +338,7 @@ GROUP BY d.zlsc,d.sl,d.xmnm,d.ttbz,d.ys,d.ysgh,d.jzsj,staff.Name,xx.xm,sfdl.dlmc
         }
 
         /// <summary>
-        /// Xem đ ơn 个chuyên viên trị liệu đ ơn tháng lịch trực thông tin
+        /// Xem đ ơn cáichuyên viên trị liệu đ ơn tháng lịch trực thông tin
         /// </summary>
         /// <param name="keyvalue"></param>
         /// <param name="orgId"></param>
@@ -365,7 +365,7 @@ GROUP BY d.zlsc,d.sl,d.xmnm,d.ttbz,d.ys,d.ysgh,d.jzsj,staff.Name,xx.xm,sfdl.dlmc
         }
 
         /// <summary>
-        /// Sửa đ ơn 个chuyên viên trị liệu đ ơn 个thời gian tình hình 
+        /// Sửa đ ơn cáichuyên viên trị liệu đ ơn cáithời gian tình hình 
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyvalue"></param>
@@ -406,7 +406,7 @@ GROUP BY d.zlsc,d.sl,d.xmnm,d.ttbz,d.ys,d.ysgh,d.jzsj,staff.Name,xx.xm,sfdl.dlmc
 
         #region 时长调整
         /// <summary>
-        /// Thời lư ợng调整giờ, thống kê chuyên viên trị liệu thời lư ợng
+        /// Thời lư ợngđiều chỉnhgiờ, thống kê chuyên viên trị liệu thời lư ợng
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="gh"></param>
@@ -608,7 +608,7 @@ ORDER BY c.jzsj");
         }
 
         /// <summary>
-        /// nhận đ ược chuyên viên trị liệu mỗi tháng thời lư ợng总và
+        /// nhận đ ược chuyên viên trị liệu mỗi tháng thời lư ợngtổngvà
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -623,7 +623,7 @@ ORDER BY c.jzsj");
             foreach (var item in data)
             {
                 var ssmonth = elist.FirstOrDefault(
-                    p => p.ysgh == item.ysgh.ToString() && p.syear == item.syear && p.smonth == item.smonth);// phán đoán khi trư ớc này 人có hay không tồn tại tại một năm của một tháng dữ liệu
+                    p => p.ysgh == item.ysgh.ToString() && p.syear == item.syear && p.smonth == item.smonth);// phán đoán khi trư ớc này ngườicó hay không tồn tại tại một năm của một tháng dữ liệu
                 if (ssmonth == null)
                 {
                     ssmonth = new AdjustStaffHourVO
@@ -724,7 +724,7 @@ ORDER BY c.jzsj");
                 if (!string.IsNullOrWhiteSpace(year) && (string.IsNullOrWhiteSpace(month) || month == "-1"))
                 {
                     var ssmonth = elist.FirstOrDefault(
-                 p => p.ysgh == item.ysgh.ToString() && p.syear == item.syear);// phán đoán khi trư ớc này 人có hay không tồn tại tại một năm dữ liệu
+                 p => p.ysgh == item.ysgh.ToString() && p.syear == item.syear);// phán đoán khi trư ớc này ngườicó hay không tồn tại tại một năm dữ liệu
                     if (ssmonth == null)
                     {
                         var zgsEntity = _doctorWorkingDaysPlanRepo.IQueryable().FirstOrDefault(p => p.year == item.syear && p.ysgh == item.ysgh);
@@ -749,7 +749,7 @@ ORDER BY c.jzsj");
                 else if (!string.IsNullOrWhiteSpace(year) && !string.IsNullOrWhiteSpace(month) && month != "-1")
                 {
                     var ssmonth = elist.FirstOrDefault(
-             p => p.ysgh == item.ysgh.ToString() && p.syear == item.syear && (p.smonth == item.smonth));// phán đoán khi trư ớc này 人có hay không tồn tại tại một năm của một tháng dữ liệu
+             p => p.ysgh == item.ysgh.ToString() && p.syear == item.syear && (p.smonth == item.smonth));// phán đoán khi trư ớc này ngườicó hay không tồn tại tại một năm của một tháng dữ liệu
                     if (ssmonth == null)
                     {
                         var zgsEntity = _doctorWorkingDaysPlanRepo.IQueryable().FirstOrDefault(p => p.month == item.smonth && p.year == item.syear && p.ysgh == item.ysgh);
@@ -849,7 +849,7 @@ ORDER BY c.jzsj");
             outpatientlist = this.FindList<OutpatientSCNumVO>(sqlStr.ToString(), param).ToList();
 
 
-            /**********************************************Khoa nhập viện,Đ ã loại bỏ hoàn toàn bộ của人*****************************************************/
+            /**********************************************Khoa nhập viện,Đ ã loại bỏ hoàn toàn bộ củangười*****************************************************/
 
             List<InpatientSCNumVO> inpatientList = null;
             StringBuilder sqlStr2 = new StringBuilder();
@@ -904,7 +904,7 @@ FROM    ( SELECT DISTINCT
                 };
             inpatientList = FindList<InpatientSCNumVO>(sqlStr2.ToString(), param2).ToList();
 
-            //放tại một Đ ối tư ợng,quay lại đ ến trang
+            //đặttại một Đ ối tư ợng,quay lại đ ến trang
             var visitNumBO = new SCNumBO
             {
                 OutpatientList = outpatientlist,
@@ -914,7 +914,7 @@ FROM    ( SELECT DISTINCT
         }
 
         /// <summary>
-        /// Lấy chuyên viên trị liệu工作效 tỷ lệ 详细
+        /// Lấy chuyên viên trị liệucông việchiệu quả tỷ lệ chi tiết
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="type"></param>
@@ -939,7 +939,7 @@ FROM    ( SELECT DISTINCT
         }
 
         /// <summary>
-        /// Lấy ngoại trú đ ơn tháng详细thời lư ợng
+        /// Lấy ngoại trú đ ơn thángchi tiếtthời lư ợng
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="year"></param>
@@ -1026,7 +1026,7 @@ HAVING  xm.duration > 0 AND jsmx.sl > 0");
 
 
         /// <summary>
-        /// Lấy nhập viện đ ơn tháng详细thời lư ợng
+        /// Lấy nhập viện đ ơn thángchi tiếtthời lư ợng
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="year"></param>

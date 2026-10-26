@@ -64,7 +64,7 @@ where a.zt = '1' and b.zt = '1' and b.OrganizeId = @orgId and a.Id = @scmId";
             {
                 db.Delete<SysRoleShortcutMenuEntity>(p => p.SCMId == scmId && p.OrganizeId == orgId);
 
-                //再thêm
+                //lạithêm
                 foreach (var roleId in roleIdArr)
                 {
                     var entity = new SysRoleShortcutMenuEntity();

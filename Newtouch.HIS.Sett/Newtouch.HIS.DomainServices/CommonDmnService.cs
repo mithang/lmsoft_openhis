@@ -94,7 +94,7 @@ namespace Newtouch.HIS.DomainServices
             outpatientlist = this.FindList<OutpatientVisitNumVO>(sqlStr.ToString(), param).ToList();
 
 
-            /**********************************************Khoa nhập viện,Đ ã loại bỏ hoàn toàn bộ của人*****************************************************/
+            /**********************************************Khoa nhập viện,Đ ã loại bỏ hoàn toàn bộ củangười*****************************************************/
 
             var inpatientList = new List<InpatientVisitNumVO>();
 
@@ -141,7 +141,7 @@ namespace Newtouch.HIS.DomainServices
                 });
             }
 
-            //放tại một Đ ối tư ợng,quay lại đ ến trang
+            //Đặttại một Đ ối tư ợng,quay lại đ ến trang
             var visitNumBO = new VisitNumBO
             {
                 OutpatientList = outpatientlist,
@@ -152,7 +152,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Lấy今ngày trư ớc đ ó 10 tuần khám bệnh Lư ợt ngư ờichi tiết
+        /// Lấyhôm nay trư ớc đ ó 10 tuần khám bệnh Lư ợt ngư ờichi tiết
         /// </summary>
         /// <param name="month"></param>
         /// <param name="isAdministrator"></param>
@@ -221,7 +221,7 @@ namespace Newtouch.HIS.DomainServices
                 };
             outpatientlist = this.FindList<OutpatientWeekVisitNumVO>(sqlStr.ToString(), param).ToList();
 
-            /****************Khoa nhập viện,Đ ã loại bỏ hoàn toàn bộ của人**********************/
+            /****************Khoa nhập viện,Đ ã loại bỏ hoàn toàn bộ củangười**********************/
             StringBuilder sqlStr3 = new StringBuilder(basic);
             var inpatientList = new List<OutpatientWeekVisitNumVO>();
             List<InpatientVisitBasicVO> zyList = null;
@@ -262,7 +262,7 @@ namespace Newtouch.HIS.DomainServices
                     });
                 }
             }
-            //放tại một Đ ối tư ợng,quay lại đ ến trang
+            //Đặttại một Đ ối tư ợng,quay lại đ ến trang
             var visitNumBO = new MonthVisitNumBO
             {
                 OutpatientList = outpatientlist,
@@ -294,7 +294,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 贵州BHYT, thông qua giao dịch số thứ tự lấy giao dịch xác minh mã 
+        /// Quý ChâuBHYT, thông qua giao dịch số thứ tự lấy giao dịch xác minh mã 
         /// </summary>
         /// <param name="jylsh"></param>
         /// <param name="OrgId"></param>

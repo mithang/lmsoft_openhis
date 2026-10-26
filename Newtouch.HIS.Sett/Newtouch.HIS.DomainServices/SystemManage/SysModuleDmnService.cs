@@ -45,12 +45,12 @@ namespace Newtouch.HIS.DomainServices
             if (isRoot)
             {
                 //all
-                //170818 đ ổi là chỉ có thể 看 đ ến menu hệ thống
+                //170818 đ ổi là chỉ có thể xem đ ến menu hệ thống
                 query = query.Where(p => p.Name == "系统管理" || p.Name == "系统菜单" || p.Name == "菜单管理" || p.Name == "FailMsg配置" || p.Name == "快捷菜单");
             }
             else if (isAdministrator)
             {
-                //170818 nghiệp vụ hệ thống đ ổi là chỉ có thể 看 đ ến vai trò quản lý 
+                //170818 nghiệp vụ hệ thống đ ổi là chỉ có thể xem đ ến vai trò quản lý 
                 query = query.Where(p => p.Name == "系统管理"
                     || p.Name == "角色管理" || p.Name == "系统角色"
                     || p.Name == "系统用户");
@@ -206,7 +206,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SqlParamet
         }
 
         /// <summary>
-        /// Gửi mới 建, cập nhật menu 
+        /// Gửi mới tạo, cập nhật menu 
         /// </summary>
         /// <param name="moduleEntity"></param>
         /// <param name="keyValue"></param>
@@ -244,7 +244,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SqlParamet
         }
 
         /// <summary>
-        /// Gửi mới 建, cập nhật quyền hạn nút 
+        /// Gửi mới tạo, cập nhật quyền hạn nút 
         /// </summary>
         /// <param name="moduleButtonEntity"></param>
         /// <param name="keyValue"></param>
@@ -380,7 +380,7 @@ else
 
 
         /// <summary>
-        /// Xem ngư ời dùng có hay không có thể truy cập này hệ thống(theo đ ối với 他 mở của quyền hạn menu 来判定)
+        /// Xem ngư ời dùng có hay không có thể truy cập này hệ thống(theo đ ối với họ mở của quyền hạn menu đểphán đoán)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="topOrgId"></param>

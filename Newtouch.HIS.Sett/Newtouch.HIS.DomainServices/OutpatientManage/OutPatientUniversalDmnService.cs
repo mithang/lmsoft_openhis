@@ -26,8 +26,8 @@ using static Newtouch.Infrastructure.Constants;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// Ngoại trú của một 些chung Phư ơng thức
-    /// nhất đ ịnh là không Quận分版 bản 
+    /// Ngoại trú của một sốchung Phư ơng thức
+    /// nhất đ ịnh là không phân biệtphiên bản 
     /// </summary>
     public class OutPatientUniversalDmnService : DmnServiceBase, IOutPatientUniversalDmnService
     {
@@ -47,18 +47,18 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Gửichi tiết(重 cần:Nếu là tới Đ ơn thuốc bổ sung hoặc hủy bỏ chi tiết,线 dư ới 意义 này là tại thay đ ổi này tờ Đ ơn thuốc,bác sĩ thông thư ờng không như vậy 做)(Đ ơn thuốc thì cập nhật bảng chính thông tin)(vui lòng Trư ớc xây dựng của nó yêu cầu tham số)(theo chi tiết của khóa chínhxmnm, cfmxid giá trị 来 phán đoán này là thêm mới,还là sửa bản ghi)(khi là thêm mới, theo cfnm trư ờng,又分thêm mớichi tiết và Đ ơn thuốc,还là tới Đ ãcó đơn thuốc bổ sung chi tiết)(sửa thì là trực tiếp cập nhật dữ liệu kho chi tiết bản ghi / này 版 bản tạm thời không hỗ trợ,nếu khôngvui lòng去hoàn phí)
+        /// Gửichi tiết(quan trọng cần:Nếu là tới Đ ơn thuốc bổ sung hoặc hủy bỏ chi tiết,ý nghĩa ngoại tuyến này là tại thay đ ổi này tờ Đ ơn thuốc,bác sĩ thông thư ờng không như vậy làm)(Đ ơn thuốc thì cập nhật bảng chính thông tin)(vui lòng Trư ớc xây dựng của nó yêu cầu tham số)(theo chi tiết của khóa chínhxmnm, cfmxid giá trị để phán đoán này là thêm mới,haylà sửa bản ghi)(khi là thêm mới, theo cfnm trư ờng,lạichiathêm mớichi tiết và Đ ơn thuốc,haylà tới Đ ãcó đơn thuốc bổ sung chi tiết)(sửa thì là trực tiếp cập nhật dữ liệu kho chi tiết bản ghi / này phiên bản tạm thời không hỗ trợ,nếu khôngvui lòngđihoàn phí)
         /// </summary>
         /// <param name="orgid"> y tế cơ quanid</param>
         /// <param name="changedCfnmList">Quay lại dùng của</param>
         /// <param name="changedXmnmList">Quay lại dùng của(nếu hạng mục không liên kết Đ ơn thuốc)</param>
-        /// <param name="updateSkipSettledCfhList">(này là một quay lại)cập nh ậtĐ ã quyết to ánĐ ơn thuốc đ ược 跳 qua Củacfh List</param>
-        /// <param name="mzh">Nếu cần thêm mới thì, cho 你 chuẩn bị </param>
-        /// <param name="ys">Nếu cần thêm mới thì, cho 你 chuẩn bị (chưa chỉ đ ịnh giờ đi đ ăng ký khám Củays)</param>
+        /// <param name="updateSkipSettledCfhList">(này là một quay lại)cập nh ậtĐ ã quyết to ánĐ ơn thuốc đ ược bỏ qua Củacfh List</param>
+        /// <param name="mzh">Nếu cần thêm mới thì, cho bạn chuẩn bị </param>
+        /// <param name="ys">Nếu cần thêm mới thì, cho bạn chuẩn bị (chưa chỉ đ ịnh giờ đi đ ăng ký khám Củays)</param>
         /// <param name="ItemsGroupBOList"> tính phí thông tin nhóm (thêm m ớiĐ ơn thuốc/Thêm mớichi tiết đ ơn thuốc/Thêm chi tiết hạng mục)Đ ơn thuốc thông tin/Chi tiết đ ơn thuốc thông tin/Hạng mục thông tin</param>
-        /// <param name="settledUpdateForbidden">Đ ã quyết toán giờ có hay không禁止cập nhật</param>
-        /// <param name="settledUpdateSkip">(Đ ã quyết toán giờ禁止cập nhật) kiểm tra có hay khôngSkip,true không 抛bất thư ờng跳 qua,nếu không抛bất thư ờng</param>
-        /// <param name="cfly">Đ ơn thuốc来源(0 thu phí nơi 1 trạm bác sĩ)</param>
+        /// <param name="settledUpdateForbidden">Đ ã quyết toán giờ có hay khôngcấmcập nhật</param>
+        /// <param name="settledUpdateSkip">(Đ ã quyết toán giờcấmcập nhật) kiểm tra có hay khôngSkip,true không némbất thư ờngbỏ qua,nếu khôngnémbất thư ờng</param>
+        /// <param name="cfly">Đ ơn thuốcnguồn(0 thu phí nơi 1 trạm bác sĩ)</param>
         public void SubmitItems(
             string orgId
             , out IList<int> changedCfnmList, out IList<int> changedXmnmList
@@ -98,7 +98,7 @@ namespace Newtouch.HIS.DomainServices
 
                 if (isMedicineSearchRelatedKC != true || itemsGroup.ypList == null || itemsGroup.ypList.Count <= 0) continue;
                 if (!string.IsNullOrWhiteSpace(itemsGroup.lyyf)) continue;
-                //Nếu thì 1个nhà thuốc ngoại trú, 
+                //Nếu thì 1cáinhà thuốc ngoại trú, 
                 mzyfList = mzyfList ?? _sysPharmacyDepartmentRepo.GetPharmacyDepartmentList(orgId, ((int)Enummzzybz.mz).ToString());
                 if (mzyfList.Count == 1)
                 {
@@ -114,7 +114,7 @@ namespace Newtouch.HIS.DomainServices
             }
             if (string.IsNullOrWhiteSpace(mzghEntity.ys))
             {
-                // không 挂 đ ến khoa,thì尝试取thu phí chi tiết CủaĐ ăng ký khám
+                // không đăng ký đ ến khoa,thìthửlấythu phí chi tiết CủaĐ ăng ký khám
                 var settPatInfo = GetSettPatientInfo(mzh, orgId);
                 if (settPatInfo != null)
                 {
@@ -124,7 +124,7 @@ namespace Newtouch.HIS.DomainServices
             ys = ys ?? mzghEntity.ys;
             if (string.IsNullOrWhiteSpace(ys))
             {
-                //Thông tin đ ăng ký khám chưa chỉ đ ịnh bác sĩ //Thì尝试取khi trư ớc thao tác者
+                //Thông tin đ ăng ký khám chưa chỉ đ ịnh bác sĩ //Thìthửlấykhi trư ớc thao tácngười
                 try
                 {
                     var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
@@ -136,7 +136,7 @@ namespace Newtouch.HIS.DomainServices
                         var curOprIsDoctor = this.FirstOrDefault<int?>(checkIsDoctorSql, new[] { new SqlParameter("@rygh", ys), new SqlParameter("@orgId", orgId) });
                         if ((curOprIsDoctor ?? 0) == 0)
                         {
-                            ys = null;  //Khi trư ớc thao tác人 không là bác sĩ
+                            ys = null;  //Khi trư ớc thao tácngười không là bác sĩ
                         }
                     }
                 }
@@ -156,9 +156,9 @@ namespace Newtouch.HIS.DomainServices
 
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
-                //Đ ơn thuốc bảng chính của một 些 trư ờng 统 một cập nhật dư ới ví dụ ys ks ksmcV.v.
+                //Đ ơn thuốc bảng chính của một số trư ờng thống nhất cập nhật dư ới ví dụ ys ks ksmcV.v.
                 var cfzbEntityList = new List<OutpatientPrescriptionEntity>();
-                //Hạng mục bảng của một 些 trư ờng 统 một cập nhật dư ới ví dụ ys ks ksmcV.v.
+                //Hạng mục bảng của một số trư ờng thống nhất cập nhật dư ới ví dụ ys ks ksmcV.v.
                 var xmEntityList = new List<OutpatientItemEntity>();
 
                 foreach (var itemsGroup in ItemsGroupBOList)
@@ -173,8 +173,8 @@ namespace Newtouch.HIS.DomainServices
                     if (!string.IsNullOrWhiteSpace(itemsGroup.cfh) && (itemsGroup.cflx ?? 0) > 0)
                     {
                         #region 给了我处方号 这一定是在操作一个处方内的数据
-                        // cho 我số đ ơn thuốc này nhất đ ịnh là cần thao tác một Đ ơn thuốc trong của dữ liệu
-                        //去找Đ ơn thuốc bảng chính, không có thì thêm mới
+                        // cho tôisố đ ơn thuốc này nhất đ ịnh là cần thao tác một Đ ơn thuốc trong của dữ liệu
+                        //đitìmĐ ơn thuốc bảng chính, không có thì thêm mới
                         bool isNewCf = false;
                         var cfzbEntity = db.IQueryable<OutpatientPrescriptionEntity>(p => p.OrganizeId == orgId && p.cfh == itemsGroup.cfh && p.cflx == itemsGroup.cflx.Value && p.zt == "1").FirstOrDefault();
                         if (cfzbEntity == null)
@@ -184,7 +184,7 @@ namespace Newtouch.HIS.DomainServices
                             cfzbEntity = new OutpatientPrescriptionEntity()
                             {
                                 cfnm = EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt("mz_cf"),
-                                zje = 0,    // chỉ có thể phía sau 再 theo chi tiết cập nhật
+                                zje = 0,    // chỉ có thể phía sau lại theo chi tiết cập nhật
                                 cfzt = "0", //0Chờ quyết toán
                                 cfly = cfly,
                                 cfh = itemsGroup.cfh,
@@ -206,7 +206,7 @@ namespace Newtouch.HIS.DomainServices
                                 if (settledUpdateSkip)
                                 {
                                     updateSkipSettledCfhList.Add(cfzbEntity.cfh);
-                                    continue;   //跳 qua này Đ ơn thuốc
+                                    continue;   //bỏ qua này Đ ơn thuốc
                                 }
                                 throw new FailedException("SETTLED_UPDATE_FORBIDDEN", "已结状态不允许修改变更");
                             }
@@ -266,7 +266,7 @@ namespace Newtouch.HIS.DomainServices
                                 if (itemsGroup.ypList.Select(p => (p.czh ?? "") + p.yp).Count()
                                     != itemsGroup.ypList.Count)
                                 {
-                                    //#######规thì问题########
+                                    //#######quy tắcthìvấn đề########
                                     throw new FailedException("DETAILS_REPEATED_ERROR", "单张处方下明细不能重复");
                                 }
                                 foreach (var item in itemsGroup.ypList)
@@ -275,7 +275,7 @@ namespace Newtouch.HIS.DomainServices
                                         && (p.czh ?? "") == (item.czh ?? "")
                                         && p.cfmxId != item.cfmxId))
                                     {
-                                        //#######规thì问题########
+                                        //#######quy tắcthìvấn đề########
                                         throw new FailedException("DETAILS_REPEATED_ERROR", "单张处方下明细不能重复");
                                     }
                                     if (item.cfmxId == 0)
@@ -351,14 +351,14 @@ namespace Newtouch.HIS.DomainServices
                                     if (itemsGroup.xmList.Select(p => p.sfxm).Distinct().Count() !=
                                     itemsGroup.xmList.Count)
                                     {
-                                        //#######规thì问题########
+                                        //#######quy tắcthìvấn đề########
                                         throw new FailedException("DETAILS_REPEATED_ERROR", "单张处方下明细不能重复");
                                     }
                                     foreach (var item in itemsGroup.xmList)
                                     {
                                         if (existList2.Where(p => p.zt == "1").Any(p => p.sfxm == item.sfxm && p.xmnm != item.xmnm))
                                         {
-                                            //#######规thì问题########
+                                            //#######quy tắcthìvấn đề########
                                             throw new FailedException("DETAILS_REPEATED_ERROR", "单张处方下明细不能重复");
                                         }
                                         if (item.xmnm == 0)
@@ -368,7 +368,7 @@ namespace Newtouch.HIS.DomainServices
                                             item.cfnm = cfzbEntity.cfnm;
                                             item.xmzt = cfzbEntity.cfzt;
                                             item.xmly = cfzbEntity.cfly;
-                                            //Nếu là đã quyết toán tính 取khi trư ớc thời gian
+                                            //Nếu là đã quyết toán tính lấykhi trư ớc thời gian
                                             item.jsrq = cfzbEntity.jsrq.HasValue ? (DateTime?)DateTime.Now : null;
                                             item.Create();
                                             db.Insert(item);
@@ -438,14 +438,14 @@ namespace Newtouch.HIS.DomainServices
                                 if (itemsGroup.xmList.Select(p => p.sfxm).Distinct().Count() !=
                                 itemsGroup.xmList.Count)
                                 {
-                                    //#######规thì问题########
+                                    //#######quy tắcthìvấn đề########
                                     throw new FailedException("DETAILS_REPEATED_ERROR", "单张处方下明细不能重复");
                                 }
                                 foreach (var item in itemsGroup.xmList)
                                 {
                                     if (existList.Where(p => p.zt == "1").Any(p => p.sfxm == item.sfxm && p.xmnm != item.xmnm))
                                     {
-                                        //#######规thì问题########
+                                        //#######quy tắcthìvấn đề########
                                         throw new FailedException("DETAILS_REPEATED_ERROR", "单张处方下明细不能重复");
                                     }
                                     if (item.xmnm == 0)
@@ -455,7 +455,7 @@ namespace Newtouch.HIS.DomainServices
                                         item.cfnm = cfzbEntity.cfnm;
                                         item.xmzt = cfzbEntity.cfzt;
                                         item.xmly = cfzbEntity.cfly;
-                                        //Nếu là đã quyết toán tính 取khi trư ớc thời gian
+                                        //Nếu là đã quyết toán tính lấykhi trư ớc thời gian
                                         item.jsrq = cfzbEntity.jsrq.HasValue ? (DateTime?)DateTime.Now : null;
                                         item.Create();
                                         db.Insert(item);
@@ -496,7 +496,7 @@ namespace Newtouch.HIS.DomainServices
                             var itemsNew = itemsGroup.ypList.Where(p => p.cfnm == 0).ToList();
                             // những này là tới Đ ãcó đơn thuốc bổ sung chi tiết của(tạm thời không hỗ trợ trực tiếpUpdate dữ liệu kho)
                             var itemsAppendOrUpdate = itemsGroup.ypList.Where(p => p.cfnm > 0).ToList();
-                            // phía dư ới 分 hai một phần 1 thêm mới Đ ơn thuốc 2 lịch sử Đ ơn thuốc của bổ sung chi tiết hoặc hủy bỏ chi tiết
+                            // phía dư ới chia hai một phần 1 thêm mới Đ ơn thuốc 2 lịch sử Đ ơn thuốc của bổ sung chi tiết hoặc hủy bỏ chi tiết
 
                             #region 1新增部分（mz_cfmx + mz_cf）
                             if (itemsNew.Count > 0)
@@ -513,7 +513,7 @@ namespace Newtouch.HIS.DomainServices
                                 var cfzbEntity = new OutpatientPrescriptionEntity()
                                 {
                                     cfnm = EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt("mz_cf"),
-                                    zje = 0,    // chỉ có thể phía sau 再 theo chi tiết cập nhật
+                                    zje = 0,    // chỉ có thể phía sau lại theo chi tiết cập nhật
                                     cfzt = "0", //0Chờ quyết toán
                                     cfly = cfly,
                                     cfh = _outpatientPrescriptionRepo.GeneratePresNo(orgId, (int)EnumPrescriptionType.Medicine),
@@ -553,7 +553,7 @@ namespace Newtouch.HIS.DomainServices
                             var itemsNew = itemsGroup.xmList.Where(p => p.cfnm == null || p.cfnm == 0).ToList();
                             // những này là tới Đ ãcó đơn thuốc bổ sung chi tiết của(tạm thời không hỗ trợ trực tiếpUpdate dữ liệu kho)
                             var itemsAppendOrUpdate = itemsGroup.xmList.Where(p => p.cfnm > 0).ToList();
-                            // phía dư ới 分 hai một phần 1 mới hạng mục ngoại trú tính phí (mới Đ ơn thuốc) 2 lịch sử Đ ơn thuốc của bổ sung chi tiết hoặc hủy bỏ chi tiết
+                            // phía dư ới chia hai một phần 1 mới hạng mục ngoại trú tính phí (mới Đ ơn thuốc) 2 lịch sử Đ ơn thuốc của bổ sung chi tiết hoặc hủy bỏ chi tiết
                             #region 1新增部分（门诊项目/新处方）（也可能仅门诊项目）
                             if (itemsNew.Count > 0)
                             {
@@ -579,7 +579,7 @@ namespace Newtouch.HIS.DomainServices
                                     var cfzbEntity = new OutpatientPrescriptionEntity()
                                     {
                                         cfnm = EFDBBaseFuncHelper.Instance.GetNewPrimaryKeyInt("mz_cf"),
-                                        zje = 0,    // chỉ có thể phía sau 再 theo chi tiết cập nhật
+                                        zje = 0,    // chỉ có thể phía sau lại theo chi tiết cập nhật
                                         cfzt = "0", //0Chờ quyết toán
                                         cfly = cfly,
                                         cfh = _outpatientPrescriptionRepo.GeneratePresNo(orgId, (int)EnumPrescriptionType.Treament),
@@ -651,7 +651,7 @@ namespace Newtouch.HIS.DomainServices
                                             item.cfnm = cfzbEntity.cfnm;
                                             item.xmzt = cfzbEntity.cfzt;
                                             item.xmly = cfzbEntity.cfly;
-                                            //Nếu là đã quyết toán tính 取khi trư ớc thời gian
+                                            //Nếu là đã quyết toán tính lấykhi trư ớc thời gian
                                             item.jsrq = cfzbEntity.jsrq.HasValue ? (DateTime?)DateTime.Now : null;
                                             item.Create();
                                             db.Insert(item);
@@ -751,8 +751,8 @@ namespace Newtouch.HIS.DomainServices
 
         /// <summary>
         /// Cập nh ậtĐ ơn thuốc ngoại trú/Hạng mục ngoại trú của thông tin quyết toán(cập nhật thông tin quyết toán)
-        /// (này cfnm có thể đã hủy bỏ,目của có thể là cũng hủy bỏ thông tin quyết toán)(gọi này Phư ơng thức trư ớc,vui lòng trư ớc cập nhật mz_cfmx, mz_xm, và Đ ã持久化 đ ến dữ liệu kho trong)
-        /// theo cfnm tra cứu 出 tất cả các của liên quan bảng mz_js mz_jsmx mz_cf mz_cfmx mz_xm, theo mz_cfmx, mz_xm của chính xác dữ liệu cập nhật khác bảng (có thể sẽ thêm mớimz_jsmx)
+        /// (này cfnm có thể đã hủy bỏ,mục đích có thể là cũng hủy bỏ thông tin quyết toán)(gọi này Phư ơng thức trư ớc,vui lòng trư ớc cập nhật mz_cfmx, mz_xm, và Đ ãlưu trữ bền vững đ ến dữ liệu kho trong)
+        /// theo cfnm tra cứu ra tất cả các của liên quan bảng mz_js mz_jsmx mz_cf mz_cfmx mz_xm, theo mz_cfmx, mz_xm của chính xác dữ liệu cập nhật khác bảng (có thể sẽ thêm mớimz_jsmx)
         /// (có thể sẽ thêm mớimz_js)(check mz_xm, mz_cf zt 0,Tư ơng ứngmz_jsmx cũng cần cập nhật)(nhiều mz_cf có thể Tư ơng ứng một quyết toán)
         /// (nhưng một mz_cf không thể Tư ơng ứng nhiều quyết toán)
         /// </summary>
@@ -786,10 +786,10 @@ namespace Newtouch.HIS.DomainServices
                 {
                     throw new FailedException("REGISTINFO_NOT_FOUND", "关联挂号信息异常");
                 }
-                mzghEntity.ghzt = "1";  //Không có差别至Đ ã quyết toán trạng thái
+                mzghEntity.ghzt = "1";  //Không cókhác biệtđếnĐ ã quyết toán trạng thái
                 db.Update(mzghEntity);
 
-                // trùng lặp 结của phán đoán 
+                // trùng lặp kết toáncủa phán đoán 
                 IList<int> jsnmList = new List<int>();
                 if (settlementAddBO.xmnmList.Count > 0)
                 {
@@ -814,7 +814,7 @@ namespace Newtouch.HIS.DomainServices
                     }
                 }
 
-                //结
+                //kết toán
                 var beaddjsCfzbEntityList = db.IQueryable<OutpatientPrescriptionEntity>(p => p.zt == "1" && settlementAddBO.cfnmList.Contains(p.cfnm)).ToList();
                 
                 var beaddjsMzxmEntityList = db.IQueryable<OutpatientItemEntity>(p => p.zt == "1" && settlementAddBO.xmnmList.Contains(p.xmnm)).ToList();
@@ -822,7 +822,7 @@ namespace Newtouch.HIS.DomainServices
                 {
                     if (settlementAddBO.settSfrq.HasValue || settlementAddBO.isQfyj)
                     {
-                        //作là một quyết toán
+                        //làmlà một quyết toán
                         var jsnm = AddSettlement(db, orgId
                             , settlementAddBO.settSfrq, beaddjsCfzbEntityList
                             , beaddjsMzxmEntityList, mzghEntity, feeRelated, ybfeeRelated
@@ -836,8 +836,8 @@ namespace Newtouch.HIS.DomainServices
                     }
                     else
                     {
-                        //Chưa chỉ đ ịnh thu phí ngày nhất đ ịnh là rất 规途径thu phí quyết toán
-                        //肯定 sẽ không liên kết số hóa đ ơn
+                        //Chưa chỉ đ ịnh thu phí ngày nhất đ ịnh là rất con đường chính quythu phí quyết toán
+                        //chắc chắn sẽ không liên kết số hóa đ ơn
                         var sfrqList = beaddjsCfzbEntityList.Select(p => p.sfrq)
                             .Union(beaddjsMzxmEntityList.Select(p => p.sfrq)).Distinct()
                             .ToList();
@@ -866,7 +866,7 @@ namespace Newtouch.HIS.DomainServices
                     }
                 }
 
-                db.Commit();    // không có cần Commit của sẽ 抛bất thư ờng？
+                db.Commit();    // không có cần Commit của sẽ némbất thư ờng？
             }
 
             return newJsnmList;
@@ -877,19 +877,19 @@ namespace Newtouch.HIS.DomainServices
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="jsnm"></param>
-        /// <param name="tjsxmDict"> trả lại chi tiết quyết toánList jsmxnm:Số lư ợng trả lại số lư ợng trả lại 正数</param>
-        /// <param name="expectedTmxZje">预 kỳ hoàn phí hạng mục số tiền tổng cộng (Đ ơn giá*Số lư ợng trả lại), ngăn chặn quá trình trong dữ liệu发生 thay đ ổi </param>
+        /// <param name="tjsxmDict"> trả lại chi tiết quyết toánList jsmxnm:Số lư ợng trả lại số lư ợng trả lại số dương</param>
+        /// <param name="expectedTmxZje">dự kỳ hoàn phí hạng mục số tiền tổng cộng (Đ ơn giá*Số lư ợng trả lại), ngăn chặn quá trình trong dữ liệuxảy ra thay đ ổi </param>
         /// <param name="newfph"> mới quyết toán số hóa đ ơn</param>
         /// <param name="newJszbInfo">Tạo của mới quyết toán thông tin quyết toán</param>
-        /// <param name="outTradeNo">原 thanh toán giao dịch số </param>
-        /// <param name="refundAmount"> trả lại tiền mặt số tiền(tiền mặt, thanh toán 宝, 微信V.v.)</param>
+        /// <param name="outTradeNo">gốc thanh toán giao dịch số </param>
+        /// <param name="refundAmount"> trả lại tiền mặt số tiền(tiền mặt, thanh toán Alipay, WeChatV.v.)</param>
         /// <param name="hcybjsh">Hoàn phí.BHYT giao dịch. ghi đ ỏ hoàn trả số quyết toán</param>
         /// <param name="newwjybjsh">Hoàn phí.BHYT giao dịch. mới của số quyết toán</param>
         /// <param name="hcybfeeRelated"> ghi đ ỏ hoàn trả quyết toán của quyết toánBHYTsố tiền liên quan </param>
         /// <param name="newybfeeRelated">Hoàn phí.BHYT giao dịch. mới của quyết toán quyết toánBHYTquay lạichi phí thông tin</param>
-        /// <param name="guiannewybfeeRelated">贵安và Trùng Khánh BHYTsử dụng, do BHYTquay lại và常熟 trư ờng khác nhau </param>
-        /// <param name="s25ResponseDto">贵安 BHYT nông thôn mới BHYTsử dụng,quyết toánquay lại kết quả</param>
-        /// <param name="outpid">贵安 BHYT nông thôn mới BHYTsử dụng,số thứ tự bồi thư ờng ngoại trú</param>
+        /// <param name="guiannewybfeeRelated">Quý Anvà Trùng Khánh BHYTsử dụng, do BHYTquay lại vàThường Thục trư ờng khác nhau </param>
+        /// <param name="s25ResponseDto">Quý An BHYT nông thôn mới BHYTsử dụng,quyết toánquay lại kết quả</param>
+        /// <param name="outpid">Quý An BHYT nông thôn mới BHYTsử dụng,số thứ tự bồi thư ờng ngoại trú</param>
         public void RefundSettlement(string orgId, int jsnm
             , Dictionary<int, decimal> tjsxmDict, decimal expectedTmxZje
             , string newfph
@@ -918,7 +918,7 @@ namespace Newtouch.HIS.DomainServices
                 var newJszbEntityList = new List<OutpatientSettlementEntity>();
                 var newJsmxEntityList = new List<OutpatientSettlementDetailEntity>();
 
-                // trư ớc trả lại 流水 // đ ối với 冲
+                // trư ớc trả lại luồng giao dịch // đ ối với đảo ngược
                 var newDcJszbEntity = oldJszbEntity.Clone();
                 newDcJszbEntity.LastModifyTime = null;
                 newDcJszbEntity.LastModifierCode = null;
@@ -951,14 +951,14 @@ namespace Newtouch.HIS.DomainServices
 
                 UpdateCurrentFinancialInvoice(db, orgId, newfph);
 
-                newJszbEntity.zje = 0;  //foreach trong 累加
-                decimal tjehj = Convert.ToDecimal(0.0000);  //预 kỳ hoàn phí hạng mục số tiền tổng cộng (Đ ơn giá*Số lư ợng trả lại) //foreach trong 累加
+                newJszbEntity.zje = 0;  //foreach trong cộng dồn
+                decimal tjehj = Convert.ToDecimal(0.0000);  //dự kỳ hoàn phí hạng mục số tiền tổng cộng (Đ ơn giá*Số lư ợng trả lại) //foreach trong cộng dồn
 				foreach (var jsmxEntity in oldJsmxEntityList)
                 {
                     var newJsmxEntity = jsmxEntity.Clone();
                     if (newJsmxEntity.cf_mxnm > 0)
                     {
-                        //Thuốc Đ ã hoàn qua, đ ó có thể số lư ợng trả lại thì là0 phảiV.v. chờ nhà thuốc 发起 mới của trả thuốc 
+                        //Thuốc Đ ã hoàn qua, đ ó có thể số lư ợng trả lại thì là0 phảiV.v. chờ nhà thuốc khởi tạo mới của trả thuốc 
                         newJsmxEntity.ktsl = 0;
                     }
                     newJsmxEntity.LastModifyTime = null;
@@ -1005,7 +1005,7 @@ namespace Newtouch.HIS.DomainServices
                     newJszbEntity.zje += (newJsmxEntity.jyje ?? 0);
                     newJsmxEntityList.Add(newJsmxEntity);
                 }
-				//// loại bỏ 2019-09-12 因 bốn vị 小数问题, thư ờng xuyên báo lỗi, xem xét loại bỏ 
+				//// loại bỏ 2019-09-12 do bốn vị thập phânvấn đề, thư ờng xuyên báo lỗi, xem xét loại bỏ 
 				if (tjehj != expectedTmxZje)
 				{
 					throw new FailedException("退款金额异常.");
@@ -1022,7 +1022,7 @@ namespace Newtouch.HIS.DomainServices
                     //Tính số tiền mặt hoàn lại // điều kiện tiên quyết: chỉ một phư ơng thức thanh toán // chỉ một phư ơng thức thanh toán mz_js.xjzffs sẽ có giá trị 
                     if (!string.IsNullOrWhiteSpace(newJszbEntity.xjzffs) && oldJszbEntity.xjzf - newJszbEntity.xjzf > 0)
                     {
-                        refundAmount = oldJszbEntity.xjzf - newJszbEntity.xjzf;  //Nên取 thanh toán của
+                        refundAmount = oldJszbEntity.xjzf - newJszbEntity.xjzf;  //Nênlấy thanh toán của
                         outTradeNo = newJszbEntity.OutTradeNo;
                     }
                 }
@@ -1037,7 +1037,7 @@ namespace Newtouch.HIS.DomainServices
                     //Tính số tiền mặt hoàn lại // điều kiện tiên quyết: chỉ một phư ơng thức thanh toán // chỉ một phư ơng thức thanh toán mz_js.xjzffs sẽ có giá trị 
                     if (!string.IsNullOrWhiteSpace(newJszbEntity.xjzffs) && oldJszbEntity.xjzf - newJszbEntity.xjzf > 0)
                     {
-                        refundAmount = oldJszbEntity.xjzf - newJszbEntity.xjzf;  //Nên取 thanh toán của
+                        refundAmount = oldJszbEntity.xjzf - newJszbEntity.xjzf;  //Nênlấy thanh toán của
                         outTradeNo = newJszbEntity.OutTradeNo;
                     }
                 }
@@ -1052,7 +1052,7 @@ namespace Newtouch.HIS.DomainServices
                     //Tính số tiền mặt hoàn lại // điều kiện tiên quyết: chỉ một phư ơng thức thanh toán // chỉ một phư ơng thức thanh toán mz_js.xjzffs sẽ có giá trị 
                     if (!string.IsNullOrWhiteSpace(newJszbEntity.xjzffs) && oldJszbEntity.xjzf - newJszbEntity.xjzf > 0)
                     {
-                        refundAmount = oldJszbEntity.xjzf - newJszbEntity.xjzf;  //Nên取 thanh toán của
+                        refundAmount = oldJszbEntity.xjzf - newJszbEntity.xjzf;  //Nênlấy thanh toán của
                         outTradeNo = newJszbEntity.OutTradeNo;
                     }
                 }
@@ -1065,7 +1065,7 @@ namespace Newtouch.HIS.DomainServices
                     //Tính số tiền mặt hoàn lại // điều kiện tiên quyết: chỉ một phư ơng thức thanh toán // chỉ một phư ơng thức thanh toán mz_js.xjzffs sẽ có giá trị 
                     if (!string.IsNullOrWhiteSpace(newJszbEntity.xjzffs) && oldJszbEntity.xjzf - newJszbEntity.xjzf > 0)
                     {
-                        refundAmount = oldJszbEntity.xjzf - newJszbEntity.xjzf;  //Nên取 thanh toán của
+                        refundAmount = oldJszbEntity.xjzf - newJszbEntity.xjzf;  //Nênlấy thanh toán của
                         outTradeNo = newJszbEntity.OutTradeNo;
                     }
                 }
@@ -1073,18 +1073,18 @@ namespace Newtouch.HIS.DomainServices
                 {
                     if (oldJszbEntity.xjzf != oldJszbEntity.zje)
                     {
-                        // không phải 全tự trả quyết toán bản ghi 
+                        // không phải toàntự trả quyết toán bản ghi 
                         if (tjehj != oldJszbEntity.zje)
                         {
                             throw new FailedException("非全自费结算记录只支持全退，请重试");
                         }
-                        newJszbEntity.xjzf = 0; // trả lại 完 
-                        ytw = true;   //Đ ã hoàn完
+                        newJszbEntity.xjzf = 0; // trả lại xong 
+                        ytw = true;   //Đ ã hoànxong
 
                         //Tính số tiền mặt hoàn lại // điều kiện tiên quyết: chỉ một phư ơng thức thanh toán // chỉ một phư ơng thức thanh toán mz_js.xjzffs sẽ có giá trị 
                         if (!string.IsNullOrWhiteSpace(newJszbEntity.xjzffs) && oldJszbEntity.xjzf > 0)
                         {
-                            refundAmount = oldJszbEntity.xjzf;  //Nên取 thanh toán của
+                            refundAmount = oldJszbEntity.xjzf;  //Nênlấy thanh toán của
                             outTradeNo = newJszbEntity.OutTradeNo;
                         }
                     }
@@ -1098,7 +1098,7 @@ namespace Newtouch.HIS.DomainServices
                         //Tính số tiền mặt hoàn lại // điều kiện tiên quyết: chỉ một phư ơng thức thanh toán // chỉ một phư ơng thức thanh toán mz_js.xjzffs sẽ có giá trị 
                         if (!string.IsNullOrWhiteSpace(newJszbEntity.xjzffs) && oldJszbEntity.xjzf - newJszbEntity.xjzf > 0)
                         {
-                            refundAmount = oldJszbEntity.xjzf - newJszbEntity.xjzf;  //Nên取 thanh toán của
+                            refundAmount = oldJszbEntity.xjzf - newJszbEntity.xjzf;  //Nênlấy thanh toán của
                             outTradeNo = newJszbEntity.OutTradeNo;
                         }
                     }
@@ -1182,7 +1182,7 @@ namespace Newtouch.HIS.DomainServices
                         newybFeeEntity.GBZF = newybfeeRelated == null ? null : newybfeeRelated.GBZF;
                         newybFeeEntity.SUMZFDYBFY = newybfeeRelated == null ? null : newybfeeRelated.SUMZFDYBFY;
                         newybFeeEntity.ZFDYBFY = newybfeeRelated == null ? null : newybfeeRelated.ZFDYBFY;
-                        //Hoàn toàn bộ giờ, không 产生 mới của quyết toán, số dư thì取 ghi đ ỏ hoàn trả đ ó một dòng quyết toán của số dư 
+                        //Hoàn toàn bộ giờ, không phát sinh mới của quyết toán, số dư thìlấy ghi đ ỏ hoàn trả đ ó một dòng quyết toán của số dư 
                         newybFeeEntity.JBYE = newybfeeRelated == null ? hcybfeeRelated.JBYE : newybfeeRelated.JBYE;
                         newybFeeEntity.GBYE = newybfeeRelated == null ? hcybfeeRelated.GBYE : newybfeeRelated.GBYE;
                         newybFeeEntity.KBXYBFY = newybfeeRelated == null ? null : newybfeeRelated.KBXYBFY;
@@ -1270,7 +1270,7 @@ namespace Newtouch.HIS.DomainServices
 	                {
 		                #region 重庆医保逻辑
 		                var oldJsYbFeeEntity = db.IQueryable<CqybSett05Entity>(p => p.jsnm == jsnm && p.OrganizeId == orgId && p.zt == "1").FirstOrDefault();
-						// ghi đ ỏ hoàn trả giao dịch 落 đ ịa 
+						// ghi đ ỏ hoàn trả giao dịch triển khai 
 		                if (oldJsYbFeeEntity != null && hcybfeeRelated !=null)
 		                {
                             var hcybFeeEntity = new CqybSett05Entity() {
@@ -1320,7 +1320,7 @@ namespace Newtouch.HIS.DomainServices
 		                }
 		                if (guiannewybfeeRelated !=null && guiannewybfeeRelated.jylsh != "111111111")
 		                {
-							//BHYT再结thông tin落 đ ịa 
+							//BHYTlạikết toánthông tintriển khai 
 			                var newybFeeEntity = new CqybSett05Entity()
 			                {
 				                jslb = "1",
@@ -1433,12 +1433,12 @@ namespace Newtouch.HIS.DomainServices
                 }
 
                 bool isGhToYT = newJszbEntity.jslx == ((int)EnumJslx.GH).ToString() && newJszbEntity.zje <= 0;
-                //Hoặc chỉ đ ơn lẻ quyết toán, và Đ ã hoàn完,thì số trạng th áiĐ ã hoàn
+                //Hoặc chỉ đ ơn lẻ quyết toán, và Đ ã hoànxong,thì số trạng th áiĐ ã hoàn
                 isGhToYT = isGhToYT || (isYbjyjz && ytw);
                 if (!isGhToYT && newJszbEntity.zje <= 0)
                 {
-                    //Có một loại tình hình,Đ ăng ký khám giờ chưa产生quyết toán
-                    //Cấu hình:Khichi phí trả lại 完giờ, số có hay không tự đ ộng trả lại 
+                    //Có một loại tình hình,Đ ăng ký khám giờ chưaphát sinhquyết toán
+                    //Cấu hình:Khichi phí trả lại xonggiờ, số có hay không tự đ ộng trả lại 
                     var configFeeYtwghtoYt = _sysConfigRepo.GetBoolValueByCode("Outpatient_Refund_FeeYTW_GHToYT", orgId, false);
                     if (configFeeYtwghtoYt.Value)
                     {
@@ -1451,7 +1451,7 @@ namespace Newtouch.HIS.DomainServices
                 }
                 if (isGhToYT && medicalInsurance != "chongqing") // Trùng Khánh BHYT do Đ ăng ký khámthu phí, không thể tự đ ộng hủy bỏ đăng ký khám
                 {
-                    //置Đ ăng ký khám trạng thái Đ ã hoàn
+                    //đặtĐ ăng ký khám trạng thái Đ ã hoàn
                     var ghEnitty = db.IQueryable<OutpatientRegistEntity>(p => p.ghnm == newJszbEntity.ghnm && p.zt == "1" && p.ghzt == "1").FirstOrDefault();
                     if (ghEnitty == null)
                     {
@@ -1462,11 +1462,11 @@ namespace Newtouch.HIS.DomainServices
                     db.Update(ghEnitty);
                 }
 
-                //Nếu trư ớc đ ó là thanh toán tạm ứng, cần 还 khoản (đ ơn lẻ phư ơng thức thanh toán tình hình nhiều loại kết hợp thanh toán tạm thời chỉ có thể trả lại tiền mặt)
+                //Nếu trư ớc đ ó là thanh toán tạm ứng, cần hoàn khoản (đ ơn lẻ phư ơng thức thanh toán tình hình nhiều loại kết hợp thanh toán tạm thời chỉ có thể trả lại tiền mặt)
                 var preYjjPayEntity = db.IQueryable<OutpatientSettlementPaymentModelEntity>(p => p.jsnm == jsnm && p.zfje > 0 && p.zt=="1").ToList();
                 if (preYjjPayEntity.Count ==1 && preYjjPayEntity[0].xjzffs== xtzffs.ZYYJZHZF) {
                     int zhcode = (int)preYjjPayEntity.FirstOrDefault().zh;
-                    // cho tài khoản tạm ứng nạp tiền- một phần trả lại tình hình trư ớc hoàn toàn bộ lần tài khoản再insert tạm ứng扣减 bản ghi 
+                    // cho tài khoản tạm ứng nạp tiền- một phần trả lại tình hình trư ớc hoàn toàn bộ lần tài khoảnlạiinsert tạm ứngkhấu trừ bản ghi 
                     var accountEntity =
                         db.IQueryable<SysAccountEntity>(p => p.patid == oldJszbEntity.patid && p.zhCode == zhcode && p.zt=="1")
                             .FirstOrDefault();
@@ -1541,7 +1541,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// kế hoạch hoàn phí全停
+        /// kế hoạch hoàn phítoàndừng
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="jsnm"></param>
@@ -1609,7 +1609,7 @@ namespace Newtouch.HIS.DomainServices
         /// <param name="orgId"></param>
         /// <param name="cfnmList">Mã nội bộ đ ơn thuốcList</param>
         /// <param name="cfhList">Số đ ơn thuốcList</param>
-        /// <param name="settledUpdateForbidden">Đ ã quyết toán giờ có hay không禁止cập nhật</param>
+        /// <param name="settledUpdateForbidden">Đ ã quyết toán giờ có hay khôngcấmcập nhật</param>
         public void CancelPrescription(string orgId
             , IList<int> cfnmList = null
             , IList<string> cfhList = null
@@ -1659,7 +1659,7 @@ namespace Newtouch.HIS.DomainServices
         /// <param name="mzh"></param>
         /// <param name="cfzt"></param>
         /// <param name="cfly"></param>
-        /// <param name="cfhs"> nhiều số đ ơn thuốc,逗 số 分割</param>
+        /// <param name="cfhs"> nhiều số đ ơn thuốc,phân tách bằng dấu phẩy</param>
         /// <returns></returns>
         public IList<OutpatientPrescriptionEntity> GetValidCfListByMzh(string orgId, string mzh
             , string cfzt = null, string cfly = null, string cfhs = null)
@@ -1686,19 +1686,19 @@ select ghnm from mz_gh(nolock) where mzh = @mzh and zt = '1' and OrganizeId = @o
             }
             if (!string.IsNullOrWhiteSpace(cfly))
             {
-                sql += " and cfly = @cfly";   //Đ ơn thuốc来源
+                sql += " and cfly = @cfly";   //Đ ơn thuốcnguồn
                 pars.Add(new SqlParameter("@cfly", cfly));
             }
             if (!string.IsNullOrWhiteSpace(cfhs))
             {
-                sql += " and cfh in (select col from [dbo].[f_split](@cfhs, ','))";   //Đ ơn thuốc来源
+                sql += " and cfh in (select col from [dbo].[f_split](@cfhs, ','))";   //Đ ơn thuốcnguồn
                 pars.Add(new SqlParameter("@cfhs", cfhs));
             }
             return this.FindList<OutpatientPrescriptionEntity>(sql, pars.ToArray());
         }
 
         /// <summary>
-        /// Cập nhật quyết toán trư ớc khi nợ phí của bản ghi 至Đ ãthu phí
+        /// Cập nhật quyết toán trư ớc khi nợ phí của bản ghi đếnĐ ãthu phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="jsnm"></param>
@@ -1721,7 +1721,7 @@ select ghnm from mz_gh(nolock) where mzh = @mzh and zt = '1' and OrganizeId = @o
                 {
                     throw new Exception("结算总金额异常" + jszbEntity.zje.ToString() + "不等于" + feeRelated.zje.ToString());
                 }
-                //Tổng số tiền 肯定 sẽ không 变
+                //Tổng số tiền chắc chắn sẽ không đổi
                 jszbEntity.fph = fph;
                 jszbEntity.jzsj = sfrq;
                 jszbEntity.jmbl = feeRelated.zkbl ?? 0;
@@ -1737,12 +1737,12 @@ select ghnm from mz_gh(nolock) where mzh = @mzh and zt = '1' and OrganizeId = @o
 
                 if (feeRelated.orglxjzfys.HasValue && feeRelated.xjzfys.HasValue)
                 {
-                    // cần 减去ghi sổ một phần V.v.Số tiền
+                    // cần trừ đighi sổ một phần V.v.Số tiền
                     if (feeRelated.orglxjzfys.Value != jszbEntity.zje - 0)
                     {
                         throw new FailedException("ERROR_SETT_JE_ERROR", "结算金额异常" + feeRelated.orglxjzfys.Value.ToString() + "不等于" + jszbEntity.zje.ToString());
                     }
-                    //orglxjzfys xjzfys zkbl zkje cần 保持 nhất quán 性
+                    //orglxjzfys xjzfys zkbl zkje cần giữ nhất quán tính
                     var zkje = feeRelated.orglxjzfys.Value * Math.Abs(feeRelated.zkbl ?? 0) + Math.Abs(feeRelated.zkje ?? 0);
                     if (Math.Abs(zkje + feeRelated.xjzfys.Value - feeRelated.orglxjzfys.Value) > (decimal)0.01)
                     {
@@ -1751,8 +1751,8 @@ select ghnm from mz_gh(nolock) where mzh = @mzh and zt = '1' and OrganizeId = @o
                 }
                 else
                 {
-                    //???xjzf có必 cần gán giá trị 么
-                    // cần 减去ghi sổ một phần V.v.Số tiền
+                    //???xjzf cónhất thiết cần gán giá trị không
+                    // cần trừ đighi sổ một phần V.v.Số tiền
                     jszbEntity.xjzf = jszbEntity.zje - 0;
                 }
 
@@ -1822,7 +1822,7 @@ select ghnm from mz_gh(nolock) where mzh = @mzh and zt = '1' and OrganizeId = @o
         #region private methods
 
         /// <summary>
-        /// Thêm mới quyết toán(một dòng主quyết toán nhiều dòngchi tiết)
+        /// Thêm mới quyết toán(một dòngchínhquyết toán nhiều dòngchi tiết)
         /// </summary>
         /// <param name="db"></param>
         /// <param name="orgId"></param>
@@ -1851,7 +1851,7 @@ select ghnm from mz_gh(nolock) where mzh = @mzh and zt = '1' and OrganizeId = @o
             , bool autoGenePlan = false
             , string outTradeNo = null)
         {
-            var fcgjs = false; // dấu hiệu rất 规quyết toán(thông thư ờng:Chọn phư ơng thức thanh toán, số tiền số hóa đ ơnV.v.)
+            var fcgjs = false; // dấu hiệu rất chính quyquyết toán(thông thư ờng:Chọn phư ơng thức thanh toán, số tiền số hóa đ ơnV.v.)
             if (feeRelated == null)
             {
                 fcgjs = true;
@@ -1864,7 +1864,7 @@ select ghnm from mz_gh(nolock) where mzh = @mzh and zt = '1' and OrganizeId = @o
                 OrganizeId = orgId,
                 patid = mzghEntity.patid,
                 brxz = mzghEntity.brxz,
-                jslx = "2", //Ngoại trú结账
+                jslx = "2", //Ngoại trúkết toán
                 fph = fph,
                 jszt = (int)EnumJieSuanZT.YJ,
                 ghnm = mzghEntity.ghnm,
@@ -1904,9 +1904,9 @@ select ghnm from mz_gh(nolock) where mzh = @mzh and zt = '1' and OrganizeId = @o
                         {
                             if (!string.IsNullOrWhiteSpace(cf.lyyf))
                             {
-                                //// thuật toán quyết toán giờ trực tiếp tạo领药窗口, 领药 thứ tự số 
-                                //cf.lyck = "2"; //领药窗口
-                                //cf.lyxh = 13; //领药 thứ tự số 
+                                //// thuật toán quyết toán giờ trực tiếp tạolấy thuốccửa sổ, lấy thuốc thứ tự số 
+                                //cf.lyck = "2"; //lấy thuốccửa sổ
+                                //cf.lyxh = 13; //lấy thuốc thứ tự số 
                             }
                             var mxList = db.IQueryable<OutpatientPrescriptionDetailEntity>(p => p.cfnm == cf.cfnm && p.zt == "1").ToList();
                             foreach (var item in mxList)
@@ -1948,7 +1948,7 @@ select ghnm from mz_gh(nolock) where mzh = @mzh and zt = '1' and OrganizeId = @o
                                     item.jsrq = DateTime.Now; //Quyết toán thời gian khi trư ớc thời gian
                                     if (sfrq.HasValue)
                                     {
-                                        item.sfrq = sfrq;   //强制cập nhậtthu phí ngày 
+                                        item.sfrq = sfrq;   //bắt buộccập nhậtthu phí ngày 
                                     }
                                     item.Modify();
                                     db.Update(item);
@@ -1981,7 +1981,7 @@ select ghnm from mz_gh(nolock) where mzh = @mzh and zt = '1' and OrganizeId = @o
                                 item.jsrq = DateTime.Now; //Quyết toán thời gian khi trư ớc thời gian
                                 if (sfrq.HasValue)
                                 {
-                                    item.sfrq = sfrq;   //强制cập nhậtthu phí ngày 
+                                    item.sfrq = sfrq;   //bắt buộccập nhậtthu phí ngày 
                                 }
                                 item.Modify();
                                 db.Update(item);
@@ -1999,7 +1999,7 @@ select ghnm from mz_gh(nolock) where mzh = @mzh and zt = '1' and OrganizeId = @o
                 cf.jsrq = DateTime.Now; //Quyết toán thời gian khi trư ớc thời gian
                 if (sfrq.HasValue)
                 {
-                    cf.sfrq = sfrq;   //强制cập nhậtthu phí ngày 
+                    cf.sfrq = sfrq;   //bắt buộccập nhậtthu phí ngày 
                 }
                 cf.Modify();
                 db.Update(cf);
@@ -2011,7 +2011,7 @@ select ghnm from mz_gh(nolock) where mzh = @mzh and zt = '1' and OrganizeId = @o
             {
                 if (newJsmxEntityList.Any(p => p.mxnm == item.xmnm))
                 {
-                    continue;   // này lỗi gọi có thể避免
+                    continue;   // này lỗi gọi có thểtránh
                 }
                 //Thêm mớimz_jsmx
                 var jsmxEntity = new OutpatientSettlementDetailEntity()
@@ -2031,13 +2031,13 @@ select ghnm from mz_gh(nolock) where mzh = @mzh and zt = '1' and OrganizeId = @o
                 item.jsrq = DateTime.Now; //Quyết toán thời gian khi trư ớc thời gian
                 if (sfrq.HasValue)
                 {
-                    item.sfrq = sfrq;   //强制cập nhậtthu phí ngày 
+                    item.sfrq = sfrq;   //bắt buộccập nhậtthu phí ngày 
                 }
                 item.Modify();
                 db.Update(item);
             }
 
-            //收尾
+            //kết thúc
             foreach (var item in newJsmxEntityList)
             {
                 item.OrganizeId = orgId;
@@ -2055,14 +2055,14 @@ select ghnm from mz_gh(nolock) where mzh = @mzh and zt = '1' and OrganizeId = @o
 
             if (feeRelated.orglxjzfys.HasValue && feeRelated.xjzfys.HasValue)
             {
-                // cần 减去ghi sổ một phần V.v.Số tiền
+                // cần trừ đighi sổ một phần V.v.Số tiền
                 if ((feeRelated.orglxjzfys.Value != jszbEntity.zje - 0)
                     && (ybfeeRelated == null || ybfeeRelated.XJZF != feeRelated.orglxjzfys.Value)
                     && (ybfeeRelated != null && ybfeeRelated.ybdlx == "changshu"))
                 {
                     throw new FailedException("ERROR_SETT_JE_ERROR", "结算金额异常");
                 }
-                //orglxjzfys xjzfys zkbl zkje cần 保持 nhất quán 性
+                //orglxjzfys xjzfys zkbl zkje cần giữ nhất quán tính
                 //var zkje =  Math.Abs(feeRelated.zkje ?? 0);
                 //var cs = Math.Abs(zkje + feeRelated.xjzfys.Value - feeRelated.orglxjzfys.Value);
                 //if (Math.Abs(zkje + feeRelated.xjzfys.Value - feeRelated.orglxjzfys.Value) > (decimal)0.01)
@@ -2072,8 +2072,8 @@ select ghnm from mz_gh(nolock) where mzh = @mzh and zt = '1' and OrganizeId = @o
             }
             else
             {
-                //???xjzf có必 cần gán giá trị 么
-                // cần 减去ghi sổ một phần V.v.Số tiền
+                //???xjzf cónhất thiết cần gán giá trị không
+                // cần trừ đighi sổ một phần V.v.Số tiền
                 jszbEntity.xjzf = jszbEntity.zje - 0;
             }
 
@@ -2182,10 +2182,10 @@ where cfh=@cfh   and OrganizeId=@orgId and cflx=@cflx and zt='1' ) and OrganizeI
                 db.Insert(jzjhmxEntity);
 
                 item.jzjhmxId = jzjhmxEntity.jzjhmxId;
-                item.ssbz = "9";    //Trực tiếp进入 thực hiện quá trình trong như vậy không có thể hoàn phí
+                item.ssbz = "9";    //Trực tiếpvào thực hiện quá trình trong như vậy không có thể hoàn phí
                 //item.Modify();
                 //db.Update(item);    //Cập nhậtmz_xm   
-                //Nên nhiều 余của phía trư ớc 肯定 sẽ cập nhật thiết bị jszt jsrqV.v.
+                //Nên nhiều dưcủa phía trư ớc chắc chắn sẽ cập nhật thiết bị jszt jsrqV.v.
 
                 mxAdded = true;
             }
@@ -2211,7 +2211,7 @@ where cfh=@cfh   and OrganizeId=@orgId and cflx=@cflx and zt='1' ) and OrganizeI
             {
                 throw new FailedException("SL_IS_REQUIRED", "处方药品异常缺少数量");
             }
-            //zfxz zfbl 以 này là准
+            //zfxz zfbl lấy này làchuẩn
             jfypEntity.zfxz = ypEntity.zfxz;
             jfypEntity.zfbl = ypEntity.zfbl;
             if (string.IsNullOrWhiteSpace(jfypEntity.dl))
@@ -2220,17 +2220,17 @@ where cfh=@cfh   and OrganizeId=@orgId and cflx=@cflx and zt='1' ) and OrganizeI
             }
             if (string.IsNullOrWhiteSpace(jfypEntity.dw))
             {
-                //Là ngoại trú拆零Đ ơn vị
+                //Là ngoại trúlẻĐ ơn vị
                 jfypEntity.dw = ypEntity.mzcldw;
             }
             if (jfypEntity.jl > 0 && string.IsNullOrWhiteSpace(jfypEntity.jldw))
             {
                 jfypEntity.jldw = ypEntity.jldw;    // liều lư ợng Đ ơn vị
             }
-            //Đ ơn giá có thể là tự 定义 của
-            if (jfypEntity.dj < 0)  //20180910由 <=0 变là <0
+            //Đ ơn giá có thể là tự định nghĩa của
+            if (jfypEntity.dj < 0)  //20180910từ <=0 đổi thànhlà <0
             {
-                //Đ ơn vị Đ ơn giá 换 tính 
+                //Đ ơn vị Đ ơn giá đổi tính 
                 if (jfypEntity.dw == ypEntity.bzdw)
                 {
                     jfypEntity.dj = ypEntity.lsj;
@@ -2251,18 +2251,18 @@ where cfh=@cfh   and OrganizeId=@orgId and cflx=@cflx and zt='1' ) and OrganizeI
             {
                 jfypEntity.je = jfypEntity.dj * jfypEntity.sl;
             }
-            jfypEntity.je = Math.Round(jfypEntity.je, 2, MidpointRounding.AwayFromZero);// bốn 舍 năm 入
+            jfypEntity.je = Math.Round(jfypEntity.je, 2, MidpointRounding.AwayFromZero);// bốn bỏ năm vào
         }
 
         /// <summary>
-        /// theo điều trị lư ợng cập nhật计价số lư ợng Đ ơn giá số tiền V.v.
+        /// theo điều trị lư ợng cập nhậttính giásố lư ợng Đ ơn giá số tiền V.v.
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="jfxmEntity"></param>
         private void UpdateEntity(string orgId, OutpatientItemEntity jfxmEntity)
         {
             var sfxmEntity = _sysChargeItemRepo.SelectSysChargeItemBysfxm(jfxmEntity.sfxm, orgId);
-            //zfxz zfbl 以 này là准
+            //zfxz zfbl lấy này làchuẩn
             jfxmEntity.zfxz = sfxmEntity.zfxz;
             jfxmEntity.zfbl = sfxmEntity.zfbl;
             if (jfxmEntity.sl <= 0)
@@ -2277,8 +2277,8 @@ where cfh=@cfh   and OrganizeId=@orgId and cflx=@cflx and zt='1' ) and OrganizeI
                 }
             }
 
-            //Đ ơn giá có thể là tự 定义 của
-            if (jfxmEntity.dj < 0)  //20180910由 <=0 变là <0
+            //Đ ơn giá có thể là tự định nghĩa của
+            if (jfxmEntity.dj < 0)  //20180910từ <=0 đổi thànhlà <0
             {
                 jfxmEntity.dj = sfxmEntity.dj;
             }
@@ -2342,11 +2342,11 @@ where cfh=@cfh   and OrganizeId=@orgId and cflx=@cflx and zt='1' ) and OrganizeI
                 db.Insert(zfEntity2);
             }
 
-            //Nếu只có một loại phư ơng thức thanh toán tồn tại 入js.xjzffs
-            //2019.06.06 huangshanshan ngoại trú kế hoạch 录入giờ, báo lỗi 修复
+            //Nếuchỉcó một loại phư ơng thức thanh toán tồn tại vàojs.xjzffs
+            //2019.06.06 huangshanshan ngoại trú kế hoạch nhậpgiờ, báo lỗi sửa
             jszbEntity.xjzffs = zfEntity2 == null ? (zfEntity1 == null ? null : zfEntity1.xjzffs) : null;
 
-            //Thanh toán tạm ứng xây dựng thu chi tài khoản //Thanh toán tạm ứng nhất đ ịnh 作là thứ một phư ơng thức thanh toán 
+            //Thanh toán tạm ứng xây dựng thu chi tài khoản //Thanh toán tạm ứng nhất đ ịnh làmlà thứ một phư ơng thức thanh toán 
             if (zfEntity1 != null && zfEntity1.xjzffs == xtzffs.ZYYJZHZF)
             {
                 var accountEntity = db.IQueryable<SysAccountEntity>(p => p.patid == jszbEntity.patid).FirstOrDefault();
@@ -2448,7 +2448,7 @@ where cfh=@cfh   and OrganizeId=@orgId and cflx=@cflx and zt='1' ) and OrganizeI
             }
 
 
-            //Thanh toán tạm ứng xây dựng thu chi tài khoản //Thanh toán tạm ứng nhất đ ịnh 作là thứ một phư ơng thức thanh toán 
+            //Thanh toán tạm ứng xây dựng thu chi tài khoản //Thanh toán tạm ứng nhất đ ịnh làmlà thứ một phư ơng thức thanh toán 
             if (mzzfEntity1 != null && mzzfEntity1.xjzffs == xtzffs.ZYYJZHZF)
             {
                 decimal tye = 0;
@@ -2580,7 +2580,7 @@ where cfh=@cfh   and OrganizeId=@orgId and cflx=@cflx and zt='1' ) and OrganizeI
         #endregion
 
         /// <summary>
-        /// Lấy quyết toán ngoại trú/Hoàn phí bệnh nhân xuất viện thông tin(BHYTsố quyết toán, 社保số hiệu, khám bệnh nguyên nhân, khoa, bác sĩ, chẩn đoán)
+        /// Lấy quyết toán ngoại trú/Hoàn phí bệnh nhân xuất viện thông tin(BHYTsố quyết toán, bảo hiểm xã hộisố hiệu, khám bệnh nguyên nhân, khoa, bác sĩ, chẩn đoán)
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -2664,8 +2664,8 @@ where a.cfnm=@cfnms and a.organizeid=@orgId  and a.cflxmc='检查处方'";
                 return null;
             }
             RequestHost requestHost = new RequestHost();
-            requestHost.MedNo = orgid;// trư ớc truyền 入测试
-            requestHost.MedName = "上海明德五官科医院";// trư ớc truyền 入测试
+            requestHost.MedNo = orgid;// trư ớc truyền vàokiểm thử
+            requestHost.MedName = "上海明德五官科医院";// trư ớc truyền vàokiểm thử
 
             Patient patient = new Patient();
             patient.Name = bacDto.xm;
@@ -2685,7 +2685,7 @@ where a.cfnm=@cfnms and a.organizeid=@orgId  and a.cflxmc='检查处方'";
             request.RecordID = cfmxlist[0].RecordID;
             request.Source = "MagQ700001";
             request.Pic = "";
-            request.PicDetail = cfmxlist[0].PicDetail;// trư ớc 放 trống phía sau từ điển Tư ơng ứng
+            request.PicDetail = cfmxlist[0].PicDetail;// trư ớc đặt trống phía sau từ điển Tư ơng ứng
             request.ApplyName = cfmxlist[0].ApplyName;
             request.WhichNo = null;
             request.IsVaild = typezt;
@@ -2747,8 +2747,8 @@ where cf.zt=1  and cf.cfh =@cfh  and gh.mzh=@mzh and cf.organizeid=@orgId and cf
                 return null;
             }
             RequestHost requestHost = new RequestHost();
-            requestHost.MedNo = "testclinic1";// trư ớc truyền 入测试
-            requestHost.MedName = "正德测试1";// trư ớc truyền 入测试
+            requestHost.MedNo = "testclinic1";// trư ớc truyền vàokiểm thử
+            requestHost.MedName = "正德测试1";// trư ớc truyền vàokiểm thử
 
             Patient patient = new Patient();
             patient.Name = cfmxlist[0].xm;
@@ -2768,7 +2768,7 @@ where cf.zt=1  and cf.cfh =@cfh  and gh.mzh=@mzh and cf.organizeid=@orgId and cf
             request.RecordID = cfmxlist[0].RecordID;
             request.Source = "MagQ700001";
             request.Pic = "";
-            request.PicDetail = "";// trư ớc 放 trống phía sau từ điển Tư ơng ứng
+            request.PicDetail = "";// trư ớc đặt trống phía sau từ điển Tư ơng ứng
             request.ApplyName = cfmxlist[0].ApplyName;
             request.WhichNo = null;
             request.IsVaild = typezt;
@@ -2827,7 +2827,7 @@ where cf.zt=1  and cf.cfh =@cfh  and gh.mzh=@mzh and cf.organizeid=@orgId and cf
         }
 
 		/// <summary>
-		/// 开立物资hạng mục扣减 kho tồn tại số lư ợng 扣减冻结số lư ợng
+		/// lậpvật tưhạng mụckhấu trừ kho tồn tại số lư ợng khấu trừđóng băngsố lư ợng
 		/// </summary>
 		/// <param name="cfh"></param>
 		/// <param name="orgId"></param>

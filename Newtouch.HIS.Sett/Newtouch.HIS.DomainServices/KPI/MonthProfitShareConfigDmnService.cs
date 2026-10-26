@@ -13,7 +13,7 @@ using Newtouch.Core.Common.Exceptions;
 namespace Newtouch.HIS.DomainServices.KPI
 {
     /// <summary>
-    /// Tháng利润分成
+    /// Thánglợi nhuậnchia
     /// </summary>
     public class MonthProfitShareConfigDmnService : DmnServiceBase, IMonthProfitShareConfigDmnService
     {
@@ -90,7 +90,7 @@ where a.Id = @Id
         }
 
         /// <summary>
-        /// Gửi chuyên viên trị liệu提成cấu hình
+        /// Gửi chuyên viên trị liệuhoa hồngcấu hình
         /// </summary>
         /// <param name="entity"></param>
         public void SubmitTherapeutistPSConfig(TherapeutistMonthProfitShareConfigEntity entity, string keyValue)
@@ -117,7 +117,7 @@ where a.Id = @Id
         }
 
         /// <summary>
-        /// Chuyên viên trị liệu利润提成 固定 báo cáo 
+        /// Chuyên viên trị liệulợi nhuậnhoa hồng cố định báo cáo 
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="curUserCode"></param>
@@ -237,7 +237,7 @@ where a.Id = @Id
         }
 
         /// <summary>
-        /// Gửi y tế cơ quan提成cấu hình
+        /// Gửi y tế cơ quanhoa hồngcấu hình
         /// </summary>
         /// <param name="entity"></param>
         public void SubmitMedicalOrgPSConfig(MedicalOrgMonthProfitShareConfigEntity entity, string keyValue)
@@ -264,7 +264,7 @@ where a.Id = @Id
         }
 
         /// <summary>
-        /// y tế cơ quan利润分成 固定 báo cáo 
+        /// y tế cơ quanlợi nhuậnchia cố định báo cáo 
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="curUserCode"></param>

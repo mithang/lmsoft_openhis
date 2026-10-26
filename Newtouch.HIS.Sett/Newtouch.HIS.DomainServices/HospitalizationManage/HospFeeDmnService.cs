@@ -21,7 +21,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// theo nhập viện lấy nhập viện của tính phí hạng mục của 简 cần thông tin danh sách
+        /// theo nhập viện lấy nhập viện của tính phí hạng mục của tóm tắt cần thông tin danh sách
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -42,7 +42,7 @@ and a.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// theo nhập viện lấy nhập viện của tính phí hạng mục của thông tin chi tiết danh sách(含hoàn phí)
+        /// theo nhập viện lấy nhập viện của tính phí hạng mục của thông tin chi tiết danh sách(bao gồmhoàn phí)
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -115,7 +115,7 @@ and a.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// theo nhập viện lấy nhập viện của thuốc tính phí của 简 cần thông tin danh sách
+        /// theo nhập viện lấy nhập viện của thuốc tính phí của tóm tắt cần thông tin danh sách
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -136,7 +136,7 @@ and a.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// theo nhập viện lấy nhập viện của thuốc tính phí của thông tin chi tiết danh sách(含hoàn phí)
+        /// theo nhập viện lấy nhập viện của thuốc tính phí của thông tin chi tiết danh sách(bao gồmhoàn phí)
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -224,7 +224,7 @@ and a.OrganizeId = @orgId";
         /// <param name="zyh"></param>
         public void SyncPatFee(string orgId, string zyh, int zxtype)
         {
-            //Có hay không启 dùng chi phí đồng bộ mới nhất máy 制
+            //Có hay khôngbật dùng chi phí đồng bộ mới nhất cơ chế
             using (var db = new EFDbTransaction(this._databaseFactory).BeginTrans())
             {
                 var enable = _sysConfigRepo.GetBoolValueByCode("HOSP_INTERFACE_WITH_CPOE", orgId) ?? false;
@@ -257,7 +257,7 @@ and a.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// check có hay không 产生 không phải BHYT liên quan chi phí
+        /// check có hay không phát sinh không phải BHYT liên quan chi phí
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

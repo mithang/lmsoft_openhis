@@ -60,7 +60,7 @@ namespace Newtouch.HIS.DomainServices
 
 
         /// <summary>
-        /// theo bệnh nhân mã nội bộ找thông tin cơ bản bệnh nhân
+        /// theo bệnh nhân mã nội bộtìmthông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="orgId"></param>
@@ -180,7 +180,7 @@ namespace Newtouch.HIS.DomainServices
                 if (validatepat.Count() == 1)
                 {
                     patiententity = validatepat.FirstOrDefault();
-                    vo.yktbz = "yktcardregister";//Thêm mới thẻ thông tinĐ ồng thời cập nhật một thẻ 通thông tin
+                    vo.yktbz = "yktcardregister";//Thêm mới thẻ thông tinĐ ồng thời cập nhật một thẻ thông tin
                     newPatId = patiententity.patid;
                     var isexitCard = _SysCardRepository.GetCardEntity(patiententity.patid, vo.cardtype, orgId);
                     if (isexitCard != null&&isexitCard.brxz!=((int)EnumBrxz.zf).ToString())
@@ -192,7 +192,7 @@ namespace Newtouch.HIS.DomainServices
                 if (vo.cardtype != ((int)EnumCardType.YBJYK).ToString() && vo.cardtype != ((int)EnumCardType.XNHJYK).ToString())
                 {
 
-                    //验số thẻ trùng lặp sử dụng
+                    //kiểm trasố thẻ trùng lặp sử dụng
                     if (newCardEntity != null)
                     {
                         throw new FailedException("卡号已存在");
@@ -230,7 +230,7 @@ namespace Newtouch.HIS.DomainServices
 
                 }
             }
-            // thông qua CMNDlấy真实ngày sinh và giới tính 
+            // thông qua CMNDlấythực tếngày sinh và giới tính 
             var BirthdayAdnSix = vo.zjlx== ((int)EnumZJLX.sfz).ToString()? CommmHelper.GetBirthdayAdnSix(vo.zjh):null;
             var sd = ((int)EnumZJLX.sfz).ToString();
             //SửaThông tin cơ bản bệnh nhân
@@ -343,8 +343,8 @@ namespace Newtouch.HIS.DomainServices
 
             #region 数据比较
             System.Reflection.PropertyInfo[] mPi = typeof(SysPatientBasicInfoEntity).GetProperties();
-            var data_name = "";      //差别 trư ờng 名
-            var datavalue_old = "";  //老 trư ờng giá trị 
+            var data_name = "";      //khác biệt trư ờng tên
+            var datavalue_old = "";  //cũ trư ờng giá trị 
             var datavalue_new = "";  // mới trư ờng giá trị 
             var sqlvalue = "";
             if (Oldpatient != null)
@@ -357,7 +357,7 @@ namespace Newtouch.HIS.DomainServices
                     sqlvalue += get_new == "" ? "NULL," : "'" + get_new + "',";
                     if (get_old != get_new)
                     {
-                        //差别dữ liệu thống kê 
+                        //khác biệtdữ liệu thống kê 
                         data_name += (pi.Name == "" ? "NULL" : pi.Name) + ",";
                         datavalue_old += (get_old == "" ? "NULL" : get_old) + ",";
                         datavalue_new += (get_new == "" ? "NULL" : get_new) + ",";
@@ -479,7 +479,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Nhập viện登记 theo patid lấy mới 登记nhập viện thông tin cơ bản bệnh nhân/Tại viện bệnh nhân thông tin cơ bản nhập viện
+        /// Nhập việnđăng ký theo patid lấy mới đăng kýnhập viện thông tin cơ bản bệnh nhân/Tại viện bệnh nhân thông tin cơ bản nhập viện
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="result"></param>
@@ -624,7 +624,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Quản lý bệnh nhân Lấyform窗体
+        /// Quản lý bệnh nhân Lấyformcửa sổ
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="OrganizeId"></param>
@@ -720,7 +720,7 @@ FROM     xt_brjbxx  jb
 
 
         /// <summary>
-        /// Đ ồng thời lưu thông tin cơ bản nhập viện//Và预交tài khoản thông tin
+        /// Đ ồng thời lưu thông tin cơ bản nhập viện//Vàtạm ứngtài khoản thông tin
         /// </summary>
         /// <param name="VO"></param>
         /// <param name="OrganizeId"></param>
@@ -740,9 +740,9 @@ FROM     xt_brjbxx  jb
                 throw new FailedException("patid不能为空");
             }
             var zyhAutoGene = _sysConfigRepo.GetBoolValueByCode("xt_zyh", OrganizeId, true).Value;
-            //Khi trư ớc dữ liệu kho trong của nhập viện thông tin cơ bản bệnh nhân // này là cần 记 nhật ký 比较của //Sửa giờ,才có giá trị 
+            //Khi trư ớc dữ liệu kho trong của nhập viện thông tin cơ bản bệnh nhân // này là cần ghi nhật ký so sánhcủa //Sửa giờ,mớicó giá trị 
             HospPatientBasicInfoEntity oldHospPatientBasicInfo = null;
-            // mới nhập viện, sẽ 产生 mới số nhập viện cần quay lại đ ến trang trên 
+            // mới nhập viện, sẽ phát sinh mới số nhập viện cần quay lại đ ến trang trên 
             string newZyh = null;
             var hospPatientBasicInfo = _HosPatBasicInfoRepository.GetFirstPatiInfoByPatid(VO.patid);
             if (hospPatientBasicInfo != null)
@@ -758,7 +758,7 @@ FROM     xt_brjbxx  jb
             }
             else
             {
-                //Khi trư ớc dữ liệu kho không có Tư ơng ứng của nhập viện thì视là thêm mới nhập viện
+                //Khi trư ớc dữ liệu kho không có Tư ơng ứng của nhập viện thìxemlà thêm mới nhập viện
                 hospPatientBasicInfo = new HospPatientBasicInfoEntity();
                 if (!zyhAutoGene)
                 {
@@ -767,7 +767,7 @@ FROM     xt_brjbxx  jb
                     {
                         throw new FailedCodeException("缺少住院号");
                     }
-                    //判重
+                    //phán đoán trùng
                     GetBasicInfoByZyh(VO.zyh.Trim(), OrganizeId);
                     hospPatientBasicInfo.zyh = VO.zyh;
                 }
@@ -799,7 +799,7 @@ FROM     xt_brjbxx  jb
                 hospPatientBasicInfo.zybz = ((int)EnumZYBZ.Xry).ToString();
                 var isToDjz = _sysConfigRepo.GetBoolValueByCode(
                     "HOSP_Register_To_DJZ", OrganizeId);
-                //Mặc đ ịnh là mới nhập viện,只có配 才trực tiếp chờ thanh toán
+                //Mặc đ ịnh là mới nhập viện,chỉcóphát thuốc mớitrực tiếp chờ thanh toán
                 if (isToDjz == true)
                 {
                     hospPatientBasicInfo.zybz = ((int)EnumZYBZ.Djz).ToString();
@@ -813,7 +813,7 @@ FROM     xt_brjbxx  jb
             hospPatientBasicInfo.doctor = VO.doctor ?? "";
             hospPatientBasicInfo.cw = VO.cw;
             hospPatientBasicInfo.brxz = VO.brxz;
-            //主chẩn đoán sync to cis
+            //chínhchẩn đoán sync to cis
             if (syncInPatientDTO != null && !string.IsNullOrWhiteSpace(syncInPatientDTO.zyh) && !string.IsNullOrWhiteSpace(VO.brxz))
             {
                 syncInPatientDTO.brxz = VO.brxz;
@@ -858,7 +858,7 @@ FROM     xt_brjbxx  jb
             hospPatientBasicInfo.lxrEmail2 = VO.lxrEmail2;
             hospPatientBasicInfo.lxrgx2 = VO.lxrgx2;
             hospPatientBasicInfo.lxrWebchat2 = VO.lxrWebchat2;
-            //主chẩn đoán sync to cis
+            //chínhchẩn đoán sync to cis
             if (syncInPatientDTO != null && !string.IsNullOrWhiteSpace(syncInPatientDTO.zyh) && !string.IsNullOrWhiteSpace(VO.lxr))
             {
                 syncInPatientDTO.lxr = VO.lxr;
@@ -918,7 +918,7 @@ FROM     xt_brjbxx  jb
 
                         if (i == 0)
                         {
-                            //主chẩn đoán sync to cis
+                            //chínhchẩn đoán sync to cis
                             if (syncInPatientDTO != null && !string.IsNullOrWhiteSpace(syncInPatientDTO.zyh) && zdEntity != null)
                             {
                                 syncInPatientDTO.ryzd = zdEntity.zdCode;
@@ -961,7 +961,7 @@ FROM     xt_brjbxx  jb
                 }
                 else
                 {
-                    //做Insert
+                    //làmInsert
                     hmdInsertList.Add(new HospMultiDiagnosisEntity
                     {
                         zyh = hospPatientBasicInfo.zyh,
@@ -1007,7 +1007,7 @@ FROM     xt_brjbxx  jb
             }
             if (VO.hy.HasValue)
             {
-                xtbrxx.hf = (byte?)VO.hy;  //Nhập viện gửi qua 来của Làhy
+                xtbrxx.hf = (byte?)VO.hy;  //Nhập viện gửi qua tớicủa Làhy
             }
             #endregion
 
@@ -1281,7 +1281,7 @@ where   a.zt='1' and zybz not in('3','9')  and cd.CardType<>'1' and l.tradiNumbe
                     sqlparam.Add(new SqlParameter("@keyword", "%" + keyword.Trim() + "%"));
                 }
             }
-            else if (isjs == "cz")//国家 nền tảng BHYT giao dịch đ ơn 边 chỉ có thể 采 dùng 冲正 giao dịch ngoại trú: tồn tại tại mạng V.v.Đ ặc biệt tình hình 导致 nhật ký bảng không có bản ghi nhưng nhật ký tệp có bản ghi,需thêm mới nhật ký bản ghi đ ến nhật ký bảng vui lòng errorMsg giá trị gán giá trị chưa0 tại冲正
+            else if (isjs == "cz")//quốc gia nền tảng BHYT giao dịch đ ơn bên chỉ có thể áp dùng đảo ngược giao dịch ngoại trú: tồn tại tại mạng V.v.Đ ặc biệt tình hình dẫn đến nhật ký bảng không có bản ghi nhưng nhật ký tệp có bản ghi,cầnthêm mới nhật ký bản ghi đ ến nhật ký bảng vui lòng errorMsg giá trị gán giá trị chưa0 tạiđảo ngược
             {
                 if (lx == "zy")
                 {
@@ -1412,7 +1412,7 @@ WHERE   zybz NOT IN ( 0, 4 ) ");
 
 
         /// <summary>
-        /// Chi phí một ngày清 số nhập viện浮 lớp tìm kiếm dùng 
+        /// Chi phí một ngàyquyết toán số nhập việnnổi lớp tìm kiếm dùng 
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgid"></param>
@@ -1519,7 +1519,7 @@ WHERE   zybz NOT IN ( 0, 9 ) and a.OrganizeId=@OrganizeId");
             //
             pagination = pagination ?? new Pagination();
             pagination.page = pagination.page <= 0 ? 1 : pagination.page;
-            pagination.rows = pagination.rows <= 0 ? 100000 : pagination.rows;  // không 分trang
+            pagination.rows = pagination.rows <= 0 ? 100000 : pagination.rows;  // không phântrang
             pagination.sidx = string.IsNullOrWhiteSpace(pagination.sidx) ? "UpdateTime" : pagination.sidx;
 
             paraList.Add(new SqlParameter("@page", pagination.page));
@@ -1583,7 +1583,7 @@ WHERE   zybz NOT IN ( 0, 9 ) and a.OrganizeId=@OrganizeId");
             //
             pagination = pagination ?? new Pagination();
             pagination.page = pagination.page <= 0 ? 1 : pagination.page;
-            pagination.rows = pagination.rows <= 0 ? 100000 : pagination.rows;  // không 分trang
+            pagination.rows = pagination.rows <= 0 ? 100000 : pagination.rows;  // không phântrang
             pagination.sidx = string.IsNullOrWhiteSpace(pagination.sidx) ? "UpdateTime" : pagination.sidx;
 
             paraList.Add(new SqlParameter("@page", pagination.page));
@@ -1803,7 +1803,7 @@ and zyxx.OrganizeId = @orgId
 
         #region 住院相关
         /// <summary>
-        /// Cập nhật nhập viện bệnh nhân nhiều chẩn đoán của 主chẩn đoán
+        /// Cập nhật nhập viện bệnh nhân nhiều chẩn đoán của chínhchẩn đoán
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -1855,9 +1855,9 @@ and zyxx.OrganizeId = @orgId
         }
 
         /// <summary>
-        /// Thông tin bệnh nhân nhập viện 分trang dữ liệu
+        /// Thông tin bệnh nhân nhập viện phântrang dữ liệu
         /// </summary>
-        /// <param name="pagination">分trang thông tin</param>
+        /// <param name="pagination">phântrang thông tin</param>
         /// <param name="zyh">Số nhập viện</param>
         /// <param name="xm">Họ tên</param>
         /// <returns></returns>
@@ -2236,7 +2236,7 @@ and (@xm = '%%' or zyxx.xm like @xm or xtbrxx.py like @xm)";
         }
 
         /// <summary>
-        /// Xác minh BHYT nông thôn mới giao diện đ ối với 照
+        /// Xác minh BHYT nông thôn mới giao diện đối chiếu
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="code"></param>
@@ -2450,7 +2450,7 @@ WHERE   a.zyh = @zyh
         /// <param name="ryblInfo"></param>
         public void OutPatZFchangetoYB(string orgId, string mzh, int patid, ZYToYBDto patInfo)
         {
-            // thẻ có hay không tồn tại tại không tồn tại tại thêm mớiBHYT基础thông tin
+            // thẻ có hay không tồn tại tại không tồn tại tại thêm mớiBHYTcơ bảnthông tin
             var brxzlist = _sysPatientNatureRepo.IQueryable().Where(p=>p.OrganizeId==orgId && p.zt=="1");
             var list = _SysCardRepository.IQueryable().Where(p => p.OrganizeId == orgId && p.patid == patid && p.zt == "1").ToList();
             var isExist = list.Where(m=>m.CardType==patInfo.jzpzlx).FirstOrDefault();
@@ -2558,7 +2558,7 @@ WHERE   a.zyh = @zyh
                 db.Update(zybrxxEntity);
 
                 //Tài khoản tạm ứng xử lý tự trả tài khoản tạm ứngchi phí chuyển đ ến BHYTtài khoản tạm ứng trên,khi trư ớc tài khoản tạm ứngzt hủy bỏ(lịch sử bản ghi),
-                //收支chi tiếtzhcod,patid thay đ ổi là tài khoản tạm ứng相 nên 
+                //thu chichi tiếtzhcod,patid thay đ ổi là tài khoản tạm ứngtương nên 
                 try
                 {
                     if (patid != oldpatid)
@@ -2579,7 +2579,7 @@ WHERE   a.zyh = @zyh
                                 zhentity.zt = "0";
                                 zhentity.Modify();
                                 db.Update(zhentity);
-                                // chuyển 移tạm ứng số tiền
+                                // chuyển đổitạm ứng số tiền
                                 SysAccountEntity ybentity = new SysAccountEntity();
                                 ybentity = ybyjjzhEntity[0];
                                 ybentity.zhye += zhentity.zhye;
@@ -3035,7 +3035,7 @@ where cyzd.zdlx=0 and cyzd.zdlb=2 and cyzd.zt=1  and organizeId =@orgId ";
         }
 
         /// <summary>
-        /// Ngoại trú lịch sử 账 đ ơn 
+        /// Ngoại trú lịch sử sổ đ ơn 
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -3054,7 +3054,7 @@ and a.CreateTime>=@kssj and a.CreateTime<=@jssj";
         }
 
         /// <summary>
-        /// 账 đ ơn chi tiết
+        /// sổ đ ơn chi tiết
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>

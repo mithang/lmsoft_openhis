@@ -20,7 +20,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Lấy nhóm 织 dư ới của tất cả các hiệu lực nhóm 织(parent)
+        /// Lấy nhóm chức dư ới của tất cả các hiệu lực nhóm chức(parent)
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeVEntity> GetValidListByParentOrg(string parentOrgId)

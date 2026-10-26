@@ -90,7 +90,7 @@ namespace Newtouch.HIS.DomainServices.OutpatientManage
         }
 
         /// <summary>
-        /// Tra cứu xếp thuốc 详细thuốc thông tin
+        /// Tra cứu xếp thuốc chi tiếtthuốc thông tin
         /// </summary>
         /// <param name="cfh">Số đ ơn thuốc</param>
         /// <param name="orgId"></param>
@@ -105,7 +105,7 @@ namespace Newtouch.HIS.DomainServices.OutpatientManage
         }
 
         /// <summary>
-        /// theo mã nội bộ đ ơn thuốc lấy详细CủaĐ ơn thuốc thuốc thông tin
+        /// theo mã nội bộ đ ơn thuốc lấychi tiếtCủaĐ ơn thuốc thuốc thông tin
         /// </summary>
         /// <param name="cfnm"></param>
         /// <param name="organizeId"></param>
@@ -127,7 +127,7 @@ AND cfmx.OrganizeId=@OrganizeId", paraList);
         }
 
         /// <summary>
-        /// LấyĐ ơn thuốc số tiền,领药 nhà thuốc thông tin
+        /// LấyĐ ơn thuốc số tiền,lấy thuốc nhà thuốc thông tin
         /// </summary>
         /// <param name="cfnm"></param>
         /// <param name="organizeId"></param>
@@ -581,7 +581,7 @@ AND cfmx.yfCode in (select col from f_split(@yfCode,',') where col>'') ";
         /// <param name="cfnm"></param>
         /// <param name="yp"></param>
         /// <param name="sl"></param>
-        /// <param name="czh">成 nhóm số </param>
+        /// <param name="czh">thành nhóm số </param>
         public void OutpatientDrugWithdrawalNotify(string organizeId, int cfnm, string yp, decimal sl, string czh)
         {
             const string sql = @"
