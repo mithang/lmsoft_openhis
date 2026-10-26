@@ -16,24 +16,24 @@ namespace NewtouchHIS.DomainService.PatientCenter
             {
                 throw new FailedException("机构信息不可为空");
             }
-            //证件号为空时  要求 姓名+手机号 不可为空
+            //khi số giấy tờ trống  yêu cầu họ tên+số điện thoại di động không được để trống
             if (string.IsNullOrWhiteSpace(patIndex.zjh) && (string.IsNullOrWhiteSpace(patIndex.kh) || string.IsNullOrWhiteSpace(patIndex.xm) || string.IsNullOrWhiteSpace(patIndex.dh)))
             {
                 throw new FailedException("姓名+手机号+卡号不可为空");
             }
-            //传入证件号 要求 姓名不可为空
+            //truyền vào số giấy tờ yêu cầu họ tên không được để trống
             if (!string.IsNullOrWhiteSpace(patIndex.zjh) && string.IsNullOrWhiteSpace(patIndex.xm))
             {
                 throw new FailedException("请输入姓名");
             }
-            //查找患者信息
+            //tìm thông tin bệnh nhân
             var where = AssembledWhereEqual<SysPatientBasicInfoEntity, SysPatIndexVO>(patIndex);
             var pats = await baseDal.GetListAsync(where);
             if (pats == null || pats.Count == 0 || pats.FirstOrDefault()?.patid <= 0)
             {
                 throw new FailedException("未找到相关患者信息");
             }
-            //查找就诊卡
+            //tìm thẻ khám bệnh
             var pat = pats.FirstOrDefault().Adapt<SysPatInfoVO>();
             var card = await baseDal.GetByWhereWithAttr<SysPatCardEntity>(p => p.patid == pat.patid && p.OrganizeId == pat.OrganizeId && p.zt == "1");
             if (card.Count > 0)

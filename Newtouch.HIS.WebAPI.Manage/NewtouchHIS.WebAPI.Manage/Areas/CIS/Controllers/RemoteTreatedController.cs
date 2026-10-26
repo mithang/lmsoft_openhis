@@ -19,7 +19,7 @@ using static NewtouchHIS.Lib.Common.HisEnum;
 namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
 {
     /// <summary>
-    /// 远程诊疗
+    /// khám chữa bệnh từ xa
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -39,7 +39,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             _remoteTreatedDmn = remoteTreatedDmn;
         }
         /// <summary>
-        /// 远程诊疗Step1：第三方申请HIS远程诊疗（仅自费）
+        /// khám chữa bệnh từ xaStep1：đăng ký bên thứ baHISkhám chữa bệnh từ xa（chỉ tự trả）
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -59,16 +59,16 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             {
                 return new BusResult<TreatedApplyReponse> { code = ResponseResultCode.FAIL, msg = "患者关键信息：患者标识、患者姓名、就诊卡不可为空" };
             }
-            //校验患者信息、科室医生
+            //kiểm tra thông tin bệnh nhân、bác sĩ khoa
             var patInfo = await _patientInfoDmn.GetPatientbyPatid(Convert.ToInt32(request.Data.patid), request.OrganizeId);
             var card = await _patientInfoDmn.GetPatientCard(Convert.ToInt32(request.Data.patid), request.OrganizeId, request.Data.kh);
             if (card.Count == 0)
             {
                 return new BusResult<TreatedApplyReponse> { code = ResponseResultCode.FAIL, msg = "患者信息卡信息异常" };
             }
-            //查找医生信息
+            //tìm thông tin bác sĩ
             var doc = await _sysStaffDmn.GetStaffDeptByGh(request.Data.ysgh, request.OrganizeId);
-            //暂不校验科室
+            //tạm thời không kiểm tra khoa
             if (doc.Count == 0)
             {
                 return new BusResult<TreatedApplyReponse> { code = ResponseResultCode.FAIL, msg = "未找到相关的医生信息" };
@@ -97,10 +97,10 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
         }
         #region HIS 内部
         /// <summary>
-        /// 远程诊疗Step1：HIS医生同意申请发起诊疗会议
+        /// khám chữa bệnh từ xaStep1：HISbác sĩ đồng ý đăng ký khởi xướng cuộc họp khám chữa bệnh
         /// </summary>
         /// <param name="request"></param>
-        /// <returns>会议号，诊疗用户Token、会议地址</returns>
+        /// <returns>số phòng họp，người dùng khám chữa bệnhToken、địa chỉ cuộc họp</returns>
         [HttpPost]
         [Route("DoctorMeetingApply")]
         public async Task<BusResult<MeettingResponse>> DoctorMeetingApplyAsync(Request<TreatedUserRequest> request)
@@ -109,7 +109,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             {
                 return new BusResult<MeettingResponse> { code = ResponseResultCode.FAIL, msg = "机构信息及关键申请信息不可为空" };
             }
-            //查询申请是否正常 
+            //truy vấn đăng ký có bình thường hay không 
             var apply = await _remoteTreatedDmn.TreatedApplyInfo(request.Data.applyId, request.OrganizeId);
             if (apply == null || (apply.sqzt != (int)EmunRemoteTreatedStu.dqr && apply.sqzt != (int)EmunRemoteTreatedStu.jzz))
             {
@@ -119,12 +119,12 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             {
                 throw new FailedException($"申请诊疗时间:{apply.sqsj}已过期");
             }
-            //双方均可发起会议
+            //cả hai bên đều có thể khởi xướng cuộc họp
             if (!(apply.sqr == request.Data.usercode || apply.ysgh == request.Data.usercode))
             {
                 return new BusResult<MeettingResponse> { code = ResponseResultCode.FAIL, msg = "诊疗会议必须由诊疗医生或诊疗申请人发起" };
             }
-            //该申请尚未生成会议号 生成聊天室房间号
+            //đăng ký này chưa tạo số phòng họp tạo số phòng trò chuyện
             if (string.IsNullOrWhiteSpace(apply.mettingId) || request.Data.roomReset)
             {
                 ChatRoom cr = new ChatRoom();
@@ -139,7 +139,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             var tokenResp = await TreatedMeetingToken(tokenReq);
             if (apply.sqzt != (int)EmunRemoteTreatedStu.jzz || !string.IsNullOrWhiteSpace(request.Data.mzh))
             {
-                //回写远程申请
+                //ghi lại đăng ký từ xa
                 apply.sqzt = (int)EmunRemoteTreatedStu.jzz;
                 apply.mzh = request.Data.mzh;
                 var modifyApply = await _remoteTreatedDmn.ModifiedApplyStu(apply.Adapt<TreatedApplyEntity>(), request.AppId);
@@ -148,16 +148,16 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
                     return new BusResult<MeettingResponse> { code = ResponseResultCode.FAIL, msg = "会议号回写失败，请重新申请会议" };
                 }
             }
-            //通知云诊所 
-            //申请Id  同意诊疗 ：True 会议号：roomid
+            //thông báo phòng khám trên đám mây 
+            //đăng kýId  đồng ý khám chữa bệnh ：True số phòng họp：roomid
             return new BusResult<MeettingResponse> { code = ResponseResultCode.SUCCESS, Data = tokenResp };
         }
         #endregion
 
         /// <summary>
-        /// 远程诊疗Step3： 普通用户加入会议
-        /// 返回值用于会议室页面验证
-        /// To:第三方、HIS
+        /// khám chữa bệnh từ xaStep3： người dùng thông thường tham gia cuộc họp
+        /// giá trị trả về dùng để xác thực trang phòng họp
+        /// To:bên thứ ba、HIS
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -185,8 +185,8 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
         }
 
         /// <summary>
-        /// 诊疗信息查询 by HIS诊疗申请Id
-        /// To:第三方、HIS
+        /// truy vấn thông tin khám chữa bệnh by HISđăng ký khám chữa bệnhId
+        /// To:bên thứ ba、HIS
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -206,7 +206,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             return new BusResult<TreatedApplyVO> { code = ResponseResultCode.SUCCESS, Data = response };
         }
         /// <summary>
-        /// 拒绝诊疗申请 
+        /// từ chối đăng ký khám chữa bệnh 
         /// To:HIS
         /// </summary>
         /// <param name="request"></param>
@@ -251,8 +251,8 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
 
         #region 外部系统 Only
         /// <summary>
-        /// 撤销诊疗申请 
-        /// To:第三方
+        /// thu hồi đăng ký khám chữa bệnh 
+        /// To:bên thứ ba
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -287,8 +287,8 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
         }
 
         /// <summary>
-        /// 发药通知 
-        /// To:第三方
+        /// thông báo phát thuốc 
+        /// To:bên thứ ba
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -311,15 +311,15 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             }
             response.sqzt = (int)EmunRemoteTreatedStu.yfy;
             var fy = await _remoteTreatedDmn.ModifiedApplyStu(response.Adapt<TreatedApplyEntity>(), request.AppId);
-            //调用第三方 诊疗结果通知 接口
+            //gọi bên thứ ba thông báo kết quả khám chữa bệnh giao diện
             return new BusResult<bool> { code = ResponseResultCode.SUCCESS, msg = "发药状态更新成功", Data = fy };
         }
 
         #endregion
 
         /// <summary>
-        /// 诊疗用户身份信息解密
-        /// To:第三方、HIS
+        /// giải mã thông tin danh tính người dùng khám chữa bệnh
+        /// To:bên thứ ba、HIS
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -339,7 +339,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
 
         #region private
         /// <summary>
-        /// 音视频服务接口封装
+        /// đóng gói giao diện dịch vụ âm thanh – hình ảnh
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -373,7 +373,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             resp.organization = RemoteTreatedHelper.Organization;
             resp.device = tokenReq.device;
             resp.roompath = RemoteTreatedHelper.RemoteTreatedMeettingRoute;
-            //自动解密
+            //tự động giải mã
             resp.rtcuserid = await Task.Run(() => RemoteTreatedHelper.GetRtcuser(tokenResp.rtcuserid));
             return resp;
         }

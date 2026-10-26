@@ -7,46 +7,46 @@ using NewtouchHIS.Lib.Base.Model;
 namespace NewtouchHIS.Base.Domain.IDomainService
 {
     /// <summary>
-    /// 系统药品
+    /// thuốc hệ thống
     /// </summary>
     public interface ISysMedicineService : ISingletonDependency
     {
         /// <summary>
-        /// 系统药品字典
+        /// từ điển thuốc hệ thống
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         Task<List<SysMedicineVVO>> GetMedicineList(QueryParamsBase query);
         /// <summary>
-        /// 系统药品字典(分页)
+        /// từ điển thuốc hệ thống(phân trang)
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
         Task<PageResponseRow<List<SysMedicineVVO>>> GetMedicinePage(OLPagination<QueryParamsBase> query);
         /// <summary>
-        /// 药品用法
+        /// cách dùng thuốc
         /// </summary>
         /// <param name="code"></param>
         /// <param name="yplx"></param>
         /// <returns></returns>
         Task<List<DrugUsageEntity>> DrugUsageDic(string? code = null, int? yplx = null);
         /// <summary>
-        /// 频次字典
+        /// từ điển tần suất
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         Task<List<SysFrequencyEntity>> SysFrequencyDic(string? code = null, string? orgId = null);
         /// <summary>
-        /// 药品单位
+        /// đơn vị thuốc
         /// </summary>
         /// <param name="code"></param>
         /// <param name="name"></param>
         /// <returns></returns>
         Task<List<DrugUnitEntity>> DrugUnitDic(string? code = null, string? name = null);
         /// <summary>
-        /// 药品剂型用法
+        /// cách dùng dạng bào chế thuốc
         /// </summary>
         /// <returns></returns>
         Task<List<DrugFormulationUsageVO>> GetDrugFormulationUsageList();

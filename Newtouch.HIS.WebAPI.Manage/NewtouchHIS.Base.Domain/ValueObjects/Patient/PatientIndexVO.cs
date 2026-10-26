@@ -9,23 +9,23 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
     public class PatientIndexVO
     {
         /// <summary>
-        /// 患者身份唯一标识
+        /// định danh duy nhất danh tính bệnh nhân
         /// </summary>
         public int? PatId { get; set; }
         /// <summary>
-        /// 姓名
+        /// họ tên
         /// </summary>
         public string? PatName { get; set; }
         /// <summary>
-        /// 就诊卡号
+        /// số thẻ khám bệnh
         /// </summary>
         public string? Jzkh { get; set; }
         /// <summary>
-        /// 身份证
+        /// chứng minh nhân dân
         /// </summary>
         public string? IdCard { get; set; }
         /// <summary>
-        /// 病人性质 医保/自费
+        /// tính chất bệnh nhân bảo hiểm y tế/tự trả
         /// </summary>
         public string? Brxz { get; set; }
 

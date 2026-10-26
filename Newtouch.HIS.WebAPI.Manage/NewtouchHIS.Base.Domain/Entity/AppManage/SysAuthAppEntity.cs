@@ -5,14 +5,14 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///应用注册授权
+    ///ủy quyền đăng ký ứng dụng
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("Sys_Auth_App", "SysAuthAppEntity")]
     public class SysAuthAppEntity
     {
         /// <summary>
-        /// Desc:授权ID
+        /// Desc:ủy quyềnID
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -20,7 +20,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string AuthId { get; set; }
 
         /// <summary>
-        /// Desc:应用通用Id
+        /// Desc:ứng dụng chungId
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -29,7 +29,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string AppId { get; set; }
 
         /// <summary>
-        /// Desc:应用名称
+        /// Desc:tên ứng dụng
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -38,7 +38,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string AppName { get; set; }
 
         /// <summary>
-        /// Desc:域名地址
+        /// Desc:địa chỉ tên miền
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -55,7 +55,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string Host { get; set; }
 
         /// <summary>
-        /// Desc:授权类型 AuthType
+        /// Desc:loại ủy quyền AuthType
         /// Default:Web
         /// Nullable:True
         /// </summary>           

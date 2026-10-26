@@ -11,7 +11,7 @@ using NewtouchHIS.WebAPI.Manage.Controllers;
 namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
 {
     /// <summary>
-    /// 门诊病历
+    /// bệnh án ngoại trú
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]

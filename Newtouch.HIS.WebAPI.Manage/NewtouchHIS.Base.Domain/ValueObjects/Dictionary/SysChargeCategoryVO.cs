@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.ValueObjects
 {
     /// <summary>
-    /// 收费大类
+    /// nhóm thu phí lớn
     /// </summary>
     public class SysChargeCategoryVO
     {
@@ -43,7 +43,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public int? ParentId { get; set; }
 
         /// <summary>
-        /// Desc:0 通用 1 门诊 2住院
+        /// Desc:0 chung 1 khám ngoại trú 2nội trú
         /// Default:
         /// Nullable:False
         /// </summary>           

@@ -10,7 +10,7 @@ using System.Security.Claims;
 namespace NewtouchHIS.Lib.Services
 {
     /// <summary>
-    /// jwt服务
+    /// jwtdịch vụ
     /// </summary>
     public abstract class JWTBaseService 
     {
@@ -21,7 +21,7 @@ namespace NewtouchHIS.Lib.Services
         }
 
         /// <summary>
-        /// 获取授权码
+        /// lấy mã ủy quyền
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="password"></param>
@@ -38,7 +38,7 @@ namespace NewtouchHIS.Lib.Services
                 return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "应用未授权" };
             }
 
-            //用户信息
+            //thông tin người dùng
             UserIdentity UserIdentity = new UserIdentity
             {
                 UserId = "101",
@@ -46,15 +46,15 @@ namespace NewtouchHIS.Lib.Services
                 UserName = "张三"
             };
 
-            //生成授权码
+            //tạo mã ủy quyền
             code = Guid.NewGuid().ToString().Replace("-", "").ToUpper();
             string key = $"AuthCode:{code}";
             string appCachekey = $"AuthCodeClientId:{code}";
-            //缓存授权码
+            //bộ nhớ đệm mã ủy quyền
             _cachelper.SetCache<UserIdentity>(key, UserIdentity, TimeSpan.FromMinutes(10));
-            //缓存授权码是哪个应用的
+            //mã ủy quyền trong bộ nhớ đệm thuộc ứng dụng nào
             _cachelper.SetCache(appCachekey, appItem.AppId, TimeSpan.FromMinutes(10));
-            //创建全局会话
+            //tạo phiên toàn cục
             string sessionCode = $"SessionCode:{code}";
             //SessionCodeUser sessionCodeUser = new SessionCodeUser
             //{
@@ -62,19 +62,19 @@ namespace NewtouchHIS.Lib.Services
             //    currentUser = UserIdentity
             //};
             //_cachelper.SetCache<UserIdentity>(sessionCode, UserIdentity, TimeSpan.FromDays(1));
-            //全局会话过期时间
+            //thời gian hết hạn phiên toàn cục
             string sessionExpiryKey = $"SessionExpiryKey:{code}";
             DateTime sessionExpirTime = DateTime.Now.AddDays(1);
             _cachelper.SetCache<DateTime>(sessionExpiryKey, sessionExpirTime, TimeSpan.FromDays(1));
             Console.WriteLine($"登录成功，全局会话code:{code}");
-            //缓存授权码取token时最长的有效时间
+            //lấy mã ủy quyền từ bộ nhớ đệmtokenthời gian hiệu lực dài nhất khi
             _cachelper.SetCache<DateTime>($"AuthCodeSessionTime:{code}", sessionExpirTime, TimeSpan.FromDays(1));
 
             //result.SetSuccess(code);
             return result;
         }
         /// <summary>
-        /// 根据会话code获取授权码
+        /// theo phiêncodelấy mã ủy quyền
         /// </summary>
         /// <param name="clientId"></param>
         /// <param name="sessionCode"></param>
@@ -86,26 +86,26 @@ namespace NewtouchHIS.Lib.Services
             SSOAuthAppItem appItem = _jWTOptions.SSOAuthApp.Where(s => s.AppId == clientId).FirstOrDefault();
             if (appItem == null)
             {
-                //result.SetFail("应用不存在");
+                //result.SetFail("ứng dụng không tồn tại");
                 return result;
             }
             string codeKey = $"SessionCode:{sessionCode}";
             UserIdentity UserIdentity =await _cachelper.GetCache<UserIdentity>(codeKey);
             if (UserIdentity == null)
             {
-                //return result.SetFail("会话不存在或已过期", string.Empty);
+                //return result.SetFail("phiên không tồn tại hoặc đã hết hạn", string.Empty);
             }
 
-            //生成授权码
+            //tạo mã ủy quyền
             code = Guid.NewGuid().ToString().Replace("-", "").ToUpper();
             string key = $"AuthCode:{code}";
             string appCachekey = $"AuthCodeClientId:{code}";
-            //缓存授权码
+            //bộ nhớ đệm mã ủy quyền
             _cachelper.SetCache<UserIdentity>(key, UserIdentity, TimeSpan.FromMinutes(10));
-            //缓存授权码是哪个应用的
+            //mã ủy quyền trong bộ nhớ đệm thuộc ứng dụng nào
             _cachelper.SetCache<string>(appCachekey, appItem.AppId, TimeSpan.FromMinutes(10));
 
-            //缓存授权码取token时最长的有效时间
+            //lấy mã ủy quyền từ bộ nhớ đệmtokenthời gian hiệu lực dài nhất khi
             DateTime expirTime = await _cachelper.GetCache<DateTime>($"SessionExpiryKey:{sessionCode}");
             _cachelper.SetCache<DateTime>($"AuthCodeSessionTime:{code}", expirTime, expirTime - DateTime.Now);
 
@@ -115,37 +115,37 @@ namespace NewtouchHIS.Lib.Services
         }
 
         /// <summary>
-        /// 根据刷新Token获取Token
+        /// theo làm mớiTokenlấyToken
         /// </summary>
         /// <param name="refreshToken"></param>
         /// <param name="clientId"></param>
         /// <returns></returns>
         public async Task<string> GetTokenByRefresh(string refreshToken, string clientId)
         {
-            //刷新Token是否在缓存
+            //làm mớiTokencó trong bộ nhớ đệm hay không
             UserIdentity UserIdentity =await _cachelper.GetCache<UserIdentity>($"RefreshToken:{refreshToken}");
             if (UserIdentity == null)
             {
                 return String.Empty;
             }
-            //刷新token过期时间
+            //làm mớitokenthời gian hết hạn
             DateTime refreshTokenExpiry =await _cachelper.GetCache<DateTime>($"RefreshTokenExpiry:{refreshToken}");
-            //token默认时间为600s
+            //tokenthời gian mặc định là600s
             double tokenExpiry = 600;
-            //如果刷新token的过期时间不到600s了，token过期时间为刷新token的过期时间
+            //nếu làm mớitokenthời gian hết hạn của chưa đến600sđã，tokenthời gian hết hạn là làm mớitokenthời gian hết hạn của
             if (refreshTokenExpiry > DateTime.Now && refreshTokenExpiry < DateTime.Now.AddSeconds(600))
             {
                 tokenExpiry = (refreshTokenExpiry - DateTime.Now).TotalSeconds;
             }
 
-            //从新生成Token
+            //tạo lạiToken
             string token = IssueToken(new JWTTokenRequest(), clientId, tokenExpiry);
             return token;
 
         }
 
         /// <summary>
-        /// 根据授权码,获取Token
+        /// theo mã ủy quyền,lấyToken
         /// </summary>
         /// <param name="userInfo"></param>
         /// <param name="appHSSetting"></param>
@@ -158,26 +158,26 @@ namespace NewtouchHIS.Lib.Services
             string clientIdCachekey = $"AuthCodeClientId:{authCode}";
             string AuthCodeSessionTimeKey = $"AuthCodeSessionTime:{authCode}";
 
-            //根据授权码获取用户信息
+            //lấy thông tin người dùng theo mã ủy quyền
             UserIdentity UserIdentity =await _cachelper.GetCache<UserIdentity>(key);
             if (UserIdentity == null)
             {
                 throw new Exception("code无效");
             }
-            //清除authCode，只能用一次
+            //xóaauthCode，chỉ dùng được một lần
             _cachelper.RemoveCache(key);
 
-            //获取应用配置
+            //lấy cấu hình ứng dụng
             string clientId =await _cachelper.GetCache<string>(clientIdCachekey);
-            //刷新token过期时间
+            //làm mớitokenthời gian hết hạn
             DateTime sessionExpiryTime =await _cachelper.GetCache<DateTime>(AuthCodeSessionTimeKey);
-            DateTime tokenExpiryTime = DateTime.Now.AddMinutes(10);//token过期时间10分钟
-                                                                   //如果刷新token有过期期比token默认时间短，把token过期时间设成和刷新token一样
+            DateTime tokenExpiryTime = DateTime.Now.AddMinutes(10);//tokenthời gian hết hạn10phút
+                                                                   //nếu làm mớitokencó thời hạn hết hạn ngắn hơntokenthời gian mặc định ngắn，(đem)tokenđặt thời gian hết hạn thành giống làm mớitokengiống nhau
             if (sessionExpiryTime > DateTime.Now && sessionExpiryTime < tokenExpiryTime)
             {
                 tokenExpiryTime = sessionExpiryTime;
             }
-            //获取访问token
+            //lấy truy cậptoken
             string token = this.IssueToken(new JWTTokenRequest(), clientId, (tokenExpiryTime - DateTime.Now).TotalSeconds);
 
 
@@ -188,13 +188,13 @@ namespace NewtouchHIS.Lib.Services
             }
             else
             {
-                refreshTokenExpiry = TimeSpan.FromSeconds(60 * 60 * 24);//默认24小时
+                refreshTokenExpiry = TimeSpan.FromSeconds(60 * 60 * 24);//mặc định24giờ
             }
-            //获取刷新token
+            //lấy làm mớitoken
             string refreshToken = this.IssueToken(new JWTTokenRequest(), clientId, refreshTokenExpiry.TotalSeconds);
-            //缓存刷新token
+            //làm mới bộ nhớ đệmtoken
             _cachelper.SetCache($"RefreshToken:{refreshToken}", UserIdentity, refreshTokenExpiry);
-            //缓存刷新token过期时间
+            //làm mới bộ nhớ đệmtokenthời gian hết hạn
             _cachelper.SetCache($"RefreshTokenExpiry:{refreshToken}", DateTime.Now.AddSeconds(refreshTokenExpiry.TotalSeconds), refreshTokenExpiry);
             //result.SetSuccess(new JWTToken() { Token = token });
             Console.WriteLine($"client_id:{clientId}获取token,有效期:{sessionExpiryTime.ToString("yyyy-MM-dd HH:mm:ss")},token:{token}");
@@ -203,7 +203,7 @@ namespace NewtouchHIS.Lib.Services
 
         #region private
         /// <summary>
-        /// 签发token
+        /// cấp pháttoken
         /// </summary>
         /// <param name="userModel"></param>
         /// <param name="clientId"></param>
@@ -230,28 +230,28 @@ namespace NewtouchHIS.Lib.Services
             var creds = GetCreds(clientId);
             /**
              * Claims (Payload)
-                Claims 部分包含了一些跟这个 token 有关的重要信息。 JWT 标准规定了一些字段，下面节选一些字段:
-                iss: The issuer of the token，签发主体，谁给的
-                sub: The subject of the token，token 主题
-                aud: 接收对象，给谁的
-                exp: Expiration Time。 token 过期时间，Unix 时间戳格式
-                iat: Issued At。 token 创建时间， Unix 时间戳格式
-                jti: JWT ID。针对当前 token 的唯一标识
-                除了规定的字段外，可以包含其他任何 JSON 兼容的字段。
+                Claims một phần bao gồm một số thông tin liên quan đến token thông tin quan trọng liên quan。 JWT tiêu chuẩn quy định một số trường，dưới đây trích một số trường:
+                iss: The issuer of the token，chủ thể cấp phát，ai cấp
+                sub: The subject of the token，token chủ đề
+                aud: đối tượng nhận，cho ai
+                exp: Expiration Time。 token thời gian hết hạn，Unix định dạng dấu thời gian
+                iat: Issued At。 token thời gian tạo， Unix định dạng dấu thời gian
+                jti: JWT ID。đối với hiện tại token định danh duy nhất của
+                ngoài các trường đã quy định，có thể bao gồm bất kỳ nội dung nào khác JSON trường tương thích。
              * */
             var token = new JwtSecurityToken(
-                issuer: "SSOCenter", //谁给的
-                audience: clientId, //给谁的
+                issuer: "SSOCenter", //ai cấp
+                audience: clientId, //cho ai
                 claims: claims,
-                expires: DateTime.Now.AddSeconds(second),//token有效期
-                notBefore: null,//立即生效  DateTime.Now.AddMilliseconds(30),//30s后有效
+                expires: DateTime.Now.AddSeconds(second),//tokenthời hạn hiệu lực
+                notBefore: null,//có hiệu lực ngay  DateTime.Now.AddMilliseconds(30),//30shiệu lực sau đó
                 signingCredentials: creds);
             string returnToken = new JwtSecurityTokenHandler().WriteToken(token);
             return returnToken;
         }
 
         /// <summary>
-        /// 根据appKey获取应用信息
+        /// theoappKeylấy thông tin ứng dụng
         /// </summary>
         /// <param name="clientId"></param>
         /// <returns></returns>
@@ -260,7 +260,7 @@ namespace NewtouchHIS.Lib.Services
             return _jWTOptions.SSOAuthApp.Where(s => s.AppId == clientId).FirstOrDefault();
         }
         /// <summary>
-        /// 获取加密方式
+        /// lấy phương thức mã hóa
         /// </summary>
         /// <returns></returns>
         protected abstract SigningCredentials GetCreds(string clientId);

@@ -3,15 +3,15 @@
     public class MRQCScoreRequest
     {
         /// <summary>
-        /// 组织机构
+        /// tổ chức
         /// </summary>
         public string orgId { get; set; }
         /// <summary>
-        /// 住院号
+        /// số nội trú
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// 病理类型
+        /// loại bệnh lý
         /// </summary>
         public string bllxId { get; set; }
 

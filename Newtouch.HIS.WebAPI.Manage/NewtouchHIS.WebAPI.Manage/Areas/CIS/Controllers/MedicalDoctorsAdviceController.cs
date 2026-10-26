@@ -14,7 +14,7 @@ using NewtouchHIS.WebAPI.Manage.Models.EMR;
 namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
 {
     /// <summary>
-    /// 质控调用:医嘱处方接口
+    /// lời gọi kiểm soát chất lượng:giao diện đơn thuốc y lệnh
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -31,7 +31,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             _medicaldoctorsadviceDmn = medicaldoctorsadviceDmn;
         }
         /// <summary>
-        /// 住院医嘱
+        /// y lệnh nội trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -55,7 +55,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             return new BusResult<List<MedicalDoctorsAdviceVo>> { code = ResponseResultCode.SUCCESS, Data = data };
         }
         /// <summary>
-        /// 门诊住院检验检查
+        /// khám xét nghiệm ngoại trú – nội trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

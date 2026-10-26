@@ -12,12 +12,12 @@ using System.Data.Common;
 namespace NewtouchHIS.DomainService.EMR
 {
     /// <summary>
-    /// 病案首页查询服务
+    /// dịch vụ truy vấn trang đầu bệnh án
     /// </summary>
     public class MedicalHomeRDmnService : BaseServices<MedicalHomeVO>, IMedicalHomeRDmnService
     {
         /// <summary>
-        /// 查询患者病案首页重点信息（with：诊断、手术）
+        /// truy vấn thông tin trọng điểm trang đầu bệnh án bệnh nhân（with：chẩn đoán、phẫu thuật）
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

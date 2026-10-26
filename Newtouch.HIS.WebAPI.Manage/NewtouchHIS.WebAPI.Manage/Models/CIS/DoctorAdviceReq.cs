@@ -11,10 +11,10 @@
         public string jzh { get; set; }
         public DateTime ksrq { get; set; }
         public DateTime jsrq { get; set; }
-        //报告类型 jy：检验 jc:检查
+        //loại báo cáo jy：xét nghiệm jc:kiểm tra
         public string reportType { get; set; }
         /// <summary>
-        /// 门诊住院标志  mz:门诊 zy:住院
+        /// cờ ngoại trú – nội trú  mz:khám ngoại trú zy:nội trú
         /// </summary>
         public string mzzybz { get; set; }
     }

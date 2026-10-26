@@ -1,51 +1,51 @@
 ﻿namespace NewtouchHIS.WebAPI.Manage.Models.OutPatient
 {
     /// <summary>
-    /// 门诊挂号
+    /// đăng ký khám ngoại trú
     /// </summary>
     public class OutpatientRegistRequest
     {
         /// <summary>
-        /// 就诊卡号
+        /// số thẻ khám bệnh
         /// </summary>
         public string? kh { get; set; }
         /// <summary>
-        /// 预约号
+        /// số hẹn
         /// </summary>
         public string? BookId { get; set; }
         /// <summary>
-        /// 排班Id
+        /// lịch trựcId
         /// </summary>
         public string? ScheduId { get; set; }
         /// <summary>
-        /// 挂号性质 自费医保等 brxz 等同
+        /// tính chất đăng ký khám tự trả, bảo hiểm y tế, v.v. brxz tương đương
         /// </summary>
         public string? ghxz { get; set; }
         /// <summary>
-        /// 支付方式 xjzffs
+        /// phương thức thanh toán xjzffs
         /// </summary>
         public string? PayWay { get; set; }
         /// <summary>
-        /// 已支付费用
+        /// chi phí đã thanh toán
         /// </summary>
         public string? PayFee { get; set; }
         /// <summary>
-        /// 支付流水号
+        /// số thứ tự thanh toán
         /// </summary>
         public string? PayLsh { get; set; }
 
     }
     /// <summary>
-    /// 查询挂号记录
+    /// truy vấn hồ sơ đăng ký khám
     /// </summary>
     public class OutpRegistQueryRequest
     {
         /// <summary>
-        /// 就诊卡号
+        /// số thẻ khám bệnh
         /// </summary>
         public string? kh { get; set; }
         /// <summary>
-        /// 门诊号
+        /// số khám ngoại trú
         /// </summary>
         public string? mzh { get; set; }
     }

@@ -4,66 +4,66 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.ValueObjects
 {
     /// <summary>
-    /// 消息组视图
-    /// 声明与Entity一致
+    /// chế độ xem nhóm tin nhắn
+    /// khai báo vàEntitynhất quán
     /// </summary>
     public class MsgNoticeGroupVO: IEntity
     {
         [Required(ErrorMessage = "主键Id不可为空")]
         public string Id { get; set; }
-        //[Required(ErrorMessage = "机构Id不可为空")]
+        //[Required(ErrorMessage = "cơ quanIdkhông được để trống")]
         //public string OrganizeId { get; set; }
         /// <summary>
-        /// 组标签
-        /// 系统消息 / 院内消息 /科室内部消息  质控消息
+        /// nhãn nhóm
+        /// tin nhắn hệ thống / tin nhắn trong viện /tin nhắn nội bộ khoa  tin nhắn kiểm soát chất lượng
         /// </summary>
         [Required(ErrorMessage = "组标签不可为空")]
         public string GroupTag { get; set; }
         /// <summary>
-        /// 组名称
+        /// tên nhóm
         /// </summary>
         [Required(ErrorMessage = "消息组名称不可为空")]
         public string GroupName { get; set; }
         /// <summary>
-        /// 消息组说明
+        /// mô tả nhóm tin nhắn
         /// </summary>
         public string? GroupDesc { get; set; }
         /// <summary>
-        /// 相关业务类型 GroupYwlxEnum
+        /// loại nghiệp vụ liên quan GroupYwlxEnum
         /// </summary>
         [Required(ErrorMessage = "相关业务类型不可为空")]
         public int GroupYwlx { get; set; }
         /// <summary>
-        /// 决定了通知对象范围  MsgNoticeRangeEnum
+        /// quyết định phạm vi đối tượng nhận thông báo  MsgNoticeRangeEnum
         /// </summary>
         [Required(ErrorMessage = "通知对象范围不可为空")]
         public int NoticeRange { get; set; }
         /// <summary>
-        /// 显示主题 
-        /// 如 您有新的质控消息，请即时查看
+        /// hiển thị chủ đề 
+        /// Ví dụ Bạn có tin nhắn kiểm soát chất lượng mới，Vui lòng xem ngay
         /// </summary>
         public string? DefaultTitle { get; set; }
         /// <summary>
-        /// 详细内容
-        /// 展开显示
+        /// nội dung chi tiết
+        /// hiển thị mở rộng
         /// </summary>
         public string? DefaultContent { get; set; }
         /// <summary>
-        /// 内容关联数据 Json格式 可转化对象
+        /// dữ liệu liên quan đến nội dung Jsonđịnh dạng đối tượng có thể chuyển đổi
         /// </summary>
         public string? DefaultContentData { get; set; }
         /// <summary>
-        /// 默认跳转路径 
-        /// 不为空时要求 AppId 不可为空
+        /// đường dẫn chuyển hướng mặc định 
+        /// yêu cầu khi không trống AppId không được để trống
         /// </summary>
         public string? DefaultOpenPath { get; set; }
         /// <summary>
-        /// 路径参数
-        /// 格式： zyh={0}，id={1}
+        /// tham số đường dẫn
+        /// định dạng： zyh={0}，id={1}
         /// </summary>
         public string? DefaultOpenPathPara { get; set; }
         /// <summary>
-        /// 应用Id
+        /// ứng dụngId
         /// </summary>
         public string? AppId { get; set; }
         //public string CreatorCode { get; set; }
@@ -73,60 +73,60 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         //public string zt { get; set; } = "1";
     }
     /// <summary>
-    /// 消息组基础信息 
-    /// 查询/返回用
+    /// thông tin cơ sở nhóm tin nhắn 
+    /// truy vấn/trả về để dùng
     /// </summary>
     public class MsgNoticeGroupBasicVO
     {
         public string? Id { get; set; }
         public string? OrganizeId { get; set; }
         /// <summary>
-        /// 组标签
-        /// 系统消息 / 院内消息 /科室内部消息  质控消息
+        /// nhãn nhóm
+        /// tin nhắn hệ thống / tin nhắn trong viện /tin nhắn nội bộ khoa  tin nhắn kiểm soát chất lượng
         /// </summary>
         public string? GroupTag { get; set; }
         /// <summary>
-        /// 组名称
+        /// tên nhóm
         /// </summary>
         public string? GroupName { get; set; }
         /// <summary>
-        /// 消息组说明
+        /// mô tả nhóm tin nhắn
         /// </summary>
         public string? GroupDesc { get; set; }
         /// <summary>
-        /// 相关业务类型 GroupYwlxEnum
+        /// loại nghiệp vụ liên quan GroupYwlxEnum
         /// </summary>
         public int? GroupYwlx { get; set; }
         /// <summary>
-        /// 决定了通知对象范围  MsgNoticeRangeEnum
+        /// quyết định phạm vi đối tượng nhận thông báo  MsgNoticeRangeEnum
         /// </summary>
         public int? NoticeRange { get; set; }
         /// <summary>
-        /// 显示主题 
-        /// 如 您有新的质控消息，请即时查看
+        /// hiển thị chủ đề 
+        /// Ví dụ Bạn có tin nhắn kiểm soát chất lượng mới，Vui lòng xem ngay
         /// </summary>
         public string? DefaultTitle { get; set; }
         /// <summary>
-        /// 详细内容
-        /// 展开显示
+        /// nội dung chi tiết
+        /// hiển thị mở rộng
         /// </summary>
         public string? DefaultContent { get; set; }
         /// <summary>
-        /// 内容关联数据 Json格式 可转化对象
+        /// dữ liệu liên quan đến nội dung Jsonđịnh dạng đối tượng có thể chuyển đổi
         /// </summary>
         public string? DefaultContentData { get; set; }
         /// <summary>
-        /// 默认跳转路径 
-        /// 不为空时要求 AppId 不可为空
+        /// đường dẫn chuyển hướng mặc định 
+        /// yêu cầu khi không trống AppId không được để trống
         /// </summary>
         public string? DefaultOpenPath { get; set; }
         /// <summary>
-        /// 路径参数
-        /// 格式： zyh={0}，id={1}
+        /// tham số đường dẫn
+        /// định dạng： zyh={0}，id={1}
         /// </summary>
         public string? DefaultOpenPathPara { get; set; }
         /// <summary>
-        /// 应用Id
+        /// ứng dụngId
         /// </summary>
         public string? AppId { get; set; }
         public string? CreatorCode { get; set; }

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///应用好友关系表
+    ///bảng quan hệ bạn bè ứng dụng
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("Sys_Auth_AppFriend", "SysAuthAppFriendEntity")]
@@ -21,7 +21,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Desc:应用Id
+        /// Desc:ứng dụngId
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -30,7 +30,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string AppAuthId { get; set; }
 
         /// <summary>
-        /// Desc:好友应用Id
+        /// Desc:ứng dụng bạn bèId
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -39,7 +39,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string FriendId { get; set; }
 
         /// <summary>
-        /// Desc:授权等级
+        /// Desc:cấp ủy quyền
         /// Default:
         /// Nullable:False
         /// </summary>           

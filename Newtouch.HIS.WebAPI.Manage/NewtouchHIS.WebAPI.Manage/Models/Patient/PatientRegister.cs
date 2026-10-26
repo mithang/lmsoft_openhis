@@ -1,37 +1,37 @@
 ﻿namespace NewtouchHIS.WebAPI.Manage.Models.Patient
 {
     /// <summary>
-    /// 患者注册基础信息
+    /// thông tin cơ sở đăng ký bệnh nhân
     /// </summary>
     public class PatientRegisterBasic
     {
         /// <summary>
-        /// 身份证号
+        /// số chứng minh nhân dân
         /// </summary>
         public string? zjh { get; set; }
         /// <summary>
-        /// 姓名
+        /// họ tên
         /// </summary>
         public string? xm { get; set; }
         /// <summary>
-        /// 医保卡号
+        /// số thẻ bảo hiểm y tế
         /// </summary>
         public string? kh { get; set; }
         /// <summary>
-        /// 性别
+        /// giới tính
         /// </summary>
         public string? xb { get; set; }
         /// <summary>
-        /// 联系方式
+        /// thông tin liên hệ
         /// </summary>
         public string? lxdh { get; set; }
         /// <summary>
-        /// 出生日期
+        /// ngày sinh
         /// </summary>
         public DateTime? csrq { get; set; }
     }
     /// <summary>
-    /// 患者注册信息
+    /// thông tin đăng ký bệnh nhân
     /// </summary>
     public class PatientRegisterDTO: PatientRegisterBasic
     {

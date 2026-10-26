@@ -6,21 +6,21 @@ namespace NewtouchHIS.Base.Domain.Organize
     public interface ISysDepartmentDmnService : IScopedDependency
     {
         /// <summary>
-        /// 根据Code获取科室名称
+        /// theoCodelấy tên khoa
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         Task<string> GetNameByCode(string code, string orgId);
         /// <summary>
-        /// 获取实体列表
+        /// lấy danh sách thực thể
         /// </summary>
-        /// <param name="keyword">筛选关键字</param>
+        /// <param name="keyword">từ khóa lọc</param>
         Task<List<SysDepartmentEntity>> GetList(string keyword = null);
         /// <summary>
-        /// 获取实体列表
+        /// lấy danh sách thực thể
         /// </summary>
-        /// <param name="keyword">筛选关键字</param>
+        /// <param name="keyword">từ khóa lọc</param>
         Task<List<SysDepartmentEntity>> GetListByOrg(string organizeId);
     }
 }

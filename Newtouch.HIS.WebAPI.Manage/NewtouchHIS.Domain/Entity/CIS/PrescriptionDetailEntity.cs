@@ -21,47 +21,47 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 关联处方表
+        /// bảng đơn thuốc liên kết
         /// </summary>
         public string cfId { get; set; }
 
         /// <summary>
-        /// 关联base库的收费项目表
+        /// liên kếtbasebảng hạng mục thu phí của cơ sở dữ liệu
         /// </summary>
         public string xmCode { get; set; }
 
         /// <summary>
-        /// 冗余字段
+        /// trường dự phòng
         /// </summary>
         public string xmmc { get; set; }
 
         /// <summary>
-        /// 关联base库的药品表
+        /// liên kếtbasebảng thuốc của cơ sở dữ liệu
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 冗余代码
+        /// mã dự phòng
         /// </summary>
         public string ypmc { get; set; }
         /// <summary>
-        /// 每次治疗量  针对康复项目
+        /// liều điều trị mỗi lần  đối với hạng mục phục hồi chức năng
         /// </summary>
         public int? mczll { get; set; }
         public decimal? mcjl { get; set; }
 
         /// <summary>
-        /// 取base库的药品属性表
+        /// lấybasebảng thuộc tính thuốc của cơ sở dữ liệu
         /// </summary>
         public string mcjldw { get; set; }
 
         /// <summary>
-        /// 关联base库的药品用法表
+        /// liên kếtbasebảng cách dùng thuốc của cơ sở dữ liệu
         /// </summary>
         public string yfCode { get; set; }
 
         /// <summary>
-        /// 关联base库的医嘱频次
+        /// liên kếtbasetần suất y lệnh của cơ sở dữ liệu
         /// </summary>
         public string pcCode { get; set; }
 
@@ -76,7 +76,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public int sl { get; set; }
 
         /// <summary>
-        /// 总计费数量
+        /// tổng số lượng tính phí
         /// </summary>
         public int? zl { get; set; }
 
@@ -146,37 +146,37 @@ namespace NewtouchHIS.Domain.Entity.CIS
         /// </summary>
         public DateTime? zxsj { get; set; }
         /// <summary>
-        /// 医保唯一码
+        /// mã duy nhất bảo hiểm y tế
         /// </summary>
         public string ybwym { get; set; }
         /// <summary>
-        /// 限制使用标志0无限制 1不符合限制规定 2符合限制规定
+        /// cờ hạn chế sử dụng0không giới hạn 1không phù hợp quy định hạn chế 2phù hợp quy định hạn chế
         /// </summary>
         public string xzsybz { get; set; }
         /// <summary>
-        /// 天数
+        /// số ngày
         /// </summary>
         public decimal? ts { get; set; }
         /// <summary>
-        /// 组套id
+        /// nhómid
         /// </summary>
         public string ztId { get; set; }
         /// <summary>
-        /// 组套名称
+        /// tên nhóm
         /// </summary>
         public string ztmc { get; set; }
         /// <summary>
-        /// 组套编号
+        /// số hiệu nhóm
         /// </summary>
         public string ztCode { get; set; }
 
         /// <summary>
-        /// 抗生素原因
+        /// nguyên nhân kháng sinh
         /// </summary>
         public string kssReason { get; set; }
 
         /// <summary>
-        /// 部位方法
+        /// phương pháp vị trí
         /// </summary>
         public string bwff { get; set; }
 
@@ -184,25 +184,25 @@ namespace NewtouchHIS.Domain.Entity.CIS
 
         public int? px { get; set; }
         /// <summary>
-        /// 滴速
+        /// tốc độ truyền
         /// </summary>
         public int? ds { get; set; }
 
         /// <summary>
-        /// 转自费标志
+        /// cờ chuyển sang tự trả
         /// </summary>
         public int? zzfbz { get; set; }
 
-        //皮试标志
+        //cờ thử phản ứng da
         public string ispsbz { get; set; }
 
-        //留观标志
+        //cờ theo dõi
         public string islgbz { get; set; }
         public int? ztsl { get; set; }
         public int? sfzt { get; set; }
         public string zysm { get; set; }
         /// <summary>
-        /// 用法对应的项目组套
+        /// nhóm hạng mục tương ứng với cách dùng
         /// </summary>
         public string syncfbz { get; set; }
     }

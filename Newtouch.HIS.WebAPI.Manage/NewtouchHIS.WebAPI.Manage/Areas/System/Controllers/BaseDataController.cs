@@ -8,7 +8,7 @@ using NewtouchHIS.Lib.Base.Model;
 namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
 {
     /// <summary>
-    /// 基础业务字典
+    /// từ điển nghiệp vụ cơ bản
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -22,7 +22,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
             _sysMedicine = sysMedicine;
         }
         /// <summary>
-        /// 系统收费大类
+        /// nhóm thu phí lớn hệ thống
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -43,7 +43,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
             return new BusResult<List<SysChargeCategoryVO>> { code = ResponseResultCode.SUCCESS, Data = itemData };
         }
         /// <summary>
-        /// 系统药品列表
+        /// danh sách thuốc hệ thống
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -64,7 +64,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
             return new BusResult<List<SysMedicineVVO>> { code = ResponseResultCode.SUCCESS, Data = itemData };
         }
         /// <summary>
-        /// 系统药品列表（分页）
+        /// danh sách thuốc hệ thống（phân trang）
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -86,7 +86,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
         }
 
         /// <summary>
-        /// 收费项目列表
+        /// danh sách hạng mục thu phí
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -107,7 +107,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
             return new BusResult<List<SysChargeItemVO>> { code = ResponseResultCode.SUCCESS, Data = itemData };
         }
         /// <summary>
-        /// 收费项目列表（分页）
+        /// danh sách hạng mục thu phí（phân trang）
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -128,7 +128,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
             return new BusResult<PageResponseRow<List<SysChargeItemVO>>> { code = ResponseResultCode.SUCCESS, Data = itemData };
         }
         /// <summary>
-        /// 材料项目列表
+        /// danh sách hạng mục vật tư
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -149,7 +149,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
             return new BusResult<List<SysChargeItemVO>> { code = ResponseResultCode.SUCCESS, Data = itemData };
         }
         /// <summary>
-        /// 材料项目列表（分页）
+        /// danh sách hạng mục vật tư（phân trang）
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

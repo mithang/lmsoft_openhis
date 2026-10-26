@@ -10,7 +10,7 @@ using NewtouchHIS.Lib.Base.Model;
 namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
 {
     /// <summary>
-    /// 患者基础信息管理(自费优先)
+    /// quản lý thông tin cơ sở bệnh nhân(ưu tiên tự trả)
     /// </summary>
     [Route("api/patient")]
     [ApiController]
@@ -24,8 +24,8 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
             _patientAddressDmn = patientAddressDmn;
         }
         /// <summary>
-        /// 患者基本信息查询 
-        /// 自费优先
+        /// truy vấn thông tin cơ bản bệnh nhân 
+        /// ưu tiên tự trả
         /// </summary>
         /// <param name="request"></param>
         /// <returns>List</returns>
@@ -47,7 +47,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
         }
 
         /// <summary>
-        /// 患者地址信息查询
+        /// truy vấn thông tin địa chỉ bệnh nhân
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
         }
 
         /// <summary>
-        /// 患者地址信息更新
+        /// cập nhật thông tin địa chỉ bệnh nhân
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -91,7 +91,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
         }
 
         /// <summary>
-        /// 患者地址信息添加
+        /// thêm thông tin địa chỉ bệnh nhân
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -113,7 +113,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
         }
 
         /// <summary>
-        /// 患者地址信息删除
+        /// xóa thông tin địa chỉ bệnh nhân
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -135,7 +135,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
         }
 
         /// <summary>
-        /// 获取订单收件人信息
+        /// lấy thông tin người nhận đơn hàng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

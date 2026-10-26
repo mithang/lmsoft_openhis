@@ -9,20 +9,20 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Domain.IDomainService.CIS
 {
     /// <summary>
-    /// 门诊病历
+    /// bệnh án ngoại trú
     /// </summary>
     public interface IOutpMedicalRecordService:IScopedDependency
     {
 
         /// <summary>
-        /// 患者门诊病历 by mzh
+        /// bệnh án ngoại trú bệnh nhân by mzh
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         Task<OutpMedicalRecordVO> OutpMedicalRecordByMzh(string mzh, string orgId);
         /// <summary>
-        /// 患者病历处方信息
+        /// thông tin bệnh án, đơn thuốc bệnh nhân
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>

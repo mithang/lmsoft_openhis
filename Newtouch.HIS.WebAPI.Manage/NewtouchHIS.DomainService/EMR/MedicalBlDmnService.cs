@@ -16,12 +16,12 @@ using static NewtouchHIS.Domain.Enum.HisEnum;
 namespace NewtouchHIS.DomainService.EMR
 {
     /// <summary>
-    /// 质控病历结构模板接口查询
+    /// truy vấn giao diện mẫu cấu trúc bệnh án kiểm soát chất lượng
     /// </summary>
     public class MedicalBlDmnService : BaseServices<MedicalBllxItemVo>, IMedicalBlDmnService
     {
         /// <summary>
-        /// 病历类型
+        /// loại bệnh án
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="db"></param>
@@ -40,7 +40,7 @@ namespace NewtouchHIS.DomainService.EMR
         }
 
         /// <summary>
-        /// 病历模板
+        /// mẫu bệnh án
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="db"></param>
@@ -59,7 +59,7 @@ namespace NewtouchHIS.DomainService.EMR
         }
 
         /// <summary>
-        /// 病历类型
+        /// loại bệnh án
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="db"></param>
@@ -84,7 +84,7 @@ from [bl_bllx] with(nolock) where zt=1 and OrganizeId=@orgId
             return bllxmbList;
         }
         /// <summary>
-        /// 住院病人列表
+        /// danh sách bệnh nhân nội trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="db"></param>
@@ -127,7 +127,7 @@ from [bl_bllx] with(nolock) where zt=1 and OrganizeId=@orgId
             return patlist;
         }
         /// <summary>
-        /// 出入院诊断列表
+        /// danh sách chẩn đoán nhập viện – xuất viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -150,7 +150,7 @@ from [bl_bllx] with(nolock) where zt=1 and OrganizeId=@orgId
             return DiagList;
         }
         /// <summary>
-        /// 病历文书tree
+        /// văn bản bệnh ántree
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

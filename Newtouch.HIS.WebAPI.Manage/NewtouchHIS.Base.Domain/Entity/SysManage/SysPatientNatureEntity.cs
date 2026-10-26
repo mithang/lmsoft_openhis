@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace NewtouchHIS.Base.Domain.Entity.SysManage
 {
     ///<summary>
-    /// 系统岗位
+    /// vị trí hệ thống
     ///</summary>
     [Tenant(DBEnum.SettDb)]
     [SugarTable("xt_brxz", "病人信息")]
@@ -20,7 +20,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public int brxzbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// tổ chứcId（bệnh viện có nghiệp vụ cụ thể）
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -40,32 +40,32 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public string py { get; set; }
 
         /// <summary>
-        /// 0 所有卡都可选的类型   1 医保卡可选的类型
+        /// 0 loại tất cả các thẻ đều có thể chọn   1 loại thẻ bảo hiểm y tế có thể chọn
         /// </summary>
         public string brxzlb { get; set; }
 
         /// <summary>
-        /// 0 不交易 1 普通交易 2 大病交易 3 家床交易
+        /// 0 không giao dịch 1 giao dịch thông thường 2 giao dịch bệnh nặng 3 giao dịch giường tại nhà
         /// </summary>
         public string ybjylx { get; set; }
 
         /// <summary>
-        /// 0：普通  1：离休  2：伤残   这里的设置只影响到新增病人时的“病人性质”过滤，所有交易费用的范围确定使用“交易费用范围”来控制      --此字段含义存在的问题！！！！！！   当“伤残”病人时，无法选择自费属性
+        /// 0：thông thường  1：nghỉ hưu  2：thương tật   cài đặt ở đây chỉ ảnh hưởng khi thêm bệnh nhân mới“tính chất bệnh nhân”lọc，tất cả phạm vi chi phí giao dịch xác định sử dụng“phạm vi chi phí giao dịch”để điều khiển      --vấn đề về ý nghĩa của trường này！！！！！！   khi“thương tật”khi bệnh nhân，không thể chọn thuộc tính tự trả
         /// </summary>
         public string ybtsdy { get; set; }
 
         /// <summary>
-        /// 医保交易的费用范围   0 可记帐部分参与计算（普通医保）   1 可记帐＋分类自负进行交易（伤残）   2 可记帐＋分类自负＋自理进行交易（暂无）      ----cms作废字段
+        /// phạm vi chi phí giao dịch bảo hiểm y tế   0 phần có thể ghi sổ tham gia tính toán（bảo hiểm y tế thông thường）   1 có thể ghi sổ＋giao dịch theo tự trả phân loại（thương tật）   2 có thể ghi sổ＋tự trả theo phân loại＋giao dịch theo tự lo（tạm thời không có）      ----cmstrường hủy
         /// </summary>
         public string jyfyfw { get; set; }
 
         /// <summary>
-        /// 0 不使用凭证   1 使用凭证
+        /// 0 không sử dụng chứng từ   1 sử dụng chứng từ
         /// </summary>
         public string pzbz { get; set; }
 
         /// <summary>
-        /// 0 通用 1 仅门诊 2 仅住院    3 系统（门诊住院都不可用）例如：家床
+        /// 0 chung 1 chỉ ngoại trú 2 chỉ nội trú    3 hệ thống（cả ngoại trú và nội trú đều không dùng được）Ví dụ：giường tại nhà
         /// </summary>
         public string mzzybz { get; set; }
 
@@ -75,22 +75,22 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public int? bzs { get; set; }
 
         /// <summary>
-        /// 0 不享受减免（诊疗费）   1 享受减免
+        /// 0 không được giảm miễn（phí khám chữa bệnh）   1 được giảm miễn
         /// </summary>
         public string sqjmbz { get; set; }
 
         /// <summary>
-        /// from xt_zhxz   如果有设置：则在结算时，优先扣除设置之账户   （例如：帮困病人此字段设置为4，当结算时，先扣除帮困账户）
+        /// from xt_zhxz   nếu có đặt：thì khi thanh toán，ưu tiên khấu trừ tài khoản đã đặt   （Ví dụ：đối với bệnh nhân được hỗ trợ khó khăn, trường này đặt là4，khi thanh toán，khấu trừ trước tài khoản hỗ trợ khó khăn）
         /// </summary>
         public string zhxz { get; set; }
 
         /// <summary>
-        /// 0 无效 1 有效
+        /// 0 không hiệu lực 1 hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 0：城保 1：个体医保 2：小城镇 3：小时工   A:民政医疗帮困   B：老年遗嘱 C:五保老人 D：重残人员   E:中小学生和婴幼儿  F： 其他居民   G：医疗互助帮困对象   
+        /// 0：bảo hiểm thành phố 1：bảo hiểm y tế cá nhân 2：thị trấn nhỏ 3：công nhân theo giờ   A:hỗ trợ khó khăn y tế dân chính   B：di chúc người già C:người già được bảo trợ năm mặt D：người tàn tật nặng   E:học sinh tiểu học, trung học và trẻ sơ sinh  F： cư dân khác   G：đối tượng hỗ trợ khó khăn tương trợ y tế   
         /// </summary>
         public string syybbf { get; set; }
 
@@ -136,7 +136,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public string bz { get; set; }
 
         /// <summary>
-        /// 关联主键brxzbh
+        /// khóa chính liên kếtbrxzbh
         /// </summary>
         public int? ParentId { get; set; }
         public string insutype { get; set; }

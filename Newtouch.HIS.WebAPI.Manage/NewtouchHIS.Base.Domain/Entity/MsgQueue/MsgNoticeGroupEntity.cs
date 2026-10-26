@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    /// 消息组配置表
+    /// bảng cấu hình nhóm tin nhắn
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("Msg_NoticeGroup", "MsgNoticeGroupEntity")]
@@ -20,56 +20,56 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string Id { get; set; }
         
         /// <summary>
-        /// 组标签
-        /// 系统消息 / 院内消息 /科室内部消息  质控消息
+        /// nhãn nhóm
+        /// tin nhắn hệ thống / tin nhắn trong viện /tin nhắn nội bộ khoa  tin nhắn kiểm soát chất lượng
         /// </summary>
         [Required(ErrorMessage = "GroupTag不可为空")]
         public string GroupTag { get; set; }
         /// <summary>
-        /// 组名称
+        /// tên nhóm
         /// </summary>
         [Required(ErrorMessage = "GroupName不可为空")]
         public string GroupName { get; set; }
         /// <summary>
-        /// 消息组说明
+        /// mô tả nhóm tin nhắn
         /// </summary>
         public string? GroupDesc { get; set; }
         /// <summary>
-        /// 相关业务类型 GroupYwlxEnum
+        /// loại nghiệp vụ liên quan GroupYwlxEnum
         /// </summary>
         [Required(ErrorMessage = "GroupYwlx不可为空")]
         public int GroupYwlx { get; set; }
         /// <summary>
-        /// 决定了通知对象范围  MsgNoticeRangeEnum
+        /// quyết định phạm vi đối tượng nhận thông báo  MsgNoticeRangeEnum
         /// </summary>
         [Required(ErrorMessage = "NoticeRange不可为空")]
         public int NoticeRange { get; set; }
         /// <summary>
-        /// 显示主题 
-        /// 如 您有新的质控消息，请即时查看
+        /// hiển thị chủ đề 
+        /// Ví dụ Bạn có tin nhắn kiểm soát chất lượng mới，Vui lòng xem ngay
         /// </summary>
         public string? DefaultTitle { get; set; }
         /// <summary>
-        /// 详细内容
-        /// 展开显示
+        /// nội dung chi tiết
+        /// hiển thị mở rộng
         /// </summary>
         public string? DefaultContent { get; set; }
         /// <summary>
-        /// 内容关联数据 Json格式 可转化对象
+        /// dữ liệu liên quan đến nội dung Jsonđịnh dạng đối tượng có thể chuyển đổi
         /// </summary>
         public string? DefaultContentData { get; set; }
         /// <summary>
-        /// 默认跳转路径 
-        /// 不为空时要求 AppId 不可为空
+        /// đường dẫn chuyển hướng mặc định 
+        /// yêu cầu khi không trống AppId không được để trống
         /// </summary>
         public string? DefaultOpenPath { get; set; }
         /// <summary>
-        /// 路径参数
-        /// 格式： zyh={0}，id={1}
+        /// tham số đường dẫn
+        /// định dạng： zyh={0}，id={1}
         /// </summary>
         public string? DefaultOpenPathPara { get; set; }
         /// <summary>
-        /// 应用Id
+        /// ứng dụngId
         /// </summary>
         public string? AppId { get; set; }
         ///// <summary>
@@ -77,8 +77,8 @@ namespace NewtouchHIS.Base.Domain.Entity
         ///// Default:
         ///// Nullable:False
         ///// </summary>           
-        //[Required(ErrorMessage = "CreatorCode不可为空")]
-        //[StringLength(50, ErrorMessage = "CreatorCode长度限制为50")]
+        //[Required(ErrorMessage = "CreatorCodekhông được để trống")]
+        //[StringLength(50, ErrorMessage = "CreatorCodegiới hạn độ dài là50")]
         //public string CreatorCode { get; set; }
 
         ///// <summary>
@@ -86,7 +86,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         ///// Default:
         ///// Nullable:True
         ///// </summary>           
-        //[StringLength(23, ErrorMessage = "LastModifyTime长度限制为23")]
+        //[StringLength(23, ErrorMessage = "LastModifyTimegiới hạn độ dài là23")]
         //public DateTime? LastModifyTime { get; set; }
 
         ///// <summary>
@@ -94,7 +94,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         ///// Default:
         ///// Nullable:True
         ///// </summary>           
-        //[StringLength(50, ErrorMessage = "LastModifierCode长度限制为50")]
+        //[StringLength(50, ErrorMessage = "LastModifierCodegiới hạn độ dài là50")]
         //public string? LastModifierCode { get; set; }
 
         ///// <summary>
@@ -102,8 +102,8 @@ namespace NewtouchHIS.Base.Domain.Entity
         ///// Default:
         ///// Nullable:False
         ///// </summary>           
-        //[Required(ErrorMessage = "zt不可为空")]
-        //[StringLength(1, ErrorMessage = "zt长度限制为1")]
+        //[Required(ErrorMessage = "ztkhông được để trống")]
+        //[StringLength(1, ErrorMessage = "ztgiới hạn độ dài là1")]
         //public string zt { get; set; }
 
     }

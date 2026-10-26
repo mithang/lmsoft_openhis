@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Domain.Enum
 {
     /// <summary>
-    /// HIS内部枚举
+    /// HISenum nội bộ
     /// </summary>
     public class HisEnum
     {
         /// <summary>
-        /// 病人类型标志
+        /// cờ loại bệnh nhân
         /// </summary>
         public enum PatTypeEnum
         {
@@ -26,33 +26,33 @@ namespace NewtouchHIS.Domain.Enum
 
         }
         /// <summary>
-        /// 在院标志
+        /// cờ đang nằm viện
         /// </summary>
         public enum EnumZYBZ
         {
             /// <summary>
-            /// 入院登记
+            /// đăng ký nhập viện
             /// </summary>
             Xry = 0,
             /// <summary>
-            /// 病区中
+            /// trong khu bệnh
             /// </summary>
             Bqz = 1,
             /// <summary>
-            /// 病区出院（出病区）（待结账）
+            /// xuất viện khỏi khu bệnh（rời khu bệnh）（chờ thanh toán）
             /// </summary>
             Djz = 2,
             /// <summary>
-            /// 已出院（出院结算）
+            /// đã xuất viện（thanh toán xuất viện）
             /// </summary>
             Ycy = 3,
             /// <summary>
-            /// 转区
+            /// chuyển khu
             /// </summary>
             Zq = 7,
 
             /// <summary>
-            /// 作废记录/取消入院
+            /// bản ghi hủy/hủy nhập viện
             /// </summary>
             Wry = 9,
         }
@@ -60,59 +60,59 @@ namespace NewtouchHIS.Domain.Enum
         public enum EnumYzzt
         {
             /// <summary>
-            /// 待审 
+            /// chờ duyệt 
             /// </summary>
             [Description("待审")]
             Ds = 0,
             /// <summary>
-            /// 审核
+            /// duyệt
             /// </summary>
             [Description("审核")]
             Sh = 1,
             /// <summary>
-            /// 执行
+            /// thực hiện
             /// </summary>
             [Description("执行")]
             Zx = 2,
             /// <summary>
-            /// 撤DC
+            /// thu hồiDC
             /// </summary>
             [Description("DC")]
             DC = 3,
             /// <summary>
-            /// 停止或作废
+            /// dừng hoặc hủy
             /// </summary>
             [Description("停止")]
             TZ = 4
         }
 
         /// <summary>
-        /// 病人性质
+        /// tính chất bệnh nhân
         /// </summary>
         public enum EnumBrxz
         {
             /// <summary>
-            /// 自费
+            /// tự trả
             /// </summary>
             [Description("自费")]
             zf = 0,
             /// <summary>
-            /// 职工医保
+            /// bảo hiểm y tế nhân viên
             /// </summary>
             [Description("职工医保")]
             zg = 1,
             /// <summary>
-            /// 居民医保
+            /// bảo hiểm y tế cư dân
             /// </summary>
             [Description("居民医保")]
             jm = 2,
             /// <summary>
-            /// 离休
+            /// nghỉ hưu
             /// </summary>
             [Description("离休")]
             lx = 3,
             /// <summary>
-            /// 普通医保
+            /// bảo hiểm y tế thông thường
             /// </summary>
             [Description("普通医保")]
             pt = 11,

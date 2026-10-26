@@ -9,14 +9,14 @@ using SqlSugar;
 namespace NewtouchHIS.Base.DomainService
 {
     /// <summary>
-    /// 系统用户
-    /// （base库）
+    /// người dùng hệ thống
+    /// （basecơ sở dữ liệu）
     /// </summary>
     public class SysUserDmnService : BaseDmnService<SysUserEntity>, ISysUserDmnService
     {
         #region 用户查询相关
         /// <summary>
-        /// 用户分页查询
+        /// truy vấn phân trang người dùng
         /// </summary>
         /// <param name="request"></param>
         /// <param name="orgId"></param>
@@ -28,13 +28,13 @@ namespace NewtouchHIS.Base.DomainService
             var orgList = await GetByWhereWithAttr<SysOrganizeEntity>(p => p.zt == "1" && p.TopOrganizeId == sysConfig.Top_OrganizeId);
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                //显示所有用户
+                //hiển thị tất cả người dùng
                 orgName = orgList.FirstOrDefault(p => p.Id == sysConfig.Top_OrganizeId)?.Name;
                 whereExp.And((a, b, c, d) => a.TopOrganizeId == sysConfig.Top_OrganizeId && a.Account != "admin");
             }
             else
             {
-                //仅显示该机构的用户
+                //chỉ hiển thị người dùng của cơ quan đó
                 orgName = orgList.FirstOrDefault(p => p.Id == orgId)?.Name;
                 whereExp.And((a, b, c, d) => c.OrganizeId == orgId && !string.IsNullOrWhiteSpace(c.Id));
 
@@ -174,7 +174,7 @@ namespace NewtouchHIS.Base.DomainService
         #endregion
 
         /// <summary>
-        /// 根据OrganizeId获取 系统人员VO（且有对应的SysUser）
+        /// theoOrganizeIdlấy nhân viên hệ thốngVO（đồng thời có tương ứngSysUser）
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -199,7 +199,7 @@ namespace NewtouchHIS.Base.DomainService
             return staffList;
         }
         /// <summary>
-        /// 获取人员信息 根据组织机构和关键字
+        /// lấy thông tin nhân viên theo tổ chức và từ khóa
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>

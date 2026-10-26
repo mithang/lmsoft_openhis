@@ -32,7 +32,7 @@ namespace NewtouchHIS.Base.DomainService.BaseData
             return list.Adapt<List<SysChargeCategoryVO>>();
         }
         /// <summary>
-        /// 获取收费项目
+        /// lấy hạng mục thu phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -149,7 +149,7 @@ and sfxm.sfxmmc like '%'+@keyword+'%' ", new List<DbParameter> {
             return pageData.Adapt<PageResponseRow<List<SysChargeItemVO>>>();
         }
         /// <summary>
-        /// 获取材料项目
+        /// lấy hạng mục vật tư
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>

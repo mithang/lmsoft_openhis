@@ -7,13 +7,13 @@ namespace NewtouchHIS.Base.Domain.Organize
     public interface ISysWardDmnService : IScopedDependency
     {
         /// <summary>
-        /// 获取有效
+        /// lấy hiệu lực
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
         Task<List<SysWardVEntity>> GetbqList(string orgId);
         /// <summary>
-        /// 获取科室绑定的病区
+        /// lấy khu bệnh liên kết với khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ks"></param>

@@ -12,7 +12,7 @@ namespace NewtouchHIS.Base.DomainService
     public class SysMedicineService : BaseDmnService<DrugUsageEntity>, ISysMedicineService
     {
         /// <summary>
-        /// 系统药品字典
+        /// từ điển thuốc hệ thống
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -41,7 +41,7 @@ namespace NewtouchHIS.Base.DomainService
             return list.Adapt<List<SysMedicineVVO>>();
         }
         /// <summary>
-        /// 系统药品字典(分页)
+        /// từ điển thuốc hệ thống(phân trang)
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace NewtouchHIS.Base.DomainService
             return list.Adapt<PageResponseRow<List<SysMedicineVVO>>>();
         }
         /// <summary>
-        /// 药品用法
+        /// cách dùng thuốc
         /// </summary>
         /// <param name="code"></param>
         /// <param name="yplx"></param>
@@ -84,7 +84,7 @@ namespace NewtouchHIS.Base.DomainService
             return data;
         }
         /// <summary>
-        /// 频次
+        /// tần suất
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
@@ -99,7 +99,7 @@ namespace NewtouchHIS.Base.DomainService
             return data;
         }
         /// <summary>
-        /// 药品单位
+        /// đơn vị thuốc
         /// </summary>
         /// <param name="code"></param>
         /// <param name="name"></param>
@@ -114,7 +114,7 @@ namespace NewtouchHIS.Base.DomainService
             return data;
         }
         /// <summary>
-        /// 药品剂型用法
+        /// cách dùng dạng bào chế thuốc
         /// </summary>
         /// <returns></returns>
         public async Task<List<DrugFormulationUsageVO>> GetDrugFormulationUsageList()

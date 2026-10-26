@@ -8,84 +8,84 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain.EnumExtend
 {
     /// <summary>
-    /// 日志记录类型
+    /// loại ghi nhật ký
     /// </summary>
     public enum DbLogType
     {
         /// <summary>
-        /// 其他
+        /// khác
         /// </summary>
         [Description("其他")]
         Other = 0,
         /// <summary>
-        /// 登录
+        /// đăng nhập
         /// </summary>
         [Description("登录")]
         Login = 1,
         /// <summary>
-        /// 退出
+        /// thoát
         /// </summary>
         [Description("退出")]
         Exit = 2,
         /// <summary>
-        /// 访问
+        /// truy cập
         /// </summary>
         [Description("访问")]
         Visit = 3,
         /// <summary>
-        /// 新增
+        /// thêm mới
         /// </summary>
         [Description("新增")]
         Create = 4,
         /// <summary>
-        /// 删除
+        /// xóa
         /// </summary>
         [Description("删除")]
         Delete = 5,
         /// <summary>
-        /// 修改
+        /// sửa đổi
         /// </summary>
         [Description("修改")]
         Update = 6,
         /// <summary>
-        /// 提交
+        /// nộp
         /// </summary>
         [Description("提交")]
         Submit = 7,
         /// <summary>
-        /// 异常
+        /// bất thường
         /// </summary>
         [Description("异常")]
         Exception = 8,
     }
 
     /// <summary>
-    /// 菜单目标类型
+    /// loại mục tiêu menu
     /// </summary>
     public enum EnumModuleTargetType
     {
         /// <summary>
-        /// 无页面
+        /// không có trang
         /// </summary>
         expand,
         /// <summary>
-        /// 框架页
+        /// trang khung
         /// </summary>
         iframe,
         /// <summary>
-        /// 弹出页
+        /// trang bật lên
         /// </summary>
         open,
         /// <summary>
-        /// 新窗口
+        /// cửa sổ mới
         /// </summary>
         blank,
         /// <summary>
-        /// 子页面（不显示在菜单中）
+        /// trang con（không hiển thị trong menu）
         /// </summary>
         subpage,
         /// <summary>
-        /// 当前窗口
+        /// cửa sổ hiện tại
         /// </summary>
         toplocation,
     }

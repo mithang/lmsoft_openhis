@@ -9,12 +9,12 @@ using NewtouchHIS.WebAPI.Manage.Controllers;
 namespace NewtouchHIS.WebAPI.Manage.Areas.PDS.Controllers
 {
     /// <summary>
-    /// 基础业务字典
+    /// từ điển nghiệp vụ cơ bản
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     /// <summary>
-    /// 药品库存管理
+    /// quản lý tồn kho thuốc
     /// </summary>
     public class DrugStorageController : ControllerBase
     {
@@ -24,7 +24,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PDS.Controllers
             _departmentDrugsService = departmentDrugsService;
         }
         /// <summary>
-        /// 获取科室发药数据
+        /// lấy dữ liệu phát thuốc của khoa
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -45,7 +45,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PDS.Controllers
             return new BusResult<List<DepartmentDrugsVO>> { code = ResponseResultCode.SUCCESS, Data = itemData };
         }
         /// <summary>
-        /// 获取科室发药数据(分页)
+        /// lấy dữ liệu phát thuốc của khoa(phân trang)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -66,7 +66,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PDS.Controllers
             return new BusResult<PageResponseRow<List<DepartmentDrugsVO>>> { code = ResponseResultCode.SUCCESS, Data = itemData };
         }
         /// <summary>
-        /// 已入库状态修改
+        /// sửa đổi trạng thái đã nhập kho
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -83,7 +83,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PDS.Controllers
             return new BusResult<bool> { code = ResponseResultCode.SUCCESS, Data = itemData };
         }
         ///// <summary>
-        ///// 药品库存
+        ///// tồn kho thuốc
         ///// </summary>
         ///// <param name="request"></param>
         ///// <returns></returns>

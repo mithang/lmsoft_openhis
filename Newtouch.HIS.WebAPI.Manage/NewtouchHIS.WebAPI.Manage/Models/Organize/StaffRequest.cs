@@ -1,17 +1,17 @@
 ﻿namespace NewtouchHIS.WebAPI.Manage.Models.Organize
 {
     /// <summary>
-    /// 职工信息
+    /// thông tin nhân viên
     /// </summary>
     public class StaffVO
     {
         /// <summary>
-        /// 职工工号
+        /// số hiệu nhân viên
         /// </summary>
         public string? ysgh { get; set; }
 
         /// <summary>
-        /// 职工名称
+        /// tên nhân viên
         /// </summary>
         public string? xm { get; set; }
 
@@ -40,7 +40,7 @@
         /// </summary>
         public string xb { get; set; }
         /// <summary>
-        /// 医生工号
+        /// số hiệu bác sĩ
         /// </summary>
         public string ysgh { get; set; }
         /// <summary>
@@ -53,17 +53,17 @@
         public string dutyName { get; set; }
     }
     /// <summary>
-    /// 职工信息查询类
+    /// lớp truy vấn thông tin nhân viên
     /// </summary>
     public class StaffRequest
     {
         public string? ks { get; set; }
         /// <summary>
-        /// 医生工号
+        /// số hiệu bác sĩ
         /// </summary>
         public string? ysgh { get; set; }
         /// <summary>
-        /// 医生姓名
+        /// họ tên bác sĩ
         /// </summary>
         public string? ysxm { get; set; }
     }

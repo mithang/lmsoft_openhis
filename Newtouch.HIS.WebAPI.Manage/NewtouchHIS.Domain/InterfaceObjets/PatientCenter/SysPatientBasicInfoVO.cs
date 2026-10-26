@@ -22,7 +22,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
 
 
         /// <summary>
-        /// Desc:本院磁卡号（包括医保离休病人），或者医保卡号
+        /// Desc:số thẻ từ của bệnh viện（bao gồm bệnh nhân bảo hiểm y tế đã nghỉ hưu），hoặc số thẻ bảo hiểm y tế
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -263,7 +263,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public int? dybh { get; set; }
 
         /// <summary>
-        /// Desc:单位名称
+        /// Desc:tên đơn vị
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -271,7 +271,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string? dwmc { get; set; }
 
         /// <summary>
-        /// Desc:单位地址
+        /// Desc:địa chỉ đơn vị
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -295,7 +295,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string? gj { get; set; }
 
         /// <summary>
-        /// Desc:0 未婚 1 已婚
+        /// Desc:0 chưa kết hôn 1 đã kết hôn
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -303,7 +303,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public byte? hf { get; set; }
 
         /// <summary>
-        /// Desc:民族
+        /// Desc:dân tộc
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -311,7 +311,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string? mz { get; set; }
 
         /// <summary>
-        /// Desc:职业
+        /// Desc:nghề nghiệp
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -367,7 +367,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string? brly { get; set; }
 
         /// <summary>
-        /// Desc:过敏史
+        /// Desc:tiền sử dị ứng
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -426,34 +426,34 @@ namespace NewtouchHIS.Domain.InterfaceObjets
 
     #endregion
     /// <summary>
-    /// 患者基本信息视图
+    /// chế độ xem thông tin cơ bản bệnh nhân
     /// </summary>
     public class SysPatientBasicVO : SysPatInfoVO
     {
 
         /// <summary>
-        /// 婚姻
+        /// hôn nhân
         /// </summary>
         public string hy { get; set; }
     }
     /// <summary>
-    /// 患者基本信息精简视图
+    /// chế độ xem rút gọn thông tin cơ bản bệnh nhân
     /// </summary>
     public class SysPatInfoVO
     {
         public int? patid { get; set; }
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// tổ chứcId（bệnh viện có nghiệp vụ cụ thể）
         /// </summary>
         public string? OrganizeId { get; set; }
 
         /// <summary>
-        /// 病人最近的性质xt_brxz.brxz
+        /// tính chất gần nhất của bệnh nhânxt_brxz.brxz
         /// </summary>
         public string? brxz { get; set; }
 
         /// <summary>
-        /// 本院磁卡号（包括医保离休病人），或者医保卡号
+        /// số thẻ từ của bệnh viện（bao gồm bệnh nhân bảo hiểm y tế đã nghỉ hưu），hoặc số thẻ bảo hiểm y tế
         /// </summary>
         public string? blh { get; set; }
 
@@ -484,12 +484,12 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string? dh { get; set; }
         public string? kh { get; set; }
         /// <summary>
-        /// 卡类型
+        /// loại thẻ
         /// </summary>
         public string klx { get; set; }
     }
     /// <summary>
-    /// 患者查询索引
+    /// chỉ mục truy vấn bệnh nhân
     /// </summary>
     public class SysPatIndexVO
     {
@@ -499,7 +499,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string? xm { get; set; }
         public string? kh { get; set; }
         /// <summary>
-        /// 卡类型
+        /// loại thẻ
         /// </summary>
         public string klx { get; set; }
         public string? zjh { get; set; }

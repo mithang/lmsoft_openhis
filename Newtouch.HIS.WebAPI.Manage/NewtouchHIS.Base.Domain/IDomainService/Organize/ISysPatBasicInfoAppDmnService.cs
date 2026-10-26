@@ -7,7 +7,7 @@ namespace NewtouchHIS.Base.Domain.Organize
     public interface ISysPatBasicInfoAppDmnService : IScopedDependency
     {
         /// <summary>
-        /// 获取病人性质列表
+        /// lấy danh sách tính chất bệnh nhân
         /// </summary>
         /// <returns></returns>
         Task<List<SysPatientNatureEntity>> GetBRXZListAsync(string orgId);

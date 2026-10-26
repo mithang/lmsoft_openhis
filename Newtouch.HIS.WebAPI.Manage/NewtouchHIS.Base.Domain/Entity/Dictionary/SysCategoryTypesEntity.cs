@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity.Dictionary
 {
     ///<summary>
-    ///收费大类 
-    ///一般按上级主管部门要求分类
-    ///    （挂号费00、诊疗费01、磁卡费02、工本费03 等
-    ///    门诊医保编码 varchar(2)
-    ///    住院医保编码 varchar(2) 
-    ///    重新建立表做医保代码对应
+    ///nhóm thu phí lớn 
+    ///phân loại chung theo yêu cầu của cơ quan chủ quản cấp trên
+    ///    （phí đăng ký khám00、phí khám chữa bệnh01、phí thẻ từ02、phí làm thẻ03 v.v.
+    ///    mã bảo hiểm y tế ngoại trú varchar(2)
+    ///    mã bảo hiểm y tế nội trú varchar(2) 
+    ///    tạo lại bảng để đối ứng mã bảo hiểm y tế
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("xt_sfdl_lx", "收费大类类型")]
@@ -29,7 +29,7 @@ namespace NewtouchHIS.Base.Domain.Entity.Dictionary
         public String OrganizeId { get; set; }
 
         /// <summary>
-        /// 关联ChargeCateType的字典项
+        /// liên kếtChargeCateTypehạng mục từ điển của
         /// </summary>
         public String Type { get; set; }
 

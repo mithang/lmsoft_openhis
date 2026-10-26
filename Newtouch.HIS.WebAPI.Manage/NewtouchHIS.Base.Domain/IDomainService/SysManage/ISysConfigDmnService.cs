@@ -9,7 +9,7 @@ namespace NewtouchHIS.Base.Domain.IDomainService
     public interface ISysConfigDmnService : IScopedDependency
     {
         /// <summary>
-        /// 菜单列表 by AppId
+        /// danh sách menu by AppId
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="appId"></param>
@@ -18,7 +18,7 @@ namespace NewtouchHIS.Base.Domain.IDomainService
         /// <returns></returns>
         Task<List<SysModuleVO>?> GetMenuListbyAppId(string orgId, string appId, string userId = null, bool validLimit = true, bool? systemMenuLimit = true);
         /// <summary>
-        /// 菜单列表
+        /// danh sách menu
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="roleIdList"></param>
@@ -27,8 +27,8 @@ namespace NewtouchHIS.Base.Domain.IDomainService
         /// <returns></returns>
         Task<List<SysModuleEntity>?> GetMenuList(string orgId, IList<string> roleIdList, bool isRoot = false, bool isAdministrator = false,string? userId = null,bool validLimit = true);
         /// <summary>
-        /// 获取对当前角色开放的菜单列表（加载开放的菜单树）
-        /// 业务系统区分
+        /// lấy danh sách menu mở cho vai trò hiện tại（tải cây menu đang mở）
+        /// phân biệt hệ thống nghiệp vụ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="appId"></param>
@@ -40,7 +40,7 @@ namespace NewtouchHIS.Base.Domain.IDomainService
         /// <returns></returns>
         Task<List<SysModuleEntity>?> GetMenuList(string appId, string orgId, IList<string> roleIdList, bool isRoot = false, bool isAdministrator = false, string? userId = null, bool validLimit = true);
         /// <summary>
-        /// 系统字典表
+        /// bảng từ điển hệ thống
         /// </summary>
         /// <returns></returns>
         Task<List<SysItemExtendVO>> GetItemDetailsList(string orgId);

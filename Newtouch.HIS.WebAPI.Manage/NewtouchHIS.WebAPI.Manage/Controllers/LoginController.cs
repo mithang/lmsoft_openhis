@@ -17,7 +17,7 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
             _userVDmnService = userVDmnService;
         }
         /// <summary>
-        /// 用户登录
+        /// đăng nhập người dùng
         /// </summary>
         /// <param name="login"></param>
         /// <returns></returns>

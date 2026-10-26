@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.Base.Domain.ValueObjects
 {
     /// <summary>
-    /// 组织机构视图
+    /// chế độ xem tổ chức
     /// </summary>
     public class SysOrgVo
     {

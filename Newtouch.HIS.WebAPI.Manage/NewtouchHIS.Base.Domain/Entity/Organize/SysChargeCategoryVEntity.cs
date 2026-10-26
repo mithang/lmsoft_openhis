@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///系统科室
+    ///khoa hệ thống
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("V_S_xt_sfdl", "SysChargeCategoryVEntity")]
@@ -53,12 +53,12 @@ namespace NewtouchHIS.Base.Domain.Entity
         public int? ParentId { get; set; }
 
         /// <summary>
-        /// 报表 统计 收费大类
+        /// báo cáo thống kê nhóm thu phí lớn
         /// </summary>
         public string reportdlcode { get; set; }
 
         /// <summary>
-        /// 大类类别，对应枚举 EnumSfdlDllb 1药品 2治疗项目 3非治疗项目
+        /// loại nhóm lớn，enum tương ứng EnumSfdlDllb 1thuốc 2hạng mục điều trị 3hạng mục không phải điều trị
         /// </summary>
         public int? dllb { get; set; }
 

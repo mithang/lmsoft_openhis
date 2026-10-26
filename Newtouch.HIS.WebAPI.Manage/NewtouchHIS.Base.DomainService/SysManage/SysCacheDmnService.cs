@@ -10,7 +10,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
     public class SysCacheDmnService : ISysCacheDmnService
     {
         /// <summary>
-        /// 用户身份信息缓存
+        /// bộ nhớ đệm thông tin danh tính người dùng
         /// </summary>
         /// <param name="accessToken"></param>
         /// <returns></returns>

@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Services.ClinicService
 {
     /// <summary>
-    /// 诊所字典：远程诊疗申请状态
-    /// （0:未提交, 1:待确认、2:就诊中、3:已结束、4:已发药、5:已退回）
+    /// từ điển phòng khám：trạng thái đăng ký khám chữa bệnh từ xa
+    /// （0:chưa nộp, 1:chờ xác nhận、2:đang khám、3:đã kết thúc、4:đã phát thuốc、5:đã trả lại）
     /// </summary>
     public enum EmunClinicRemoteTreatedStu
     {

@@ -5,77 +5,77 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///系统登录日志
+    ///nhật ký đăng nhập hệ thống
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("Sys_Log")]
     public class SysUserLoginLog
     {
         /// <summary>
-        /// 日志主键
+        /// khóa chính nhật ký
         /// </summary>
         /// <returns></returns>
         public string Id { get; set; }
         /// <summary>
-        /// 顶级组织机构Id（可以确定唯一Account）
+        /// tổ chức cấp cao nhấtId（có thể xác định duy nhấtAccount）
         /// </summary>
         public string TopOrganizeId { get; set; }
         /// <summary>
-        /// 医疗机构
+        /// cơ sở y tế
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 日期
+        /// ngày
         /// </summary>
         /// <returns></returns>
         public DateTime? Date { get; set; }
         /// <summary>
-        /// 用户名
+        /// tên người dùng
         /// </summary>
         /// <returns></returns>
         public string? Account { get; set; }
         /// <summary>
-        /// 姓名
+        /// họ tên
         /// </summary>
         /// <returns></returns>
         public string? NickName { get; set; }
         /// <summary>
-        /// 类型
+        /// loại
         /// </summary>
         /// <returns></returns>
         public string? Type { get; set; }
         /// <summary>
-        /// IP地址
+        /// IPđịa chỉ
         /// </summary>
         /// <returns></returns>
         public string? IPAddress { get; set; }
         /// <summary>
-        /// IP所在城市
+        /// IPthành phố nơi ở
         /// </summary>
         /// <returns></returns>
         public string? IPAddressName { get; set; }
         /// <summary>
-        /// 系统模块Id
+        /// mô-đun hệ thốngId
         /// </summary>
         /// <returns></returns>
         public string? ModuleId { get; set; }
         /// <summary>
-        /// 系统模块
+        /// mô-đun hệ thống
         /// </summary>
         /// <returns></returns>
         public string? ModuleName { get; set; }
         /// <summary>
-        /// 结果
+        /// kết quả
         /// </summary>
         /// <returns></returns>
         public bool? Result { get; set; }
         /// <summary>
-        /// 描述
+        /// mô tả
         /// </summary>
         /// <returns></returns>
         public string? Description { get; set; }
         /// <summary>
-        /// 创建时间
+        /// thời gian tạo
         /// </summary>
         /// <returns></returns>
         public DateTime CreateTime { get; set; }

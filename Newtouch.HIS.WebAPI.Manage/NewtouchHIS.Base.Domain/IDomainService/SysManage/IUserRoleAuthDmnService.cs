@@ -4,24 +4,24 @@ using NewtouchHIS.Lib.Base;
 namespace NewtouchHIS.Base.Domain.IDomainService
 {
     /// <summary>
-    /// 系统菜单 （增删改接口）
+    /// menu hệ thống （giao diện thêm, xóa, sửa）
     /// </summary>
     public interface IUserRoleAuthDmnService : IScopedDependency
     {
         /// <summary>
-        /// 获取角色 关联 用户（org）
+        /// lấy vai trò liên kết người dùng（org）
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>
         Task<List<FirstSecond>> GetCurUserIdListByRoleId(string roleId);
         /// <summary>
-        /// 保存 角色 用户列表
+        /// lưu vai trò danh sách người dùng
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="userIds"></param>
         void submitRoleUser(string roleId, List<FirstSecond> userList, string usercode);
         /// <summary>
-        /// 更新用户 角色绑定关系
+        /// cập nhật người dùng quan hệ liên kết vai trò
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="orgId"></param>

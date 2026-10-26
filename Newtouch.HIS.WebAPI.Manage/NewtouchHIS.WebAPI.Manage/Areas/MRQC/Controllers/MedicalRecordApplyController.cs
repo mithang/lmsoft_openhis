@@ -11,7 +11,7 @@ using NewtouchHIS.WebAPI.Manage.Controllers;
 namespace NewtouchHIS.WebAPI.Manage.Areas.MRQC.Controllers
 {
     /// <summary>
-    /// 病历申请
+    /// đăng ký bệnh án
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -32,7 +32,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.MRQC.Controllers
         }
 
         /// <summary>
-        /// 质控病历申请
+        /// đăng ký bệnh án kiểm soát chất lượng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

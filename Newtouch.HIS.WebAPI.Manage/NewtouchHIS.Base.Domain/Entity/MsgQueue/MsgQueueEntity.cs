@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///消息通知基础类
+    ///lớp cơ sở thông báo tin nhắn
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("dic_msg_queue", "MsgQueueEntity")]
@@ -59,7 +59,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string msgcontent { get; set; }
 
         /// <summary>
-        /// Desc:消息内容需要传递参数的格式化处理
+        /// Desc:xử lý định dạng tham số cần truyền của nội dung tin nhắn
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -67,14 +67,14 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string msgformat { get; set; }
 
         /// <summary>
-        /// Desc:通知状态 MsgNoticeEnum 0 未发送 ，1 已发送, 2 已读 
+        /// Desc:trạng thái thông báo MsgNoticeEnum 0 chưa gửi ，1 đã gửi, 2 đã đọc 
         /// Default:
         /// Nullable:True
         /// </summary>           
         public int? msgstu { get; set; }
 
         /// <summary>
-        /// Desc:门诊：门诊号  住院：住院号
+        /// Desc:khám ngoại trú：số khám ngoại trú  nội trú：số nội trú
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -82,7 +82,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string patno { get; set; }
 
         /// <summary>
-        /// Desc:门诊：处方号等  住院：医嘱号等
+        /// Desc:khám ngoại trú：số đơn thuốc, v.v.  nội trú：số y lệnh, v.v.
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -106,7 +106,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string bq { get; set; }
 
         /// <summary>
-        /// Desc:,分割的操作员号
+        /// Desc:,số hiệu nhân viên vận hành đã tách
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -114,7 +114,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string czys { get; set; }
 
         /// <summary>
-        /// Desc:,分割的岗位
+        /// Desc:,vị trí đã tách
         /// Default:
         /// Nullable:True
         /// </summary>           

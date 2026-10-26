@@ -13,8 +13,8 @@ namespace NewtouchHIS.Base.DomainService
     public class UserRoleAuthDmnService : BaseDmnService<SysRoleAuthorizeEntity>, IUserRoleAuthDmnService
     {
         /// <summary>
-        /// 应用需配置主库
-        /// 增删改建议引用
+        /// ứng dụng cần cấu hình cơ sở dữ liệu chính
+        /// khuyến nghị trích dẫn thêm, xóa, sửa
         /// </summary>
         private string _mainDB = ConfigInitHelper.DbConfig.MainDB ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "DbConfig.MainDB");
         public UserRoleAuthDmnService()
@@ -22,7 +22,7 @@ namespace NewtouchHIS.Base.DomainService
             base.Context = SqlSugarDbContext.Db.GetConnection(_mainDB);
         }
         /// <summary>
-        /// 获取角色授权列表
+        /// lấy danh sách ủy quyền vai trò
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
@@ -32,7 +32,7 @@ namespace NewtouchHIS.Base.DomainService
             return data;
         }
         /// <summary>
-        /// 获取角色 关联 用户（org）
+        /// lấy vai trò liên kết người dùng（org）
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace NewtouchHIS.Base.DomainService
             return data;
         }
         /// <summary>
-        /// 保存 角色 用户列表
+        /// lưu vai trò danh sách người dùng
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="userIds"></param>
@@ -70,11 +70,11 @@ namespace NewtouchHIS.Base.DomainService
             {
                 foreach (var item in SysUserRole)
                 {
-                    //先 del
+                    //trước del
                     await Delete<SysUserRoleEntity>(item);
                 }
             }
-            //再添加
+            //thêm tiếp
             if (userList != null)
             {
                 foreach (var user in userList)
@@ -115,7 +115,7 @@ namespace NewtouchHIS.Base.DomainService
                 {
                     throw new FailedException("原角色关系解除失败");
                 }
-                //新增角色关系
+                //thêm mới quan hệ vai trò
                 var newRoles = dbTran.GetConnectionScope(_mainDB).Insertable<SysUserRoleEntity>(userRoleEntities).ExecuteCommand();
                 if (newRoles <= 0)
                 {

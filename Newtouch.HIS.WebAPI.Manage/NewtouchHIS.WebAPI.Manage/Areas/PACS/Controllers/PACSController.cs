@@ -12,7 +12,7 @@ using NewtouchHIS.Lib.Base.Model.PACS;
 namespace NewtouchHIS.WebAPI.Manage.Areas.PACS.Controllers
 {
     /// <summary>
-    /// Pacs 接口服务
+    /// Pacs dịch vụ giao diện
     /// </summary>
     [Route("api/pacs")]
     [ApiController]
@@ -31,7 +31,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PACS.Controllers
 
 
         /// <summary>
-        /// 获取科室字典
+        /// lấy từ điển khoa
         /// </summary>
         /// <returns>List</returns>
         [HttpPost]
@@ -51,7 +51,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PACS.Controllers
         }
 
         /// <summary>
-        /// 获取医生字典
+        /// lấy từ điển bác sĩ
         /// </summary>
         /// <returns>List</returns>
         [HttpPost]
@@ -71,7 +71,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PACS.Controllers
         }
 
         /// <summary>
-        /// 获取收费项目字典
+        /// lấy từ điển hạng mục thu phí
         /// </summary>
         /// <returns>List</returns>
         [HttpPost]
@@ -93,7 +93,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PACS.Controllers
 
 
         /// <summary>
-        /// 获取pacs报告结果（金风易通版）
+        /// lấypacskết quả báo cáo（金风易通版）
         /// </summary>
         /// <param name="post"></param>
         /// <returns></returns>
@@ -122,9 +122,9 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PACS.Controllers
             //    list.Add(entity);
             //}
 
-            //调用接口 (配置)
+            //gọi giao diện (cấu hình)
 
-            //返回参数
+            //tham số trả về
             ApiResult<List<PACSgetPatientReportVO>> result = new ApiResult<List<PACSgetPatientReportVO>>();
             List<PACSgetPatientReportVO> data = new List<PACSgetPatientReportVO>();
 

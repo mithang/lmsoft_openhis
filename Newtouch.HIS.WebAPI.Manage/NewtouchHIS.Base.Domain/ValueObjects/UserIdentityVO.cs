@@ -4,7 +4,7 @@
     {
         public string Username { get; set; }
         /// <summary>
-        /// 密码
+        /// mật khẩu
         /// </summary>
         public string Password { get; set; }
     }

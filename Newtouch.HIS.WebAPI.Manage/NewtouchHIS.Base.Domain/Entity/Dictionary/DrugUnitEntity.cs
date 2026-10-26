@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     /// <summary>
-    /// 药品单位字典
+    /// từ điển đơn vị thuốc
     /// </summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("xt_ypdw", "DrugUnitEntity")]

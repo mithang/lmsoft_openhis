@@ -1,4 +1,4 @@
-﻿/**** 定义与 诊所接口一致 ******/
+﻿/**** định nghĩa và giao diện phòng khám nhất quán ******/
 
 using Mapster;
 using Mapster.Utils;
@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic
 {
     /// <summary>
-    /// 诊所身份认证Token
+    /// xác thực danh tính phòng khámToken
     /// </summary>
     public class ClinicTokenDTO
     {
@@ -16,131 +16,131 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic
     }
 
     /// <summary>
-    /// 诊疗申请结果通知
+    /// thông báo kết quả đăng ký khám chữa bệnh
     /// </summary>
     public class TreatedApplyResultDTO
     {
         /// <summary>
-        /// 远程诊疗申请ID
+        /// đăng ký khám chữa bệnh từ xaID
         /// </summary>
         public string id { get; set; }
         /// <summary>
-        /// 就诊状态（0:未提交, 1:待确认、2:就诊中、3:已结束、4:已发药、5:已退回）
+        /// trạng thái khám bệnh（0:chưa nộp, 1:chờ xác nhận、2:đang khám、3:đã kết thúc、4:đã phát thuốc、5:đã trả lại）
         /// </summary>
         public string status { get; set; }
         /// <summary>
-        /// 会议号
+        /// số phòng họp
         /// </summary>
         public string? conferenceId { get; set; }
         /// <summary>
-        /// 申请结果（0：通过:1：不通过）
+        /// kết quả đăng ký（0：thông qua:1：không đạt）
         /// </summary>
         public string applicationResults { get; set; }
     }
     /// <summary>
-    /// 诊所患者病历
+    /// bệnh án bệnh nhân phòng khám
     /// </summary>
     public class ClinicPatMedicalRecordDTO
     {
         public ClinicDicDTO? doctor { get; set; }
         public string? name { get; set; }
         /// <summary>
-        /// 诊所申请Id
+        /// đăng ký phòng khámId
         /// </summary>
         public string? diagnosisId { get; set; }
         public string? department { get; set; }
         public string? createBy { get; set; }
         public DateTime? createDate { get; set; }
         /// <summary>
-        /// 主诉
+        /// than phiền chính
         /// </summary>
         public string? patientTell { get; set; }
         /// <summary>
-        /// 现病史
+        /// bệnh sử hiện tại
         /// </summary>
         public string? nowHistory { get; set; }
         /// <summary>
-        /// 既往史
+        /// tiền sử
         /// </summary>
         public string? beforeHistory { get; set; }
         /// <summary>
-        /// 个人史
+        /// tiền sử cá nhân
         /// </summary>
         public string? personalHistory { get; set; }
         /// <summary>
-        /// 过敏史
+        /// tiền sử dị ứng
         /// </summary>
         public string? allergyHistory { get; set; }
         /// <summary>
-        /// 疾病史
+        /// tiền sử bệnh
         /// </summary>
         public string? diseaseHistory { get; set; }
         /// <summary>
-        /// 婚孕史
+        /// tiền sử hôn nhân – mang thai
         /// </summary>
         public string? pregnancyHistory { get; set; }
         /// <summary>
-        /// 传染病史
+        /// tiền sử bệnh truyền nhiễm
         /// </summary>
         public string? infectiousHistory { get; set; }
         /// <summary>
-        /// 月经史
+        /// tiền sử kinh nguyệt
         /// </summary>
         public string? lunariaHistory { get; set; }
         /// <summary>
-        /// 家族史
+        /// tiền sử gia đình
         /// </summary>
         public string? familyHistory { get; set; }
         /// <summary>
-        /// 手术史
+        /// tiền sử phẫu thuật
         /// </summary>
         public string? surgeryHistory { get; set; }
         /// <summary>
-        /// 输血史
+        /// tiền sử truyền máu
         /// </summary>
         public string? transfusionHistory { get; set; }
         /// <summary>
-        /// 体格检查
+        /// khám thực thể
         /// </summary>
         public string? physiqueCheck { get; set; }
         /// <summary>
-        /// 辅助检查
+        /// kiểm tra hỗ trợ
         /// </summary>
         public string? assistCheck { get; set; }
         /// <summary>
-        /// 急诊诊断
+        /// chẩn đoán cấp cứu
         /// </summary>
         public string? emergencyDiagnose { get; set; }
         /// <summary>
-        /// 急诊效果
+        /// hiệu quả cấp cứu
         /// </summary>
         public string? emergencyEffect { get; set; }
         /// <summary>
-        /// 其他检查
+        /// kiểm tra khác
         /// </summary>
         public string? otherCheck { get; set; }
         /// <summary>
-        /// 处理情况
+        /// tình hình xử lý
         /// </summary>
         public string? handlingSituation { get; set; }
         /// <summary>
-        /// 个体化健康教育
+        /// giáo dục sức khỏe cá nhân hóa
         /// </summary>
         public string? healthEducation { get; set; }
         /// <summary>
-        /// 流行病学史
+        /// tiền sử dịch tễ học
         /// </summary>
         public string? epidemicDisease { get; set; }
         /// <summary>
-        /// 医嘱事项
+        /// hạng mục y lệnh
         /// </summary>
         public string? doctorAdvice { get; set; }
         /// <summary>
-        /// 西医诊断
+        /// chẩn đoán Tây y
         /// </summary>
         public string? westernDiagnose { get; set; }
         /// <summary>
-        /// 中医诊断
+        /// chẩn đoán y học cổ truyền
         /// </summary>
         public string? chinaDiagnose { get; set; }
     }
@@ -152,142 +152,142 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic
         public string? value { get; set; }
     }
     /// <summary>
-    /// 诊所处方信息
+    /// thông tin đơn thuốc phòng khám
     /// </summary>
     public class ClinicRecipelDTO
     {
         /// <summary>
-        /// 处方名称
+        /// tên đơn thuốc
         /// </summary>
         public string? name { get; set; }
         /// <summary>
-        /// 处方类别
-        /// value:recipelType_0：西药处方  recipelType_1：中药处方
+        /// loại đơn thuốc
+        /// value:recipelType_0：đơn thuốc Tây y  recipelType_1：đơn thuốc Đông y
         /// </summary>
         public ClinicDicDTO? recipelType { get; set; }
         /// <summary>
-        /// 中药用药剂量 
-        /// 例如：1剂（不带单位）
+        /// liều dùng thuốc Đông y 
+        /// Ví dụ：1thang（không kèm đơn vị）
         /// </summary>
         public string? dosage { get; set; }
         /// <summary>
-        /// 中药用药用法
+        /// cách dùng thuốc Đông y
         /// value:
-        /// chineseMedicineRecipelUse_0  煎服
-        /// chineseMedicineRecipelUse_1  熬服
-        /// chineseMedicineRecipelUse_2  水冲服
-        /// chineseMedicineRecipelUse_3  泡服
-        /// chineseMedicineRecipelUse_4  冲服
-        /// chineseMedicineRecipelUse_5  穴位注射
-        /// chineseMedicineRecipelUse_6  水煎服
+        /// chineseMedicineRecipelUse_0  sắc rồi uống
+        /// chineseMedicineRecipelUse_1  sắc rồi uống
+        /// chineseMedicineRecipelUse_2  uống pha với nước
+        /// chineseMedicineRecipelUse_3  uống ngâm
+        /// chineseMedicineRecipelUse_4  uống pha
+        /// chineseMedicineRecipelUse_5  tiêm huyệt vị
+        /// chineseMedicineRecipelUse_6  sắc với nước rồi uống
         /// </summary>
         public ClinicDicDTO? recipelUse { get; set; }
         /// <summary>
-        /// 频次用量
+        /// liều lượng tần suất
         /// value:
-        /// chineseMedicineRecipelFrequency_0  一日一剂
-        /// chineseMedicineRecipelFrequency_1  一日两剂
-        /// chineseMedicineRecipelFrequency_2  一日三剂
+        /// chineseMedicineRecipelFrequency_0  một thang một ngày
+        /// chineseMedicineRecipelFrequency_1  hai thang một ngày
+        /// chineseMedicineRecipelFrequency_2  ba thang một ngày
         /// </summary>
         public ClinicDicDTO? frequency { get; set; }
         /// <summary>
-        /// 使用频次
+        /// tần suất sử dụng
         /// value:
-        /// 例如：一日一次
+        /// Ví dụ：một lần một ngày
         /// </summary>
         public ClinicDicDTO? takeFrequency { get; set; }
         /// <summary>
-        /// 单次用量
-        /// 例如：100ml（不带单位）
+        /// liều dùng một lần
+        /// Ví dụ：100ml（không kèm đơn vị）
         /// </summary>
         public int? singleDosage { get; set; }
         /// <summary>
-        /// 处方总价
+        /// tổng giá đơn thuốc
         /// </summary>
         public decimal? fee { get; set; }
         /// <summary>
-        /// 备注
+        /// ghi chú
         /// </summary>
         public string? remarks { get; set; }
         /// <summary>
-        /// 医嘱
+        /// y lệnh
         /// </summary>
         public string? entrust { get; set; }
         /// <summary>
-        /// 中药备注事项
+        /// hạng mục ghi chú thuốc Đông y
         /// </summary>
         public string? chinessNotes { get; set; }
     }
     /// <summary>
-    /// 处方明细
+    /// chi tiết đơn thuốc
     /// </summary>
     public class ClinicRecipelDetailDTO
     {
         /// <summary>
-        /// 药品类型
-        /// 1 中药  2 西药）
+        /// loại thuốc
+        /// 1 thuốc Đông y  2 thuốc Tây y）
         /// </summary>
         public int? stuffType { get; set; }
         /// <summary>
-        /// 单价
+        /// đơn giá
         /// </summary>
         public decimal? unitPrice { get; set; }
         /// <summary>
-        /// 总价
+        /// tổng giá
         /// </summary>
         public decimal? allFee { get; set; }
 
         /// <summary>
-        /// 西药用法
+        /// cách dùng thuốc Tây y
         /// value:
-        /// westernMedicineUse_0  口服
-        /// westernMedicineUse_1  静脉注射
-        /// westernMedicineUse_2  饭前
-        /// westernMedicineUse_3  饭后
-        /// westernMedicineUse_4  皮下注射
-        /// westernMedicineUse_5  含化
-        /// westernMedicineUse_6  外敷
-        /// westernMedicineUse_7  静脉滴注
+        /// westernMedicineUse_0  uống
+        /// westernMedicineUse_1  tiêm tĩnh mạch
+        /// westernMedicineUse_2  trước bữa ăn
+        /// westernMedicineUse_3  sau bữa ăn
+        /// westernMedicineUse_4  tiêm dưới da
+        /// westernMedicineUse_5  ngậm
+        /// westernMedicineUse_6  đắp ngoài
+        /// westernMedicineUse_7  truyền tĩnh mạch
         /// </summary>
         public ClinicDicDTO? westernMedicineUse { get; set; }
         /// <summary>
-        /// 中药用法
+        /// cách dùng thuốc Đông y
         /// value:
-        /// chineseMedicineRecipelUse_0  煎服
-        /// chineseMedicineRecipelUse_1  熬服
-        /// chineseMedicineRecipelUse_2  水冲服
-        /// chineseMedicineRecipelUse_3  泡服
-        /// chineseMedicineRecipelUse_4  冲服
-        /// chineseMedicineRecipelUse_5  穴位注射
-        /// chineseMedicineRecipelUse_6  水煎服
+        /// chineseMedicineRecipelUse_0  sắc rồi uống
+        /// chineseMedicineRecipelUse_1  sắc rồi uống
+        /// chineseMedicineRecipelUse_2  uống pha với nước
+        /// chineseMedicineRecipelUse_3  uống ngâm
+        /// chineseMedicineRecipelUse_4  uống pha
+        /// chineseMedicineRecipelUse_5  tiêm huyệt vị
+        /// chineseMedicineRecipelUse_6  sắc với nước rồi uống
         /// </summary>
         public ClinicDicDTO? chineseMedicineUse { get; set; }
         /// <summary>
-        /// 西药频次用量
-        /// chineseMedicineRecipelTakeFrequency_0.5   每日四次
-        /// chineseMedicineRecipelTakeFrequency_1.5   两日一次
-        /// chineseMedicineRecipelTakeFrequency_1      每日一次
-        /// chineseMedicineRecipelTakeFrequency_2      每日两次
-        /// chineseMedicineRecipelTakeFrequency_3      每日三次
+        /// liều lượng tần suất thuốc Tây y
+        /// chineseMedicineRecipelTakeFrequency_0.5   bốn lần mỗi ngày
+        /// chineseMedicineRecipelTakeFrequency_1.5   một lần hai ngày
+        /// chineseMedicineRecipelTakeFrequency_1      một lần mỗi ngày
+        /// chineseMedicineRecipelTakeFrequency_2      hai lần mỗi ngày
+        /// chineseMedicineRecipelTakeFrequency_3      ba lần mỗi ngày
         /// </summary>
         public ClinicDicDTO? frequency { get; set; }
         /// <summary>
-        /// 西药使用天数
+        /// số ngày sử dụng thuốc Tây y
         /// name 
         /// </summary>
         public ClinicDicDTO? days { get; set; }
         /// <summary>
-        /// 最小单位总量
+        /// tổng lượng đơn vị nhỏ nhất
         /// </summary>
         public decimal? minTotal { get; set; }
 
         /// <summary>
-        /// 单次用量
+        /// liều dùng một lần
         /// </summary>
         public decimal? singleDosage { get; set; }
         /// <summary>
-        /// 用药总量
-        /// 使用最小单位总量，如：一次1g，一天三次，服用三天，该药品用量为9g
+        /// tổng lượng thuốc dùng
+        /// sử dụng tổng lượng đơn vị nhỏ nhất，Ví dụ：một lần1g，ba lần một ngày，uống ba ngày，liều lượng thuốc này là9g
         /// </summary>
         public decimal? total { get; set; }
         public ClinicDrugInfoDTO? drugStuffId { get; set; }
@@ -296,23 +296,23 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic
     public class ClinicDrugInfoDTO
     {
         /// <summary>
-        /// 药品id
+        /// thuốcid
         /// </summary>
         public string? drugStuffId { get; set; }
         /// <summary>
-        /// 药品名称
+        /// tên thuốc
         /// </summary>
         public string? name { get; set; }
         /// <summary>
-        /// 单价
+        /// đơn giá
         /// </summary>
         public decimal? price { get; set; }
         /// <summary>
-        /// 拆开后零售价
+        /// giá bán lẻ sau khi tách
         /// </summary>
         public decimal? retailPrice { get; set; }
         /// <summary>
-        /// 剂量单位
+        /// đơn vị liều lượng
         /// value:
         /// medicalDosisUnit_0  g
         ///medicalDosisUnit_1 ml
@@ -321,39 +321,39 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic
         ///medicalDosisUnit_4 m
         ///medicalDosisUnit_5  %
         ///medicalDosisUnit_6 ug
-        ///medicalDosisUnit_7 片
+        ///medicalDosisUnit_7 phim
         /// </summary>
         public ClinicDicDTO? dosisUnit { get; set; }
         /// <summary>
-        /// 制剂单位
-        /// medicalPreparationUnit_0   片 
-        /// medicalPreparationUnit_1   粒 
-        /// medicalPreparationUnit_2  袋 
+        /// đơn vị bào chế
+        /// medicalPreparationUnit_0   phim 
+        /// medicalPreparationUnit_1   viên 
+        /// medicalPreparationUnit_2  túi 
         /// medicalPreparationUnit_3  g 
-        /// medicalPreparationUnit_4  个 
-        /// medicalPreparationUnit_5  支 
+        /// medicalPreparationUnit_4  cái 
+        /// medicalPreparationUnit_5  ống 
         /// medicalPreparationUnit_6  ml 
         /// medicalPreparationUnit_7  mm 
         /// medicalPreparationUnit_8  mg 
-        /// medicalPreparationUnit_9  瓶 
-        /// medicalPreparationUnit_10 本 
+        /// medicalPreparationUnit_9  chai 
+        /// medicalPreparationUnit_10 quyển 
         /// medicalPreparationUnit_11 ug 
-        /// medicalPreparationUnit_12 丸
+        /// medicalPreparationUnit_12 viên hoàn
         /// </summary>
         public ClinicDicDTO? preparationUnit { get; set; }
         /// <summary>
-        /// 包装单位
-        /// medicalPackUnit_0   包
-        /// medicalPackUnit_1 袋
-        ///medicalPackUnit_2 盒
-        ///medicalPackUnit_3 箱
-        ///medicalPackUnit_5 板
-        ///medicalPackUnit_6 罐
-        ///medicalPackUnit_7 支
-        ///medicalPackUnit_8 个
-        ///medicalPackUnit_9 瓶
+        /// đơn vị đóng gói
+        /// medicalPackUnit_0   gói
+        /// medicalPackUnit_1 túi
+        ///medicalPackUnit_2 hộp
+        ///medicalPackUnit_3 thùng
+        ///medicalPackUnit_5 vỉ
+        ///medicalPackUnit_6 lon
+        ///medicalPackUnit_7 ống
+        ///medicalPackUnit_8 cái
+        ///medicalPackUnit_9 chai
         ///medicalPackUnit_10 g
-        ///medicalPackUnit_11 本
+        ///medicalPackUnit_11 quyển
         /// </summary>
         public ClinicDicDTO? pack { get; set; }
         

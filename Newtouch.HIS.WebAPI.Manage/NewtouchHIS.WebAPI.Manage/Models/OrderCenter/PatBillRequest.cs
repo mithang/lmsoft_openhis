@@ -3,36 +3,36 @@
 namespace NewtouchHIS.WebAPI.Manage.Models.OrderCenter
 {
     /// <summary>
-    /// 患者账单
+    /// hóa đơn bệnh nhân
     /// </summary>
     public class PatBillRequest
     {
         /// <summary>
-        /// 住院号
+        /// số nội trú
         /// </summary>
         public string? zyh { get; set; }
         /// <summary>
-        /// 门诊号
+        /// số khám ngoại trú
         /// </summary>
         public string? mzh { get; set; }
         /// <summary>
-        /// 就诊卡号
+        /// số thẻ khám bệnh
         /// </summary>
         public string? kh { get; set; }
         /// <summary>
-        /// 证件号
+        /// số giấy tờ
         /// </summary>
         public string? zjh { get; set; }
         /// <summary>
-        /// 订单号
+        /// số đơn hàng
         /// </summary>
         public string? OrderNo { get; set; }
         /// <summary>
-        /// 订单金额
+        /// số tiền đơn hàng
         /// </summary>
         public decimal? OrderAmt { get; set; }
         /// <summary>
-        /// 订单类型 EnumOrderType 1 门诊，2 住院
+        /// loại đơn hàng EnumOrderType 1 khám ngoại trú，2 nội trú
         /// </summary>
         public int? OrderType { get; set; }
         //public SysPatientAddressEntity AddressInfo { get; set; }

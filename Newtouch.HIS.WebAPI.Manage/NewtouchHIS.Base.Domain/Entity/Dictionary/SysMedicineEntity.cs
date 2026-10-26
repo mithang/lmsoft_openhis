@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///开方时供选择的药品列表——
-    ///规格：(剂量+剂量单位)*(包装数+包装单位)/定价单位
-    ///零售价：零售价/定价单位
-    ///单位：拆零单位
-    ///金额：零售价*数量/拆零数（这里先乘数量再除拆零数 计算金额，而不是先除拆零数计算出单价 再乘数量计算金额，这样可以减小误差。）
-    ///批发价(pfj)：在系统中，将名称定义为“进价”，取消批发价的含义，因为系统开发中都使用批发价字   ，故此字段延用，但是变更其含义。
+    ///danh sách thuốc để lựa chọn khi kê đơn——
+    ///quy cách：(liều lượng+đơn vị liều lượng)*(số lượng đóng gói+đơn vị đóng gói)/đơn vị định giá
+    ///giá bán lẻ：giá bán lẻ/đơn vị định giá
+    ///đơn vị：đơn vị lẻ
+    ///số tiền：giá bán lẻ*số lượng/số lẻ（ở đây nhân số lượng trước rồi chia cho số lẻ tính số tiền，không phải chia trước cho số lẻ để tính đơn giá nhân tiếp với số lượng để tính số tiền，như vậy có thể giảm sai số。）
+    ///giá bán buôn(pfj)：trong hệ thống，định nghĩa tên là“giá nhập”，hủy ý nghĩa giá bán buôn，vì trong quá trình phát triển hệ thống đều sử dụng từ giá bán buôn   ，do đó trường này vẫn dùng tiếp，nhưng thay đổi ý nghĩa của nó。
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("xt_yp", "药品")]
@@ -35,7 +35,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string ypCode { get; set; }
 
         /// <summary>
-        /// Desc:通用名
+        /// Desc:tên chung
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -44,7 +44,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string ypmc { get; set; }
 
         /// <summary>
-        /// Desc:前最例如：(甲) (乙10%)……
+        /// Desc:ví dụ phía trước nhất：(甲) (乙10%)……
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -52,7 +52,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string? ypqz { get; set; }
 
         /// <summary>
-        /// Desc:后最例如：……
+        /// Desc:ví dụ phía sau nhất：……
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -127,7 +127,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string bzdw { get; set; }
 
         /// <summary>
-        /// Desc:准备废止
+        /// Desc:chuẩn bị bãi bỏ
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -135,7 +135,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public decimal? mzcls { get; set; }
 
         /// <summary>
-        /// Desc:准备废止，以“拆零单位”代替
+        /// Desc:chuẩn bị bãi bỏ，bằng“đơn vị lẻ”thay thế
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -143,7 +143,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string? mzcldw { get; set; }
 
         /// <summary>
-        /// Desc:准备废止
+        /// Desc:chuẩn bị bãi bỏ
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -151,7 +151,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public decimal? zycls { get; set; }
 
         /// <summary>
-        /// Desc:准备废止
+        /// Desc:chuẩn bị bãi bỏ
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -186,7 +186,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// Desc:默认进价
+        /// Desc:giá nhập mặc định
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -194,7 +194,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public decimal? pfj { get; set; }
 
         /// <summary>
-        /// Desc:详见系统项目表“自负比例”说明
+        /// Desc:xem chi tiết bảng hạng mục hệ thống“tỷ lệ tự trả”mô tả
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -203,7 +203,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public decimal zfbl { get; set; }
 
         /// <summary>
-        /// Desc:1 自理 2 分类自负	   详见系统项目表“自负性质”说明	   	   门诊可用，急诊不可用，或反之，以不同药剂部门有无药来控制
+        /// Desc:1 tự lo 2 tự trả theo phân loại	   xem chi tiết bảng hạng mục hệ thống“tính chất tự trả”mô tả	   	   ngoại trú có thể dùng，cấp cứu không dùng được，hoặc ngược lại，điều khiển theo việc khoa dược khác nhau có thuốc hay không
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -229,7 +229,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string? jx { get; set; }
 
         /// <summary>
-        /// Desc:xt_yc  修改直接保存名称
+        /// Desc:xt_yc  sửa đổi, lưu trực tiếp tên
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -252,7 +252,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public int? medextid { get; set; }
 
         /// <summary>
-        /// Desc:药品在各药房消耗时的“包装级别”或“拆零数信息”
+        /// Desc:thuốc khi tiêu hao tại các nhà thuốc“cấp đóng gói”hoặc“thông tin số lẻ”
         /// Default:3
         /// Nullable:True
         /// </summary>           
@@ -268,7 +268,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string? nbdl { get; set; }
 
         /// <summary>
-        /// Desc:----0：停用  1：启用	   ---0：通用，1：门诊，2：住院  （作废）	   	   
+        /// Desc:----0：ngừng sử dụng  1：bật	   ---0：chung，1：khám ngoại trú，2：nội trú  （hủy）	   	   
         /// Default:
         /// Nullable:False
         /// </summary>           

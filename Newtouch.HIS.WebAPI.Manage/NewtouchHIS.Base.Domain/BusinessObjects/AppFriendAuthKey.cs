@@ -3,26 +3,26 @@
 namespace NewtouchHIS.Base.Domain
 {
     /// <summary>
-    /// 生成授权key
+    /// tạo ủy quyềnkey
     /// </summary>
     public class AppFriendAuthKey
     {
         /// <summary>
-        /// Desc:授权ID
+        /// Desc:ủy quyềnID
         /// Default:
         /// Nullable:False
         /// </summary>           
         public string? AuthId { get; set; }
 
         /// <summary>
-        /// Desc:应用通用Id
+        /// Desc:ứng dụng chungId
         /// Default:
         /// Nullable:False
         /// </summary>           
         public string? AppId { get; set; }
 
         /// <summary>
-        /// Desc:应用名称
+        /// Desc:tên ứng dụng
         /// Default:
         /// Nullable:False
         public string? AppName { get; set; }
@@ -33,7 +33,7 @@ namespace NewtouchHIS.Base.Domain
 
     }
     /// <summary>
-    /// 申请Token key
+    /// đăng kýToken key
     /// App to Friend
     /// </summary>
     public class AppFriendAuthKeyRequest {

@@ -11,7 +11,7 @@ using Mapster;
 namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
 {
     /// <summary>
-    /// 住院患者服务
+    /// dịch vụ bệnh nhân nội trú
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -23,7 +23,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         }
 
         /// <summary>
-        /// 住院患者待结算分类账单
+        /// hóa đơn phân loại chờ thanh toán của bệnh nhân nội trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

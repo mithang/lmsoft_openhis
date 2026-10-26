@@ -8,7 +8,7 @@ using NewtouchHIS.Lib.Base.Model;
 namespace NewtouchHIS.AuthenticationCenter.Controllers
 {
     /// <summary>
-    /// 鉴权管理
+    /// quản lý xác thực
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -22,7 +22,7 @@ namespace NewtouchHIS.AuthenticationCenter.Controllers
             _appManageDmn = appManageDmn;
         }
         /// <summary>
-        /// 第三方系统获取Token
+        /// lấy từ hệ thống bên thứ baToken
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -47,7 +47,7 @@ namespace NewtouchHIS.AuthenticationCenter.Controllers
             });
         }
         /// <summary>
-        /// 应用授权申请Token
+        /// đăng ký ủy quyền ứng dụngToken
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -72,7 +72,7 @@ namespace NewtouchHIS.AuthenticationCenter.Controllers
             });
         }
         /// <summary>
-        /// 刷新Token
+        /// làm mớiToken
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -92,7 +92,7 @@ namespace NewtouchHIS.AuthenticationCenter.Controllers
             });
         }
         /// <summary>
-        /// 内部Web系统获取Token
+        /// nội bộWeblấy từ hệ thốngToken
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

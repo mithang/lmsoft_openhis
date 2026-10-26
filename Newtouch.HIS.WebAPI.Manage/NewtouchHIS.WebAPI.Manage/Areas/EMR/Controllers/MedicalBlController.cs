@@ -10,7 +10,7 @@ using NewtouchHIS.WebAPI.Manage.Models.EMR;
 namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
 {
     /// <summary>
-    /// 病历类型模板接口：质控调用
+    /// giao diện mẫu loại bệnh án：lời gọi kiểm soát chất lượng
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -27,7 +27,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
             _medicalblDmn = medicalblDmn;
         }
         /// <summary>
-        /// 病历类型
+        /// loại bệnh án
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -43,7 +43,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
             return new BusResult<MedicalBllxItemVo> { code = ResponseResultCode.SUCCESS, Data = data };
         }
         /// <summary>
-        /// 病历模板
+        /// mẫu bệnh án
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -59,7 +59,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
             return new BusResult<MedicalBlMbItemVo> { code = ResponseResultCode.SUCCESS, Data = data };
         }
         /// <summary>
-        /// 病历类型模板树
+        /// cây mẫu loại bệnh án
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -75,7 +75,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
             return new BusResult<MedicalBllxMbTreeVo> { code = ResponseResultCode.SUCCESS, Data = data };
         }
         /// <summary>
-        /// 住院病人列表
+        /// danh sách bệnh nhân nội trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -104,7 +104,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
         }
 
         /// <summary>
-        /// 诊断列表
+        /// danh sách chẩn đoán
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -128,7 +128,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
             return new BusResult<List<MedDiagListVo>> { code = ResponseResultCode.SUCCESS, Data = data };
         }
         /// <summary>
-        /// 病历文书tree 
+        /// văn bản bệnh ántree 
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

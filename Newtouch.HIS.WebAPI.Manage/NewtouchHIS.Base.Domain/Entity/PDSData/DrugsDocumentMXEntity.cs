@@ -15,7 +15,7 @@ namespace NewtouchHIS.Base.Domain.Entity.PDSData
         public System.String crkmxId { get; set; }
 
         /// <summary>
-        /// 来自表 XT_YP_CRKDJK的主键
+        /// đến từ bảng XT_YP_CRKDJKkhóa chính của
         /// </summary>
         public System.String crkId { get; set; }
 
@@ -85,7 +85,7 @@ namespace NewtouchHIS.Base.Domain.Entity.PDSData
         public System.Int32 Sl { get; set; }
 
         /// <summary>
-        /// 默认值1
+        /// giá trị mặc định1
         /// </summary>
         public System.Int32 Rkzhyz { get; set; }
 
@@ -95,7 +95,7 @@ namespace NewtouchHIS.Base.Domain.Entity.PDSData
         public System.Int32 Rkbmkc { get; set; }
 
         /// <summary>
-        /// 默认值1
+        /// giá trị mặc định1
         /// </summary>
         public System.Int32 Ckzhyz { get; set; }
 
@@ -195,12 +195,12 @@ namespace NewtouchHIS.Base.Domain.Entity.PDSData
         public System.String LastModifierCode { get; set; }
 
         /// <summary>
-        /// 出库单位（单位名称）
+        /// đơn vị xuất kho（tên đơn vị）
         /// </summary>
         public System.String ckdw { get; set; }
 
         /// <summary>
-        /// 入库单位（单位名称）
+        /// đơn vị nhập kho（tên đơn vị）
         /// </summary>
         public System.String rkdw { get; set; }
 

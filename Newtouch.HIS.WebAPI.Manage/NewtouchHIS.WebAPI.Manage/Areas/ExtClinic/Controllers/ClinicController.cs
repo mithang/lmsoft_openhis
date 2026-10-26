@@ -16,7 +16,7 @@ using static NewtouchHIS.Lib.Common.HisEnum;
 namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
 {
     /// <summary>
-    /// 云诊所
+    /// phòng khám trên đám mây
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -36,7 +36,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         }
         #region Token
         /// <summary>
-        /// 获取诊所 Token
+        /// lấy phòng khám Token
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -51,7 +51,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
 
         #region 患者信息
         /// <summary>
-        /// 获取云诊所患者病历
+        /// lấy bệnh án bệnh nhân phòng khám trên đám mây
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -73,7 +73,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         }
 
         /// <summary>
-        /// 推送HIS患者病历
+        /// đẩyHISbệnh án bệnh nhân
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -101,7 +101,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
             return new BusResult<string> { code = ResponseResultCode.SUCCESS, Data = sendMr.data.ToJson() };
         }
         /// <summary>
-        /// 推送HIS患者本次就诊处方
+        /// đẩyHISđơn thuốc lần khám này của bệnh nhân
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -125,7 +125,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
                 return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "未找到可推送的药品处方" };
             }
             var hisypdw = await _sysMedicine.DrugUnitDic();
-            //主处方
+            //đơn chính
             List<ClinicPatRecipelData> cfList = new List<ClinicPatRecipelData>();
             foreach (var p in drugPres)
             {
@@ -222,7 +222,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
 
         #region 通知类
         /// <summary>
-        /// 诊疗申请结果通知
+        /// thông báo kết quả đăng ký khám chữa bệnh
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -273,7 +273,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         {
             var header = ClinicApiHelper.HeaderItems(null);
             var resp = await _httpClient.GetAsync<ClinicResponseBase<TResponse>>(url, header);
-            //鉴权失败重新获取token
+            //xác thực thất bại, lấy lạitoken
             if (resp != null && resp.code == ((int)ClinicResponseCode.tokenfailed).ToString())
             {
                 var tokenResp = await _httpClient.GetAsync<ClinicResponseBase<ClinicTokenDTO>>(ClinicApiHelper.GetTokenRoute);
@@ -293,7 +293,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         {
             var header = ClinicApiHelper.HeaderItems(null);
             var resp = await _httpClient.PostAsync<ClinicResponseBase<TResponse>>(url, request!.ToJson(), header);
-            //鉴权失败重新获取token
+            //xác thực thất bại, lấy lạitoken
             if (resp != null && resp.code == ((int)ClinicResponseCode.tokenfailed).ToString())
             {
                 var tokenResp = await _httpClient.GetAsync<ClinicResponseBase<ClinicTokenDTO>>(ClinicApiHelper.GetTokenRoute);

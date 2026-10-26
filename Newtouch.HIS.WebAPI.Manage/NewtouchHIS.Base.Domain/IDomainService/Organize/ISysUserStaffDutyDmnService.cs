@@ -7,14 +7,14 @@ namespace NewtouchHIS.Base.Domain.Organize
     public interface ISysUserStaffDutyDmnService : IScopedDependency
     {
         /// <summary>
-        /// 人员岗位关联关系 List
+        /// quan hệ liên kết vị trí nhân viên List
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="staffId"></param>
         /// <returns></returns>
         Task<List<SysStaffDutyComplexVEntity>> GetStaffDutyListByOrganizeId(string orgId, string staffId = null);
         /// <summary>
-        /// 查询员工列表
+        /// truy vấn danh sách nhân viên
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>

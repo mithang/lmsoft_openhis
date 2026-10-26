@@ -6,7 +6,7 @@ namespace NewtouchHIS.Base.Domain.Organize
     public interface ISysChargeCategoryDmnService : IScopedDependency
     {
         /// <summary>
-        /// 获取有效
+        /// lấy hiệu lực
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

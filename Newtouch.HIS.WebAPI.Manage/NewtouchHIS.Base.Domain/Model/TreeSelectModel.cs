@@ -1,8 +1,8 @@
 ﻿namespace NewtouchHIS.Base.Domain.Model
 {
     /// <summary>
-    /// 下拉选择Model
-    /// （select 控件）
+    /// chọn trong danh sách thả xuốngModel
+    /// （select điều khiển）
     /// </summary>
     public class TreeSelectModel
     {
@@ -11,7 +11,7 @@
         public string parentId { get; set; }
     }
     /// <summary>
-    /// treeview Model 无Nodes基类
+    /// treeview Model không cóNodeslớp cơ sở
     /// </summary>
     public class BsTreeSelectBaseModel
     {
@@ -24,15 +24,15 @@
         public bool? selected { get; set; } = false;
     }
     /// <summary>
-    /// treeview Model 原生
+    /// treeview Model gốc
     /// </summary>
     public class BsTreeSelectModel: BsTreeSelectBaseModel
     {        
         public List<BsTreeSelectModel>? nodes { get; set; }
     }
     /// <summary>
-    /// treeview Model 扩展字段
-    /// 用于特殊数据处理 业务关联登
+    /// treeview Model trường mở rộng
+    /// dùng để xử lý dữ liệu đặc biệt đăng nhập liên kết nghiệp vụ
     /// </summary>
     public class BsTreeSelectExtDataModel : BsTreeSelectBaseModel
     {

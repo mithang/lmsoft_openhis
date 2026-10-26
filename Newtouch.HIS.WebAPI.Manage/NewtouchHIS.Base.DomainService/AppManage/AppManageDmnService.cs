@@ -29,7 +29,7 @@ namespace NewtouchHIS.Base.DomainService
             return app.Adapt<List<AuthAppVO>>();
         }
         /// <summary>
-        /// 根据应用好友授权信息生成key
+        /// tạo theo thông tin ủy quyền bạn bè ứng dụngkey
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -39,8 +39,8 @@ namespace NewtouchHIS.Base.DomainService
             return AuthSecurityServices.AppAuthKeyGen(keyModel.ToJson());
         }
         /// <summary>
-        /// 应用好友授权信息 AppId 申请授权 
-        /// 查找 Friend 应用的好友关系中是否包含AppId
+        /// thông tin ủy quyền bạn bè ứng dụng AppId đăng ký ủy quyền 
+        /// tìm Friend quan hệ bạn bè của ứng dụng có bao gồm hay khôngAppId
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -79,7 +79,7 @@ namespace NewtouchHIS.Base.DomainService
 
         #region 增删改
         /// <summary>
-        /// 添加授权应用
+        /// thêm ứng dụng ủy quyền
         /// </summary>
         /// <param name="authApp"></param>
         /// <returns></returns>

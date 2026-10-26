@@ -5,14 +5,14 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity.SysManage
 {
     ///<summary>
-    ///角色表
+    ///bảng vai trò
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("Sys_Role", "系统角色")]
     public partial class SysRoleEntity : IEntity
     {
         /// <summary>
-        /// Desc:角色主键
+        /// Desc:khóa chính vai trò
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -21,7 +21,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
 
 
         /// <summary>
-        /// Desc:名称
+        /// Desc:tên
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -30,7 +30,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public string Name { get; set; }
 
         /// <summary>
-        /// Desc:编号
+        /// Desc:số hiệu
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -38,7 +38,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public string? Code { get; set; }
 
         /// <summary>
-        /// Desc:描述
+        /// Desc:mô tả
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -46,7 +46,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public string? Description { get; set; }
 
         /// <summary>
-        /// Desc:排序码
+        /// Desc:mã sắp xếp
         /// Default:
         /// Nullable:True
         /// </summary>           

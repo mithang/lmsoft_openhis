@@ -10,7 +10,7 @@ using System.Text;
 namespace NewtouchHIS.WebAPI.Manage.Controllers
 {
     /// <summary>
-    /// 文件操作
+    /// thao tác tệp
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -18,7 +18,7 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
     {
         private readonly FileManageConfig fileManageConf = ConfigInitHelper.SysConfig!.FileConfig ?? new FileManageConfig();
         /// <summary>
-        /// 文件上传
+        /// tải tệp lên
         /// </summary>
         /// <param name="files"></param>
         /// <returns></returns>
@@ -45,7 +45,7 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
             return result;
         }
         /// <summary>
-        /// web文件上传
+        /// webtải tệp lên
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -71,7 +71,7 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
             return result;
         }
         /// <summary>
-        /// Excel上传
+        /// Exceltải lên
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -79,33 +79,33 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
         [Route("DrgExcelUpload")]
         public async Task<IActionResult> DrgExcelUpload(IFormFile file)
         {
-            var filename = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName; // 原文件名（包括路径）
-            var extName = filename.Substring(filename.LastIndexOf('.')).Replace("\"", "");// 扩展名
-            string shortfilename = $"{Guid.NewGuid()}{extName}";// 新文件名
-            string fileSavePath = $"{Directory.GetCurrentDirectory()}{fileManageConf.DrgDataFileDirPathWithDate ?? "/File/Drg/"}"; //文件临时目录，导入完成后 删除
-            filename = fileSavePath + shortfilename; // 新文件名（包括路径）
+            var filename = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName; // tên tệp gốc（bao gồm lộ trình）
+            var extName = filename.Substring(filename.LastIndexOf('.')).Replace("\"", "");// phần mở rộng
+            string shortfilename = $"{Guid.NewGuid()}{extName}";// tên tệp mới
+            string fileSavePath = $"{Directory.GetCurrentDirectory()}{fileManageConf.DrgDataFileDirPathWithDate ?? "/File/Drg/"}"; //thư mục tạm của tệp，sau khi nhập xong xóa
+            filename = fileSavePath + shortfilename; // tên tệp mới（bao gồm lộ trình）
             if (!Directory.Exists(fileSavePath))
             {
                 Directory.CreateDirectory(fileSavePath);
             }
-            using (FileStream fs = System.IO.File.Create(filename)) // 创建新文件
+            using (FileStream fs = System.IO.File.Create(filename)) // tạo tệp mới
             {
-                await file.CopyToAsync(fs);// 复制文件
-                fs.Flush();// 清空缓冲区数据
-                           //根据 filename 【文件服务器磁盘路径】可对文件进行业务操作
+                await file.CopyToAsync(fs);// sao chép tệp
+                fs.Flush();// xóa dữ liệu bộ đệm
+                           //theo filename 【đường dẫn đĩa máy chủ tệp】có thể thực hiện thao tác nghiệp vụ đối với tệp
             }
             if (extName != ".csv")
             {
-                //载入xls文档 转化csv
+                //tảixlstài liệu chuyển đổicsv
                 Workbook workbook = new Workbook();
                 workbook.LoadFromFile(filename);
-                //获取第一张工作表
+                //lấy bảng làm việc đầu tiên
                 Worksheet sheet = workbook.Worksheets[0];
-                //保存为csv格式
+                //lưu thànhcsvđịnh dạng
                 sheet.SaveToFile(filename + ".csv", ",", Encoding.UTF8);
             }
 
-            //处理完成后，删除上传的文件
+            //sau khi xử lý xong，xóa tệp đã tải lên
             //if (System.IO.File.Exists(filename))
             //{
             //    System.IO.File.Delete(filename);

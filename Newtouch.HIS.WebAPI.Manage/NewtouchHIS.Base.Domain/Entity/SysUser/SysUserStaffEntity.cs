@@ -5,7 +5,7 @@ using SqlSugar;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///用户职工关系表
+    ///bảng quan hệ người dùng – nhân viên
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("Sys_UserStaff")]

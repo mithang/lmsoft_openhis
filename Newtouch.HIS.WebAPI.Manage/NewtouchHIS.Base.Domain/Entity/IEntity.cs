@@ -3,8 +3,8 @@
 namespace NewtouchHIS.Base.Domain.Entity
 {
     /// <summary>
-    /// 通用字段基类
-    /// (关联机构信息)
+    /// lớp cơ sở trường chung
+    /// (thông tin cơ quan liên kết)
     /// </summary>
     public class IEntity
     {

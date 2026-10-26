@@ -4,7 +4,7 @@ using SqlSugar;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     /// <summary>
-    /// 药品用法
+    /// cách dùng thuốc
     /// </summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("xt_ypyf", "DrugUsageEntity")]
@@ -13,11 +13,11 @@ namespace NewtouchHIS.Base.Domain.Entity
         [SugarColumn(IsPrimaryKey = true)]
         public string yfId { get; set; }
         /// <summary>
-        /// 用法编码
+        /// mã cách dùng
         /// </summary>
         public string yfCode { get; set; }
         /// <summary>
-        /// 用法名称
+        /// tên cách dùng
         /// </summary>
         public string yfmc { get; set; }
         public string? py { get; set; }
@@ -26,7 +26,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         /// </summary>
         public int? px { get; set; }
         /// <summary>
-        /// 1 西药 2 中药
+        /// 1 thuốc Tây y 2 thuốc Đông y
         /// </summary>
         public string yplx { get; set; }
 

@@ -3,12 +3,12 @@
     public class PacsIndexVO
     {
         /// <summary>
-        /// 门诊：门诊号  住院：住院号
+        /// khám ngoại trú：số khám ngoại trú  nội trú：số nội trú
         /// </summary>
         public string? ywlsh { get; set; }
         public string? sqdh { get; set; }
         /// <summary>
-        /// Enummzzybz 1 门诊 2 住院
+        /// Enummzzybz 1 khám ngoại trú 2 nội trú
         /// </summary>
         public int? mzzybz { get; set; }
 

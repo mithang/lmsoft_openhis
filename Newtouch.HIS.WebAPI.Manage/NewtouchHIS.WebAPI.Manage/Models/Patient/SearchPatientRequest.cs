@@ -3,31 +3,31 @@
     public class SearchPatientRequest
     {
         /// <summary>
-        /// 证件号
+        /// số giấy tờ
         /// </summary>
         public string? zjh { get; set; }
         /// <summary>
-        /// 卡号
+        /// số thẻ
         /// </summary>
         public string? kh { get; set; }
         /// <summary>
-        /// 姓名
+        /// họ tên
         /// </summary>
         public string? xm { get; set; }
         /// <summary>
-        /// 出生日期
+        /// ngày sinh
         /// </summary>
         public DateTime? csrq { get; set; }
         /// <summary>
-        /// 门诊号
+        /// số khám ngoại trú
         /// </summary>
         public string? mzh { get; set; }
         /// <summary>
-        /// 住院号
+        /// số nội trú
         /// </summary>
         public string? zyh { get; set; }
         /// <summary>
-        /// 业务类型 EnumBusType
+        /// loại nghiệp vụ EnumBusType
         /// </summary>
         public string? ywlx { get; set; }
     }

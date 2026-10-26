@@ -12,7 +12,7 @@ using NewtouchHIS.Lib.Base.Model.DRG;
 namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
 {
     /// <summary>
-    /// 病案首页
+    /// trang đầu bệnh án
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -25,8 +25,8 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
         }
 
         /// <summary>
-        /// 病案首页信息查询
-        /// 查询患者病案首页重点信息（with：诊断、手术）
+        /// truy vấn thông tin trang đầu bệnh án
+        /// truy vấn thông tin trọng điểm trang đầu bệnh án bệnh nhân（with：chẩn đoán、phẫu thuật）
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -50,7 +50,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
             return new BusResult<MedicalHomeVO> { code = ResponseResultCode.SUCCESS, Data = data };
         }
         /// <summary>
-        /// 患者病案信息(DRG分组格式）
+        /// thông tin bệnh án bệnh nhân(DRGđịnh dạng nhóm）
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

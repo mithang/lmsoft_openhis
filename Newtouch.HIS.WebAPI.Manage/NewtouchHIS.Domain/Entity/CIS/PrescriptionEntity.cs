@@ -16,17 +16,17 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public string cfId { get; set; }
 
         /// <summary>
-        /// 关联就诊表
+        /// bảng khám bệnh liên kết
         /// </summary>
         public string jzId { get; set; }
 
         /// <summary>
-        /// billing系统的收费状态
+        /// billingtrạng thái thu phí của hệ thống
         /// </summary>
         public bool sfbz { get; set; }
 
         /// <summary>
-        /// 枚举 1 西药处方 2 中药处方 3 康复处方 4 检验处方 5 检查处方 6 输液处方
+        /// enum 1 đơn thuốc Tây y 2 đơn thuốc Đông y 3 đơn phục hồi chức năng 4 đơn xét nghiệm 5 đơn kiểm tra 6 đơn truyền dịch
         /// </summary>
         public int cflx { get; set; }
 
@@ -41,19 +41,19 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public decimal zje { get; set; }
 
         /// <summary>
-        /// 关联base库的人员工号
+        /// liên kếtbasesố hiệu nhân viên của cơ sở dữ liệu
         /// </summary>
         public string ys { get; set; }
 
         /// <summary>
-        /// 科室
+        /// khoa
         /// </summary>
         public string ks { get; set; }
 
     
 
         /// <summary>
-        /// 贴数
+        /// số thang
         /// </summary>
         public int? tieshu { get; set; }
 
@@ -68,41 +68,41 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public bool? djbz { get; set; }
 
         /// <summary>
-        /// 同步标志，是否已同步至HIS（后判断是否已同步 改成依赖操作记录表）
+        /// cờ đồng bộ，đã đồng bộ tới hay chưaHIS（sau đó phán đoán đã đồng bộ hay chưa đổi thành phụ thuộc vào bảng hồ sơ thao tác）
         /// </summary>
         public bool? tbbz { get; set; }
 
         /// <summary>
-        /// 临床原因
+        /// nguyên nhân lâm sàng
         /// </summary>
         public string lcyx { get; set; }
         /// <summary>
-        /// 申请备注
+        /// ghi chú đăng ký
         /// </summary>
         public string sqbz { get; set; }
         /// <summary>
-        /// 退标志
+        /// cờ trả lại
         /// </summary>
         public bool? tbz { get; set; }
 
         /// <summary>
-        /// 申请单号（远程医疗申请需要guid）
+        /// số phiếu đăng ký（đăng ký y tế từ xa cầnguid）
         /// </summary>
         public string sqdh { get; set; }
         /// <summary>
-        /// 处方标签 JI 精I JII 精II MZ 麻醉
+        /// nhãn đơn thuốc JI tinhI JII tinhII MZ gây mê
         /// </summary>
         public string cftag { get; set; }
         /// <summary>
-        /// 代煎方式
+        /// phương thức sắc hộ
         /// </summary>
         public string djfs { get; set; }
         // <summary>
-        /// 代煎付数
+        /// số lần sắc hộ
         /// </summary>
         public string djts { get; set; }
         // <summary>
-        /// 嘱托
+        /// dặn dò
         /// </summary>
         public string cfzt { get; set; }
 

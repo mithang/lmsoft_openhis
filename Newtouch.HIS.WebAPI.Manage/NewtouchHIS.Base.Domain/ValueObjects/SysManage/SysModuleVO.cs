@@ -1,22 +1,22 @@
 ﻿namespace NewtouchHIS.Base.Domain.ValueObjects
 {
     /// <summary>
-    /// 系统菜单
+    /// menu hệ thống
     /// </summary>
     public class SysModuleVO
     {
         public string? Id { get; set; }
         /// <summary>
-        /// 组织机构Id（可选，null时为所有组织机构公用）
+        /// tổ chứcId（có thể chọn，nullkhi là dùng chung cho tất cả tổ chức）
         /// </summary>
         public string? OrganizeId { get; set; }
         /// <summary>
-        /// 父级
+        /// cấp cha
         /// </summary>
         /// <returns></returns>
         public string? ParentId { get; set; }
         /// <summary>
-        /// 名称
+        /// tên
         /// </summary>
         /// <returns></returns>
         public string? Name { get; set; }
@@ -26,36 +26,36 @@
         /// <returns></returns>
         public string? EnName { get; set; }
         /// <summary>
-        /// 编码
+        /// mã
         /// </summary>
         /// <returns></returns>
         public string? Code { get; set; }
         /// <summary>
-        /// 应用Id，如CIS、Sett
+        /// ứng dụngId，Ví dụCIS、Sett
         /// </summary>
         public string? AppId { get; set; }
         /// <summary>
-        /// 图标
+        /// biểu tượng
         /// </summary>
         /// <returns></returns>
         public string? Icon { get; set; }
         /// <summary>
-        /// 连接
+        /// kết nối
         /// </summary>
         /// <returns></returns>
         public string? UrlAddress { get; set; }
         /// <summary>
-        /// 目标
+        /// mục tiêu
         /// </summary>
         /// <returns></returns>
         public string? Target { get; set; }
         /// <summary>
-        /// 排序码
+        /// mã sắp xếp
         /// </summary>
         /// <returns></returns>
         public int? px { get; set; }
         /// <summary>
-        /// 描述
+        /// mô tả
         /// </summary>
         /// <returns></returns>
         public string? Description { get; set; }
@@ -73,11 +73,11 @@
     public class SysModuleExtendVO : SysModuleVO
     {
         /// <summary>
-        /// 是否已同步
+        /// đã đồng bộ hay chưa
         /// </summary>
         public bool? IsSync { get; set; }
         /// <summary>
-        /// 自定义排序
+        /// sắp xếp tùy chỉnh
         /// </summary>
         public string? CustomOrder { get; set; }
 

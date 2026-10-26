@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///系统科室
+    ///khoa hệ thống
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("Sys_Department", "系统科室")]

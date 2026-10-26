@@ -46,7 +46,7 @@ namespace NewtouchHIS.Domain.Entity.EMR
         public int SSOrder { get; set; }
 
         /// <summary>
-        /// Desc:手术及操作编码
+        /// Desc:mã phẫu thuật và thao tác
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -54,7 +54,7 @@ namespace NewtouchHIS.Domain.Entity.EMR
         public string SSJCZBM { get; set; }
 
         /// <summary>
-        /// Desc:手术及操作日期
+        /// Desc:ngày phẫu thuật và thao tác
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -62,7 +62,7 @@ namespace NewtouchHIS.Domain.Entity.EMR
         public DateTime? SSJCZRQ { get; set; }
 
         /// <summary>
-        /// Desc:手术级别
+        /// Desc:cấp phẫu thuật
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -70,7 +70,7 @@ namespace NewtouchHIS.Domain.Entity.EMR
         public string SSJB { get; set; }
 
         /// <summary>
-        /// Desc:手术及操作名称
+        /// Desc:tên phẫu thuật và thao tác
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -78,7 +78,7 @@ namespace NewtouchHIS.Domain.Entity.EMR
         public string SSJCZMC { get; set; }
 
         /// <summary>
-        /// Desc:术者
+        /// Desc:người phẫu thuật
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -86,7 +86,7 @@ namespace NewtouchHIS.Domain.Entity.EMR
         public string SZ { get; set; }
 
         /// <summary>
-        /// Desc:I助
+        /// Desc:Itrợ thủ
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -94,7 +94,7 @@ namespace NewtouchHIS.Domain.Entity.EMR
         public string YZ { get; set; }
 
         /// <summary>
-        /// Desc:II助
+        /// Desc:IItrợ thủ
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -102,7 +102,7 @@ namespace NewtouchHIS.Domain.Entity.EMR
         public string EZ { get; set; }
 
         /// <summary>
-        /// Desc:切口等级
+        /// Desc:cấp vết mổ
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -110,7 +110,7 @@ namespace NewtouchHIS.Domain.Entity.EMR
         public string QKDJ { get; set; }
 
         /// <summary>
-        /// Desc:切口愈合类别
+        /// Desc:loại liền vết mổ
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -118,7 +118,7 @@ namespace NewtouchHIS.Domain.Entity.EMR
         public string QKYHLB { get; set; }
 
         /// <summary>
-        /// Desc:麻醉方式
+        /// Desc:phương thức gây mê
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -126,7 +126,7 @@ namespace NewtouchHIS.Domain.Entity.EMR
         public string MZFS { get; set; }
 
         /// <summary>
-        /// Desc:麻醉医师
+        /// Desc:bác sĩ gây mê
         /// Default:
         /// Nullable:True
         /// </summary>           

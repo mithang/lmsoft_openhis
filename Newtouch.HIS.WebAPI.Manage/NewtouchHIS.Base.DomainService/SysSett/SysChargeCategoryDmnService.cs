@@ -5,7 +5,7 @@ namespace NewtouchHIS.Base.DomainService
 {
     public class SysChargeCategoryDmnService : BaseDmnService<SysChargeCategoryVEntity>, ISysChargeCategoryDmnService
     {
-        /// 获取收费大类列表
+        /// lấy danh sách nhóm thu phí lớn
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="dllbs"></param>

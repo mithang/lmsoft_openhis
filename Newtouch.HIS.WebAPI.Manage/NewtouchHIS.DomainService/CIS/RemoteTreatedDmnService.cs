@@ -56,7 +56,7 @@ namespace NewtouchHIS.DomainService.CIS
             return entity.Id;
         }
         /// <summary>
-        /// 修改申请单状态、会议号（仅就诊中&待确认时）
+        /// sửa đổi trạng thái phiếu đăng ký、số phòng họp（chỉ đang khám&khi chờ xác nhận）
         /// </summary>
         /// <param name="applyEntity"></param>
         /// <returns></returns>
@@ -84,13 +84,13 @@ namespace NewtouchHIS.DomainService.CIS
                     }
                     break;
                 case (int)EmunRemoteTreatedStu.jzz:
-                    //更新会议号
+                    //cập nhật số phòng họp
                     if (applyEntity.sqzt == (int)EmunRemoteTreatedStu.jzz)
                     {
                         entity.mzh = applyEntity.mzh;
                         entity.mettingId = string.IsNullOrWhiteSpace(applyEntity.mettingId) ? entity.mettingId : applyEntity.mettingId;
                     }
-                    //就诊结束
+                    //kết thúc khám bệnh
                     else if (applyEntity.sqzt == (int)EmunRemoteTreatedStu.yjs)
                     {
                         entity.sqzt = applyEntity.sqzt;

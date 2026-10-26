@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///科室病区关联
+    ///liên kết khoa – khu bệnh
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("Sys_DepartmentWardRelation", "科室病区关联")]

@@ -11,10 +11,10 @@ using System.Reflection;
 namespace NewtouchHIS.Base.DomainService
 {
     /// <summary>
-    /// 继承DBContext,对service 开放ISqlSugarClient 接口
-    /// 支持 base.Context 变更数据库
-    /// 默认 base.Context 为TEntity 绑定的TenantAttr
-    /// 注：增、删、改 禁止跨库，禁止用sql语句，如需则新增service，通过base.Context 指定目标数据库
+    /// kế thừaDBContext,đối vớiservice mởISqlSugarClient giao diện
+    /// hỗ trợ base.Context thay đổi cơ sở dữ liệu
+    /// mặc định base.Context làTEntity được liên kếtTenantAttr
+    /// ghi chú：thêm、xóa、sửa cấm vượt cơ sở dữ liệu，cấm dùngsqlcâu lệnh，nếu cần thì thêm mớiservice，thông quabase.Context chỉ định cơ sở dữ liệu đích
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     public class BaseDmnService<TEntity> : SugarRepository<TEntity> where TEntity : class, new()
@@ -35,7 +35,7 @@ namespace NewtouchHIS.Base.DomainService
         }
 
         /// <summary>
-        /// 非空校验
+        /// kiểm tra không trống
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>
@@ -62,8 +62,8 @@ namespace NewtouchHIS.Base.DomainService
             return valid;
         }
         /// <summary>
-        /// 枚举值校验 
-        /// 若要提示明确 需添加 DescriptionAttribute
+        /// kiểm tra giá trị enum 
+        /// nếu muốn nhắc rõ ràng cần thêm DescriptionAttribute
         /// </summary>
         /// <param name="enumList"></param>
         /// <param name="errMsg"></param>
@@ -90,11 +90,11 @@ namespace NewtouchHIS.Base.DomainService
             return valid;
         }
         /// <summary>
-        /// 验证枚举value有效性 
+        /// xác thực enumvaluetính hiệu lực 
         /// </summary>
         /// <typeparam name="TEnum"></typeparam>
         /// <param name="value"></param>
-        /// <param name="errmsg">错误提示</param>
+        /// <param name="errmsg">nhắc lỗi</param>
         /// <returns></returns>
         public bool ValidEnum<TEnum>(int value) where TEnum : Enum
         {
@@ -105,7 +105,7 @@ namespace NewtouchHIS.Base.DomainService
             return true;
         }
         /// <summary>
-        /// 自动组装where 查询（根据 T 的Db 特性查询）
+        /// tự động lắp rápwhere truy vấn（theo T củaDb truy vấn đặc tính）
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>
@@ -139,17 +139,17 @@ namespace NewtouchHIS.Base.DomainService
 
         #region 联表查询
         /// <summary>
-        /// 两表查询，
+        /// truy vấn hai bảng，
         /// </summary>
-        /// <typeparam name="T1">左表</typeparam>
-        /// <typeparam name="T2">右表</typeparam>
-        /// <param name="joinExp">联表方式，联表字段（主外键关系）</param>
-        /// <param name="selectExp">联表查询的结果</param>
-        /// <param name="isWhere">是否需要查询条件</param>
-        /// <param name="whereExp">条件查询</param>
-        /// <param name="isOrderBy">是否需要排序</param>
-        /// <param name="orderBy">排序条件</param>
-        /// <param name="orderByType">排序类型（Asc、Desc）</param>
+        /// <typeparam name="T1">bảng trái</typeparam>
+        /// <typeparam name="T2">bảng phải</typeparam>
+        /// <param name="joinExp">phương thức liên bảng，trường liên bảng（quan hệ khóa chính – khóa ngoại）</param>
+        /// <param name="selectExp">kết quả truy vấn liên bảng</param>
+        /// <param name="isWhere">có cần điều kiện truy vấn hay không</param>
+        /// <param name="whereExp">truy vấn theo điều kiện</param>
+        /// <param name="isOrderBy">có cần sắp xếp hay không</param>
+        /// <param name="orderBy">điều kiện sắp xếp</param>
+        /// <param name="orderByType">kiểu sắp xếp（Asc、Desc）</param>
         /// <returns></returns>
         public async Task<List<TResp>> GetJoinList<T1, T2, TResp>(Expression<Func<T1, T2, JoinQueryInfos>> joinExp, Expression<Func<T1, T2, TResp>> selectExp, bool isWhere = false, Expression<Func<T1, T2, bool>> whereExp = null, bool isOrderBy = false, Expression<Func<T1, T2, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
         {
@@ -185,16 +185,16 @@ namespace NewtouchHIS.Base.DomainService
 
         #region 分页查询
         /// <summary>
-        /// 单表分页查询
+        /// truy vấn phân trang một bảng
         /// </summary>
-        /// <typeparam name="TEntity">要查询的表</typeparam>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">页面容量</param>
-        /// <param name="isWhere">是否需要条件查询</param>
-        /// <param name="whereExp">查询条件</param>
-        /// <param name="isOrderBy">是否需要排序条件</param>
-        /// <param name="orderBy">排序条件</param>
-        /// <param name="orderByType">排序类型（Asc、Desc）</param>
+        /// <typeparam name="TEntity">bảng cần truy vấn</typeparam>
+        /// <param name="pageIndex">số trang</param>
+        /// <param name="pageSize">dung lượng trang</param>
+        /// <param name="isWhere">có cần truy vấn theo điều kiện hay không</param>
+        /// <param name="whereExp">điều kiện truy vấn</param>
+        /// <param name="isOrderBy">có cần điều kiện sắp xếp hay không</param>
+        /// <param name="orderBy">điều kiện sắp xếp</param>
+        /// <param name="orderByType">kiểu sắp xếp（Asc、Desc）</param>
         /// <returns></returns>
         public async Task<PageResponseRow<List<T>>> GetPageList<T>(int offset, int limit, bool isWhere = false, Expression<Func<T, bool>> whereExp = null, bool isOrderBy = false, Expression<Func<T, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
         {
@@ -203,7 +203,7 @@ namespace NewtouchHIS.Base.DomainService
             return new PageResponseRow<List<T>> { rows = result, total = totalNumber };
         }
         /// <summary>
-        ///  两表 分页查询
+        ///  hai bảng truy vấn phân trang
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -231,18 +231,18 @@ namespace NewtouchHIS.Base.DomainService
         }
 
         /// <summary>
-        /// 三表连接 分页 查询
+        /// kết nối ba bảng phân trang truy vấn
         /// </summary>
-        /// <typeparam name="T1">表1</typeparam>
-        /// <typeparam name="T2">表2</typeparam>
-        /// <typeparam name="T3">表3</typeparam>
-        /// <param name="joinExp">联表方式，联表字段（主外键关系）</param>
-        /// <param name="selectExp">联表查询的结果</param>
-        /// <param name="isWhere">是否需要查询条件</param>
-        /// <param name="whereExp">查询条件</param>
-        /// <param name="isOrderBy">是否需要排序条件</param>
-        /// <param name="orderBy">排序条件</param>
-        /// <param name="orderByType">排序类型（Asc、Desc）</param>
+        /// <typeparam name="T1">bảng1</typeparam>
+        /// <typeparam name="T2">bảng2</typeparam>
+        /// <typeparam name="T3">bảng3</typeparam>
+        /// <param name="joinExp">phương thức liên bảng，trường liên bảng（quan hệ khóa chính – khóa ngoại）</param>
+        /// <param name="selectExp">kết quả truy vấn liên bảng</param>
+        /// <param name="isWhere">có cần điều kiện truy vấn hay không</param>
+        /// <param name="whereExp">điều kiện truy vấn</param>
+        /// <param name="isOrderBy">có cần điều kiện sắp xếp hay không</param>
+        /// <param name="orderBy">điều kiện sắp xếp</param>
+        /// <param name="orderByType">kiểu sắp xếp（Asc、Desc）</param>
         /// <returns></returns>
         public async Task<PageResponseRow<List<TResp>>> GetJoinPageList<T1, T2, T3, TResp>(int offset, int limit, Expression<Func<T1, T2, T3, JoinQueryInfos>> joinExp, Expression<Func<T1, T2, T3, TResp>> selectExp, bool isWhere = false, Expression<Func<T1, T2, T3, bool>> whereExp = null, bool isOrderBy = false, Expression<Func<T1, T2, T3, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
         {
@@ -279,11 +279,11 @@ namespace NewtouchHIS.Base.DomainService
 
         #region 无实体
         /// <summary>
-        /// 联表查询（未定义实体表）
+        /// truy vấn liên bảng（bảng thực thể chưa định nghĩa）
         /// </summary>
         /// <typeparam name="TResp"></typeparam>
-        /// <param name="mainTbName">主表名</param>
-        /// <param name="mainTbAs">主表 as 别名</param>
+        /// <param name="mainTbName">tên bảng chính</param>
+        /// <param name="mainTbAs">bảng chính as bí danh</param>
         /// <param name="joinInfoParameters"></param>
         /// <param name="selectExp"></param>
         /// <param name="isWhere"></param>
@@ -317,7 +317,7 @@ namespace NewtouchHIS.Base.DomainService
                 .ToListAsync();
         }
         /// <summary>
-        /// 联表分页查询（未定义实体表）
+        /// truy vấn phân trang liên bảng（bảng thực thể chưa định nghĩa）
         /// </summary>
         /// <typeparam name="TResp"></typeparam>
         /// <param name="totalNumber"></param>

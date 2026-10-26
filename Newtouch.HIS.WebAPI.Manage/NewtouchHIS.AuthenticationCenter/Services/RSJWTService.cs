@@ -16,7 +16,7 @@ namespace NewtouchHIS.AuthenticationCenter.Services
 
         }
         /// <summary>
-        /// 生成非对称加密签名凭证
+        /// tạo chứng chỉ chữ ký mã hóa bất đối xứng
         /// </summary>
         /// <param name="clientId"></param>
         /// <returns></returns>
@@ -24,14 +24,14 @@ namespace NewtouchHIS.AuthenticationCenter.Services
         {
             var appRSSetting = getAppInfoByAppKey(clientId);
             var rsa = RSA.Create();
-            byte[] privateKey = Convert.FromBase64String(appRSSetting.AppSecret);//这里只需要私钥，不要begin,不要end
+            byte[] privateKey = Convert.FromBase64String(appRSSetting.AppSecret);//ở đây chỉ cần khóa riêng，khôngbegin,khôngend
             rsa.ImportPkcs8PrivateKey(privateKey, out _);
             var key = new RsaSecurityKey(rsa);
             var creds = new SigningCredentials(key, SecurityAlgorithms.RsaSha256);
             return creds;
         }
         /// <summary>
-        /// 根据appKey获取应用信息
+        /// theoappKeylấy thông tin ứng dụng
         /// </summary>
         /// <param name="clientId"></param>
         /// <returns></returns>

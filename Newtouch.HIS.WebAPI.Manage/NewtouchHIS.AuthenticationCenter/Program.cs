@@ -14,7 +14,7 @@ ConfigInitHelper.SysConfig = builder.Configuration.GetSection("BusinessConfig").
 ConfigInitHelper.DbConfig = builder.Configuration.GetSection("BusinessDB").Get<BusinessDB>();
 builder.Services.AddSingleton(new RedisHelper(builder.Configuration.GetSection("RedisConfig")));
 
-//配置依赖注入访问数据库
+//Cau hinh dependency injection de truy cap co so du lieu
 builder.Services.AddDependencyService();
 
 builder.Services.AddControllers(options =>
@@ -25,11 +25,11 @@ builder.Services.AddControllers(options =>
 }).AddNewtonsoftJson(
         options =>
         {
-            //忽略循环引用
+            //Bo qua tham chieu vong
             options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             options.SerializerSettings.Formatting = Formatting.Indented;
-            options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss.fff";//全局处理 返回时间格式
-            //不使用驼峰样式的key
+            options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss.fff";//Xu ly toan cuc dinh dang thoi gian tra ve
+            //Khong su dung kieu camelCase chokey
             options.SerializerSettings.ContractResolver = new DefaultContractResolver();
         }
 );
@@ -47,10 +47,10 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 
-#region 鉴权授权
-app.UseAuthentication();        //添加jwt鉴权 
-//代码从上到下执行，中间可以加判断， 权限设置问题
-app.UseAuthorization();   //授权
+#region Xac thuc - Uy quyen
+app.UseAuthentication();        //themjwtxac thuc 
+//Ma thuc thi tu tren xuong duoi，o giua co the them phan doan， van de cai dat quyen
+app.UseAuthorization();   //uy quyen
 #endregion
 
 app.MapControllers();

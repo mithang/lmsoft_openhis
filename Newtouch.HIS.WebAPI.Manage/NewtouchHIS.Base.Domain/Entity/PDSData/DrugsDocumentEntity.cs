@@ -59,7 +59,7 @@ namespace NewtouchHIS.Base.Domain.Entity.PDSData
         public System.String Ckczy { get; set; }
 
         /// <summary>
-        /// 来自 xt_ypcrkfs表的方式代码
+        /// đến từ xt_ypcrkfsmã phương thức bảng
         /// </summary>
         public System.String Crkfsdm { get; set; }
 
@@ -79,7 +79,7 @@ namespace NewtouchHIS.Base.Domain.Entity.PDSData
         public System.String Shczy { get; set; }
 
         /// <summary>
-        /// 0:未审核 1:已审核 
+        /// 0:chưa duyệt 1:đã duyệt 
         /// </summary>
         public System.String shzt { get; set; }
 

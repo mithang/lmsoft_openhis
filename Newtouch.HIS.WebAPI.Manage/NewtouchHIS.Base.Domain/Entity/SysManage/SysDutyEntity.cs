@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity.SysManage
 {
     ///<summary>
-    /// 系统岗位
+    /// vị trí hệ thống
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("Sys_Duty", "系统岗位")]

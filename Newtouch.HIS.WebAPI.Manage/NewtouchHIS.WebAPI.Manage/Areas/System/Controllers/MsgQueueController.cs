@@ -8,7 +8,7 @@ using NewtouchHIS.Lib.Base.Model;
 namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
 {
     /// <summary>
-    /// 消息队列
+    /// hàng đợi tin nhắn
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -21,7 +21,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
             _msgQueueDmn = msgQueueDmn;
         }
         /// <summary>
-        /// 新增消息组
+        /// thêm mới nhóm tin nhắn
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
 
         }
         /// <summary>
-        /// 查询消息组配置
+        /// truy vấn cấu hình nhóm tin nhắn
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -67,7 +67,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
         }
 
         /// <summary>
-        /// 新增通知
+        /// thêm mới thông báo
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -90,7 +90,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
 
         }
         /// <summary>
-        /// 查询消息详情
+        /// truy vấn chi tiết tin nhắn
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -112,7 +112,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
 
         }
         /// <summary>
-        /// 质控消息查询
+        /// truy vấn tin nhắn kiểm soát chất lượng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

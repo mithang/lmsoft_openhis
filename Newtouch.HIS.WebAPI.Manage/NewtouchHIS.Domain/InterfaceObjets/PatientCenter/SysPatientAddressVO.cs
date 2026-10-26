@@ -11,7 +11,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.PatientCenter
     }
 
     /// <summary>
-    /// 患者地址查询索引
+    /// chỉ mục truy vấn địa chỉ bệnh nhân
     /// </summary>
     public class SysPatientAddressIndexVO 
     {
@@ -21,7 +21,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.PatientCenter
     }
 
     /// <summary>
-    /// 患者地址信息
+    /// thông tin địa chỉ bệnh nhân
     /// </summary>
     public class SysPatientAddressInfoVO {
         public string Id { get; set; }

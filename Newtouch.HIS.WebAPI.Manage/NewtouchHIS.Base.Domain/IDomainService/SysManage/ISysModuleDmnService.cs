@@ -11,26 +11,26 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain.IDomainService
 {
     /// <summary>
-    /// 系统菜单 （增删改接口）
+    /// menu hệ thống （giao diện thêm, xóa, sửa）
     /// </summary>
     public interface ISysModuleDmnService : IScopedDependency
     {
         /// <summary>
-        /// 查询菜单by id
+        /// truy vấn menuby id
         /// 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         Task<SysModuleEntity?> GetEntity(string id);
         /// <summary>
-        /// 查询菜单by id(仅有效)
+        /// truy vấn menuby id(chỉ hiệu lực)
         /// </summary>
         /// <param name="id"></param>
         /// <param name="valid"></param>
         /// <returns></returns>
         Task<SysModuleEntity?> GetEntity(string id, bool valid = true);
         /// <summary>
-        /// 新增菜单
+        /// thêm mới menu
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="user"></param>
@@ -38,7 +38,7 @@ namespace NewtouchHIS.Base.Domain.IDomainService
         /// <returns></returns>
         Task<BusResult<string>> AddEntity(SysModuleVO vo, string user, string orgId);
         /// <summary>
-        /// 批量新增
+        /// thêm mới hàng loạt
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="user"></param>
@@ -46,7 +46,7 @@ namespace NewtouchHIS.Base.Domain.IDomainService
         /// <returns></returns>
         Task<BusResult<string>> AddRange(List<SysModuleVO> vo, string user, string orgId, string defaultParentId);
         /// <summary>
-        /// 菜单信息更新
+        /// cập nhật thông tin menu
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="user"></param>
@@ -54,7 +54,7 @@ namespace NewtouchHIS.Base.Domain.IDomainService
         /// <returns></returns>
         Task<BusResult<string>> UpdateEntity(SysModuleVO vo, string user, string orgId);
         /// <summary>
-        /// 作废菜单
+        /// menu hủy
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="user"></param>
@@ -62,7 +62,7 @@ namespace NewtouchHIS.Base.Domain.IDomainService
         /// <returns></returns>
         Task<BusResult<string>> DelEntity(string keyValue, string user, string orgId);
         /// <summary>
-        /// 根据组织机构获取有效菜单列表
+        /// lấy danh sách menu hiệu lực theo tổ chức
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

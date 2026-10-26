@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Domain.InterfaceObjets.EMR
 {
     /// <summary>
-    /// 病历类型
+    /// loại bệnh án
     /// </summary>
     public class MedicalBllxItemVo
     {
@@ -25,7 +25,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.EMR
         public string IsRoot { get; set; }
     }
     /// <summary>
-    /// 病历模板
+    /// mẫu bệnh án
     /// </summary>
     public class MedicalBlMbItemVo
     {
@@ -45,7 +45,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.EMR
         public string Bllx { get; set; }
     }
     /// <summary>
-    /// 病历和模板tree结构数据
+    /// bệnh án và mẫutreedữ liệu cấu trúc
     /// </summary>
     public class MedicalBllxMbTreeVo
     {

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.DomainService.CIS
 {
     /// <summary>
-    /// 门诊病历
+    /// bệnh án ngoại trú
     /// </summary>
     public class OutpMedicalRecordService : BaseServices<OutpTreatmentEntity>, IOutpMedicalRecordService
     {

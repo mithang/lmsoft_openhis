@@ -20,7 +20,7 @@ namespace NewtouchHIS.AuthenticationCenter.Controllers
             _jwtService = jWTService;
         }
         /// <summary>
-        /// 用户登录
+        /// đăng nhập người dùng
         /// </summary>
         /// <param name="login"></param>
         /// <returns></returns>

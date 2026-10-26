@@ -23,9 +23,9 @@ ConfigInitHelper.SysConfig = config.GetSection("BusinessConfig").Get<BusinessCon
 builder.Services.AddSingleton(new RedisHelper(config.GetSection("RedisConfig")));
 builder.Services.AddSingleton(new AppSettings(builder.Configuration));
 
-//配置依赖注入访问数据库
+//Cau hinh dependency injection de truy cap co so du lieu
 builder.Services.AddDependencyService();
-//添加IApiUserSession实现类
+//themIApiUserSessionlop trien khai
 builder.Services.AddSingleton<IIdentityCache, IdentityCachePrincipal>();
 builder.Services.AddSingleton<IHttpClientHelper, HttpClientHelper>();
 builder.Services.AddSingleton<IHttpWebRequestHelper, HttpWebRequestHelper>();
@@ -38,28 +38,28 @@ builder.Services.AddControllers(options =>
 }).AddNewtonsoftJson(
         options =>
         {
-            //忽略循环引用
+            //Bo qua tham chieu vong
             options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             options.SerializerSettings.Formatting = Formatting.Indented;
-            options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss.fff";//全局处理 返回时间格式
-            //options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;//全局处理 接收时间并做本地化处理
+            options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss.fff";//Xu ly toan cuc dinh dang thoi gian tra ve
+            //options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;//Xu ly toan cuc nhan thoi gian va xu ly ban dia hoa
             //var dateConverter = new Newtonsoft.Json.Converters.IsoDateTimeConverter
             //{
             //    DateTimeFormat = "yyyy-MM-dd HH:mm:ss"
             //}
 
             //options.SerializerSettings.Converters.Add(dateConverter);
-            //不使用驼峰样式的key
+            //Khong su dung kieu camelCase chokey
             options.SerializerSettings.ContractResolver = new DefaultContractResolver();
 
-            //options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();//首字母小写驼峰式命名
-            //options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore; 空值处理
+            //options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();//dat ten camelCase voi chu cai dau viet thuong
+            //options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore; xu ly gia tri trong
         }
 );
-//所有控制器启动身份验证
+//Tat ca controller khoi dong xac thuc danh tinh
 builder.Services.AddMvc(options =>
 {
-    options.Filters.Add(new AuthorizeFilter());//所有MVC服务默认添加授权标签
+    options.Filters.Add(new AuthorizeFilter());//tat caMVCdich vu mac dinh them the uy quyen
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwagger();
@@ -72,7 +72,7 @@ builder.Services.AddTransient<IDrgGroupService, DrgGroupService>();
 builder.Services.AddTransient<IChsDrg11Policy, ChsDrg11Policy>();
 builder.Services.AddTransient<IDrgWuhan2022Policy, DrgWuhan2022Policy>();
 
-//配置跨域服务
+//Cau hinh dich vu cross-domain
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Cors", p =>
@@ -83,12 +83,12 @@ builder.Services.AddCors(options =>
 
     });
 });
-//添加SignalR注入配置
+//themSignalRcau hinh injection
 //builder.Services.AddOhSignalR();
 builder.Services.AddSignalR(o =>
 {
-    o.EnableDetailedErrors = true;//详细异常信息
-    o.HandshakeTimeout = TimeSpan.FromSeconds(30);//握手超时时间
+    o.EnableDetailedErrors = true;//thong tin ngoai le chi tiet
+    o.HandshakeTimeout = TimeSpan.FromSeconds(30);//thoi gian qua han bat tay
 });
 var app = builder.Build();
 
@@ -99,9 +99,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 #region jwt
-app.UseAuthentication();        //添加jwt鉴权 
-//代码从上到下执行，中间可以加判断， 权限设置问题
-app.UseAuthorization();   //授权
+app.UseAuthentication();        //themjwtxac thuc 
+//Ma thuc thi tu tren xuong duoi，o giua co the them phan doan， van de cai dat quyen
+app.UseAuthorization();   //uy quyen
 #endregion
 app.UseNewtouchExceptionHandler();
 app.MapControllers();

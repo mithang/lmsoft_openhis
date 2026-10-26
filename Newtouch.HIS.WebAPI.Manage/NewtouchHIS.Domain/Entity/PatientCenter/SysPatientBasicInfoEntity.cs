@@ -26,7 +26,7 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
 
 
         /// <summary>
-        /// Desc:本院磁卡号（包括医保离休病人），或者医保卡号
+        /// Desc:số thẻ từ của bệnh viện（bao gồm bệnh nhân bảo hiểm y tế đã nghỉ hưu），hoặc số thẻ bảo hiểm y tế
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -267,7 +267,7 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         public int? dybh { get; set; }
 
         /// <summary>
-        /// Desc:单位名称
+        /// Desc:tên đơn vị
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -275,7 +275,7 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         public string? dwmc { get; set; }
 
         /// <summary>
-        /// Desc:单位地址
+        /// Desc:địa chỉ đơn vị
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -299,7 +299,7 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         public string? gj { get; set; }
 
         /// <summary>
-        /// Desc:0 未婚 1 已婚
+        /// Desc:0 chưa kết hôn 1 đã kết hôn
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -307,7 +307,7 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         public byte? hf { get; set; }
 
         /// <summary>
-        /// Desc:民族
+        /// Desc:dân tộc
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -315,7 +315,7 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         public string? mz { get; set; }
 
         /// <summary>
-        /// Desc:职业
+        /// Desc:nghề nghiệp
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -371,7 +371,7 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         public string? brly { get; set; }
 
         /// <summary>
-        /// Desc:过敏史
+        /// Desc:tiền sử dị ứng
         /// Default:
         /// Nullable:True
         /// </summary>           

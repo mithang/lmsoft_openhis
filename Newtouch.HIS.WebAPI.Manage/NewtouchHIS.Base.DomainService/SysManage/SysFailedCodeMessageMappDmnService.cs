@@ -13,7 +13,7 @@ namespace NewtouchHIS.Base.DomainService
     {
         public async Task<List<SysFailedCodeMessageMappEntity>> GetList(string orgId = null)
         {
-            //顶级组织机构 匹配到的 Mapp
+            //tổ chức cấp cao nhất đã khớp Mapp
             var topOrgMappList = await FindAllWithAttr<SysFailedCodeMessageMappEntity>();
             if (string.IsNullOrWhiteSpace(orgId))
             {

@@ -7,7 +7,7 @@ using NewtouchHIS.Lib.Services.DrgGroup;
 namespace NewtouchHIS.WebAPI.Manage.Areas.DRGS.Controllers
 {
     /// <summary>
-    /// DRG分组器接口
+    /// DRGgiao diện bộ nhóm
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -19,9 +19,9 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.DRGS.Controllers
             _drgGroupService = drgGroupService;
         }
         /// <summary>
-        /// 通过病案信息查询DRG分组情况
-        /// 输入参数为String，格式如"22058878,2,88,32460,,13040503,94,1,K80.302|K80.305|K83.109|K72.905|Z90.408|E14.900x001,51.8803|51.8701|54.5100x005|45.1301"
-        /// 将MedicalRecord类的11个属性用逗号拼接，其中：zdList、ssList的类型是String[]，多个元素用|分隔；remark字段可选
+        /// truy vấn qua thông tin bệnh ánDRGtình hình nhóm
+        /// tham số đầu vào làString，định dạng như"22058878,2,88,32460,,13040503,94,1,K80.302|K80.305|K83.109|K72.905|Z90.408|E14.900x001,51.8803|51.8701|54.5100x005|45.1301"
+        /// sẽMedicalRecordlớp của11một thuộc tính nối bằng dấu phẩy，trong đó：zdList、ssListkiểu của làString[]，nhiều phần tử dùng|phân tách；remarktrường có thể chọn
         /// </summary>
         /// <returns>GroupResult</returns>
         [HttpPost]
@@ -40,7 +40,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.DRGS.Controllers
 
         }
         /// <summary>
-        /// 批量查询DRG分组情况
+        /// truy vấn hàng loạtDRGtình hình nhóm
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -60,7 +60,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.DRGS.Controllers
 
         }
         /// <summary>
-        /// 根据病例文件批量查询分组情况
+        /// truy vấn hàng loạt tình hình nhóm theo tệp bệnh án
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

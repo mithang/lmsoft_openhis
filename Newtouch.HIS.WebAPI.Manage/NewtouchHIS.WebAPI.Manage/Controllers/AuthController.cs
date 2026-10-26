@@ -5,7 +5,7 @@ using NewtouchHIS.Lib.Base.Model;
 namespace NewtouchHIS.WebAPI.Manage.Controllers
 {
     /// <summary>
-    /// 鉴权管理
+    /// quản lý xác thực
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -16,7 +16,7 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
         {
         }
         /// <summary>
-        /// 第三方系统获取Token
+        /// lấy từ hệ thống bên thứ baToken
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -35,7 +35,7 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
             return null;
         }
         /// <summary>
-        /// 内部Web系统获取Token
+        /// nội bộWeblấy từ hệ thốngToken
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

@@ -3,15 +3,15 @@
     public class MeettingTokenRequest
     {
         /// <summary>
-        /// 音视频房间号，不同会议的房间号需唯一，长度不超过 50 位，建议使用自增长主键或 UUID
+        /// số phòng âm thanh – hình ảnh，số phòng của các cuộc họp khác nhau phải duy nhất，độ dài không vượt quá 50 vị trí，khuyến nghị sử dụng khóa chính tự tăng hoặc UUID
         /// </summary>
         public string roomid { get; set; }
         /// <summary>
-        /// 为进入该房间的用户姓名，用以区分不同用户
+        /// tên người dùng vào phòng đó，dùng để phân biệt người dùng khác nhau
         /// </summary>
         public string username { get; set; }
         /// <summary>
-        /// 为音视频使用设备，建议取值为 Mobile（移动端），Browser（电脑浏览器）
+        /// thiết bị sử dụng âm thanh – hình ảnh，khuyến nghị lấy giá trị là Mobile（thiết bị di động），Browser（trình duyệt máy tính）
         /// </summary>
         public string device { get; set; }
     }
@@ -19,7 +19,7 @@
     public class MeettingTokenResponse
     {
         /// <summary>
-        /// 为音视频账号以 Secret 为密钥进行 AES 对称加密后的结果，调用音视频服务需要用到，请解密后使用
+        /// là tài khoản âm thanh – hình ảnh để Secret tiến hành bằng khóa bí mật AES kết quả sau khi mã hóa đối xứng，cần dùng khi gọi dịch vụ âm thanh – hình ảnh，vui lòng giải mã rồi sử dụng
         /// </summary>
         public string rtcuserid { get; set; }
         /// <summary>
@@ -29,7 +29,7 @@
         public string? username { get; set; }
 
         /// <summary>
-        /// 若 status 为 Success 则请求成功，若 status 为 Failure 则请求失败，errorCode 里显示失败原因。
+        /// nếu status là Success thì yêu cầu thành công，nếu status là Failure thì yêu cầu thất bại，errorCode hiển thị nguyên nhân thất bại trong。
         /// </summary>
         public string status { get; set; }
         public string errorCode { get; set; }
@@ -38,7 +38,7 @@
     public class MeettingResponse
     {
         /// <summary>
-        /// 为音视频账号以 Secret 为密钥进行 AES 对称加密后的结果，调用音视频服务需要用到，请解密后使用
+        /// là tài khoản âm thanh – hình ảnh để Secret tiến hành bằng khóa bí mật AES kết quả sau khi mã hóa đối xứng，cần dùng khi gọi dịch vụ âm thanh – hình ảnh，vui lòng giải mã rồi sử dụng
         /// </summary>
         public string rtcuserid { get; set; }
         /// <summary>

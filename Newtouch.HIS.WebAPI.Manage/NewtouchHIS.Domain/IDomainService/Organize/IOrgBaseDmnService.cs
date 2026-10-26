@@ -6,14 +6,14 @@ namespace NewtouchHIS.Domain.IDomainService
     public interface IOrgBaseDmnService : IScopedDependency
     {
         /// <summary>
-        /// HIS 科室查询
+        /// HIS truy vấn khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         Task<List<HisDeptVO>> HisDeptQuery(string orgId, string? keyword);
         /// <summary>
-        /// HIS 医生查询
+        /// HIS truy vấn bác sĩ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>

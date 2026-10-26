@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///消息通知基础类
+    ///lớp cơ sở thông báo tin nhắn
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("dic_msg", "MsgNoticeEntity")]
@@ -46,7 +46,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string msgtype { get; set; }
 
         /// <summary>
-        /// Desc:1 门诊 2 住院
+        /// Desc:1 khám ngoại trú 2 nội trú
         /// Default:
         /// Nullable:True
         /// </summary>           

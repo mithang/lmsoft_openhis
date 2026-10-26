@@ -13,7 +13,7 @@ using static NewtouchHIS.Base.Domain.EnumExtend.BusEnum;
 namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
 {
     /// <summary>
-    /// 门诊患者服务
+    /// dịch vụ bệnh nhân ngoại trú
     /// </summary>
     [Route("api/Outpatient")]
     [ApiController]
@@ -26,7 +26,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
 
         }
         /// <summary>
-        /// 当日有效挂号列表
+        /// danh sách đăng ký khám hiệu lực trong ngày
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 患者挂号列表
+        /// danh sách đăng ký khám bệnh nhân
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -63,7 +63,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         }
 
         /// <summary>
-        /// 门诊待支付账单by门诊号
+        /// hóa đơn chờ thanh toán ngoại trúbysố khám ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -81,7 +81,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 门诊账单项目明细
+        /// chi tiết hạng mục hóa đơn ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -100,7 +100,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 账单支付step1：生成支付订单
+        /// thanh toán hóa đơnstep1：tạo đơn hàng thanh toán
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -121,7 +121,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         }
 
         /// <summary>
-        /// 账单支付step2：申请锁定订单
+        /// thanh toán hóa đơnstep2：đăng ký khóa đơn hàng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -141,7 +141,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 账单支付step3：订单结算
+        /// thanh toán hóa đơnstep3：thanh toán đơn hàng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -156,7 +156,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 账单支付steptest：推送测试
+        /// thanh toán hóa đơnsteptest：kiểm tra đẩy
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -172,7 +172,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
 
         #region 挂号
         /// <summary>
-        /// 预约挂号
+        /// đăng ký khám theo hẹn
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -190,7 +190,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 普通门诊挂号
+        /// đăng ký khám ngoại trú thông thường
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

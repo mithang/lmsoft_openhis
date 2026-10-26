@@ -16,71 +16,71 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         public string Id { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 订单号
+        /// số đơn hàng
         /// </summary>
         public string OrderNo { get; set; }
         /// <summary>
-        /// 订单类型 EnumOrderType
+        /// loại đơn hàng EnumOrderType
         /// </summary>
         public int? OrderType { get; set; }
         /// <summary>
-        /// 就诊卡号
+        /// số thẻ khám bệnh
         /// </summary>
         public string CardNo { get; set; }
         /// <summary>
-        /// 本次就诊标识  门诊：mzh；住院：zyh
+        /// định danh lần khám này  khám ngoại trú：mzh；nội trú：zyh
         /// </summary>
         public string VisitNo { get; set; }
         /// <summary>
-        /// 订单状态 EnumOrderStatus
+        /// trạng thái đơn hàng EnumOrderStatus
         /// </summary>
         public int OrderStu { get; set; }
         /// <summary>
-        /// 订单金额
+        /// số tiền đơn hàng
         /// </summary>
         public decimal OrderAmt { get; set; }
         /// <summary>
-        /// 支付金额
+        /// số tiền thanh toán
         /// </summary>
         public decimal? PayFee { get; set; }
         /// <summary>
-        /// 支付流水号
+        /// số thứ tự thanh toán
         /// </summary>
         public string PayLsh { get; set; }
         /// <summary>
-        /// 支付者身份信息
+        /// thông tin danh tính người thanh toán
         /// </summary>
         public string PayerId { get; set; }
         /// <summary>
-        /// 订单支付时间
+        /// thời gian thanh toán đơn hàng
         /// </summary>
         public DateTime? PayTime { get; set; }
         /// <summary>
-        /// 支付方式
+        /// phương thức thanh toán
         /// </summary>
         public int? PayWay { get; set; }
         /// <summary>
-        /// HIS内部结算号
+        /// HISsố thanh toán nội bộ
         /// </summary>
         public string SettTradeNo { get; set; }
         public string Memo { get; set; }
         /// <summary>
-        /// 创建用户ID
+        /// người tạoID
         /// </summary>
        // public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// thời gian tạo
         /// </summary>
        // public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// thời gian sửa đổi lần cuối
         /// </summary>
        // public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// người sửa đổi lần cuốiID
         /// </summary>
        // public string LastModifierCode { get; set; }
 

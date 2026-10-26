@@ -15,7 +15,7 @@ using static NewtouchHIS.Base.Domain.EnumExtend.BusEnum;
 namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
 {
     /// <summary>
-    /// 订单中心                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+    /// trung tâm đơn hàng                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -30,7 +30,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
         }
 
         /// <summary>
-        /// 订单信息查询
+        /// truy vấn thông tin đơn hàng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 门诊订单明细查询
+        /// truy vấn chi tiết đơn hàng ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -67,7 +67,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
         }
 
         /// <summary>
-        /// 账单支付step1：生成支付订单
+        /// thanh toán hóa đơnstep1：tạo đơn hàng thanh toán
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -97,7 +97,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
                 return new ResponseBase { code = ResponseResultCode.FAIL, msg = "关键信息(组织机构)不可为空" };
             }
 
-            //生成订单
+            //tạo đơn hàng
             var apiReq = InitController.BuildBookRequest(request, null, null).Adapt<BookingRequest>();
             var visitNo = request.Data.OrderType == (int)EnumBusType.mz ? request.Data.mzh : request.Data.zyh;
             apiReq.paradata = new OrderApplyRequest
@@ -106,7 +106,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
                 VisitNo = visitNo ?? "",
                 OrderType = request.Data.OrderType,
             };
-            //患者收件地址信息（非必要）
+            //thông tin địa chỉ nhận của bệnh nhân（không cần thiết）
             if (request.Data.addressInfo != null)
             {
                 var address = request.Data.addressInfo.Adapt<SysPatientAddressEntity>();
@@ -129,7 +129,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
         }
 
         /// <summary>
-        /// 账单支付step2：申请锁定订单
+        /// thanh toán hóa đơnstep2：đăng ký khóa đơn hàng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -148,7 +148,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 账单支付step3：订单结算
+        /// thanh toán hóa đơnstep3：thanh toán đơn hàng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

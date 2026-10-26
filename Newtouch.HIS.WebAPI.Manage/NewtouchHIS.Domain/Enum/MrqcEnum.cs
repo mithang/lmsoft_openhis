@@ -19,17 +19,17 @@ namespace NewtouchHIS.Domain.Enum
         public enum ApplyStatusEnum
         {
             /// <summary>
-            /// 未批准
+            /// chưa phê duyệt
             /// </summary>
             [Description("未批准")]
             wpz = 0,
             /// <summary>
-            /// 已审批
+            /// đã phê duyệt
             /// </summary>
             [Description("已审批")]
             ysp = 1,
             /// <summary>
-            /// 退回
+            /// trả lại
             /// </summary>
             [Description("退回")]
             th = 2

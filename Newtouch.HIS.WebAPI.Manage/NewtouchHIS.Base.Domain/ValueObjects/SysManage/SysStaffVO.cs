@@ -3,7 +3,7 @@
 namespace NewtouchHIS.Base.Domain.ValueObjects
 {
     ///<summary>
-    ///职工信息VO
+    ///thông tin nhân viênVO
     ///</summary>
     public partial class SysStaffVO
     {
@@ -16,7 +16,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public string? Id { get; set; }
 
         /// <summary>
-        /// Desc:组织主键
+        /// Desc:khóa chính tổ chức
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -37,7 +37,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public string? gh { get; set; }
 
         /// <summary>
-        /// Desc:姓名
+        /// Desc:họ tên
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -58,7 +58,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public string? DepartmentCode { get; set; }
 
         /// <summary>
-        /// Desc:职称
+        /// Desc:chức danh
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -66,91 +66,91 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public string zc { get; set; }
 
         /// <summary>
-        /// Desc:头像
+        /// Desc:ảnh đại diện
         /// Default:
         /// Nullable:True
         /// </summary>           
         public string? HeadIcon { get; set; }
 
         /// <summary>
-        /// Desc:性别
+        /// Desc:giới tính
         /// Default:
         /// Nullable:True
         /// </summary>           
         public bool? Gender { get; set; }
 
         /// <summary>
-        /// Desc:生日
+        /// Desc:sinh nhật
         /// Default:
         /// Nullable:True
         /// </summary>           
         public DateTime? Birthday { get; set; }
 
         /// <summary>
-        /// Desc:手机
+        /// Desc:điện thoại di động
         /// Default:
         /// Nullable:True
         /// </summary>           
         public string? MobilePhone { get; set; }
 
         /// <summary>
-        /// Desc:邮箱
+        /// Desc:hộp thư
         /// Default:
         /// Nullable:True
         /// </summary>           
         public string? Email { get; set; }
 
         /// <summary>
-        /// Desc:微信
+        /// Desc:WeChat
         /// Default:
         /// Nullable:True
         /// </summary>           
         public string? WeChat { get; set; }
 
         /// <summary>
-        /// Desc:主管主键
+        /// Desc:khóa chính cấp chủ quản
         /// Default:
         /// Nullable:True
         /// </summary>           
         public string? ManagerCode { get; set; }
 
         /// <summary>
-        /// Desc:排序码
+        /// Desc:mã sắp xếp
         /// Default:
         /// Nullable:True
         /// </summary>           
         public int? px { get; set; }
 
         /// <summary>
-        /// Desc:描述
+        /// Desc:mô tả
         /// Default:
         /// Nullable:True
         /// </summary>           
         public string? Description { get; set; }
 
         /// <summary>
-        /// Desc:创建时间
+        /// Desc:thời gian tạo
         /// Default:
         /// Nullable:False
         /// </summary>           
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// Desc:创建用户
+        /// Desc:người tạo
         /// Default:
         /// Nullable:False
         /// </summary>           
         public string? CreatorCode { get; set; }
 
         /// <summary>
-        /// Desc:最后修改时间
+        /// Desc:thời gian sửa đổi lần cuối
         /// Default:
         /// Nullable:True
         /// </summary>           
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Desc:最后修改用户
+        /// Desc:người sửa đổi lần cuối
         /// Default:
         /// Nullable:True
         /// </summary>           

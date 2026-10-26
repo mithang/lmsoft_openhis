@@ -15,7 +15,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public string cfId { get; set; }
 
         /// <summary>
-        /// 枚举 1 西药处方 2 中药处方 3 康复处方 4 检验处方 5 检查处方 6 输液处方
+        /// enum 1 đơn thuốc Tây y 2 đơn thuốc Đông y 3 đơn phục hồi chức năng 4 đơn xét nghiệm 5 đơn kiểm tra 6 đơn truyền dịch
         /// </summary>
         public int cflx { get; set; }
 
@@ -35,7 +35,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public string ys { get; set; }
 
         /// <summary>
-        /// 贴数
+        /// số thang
         /// </summary>
         public int? tieshu { get; set; }
 
@@ -49,19 +49,19 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         /// </summary>
         public bool? djbz { get; set; }
         /// <summary>
-        /// 处方标签 JI 精I JII 精II MZ 麻醉
+        /// nhãn đơn thuốc JI tinhI JII tinhII MZ gây mê
         /// </summary>
         public string? cftag { get; set; }
         /// <summary>
-        /// 代煎方式
+        /// phương thức sắc hộ
         /// </summary>
         public string? djfs { get; set; }
         // <summary>
-        /// 代煎付数
+        /// số lần sắc hộ
         /// </summary>
         public string? djts { get; set; }
         // <summary>
-        /// 嘱托
+        /// dặn dò
         /// </summary>
         public string? cfzt { get; set; }
 
@@ -71,7 +71,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
 
     }
     /// <summary>
-    /// 处方明细
+    /// chi tiết đơn thuốc
     /// </summary>
     public class OutpPrescriptionDetailVO
     {
@@ -98,12 +98,12 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public string? ypmc { get; set; }
 
         /// <summary>
-        /// 每次治疗量  针对康复项目
+        /// liều điều trị mỗi lần  đối với hạng mục phục hồi chức năng
         /// </summary>
         public int? mczll { get; set; }
 
         /// <summary>
-        /// 单词剂量
+        /// liều lượng một từ
         /// </summary>
         public decimal? mcjl { get; set; }
 
@@ -113,17 +113,17 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public string? mcjldw { get; set; }
 
         /// <summary>
-        /// 用法
+        /// cách dùng
         /// </summary>
         public string? yfCode { get; set; }
 
         /// <summary>
-        /// 频次
+        /// tần suất
         /// </summary>
         public string? pcCode { get; set; }
 
         /// <summary>
-        /// 药品中的数量=总量   康复中的总量（不是数量）=总量
+        /// số lượng trong thuốc=tổng lượng   tổng lượng đang phục hồi chức năng（không phải là số lượng）=tổng lượng
         /// </summary>
         public int? zl { get; set; }
 
@@ -133,7 +133,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public int sl { get; set; }
 
         /// <summary>
-        /// 非康复处方 暂时使用
+        /// đơn không phải phục hồi chức năng tạm thời sử dụng
         /// </summary>
         public string? dw { get; set; }
 
@@ -148,12 +148,12 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public decimal? je { get; set; }
 
         /// <summary>
-        /// 组号（药品的组号）
+        /// số nhóm（số nhóm của thuốc）
         /// </summary>
         public string? zh { get; set; }
 
         /// <summary>
-        /// 部位
+        /// vị trí
         /// </summary>
         public string? bw { get; set; }
 
@@ -173,7 +173,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public string? Remark { get; set; }
 
         /// <summary>
-        /// 执行科室（药品的药房部门、检验检查的执行科室）（康复处方的执行科室）
+        /// khoa thực hiện（khoa dược của thuốc、khoa thực hiện kiểm tra xét nghiệm）（khoa thực hiện đơn phục hồi chức năng）
         /// </summary>
         public string? zxks { get; set; }
 
@@ -182,55 +182,55 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         /// </summary>
         public DateTime? zxsj { get; set; }
         /// <summary>
-        /// 医保唯一码
+        /// mã duy nhất bảo hiểm y tế
         /// </summary>
         public string? ybwym { get; set; }
         /// <summary>
-        /// 限制使用标志
+        /// cờ hạn chế sử dụng
         /// </summary>
         public string? xzsybz { get; set; }
         /// <summary>
-        /// 天数
+        /// số ngày
         /// </summary>
         public decimal? ts { get; set; }
         public string? ztId { get; set; }
         public string? ztmc { get; set; }
 
         /// <summary>
-        /// 抗生素原因
+        /// nguyên nhân kháng sinh
         /// </summary>
         public string? kssReason { get; set; }
         /// <summary>
-        /// 部位方法
+        /// phương pháp vị trí
         /// </summary>
         public string? bwff { get; set; }
 
         public string? sqlx { get; set; }
         /// <summary>
-        /// 排序 
+        /// sắp xếp 
         /// </summary>
         public int? px { get; set; }
         /// <summary>
-        /// 滴速 
+        /// tốc độ truyền 
         /// </summary>
         public int? ds { get; set; }
         /// <summary>
-        /// 转自费标志
+        /// cờ chuyển sang tự trả
         /// </summary>
         public int? zzfbz { get; set; }
 
         /// <summary>
-        /// 用法组套
+        /// nhóm cách dùng
         /// </summary>
         public string? yfztbm { get; set; }
 
         public string? yfztmc { get; set; }
         /// <summary>
-        /// 收费状态
+        /// trạng thái thu phí
         /// </summary>
         public string? sfzt { get; set; }
         /// <summary>
-        /// 中药处方说明
+        /// mô tả đơn thuốc Đông y
         /// </summary>
         public string? zysm { get; set; }
 

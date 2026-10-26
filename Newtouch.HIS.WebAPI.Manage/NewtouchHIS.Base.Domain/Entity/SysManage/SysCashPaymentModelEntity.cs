@@ -5,59 +5,59 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity.SysManage
 {
     ///<summary>
-    ///现金支付方式表
+    ///bảng phương thức thanh toán tiền mặt
     ///</summary>
     [Tenant(DBEnum.SettDb)]
     [SugarTable("xt_xjzffs", "现金支付方式")]
     public partial class SysCashPaymentModelEntity : ISysEntity
     {
         /// <summary>
-        /// 现金支付方式编号
+        /// số hiệu phương thức thanh toán tiền mặt
         /// </summary>
         public int xjzffsbh { get; set; }
 
         /// <summary>
-        /// 现金支付方式
+        /// phương thức thanh toán tiền mặt
         /// </summary>
         public string xjzffs { get; set; }
 
         /// <summary>
-        /// 现金支付方式名称
+        /// tên phương thức thanh toán tiền mặt
         /// </summary>
         public string xjzffsmc { get; set; }
 
         /// <summary>
-        /// 账户性质
+        /// tính chất tài khoản
         /// </summary>
         public string zhxz { get; set; }
 
         /// <summary>
-        /// 状态
+        /// trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建用户ID
+        /// người tạoID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// thời gian sửa đổi lần cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// người sửa đổi lần cuốiID
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 排序
+        /// sắp xếp
         /// </summary>
         public int? px { get; set; }
 

@@ -6,7 +6,7 @@ namespace NewtouchHIS.Domain.IDomainService.CIS
     public interface IOutpPrescriptionService:IScopedDependency
     {
         /// <summary>
-        /// 获取患者病历处方信息 by jzId
+        /// lấy thông tin bệnh án, đơn thuốc của bệnh nhân by jzId
         /// </summary>
         /// <param name="jzId"></param>
         /// <returns></returns>

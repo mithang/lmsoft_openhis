@@ -20,7 +20,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public string Id { get; set; }
 
         /// <summary>
-        /// Desc:申请时间
+        /// Desc:thời gian đăng ký
         /// Default:
         /// Nullable:True
         /// </summary>   
@@ -28,14 +28,14 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public DateTime? sqsj { get; set; }
 
         /// <summary>
-        /// Desc:就诊时间
+        /// Desc:thời gian khám bệnh
         /// Default:
         /// Nullable:True
         /// </summary>           
         public DateTime? jzsj { get; set; }
 
         /// <summary>
-        /// Desc:申请科室
+        /// Desc:khoa đăng ký
         /// Default:
         /// Nullable:True
         /// </summary>   
@@ -43,7 +43,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public string ks { get; set; }
 
         /// <summary>
-        /// Desc:申请医生
+        /// Desc:bác sĩ đăng ký
         /// Default:
         /// Nullable:True
         /// </summary>   
@@ -51,27 +51,27 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public string ysgh { get; set; }
 
         /// <summary>
-        /// Desc:申请状态
+        /// Desc:trạng thái đăng ký
         /// Default:EmunRemoteTreatedStu
         /// Nullable:False
         /// </summary>           
         public int sqzt { get; set; }
 
         /// <summary>
-        /// Desc:患者标识
+        /// Desc:định danh bệnh nhân
         /// Default:
         /// Nullable:True
         /// </summary>
         [Required(ErrorMessage = "患者id不可为空")]
         public string patid { get; set; }
         /// <summary>
-        /// 就诊卡号
+        /// số thẻ khám bệnh
         /// </summary>
         [Required(ErrorMessage = "就诊卡号不可为空")]
         public string kh { get; set; }
 
         /// <summary>
-        /// Desc:患者姓名
+        /// Desc:họ tên bệnh nhân
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -108,50 +108,50 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public DateTime? birth { get; set; }
 
         /// <summary>
-        /// Desc:病人性质
+        /// Desc:tính chất bệnh nhân
         /// Default:EnumBrxz
         /// Nullable:True
         /// </summary>           
         public string brxz { get; set; } = ((int)EnumBrxz.zf).ToString();
 
         /// <summary>
-        /// Desc:会议号
+        /// Desc:số phòng họp
         /// Default:
         /// Nullable:True
         /// </summary>           
         public string? mettingId { get; set; }
 
         /// <summary>
-        /// Desc:申请人信息
+        /// Desc:thông tin người đăng ký
         /// Default:
         /// Nullable:True
         /// </summary>           
         public string sqr { get; set; }
 
         /// <summary>
-        /// Desc:申请流水号（由第三方系统生成，不可重复）
+        /// Desc:số thứ tự đăng ký（do hệ thống bên thứ ba tạo ra，không được trùng lặp）
         /// Default:
         /// Nullable:True
         /// </summary>           
         public string sqlsh { get; set; }
         /// <summary>
-        /// 申请AppId
+        /// đăng kýAppId
         /// </summary>
         public string AppId { get; set; }
         /// <summary>
-        /// 申请机构
+        /// cơ quan đăng ký
         /// </summary>
         public string ApplyOrg { get; set; }
         /// <summary>
-        /// 机构名称
+        /// tên cơ quan
         /// </summary>
         public string ApplyOrgName { get; set; }
         /// <summary>
-        /// 申请人工号
+        /// số hiệu nhân viên đăng ký
         /// </summary>
         public string sqrgh { get; set; }
         /// <summary>
-        /// 门诊号
+        /// số khám ngoại trú
         /// </summary>
         public string? mzh { get; set; }
     }
@@ -159,23 +159,23 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
     public class TreatedApplyBaseVO
     {
         /// <summary>
-        /// 申请AppId
+        /// đăng kýAppId
         /// </summary>
         public string? AppId { get; set; }
         /// <summary>
-        /// 申请机构
+        /// cơ quan đăng ký
         /// </summary>
         public string ApplyOrg { get; set; }
         /// <summary>
-        /// 机构名称
+        /// tên cơ quan
         /// </summary>
         public string ApplyOrgName { get; set; }
         /// <summary>
-        /// 申请人工号
+        /// số hiệu nhân viên đăng ký
         /// </summary>
         public string sqrgh { get; set; }
         /// <summary>
-        /// Desc:申请时间
+        /// Desc:thời gian đăng ký
         /// Default:
         /// Nullable:True
         /// </summary>   
@@ -183,14 +183,14 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public DateTime? sqsj { get; set; }
 
         /// <summary>
-        /// Desc:就诊时间
+        /// Desc:thời gian khám bệnh
         /// Default:
         /// Nullable:True
         /// </summary>           
         public DateTime? jzsj { get; set; }
 
         /// <summary>
-        /// Desc:申请科室
+        /// Desc:khoa đăng ký
         /// Default:
         /// Nullable:True
         /// </summary>   
@@ -198,7 +198,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public string ks { get; set; }
 
         /// <summary>
-        /// Desc:申请医生
+        /// Desc:bác sĩ đăng ký
         /// Default:
         /// Nullable:True
         /// </summary>   
@@ -206,20 +206,20 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public string ysgh { get; set; }
 
         /// <summary>
-        /// Desc:患者标识
+        /// Desc:định danh bệnh nhân
         /// Default:
         /// Nullable:True
         /// </summary>
         [Required(ErrorMessage = "患者id不可为空")]
         public string patid { get; set; }
         /// <summary>
-        /// 就诊卡号
+        /// số thẻ khám bệnh
         /// </summary>
         [Required(ErrorMessage = "就诊卡号不可为空")]
         public string kh { get; set; }
 
         /// <summary>
-        /// Desc:患者姓名
+        /// Desc:họ tên bệnh nhân
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -227,33 +227,33 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public string xm { get; set; }
 
         /// <summary>
-        /// Desc:会议号
+        /// Desc:số phòng họp
         /// Default:
         /// Nullable:True
         /// </summary>           
         public string? mettingId { get; set; }
 
         /// <summary>
-        /// Desc:申请人信息(可用于申请会议室)
+        /// Desc:thông tin người đăng ký(có thể dùng để đăng ký phòng họp)
         /// Default:
         /// Nullable:True
         /// </summary>           
         public string? sqr { get; set; }
 
         /// <summary>
-        /// Desc:申请流水号（由第三方系统生成，不可重复）
+        /// Desc:số thứ tự đăng ký（do hệ thống bên thứ ba tạo ra，không được trùng lặp）
         /// Default:
         /// Nullable:True
         /// </summary>           
         public string? sqlsh { get; set; }
         /// <summary>
-        /// 门诊号
+        /// số khám ngoại trú
         /// </summary>
         public string? mzh { get; set; }
 
     }
     /// <summary>
-    /// 诊疗申请冗余信息
+    /// thông tin dự phòng đăng ký khám chữa bệnh
     /// </summary>
     public class TreatedApplyExtendVO : TreatedApplyVO
     {

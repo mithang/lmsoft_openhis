@@ -3,7 +3,7 @@
 namespace NewtouchHIS.WebAPI.Manage.Models
 {
     /// <summary>
-    /// 参与会议者申请会议
+    /// người tham gia cuộc họp đăng ký cuộc họp
     /// </summary>
     public class TreatedUserRequest
     {
@@ -11,18 +11,18 @@ namespace NewtouchHIS.WebAPI.Manage.Models
         public string usercode { get; set; }
         public string username { get; set; }
         /// <summary>
-        /// 远程诊疗申请流水号
+        /// số thứ tự đăng ký khám chữa bệnh từ xa
         /// </summary>
         [Required(ErrorMessage = "诊疗申请流水号不可为空")]
         public string applyId { get; set; }
         /// <summary>
-        /// 是否会议重置
-        /// 会议超时时，重新申请会议
+        /// có đặt lại cuộc họp hay không
+        /// khi cuộc họp quá thời gian，đăng ký lại cuộc họp
         /// </summary>
         public bool roomReset { get; set; } = false;
         public string? roomid { get; set; }
         /// <summary>
-        /// 门诊号
+        /// số khám ngoại trú
         /// </summary>
         public string? mzh { get; set; }
     }

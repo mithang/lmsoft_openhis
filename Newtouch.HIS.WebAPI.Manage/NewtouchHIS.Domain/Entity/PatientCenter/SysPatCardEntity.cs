@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Domain.Entity.PatientCenter
 {
     ///<summary>
-    /// 就诊卡
+    /// thẻ khám bệnh
     ///</summary>
     [Tenant(DBEnum.SettDb)]
     [SugarTable("xt_card", "SysPatCardEntity")]

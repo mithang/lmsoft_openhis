@@ -9,7 +9,7 @@ using NewtouchHIS.Lib.Base.Model;
 namespace NewtouchHIS.WebAPI.Manage.Areas.LIS.Controllers
 {
     /// <summary>
-    /// 患者基础信息管理(自费优先)
+    /// quản lý thông tin cơ sở bệnh nhân(ưu tiên tự trả)
     /// </summary>
     [Route("api/lis")]
     [ApiController]
@@ -55,7 +55,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.LIS.Controllers
 
 
         /// <summary>
-        /// 获取科室信息 
+        /// lấy thông tin khoa 
         /// </summary>
         /// <returns>List</returns>
         [HttpPost]
@@ -72,7 +72,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.LIS.Controllers
         }
 
         /// <summary>
-        /// 获取人员信息 
+        /// lấy thông tin nhân viên 
         /// </summary>
         /// <returns>List</returns>
         [HttpPost]
@@ -89,7 +89,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.LIS.Controllers
         }
 
         /// <summary>
-        /// 获取诊断信息 
+        /// lấy thông tin chẩn đoán 
         /// </summary>
         /// <returns>List</returns>
         [HttpPost]
@@ -106,7 +106,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.LIS.Controllers
         }
 
         /// <summary>
-        /// 获取收费项目信息 
+        /// lấy thông tin hạng mục thu phí 
         /// </summary>
         /// <returns>List</returns>
         [HttpPost]
@@ -123,7 +123,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.LIS.Controllers
         }
 
         /// <summary>
-        /// 获取手术信息 
+        /// lấy thông tin phẫu thuật 
         /// </summary>
         /// <returns>List</returns>
         [HttpPost]
@@ -140,7 +140,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.LIS.Controllers
         }
 
         /// <summary>
-        /// 获取患者信息 
+        /// lấy thông tin bệnh nhân 
         /// </summary>
         /// <returns>List</returns>
         [HttpPost]
@@ -157,7 +157,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.LIS.Controllers
         }
 
         /// <summary>
-        /// 获取申请单信息 
+        /// lấy thông tin phiếu đăng ký 
         /// </summary>
         /// <returns>List</returns>
         //[HttpPost]
@@ -168,13 +168,13 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.LIS.Controllers
         //    var result = await _lisHisPatientRequestDmnService.HisPatientRequestQuery();
         //    if (result == null)
         //    {
-        //        return new BusResult<List<HisPatientRequestEntity>> { code = ResponseResultCode.FAIL, msg = "未找到相关信息" };
+        //        return new BusResult<List<HisPatientRequestEntity>> { code = ResponseResultCode.FAIL, msg = "không tìm thấy thông tin liên quan" };
         //    }
         //    return new BusResult<List<HisPatientRequestEntity>> { code = ResponseResultCode.SUCCESS, Data = result };
         //}
 
         /// <summary>
-        /// 获取科室和人员对应关系 
+        /// lấy quan hệ tương ứng khoa và nhân viên 
         /// </summary>
         /// <returns>List</returns>
         [HttpPost]
@@ -191,7 +191,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.LIS.Controllers
         }
 
         /// <summary>
-        /// 科室字典
+        /// từ điển khoa
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -209,7 +209,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.LIS.Controllers
 
 
         /// <summary>
-        /// 医生字典
+        /// từ điển bác sĩ
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -226,7 +226,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.LIS.Controllers
         }
 
         /// <summary>
-        /// 收费项目
+        /// hạng mục thu phí
         /// </summary>
         /// <returns></returns>
         [HttpPost]

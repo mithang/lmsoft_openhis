@@ -32,12 +32,12 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         public string brxz { get; set; }
 
         /// <summary>
-        /// 0 -窗口  1-预约
+        /// 0 -cửa sổ  1-hẹn
         /// </summary>
         public string ghly { get; set; }
 
         /// <summary>
-        /// 1：门诊 2：急诊 专家
+        /// 1：khám ngoại trú 2：cấp cứu chuyên gia
         /// </summary>
         public string mjzbz { get; set; }
 
@@ -52,12 +52,12 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         public string ys { get; set; }
 
         /// <summary>
-        /// 按科室、挂号类型产生的排队号 from mz_jzxh
+        /// theo khoa、số xếp hàng do loại đăng ký khám tạo ra from mz_jzxh
         /// </summary>
         public Int16? jzxh { get; set; }
 
         /// <summary>
-        /// 挂号费 挂号项目 from xt_sfxm where dl = 挂号费 and zt = '1'
+        /// phí đăng ký khám hạng mục đăng ký khám from xt_sfxm where dl = phí đăng ký khám and zt = '1'
         /// </summary>
         public string ghlx { get; set; }
 
@@ -82,7 +82,7 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         public decimal gbf { get; set; }
 
         /// <summary>
-        /// 0 待结 1 已结 2 已退   --2006-06-17 启用,作为便于识别结算情况的冗余字段      --2006.06.13 ??时不用此字??   好像可以通过结算内码＝0判断未结，>0判断已结，撤销结算内码>0判断已退？暂时不用此字段
+        /// 0 chờ kết toán 1 đã kết toán 2 đã trả lại   --2006-06-17 bật,là trường dự phòng để dễ nhận biết tình hình thanh toán      --2006.06.13 ??khi không dùng chữ này??   hình như có thể thông qua mã nội bộ thanh toán＝0phán đoán chưa kết toán，>0phán đoán đã kết toán，thu hồi mã nội bộ thanh toán>0phán đoán đã trả lại？tạm thời không dùng trường này
         /// </summary>
         public string ghzt { get; set; }
 
@@ -92,22 +92,22 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         public DateTime? jsrq { get; set; }
 
         /// <summary>
-        /// 就诊标志（就诊状态） 枚举EnumOutpatientJzbz
+        /// cờ khám bệnh（trạng thái khám bệnh） enumEnumOutpatientJzbz
         /// </summary>
         public string jzbz { get; set; }
 
         /// <summary>
-        /// 就诊时间
+        /// thời gian khám bệnh
         /// </summary>
         public DateTime? jzrq { get; set; }
 
         /// <summary>
-        /// 0-普通挂号   1-空挂号   2-家床挂号   3-自费转医保挂号         ---------------------------------------------------   0 待挂号   1 挂号   2 退号 (也可通过判断此记录的jsnm是否被其他记录作为cxjsnm，得知是否退号，但是这样效率高)
+        /// 0-đăng ký khám thông thường   1-đăng ký khám trống   2-đăng ký khám giường tại nhà   3-đăng ký khám chuyển từ tự trả sang bảo hiểm y tế         ---------------------------------------------------   0 chờ đăng ký khám   1 đăng ký khám   2 trả số khám (cũng có thể thông qua phán đoán của bản ghi nàyjsnmcó được bản ghi khác dùng làm hay khôngcxjsnm，biết được có trả số khám hay không，nhưng như vậy hiệu quả cao)
         /// </summary>
         public string ghxz { get; set; }
 
         /// <summary>
-        /// 1.复诊 0.首诊
+        /// 1.tái khám 0.khám lần đầu
         /// </summary>
         public byte? fzbz { get; set; }
 
@@ -127,12 +127,12 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         public string gsrdh { get; set; }
 
         /// <summary>
-        /// 对应挂号排班表中专病项目 from mz_ghpb
+        /// hạng mục bệnh chuyên khoa tương ứng trong bảng lịch đăng ký khám from mz_ghpb
         /// </summary>
         public int? ghzbbh { get; set; }
 
         /// <summary>
-        /// 对应挂号排班表中专病项目 from mz_ghpb
+        /// hạng mục bệnh chuyên khoa tương ứng trong bảng lịch đăng ký khám from mz_ghpb
         /// </summary>
         public string ghzb { get; set; }
 
@@ -189,7 +189,7 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         public string zjh { get; set; }
 
         /// <summary>
-        /// 订单Id
+        /// đơn hàngId
         /// </summary>
         public long OrderId { get; set; }
 
@@ -216,44 +216,44 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         public string lxrdh { get; set; }
 
         /// <summary>
-        /// 医保结算号（前置）
+        /// số thanh toán bảo hiểm y tế（đặt trước）
         /// </summary>
         public string ybjsh { get; set; }
 
         /// <summary>
-        /// 就诊原因
+        /// nguyên nhân khám bệnh
         /// </summary>
         public string jzyy { get; set; }
         /// <summary>
-        /// 推荐人
+        /// người giới thiệu
         /// </summary>
         public string tjr { get; set; }
 
         /// <summary>
-        /// 门诊预约挂号ID 对应Newtouch_CIS.dbo.mz_yygh.Id
+        /// đăng ký khám hẹn ngoại trúID tương ứngNewtouch_CIS.dbo.mz_yygh.Id
         /// </summary>
         public string yyghId { get; set; }
 
         /// <summary>
-        /// 年龄文本显示
+        /// hiển thị văn bản tuổi
         /// </summary>
         public string nlshow { get; set; }
 
         /// <summary>
-        /// 门诊补偿序号 贵州新农合用
+        /// số thứ tự bồi thường ngoại trú dùng chung hợp tác y tế nông thôn mới Quý Châu
         /// </summary>
         public string outpId { get; set; }
         /// <summary>
-        /// 挂号来源辅助标识 区分同一来源的不同标记患者
-        /// 体检用
+        /// định danh phụ nguồn đăng ký khám phân biệt bệnh nhân được đánh dấu khác nhau từ cùng một nguồn
+        /// dùng cho khám sức khỏe
         /// </summary>
         public string ghlybz { get; set; }
         /// <summary>
-        /// 挂号排班Id
+        /// lịch đăng ký khámId
         /// </summary>
         public decimal? ScheduId { get; set; }
         /// <summary>
-        /// 就诊ID
+        /// khám bệnhID
         /// </summary>
         public string jzid { get; set; }
         public string jzpzlx { get; set; }

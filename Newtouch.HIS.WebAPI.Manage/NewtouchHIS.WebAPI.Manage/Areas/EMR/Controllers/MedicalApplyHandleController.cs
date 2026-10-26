@@ -13,7 +13,7 @@ using NewtouchHIS.WebAPI.Manage.Controllers;
 namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
 {
     /// <summary>
-    /// 病历申请审批
+    /// phê duyệt đăng ký bệnh án
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -32,7 +32,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
             _applyhandleDmn = applyhandleDmn;
         }
         /// <summary>
-        /// 申请审批/ 批准，驳回
+        /// phê duyệt đăng ký/ phê duyệt，bác bỏ
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

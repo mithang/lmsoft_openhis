@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Domain.Entity.RemoteTreated
 {
     ///<summary>
-    ///系统科室
+    ///khoa hệ thống
     ///</summary>
     [Tenant(DBEnum.CisDb)]
     [SugarTable("zl_zlsq", "TreatedApplyEntity")]
@@ -21,7 +21,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public string Id { get; set; }
 
         /// <summary>
-        /// Desc:申请时间
+        /// Desc:thời gian đăng ký
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -29,7 +29,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public DateTime? sqsj { get; set; }
 
         /// <summary>
-        /// Desc:就诊时间
+        /// Desc:thời gian khám bệnh
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -37,7 +37,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public DateTime? jzsj { get; set; }
 
         /// <summary>
-        /// Desc:申请科室
+        /// Desc:khoa đăng ký
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -45,7 +45,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public string ks { get; set; }
 
         /// <summary>
-        /// Desc:申请医生
+        /// Desc:bác sĩ đăng ký
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -53,7 +53,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public string ysgh { get; set; }
 
         /// <summary>
-        /// Desc:申请状态
+        /// Desc:trạng thái đăng ký
         /// Default:EmunRemoteTreatedStu
         /// Nullable:False
         /// </summary>           
@@ -61,14 +61,14 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public int sqzt { get; set; }
 
         /// <summary>
-        /// Desc:患者标识
+        /// Desc:định danh bệnh nhân
         /// Default:
         /// Nullable:True
         /// </summary>           
         [StringLength(50, ErrorMessage = "patid长度限制为50")]
         public string patid { get; set; }
         /// <summary>
-        /// 就诊卡号
+        /// số thẻ khám bệnh
         /// </summary>
         [Required(ErrorMessage = "kh不可为空")]
         public string kh { get; set; }
@@ -117,7 +117,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public DateTime? birth { get; set; }
 
         /// <summary>
-        /// Desc:病人性质
+        /// Desc:tính chất bệnh nhân
         /// Default:EnumBrxz
         /// Nullable:True
         /// </summary>           
@@ -125,7 +125,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public string? brxz { get; set; } 
 
         /// <summary>
-        /// Desc:会议号
+        /// Desc:số phòng họp
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -133,7 +133,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public string? mettingId { get; set; }
 
         /// <summary>
-        /// Desc:申请人信息
+        /// Desc:thông tin người đăng ký
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -141,30 +141,30 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public string sqr { get; set; }
 
         /// <summary>
-        /// Desc:申请流水号（由第三方系统生成，不可重复）
+        /// Desc:số thứ tự đăng ký（do hệ thống bên thứ ba tạo ra，không được trùng lặp）
         /// Default:
         /// Nullable:True
         /// </summary>           
         [StringLength(50, ErrorMessage = "sqlsh长度限制为50")]
         public string sqlsh { get; set; }
         /// <summary>
-        /// 申请AppId
+        /// đăng kýAppId
         /// </summary>
         public string? AppId { get; set; }
         /// <summary>
-        /// 申请机构
+        /// cơ quan đăng ký
         /// </summary>
         public string? ApplyOrg { get; set; }
         /// <summary>
-        /// 机构名称
+        /// tên cơ quan
         /// </summary>
         public string? ApplyOrgName { get; set; }
         /// <summary>
-        /// 申请人工号
+        /// số hiệu nhân viên đăng ký
         /// </summary>
         public string? sqrgh { get; set; }
         /// <summary>
-        /// 门诊号
+        /// số khám ngoại trú
         /// </summary>
         public string? mzh { get;set; }
     }

@@ -15,7 +15,7 @@ namespace NewtouchHIS.Domain.IDomainService.CIS
     public interface IMedicalDoctorsAdviceDmnService : IScopedDependency
     {
         /// <summary>
-        /// 住院医嘱
+        /// y lệnh nội trú
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -24,7 +24,7 @@ namespace NewtouchHIS.Domain.IDomainService.CIS
         /// <returns></returns>
         Task<List<MedicalDoctorsAdviceVo>> MedicalDoctorsAdviceRecord(string zyh, string orgId, string yzlx, DBEnum db = DBEnum.CisDb);
         /// <summary>
-        /// 门诊住院检验检查申请单
+        /// phiếu đăng ký kiểm tra xét nghiệm ngoại trú – nội trú
         /// </summary>
         /// <param name="jzh"></param>
         /// <param name="orgId"></param>

@@ -12,7 +12,7 @@ using static NewtouchHIS.Base.Domain.EnumExtend.BusEnum;
 namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
 {
     /// <summary>
-    /// 患者信息管理
+    /// quản lý thông tin bệnh nhân
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -23,7 +23,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         {
         }
         /// <summary>
-        /// 根据姓名/身份证号获取患者信息
+        /// theo họ tên/lấy thông tin bệnh nhân theo số chứng minh nhân dân
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -38,7 +38,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 自费患者自助建档
+        /// bệnh nhân tự trả tự lập hồ sơ
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -54,7 +54,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         }
 
         /// <summary>
-        /// 患者住院信息查询：by住院号/卡号/姓名
+        /// truy vấn thông tin nội trú bệnh nhân：bysố nội trú/số thẻ/họ tên
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -71,7 +71,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
 
         #region LIS 报告
         /// <summary>
-        /// 住院检验报告列表
+        /// danh sách báo cáo xét nghiệm nội trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -91,7 +91,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 住院检验报告列表
+        /// danh sách báo cáo xét nghiệm nội trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -111,7 +111,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 检验报告明细查询
+        /// truy vấn chi tiết báo cáo xét nghiệm
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     /// <summary>
-    /// 系统表通用字段基类
-    /// (不关联机构信息)
+    /// lớp cơ sở trường chung bảng hệ thống
+    /// (không liên kết thông tin cơ quan)
     /// </summary>
     public class ISysEntity
     {

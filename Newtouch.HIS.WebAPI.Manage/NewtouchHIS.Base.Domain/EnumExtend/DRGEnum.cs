@@ -5,17 +5,17 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
     public class DRGEnum
     {
         /// <summary>
-        /// DRG分组器版本
+        /// DRGphiên bản bộ nhóm
         /// </summary>
         public enum EnumDrgGrouperType
         {
             /// <summary>
-            /// CHS-DRG 1.0修订版、西安版、成都版
+            /// CHS-DRG 1.0bản sửa đổi、西安版、成都版
             /// </summary>
             [Description("CHS-DRG 1.0修订版、西安版、成都版")]
             chs_drg_10 = 10,
             /// <summary>
-            /// CHS-DRG 1.1标准版、铜川版、临沂版
+            /// CHS-DRG 1.1bản tiêu chuẩn、铜川版、临沂版
             /// </summary>
             [Description("CHS-DRG 1.1标准版、铜川版、临沂版")]
             chs_drg_11 = 11,
@@ -30,7 +30,7 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
             [Description("临汾版")]
             linfen_2022 = 1410001,
             /// <summary>
-            /// 无锡版
+            /// bản Vô Tích
             /// </summary>
             [Description("无锡版")]
             wuxi_2022 = 3202001,

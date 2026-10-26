@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.DomainService.CIS
 {
     /// <summary>
-    /// 门诊处方信息
+    /// thông tin đơn thuốc ngoại trú
     /// </summary>
     public class OutpPrescriptionService : BaseServices<PrescriptionEntity>, IOutpPrescriptionService
     {
         /// <summary>
-        /// 获取某次就诊处方列表 by jzId
+        /// lấy danh sách đơn thuốc của một lần khám by jzId
         /// </summary>
         /// <param name="jzId"></param>
         /// <returns></returns>
@@ -32,7 +32,7 @@ namespace NewtouchHIS.DomainService.CIS
             return presList.Adapt<List<OutpPrescriptionDataVO>>();
         }
         /// <summary>
-        /// 获取患者病历处方信息 by jzId
+        /// lấy thông tin bệnh án, đơn thuốc của bệnh nhân by jzId
         /// </summary>
         /// <param name="jzId"></param>
         /// <returns></returns>

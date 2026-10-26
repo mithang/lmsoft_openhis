@@ -24,7 +24,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.HisJob.Controllers
             _sysOrgVDmn = sysOrgVDmn;
         }
         /// <summary>
-        /// 未处理的即时消息
+        /// tin nhắn tức thời chưa xử lý
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -58,8 +58,8 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.HisJob.Controllers
             return new BusResult<List<MsgNoticeQueueVO>> { code = ResponseResultCode.SUCCESS, Data = msg.Count == 0 ? null : msg };
         }
         /// <summary>
-        /// 未读消息
-        /// 当天时间间隔超过1h
+        /// tin nhắn chưa đọc
+        /// khoảng thời gian trong ngày vượt quá1h
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -94,7 +94,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.HisJob.Controllers
             return new BusResult<List<MsgNoticeQueueVO>> { code = ResponseResultCode.SUCCESS, Data = msg };
         }
         /// <summary>
-        /// 消息处理成功
+        /// xử lý tin nhắn thành công
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -106,12 +106,12 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.HisJob.Controllers
             {
                 return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "机构信息、消息Id不可为空" };
             }
-            //更新消息处理状态
+            //cập nhật trạng thái xử lý tin nhắn
             var msgModify = await _msgQueueDmn.NoticeStuModify(request.Data.QueueId, request.AppId, NoticeStuEnum.UnSend);
             return new BusResult<bool> { code = ResponseResultCode.SUCCESS, Data = msgModify };
         }
         /// <summary>
-        /// 消息处理失败
+        /// xử lý tin nhắn thất bại
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -123,12 +123,12 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.HisJob.Controllers
             {
                 return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "机构信息、消息Id不可为空" };
             }
-            //更新消息处理状态
+            //cập nhật trạng thái xử lý tin nhắn
             var msgModify = await _msgQueueDmn.NoticeStuModify(request.Data.QueueId, request.AppId, NoticeStuEnum.Wait, false);
             return new BusResult<bool> { code = ResponseResultCode.SUCCESS, Data = msgModify };
         }
         /// <summary>
-        /// 消息发送成功
+        /// gửi tin nhắn thành công
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -140,12 +140,12 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.HisJob.Controllers
             {
                 return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "机构信息、消息Id不可为空" };
             }
-            //更新消息处理状态
+            //cập nhật trạng thái xử lý tin nhắn
             var msgModify = await _msgQueueDmn.NoticeStuModify(request.Data.QueueId, request.AppId, NoticeStuEnum.Send);
             return new BusResult<bool> { code = ResponseResultCode.SUCCESS, Data = msgModify };
         }
         /// <summary>
-        /// 消息发送失败
+        /// gửi tin nhắn thất bại
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -157,12 +157,12 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.HisJob.Controllers
             {
                 return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "机构信息、消息Id不可为空" };
             }
-            //更新消息处理状态
+            //cập nhật trạng thái xử lý tin nhắn
             var msgModify = await _msgQueueDmn.NoticeStuModify(request.Data.QueueId, request.AppId, NoticeStuEnum.UnSend, false);
             return new BusResult<bool> { code = ResponseResultCode.SUCCESS, Data = msgModify };
         }
         /// <summary>
-        /// 消息已读
+        /// tin nhắn đã đọc
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -174,12 +174,12 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.HisJob.Controllers
             {
                 return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "机构信息、消息Id不可为空" };
             }
-            //更新消息处理状态
+            //cập nhật trạng thái xử lý tin nhắn
             var msgModify = await _msgQueueDmn.NoticeStuModify(request.Data.QueueId, request.AppId, NoticeStuEnum.Read);
             return new BusResult<bool> { code = ResponseResultCode.SUCCESS, Data = msgModify };
         }
         /// <summary>
-        /// 消息已读（批量）
+        /// tin nhắn đã đọc（hàng loạt）
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -191,7 +191,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.HisJob.Controllers
             {
                 return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "机构信息、消息Id不可为空" };
             }
-            //更新消息处理状态
+            //cập nhật trạng thái xử lý tin nhắn
             var msgModify = await _msgQueueDmn.NoticeStuModify(request.Data.QueueIds, request.AppId, NoticeStuEnum.Read);
             return new BusResult<bool> { code = ResponseResultCode.SUCCESS, Data = msgModify };
         }

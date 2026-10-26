@@ -9,32 +9,32 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain.ValueObjects
 {
     /// <summary>
-    /// 注册应用信息
+    /// đăng ký thông tin ứng dụng
     /// </summary>
     public class AuthAppVO
     {
         /// <summary>
-        /// Desc:授权ID
+        /// Desc:ủy quyềnID
         /// Default:
         /// Nullable:False
         /// </summary>           
         public string? AuthId { get; set; }
 
         /// <summary>
-        /// Desc:应用通用Id
+        /// Desc:ứng dụng chungId
         /// Default:
         /// Nullable:False
         /// </summary>           
         public string? AppId { get; set; }
 
         /// <summary>
-        /// Desc:应用名称
+        /// Desc:tên ứng dụng
         /// Default:
         /// Nullable:False
         public string? AppName { get; set; }
 
         /// <summary>
-        /// Desc:域名地址
+        /// Desc:địa chỉ tên miền
         /// Default:
         /// Nullable:False
         /// </summary>   
@@ -48,7 +48,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public string? Host { get; set; }
 
         /// <summary>
-        /// Desc:授权类型 AuthType
+        /// Desc:loại ủy quyền AuthType
         /// Default:Web
         /// Nullable:True
         /// </summary>    

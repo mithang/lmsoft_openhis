@@ -23,7 +23,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.MRQC.Controllers
 
 
         /// <summary>
-        /// 获取病历质控达标情况
+        /// lấy tình hình đạt chuẩn kiểm soát chất lượng bệnh án
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

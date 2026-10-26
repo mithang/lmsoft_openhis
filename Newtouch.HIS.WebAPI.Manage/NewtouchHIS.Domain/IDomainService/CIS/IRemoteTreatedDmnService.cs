@@ -7,36 +7,36 @@ namespace NewtouchHIS.Domain.IDomainService.CIS
     public interface IRemoteTreatedDmnService : IScopedDependency
     {
         /// <summary>
-        /// 新增会诊申请
+        /// thêm mới đăng ký hội chẩn
         /// </summary>
         /// <param name="applyVO"></param>
         /// <param name="user"></param>
         /// <returns></returns>
         Task<string> AddTreatedApply(TreatedApplyVO applyVO, string user);
         /// <summary>
-        /// 更新会诊申请状态
-        /// 要求ApplyId、sqlsh不可为空
+        /// cập nhật trạng thái đăng ký hội chẩn
+        /// yêu cầuApplyId、sqlshkhông được để trống
         /// </summary>
         /// <param name="applyEntity"></param>
         /// <returns></returns>
         Task<bool> ModifiedApplyStu(TreatedApplyEntity applyEntity, string user);
         /// <summary>
-        /// 查询会诊申请状态
+        /// truy vấn trạng thái đăng ký hội chẩn
         /// </summary>
         /// <param name="applyId"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         Task<bool> TreatedApplyStu(string applyId, string orgId);
         /// <summary>
-        /// 会诊申请信息查询 by ApplyId
+        /// truy vấn thông tin đăng ký hội chẩn by ApplyId
         /// </summary>
         /// <param name="applyId"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         Task<TreatedApplyVO> TreatedApplyInfo(string applyId, string orgId, string? sqlsh = null);
         /// <summary>
-        /// 会诊申请详细信息查询  by ApplyId
-        /// 含冗余信息
+        /// truy vấn thông tin chi tiết đăng ký hội chẩn  by ApplyId
+        /// bao gồm thông tin dự phòng
         /// </summary>
         /// <param name="applyId"></param>
         /// <param name="orgId"></param>

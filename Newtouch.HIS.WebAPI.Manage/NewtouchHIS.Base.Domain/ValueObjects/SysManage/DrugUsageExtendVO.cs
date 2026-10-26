@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.Base.Domain.ValueObjects
 {
     /// <summary>
-    /// 药品剂型用法对照关系
+    /// quan hệ đối chiếu cách dùng dạng bào chế thuốc
     /// </summary>
     public class DrugFormulationUsageVO
     {

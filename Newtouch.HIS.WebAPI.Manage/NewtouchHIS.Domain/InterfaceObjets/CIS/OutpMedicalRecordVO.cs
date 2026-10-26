@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.Domain.InterfaceObjets.CIS
 {
     /// <summary>
-    /// 门诊患者病历
+    /// bệnh án bệnh nhân ngoại trú
     /// </summary> 
     public class OutpMedicalRecordVO
     {
@@ -12,118 +12,118 @@
         public string? mzh { get; set; }
 
         /// <summary>
-        /// 冗余挂号信息  枚举 1 普通门诊 2 急诊 3专家
+        /// thông tin đăng ký khám dự phòng  enum 1 khám ngoại trú thông thường 2 cấp cứu 3chuyên gia
         /// </summary>
         public int? mjzbz { get; set; }
 
         /// <summary>
-        /// 病历号
+        /// số bệnh án
         /// </summary>
         public string? blh { get; set; }        
 
         /// <summary>
-        /// 主诉
+        /// than phiền chính
         /// </summary>
         public string? zs { get; set; }
 
         /// <summary>
-        /// 发病时间
+        /// thời gian phát bệnh
         /// </summary>
         public DateTime? fbsj { get; set; }
 
         /// <summary>
-        /// 现病史
+        /// bệnh sử hiện tại
         /// </summary>
         public string? xbs { get; set; }
 
         /// <summary>
-        /// 既往史
+        /// tiền sử
         /// </summary>
         public string? jws { get; set; }
 
         /// <summary>
-        /// 查体
+        /// khám thực thể
         /// </summary>
         public string? ct { get; set; }
         /// <summary>
-        /// 处理
+        /// xử lý
         /// </summary>
         public string? clfa { get; set; }
         /// <summary>
-        /// 辅助检查
+        /// kiểm tra hỗ trợ
         /// </summary>
         public string? fzjc { get; set; }
         /// <summary>
-        /// 月经史
+        /// tiền sử kinh nguyệt
         /// </summary>
         public string? yjs { get; set; }
         /// <summary>
-        /// 过敏史
+        /// tiền sử dị ứng
         /// </summary>
         public string? gms { get; set; }
         /// <summary>
-        /// 一般检查
+        /// kiểm tra thông thường
         /// </summary>
         public OutpGeneralInspectionVO? ybjc { get; set; }
         public List<OutpWMDiagnosisVO>? xyzd { get; set; }
         public List<OutpTCMDiagnosisVO>? zyzd { get; set; }
     }
     /// <summary>
-    /// 门诊病历-一般检查
+    /// bệnh án ngoại trú-kiểm tra thông thường
     /// </summary>
     public class OutpGeneralInspectionVO
     {
         #region 一般检查
         /// <summary>
-        /// 体重
+        /// cân nặng
         /// </summary>
         public decimal? tizhong { get; set; }
 
         /// <summary>
-        /// 体温
+        /// nhiệt độ cơ thể
         /// </summary>
         public decimal? tiwen { get; set; }
 
         /// <summary>
-        /// 脉搏
+        /// mạch
         /// </summary>
         public decimal? maibo { get; set; }
 
         /// <summary>
-        /// 血糖测量方式 餐后 空腹 随机 
+        /// phương thức đo đường huyết sau bữa ăn lúc đói ngẫu nhiên 
         /// EnumXtclfs
         /// </summary>
         public string? xuetangclfs { get; set; }
 
         /// <summary>
-        /// 血糖
+        /// đường huyết
         /// </summary>
         public decimal? xuetang { get; set; }
         /// <summary>
-        /// 身高
+        /// chiều cao
         /// </summary>
         public decimal? shengao { get; set; }
         /// <summary>
-        /// 收缩压
+        /// huyết áp tâm thu
         /// </summary>
         public decimal? shousuoya { get; set; }
         /// <summary>
-        /// 舒张压
+        /// huyết áp tâm trương
         /// </summary>
         public decimal? shuzhangya { get; set; }
         /// <summary>
-        /// 呼吸
+        /// hô hấp
         /// </summary>
         public decimal? huxi { get; set; }
         /// <summary>
-        /// 婚姻状况 EnumMarriageStu
+        /// tình trạng hôn nhân EnumMarriageStu
         /// </summary>
         public string? hy { get; set; }
         #endregion
     }
 
     /// <summary>
-    /// 门诊西医诊断
+    /// chẩn đoán Tây y ngoại trú
     /// </summary>
     public class OutpWMDiagnosisVO
     {
@@ -140,7 +140,7 @@
         /// </summary>
         public int? zdlx { get; set; }
         /// <summary>
-        /// 疑似标志
+        /// cờ nghi ngờ
         /// </summary>
         public string? ysbz { get; set; }
         /// <summary>
@@ -148,12 +148,12 @@
         /// </summary>
         public string? icd10 { get; set; }
         /// <summary>
-        /// 西医诊断备注
+        /// ghi chú chẩn đoán Tây y
         /// </summary>
         public string? zdbz { get; set; }
     }
     /// <summary>
-    /// 门诊中医诊断
+    /// chẩn đoán y học cổ truyền ngoại trú
     /// </summary>
     public class OutpTCMDiagnosisVO
     {
@@ -170,17 +170,17 @@
         /// </summary>
         public int zdlx { get; set; }
         /// <summary>
-        /// 疑似标志
+        /// cờ nghi ngờ
         /// </summary>
         public string? ysbz { get; set; }
 
         /// <summary>
-        /// 症候编码
+        /// mã chứng hậu
         /// </summary>
         public string? zhCode { get; set; }
 
         /// <summary>
-        /// 症候名称
+        /// tên chứng hậu
         /// </summary>
         public string? zhmc { get; set; }
         /// <summary>
@@ -188,7 +188,7 @@
         /// </summary>
         public string? icd10 { get; set; }
         /// <summary>
-        /// 中医诊断备注
+        /// ghi chú chẩn đoán y học cổ truyền
         /// </summary>
         public string? zdbz { get; set; }
     }

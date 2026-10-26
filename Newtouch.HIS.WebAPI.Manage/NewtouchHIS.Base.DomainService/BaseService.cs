@@ -14,27 +14,27 @@ namespace NewtouchHIS.Base.DomainService
     {
         public BusinessConfig sysConfig = ConfigInitHelper.SysConfig;
         /// <summary>
-        /// 上下文为实体Attr 归属库
+        /// ngữ cảnh là thực thểAttr cơ sở dữ liệu thuộc về
         /// </summary>
         public SugarRepository<TEntity> baseDal => new SugarRepository<TEntity>();
 
 
         #region Identity
         /// <summary>
-        /// 当前Api用户信息
+        /// hiện tạiApithông tin người dùng
         /// </summary>
         public IIdentityCache CurrentIdentity { get; set; }
         #endregion
         public BaseServices()
         {
-            CurrentIdentity = NullIdentityCache.Instance;//空实现
+            CurrentIdentity = NullIdentityCache.Instance;//triển khai trống
         }
         public void DbConnection()
         {
 
         }
         /// <summary>
-        /// 非空校验
+        /// kiểm tra không trống
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>
@@ -61,8 +61,8 @@ namespace NewtouchHIS.Base.DomainService
             return valid;
         }
         /// <summary>
-        /// 枚举值校验 
-        /// 若要提示明确 需添加 DescriptionAttribute
+        /// kiểm tra giá trị enum 
+        /// nếu muốn nhắc rõ ràng cần thêm DescriptionAttribute
         /// </summary>
         /// <param name="enumList"></param>
         /// <param name="errMsg"></param>
@@ -89,11 +89,11 @@ namespace NewtouchHIS.Base.DomainService
             return valid;
         }
         /// <summary>
-        /// 验证枚举value有效性 
+        /// xác thực enumvaluetính hiệu lực 
         /// </summary>
         /// <typeparam name="TEnum"></typeparam>
         /// <param name="value"></param>
-        /// <param name="errmsg">错误提示</param>
+        /// <param name="errmsg">nhắc lỗi</param>
         /// <returns></returns>
         public bool ValidEnum<TEnum>(int value) where TEnum : Enum
         {
@@ -104,7 +104,7 @@ namespace NewtouchHIS.Base.DomainService
             return true;
         }
         /// <summary>
-        /// 自动组装where 查询（根据 T 的Db 特性查询）
+        /// tự động lắp rápwhere truy vấn（theo T củaDb truy vấn đặc tính）
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>
@@ -133,7 +133,7 @@ namespace NewtouchHIS.Base.DomainService
                 }
 
             }
-            return Expression.Lambda<Func<T, bool>>(resultExpression, t); //要用变量 var exp=
+            return Expression.Lambda<Func<T, bool>>(resultExpression, t); //cần dùng biến var exp=
         }
 
     }

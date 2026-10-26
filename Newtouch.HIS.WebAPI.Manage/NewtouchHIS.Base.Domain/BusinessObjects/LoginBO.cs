@@ -5,12 +5,12 @@ namespace NewtouchHIS.Base.Domain
     public class LoginBO
     {
         /// <summary>
-        /// 用户名
+        /// tên người dùng
         /// </summary>
         [Required(ErrorMessage ="用户名不可为空")]
         public string Username { get; set; }
         /// <summary>
-        /// 密码
+        /// mật khẩu
         /// </summary>
         [Required(ErrorMessage = "密码不可为空")]
         public string Password { get; set; }

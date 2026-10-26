@@ -9,14 +9,14 @@ namespace NewtouchHIS.Base.Domain.Organize
     public interface ISysRoleDmnService : IScopedDependency
     {
         /// <summary>
-        /// 获取用户已授权的角色列表
+        /// lấy danh sách vai trò người dùng đã ủy quyền
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         Task<List<SysRoleEntity>> GetUserRoleList(string userId, string orgId);
         /// <summary>
-        /// 获取指定系统用户已授权角色列表
+        /// lấy danh sách vai trò đã ủy quyền của người dùng hệ thống chỉ định
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="orgId"></param>
@@ -24,27 +24,27 @@ namespace NewtouchHIS.Base.Domain.Organize
         /// <returns></returns>
         Task<List<SysRoleEntity>> GetUserRoleList(string userId, string orgId, string db);
         /// <summary>
-        /// 校验用户是否是管理员
+        /// kiểm tra người dùng có phải là quản trị viên hay không
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         Task<bool> IsHospAdmin(string userId, string orgId);
         /// <summary>
-        /// 删除系统角色
+        /// xóa vai trò hệ thống
         /// </summary>
         /// <param name="keyValue"></param>
         Task DeleteForm(string keyValue);
 
         /// <summary>
-        /// 提交新建、更新 实体 角色、角色权限
+        /// nộp mới、cập nhật thực thể vai trò、quyền vai trò
         /// </summary>
         /// <param name="roleEntity"></param>
         /// <param name="roleAuthorizeEntitys"></param>
         /// <param name="keyValue"></param>
         Task SubmitForm(SysRoleEntity roleEntity, List<Entity.SysRoleAuthorizeEntity> roleAuthorizeEntitys, string keyValue,string UserCode, string orgId);
         /// <summary>
-        /// 组织机构 角色列表 带 分页
+        /// tổ chức danh sách vai trò mang theo phân trang
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="pagination"></param>
@@ -53,13 +53,13 @@ namespace NewtouchHIS.Base.Domain.Organize
         Task<List<SysRoleEntity>> GetPagintionList(string orgId, string? keyword = null);
 
         /// <summary>
-        /// 获取角色实体
+        /// lấy thực thể vai trò
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
         Task<SysRoleEntity> GetForm(string keyword);
         /// <summary>
-        /// 系统角色列表
+        /// danh sách vai trò hệ thống
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

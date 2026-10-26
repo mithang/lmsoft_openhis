@@ -9,28 +9,28 @@ namespace NewtouchHIS.Base.Domain
     public interface IBaseServices<TEntity> where TEntity : class
     {
         ///// <summary>
-        ///// 根据ID列表删除
+        ///// theoIDxóa danh sách
         ///// </summary>
         ///// <param name="ids"></param>
         ///// <returns></returns>
         //Task<bool> DeleteByIds(object[] ids);
 
         ///// <summary>
-        ///// 根据ID删除
+        ///// theoIDxóa
         ///// </summary>
         ///// <param name="id"></param>
         ///// <returns></returns>
         //Task<bool> DeleteById(string id);
 
         ///// <summary>
-        ///// 添加实体
+        ///// thêm thực thể
         ///// </summary>
         ///// <param name="model"></param>
         ///// <returns></returns>
         //Task<long> Add(TEntity model);
 
         ///// <summary>
-        ///// 更新实体
+        ///// cập nhật thực thể
         ///// </summary>
         ///// <param name="model"></param>
         ///// <returns></returns>
@@ -44,24 +44,24 @@ namespace NewtouchHIS.Base.Domain
 
         #region Ado
         /// <summary>
-        /// 执行非查询sql语句，返回操作是否成功
+        /// thực thi câu lệnh không phải truy vấnsqlcâu lệnh，trả về thao tác có thành công hay không
         /// </summary>
-        /// <param name="sql">sql语句</param>
-        /// <param name="parameters">参数化</param>
+        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="parameters">tham số hóa</param>
         /// <returns></returns>
         Task<bool> ExecuteCommandSql(string sql, params SugarParameter[] parameters);
         /// <summary>
-        /// 执行查询sql语句，返回查询的结果集
+        /// thực thi truy vấnsqlcâu lệnh，trả về tập kết quả truy vấn
         /// </summary>
-        /// <param name="sql">sql语句</param>
-        /// <param name="parameters">参数化</param>
+        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="parameters">tham số hóa</param>
         /// <returns></returns>
         Task<List<TEntity>> GetListBySqlQuery(string sql, params DbParameter[] parameters);
         /// <summary>
-        /// 执行查询sql语句，返回 第一行第一列
+        /// thực thi truy vấnsqlcâu lệnh，trả về hàng đầu tiên, cột đầu tiên
         /// </summary>
-        /// <param name="sql">sql语句</param>
-        /// <param name="parameters">参数化</param>
+        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="parameters">tham số hóa</param>
         /// <returns></returns>
         //Task<object> GetScalar(string sql, params SugarParameter[] parameters);
 

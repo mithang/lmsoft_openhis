@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.Base.Domain.Model
 {
     /// <summary>
-    /// 分页响应 Model
+    /// phản hồi phân trang Model
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class PageRespModel<T>
@@ -13,40 +13,40 @@
     public class QueryParamsBase
     {
         /// <summary>
-        /// 关键字查询
+        /// truy vấn theo từ khóa
         /// </summary>
         public string? keyword { get; set; }
         /// <summary>
-        /// 机构Id
+        /// cơ quanId
         /// </summary>
         public string? orgId { get; set; }
         /// <summary>
-        /// 编码
+        /// mã
         /// </summary>
         public string? code { get;set; }
         public List<string>? stringList { get; set; }
         /// <summary>
-        /// 科室编码
+        /// mã khoa
         /// </summary>
         public string? kscode { get; set; }
         /// <summary>
-        /// 发药开始时间
+        /// thời gian bắt đầu phát thuốc
         /// </summary>
         public DateTime? fykssj { get; set; }
         /// <summary>
-        /// 发药结束时间
+        /// thời gian kết thúc phát thuốc
         /// </summary>
         public DateTime? fyjssj { get; set; }
         /// <summary>
-        /// 药品编码
+        /// mã thuốc
         /// </summary>
         public string? ypdm { get; set; }
         /// <summary>
-        /// 出入库明细ID
+        /// chi tiết xuất nhập khoID
         /// </summary>
         public string? crkmxId { get; set; }
         /// <summary>
-        /// 1 已同步 其余未同步
+        /// 1 đã đồng bộ phần còn lại chưa đồng bộ
         /// </summary>
         public string? zstbzt { get; set; }
         public string? isyfy { get; set; }

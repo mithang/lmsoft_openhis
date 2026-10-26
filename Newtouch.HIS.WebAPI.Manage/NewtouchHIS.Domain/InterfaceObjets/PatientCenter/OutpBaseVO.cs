@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Domain.InterfaceObjets.PatientCenter
 {
     /// <summary>
-    /// 门诊患者基本信息
+    /// thông tin cơ bản bệnh nhân ngoại trú
     /// </summary>
     public class OutpBaseVO
     {
         /// <summary>
-        /// 机构编码
+        /// mã cơ quan
         /// </summary>
         public string? OrganizeId { get; set; }
         /// <summary>
-        /// 患者Id
+        /// bệnh nhânId
         /// </summary>
         public string? patid { get; set; }
         /// <summary>
-        /// 门诊号
+        /// số khám ngoại trú
         /// </summary>
         public string? mzh { get; set; }
     }

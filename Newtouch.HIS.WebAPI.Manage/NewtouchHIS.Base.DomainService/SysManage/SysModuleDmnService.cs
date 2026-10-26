@@ -15,14 +15,14 @@ using SqlSugar;
 namespace NewtouchHIS.Base.DomainService.SysManage
 {
     /// <summary>
-    /// 系统菜单
-    /// 各系统通用功能，DBContext选择为主库,建议引用
+    /// menu hệ thống
+    /// chức năng chung của các hệ thống，DBContextchọn làm cơ sở dữ liệu chính,khuyến nghị trích dẫn
     /// </summary>
     public class SysModuleDmnService : BaseDmnService<SysModuleEntity>, ISysModuleDmnService
     {
         private readonly ISysRoleDmnService _roleDmn;
         /// <summary>
-        /// 应用需配置主库
+        /// ứng dụng cần cấu hình cơ sở dữ liệu chính
         /// </summary>
         private string _mainDB = ConfigInitHelper.DbConfig.MainDB ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "DbConfig.MainDB");
         public SysModuleDmnService(ISysRoleDmnService roleDmn)
@@ -59,7 +59,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             {
                 return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "操作员权限不足" };
             }
-            //查找重复菜单
+            //tìm menu trùng lặp
             var menuNames = vo.Select(p => p.Name);
             var existsMenu = await GetByWhere(p => menuNames.Contains(p.Name) && p.OrganizeId == orgId && p.zt == "1");
             if (existsMenu != null && existsMenu.Count() > 0)
@@ -82,7 +82,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
                     return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "父级菜单添加失败" };
                 }
             }
-            //子菜单
+            //menu con
             var childMenu = vo.Where(p => !string.IsNullOrWhiteSpace(p.ParentId)).ToList();
             if (childMenu != null && childMenu.Count() > 0)
             {
@@ -117,7 +117,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             {
                 return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "机构信息及用户信息不可为空" };
             }
-            //获取用户权限
+            //lấy quyền người dùng
             var userEty = await GetByWhereWithAttr<SysUserEntity>(p => p.Account == user && p.TopOrganizeId == sysConfig.Top_OrganizeId && p.zt == "1");
             if (userEty == null || userEty.Count != 1)
             {
@@ -230,7 +230,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             {
                 return true;
             }
-            //获取用户权限
+            //lấy quyền người dùng
             var userEty = await GetByWhereWithAttr<SysUserEntity>(p => p.Account == user && p.TopOrganizeId == sysConfig.Top_OrganizeId && p.zt == "1");
             if (userEty == null || userEty.Count != 1)
             {

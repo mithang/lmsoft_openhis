@@ -12,7 +12,7 @@ namespace NewtouchHIS.DomainService.MRQC
     public class MedicalRecordApplyDmnService : BaseDmnService<MRQCScoreVO>, IMedicalRecordApplyDmnService
     {
         /// <summary>
-        /// 质控病历申请
+        /// đăng ký bệnh án kiểm soát chất lượng
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="db"></param>
