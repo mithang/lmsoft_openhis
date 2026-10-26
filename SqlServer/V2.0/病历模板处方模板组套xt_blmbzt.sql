@@ -3,7 +3,7 @@ GO
 /*
  Navicat Premium Dump SQL
 
- Source Server         : 合理用药院版
+ Source Server         : Phiên bản dùng thuốc hợp lý của bệnh viện
  Source Server Type    : SQL Server
  Source Server Version : 15002000 (15.00.2000)
  Source Host           : 61.172.179.73:41125

@@ -1,13 +1,13 @@
 ﻿USE [Newtouch_EMR]
 GO
 
--- 事件类型: CREATE_PROCEDURE
--- 变更时间: 11/21/2024 11:04:53
+-- Loại sự kiện: CREATE_PROCEDURE
+-- Thời gian thay đổi: 11/21/2024 11:04:53
 
 /*
-author:chl
-createtime:3021-7-29
-desc:病案首页费用 从Sett结算同步   病案系统-病案费用维护  版本
+Tác giả: chl
+Thời gian tạo: 3021-7-29
+Mô tả: Chi phí trang đầu hồ sơ bệnh án, đồng bộ từ quyết toán Sett, hệ thống hồ sơ bệnh án - bảo trì chi phí hồ sơ bệnh án, phiên bản
 exec usp_sync_basy_feefromSett
 */
 CREATE proc [dbo].[usp_sync_basy_feefromSett_病案费用维护]
@@ -91,7 +91,7 @@ begin
 
 		begin try
 			--begin tran
-				--更新总金额
+				--Cập nhật tổng số tiền
 				print '更新总金额'
 				update a
 				set a.ZFY=b.zje , a.ZFJE=b.xjzf ,
@@ -103,7 +103,7 @@ begin
 				--select zfy,ZFJE, * from mr_basy a,#updzfy b 
 				--where a.Id=b.Id and a.zt='1'  
 
-				--更新明细费
+				--Cập nhật phí chi tiết
 				print '更新明细费'
 				select  a.id,a.bah,a.zyh,
 					XYF=max(case when FeetypeCode='XYF' then Amount else 0.00 end),

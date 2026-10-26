@@ -4,7 +4,7 @@
     //
     $.clients = {
         extToClients: function (data, appId) {
-            //遍历data的属性 扩展到clients
+            //Duyệt các thuộc tính của data và mở rộng sang clients
             if (!!!appId) {
                 if (!!!top.top.clients) {
                     top.top.clients = {
@@ -24,7 +24,7 @@
             for (dataitemName in data) {
                 var itemdata = data[dataitemName];
                 if (typeof (itemdata) == typeof ('abc')) {
-                    //字符串则要使用eval方法
+                    //Nếu là chuỗi thì phải dùng phương thức eval
                     itemdata = eval(itemdata);
                 }
                 if (!!!appId) {
@@ -72,17 +72,17 @@
         },
         init: function (appId, locationHost) {
             if ($.clients.checkFirst(appId)) {
-                //避免多次加载
+                //Tránh tải nhiều lần
                 if (!!!appId) {
-                    //同步请求菜单
+                    //Yêu cầu đồng bộ menu
                     $.clients.funcClientsAjax("/ClientsData/GetModuleDataJson", false);
-                    //同步请求
+                    //Yêu cầu đồng bộ
                     $.clients.funcClientsAjax("/ClientsData/GetClientsDataJson", false);
-                    //异步请求
+                    //Yêu cầu không đồng bộ
                     $.clients.funcClientsAjax("/ClientsData/GetAsyncClientsDataJson", true);
                 }
                 else {
-                    //均以同步请求方式来发送
+                    //Đều gửi theo cách yêu cầu đồng bộ
                     $.clients.funcClientsAjax((!!locationHost ? locationHost : "") + "/ClientsData/GetClientsDataJson", false, appId);
                     $.clients.funcClientsAjax((!!locationHost ? locationHost : "") + "/ClientsData/GetAsyncClientsDataJson", false, appId);
                 }

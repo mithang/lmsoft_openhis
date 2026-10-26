@@ -1,28 +1,28 @@
 ﻿USE [Newtouch_EMR]
 GO
 
--- 事件类型: ALTER_PROCEDURE
--- 变更时间: 11/18/2024 10:43:10
+-- Loại sự kiện: ALTER_PROCEDURE
+-- Thời gian thay đổi: 11/18/2024 10:43:10
 
   
 /*=========================================  
-使用程序：emr  
-过程（视图）名称：usp_getbrxx  
-过程说明：病人基本信息查询  
-新 增 人：王侯文   
-新增时间：2022-12-16  
+Chương trình sử dụng: emr  
+Tên quy trình (khung nhìn): usp_getbrxx  
+Mô tả quy trình: Tra cứu thông tin cơ bản của bệnh nhân  
+Người thêm mới: Vương Hầu Văn   
+Thời gian thêm mới: 2022-12-16  
   
-修改人：  
-修改时间：  
-修改内容：  
+Người sửa:   
+Thời gian sửa:   
+Nội dung sửa:   
 =========================================*/ 
 /*
 ----------------------------------------------------  
-修改原因：添加联系人isnull的判断  
-修改方式：新增查询视图
-修 改 人：朱骏   
-修改日期：2023-01-09  
-修改标志：20230109A  
+Lý do sửa: Thêm phán đoán isnull cho người liên hệ  
+Cách sửa: Thêm khung nhìn tra cứu mới
+Người sửa: Chu Tuấn   
+Ngày sửa: 2023-01-09  
+Cờ sửa đổi: 20230109A  
 ---------------------------------------------------- 
 */
 ALTER PROCEDURE [dbo].[usp_getbrxx]  

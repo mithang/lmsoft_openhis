@@ -1,16 +1,16 @@
 ﻿USE [NewtouchHIS_Base]
 GO
 
--- 事件类型: ALTER_PROCEDURE
--- 变更时间: 11/07/2024 11:04:38
+-- Loại sự kiện: ALTER_PROCEDURE
+-- Thời gian thay đổi: 11/07/2024 11:04:38
 
 
 
 
 /*
-author:tyz
-time:2023年3月13日
-des:外部出库
+Tác giả: tyz
+Thời gian: ngày 13/03/2023
+Mô tả: Xuất kho ra ngoài
 */   
 ALTER PROCEDURE [dbo].[RPT_PDS_药品外部出库]    
 (
@@ -26,7 +26,7 @@ ALTER PROCEDURE [dbo].[RPT_PDS_药品外部出库]
 )    
 AS
 
--- 切割字符串
+-- Cắt chuỗi
 DECLARE @t TABLE(col VARCHAR(50));
 DECLARE @s VARCHAR(5000);
 DECLARE @split VARCHAR(1);
@@ -39,7 +39,7 @@ begin
 end   
 INSERT @t(col) VALUES (@s) 
 
-SELECT d.pdh 单据号, d.operateTime 退货时间, d.dlmc 大类名称, d.ypmc 药品名称, d.ypgg 规格, d.Ph 批号, --CONCAT(d.bmsl,d.ckdw) 数量, 
+SELECT d.pdh 单据号, d.operateTime 退货时间, d.dlmc 大类名称, d.ypmc 药品名称, d.ypgg 规格, d.Ph 批号, --CONCAT(d.bmsl,d.ckdw) Số lượng, 
 d.bmsl 数量, d.bzdw 单位, CONCAT(d.jj,'元/',d.bzdw) 进价单价
 ,CONVERT(NUMERIC(11,2),d.bmsl*d.Ckzhyz/d.bzs*d.jj) 进价总额, d.gysmc 供应商名称,d.ycmc 药厂名称, d.yfbmmc 药房部门名称
 FROM (

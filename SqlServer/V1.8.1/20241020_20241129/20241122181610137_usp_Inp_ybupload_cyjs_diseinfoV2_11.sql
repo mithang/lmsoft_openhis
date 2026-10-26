@@ -1,8 +1,8 @@
 ﻿USE [NewtouchHIS_Sett]
 GO
 
--- 事件类型: ALTER_PROCEDURE
--- 变更时间: 11/22/2024 18:16:10
+-- Loại sự kiện: ALTER_PROCEDURE
+-- Thời gian thay đổi: 11/22/2024 18:16:10
 
 
 /**
@@ -21,9 +21,9 @@ as
 
 
 begin       
-      --诊断类型 1:西医诊断 2中医主病诊断  3 中医主证诊断 4 手术操作 5 按病种付费病种
-	  -- 主诊断标准 1：是 0 否
-	  -- 入院病情  1有 2 临床未确定  3 情况不明 4 无
+      --Loại chẩn đoán: 1 chẩn đoán Tây y, 2 chẩn đoán bệnh chính Đông y, 3 chẩn đoán chứng chính Đông y, 4 phẫu thuật/thủ thuật, 5 loại bệnh thanh toán theo loại bệnh
+	  -- Tiêu chuẩn chẩn đoán chính: 1 là, 0 không
+	  -- Tình trạng bệnh khi nhập viện: 1 có, 2 lâm sàng chưa xác định, 3 tình hình chưa rõ, 4 không
 --declare       
 -- @orgId varchar(50),          
 -- @zyh varchar(20)       
@@ -46,7 +46,7 @@ begin
 --update #brdz set maindiag_flag=1 where xh=1      
 --update #brdz set maindiag_flag=0 where xh<>1      
       
-/*更新医保诊断名称*/    
+/*Cập nhật tên chẩn đoán bảo hiểm y tế*/    
 --update zd set zd.diag_code=dmmx.TTCode,zd.diag_name=dmmx.TTName    
 --  from #brdz as zd,NewtouchHIS_Base.dbo.TTCataloguesComparisonDetail as dmmx with(nolock)    
 -- where zd.diag_code=dmmx.Code    

@@ -1,8 +1,8 @@
 ﻿USE [NewtouchHIS_Base]
 GO
 
--- 事件类型: ALTER_PROCEDURE
--- 变更时间: 11/19/2024 17:58:32
+-- Loại sự kiện: ALTER_PROCEDURE
+-- Thời gian thay đổi: 11/19/2024 17:58:32
 
 
 

@@ -1,8 +1,8 @@
 ﻿USE [NewtouchHIS_Base]
 GO
 
--- 事件类型: CREATE_PROCEDURE
--- 变更时间: 11/18/2024 14:53:40
+-- Loại sự kiện: CREATE_PROCEDURE
+-- Thời gian thay đổi: 11/18/2024 14:53:40
 
 
 
@@ -23,7 +23,7 @@ begin
           ELSE NULL
       END AS [出院中医诊断],
       
-      -- New column for 出院西医诊断
+      -- New column for Chẩn đoán Tây y khi xuất viện
       CASE
           WHEN [ZDLB] = 'WM' AND [ZDLX] = 1 THEN '主要诊断  ' + [JBMC]
           WHEN [ZDLB] = 'WM' AND [ZDLX] = 2 THEN '次要诊断  ' + [JBMC]

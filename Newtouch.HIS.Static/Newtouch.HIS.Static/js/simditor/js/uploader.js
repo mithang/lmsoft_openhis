@@ -242,7 +242,7 @@ Uploader = (function(superClass) {
 
   Uploader.i18n = {
     'zh-CN': {
-      leaveConfirm: '正在上传文件，如果离开上传会自动取消'
+      leaveConfirm: 'Đang tải tệp lên, nếu rời đi thì quá trình tải lên sẽ tự động bị hủy'
     }
   };
 

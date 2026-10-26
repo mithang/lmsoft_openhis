@@ -1,8 +1,8 @@
 ﻿USE [NewtouchHIS_Sett]
 GO
 
--- 事件类型: ALTER_PROCEDURE
--- 变更时间: 11/22/2024 17:42:47
+-- Loại sự kiện: ALTER_PROCEDURE
+-- Thời gian thay đổi: 11/22/2024 17:42:47
 
 
 
@@ -14,17 +14,17 @@ GO
 -- Create date: <Create Date,,>  
 -- Description: <Description,,>  
 
-修改人：邓烽
-修改时间：2023年9月21日11:12:35
-修改内容：
-1、4101A 交易修改入院科室编码 adm_dept_code 为adm_dept_codg，
-出院科室编码 dscg_dept_code 为dscg_dept_codg
-2、4101A 交易入参增加新生儿天龄 age_days
+Người sửa: Đặng Phong
+Thời gian sửa: 11:12:35 ngày 21/09/2023
+Nội dung sửa: 
+1. Giao dịch 4101A sửa mã khoa nhập viện adm_dept_code thành adm_dept_codg,
+mã khoa xuất viện dscg_dept_code thành dscg_dept_codg
+2. Giao dịch 4101A bổ sung tham số đầu vào tuổi ngày của trẻ sơ sinh age_days
 exec usp_Inp_ybupload_cyjs_setlinfoV2 @OrgId='6d5752a7-234a-403e-aa1c-df8b45d3469f',@zyh='03333' 
 
-修改人：邓烽
-修改时间：2024年2月7日11:44:45
-修改内容：只获取最后一次的结算信息
+Người sửa: Đặng Phong
+Thời gian sửa: 11:44:45 ngày 07/02/2024
+Nội dung sửa: Chỉ lấy thông tin quyết toán lần cuối cùng
 -- =============================================*/  
 ALTER proc [dbo].[usp_Inp_ybupload_cyjs_setlinfoV2]  
 (
@@ -35,7 +35,7 @@ as
 
 
  
-declare @age_days varchar(10)/*新人儿年龄天*/
+declare @age_days varchar(10)/*Tuổi ngày của trẻ sơ sinh*/
 select @age_days=nlshow from NewtouchHIS_Sett.dbo.zy_brjbxx with(nolock) where OrganizeId=@orgId and zyh=@zyh and zt=1 and zybz<>'9'
 
 if(@age_days not like'%岁%' and @age_days not like'%月%')
@@ -87,95 +87,95 @@ select 8,'其他',80,'其他'
  b.BAH medcasno,  
  --'重庆重医附二院宽仁康复医院' fixmedins_name,'H50010302473' fixmedins_code,'3' hi_setl_lv,   
  convert(varchar(50),getdate(),120) dcla_time,    
- isnull(c.GJ,'CHN') ntly, -- 国籍 字符型 6 Y Y   
- isnull(c.zy,'90') prfs, -- 职业 字符型 6 Y Y  
- (case when b.xzz_sn<>'' then isnull(b.XZZ_SN,'')+isnull(b.XZZ_SI,'')+isnull(b.XZZ_QX,'')+isnull(b.XZZ_JD,'') end) curr_addr, -- 现住址 字符型 200   
- b.GZDWJDZ emp_name, -- 单位名称 字符型 200    
- b.GZDWJDZ emp_addr, -- 单位地址 字符型 200    
- b.DWDH emp_tel, -- 单位电话 字符型 50   
- b.DWYB poscode, -- 邮编 字符型 6  
- null coner_name, -- 联系人姓名 字符型 50 Y    
- --b.GX patn_rlts, -- 与患者关系 字符型 6 Y Y    
+ isnull(c.GJ,'CHN') ntly, -- Quốc tịch, kiểu ký tự, 6, Y, Y   
+ isnull(c.zy,'90') prfs, -- Nghề nghiệp, kiểu ký tự, 6, Y, Y  
+ (case when b.xzz_sn<>'' then isnull(b.XZZ_SN,'')+isnull(b.XZZ_SI,'')+isnull(b.XZZ_QX,'')+isnull(b.XZZ_JD,'') end) curr_addr, -- Địa chỉ hiện tại, kiểu ký tự, 200   
+ b.GZDWJDZ emp_name, -- Tên đơn vị, kiểu ký tự, 200    
+ b.GZDWJDZ emp_addr, -- Địa chỉ đơn vị, kiểu ký tự, 200    
+ b.DWDH emp_tel, -- Điện thoại đơn vị, kiểu ký tự, 50   
+ b.DWYB poscode, -- Mã bưu chính, kiểu ký tự, 6  
+ null coner_name, -- Họ tên người liên hệ, kiểu ký tự, 50, Y    
+ --b.GX patn_rlts, -- Quan hệ với bệnh nhân, kiểu ký tự, 6, Y, Y    
   isnull(h.yb_code ,1) patn_rlts,  
- (case when b.LXRDZ_SN<>'' then isnull(b.LXRDZ_SN,'')+isnull(b.LXRDZ_SI,'')+isnull(b.LXRDZ_QX,'')+isnull(b.LXRDZ_JD,'') end) coner_addr, -- 联系人地址 字符型 200 Y   
- b.LXRDH coner_tel, -- 联系人电话 字符型 50 Y   
- '' nwb_adm_type, -- 新生儿入院类型 字符型 3 Y  
- b.XSECSTZ nwb_bir_wt, -- 新生儿出生体重 数值型 6,2 精确到 10 克(g)  
- b.XSERYTZ nwb_adm_wt, -- 新生儿入院体重 数值型 6,2 精确到 10 克(g)  
+ (case when b.LXRDZ_SN<>'' then isnull(b.LXRDZ_SN,'')+isnull(b.LXRDZ_SI,'')+isnull(b.LXRDZ_QX,'')+isnull(b.LXRDZ_JD,'') end) coner_addr, -- Địa chỉ người liên hệ, kiểu ký tự, 200, Y   
+ b.LXRDH coner_tel, -- Điện thoại người liên hệ, kiểu ký tự, 50, Y   
+ '' nwb_adm_type, -- Loại nhập viện của trẻ sơ sinh, kiểu ký tự, 3, Y  
+ b.XSECSTZ nwb_bir_wt, -- Cân nặng lúc sinh của trẻ sơ sinh, kiểu số, 6,2, chính xác đến 10 gam (g)  
+ b.XSERYTZ nwb_adm_wt, -- Cân nặng lúc nhập viện của trẻ sơ sinh, kiểu số, 6,2, chính xác đến 10 gam (g)  
  '' mul_nwb_bir_wt,  
  '' mul_nwb_adm_wt,  
- null opsp_diag_caty, --门诊慢特病诊断科别字符型 50 35    
- null opsp_mdtrt_date, --门诊慢特病就诊日期日期型   
- b.RYTJ adm_way, -- 入院途径 字符型 3 Y   
- '10' trt_type, -- 治疗类别 字符型 3 Y   
- CONVERT(varchar(100),ciszyxx.ryrq, 120) adm_time, -- 入院时间日期时间型  
-   ciszyxx.DeptCode adm_dept_codg,--入院科室编码  
-  dept.name adm_dept_name,  --入院科室名称  
-  '0' traf_dept_flat, --转科室标志  
- c.ZKKB refldept_dept, -- 转科科别 字符型 6 Y参照科室代码（dept），如果超过一次以上的转科，用“→”转接表示  
-  CONVERT(varchar(100),ciszyxx.cqrq, 120) dscg_time, --  出院时间日期时间型   
-  ciszyxx.DeptCode dscg_dept_codg,--出院科室编码  
-  dept.name dscg_dept_name,  --出院科室名称  
- --b.CYKB dscg_caty, --  出院科别 字符型 6 Y Y 参照科室代码（dept）  
+ null opsp_diag_caty, --Khoa chẩn đoán bệnh mãn tính/đặc biệt ngoại trú, kiểu ký tự, 50, 35    
+ null opsp_mdtrt_date, --Ngày khám bệnh mãn tính/đặc biệt ngoại trú, kiểu ngày   
+ b.RYTJ adm_way, -- Đường nhập viện, kiểu ký tự, 3, Y   
+ '10' trt_type, -- Loại điều trị, kiểu ký tự, 3, Y   
+ CONVERT(varchar(100),ciszyxx.ryrq, 120) adm_time, -- Thời gian nhập viện, kiểu ngày giờ  
+   ciszyxx.DeptCode adm_dept_codg,--Mã khoa nhập viện  
+  dept.name adm_dept_name,  --Tên khoa nhập viện  
+  '0' traf_dept_flat, --Cờ chuyển khoa  
+ c.ZKKB refldept_dept, -- Khoa chuyển đến, kiểu ký tự, 6, Y, tham chiếu mã khoa (dept); nếu chuyển khoa hơn một lần thì dùng “→” để nối  
+  CONVERT(varchar(100),ciszyxx.cqrq, 120) dscg_time, --  Thời gian xuất viện, kiểu ngày giờ   
+  ciszyxx.DeptCode dscg_dept_codg,--Mã khoa xuất viện  
+  dept.name dscg_dept_name,  --Tên khoa xuất viện  
+ --b.CYKB dscg_caty, --  Khoa xuất viện, kiểu ký tự, 6, Y, Y, tham chiếu mã khoa (dept)  
  ( select deptcode from DRG_dept where deptname= b.CYKB)dscg_caty,   
- b.MZZD otp_wm_dise, -- 门（急）诊西医诊断字符型 200    
- b.MZZDDM wm_dise_code, -- 西医诊断疾病代码字符型 20    
- '' otp_tcm_dise, -- 门（急）诊中医诊断字符型 200   
- '' tcm_dise_code, -- 中医诊断代码 字符型 20  
- '' vent_used_dura, -- 呼吸机使用时长 字符型 10格式：天数/小时数/分钟数例：1/13/24   
- '' pwcry_bfadm_coma_dura, -- 颅脑损伤患者入院前昏迷时长字符型 10格式：天数/小时数/分钟数例：1/13/24  
- '' pwcry_afadm_coma_dura, --颅脑损伤患者入院后昏迷时长字符型 10格式：天数/小时数/分钟数例：1/13/24    
- 0 spga_nurscare_days, --特级护理天数 数值型 3    
- 0 lv1_nurscare_days, --一级护理天数 数值型 3    
- 0 scd_nurscare_days, --二级护理天数 数值型 3    
- 0 lv3_nurscare_days, --三级护理天数 数值型 3  
- b.LYFS dscg_way, -- 离院方式 字符型 3 Y   
- b.YZZY_YLJG acp_medins_name, --拟接收机构名称  
- '' acp_optins_code, --拟接收机构代码  
- zyjs.jsnm bill_code, -- 票据代码 字符型 50 Y  
- zyjs.jsnm bill_no, -- 票据号码 字符型 30 Y  
- a.medins_setl_id biz_sn, -- 业务流水号 字符型 50 Y 业务流水号  
- b.SFZZYJH days_rinp_flag_31, --出院 31 天内再住院计划标志字符型 3 Y    
- b.MD days_rinp_pup_31, --出院 31 天内再住院目的字符型 200  
- --c.ZZYS chfpdr_code, -- 主诊医师代码 字符型 30  
+ b.MZZD otp_wm_dise, -- Chẩn đoán Tây y ngoại trú (cấp cứu), kiểu ký tự, 200    
+ b.MZZDDM wm_dise_code, -- Mã bệnh chẩn đoán Tây y, kiểu ký tự, 20    
+ '' otp_tcm_dise, -- Chẩn đoán Đông y ngoại trú (cấp cứu), kiểu ký tự, 200   
+ '' tcm_dise_code, -- Mã chẩn đoán Đông y, kiểu ký tự, 20  
+ '' vent_used_dura, -- Thời gian sử dụng máy thở, kiểu ký tự, 10, định dạng: số ngày/số giờ/số phút, ví dụ: 1/13/24   
+ '' pwcry_bfadm_coma_dura, -- Thời gian hôn mê trước khi nhập viện của bệnh nhân chấn thương sọ não, kiểu ký tự, 10, định dạng: số ngày/số giờ/số phút, ví dụ: 1/13/24  
+ '' pwcry_afadm_coma_dura, --Thời gian hôn mê sau khi nhập viện của bệnh nhân chấn thương sọ não, kiểu ký tự, 10, định dạng: số ngày/số giờ/số phút, ví dụ: 1/13/24    
+ 0 spga_nurscare_days, --Số ngày chăm sóc đặc biệt, kiểu số, 3    
+ 0 lv1_nurscare_days, --Số ngày chăm sóc cấp 1, kiểu số, 3    
+ 0 scd_nurscare_days, --Số ngày chăm sóc cấp 2, kiểu số, 3    
+ 0 lv3_nurscare_days, --Số ngày chăm sóc cấp 3, kiểu số, 3  
+ b.LYFS dscg_way, -- Cách rời viện, kiểu ký tự, 3, Y   
+ b.YZZY_YLJG acp_medins_name, --Tên cơ sở dự kiến tiếp nhận  
+ '' acp_optins_code, --Mã cơ sở dự kiến tiếp nhận  
+ zyjs.jsnm bill_code, -- Mã hóa đơn, kiểu ký tự, 50, Y  
+ zyjs.jsnm bill_no, -- Số hóa đơn, kiểu ký tự, 30, Y  
+ a.medins_setl_id biz_sn, -- Số thứ tự nghiệp vụ, kiểu ký tự, 50, Y  
+ b.SFZZYJH days_rinp_flag_31, --Cờ kế hoạch tái nhập viện trong 31 ngày sau xuất viện, kiểu ký tự, 3, Y    
+ b.MD days_rinp_pup_31, --Mục đích tái nhập viện trong 31 ngày sau xuất viện, kiểu ký tự, 200  
+ --c.ZZYS chfpdr_code, -- Mã bác sĩ chẩn đoán chính, kiểu ký tự, 30  
  --case when c.zzys is null then j.gh else c.zzys  end chfpdr_code,  
   --j.gjybdm chfpdr_code,  
  '' chfpdr_code,  
- CONVERT(varchar(100),b.RYSJ, 120) setl_begn_date, --结算开始日期 日期型 Y   
-  CONVERT(varchar(100),zyjs.CreateTime, 120) setl_end_date, --结算结束日期 日期型 Y   
- d.DepartmentCode medins_fill_dept, --医疗机构填报部字符型 100 Y   
- a.czydm medins_fill_psn, --医疗机构填报人  
+ CONVERT(varchar(100),b.RYSJ, 120) setl_begn_date, --Ngày bắt đầu quyết toán, kiểu ngày, Y   
+  CONVERT(varchar(100),zyjs.CreateTime, 120) setl_end_date, --Ngày kết thúc quyết toán, kiểu ngày, Y   
+ d.DepartmentCode medins_fill_dept, --Bộ phận kê khai của cơ sở y tế, kiểu ký tự, 100, Y   
+ a.czydm medins_fill_psn, --Người kê khai của cơ sở y tế  
  ''resp_nurs_code, 
-  (case when a.clr_way in(1,2,9) then a.clr_way when a.clr_way=3 then 5 when a.clr_way=4 then 6 else 1 end) hi_paymtd, -- 医保支付方式 字符型 3 Y Y    
+  (case when a.clr_way in(1,2,9) then a.clr_way when a.clr_way=3 then 5 when a.clr_way=4 then 6 else 1 end) hi_paymtd, -- Phương thức thanh toán bảo hiểm y tế, kiểu ký tự, 3, Y, Y    
   ''stas_type,
-  @age_days age_days/*新生儿天龄*/
- --a.psn_name, --人员姓名 字符型 50 Y    
- --a.gend, -- 性别 字符型 6 Y Y    
- --a.brdy, -- 出生日期 日期型 Y    
+  @age_days age_days/*Tuổi ngày của trẻ sơ sinh*/
+ --a.psn_name, --Họ tên người, kiểu ký tự, 50, Y    
+ --a.gend, -- Giới tính, kiểu ký tự, 6, Y, Y    
+ --a.brdy, -- Ngày sinh, kiểu ngày, Y    
  --a.age, --     
- --b.BZYZSNL nwb_age, --（年龄不足 1 周岁）年龄数值型 3 小于 1 岁时必填，单位天    
- --a.naty, -- 民族 字符型 3 Y Y    
- --a.psn_cert_type  patn_cert_type, --患者证件类别 字符型 3 Y Y    
- --a.certno, -- 证件号码 字符型 50 Y 患者证件号码    
- --a.insutype hi_type, -- 医保类型 字符型 3 Y Y   insutype > hi_type?    
- --'500103' insuplc, -- 参保地 字符型 6 Y    
- --'' sp_psn_type, -- 特殊人员类型 字符型 6 Y    
- --1 ipt_med_type, -- 住院医疗类型 字符型 3 Y Y     
- --c.RYKB adm_caty, -- 入院科别 字符型 6 Y Y 参照科室代码（dept）      
- --b.SJZYTS act_ipt_days, --  实际住院天数 数值型 3     
- --zdcnt diag_code_cnt, --诊断代码计数 数值型 3    
- --(case when b.MZZDDM=zyzd.JBDM then 1 else 0 end) maindiag_flag, -- 主诊断标志 字符型 3 Y Y    
- --ss.cnt oprn_oprt_code_cnt, -- 手术操作代码计数数值型 3    
- --'' bld_cat, -- 输血品种 字符型 3 Y    
- --0 bld_amt, -- 输血量 数值型 6    
- --'' bld_unt, -- 输血计量单位 字符型 3     
- --b.ZZYS chfpdr_name, -- 主诊医师姓名 字符型 50     
- --a.preselfpay_amt psn_selfpay , --个人自付 数值型 16,2 Y    
- --a.fulamt_ownpay_amt psn_ownpay , --个人自费 数值型 16,2 Y    
- --a.acct_pay , --个人账户支出 数值型 16,2 Y    
- --a.psn_cash_pay psn_cashpay, -- 个人现金支付 数值型 16,2 Y    
- --'65840' hsorg , --医保机构 字符型 100 Y     
- --'HIS1' hsorg_opter , --医保机构经办人 字符型 50    
+ --b.BZYZSNL nwb_age, --(Tuổi dưới 1 tuổi) Tuổi, kiểu số, 3, bắt buộc khi dưới 1 tuổi, đơn vị ngày    
+ --a.naty, -- Dân tộc, kiểu ký tự, 3, Y, Y    
+ --a.psn_cert_type  patn_cert_type, --Loại giấy tờ của bệnh nhân, kiểu ký tự, 3, Y, Y    
+ --a.certno, -- Số giấy tờ, kiểu ký tự, 50, Y, số giấy tờ của bệnh nhân    
+ --a.insutype hi_type, -- Loại bảo hiểm y tế, kiểu ký tự, 3, Y, Y, insutype > hi_type?    
+ --'500103' insuplc, -- Nơi tham gia bảo hiểm, kiểu ký tự, 6, Y    
+ --'' sp_psn_type, -- Loại đối tượng đặc biệt, kiểu ký tự, 6, Y    
+ --1 ipt_med_type, -- Loại y tế nhập viện, kiểu ký tự, 3, Y, Y     
+ --c.RYKB adm_caty, -- Khoa nhập viện, kiểu ký tự, 6, Y, Y, tham chiếu mã khoa (dept)      
+ --b.SJZYTS act_ipt_days, --  Số ngày nhập viện thực tế, kiểu số, 3     
+ --zdcnt diag_code_cnt, --Số lượng mã chẩn đoán, kiểu số, 3    
+ --(case when b.MZZDDM=zyzd.JBDM then 1 else 0 end) maindiag_flag, -- Cờ chẩn đoán chính, kiểu ký tự, 3, Y, Y    
+ --ss.cnt oprn_oprt_code_cnt, -- Số lượng mã phẫu thuật/thủ thuật, kiểu số, 3    
+ --'' bld_cat, -- Loại máu truyền, kiểu ký tự, 3, Y    
+ --0 bld_amt, -- Lượng máu truyền, kiểu số, 6    
+ --'' bld_unt, -- Đơn vị đo lượng máu truyền, kiểu ký tự, 3     
+ --b.ZZYS chfpdr_name, -- Họ tên bác sĩ chẩn đoán chính, kiểu ký tự, 50     
+ --a.preselfpay_amt psn_selfpay , --Cá nhân tự trả, kiểu số, 16,2, Y    
+ --a.fulamt_ownpay_amt psn_ownpay , --Cá nhân tự chi, kiểu số, 16,2, Y    
+ --a.acct_pay , --Chi từ tài khoản cá nhân, kiểu số, 16,2, Y    
+ --a.psn_cash_pay psn_cashpay, -- Cá nhân thanh toán bằng tiền mặt, kiểu số, 16,2, Y    
+ --'65840' hsorg , --Cơ quan bảo hiểm y tế, kiểu ký tự, 100, Y     
+ --'HIS1' hsorg_opter , --Người xử lý của cơ quan bảo hiểm y tế, kiểu ký tự, 50    
  --select *    
  from drjk_zyjs_input i with(nolock)     
  left join drjk_zyjs_output a with(nolock)  on i.setl_id=a.setl_id and i.psn_no=a.psn_no and a.zt='1'    
@@ -204,7 +204,7 @@ and zyjs1.jsnm is null) zyjs on i.zyh=zyjs.zyh and zyjs.zt='1' and b.organizeid=
  where i.zt='1' and a.zt='1'    
  and  d.OrganizeId=@orgId and     
  a.zyh=@zyh    
- order by a.setl_id desc/*上传最后一次的结算信息*/
+ order by a.setl_id desc/*Tải lên thông tin quyết toán lần cuối cùng*/
     
     
  drop table #yb_gx  

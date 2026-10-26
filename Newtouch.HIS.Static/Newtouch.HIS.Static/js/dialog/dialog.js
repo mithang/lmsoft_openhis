@@ -321,7 +321,7 @@
             if (0 === a) {
                  if ($(this).find('input').attr('class') != "footer-left-label")
                 { g.yes ? g.yes(b.index, d) : g.btn1 ? g.btn1(b.index, d) : f.close(b.index); }}
-            else if (1 === a) {//确认
+            else if (1 === a) {//Xác nhận
             if(g.showleftlalbel){
                     g.yes ? g.yes(b.index, d) : g.btn1 ? g.btn1(b.index, d) : f.close(b.index);
 

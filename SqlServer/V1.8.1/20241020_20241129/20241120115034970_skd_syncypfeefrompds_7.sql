@@ -1,8 +1,8 @@
 ﻿USE [NewtouchHIS_Sett]
 GO
 
--- 事件类型: ALTER_PROCEDURE
--- 变更时间: 11/20/2024 11:50:34
+-- Loại sự kiện: ALTER_PROCEDURE
+-- Thời gian thay đổi: 11/20/2024 11:50:34
 
 
 
@@ -21,9 +21,9 @@ GO
 
 
 /*
-author:tyz
-modify:2021-10-13
-desc:实时同步药品信息 
+Tác giả: tyz
+Sửa đổi: 2021-10-13
+Mô tả: Đồng bộ thông tin thuốc theo thời gian thực 
 declare @newcount int
 exec skd_syncypfeefrompds  '6d5752a7-234a-403e-aa1c-df8b45d3469f','','00001',@newcount output
 select @newcount
@@ -63,7 +63,7 @@ begin
 		zfxz,fyyf,yzxz,ksCode ks,bqCode bq,creatorcode,yzId	 
 		FROM [NewtouchHIS_PDS].[dbo].[zy_ypyzxx] a with(nolock)
 		where OrganizeId=@orgId and  --(isnull(@zyh, '') = '' or a.zyh = @zyh) and
-		fybz in(2,3)   --2 发药 3 退药
+		fybz in(2,3)   --2 phát thuốc, 3 trả thuốc
 		and createtime between DateAdd(day, -100, @lqrq) and @lqrq
 		and isnull(sl,0)>0
 		--and not exists(select 1 from zy_ypjfb b with(nolock) where a.id=b.bdzxid and a.organizeid=b.organizeid)
@@ -75,13 +75,13 @@ begin
 	--select *
 	from  [NewtouchHIS_PDS].[dbo].[zy_ypyzczjl] a with(nolock),[NewtouchHIS_PDS].[dbo].[zy_ypyzxx] b with(nolock)
 	where a.ypyzxxid=b.id and a.OrganizeId=b.OrganizeId and
-	a.operatetype=2 --1 发药 2 退药
+	a.operatetype=2 --1 phát thuốc, 2 trả thuốc
 	and exists(select 1 from #ykinfo c where a.ypyzxxid=c.id)
 	
 	if(exists(select 1 from #ykinfo))
 	begin
-		--生成流水
-		declare @startjfbId int = 0,	--插入记录开始Id
+		--Tạo số thứ tự
+		declare @startjfbId int = 0,	--Id bắt đầu của bản ghi được chèn
 				@jfCount int
 
 		select @jfCount=count(1) 
@@ -90,7 +90,7 @@ begin
 						where CONVERT(varchar(50), a.id)=b.bdzxid and a.organizeid=b.organizeid and a.tyczid=isnull(b.yftyczId,0))
 
 		SELECT @startjfbId = CurrentSerialNo FROM [NewtouchHIS_Sett].[dbo].[EntitySerialNo] where EntityName = 'zy_ypjfb'
-		--占用Id
+		--Id bị chiếm
 		if(@startjfbId > 0)
 			update EntitySerialNo set CurrentSerialNo = CurrentSerialNo + @jfCount + 1 where EntityName = 'zy_ypjfb'
 		else
@@ -108,7 +108,7 @@ begin
 				where CONVERT(varchar(50), a.id)=d.bdzxid and a.organizeid=d.organizeid and a.tyczid=isnull(d.yftyczId,0))
 
 				print 'test1'
-		--新增记录
+		--Bản ghi mới
 		insert into zy_ypjfb(yftyczId,jfbbh, OrganizeId, zyh, tdrq, yp, dl, zlff,yl,yldw,ys,ysmc,ks,ksmc,cw,dj,sl,jfdw,zfbl,zfxz,
 		lyyf,yzxz,yzzt,CreatorCode,CreateTime,bq,zt,cxzyjfbbh,bdzxid,yzwym)
 		select a.tyczid,--case when a.sl<0 then b.tyczid else 0 end tyczid, 
@@ -123,7 +123,7 @@ begin
 		
 		select @newcount=@@rowcount
 		print 'test'
-		--补新增退费
+		--Bổ sung hoàn phí mới
 		insert into zy_ypjfb(yftyczId,jfbbh, OrganizeId, zyh, tdrq, yp, dl, zlff,yl,yldw,ys,ysmc,ks,ksmc,cw,dj,sl,jfdw,zfbl,zfxz,
 		lyyf,yzxz,yzzt,CreatorCode,CreateTime,bq,zt,cxzyjfbbh,bdzxid,yzwym)
 		select tyczid,a.jfbbh,a.organizeid,a.zyh,a.zxrq,a.ypcode,c.dlCode,a.zlff,a.yl,a.yldw,a.ysgh,a.name,
@@ -133,7 +133,7 @@ begin
 		left join [NewtouchHIS_Base].[dbo].[xt_yp] c  on a.organizeid=c.organizeid and a.ypcode=c.ypcode
 		--left join [NewtouchHIS_Base].[dbo].[V_S_xt_yp] c on a.organizeid=c.organizeid and a.ypcode=c.ypcode and c.zt=1
 		where not exists(select 1 from zy_ypjfb b with(nolock) where CONVERT(varchar(50), a.id)=b.bdzxid and a.organizeid=b.organizeid and a.tyczid=b.yftyczid )
-		and CONVERT(varchar(50), a.id)=d.bdzxid and a.organizeid=d.organizeid and isnull(d.cxzyjfbbh,0)=0 --去除关联重复
+		and CONVERT(varchar(50), a.id)=d.bdzxid and a.organizeid=d.organizeid and isnull(d.cxzyjfbbh,0)=0 --Loại bỏ liên kết trùng lặp
 
 		select @newcount=@newcount + @@rowcount
 		

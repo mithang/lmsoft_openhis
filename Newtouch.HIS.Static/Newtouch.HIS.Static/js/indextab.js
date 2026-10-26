@@ -4,7 +4,7 @@
     //
     $.Newtouchtab = {
         getIsPageLoadMoniter: function () {
-            //是否记录页面load日志
+            //Có ghi nhật ký load trang hay không
             var temp = $('body:eq(0)').attr('data-NavPageLoadMoniter');
             if (!!temp)
                 return true;
@@ -39,7 +39,7 @@
             }
         },
         refreshTab: function () {
-            //靠右 的 刷新当前
+            //Làm mới trang hiện tại ở phía phải
             var currentId = $('.page-tabs-content').find('.active').attr('data-id');
 
             var target = $('.Newtouch_iframe[data-id="' + currentId + '"]');
@@ -49,13 +49,13 @@
                 target.attr('src', url).load(function () {
                     $.loading(false);
                 });
-                var dataId = $('a.menuItem[href="' + currentId + '"]').attr('data-id'); //相同Url的Module？
-                //菜单切换的事件订阅
+                var dataId = $('a.menuItem[href="' + currentId + '"]').attr('data-id'); //Module có cùng Url?
+                //Đăng ký sự kiện chuyển đổi menu
                 $.Newtouchtab.triggerMenuTabActiveEvent(dataId, $('.page-tabs-content').find('.active').text(), 'refresh');
             }
         },
         activeTab: function () {
-            //点击上方的Tab来激活
+            //Nhấn Tab ở phía trên để kích hoạt
             var currentId = $(this).data('id');
             if (currentId && !$(this).hasClass('active')) {
                 $('.mainContent .Newtouch_iframe').each(function () {
@@ -67,9 +67,9 @@
                 $(this).addClass('active').siblings('.menuTab').removeClass('active');
                 $.Newtouchtab.scrollToTab(this);
 
-                var dataId = $('a.menuItem[href="' + currentId + '"]').attr('data-id'); //相同Url的Module？
+                var dataId = $('a.menuItem[href="' + currentId + '"]').attr('data-id'); //Module có cùng Url?
                 $.cookie($.Newtouchtab.getCurrentCurrentModuleidKey(), !!dataId ? dataId : '', { path: "/" });
-                //菜单切换的事件订阅
+                //Đăng ký sự kiện chuyển đổi menu
                 $.Newtouchtab.triggerMenuTabActiveEvent(dataId, $(this).text());
             }
         },
@@ -87,9 +87,9 @@
                 if ($(this).parents('.menuTab').next('.menuTab').size()) {
                     var activeId = $(this).parents('.menuTab').next('.menuTab:eq(0)').data('id');
                     if (activeId != "") {
-                        var dataId = $('a.menuItem[href="' + activeId + '"]').attr('data-id'); //相同Url的Module？
+                        var dataId = $('a.menuItem[href="' + activeId + '"]').attr('data-id'); //Module có cùng Url?
                         $.cookie($.Newtouchtab.getCurrentCurrentModuleidKey(), !!dataId ? dataId : '', { path: "/" });
-                        //菜单切换的事件订阅
+                        //Đăng ký sự kiện chuyển đổi menu
                         $.Newtouchtab.triggerMenuTabActiveEvent(dataId, $(this).parents('.menuTab').next('.menuTab:eq(0)').text());
                     }
                     $(this).parents('.menuTab').next('.menuTab:eq(0)').addClass('active');
@@ -116,9 +116,9 @@
                 else if ($(this).parents('.menuTab').prev('.menuTab').size()) {
                     var activeId = $(this).parents('.menuTab').prev('.menuTab:last').data('id');
                     if (activeId != "") {
-                        var dataId = $('a.menuItem[href="' + activeId + '"]').attr('data-id'); //相同Url的Module？
+                        var dataId = $('a.menuItem[href="' + activeId + '"]').attr('data-id'); //Module có cùng Url?
                         $.cookie($.Newtouchtab.getCurrentCurrentModuleidKey(), !!dataId ? dataId : '', { path: "/" });
-                        //菜单切换的事件订阅
+                        //Đăng ký sự kiện chuyển đổi menu
                         $.Newtouchtab.triggerMenuTabActiveEvent(dataId, $(this).parents('.menuTab').prev('.menuTab:last').text());
                     }
                     $(this).parents('.menuTab').prev('.menuTab:last').addClass('active');
@@ -137,7 +137,7 @@
                     });
                 }
                 else {
-                    //删除唯一的一个tab
+                    //Xóa tab duy nhất
                     $(this).parents('.menuTab').remove();
                     $('.mainContent .Newtouch_iframe').each(function () {
                         if ($(this).data('id') == closeTabId) {
@@ -162,7 +162,7 @@
             return false;
         },
         addTab: function () {
-            //点击左侧的菜单项
+            //Nhấn mục menu ở phía trái
             $("#header-nav>ul>li.open").removeClass("open");
             var dataId = $(this).attr('data-id');
             var dataUrl = $(this).attr('href');
@@ -212,7 +212,7 @@
                 return false;
             }
 
-            var flag = true;    //是否触发active（已经处于active false）
+            var flag = true;    //Có kích hoạt active hay không (đã ở trạng thái active thì false)
             $('.menuTab').each(function () {
                 if (flag && $(this).data('id') == dataUrl) {
                     if (!$(this).hasClass('active')) {
@@ -246,7 +246,7 @@
                 target.load(moniterLogFunc = function () {
                     $.loading(false);
                     if ($.Newtouchtab.getIsPageLoadMoniter()) {
-                        var reqTotalMS = new Date() - top.iframeReqStratTime;  //毫秒
+                        var reqTotalMS = new Date() - top.iframeReqStratTime;  //mili giây
                         $.ajax({
                             url: '/Home/PageLoadMoniter',
                             data: {
@@ -264,7 +264,7 @@
             }
 
             $.cookie($.Newtouchtab.getCurrentCurrentModuleidKey(), !!dataId ? dataId : '', { path: "/" });
-            //菜单切换的事件订阅
+            //Đăng ký sự kiện chuyển đổi menu
             $.Newtouchtab.triggerMenuTabActiveEvent(dataId, menuName);
 
             return false;
@@ -357,7 +357,7 @@
             if (!!options.m1 && !!options.m2) {
                 var $nav1 = top.top.$('#sidebar-nav .dropdown-toggle span:contains("' + options.m1 + '")');
                 if ($nav1.length == 1) {
-                    //所以一定要维护菜单的 中文名称
+                    //Vì vậy nhất định phải duy trì tên tiếng Trung của menu
                     var $nav2 = $nav1.closest('ul').find('a[data-cnName="' + options.m2 + '"]');
                     if ($nav2.length == 1) {
                         $nav2.trigger('click');
@@ -366,7 +366,7 @@
             }
         },
         addTabWithOutMenu: function (options) {
-            //{name: enName: url:}  //会自动识别使用英文名称 还是中文名称
+            //{name: enName: url:}  //Sẽ tự động nhận biết dùng tên tiếng Anh hay tên tiếng Trung
             var language_type = $.cookie($.getCurrentAppId() + '_Newtouch_language_type');
             var menuName;
             var dataUrl = options.url;
@@ -394,10 +394,10 @@
                 menuName = options.name;
             }
             if (!!dataUrl) {
-                var flag = true;    //是否触发active（已经处于active false）
+                var flag = true;    //Có kích hoạt active hay không (đã ở trạng thái active thì false)
                 $('a.menuItem[href]').each(function () {
                     if (flag && dataUrl.equalsIgnoreCase($(this).attr('href'))) {
-                        $(this).trigger('click');   //触发菜单点击
+                        $(this).trigger('click');   //Kích hoạt nhấn menu
                         flag = false;
                         return false;
                     }
@@ -441,7 +441,7 @@
                         target.load(moniterLogFunc = function () {
                             $.loading(false);
                             if ($.Newtouchtab.getIsPageLoadMoniter()) {
-                                var reqTotalMS = new Date() - top.iframeReqStratTime;  //毫秒
+                                var reqTotalMS = new Date() - top.iframeReqStratTime;  //mili giây
                                 $.ajax({
                                     url: '/Home/PageLoadMoniter',
                                     data: {
@@ -459,7 +459,7 @@
                     }
 
                     $.cookie($.Newtouchtab.getCurrentCurrentModuleidKey(), '', { path: "/" });
-                    //菜单切换的事件订阅
+                    //Đăng ký sự kiện chuyển đổi menu
                     $.Newtouchtab.triggerMenuTabActiveEvent('', $(this).text());
                 }
             }
@@ -547,7 +547,7 @@
                     $.Newtouchtab.exitFullscreen();
                 }
             });
-            //$('.fullscreen').trigger('click');  //立刻触发全屏
+            //$('.fullscreen').trigger('click');  //Kích hoạt toàn màn hình ngay
         }
     };
     $(function () {

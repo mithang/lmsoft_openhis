@@ -1,8 +1,8 @@
 ﻿USE [Newtouch_CIS]
 GO
 
--- 事件类型: ALTER_PROCEDURE
--- 变更时间: 11/27/2024 18:12:38
+-- Loại sự kiện: ALTER_PROCEDURE
+-- Thời gian thay đổi: 11/27/2024 18:12:38
 ALTER proc [dbo].[usp_zy_brxxexpand_create]
 	@orgId varchar(50),
 	@date varchar(10)

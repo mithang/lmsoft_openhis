@@ -206,17 +206,17 @@ Calendar language pack
 default support english and chinese,if you want to add some other language, please extend it.
 */
 Calendar.language = {
-	"title":[["",""],["年","月"]],
+	"title":[["",""],["năm","tháng"]],
 	"months":[["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"],
-			["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]
+			["Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"]
         	],
 	"weeks":[["S","M","T","W","T","F","S"],
-  			["日","一","二","三","四","五","六"]
+  			["CN","T2","T3","T4","T5","T6","T7"]
 			],
 	weekday:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-	"clear":[["Clear"], ["清空"]],
-	"today":[["Today","Current"], ["今天","当月"]],
-	"close":[["Close"], ["关闭"]]  
+	"clear":[["Clear"], ["Xóa"]],
+	"today":[["Today","Current"], ["Hôm nay","Tháng hiện tại"]],
+	"close":[["Close"], ["Đóng"]]  
 };
 
 /**   
@@ -566,7 +566,7 @@ Calendar.prototype.getAbsPoint = function (e){
   return {"x": x, "y": y};   
 }   
   
-//显示日历   
+//Hiển thị lịch   
 Calendar.prototype.show = function () {
   var xy = this.getAbsPoint(this.dateControl);
   this.panel.style.left = xy.x + "px";

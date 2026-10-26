@@ -56,6 +56,6 @@
 .chart-lg{height: 250px;}
 .chart-xl{height: 350px;}
 
-/* jqgrid .acitve tr闪动问题 */
+/* Vấn đề hàng .active của jqgrid bị nhấp nháy */
 .step-content tr.ui-row-ltr.active {display: table-row;}
 .step-content th.ui-th-ltr.active { display: table-cell;}

@@ -1,4 +1,4 @@
-﻿/* newtouchFloatingSelector默认样式 */
+﻿/* newtouchFloatingSelectorkiểu mặc định */
 .ui-nfs {background:#fff;border: 1px solid #00a0ea;border-radius: 3px;overflow-y:auto;}
 .ui-nfs-caption {
     background: #fff;
@@ -54,12 +54,12 @@ font-weight:600;
     padding: 5px;
     width: auto;
 }
-/*刷新icon居中，覆盖bootstrap样式*/
+/*Căn giữa icon làm mới, ghi đè kiểu bootstrap*/
 .glyphicon {
     top:2px;
 }
 
-/*修改Default快捷菜单*/
+/*Sửa menu phím tắt Default*/
 .h6, h6 {
    margin-left: 63%;
    margin-top: 4px;

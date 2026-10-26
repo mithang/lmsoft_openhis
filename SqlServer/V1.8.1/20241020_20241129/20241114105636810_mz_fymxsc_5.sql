@@ -1,8 +1,8 @@
 ﻿USE [NewtouchHIS_Sett]
 GO
 
--- 事件类型: ALTER_PROCEDURE
--- 变更时间: 11/14/2024 10:56:36
+-- Loại sự kiện: ALTER_PROCEDURE
+-- Thời gian thay đổi: 11/14/2024 10:56:36
 
 
 /*
@@ -11,26 +11,26 @@ exec mz_fymxsc '0','2304202120016',null,null,null,'false','false','6d5752a7-234a
 
   
   
---门诊费用明细上传  
+--Tải lên chi tiết chi phí ngoại trú  
 ALTER PROCEDURE [dbo].[mz_fymxsc]   
-@type varchar(1),--0挂号  1处方  3 处方退费再传
+@type varchar(1),--0 đăng ký khám, 1 đơn thuốc, 3 đơn thuốc hoàn phí rồi tải lại
 @mzh varchar(20),  
-@cfnm varchar(500), --处方内码
-@ghxm varchar(20),  --挂号项目
-@zlxm varchar(20),  --诊疗项目
-@ckf  varchar(20),  --磁卡费
-@gbf varchar(20),  --工本费
-@orgId varchar(50),  --组织机构
-@jzid varchar(50),  --就诊id
-@rybh varchar(50),  --人员编号
-@pch varchar(50), --收费批次号
-@jsnm varchar(50), --结算内码 
-@ksbm varchar(50),--科室编码
-@ysbm varchar(50),--医生编码
-@dise_codg varchar(50)--病种编码
+@cfnm varchar(500), --Mã nội bộ đơn thuốc
+@ghxm varchar(20),  --Hạng mục đăng ký khám
+@zlxm varchar(20),  --Hạng mục chẩn đoán và điều trị
+@ckf  varchar(20),  --Phí thẻ từ
+@gbf varchar(20),  --Phí làm thẻ
+@orgId varchar(50),  --Tổ chức
+@jzid varchar(50),  --ID khám bệnh
+@rybh varchar(50),  --Mã nhân viên
+@pch varchar(50), --Số lô thu phí
+@jsnm varchar(50), --Mã nội bộ quyết toán 
+@ksbm varchar(50),--Mã khoa
+@ysbm varchar(50),--Mã bác sĩ
+@dise_codg varchar(50)--Mã loại bệnh
 as  
   
---INSERT xt_lshtb(col) VALUES(1) --新增明细流水号  
+--INSERT xt_lshtb(col) VALUES(1) --Số thứ tự chi tiết mới  
 if @type='0'  
 begin  
 declare @ksmc varchar(50);
@@ -38,38 +38,38 @@ declare @ysmc varchar(50);
 declare @gjysbm varchar(50);
 select @ysmc=Name,@gjysbm=gjybdm from NewtouchHIS_Base..V_S_Sys_Staff where gh=@ysbm and organizeid=@orgId and zt=1
 select @ksmc=Name from NewtouchHIS_Base..V_S_Sys_Department where Code=@ksbm and organizeid=@orgId and zt=1
---门诊挂号诊疗项目上传  
-SELECT cast(CONVERT(bigint, CONVERT(varbinary, CAST(N'0x' + replace(newid(),'-','') AS char),1)) as varchar) feedetl_sn ,--费用明细流水号  
-  @jzid mdtrt_id,--就诊 ID  
-  @rybh psn_no,--人员编号  
-  @pch chrg_bchno,--收费批次号  
-  '' dise_codg,--病种编码  
-  @mzh rxno,--处方号  
-  '0' rx_circ_flag,--外购处方标志  
-   convert(varchar(50),GETDATE(),120)   fee_ocur_time, --费用发生时间  
-  gjybdm med_list_codg,--医疗目录编码  
-  sfxmcode medins_list_codg,--医药机构目录编码  
-   Convert(decimal(13,2),dj) det_item_fee_sumamt,--明细项目费用总额  
-        CONVERT(NUMERIC(10,2),1) cnt ,--数量  
-  dj pric,--单价  
-  '' sin_dos_dscr,--单次剂量描述  
-  ''used_frqu_dscr,--使用频次描述  
-  CONVERT(NUMERIC(4,2),1) prd_days,--周期天数  
-  '' medc_way_dscr,--用药途径描述  
-  @ksbm bilg_dept_codg,--开单科室编码  
-  @ksmc bilg_dept_name,--开单科室名称  
-  @gjysbm bilg_dr_codg, --开单医生编码  
-  @ysmc bilg_dr_name,--开单医师姓名  
-  @ksbm acord_dept_codg,--受单科室编码  
-  @ksmc acord_dept_name,--受单科室名称  
-  @gjysbm orders_dr_code,--受单医生编码  
-  @ysmc orders_dr_name,--受单医生姓名  
-  cast('1' as varchar) hosp_appr_flag,--医院审批标志  
-  '' tcmdrug_used_way,--中药使用方式  
-  '' etip_flag,--外检标志  
-  '' etip_hosp_code,--外检医院编码  
-  '' dscg_tkdrug_flag,--出院带药标志  
-  '' matn_fee_flag--生育费用标志  
+--Tải lên hạng mục đăng ký khám và chẩn đoán điều trị ngoại trú  
+SELECT cast(CONVERT(bigint, CONVERT(varbinary, CAST(N'0x' + replace(newid(),'-','') AS char),1)) as varchar) feedetl_sn ,--Số thứ tự chi tiết chi phí  
+  @jzid mdtrt_id,--ID khám bệnh  
+  @rybh psn_no,--Mã nhân viên  
+  @pch chrg_bchno,--Số lô thu phí  
+  '' dise_codg,--Mã loại bệnh  
+  @mzh rxno,--Số đơn thuốc  
+  '0' rx_circ_flag,--Cờ đơn thuốc mua ngoài  
+   convert(varchar(50),GETDATE(),120)   fee_ocur_time, --Thời gian phát sinh chi phí  
+  gjybdm med_list_codg,--Mã danh mục y tế  
+  sfxmcode medins_list_codg,--Mã danh mục của cơ sở y tế  
+   Convert(decimal(13,2),dj) det_item_fee_sumamt,--Tổng chi phí hạng mục chi tiết  
+        CONVERT(NUMERIC(10,2),1) cnt ,--Số lượng  
+  dj pric,--Đơn giá  
+  '' sin_dos_dscr,--Mô tả liều dùng một lần  
+  ''used_frqu_dscr,--Mô tả tần suất sử dụng  
+  CONVERT(NUMERIC(4,2),1) prd_days,--Số ngày chu kỳ  
+  '' medc_way_dscr,--Mô tả đường dùng thuốc  
+  @ksbm bilg_dept_codg,--Mã khoa lập phiếu  
+  @ksmc bilg_dept_name,--Tên khoa lập phiếu  
+  @gjysbm bilg_dr_codg, --Mã bác sĩ lập phiếu  
+  @ysmc bilg_dr_name,--Họ tên bác sĩ lập phiếu  
+  @ksbm acord_dept_codg,--Mã khoa nhận phiếu  
+  @ksmc acord_dept_name,--Tên khoa nhận phiếu  
+  @gjysbm orders_dr_code,--Mã bác sĩ nhận phiếu  
+  @ysmc orders_dr_name,--Họ tên bác sĩ nhận phiếu  
+  cast('1' as varchar) hosp_appr_flag,--Cờ phê duyệt của bệnh viện  
+  '' tcmdrug_used_way,--Cách dùng thuốc Đông y  
+  '' etip_flag,--Cờ xét nghiệm ngoài  
+  '' etip_hosp_code,--Mã bệnh viện xét nghiệm ngoài  
+  '' dscg_tkdrug_flag,--Cờ mang thuốc khi xuất viện  
+  '' matn_fee_flag--Cờ chi phí sinh đẻ  
 FROM    NewtouchHIS_Base..V_S_xt_sfxm  
 WHERE  isnull(zfxz,'1')!='1' and OrganizeId =@orgId AND zt='1'  
         AND (sfxmCode IN ( @ghxm ) or 
@@ -78,39 +78,39 @@ and OrganizeId=@orgId and zhcode=@zlxm ) or sfxmCode IN ( @ckf ) or sfxmCode IN 
 end  
 else if  @type='3'
 begin
-     SELECT    'yp'+cast(mx.cfmxid as varchar) feedetl_sn ,--费用明细流水号  
-  gh.jzid mdtrt_id,--就诊 ID  
-  cd.grbh psn_no,--人员编号  
-  @pch chrg_bchno,--dbo.f_NextBH() chrg_bchno,--收费批次号  
-  @dise_codg dise_codg,--病种编码  
-  cf.cfh rxno,--处方号  
-  '0' rx_circ_flag,--外购处方标志  
-   convert(varchar(50),mx.CreateTime,120) fee_ocur_time, --费用发生时间  
-  yp.gjybdm med_list_codg,--医疗目录编码  
-  yp.ypCode medins_list_codg,--医药机构目录编码  
-   Convert(decimal(13,2),ISNULL(mx.je, 0.00)) det_item_fee_sumamt,--明细项目费用总额  
-        ISNULL(mx.sl, 0.00) cnt ,--数量  
-  ISNULL(mx.dj, 0.00) pric,--单价  
-  cast(mx.jl as varchar) sin_dos_dscr,--单次剂量描述  
-  ''used_frqu_dscr,--使用频次描述  
-  CONVERT(NUMERIC(4,2),1) prd_days,--周期天数  
-  '' medc_way_dscr,--用药途径描述  
-  ks.ybksbm bilg_dept_codg,--开单科室编码  
-  ks.Name bilg_dept_name,--开单科室名称 
-  isnull(staff.gjybdm,staff.zjh) bilg_dr_codg, --开单医生编码  
-  --isnull(staff.zjh,cf.ys) bilg_dr_codg, --开单医生编码  
-  cf.ysmc bilg_dr_name,--开单医师姓名  
-  ks.ybksbm acord_dept_codg,--受单科室编码  
-  ks.Name acord_dept_name,--受单科室名称  
-  isnull(staff.gjybdm,staff.zjh) orders_dr_code,--受单医生编码  
-  --isnull(staff.zjh,cf.ys) orders_dr_code,--受单医生编码 
-  cf.ysmc orders_dr_name,--受单医生姓名  
-  case isnull(zzfbz,'0') when '1' then '2' else '1' end hosp_appr_flag,--医院审批标志  
-  '' tcmdrug_used_way,--中药使用方式  
-  '' etip_flag,--外检标志  
-  '' etip_hosp_code,--外检医院编码  
-  '' dscg_tkdrug_flag,--出院带药标志  
-  case gh.mjzbz when  '9' then '1' else '' end matn_fee_flag, --生育费用标志 
+     SELECT    'yp'+cast(mx.cfmxid as varchar) feedetl_sn ,--Số thứ tự chi tiết chi phí  
+  gh.jzid mdtrt_id,--ID khám bệnh  
+  cd.grbh psn_no,--Mã nhân viên  
+  @pch chrg_bchno,--dbo.f_NextBH() chrg_bchno,--Số lô thu phí  
+  @dise_codg dise_codg,--Mã loại bệnh  
+  cf.cfh rxno,--Số đơn thuốc  
+  '0' rx_circ_flag,--Cờ đơn thuốc mua ngoài  
+   convert(varchar(50),mx.CreateTime,120) fee_ocur_time, --Thời gian phát sinh chi phí  
+  yp.gjybdm med_list_codg,--Mã danh mục y tế  
+  yp.ypCode medins_list_codg,--Mã danh mục của cơ sở y tế  
+   Convert(decimal(13,2),ISNULL(mx.je, 0.00)) det_item_fee_sumamt,--Tổng chi phí hạng mục chi tiết  
+        ISNULL(mx.sl, 0.00) cnt ,--Số lượng  
+  ISNULL(mx.dj, 0.00) pric,--Đơn giá  
+  cast(mx.jl as varchar) sin_dos_dscr,--Mô tả liều dùng một lần  
+  ''used_frqu_dscr,--Mô tả tần suất sử dụng  
+  CONVERT(NUMERIC(4,2),1) prd_days,--Số ngày chu kỳ  
+  '' medc_way_dscr,--Mô tả đường dùng thuốc  
+  ks.ybksbm bilg_dept_codg,--Mã khoa lập phiếu  
+  ks.Name bilg_dept_name,--Tên khoa lập phiếu 
+  isnull(staff.gjybdm,staff.zjh) bilg_dr_codg, --Mã bác sĩ lập phiếu  
+  --isnull(staff.zjh,cf.ys) bilg_dr_codg, --Mã bác sĩ lập phiếu  
+  cf.ysmc bilg_dr_name,--Họ tên bác sĩ lập phiếu  
+  ks.ybksbm acord_dept_codg,--Mã khoa nhận phiếu  
+  ks.Name acord_dept_name,--Tên khoa nhận phiếu  
+  isnull(staff.gjybdm,staff.zjh) orders_dr_code,--Mã bác sĩ nhận phiếu  
+  --isnull(staff.zjh,cf.ys) orders_dr_code,--Mã bác sĩ nhận phiếu 
+  cf.ysmc orders_dr_name,--Họ tên bác sĩ nhận phiếu  
+  case isnull(zzfbz,'0') when '1' then '2' else '1' end hosp_appr_flag,--Cờ phê duyệt của bệnh viện  
+  '' tcmdrug_used_way,--Cách dùng thuốc Đông y  
+  '' etip_flag,--Cờ xét nghiệm ngoài  
+  '' etip_hosp_code,--Mã bệnh viện xét nghiệm ngoài  
+  '' dscg_tkdrug_flag,--Cờ mang thuốc khi xuất viện  
+  case gh.mjzbz when  '9' then '1' else '' end matn_fee_flag, --Cờ chi phí sinh đẻ 
   a.jsmxnm
           FROM      [NewtouchHIS_Sett].[dbo].[mz_jsmx] (NOLOCK) a
                     LEFT JOIN [NewtouchHIS_Sett].[dbo].[mz_cfmx] (NOLOCK) mx ON a.cf_mxnm = mx.cfmxId
@@ -146,39 +146,39 @@ begin
                     AND a.OrganizeId = @orgId
                     AND a.zt = '1'
           UNION ALL
-          SELECT    'xm'+cast(xm.xmnm as varchar) feedetl_sn ,--费用明细流水号  
-  gh.jzid mdtrt_id,--就诊 ID  
-  cd.grbh psn_no,--人员编号  
-  @pch chrg_bchno,--dbo.f_NextBH() chrg_bchno,--收费批次号  
-  @dise_codg dise_codg,--病种编码  
-  cf.cfh rxno,--处方号  
-  '0' rx_circ_flag,--外购处方标志  
-   convert(varchar(50),a.CreateTime,120) fee_ocur_time, --费用发生时间  
-  sfxm.gjybdm med_list_codg,--医疗目录编码  
-  sfxm.sfxmCode medins_list_codg,--医药机构目录编码  
-   Convert(decimal(13,2),ISNULL(xm.je, 0.00)) det_item_fee_sumamt,--明细项目费用总额  
-        ISNULL(xm.sl, 0.00) cnt ,--数量  
-  ISNULL(xm.dj, 0.00) pric,--单价  
-  null sin_dos_dscr,--单次剂量描述  
-  ''used_frqu_dscr,--使用频次描述  
-  CONVERT(NUMERIC(4,2),1) prd_days,--周期天数  
-  '' medc_way_dscr,--用药途径描述  
-  ks.ybksbm bilg_dept_codg,--开单科室编码  
-  ks.Name bilg_dept_name,--开单科室名称  
-  isnull(staff.gjybdm,staff.zjh) bilg_dr_codg, --开单医生编码  
-  --isnull(staff.zjh,cf.ys) bilg_dr_codg, --开单医生编码  
-  cf.ysmc bilg_dr_name,--开单医师姓名  
-  ks.ybksbm acord_dept_codg,--受单科室编码  
-  ks.Name acord_dept_name,--受单科室名称  
-  isnull(staff.gjybdm,staff.zjh) orders_dr_code,--受单医生编码  
-  --isnull(staff.zjh,cf.ys) orders_dr_code,--受单医生编码 
-  cf.ysmc orders_dr_name,--受单医生姓名    
-  case isnull(zzfbz,'0') when '1' then '2' else '1' end hosp_appr_flag,--医院审批标志  
-  '' tcmdrug_used_way,--中药使用方式  
-  '' etip_flag,--外检标志  
-  '' etip_hosp_code,--外检医院编码  
-  '' dscg_tkdrug_flag,--出院带药标志  
-  case gh.mjzbz when  '9' then '1' else '' end matn_fee_flag, --生育费用标志  
+          SELECT    'xm'+cast(xm.xmnm as varchar) feedetl_sn ,--Số thứ tự chi tiết chi phí  
+  gh.jzid mdtrt_id,--ID khám bệnh  
+  cd.grbh psn_no,--Mã nhân viên  
+  @pch chrg_bchno,--dbo.f_NextBH() chrg_bchno,--Số lô thu phí  
+  @dise_codg dise_codg,--Mã loại bệnh  
+  cf.cfh rxno,--Số đơn thuốc  
+  '0' rx_circ_flag,--Cờ đơn thuốc mua ngoài  
+   convert(varchar(50),a.CreateTime,120) fee_ocur_time, --Thời gian phát sinh chi phí  
+  sfxm.gjybdm med_list_codg,--Mã danh mục y tế  
+  sfxm.sfxmCode medins_list_codg,--Mã danh mục của cơ sở y tế  
+   Convert(decimal(13,2),ISNULL(xm.je, 0.00)) det_item_fee_sumamt,--Tổng chi phí hạng mục chi tiết  
+        ISNULL(xm.sl, 0.00) cnt ,--Số lượng  
+  ISNULL(xm.dj, 0.00) pric,--Đơn giá  
+  null sin_dos_dscr,--Mô tả liều dùng một lần  
+  ''used_frqu_dscr,--Mô tả tần suất sử dụng  
+  CONVERT(NUMERIC(4,2),1) prd_days,--Số ngày chu kỳ  
+  '' medc_way_dscr,--Mô tả đường dùng thuốc  
+  ks.ybksbm bilg_dept_codg,--Mã khoa lập phiếu  
+  ks.Name bilg_dept_name,--Tên khoa lập phiếu  
+  isnull(staff.gjybdm,staff.zjh) bilg_dr_codg, --Mã bác sĩ lập phiếu  
+  --isnull(staff.zjh,cf.ys) bilg_dr_codg, --Mã bác sĩ lập phiếu  
+  cf.ysmc bilg_dr_name,--Họ tên bác sĩ lập phiếu  
+  ks.ybksbm acord_dept_codg,--Mã khoa nhận phiếu  
+  ks.Name acord_dept_name,--Tên khoa nhận phiếu  
+  isnull(staff.gjybdm,staff.zjh) orders_dr_code,--Mã bác sĩ nhận phiếu  
+  --isnull(staff.zjh,cf.ys) orders_dr_code,--Mã bác sĩ nhận phiếu 
+  cf.ysmc orders_dr_name,--Họ tên bác sĩ nhận phiếu    
+  case isnull(zzfbz,'0') when '1' then '2' else '1' end hosp_appr_flag,--Cờ phê duyệt của bệnh viện  
+  '' tcmdrug_used_way,--Cách dùng thuốc Đông y  
+  '' etip_flag,--Cờ xét nghiệm ngoài  
+  '' etip_hosp_code,--Mã bệnh viện xét nghiệm ngoài  
+  '' dscg_tkdrug_flag,--Cờ mang thuốc khi xuất viện  
+  case gh.mjzbz when  '9' then '1' else '' end matn_fee_flag, --Cờ chi phí sinh đẻ  
   a.jsmxnm
           FROM      [NewtouchHIS_Sett].[dbo].[mz_jsmx] (NOLOCK) a
                     LEFT JOIN [NewtouchHIS_Sett].[dbo].[mz_xm] (NOLOCK) xm ON a.mxnm = xm.xmnm
@@ -216,38 +216,38 @@ LEFT JOIN xt_card (NOLOCK) cd ON cd.OrganizeId = gh.OrganizeId
 end
 else
 begin   
---门诊处方明细上传    
-SELECT  'yp'+cast(mx.cfmxid as varchar) feedetl_sn ,--费用明细流水号  
-  gh.jzid mdtrt_id,--就诊 ID  
-  cd.grbh psn_no,--人员编号  
-  @pch chrg_bchno,--dbo.f_NextBH() chrg_bchno,--收费批次号  
-  @dise_codg dise_codg,--病种编码  
-  cf.cfh rxno,--处方号  
-  '0' rx_circ_flag,--外购处方标志  
-     convert(varchar(50),mx.CreateTime,120) fee_ocur_time, --费用发生时间  
-  yp.gjybdm med_list_codg,--医疗目录编码  
-  yp.ypCode medins_list_codg,--医药机构目录编码  
-   Convert(decimal(13,2),ISNULL(mx.je, 0.00)) det_item_fee_sumamt,--明细项目费用总额  
-        ISNULL(mx.sl, 0.00) cnt ,--数量  
-  ISNULL(mx.dj, 0.00) pric,--单价  
-  cast(mx.jl as varchar) sin_dos_dscr,--单次剂量描述  
-  ''used_frqu_dscr,--使用频次描述  
-  CONVERT(NUMERIC(4,2),1) prd_days,--周期天数  
-  '' medc_way_dscr,--用药途径描述  
-  ks.ybksbm bilg_dept_codg,--开单科室编码  
-  ks.Name bilg_dept_name,--开单科室名称  
-  isnull(staff.gjybdm,cf.ys) bilg_dr_codg, --开单医生编码  
-  cf.ysmc bilg_dr_name,--开单医师姓名  
-  ks.ybksbm acord_dept_codg,--受单科室编码  
-  ks.Name acord_dept_name,--受单科室名称  
-  isnull(staff.gjybdm,cf.ys) orders_dr_code,--受单医生编码   
-  cf.ysmc orders_dr_name,--受单医生姓名  
-  case isnull(zzfbz,'0') when '1' then '2' else '1' end hosp_appr_flag,--医院审批标志  
-  '' tcmdrug_used_way,--中药使用方式  
-  '' etip_flag,--外检标志  
-  '' etip_hosp_code,--外检医院编码  
-  '' dscg_tkdrug_flag,--出院带药标志  
-  case gh.mjzbz when  '9' then '1' else '' end matn_fee_flag--生育费用标志  
+--Tải lên chi tiết đơn thuốc ngoại trú    
+SELECT  'yp'+cast(mx.cfmxid as varchar) feedetl_sn ,--Số thứ tự chi tiết chi phí  
+  gh.jzid mdtrt_id,--ID khám bệnh  
+  cd.grbh psn_no,--Mã nhân viên  
+  @pch chrg_bchno,--dbo.f_NextBH() chrg_bchno,--Số lô thu phí  
+  @dise_codg dise_codg,--Mã loại bệnh  
+  cf.cfh rxno,--Số đơn thuốc  
+  '0' rx_circ_flag,--Cờ đơn thuốc mua ngoài  
+     convert(varchar(50),mx.CreateTime,120) fee_ocur_time, --Thời gian phát sinh chi phí  
+  yp.gjybdm med_list_codg,--Mã danh mục y tế  
+  yp.ypCode medins_list_codg,--Mã danh mục của cơ sở y tế  
+   Convert(decimal(13,2),ISNULL(mx.je, 0.00)) det_item_fee_sumamt,--Tổng chi phí hạng mục chi tiết  
+        ISNULL(mx.sl, 0.00) cnt ,--Số lượng  
+  ISNULL(mx.dj, 0.00) pric,--Đơn giá  
+  cast(mx.jl as varchar) sin_dos_dscr,--Mô tả liều dùng một lần  
+  ''used_frqu_dscr,--Mô tả tần suất sử dụng  
+  CONVERT(NUMERIC(4,2),1) prd_days,--Số ngày chu kỳ  
+  '' medc_way_dscr,--Mô tả đường dùng thuốc  
+  ks.ybksbm bilg_dept_codg,--Mã khoa lập phiếu  
+  ks.Name bilg_dept_name,--Tên khoa lập phiếu  
+  isnull(staff.gjybdm,cf.ys) bilg_dr_codg, --Mã bác sĩ lập phiếu  
+  cf.ysmc bilg_dr_name,--Họ tên bác sĩ lập phiếu  
+  ks.ybksbm acord_dept_codg,--Mã khoa nhận phiếu  
+  ks.Name acord_dept_name,--Tên khoa nhận phiếu  
+  isnull(staff.gjybdm,cf.ys) orders_dr_code,--Mã bác sĩ nhận phiếu   
+  cf.ysmc orders_dr_name,--Họ tên bác sĩ nhận phiếu  
+  case isnull(zzfbz,'0') when '1' then '2' else '1' end hosp_appr_flag,--Cờ phê duyệt của bệnh viện  
+  '' tcmdrug_used_way,--Cách dùng thuốc Đông y  
+  '' etip_flag,--Cờ xét nghiệm ngoài  
+  '' etip_hosp_code,--Mã bệnh viện xét nghiệm ngoài  
+  '' dscg_tkdrug_flag,--Cờ mang thuốc khi xuất viện  
+  case gh.mjzbz when  '9' then '1' else '' end matn_fee_flag--Cờ chi phí sinh đẻ  
         FROM      mz_cf (NOLOCK) cf  
                 INNER JOIN mz_cfmx (NOLOCK) mx ON cf.cfnm = mx.cfnm  
                                                     AND mx.OrganizeId = cf.OrganizeId  
@@ -274,42 +274,42 @@ LEFT JOIN xt_card (NOLOCK) cd ON cd.OrganizeId = gh.OrganizeId
                                                               AND cd.zt = '1'
         WHERE     cf.OrganizeId = @orgId  
                 AND cf.zt = '1'  
-                AND cf.cfzt = '0' --处方有效且未收费  
+                AND cf.cfzt = '0' --Đơn thuốc còn hiệu lực và chưa thu phí  
                 AND gh.mzh = @mzh  
                 --AND cf.cfnm = @cfnm
                 AND cf.cfnm IN (SELECT * FROM dbo.f_split(@cfnm, ','))
 UNION ALL  
-       SELECT   'xm'+cast(xm.xmnm as varchar) feedetl_sn ,--费用明细流水号  
-  gh.jzid mdtrt_id,--就诊 ID  
-  cd.grbh psn_no,--人员编号  
-  @pch chrg_bchno,--dbo.f_NextBH() chrg_bchno,--收费批次号  
-  @dise_codg dise_codg,--病种编码  
-  cf.cfh rxno,--处方号  
-  '0' rx_circ_flag,--外购处方标志  
-   convert(varchar(50),xm.CreateTime,120) fee_ocur_time, --费用发生时间  
-  sfxm.gjybdm med_list_codg,--医疗目录编码  
-  sfxm.sfxmCode medins_list_codg,--医药机构目录编码  
-   Convert(decimal(13,2),ISNULL(xm.je, 0.00)) det_item_fee_sumamt,--明细项目费用总额  
-        ISNULL(xm.sl, 0.00) cnt ,--数量  
-  ISNULL(xm.dj, 0.00) pric,--单价  
-  null sin_dos_dscr,--单次剂量描述  
-  ''used_frqu_dscr,--使用频次描述  
-  CONVERT(NUMERIC(4,2),1) prd_days,--周期天数  
-  '' medc_way_dscr,--用药途径描述  
-  ks.ybksbm bilg_dept_codg,--开单科室编码  
-  ks.Name bilg_dept_name,--开单科室名称  
-  isnull(staff.gjybdm,cf.ys) bilg_dr_codg, --开单医生编码  
-  cf.ysmc bilg_dr_name,--开单医师姓名  
-  ks.ybksbm acord_dept_codg,--受单科室编码  
-  ks.Name acord_dept_name,--受单科室名称  
-  isnull(staff.gjybdm,cf.ys) orders_dr_code,--受单医生编码   
-  cf.ysmc orders_dr_name,--受单医生姓名   
-  case isnull(zzfbz,'0') when '1' then '2' else '1' end hosp_appr_flag,--医院审批标志  
-  '' tcmdrug_used_way,--中药使用方式  
-  '' etip_flag,--外检标志  
-  '' etip_hosp_code,--外检医院编码  
-  '' dscg_tkdrug_flag,--出院带药标志  
-  case gh.mjzbz when  '9' then '1' else '' end matn_fee_flag--生育费用标志  
+       SELECT   'xm'+cast(xm.xmnm as varchar) feedetl_sn ,--Số thứ tự chi tiết chi phí  
+  gh.jzid mdtrt_id,--ID khám bệnh  
+  cd.grbh psn_no,--Mã nhân viên  
+  @pch chrg_bchno,--dbo.f_NextBH() chrg_bchno,--Số lô thu phí  
+  @dise_codg dise_codg,--Mã loại bệnh  
+  cf.cfh rxno,--Số đơn thuốc  
+  '0' rx_circ_flag,--Cờ đơn thuốc mua ngoài  
+   convert(varchar(50),xm.CreateTime,120) fee_ocur_time, --Thời gian phát sinh chi phí  
+  sfxm.gjybdm med_list_codg,--Mã danh mục y tế  
+  sfxm.sfxmCode medins_list_codg,--Mã danh mục của cơ sở y tế  
+   Convert(decimal(13,2),ISNULL(xm.je, 0.00)) det_item_fee_sumamt,--Tổng chi phí hạng mục chi tiết  
+        ISNULL(xm.sl, 0.00) cnt ,--Số lượng  
+  ISNULL(xm.dj, 0.00) pric,--Đơn giá  
+  null sin_dos_dscr,--Mô tả liều dùng một lần  
+  ''used_frqu_dscr,--Mô tả tần suất sử dụng  
+  CONVERT(NUMERIC(4,2),1) prd_days,--Số ngày chu kỳ  
+  '' medc_way_dscr,--Mô tả đường dùng thuốc  
+  ks.ybksbm bilg_dept_codg,--Mã khoa lập phiếu  
+  ks.Name bilg_dept_name,--Tên khoa lập phiếu  
+  isnull(staff.gjybdm,cf.ys) bilg_dr_codg, --Mã bác sĩ lập phiếu  
+  cf.ysmc bilg_dr_name,--Họ tên bác sĩ lập phiếu  
+  ks.ybksbm acord_dept_codg,--Mã khoa nhận phiếu  
+  ks.Name acord_dept_name,--Tên khoa nhận phiếu  
+  isnull(staff.gjybdm,cf.ys) orders_dr_code,--Mã bác sĩ nhận phiếu   
+  cf.ysmc orders_dr_name,--Họ tên bác sĩ nhận phiếu   
+  case isnull(zzfbz,'0') when '1' then '2' else '1' end hosp_appr_flag,--Cờ phê duyệt của bệnh viện  
+  '' tcmdrug_used_way,--Cách dùng thuốc Đông y  
+  '' etip_flag,--Cờ xét nghiệm ngoài  
+  '' etip_hosp_code,--Mã bệnh viện xét nghiệm ngoài  
+  '' dscg_tkdrug_flag,--Cờ mang thuốc khi xuất viện  
+  case gh.mjzbz when  '9' then '1' else '' end matn_fee_flag--Cờ chi phí sinh đẻ  
         FROM      dbo.mz_xm (NOLOCK) xm  
                 INNER JOIN dbo.mz_gh (NOLOCK) gh ON gh.ghnm = xm.ghnm  
                                                     AND gh.OrganizeId = xm.OrganizeId  
@@ -334,12 +334,12 @@ LEFT JOIN xt_card (NOLOCK) cd ON cd.OrganizeId = gh.OrganizeId
                                                               AND cd.zt = '1'
         WHERE     xm.OrganizeId = @orgId  
                 AND xm.zt = '1'  
-                AND xm.xmzt = '0' --有效且未收费   
+                AND xm.xmzt = '0' --Còn hiệu lực và chưa thu phí   
                 AND ( cf.zt IS NULL  
                         OR ( cf.zt = '1'  
                             AND cf.cfzt = '0'  
                             )  
-                    ) --未关联处方 或 处方有效且未收费  
+                    ) --Chưa liên kết đơn thuốc, hoặc đơn thuốc còn hiệu lực và chưa thu phí  
                 AND gh.mzh = @mzh  
                 --AND cf.cfnm = @cfnm   
                 AND cf.cfnm IN (SELECT * FROM dbo.f_split(@cfnm, ','))

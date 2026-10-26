@@ -1,8 +1,8 @@
 ﻿USE [Newtouch_EMR]
 GO
 
--- 事件类型: CREATE_TABLE
--- 变更时间: 11/19/2024 16:48:49
+-- Loại sự kiện: CREATE_TABLE
+-- Thời gian thay đổi: 11/19/2024 16:48:49
 CREATE TABLE dbo.Tmp_mr_basy_zd
 	(
 	Id varchar(50) NOT NULL,

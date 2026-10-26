@@ -23,9 +23,9 @@
             <ul id="reportsList" class="nav navbar-nav"></ul>
         </div>
         <div style="float:right;width:calc(100% - 200pt)">
-            <input type="button" value="设计" id="btnDesign" />
-            <!--<input type="button" value="test设计" id="btnDesign1" />
-            <input type="button" value="后端生成PDF然后导出" id="btnExportPDF" />-->
+            <input type="button" value="Thiết kế" id="btnDesign" />
+            <!--<input type="button" value="testThiết kế" id="btnDesign1" />
+            <input type="button" value="Backend tạo PDF rồi xuất" id="btnExportPDF" />-->
             <div id="viewerContainer">
             </div>
         </div>
@@ -42,11 +42,11 @@
             init();
             viewer = GrapeCity.ActiveReports.JSViewer.create({
                 element: '#viewerContainer',
-                reportID: '1_9bb029d0-5da0-4118-9d19-06b829eede46_报表',//报表名称
+                reportID: '1_9bb029d0-5da0-4118-9d19-06b829eede46_报表',//Tên báo cáo
                 reportService: {
-                    url: 'api/reporting/', //调用报表服务url前缀
+                    url: 'api/reporting/', //Tiền tố URL gọi dịch vụ báo cáo
                 },
-                reportParameters: [{  //报表入参 name 参数名称 values 参数值数组类型
+                reportParameters: [{  //Tham số đầu vào của báo cáo: name là tên tham số, values là mảng giá trị tham số
                     name: 'orgId',
                     values: ['9bb029d0-5da0-4118-9d19-06b829eede46']
                 }, {

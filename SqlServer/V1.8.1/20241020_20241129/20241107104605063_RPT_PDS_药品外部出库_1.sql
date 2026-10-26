@@ -1,16 +1,16 @@
 ﻿USE [NewtouchHIS_Base]
 GO
 
--- 事件类型: ALTER_PROCEDURE
--- 变更时间: 11/07/2024 10:46:05
+-- Loại sự kiện: ALTER_PROCEDURE
+-- Thời gian thay đổi: 11/07/2024 10:46:05
 
 
 
 
 /*
-author:tyz
-time:2023年3月13日
-des:外部出库
+Tác giả: tyz
+Thời gian: ngày 13/03/2023
+Mô tả: Xuất kho ra ngoài
 */   
 ALTER PROCEDURE [dbo].[RPT_PDS_药品外部出库]    
 (
@@ -26,7 +26,7 @@ ALTER PROCEDURE [dbo].[RPT_PDS_药品外部出库]
 )    
 AS
 
--- 切割字符串
+-- Cắt chuỗi
 DECLARE @t TABLE(col VARCHAR(50));
 DECLARE @s VARCHAR(5000);
 DECLARE @split VARCHAR(1);

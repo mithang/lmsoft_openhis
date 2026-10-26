@@ -1,8 +1,8 @@
 ﻿USE [NewtouchHIS_Sett]
 GO
 
--- 事件类型: ALTER_PROCEDURE
--- 变更时间: 11/07/2024 12:40:32
+-- Loại sự kiện: ALTER_PROCEDURE
+-- Thời gian thay đổi: 11/07/2024 12:40:32
 
 
 
@@ -28,14 +28,14 @@ exec [zy_rydjxx] '03334','6d5752a7-234a-403e-aa1c-df8b45d3469f','02','1525241948
 
   
 ALTER PROCEDURE [dbo].[zy_rydjxx]     
-@hisId varchar(20), --住院号  
-@orgId varchar(50),--组织机构  
-@mdtrt_cert_type varchar(5), --就诊类型  
-@mdtrt_cert_no varchar(50), --就诊凭证编号  
-@med_type varchar(20),--医疗类别  
-@mdtrt_id varchar(50), --就诊ID  
-@type varchar(2), --类型 1登记  2信息修改 3出院办理  
-@hisIdNum varchar(10) --2位随机数
+@hisId varchar(20), --Số nhập viện  
+@orgId varchar(50),--Tổ chức  
+@mdtrt_cert_type varchar(5), --Loại khám bệnh  
+@mdtrt_cert_no varchar(50), --Số chứng từ khám bệnh  
+@med_type varchar(20),--Loại hình y tế  
+@mdtrt_id varchar(50), --ID khám bệnh  
+@type varchar(2), --Loại: 1 đăng ký, 2 sửa thông tin, 3 làm thủ tục xuất viện  
+@hisIdNum varchar(10) --Số ngẫu nhiên 2 chữ số
 as  
 if @type='1'  
 begin  
@@ -43,52 +43,52 @@ begin
 declare @jzlx varchar(10)='310';
 if(@mdtrt_cert_type='02')
 begin
-set @jzlx='4' --身份证
+set @jzlx='4' --Chứng minh nhân dân
 end
-if(@mdtrt_cert_type='01') --电子凭证
+if(@mdtrt_cert_type='01') --Chứng từ điện tử
 begin
 set @jzlx='3'
 end
-if(@mdtrt_cert_type='03') --社保卡
+if(@mdtrt_cert_type='03') --Thẻ bảo hiểm xã hội
 begin
 set @jzlx='2'
 end
-select cd.grbh psn_no,--人员编号  
---'390' insutype,--险种类型 
-    cd.xzlx insutype,--险种类型  
-    a.lxr coner_name,--联系人姓名  
-    a.lxrdh tel,--联系电话  
-    convert(varchar(20),a.ryrq,120) begntime,--开始时间  
-	-- '02'  mdtrt_cert_type,--就诊凭证类型 
-    @mdtrt_cert_type  mdtrt_cert_type,--就诊凭证类型  
+select cd.grbh psn_no,--Mã nhân viên  
+--'390' insutype,--Loại hình bảo hiểm 
+    cd.xzlx insutype,--Loại hình bảo hiểm  
+    a.lxr coner_name,--Họ tên người liên hệ  
+    a.lxrdh tel,--Số điện thoại liên hệ  
+    convert(varchar(20),a.ryrq,120) begntime,--Thời gian bắt đầu  
+	-- '02'  mdtrt_cert_type,--Loại chứng từ khám bệnh 
+    @mdtrt_cert_type  mdtrt_cert_type,--Loại chứng từ khám bệnh  
 	--'152524194801044224' mdtrt_cert_no,
-    @mdtrt_cert_no mdtrt_cert_no,--就诊凭证编号  
-    @med_type med_type,--医疗类别  
-    @hisId+isnull(@hisIdNum,'')  ipt_no,--住院号  
-    a.blh medrcdno,--病历号  
-    c.gjybdm atddr_no,--主治医生编码  
-    c.name chfpdr_name,--主诊医师姓名  
-    d.zdmc adm_diag_dscr,--入院诊断描述  
-    dept.ybksbm adm_dept_codg,--入院科室编码  
-    dept.name adm_dept_name,--入院科室名称  
-    a.cw adm_bed,--入院床位  
-    d.icd10 dscg_maindiag_code,--住院主诊断代码  
-    d.zdmc dscg_maindiag_name, --住院主诊断名称  
-    '' main_cond_dscr,--主要病情描述  
-    isnull(bzbm,'') dise_codg, --病种编码  
-    isnull(bzmc,'') dise_name,--病种名称  
-    ''  oprn_oprt_code,--手术操作代码  
-    '' oprn_oprt_name,--手术操作名称  
-    a.syfwzh fpsc_no,--计划生育服务证号  
-    case rytj when '52' then '1' else '' end matn_type,--生育类别  
-    '' birctrl_type,--计划生育手术类别  
-    case rytj when '52' then '0' else '' end latechb_flag,--晚育标志  
-    0 geso_val, --孕周数  
-    0 fetts,--胎次  
-    0 fetus_cnt,--胎儿数  
-    case rytj when '52' then '0' else '' end pret_flag,--早产标志  
-    case  when syrq is  null then convert(varchar(10),GETDATE(),120) else convert(varchar(10),syrq,120) end  birctrl_matn_date,--计划生育手术或生育日期  
-    '' dise_type_code--病种类型  
+    @mdtrt_cert_no mdtrt_cert_no,--Số chứng từ khám bệnh  
+    @med_type med_type,--Loại hình y tế  
+    @hisId+isnull(@hisIdNum,'')  ipt_no,--Số nhập viện  
+    a.blh medrcdno,--Số hồ sơ bệnh án  
+    c.gjybdm atddr_no,--Mã bác sĩ điều trị chính  
+    c.name chfpdr_name,--Họ tên bác sĩ chẩn đoán chính  
+    d.zdmc adm_diag_dscr,--Mô tả chẩn đoán nhập viện  
+    dept.ybksbm adm_dept_codg,--Mã khoa nhập viện  
+    dept.name adm_dept_name,--Tên khoa nhập viện  
+    a.cw adm_bed,--Giường nhập viện  
+    d.icd10 dscg_maindiag_code,--Mã chẩn đoán chính khi nhập viện  
+    d.zdmc dscg_maindiag_name, --Tên chẩn đoán chính khi nhập viện  
+    '' main_cond_dscr,--Mô tả tình trạng bệnh chính  
+    isnull(bzbm,'') dise_codg, --Mã loại bệnh  
+    isnull(bzmc,'') dise_name,--Tên loại bệnh  
+    ''  oprn_oprt_code,--Mã phẫu thuật/thủ thuật  
+    '' oprn_oprt_name,--Tên phẫu thuật/thủ thuật  
+    a.syfwzh fpsc_no,--Số giấy chứng nhận dịch vụ kế hoạch hóa gia đình  
+    case rytj when '52' then '1' else '' end matn_type,--Loại sinh đẻ  
+    '' birctrl_type,--Loại phẫu thuật kế hoạch hóa gia đình  
+    case rytj when '52' then '0' else '' end latechb_flag,--Cờ sinh muộn  
+    0 geso_val, --Số tuần thai  
+    0 fetts,--Số lần mang thai  
+    0 fetus_cnt,--Số thai nhi  
+    case rytj when '52' then '0' else '' end pret_flag,--Cờ sinh non  
+    case  when syrq is  null then convert(varchar(10),GETDATE(),120) else convert(varchar(10),syrq,120) end  birctrl_matn_date,--Ngày phẫu thuật kế hoạch hóa gia đình hoặc ngày sinh  
+    '' dise_type_code--Loại bệnh  
 from NewtouchHIS_Sett..zy_brjbxx a  
 LEFT JOIN [NewtouchHIS_Sett].[dbo].[xt_brjbxx] b ON b.patid = a.patid  
                 AND b.OrganizeId = a.OrganizeId  
@@ -106,32 +106,32 @@ end
   
 else if @type='3'  
 begin  
-SELECT  jzdj.jylsh mdtrt_id,--就诊 ID  
-  cd.grbh psn_no,--人员编号  
-     cd.xzlx insutype,--险种类型  
-     convert(varchar(20),ciszyxx.cqrq,120)  endtime,--结束时间 
+SELECT  jzdj.jylsh mdtrt_id,--ID khám bệnh  
+  cd.grbh psn_no,--Mã nhân viên  
+     cd.xzlx insutype,--Loại hình bảo hiểm  
+     convert(varchar(20),ciszyxx.cqrq,120)  endtime,--Thời gian kết thúc 
 	 --convert(varchar(20),zybrxx.cyrq,120)  endtime, 
-  isnull(bzbm,'') dise_codg, --病种编码  
-   isnull(bzmc,'') dise_name,--病种名称   
-  '' oprn_oprt_code,--手术操作代码  
-  '' oprn_oprt_name,--手术操作名称  
-  zybrxx.syfwzh fpsc_no,--计划生育服务证号  
-  '' matn_type,--生育类别  
-  '' birctrl_type,--计划生育手术类别  
-  '' latechb_flag,--晚育标志  
-  0 geso_val,--孕周数  
-  0 fetts,--胎次  
-  0 fetus_cnt,--胎儿数  
-  '' pret_flag,--早产标志  
-  case  when syrq is  null then convert(varchar(10),GETDATE(),120) else convert(varchar(10),syrq,120) end birctrl_matn_date,--计划生育手术或生育日期  
-  '' cop_flag,--伴有并发症标志  
-         dept.ybksbm dscg_dept_codg,--ciszyxx.DeptCode cyks ,出院科室编码  
-   dept.Name dscg_dept_name,--出院科室名称  
-   zybrxx.cw dscg_bed,--出院床位  
-  --case cyzd.cyqk when '6' then '2' when '4' then '5' when '5' then '9' else '1' end dscg_way,--离院方式  
-  --'' die_date --死亡日期  
-  case ciszyxx.cyfs when '3' then '2' when '4' then '5' else '1' end dscg_way,--离院方式  2转院  5死亡 1医嘱离院
-  case ciszyxx.cyfs when '4' then convert(varchar(10),cyrq,121) else  '' end die_date --死亡日期 
+  isnull(bzbm,'') dise_codg, --Mã loại bệnh  
+   isnull(bzmc,'') dise_name,--Tên loại bệnh   
+  '' oprn_oprt_code,--Mã phẫu thuật/thủ thuật  
+  '' oprn_oprt_name,--Tên phẫu thuật/thủ thuật  
+  zybrxx.syfwzh fpsc_no,--Số giấy chứng nhận dịch vụ kế hoạch hóa gia đình  
+  '' matn_type,--Loại sinh đẻ  
+  '' birctrl_type,--Loại phẫu thuật kế hoạch hóa gia đình  
+  '' latechb_flag,--Cờ sinh muộn  
+  0 geso_val,--Số tuần thai  
+  0 fetts,--Số lần mang thai  
+  0 fetus_cnt,--Số thai nhi  
+  '' pret_flag,--Cờ sinh non  
+  case  when syrq is  null then convert(varchar(10),GETDATE(),120) else convert(varchar(10),syrq,120) end birctrl_matn_date,--Ngày phẫu thuật kế hoạch hóa gia đình hoặc ngày sinh  
+  '' cop_flag,--Cờ có biến chứng kèm theo  
+         dept.ybksbm dscg_dept_codg,--ciszyxx.DeptCode cyks ,Mã khoa xuất viện  
+   dept.Name dscg_dept_name,--Tên khoa xuất viện  
+   zybrxx.cw dscg_bed,--Giường xuất viện  
+  --case cyzd.cyqk when '6' then '2' when '4' then '5' when '5' then '9' else '1' end dscg_way,--Cách rời viện  
+  --'' die_date --Ngày tử vong  
+  case ciszyxx.cyfs when '3' then '2' when '4' then '5' else '1' end dscg_way,--Cách rời viện: 2 chuyển viện, 5 tử vong, 1 rời viện theo y lệnh
+  case ciszyxx.cyfs when '4' then convert(varchar(10),cyrq,121) else  '' end die_date --Ngày tử vong 
 FROM    zy_brjbxx zybrxx  
         INNER JOIN Newtouch_CIS..zy_brxxk ciszyxx ON ciszyxx.OrganizeId = zybrxx.OrganizeId  
                                                      AND ciszyxx.zyh = zybrxx.zyh  
@@ -159,39 +159,39 @@ else
 begin  
   
 select   
-    jzdj.jylsh,--就诊 ID  
-    cd.grbh psn_no,--人员编号  
-    a.lxr coner_name,--联系人姓名  
-    a.lxrdh tel,--联系电话  
-    convert(varchar(20),a.ryrq,120) begntime,--开始时间  
-    convert(varchar(20),getdate(),120) endtime,--结束时间  
-    @mdtrt_cert_type  mdtrt_cert_type,--就诊凭证类型  
-    @med_type med_type,--医疗类别  
-    (a.zyh+isnull(jzh,'')) ipt_otp_no,--住院号  
-    a.blh medrcdno,--病历号  
-    c.gjybdm atddr_no,--主治医生编码  
-    c.name chfpdr_name,--主诊医师姓名  
-    isnull(d.zdmc,ryzd.icd10) adm_diag_dscr,--入院诊断描述  
-    dept.ybksbm adm_dept_codg,--入院科室编码  
-    dept.name adm_dept_name,--入院科室名称  
-    a.cw adm_bed,--入院床位  
-    isnull(d.zddm,ryzd.icd10) dscg_maindiag_code,--住院主诊断代码  
-    isnull(d.zdmc,ryzd.zdmc) dscg_maindiag_name, --住院主诊断名称  
-    '' main_cond_dscr,--主要病情描述  
-    isnull(bzbm,'') dise_codg, --病种编码  
-    isnull(bzmc,'') dise_name,--病种名称   
-    ''  oprn_oprt_code,--手术操作代码  
-    '' oprn_oprt_name,--手术操作名称  
-    a.syfwzh fpsc_no,--计划生育服务证号  
-    case rytj when '52' then '1' else '' end matn_type,--生育类别  
-    '' birctrl_type,--计划生育手术类别  
-     case rytj when '52' then '0' else '' end latechb_flag,--晚育标志  
-    0 geso_val, --孕周数  
-    0 fetts,--胎次  
-    0 fetus_cnt,--胎儿数  
-    case rytj when '52' then '0' else '' end pret_flag,--早产标志  
-    case  when syrq is  null then convert(varchar(10),'2021-12-31 23:53:53',120) else convert(varchar(10),syrq,120) end birctrl_matn_date,--计划生育手术或生育日期  
-    '' dise_type_code--病种类型  
+    jzdj.jylsh,--ID khám bệnh  
+    cd.grbh psn_no,--Mã nhân viên  
+    a.lxr coner_name,--Họ tên người liên hệ  
+    a.lxrdh tel,--Số điện thoại liên hệ  
+    convert(varchar(20),a.ryrq,120) begntime,--Thời gian bắt đầu  
+    convert(varchar(20),getdate(),120) endtime,--Thời gian kết thúc  
+    @mdtrt_cert_type  mdtrt_cert_type,--Loại chứng từ khám bệnh  
+    @med_type med_type,--Loại hình y tế  
+    (a.zyh+isnull(jzh,'')) ipt_otp_no,--Số nhập viện  
+    a.blh medrcdno,--Số hồ sơ bệnh án  
+    c.gjybdm atddr_no,--Mã bác sĩ điều trị chính  
+    c.name chfpdr_name,--Họ tên bác sĩ chẩn đoán chính  
+    isnull(d.zdmc,ryzd.icd10) adm_diag_dscr,--Mô tả chẩn đoán nhập viện  
+    dept.ybksbm adm_dept_codg,--Mã khoa nhập viện  
+    dept.name adm_dept_name,--Tên khoa nhập viện  
+    a.cw adm_bed,--Giường nhập viện  
+    isnull(d.zddm,ryzd.icd10) dscg_maindiag_code,--Mã chẩn đoán chính khi nhập viện  
+    isnull(d.zdmc,ryzd.zdmc) dscg_maindiag_name, --Tên chẩn đoán chính khi nhập viện  
+    '' main_cond_dscr,--Mô tả tình trạng bệnh chính  
+    isnull(bzbm,'') dise_codg, --Mã loại bệnh  
+    isnull(bzmc,'') dise_name,--Tên loại bệnh   
+    ''  oprn_oprt_code,--Mã phẫu thuật/thủ thuật  
+    '' oprn_oprt_name,--Tên phẫu thuật/thủ thuật  
+    a.syfwzh fpsc_no,--Số giấy chứng nhận dịch vụ kế hoạch hóa gia đình  
+    case rytj when '52' then '1' else '' end matn_type,--Loại sinh đẻ  
+    '' birctrl_type,--Loại phẫu thuật kế hoạch hóa gia đình  
+     case rytj when '52' then '0' else '' end latechb_flag,--Cờ sinh muộn  
+    0 geso_val, --Số tuần thai  
+    0 fetts,--Số lần mang thai  
+    0 fetus_cnt,--Số thai nhi  
+    case rytj when '52' then '0' else '' end pret_flag,--Cờ sinh non  
+    case  when syrq is  null then convert(varchar(10),'2021-12-31 23:53:53',120) else convert(varchar(10),syrq,120) end birctrl_matn_date,--Ngày phẫu thuật kế hoạch hóa gia đình hoặc ngày sinh  
+    '' dise_type_code--Loại bệnh  
 from NewtouchHIS_Sett..zy_brjbxx a  
 LEFT JOIN [NewtouchHIS_Sett].[dbo].[xt_brjbxx] b ON b.patid = a.patid  
                 AND b.OrganizeId = a.OrganizeId  

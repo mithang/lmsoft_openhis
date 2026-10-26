@@ -1,17 +1,17 @@
 ﻿USE [NewtouchHIS_Base]
 GO
 
--- 事件类型: ALTER_PROCEDURE
--- 变更时间: 11/19/2024 16:21:08
+-- Loại sự kiện: ALTER_PROCEDURE
+-- Thời gian thay đổi: 11/19/2024 16:21:08
 
 
 
 
 
 /*
-author:tyz
-time:2023年3月10日
-des: 门诊结算单
+Tác giả: tyz
+Thời gian: ngày 10/03/2023
+Mô tả:  Phiếu quyết toán ngoại trú
 exec [RPT_SETT_住院医保结算单_报销明细]   '6d5752a7-234a-403e-aa1c-df8b45d3469f', '4294'
 */   
 ALTER PROCEDURE [dbo].[RPT_SETT_住院医保结算单_报销明细]    
@@ -25,8 +25,8 @@ declare @kssj datetime
 declare @jssj datetime
 declare @patid varchar(20)
 declare @xjzf numeric(10,2)
-declare @yjj numeric(10,2)--预交金
-declare @szje numeric(10,2)--出院收支
+declare @yjj numeric(10,2)--Tiền tạm ứng
+declare @szje numeric(10,2)--Thu chi xuất viện
 declare @xzzffs varchar(20)
 select @kssj=jsksrq,@jssj=a.CreateTime,@patid=patid,@xjzf=a.xjzf,@xzzffs=xjzffs from NewtouchHIS_Sett..zy_js a
 left join NewtouchHIS_Sett..zy_brjbxx b on a.zyh=b.zyh and a.OrganizeId=b.OrganizeId and a.zt=1

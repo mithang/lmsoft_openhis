@@ -247,9 +247,9 @@ $.fn.newtouchFloatingSelector = function (options) {
             }
             if (($(document).height() - thisDomPoint.t - options.$this.height() - 5) < options.height) {
                 if ((thisDomPoint.t - options.height - 3) >= 0) {
-                    options.container.css('top', (thisDomPoint.t - options.height - 3) + "px");//放上面
+                    options.container.css('top', (thisDomPoint.t - options.height - 3) + "px");//Đặt lên phía trên
                 } else {
-                    options.container.css('top', (thisDomPoint.t + options.$this.height() + 2) + "px");//放下面
+                    options.container.css('top', (thisDomPoint.t + options.$this.height() + 2) + "px");//Đặt xuống phía dưới
                     options.container.css({
                         height: ($(document).height() - thisDomPoint.t - options.$this.height() - 10)
                     });
@@ -416,10 +416,10 @@ $.fn.newtouchFloatingSelector = function (options) {
                 function () {
                     var godbclick = true;
                     if (options.itemdbclickhandleBefore) {
-                        godbclick = options.itemdbclickhandleBefore($(this));    //双击一行 处理之前
+                        godbclick = options.itemdbclickhandleBefore($(this));    //Xử lý trước khi nhấn đúp một hàng
                     }
                     if (!(godbclick === false)) {
-                        options.itemdbclickhandler($(this), options.$this); //谁触发的，返回给页面
+                        options.itemdbclickhandler($(this), options.$this); //Ai kích hoạt thì trả về cho trang
                     }
                     if (options.isinputchangetriggered) {
                         options.focusfromdbclickitem = true; options.$this.trigger('focus');
@@ -597,7 +597,7 @@ $.getTime = function (options) {
     }
     return reslut;
 }
-/* 已过时 */
+/* Đã lỗi thời */
 function GetAgeByCsny(strBirthday) {
     if (!!!strBirthday) { return ""; }
     var returnAge; strBirthday = strBirthday.split(" ")[0]; var strBirthdayArr = strBirthday.split("-"); var birthYear = strBirthdayArr[0]; var birthMonth = strBirthdayArr[1]; var birthDay = strBirthdayArr[2]; d = new Date(); var nowYear = d.getFullYear(); var nowMonth = d.getMonth() + 1; var nowDay = d.getDate(); if (nowYear == birthYear) { returnAge = 0; }
@@ -616,19 +616,19 @@ function GetAgeByCsny(strBirthday) {
     }
     return returnAge;
 }
-    //如果不小于1年 岁；否则如果不小于1个月 N月M天；否则不小于3天 天；否则小时
+    //Nếu không nhỏ hơn 1 năm thì tính theo năm; ngược lại nếu không nhỏ hơn 1 tháng thì N tháng M ngày; ngược lại nếu không nhỏ hơn 3 ngày thì tính theo ngày; ngược lại tính theo giờ
 function getAgeFromBirthTime(options) {
         try {
             if (!options.begin) {
                 return { nl: -1, nldw: -1, text: '' };
             }
-            //格式化一下 成yyyy-MM-dd HH:mm:ss
+            //Định dạng lại thành yyyy-MM-dd HH:mm:ss
             options.begin = $.getTime({ date: options.begin });
             if (!options.end) {
                 options.end = $.getTime();
             }
             else if (options.end.length == 10) {
-                //未提供时分秒 格式化一下
+                //Chưa cung cấp giờ phút giây thì định dạng lại
                 options.end = $.getTime({ date: options.end });
             }
 
@@ -663,33 +663,33 @@ function getAgeFromBirthTime(options) {
                 return { nl: -1, nldw: -1, text: '' };
             }
 
-            var nl = -1; //年龄 数字
-            var nldw = -1;   //年龄单位 1、年 2、月 3、日4、小时
+            var nl = -1; //Tuổi, dạng số
+            var nldw = -1;   //Đơn vị tuổi: 1 năm, 2 tháng, 3 ngày, 4 giờ
             var nlStr = '';
 
             if (year >= 1) {
-                //年
+                //năm
                 nldw = 1;
                 nl = year;
                 if (month >= 6) {
                     nl = nl + 1;
                 }
-                nlStr = nl + '岁';
+                nlStr = nl + ' tuổi';
             }
             else if (month >= 1) {
-                //月
+                //tháng
                 nldw = 2;
                 nl = month;
-                nlStr = nl + '个月';
+                nlStr = nl + ' tháng';
             }
             else if (days >= 3) {
-                //天
+                //ngày
                 nldw = 3;
                 nl = days;
-                nlStr = nl + '天';
+                nlStr = nl + ' ngày';
             }
             else {
-                //小时
+                //giờ
                 nldw = 4;
                 var begDate = new Date(beginArr[1], beginArr[3] - 1,
                     beginArr[4], beginArr[6], beginArr[8], beginArr[10]);
@@ -701,9 +701,9 @@ function getAgeFromBirthTime(options) {
                 var hours = Math.floor(between / 3600 - (days * 24));
                 nl = days * 24 + hours;
                 if (nl == 0) {
-                    nl = 1; //1小时
+                    nl = 1; //1 giờ
                 }
-                nlStr = nl + '小时';
+                nlStr = nl + ' giờ';
             }
 
             return { nl: nl, nldw: nldw, text: nlStr };
@@ -764,7 +764,7 @@ $.LoadNavTree = function () {
 }
 Date.prototype.format = function (fmt) {
     var o = { "M+": this.getMonth() + 1, "d+": this.getDate(), "h+": this.getHours(), "m+": this.getMinutes(), "s+": this.getSeconds(), "q+": Math.floor((this.getMonth() + 3) / 3), "S": this.getMilliseconds() }
-    var week = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]; if (/(y+)/.test(fmt)) { fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length)); }
+    var week = ["Chủ nhật", "Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy"]; if (/(y+)/.test(fmt)) { fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length)); }
     if (/(w+)/.test(fmt)) { fmt = fmt.replace(RegExp.$1, week[this.getDay()]); }
     for (var k in o) { if (new RegExp("(" + k + ")").test(fmt)) { fmt = fmt.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length)); } }
     return fmt;

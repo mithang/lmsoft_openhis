@@ -1,5 +1,5 @@
 ﻿/*
-    desc:jQuery模拟盖章
+    desc:jQuery mô phỏng đóng dấu
     author:hyf
     date:2012-11-08
 */
@@ -9,7 +9,7 @@
         img: '',
         width: 150,
         height: 150,
-        offset: 30,           //边界值
+        offset: 30,           //Giá trị biên
         callBack: null
     }, options || {});
 
@@ -17,19 +17,19 @@
     var range = {
         minX: _s.offset,
         minY: _s.offset,
-        maxX: $(window).width(),      //扣去2个padding=8px以及2个边框1px
+        maxX: $(window).width(),      //Trừ đi 2 padding = 8px và 2 viền 1px
         maxY: $(window).height()
     };
 
-    var _btnPanel = $("<div class='panels'><button class='btn btn-default add ' >盖 章</button><button class='btn btn-default cancel'>关 闭</button></div>").appendTo(_parent);
-    var _html = "<div class='sign' style='height:" + _s.height + "px;width:" + _s.width + "px;top:" + _s.offset + "px;left:" + _s.offset + "px'><img src='" + _s.img + "' draggable='false'/><button class='btn btn-default ok' >确定</button><button class='btn btn-default del' >删除</button></div>";
+    var _btnPanel = $("<div class='panels'><button class='btn btn-default add ' >Đóng dấu</button><button class='btn btn-default cancel'>Đóng</button></div>").appendTo(_parent);
+    var _html = "<div class='sign' style='height:" + _s.height + "px;width:" + _s.width + "px;top:" + _s.offset + "px;left:" + _s.offset + "px'><img src='" + _s.img + "' draggable='false'/><button class='btn btn-default ok' >Xác nhận</button><button class='btn btn-default del' >Xóa</button></div>";
 
 
     var _add = $('.add', _btnPanel).click(function (e) {
         _add.attr('disabled', 'disabled');
         var sign = $(_html).appendTo(_parent);
         $('.ok', sign).click(function () {
-            //确定盖章
+            //Xác nhận đóng dấu
             sign.addClass('ok').off('mousedown').find('.btn').remove();
             _add.removeAttr('disabled');
             if (_s.callBack) {
@@ -37,12 +37,12 @@
             }
         });
         $('.del', sign).click(function () {
-            //取消盖章
+            //Hủy đóng dấu
             sign.remove();
             _add.removeAttr('disabled');
         });
 
-        //绑定移动事件
+        //Gắn sự kiện di chuyển
         sign.on('mousedown', function (e) {
             sign.data('x', e.clientX);
             sign.data('y', e.clientY);
@@ -65,12 +65,12 @@
 	$('.cancel', _btnPanel).click(function () {
         var r = true;
         if (_add.attr('disabled') == 'disabled') {
-            if (!confirm("未确定的盖章将被取消，确定要关闭吗？")) {
+            if (!confirm("Dấu chưa xác định sẽ bị hủy, bạn có chắc chắn muốn đóng không?")) {
                 r = false;
             }
         }
         if (r) {
-            //删除未确定位置的盖章
+            //Xóa dấu chưa xác định vị trí
             $('.sign:not(.ok)', _parent).remove();
             _btnPanel.remove();
         }

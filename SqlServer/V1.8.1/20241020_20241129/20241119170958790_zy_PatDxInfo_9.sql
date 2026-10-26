@@ -1,8 +1,8 @@
 ﻿USE [Newtouch_CIS]
 GO
 
--- 事件类型: ALTER_TABLE
--- 变更时间: 11/19/2024 17:09:58
+-- Loại sự kiện: ALTER_TABLE
+-- Thời gian thay đổi: 11/19/2024 17:09:58
 ALTER TABLE dbo.zy_PatDxInfo ADD CONSTRAINT
 	PK_ZY_PATDXINFO PRIMARY KEY CLUSTERED 
 	(

@@ -1,8 +1,8 @@
 ﻿USE [Newtouch_EMR]
 GO
 
--- 事件类型: ALTER_TABLE
--- 变更时间: 11/19/2024 16:48:50
+-- Loại sự kiện: ALTER_TABLE
+-- Thời gian thay đổi: 11/19/2024 16:48:50
 ALTER TABLE dbo.mr_basy_zd ADD CONSTRAINT
 	PK__mr_basy___3214EC078F372823 PRIMARY KEY CLUSTERED 
 	(

@@ -7,13 +7,13 @@
     <title></title>
 </head>
 <body>
-    <input type="button" value="本地文档加载" onclick="document.getElementById('myWriterControl').DCExecuteCommand('FileOpen', true, null);" />
-    <input type="button" value="前端加载文档1" onclick="func_loadxmlstring1();" />
-    <input type="button" value="前端加载文档2" onclick="func_loadxmlstring2();" />
-    <input type="button" value="打印预览" onclick="document.getElementById('myWriterControl').LoadPrintPreview();" />
-    <input type="button" value="关闭预览" onclick="document.getElementById('myWriterControl').ClosePrintPreview();" />
-    <input type="button" value="直接打印" onclick="document.getElementById('myWriterControl').PrintDocument();" />
-    <input type="button" value="关于对话框" onclick="document.getElementById('myWriterControl').AboutControl();" />
+    <input type="button" value="Tải tài liệu cục bộ" onclick="document.getElementById('myWriterControl').DCExecuteCommand('FileOpen', true, null);" />
+    <input type="button" value="Tải tài liệu phía frontend 1" onclick="func_loadxmlstring1();" />
+    <input type="button" value="Tải tài liệu phía frontend 2" onclick="func_loadxmlstring2();" />
+    <input type="button" value="Xem trước khi in" onclick="document.getElementById('myWriterControl').LoadPrintPreview();" />
+    <input type="button" value="Đóng xem trước" onclick="document.getElementById('myWriterControl').ClosePrintPreview();" />
+    <input type="button" value="In trực tiếp" onclick="document.getElementById('myWriterControl').PrintDocument();" />
+    <input type="button" value="Hộp thoại Giới thiệu" onclick="document.getElementById('myWriterControl').AboutControl();" />
     <div id="myWriterControl"  style="width: 100%; border: 2px solid black; border-radius: 5px;height:900px;"
          contentrendermode="NormalHtmlEditable"
          workspacebackcolorstring="#B1CAEB"
@@ -38,12 +38,12 @@
          registercodeindex="0">
     </div>
     <script type="text/javascript">
-        // HTML页面加载后执行本函数
+        // Hàm này được thực thi sau khi trang HTML tải xong
         function BuildDCWriterControlFrame() {
             var ctl = document.getElementById("myWriterControl");
             BindingDCWriterClientControl(ctl);
             ctl.DocumentOptions.ViewOptions.ShowInputFieldStateTag = true;
-            ctl.DocumentOptions.BehaviorOptions.AcceptDataFormats = "Text";//粘贴不带格式
+            ctl.DocumentOptions.BehaviorOptions.AcceptDataFormats = "Text";//Dán không kèm định dạng
             //ctl.Options.CustomCSSString = "*{outline:none;}";
             //ctl.Options.AutoZoom = true;
             //ctl.Options.CustomCSSString = "body{zoom:100;}"
@@ -53,7 +53,7 @@
             ctl.DocumentOptions.ViewOptions.IgnoreFieldBorderWhenPrint = false;
             ctl.DocumentOptions.ViewOptions.ShowHeaderBottomLine = true;
             ctl.DocumentOptions.ViewOptions.BothBlackWhenPrint = true;
-            // 创建编辑器框架
+            // Tạo khung trình soạn thảo
             ctl.BuildFrame(function () {
 
             });
@@ -66,7 +66,7 @@
                 type: 'GET',
                 timeout: 2000,
                 error: function (xml) {
-                    alert("加载XML 文件出错！");
+                    alert("Tải tệp XML bị lỗi!");
                 },
                 success: function (xml) {
                     var ctl = document.getElementById("myWriterControl");
@@ -81,7 +81,7 @@
                 type: 'GET',
                 timeout: 2000,
                 error: function (xml) {
-                    alert("加载XML 文件出错！");
+                    alert("Tải tệp XML bị lỗi!");
                 },
                 success: function (xml) {
                     var ctl = document.getElementById("myWriterControl");

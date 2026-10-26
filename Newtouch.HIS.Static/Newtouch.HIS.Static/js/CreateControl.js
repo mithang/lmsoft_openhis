@@ -1,22 +1,22 @@
-﻿//1、变量 gr_InstallPath 等号后面的参数是插件安装文件的所在的网站目录，一般从网站的根目
-//   录开始寻址，插件安装文件一定要存在于指定目录下。
-//2、gr_Version 等号后面的参数是插件安装包的版本号，如果有新版本插件安装包，应上传新版
-//   本插件安装文件到网站对应目录，并更新这里的版本号。
-//3、更多详细信息请参考帮助中“报表插件(WEB报表)->在服务器部署插件安装包”部分
-var gr_InstallPath = "grinstall"; //实际项目中应该写从根目录寻址的目录，如gr_InstallPath="/myapp/report/grinstall"; 
+﻿//1. Tham số sau dấu bằng của biến gr_InstallPath là thư mục website nơi chứa tệp cài đặt plugin, thông thường bắt đầu từ thư mục gốc của website
+//   Bắt đầu tìm địa chỉ, tệp cài đặt plugin nhất định phải tồn tại trong thư mục đã chỉ định.
+//2. Tham số sau dấu bằng của gr_Version là số phiên bản của gói cài đặt plugin, nếu có gói cài đặt plugin phiên bản mới thì nên tải lên phiên bản mới
+//   Tệp cài đặt plugin này lên thư mục tương ứng của website và cập nhật số phiên bản tại đây.
+//3、Để biết thêm chi tiết, vui lòng tham khảo phần “Plugin báo cáo (Báo cáo WEB) -> Triển khai gói cài đặt plugin trên máy chủ” trong trợ giúp
+var gr_InstallPath = "grinstall"; //Trong dự án thực tế nên viết thư mục tìm địa chỉ từ thư mục gốc, ví dụ gr_InstallPath="/myapp/report/grinstall"; 
 var gr_Version = "5,8,14,626";
 
-//以下注册号为本机开发测试注册号，报表访问地址为localhost时可以去掉试用标志
-//购买注册后，请用您的注册用户名与注册号替换下面变量中值
+//Số đăng ký dưới đây là số đăng ký thử nghiệm phát triển trên máy cục bộ, khi địa chỉ truy cập báo cáo là localhost thì có thể bỏ cờ dùng thử
+//Sau khi mua và đăng ký, vui lòng dùng tên người dùng đăng ký và số đăng ký của bạn để thay thế giá trị trong biến dưới đây
 var gr_UserName = '锐浪报表插件本机开发测试注册';
 var gr_SerialNo = '4DFB949E066NYS7W11L8KAT53SA177391Q9LZQ094WUT9C9J3813SX8PTQC4ALPB9UAQN6TMA55Q3BN8E5726Z5A839QAD9P6E76TKNK5';
 
-//报表插件目前只能在32位浏览器中使用
+//Plugin báo cáo hiện tại chỉ có thể dùng trong trình duyệt 32-bit
 var _gr_platform = window.navigator.platform;
 if (_gr_platform.indexOf("64") > 0)
-    alert("锐浪Grid++Report报表插件不能运行在64位浏览器中，相关报表与打印功能将无法正常运新，请改用32位浏览器！");
+    alert("Plugin báo cáo Grid++Report của Ruilang không thể chạy trên trình duyệt 64-bit, các chức năng báo cáo và in ấn liên quan sẽ không hoạt động bình thường, vui lòng dùng trình duyệt 32-bit!");
 
-//区分浏览器(IE or not)
+//Phân biệt trình duyệt (IE hay không)
 var _gr_agent = navigator.userAgent.toLowerCase();
 var _gr_isIE = (_gr_agent.indexOf("msie")>0)? true : false;
 
@@ -26,9 +26,9 @@ if( _gr_isIE )
 else
     gr_CodeBase = '';
 
-//创建报表对象，报表对象是不可见的对象，详细请查看帮助中的 IGridppReport
-//Name - 指定插件对象的ID，可以用js代码 document.getElementById("%Name%") 获取报表对象
-//EventParams - 指定报表对象的需要响应的事件，如："<param name='OnInitialize' value=OnInitialize> <param name='OnProcessBegin' value=OnProcessBegin>"形式，可以指定多个事件
+//Tạo đối tượng báo cáo, đối tượng báo cáo là đối tượng không nhìn thấy được, để biết chi tiết vui lòng xem IGridppReport trong trợ giúp
+//Name - Chỉ định ID của đối tượng plugin, có thể dùng mã js document.getElementById("%Name%") để lấy đối tượng báo cáo
+//EventParams - Chỉ định các sự kiện mà đối tượng báo cáo cần phản hồi, ví dụ dạng "<param name='OnInitialize' value=OnInitialize> <param name='OnProcessBegin' value=OnProcessBegin>", có thể chỉ định nhiều sự kiện
 function CreateReport(PluginID, EventParams)
 {
     var typeid;
@@ -48,14 +48,14 @@ function CreateReport(PluginID, EventParams)
 	document.write('</script>');
 }
 
-//用更多的参数创建报表打印显示插件，详细请查看帮助中的 IGRPrintViewer
-//PluginID - 插件的ID，可以通过 var ReportViewer = document.getElementById("%PluginID%"); 这样的方式获取插件引用变量
-//Width - 插件的显示宽度，"100%"为整个显示区域宽度，"500"表示500个屏幕像素点
-//Height - 插件的显示高度，"100%"为整个显示区域高度，"500"表示500个屏幕像素点
-//ReportURL - 获取报表模板的URL
-//DataURL - 获取报表数据的URL
-//AutoRun - 指定插件在创建之后是否自动生成并展现报表,值为false或true
-//ExParams - 指定更多的插件属性阐述,形如: "<param name="%ParamName%" value="%Value%">"这样的参数串
+//Tạo plugin hiển thị in báo cáo với nhiều tham số hơn, để biết chi tiết vui lòng xem IGRPrintViewer trong trợ giúp
+//PluginID - ID của plugin, có thể lấy biến tham chiếu của plugin bằng cách var ReportViewer = document.getElementById("%PluginID%");
+//Width - Chiều rộng hiển thị của plugin, "100%" là chiều rộng toàn bộ vùng hiển thị, "500" nghĩa là 500 điểm ảnh màn hình
+//Height - Chiều cao hiển thị của plugin, "100%" là chiều cao toàn bộ vùng hiển thị, "500" nghĩa là 500 điểm ảnh màn hình
+//ReportURL - URL lấy mẫu báo cáo
+//DataURL - URL lấy dữ liệu báo cáo
+//AutoRun - Chỉ định plugin sau khi tạo có tự động tạo và hiển thị báo cáo hay không, giá trị là false hoặc true
+//ExParams - Chỉ định diễn giải thêm về thuộc tính plugin, dạng chuỗi tham số như: "<param name="%ParamName%" value="%Value%">"
 function CreatePrintViewerEx2(PluginID, Width, Height, ReportURL, DataURL, AutoRun, ExParams)
 {
     var typeid;
@@ -74,14 +74,14 @@ function CreatePrintViewerEx2(PluginID, Width, Height, ReportURL, DataURL, AutoR
 	document.write('</object>');
 }
 
-//用更多的参数创建报表打印显示插件，详细请查看帮助中的 IGRDisplayViewer
-//PluginID - 插件的ID，可以通过 var ReportViewer = document.getElementById("%PluginID%"); 这样的方式获取插件引用变量
-//Width - 插件的显示宽度，"100%"为整个显示区域宽度，"500"表示500个屏幕像素点
-//Height - 插件的显示高度，"100%"为整个显示区域高度，"500"表示500个屏幕像素点
-//ReportURL - 获取报表模板的URL
-//DataURL - 获取报表数据的URL
-//AutoRun - 指定插件在创建之后是否自动生成并展现报表,值为false或true
-//ExParams - 指定更多的插件属性阐述,形如: "<param name="%ParamName%" value="%Value%">"这样的参数串
+//Tạo plugin hiển thị truy vấn báo cáo với nhiều tham số hơn, để biết chi tiết vui lòng xem IGRDisplayViewer trong trợ giúp
+//PluginID - ID của plugin, có thể lấy biến tham chiếu của plugin bằng cách var ReportViewer = document.getElementById("%PluginID%");
+//Width - Chiều rộng hiển thị của plugin, "100%" là chiều rộng toàn bộ vùng hiển thị, "500" nghĩa là 500 điểm ảnh màn hình
+//Height - Chiều cao hiển thị của plugin, "100%" là chiều cao toàn bộ vùng hiển thị, "500" nghĩa là 500 điểm ảnh màn hình
+//ReportURL - URL lấy mẫu báo cáo
+//DataURL - URL lấy dữ liệu báo cáo
+//AutoRun - Chỉ định plugin sau khi tạo có tự động tạo và hiển thị báo cáo hay không, giá trị là false hoặc true
+//ExParams - Chỉ định diễn giải thêm về thuộc tính plugin, dạng chuỗi tham số như: "<param name="%ParamName%" value="%Value%">"
 function CreateDisplayViewerEx2(PluginID, Width, Height, ReportURL, DataURL, AutoRun, ExParams)
 {
     var typeid;
@@ -100,13 +100,13 @@ function CreateDisplayViewerEx2(PluginID, Width, Height, ReportURL, DataURL, Aut
 	document.write('</object>');
 }
 
-//以 ReportDesigner 为 ID 创建报表设计器插件(Designer)，详细请查看帮助中的 IGRDesigner
-//Width - 插件的显示宽度，"100%"为整个显示区域宽度，"500"表示500个屏幕像素点
-//Height - 插件的显示高度，"100%"为整个显示区域高度，"500"表示500个屏幕像素点
-//LoadReportURL - 读取报表模板的URL，运行时从此URL读入报表模板数据并加载到设计器插件
-//SaveReportURL - 保存报表模板的URL，保存设计后的结果数据，由此URL的服务在WEB服务端将报表模板持久保存
-//DataURL - 获取报表运行时数据的URL，在设计器中进入打印视图与查询视图时从此URL获取报表数据
-//ExParams - 指定更多的插件属性阐述,形如: "<param name="%ParamName%" value="%Value%">"这样的参数串
+//Tạo plugin trình thiết kế báo cáo (Designer) với ID là ReportDesigner, để biết chi tiết vui lòng xem IGRDesigner trong trợ giúp
+//Width - Chiều rộng hiển thị của plugin, "100%" là chiều rộng toàn bộ vùng hiển thị, "500" nghĩa là 500 điểm ảnh màn hình
+//Height - Chiều cao hiển thị của plugin, "100%" là chiều cao toàn bộ vùng hiển thị, "500" nghĩa là 500 điểm ảnh màn hình
+//LoadReportURL - URL đọc mẫu báo cáo, khi chạy sẽ đọc dữ liệu mẫu báo cáo từ URL này và tải vào plugin trình thiết kế
+//SaveReportURL - URL lưu mẫu báo cáo, lưu dữ liệu kết quả sau khi thiết kế, dịch vụ tại URL này sẽ lưu bền mẫu báo cáo ở phía máy chủ WEB
+//DataURL - URL lấy dữ liệu khi báo cáo chạy, khi vào chế độ xem in và chế độ xem truy vấn trong trình thiết kế thì lấy dữ liệu báo cáo từ URL này
+//ExParams - Chỉ định diễn giải thêm về thuộc tính plugin, dạng chuỗi tham số như: "<param name="%ParamName%" value="%Value%">"
 function CreateDesignerEx(Width, Height, LoadReportURL, SaveReportURL, DataURL, ExParams)
 {
     var typeid;
@@ -125,31 +125,31 @@ function CreateDesignerEx(Width, Height, LoadReportURL, SaveReportURL, DataURL, 
 	document.write('</object>');
 }
 
-//以 ReportViewer 为 ID 创建报表打印显示器插件(PrintViewer)，参数说明参考 CreatePrintViewerEx2
+//Tạo plugin hiển thị in báo cáo (PrintViewer) với ID là ReportViewer, giải thích tham số tham khảo CreatePrintViewerEx2
 function CreatePrintViewerEx(Width, Height, ReportURL, DataURL, AutoRun, ExParams)
 {
     CreatePrintViewerEx2("ReportViewer", Width, Height, ReportURL, DataURL, AutoRun, ExParams)
 }
 
-//以 ReportViewer 为 ID 创建报表查询显示器插件(DisplayViewer)，参数说明参考 CreateDisplayViewerEx2
+//Tạo plugin hiển thị truy vấn báo cáo (DisplayViewer) với ID là ReportViewer, giải thích tham số tham khảo CreateDisplayViewerEx2
 function CreateDisplayViewerEx(Width, Height, ReportURL, DataURL, AutoRun, ExParams)
 {
     CreateDisplayViewerEx2("ReportViewer", Width, Height, ReportURL, DataURL, AutoRun, ExParams)
 }
 
-//以 ReportViewer 为 ID 创建报表打印显示器插件(PrintViewer)，插件大小为100%充满位置区域，插件创建后会自动运行，参数说明参考 CreatePrintViewerEx2
+//Tạo plugin hiển thị in báo cáo (PrintViewer) với ID là ReportViewer, kích thước plugin là 100% lấp đầy vùng vị trí, sau khi tạo plugin sẽ tự động chạy, giải thích tham số tham khảo CreatePrintViewerEx2
 function CreatePrintViewer(ReportURL, DataURL)
 {
     CreatePrintViewerEx("100%", "100%", ReportURL, DataURL, true, "");
 }
 
-//以 ReportViewer 为 ID 创建报表查询显示器插件(DisplayViewer)，插件大小为100%充满位置区域，插件创建后会自动运行，参数说明参考 CreateDisplayViewerEx2
+//Tạo plugin hiển thị truy vấn báo cáo (DisplayViewer) với ID là ReportViewer, kích thước plugin là 100% lấp đầy vùng vị trí, sau khi tạo plugin sẽ tự động chạy, giải thích tham số tham khảo CreateDisplayViewerEx2
 function CreateDisplayViewer(ReportURL, DataURL)
 {
     CreateDisplayViewerEx("100%", "100%", ReportURL, DataURL, true, "");
 }
 
-//以 ReportDesigner 为 ID 创建报表设计器插件(Designer)，插件大小为100%充满位置区域，参数说明参考 CreateDesignerEx
+//Tạo plugin trình thiết kế báo cáo (Designer) với ID là ReportDesigner, kích thước plugin là 100% lấp đầy vùng vị trí, giải thích tham số tham khảo CreateDesignerEx
 function CreateDesigner(LoadReportURL, SaveReportURL, DataURL)
 {
     CreateDesignerEx("100%", "100%", LoadReportURL, SaveReportURL, DataURL, "");

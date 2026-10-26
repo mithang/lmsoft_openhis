@@ -1,8 +1,8 @@
 ﻿USE [Newtouch_CIS]
 GO
 
--- 事件类型: CREATE_TABLE
--- 变更时间: 11/19/2024 17:09:58
+-- Loại sự kiện: CREATE_TABLE
+-- Thời gian thay đổi: 11/19/2024 17:09:58
 CREATE TABLE dbo.Tmp_zy_PatDxInfo
 	(
 	Id varchar(50) NOT NULL,

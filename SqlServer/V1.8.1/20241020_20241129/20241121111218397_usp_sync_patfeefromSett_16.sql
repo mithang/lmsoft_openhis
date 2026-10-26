@@ -1,21 +1,21 @@
 ﻿USE [Newtouch_EMR]
 GO
 
--- 事件类型: ALTER_PROCEDURE
--- 变更时间: 11/21/2024 11:12:18
+-- Loại sự kiện: ALTER_PROCEDURE
+-- Thời gian thay đổi: 11/21/2024 11:12:18
 
 
 /*======================================
-过程说明：病案首页费用反算
-修改人：邓烽
-修改时间：2023年2月27日16:3:17
-修改内容：优化过程查询费用与更新病案首页费用
+Mô tả quy trình: Tính ngược chi phí trang đầu hồ sơ bệnh án
+Người sửa: Đặng Phong
+Thời gian sửa: 16:3:17 ngày 27/02/2023
+Nội dung sửa: Tối ưu hoá việc tra cứu chi phí và cập nhật chi phí trang đầu hồ sơ bệnh án trong quy trình
 
-修改人:邓烽
-修改时间：2023年3月10日17:47:12
-修改内容：总费用为0时显示0
+Người sửa: Đặng Phong
+Thời gian sửa: 17:47:12 ngày 10/03/2023
+Nội dung sửa: Khi tổng chi phí bằng 0 thì hiển thị 0
 
-后台系统  收费项目单独维护病案大类版本  xt_basfdl病案code需按竖转横的 FeetypeCode值命名
+Hệ thống backend: Hạng mục thu phí được bảo trì riêng theo nhóm lớn hồ sơ bệnh án, phiên bản; mã hồ sơ bệnh án xt_basfdl cần đặt tên theo giá trị FeetypeCode chuyển dọc thành ngang
 exec [usp_sync_patfeefromSett] '6d5752a7-234a-403e-aa1c-df8b45d3469f','03335'
 ======================================*/
 
@@ -53,13 +53,13 @@ update zb set zb.Amount=fy.Amount
   from #temptable zb,#brfy fy
 where zb.FeetypeCode=fy.FeetypeCode
 
-/*非手术治疗费更新*/
+/*Cập nhật phí điều trị không phẫu thuật*/
 update #temptable set Amount=(select sum(Amount) from #temptable where FeetypeCode  in('LCZDXMF','fsszlxmf')) where FeetypeCode='fsszlxmf'
-/*手术治疗费更新*/
+/*Cập nhật phí điều trị phẫu thuật*/
 update #temptable set Amount=(select sum(Amount) from #temptable where FeetypeCode  in('sszlf','MAF','SSF')) where FeetypeCode='sszlf'
-/*抗菌药物费用更新*/
+/*Cập nhật chi phí thuốc kháng khuẩn*/
 
-/*结算信息*/
+/*Thông tin quyết toán*/
  select a.jsnm, a.zyh, a.zje,a.zyts,a.jsksrq,a.jsjsrq ,a.xjzf      
  into #js      
  from [NewtouchHIS_Sett].dbo.zy_js a with(nolock)       
@@ -76,74 +76,74 @@ select @zyh,'ZFY','总费用',@zyf
 insert into #temptable (zyh,FeetypeCode,FeetypeName,Amount)
 select @zyh,'ZFJE','自付金额',@ZFJE
 
-/*竖转横*/
+/*Chuyển dọc thành ngang*/
  select  @zyh zyh,   
-  ZFY=sum(case when b.FeetypeCode='ZFY' then Amount else 0.00 end), --一般医疗服务费
-   ZFJE=sum(case when b.FeetypeCode='ZFJE' then Amount else 0.00 end), --一般医疗服务费
- YLFUF=sum(case when b.FeetypeCode='YLFUF' then Amount else 0.00 end), --一般医疗服务费      
- ZLCZF=sum(case when b.FeetypeCode='ZLCZF' then Amount else 0.00 end), --一般治疗操作费      
- HLF=sum(case when b.FeetypeCode='HLF' then Amount else 0.00 end), --护理费      
- QTFY=sum(case when b.FeetypeCode='QTFY' then Amount else 0.00 end), --1.(4)其他费用      
- BLZDF=sum(case when b.FeetypeCode='BLZDF' then Amount else 0.00 end),--病理诊断费      
- SYSZDF=sum(case when b.FeetypeCode='SYSZDF' then Amount else 0.00 end),--实验室诊断费      
- YXXZDF=sum(case when b.FeetypeCode='YXXZDF' then Amount else 0.00 end), --影像学诊断费      
- LCZDXMF=sum(case when b.FeetypeCode='LCZDXMF' then Amount else 0.00 end),--临床诊断项目费      
- FSSZLXMF=sum(case when b.FeetypeCode='FSSZLXMF' then Amount else 0.00 end), --非手术治疗项目费      
- WLZLF=sum(case when b.FeetypeCode='WLZLF' then Amount else 0.00 end),--3.治疗类 -(9)非手术治疗项目费-（其中：临床物理治疗费      
- SSZLF=sum(case when b.FeetypeCode='SSZLF' then Amount else 0.00 end),--手术治疗费      
- MAF=sum(case when b.FeetypeCode='MAF' then Amount else 0.00 end),--(10)手术治疗费-麻醉费      
- SSF=sum(case when b.FeetypeCode='SSF' then Amount else 0.00 end),--手术费      
- KFF=sum(case when b.FeetypeCode='KFF' then Amount else 0.00 end),--(11)康复费      
- ZYZLF=sum(case when b.FeetypeCode='ZYZLF' then Amount else 0.00 end),--中医治疗费      
- XYF=sum(case when b.FeetypeCode='XYF' then Amount else 0.00 end),--西药费      
- KJYWF=sum(case when b.FeetypeCode='KJYWF' then Amount else 0.00 end),--（其中：抗菌药物费用      
- ZCYF=sum(case when b.FeetypeCode='ZCYF' then Amount else 0.00 end),--(14)中成药费      
- ZCYF1=sum(case when b.FeetypeCode='ZCYF1' then Amount else 0.00 end),--中草药费      
- XF=sum(case when b.FeetypeCode='XF' then Amount else 0.00 end),--血费      
- BDBLZPF=sum(case when b.FeetypeCode='BDBLZPF' then Amount else 0.00 end),--白蛋白类制品费      
- QDBLZPF=sum(case when b.FeetypeCode='QDBLZPF' then Amount else 0.00 end),--球蛋白类制品费      
- NXYZLZPF=sum(case when b.FeetypeCode='NXYZLZPF' then Amount else 0.00 end),--凝血因子类制品费      
- XBYZLZPF=sum(case when b.FeetypeCode='XBYZLZPF' then Amount else 0.00 end),--细胞因子类制品费      
- HCYYCLF=sum(case when b.FeetypeCode='HCYYCLF' then Amount else 0.00 end),--检查用一次性医用材料费      
- YYCLF=sum(case when b.FeetypeCode='YYCLF' then Amount else 0.00 end),--治疗用一次性医用材料费      
- YCXYYCLF=sum(case when b.FeetypeCode='YCXYYCLF' then Amount else 0.00 end),--手术用一次性医用材料费      
+  ZFY=sum(case when b.FeetypeCode='ZFY' then Amount else 0.00 end), --Phí dịch vụ y tế thông thường
+   ZFJE=sum(case when b.FeetypeCode='ZFJE' then Amount else 0.00 end), --Phí dịch vụ y tế thông thường
+ YLFUF=sum(case when b.FeetypeCode='YLFUF' then Amount else 0.00 end), --Phí dịch vụ y tế thông thường      
+ ZLCZF=sum(case when b.FeetypeCode='ZLCZF' then Amount else 0.00 end), --Phí thao tác điều trị thông thường      
+ HLF=sum(case when b.FeetypeCode='HLF' then Amount else 0.00 end), --Phí chăm sóc      
+ QTFY=sum(case when b.FeetypeCode='QTFY' then Amount else 0.00 end), --1.(4) Chi phí khác      
+ BLZDF=sum(case when b.FeetypeCode='BLZDF' then Amount else 0.00 end),--Phí chẩn đoán bệnh lý      
+ SYSZDF=sum(case when b.FeetypeCode='SYSZDF' then Amount else 0.00 end),--Phí chẩn đoán xét nghiệm      
+ YXXZDF=sum(case when b.FeetypeCode='YXXZDF' then Amount else 0.00 end), --Phí chẩn đoán hình ảnh      
+ LCZDXMF=sum(case when b.FeetypeCode='LCZDXMF' then Amount else 0.00 end),--Phí hạng mục chẩn đoán lâm sàng      
+ FSSZLXMF=sum(case when b.FeetypeCode='FSSZLXMF' then Amount else 0.00 end), --Phí hạng mục điều trị không phẫu thuật      
+ WLZLF=sum(case when b.FeetypeCode='WLZLF' then Amount else 0.00 end),--3. Nhóm điều trị - (9) Phí hạng mục điều trị không phẫu thuật - (trong đó: phí điều trị vật lý lâm sàng      
+ SSZLF=sum(case when b.FeetypeCode='SSZLF' then Amount else 0.00 end),--Phí điều trị phẫu thuật      
+ MAF=sum(case when b.FeetypeCode='MAF' then Amount else 0.00 end),--(10) Phí điều trị phẫu thuật - phí gây mê      
+ SSF=sum(case when b.FeetypeCode='SSF' then Amount else 0.00 end),--Phí phẫu thuật      
+ KFF=sum(case when b.FeetypeCode='KFF' then Amount else 0.00 end),--(11) Phí phục hồi chức năng      
+ ZYZLF=sum(case when b.FeetypeCode='ZYZLF' then Amount else 0.00 end),--Phí điều trị Đông y      
+ XYF=sum(case when b.FeetypeCode='XYF' then Amount else 0.00 end),--Phí thuốc Tây y      
+ KJYWF=sum(case when b.FeetypeCode='KJYWF' then Amount else 0.00 end),--(Trong đó: chi phí thuốc kháng khuẩn      
+ ZCYF=sum(case when b.FeetypeCode='ZCYF' then Amount else 0.00 end),--(14) Phí thuốc thành phẩm Đông y      
+ ZCYF1=sum(case when b.FeetypeCode='ZCYF1' then Amount else 0.00 end),--Phí thuốc thảo dược      
+ XF=sum(case when b.FeetypeCode='XF' then Amount else 0.00 end),--Phí máu      
+ BDBLZPF=sum(case when b.FeetypeCode='BDBLZPF' then Amount else 0.00 end),--Phí chế phẩm albumin      
+ QDBLZPF=sum(case when b.FeetypeCode='QDBLZPF' then Amount else 0.00 end),--Phí chế phẩm globulin      
+ NXYZLZPF=sum(case when b.FeetypeCode='NXYZLZPF' then Amount else 0.00 end),--Phí chế phẩm yếu tố đông máu      
+ XBYZLZPF=sum(case when b.FeetypeCode='XBYZLZPF' then Amount else 0.00 end),--Phí chế phẩm cytokine      
+ HCYYCLF=sum(case when b.FeetypeCode='HCYYCLF' then Amount else 0.00 end),--Phí vật tư y tế dùng một lần cho kiểm tra      
+ YYCLF=sum(case when b.FeetypeCode='YYCLF' then Amount else 0.00 end),--Phí vật tư y tế dùng một lần cho điều trị      
+ YCXYYCLF=sum(case when b.FeetypeCode='YCXYYCLF' then Amount else 0.00 end),--Phí vật tư y tế dùng một lần cho phẫu thuật      
  QTF=sum(case when b.FeetypeCode='QTF' then Amount else 0.00 end)
 into #mrfy
  from #temptable b    
 
 
-/*更新费用*/
+/*Cập nhật chi phí*/
 update a      
   set a.ZFY=b.ZFY ,      
   a.ZFJE=b.ZFJE ,    
   a.QTZF = b.ZFY - b.ZFJE,        
-  a.YLFUF=b.YLFUF, --一般医疗服务费      
-  a.ZLCZF=b.ZLCZF, --一般治疗操作费      
-  a.HLF=b.HLF, --护理费      
-  a.QTFY=b.QTFY, --1.(4)其他费用      
-  a.BLZDF=b.BLZDF,--病理诊断费      
-  a.SYSZDF=b.SYSZDF,--实验室诊断费      
-  a.YXXZDF=b.YXXZDF, --影像学诊断费      
-  a.LCZDXMF=b.LCZDXMF,--临床诊断项目费      
-  a.FSSZLXMF=b.FSSZLXMF, --非手术治疗项目费      
-  a.WLZLF=b.WLZLF,--3.治疗类 -(9)非手术治疗项目费-（其中：临床物理治疗费      
-  a.SSZLF=b.SSZLF,--手术治疗费      
-  a.MAF=b.MAF,--(10)手术治疗费-麻醉费      
-  a.SSF=b.SSF,--手术费      
-  a.KFF=b.KFF,--(11)康复费      
-  a.ZYZLF=b.ZYZLF,--中医治疗费      
-  a.XYF=b.XYF,--西药费      
-  a.KJYWF=b.KJYWF,--（其中：抗菌药物费用      
-  a.ZCYF=b.ZCYF,--(14)中成药费      
-  a.ZCYF1=b.ZCYF1,--中草药费      
-  a.XF=b.XF,--血费      
-  a.BDBLZPF=b.BDBLZPF,--白蛋白类制品费      
-  a.QDBLZPF=b.QDBLZPF,--球蛋白类制品费      
-  a.NXYZLZPF=b.NXYZLZPF,--凝血因子类制品费      
-  a.XBYZLZPF=b.XBYZLZPF,--细胞因子类制品费      
-  a.HCYYCLF=b.HCYYCLF,--检查用一次性医用材料费      
-  a.YYCLF=b.YYCLF,--治疗用一次性医用材料费      
-  a.YCXYYCLF=b.YCXYYCLF,--手术用一次性医用材料费      
+  a.YLFUF=b.YLFUF, --Phí dịch vụ y tế thông thường      
+  a.ZLCZF=b.ZLCZF, --Phí thao tác điều trị thông thường      
+  a.HLF=b.HLF, --Phí chăm sóc      
+  a.QTFY=b.QTFY, --1.(4) Chi phí khác      
+  a.BLZDF=b.BLZDF,--Phí chẩn đoán bệnh lý      
+  a.SYSZDF=b.SYSZDF,--Phí chẩn đoán xét nghiệm      
+  a.YXXZDF=b.YXXZDF, --Phí chẩn đoán hình ảnh      
+  a.LCZDXMF=b.LCZDXMF,--Phí hạng mục chẩn đoán lâm sàng      
+  a.FSSZLXMF=b.FSSZLXMF, --Phí hạng mục điều trị không phẫu thuật      
+  a.WLZLF=b.WLZLF,--3. Nhóm điều trị - (9) Phí hạng mục điều trị không phẫu thuật - (trong đó: phí điều trị vật lý lâm sàng      
+  a.SSZLF=b.SSZLF,--Phí điều trị phẫu thuật      
+  a.MAF=b.MAF,--(10) Phí điều trị phẫu thuật - phí gây mê      
+  a.SSF=b.SSF,--Phí phẫu thuật      
+  a.KFF=b.KFF,--(11) Phí phục hồi chức năng      
+  a.ZYZLF=b.ZYZLF,--Phí điều trị Đông y      
+  a.XYF=b.XYF,--Phí thuốc Tây y      
+  a.KJYWF=b.KJYWF,--(Trong đó: chi phí thuốc kháng khuẩn      
+  a.ZCYF=b.ZCYF,--(14) Phí thuốc thành phẩm Đông y      
+  a.ZCYF1=b.ZCYF1,--Phí thuốc thảo dược      
+  a.XF=b.XF,--Phí máu      
+  a.BDBLZPF=b.BDBLZPF,--Phí chế phẩm albumin      
+  a.QDBLZPF=b.QDBLZPF,--Phí chế phẩm globulin      
+  a.NXYZLZPF=b.NXYZLZPF,--Phí chế phẩm yếu tố đông máu      
+  a.XBYZLZPF=b.XBYZLZPF,--Phí chế phẩm cytokine      
+  a.HCYYCLF=b.HCYYCLF,--Phí vật tư y tế dùng một lần cho kiểm tra      
+  a.YYCLF=b.YYCLF,--Phí vật tư y tế dùng một lần cho điều trị      
+  a.YCXYYCLF=b.YCXYYCLF,--Phí vật tư y tế dùng một lần cho phẫu thuật      
   a.QTF=b.QTF      
    --,a.LastModifierCode='admin',a.LastModifyTime=getdate()      
   from mr_basy a,#mrfy b          

@@ -3047,7 +3047,7 @@ a {
     }
 }
 
-/*按钮切换是与否的颜色*/
+/*Màu của nút chuyển đổi Có/Không*/
 .ui-jqgrid tr.ui-row-ltr i.fa-toggle-on {
     color: #3c8dbc;
     font-size: 13pt;
@@ -3061,13 +3061,13 @@ a {
     background-color: #3c8dbc;
 }
 
-/*type="checkbox"颜色的切换*/
+/*Chuyển đổi màu của type="checkbox"*/
 .theme-blue-gradient .ckbox input[type="checkbox"]:checked + label:before {
     border-color: #00a0ea;
     background-color: #00a0ea;
 }
 
-/*角色信息标题颜色的更改*/
+/*Thay đổi màu tiêu đề thông tin vai trò*/
 .wizard ul li.active .step {
     border-color: #3c8dbc;
     color: #3c8dbc;

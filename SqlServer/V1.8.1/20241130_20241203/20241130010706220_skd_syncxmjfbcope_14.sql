@@ -1,8 +1,8 @@
 ﻿USE [NewtouchHIS_Sett]
 GO
 
--- 事件类型: ALTER_PROCEDURE
--- 变更时间: 11/30/2024 01:07:06
+-- Loại sự kiện: ALTER_PROCEDURE
+-- Thời gian thay đổi: 11/30/2024 01:07:06
 
 
 
@@ -19,12 +19,12 @@ select * from [Newtouch_CIS]..zy_fymxk where  zyh='03199' order by createtime de
 */
 ALTER PROCEDURE [dbo].[skd_syncxmjfbcope]  
 @orgId VARCHAR(50),
-@lqrq datetime,	--拉取日期（带时分秒）	会拉取 @lqrq - day1 至 @lqrq 三十天之内 的 记录
+@lqrq datetime,	--Ngày lấy dữ liệu (kèm giờ phút giây)	Sẽ lấy các bản ghi trong vòng 30 ngày từ @lqrq - day1 đến @lqrq
 @zyh varchar(max)
 AS
 begin
-	declare @jfCount int = 0	--插入总记录数
-	declare @zzfbz int --转自费标志
+	declare @jfCount int = 0	--Tổng số bản ghi được chèn
+	declare @zzfbz int --Cờ chuyển sang tự chi
 	select zyh,zxrq,xmdm,ysgh,DeptCode,cwdm,dj,sl,CreateTime,zxksdm,Id,CreatorCode,WardCode,OrganizeId,yzxh,@zzfbz zzfbz,yzxz
 	into #zy_xm
 	from [Newtouch_CIS]..zy_fymxk xmfymx with(nolock)
@@ -57,8 +57,8 @@ begin
 		and not exists(select 1 from zy_xmjfb b with(nolock) 
 					where a.OrganizeId=b.OrganizeId and a.zyh=b.zyh and a.id=b.bdzxid)
 		and exists(select 1 from zy_brjbxx c with(nolock) where a.OrganizeId=c.OrganizeId and a.zyh=c.zyh and 
-					c.zybz in (1,2,7) and c.zt=1)	--病区中、出病区、转区状态
-	--2021-9-16 chl 检验单独计费
+					c.zybz in (1,2,7) and c.zt=1)	--Trạng thái đang ở khu bệnh, ra khỏi khu bệnh, chuyển khu
+	--2021-9-16 chl: Xét nghiệm tính phí riêng
 	select * into #sync_xm from #zy_xm where isnull(yzxz,0)<>1
 	if(exists(select 1 from #zy_xm where yzxz=1))
 	begin
@@ -81,7 +81,7 @@ begin
 		--		from Newtouch_Interface.dbo.lis_confirm_zy c with(nolock)
 		--		where b.OrganizeId=c.OrganizeId and b.zyh=c.zyh and b.yzh=c.sqdh
 		--		 and c.createtime> b.createtime
-		--		and c.qrzt=1 and c.zt<>9 and c.sqdh>'' ))  --已接收 计费
+		--		and c.qrzt=1 and c.zt<>9 and c.sqdh>'' ))  --Đã nhận, tính phí
 	end
 
 
@@ -89,16 +89,16 @@ begin
 	begin
 		select @jfCount = count(1) from #sync_xm
 
-		declare @startjfbId int = 0	--插入记录开始Id
+		declare @startjfbId int = 0	--Id bắt đầu của bản ghi được chèn
 		SELECT @startjfbId = CurrentSerialNo FROM [NewtouchHIS_Sett].[dbo].[EntitySerialNo] where EntityName = 'zy_xmjfb'
-		--占用Id	得再加1
+		--Id bị chiếm, phải cộng thêm 1
 		if(@startjfbId > 0)
 			update EntitySerialNo set CurrentSerialNo = CurrentSerialNo + @jfCount + 1 where EntityName = 'zy_xmjfb'
 		else
 			insert into EntitySerialNo(EntityName,SerialNoMin,SerialNoMax,CurrentSerialNo)
 			values('zy_xmjfb', 1, 999999999, @jfCount + 1)
 
-		--执行插入
+		--Thực hiện chèn
 		insert into zy_xmjfb(jfbbh, OrganizeId, zyh, tdrq, sfxm, dl, ys, ks, cw, dj, sl, jfdw
 		,zfbl,zfxz,ssbz,ssry,ssrq,zxks,yzxz,yzzt,cxzyjfbbh,bdzxId,CreatorCode,CreateTime,bq,zt,ysmc,ksmc,yzwym,zzfbz)
 		select @startjfbId + ROW_NUMBER() over(order by xmfymx.CreateTime) as jfbbh, @orgId OrganizeId
@@ -109,7 +109,7 @@ begin
 		, '2' yzxz, '1' yzzt, 0 cxzyjfbbh
 		, xmfymx.Id bdzxId, xmfymx.CreatorCode, getdate() CreateTime
 		, xmfymx.WardCode bq, '1' zt, '' ysmc, '' ksmc,yzxh,zzfbz
-		--同
+		--Giống nhau
 		from #sync_xm xmfymx,[NewtouchHIS_Base]..V_S_xt_sfxm sfxm,[NewtouchHIS_Base]..V_S_xt_sfdl sfdl
 		where sfxm.sfxmCode = xmfymx.xmdm and sfxm.Organizeid = xmfymx.OrganizeId and sfxm.zt = '1'
 		and sfdl.dlCode = sfxm.sfdlCode and sfdl.Organizeid = xmfymx.OrganizeId and sfdl.zt = '1'

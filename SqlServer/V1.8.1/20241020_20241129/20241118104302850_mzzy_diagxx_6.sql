@@ -1,23 +1,23 @@
 ﻿USE [NewtouchHIS_Sett]
 GO
 
--- 事件类型: CREATE_PROCEDURE
--- 变更时间: 11/18/2024 10:43:02
+-- Loại sự kiện: CREATE_PROCEDURE
+-- Thời gian thay đổi: 11/18/2024 10:43:02
 
 
 /**
-医保交易：2203  2402 2403  诊断信息查询
+Giao dịch bảo hiểm y tế: 2203, 2402, 2403, tra cứu thông tin chẩn đoán
 exec [mzzy_diagxx] '03296','6d5752a7-234a-403e-aa1c-df8b45d3469f','3','1212','1212'
 select * from NewtouchHIS_Base.[dbo].[xt_zyzh]
 */
 
 create PROCEDURE [dbo].[mzzy_diagxx]  
 
-@hisId varchar(20), --住院号  
-@orgId varchar(50),--组织机构  
-@model varchar(5), --类型   1查询门诊 2查询住院入院诊断 3 查询住院出院诊断
-@mdtrt_id varchar(50), --就诊凭证编号  
-@psn_no varchar(50) --人员编号
+@hisId varchar(20), --Số nhập viện  
+@orgId varchar(50),--Tổ chức  
+@model varchar(5), --Loại: 1 tra cứu ngoại trú, 2 tra cứu chẩn đoán nhập viện nội trú, 3 tra cứu chẩn đoán xuất viện nội trú
+@mdtrt_id varchar(50), --Số chứng từ khám bệnh  
+@psn_no varchar(50) --Mã nhân viên
 as
 if @model=1
 begin

@@ -1,16 +1,16 @@
 ﻿USE [Newtouch_CIS]
 GO
 
--- 事件类型: ALTER_PROCEDURE
--- 变更时间: 11/12/2024 17:08:54
+-- Loại sự kiện: ALTER_PROCEDURE
+-- Thời gian thay đổi: 11/12/2024 17:08:54
 
 
 /*
-修改原因：医院反应入区出区床位费重复滚动
-修改方式：经核实主要时滚动项目计费日期出区被重置了故不正确
-修 改 人：朱骏
-修改日期：2022-09-13
-修改标志：20220913 
+Lý do sửa: Bệnh viện phản ánh phí giường khi vào/ra khu bị tính trùng lặp
+Cách sửa: Sau khi xác minh, chủ yếu là do ngày tính phí của hạng mục tính phí lăn bị đặt lại khi ra khu nên không đúng
+Người sửa: Chu Tuấn
+Ngày sửa: 2022-09-13
+Cờ sửa đổi: 20220913 
 */    
   
 ALTER proc [dbo].[usp_zy_PatOutArea]   
@@ -40,13 +40,13 @@ IF @@rowcount > 0
             SELECT  @outMsg = 'F|该病人存在临时医嘱未执行情况，请先执行或作废！'    
             RETURN    
         END  
-select 1 from [dbo].[v_yzisfy] where zyh=@zyh AND OrganizeId=@OrganizeId and (tybz='2' and fybz='2') and zt='1'--已发药未退药的  
+select 1 from [dbo].[v_yzisfy] where zyh=@zyh AND OrganizeId=@OrganizeId and (tybz='2' and fybz='2') and zt='1'--Đã phát thuốc nhưng chưa trả thuốc  
 IF @@rowcount > 0   
         BEGIN    
             SELECT  @outMsg = 'F|该病人存在已发药未退药的，请先退药！'    
             RETURN    
         END  
-select 1 from [dbo].[v_yzisfy] where zyh=@zyh AND OrganizeId=@OrganizeId and  fybz='1' and zt='1'--未发药的  
+select 1 from [dbo].[v_yzisfy] where zyh=@zyh AND OrganizeId=@OrganizeId and  fybz='1' and zt='1'--Chưa phát thuốc  
 IF @@rowcount > 0   
         BEGIN    
             SELECT  @outMsg = 'F|该病人存在未发药的，请先发药！'    
@@ -88,7 +88,7 @@ if(DATEDIFF(day,@gdgdrq,DATEADD(DAY,0,@rq))<>1)
 begin  
   SELECT @tfsl=(@tfsl+DATEDIFF(day,@gdgdrq,DATEADD(DAY,0,@rq))-1)  
 end  
- IF  @tfsl > 0  --@tfsl <> 0   2024年8月12日 插入负记录绑定项目 同步到计费表 医保上传对应正记录数据不明确
+ IF  @tfsl > 0  --@tfsl <> 0   ngày 12/08/2024 Chèn bản ghi âm để gắn hạng mục, đồng bộ sang bảng tính phí; dữ liệu bản ghi dương tương ứng khi tải lên bảo hiểm y tế chưa rõ ràng
  BEGIN  
  EXEC usp_zy_BedItemsFeeByZyh @zyh,@OrganizeId,@rygh,@tfsl,@outMsg  
  END  
