@@ -3,17 +3,17 @@
  * http://jquerywidget.com
  */
 ; (function (factory) {
-	if (typeof define === "" && (define.amd || define.cmd) && !jQuery) {
-		// AMDHoặcCMD
-		define([""], factory);
-	} else if (typeof module === '' && module.exports) {
+	if (typeof define === "function" && (define.amd || define.cmd) && !jQuery) {
+		// AMD或CMD
+		define(["jquery"], factory);
+	} else if (typeof module === 'object' && module.exports) {
 		// Node/CommonJS
 		module.exports = function (root, jQuery) {
 			if (jQuery === undefined) {
-				if (typeof window !== '') {
-					jQuery = require('');
+				if (typeof window !== 'undefined') {
+					jQuery = require('jquery');
 				} else {
-					jQuery = require('')(root);
+					jQuery = require('jquery')(root);
 				}
 			}
 			factory(jQuery);
@@ -26,7 +26,7 @@
 }(function ($) {
 	$.support.cors = true;
 	$.fn.citys = function (parameter, getApi) {
-		if (typeof parameter == '') { //重载
+		if (typeof parameter == 'function') { //重载
 			getApi = parameter;
 			parameter = {};
 		} else {
@@ -35,18 +35,18 @@
 		}
 		var defaults = {
 
-			dataUrl: '',     //Địa chỉ cơ sở dữ liệu
-			dataType: '',          //Loại cơ sở dữ liệu:''Hoặc''
-			provinceField: '', //省份字段名
-			cityField: '',         //城市字段名
-			areaField: '',         //地区字段名
-			valueType: '',         //下拉框值的类型,code行政区划代码,name地名
-			code: 0,                   //Mã quận
-			province: 0,               //Phần tỉnh,可以为地区编码或者名称
+			dataUrl: '../../Content/js/city.json',     //数据库地址
+			dataType: 'json',          //数据库类型:'json'或'jsonp'
+			provinceField: 'province', //省份字段名
+			cityField: 'city',         //城市字段名
+			areaField: 'area',         //地区字段名
+			valueType: 'code',         //下拉框值的类型,code行政区划代码,name地名
+			code: 0,                   //地区编码
+			province: 0,               //省份,可以为地区编码或者名称
 			city: 0,                   //城市,可以为地区编码或者名称
-			area: 0,                   //Quận,可以为地区编码或者名称
+			area: 0,                   //地区,可以为地区编码或者名称
 			required: true,           //是否必须选一个
-			nodata: '',         //当无数据时的表现形式:''Ẩn,''禁用,为空不做任何处理
+			nodata: 'hidden',         //当无数据时的表现形式:'hidden'隐藏,'disabled'禁用,为空不做任何处理
 			onChange: function () { }     //地区切换时触发,回调函数传入地区数据
 		};
 		var options = $.extend({}, defaults, parameter);
@@ -54,18 +54,18 @@
 			//对象定义
 			var _api = {};
 			var $this = $(this);
-			var $province = $this.find('' + options.provinceField + ''),
-                $city = $this.find('' + options.cityField + ''),
-                $area = $this.find('' + options.areaField + '');
+			var $province = $this.find('select[name="' + options.provinceField + '"]'),
+                $city = $this.find('select[name="' + options.cityField + '"]'),
+                $area = $this.find('select[name="' + options.areaField + '"]');
 			$.ajax({
 				url: options.dataUrl,
-				type: '',
+				type: 'GET',
 				crossDomain: true,
 				dataType: options.dataType,
-				jsonpCallback: '',
+				jsonpCallback: 'jsonp_location',
 				success: function (data) {
 					var province, city, area, hasCity;
-					if (options.code) {   //Mã quận đặt nếu，则忽略单独设置的信息
+					if (options.code) {   //如果设置地区编码，则忽略单独设置的信息
 						var c = options.code - options.code % 1e4;
 						if (data[c]) {
 							options.province = c;
@@ -130,13 +130,13 @@
 						province: function () {
 							$province.empty();
 							if (!options.required) {
-								$province.append('');
+								$province.append('<option value=""> - 请选择 - </option>');
 							}
 							for (var i in province) {
-								$province.append('' + (options.valueType == '' ? i : province[i]) + '' + i + '' + province[i] + '');
+								$province.append('<option value="' + (options.valueType == 'code' ? i : province[i]) + '" data-code="' + i + '">' + province[i] + '</option>');
 							}
 							if (options.province) {
-								var value = options.valueType == '' ? options.province : province[options.province];
+								var value = options.valueType == 'code' ? options.province : province[options.province];
 								$province.val(value);
 							}
 							this.city();
@@ -144,25 +144,25 @@
 						city: function () {
 							$city.empty();
 							if (!hasCity) {
-								//$city.css('','');
+								//$city.css('display','none');
 							} else {
-								$city.css('', '');
+								$city.css('display', '');
 								if (!options.required) {
-									$city.append('');
+									$city.append('<option value=""> - 请选择 - </option>');
 								}
-								if (options.nodata == '') {
-									$city.prop('', $.isEmptyObject(city));
-								} else if (options.nodata == '') {
-									$city.css('', $.isEmptyObject(city) ? '' : '');
+								if (options.nodata == 'disabled') {
+									$city.prop('disabled', $.isEmptyObject(city));
+								} else if (options.nodata == 'hidden') {
+									$city.css('display', $.isEmptyObject(city) ? 'none' : '');
 								}
 								for (var i in city) {
-									$city.append('' + (options.valueType == '' ? i : city[i]) + '' + i + '' + city[i] + '');
+									$city.append('<option value="' + (options.valueType == 'code' ? i : city[i]) + '" data-code="' + i + '">' + city[i] + '</option>');
 								}
 								if (options.city) {
-									var value = options.valueType == '' ? options.city : city[options.city];
+									var value = options.valueType == 'code' ? options.city : city[options.city];
 									$city.val(value);
 								} else if (options.area) {
-									var value = options.valueType == '' ? options.area : city[options.area];
+									var value = options.valueType == 'code' ? options.area : city[options.area];
 									$city.val(value);
 								}
 							}
@@ -171,19 +171,19 @@
 						area: function () {
 							$area.empty();
 							if (!options.required) {
-								$area.append('');
+								$area.append('<option value=""> - 请选择 - </option>');
 							}
-							if (options.nodata == '') {
-								$area.prop('', $.isEmptyObject(area));
-							} else if (options.nodata == '') {
-								//$area.css('',$.isEmptyObject(area)?'':'');
-								$area.css('', '');
+							if (options.nodata == 'disabled') {
+								$area.prop('disabled', $.isEmptyObject(area));
+							} else if (options.nodata == 'hidden') {
+								//$area.css('display',$.isEmptyObject(area)?'none':'');
+								$area.css('display', '');
 							}
 							for (var i in area) {
-								$area.append('' + (options.valueType == '' ? i : area[i]) + '' + i + '' + area[i] + '');
+								$area.append('<option value="' + (options.valueType == 'code' ? i : area[i]) + '" data-code="' + i + '">' + area[i] + '</option>');
 							}
 							if (options.area) {
-								var value = options.valueType == '' ? options.area : area[options.area];
+								var value = options.valueType == 'code' ? options.area : area[options.area];
 								$area.val(value);
 							}
 						}
@@ -199,28 +199,28 @@
 						};
 						return status;
 					};
-					//Sự kiện liên kết
-					$province.on('', function () {
-						options.province = $(this).find('').data('') || 0; //选中节点的区划代码
+					//事件绑定
+					$province.on('change', function () {
+						options.province = $(this).find('option:selected').data('code') || 0; //选中节点的区划代码
                         options.city = 0;
 						options.area = 0;
 						updateData();
 						format.city();
                         options.onChange(_api.getInfo());
-                        $city.trigger('');
+                        $city.trigger('change');
 					});
-					$city.on('', function () {
-						options.city = $(this).find('').data('') || 0; //选中节点的区划代码
+					$city.on('change', function () {
+						options.city = $(this).find('option:selected').data('code') || 0; //选中节点的区划代码
 						options.area = 0;
 						updateData();
 						format.area();
 						options.onChange(_api.getInfo());
 					});
-					$area.on('', function () {
-						options.area = $(this).find('').data('') || 0; //选中节点的区划代码
+					$area.on('change', function () {
+						options.area = $(this).find('option:selected').data('code') || 0; //选中节点的区划代码
 						options.onChange(_api.getInfo());
 					});
-					//Khởi tạo
+					//初始化
 					updateData();
 					format.province();
 					if (options.code) {

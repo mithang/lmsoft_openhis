@@ -1,8 +1,8 @@
 ﻿@using Newtouch.Infrastructure
 
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "预约挂号";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 
 <div class="topPanel">
@@ -11,7 +11,7 @@
         <tr>
             <td>
                 <div class="input-group">
-                    <input id="txt_keyword" type="text" class="form-control" placeholder="Khoa" style="width: 180px;">
+                    <input id="txt_keyword" type="text" class="form-control" placeholder="科室" style="width: 180px;">
                     <span class="input-group-btn">
                         <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                     </span>
@@ -25,16 +25,16 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Bác sĩ</a>
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>医生</a>
         </div>
         <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
+            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_set()"><i class="fa fa-pencil-square-o"></i>Đặt lịch trực</a>
+            <a class="btn btn-primary" onclick="btn_set()"><i class="fa fa-pencil-square-o"></i>排班设置</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_create()"><i class="fa fa-pencil-square-o"></i>Tạo lịch trực</a>
+            <a class="btn btn-primary" onclick="btn_create()"><i class="fa fa-pencil-square-o"></i>生成排班</a>
         </div>
         <div class="btn-group">
             <a class="btn btn-primary" onclick="btn_createtime()"><i class="fa fa-pencil-square-o"></i>维护排班时间</a>
@@ -48,155 +48,155 @@
     <div id="gridPager"></div>
 </div>
 <script>
-    var OrganizeId = '';
+    var OrganizeId = '@(ViewBag.OrganizeId)';
 
     $(function () {
         GridInit();
     });
 
     function GridInit() {
-        var $gridList = $("");
+        var $gridList = $("#gridList");
         $gridList.dataGrid({
-            url: "",
+            url: "/OutPatientManage/OutBook/GetPagintionList",
             autowidth: true,
             height: $(window).height() - 118,
             colModel: [
-                { label: "", name: "", hidden: true },
+                { label: "ghpbId", name: "ghpbId", hidden: true },
                 {
-                    label: "", name: "", width: 130, align: '', formatter: function (val) {
-                        return $.enum.getDescByValue("", val);
+                    label: "门诊类型", name: "mjzbz", width: 130, align: 'left', formatter: function (val) {
+                        return $.enum.getDescByValue("EnumOutPatientType", val);
                     }
                 },
-                { label: "", name: "", width: 130, align: '' },
-                { label: "", name: "", width: 130, align: '' },
-                { label: "", name: "", width: 130, align: '' },
-                { label: "", name: "", width: 130, align: '' },
-                { label: "", name: "", width: 130, align: '' },
+                { label: "排班描述", name: "pbdesc", width: 130, align: 'left' },
+                { label: "挂号项目", name: "sfxmmc", width: 130, align: 'left' },
+                { label: "诊疗项目", name: "zlxmmc", width: 130, align: 'left' },
+                { label: "科室", name: "ksmz", width: 130, align: 'left' },
+                { label: "医生", name: "ysxm", width: 130, align: 'left' },
                 {
-                    label: "", name: "", width: 130, align: '', formatter: function (val) {
-                        if (val == "") {
-                            return "";
+                    label: "有效", name: "zt", width: 130, align: 'left', formatter: function (val) {
+                        if (val == "1") {
+                            return "是";
                         }
-                        else if (val == "") {
-                            return "";
+                        else if (val == "0") {
+                            return "否";
                         }
                     }
                 },
                 {
-                    label: "", name: "", hidden: true 
+                    label: "OrganizeId", name: "OrganizeId", hidden: true 
                 },
                 {
-                    label: "", name: "", hidden: true
+                    label: "ks", name: "ks", hidden: true
                 },
                 {
-                    label: "", name: "", hidden: true
+                    label: "ysgh", name: "ys", hidden: true
                 }
             ],
-            sortname: "",
+            sortname: "ghpbId desc",
             rowNum: 10,
-            pager: "",
+            pager: "#gridPager",
             viewrecords: true,
             ondblClickRow: function () {
                 btn_set();
             },
         });
-        $("").click(function () {
-            $("").jqGrid('', {
-                postData: { keyword: $("").val() }, page: 1
-            }).trigger('');
+        $("#btn_search").click(function () {
+            $("#gridList").jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val() }, page: 1
+            }).trigger('reloadGrid');
         });
     }
 
 
     function btn_edit() {
-        var keyValue = $("").jqGridRowValue().ghpbId;
-        var ks = $("").jqGridRowValue().ks;
-        var ys = $("").jqGridRowValue().ys;
+        var keyValue = $("#gridList").jqGridRowValue().ghpbId;
+        var ks = $("#gridList").jqGridRowValue().ks;
+        var ys = $("#gridList").jqGridRowValue().ys;
         if (!!!keyValue) {
-            $.modalAlert("", '');
+            $.modalAlert("请选中一条信息", 'warning');
             return false;
         }
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + keyValue + "" + ks+""+ys,
-            width: "",
-            height: "",
+            id: "editDoctor",
+            title: "修改医生",
+            url: "/OutPatientManage/OutBook/Doctor?keyValue=" + keyValue + "&ks=" + ks+"&ys="+ys,
+            width: "500px",
+            height: "500px",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function () {
-                    $("").resetSelection();
-                    $("").trigger("");
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
                 });
             }
         });
     }
 
     function btn_set() {
-        var ghpbId = $("").jqGridRowValue().ghpbId;
-        //var OrganizeId = $("").jqGridRowValue().OrganizeId;
+        var ghpbId = $("#gridList").jqGridRowValue().ghpbId;
+        //var OrganizeId = $("#gridList").jqGridRowValue().OrganizeId;
         if (!!!ghpbId) {
-            $.modalAlert("", '');
+            $.modalAlert("请选中一条信息", 'warning');
             return false; 
         }
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + ghpbId + "" + OrganizeId+"",
-            width: "",
-            height: "",
+            id: "updateForm",
+            title: "编辑排班",
+            url: "/OutPatientManage/OutBook/Form?ghpbId=" + ghpbId + "&orgId=" + OrganizeId+"&type=update",
+            width: "800px",
+            height: "900px",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function () {
-                    $("").resetSelection();
-                    $("").trigger("");
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
                 });
             }
         });
     }
 
-    //Thêm mới lịch trực
+    //新增排班
     function btn_add() {
         var ghpbId = 0;
-        //var OrganizeId = $("").jqGridRowValue().OrganizeId;
+        //var OrganizeId = $("#gridList").jqGridRowValue().OrganizeId;
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + ghpbId + "" + OrganizeId+"",
-            width: "",
-            height: "",
+            id: "updateForm",
+            title: "编辑排班",
+            url: "/OutPatientManage/OutBook/Form?ghpbId=" + ghpbId + "&orgId=" + OrganizeId+"&type=add",
+            width: "800px",
+            height: "900px",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function () {
-                    $("").resetSelection();
-                    $("").trigger("");
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
                 });
             }
         });
     }
 
-    //Tạo lịch trực
+    //生成排班
     function btn_create() {
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "",
-            width: "",
-            height: "",
+            id: "updateForm",
+            title: "生成排班",
+            url: "/OutPatientManage/OutBook/Create",
+            width: "800px",
+            height: "800px",
             btn: null,
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function () {
-                    $("").resetSelection();
-                    $("").trigger("");
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
                 });
             }
         });
     }
-    //Tạo thời gian lịch trực
+    //生成排班时间
     function btn_createtime() {
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "",
-            width: "",
-            height: "",
+            id: "TimeForm",
+            title: "编辑排班时间",
+            url: "/OutPatientManage/OutBook/TimeForm?type=add",
+            width: "600px",
+            height: "600px",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function () {
                 });

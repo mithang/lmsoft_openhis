@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
     .btn-group {
@@ -13,13 +13,13 @@
 <div class="rows" style="float:left;width:24%;margin-left:1%;">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg" style="height:23px;">
-            Điều kiện lọc
+            筛选条件
             <div class="btn-group" data-toggle="buttons" id="status">
                 <label class="btn btn-default active" style="z-index:100">
-                    <input type="radio" value="1" name="optionsRadios" class="optionsRadios" checked="checked" />Chưa xác nhận
+                    <input type="radio" value="1" name="optionsRadios" class="optionsRadios" checked="checked" />未确认
                 </label>
                 <label class="btn btn-default" style="z-index:100">
-                    <input type="radio" value="2" name="optionsRadios" class="optionsRadios" />Đã xác nhận
+                    <input type="radio" value="2" name="optionsRadios" class="optionsRadios" />已确认
                 </label>
             </div>
         </div>
@@ -43,40 +43,40 @@
 <div class="rows" style="float:left;width:74%;margin-left:1%;">
     <div class="panel panel-default" style="height:150px;">
         <div class="panel-heading navb-bg">
-            Thông tin cơ bản
+            基本信息
         </div>
         <div style="padding: 20px;padding-right:20px;" id="divPatInfo">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Ngoại trú/Số nhập viện：</th>
+                    <th class="formTitle">门诊/住院号：</th>
                     <td class="formValue">
                         <label id="type">R25639</label>
                     </td>
-                    <th class="formTitle">Họ tên：</th>
+                    <th class="formTitle">姓名：</th>
                     <td class="formValue">
                         <label id="xm">大白</label>
                     </td>
-                    <th class="formTitle">Giới tính：</th>
+                    <th class="formTitle">性别：</th>
                     <td class="formValue">
-                        <label id="xb">Nữ</label>
+                        <label id="xb">女</label>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Tuổi：</th>
+                    <th class="formTitle">年龄：</th>
                     <td class="formValue">
                         <label id="nl">26</label>
                     </td>
-                    <td class="formTitle">Số bảo hiểm：</td>
+                    <td class="formTitle">保险号：</td>
                     <td class="formValue">
                         <label id="bxh">35010343123456743</label>
                     </td>
                     <td class="formTitle">费别：</td>
                     <td class="formValue">
-                        <label id="fb">Tự chi trả</label>
+                        <label id="fb">自费</label>
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">Chẩn đoán lâm sàng：</td>
+                    <td class="formTitle">临床诊断：</td>
                     <td class="formValue">
                         <label id="lczd">腰痛</label>
                     </td>
@@ -97,44 +97,44 @@
             <td class="formValue">
                 <label id="yj">￥2000</label>
             </td>
-            <th class="formTitle">Khoản phải thu：</th>
+            <th class="formTitle">应收款：</th>
             <td class="formValue">
                 <label id="ysk">￥1000</label>
             </td>
-            <th class="formTitle">Chiết khấu：</th>
+            <th class="formTitle">折扣：</th>
             <td class="formValue">
                 <input type="text" id="zk" class="form-control"/>
             </td>
-            <th class="formTitle">Số tiền thực thu：</th>
+            <th class="formTitle">实收款：</th>
             <td class="formValue">
                 <input type="text" id="ssk" class="form-control" />
             </td>
-            <th class="formTitle">Tiền thừa：</th>
+            <th class="formTitle">找零：</th>
             <td class="formValue">
                 <label id="zl">￥1000</label>
             </td>
             <td></td>
         </tr>
     </table>
-    @Html.Partial("", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
+    @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new[] { 8, 9 },
-    F8Text = "",
-    F9Text = ""
+    F8Text = "确认收费",
+    F9Text = "取消确认"
 })
 </div>
 
 <script>
     $(function () {
-        //radioSự kiện đã chọn
-        $("").off().on("", function () {
-            $('').jqGrid("");
+        //radio选中事件
+        $("input[name='optionsRadios']").off().on("change", function () {
+            $('#gridList').jqGrid("clearGridData");
             var mydata;
-            if ($(this).val() == "") {     //Đã xác nhận
-                $("").show();
+            if ($(this).val() == "2") {     //已确认
+                $("#searchDiv").show();
                 mydata = getConfirmedData();
-            } else {    //Chưa xác nhận
-                $("").hide();
+            } else {    //未确认
+                $("#searchDiv").hide();
                 mydata = getNotYetConfirm();
             }
             gridList(mydata);
@@ -142,55 +142,55 @@
 
         var mydata = getNotYetConfirm();
         gridList(mydata);
-        $("").newtouchLocalDataGrid(null, []);
+        $("#gridFeeDetail").newtouchLocalDataGrid(null, []);
     });
 
-    //Chưa xác nhận
+    //未确认
     function getNotYetConfirm() {
         var mydata = [
                {
-                   blh: '', xm: '', fb: '', type: '', qrzt:''
+                   blh: 'R000001', xm: '李小璐', fb: '自费', type: '门诊', qrzt:'false'
                },
         ];
         return mydata;
     }
-    //Đã xác nhận
+    //已确认
     function getConfirmedData() {
         var mydata = [
                {
-                   blh: '', xm: '', fb: '', type: '', qrzt: ''
+                   blh: 'R000022', xm: '大白', fb: '自费', type: '门诊', qrzt: 'true'
                },
                {
-                   blh: '', xm: '', fb: '', type: '', qrzt: ''
+                   blh: 'R000023', xm: '小二', fb: '自费', type: '门诊', qrzt: 'true'
                },
         ];
         return mydata;
     }
 
-    //Thông tin bệnh nhân
+    //患者信息
     function gridList(mydata) {
-        var $gridList = $("");
+        var $gridList = $("#gridList");
         $gridList.newtouchLocalDataGrid({
             height: $(window).height() - 175,
-            caption: "",
+            caption: "病人信息",
             unwritten: false,
             colModel: [
-                { label: '', name: '', width: 40, align: '' },
-                { label: '', name: '', width: 40, align: '' },
-                { label: '', name: '', width: 40, align: '' },
-                { label: '', name: '', width: 40, align: '' },
-                { label: '', name: '', width: 40, align: '',hidden: true },
+                { label: '病历号', name: 'blh', width: 40, align: 'left' },
+                { label: '姓名', name: 'xm', width: 40, align: 'left' },
+                { label: '费别', name: 'fb', width: 40, align: 'left' },
+                { label: '门诊/住院', name: 'type', width: 40, align: 'left' },
+                { label: 'qrzt', name: 'qrzt', width: 40, align: 'left',hidden: true },
 
             ],
             ondblClickRow: function (rowid) {
                 gridDbclickRow(rowid);
             },
             gridComplete: function () {
-                var ids = $("").getDataIDs();
+                var ids = $("#gridList").getDataIDs();
                 for (i = 0; i < ids.length; i++) {
-                    var rowdata = $("").getRowData(ids[i]);
-                    if (rowdata && rowdata.qrzt == "") {
-                        $('' + ids[i] + '').addClass('');
+                    var rowdata = $("#gridList").getRowData(ids[i]);
+                    if (rowdata && rowdata.qrzt == "true") {
+                        $('#gridList tr[id="' + ids[i] + '"]').addClass('success');
                     }
                 }
             }
@@ -201,54 +201,54 @@
     function gridDbclickRow(rowid) {
         var mydata = [
            {
-               sfdlmc: '', sfxmmc: '', sl: '', dw: '', dj: '', zje: ''
+               sfdlmc: '物理治疗', sfxmmc: '普通针刺', sl: '3', dw: '五个穴位', dj: '30.00', zje: '90.00'
            },
            {
-               sfdlmc: '', sfxmmc: '', sl: '', dw: '', dj: '', zje: ''
+               sfdlmc: '物理治疗', sfxmmc: '电针', sl: '2', dw: '二个穴位', dj: '30.00', zje: '60.00'
            },
            {
-               sfdlmc: '', sfxmmc: '', sl: '', dw: '', dj: '', zje: ''
+               sfdlmc: '物理治疗', sfxmmc: '隔物针灸', sl: '3', dw: '次', dj: '15.00', zje: '45.00'
            }
         ];
 
-        $('').newtouchLocalDataGrid(null, mydata);
-        $('').addClass('').attr('', '');
+        $('#gridFeeDetail').newtouchLocalDataGrid(null, mydata);
+        $('#btn_bottombutton_f8').addClass('newtouch_Readonly').attr('disabled', 'disabled');
     }
 
-    $("").newtouchLocalDataGrid({
+    $("#gridFeeDetail").newtouchLocalDataGrid({
         height: $(window).height() - 280,
         unwritten: false,
-        treeGridModel: "",
+        treeGridModel: "adjacency",
         colModel: [
-            { label: "", name: "", width: 100, align: "" },
-            { label: "", name: "", width: 150, align: "" },
-            { label: "", name: "", width: 100, align: "" },
-            { label: "", name: "", width: 100, align: "" },
-            { label: "", name: "", width: 100, align: "" },
-            { label: "", name: "", width: 100, align: "" },
+            { label: "类别", name: "sfdlmc", width: 100, align: "left" },
+            { label: "收费项目", name: "sfxmmc", width: 150, align: "left" },
+            { label: "数量", name: "sl", width: 100, align: "left" },
+            { label: "单位", name: "dw", width: 100, align: "left" },
+            { label: "单价(元)", name: "dj", width: 100, align: "left" },
+            { label: "金额(元)", name: "zje", width: 100, align: "left" },
         ],
         gridComplete: function () {
-            var ids = $("").getDataIDs();
+            var ids = $("#gridFeeDetail").getDataIDs();
             for (i = 0; i < ids.length; i++) {
-                $('' + ids[i] + '').addClass('');
+                $('#gridFeeDetail tr[id="' + ids[i] + '"]').addClass('info');
             }
         }
     });
 
-    //Cửa sổ bật lên xác nhận số tiền
+    //弹出金额确认窗口
     function newtouch_event_f8(yj, ysk, ssk, zk, zl) {
-        var url = "" + ysk
-            + "" + ssk
-            + "" + 0.00
-            + "" + zl;
+        var url = "/HospitalizationManage/Settlement/SettSuccessDialog?yingshoukuan=" + ysk
+            + "&ssk=" + ssk
+            + "&srce=" + 0.00
+            + "&zhaoling=" + zl;
         $.modalOpen({
-            id: "",
-            title: "",
+            id: "FormShowBillSuccessDialog",
+            title: "结算确认",
             url: url,
-            width: "",
-            height: "",
+            width: "320px",
+            height: "260px",
             callBack: function (iframeId) {
-                $.modalClose("");   //Đóng biểu mẫu số tiền quyết toán
+                $.modalClose("FormShowBillSuccessDialog");   //关闭结算金额的窗体
             }
         });
     }

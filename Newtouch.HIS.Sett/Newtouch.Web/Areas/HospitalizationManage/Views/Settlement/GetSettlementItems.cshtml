@@ -1,16 +1,16 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "GetSettlementItems";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
 <div class="gridPanel" style="margin-top:10px;">
     <div>
         <table class="form">
             <tr>
-                <th class="formTitle">Thu phí tên：</th>
+                <th class="formTitle">收费名称：</th>
                 <td class="formValue">
-                    <input id="sfmc" type="text" class="form-control" placeholder="Thu phí tên" />
+                    <input id="sfmc" type="text" class="form-control" placeholder="收费名称" />
                 </td>
                 <td class="formValue">
                     &nbsp;&nbsp;
@@ -23,48 +23,48 @@
     <div id="gridPager"></div>
 </div>
 <script>
-    var zyh = $.request("");
-    var dlCode = $.request("");
-    var jsnms = $.request("");
+    var zyh = $.request("zyh");
+    var dlCode = $.request("dlCode");
+    var jsnms = $.request("jsnms");
     $(function () {
         gridInit();
     });
-    $('').click(function () {
-        //$("").clearGridData();
+    $('#btn_search').click(function () {
+        //$("#gridList").clearGridData();
 
-        var mc = $('').val();
-        $("").jqGrid('', {
+        var mc = $('#sfmc').val();
+        $("#gridList").jqGrid('setGridParam', {
             postData: { zyh: zyh, dlCode: dlCode, jsnms: jsnms, mc: mc },
-        }).trigger(''); //Lại tải bảng hiện tại
+        }).trigger('reloadGrid'); //重新加载当前表格
     });
     function gridInit() {
-        var $gridList = $("");
+        var $gridList = $("#gridList");
         $gridList.dataGrid({
             postData: { zyh: zyh, dlCode: dlCode,jsnms: jsnms,mc:"" },
-            url: "",
+            url: "/HospitalizationManage/Settlement/GetSettleItemFrom",
             height: $(window).height() - 120,
             colModel: [
-                { label: '', name: '', align: '', width: 80 },
-                { label: '', name: '', align: '', width: 40 },
-                { label: '', name: '', align: '', width: 150 },
-                { label: '', name: '', align: '', width: 60 },
-                { label: '', name: '', align: '', width: 60 },
+                { label: '收费大类', name: 'dlmc', align: 'center', width: 80 },
+                { label: '属性', name: 'zfxz', align: 'center', width: 40 },
+                { label: '收费名称', name: 'sfxmmc', align: 'left', width: 150 },
+                { label: '规格', name: 'gg', align: 'center', width: 60 },
+                { label: '单位', name: 'jfdw', align: 'center', width: 60 },
                 {
-                    label: '', name: '', align: '', width: 60, formatter: ""
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '' }
+                    label: '单价', name: 'dj', align: 'center', width: 60, formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
                 },
-                { label: '', name: '', align: '', width: 30 },
-                { label: '', name: '', align: '', hidden: true },
+                { label: '数量', name: 'sl', align: 'center', width: 30 },
+                { label: 'zyh', name: 'zyh', align: 'center', hidden: true },
                 {
-                    label: '', name: '', align: '', width: 60, formatter: ""
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '' }
+                    label: '费用', name: 'je', align: 'center', width: 60, formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
                 },
-                { label: '', name: '', align: '', width: 50 },
-                { label: '', name: '', align: '', width: 100 },
+                { label: '是否自费', name: 'zzfbz', align: 'center', width: 50 },
+                { label: '计价日期', name: 'tdrq', align: 'center', width: 100 },
 
             ],
-            pager: "",
-            sortname: '',
+            pager: "#gridPager",
+            sortname: 'tdrq',
             viewrecords: true,
             //rowNum:20
         });

@@ -1,7 +1,7 @@
 ﻿@{
-    ViewBag.Title = "";
+    ViewBag.Title = "Index";
 
-    Layout = "";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
     .form .formTitle {
@@ -31,31 +31,31 @@
 </style>
 <div class="panel panel-default" style="margin-bottom:0;">
     <div class="panel-heading navb-bg">
-        Tra cứu hoàn phí ngoại trú
+        门诊退费查询
     </div>
     <div style="padding: 2px;padding-right:20px;">
         <table class="form">
             <tr>
-                <td class="formTitle">Số bệnh án：</td>
+                <td class="formTitle">病历号：</td>
                 <td class="formValue">
-                    <input id="blh" type="text" class="form-control form-control-focus" placeholder="Vui lòng nhập số bệnh án">
+                    <input id="blh" type="text" class="form-control form-control-focus" placeholder="请输入病历号">
                 </td>
                 <td class="formValue">
-                    <input type="button" class="btn btn-default btn-md btn-default-color" style="width: 25px;" id="btnsyy" value="Tra cứu" onclick="GetPatSerarchView($('#blh').val());" />
+                    <input type="button" class="btn btn-default btn-md btn-default-color" style="width: 25px;" id="btnsyy" value="查询" onclick="GetPatSerarchView($('#blh').val());" />
                 </td>
-                <td class="formTitle">Thao tác ngày：起</td>
+                <td class="formTitle">操作日期：起</td>
                 <td class="formValue">
                     <input class="form-control input-wdatepicker" type="text" onfocus="WdatePicker({
                                 onpicked: function () {getAge($(this).val());return true;}})" id="ks" value="@DateTime.Now.AddMonths(-1).ToString("yyy-MM-dd")" />
                 </td>
-                <td class="formTitle">Đến：</td>
+                <td class="formTitle">至：</td>
                 <td class="formValue">
                     <input class="form-control input-wdatepicker" type="text" onfocus="WdatePicker({
                                 onpicked: function () {getAge($(this).val());return true;}})" id="js" value="@DateTime.Now.AddDays(1).ToString("yyy-MM-dd")" />
                 </td>
                 <td class="formTitle"></td>
                 <td class="formValue">
-                    <button id="BtnQuery" class="btn btn btn-primary btn-md dropdown-text">Tra cứu</button>
+                    <button id="BtnQuery" class="btn btn btn-primary btn-md dropdown-text">查询</button>
                 </td>
             </tr>
         </table>
@@ -66,44 +66,44 @@
         <table id="gridListTuifei" rel="tabGrid"></table>
     </div>
 </form>
-@Html.Partial("", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
+@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 4, 6 },
-    F6Text = ""
+    F6Text = "退费"
 })
 <script>
 
     $(function () {
-        //Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGridchiều rộng của
+        //浏览器窗口调整大小时重新加载jqGrid的宽
         $(window).resize(function () {
-            initLayout("");
+            initLayout("tabGrid");
         });
 
-        var txt_keyword = document.getElementById('');
-        txt_keyword.addEventListener('',
+        var txt_keyword = document.getElementById('blh');
+        txt_keyword.addEventListener('keydown',
             function (event) {
                 event = event || window.event;
                 if (event.keyCode === 13) {
                     if ($(this).val() == null || $(this).val() == undefined || $(this).val() == "") {
-                        $.modalAlert("", '');
+                        $.modalAlert("请输入有效病历号", 'warning');
                         return false;
                     }
                     btnQuery();
                 }
             });
 
-        //Xóa trống
+        //清空
         newtouch_event_f4();
-        gridListTuifei([]); //Danh sách hoàn phí
+        gridListTuifei([]); //退费列表
 
-        //Tra cứu
-        $("").click(function () {
-            if ($('').val() && $('').val() && ($('').val() > $('').val())) {
-                $.modalAlert("", '');
+        //查询
+        $("#BtnQuery").click(function () {
+            if ($('#ks').val() && $('#js').val() && ($('#ks').val() > $('#js').val())) {
+                $.modalAlert("开始日期不能大于结束日期", 'warning');
                 return;
             }
-            if ($("").val() === "") {
-                $.modalAlert("", "");
+            if ($("#blh").val() === "") {
+                $.modalAlert("请输入病历号", "warning");
                 return;
             }
             btnQuery();
@@ -112,17 +112,17 @@
 
     var jsnm; //获取从弹出窗口中得到的结算内码
 
-    //Tra cứu nhân viên
+    //人员查询
     function GetPatSerarchView(blh) {
         $.modalOpen({
-            id: "",
-            title: "",
-            //url: "" + Math.random() + "" + blh,
-            width: "",
-            height: "",
+            id: "patSearch",
+            title: "患者查询",
+            //url: "/OutpatientManage/OutpatientRefund/SysPatEntitiesReView?t=" + Math.random() + "&blh=" + blh,
+            width: "700px",
+            height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //Trong sự kiện cửa sổ bật lên
-                //Gọi tra cứu số thẻ và số nhập viện
+                top.frames[iframeId].PatDbGrid(); //在弹出窗口事件
+                //调用查询卡号和住院号
                 //getPatInfoAjax(result);
             }
         });
@@ -130,43 +130,43 @@
 
     function btnQuery() {
         var obj = new Object;
-        obj.blh = $.trim($("").val());
-        obj.startTime = $.trim($("").val());
-        obj.endTime = $.trim($("").val());
+        obj.blh = $.trim($("#blh").val());
+        obj.startTime = $.trim($("#ks").val());
+        obj.endTime = $.trim($("#js").val());
         GetQueryFphAjax(obj);
     }
 
-    //Tra cứu lịch sử
+    //查询历史
     function GetQueryFphAjax(obj) {
-        $.loading(true, "");
+        $.loading(true, "正在请求数据...");
         $.najax({
-            type: "",
-            url: ""btnQuery"",
+            type: "POST",
+            url: "@Url.Action("btnQuery")",
             data: obj,
-            dataType: "",
+            dataType: "json",
             cache: false,
             alerterror: false,
             success: function (ajaxresp) {
-                if (ajaxresp.state === '') {
-                    localStorage.setItem("", JSON.stringify(ajaxresp.data));//Quyết toán dữ liệu
-                    $('').jqGrid("");
-                    $('').jqGrid("");
-                    //Bật lên cửa sổ danh sách lịch sử
+                if (ajaxresp.state === 'success') {
+                    localStorage.setItem("jsdata", JSON.stringify(ajaxresp.data));//结算数据
+                    $('#gridList').jqGrid("clearGridData");
+                    $('#gridListTuifei').jqGrid("clearGridData");
+                    //弹出历史列表窗口
                     $.modalOpen({
-                        id: "",
-                        title: "",
-                        url: "" + Math.random(),
-                        width: "",
-                        height: "",
+                        id: "QueFPList",
+                        title: "门诊退费查询",
+                        url: "/OutpatientManage/OutpatientRefund/QueJsList?r=" + Math.random(),
+                        width: "550px",
+                        height: "300px",
                         callBack: function (iframeId) {
-                            top.frames[iframeId].btn_edit(); //Trong sự kiện cửa sổ bật lên
-                            //Gọi thông tin quyết toán hóa đơn tra cứu
+                            top.frames[iframeId].btn_edit(); //在弹出窗口事件
+                            //调用查询发票结算信息
 
                         }
                     });
-                } else if (ajaxresp.state === '') {
-                    //cửa sổ giao diện bật lên nhân viên chọn tải
-                    GetPatSerarchView($("").val());
+                } else if (ajaxresp.state === 'error') {
+                    //弹出加载选择人员的界面窗口
+                    GetPatSerarchView($("#blh").val());
                 }
             },
             errorCallback: function (err) {
@@ -180,17 +180,17 @@
 
     function getDetail(jsnm) {
         $.najax({
-            type: "",
-            url: ""GetGridViewMxByJsnm"",
+            type: "POST",
+            url: "@Url.Action("GetGridViewMxByJsnm")",
             data: { jsnm: jsnm },
             cache: false,
-            dataType: "",
+            dataType: "json",
             success: function (ajaxresp) {
-                $('').jqGrid("");
+                $('#gridListTuifei').jqGrid("clearGridData");
                 gridListTuifei(ajaxresp.data);
                 jsnm = ajaxresp.data[0].jsnm;
                 var je = Number(0.00);
-                $("").html('');
+                $("#yingtui").html('0.00');
             },
             errorCallback: function (err) {
             },
@@ -201,167 +201,167 @@
         });
     }
 
-    //Danh sách hoàn phí
+    //退费列表
     function gridListTuifei(mydata) {
         var lastRowId;
-        var $gridList = $("");
+        var $gridList = $("#gridListTuifei");
         $gridList.dataNewGrid({
             height: $(window).height() - 210,
             //autowidth: false,
-            width: $("").width() - 2,
-            caption: "",
+            width: $("#tabGrid").width() - 2,
+            caption: "退费列表",
             multiselect: true,
-            editurl: "",  //Dữ liệu gửi máy chủ tới không chỉnh sửa dòng
+            editurl: "clientArray",  //行编辑不向服务器提交数据
             //onSelectRow_page: function (rowid, status) {
             //    if (rowid && lastRowId && rowid !== lastRowId) {   //&&: 相当于true/fase(判断是否有值)
             //        $gridList.saveRow(lastRowId, function (result) {
-            //            // return false;   //Xác minh nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //Không hiệu lực V.v. sửa chữa
+            //            // return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
             //        }); //先保存处于编辑状态的那一行    //function checksave
             //    }
             //    lastRowId = rowid;
-            //    $gridList.jqGrid('', rowid, true, null, function (result) {
-            //        return false;   //Xác minh nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //Không hiệu lực V.v. sửa chữa
+            //    $gridList.jqGrid('editRow', rowid, true, null, function (result) {
+            //        return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
             //    }, null, null, function () {
             //    });
             //},
             onSelectRow: function (rowid) {
-                $("" + $.jgrid.jqID(rowid) + "").focus();
+                $("#" + $.jgrid.jqID(rowid) + "_RETURNS_SL").focus();
             },
             gridComplete: function () {
-                //Bật hộp chỉnh sửa trong dòng
+                //启用行内编辑框
                 EnableInlineEditBox();
             },
             colModel: [
-                { label: "", name: "", align: "", hidden: true },
-                { label: "", name: "", align: "", hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
+                { label: "newid", name: "newid", align: "left", hidden: true },
+                { label: "收费项目", name: "SFXM", align: "left", hidden: true },
+                { label: 'xmnm', name: 'XMNM', hidden: true },
+                { label: 'zfxz', name: 'ZFXZ', hidden: true },
+                { label: 'nbdl', name: 'NBDL', hidden: true },
+                { label: 'jsnm', name: 'jsnm', hidden: true },
+                { label: 'ghnm', name: 'GHNM', hidden: true },
+                { label: 'CF_MXNM', name: 'CF_MXNM', hidden: true },
+                { label: 'InfoSet', name: 'InfoSet', hidden: true },
                 {
-                    label: '', name: '', width: 120, align: '', editable: true
+                    label: '退数量', name: 'RETURNS_SL', width: 120, align: 'left', editable: true
                     //,
                     //editrules: { integer: true }
                 },
                 {
-                    label: "", name: "", width: 80, align: "", formatter: function (val) {
+                    label: "数量", name: "SL", width: 80, align: "left", formatter: function (val) {
                         return val.length > 0 ? parseInt(val) : 0;
                     }
                 },
-                { label: "", name: "", width: 150, align: "" },
-                { label: "", name: "", width: 50, align: "", hidden: true },
-                { label: "", name: "", width: 100, align: "" },
-                { label: "", name: "", width: 40, align: "" },
-                { label: "", name: "", width: 60, align: "" },
+                { label: "收费项目", name: "YPMC", width: 150, align: "left" },
+                { label: "类别", name: "DL", width: 50, align: "left", hidden: true },
+                { label: "类别", name: "DLMC", width: 100, align: "left" },
+                { label: "单位", name: "DANWEI", width: 40, align: "left" },
+                { label: "单位时长", name: "duration", width: 60, align: "left" },
                 {
-                    label: "", name: "", width: 60, align: "", formatter: function (cellvalue) {
+                    label: "单价(元)", name: "DJ", width: 60, align: "left", formatter: function (cellvalue) {
                         return Number(cellvalue).toFixed(4);
                     }
                 },
-                { label: "", name: "", width: 180, align: "" },
+                { label: "治疗师", name: "ysmc", width: 180, align: "left" },
                 {
-                    label: "", name: "", width: 60, align: "", formatter: function (cellvalue) {
+                    label: "总金额(元)", name: "JE", width: 60, align: "left", formatter: function (cellvalue) {
                         return Number(cellvalue).toFixed(2);
                     }
                 },
-                { label: "", name: "", width: 160, align: "" },
+                { label: "备注", name: "bz", width: 160, align: "left" },
                 {
-                    label: "", name: "", width: 80, align: "", formatter: function (cellvalue) {
+                    label: "记账时间", name: "jzsj", width: 80, align: "left", formatter: function (cellvalue) {
                         return cellvalue && cellvalue.length >= 10 ? cellvalue.substring(0, 10) : "";
                     }
                 }
             ]
         }, mydata);
         if (mydata.length > 0) {
-            $('').find("").remove();
+            $('.ui-jqgrid-bdiv').find(".unwritten").remove();
         }
     }
-    //Bật hộp chỉnh sửa trong dòng
+    //启用行内编辑框
     function EnableInlineEditBox() {
-        //GridTải xong bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Gọi duyệteditRowPhương thức
-        var rowIds = $("").jqGrid('');
+        //Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        var rowIds = $("#gridListTuifei").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
-            $("").jqGrid('', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+            $("#gridListTuifei").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
 
             });
         }
     }
 
-    //Hoàn phí
+    //退费
     function Refund() {
         var flag = true;
-        var blh = $("").val();
+        var blh = $("#blh").val();
         if (!blh) {
-            $.modalAlert("", '');
+            $.modalAlert("缺少病历号", 'warning');
             return;
         }
-        var tuifei = $("").jqGrid('', '');
+        var tuifei = $("#gridListTuifei").jqGrid('getGridParam', 'data');
         if (!tuifei || tuifei.length === 0) {
-            $.modalAlert("", '');
+            $.modalAlert("缺少退费项目", 'warning');
             return;
         }
-        var selrowid = $("").jqGrid("", "");
+        var selrowid = $("#gridListTuifei").jqGrid("getGridParam", "selarrrow");
         if (selrowid.length < 1) {
             flag = false;
-            $.modalAlert("", '');
+            $.modalAlert("未选中退费项目", 'warning');
             return;
         }
 
-        //Lấy tất cả các dòngId
-        var rowIds = $("").jqGrid('');
+        //获取所有行Id
+        var rowIds = $("#gridListTuifei").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
-            //Duyệt để hộp chỉnh sửa ở trạng thái đã lưu
-            $("").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
-            var rowData = $("").jqGrid('', rowIds[i]);
+            //遍历使编辑框处于保存状态
+            $("#gridListTuifei").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
+            var rowData = $("#gridListTuifei").jqGrid('getRowData', rowIds[i]);
             if (!rowData) {
                 break;
             }
             if (!(/^(\+|-)?\d+$/.test(rowData.RETURNS_SL))) {
-                $.modalAlert("" + rowData.YPMC + "", '');
+                $.modalAlert("项目（" + rowData.YPMC + "）退数量不是数字，请确认。", 'warning');
                 EnableInlineEditBox();
                 return;
             }
             if (parseInt(rowData.RETURNS_SL) > parseInt(rowData.SL)) {
-                $.modalAlert("" + rowData.YPMC + "", '');
+                $.modalAlert("项目（" + rowData.YPMC + "）退数量大于记账数量，请确认。", 'warning');
                 EnableInlineEditBox();
                 return;
             }
             if (parseInt(rowData.RETURNS_SL) < 1) {
-                $.modalAlert("" + rowData.YPMC + "", '');
+                $.modalAlert("项目（" + rowData.YPMC + "）退数量小于1，请确认。", 'warning');
                 EnableInlineEditBox();
                 return;
             }
         }
-        var rowid = $("").jqGrid("", "");
+        var rowid = $("#gridListTuifei").jqGrid("getGridParam", "selarrrow");
         $.each(tuifei, function (idx, val) {
             val.RETURNS_SL = 0;
             $.each(rowid, function (idx2, val2) {
                 if (val2 != undefined && val2 == (idx + 1)) {
-                    val.RETURNS_SL = $('').jqGrid('', val2).RETURNS_SL;
+                    val.RETURNS_SL = $('#gridListTuifei').jqGrid('getRowData', val2).RETURNS_SL;
                 }
             });
         });
 
         var refundData = JSON.stringify(tuifei).toString();
-        $.modalConfirm("", function (flag) {
+        $.modalConfirm("您确定要退费吗？", function (flag) {
             if (flag) {
-                $.loading(true, "");
+                $.loading(true, "正在请求数据...");
                 var jsnm = tuifei[0].jsnm;
                 if (jsnm && blh) {
                     $.najax({
-                        type: "",
+                        type: "POST",
                         async: false,
-                        url: ""btnReturn"",
+                        url: "@Url.Action("btnReturn")",
                         data: { blh: blh, jsnm: jsnm, refundData: refundData },
-                        dataType: "",
+                        dataType: "json",
                         cache: false,
                         success: function (ajaxresp) {
-                            var msg = "";
+                            var msg = "退费成功";
                             $.modalAlert(msg, ajaxresp.state);
-                            $('').jqGrid("");
+                            $('#gridListTuifei').jqGrid("clearGridData");
                         },
                         errorCallback: function (err) {
                             $.loading(false);
@@ -371,19 +371,19 @@
                         }
                     });
                 } else {
-                    $.modalAlert("", "");
+                    $.modalAlert("数据不全，请检查卡号或联系管理员！", "error");
                 }
             }
         }, false);
 
     }
 
-    //Phím tắt：Xóa
+    //快捷键：清除
     function newtouch_event_f4() {
-        $('').jqGrid("");
+        $('#gridListTuifei').jqGrid("clearGridData");
     }
 
-    //Phím tắt：F6：Hoàn phí
+    //快捷键：F6：退费
     function newtouch_event_f6() {
         Refund();
     }

@@ -5,54 +5,54 @@
     <meta name="viewport" content="width=device-width" />
     <title>蛛网图</title>
     <link href="~/Content/css/framework-theme.css" rel="stylesheet" />
-    <script src=""></script>
-    <script src=""></script>
+    <script src="~/Content/js/jquery/jquery-2.1.1.min.js"></script>
+    <script src="~/Content/js/highcharts/highcharts.js"></script>
     <script>
         $(function () {
-            $('').highcharts({
+            $('#container').highcharts({
 
                 chart: {
                     polar: true,
-                    type: ''
+                    type: 'line'
                 },
 
                 title: {
-                    text: '',
+                    text: '蛛网图',
                     x: -80
                 },
 
                 pane: {
-                    size: ''
+                    size: '80%'
                 },
 
                 xAxis: {
-                    categories: ['', '', '', '', '', ''],
-                    tickmarkPlacement: '',
+                    categories: ['销售', '市场', '开发', '客服', '技术', '管理'],
+                    tickmarkPlacement: 'on',
                     lineWidth: 0
                 },
 
                 yAxis: {
-                    gridLineInterpolation: '',
+                    gridLineInterpolation: 'polygon',
                     lineWidth: 0,
                     min: 0
                 },
 
 
                 legend: {
-                    align: '',
-                    verticalAlign: '',
+                    align: 'right',
+                    verticalAlign: 'top',
                     y: 70,
-                    layout: ''
+                    layout: 'vertical'
                 },
 
                 series: [{
-                    name: '',
+                    name: '列1',
                     data: [43000, 19000, 60000, 35000, 17000, 10000],
-                    pointPlacement: ''
+                    pointPlacement: 'on'
                 }, {
-                    name: '',
+                    name: '列2',
                     data: [50000, 39000, 42000, 31000, 26000, 14000],
-                    pointPlacement: ''
+                    pointPlacement: 'on'
                 }]
 
             });

@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
 }
 
 <div class="ui-layout" id="layout" style="height:100%;width:100%;">
@@ -10,17 +10,17 @@
     <iframe class="ui-layout-center" id="iframerightiframerightiframeright" name="iframerightiframerightiframeright"></iframe>
 </div>
 
-<script type="">
+<script type="text/javascript">
     (function ($) {
-        $('').layout();
-        $("").treeview({
-            url: "" + encodeURIComponent(''),
+        $('#layout').layout();
+        $("#itemTree").treeview({
+            url: "/SystemManage/Module/GetModuleTreeJsonByName?name=" + encodeURIComponent('系统参数设置'),
             onnodeclick: function (item) {
                 if (item.hasChildren === true) {
                     return;
                 }
                 if (item.value) { 
-                    $("").attr("", item.value);
+                    $("#iframerightiframerightiframeright").attr("src", item.value);
                 }
             }
         });

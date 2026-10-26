@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Web.App_Start
         {
             var builder = new ContainerBuilder();
 
-            //Đăng ký mặc địnhEFNgữ cảnh
+            //注册默认EF上下文
             builder.RegisterType<DefaultDatabaseFactory>().As<IDefaultDatabaseFactory>().InstancePerLifetimeScope();
 
             //注册控制器
@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Web.App_Start
             //日志注册
             builder.RegisterType<NLogger>().As<ILogger>().InstancePerLifetimeScope();
 
-            //Bộ nhớ đệm
+            //缓存
             builder.RegisterType<SERedisCache>().As<ICache>().InstancePerLifetimeScope();
 
             #region IOC注册底层

@@ -1,84 +1,84 @@
 ﻿$(function () {
 
-    //Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGridchiều rộng của
+    //浏览器窗口调整大小时重新加载jqGrid的宽
     $(window).resize(function () {
-        initLayout("");
+        initLayout("MyTabGrid");
     });
 
-    //Tải trang，禁用控件
+    //页面加载，禁用控件
     DisableSysBasicInfo(false);
     initFPH();
     initLastFPHInfo();
     initZffs();
 
     //回车键
-    $("").keypress(function (e) {
+    $("#txtkh").keypress(function (e) {
         if (e.keyCode == 13) {
             LoadPatientInfo()
-            if ($("").parent()[0].className == "") {
-                $("").trigger("");
+            if ($("#linkregistering").parent()[0].className == "active") {
+                $("#linkregistering").trigger("click");
             }
-            if ($("").parent()[0].className == "") {
-                $("").trigger("");
+            if ($("#linkclosedReg").parent()[0].className == "active") {
+                $("#linkclosedReg").trigger("click");
             }
         }
     });
-    $("").keypress(function (e) {
+    $("#txtssk").keypress(function (e) {
         if (e.keyCode == 13) {
-            var zl = parseFloat($("").val()) - parseFloat($("").val());
-            $("").val(zl.toFixed(2)); //保留小数点后两位小数
-            $("").attr("", "").css("", "");
+            var zl = parseFloat($("#txtssk").val()) - parseFloat($("#txtysk").val());
+            $("#txtzl").val(zl.toFixed(2)); //保留小数点后两位小数
+            $("#txtzl").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
         }
     });
 });
 
-//Vào trang，Tải số hóa đơn
+//页面进来，加载发票号
 function initFPH() {
     $.ajax({
-        url: "",
-        dataType: "",
+        url: "/BusinessManage/OutPatient/GetInvoice",
+        dataType: "json",
         async: false,
         success: function (data) {
-            $("").val(data);
+            $("#txtfph").val(data);
         }
     });
 }
 
-//Vào trang，Tải thông tin hóa đơn tờ một trên
+//页面进来，加载上一张发票信息
 function initLastFPHInfo() {
     $.ajax({
-        url: "",
-        dataType: "",
+        url: "/BusinessManage/OutPatient/GetLastSettleInfo",
+        dataType: "json",
         async: false,
         success: function (data) {
-            //Tra cứuok
-            if (data.state = "" & data != null) {
-                $("").val(data[0].fph);
-                $("").val(data[0].xjzf);
-                $("").val(data[0].ysk);
-                $("").val(data[0].zl);
-            } else //Tra cứuok，Thông tin quyết toán đăng ký khám không còn ngày khi nhưng
+            //查询ok
+            if (data.state = "success" & data != null) {
+                $("#lblqfph").val(data[0].fph);
+                $("#lblzje").val(data[0].xjzf);
+                $("#lblys").val(data[0].ysk);
+                $("#lblzl").val(data[0].zl);
+            } else //查询ok，但当天还没挂号结算信息
             {
-                $("").val('');
-                $("").val('');
-                $("").val('');
-                $("").val('');
+                $("#lblqfph").val('');
+                $("#lblzje").val('');
+                $("#lblys").val('');
+                $("#lblzl").val('');
 
             }
         }
     });
 }
 
-//Vào trang，Tải phương thức thanh toán
+//页面进来，加载支付方式
 function initZffs() {
-    $("").newtouchBindSelect({
-        id: "",
-        text: "",
+    $("#ddlzffs").newtouchBindSelect({
+        id: "xjzffsbh",
+        text: "xjzffsmc",
         datasource: function () {
-            //Duyệt nguồn dữ liệu
+            //遍历数据源
             var resultObjArr = new Array();
             $.each(top.clients.SysForCashPayList, function (idx, val) {
-                if (val.zhxz == '') {
+                if (val.zhxz == 'a') {
                     resultObjArr.push(val);
                 }
             });
@@ -89,78 +89,78 @@ function initZffs() {
 
 }
 
-//Đăng ký không cần thẻ
+//免卡登记
 function FreeCardReg() {
     $.modalOpen({
-        id: "",
-        title: "",
-        url: "",
-        width: "",
-        height: "",
+        id: "Form",
+        title: "免卡登记",
+        url: "/PatientManage/HospiterRes/PatientBasic",
+        width: "1000px",
+        height: "824px",
         callBack: function (iframeId) {
             top.frames[iframeId].submitForm();
         }
     });
 }
 
-//Thông tin tải số thẻ theo
+//根据卡号加载信息
 function LoadPatientInfo() {
-    var kh = $("").val();
+    var kh = $("#txtkh").val();
     $.ajax({
-        url: "" + kh,
-        dataType: "",
+        url: "/BusinessManage/OutPatient/LoadPatientInfo?kh=" + kh,
+        dataType: "json",
         async: false,
         success: function (data) {
-            if (data.state == "") {
+            if (data.state == "error") {
                 newtouch_globalevent_f4(event);
                 FreeCardReg();
             } else {
-                $("").val(data.xm);
-                $("").val($.getGender(data.xb));
-                $("").val(data.fzbz);
+                $("#txtxm").val(data.xm);
+                $("#txtxb").val($.getGender(data.xb));
+                $("txtfzbz").val(data.fzbz);
                 if (data.fzbz == 0) {
-                    $("").val("");
+                    $("#txtcfz").val("[0]初诊");
                 } else {
-                    $("").val("");
+                    $("#txtcfz").val("[1]复诊");
                 }
-                $("").val(data.patid);
-                $("").val(data.csny);
-                $("").val(data.db);
-                $("").val(data.dbzd);
-                $("").val(data.blh);
-                $("").val(data.brxz);
-                $("").val("" + data.brxz + "" + data.brxzmc);
-                $("").val(data.brxzbh);
-                DisableSysBasicInfo(true); //true:标志是从免卡登记或根据卡号查询返回明细, false:Giờ tải trang，可以输kh
+                $("#txtpatid").val(data.patid);
+                $("#txtcsny").val(data.csny);
+                $("#txtdb").val(data.db);
+                $("#txtdbzd").val(data.dbzd);
+                $("#txtblh").val(data.blh);
+                $("#txtbrxz").val(data.brxz);
+                $("#txtbrxzqc").val("[" + data.brxz + "]" + data.brxzmc);
+                $("#txtbrxzbh").val(data.brxzbh);
+                DisableSysBasicInfo(true); //true:标志是从免卡登记或根据卡号查询返回明细, false:页面加载时，可以输kh
 
             }
         }
     });
 }
 
-//Cửa sổ bật lên số hóa đơn
+//弹出发票号的窗口
 function ShowInvoicePanel() {
     $.modalOpen({
-        id: "",
-        title: "",
-        url: "",
-        width: "",
-        height: "",
+        id: "InvoiceNoPanel",
+        title: "选发票号",
+        url: "/BusinessManage/OutPatient/ChooseInvoice",
+        width: "300px",
+        height: "200px",
         callBack: function (iframeId) {
-            top.frames[iframeId].checkFPH();//Hàm callback xác nhận khi nhấn cửa sổ
+            top.frames[iframeId].checkFPH();//窗口点确定的回调函数
         }
     });
 }
 
-//Lớp nổi loại bệnh nhân
-$("").newtouchFloatingSelector({
+//病人类型浮层
+$("#txtbrxz").newtouchFloatingSelector({
     height: 200,
     width: 300,
     filter: function (keyword) {
         if (!keyword) {
             return null;
         }
-        //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
+        //遍历数据源，用keyword来筛选出结果
         var resultObjArr = new Array();
         $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
             if ((val.brxzmc && val.brxzmc.indexOf(keyword) >= 0)
@@ -171,64 +171,64 @@ $("").newtouchFloatingSelector({
         return resultObjArr;
 
     },
-    caption: "",
+    caption: "病人性质",
     colModel: [
-        { label: '', name: '', widthratio: 25 },
-        { label: '', name: '', widthratio: 25 },
-        { label: '', name: '', widthratio: 25 },
-        { label: '', name: '', widthratio: 25 }
+        { label: '编号', name: 'brxzbh', widthratio: 25 },
+        { label: '代码', name: 'brxz', widthratio: 25 },
+        { label: '名称', name: 'brxzmc', widthratio: 25 },
+        { label: '拼音', name: 'py', widthratio: 25 }
     ],
     itemdbclickhandler: function ($thistr) {
-        $("").attr("", $thistr.find("").html() + "" + $thistr.find("").html());
-        $("").val($thistr.find('').html());
+        $("#brxz").attr("data-label", $thistr.find("td:eq(0)").html() + "-" + $thistr.find("td:eq(1)").html());
+        $("#brxz").val($thistr.find('td:eq(2)').html());
         return;
     }
 });
 
-//Loại đăng ký khám
+//挂号类型
 var currentghlx;
-//Lớp nổi lịch trực đăng ký khám
-$("").newtouchFloatingSelector({
+//挂号排班浮层
+$("#txtksys").newtouchFloatingSelector({
     height: 200,
     width: 350,
-    id: '',
-    url: '',
-    ajaxmethod: '',
+    id: 'regSchedule',
+    url: '/BusinessManage/OutPatient/GetRegScheduleList',
+    ajaxmethod: 'POST',
     ajaxreqdata: function () {
         var reqData = {};
-        reqData.keyword = $("").val();
-        reqData.mzlx = $("").val();
+        reqData.keyword = $("#txtksys").val();
+        reqData.mzlx = $("#sel_mzlx").val();
         return reqData;
     },
-    caption: "",
+    caption: "挂号排班",
     colModel: [
-        { label: '', name: '', hidden: true, widthratio: 0 },
-        { label: '', name: '', hidden: true, widthratio: 0 },
-        { label: '', name: '', widthratio: 25 },
-        { label: '', name: '', widthratio: 25 },
-        { label: '', name: '', widthratio: 25 },
+        { label: 'ghlx', name: 'ghlx', hidden: true, widthratio: 0 },
+        { label: 'ghlxbh', name: 'ghlxbh', hidden: true, widthratio: 0 },
+        { label: '挂号类型', name: 'sfxmmc', widthratio: 25 },
+        { label: '挂号科室', name: 'ksmc', widthratio: 25 },
+        { label: '医生', name: 'rymc', widthratio: 25 },
         {
-            label: '', name: '', widthratio: 25, formatter: function (cellvalue) {
-                return cellvalue == "" ? "" : cellvalue;
+            label: '专病', name: 'ghzbmc', widthratio: 25, formatter: function (cellvalue) {
+                return cellvalue == "null" ? "" : cellvalue;
             }
         },
-        { label: '', name: '', hidden: true, widthratio: 0 },
-        { label: '', name: '', hidden: true, widthratio: 0 }
+        { label: 'ks', name: 'ks', hidden: true, widthratio: 0 },
+        { label: 'ksbh', name: 'ksbh', hidden: true, widthratio: 0 }
     ],
     itemdbclickhandler: function ($thistr) {
-        if ($("").val() == "" || $("").val() == "")//Ngoại trú/Cấp cứu  Khoa hiển thị chỉ
+        if ($("#sel_mzlx").val() == "1" || $("#sel_mzlx").val() == "2")//门诊/急诊  只显示科室
         {
-            $("").val($thistr.find('').html());
+            $("#txtksys").val($thistr.find('td:eq(3)').html());
         }
-        if ($("").val() == "")//Khám chuyên gia  Hiển thị khoa và Bác sĩ
+        if ($("#sel_mzlx").val() == "3")//专家门诊  显示科室和医生
         {
-            $("").val($thistr.find('').html() + "" + $thistr.find('').html());
+            $("#txtksys").val($thistr.find('td:eq(3)').html() + "/" + $thistr.find('td:eq(4)').html());
         }
-        $("").val($thistr.find('').html());
-        $("").val($thistr.find('').html());
-        $("").val($thistr.find('').html());
-        $("").val($thistr.find('').html());
-        currentghlx = $thistr.attr('');
+        $("#txtghlx").val($thistr.find('td:eq(0)').html());
+        $("#txtghlxbh").val($thistr.find('td:eq(1)').html());
+        $("#txtks").val($thistr.find('td:eq(6)').html());
+        $("#txtksbh").val($thistr.find('td:eq(7)').html());
+        currentghlx = $thistr.attr('data-ghlx');
         RegisterInfo();
 
 
@@ -237,18 +237,18 @@ $("").newtouchFloatingSelector({
 
 });
 
-//Tải thông tin đăng ký khám đang 
+//加载正在挂号信息 
 function RegisterInfo() {
-    if ($("").val() != null & $("").val() != "") {
+    if ($("#txtksys").val() != null & $("#ksys").val() != "") {
 
 
-        //tab页中所需的数据保存到一个对象
+        //把tab页中所需的数据保存到一个对象
         list = new Object();
-        list.ghlx = $("").val();
-        list.brxz = $("").val();
-        list.brxzbh = $("").val();
-        list.dbxm = $("").val();
-        //Lấy phí đăng ký khám Phí chẩn trị Phí thẻ từ Phí phôi
+        list.ghlx = $("#txtksys").val();
+        list.brxz = $("#txtbrxz").val();
+        list.brxzbh = $("#txtbrxzbh").val();
+        list.dbxm = $("#txtdbxm").val();
+        //获取挂号费 诊疗费 磁卡费 工本费
         var feesList = GHFees(true);
         list.ghf = feesList.ghf;
         list.zlf = feesList.zlf;
@@ -256,37 +256,37 @@ function RegisterInfo() {
         list.gbf = feesList.gbf;
         list.totalfees = feesList.totalfees;
 
-        //Đang đăng ký khám
+        //正在挂号
         registeringListNew([list]);
-        $("").attr("", "").css("", "");
-        $("").val(list.totalfees);  //Khoản phải thu
+        $("#txtysk").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
+        $("#txtysk").val(list.totalfees);  //应收款
     }
 }
 
-//Lấy phí đăng ký khám
+//获取挂号费用
 function GHFees(flag) {
     var isZzjm = false;
     var isCkf = false;
     var isGbf = false;
-    if ($("").is("")) {
+    if ($("#chk_zzjm").is(":checked")) {
         isZzjm = true;
     }
-    if ($("").is("")) {
+    if ($("#chk_ckf").is(":checked")) {
         isCkf = true;
     }
-    if ($("").is("")) {
+    if ($("#chk_gbf").is(":checked")) {
         isGbf = true;
     }
-    //if ($("").is("") & $("").is(""))
+    //if ($("#chk_ckf").is(":checked") & $("#chk_gbf").is(":checked"))
     //{
     //    return false;
     //}
     feesList = new Object();
     $.ajax({
-        url: "",
-        dataType: "",
+        url: "/BusinessManage/OutPatient/GetOutpatientFees",
+        dataType: "json",
         data: { ghlx: currentghlx, isZzjm: isZzjm, isCkf: isCkf, isGbf: isGbf },
-        type: "",
+        type: "POST",
         async: false,
         success: function (data) {
             feesList.ghf = data.ghfPrice;
@@ -307,51 +307,51 @@ function GHFees(flag) {
     });
     //单独点击CheckBox
     if (!flag) {
-        //var rowData = $('').jqGrid('', 1);
-        $('').jqGrid('', 1, '', feesList.ckf);
-        $('').jqGrid('', 1, '', feesList.gbf);
-        $('').jqGrid('', 1, '', feesList.totalfees);
-        //Cập nhậtGridđồng thời của chi phí，Cập nhật số tiền tổng
-        $("").attr("", "").css("", "");
-        $("").val(feesList.totalfees);
+        //var rowData = $('#registeringList').jqGrid('getRowData', 1);
+        $('#registeringList').jqGrid('setCell', 1, 'ckf', feesList.ckf);
+        $('#registeringList').jqGrid('setCell', 1, 'gbf', feesList.gbf);
+        $('#registeringList').jqGrid('setCell', 1, 'totalfees', feesList.totalfees);
+        //更新Grid费用的同时，更新总金额
+        $("#txtysk").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
+        $("#txtysk").val(feesList.totalfees);
 
     }
     return feesList;
 }
 
 
-//Hủy số khám
+//退号
 function BackNum() {
-    var currtab = $("").parent();
-    if (currtab[0].className == "") {
-        var count = $("").getGridParam('');
+    var currtab = $("#linkclosedReg").parent();
+    if (currtab[0].className == "active") {
+        var count = $("#closedRegList").getGridParam('records');
         if (count >= 1) {
-            var ghnm = $("").jqGridRowValue().ghnm;
+            var ghnm = $("#closedRegList").jqGridRowValue().ghnm;
             if (ghnm == null) {
-                $.modalAlert("", '');
+                $.modalAlert("请选中一条需要退号的挂号信息", 'warning');
                 return;
             }
             else {
-                if ($("").jqGridRowValue().isth == "") {
-                    $.modalAlert("", '');
+                if ($("#closedRegList").jqGridRowValue().isth == "已退号") {
+                    $.modalAlert("该挂号已退", 'warning');
                     return;
                 }
                 var isReturnAll = false;
-                if ($("").is("")) {
+                if ($("#isReturnAll").is(":checked")) {
                     isReturnAll = true;
                 }
-                if (window.confirm("")) {
-                    var ghnm = $("").jqGridRowValue().ghnm;
+                if (window.confirm("是否退号？")) {
+                    var ghnm = $("#closedRegList").jqGridRowValue().ghnm;
                     $.ajax({
-                        url: "",
-                        dataType: "",
-                        data: { patid: $("").val(), ghnm: ghnm, isReturnAll: isReturnAll },
-                        type: "",
+                        url: "/BusinessManage/OutPatient/BackNum",
+                        dataType: "json",
+                        data: { patid: $("#txtpatid").val(), ghnm: ghnm, isReturnAll: isReturnAll },
+                        type: "POST",
                         async: false,
                         success: function (data) {
                             $.loading(false);
-                            $.modalAlert("", '');
-                            $("").trigger("");
+                            $.modalAlert("退号成功", 'success');
+                            $("#linkclosedReg").trigger("click");
                         }
                     });
 
@@ -361,87 +361,87 @@ function BackNum() {
             }
         }
         else {
-            $.modalAlert("", '');
+            $.modalAlert("没有可退号的信息", 'warning');
         }
     }
     else {
-        $.modalAlert("", '');
+        $.modalAlert("请在已结算列表里选择要退号的项", 'warning');
         return;
     }
 }
 
-//Lưu
+//保存
 function Save() {
-    //先看当前是不是在正在挂号列表，再看列表有没有数据，Có nếu Mặc định dòng một thứ，若没有则提示
-    var currtab = $("").parent();
-    if (currtab[0].className == "") {
-        //LấyjqGridsố dòng
-        var count = $("").getGridParam('');
+    //先看当前是不是在正在挂号列表，再看列表有没有数据，如果有 默认第一条，若没有则提示
+    var currtab = $("#linkregistering").parent();
+    if (currtab[0].className == "active") {
+        //获取jqGrid的行数
+        var count = $("#registeringList").getGridParam('records');
         if (count > 0) {
             RegList = new Object();
-            RegList.fph = $("").val();
-            RegList.patid = $("").val();
-            RegList.kh = $("").val();
-            RegList.brxz = $("").val();
-            RegList.ghlx = $("").val();
-            //Xác minh dữ liệu
+            RegList.fph = $("#txtfph").val();
+            RegList.patid = $("#txtpatid").val();
+            RegList.kh = $("#txtkh").val();
+            RegList.brxz = $("#txtbrxz").val();
+            RegList.ghlx = $("#txtghlx").val();
+            //数据验证
             if (!CheckItem(RegList)) {
                 return false;
             }
             //var isJS;
             var ysk = 0;
             var ssk = 0;
-            ysk = $("").val();
-            ssk = $("").val();
-            zl = $("").val();
+            ysk = $("#txtysk").val();
+            ssk = $("#txtssk").val();
+            zl = $("#txtzl").val();
             if (parseFloat(ssk) < parseFloat(ysk)) {
-                $.modalAlert("", '');
+                $.modalAlert("实收款必须不能小于应收款", 'warning');
                 return;
             } else {
-                var zl = parseFloat($("").val()) - parseFloat($("").val());
+                var zl = parseFloat($("#txtssk").val()) - parseFloat($("#txtysk").val());
                 //结算窗体
                 showBillSuccessDialog(ysk, ssk, 0, zl.toFixed(2));
 
             }
 
         } else {
-            $.modalAlert("", '');
+            $.modalAlert("当前没有正在挂号信息", 'warning');
             return;
         }
     }
 }
-//Cửa sổ bật lên xác nhận số tiền
+//弹出金额确认窗口
 function showBillSuccessDialog(ysk, ssk, srce, zl) {
-    var url = "" + ysk
-        + "" + ssk
-        + "" + srce
-        + "" + zl;
+    var url = "/OutHospital/Bill/BillSuccessDialog?yingshoukuan=" + ysk
+        + "&ssk=" + ssk
+        + "&srce=" + srce
+        + "&zhaoling=" + zl;
     $.modalOpen({
-        id: "",
-        title: "",
+        id: "FormShowBillSuccessDialog",
+        title: "结算确认",
         url: url,
-        width: "",
-        height: "",
+        width: "320px",
+        height: "260px",
         callBack: function (iframeId) {
-            $.modalClose("");   //Đóng biểu mẫu số tiền quyết toán
-            $.loading(true, "");
+            $.modalClose("FormShowBillSuccessDialog");   //关闭结算金额的窗体
+            $.loading(true, "正在请求数据...");
             SaveMethod(ysk, ssk);
         }
     });
 }
-//Thực hiện lưu cụ thể
+//具体保存执行
 function SaveMethod(ysk, ssk) {
-    var mzlx = $.currentWindow().$("").val(); //Cờ ngoại trú cấp cứu 1：Ngoại trú 2：Cấp cứu
-    var jzxh = 0;  //Số thứ tự khám
+    var mzlx = $.currentWindow().$("#sel_mzlx").val(); //门急诊标志 1：门诊 2：急诊
+    var jzxh = 0;  //就诊序号
     $.ajax({
-        url: "",
-        dataType: "",
-        data: { ghlx: $("").val(), ks: $("").val(), ys: 0, ghzb: 0 },
-        type: "",
+        url: "/BusinessManage/OutPatient/GetJZXH",
+        dataType: "json",
+        data: { ghlx: $("#txtghlx").val(), ks: $("#txtks").val(), ys: 0, ghzb: 0 },
+        type: "POST",
         async: false,
         success: function (data) {
             if (data == null || data == "") {
-                $.modalAlert("", '');
+                $.modalAlert("获取就诊序号失败", 'warning');
                 return;
             }
             else {
@@ -450,41 +450,41 @@ function SaveMethod(ysk, ssk) {
         }
     });
     var zzjm = "";
-    if ($("").is("")) {
-        zzjm = "";
+    if ($("#chk_zzjm").is(":checked")) {
+        zzjm = "true";
     } else {
-        zzjm = "";
+        zzjm = "false";
     }
-    var ghf = ghf = $("").jqGridRowValue().ghf;
-    var zlf = zlf = $("").jqGridRowValue().zlf;
+    var ghf = ghf = $("#registeringList").jqGridRowValue().ghf;
+    var zlf = zlf = $("#registeringList").jqGridRowValue().zlf;
 
     var ckf = 0
-    if ($("").jqGridRowValue().ckf != "") {
-        ckf = $("").jqGridRowValue().ckf;
+    if ($("#registeringList").jqGridRowValue().ckf != "") {
+        ckf = $("#registeringList").jqGridRowValue().ckf;
     }
     var gbf = 0;
-    if ($("").jqGridRowValue().gbf != "") {
-        gbf = $("").jqGridRowValue().gbf;
+    if ($("#registeringList").jqGridRowValue().gbf != "") {
+        gbf = $("#registeringList").jqGridRowValue().gbf;
     }
-    //Lưu
+    //保存
     $.ajax({
-        url: "",
-        dataType: "",
-        //ghxz:0 Đăng ký khám thông thường； jzbz:"",ghzt:"" Trường không hiệu lực； ghzbbh:0,ghzb:0 暂且默认为0；ghly: "" 挂号来源为窗口；  gsrdh:"",zdicd10:"",zdmc:"" 暂且默认空
-        data: { patid: $("").val(), brxz: $("").val(), brxzbh: $("").val(), ghly: "", mjzbz: mzlx, ksbh: $("").val(), ks: $("").val(), rybh: $("").val(), ys: 0, ghlxbh: $("").val(), ghlx: $("").val(), ghzbbh: 0, ghzb: 0, jzxh: jzxh, fzbz: $("").val(), jzbz: "", ghzt: "", ghxz: 0, dbxm: $("").val(), gsrdh: "", zdicd10: "", zdmc: "", ghf: ghf, zlf: zlf, ckf: ckf, gbf: ghf, zzjm: zzjm, kh: $("").val(), ysk: ysk, ssk: ssk, fph: $("").val() },
-        type: "",
+        url: "/BusinessManage/OutPatient/Save",
+        dataType: "json",
+        //ghxz:0 普通挂号； jzbz:"1",ghzt:"1" 无效字段； ghzbbh:0,ghzb:0 暂且默认为0；ghly: "0" 挂号来源为窗口；  gsrdh:"",zdicd10:"",zdmc:"" 暂且默认空
+        data: { patid: $("#txtpatid").val(), brxz: $("#txtbrxz").val(), brxzbh: $("#txtbrxzbh").val(), ghly: "0", mjzbz: mzlx, ksbh: $("#txtksbh").val(), ks: $("#txtks").val(), rybh: $("#txtrybh").val(), ys: 0, ghlxbh: $("#txtghlxbh").val(), ghlx: $("#txtghlx").val(), ghzbbh: 0, ghzb: 0, jzxh: jzxh, fzbz: $("txtfzbz").val(), jzbz: "1", ghzt: "1", ghxz: 0, dbxm: $("#txtdb").val(), gsrdh: "", zdicd10: "", zdmc: "", ghf: ghf, zlf: zlf, ckf: ckf, gbf: ghf, zzjm: zzjm, kh: $("#txtkh").val(), ysk: ysk, ssk: ssk, fph: $("#txtfph").val() },
+        type: "POST",
         async: false,
         success: function (data) {
-            if (data.state == "") {
-                $.modalAlert("", '');
+            if (data.state == "success") {
+                $.modalAlert("保存成功", 'success');
 
-                //Lại tải số hóa đơn
+                //重新加载发票号
                 initFPH();
                 Clear();
                 $.loading(false);
             }
-            else if (data.state == "") {
-                $.modalAlert("", '');
+            else if (data.state == "error") {
+                $.modalAlert("保存失败", 'error');
                 $.loading(false);
                 return;
             }
@@ -493,39 +493,39 @@ function SaveMethod(ysk, ssk) {
 
 }
 
-//Lưu xác minh
+//保存验证
 function CheckItem(RegList) {
     if (RegList.fph == "") {
-        $.modalAlert("", '');
+        $.modalAlert("发票号不可为空", 'warning');
         return;
     }
     if (RegList.patid == "") {
-        $.modalAlert("", '');
+        $.modalAlert("请先新增病人信息", 'warning');
         return false;
     }
     if (RegList.kh == "") {
-        $.modalAlert("", '');
+        $.modalAlert("请先输入卡号", 'warning');
         return false;
     }
     if (RegList.brxz == "") {
-        $.modalAlert("", '');
+        $.modalAlert("请选择病人性质", 'warning');
         return false;
     }
     if (RegList.ghlx == "") {
-        $.modalAlert("", '');
+        $.modalAlert("请选择挂号类型", 'warning');
         return false;
     }
     return true;
 }
-//Xóa
+//清除
 function Clear() {
 
-    //Xóa trốngGrid
-    $('').jqGrid("");
-    $('').jqGrid("");
-    $('').jqGrid("");
+    //清空Grid
+    $('#registeringList').jqGrid("clearGridData");
+    $('#notSettledRegList').jqGrid("clearGridData");
+    $('#closedRegList').jqGrid("clearGridData");
 
-    //Xóa trống điều khiển
+    //清空控件
     newtouch_globalevent_f4(event);
 
     //启用控件
@@ -534,47 +534,47 @@ function Clear() {
 
 //禁用
 function DisableSysBasicInfo(flag) {
-    //true:标志是从免卡登记或根据卡号查询返回明细, false:Giờ tải trang，可以输kh
+    //true:标志是从免卡登记或根据卡号查询返回明细, false:页面加载时，可以输kh
     if (flag) {
-        $("").attr("", "").css("", "");
+        $("#txtkh").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
     } else {
-        $("").attr("", "").css("", "");
+        $("#txtbrxzqc").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238");
     }
 }
 
-//Bật
+//启用
 function EnabledSysBasicInfo() {
-    $("").removeAttr("").removeAttr("");;
+    $("#txtkh").removeAttr("disabled").removeAttr("style");;
 }
 
 
-//Hủy bỏ 需求变更：去掉未结算内容 update by caishanshan 20161229
+//作废 需求变更：去掉未结算内容 update by caishanshan 20161229
 //function Abandon() {
-//    var currtab = $("").parent();
-//    if (currtab[0].className == "") {
-//        var count = $("").getGridParam('');
+//    var currtab = $("#linknotSettledReg").parent();
+//    if (currtab[0].className == "active") {
+//        var count = $("#notSettledRegList").getGridParam('records');
 //        if (count >= 1) {
-//            var ghnm = $("").jqGridRowValue().ghnm;
+//            var ghnm = $("#notSettledRegList").jqGridRowValue().ghnm;
 //            if (ghnm == null) {
-//                $.modalAlert("", '');
+//                $.modalAlert("请选中一条需要作废的挂号信息", 'warning');
 //                return;
 //            }
 //            else
 //            {
-//                if (window.confirm("")) {
+//                if (window.confirm("确定要作废吗？")) {
 //                    $.ajax({
-//                        url: "",
-//                        dataType: "",
+//                        url: "/BusinessManage/OutPatient/SaveRegAbandRecord",
+//                        dataType: "json",
 //                        data: { ghnm: ghnm },
-//                        type: "",
+//                        type: "POST",
 //                        async: false,
 //                        success: function (data) {
-//                            if (data.state == "") {
+//                            if (data.state == "success") {
 //                                $.loading(false);
-//                                $.modalAlert("", '');
-//                                $("").trigger("");
+//                                $.modalAlert("作废成功", 'success');
+//                                $("#linknotSettledReg").trigger("click");
 //                            } else {
-//                                $.modalAlert("", '');
+//                                $.modalAlert("失败", 'error');
 //                                return;
 //                            }
 //                        }
@@ -588,13 +588,13 @@ function EnabledSysBasicInfo() {
 //        }
 //        else
 //        {
-//            $.modalAlert("", '');
+//            $.modalAlert("没有可作废的信息", 'warning');
 //            return;
 //        }
 //    }
 //    else
 //    {
-//        $.modalAlert("", '');
+//        $.modalAlert("请在未结算列表里选择要作废的项", 'warning');
 //        return;
 //    }
 //}

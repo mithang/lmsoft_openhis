@@ -1,30 +1,30 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
 <div class="rows">
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">Năm：</th>
+                <th class="formTitle">年份：</th>
                 <td class="formValue">
                     <select id="year" name="year" class="formClearIgnore">
-                        <option value="">==Vui lòng chọn==</option>
+                        <option value="">==请选择==</option>
                     </select>
                 </td>
-                <th class="formTitle">Tháng：</th>
+                <th class="formTitle">月份：</th>
                 <td class="formValue">
                     <select id="month" name="month" class="formClearIgnore">
-                        <option value="">==Vui lòng chọn==</option>
+                        <option value="">==请选择==</option>
                     </select>
                 </td>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
+                    <input type="button" id="btn_search" class="btn btn-primary btn-md" value="查询" style="width:55px" />
                 </td>
                 <td class="formValue" colspan="2">
-                    <input type="button" id="btn_gene" class="btn btn-primary btn-md" value="Tạo" style="width:55px;display:inline-block;display:none;" />
-                    <input type="button" id="btn_regene" class="btn btn-warning btn-md" value="Lại tạo" style="display:inline-block;display:none;" />
+                    <input type="button" id="btn_gene" class="btn btn-primary btn-md" value="生成" style="width:55px;display:inline-block;display:none;" />
+                    <input type="button" id="btn_regene" class="btn btn-warning btn-md" value="重新生成" style="display:inline-block;display:none;" />
                 </td>
                 <td class="formValue"></td>
             </tr>
@@ -35,27 +35,27 @@
     <iframe class="ui-layout-center" style="width:100%;" id="iframerightiframerightiframerightttt" name="iframerightiframerightiframerightttt"
             scrolling="auto" allowtransparency="true" frameborder="0"></iframe>
 </div>
-<script type="">
-    //Biến toàn cục
-    var orgId = '';
+<script type="text/javascript">
+    //全局变量
+    var orgId = '@(ViewBag.OrgId)';
     //ReportingService Host
-    var reportServerHOST = '';
+    var reportServerHOST = '@(ViewBag.ReportServerHOST)';
 
 
 </script>
-<script type="">
-    //Khởi tạo hộp thả xuống năm tháng
+<script type="text/javascript">
+    //年月下拉初始化
     (function initYearMonthSelect() {
         var date = new Date;
-        //Mặc định chọn tháng trước
+        //默认选择上个月
         var defaultSelYear = 1900 + date.getYear();
         var defaultSelMonth = date.getMonth();
         if (defaultSelMonth == 0) {
             defaultSelYear--;
             defaultSelMonth = 12;
         }
-        //Năm
-        $("").newtouchBindSelect({
+        //年份
+        $("#year").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
                 if (top.clients.yearArr && top.clients.yearArr.length) {
@@ -67,13 +67,13 @@
             },
             selectedValue: defaultSelYear,
         });
-        //Tháng
-        $("").newtouchBindSelect({
+        //月份
+        $("#month").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
                 if (top.clients.monthArr && top.clients.monthArr.length) {
                     $.each(top.clients.monthArr, function () {
-                        resultObjArr.push({ id: this, text: parseInt(this) < 10 ? "" + this : this });
+                        resultObjArr.push({ id: this, text: parseInt(this) < 10 ? "0" + this : this });
                     });
                 }
                 return resultObjArr;
@@ -83,73 +83,73 @@
 
     })();
 </script>
-<script type="">
-    var showType = "";
+<script type="text/javascript">
+    var showType = "1";
     var submit = function () {
         $.najax({
-            type: "",
-            url: "" + $('').val()
-                + "" + $('').val(),
+            type: "GET",
+            url: "/KPI/MedicalOrg/CheckIsGenerated?year=" + $('#year').val()
+                + "&month=" + $('#month').val(),
             loading: true,
-            loadingtext: '',
+            loadingtext: '正在请求报表状态...',
             cache: false,
             success: function (ajaxresp) {
                 if (ajaxresp.flag === false) {
-                    showType = ""  //Chưa tạo
+                    showType = "2"  //未生成过
                 }
                 else {
-                    showType = ""  //当月已生成过固定报表
+                    showType = "1"  //当月已生成过固定报表
                 }
-                searchReport(); //Tra cứu báo cáo
+                searchReport(); //查询报表
             }
         });
     };
-    $('').click(function () {
+    $('#btn_search').click(function () {
         newtouch_globalevent_f4();
 
         submit();
     });
-    $("").load(function () {
+    $("#iframerightiframerightiframerightttt").load(function () {
         $.loading(false);
-        if (showType == "") {
-            $('').show();
-            $('').hide();
+        if (showType == "1") {
+            $('#btn_regene').show();
+            $('#btn_gene').hide();
         }
         else {
-            $('').show();
-            $('').hide();
+            $('#btn_gene').show();
+            $('#btn_regene').hide();
         }
     });
 </script>
-<script type="">
-    //Tra cứu báo cáo
+<script type="text/javascript">
+    //查询报表
     function searchReport() {
-        var url = reportServerHOST + "";
+        var url = reportServerHOST + "ReportServer/Pages/ReportViewer.aspx?%2FHIS.Report.1%2FKPI.%E5%8C%BB%E7%96%97%E6%9C%BA%E6%9E%84%E6%9C%88%E5%9B%BA%E5%AE%9A%E6%8A%A5%E8%A1%A8&rs:Command=Render";
 
-        //var url = reportServerHOST + "";
-        url += "";
-        url += "" + orgId;
-        url += "" + $('').val();
-        url += "" + $('').val();
+        //var url = reportServerHOST + "ReportServer/Pages/ReportViewer.aspx?%2FHIS.Report.1%2FKPI.治疗师月报表.已固定&rs:Command=Render";
+        url += "&rc:Stylesheet=MyStyleSheet";
+        url += "&orgId=" + orgId;
+        url += "&year=" + $('#year').val();
+        url += "&month=" + $('#month').val();
 
-        if (showType == "") {
-            setTimeout("", 10);
+        if (showType == "1") {
+            setTimeout("$.loading(true, '当月报表已生成过，正在呈现...');", 10);
         }
         else {
-            setTimeout("", 10);
+            setTimeout("$.loading(true, '当月报表尚未生成过，正在计算...');", 10);
         }
 
-        $("").attr('', url);
+        $("#iframerightiframerightiframerightttt").attr('src', url);
     }
 </script>
-<script type="">
-    //Tạo báo cáo
-    $("").click(function () {
+<script type="text/javascript">
+    //生成报表
+    $("#btn_gene").click(function () {
         ReqDoGenerate();
     });
-    //Lại tạo báo cáo
-    $("").click(function () {
-        $.modalConfirm("", function (flag) {
+    //重新生成报表
+    $("#btn_regene").click(function () {
+        $.modalConfirm("重新生成报表，确认继续？", function (flag) {
             if (flag) {
                 ReqDoGenerate(true);
             }
@@ -158,36 +158,36 @@
 
     function ReqDoGenerate(isReGene) {
         $.najax({
-            type: "",
-            url: "",
-            data: { year: $('').val(), month: $('').val(), isReGene: isReGene },
-            dataType: "",
-            loadingtext: "",
+            type: "POST",
+            url: "/KPI/MedicalOrg/DoGenerate",
+            data: { year: $('#year').val(), month: $('#month').val(), isReGene: isReGene },
+            dataType: "json",
+            loadingtext: "报表生成中，请稍后...",
             success: function (ajaxResp) {
-                $.modalMsg('', '');
-                setTimeout("", 1000); //Lại tra cứu báo cáo
+                $.modalMsg('报表生成成功', 'success');
+                setTimeout("$('#btn_search').trigger('click');", 1000); //重新查询报表
             }
         });
     }
 </script>
-<script type="">
+<script type="text/javascript">
     $(function () {
         var h = $(window).height() - 55;
-        $('').css('', h);
+        $('#layout iframe').css('height', h);
 
     });
 </script>
-<script type="">
+<script type="text/javascript">
     function newtouch_event_f4() {
-        $('').hide();
-        $('').hide();
+        $('#btn_gene').hide();
+        $('#btn_regene').hide();
 
     }
 </script>
-<script type="">
+<script type="text/javascript">
     function funcOrganizeIdChange() {
-        orgId = $("").val();
+        orgId = $("#OrganizeId").val();
         submit();
     }
 </script>
-@Html.Partial("")
+@Html.Partial("_ReportOrganizeIdDDLSearchView")

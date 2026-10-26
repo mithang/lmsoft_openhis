@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         private readonly IRefundApp _IRefundApp;
 
         /// <summary>
-        /// Danh sách hóa đơn
+        /// 发票列表
         /// </summary>
         /// <returns></returns>
         public ActionResult QueFpList()
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         /// <summary>
         /// 根据发票的结算内码查询门诊挂号项目
         /// </summary>
-        /// <param name="jsnm">Mã nội bộ quyết toán</param>
+        /// <param name="jsnm">结算内码</param>
         /// <returns></returns>
         public ActionResult GetMZJSByJsnm(int jsnm)
         {
@@ -50,7 +50,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         /// <summary>
         /// 按结算内码查门诊项目
         /// </summary>
-        /// <param name="jsnm">Mã nội bộ quyết toán</param>
+        /// <param name="jsnm">结算内码</param>
         /// <returns></returns>
         public ActionResult GetGridViewMxByJsnm(int jsnm)
         {
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// Hoàn phí
+        /// 退费
         /// </summary>
         public ActionResult btnReturn(string kh, int jsnm, string refundData)
         { 

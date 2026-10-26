@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lưu
+        /// 保存
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>

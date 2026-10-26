@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Web.Areas.DRGManage.Controllers
         }
 
 
-        //DRGTải lên
+        //DRG上传
         public ActionResult DRGUpload(List<DRGUploadDto> list)
         {
             var data = _DRGUploadDmnService.DRGUpload(this.OrganizeId,list);

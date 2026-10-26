@@ -1,76 +1,76 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 <script>
     $(function () {
         gridList();
     })
     function gridList() {
-        var $gridList = $("");
+        var $gridList = $("#gridList");
         $gridList.dataGrid({
             treeGrid: true,
-            treeGridModel: "",
-            ExpandColumn: "",
-            url: "" + Math.random(),
+            treeGridModel: "adjacency",
+            ExpandColumn: "F_EnCode",
+            url: "/SystemManage/Organize/GetTreeGridJson?r=" + Math.random(),
             height: $(window).height() - 96,
             colModel: [
-                { label: "", name: "", hidden: true, key: true },
-                { label: '', name: '', width: 200, align: '' },
-                { label: '', name: '', width: 150, align: '' },
+                { label: "主键", name: "Id", hidden: true, key: true },
+                { label: '名称', name: 'F_FullName', width: 200, align: 'left' },
+                { label: '编号', name: 'F_EnCode', width: 150, align: 'left' },
                 {
-                    label: '', name: '', width: 80, align: '',
+                    label: '分类', name: 'F_CategoryId', width: 80, align: 'left',
                     formatter: function (cellvalue) {
-                        if (cellvalue == "") {
-                            return "";
-                        } else if (cellvalue == "") {
-                            return "";
-                        } else if (cellvalue == "") {
-                            return "";
-                        } else if (cellvalue == "") {
-                            return "";
+                        if (cellvalue == "Group") {
+                            return "集团";
+                        } else if (cellvalue == "Company") {
+                            return "公司";
+                        } else if (cellvalue == "Department") {
+                            return "部门";
+                        } else if (cellvalue == "WorkGroup") {
+                            return "小组";
                         }
                     }
                 },
                 {
-                    label: '', name: '', width: 80, align: '',
-                    formatter: "", formatoptions: { srcformat: '', newformat: '' }
+                    label: '创建时间', name: 'CreateTime', width: 80, align: 'left',
+                    formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                 },
                 {
-                    label: "", name: "", width: 60, align: "",
+                    label: "有效", name: "zt", width: 60, align: "center",
                     formatter: function (cellvalue) {
-                        return cellvalue == 1 ? "" : "";
+                        return cellvalue == 1 ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>";
                     }
                 },
-                { label: '', name: '', width: 300, align: '' }
+                { label: '备注', name: 'F_Description', width: 300, align: 'left' }
             ]
         });
-        $("").click(function () {
-            $gridList.jqGrid('', {
-                postData: { keyword: $("").val(), r: Math.random() },
-            }).trigger('');
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val(), r: Math.random() },
+            }).trigger('reloadGrid');
         });
     }
     function btn_add() {
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + Math.random(),
-            width: "",
-            height: "",
+            id: "Form",
+            title: "新增机构",
+            url: "/SystemManage/Organize/Form?r=" + Math.random(),
+            width: "700px",
+            height: "520px",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
         });
     }
     function btn_edit() {
-        var keyValue = $("").jqGridRowValue().Id;
+        var keyValue = $("#gridList").jqGridRowValue().Id;
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + Math.random() +"" + keyValue,
-            width: "",
-            height: "",
+            id: "Form",
+            title: "修改机构",
+            url: "/SystemManage/Organize/Form?r=" + Math.random() +"&keyValue=" + keyValue,
+            width: "700px",
+            height: "520px",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
@@ -78,22 +78,22 @@
     }
     function btn_delete() {
         $.deleteForm({
-            url: "",
-            param: { keyValue: $("").jqGridRowValue().Id },
+            url: "/SystemManage/Organize/DeleteForm",
+            param: { keyValue: $("#gridList").jqGridRowValue().Id },
             success: function () {
-                $.currentWindow().$("").resetSelection();
-                $.currentWindow().$("").trigger("");
+                $.currentWindow().$("#gridList").resetSelection();
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
             }
         })
     }
     function btn_details() {
-        var keyValue = $("").jqGridRowValue().Id;
+        var keyValue = $("#gridList").jqGridRowValue().Id;
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + Math.random() + "" + keyValue,
-            width: "",
-            height: "",
+            id: "Details",
+            title: "查看机构",
+            url: "/SystemManage/Organize/Details?r=" + Math.random() + "&keyValue=" + keyValue,
+            width: "700px",
+            height: "560px",
             btn: null,
         });
     }
@@ -109,21 +109,21 @@
         </div>
         <div class="operate">
             <ul class="nav nav-pills">
-                <li class="first">Đã chọn<span>1</span>Mục</li>
-                <li><a id="NF-edit" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa cơ quan</a></li>
-                <li><a id="NF-delete" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa cơ quan</a></li>
-                <li><a id="NF-Details" authorize="yes" onclick="btn_details()"><i class="fa fa-search-plus"></i>Xem cơ quan</a></li>
+                <li class="first">已选中<span>1</span>项</li>
+                <li><a id="NF-edit" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改机构</a></li>
+                <li><a id="NF-delete" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除机构</a></li>
+                <li><a id="NF-Details" authorize="yes" onclick="btn_details()"><i class="fa fa-search-plus"></i>查看机构</a></li>
             </ul>
             <a href="javascript:;" class="close"></a>
         </div>
-        @*<script>$('').authorizeButton()</script>*@
+        @*<script>$('.toolbar').authorizeButton()</script>*@
     </div>
     <div class="search">
         <table>
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="Vui lòng nhập từ khóa cần tra cứu" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="请输入要查询关键字" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>

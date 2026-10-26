@@ -3,34 +3,34 @@
 })
 
 function lastSettleInfoList() {
-    var $lastSettleInfoList = $("");
+    var $lastSettleInfoList = $("#lastSettleInfoList");
     $lastSettleInfoList.dataGrid({
         treeGrid: true,
-        treeGridModel: "",
-        url: "",
+        treeGridModel: "adjacency",
+        url: "/OutpatientManage/OutpatientReg/GetLastSettleInfo",
         height: 142,
         colModel: [
-            { label: '', name: '', width: 100, algin: '' },
-            { label: '', name: '', width: 100, algin: '' },
-            { label: '', name: '', width: 100, algin: '' },
-            { label: '', name: '', width: 100, algin: '' },
-            { label: '', name: '', width: 100, algin: '' }
+            { label: '发票号', name: 'fph', width: 100, algin: 'left' },
+            { label: '姓名', name: 'xm', width: 100, algin: 'left' },
+            { label: '应收', name: 'ysk', width: 100, algin: 'left' },
+            { label: '实收', name: 'xjzf', width: 100, algin: 'left' },
+            { label: '找零', name: 'zl', width: 100, algin: 'left' }
         ],
         loadComplete: function (data) {
             if (data && data.length && data.length > 0) {
-                $("").text(data[0].fph);
-                $("").text(data[0].xjzf);
-                $("").text(data[0].ysk);
-                $("").text(data[0].zl);
+                $("#lblqfph").text(data[0].fph);
+                $("#lblzje").text(data[0].xjzf);
+                $("#lblys").text(data[0].ysk);
+                $("#lblzl").text(data[0].zl);
             }
         }
     });
-    $("").click(function () {
-        //Mỗi lần nhấntabTrang，Điều chỉnhGridChiều rộng
-        initLayout("");
+    $("#linkLastSettledInfo").click(function () {
+        //每次点击tab页，调整Grid宽度
+        initLayout("MyTabGrid");
 
-        $lastSettleInfoList.jqGrid('', {
-        }).trigger('');
+        $lastSettleInfoList.jqGrid('setGridParam', {
+        }).trigger('reloadGrid');
 
     });
 

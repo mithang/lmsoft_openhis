@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style type="text/css">
     #tblFile .fa-minus-circle, #tblFile .fa-plus-circle {
@@ -21,16 +21,16 @@
                 <td class="formValue"></td>
             </tr>
             <tr>
-                <th class="formTitle" style="height: 35px;">Tùy chọn：</th>
+                <th class="formTitle" style="height: 35px;">选项：</th>
                 <td class="formValue" style="padding-top: 1px;">
                     <div class="ckbox">
-                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
+                        <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
                     </div>
                 </td>
             </tr>
             <tr>
                 <th class="formTitle" valign="top" style="padding-top: 5px;">
-                    Ghi chú：
+                    备注：
                 </th>
                 <td class="formValue" colspan="3">
                     <textarea id="bz" name="bz" class="form-control" style="height: 60px;"></textarea>
@@ -50,23 +50,23 @@
 </form>
 
 <script>
-    var blh = $.request("");
-    var keyValue = $.request("");
-    $('').val(blh);
-    $('').val(keyValue);
+    var blh = $.request("blh");
+    var keyValue = $.request("keyValue");
+    $('#blh').val(blh);
+    $('#keyValue').val(keyValue);
 
     $(function () {
         initControl();
         if (!!keyValue) {
             $.najax({
-                url: "",
+                url: "/PatientManage/SysPatientMedicalRecord/GetFormJson",
                 data: { keyValue: keyValue },
-                dataType: "",
+                dataType: "json",
                 success: function (data) {
                     if (data.main) {
-                        $("").formSerialize(data.main);
+                        $("#form1").formSerialize(data.main);
                         if (data.main.rq) {
-                            $('').val($.getDate({ date: data.main.rq }));
+                            $('#rq').val($.getDate({ date: data.main.rq }));
                         }
                     }
                     if (data.details) {
@@ -78,23 +78,23 @@
             });
         }
         else {
-            $('').click(function () {
+            $('#zt').click(function () {
                 return false;
             });
-            $('').trigger('');
+            $('#tblFile .fa-plus-circle').trigger('click');
         }
     });
 
     function initControl() {
-        $('').on('', '', function () {
-            $(this).closest('').remove();
+        $('#tblFile').on('click', '.fa-minus-circle', function () {
+            $(this).closest('tr').remove();
         });
-        $('').click(function () {
+        $('#tblFile .fa-plus-circle').click(function () {
             var arr = new Array();
-            $.each($(''), function () {
-                var fileId = $(this).find('').attr('');
+            $.each($('#tblFile tr'), function () {
+                var fileId = $(this).find('[type=file]').attr('id');
                 if (fileId) {
-                    var index = fileId.indexOfIgnoreCase('');
+                    var index = fileId.indexOfIgnoreCase('_');
                     var n = fileId.substring(index + 1);
                     arr.push(n);
                 }
@@ -110,7 +110,7 @@
                 }
             }
             if (iIndex == -1) {
-                $.modalAlert("", '');
+                $.modalAlert("已达附件上线", 'warning');
                 return;
             }
             insertFile(iIndex);
@@ -119,20 +119,20 @@
     }
 
     function insertFile(iIndex, keyIdVal, fileNameVal) {
-        var shtml = '' + (!!keyIdVal ? keyIdVal : '') + '' + iIndex + '' + iIndex + '';
-        shtml += '' + iIndex + '' + iIndex + '';
-        shtml += '' + (!!fileNameVal ? fileNameVal : '') + '' + iIndex + '' + iIndex + '';
-        $(shtml).insertBefore($('').closest(''));
+        var shtml = '<tr> <td class="formValue"> <input value="' + (!!keyIdVal ? keyIdVal : '') + '" type="hidden" name="dbKeyId_' + iIndex + '" id="dbKeyId_' + iIndex + '" />';
+        shtml += '<input type="file" id="file_' + iIndex + '" name="file_' + iIndex + '" /></td><td class="formValue">';
+        shtml += '<input value="' + (!!fileNameVal ? fileNameVal : '') + '" class="form-control" type="text" id="fileName_' + iIndex + '" name="fileName_' + iIndex + '" placeholder="附件名称" /> </td> <td class="formValue"> <i class="fa fa-minus-circle fa-lg" style="cursor:pointer;"></i> </td> </tr>';
+        $(shtml).insertBefore($('#tblFile .fa-plus-circle').closest('tr'));
     }
 
     function AcceptClick(callBack) {
-        if (!$('').formValid()) {
+        if (!$('#form1').formValid()) {
             return false;
         }
-        $("").submit();
+        $("#form1").submit();
         //$.submitForm({
-        //    url: "" + keyValue,
-        //    param: $("").formSerialize(),
+        //    url: "?keyValue=" + keyValue,
+        //    param: $("#form1").formSerialize(),
         //    success: function () {
         //        callBack();
         //        $.modalClose();

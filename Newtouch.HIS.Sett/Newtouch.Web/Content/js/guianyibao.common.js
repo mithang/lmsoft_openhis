@@ -1,130 +1,130 @@
 ﻿$.guianyibao = {
-    $yibaoAX: $('')[0],
+    $yibaoAX: $('#guianyibaoAX')[0],
     /// <summary>
     ///修改密码（02）
     /// <summary>
     ModifyPassword: function () {
-        return eval('' + this.$yibaoAX.ModifyPassword() + '');
+        return eval('(' + this.$yibaoAX.ModifyPassword() + ')');
     },
     /// <summary>
     /// 身份识别（03）
     /// <summary>
     Identification: function () {
-        return eval('' + this.$yibaoAX.Identification() + '');
+        return eval('(' + this.$yibaoAX.Identification() + ')');
     },
     /// <summary>
-    /// Mã lấy thông tin đối chiếu（57）
+    /// 编码对照信息获取（57）
     /// <summary>
     BmdzxxQuery: function () {
-        return eval('' + this.$yibaoAX.BmdzxxQuery() + '');
+        return eval('(' + this.$yibaoAX.BmdzxxQuery() + ')');
     },
     /// <summary>
-    /// 中心 ICD10 Tải xuống dữ liệu（61）
+    /// 中心 ICD10 数据下载（61）
     /// <summary>
     UploadICD10: function (inDataJson) {
-        return eval('' + this.$yibaoAX.UploadICD10(inDataJson) + '');
+        return eval('(' + this.$yibaoAX.UploadICD10(inDataJson) + ')');
     },
     /// <summary>
     /// 普通门诊及慢性病结算 (48)
     /// <summary>
     MzFeejs: function (inDataJson) {
-        return eval('' + this.$yibaoAX.MzFeejs(inDataJson) + '');
+        return eval('(' + this.$yibaoAX.MzFeejs(inDataJson) + ')');
     },
     /// <summary>
-    /// Trả lại lần quyết toán ngoại trú(42) 
+    /// 门诊结算回退(42) 
     /// </summary>
     MzJsht: function (inDataJson) {
-        return eval('' + this.$yibaoAX.MzJsht(inDataJson) + '');
+        return eval('(' + this.$yibaoAX.MzJsht(inDataJson) + ')');
     },
     /// <summary>
-    /// Làm thủ tục nhập viện（21）
+    /// 入院办理（21）
     /// </summary>
     ZyRybl: function (inDataJson) {
-        return eval('' + this.$yibaoAX.ZyRybl(inDataJson) + '');
+        return eval('(' + this.$yibaoAX.ZyRybl(inDataJson) + ')');
     },
     /// <summary>
-    /// Trả lại lần làm thủ tục nhập viện（22）
+    /// 入院办理回退（22）
     /// </summary>
     ZyRyblht: function (inDataJson) {
-        return eval('' + this.$yibaoAX.ZyRyblht(inDataJson) + '');
+        return eval('(' + this.$yibaoAX.ZyRyblht(inDataJson) + ')');
     },
     /// <summary>
-    /// Sửa thông tin làm thủ tục nhập viện（23）
+    /// 入院办理信息修改（23）
     /// </summary>
     ZyRyblxxXg: function (inDataJson) {
-        return eval('' + this.$yibaoAX.ZyRyblxxXg(inDataJson) + '');
+        return eval('(' + this.$yibaoAX.ZyRyblxxXg(inDataJson) + ')');
     },
     /// <summary>
-    /// Ngoại trú,Nhập viện Chi tiết xóa lượng lô（33）
+    /// 门诊,住院 批量删除明细（33）
     /// </summary>
     DeleteMx: function (inDataJson) {
-        return eval('' + this.$yibaoAX.DeleteMx(inDataJson) + '');
+        return eval('(' + this.$yibaoAX.DeleteMx(inDataJson) + ')');
     },
     /// <summary>
-    /// Nhập viện ghi chi tiết chi phí（31）
+    /// 住院费用明细写入（31）
     /// </summary>
     ZyFeemxXr: function (inDataJson) {
-        return eval('' + this.$yibaoAX.ZyFeemxXr(DAC001) + '');
+        return eval('(' + this.$yibaoAX.ZyFeemxXr(DAC001) + ')');
     },
     /// <summary>
     /// 住院模拟结算(43)
     /// </summary>
     ZyMnjs: function (inDataJson) {
-        return eval('' + this.$yibaoAX.ZyMnjs(inDataJson) + '');
+        return eval('(' + this.$yibaoAX.ZyMnjs(inDataJson) + ')');
     },
     /// <summary>
-    /// Nhập viện quyết toán chi phí(41) 
+    /// 住院费用结算(41) 
     /// </summary>
     ZyFeejs: function (inDataJson) {
-        return eval('' + this.$yibaoAX.ZyFeejs(inDataJson) + '');
+        return eval('(' + this.$yibaoAX.ZyFeejs(inDataJson) + ')');
     },
     /// <summary>
-    /// Nhập viện trả lại lần quyết toán(42)
+    /// 住院结算回退(42)
     /// </summary>
     ZyFeejsht: function (inDataJson) {
-        return eval('' + this.$yibaoAX.ZyFeejsht(inDataJson) + '');
+        return eval('(' + this.$yibaoAX.ZyFeejsht(inDataJson) + ')');
     },
     /// <summary>
-    /// Làm thủ tục xuất viện（25）
+    /// 出院办理（25）
     /// </summary>
     ZyCybl: function (inDataJson) {
-        return eval('' + this.$yibaoAX.ZyCybl(inDataJson) + '');
+        return eval('(' + this.$yibaoAX.ZyCybl(inDataJson) + ')');
     },
     /// <summary>
-    /// Quay lại làm thủ tục xuất viện（26）
+    /// 出院办理回退（26）
     /// </summary>
     ZyCyblht: function (inDataJson) {
-        return eval('' + this.$yibaoAX.ZyCyblht(inDataJson) + '');
+        return eval('(' + this.$yibaoAX.ZyCyblht(inDataJson) + ')');
     },
     /// <summary>
-    /// Hàm giải phóng tài nguyên，Ở HIS 应用退出时调用
+    /// 资源释放函数，在 HIS 应用退出时调用
     /// </summary>
     YibaoDestroy: function () {
-        return eval('' + this.$yibaoAX.YibaoDestroy() + '');
+        return eval('(' + this.$yibaoAX.YibaoDestroy() + ')');
     },
     /// <summary>
-    /// 对于处理类交易，HIS Gọi hoàn thành sau thành công giao diện HIS Lưu dữ liệu hệ thống，则调用该交易进行中心确认处理
+    /// 对于处理类交易，HIS 调用接口成功后完成 HIS 系统数据保存，则调用该交易进行中心确认处理
     /// </summary>
-    /// str_jylsh：Số giao dịch，str_jyyzm：交易验证码 （下同）
+    /// str_jylsh：交易流水号，str_jyyzm：交易验证码 （下同）
     YibaoConfirm: function (str_jylsh, str_jyyzm) {
-        return eval('' + this.$yibaoAX.YibaoConfirm(str_jylsh, str_jyyzm) + '');
+        return eval('(' + this.$yibaoAX.YibaoConfirm(str_jylsh, str_jyyzm) + ')');
     },
     /// <summary>
-    /// 对于处理类交易，HIS Gọi chưa hoàn thành sau thành công giao diện HIS Lưu dữ liệu hệ thống，则调用该交易进行中心取消处理
+    /// 对于处理类交易，HIS 调用接口成功后未完成 HIS 系统数据保存，则调用该交易进行中心取消处理
     /// </summary>
     YibaoCancle: function (str_jylsh) {
-        return eval('' + this.$yibaoAX.YibaoCancle(str_jylsh) + '');
+        return eval('(' + this.$yibaoAX.YibaoCancle(str_jylsh) + ')');
     },
     /// <summary>
-    /// Tra cứu giao dịch
+    /// 查询交易
     /// </summary>
     YibaoGetUncertaintyTrade: function (str_jylsh) {
-        return eval('' + this.$yibaoAX.YibaoGetUncertaintyTrade(str_jylsh) + '');
+        return eval('(' + this.$yibaoAX.YibaoGetUncertaintyTrade(str_jylsh) + ')');
     },
     /// <summary>
     /// 读身份证
     /// </summary>
     ReadIdCard: function () {
-        return eval('' + this.$yibaoAX.ReadIdCard() + '');
+        return eval('(' + this.$yibaoAX.ReadIdCard() + ')');
     }
 };

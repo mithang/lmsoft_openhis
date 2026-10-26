@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 
 <style>
@@ -33,28 +33,28 @@
 <div class="topPanel">
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
+            <a id="NF-add" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
         </div>
         <div class="btn-group">
-            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
+            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
         </div>
     </div>
     <div class="search">
         <table>
             <tr>
-                <th class="newformTitle">Từ khóa：</th>
+                <th class="newformTitle">关键字：</th>
                 <td>
-                    <input id="keyword" type="text" class="newform-control form-control" placeholder="Khoa/Bác sĩ" style="width: 75%;">
+                    <input id="keyword" type="text" class="newform-control form-control" placeholder="科室/医生" style="width: 75%;">
                 </td>
-                <th class="newformTitle">Loại：</th>
+                <th class="newformTitle">类型：</th>
                 <td style="width: 28%;">
-                    @Html.DropDownList("", Newtouch.Infrastructure.EnmuReminderType.金额上限提醒.ToDescSelectList(), "", new { @class = "", @style = "" })
+                    @Html.DropDownList("reminderType", Newtouch.Infrastructure.EnmuReminderType.金额上限提醒.ToDescSelectList(), "全部", new { @class = "newform-control form-control required", @style = "width: 100%;" })
                 </td>
                 <td>
-                    <input type="button" id="btn_search" class="btn btn-primary" style="width:122%;margin-left:146%;" value="Tra cứu">
+                    <input type="button" id="btn_search" class="btn btn-primary" style="width:122%;margin-left:146%;" value="查询">
                 </td>
             </tr>
         </table>
@@ -69,102 +69,102 @@
     $(function () {
         gridList();
 
-        $('').select2({
+        $('#reminderType').select2({
             minimumResultsForSearch: -1
         });
     });
 
     function gridList() {
-        var $gridList = $("");
+        var $gridList = $("#gridList");
         $gridList.dataGrid({
-            url: "",
+            url: "/SystemManage/MoneyUpperLimitReminder/GetAllList",
             postData: getSearchPostData(),
             height: 400,
             colModel: [
-            { label: "", name: "", width: 100, align: "", hidden: true },
-            { label: "", name: "", width: 130, align: "" },
-            { label: "", name: "", width: 130, align: "" },
-            { label: "", name: "", width: 130, align: "" },
+            { label: "sxtxId", name: "sxtxId", width: 100, align: "left", hidden: true },
+            { label: "科室", name: "ks", width: 130, align: "left" },
+            { label: "医生", name: "ys", width: 130, align: "left" },
+            { label: "金额上限(元)", name: "jesx", width: 130, align: "left" },
             {
-                label: "", name: "", width: 130, align: "",
+                label: "提醒类型", name: "reminderType", width: 130, align: "left",
                 formatter: function (cellvalue) {
-                    if (cellvalue === 1) { return ""; }
+                    if (cellvalue === 1) { return "金额上限提醒"; }
                     else { return ""; }
                 }
             },
             {
-                label: "", name: "", width: 130, align: "", formatter: function (cellvalue) {
-                    return cellvalue == "" ? "" : "";
+                label: "有效", name: "zt", width: 130, align: "center", formatter: function (cellvalue) {
+                    return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>";
                 }
             },
-            { label: '', name: '', width: 150, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
-            { label: '', name: '', width: 150, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } }
+            { label: '创建时间', name: 'CreateTime', width: 150, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+            { label: '最后修改时间', name: 'LastModifyTime', width: 150, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } }
             ],
-            pager: "",
-            sortname: '',
+            pager: "#gridPager",
+            sortname: 'CreateTime desc',
             viewrecords: true,
         });
-        $("").click(function () {
-            $gridList.jqGrid('', {
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
                 postData: getSearchPostData()
-            }).trigger('');
+            }).trigger('reloadGrid');
         })
     }
-    //Điều kiện tra cứu
+    //查询条件
     function getSearchPostData() {
-        var keyword = $("").val();
-        var reminderType = $("").val();
+        var keyword = $("#keyword").val();
+        var reminderType = $("#reminderType").val();
         return { keyword: keyword, reminderType: reminderType };
     };
 
-    //Sự kiện nhấn Enter
-    $('').keydownEnterEvent(function () {
-        $('').trigger('');
+    //回车事件
+    $('#keyword').keydownEnterEvent(function () {
+        $('#btn_search').trigger('click');
     })
 
     function btn_add() {
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "",
-            width: "",
-            height: "",
+            id: "FormFIEdit",
+            title: "提醒内容维护",
+            url: "/SystemManage/MoneyUpperLimitReminder/Form",
+            width: "510px",
+            height: "500px",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
         });
     }
-    //Sửa
+    //修改
     function btn_edit() {
-        var keyValue = $("").jqGridRowValue().sxtxId;
+        var keyValue = $("#gridList").jqGridRowValue().sxtxId;
         if (!!!keyValue) {
-            $.modalAlert("", '');
+            $.modalAlert("请选中一条信息", 'warning');
             return;
         }
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + keyValue,
-            width: "",
-            height: "",
+            id: "FormFIEdit",
+            title: "修改信息",
+            url: "/SystemManage/MoneyUpperLimitReminder/Form?sxtxId=" + keyValue,
+            width: "510px",
+            height: "500px",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
         });
     }
-    //Xóa
+    //删除
     function btn_delete() {
-        var seleRowid = jQuery("").jqGrid("", "");
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("", '');
+            $.modalAlert("请选中一条信息", 'warning');
             return;
         }
-        var sxtxId = $("").jqGridRowValue().sxtxId;
+        var sxtxId = $("#gridList").jqGridRowValue().sxtxId;
         $.deleteForm({
-            url: "",
+            url: "/SystemManage/MoneyUpperLimitReminder/DeleteForm",
             param: { sxtxId: sxtxId },
             success: function () {
-                $("").trigger('');
+                $("#btn_search").trigger('click');
             }
         })
     }

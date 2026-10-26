@@ -1,6 +1,6 @@
 ﻿@using Newtouch.Infrastructure
 @{
-    Layout = "";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
     .dv-left {
@@ -43,11 +43,11 @@
                             <td class="formValue">
                                 <div style="float:left;width:40%;padding-top:3px;">
                                     <span class="glyphicon glyphicon-credit-card" style="color:green;"> </span>
-                                    <span id="zyh" title="Số nhập viện" style="font-size:16px;font-weight:bold;color:green;">00001</span>
+                                    <span id="zyh" title="住院号" style="font-size:16px;font-weight:bold;color:green;">00001</span>
                                     <span id="patid" name="patid" hidden></span>
                                 </div>
                                 <div style="float:right;padding-top:3px;">
-                                    <span class="glyphicon glyphicon-bell" style="color: #0bfe09;padding-right:5px;" title="Đang nằm viện hiện tại" id="iconzybz"></span>
+                                    <span class="glyphicon glyphicon-bell" style="color: #0bfe09;padding-right:5px;" title="当前在院" id="iconzybz"></span>
                                     @*<a onclick="getHistory()" style="padding-right:5px;"><span class="glyphicon glyphicon-th-list" style="color: rgb(255, 140, 60);" title="历次入院"></span></a>*@
                                     @*<a onclick="GetPatSerarchView()"><span class="glyphicon glyphicon-transfer" title="切换患者"></span>切换患者</a>*@
                                     <a onclick="GetPatSerarchView()" class="btn btn-default">患者切换</a>
@@ -62,10 +62,10 @@
                         <tr>
                             <td class="formValue" style="border-bottom:solid;border-bottom-left-radius:5px;border-bottom-color:#90cbb7;">
                                 
-                                <span id="nlshow" class="sp-lable" style="background-color:#acf3db;" title="Tuổi">3Tháng cái</span>
-                                <span id="xb" class="sp-lable" style="background-color:#ffea75;" title="Giới tính">Nam</span>
-                                <span id="brxzmc" class="sp-lable" style="background-color:#fadba4;" title="Tính chất bệnh nhân">职工医保</span>
-                                <span id="zybz" class="sp-lable" style="background-color:#acf3db;" title="Trạng thái đang nằm viện">Đang nằm viện</span>
+                                <span id="nlshow" class="sp-lable" style="background-color:#acf3db;" title="年龄">3个月</span>
+                                <span id="xb" class="sp-lable" style="background-color:#ffea75;" title="性别">男</span>
+                                <span id="brxzmc" class="sp-lable" style="background-color:#fadba4;" title="病人性质">职工医保</span>
+                                <span id="zybz" class="sp-lable" style="background-color:#acf3db;" title="在院状态">在院</span>
                             </td>
                         </tr>
                     </table>
@@ -75,13 +75,13 @@
                     <table class="form">
 
                         <tr>
-                            <td class="formValue">Thẻ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Số：<span id="kh">AF00000008</span></td>
+                            <td class="formValue">卡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：<span id="kh">AF00000008</span></td>
                         </tr>
                         @*<tr>
-                    <td class="formValue">Tổng Phí Dùng： <span id="zfy">1999.98</span></td>
+                    <td class="formValue">总 费 用： <span id="zfy">1999.98</span></td>
                 </tr>*@
                         <tr>
-                            <td class="formValue">Số dư tài khoản：<span id="zhye">1000</span></td>
+                            <td class="formValue">账户余额：<span id="zhye">1000</span></td>
                         </tr>
                         @*<tr>
                     <td class="formValue">已结费用：<span id="yjfy">0</span></td>
@@ -93,25 +93,25 @@
                             <td class="formValue">科  室：<span id="ksmc">儿童康复科</span></td>
                         </tr>
                         <tr>
-                            <td class="formValue">病  Khu：<span id="wardname">儿童康复病区</span></td>
+                            <td class="formValue">病  区：<span id="wardname">儿童康复病区</span></td>
                         </tr>
                         <tr>
-                            <td class="formValue">床  Vị：<span id="cwmc">01床</span></td>
+                            <td class="formValue">床  位：<span id="cwmc">01床</span></td>
                         </tr>
                         <tr>
-                            <td class="formValue">Thời gian nhập viện：<span id="rysj">2022-1-1 12:34:50</span></td>
+                            <td class="formValue">入院时间：<span id="rysj">2022-1-1 12:34:50</span></td>
                         </tr>
                         <tr>
-                            <td class="formValue">Xuất viện thời gian：<span id="cqsj"></span></td>
+                            <td class="formValue">出院时间：<span id="cqsj"></span></td>
                         </tr>
                         <tr>
-                            <td class="formValue">Số ngày nhập viện：<span id="zyts">60Ngày</span></td>
+                            <td class="formValue">住院天数：<span id="zyts">60天</span></td>
                         </tr>
                         <tr>
-                            <td class="formValue">Nhập viện thứ tự：Thứ<span id="zycx"> 2 </span>Nhập viện lần</td>
+                            <td class="formValue">住院次序：第<span id="zycx"> 2 </span>次入院</td>
                         </tr>
                         <tr>
-                            <td class="formValue">Chẩn đoán nhập viện：<span id="ryzdmc">感冒测试感冒测试感冒测试感冒测试感冒测试感冒测试感冒测试感冒测试</span></td>
+                            <td class="formValue">入院诊断：<span id="ryzdmc">感冒测试感冒测试感冒测试感冒测试感冒测试感冒测试感冒测试感冒测试</span></td>
                         </tr>
                         <tr>
                             <td class="formValue">出院主诊断：<span id="cyzdmc">感冒测试感冒测试感冒测试感冒测试感冒测试感冒测试感冒测试感冒测试</span></td>
@@ -120,13 +120,13 @@
                             <td class="formValue">过敏史：<span id="gms">青霉素</span></td>
                         </tr>
                         <tr>
-                            <td class="formValue">Nhập viện bác sĩ：<span id="zyysmc">路静</span></td>
+                            <td class="formValue">住院医生：<span id="zyysmc">路静</span></td>
                         </tr>
                         <tr>
                             <td class="formValue">主治医师：<span id="zzysmc">路静</span></td>
                         </tr>
                         <tr>
-                            <td class="formValue">Bác sĩ chủ nhiệm：<span id="zrysmc">路静</span></td>
+                            <td class="formValue">主任医师：<span id="zrysmc">路静</span></td>
                         </tr>
                     </table>
                 </div>
@@ -136,12 +136,12 @@
                     <div class="container">
                         <ul class="nav nav-tabs  navb-bg" id="myTab" style="position:fixed;top:0px;z-index:100009;width:100%;">
                             <li role="presentation"><a href="#linkfee" role="tab" data-toggle="tab">费用账单</a></li>
-                            <li role="presentation"><a href="#linkzd" role="tab" data-toggle="tab">Thông tin chẩn đoán</a></li>
-                            <li role="presentation"><a href="#linkaccount" role="tab" data-toggle="tab">Tra cứu tiền tạm ứng</a></li>
+                            <li role="presentation"><a href="#linkzd" role="tab" data-toggle="tab">诊断信息</a></li>
+                            <li role="presentation"><a href="#linkaccount" role="tab" data-toggle="tab">预交金查询</a></li>
                             <li role="presentation" class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tra cứu giao dịch bảo hiểm y tế<b class="caret"></b></a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">医保交易查询<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li role="presentation"><a href="#linksett" role="tab" data-toggle="tab">Thông tin quyết toán</a></li>
+                                    <li role="presentation"><a href="#linksett" role="tab" data-toggle="tab">结算信息</a></li>
                                     <li role="presentation"><a href="#linkybinfo" role="tab" data-toggle="tab">医保预结算</a></li>
                                     <li class="divider"></li>
                                     <li><a href="#">更多</a></li>
@@ -151,19 +151,19 @@
                     </div>
                     <div class="tab-content">
                         <div id="dv_fee" class="divtab" style="display: none;">
-                            @Html.Partial("")
+                            @Html.Partial("HospFeeInfo")
                         </div>
                         <div id="dv_yb" class="divtab" style="display: none;padding-left:10px;">
-                            @Html.Partial("")
+                            @Html.Partial("HospMediInsureInfo")
                         </div>
                         <div id="dv_account" class="divtab" style="display: none;">
-                            @Html.Partial("")
+                            @Html.Partial("HospAccountInfo")
                         </div>
                         <div id="dv_zd" class="divtab" style="display: none;padding-left:10px;">
-                            @Html.Partial("")
+                            @Html.Partial("HospDiagInfo")
                         </div>
                         <div id="dv_sett" class="divtab" style="display: none;padding-left:10px;">
-                            @Html.Partial("")
+                            @Html.Partial("HospSettInfo")
                         </div>
                     </div>
 
@@ -175,94 +175,94 @@
 </form>
 
 <script>
-    var zyh = $.request("");
+    var zyh = $.request("zyh");
     debugger;
     $(function () {
-        $("").height(window.innerHeight-90);
+        $(".divtab").height(window.innerHeight-90);
         tabInit();
         $.najax({
-            url: "",
+            url: "/PatientManage/PatientCenter/GetDefaultZyh",
             data: { zyh: zyh },
-            dataType: "",
+            dataType: "json",
             success: function (data) {
                 if (data != null && !!data.zyh) {
                     debugger
                     GetPatQueryAjax({ patid: data.patid, zyh: data.zyh });  
                 }
                 else {
-                    $.modalAlert("", '');
+                    $.modalAlert("患者信息异常，请重新选择", 'warning');
                 }
-                if (data.zybz == "" || data.zybz == "") {
-                    $("").hide();
+                if (data.zybz == "2" || data.zybz == "3") {
+                    $("#iconzybz").hide();
                 }
             }
         });
     });
     function getHistory() {
-        alert("")
+        alert("历次入院")
     }
-    //tabKhởi tạo
+    //tab初始化
     function tabInit() {
-        $('').on('', function (e) {
-            switch ($(this).attr('')) {
-                case "": 
-                    $("").show();
-                    $("").hide();
-                    $("").hide();
-                    $("").hide();
-                    $("").hide();
-                    FeeListGrid("","");
+        $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+            switch ($(this).attr('href')) {
+                case "#linkfee": 
+                    $("#dv_fee").show();
+                    $("#dv_account").hide();
+                    $("#dv_zd").hide();
+                    $("#dv_yb").hide();
+                    $("#dv_sett").hide();
+                    FeeListGrid("","1");
                     break;
-                case "":
-                    $("").hide();
-                    $("").show();
-                    $("").hide();
-                    $("").hide();
-                    $("").hide();
-                    ZdListGrid($("").text());
+                case "#linkzd":
+                    $("#dv_fee").hide();
+                    $("#dv_zd").show();
+                    $("#dv_account").hide();
+                    $("#dv_yb").hide();
+                    $("#dv_sett").hide();
+                    ZdListGrid($("#zyh").text());
                    break;
-                case "":
-                    $("").hide();
-                    $("").hide();
-                    $("").show();
-                    $("").hide();
-                    $("").hide();
-                    gridListAccount($("").text());
+                case "#linkaccount":
+                    $("#dv_fee").hide();
+                    $("#dv_zd").hide();
+                    $("#dv_account").show();
+                    $("#dv_yb").hide();
+                    $("#dv_sett").hide();
+                    gridListAccount($("#zyh").text());
                     break;
-                case "":
-                    $("").hide();
-                    $("").hide();
-                    $("").hide();
-                    $("").show();
-                    $("").hide();
-                    gridListPresett($("").text());
+                case "#linkybinfo":
+                    $("#dv_fee").hide();
+                    $("#dv_account").hide();
+                    $("#dv_zd").hide();
+                    $("#dv_yb").show();
+                    $("#dv_sett").hide();
+                    gridListPresett($("#zyh").text());
                     break;
-                case "":
-                    $("").hide();
-                    $("").hide();
-                    $("").hide();
-                    $("").hide();
-                    $("").show();
-                    gridListSett($("").text());
+                case "#linksett":
+                    $("#dv_fee").hide();
+                    $("#dv_account").hide();
+                    $("#dv_zd").hide();
+                    $("#dv_yb").hide();
+                    $("#dv_sett").show();
+                    gridListSett($("#zyh").text());
                     break;
             }
 
         });
 
-        $('').trigger('');
+        $('#myTab a:first').trigger('click');
     }
 
 
-    //Tra cứu nhân viên
+    //人员查询
     function GetPatSerarchView(blh) {
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + Math.random() + "" + blh,
-            width: "",
-            height: "",
+            id: "patSearch",
+            title: "住院患者查询",
+            url: "/PatientManage/PatientCenter/PatientChange?t=" + Math.random() + "&ywlx=zy&blh=" + blh,
+            width: "800px",
+            height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //Trong sự kiện cửa sổ bật lên
+                top.frames[iframeId].PatDbGrid(); //在弹出窗口事件
             }
         });
     }
@@ -271,36 +271,36 @@
         PatinfoClear();
         if (obj != null && !!obj.zyh) {
             $.najax({
-                url: "",
+                url: "/PatientManage/PatientCenter/PatZyInfo",
                 data: { patid: obj.patid, zyh: obj.zyh },
-                dataType: "",
+                dataType: "json",
                 async: false,
                 success: function (data) {
                     if (data != null) {
                         for (var e in data) {
-                            if (!!$("" + e) && data[e] != null) {
-                                if (e == "") {                        
-                                    $("" + e).html($.enum.getDescByValue("", data[e]));
+                            if (!!$("#" + e) && data[e] != null) {
+                                if (e == "xb") {                        
+                                    $("#" + e).html($.enum.getDescByValue("EnumSex", data[e]));
                                 }
-                                else if (e == "") {
-                                    $("" + e).html($.enum.getDescByValue("", data[e]));
-                                    if (data[e] == '' || data[e] == '') {
-                                        $("").hide();
+                                else if (e == "zybz") {
+                                    $("#" + e).html($.enum.getDescByValue("EnumZYBZ", data[e]));
+                                    if (data[e] == '@((int)EnumZYBZ.Wry)' || data[e] == '@((int)EnumZYBZ.Ycy)') {
+                                        $("#iconzybz").hide();
                                     }
                                     else {
-                                        $("").show();
+                                        $("#iconzybz").show();
                                     }
                                 }
-                                else if (e == "") {
+                                else if (e == "cyjdrq2") {
                                     var cyjdrq = data.cyjdrq2 != null ? data.cyjdrq2 : data.cqsj;
-                                    $("").html(cyjdrq);
+                                    $("#cqsj").html(cyjdrq);
                                 }
                                 else if (data[e] === 0)
                                 {
-                                    $("" + e).html("");
+                                    $("#" + e).html("0.00");
                                 }
                                 else {
-                                    $("" + e).html(data[e]);
+                                    $("#" + e).html(data[e]);
                                 }
                             }
                         }                          
@@ -309,34 +309,34 @@
                 }
             });
 
-            //Làm mới tra cứu giao dịch bảo hiểm y tế
-            $("").jqGrid('', {
+            //刷新医保交易查询
+            $("#gridListpresett").jqGrid('setGridParam', {
                 postData: { zyh: obj.zyh }
-            }).trigger('');
-            //Làm mới thông tin quyết toán
-            $("").jqGrid('', {
+            }).trigger('reloadGrid');
+            //刷新结算信息
+            $("#gridListsett").jqGrid('setGridParam', {
                 postData: { zyh: obj.zyh }
-            }).trigger('');
-            $("").jqGrid('', {
-                postData: { zyh: obj.zyh,group:"" }
-            }).trigger('');
+            }).trigger('reloadGrid');
+            $("#gridFeeInfoList").jqGrid('setGridParam', {
+                postData: { zyh: obj.zyh,group:"1" }
+            }).trigger('reloadGrid');
 
-            $('').trigger('');
+            $('#myTab a:first').trigger('click');
         }
          
     }
 
     function PatinfoClear() {
-        $("").each(function () {
+        $("#dv_patleft span").each(function () {
             $(this).html("");
         });
-        $("").each(function () {
+        $("#dv_settpre label").each(function () {
             $(this).html("");
         });
-        $("").each(function () {
+        $("#dv_sett label").each(function () {
             $(this).html("");
         });
-        $("").html("");
+        $("#sp_billje").html("0.00");
     }
 </script>
 

@@ -1,8 +1,8 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "QueJsList2018";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
-<!--Quyết toán danh sách-->
+<!--结算列表-->
 <form style="margin:2px;margin-top:10px;">
     <div class="gridPanel" style="margin: 5px 10px;">
         <table id="gridList"></table>
@@ -10,33 +10,33 @@
 </form>
 <script>
     $(function () {
-        var jsdata = sessionStorage.getItem("");
+        var jsdata = sessionStorage.getItem("jsdata");
         var jsondata = JSON.parse(jsdata);
         gridList(jsondata);
     });
 
-    //Tải danh sách quyết toán
+    //加载结算列表
     function gridList(mydata) {
-        var $gridList = $("");
+        var $gridList = $("#gridList");
         $gridList.newtouchLocalDataGrid({
             height: $(window).height() - 80,
             unwritten: false,
             posttofirst: false,
             colModel: [
-                { label: '', name: '', key: true, hidden: true },
-                { label: '', name: '', hidden:true},
+                { label: 'jsnm', name: 'jsnm', key: true, hidden: true },
+                { label: 'ghly', name: 'ghly', hidden:true},
                 {
-                    label: '', name: '', width: 80, align: "",
+                    label: '结算类型', name: 'jslx', width: 80, align: "left",
                     formatter: function (val) {
-                        return $.enum.getDescByValue("", val);
+                        return $.enum.getDescByValue("EnumJslx", val);
                     }
                 },
                 {
-                    label: '', name: '', width: 130, align: ""
-                    , formatter: "", formatoptions: { srcformat: '', newformat: '' }
+                    label: '结算时间', name: 'CreateTime', width: 130, align: "left"
+                    , formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
                 {
-                    label: '', name: '', width: 80, align: "",
+                    label: '结算金额', name: 'jszje', width: 80, align: "left",
                     formatter: function (val) {
                         if (val || val == 0) {
                             return val.toFixed(2);
@@ -45,42 +45,42 @@
                         }
                     }
                 },
-                { label: '', name: '', width: 100, align: ""},
-                { label: '', name: '', width: 100, align: "", formatter: "", formatoptions: { srcformat: '', newformat: '' } },
-                { label: '', name: '', width: 80, align: "" },
+                { label: '发票号', name: 'fph', width: 100, align: "left"},
+                { label: '收费日期', name: 'sfrq', width: 100, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: '结算人员', name: 'CreatorUserName', width: 80, align: "left" },
             ]
             , ondblClickRow: function (rowid) {
                 var frameId = window.name;
-                top.$('' + frameId + '').siblings('').find('').trigger('');
+                top.$('div#' + frameId + '').siblings('div.layui-layer-btn').find('a.layui-layer-btn0').trigger('click');
             }
         }, mydata);
     }
 
     function AcceptClick(callBack) {
-        var seleRowid = jQuery("").jqGrid("", "");
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("", '');
+            $.modalAlert("请选中一条信息", 'warning');
             return;
         }
-        var rowData = $("").jqGrid('', seleRowid);
-        if (rowData.jslx == '') {
-            if (rowData.ghly!='')
+        var rowData = $("#gridList").jqGrid('getRowData', seleRowid);
+        if (rowData.jslx == '挂号收费') {
+            if (rowData.ghly!='0')
             {
-                $.modalAlert('', '');
+                $.modalAlert('非HIS窗口挂号,不能退费', 'warning');
                 return;
             }
-            var allData = $("").jqGrid("");
+            var allData = $("#gridList").jqGrid("getRowData_AllLine");
             for (var i = 0; i < allData.length ; i++) {
                 if (allData[i].jsnm != rowData.jsnm
-                    && !(allData[i].jslx == '')
+                    && !(allData[i].jslx == '挂号收费')
                     && (!!allData[i].jszje && parseFloat(allData[i].jszje) != 0)) {
-                    $.modalAlert('', '');
+                    $.modalAlert('有收费，不能退挂号', 'warning');
                     return;
                 }
             }
         }
         if (!(!!rowData.jszje && parseFloat(rowData.jszje) != 0)) {
-            $.modalAlert('', '');
+            $.modalAlert('已无可退金额', 'warning');
             return;
         }
         callBack(rowData.jsnm);

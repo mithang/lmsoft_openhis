@@ -27,7 +27,7 @@ using System.Linq;
 namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 {
     /// <summary>
-    /// Đăng ký khám ngoại trú
+    /// 门诊挂号
     /// </summary>
     public class OutpatientRegController : ControllerBase
     {
@@ -46,10 +46,10 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
 		#region 挂号排班
 		/// <summary>
-		/// Lịch trực đăng ký khámList
+		/// 挂号排班List
 		/// </summary>
-		/// <param name="keyword">Khoa/Bác sĩ</param>
-		/// <param name="mzlx">Loại ngoại trú Khám ngoại trú thông thường/急症/Khám chuyên gia</param>
+		/// <param name="keyword">科室/医生</param>
+		/// <param name="mzlx">门诊类型 普通门诊/急症/专家门诊</param>
 		/// <returns></returns>
 		[HttpPost]
         [HandlerAjaxOnly]
@@ -60,7 +60,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// lịch trực lấy mới
+        /// 获取新的排班
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="mzlx"></param>
@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// Bệnh nhân có đã đăng ký khám đặt trước không
+        /// 患者是否已挂号预约
         /// </summary>
         /// <param name="mzlx"></param>
         /// <param name="patid"></param>
@@ -107,7 +107,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// Tra cứu đăng ký khám đã ngày khi
+        /// 查询当日已挂号
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="creatorCode"></param>
@@ -124,7 +124,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             return View();
         }
         /// <summary>
-        /// Sửa trạng thái đặt trước đăng ký khám đặt trước
+        /// 修改预约挂号预约状态
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="mzh"></param>
@@ -167,7 +167,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             return View();
         }
         /// <summary>
-        /// Số hóa đơn lấy mã nhân viên theo
+        /// 根据工号获取发票号
         /// </summary>
         /// <param name="employeeNo"></param>
         /// <returns></returns>
@@ -179,7 +179,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// Xác minh số hóa đơn nhập có dùng có thể không
+        /// 验证输入发票号是否可用
         /// by caishanshan
         /// </summary>
         /// <param name="inputFPH"></param>
@@ -193,13 +193,13 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         #endregion
 
         /// <summary>
-        /// Lấy phí đăng ký khám Phí chẩn trị Phí thẻ từ Phí phôi
+        /// 获取挂号费 诊疗费 磁卡费 工本费
         /// </summary>
-        /// <param name="ghlx">Loại đăng ký khám</param>
-        /// <param name="zlxm">Hạng mục chẩn trị</param>
-        /// <param name="isZzjm">Giảm miễn chuyển viện</param>
-        /// <param name="isCkf">Phí thẻ từ</param>
-        /// <param name="isGbf">Phí phôi</param>
+        /// <param name="ghlx">挂号类型</param>
+        /// <param name="zlxm">诊疗项目</param>
+        /// <param name="isZzjm">转诊减免</param>
+        /// <param name="isCkf">磁卡费</param>
+        /// <param name="isGbf">工本费</param>
         /// <returns></returns>
         [HandlerAjaxOnly]
         public ActionResult GetOutpatientFees(string ghlx, string zlxm, bool isCkf, bool isGbf)
@@ -217,14 +217,14 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         #region 门诊挂号2018
 
         /// <summary>
-        /// Trang đăng ký khám ngoại trú
+        /// 门诊挂号页面
         /// </summary>
         /// <returns></returns>
         public ActionResult OutpatientReg2018()
         {
             ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
             ViewBag.OrgId = this.OrganizeId;
-            //Công tắc：Đăng ký khám đặt trước
+            //开关：预约挂号
             var brSwitch = (bool)_sysConfigRepo.GetBoolValueByCode("BespeakRegisterSwitch", OrganizeId, false);
             ViewBag.ISOpenBespeakRegister = brSwitch ? "true" : "false";
             ViewBag.Xzqh = _outPatientSettleDmnService.GetOrgXzqh(this.OrganizeId);
@@ -232,7 +232,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// Đánh giá có đăng ký khám lặp lại không
+        /// 判断是否重复挂号
         /// </summary>
         /// <param name="blh"></param>
         /// <returns></returns>
@@ -252,7 +252,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-        /// Lớp nổi tra cứu bệnh nhân
+        /// 病人查询浮层
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -263,7 +263,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 生成唯一门诊号、Số thứ tự khám
+        /// 生成唯一门诊号、就诊序号
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="ghlx"></param>
@@ -285,7 +285,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             return Success(null, data);
         }
         /// <summary>
-        /// chongqing 新排班唯一门诊号、Số thứ tự khám
+        /// chongqing 新排班唯一门诊号、就诊序号
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="ghpbId"></param>
@@ -330,7 +330,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         #region 保存挂号 + 新版退号
 
         /// <summary>
-        /// Lưu đăng ký khám ngoại trú
+        /// 门诊挂号保存
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="kh"></param>
@@ -349,9 +349,9 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         /// <param name="fph"></param>
         /// <param name="feeRelated"></param>
         /// <param name="brxz">病人性质由页面传过来，因为医保患者可以挂自费号</param>
-        /// <param name="ybjsh">Số quyết toán đầu bảo hiểm y tế（Đăng ký khám đã đầu bảo hiểm y tế）</param>
+        /// <param name="ybjsh">医保端结算号（医保端已挂号）</param>
         /// <param name="qzjzxh">前置就诊序号</param>
-        /// <param name="qzmzh">Số ngoại trú đặt trước</param>
+        /// <param name="qzmzh">前置门诊号</param>
         /// <returns></returns>
         [HandlerAjaxOnly]
         public ActionResult Save(int patid, string kh, string ghly, string mjzbz,
@@ -386,8 +386,8 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             {
                 if (!string.IsNullOrWhiteSpace(ybjsh))
                 {
-                    //Đăng ký khám đã đầu bảo hiểm y tế，HISĐăng ký khám thất bại，得取消医保端的挂号，提示其重新挂
-                    //20181018ỞClient调
+                    //医保端已挂号，HIS挂号失败，得取消医保端的挂号，提示其重新挂
+                    //20181018在Client调
 
                 }
                 throw ex;
@@ -395,7 +395,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// 未结挂号 Hủy số khám
+        /// 未结挂号 退号
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -408,7 +408,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         #endregion
 
         /// <summary>
-        /// Đăng ký khám đặt trước
+        /// 预约挂号
         /// </summary>
         /// <param name="zjlx"></param>
         /// <param name="zjh"></param>
@@ -465,7 +465,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         [HandlerAjaxOnly]
         public ActionResult Book(OutpatientRegistEntity gh, string ssk, string fph, bool isCkf, bool isGbf, string updateBrxz)
         {
-            //Cấu hình hệ thống
+            //系统配置
             var confEntity = _sysConfigRepo.GetByCode("OrderSwitch", OperatorProvider.GetCurrent().OrganizeId);
             if (confEntity != null && "T".Equals(confEntity.Value.Trim().ToUpper()))
             {
@@ -513,7 +513,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             return Success();
 	    }
 		/// <summary>
-		/// Lấy phí đăng ký khám
+		/// 获取挂号费用
 		/// </summary>
 		/// <param name="ghlx"></param>
 		/// <param name="zlxm"></param>
@@ -527,7 +527,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 		    decimal zfje = Convert.ToDecimal(0.0000);
 			foreach (var item in ghdata)
 		    {
-				//Đánh giá hạng mục là còn hạng mục bảo hiểm y tế là hạng mục tự chi trả，此处因为sypc肯定为null，故查询时先以此字段作为医保标志字段赋值，Trường mới thêm lại không có thể
+				//判断项目是医保项目还是自费项目，此处因为sypc肯定为null，故查询时先以此字段作为医保标志字段赋值，可以不再添加新字段
 			    if (item.issc==1)
 			    {
 					ybje += Convert.ToDecimal(item.je);
@@ -559,7 +559,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             return View();
         }
         /// <summary>
-        /// Xuất tra cứu điều kiện tra cứu đăng ký khám
+        /// 导出挂号查询条件查询
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="fph"></param>
@@ -611,7 +611,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             sheet.columns.ToList().ForEach(p =>
             {
                 p.WidthTimes = (double)p.Width / colStanWidth;
-                p.Width = 0;    //WidthCho đặt đều0
+                p.Width = 0;    //Width都置为0
             });
 
             var path = DateTime.Now.ToString("\\\\yyyyMMdd\\\\HHmmssfff挂号查询") + ".xls";
@@ -620,7 +620,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
 
             if (isContainFilter == true)
             {
-                //Điều kiện lọc
+                //筛选条件
                 var filterDict = new Dictionary<string, string>();
                 if (inparameter.ksrq.HasValue && inparameter.jsrq.HasValue)
                 {

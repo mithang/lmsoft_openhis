@@ -16,49 +16,49 @@
             <td class="formValue"></td>
         </tr>
         <tr>
-            <th class="formTitle">Tổng chi phí：</th>
+            <th class="formTitle">费用总额：</th>
             <td class="formValue">￥<label id="lbpre_medfee_sumamt">0.00</label></td>
-            <th class="formTitle">Tổng thanh toán tiền mặt：</th>
+            <th class="formTitle">现金支付合计：</th>
             <td class="formValue">￥<label id="lbpre_xjzf">0.00</label></td>
-            <th class="formTitle">Tính phí tiền mặt ngoài bảo hiểm y tế：</th>
+            <th class="formTitle">非医保现金计费：</th>
             <td class="formValue">￥<label id="lbpre_fybxjzf">0.00</label></td>
 
         </tr>
         <tr>
-            <th class="formTitle">Tính phí tiền mặt bảo hiểm y tế：</th>
+            <th class="formTitle">医保现金计费：</th>
             <td class="formValue">￥<label id="lbpre_psn_cash_pay">0.00</label></td>
-            <th class="formTitle">Thanh toán chung：</th>
+            <th class="formTitle">统筹支付：</th>
             <td class="formValue">￥<label id="lbpre_hifp_pay">0.00</label></td>
-            <th class="formTitle">Trợ cấp công chức：</th>
+            <th class="formTitle">公务员补助：</th>
             <td class="formValue">￥<label id="lbpre_cvlserv_pay">0.00</label></td>
         </tr>
         <tr>
-            <th class="formTitle">Thanh toán tài khoản：</th>
+            <th class="formTitle">账户支付：</th>
             <td class="formValue">￥<label id="lbpre_acct_pay">0.00</label></td>
             <th class="formTitle">单病种医疗垫支：</th>
             <td class="formValue">￥<label id="lbpre_hosp_part_amt">0.00</label></td>
 
-            <th class="formTitle">Thanh toán bồi thường lớn：</th>
+            <th class="formTitle">大额理赔支付：</th>
             <td class="formValue">￥<label id="lbpre_hifob_pay">0.00</label></td>
         </tr>
         <tr>
-            <th class="formTitle">Chi bảo hiểm y tế doanh nghiệp：</th>
+            <th class="formTitle">企业医疗保险支出：</th>
             <td class="formValue">￥<label id="lbpre_hifes_pay">0.00</label></td>
-            <th class="formTitle">Chi bệnh nặng dân cư：</th>
+            <th class="formTitle">居民大病支出：</th>
             <td class="formValue">￥<label id="lbpre_hifmi_pay">0.00</label></td>
-            <th class="formTitle">Chi quỹ cứu trợ y tế：</th>
+            <th class="formTitle">医疗救助基金支出：</th>
             <td class="formValue">￥<label id="lbpre_maf_pay">0.00</label></td>
         </tr>
         <tr>
-            <th class="formTitle">Thanh toán chung tài khoản：</th>
+            <th class="formTitle">账户共济支付：</th>
             <td class="formValue">￥<label id="lbpre_acct_mulaid_pay">0.00</label></td>
-            <th class="formTitle">Khác：</th>
+            <th class="formTitle">其他：</th>
             <td class="formValue">￥<label id="lbpre_oth_pay">0.00</label></td>
-            <th class="formTitle">Số tiền phù hợp phạm vi chính sách：</th>
+            <th class="formTitle">符合政策范围金额：</th>
             <td class="formValue">￥<label id="lbpre_inscp_scp_amt">0.00</label></td>
         </tr>
         <tr>
-            <th class="formTitle">Mức khởi trả thanh toán thực tế：</th>
+            <th class="formTitle">实际支付起付线：</th>
             <td class="formValue">￥<label id="lbpre_act_pay_dedc">0.00</label></td>
         </tr>
     </table>
@@ -69,87 +69,87 @@
 
     });
     function gridListPresett(zyh) {
-        var $gridList = $("");
+        var $gridList = $("#gridListpresett");
         $gridList.dataGrid({
-            url: "",
+            url: "/PatientManage/PatientCenter/GetMedInsurPreSettGrid",
             postData: { zyh: zyh },
             height: 200,
             colModel: [
-                { label: '', name: '', hidden: true },
+                { label: '主键', name: 'prejs_id', hidden: true },
                 {
-                    label: '', name: '', width: 120, align: '',
-                    formatter: "", formatoptions: { srcformat: '', newformat: '' }
+                    label: '操作日期', name: 'czrq', width: 120, align: 'center',
+                    formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: '', name: '', width: 80, align: '' },
+                { label: '姓名', name: 'psn_name', width: 80, align: 'center' },
                 {
-                    label: '', name: '', width: 50, align: '',
+                    label: '公务员', name: 'cvlserv_flag', width: 50, align: 'center',
                     formatter: function (cellvalue, options, rowObject) {
-                        if (cellvalue && cellvalue=="") {
-                            return "";
+                        if (cellvalue && cellvalue=="1") {
+                            return "是";
                         }
                         else {
-                            return "";
+                            return "否";
                         }
                     }
                 },
-                { label: '', name: '', width: 100, align: '' },
-                { label: '', name: '', width: 100, align: '' },
-                { label: '', name: '', width: 80, align: '' },
-                { label: '', name: '', width: 100, align: '' },
-                { label: '', name: '', width: 80, align: '' },
-                { label: '', name: '', width: 80, align: '' }
+                { label: '总费用', name: 'medfee_sumamt', width: 100, align: 'center' },
+                { label: '自费金额', name: 'fulamt_ownpay_amt', width: 100, align: 'center' },
+                { label: '超限价自费', name: 'overlmt_selfpay', width: 80, align: 'center' },
+                { label: '统筹支付', name: 'hifp_pay', width: 100, align: 'center' },
+                { label: '账户支付', name: 'acct_pay', width: 80, align: 'center' },
+                { label: '账户余额', name: 'balc', width: 80, align: 'center' }
             ],
             onSelectRow: function (rowIndex, s) {
                 getPresettInfo();
             },
             gridComplete: function () {
-                var ids = $('').getDataIDs();//Bảng dữ liệu trả vềIDMảng["",""..] 
-                var rowData = $("").getRowData(ids[0]);
+                var ids = $('#gridListpresett').getDataIDs();//返回数据表的ID数组["66","39"..] 
+                var rowData = $("#gridListpresett").getRowData(ids[0]);
                 getPresettInfo(rowData.prejs_id);
             },
-            caption:""
+            caption:"历史预结算"
         });
     }
 
     function getPresettInfo(presettid) {
         var keyValue = "";
         if (!presettid) {
-            keyValue = $("").jqGridRowValue().prejs_id;
+            keyValue = $("#gridListpresett").jqGridRowValue().prejs_id;
         }
         else {
             keyValue = presettid;
         }
 
         if (!keyValue) {
-            $.modalAlert("", '');      
+            $.modalAlert("请选择一条预结算记录", 'warning');      
         }
         $.najax({
-            url: "",
+            url: "/PatientManage/PatientCenter/GetPreSettbyId",
             data: { presettid: keyValue },
-            dataType: "",
+            dataType: "json",
             async: false,
             success: function (data) {
                 if (data != null) {
                     for (var e in data) {
-                        if (!!$("" + e) && data[e] != null) {
+                        if (!!$("#lbpre_" + e) && data[e] != null) {
                             if (data[e] === 0) {
-                                $("" + e).html("");
+                                $("#lbpre_" + e).html("0.00");
                             }
-                            else if (e == "") {
+                            else if (e == "czrq") {
                                 var text = $.getTime({ date: data[e] });
-                                $("" + e).html(text);
+                                $("#lbpre_" + e).html(text);
                             }
                             else if (!!parseFloat(data[e])) {
-                                $("" + e).html(parseFloat(data[e]).toFixed(2));
+                                $("#lbpre_" + e).html(parseFloat(data[e]).toFixed(2));
                             }
                             else {
-                                $("" + e).html(data[e]);
+                                $("#lbpre_" + e).html(data[e]);
                             }
                         }
                     }
                 }
-                $("").html((parseFloat(data.psn_cash_pay) + parseFloat(data.medfee_sumamt) - parseFloat(data.medfee_sumamt)).toFixed(2));
-                $("").html((parseFloat(data.medfee_sumamt) - parseFloat(data.medfee_sumamt)).toFixed(2));
+                $("#lbpre_xjzf").html((parseFloat(data.psn_cash_pay) + parseFloat(data.medfee_sumamt) - parseFloat(data.medfee_sumamt)).toFixed(2));
+                $("#lbpre_fybxjzf").html((parseFloat(data.medfee_sumamt) - parseFloat(data.medfee_sumamt)).toFixed(2));
             }
         });
     }

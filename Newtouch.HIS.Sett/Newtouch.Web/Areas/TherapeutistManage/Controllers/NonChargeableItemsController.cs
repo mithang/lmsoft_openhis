@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        /// 时长调整，Cập nhật cơ sở dữ liệu đến
+        /// 时长调整，更新到数据库
         /// </summary>
         /// <param name="vo"></param>
         /// <returns></returns>

@@ -42,19 +42,19 @@
                 <span class="hidden-xs" style="width:120px;">@opr.UserName【@opr.UserCode】</span>
             </a>
             <ul class="dropdown-menu pull-right">
-                <li><a class="menuItem" data-id="userInfo" href="/SystemManage/User/PersonalInfo"><i class="fa fa-user"></i>Thông tin cá nhân</a></li>
+                <li><a class="menuItem" data-id="userInfo" href="/SystemManage/User/PersonalInfo"><i class="fa fa-user"></i>个人信息</a></li>
                 @*<li><a href="javascript:void(0);"><i class="fa fa-inbox"></i>我的信箱</a></li>*@
-                <li><a href="javascript:void(0);" onclick="layer.msg('浏览器缓存清除成功');"><i class="fa fa-trash-o"></i>Xóa trống bộ nhớ đệm</a></li>
+                <li><a href="javascript:void(0);" onclick="layer.msg('浏览器缓存清除成功');"><i class="fa fa-trash-o"></i>清空缓存</a></li>
                 <li>
                     <a href="javascript:void(0);"><i class="fa fa-paint-brush"></i>皮肤设置</a>
                     <div class="tab-pane" id="control-sidebar-home-tab">
                     </div>
                 </li>
                 @{
-                    if (loginFromFlag == "")
+                    if (loginFromFlag == "SSO")
                     {
                         <li class="divider" style="margin: 0px 0;"></li>
-                        <li><a href="~/Login/ReturnSSOHome"><i class="fa fa-undo"></i>Trả về trang đầu</a></li>
+                        <li><a href="~/Login/ReturnSSOHome"><i class="fa fa-undo"></i>返回首页</a></li>
                         <li class="divider" style="margin: 0px 0;"></li>
                     }
                     else

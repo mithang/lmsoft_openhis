@@ -1,8 +1,8 @@
 ﻿@using Newtouch.Infrastructure;
 @{
 
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "编辑排班";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
 <!DOCTYPE html>
@@ -11,50 +11,50 @@
     <div style="padding: 20px 35px 0 2px;">
         <table class="form" id="timetable">
             <tr>
-                <th class="formTitle"><span class="required">*</span>Tổ chức：</th>
+                <th class="formTitle"><span class="required">*</span>组织机构：</th>
                 <td class="formValue" colspan="3">
                     <select id="OrganizeId" name="OrganizeId" class="form-control required">
-                        <option value="">==Vui lòng chọn==</option>
+                        <option value="">==请选择==</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>Loại ngoại trú：</th>
+                <th class="formTitle"><span class="required">*</span>门诊类型：</th>
                 <td class="formValue" colspan="3">
                     <select id="mjzbz" name="mjzbz" class="form-control required" data-EnumType="EnumOutPatientType">
-                        <option value="">==Vui lòng chọn==</option>
+                        <option value="">==请选择==</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Mô tả lịch trực ：</th>
+                <th class="formTitle">排班描述 ：</th>
                 <td class="formValue" colspan="3">
                     <input type="text" class="form-control" id="pbdesc" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Hạng mục đăng ký khám ：</th>
+                <th class="formTitle">挂号项目 ：</th>
                 <td class="formValue" colspan="3">
                     <input type="hidden" class="form-control" id="ghlx" />
                     <input type="text" class="form-control" id="sfxmmc" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Hạng mục chẩn trị ：</th>
+                <th class="formTitle">诊疗项目 ：</th>
                 <td class="formValue" colspan="3">
                     <input type="hidden" class="form-control" id="zlxm" />
                     <input type="text" class="form-control" id="zlxmmc" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>Khoa ：</th>
+                <th class="formTitle"><span class="required">*</span>科室 ：</th>
                 <td class="formValue" colspan="3">
                     <input type="hidden" class="form-control" id="ks" />
                     <input type="text" class="form-control required" id="ksmz" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Bác sĩ chuyên gia ：</th>
+                <th class="formTitle">专家医生 ：</th>
                 <td class="formValue" colspan="3">
                     <input type="hidden" class="form-control" id="ys" />
                     <input type="text" class="form-control" id="ysxm" />
@@ -62,15 +62,15 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle" style="padding-left:10px;">Mở đặt trước mạng đặt ：</th>
+                <th class="formTitle" style="padding-left:10px;">开放网络预约 ：</th>
                 <td class="formValue" style="padding-left:10px;">
-                    <input name='isBook' id="isBook1" type='radio' value='1' />Có
-                    <input name='isBook' id="isBook2" type='radio' value='0' checked="checked" />Không
+                    <input name='isBook' id="isBook1" type='radio' value='1' />是
+                    <input name='isBook' id="isBook2" type='radio' value='0' checked="checked" />否
                 </td>
                 <th class="formTitle" style="padding-left:10px;">时段类型 ：</th>
                 <td class="formValue" colspan="2">
-                    <input name='issjd' id="issjd1" type='radio' value='1' onclick="xzsd(true)" />Khoảng thời gian
-                    <input name='issjd' id="issjd2" type='radio' value='0' checked="checked" onclick="xzsd(false)" />Buổi chiều trên
+                    <input name='issjd' id="issjd1" type='radio' value='1' onclick="xzsd(true)" />时间区间
+                    <input name='issjd' id="issjd2" type='radio' value='0' checked="checked" onclick="xzsd(false)" />上下午
                 </td>
                 <th class="formTitle" style="padding-left:10px;">默认号源数 ：</th>
                 <td class="formValue" style="padding-left:10px;">
@@ -78,34 +78,34 @@
                 </td>
                 <td class="formValue">
                     <div class="ckbox">
-                        <input id="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
+                        <input id="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
                     </div>
                 </td>
             </tr>
             <tr style="border-bottom: 1px solid #e5e5e5;border-top: 1px solid #e5e5e5;">
                 <td class="formValue" id="timetd">
-                    &nbsp;&nbsp;&nbsp;&nbsp;Khoảng thời gian
+                    &nbsp;&nbsp;&nbsp;&nbsp;时间区间
                 </td>
                 <td class="formValue">
-                    Thứ Hai
+                    周一
                 </td>
                 <td class="formValue">
-                    Thứ Ba
+                    周二
                 </td>
                 <td class="formValue">
-                    Thứ Tư
+                    周三
                 </td>
                 <td class="formValue">
-                    Thứ Năm
+                    周四
                 </td>
                 <td class="formValue">
-                    Thứ Sáu
+                    周五
                 </td>
                 <td class="formValue">
-                    Thứ Bảy
+                    周六
                 </td>
                 <td class="formValue">
-                    Chủ Nhật
+                    周日
                 </td>
             </tr>
         </table>  
@@ -113,9 +113,9 @@
 </form>
 
 <script>
-    var ghpbId = $.request("");
-    var OrganizeId = $.request("");
-    var type = $.request("");
+    var ghpbId = $.request("ghpbId");
+    var OrganizeId = $.request("OrganizeId");
+    var type = $.request("type");
     var inttime = 1;
     var sjdxz = "";
     var datalength = 0;
@@ -126,9 +126,9 @@
         getDateInfo(true);
         getArrangeInfo();
     })
-    $('').blur(function () {
+    $('#mrhys').blur(function () {
         debugger;
-        if ($('').prop('')) {
+        if ($('#issjd1').prop('checked')) {
             jzsjd();
         }
         else {
@@ -137,46 +137,46 @@
     });
     function getstrhtml() {
         for (var j = 1; j < 3; j++) {
-            var strhtml = '' + j + '';
+            var strhtml = '<tr id="strtr' + j + '" ><td class="formValue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上午</td>';
             if (j==2) {
-                strhtml = '' + j + '';
+                strhtml = '<tr id="strtr' + j + '" ><td class="formValue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下午</td>';
             }
             if (j == 2) {
                 for (var i = 1; i < 8; i++) {
-                    strhtml += '' + $('').val() + '' + j+ i + '';
+                    strhtml += '<td class="formValue"><input  style="border-top:0px;border-left:0px;border-right:0px;" type = "text"class="form-control required" placeholder = "号源" value="' + $('#mrhys').val() + '" id = "hy' + j+ i + '" /></td >';
                 }
             } else {
                 for (var i = 1; i < 8; i++) {
-                    strhtml += '' + $('').val() + '' + i + '';
+                    strhtml += '<td class="formValue"><input  style="border-top:0px;border-left:0px;border-right:0px;" type = "text"class="form-control required" placeholdsser = "号源" value="' + $('#mrhys').val() + '" id = "hy' + i + '" /></td >';
                 }
             }
-            strhtml += '';
-            $('').append(strhtml);
+            strhtml += '</tr>';
+            $('#timetable').append(strhtml);
         }
     }
     function jzsjd() {
-        $('').html('');
-        $('').remove();
-        $('').remove();
-        $('').remove();
+        $('#timetd').html('&nbsp;&nbsp;&nbsp;&nbsp;时间区间');
+        $('#strtr1').remove();
+        $('#strtr2').remove();
+        $('#strtr3').remove();
         $.ajax({
-            url: "",
-            dataType: "",
+            url: "/OutPatientManage/OutBook/getDateInfosjd",
+            dataType: "json",
             async: false,
             success: function (data) {
                 datalength = data.length;
                 for (var i = 1; i <= inttime; i++) {
-                    $('' + i).remove();
+                    $('#strtr' + i).remove();
                 }
-                $('').val('');
+                $('#sjd').val('');
                 inttime = 1;
                 for (var i = 0; i < data.length; i++) {
-                    var strhtml = '' + inttime + '' + data[i] + '' + inttime + '';
+                    var strhtml = '<tr id="strtr' + inttime + '" ><td class="formValue"><input name="timestr" type = "text" style="border-top:0px;border-left:0px;border-right:0px;border-bottom:0px;"  readonly="readonly"  class="form-control required" placeholder = "时间区间" value="' + data[i] + '" id = "sjd' + inttime + '" /></td>';
                     for (var j = 1; j < 8; j++) {
-                        strhtml += '' + inttime + '' + $('').val() + '' + j + '';
+                        strhtml += '<td class="formValue"><input name="hy' + inttime + '"  style="border-top:0px;border-left:0px;border-right:0px;" type = "text"  class="form-control required" placeholder = "号源" value="' + $('#mrhys').val() + '" id = "hy' + j + '" /></td >';
                     }
-                    strhtml += '';
-                    $('').append(strhtml);
+                    strhtml += '</tr>';
+                    $('#timetable').append(strhtml);
                     inttime += 1;
                 }
             }
@@ -186,15 +186,15 @@
         if (isxz == true) {
             getDateInfo(false);
         } else {
-            $('').html('');
+            $('#timetd').html('&nbsp;&nbsp;&nbsp;&nbsp;上下午');
             for (var i = 1; i <= inttime; i++) {
-                $(''+i).remove();
+                $('#strtr'+i).remove();
             }
-            $('').val('');
+            $('#sjd').val('');
             inttime = 1;
-            $('').remove();
-            $('').remove();
-            $('').remove();
+            $('#strtr1').remove();
+            $('#strtr2').remove();
+            $('#strtr3').remove();
             getstrhtml();
             //getdate();
         }
@@ -202,19 +202,19 @@
     function btn_addtime(intstrhtml) {
         for (var o = 1; o <= intstrhtml; o++) {
             inttime += 1;
-            var strhtml = '' + inttime + '' + inttime + '';
+            var strhtml = '<tr id="strtr' + inttime + '"><td class="formValue" ></td ><td class="formValue"><select class="form-control" id="sjxz' + inttime + '" ></select></td>';
             for (var i = 1; i < 8; i++) {
-                strhtml += '' + $('').val() + '' + i + '';
+                strhtml += '<td class="formValue"><input type = "text" style = "height:16px;width:35px;" class="form-control required" placeholder = "号源" value="' + $('#mrhys').val() + '" id = "hy' + i + '" /></td >';
             }
-            strhtml += '';
-            $('').append(strhtml);
+            strhtml += '</tr>';
+            $('#timetable').append(strhtml);
             if (sjdxz != null && sjdxz != "") {
                 for (var u = 1; u <= inttime; u++) {
-                    $("" + u).html('');
+                    $("#sjxz" + u).html('');
                 }
                 for (var j = 1; j <= inttime; j++) {
-                    for (var i = 0; i < sjdxz.split('').length; i++) {
-                            $("" + j).append("" + i + "" + sjdxz.split('')[i] + "");
+                    for (var i = 0; i < sjdxz.split(',').length; i++) {
+                            $("#sjxz" + j).append("<option value='" + i + "'>" + sjdxz.split(',')[i] + "</option>");
                     }
                 }
             }
@@ -222,33 +222,33 @@
     }
     function btn_clertime(inttimetr) {
         if (inttimetr != 1) {
-            $('' + inttimetr).remove();
+            $('#strtr' + inttimetr).remove();
         }
     }
     function initControl() {
-        //Hộp thả xuống tổ chức
-        $("").bindSelect({
-            url: "",
+        //组织机构下拉框
+        $("#OrganizeId").bindSelect({
+            url: "/SystemManage/Organize/GetChildTreeSelectJson",
         });
         //组织机构是否可选
-        if (type == "") {//更新不可改
-            $('').attr("", true);
+        if (type == "update") {//更新不可改
+            $('#OrganizeId').attr("disabled", true);
         } else {//新增可改
-            $('').attr("", false);
+            $('#OrganizeId').attr("disabled", false);
         }
 
 
     }
 
-    //Lấy thông tin lịch trực
+    //获取排班信息
     function getArrangeInfo(){
         if (!!ghpbId) {
             $.ajax({
-                url: "" + ghpbId,
-                dataType: "",
+                url: "/OutPatientManage/OutBook/getArrangeInfo?ghpbId=" + ghpbId,
+                dataType: "json",
                 async: false,
                 success: function (data) {
-                    $("").formSerialize(data);
+                    $("#form1").formSerialize(data);
                 }
             });
         }
@@ -256,14 +256,14 @@
     function getdate() {
         if (!!ghpbId) {
             $.ajax({
-                url: "" + ghpbId,
-                dataType: "",
+                url: "/OutPatientManage/OutBook/getDateInfo?ghpbId=" + ghpbId,
+                dataType: "json",
                 async: false,
                 success: function (data) {
-                    $("").formSerialize(data);
-                    if (data && data.isBook == "") {
-                        $('').prop('', true);
-                    } else { $('').prop('', true); }
+                    $("#form1").formSerialize(data);
+                    if (data && data.isBook == "1") {
+                        $('#isBook1').prop('checked', true);
+                    } else { $('#isBook2').prop('checked', true); }
                 }
             });
         }
@@ -272,47 +272,47 @@
     function getDateInfo(pdsj) {
         if (!!ghpbId) {
             $.ajax({
-                url: "" + ghpbId,
-                dataType: "",
+                url: "/OutPatientManage/OutBook/getDateInfosjdcount?ghpbId=" + ghpbId,
+                dataType: "json",
                 async: false,
                 success: function (data) {
                     if (data != null && data != "") {
                         jzsjd();
-                        $('').prop('', true);
-                        var aa = document.getElementsByName('');
+                        $('#issjd1').prop('checked', true);
+                        var aa = document.getElementsByName('timestr');
                         for (var i = 0; i < aa.length; i++) {
                             $.ajax({
-                                url: "" + ghpbId + ""+aa[i].value,
-                                dataType: "",
+                                url: "/OutPatientManage/OutBook/getDateTimeInfo?ghpbId=" + ghpbId + "&timeslot="+aa[i].value,
+                                dataType: "json",
                                 async: false,
                                 success: function (data1) {
                                     if (data1 != null && data1 != "") {
-                                        if (data1[0].isBook == "") {
-                                            $('').prop('', true);
-                                        } else { $('').prop('', true);}
-                                        document.getElementsByName("" + (i + 1) + "")[0].value = data1[0].hy1;
-                                        document.getElementsByName("" + (i + 1) + "")[1].value = data1[0].hy2;
-                                        document.getElementsByName("" + (i + 1) + "")[2].value = data1[0].hy3;
-                                        document.getElementsByName("" + (i + 1) + "")[3].value = data1[0].hy4;
-                                        document.getElementsByName("" + (i + 1) + "")[4].value = data1[0].hy5;
-                                        document.getElementsByName("" + (i + 1) + "")[5].value = data1[0].hy6;
-                                        document.getElementsByName("" + (i + 1) + "")[6].value = data1[0].hy7;
+                                        if (data1[0].isBook == "1") {
+                                            $('#isBook1').prop('checked', true);
+                                        } else { $('#isBook2').prop('checked', true);}
+                                        document.getElementsByName("hy" + (i + 1) + "")[0].value = data1[0].hy1;
+                                        document.getElementsByName("hy" + (i + 1) + "")[1].value = data1[0].hy2;
+                                        document.getElementsByName("hy" + (i + 1) + "")[2].value = data1[0].hy3;
+                                        document.getElementsByName("hy" + (i + 1) + "")[3].value = data1[0].hy4;
+                                        document.getElementsByName("hy" + (i + 1) + "")[4].value = data1[0].hy5;
+                                        document.getElementsByName("hy" + (i + 1) + "")[5].value = data1[0].hy6;
+                                        document.getElementsByName("hy" + (i + 1) + "")[6].value = data1[0].hy7;
                                     }
                                 }
                             });
                         }
                     } else {
                         if (pdsj) {
-                            $('').prop('', true);
+                            $('#issjd2').prop('checked', true);
                             $.ajax({
-                                url: "" + ghpbId,
-                                dataType: "",
+                                url: "/OutPatientManage/OutBook/getDateInfo?ghpbId=" + ghpbId,
+                                dataType: "json",
                                 async: false,
                                 success: function (data) {
-                                    $("").formSerialize(data);
-                                    if (data && data.isBook == "") {
-                                        $('').prop('', true);
-                                    } else { $('').prop('', true); }
+                                    $("#form1").formSerialize(data);
+                                    if (data && data.isBook == "1") {
+                                        $('#isBook1').prop('checked', true);
+                                    } else { $('#isBook2').prop('checked', true); }
                                 }
                             });
                         } else {
@@ -328,31 +328,31 @@
     function getDatemoren(pdsj) {
         if (!!ghpbId) {
             $.ajax({
-                url: "" + ghpbId,
-                dataType: "",
+                url: "/OutPatientManage/OutBook/getDateInfosjdcount?ghpbId=" + ghpbId,
+                dataType: "json",
                 async: false,
                 success: function (data) {
                     if (data != null && data != "") {
                         jzsjd();
-                        $('').prop('', true);
-                        var aa = document.getElementsByName('');
+                        $('#issjd1').prop('checked', true);
+                        var aa = document.getElementsByName('timestr');
                         for (var i = 0; i < aa.length; i++) {
                             $.ajax({
-                                url: "" + ghpbId + "" + aa[i].value,
-                                dataType: "",
+                                url: "/OutPatientManage/OutBook/getDateTimeInfo?ghpbId=" + ghpbId + "&timeslot=" + aa[i].value,
+                                dataType: "json",
                                 async: false,
                                 success: function (data1) {
                                     if (data1 != null && data1 != "") {
-                                        if (data1[0].isBook == "") {
-                                            $('').prop('', true);
-                                        } else { $('').prop('', true); }
-                                        document.getElementsByName("" + (i + 1) + "")[0].value = $('').val();
-                                        document.getElementsByName("" + (i + 1) + "")[1].value = $('').val();
-                                        document.getElementsByName("" + (i + 1) + "")[2].value = $('').val();
-                                        document.getElementsByName("" + (i + 1) + "")[3].value = $('').val();
-                                        document.getElementsByName("" + (i + 1) + "")[4].value = $('').val();
-                                        document.getElementsByName("" + (i + 1) + "")[5].value = $('').val();
-                                        document.getElementsByName("" + (i + 1) + "")[6].value = $('').val();
+                                        if (data1[0].isBook == "1") {
+                                            $('#isBook1').prop('checked', true);
+                                        } else { $('#isBook2').prop('checked', true); }
+                                        document.getElementsByName("hy" + (i + 1) + "")[0].value = $('#mrhys').val();
+                                        document.getElementsByName("hy" + (i + 1) + "")[1].value = $('#mrhys').val();
+                                        document.getElementsByName("hy" + (i + 1) + "")[2].value = $('#mrhys').val();
+                                        document.getElementsByName("hy" + (i + 1) + "")[3].value = $('#mrhys').val();
+                                        document.getElementsByName("hy" + (i + 1) + "")[4].value = $('#mrhys').val();
+                                        document.getElementsByName("hy" + (i + 1) + "")[5].value = $('#mrhys').val();
+                                        document.getElementsByName("hy" + (i + 1) + "")[6].value = $('#mrhys').val();
                                     }
                                 }
                             });
@@ -365,11 +365,11 @@
     //确定按钮点击事件
     function AcceptClick(callBack) {
         debugger;
-        if (!$('').formValid()) {
+        if (!$('#form1').formValid()) {
             return false;
         }
-        var postData = $("").formSerialize();
-        postData.zt = postData.zt == true ? "" : "";
+        var postData = $("#form1").formSerialize();
+        postData.zt = postData.zt == true ? "1" : "0";
         if (postData.sfxmmc == "") {
             postData.ghlx = "";
         }
@@ -379,8 +379,8 @@
         if (postData.ksmz == "") {
             postData.ks = "";
         }
-        if (postData.mjzbz == '' && (postData.ys == '' || postData.ysxm == '')) {
-            $.modalAlert("", '');
+        if (postData.mjzbz == '3' && (postData.ys == '' || postData.ysxm == '')) {
+            $.modalAlert("专家门诊必须选择专家医生", 'warning');
             return false;
         }
         if (postData.ysxm=="") {
@@ -389,14 +389,14 @@
         if (postData.ys=="") {
             postData.ysxm = ""
         }
-        if ($('').prop('')) {
-            postData.isBook = '';
-        } else { postData.isBook = '';}
-        if ($('').prop('')) {
-            if (ghpbId != null && ghpbId != "" && ghpbId != "") {
+        if ($('#isBook1').prop('checked')) {
+            postData.isBook = '1';
+        } else { postData.isBook = '0';}
+        if ($('#issjd1').prop('checked')) {
+            if (ghpbId != null && ghpbId != "" && ghpbId != "0") {
                 $.ajax({
-                    url: "" + ghpbId,
-                    dataType: "",
+                    url: "/OutPatientManage/OutBook/DeleteArrange?ghpbId=" + ghpbId,
+                    dataType: "json",
                     async: false,
                     success: function () {
                     }
@@ -404,7 +404,7 @@
             }
             else {
                 for (var i = 1; i <= 1; i++) {
-                    var aa = document.getElementsByName('' + i);
+                    var aa = document.getElementsByName('hy' + i);
                     postData.hy1 = aa[0].value;
                     postData.hy2 = aa[1].value;
                     postData.hy3 = aa[2].value;
@@ -412,10 +412,10 @@
                     postData.hy5 = aa[4].value;
                     postData.hy6 = aa[5].value;
                     postData.hy7 = aa[6].value;
-                    postData.sjd = $('' + i).val();
+                    postData.sjd = $('#sjd' + i).val();
                     $.ajax({
-                        url: "" + ghpbId,
-                        dataType: "",
+                        url: "/OutPatientManage/OutBook/SubmitArrangeADD?ghpbId=" + ghpbId,
+                        dataType: "json",
                         data: postData,
                         async: false,
                         success: function (ghpbIdNew) {
@@ -423,7 +423,7 @@
                         }
                     });
                     //$.submitForm({
-                    //    url: "" + ghpbId,
+                    //    url: "/OutPatientManage/OutBook/SubmitArrangeADD?ghpbId=" + ghpbId,
                     //    param: postData,
                     //    async: false,
                     //    success: function (ghpbIdNew) {
@@ -431,8 +431,8 @@
                     //    }
                     //})
                     $.ajax({
-                        url: "" + ghpbId,
-                        dataType: "",
+                        url: "/OutPatientManage/OutBook/DeleteArrange?ghpbId=" + ghpbId,
+                        dataType: "json",
                         async: false,
                         success: function () {
                         }
@@ -440,9 +440,9 @@
                 }
                 
             }
-            if (ghpbId != null && ghpbId != "" && ghpbId != "") {
+            if (ghpbId != null && ghpbId != "" && ghpbId != "0") {
                 for (var i = 1; i <= inttime; i++) {
-                    var aa = document.getElementsByName('' + i);
+                    var aa = document.getElementsByName('hy' + i);
                     postData.hy1 = aa[0].value;
                     postData.hy2 = aa[1].value;
                     postData.hy3 = aa[2].value;
@@ -450,10 +450,10 @@
                     postData.hy5 = aa[4].value;
                     postData.hy6 = aa[5].value;
                     postData.hy7 = aa[6].value;
-                    postData.sjd = $('' + i).val();
+                    postData.sjd = $('#sjd' + i).val();
                     $.ajax({
-                        url: "" + ghpbId,
-                        dataType: "",
+                        url: "/OutPatientManage/OutBook/SubmitArrange?ghpbId=" + ghpbId,
+                        dataType: "json",
                         data: postData,
                         async: false,
                         success: function () {
@@ -468,15 +468,15 @@
         } else {
             if (ghpbId != null && ghpbId != "") {
                 $.ajax({
-                    url: "" + ghpbId,
-                    dataType: "",
+                    url: "/OutPatientManage/OutBook/DeleteArrange?ghpbId=" + ghpbId,
+                    dataType: "json",
                     async: false,
                     success: function () {
                     }
                 });
             }
             $.submitForm({
-                url: "" + ghpbId,
+                url: "/OutPatientManage/OutBook/SubmitArrange?ghpbId=" + ghpbId,
                 param: postData,
                 success: function () {
                     callBack();
@@ -487,96 +487,96 @@
     }
 
 
-    //Hạng mục đăng ký khám
-    $('').newtouchFloatingSelector({
+    //挂号项目
+    $('#sfxmmc').newtouchFloatingSelector({
         width: 600,
         height: 220,
-        caption: "",
+        caption: "收费项目",
         clickautotrigger: true,
-        url: '',
+        url: '/SystemManage/BaseData/SelectSfxmYp',
         ajaxparameters: function () {
-            return "" + $.trim($('').val()) + "";
+            return "keyword=" + $.trim($('#sfxmmc').val()) + "&mzzybz=1&dllb=2&sfdllx=OutpatientReg";
         },
         itemdbclickhandler: function ($thistr) {
-            $('').attr('', $thistr.attr(''))
-                .attr('', $thistr.attr(''))
-                .val($thistr.attr(''));
-            $('').attr('', $thistr.attr(''))
-                .attr('', $thistr.attr(''))
-                .val($thistr.attr(''));
+            $('#sfxmmc').attr('data-ghlx', $thistr.attr('data-sfxmCode'))
+                .attr('data-sfxmmc', $thistr.attr('data-sfxmmc'))
+                .val($thistr.attr('data-sfxmmc'));
+            $('#ghlx').attr('data-ghlx', $thistr.attr('data-sfxmCode'))
+                .attr('data-sfxmmc', $thistr.attr('data-sfxmmc'))
+                .val($thistr.attr('data-sfxmCode'));
         },
-        colModel: [{ label: '', name: '', widthratio: 15 },
-        { label: '', name: '', widthratio: 25 },
-        { label: '', name: '', widthratio: 15 },
-        { label: '', name: '', widthratio: 8 },
-        { label: '', name: '', widthratio: 10 },
-        { label: '', name: '', widthratio: 15 },
+        colModel: [{ label: '编码', name: 'sfxmCode', widthratio: 15 },
+        { label: '名称', name: 'sfxmmc', widthratio: 25 },
+        { label: '拼音', name: 'py', widthratio: 15 },
+        { label: '单位', name: 'dw', widthratio: 8 },
+        { label: '单价', name: 'dj', widthratio: 10 },
+        { label: '收费大类', name: 'sfdlmc', widthratio: 15 },
         ]
     });
 
-    $('').newtouchFloatingSelector({
+    $('#zlxmmc').newtouchFloatingSelector({
         width: 600,
         height: 180,
-        caption: "",
+        caption: "诊疗项目",
         clickautotrigger: true,
-            url: '',
+            url: '/OutpatientManage/OutBook/GetMzpbZlxmzhList',
         ajaxparameters: function () {
-            return "" + $.trim($('').val()) + "";
+            return "keyword=" + $.trim($('#zlxmmc').val()) + "&zhcode=";
         },
         itemdbclickhandler: function ($thistr) {
-            $('').attr('', $thistr.attr(''))
-                .attr('', $thistr.attr(''))
-                .val($thistr.attr(''));
-            $('').attr('', $thistr.attr(''))
-                .attr('', $thistr.attr(''))
-                .val($thistr.attr(''));
+            $('#zlxmmc').attr('data-zhcode', $thistr.attr('data-zhcode'))
+                .attr('data-zhmc', $thistr.attr('data-zhmc'))
+                .val($thistr.attr('data-zhmc'));
+            $('#zlxm').attr('data-zhcode', $thistr.attr('data-zhcode'))
+                .attr('data-zhmc', $thistr.attr('data-zhmc'))
+                .val($thistr.attr('data-zhcode'));
         },
-        colModel: [{ label: '', name: '', widthratio: 15 },
-            { label: '', name: '', widthratio: 55 },
-            { label: '', name: '', widthratio: 10 },
-            //{ label: '', name: '', widthratio: 15 },
+        colModel: [{ label: '编码', name: 'zhcode', widthratio: 15 },
+            { label: '名称', name: 'zhmc', widthratio: 55 },
+            { label: '金额', name: 'zhje', widthratio: 10 },
+            //{ label: '收费大类', name: 'sfdl', widthratio: 15 },
         ]
     });
 
-    //Hạng mục chẩn trị
-    //$('').newtouchFloatingSelector({
+    //诊疗项目
+    //$('#zlxmmc').newtouchFloatingSelector({
     //    width: 600,
     //    height: 180,
-    //    caption: "",
+    //    caption: "诊疗项目",
     //    clickautotrigger: true,
-    //    url: '',
+    //    url: '/SystemManage/BaseData/SelectSfxmYp',
     //    ajaxparameters: function () {
-    //        return "" + $.trim($('').val()) + "";
+    //        return "keyword=" + $.trim($('#zlxmmc').val()) + "&mzzybz=1&dllb=2&sfdllx=Diagnose";
     //    },
     //    itemdbclickhandler: function ($thistr) {
-    //        $('').attr('', $thistr.attr(''))
-    //            .attr('', $thistr.attr(''))
-    //            .val($thistr.attr(''));
-    //        $('').attr('', $thistr.attr(''))
-    //            .attr('', $thistr.attr(''))
-    //            .val($thistr.attr(''));
+    //        $('#zlxmmc').attr('data-zlxm', $thistr.attr('data-sfxmCode'))
+    //            .attr('data-sfxmmc', $thistr.attr('data-sfxmmc'))
+    //            .val($thistr.attr('data-sfxmmc'));
+    //        $('#zlxm').attr('data-zlxm', $thistr.attr('data-sfxmCode'))
+    //            .attr('data-sfxmmc', $thistr.attr('data-sfxmmc'))
+    //            .val($thistr.attr('data-sfxmCode'));
     //    },
-    //    colModel: [{ label: '', name: '', widthratio: 15 },
-    //    { label: '', name: '', widthratio: 25 },
-    //    { label: '', name: '', widthratio: 15 },
-    //    { label: '', name: '', widthratio: 8 },
-    //    { label: '', name: '', widthratio: 10 },
-    //    { label: '', name: '', widthratio: 15 },
+    //    colModel: [{ label: '编码', name: 'sfxmCode', widthratio: 15 },
+    //    { label: '名称', name: 'sfxmmc', widthratio: 25 },
+    //    { label: '拼音', name: 'py', widthratio: 15 },
+    //    { label: '单位', name: 'dw', widthratio: 8 },
+    //    { label: '单价', name: 'dj', widthratio: 10 },
+    //    { label: '收费大类', name: 'sfdlmc', widthratio: 15 },
     //    ]
     //});
 
-    //Khoa
-    $('').newtouchFloatingSelector({
+    //科室
+    $('#ksmz').newtouchFloatingSelector({
         width: 400,
         height: 180,
-        caption: "",
+        caption: "科室",
         clickautotrigger: true,
         /*
-        url: '',
-        ajaxmethod: '',
+        url: '/OutpatientManage/OutpatientRegSchedule/GetSysDepartmentList',
+        ajaxmethod: 'POST',
         ajaxreqdata: function () {
             var reqData = {};
-            reqData.keyword = $("").val();
+            reqData.keyword = $("#ksmz").val();
             return reqData;
         },
         */
@@ -584,7 +584,7 @@
             var resultObjArr = new Array();
             $.each(top.window.clients.sysDepartList, function (idx, val) {
                 if (keyword == "" || val.Name.indexOf(keyword) >= 0) {
-                    if (val.zlks == "" || val.zlks == undefined || val.zlks == null) {
+                    if (val.zlks == "1" || val.zlks == undefined || val.zlks == null) {
                         resultObjArr.push(val);
                     }
                 }
@@ -592,102 +592,102 @@
             return resultObjArr;
         },
         itemdbclickhandler: function ($thistr) {
-            $('').attr('', $thistr.attr(''))
-                .val($thistr.attr(''));
-            $('').attr('', $thistr.attr(''))
-                .val($thistr.attr(''));
-            ////Họ tên bác sĩ lấy số hiệu khoa theo
-            //var ks = $thistr.attr('');
+            $('#ksmz').attr('data-ks', $thistr.attr('data-code'))
+                .val($thistr.attr('data-Name'));
+            $('#ks').attr('data-ks', $thistr.attr('data-code'))
+                .val($thistr.attr('data-code'));
+            ////根据科室编号获取医生姓名
+            //var ks = $thistr.attr('data-code');
 
             //$.ajax({
-            //    url: "" + ks,
-            //    dataType: "",
+            //    url: "/OutPatientManage/OutBook/getStaffByKs?ks=" + ks,
+            //    dataType: "json",
             //    async: false,
             //    success: function (data) {
             //        var staff = "";
             //        for (i = 0; i < data.length; i++) {
-            //            staff += data[i] + "";
+            //            staff += data[i] + ",";
             //        }
-            //        if (staff.indexOf("") != -1) {
+            //        if (staff.indexOf(",") != -1) {
             //            staff = staff.substring(0, staff.length - 1);
             //        }
-            //        $("").val(staff);
+            //        $("#ysxm").val(staff);
             //    }
             //});
         },
-        colModel: [{ label: '', name: '', widthratio: 30 },
-        { label: '', name: '', widthratio: 30 },
-        { label: '', name: '', widthratio: 30 }
+        colModel: [{ label: '代码', name: 'Code', widthratio: 30 },
+        { label: '科室名称', name: 'Name', widthratio: 30 },
+        { label: '拼音', name: 'py', widthratio: 30 }
         ]
     });
 
-    ///Bác sĩ
-    $("").newtouchFloatingSelector({
+    ///医生
+    $("#ysxm").newtouchFloatingSelector({
         height: 200,
         width: 300,
         clickautotrigger: true,
         filter: function (keyword) {
-            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
+            //遍历数据源，用keyword来筛选出结果
             var resultObjArr = new Array();
 
             $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
                 if (((val.StaffPY && val.StaffPY.toLowerCase().indexOf(keyword.toLowerCase()) >= 0)
                     || (val.StaffName && val.StaffName.indexOf(keyword.toLowerCase()) >= 0)
                     || keyword.trim() == "")
-                    && (val.DutyCode == "")) {
+                    && (val.DutyCode == "Doctor")) {
                     resultObjArr.push(val);
                 }
             });
             return resultObjArr;
 
         },
-        caption: "",
+        caption: "医生",
         colModel: [
             {
-                label: '', name: '', widthratio: 25
+                label: '工号', name: 'StaffGh', widthratio: 25
             },
             {
-                label: '', name: '', widthratio: 25
+                label: '名称', name: 'StaffName', widthratio: 25
             },
-            { label: '', name: '', widthratio: 25 }
+            { label: '拼音', name: 'StaffPY', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
-            $("").attr("", $thistr.find("").html());
-            $("").val($thistr.find('').html());
-            $("").val($thistr.find('').html());
+            $("#ysxm").attr("data-label", $thistr.find("td:eq(0)").html());
+            $("#ysxm").val($thistr.find('td:eq(1)').html());
+            $("#ys").val($thistr.find('td:eq(0)').html());
             return;
         }
     });
     //新增时段选择
     function btn_add(inttimede) {
-        var sjd = $('').val();
+        var sjd = $('#sjd').val();
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + sjd,
-            width: "",
-            height: "",
+            id: "TimeForm",
+            title: "编辑排班时间",
+            url: "/OutPatientManage/OutBook/TimeForm?type=add&sjd=" + sjd,
+            width: "600px",
+            height: "600px",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function (hysd) {
                     if (hysd != null && hysd != "") {
-                        $('').val(hysd);
+                        $('#sjd').val(hysd);
                         for (var p = 1; p <= inttime; p++) {
                             btn_clertime(p);
                         }
                         inttime = 1;
-                        if (hysd.split('').length - 1!=0) {
-                            btn_addtime(hysd.split('').length - 1);
+                        if (hysd.split(',').length - 1!=0) {
+                            btn_addtime(hysd.split(',').length - 1);
                         }
                         for (var u = 1; u <= inttime; u++) {
-                            $("" + u).html('');
+                            $("#sjxz" + u).html('');
                         }
                         for (var j = 1; j <= inttime; j++) {
-                            for (var i = 0; i < hysd.split('').length; i++) {
+                            for (var i = 0; i < hysd.split(',').length; i++) {
                                 if (i == (j - 1)) {
-                                    $("" + j).append("" + i + "" + hysd.split('')[i] + "");
+                                    $("#sjxz" + j).append("<option value='" + i + "' selected>" + hysd.split(',')[i] + "</option>");
                                 }
                                 else { 
-                                    $("" + j).append("" + i + "" + hysd.split('')[i] + "");
+                                    $("#sjxz" + j).append("<option value='" + i + "'>" + hysd.split(',')[i] + "</option>");
                                 }
                             }
                         }
@@ -698,6 +698,6 @@
         });
     }
     function btn_remove(i) {
-        $('' + i).val('');
+        $('#sjd' + i).val('');
     }
 </script>

@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width" />
     <title>雷达图</title>
     <link href="~/Content/css/framework-theme.css" rel="stylesheet" />
-    <script src=""></script>
-    <script src=""></script>
+    <script src="~/Content/js/jquery/jquery-2.1.1.min.js"></script>
+    <script src="~/Content/js/highcharts/highcharts.js"></script>
     <script>
         $(function () {
-            $('').highcharts({
+            $('#container').highcharts({
 
                 chart: {
                     polar: true
                 },
 
                 title: {
-                    text: ''
+                    text: '雷达图'
                 },
 
                 pane: {
@@ -30,7 +30,7 @@
                     max: 360,
                     labels: {
                         formatter: function () {
-                            return this.value + '';
+                            return this.value + '°';
                         }
                     }
                 },
@@ -51,17 +51,17 @@
                 },
 
                 series: [{
-                    type: '',
-                    name: '',
+                    type: 'column',
+                    name: '条',
                     data: [8, 7, 6, 5, 4, 3, 2, 1],
-                    pointPlacement: ''
+                    pointPlacement: 'between'
                 }, {
-                    type: '',
-                    name: '',
+                    type: 'line',
+                    name: '线',
                     data: [1, 2, 3, 4, 5, 6, 7, 8]
                 }, {
-                    type: '',
-                    name: '',
+                    type: 'area',
+                    name: '面',
                     data: [1, 8, 2, 7, 3, 6, 4, 5]
                 }]
             });

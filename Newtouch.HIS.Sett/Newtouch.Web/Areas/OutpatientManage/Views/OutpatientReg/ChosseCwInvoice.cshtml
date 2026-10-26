@@ -1,14 +1,14 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "ChoosecwReceipt";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
 <form id="formReceipt">
     <div style="margin-top:40px;margin-right:40px;">
         <table class="form">
             <tr>
-                <th class="formTitle dialogText">Số chứng từ：</th>
+                <th class="formTitle dialogText">凭证号：</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="txtpzh" name="txtpzh" required value="">
                 </td>
@@ -22,35 +22,35 @@
 
 <script>
     $(function () {
-        var sjh = $.currentWindow().$("").val();
+        var sjh = $.currentWindow().$("#txtlpzh").val();
         if(sjh){
-            $("").val(sjh);
+            $("#txtpzh").val(sjh);
         } else
         {
-            //Lấy số chứng từ biên lai
+            //获取收据凭证号
             GetReceiptByEmpCode();
         }
     })
 
     function GetReceiptByEmpCode() {
         $.najax({
-            url: "",
-            dataType: "",
+            url: "/PatientManage/AccountManage/GetReceipt",
+            dataType: "json",
             async: false,
             cache: false,
             success: function (data) {
                 if (data.data) {
-                    $("").val("");
-                    $("").text(data.data);
+                    $("#txtpzh").val("");
+                    $("#lblMsg").text(data.data);
                 }
             }
         });
     }
 
-    //Xác nhận
+    //确定
     function ReceiptConfirm()
     {
-        var pzh = $("").val();
+        var pzh = $("#txtpzh").val();
         if (checkPZH(pzh))
         {
             checkExitPZH(pzh);
@@ -61,15 +61,15 @@
     function checkPZH(pzh)
     {
         var szm = pzh.substring(0, 1);
-        var reg = new RegExp("");
-        //Không ký tự cái một thứ số hóa đơn nếu là số，Chữ cái đầu cho thì
+        var reg = new RegExp("^[0-9]*$");
+        //如果发票号第一个字符不是数字，则为首字母
         if (!reg.test(szm))
         {
             szm = pzh.substring(0, 1);
             if (!reg.test(pzh.substring(1,pzh.length-1)))
             {
-                var msg = "";
-                $("").text(msg);
+                var msg = "收据号除首字母外必须为数字。";
+                $("#lblMsg").text(msg);
                 return false;
              }
         }
@@ -78,26 +78,26 @@
             szm = "";
             if (!reg.test(pzh))
             {
-                var msg = "";
-                $("").text(msg);
+                var msg = "收据号必须为数字。";
+                $("#lblMsg").text(msg);
                 return false;
             }
         }
         return true;
     }
 
-    //Số chứng từ xác minh phía máy chủ
+    //后台验证凭证号
     function checkExitPZH(pzh)
     {
         $.najax({
-            type: "",
-            url: "",
+            type: "POST",
+            url: "/PatientManage/AccountManage/CheckReceipt",
             data: { pzh: pzh },
-            dataType: "",
+            dataType: "json",
             cache: false,
             success: function (resdata) {
                 if (resdata.data) {
-                    $.currentWindow().$("").val(pzh);
+                    $.currentWindow().$("#txtlpzh").val(pzh);
                     $.modalClose();
                 }
             },
@@ -107,7 +107,7 @@
         });
     }
 
-    //Hủy
+    //取消
     function ReceiptCancle()
     {
         $.modalClose();

@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lấygridgiá trị của
+        /// 获取grid的值
         /// </summary>
         /// <returns></returns>
         public ActionResult GetbzGridJson(Pagination pagination, string keyword)
@@ -50,7 +50,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Khi sửa thông tin，Đưa thông tin sang trang mới
+        /// 修改信息时，把信息带到新页面
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

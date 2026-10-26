@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Web.Areas.PayManage.Controllers
         private readonly IPayApp _PayApp;
 
         /// <summary>
-        /// Thanh toán bằng mã thanh toán
+        /// 付款码支付
         /// </summary>
         /// <returns></returns>
         public ActionResult MicroPay()
@@ -121,8 +121,8 @@ namespace Newtouch.HIS.Web.Areas.PayManage.Controllers
                                 var data = new
                                 {
                                     outTradeNo = out_trade_no,    //商户订单号
-                                    tradeNo = payresult.TradeNo,   //Số giao dịch bên thứ ba
-                                    payType = payresult.PayType,    //Phương thức thanh toán
+                                    tradeNo = payresult.TradeNo,   //第三方交易号
+                                    payType = payresult.PayType,    //支付方式
                                 };
 
                                 return Success(null, data);
@@ -165,8 +165,8 @@ namespace Newtouch.HIS.Web.Areas.PayManage.Controllers
                         var data = new
                         {
                             outTradeNo = out_trade_no,    //商户订单号
-                            tradeNo = DateTime.Now.Ticks,   //Số giao dịch bên thứ ba
-                            payType = payresult.PayType,    //Phương thức thanh toán
+                            tradeNo = DateTime.Now.Ticks,   //第三方交易号
+                            payType = payresult.PayType,    //支付方式
                         };
 
                         return Success(null, data);
@@ -214,11 +214,11 @@ namespace Newtouch.HIS.Web.Areas.PayManage.Controllers
         public ActionResult Opr_TradeRefund(string outTradeNo, decimal refundAmount,string Reason,string OutRequestNo=null)
         {
             bool? isTradeRefundError = null;
-            if (!string.IsNullOrWhiteSpace(outTradeNo) && refundAmount > 0)   //Trả lại đường gốc cần
+            if (!string.IsNullOrWhiteSpace(outTradeNo) && refundAmount > 0)   //需要原路退回
             {
                 string errorMsg;
                 var refundReuslt = _PayApp.TradeRefund(outTradeNo, refundAmount, Reason, OutRequestNo, out errorMsg);
-                isTradeRefundError = refundReuslt == (int)EnumRefundStatus.Failed || refundReuslt == (int)EnumRefundStatus.UnKnown;    //Thất bại Hoặc Không rõ
+                isTradeRefundError = refundReuslt == (int)EnumRefundStatus.Failed || refundReuslt == (int)EnumRefundStatus.UnKnown;    //失败 或 未知
                 if (isTradeRefundError==true)
                 {
                     return Error("退款失败，请重试");

@@ -13,7 +13,7 @@ using StackExchange.Redis.Extensions.Core.Extensions;
 namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
-    /// Người dùng hệ thống 扩展
+    /// 系统用户 扩展
     /// </summary>
     [AutoResolveIgnore]
     public class UserController : FrameworkBase.MultiOrg.Web.Areas.SystemManage.Controllers.SysUserController
@@ -51,7 +51,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取系统用户树 Cấp ba（Cơ quan+Khoa+Người dùng）
+        /// 获取系统用户树 三级（机构+科室+用户）
         /// 要求 用户已关联人员
         /// </summary>
         /// <param name="organizeId"></param>
@@ -59,7 +59,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         /// <param name="from"></param>
         /// <param name="isExpand"></param>
         /// <param name="isContansChildOrg"></param>
-        /// <param name="isShowEmpty">是否显示空白节点（Khoa）</param>
+        /// <param name="isShowEmpty">是否显示空白节点（科室）</param>
         /// <returns></returns>
         [HandlerAjaxOnly]
         public override ActionResult GetSysUserSelectorTree(string organizeId = null, string keyValue = null, string from = null, bool isExpand = true, bool isContansChildOrg = true
@@ -79,11 +79,11 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
                 , funcTreeItemFilter: funcTreeItemFilter);
         }
         /// <summary>
-        /// 获取系统用户树 Cấp hai（Khoa+Người dùng（Nhân viên））-Tra cứu có thể
+        /// 获取系统用户树 两级（科室+用户（人员））-可查询
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="from"></param>
-        /// <param name="isShowEmpty">是否显示空白节点（Nút khoa）</param>
+        /// <param name="isShowEmpty">是否显示空白节点（科室节点）</param>
         /// <param name="isExpand"></param>
         /// <returns></returns>
         [HandlerAjaxOnly]
@@ -135,7 +135,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
                 deptTree.text = deptItem.Name;
                 deptTree.value = deptItem.Code;
                 deptTree.parentId = deptItem.ParentId;
-                deptTree.isexpand = isExpand;  //Mặc định Không mở rộng，人太多
+                deptTree.isexpand = isExpand;  //默认不展开，人太多
                 deptTree.complete = true;
                 deptTree.showcheck = false;
                 //deptTree.hasChildren = deptUserStaffData.Count > 0 || detpData.Any(p => p.ParentId == deptItem.Id);
@@ -156,15 +156,15 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             }
 
             #region 补充父节点 start
-            // by haijiang.mo 修复搜索二级以下的子部门用户，因无法构建出树结构，Tìm kiếm mà thất bại
+            // by haijiang.mo 修复搜索二级以下的子部门用户，因无法构建出树结构，而搜索失败
             var parentDeptList = new HashSet<string>();
-            // 控制总计算深度，Dữ liệu vì ngăn lỗi，找不到父节点死循环
+            // 控制总计算深度，防止因为数据错误，找不到父节点死循环
             var totalReFindParent = 10;
             do
             {
                 totalReFindParent--;
                 parentDeptList = new HashSet<string>();
-                // 找出treeList Không có trongparentId của 
+                // 找出treeList 中没有parentId 的 
                 foreach (TreeViewModel item in treeList)
                 {
                     if (item.parentId == null)
@@ -195,7 +195,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
                         deptTree.text = deptItem.Name;
                         deptTree.value = deptItem.Code;
                         deptTree.parentId = deptItem.ParentId;
-                        deptTree.isexpand = isExpand;  //Mặc định Không mở rộng，人太多
+                        deptTree.isexpand = isExpand;  //默认不展开，人太多
                         deptTree.complete = true;
                         deptTree.showcheck = false;
                         deptTree.hasChildren = true;
@@ -206,8 +206,8 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             } while (parentDeptList.Count > 0 && totalReFindParent > 0);
             #endregion 补充父节点 end
 
-            //Bộ nhớ đệmend
-            IList<RoleUnionUser> checkedUserList = null; //Đãcheckedngười dùng
+            //缓存end
+            IList<RoleUnionUser> checkedUserList = null; //已checked的用户
             if (from == "rolerelatioinuser" && !string.IsNullOrWhiteSpace(keyValue))   //角色已关联用户
             {
                 checkedUserList = _outPatientChargeQueryDmnService.GetCurUserIdListRoleId(keyValue);
@@ -235,7 +235,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
                         var thisParentNode = treeList.Where(p => p.id == treeItem.parentId).FirstOrDefault();
                         if (thisParentNode != null)
                         {
-                            thisParentNode.isexpand = true;  //đã chọn có cấp dưới，这里一定展开之
+                            thisParentNode.isexpand = true;  //下级有选中的，这里一定展开之
                         }
                     }
                 }

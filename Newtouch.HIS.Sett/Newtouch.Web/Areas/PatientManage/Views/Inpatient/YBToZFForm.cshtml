@@ -1,20 +1,20 @@
 ﻿@{
-    Layout = "";
+    Layout = "~/Views/Shared/_Index.cshtml";
 
-    var isZFtoYB = SysConfigReader.Bool("", false).Value;
-    var isYBtoZF = SysConfigReader.Bool("", false).Value;
+    var isZFtoYB = SysConfigReader.Bool("Inpatient_Open_ZF_to_YB", false).Value;
+    var isYBtoZF = SysConfigReader.Bool("Inpatient_Open_YB_to_ZF", false).Value;
 
-    //Có giao dịch bảo hiểm y tế không
-    var openYbSett = SysConfigReader.Bool("");
-    //Địa bàn bảo hiểm y tế，区分系统将执行何处医保逻辑
-    var medicalInsurance = SysConfigReader.String("");
-    //HISSố hiệu nhà sản xuất
-    var his_manufacturerID = SysConfigReader.String("");
+    //是否和医保交易
+    var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
+    //医保所属地，区分系统将执行何处医保逻辑
+    var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
+    //HIS厂商编号
+    var his_manufacturerID = SysConfigReader.String("HIS_ManufacturerID");
 
     var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
 }
 
-@Html.Partial("")
+@Html.Partial("_YibaoCommonView")
 <style type="text/css">
     * {
         font-size: 20px;
@@ -39,16 +39,16 @@
 
 <ol>
     <li><span>住院患者信息初步判断</span></li>
-    <li><span>Kiểm tra môi trường bảo hiểm y tế</span></li>
+    <li><span>医保环境检查</span></li>
     <li><span>HIS唯一身份验证</span></li>
-    <li><span>Tương tác bảo hiểm y tế.Trả lại lần làm thủ tục nhập viện</span></li>
-    <li><span>Cập nhậtHIS.医保转自费</span></li>
-    <li><span>Tương tác bảo hiểm y tế.Xác nhận trả lại lần làm thủ tục nhập viện</span></li>
+    <li><span>医保交互.入院办理回退</span></li>
+    <li><span>更新HIS.医保转自费</span></li>
+    <li><span>医保交互.入院办理回退确认</span></li>
     <li><span>同步数据至医生站</span></li>
-    <li><span>Thành công</span></li>
+    <li><span>成功</span></li>
 </ol>
 
-<script type="">
+<script type="text/javascript">
     $(function () {
         go();
 
@@ -57,29 +57,29 @@
     //递归调用each step
     function go(stepFuncName) {
         if (!!!stepFuncName) {
-            stepFuncName = "" + 1;
-            //stepFuncName = "" + 7;
+            stepFuncName = "funcStep" + 1;
+            //stepFuncName = "funcStep" + 7;
         }
         setTimeout(function () {
             var func = window[stepFuncName];
             if (!!!func) {
-                console.log('');
+                console.log('step function not found');
                 return;
             }
-            var indx = parseInt(stepFuncName.substring("".length));
-            var $iTemp = $('');
-            $iTemp.appendTo($('' + (indx - 1) + ''));
+            var indx = parseInt(stepFuncName.substring("funcStep".length));
+            var $iTemp = $('<i>...executing...</i>');
+            $iTemp.appendTo($('ol li:eq(' + (indx - 1) + ')'));
             var callback = function (isStepSuccess) {
                 $iTemp.remove();
                 if (isStepSuccess === true) {
-                    $('' + (indx - 1) + '').append('');
-                    //Tiếp tục một dưới gọistep function
-                    if ($('').length > indx) {
-                        go("" + (indx + 1));
+                    $('ol li:eq(' + (indx - 1) + ')').append('<i class="fa fa-check passing"></i>');
+                    //继续调用下一step function
+                    if ($('ol li').length > indx) {
+                        go("funcStep" + (indx + 1));
                     }
                 }
                 else {
-                    $('' + (indx - 1) + '').append('');
+                    $('ol li:eq(' + (indx - 1) + ')').append('<i class="fa fa-times failed"></i>');
                 }
             };
             var flag = func(callback);
@@ -94,13 +94,13 @@
     }
 
 </script>
-<script type="">
+<script type="text/javascript">
 
-    var openYbSett = '' === ''; //Cấu hình công tắc：Bệnh nhân bảo hiểm y tế có sử dụng quy trình giao dịch bảo hiểm y tế không
-    var medicalInsurance = '';
+    var openYbSett = '@openYbSett' === 'True'; //开关配置：医保患者是否使用医保交易流程
+    var medicalInsurance = '@medicalInsurance';
 
-    var zyh = $.request('');
-    //Thông tin thẻ bảo hiểm y tế
+    var zyh = $.request('zyh');
+    //医保卡信息
     var cardInfo;
     //系统病人主键
     var patid;
@@ -109,16 +109,16 @@
     var cardxx;
     var garybl21;
     var medicalreg;
-    //Thông tin trả lại lần làm thủ tục nhập viện（Trả về giao diện bảo hiểm y tế）
+    //入院办理回退信息（医保接口返回）
     var ryblht;
 
     function funcStep1(nextStepCallback) {
         if (!!!zyh) {
-            $.modalAlert('', '');
+            $.modalAlert('缺少参数：zyh', 'error');
             return false;
         }
         $.najax({
-            url: "",
+            url: "/PatientManage/Inpatient/YBToZF_Step_1",
             data: { zyh: zyh },
             success: function (data) {
                 nextStepCallback(true);
@@ -134,14 +134,14 @@
     }
 
     function funcStep2(nextStepCallback) {
-        $.loading(true, '');
+        $.loading(true, '正在读卡...');
         setTimeout(function () {
             nextStepCallback(true);
         })
                 }
     function funcStep3(nextStepCallback) {
 		    $.najax({
-			    url: "",
+			    url: "/PatientManage/Inpatient/CqYBToZF_Step_3",
 			    data: { zyh: zyh},
 			    success: function (data) {
 			        zybrxx = data.data.zybrxx;
@@ -150,7 +150,7 @@
                     xtbrxx = data.data.xtbrxx;
                     cardxx = data.data.cardxx;
 				    if (!medicalreg) {
-					    $.modalAlert("", "");
+					    $.modalAlert("入院办理对应的医保数据落地记录未找到", "error");
 					    nextStepCallback(false);
 					    return;
 				    }
@@ -168,34 +168,34 @@
 
     function funcStep4(nextStepCallback) {
         
-	    $.loading(true, '');
+	    $.loading(true, '正在医保入院办理回退...');
 	    var bkbz =cardxx.accountattr ? cardxx.accountattr.substr(11, 1):"";
-	    var gbbz =cardxx.accountattr ? cardxx.accountattr.substr(1, 1):"";//Bảo hiểm cán bộ 1
+	    var gbbz =cardxx.accountattr ? cardxx.accountattr.substr(1, 1):"";//干保 1
        
-        if (bkbz == "" || bkbz == "" || gbbz == "") {
-            var jzlx = "";
+        if (bkbz == "G" || bkbz == "A" || gbbz == "1") {
+            var jzlx = "1";
             var payoptype = {
                 cardtype: jzlx,
                 carddata: cardxx.cardno,
-                hisId: zyh,//Số nhập viện
-                operatorId: '',
-                operatorName:  '',
+                hisId: zyh,//住院号
+                operatorId: '@(opr.rygh)',
+                operatorName:  '@(opr.UserName)',
                 insuplc_admdvs: xtbrxx.cbdbm
             };
             $.ajax({
-                type: "",
-                url: "",
-                dataType: "",
+                type: "POST",
+                url: "http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_SJ21",
+                dataType: "json",
                 data: payoptype,
                 async: false,
                 success: function (data) {
-                    var medicalReg = eval('' + data + '');
+                    var medicalReg = eval('(' + data + ')');
                     if (medicalReg) {
-                        if (medicalReg.xxfhm === "") {
+                        if (medicalReg.xxfhm === "P001") {
                             nextStepCallback(true);
                         }
                         else {
-                            $.modalAlert("" + medicalReg.err_msg, '');
+                            $.modalAlert("医保取消住院登记失败：" + medicalReg.err_msg, 'error');
                             $.loading(false);
                             nextStepCallback(false);
                         }
@@ -204,22 +204,22 @@
             });
         }else {
             var cqybjyDenySettleReturn;
-            var payoptype = { '': zyh, '': medicalreg.jylsh, '': '', "": '', '': cardxx.cbdbm, '': cardxx.grbh };
+            var payoptype = { 'hisId': zyh, 'mdtrt_id': medicalreg.jylsh, 'operatorId': '@(opr.rygh)', "operatorName": '@(opr.UserName)', 'insuplc_admdvs': cardxx.cbdbm, 'psn_no': cardxx.grbh };
 		    $.ajax({
-			    type: "",
-			    url: "",
-			    dataType: "",
+			    type: "POST",
+			    url: "http://127.0.0.1:33333/api/YiBao/HospitaUpMdtrtinfo_2404",
+			    dataType: "json",
 			    data: payoptype,
 			    async: false,
 			    success: function (data) {
-				    cqybjyDenySettleReturn = eval('' + data + '');
+				    cqybjyDenySettleReturn = eval('(' + data + ')');
 			    }
 		    });
 		    $.loading(false);
-		    if (cqybjyDenySettleReturn.infcode == "") {
+		    if (cqybjyDenySettleReturn.infcode == "0") {
 			    nextStepCallback(true);
 		    } else {
-		        $.modalAlert("" + cqybjyDenySettleReturn.err_msg, '');
+		        $.modalAlert("医保取消住院登记失败：" + cqybjyDenySettleReturn.err_msg, 'error');
 			    nextStepCallback(false);
 		    }
         }
@@ -227,7 +227,7 @@
 
     function funcStep5(nextStepCallback) {
         $.najax({
-            url: "",
+            url: "/PatientManage/Inpatient/YBToZF_Step_5",
             data: { zyh: zyh, patid: patid },
             success: function (data) {
                 nextStepCallback(true);
@@ -248,7 +248,7 @@
 
     function funcStep7(nextStepCallback) {
         $.najax({
-            url: "",
+            url: "/PatientManage/Inpatient/YBToZF_Step_7",
             data: { zyh: zyh },
             success: function (data) {
                 nextStepCallback(true);

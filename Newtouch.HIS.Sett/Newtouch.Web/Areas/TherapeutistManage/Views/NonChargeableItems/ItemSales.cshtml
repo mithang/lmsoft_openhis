@@ -1,49 +1,49 @@
 ﻿@{
-    ViewBag.Title = "";
+    ViewBag.Title = "ItemSales";
 
-    Layout = "";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 <script>
     $(function () {
         gridListData([]);
-        $("").hide();
-        $("").click(function () {
-            $("").fadeToggle();//.show();
+        $(".moreInfo").hide();
+        $("#disBtn").click(function () {
+            $(".moreInfo").fadeToggle();//.show();
         });
 
-        $("").change(function () {
+        $("#dm").change(function () {
             var val = this.value;
             switch (val) {
-                case "":
-                    $("").val("");
-                    $("").val("");
-                    $("").val("");
+                case "0":
+                    $("#fl").val("物理因子治疗");
+                    $("#zfy").val("5");
+                    $("#dj").val("5");
                     break;
-                case "":
-                    $("").val("");
-                    $("").val("");
-                    $("").val("");
+                case "1":
+                    $("#fl").val("运动、作业、言语");
+                    $("#zfy").val("60");
+                    $("#dj").val("60");
                     break;
-                case "":
-                    $("").val("");
-                    $("").val("");
-                    $("").val("");
+                case "2":
+                    $("#fl").val("针法、灸法、罐法");
+                    $("#zfy").val("3");
+                    $("#dj").val("3");
                     break;
                 default:
-                    $("").val("");
-                    $("").val("");
-                    $("").val("");
+                    $("#txtsfbz").val("");
+                    $("#txtzfy").val("");
+                    $("#txtzlsc").val("");
                     break;
             }
         });
 
-        $("").blur(function () {
+        $("#sl").blur(function () {
             var $this = Number($(this).val());
-            dj = $("").val();
-            $("").val(dj * Number($this));
+            dj = $("#dj").val();
+            $("#zfy").val(dj * Number($this));
         });
 
-        $("").keydown(function (event) {
+        $("#sl,#xs,#ks,#mc").keydown(function (event) {
             if ((event.keyCode || event.which) == 13) {
                 newtouch_globalevent_f6();
             }
@@ -51,49 +51,49 @@
     });
 
     function newtouch_globalevent_f6() {
-        var $gridList = $("");
-        var mydata = [{ id: "", sfxm: $("").find("").text(), fl: $("").val(), xs: $("").val(), dj: $("").val(), sl: $("").val(), zfbl: "", zfy: $("").val() * $("").val(), mc: $("").val() }]
+        var $gridList = $("#gridList");
+        var mydata = [{ id: "1", sfxm: $("#dm").find("option:selected").text(), fl: $("#fl").val(), xs: $("#xs").val(), dj: $("#dj").val(), sl: $("#sl").val(), zfbl: "0.0", zfy: $("#dj").val() * $("#sl").val(), mc: $("#mc").val() }]
         ;
         gridListData(mydata);
-        $gridList.jqGrid('', "").trigger("");
-        $("").html("" + $("").getCol('', false, ''));
+        $gridList.jqGrid('setGridParam', "unWritten:'false'").trigger("reloadGrid");
+        $("#total").html("￥" + $("#gridList").getCol('zfy', false, 'sum'));
         clearJZInfo();
     }
 
     function newtouch_globalevent_f7() {
-        var rowid = $('').jqGrid('', '');
+        var rowid = $('#gridList').jqGrid('getGridParam', 'selrow');
         EditSelectItem(rowid);
     }
 
     function newtouch_globalevent_f8() {
-        var rowid = $('').jqGrid('', '');
-        $("").jqGrid('', rowid);
+        var rowid = $('#gridList').jqGrid('getGridParam', 'selrow');
+        $("#gridList").jqGrid('delRowData', rowid);
     }
-    //Xóa thông tin ghi sổ
+    //清除记账信息
     function clearJZInfo() {
         newtouch_globalevent_f4(null, {
-            container: "",
+            container: "#HosBasicInfo",
             inner: false
         });
     }
 
-    //Liên kếtgrid
+    //绑定grid
     function gridListData(mydata) {
-        var $gridList = $("");
+        var $gridList = $("#gridList");
         $gridList.newtouchLocalDataGrid({
             height: $(window).height() - 345,
             shrinkToFit: true,
             footerrow: true,
             colModel: [
-                { label: "", name: "", hidden: true },
-                { label: '', name: '', width: 100, align: '', editor: "" },
-                  { label: '', name: '', width: 300, align: '', editor: "" },
-                { label: '', name: '', width: 300, align: '', editor: "" },
-                { label: '', name: '', width: 100, align: '', editor: "" },
-                { label: '', name: '', width: 100, align: '', editor: "" },
-                { label: '', name: '', width: 100, align: '', editor: "" },
-                { label: '', name: '', width: 100, align: '', editor: "" },
-            { label: '', name: '', width: 300, align: '', editor: "" }
+                { label: "主键", name: "patid", hidden: true },
+                { label: '收费项目', name: 'sfxm', width: 100, align: 'left', editor: "text" },
+                  { label: '分类', name: 'fl', width: 300, align: 'left', editor: "text" },
+                { label: '销售人员', name: 'xs', width: 300, align: 'left', editor: "text" },
+                { label: '单价', name: 'dj', width: 100, align: 'left', editor: "text" },
+                { label: '数量', name: 'sl', width: 100, align: 'left', editor: "text" },
+                { label: '自付比例', name: 'zfbl', width: 100, align: 'left', editor: "text" },
+                { label: '总金额', name: 'zfy', width: 100, align: 'left', editor: "text" },
+            { label: '患者姓名', name: 'mc', width: 300, align: 'left', editor: "text" }
             ],
             ondblClickRow: function (rowid) {
                 EditSelectItem(rowid);
@@ -101,37 +101,37 @@
         });
 
         for (var i = 0; i <= mydata.length; i++) {
-            $gridList.jqGrid('', i + 1, mydata[i]);
+            $gridList.jqGrid('addRowData', i + 1, mydata[i]);
         }
     }
 
     function EditSelectItem(rowid) {
-        var rowData = $("").jqGrid("", rowid);
-        $('').formSerialize(rowData);
+        var rowData = $("#gridList").jqGrid("getRowData", rowid);
+        $('#form1').formSerialize(rowData);
         switch (rowData.sfxm) {
-            case "":
-                ddlval = "";
+            case "红外线治疗":
+                ddlval = "0";
                 break;
-            case "":
-                ddlval = "";
+            case "超声药物透入治疗":
+                ddlval = "1";
                 break;
-            case "":
-                ddlval = "";
+            case "普通针刺（体针）":
+                ddlval = "2";
                 break;
             default:
-                ddlval = "";
+                ddlval = "===请选择===";
                 break;
         }
-        $("").val(ddlval);
-        $("").jqGrid('', rowid);
+        $("#dm").val(ddlval);
+        $("#gridList").jqGrid('delRowData', rowid);
     }
     function getMorePatientInfo() {
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "",
-            width: "",
-            height: "",
+            id: "Form",
+            title: "更多信息",
+            url: "/TherapeutistCompleteList/MorePatientInfo",
+            width: "900px",
+            height: "260px",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
@@ -147,50 +147,50 @@
     <div class="rows" id="HosBasicInfo">
         <div class="panel panel-default" style="margin-bottom: 0;">
             <div class="panel-heading">
-                Thông tin ghi sổ
+                记账信息
             </div>
             <table class="form" style="width:98%;margin-top:10px;">
                 <tr>
-                    <td class="formTitle">Hạng mục thu phí:<span>*</span></td>
+                    <td class="formTitle">收费项目:<span>*</span></td>
                     <td class="formValue">
                         <select id="dm" class="form-control">
-                            <option value="">===Vui lòng chọn===</option>
+                            <option value="">===请选择===</option>
                             <option value="0">红外线治疗</option>
                             <option value="1">超声药物透入治疗</option>
                             <option value="2">普通针刺（体针）</option>
                         </select>
                     </td>
 
-                    <td class="formTitle">Phân loại:</td>
+                    <td class="formTitle">分类:</td>
                     <td class="formValue"><input type="text" id="fl" class="form-control newtouch_Readonly" /></td>
-                    <td class="formTitle">Nhân viên bán hàng:</td>
+                    <td class="formTitle">销售人员:</td>
                     <td class="formValue"><input type="text" id="xs" class="form-control" /></td>
-                    <td class="formTitle">Khoa:</td>
+                    <td class="formTitle">科室:</td>
                     <td class="formValue">
                         <input type="text" id="ks" class="form-control" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">Đơn giá:</td>
+                    <td class="formTitle">单价:</td>
                     <td class="formValue"><input type="text" id="dj" class="form-control newtouch_Readonly" /></td>
 
-                    <td class="formTitle">Số lượng:</td>
+                    <td class="formTitle">数量:</td>
                     <td class="formValue"><input type="text" id="sl" class="form-control" value="1" /></td>
-                    <td class="formTitle">Tổng số tiền:</td>
+                    <td class="formTitle">总金额:</td>
                     <td class="formValue"><input type="text" id="zfy" class="form-control newtouch_Readonly" /></td>
-                    <td class="formTitle">Họ tên bệnh nhân:</td>
+                    <td class="formTitle">患者姓名:</td>
                     <td class="formValue"><input type="text" id="mc" class="form-control" /></td>
 
                 </tr>
             </table>
         </div>
 
-        @Html.Partial("", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+        @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
    {
        ShowKeyList = new int[] { 6, 7, 8 },
-       F6Text = "",
-       F7Text = "",
-       F8Text = ""
+       F6Text = "添加",
+       F7Text = "修改",
+       F8Text = "删除"
    })
     </div>
 </form>
@@ -200,19 +200,19 @@
 <div class="rows" style="" id="HosBasicInfo">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Phải thu
+            应收
         </div>
         <table class="form">
             <tr>
-                <td class="formTitle">Khoản phải thu</td>
+                <td class="formTitle">应收款</td>
                 <td class="formValue">
                     <span style="color:red;font-size:large;"><strong id="total">￥150.00</strong></span>
                 </td>
-                <td class="formTitle">Số tiền thực thu</td>
+                <td class="formTitle">实收款</td>
                 <td class="formValue">
                     <input type="text" id="txtINPUTCODE" class="form-control" />
                 </td>
-                <td class="formTitle">Tiền thừa</td>
+                <td class="formTitle">找零</td>
                 <td class="formValue"></td>
                 <td class="formTitle"></td>
                 <td class="formValue"></td>
@@ -220,8 +220,8 @@
         </table>
     </div>
 </div>
-@Html.Partial("", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
     ShowKeyList = new int[] { 4, 9 },
-    F9Text = ""
+    F9Text = "保存"
 })

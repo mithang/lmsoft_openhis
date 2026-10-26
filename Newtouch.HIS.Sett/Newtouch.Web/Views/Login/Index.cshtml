@@ -1,9 +1,9 @@
 ﻿@{ 
     var isCheckChkCode = (ViewBag.IsCheckChkCode as bool?) ?? true;
-    var loginybshowcode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("");
-    var loginybshowname = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("");
+    var loginybshowcode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("loginybshowcode");
+    var loginybshowname = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("loginybshowname");
 }
-<script type="">
+<script type="text/javascript">
     if (window.top != window) {
         top.location.href = location.href;
     }
@@ -17,9 +17,9 @@
     <title>收费管理系统</title>
     <link rel="shortcut icon" href="@SiteUrl.GetStaticResourceScriptUrl("~/img/newtouchcloud.ico")">
     <link href="@SiteUrl.GetStaticResourceScriptUrl("~/Content/css/login.css", false)" rel="stylesheet" />
-    @Html.Partial("")
-    <script type="" src=""~/js/cookie/jquery.cookie.js""></script>
-    <script type="" src=""~/js/md5/jquery.md5.js""></script>
+    @Html.Partial("_FrontReference")
+    <script type="text/javascript" src="@SiteUrl.GetStaticResourceScriptUrl("~/js/cookie/jquery.cookie.js")"></script>
+    <script type="text/javascript" src="@SiteUrl.GetStaticResourceScriptUrl("~/js/md5/jquery.md5.js")"></script>
     <!--[if lte IE 8]>
         <div id="errorie"><div>您还在使用老掉牙的IE，正常使用系统前请升级您的浏览器到 IE8以上版本 <a target="_blank" href="http://windows.microsoft.com/zh-cn/internet-explorer/ie-8-worldwide-languages">点击升级</a>&nbsp;&nbsp;强烈建议您更改换浏览器：<a href="http://down.tech.sina.com.cn/content/40975.html" target="_blank">谷歌 Chrome</a></div></div>
     <![endif]-->
@@ -51,7 +51,7 @@
                                         <span class="ui-icon ui-icon-userDEF">
                                         </span>
                                     </label>
-                                    <input id="txt_account" value="" type="text" placeholder="Đăng nhập tài khoản">
+                                    <input id="txt_account" value="" type="text" placeholder="登录账号">
                                 </li>
                                 <li>
                                     <label for="userName" class="ui-label"><span class="ui-icon-ysh ui-icon-userDEF"></span></label>
@@ -64,7 +64,7 @@
                                             <input id="txt_code" type="text" placeholder="验证码" style="width: 130px;float:left;">
                                             <div style="width: 120px; float: left; padding-top: -15px; padding-left: 14px;">
                                                 <img id="imgcode" class="authcode" src="~/Login/GetAuthCode" width="50" height="25" />
-                                                <a id="switchCode" href="javascript:void(0);" style="text-decoration: none;">Tờ một đổi</a>
+                                                <a id="switchCode" href="javascript:void(0);" style="text-decoration: none;">换一张</a>
                                             </div>
                                         </li>
                                     }
@@ -72,7 +72,7 @@
                                 <li class="login-x">
                                     <div class="login-x-a">
                                         <button id="login_button" type="button" style="background-color:#3b9df0;color:white">
-                                            <span>Đăng nhập</span>
+                                            <span>登录</span>
                                         </button>
                                     </div>
                                 </li>
@@ -89,14 +89,14 @@
                 </span>
             </div>
         </div>
-        <script type="">
+        <script type="text/javascript">
             var s;//窗体分辨率自适应
             function resize() {
                 s = window.screen.width / 1920;
-                document.body.style.transformOrigin = '';
-                document.body.style.transform = '' + s + '' + s + '';
-                document.body.style.width = window.innerWidth / s + '';
-                document.body.style.height = window.innerHeight / s + '';
+                document.body.style.transformOrigin = '0 0';
+                document.body.style.transform = 'scale(' + s + ',' + s + ')';
+                document.body.style.width = window.innerWidth / s + 'px';
+                document.body.style.height = window.innerHeight / s + 'px';
             }
             window.onresize = function () {
                 resize();
@@ -105,41 +105,41 @@
             (function ($) {
                 $.login = {
                     formMessage: function (msg) {
-                        $('').find('').remove();
-                        $('').append('' + msg + '');
+                        $('.login_tips').find('.tips_msg').remove();
+                        $('.login_tips').append('<div class="tips_msg"><i class="fa fa-question-circle"></i>' + msg + '</div>');
                     },
                     loginClick: function () {
-                        var $username = $("");
-                        var $password = $("");
-                        var $code = $("");
+                        var $username = $("#txt_account");
+                        var $password = $("#txt_password");
+                        var $code = $("#txt_code");
                         if ($username.val() == "") {
                             $username.focus();
-                            $.login.formMessage('');
+                            $.login.formMessage('请输入用户名/手机号/邮箱。');
                             return false;
                         } else if ($password.val() == "") {
                             $password.focus();
-                            $.login.formMessage('');
+                            $.login.formMessage('请输入登录密码。');
                             return false;
                         } else if ($code.val() == "") {
                             $code.focus();
-                            $.login.formMessage('');
+                            $.login.formMessage('请输入验证码。');
                             return false;
                         } else {
-                            $("").attr('', '').find('').html("");
+                            $("#login_button").attr('disabled', 'disabled').find('span').html("loading...");
                             $.ajax({
-                                url: "",
+                                url: "/Login/CheckLogin",
                                 data: { username: $username.val(), password: $.md5($password.val()), code: $code.val() },
-                                type: "",
-                                dataType: "",
+                                type: "post",
+                                dataType: "json",
                                 success: function (data) {
-                                    if (data.state == "") {
-                                        $("").find('').html("");
+                                    if (data.state == "success") {
+                                        $("#login_button").find('span').html("登录成功，正在跳转...");
                                         window.setTimeout(function () {
-                                            window.location.href = "";
+                                            window.location.href = "/Home/Index";
                                         }, 10);
                                     } else {
-                                        $("").removeAttr('').find('').html("");
-                                        $("").trigger("");
+                                        $("#login_button").removeAttr('disabled').find('span').html("登录");
+                                        $("#switchCode").trigger("click");
                                         $code.val('');
                                         $.login.formMessage(data.message);
                                     }
@@ -148,47 +148,47 @@
                         }
                     },
                     init: function () {
-                        $('').height($(window).height());
-                        $("").css("", ($(window).height() - $("").height()) / 2 - 50);
+                        $('.wrapper').height($(window).height());
+                        $(".container").css("margin-top", ($(window).height() - $(".container").height()) / 2 - 50);
                         $(window).resize(function (e) {
-                            $('').height($(window).height());
-                            $("").css("", ($(window).height() - $("").height()) / 2 - 50);
+                            $('.wrapper').height($(window).height());
+                            $(".container").css("margin-top", ($(window).height() - $(".container").height()) / 2 - 50);
                         });
-                        $("").click(function () {
-                            $("").attr("", "" + Math.random());
+                        $("#switchCode").click(function () {
+                            $("#imgcode").attr("src", "/Login/GetAuthCode?time=" + Math.random());
                         });
-                        var loginErrorKey = "";
-                        var appId = '';
+                        var loginErrorKey = "Newtouch_login_error";
+                        var appId = '@(Newtouch.Infrastructure.Constants.AppId)';
                         if (appId) {
-                            loginErrorKey = appId + "" + loginErrorKey;
+                            loginErrorKey = appId + "_" + loginErrorKey;
                         }
-                        document.cookie = appId + ''
+                        document.cookie = appId + '_newtouch_loginuserkey_2016=; expires=Thu,01 Jan 2022 00:00:00 GMT;path=/'
                         var login_error = top.$.cookie(loginErrorKey);
                         if (login_error != null) {
                             switch (login_error) {
-                                case "":
-                                    $.login.formMessage("");
+                                case "overdue":
+                                    $.login.formMessage("系统登录已超时,请重新登录");
                                     break;
-                                case "":
-                                    $.login.formMessage("");
+                                case "sidelined":
+                                    $.login.formMessage("该账号已在其他地方登录，您已被迫下线");
                                     break;
-                                case "":
-                                    $.login.formMessage("");
+                                case "-1":
+                                    $.login.formMessage("系统未知错误,请重新登录");
                                     break;
                             }
-                            top.$.cookie(loginErrorKey, '', { path: "", expires: -1 });
+                            top.$.cookie(loginErrorKey, '', { path: "/", expires: -1 });
                         }
-                        $("").click(function () {
+                        $("#login_button").click(function () {
                             $.login.loginClick();
                         });
                         document.onkeydown = function (e) {
                             if (!e) e = window.event;
                             if ((e.keyCode || e.which) == 13) {
-                                document.getElementById("").focus();
-                                document.getElementById("").click();
+                                document.getElementById("login_button").focus();
+                                document.getElementById("login_button").click();
                             }
                         }
-                        $('').keyup(function () {
+                        $('#txt_account, #txt_password, #txt_code').keyup(function () {
                             $.login.formMessage('');
                         });
                     }
@@ -199,15 +199,15 @@
             })(jQuery);
         </script>
     </form>
-    <script type="">
+    <script type="text/javascript">
         //window.onload = function () {
         //    if (window.screenLeft == 0 && window.document.body.clientWidth == window.screen.width && window.screenTop == 0) {
         //        return;
         //    }
         //    else {
         //        try {
-        //            var WsShell = new ActiveXObject('')
-        //            WsShell.SendKeys('');
+        //            var WsShell = new ActiveXObject('WScript.Shell')
+        //            WsShell.SendKeys('{F11}');
         //        }
         //        catch (e) {
         //        }

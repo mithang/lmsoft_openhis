@@ -8,7 +8,7 @@
 
 <script>
     var _zyh = "";
-    var gridFeeList = $("");
+    var gridFeeList = $("#gridFeeList");
     var gridFeeListHight = 0;
     var gridFeeIDetailHight = 0;
 
@@ -18,101 +18,101 @@
     }
 
     AdaptiveResolution();
-    // 在窗口大小改变时监听resizeSự kiện cập nhật vàdivchiều cao
-    $(window).on('', function () {
+    // 在窗口大小改变时监听resize事件并更新div的高度
+    $(window).on('resize', function () {
         AdaptiveResolution();
         FeeGrid(_zyh)
     });
 
     function FeeGrid(zyh_) {
-        var captionCon = "" + "" + "";
+        var captionCon = "计费明细&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总金额：<label style='color:red;'>￥</label></span>&nbsp;<span id='sp_billje' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>元";
         _zyh = zyh_;
         gridFeeList.dataGrid({
             caption: captionCon,
             height: gridFeeListHight,
             colModel: [
                 {
-                    label: '', name: '', width: 80, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' },
+                    label: '日期', name: 'Sfrq', width: 80, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' },
                     cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
-                        return '' + rawObject.Sfrq + '' + "" + '';
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', ' + "" + ')"';
                     }
                 },
                 {
-                    label: '', name: '', width: 80, align: '', formatter: ""
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '' },
+                    label: '床位费', name: 'CWJe', width: 80, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' },
                     cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
-                        return '' + rawObject.Sfrq + '' + rawObject.CWDlCode + '';
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', \'' + rawObject.CWDlCode + '\')"';
                     }
                 },
                 {
-                    label: '', name: '', width: 80, align: '', formatter: ""
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '' },
+                    label: '护理费', name: 'HLJe', width: 80, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' },
                     cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
-                        return '' + rawObject.Sfrq + '' + rawObject.HLDlCode + '';
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', \'' + rawObject.HLDlCode + '\')"';
                     }
                 },
                 {
-                    label: '', name: '', width: 80, align: '', formatter: ""
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '' },
+                    label: '治疗费', name: 'ZLJe', width: 80, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' },
                     cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
-                        return '' + rawObject.Sfrq + '' + rawObject.ZLDlCode + '';
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', \'' + rawObject.ZLDlCode + '\')"';
                     }
                 },
                 {
-                    label: '', name: '', width: 70, align: '', formatter: ""
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '' },
+                    label: '其他费', name: 'QTJe', width: 70, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' },
                     cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
-                        return '' + rawObject.Sfrq + '' + rawObject.QTDlCode + '';
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', \'' + rawObject.QTDlCode + '\')"';
                     }
                 },
                 {
-                    label: '', name: '', width: 80, align: '', formatter: ""
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '' },
+                    label: '西药费', name: 'XYJe', width: 80, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' },
                     cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
-                        return '' + rawObject.Sfrq + '' + rawObject.XYDlCode + '';
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', \'' + rawObject.XYDlCode + '\')"';
                     }
                 },
                 {
-                    label: '', name: '', width: 60, align: '', formatter: ""
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '' },
+                    label: '中成药', name: 'ZCYJe', width: 60, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' },
                     cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
-                        return '' + rawObject.Sfrq + '' + rawObject.ZCYDlCode + '';
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', \'' + rawObject.ZCYDlCode + '\')"';
                     }
                 },
                 {
-                    label: '', name: '', width: 60, align: '', formatter: ""
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '' },
+                    label: '化验费', name: 'HYJe', width: 60, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' },
                     cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
-                        return '' + rawObject.Sfrq + '' + rawObject.HYDlCode + '';
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', \'' + rawObject.HYDlCode + '\')"';
                     }
                 },
                 {
-                    label: '', name: '', width: 60, align: '', formatter: ""
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '' },
+                    label: '检查费', name: 'JCJe', width: 60, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' },
                     cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
-                        return '' + rawObject.Sfrq + '' + rawObject.JCDlCode + '';
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', \'' + rawObject.JCDlCode + '\')"';
                     }
                 },
                 {
-                    label: '', name: '', width: 60, align: '', formatter: ""
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '' },
+                    label: '材料费', name: 'CLJe', width: 60, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' },
                     cellattr: function (rowId, cellValue, rawObject, cellText, rowData) {
-                        return '' + rawObject.Sfrq + '' + rawObject.CLDlCode + '';
+                        return 'onclick="cellClickHandler(\'' + rawObject.Sfrq + '\', \'' + rawObject.CLDlCode + '\')"';
                     }
                 },
                 {
-                    label: '', name: '', width: 70, align: '', formatter: ""
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '' }
+                    label: '合计', name: 'HJ', width: 70, align: 'right', formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
+                { label: 'CWDlCode', name: 'CWDlCode', hidden: true },
+                { label: 'HLDlCode', name: 'HLDlCode', hidden: true },
+                { label: 'ZLDlCode', name: 'ZLDlCode', hidden: true },
+                { label: 'QTDlCode', name: 'QTDlCode', hidden: true },
+                { label: 'XYDlCode', name: 'XYDlCode', hidden: true },
+                { label: 'ZCYDlCode', name: 'ZCYDlCode', hidden: true },
+                { label: 'HYDlCode', name: 'HYDlCode', hidden: true },
+                { label: 'JCDlCode', name: 'JCDlCode', hidden: true },
+                { label: 'CLDlCode', name: 'CLDlCode', hidden: true },
             ],
             viewrecords: true,
             ondblClickRow: function (rowIndex, s) {
@@ -125,53 +125,53 @@
                 getFeeZje();
             },
         });
-        gridFeeList.jqGrid('', {
+        gridFeeList.jqGrid('setGridParam', {
             postData: {
                 zyh: zyh_
             },
-            url: "" + Math.random(),
-        }).trigger('');
-        $('').jqGrid("");//Mỗi lần nhấn chuột，Xóa trống chi tiết trước đó trước và tổng cộng
+            url: "/PatientManage/PatientCenter/GetFeeMainGridList?t=" + Math.random(),
+        }).trigger('reloadGrid');
+        $('#gridFeeIDetail').jqGrid("clearGridData");//每次单击，先清空上一条明细 和合计
     }
 
     function cellClickHandler(sfrq, dlCode) {
-        $('').jqGrid("");//Mỗi lần nhấn chuột，Xóa trống chi tiết trước đó trước và tổng cộng
+        $('#gridFeeIDetail').jqGrid("clearGridData");//每次单击，先清空上一条明细 和合计
         $.najax({
-            type: "",
-            url: "",
+            type: "POST",
+            url: "/PatientManage/PatientCenter/GetFeeDetail",
             data: { zyh: _zyh, dlCode: dlCode, sfrq: sfrq },
-            dataType: "",
+            dataType: "json",
             success: function (ajaxresp) {
-                $('').newtouchLocalDataGrid(null, ajaxresp);
+                $('#gridFeeIDetail').newtouchLocalDataGrid(null, ajaxresp);
             }
         });
     }
 
-    //Quyết toán chi tiết nhóm lớn jGridKhai báo
-    $('').newtouchLocalDataGrid({
+    //结算大类明细 jGrid声明
+    $('#gridFeeIDetail').newtouchLocalDataGrid({
         height: gridFeeIDetailHight,
-        caption: "",
+        caption: "费用查询明细",
         unwritten: false,
         colModel: [
             {
-                label: '', name: '', width: 80, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' }
+                label: '费用日期', name: 'CreateTime', width: 80, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
             },
-            { label: '', name: '', width: 80, align: '' },
-            { label: '', name: '', width: 80, align: '' },
-            { label: '', name: '', width: 80, align: '' },
-            { label: '', name: '', width: 60, align: '' },
-            { label: '', name: '', width: 50, align: '' },
-            { label: '', name: '', width: 50, align: '' },
-            { label: '', name: '', width: 70, align: '' },
-            { label: '', name: '', width: 60, align: '' },
-            { label: '', name: '', width: 60, align: '' },
-            { label: '', name: '', width: 50, align: '' },
-            { label: '', name: '', width: 60, align: '' },
-            { label: '', name: '', width: 80, align: '' },
-            { label: '', name: '', width: 80, align: '' },
+            { label: '大类', name: 'dlmc', width: 80, align: 'left' },
+            { label: '名称', name: 'sfxmmc', width: 80, align: 'left' },
+            { label: '规格', name: 'gg', width: 80, align: 'left' },
+            { label: '数量', name: 'sl', width: 60, align: 'left' },
+            { label: '单位', name: 'dw', width: 50, align: 'left' },
+            { label: '单价', name: 'dj', width: 50, align: 'left' },
+            { label: '开单人', name: 'ysmc', width: 70, align: 'left' },
+            { label: '开单科室', name: 'ksmc', width: 60, align: 'left' },
+            { label: '执行科室', name: 'bqmc', width: 60, align: 'left' },
+            { label: '记/退', name: 'zxbz', width: 50, align: 'left' },
+            { label: '操作员', name: 'czry', width: 60, align: 'left' },
+            { label: '备注', name: 'rmark', width: 80, align: 'left' },
+            { label: '账单ID', name: 'fph', width: 80, align: 'left' },
             {
-                label: '', name: '', width: 80, align: '', formatter: function (cellvalue) {
-                    return cellvalue ? cellvalue.toFixed(2) : "";
+                label: '金额', name: 'je', width: 80, align: 'left', formatter: function (cellvalue) {
+                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
                 }
             },
         ],
@@ -181,17 +181,17 @@
         }
     });
 
-    //Tổng số tiền
+    //总金额
     function getFeeZje() {
         var zje = 0;
-        var ids = gridFeeList.getDataIDs();//Bảng dữ liệu trả vềIDMảng["",""..]
+        var ids = gridFeeList.getDataIDs();//返回数据表的ID数组["66","39"..]
         for (var i = 0; i < ids.length; i++) {
             var rowData = gridFeeList.getRowData(ids[i]);
             if (!!rowData.HJ) {
                 zje += parseFloat(rowData.HJ);
             }
         }
-        $("").text(parseFloat(zje).toFixed(2));
+        $("#sp_billje").text(parseFloat(zje).toFixed(2));
     }
 </script>
 

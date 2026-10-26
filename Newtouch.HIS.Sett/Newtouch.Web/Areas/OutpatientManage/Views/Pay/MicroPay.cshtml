@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "MicroPay";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
 <form id="form">
@@ -21,21 +21,21 @@
             <tr>
                 <td class="formTitle"><span class="required">*</span>付款码：</td>
                 <td class="formValue">
-                    <input id="auth_code" name="auth_code" type="text" class="form-control required" placeholder="Vui lòng nhập mã" />
+                    <input id="auth_code" name="auth_code" type="text" class="form-control required" placeholder="请输入编码" />
                 </td>
             </tr>
         </table>
     </div>
 </form>
 <script>
-    var out_trade_no = $.request("");
-    var subject = $.request("");
-    var total_amount = $.request("");
+    var out_trade_no = $.request("out_trade_no");
+    var subject = $.request("subject");
+    var total_amount = $.request("total_amount");
     $(function () {
         initControl();
 
-        $('').html(subject);
-        $('').html(total_amount);
+        $('#subject').html(subject);
+        $('#total_amount').html(total_amount);
     });
 
     function initControl() {
@@ -45,10 +45,10 @@
     var func = null;
 
     function AcceptClick(callBack) {
-        if (!$('').formValid()) {
+        if (!$('#form').formValid()) {
             return false;
         }
-        var auth_code = $('').val();
+        var auth_code = $('#auth_code').val();
         if (!out_trade_no || !subject || !total_amount || !auth_code) {
             return false;
         }
@@ -59,23 +59,23 @@
             auth_code: auth_code,
         };
         $.najax({
-            url: "",
+            url: "/OutpatientManage/Pay/MicroPaySubmit",
             data: postData,
-            type: "",
-            loadingtext: "",
+            type: "post",
+            loadingtext: "收款中...",
             success: function (ajaxResp) {
-                //Thu tiền thành công
-                $.modalMsg('', '', 800);
+                //收款成功
+                $.modalMsg('收款成功', 'success', 800);
                 //
                 func = function () {
                     console.log(ajaxResp.data);
                     callBack(ajaxResp.data);
                     $.modalClose();
                 };
-                setTimeout('', 1000);
+                setTimeout('func();', 1000);
             },
             errorCallback: function () {
-                //Thu tiền thất bại
+                //收款失败
 
             }
         });

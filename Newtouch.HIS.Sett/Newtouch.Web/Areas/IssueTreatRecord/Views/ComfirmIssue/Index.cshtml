@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
     .toolbar {
@@ -12,34 +12,34 @@
 <form>
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            Điều kiện lọc
+            筛选条件
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">Số bệnh án：</th>
+                <th class="formTitle">病历号：</th>
                 <td class="formValue">
                     <input type="text" class="form-control form-an" id="blh" />
                 </td>
-                <th class="formTitle">Họ tên：</th>
+                <th class="formTitle">姓名：</th>
                 <td class="formValue">
                     <input type="text" class="form-control form-an" id="xm" />
                 </td>
-                <th class="formTitle">Loại bệnh nhân：</th>
+                <th class="formTitle">病人类型：</th>
                 <td class="formValue">
                     <select id="brlx" class="form-control form-an">
-                        <option value="-1">Tất cả</option>
-                        <option value="Outpatient">Ngoại trú</option>
-                        <option value="Inpatient">Nhập viện</option>
+                        <option value="-1">全部</option>
+                        <option value="Outpatient">门诊</option>
+                        <option value="Inpatient">住院</option>
                     </select>
                 </td>
-                <th class="formTitle">Thời gian tạo：</th>
+                <th class="formTitle">创建时间：</th>
                 <td class="formValue" colspan="2">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left;">—</span>
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an" style="width :42%;float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
                 <td class="formValue">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="Tra cứu" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="查询" />
                 </td>
             </tr>
         </table>
@@ -55,117 +55,117 @@
     });
 
     function gridList() {
-        var $gridList = $("");
+        var $gridList = $("#gridList");
         $gridList.dataGrid({
-            url: ""GetListJson"",
+            url: "@Url.Action("GetListJson")",
             postData: getSearchPostData(),
             height: $(window).height() - 155,
             colModel: [
-                { label: '', name: '', align: '', hidden: true },
-                { label: '', name: '', width: 120, align: '' },
-                { label: '', name: '', width: 120, align: '' },
-                { label: '', name: '', width: 120, align: '' },
-                { label: '', name: '', width: 120, align: '' },
-                { label: '', name: '', width: 120, align: '' },
-                { label: '', name: '', width: 120, align: '' },
-                { label: '', name: '', hidden: true, formatter: "", align: '' },
+                { label: 'Id', name: 'Id', align: 'left', hidden: true },
+                { label: '收费项目', name: 'serviceDescription', width: 120, align: 'left' },
+                { label: '姓名', name: 'patientName', width: 120, align: 'left' },
+                { label: '病历号', name: 'patientId', width: 120, align: 'left' },
+                { label: '住院/门诊号', name: 'admsNum', width: 120, align: 'left' },
+                { label: '治疗师', name: 'therapistName', width: 120, align: 'left' },
+                { label: '康复类别', name: 'disciplineTrack', width: 120, align: 'left' },
+                { label: 'wtjlbz', name: 'wtjlbz', hidden: true, formatter: "bool", align: 'left' },
                 {
-                    label: '', name: '', width: 120, align: '', formatter: function (val) {
+                    label: '病人类型', name: 'patientType', width: 120, align: 'left', formatter: function (val) {
                         switch (val) {
-                            case "":
-                                return ""
+                            case "outpatient":
+                                return "门诊"
                                 break;
-                            case "":
-                                return ""
+                            case "inpatient":
+                                return "住院"
                                 break;
                             default:
                                 break;
                         }
                     }
                 },
-                { label: '', name: '', width: 120, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } }
+                { label: '创建时间', name: 'CreatedDate', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } }
 
             ],
-            pager: "",
-            sortname: '',
+            pager: "#gridPager",
+            sortname: 'CreatedDate desc',
             viewrecords: true,
             ondblClickRow: function (rowid) {
                 gridEditRow(rowid);
             }, gridComplete: function (data) {
-                var ids = $("").jqGrid('');
+                var ids = $("#gridList").jqGrid('getDataIDs');
                 for (var i = 0; i < ids.length; i++) {
 
-                    var rowData = $("").jqGrid('', ids[i]);
+                    var rowData = $("#gridList").jqGrid('getRowData', ids[i]);
                     if (rowData) {
-                        if (rowData.wtjlbz == '') {
-                            $('' + ids[i] + '').css("", "");//.addClass('');
+                        if (rowData.wtjlbz == 'true') {
+                            $('#gridList tr[id="' + ids[i] + '"]').css("background-color", "#6ff3ad");//.addClass('complete');
                         }
                     }
                 }
             }
         });
-        $("").click(function () {
-            $gridList.jqGrid('', {
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
                 postData: getSearchPostData(),
-            }).trigger('');
+            }).trigger('reloadGrid');
         });
     }
 
-    //Điều kiện tra cứu
+    //查询条件
     function getSearchPostData() {
-        var blh = $("").val();
-        var xm = $("").val();
-        var kssj = $("").val();
-        var jssj = $("").val();
-        var brlx = $("").val();
+        var blh = $("#blh").val();
+        var xm = $("#xm").val();
+        var kssj = $("#kssj").val();
+        var jssj = $("#jssj").val();
+        var brlx = $("#brlx").val();
         return { blh: blh, xm: xm, kssj: kssj, jssj: jssj, brlx: brlx };
 
     }
 
     function gridEditRow(rowid) {
         if (rowid) {
-            var rowData = $("").jqGrid('', rowid);
+            var rowData = $("#gridList").jqGrid('getRowData', rowid);
             var admsNum = rowData.admsNum;
             var brlx = rowData.patientType;
             if (!!admsNum) {
                 switch (brlx) {
-                    case "":
-                        top.top.$.Newtouchtab.triggerMenuItemClick({ m1: '', m2: '' });
-                        sessionStorage.setItem("", admsNum);
+                    case "门诊":
+                        top.top.$.Newtouchtab.triggerMenuItemClick({ m1: '门诊管理', m2: '门诊记账Optima' });
+                        sessionStorage.setItem("mzh", admsNum);
                         break;
-                    case "":
+                    case "住院":
                         break;
                 }
             }
         }
     }
-    //Hủy bỏ
+    //作废
     function newtouch_event_f8() {
-        var data = $("").jqGrid('', undefined, false);
-        if (data == "") {
+        var data = $("#gridList").jqGrid('getRowData_AllLine', undefined, false);
+        if (data == "[]") {
             return;
         }
-        var ids = $("").jqGrid("", "");
+        var ids = $("#gridList").jqGrid("getGridParam", "selarrrow");
         if (!ids || ids.length == 0) {
-            $.modalAlert("", '');
+            $.modalAlert("请先在列表勾选需要作废的治疗记录", 'warning');
             return false;
         }
         var arraryData = [];
         for (var i = 0; i < ids.length; i++) {
-            var rowData = $("").jqGrid('', ids[i]);
+            var rowData = $("#gridList").jqGrid('getRowData', ids[i]);
             arraryData.push(rowData.Id);
         }
         $.najax({
-            url: ""Involid"",
-            dataType: "",
+            url: "@Url.Action("Involid")",
+            dataType: "json",
             data: { list: arraryData },
-            type: "",
+            type: "POST",
             async: false,
             success: function (data) {
                 $.loading(false);
-                //Làm mới danh sách chưa xác nhận
-                $('').trigger('');
-                $.modalMsg("", '');
+                //刷新未确认列表
+                $('#btn_search').trigger('click');
+                $.modalMsg("操作成功", 'success');
             },
             errCallback: function (err) {
                 $.loading(false);

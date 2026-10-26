@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Thêm mới hoặc sửaForm
+        /// 新增或修改Form
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lưu
+        /// 保存
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>

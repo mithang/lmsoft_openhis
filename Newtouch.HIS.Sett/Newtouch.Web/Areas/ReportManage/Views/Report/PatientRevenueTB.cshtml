@@ -1,29 +1,29 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "PatientRevenueTB";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 <div class="rows">
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">Ngày bắt đầu：</th>
+                <th class="formTitle">开始日期：</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
                 </td>
-                <th class="formTitle">Ngày kết thúc：</th>
+                <th class="formTitle">结束日期：</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
                 </td>
-                <th class="formTitle" style="width:11%">Số bệnh án/Họ tên/Phiên âm：</th>
+                <th class="formTitle" style="width:11%">病历号/姓名/拼音：</th>
                 <td class="formValue">
                     <input id="blh" type="text" class="form-control form-an-end" />
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="search();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="search();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
                 </td>
             </tr>
         </table>
@@ -33,103 +33,103 @@
     <iframe class="ui-layout-center" style="width:100%;" id="iframerightiframerightiframerightttt" name="iframerightiframerightiframerightttt"
             scrolling="auto" allowtransparency="true" frameborder="0"></iframe>
 </div>
-<script type="">
-    var reportServerHOST = '';
-    var orgId = '';
-    var isHospAdministrator = '';
-    var curUserCode = '';
-    var uri = '';
+<script type="text/javascript">
+    var reportServerHOST = '@(ViewBag.ReportServerHOST)';
+    var orgId = '@(ViewBag.OrgId)';
+    var isHospAdministrator = '@(ViewBag.IsHospAdministrator)';
+    var curUserCode = '@(ViewBag.CurUserCode)';
+    var uri = '/ReportServer/Pages/ReportViewer.aspx?%2FHIS.Report.1%2FPatient%20revenue%20sample%28TB%29&rs:Command=Render';
 
     function search() {
-        if ($("").val().length == 0) {
-            $.modalAlert("", "");
+        if ($("#blh").val().length == 0) {
+            $.modalAlert("缺少病历号", "error");
             return;
         }
         submit();
     }
     function submit() {
 
-        if ($('').val().length == 0) {
-            $.modalAlert("", "");
+        if ($('#kssj').val().length == 0) {
+            $.modalAlert("缺少开始时间", "error");
             return;
         }
-        if ($('').val().length == 0) {
-            $.modalAlert("", "");
+        if ($('#jssj').val().length == 0) {
+            $.modalAlert("缺少结束时间", "error");
             return;
         }
-        if ($("").val().length == 0) {
-            //$.modalAlert("", "");
+        if ($("#blh").val().length == 0) {
+            //$.modalAlert("缺少病历号", "error");
             //return;
         }
-        if ($('').val() > $('').val()) {
-            $.modalAlert("", "");
+        if ($('#kssj').val() > $('#jssj').val()) {
+            $.modalAlert("开始时间不能大于结束时间", "error");
             return;
         }
         var url = getUrl();
 
-        url += "" + $('').val();
-        url += "" + $('').val();
+        url += "&kssj=" + $('#kssj').val();
+        url += "&jssj=" + $('#jssj').val();
         var blhval;
-        if ($("").attr("") != undefined && $("").attr("").length != 0 && $("").val() != "") {
-            blhval = $("").val();
+        if ($("#blh").attr("data-label") != undefined && $("#blh").attr("data-label").length != 0 && $("#blh").val() != "") {
+            blhval = $("#blh").val();
         } else {
-            blhval = "";
+            blhval = "-1";
         }
-        url += "" + blhval;
+        url += "&blh=" + blhval;
      
-        setTimeout("", 10);
-        $("").attr('', url);
+        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        $("#iframerightiframerightiframerightttt").attr('src', url);
     }
 
-    $("").load(function () {
+    $("#iframerightiframerightiframerightttt").load(function () {
         $.loading(false);
     });
 
     $(function () {
         var h = $(window).height() - 55
-        $('').css('', h);
+        $('#layout iframe').css('height', h);
 
-        //Liên kết lớp nổi chọn hạng mục điều trị
-        $('').newtouchBatchFloatingSelector({
+        //治疗项目选择浮层绑定
+        $('#blh').newtouchBatchFloatingSelector({
             width: 500,
             height: 200,
-            caption: "",
+            caption: "选择患者",
             clickautotrigger: true,
-            url: "",
+            url: "/PatientManage/HospiterRes/PatSearchInfo",
             ajaxparameters: function ($thisinput) {
                 var keyword = encodeURI($thisinput.val().trim());
-                var orgId = $("").val();
-                return "" + keyword + "" + orgId;
+                var orgId = $("#OrganizeId").val();
+                return "keyword=" + keyword + "&orgId=" + orgId;
             },
             itemdbclickhandler: function ($thistr, $thisinput) {
-                if (!!$thistr.attr('')) {
-                    $("").val($thistr.attr(''));
-                    $("").attr("", $thistr.attr(''));
+                if (!!$thistr.attr('data-patid')) {
+                    $("#blh").val($thistr.attr('data-blh'));
+                    $("#blh").attr("data-label", $thistr.attr('data-patid'));
                 }
             },
             colModel: [
-                 { label: '', name: '', hidden: true },
-                 { label: '', name: '', width: 100, align: '' },
-                 { label: '', name: '', width:120, align: '' },
-                 { label: '', name: '', hidden: true, width: 100, align: '' },
+                 { label: '主键', name: 'patid', hidden: true },
+                 { label: '病历号', name: 'blh', width: 100, align: 'left' },
+                 { label: '姓名', name: 'xm', width:120, align: 'left' },
+                 { label: '出生年月', name: 'csny', hidden: true, width: 100, align: 'left' },
                  {
-                     label: '', name: '', width: 70, align: '', formatter: function (cellvalue) {
+                     label: '性别', name: 'xb', width: 70, align: 'left', formatter: function (cellvalue) {
                          return $.getGender(cellvalue);
                      }
                  },
                 {
-                    label: '', name: '', width: 100, align: '', formatter: function (cellvalue, a, b) {
+                    label: '年龄', name: 'nlshow', width: 100, align: 'left', formatter: function (cellvalue, a, b) {
                         return getAgeFromBirthTime({ begin: b.csny }).text;
                     }
                 },
-                 { label: '', name: '', align: '', hidden: true },
-                  { label: '', name: '', align: '', hidden: true },
-                   { label: '', name: '', align: '', hidden: true },
-                    { label: '', name: '', align: '', hidden: true },
-                    { label: '', name: '', align: '', hidden: true },
-                     { label: '', name: '', align: '', hidden: true },
-                     { label: '', name: '', align: '', hidden: true },
-                      { label: '', name: '', align: '', hidden: true }
+                 { label: 'brly', name: 'brly', align: 'left', hidden: true },
+                  { label: 'zjh', name: 'zjh', align: 'left', hidden: true },
+                   { label: 'kh', name: 'kh', align: 'left', hidden: true },
+                    { label: 'phone', name: 'phone', align: 'left', hidden: true },
+                    { label: 'dy', name: 'dy', align: 'left', hidden: true },
+                     { label: 'zjlx', name: 'zjlx', align: 'left', hidden: true },
+                     { label: 'sycs', name: 'sycs', align: 'left', hidden: true },
+                      { label: 'dybh', name: 'dybh', align: 'left', hidden: true }
             ]
         });
         setTimeout(function () { submit(); }, 100);
@@ -138,42 +138,42 @@
     function getUrl() {
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
-        //Lấy kiểu tùy chỉnh
+        //获取自定义样式
         if (true) {
-            if (srcUrl.indexOf('') == -1) {
-                srcUrl += "";
+            if (srcUrl.indexOf('&rc:') == -1) {
+                srcUrl += "&rc:Stylesheet=MyStyleSheet";
             }
         }
         if (true) {
-            if (srcUrl.indexOf('') == -1) {
-                srcUrl += "";
+            if (srcUrl.indexOf('&rs:') == -1) {
+                srcUrl += "&rs:";
             }
             else {
-                srcUrl += "";
+                srcUrl += "&";
             }
-            srcUrl += "";
+            srcUrl += "orgId=";
             srcUrl += orgId;
         }
 
         if (false) {
-            if (srcUrl.indexOf('') == -1) {
-                srcUrl += "";
+            if (srcUrl.indexOf('&rs:') == -1) {
+                srcUrl += "&rs:";
             }
             else {
-                srcUrl += "";
+                srcUrl += "&";
             }
-            srcUrl += "";
+            srcUrl += "curUserCode=";
             srcUrl += curUserCode;
         }
 
         if (false) {
-            if (srcUrl.indexOf('') == -1) {
-                srcUrl += "";
+            if (srcUrl.indexOf('&rs:') == -1) {
+                srcUrl += "&rs:";
             }
             else {
-                srcUrl += "";
+                srcUrl += "&";
             }
-            srcUrl += "";
+            srcUrl += "isHospAdministrator=";
             srcUrl += isHospAdministrator;
         }
 
@@ -181,11 +181,11 @@
     }
 
 </script>
-<script type="">
+<script type="text/javascript">
     function funcOrganizeIdChange() {
-        $("").val('');
-        orgId = $("").val();
+        $("#blh").val('');
+        orgId = $("#OrganizeId").val();
         //submit();
     }
 </script>
-@Html.Partial("")
+@Html.Partial("_ReportOrganizeIdDDLSearchView")

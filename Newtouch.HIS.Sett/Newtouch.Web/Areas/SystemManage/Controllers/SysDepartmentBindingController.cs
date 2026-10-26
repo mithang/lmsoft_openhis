@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lấy danh sách hiệu lực
+        /// 获取有效列表
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Thêm mới hoặc sửaForm
+        /// 新增或修改Form
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lưu
+        /// 保存
         /// </summary>
         /// <param name="SysPatiChargeAddEntity"></param>
         /// <param name="keyValue"></param>
@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Xóa
+        /// 删除
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

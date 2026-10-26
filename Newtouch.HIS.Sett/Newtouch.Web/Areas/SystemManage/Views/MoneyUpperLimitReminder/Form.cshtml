@@ -1,13 +1,13 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
 <form id="form1">
     <div class="container" style="margin-top: 10px; margin-left: -4%; ">
         <ul class="nav nav-tabs" role="tablist" id="myTab" style="margin-left: 4%;">
-            <li role="presentation"><a href="" role="tab" data-toggle="tab">Thông tin cơ bản</a></li>
+            <li role="presentation"><a href="" role="tab" data-toggle="tab">基本信息</a></li>
         </ul>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" style="padding-top: 20px; margin-right: 99px; margin-left:69px;" id="basicInfo">
@@ -15,29 +15,29 @@
                     <tr>
                         <th class="formTitle"><span class="required">*</span>提醒类型：</th>
                         <td class="formValue formDdlSelectorTd">
-                            @Html.DropDownList("", Newtouch.Infrastructure.EnmuReminderType.金额上限提醒.ToDescSelectList(), "", new { @class = "" })
+                            @Html.DropDownList("reminderType", Newtouch.Infrastructure.EnmuReminderType.金额上限提醒.ToDescSelectList(), "==请选择==", new { @class = "form-control required" })
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">@*<span class="required">*</span>*@Khoa：</th>
+                        <th class="formTitle">@*<span class="required">*</span>*@科室：</th>
                         <td class="formValue">
                             <input type="text" class="form-control" id="ks" name="ks" placeholder="请空格或关键字进行选择" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">@*<span class="required">*</span>*@Bác sĩ：</th>
+                        <th class="formTitle">@*<span class="required">*</span>*@医生：</th>
                         <td class="formValue">
                             <input type="text" class="form-control " id="ys" name="ys" placeholder="请空格或关键字进行选择"/>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">金额上限（đồng）：</th>
+                        <th class="formTitle">金额上限（元）：</th>
                         <td class="formValue">
                             <input type="text" class="form-control required" id="jesx" name="jesx" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Hiệu lực：</th>
+                        <th class="formTitle">有效：</th>
                         <td class="formValue">
                             <div class="ckbox">
                                 <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt"></label>
@@ -51,109 +51,109 @@
 </form>
 
 <script>
-    var sxtxId = $.request("");
+    var sxtxId = $.request("sxtxId");
     $(function () {
-        $('').select2({
+        $('#reminderType').select2({
             minimumResultsForSearch: -1
         });
 
         if (!!sxtxId) {
             $.najax({
-                url: "" + Math.random(),
+                url: "/SystemManage/MoneyUpperLimitReminder/GetFormJson?r=" + Math.random(),
                 data: { sxtxId: sxtxId },
-                dataType: "",
+                dataType: "json",
                 async: false,
                 success: function (data) {
-                    $("").formSerialize(data);
-                    $('').attr('', data.ksCode);
-                    $('').attr('', data.ysGh);
+                    $("#form1").formSerialize(data);
+                    $('#ks').attr('data-Code', data.ksCode);
+                    $('#ys').attr('data-gh', data.ysGh);
                 }
             });
         }
     })
 
-    //Lớp nổi khoa
-    $('').newtouchBatchFloatingSelector({
+    //科室浮层
+    $('#ks').newtouchBatchFloatingSelector({
         width: 300,
         height: 250,
         clickautotrigger: true,
         //minlength: 2,
-        caption: "",
-        url: '',
+        caption: "选择科室",
+        url: '/SystemManage/MoneyUpperLimitReminder/SelectDepartmentList',
         ajaxparameters: function ($thisinput) {
-            return "" + $thisinput.val();
+            return "keyword=" + $thisinput.val();
         },
         //itemdbclickhandler: function ($thistr) {
-        //    $('').attr('', $thistr.attr(''))
-        //        .val($thistr.attr(''));
-        //    $('').attr('', '')
-        //        .val(''); //Xóa trống bác sĩ
+        //    $('#ks').attr('data-Code', $thistr.attr('data-Code'))
+        //        .val($thistr.attr('data-Name'));
+        //    $('#ys').attr('data-gh', '')
+        //        .val(''); //清空医生
         //},
         colModel: [
-            { label: '', name: '', widthratio: 40 },
-            { label: '', name: '', widthratio: 60 }
+            { label: '代码', name: 'Code', widthratio: 40 },
+            { label: '名称', name: 'Name', widthratio: 60 }
         ]
     });
 
-    //$('').focus(function () {
-    //    if (!!!$('').attr('') || !!!$('').val()) {
-    //        $.modalAlert("", '');
+    //$('#ys').focus(function () {
+    //    if (!!!$('#ks').attr('data-Code') || !!!$('#ks').val()) {
+    //        $.modalAlert("请先选择科室", 'warning');
     //        return;
     //    }
     //});
-    //$('').change(function () {
-    //    if (!!!$('').attr('') || !!!$('').val()) {
-    //        $.modalAlert("", '');
+    //$('#ys').change(function () {
+    //    if (!!!$('#ks').attr('data-Code') || !!!$('#ks').val()) {
+    //        $.modalAlert("请先选择科室", 'warning');
     //        return;
     //    }
     //});
 
-    //Lớp nổi bác sĩ
-    $('').newtouchBatchFloatingSelector({
+    //医生浮层
+    $('#ys').newtouchBatchFloatingSelector({
         width: 300,
         height: 200,
         //minlength: 2,
-        caption: "",
+        caption: "选择医生",
         clickautotrigger: true,
-        url: '',
+        url: '/SystemManage/MoneyUpperLimitReminder/SelectTherapistList',
         ajaxparameters: function ($thisinput) {
-            return "" + $thisinput.val() + "" +  $('').attr('');
+            return "keyword=" + $thisinput.val() + "&ks=" +  $('#ks').attr('data-Code');
         },
         //itemdbclickhandler: function ($thistr) {
-        //    $('').attr('', $thistr.attr(''))
-        //        .val($thistr.attr(''));
+        //    $('#ys').attr('data-gh', $thistr.attr('data-StaffGh'))
+        //        .val($thistr.attr('data-StaffName'));
         //},
         //inputtextcheck: function (ysVal) {
-        //    if (!!!$('').attr('') || !!!$('').val()) {
+        //    if (!!!$('#ks').attr('data-Code') || !!!$('#ks').val()) {
         //        return false;
         //    }
         //    return true;
         //},
         colModel: [
-            { label: '', name: '', widthratio: 40 ,align: ''},
-            { label: '', name: '', widthratio: 60, align: '' }
+            { label: '工号', name: 'StaffGh', widthratio: 40 ,align: 'center'},
+            { label: '名称', name: 'StaffName', widthratio: 60, align: 'center' }
         ]
     });
 
 
-    //Gửi
+    //提交
     function submitForm() {
-        if (!$('').formValid()) {
+        if (!$('#form1').formValid()) {
             return false;
         }
-        if (isNaN($('').val())) {
-            $.modalAlert("", '');
+        if (isNaN($('#jesx').val())) {
+            $.modalAlert("金额上限仅可填写数字", 'warning');
             return false;
         }
-        var params = $("").formSerialize();
-        //params.ks = $('').attr('');
-        //params.ys = $('').attr('');
+        var params = $("#form1").formSerialize();
+        //params.ks = $('#ks').attr('data-Code');
+        //params.ys = $('#ys').attr('data-gh');
         $.submitForm({
-            url: "" + sxtxId,
+            url: "/SystemManage/MoneyUpperLimitReminder/SubmitForm?sxtxId=" + sxtxId,
             param: params,
             success: function () {
-                $.currentWindow().$("").resetSelection();
-                $.currentWindow().$("").trigger("");
+                $.currentWindow().$("#gridList").resetSelection();
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
             }
         })
     }

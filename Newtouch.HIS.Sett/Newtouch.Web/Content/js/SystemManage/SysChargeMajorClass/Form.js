@@ -1,15 +1,15 @@
 ﻿
-var keyValue = $.request("");
+var keyValue = $.request("keyValue");
 $(function () {
     InitControl();
     //if (!!keyValue) {
         $.ajax({
-            url: "" + Math.random(),
+            url: "/SystemManage/SysChargeMajorClass/GetFormJson?r=" + Math.random(),
             data: { keyValue: keyValue },
-            dataType: "",
+            dataType: "json",
             async: false,
             success: function (data) {
-                $("").formSerialize(data);
+                $("#form1").formSerialize(data);
             }
         });
     //}
@@ -19,27 +19,27 @@ function InitControl() {
     printbillList();
 }
 function printreportList() {
-    $("").bindSelect({
-        url: "",
+    $("#mzprintreportcode").bindSelect({
+        url: "/SystemManage/SysChargeMajorClass/GetdlSelect",
     });
 }
 
 function printbillList() {
-    $("").bindSelect({
-        url: ""
+    $("#mzprintbillcode").bindSelect({
+        url: "/SystemManage/SysChargeMajorClass/GetdlSelect"
     });
 }
 
 function submitForm() {
     if (checkNotNull()) {
         $.submitForm({
-            url: "" + keyValue,
-            param: $("").formSerialize(),
+            url: "/SystemManage/SysChargeMajorClass/SubmitForm?keyValue=" + keyValue,
+            param: $("#form1").formSerialize(),
             success: function () {
-                //$.currentWindow().$("").resetSelection();
-                //$.currentWindow().$("").trigger("");
-                $.currentWindow().window.frames[''].$("").resetSelection();
-                $.currentWindow().window.frames[''].$("").trigger("");
+                //$.currentWindow().$("#gridList").resetSelection();
+                //$.currentWindow().$("#gridList").trigger("reloadGrid");
+                $.currentWindow().window.frames['iframeExpenseManage'].$("#gridList").resetSelection();
+                $.currentWindow().window.frames['iframeExpenseManage'].$("#gridList").trigger("reloadGrid");
                 $.loading(false);
             }
         })
@@ -47,7 +47,7 @@ function submitForm() {
 }
 
 function checkNotNull() {
-    var validator = $('').validate();
+    var validator = $('#form1').validate();
     validator.settings = {
         rules: {
             dlmc: { required: true },
@@ -58,36 +58,36 @@ function checkNotNull() {
             zt: { required: true },
         },
         messages: {
-            dlmc: { required: "" },
-            py: { required: "" },
-            mzzybz: { required: "" },
-            mzprintreportcode: { required: "" },
-            mzprintbillcode: { required: "" },
-            zt: { required: "" }
+            dlmc: { required: "大类必须填写" },
+            py: { required: "拼音必须填写" },
+            mzzybz: { required: "范围必须填写" },
+            mzprintreportcode: { required: "门诊报表大类必须填写" },
+            mzprintbillcode: { required: "门诊账单大类必须填写" },
+            zt: { required: "状态必须选择" }
         },
         showErrors: function (errorMap, errorList) {
             if (!$.isEmptyObject(errorList)) {
                 if (Array.isArray(errorList) && errorList.length == 0) {
                     return;
                 }
-                $.modalAlert(errorList[0].message, '');
+                $.modalAlert(errorList[0].message, 'warning');
             }
         }
     }
     if (!validator.form()) {
         return false;
     }
-    //Trạng thái
+    //状态
     var zt = false;
-    $('').each(function () {
+    $('input[name="zt"]').each(function () {
         var $this = $(this);
-        if ($this.parent().hasClass("")) {
+        if ($this.parent().hasClass("active")) {
             zt = true;
-            $("").val()
+            $("#zt").val()
         }
     });
     if (!zt) {
-        $.modalAlert("", '');
+        $.modalAlert("请选择是否有效！", 'warning');
         return false;
     }
     return true;

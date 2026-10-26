@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- * Copyright © 2016 Newtouch Bản quyền thuộc về
+ * Copyright © 2016 Newtouch 版权所有
  * Author: Newtouch
  * Description: 
 

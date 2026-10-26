@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// Tìm kiếm theo điều kiện
+        /// 根据条件搜索
         /// </summary>
         /// <param name="patientListVO"></param>
         /// <returns></returns>

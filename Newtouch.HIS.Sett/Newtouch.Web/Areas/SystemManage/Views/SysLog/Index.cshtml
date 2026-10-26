@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 
 <div class="topPanel">
@@ -14,7 +14,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="Vui lòng nhập tài khoản" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="请输入账号" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -22,10 +22,10 @@
                 </td>
                 <td style="padding-left: 10px;">
                     <div id="time_horizon" class="btn-group">
-                        <a class="btn btn-default" data-value="1">Hôm nay</a>
-                        <a class="btn btn-default active" data-value="2">近7Ngày</a>
-                        <a class="btn btn-default" data-value="3">近1Tháng cái</a>
-                        <a class="btn btn-default" data-value="4">近3Tháng cái</a>
+                        <a class="btn btn-default" data-value="1">今天</a>
+                        <a class="btn btn-default active" data-value="2">近7天</a>
+                        <a class="btn btn-default" data-value="3">近1个月</a>
+                        <a class="btn btn-default" data-value="4">近3个月</a>
                     </div>
                 </td>
             </tr>
@@ -43,64 +43,64 @@
     })
 
     function gridList() {
-        var $gridList = $("");
+        var $gridList = $("#gridList");
         $gridList.dataGrid({
-            url: "",
+            url: "/SystemManage/SysLog/GetPagintionGridJson",
             height: $(window).height() - 128,
             colModel: [
-                { label: '', name: '', hidden: true },
+                { label: '主键', name: 'Id', hidden: true },
                 {
-                    label: '', name: '', width: 120, align: '',
-                    formatter: "", formatoptions: { srcformat: '', newformat: '' }
+                    label: '日期', name: 'Date', width: 120, align: 'left',
+                    formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: '', name: '', width: 80, align: '' },
-                { label: '', name: '', width: 80, align: '' },
-                { label: '', name: '', width: 100, align: '' },
+                { label: '账号', name: 'Account', width: 80, align: 'left' },
+                { label: '姓名', name: 'NickName', width: 80, align: 'left' },
+                { label: '操作菜单', name: 'ModuleName', width: 100, align: 'left' },
                 {
-                    label: '', name: '', width: 80, align: '',
+                    label: '操作类型', name: 'Type', width: 80, align: 'left',
                     formatter: function (cellvalue) {
-                        return $.enum.getDescByName("", cellvalue);
+                        return $.enum.getDescByName("DbLogType", cellvalue);
                     }
                 },
                 {
-                    label: '', name: '', width: 230, align: '',
+                    label: 'IP地址', name: 'IPAddress', width: 230, align: 'left',
                     formatter: function (cellvalue, options, rowObject) {
                         if (cellvalue && IPAddressName) {
-                            return cellvalue + "" + rowObject.IPAddressName;
+                            return cellvalue + ";" + rowObject.IPAddressName;
                         }
                         else {
                             return "";
                         }
                     }
                 },
-                { label: '', name: '', width: 300, align: '' }
+                { label: '日志内容', name: 'Description', width: 300, align: 'left' }
             ],
-            pager: "",
-            sortname: '',
+            pager: "#gridPager",
+            sortname: 'Date desc',
             viewrecords: true
         });
 
-        $("").click(function () {
-            $("").removeClass("");
-            $(this).addClass("");
-            $('').trigger("");
+        $("#time_horizon a.btn-default").click(function () {
+            $("#time_horizon a.btn-default").removeClass("active");
+            $(this).addClass("active");
+            $('#btn_search').trigger("click");
         });
 
-        $("").click(function () {
-            var timeType = $("").attr('');
+        $("#btn_search").click(function () {
+            var timeType = $("#time_horizon a.active").attr('data-value');
             var queryJson = {
-                keyword: $("").val(),
-                timeType: $("").attr(''),
+                keyword: $("#txt_keyword").val(),
+                timeType: $("#time_horizon a.active").attr('data-value'),
             }
-            $gridList.jqGrid('', {
+            $gridList.jqGrid('setGridParam', {
                 postData: { queryJson: JSON.stringify(queryJson) },
                 page: 1,
-            }).trigger('');
+            }).trigger('reloadGrid');
         });
 
         //回车触发查询事件
-        $('').keydownEnterEvent(function () {
-            $('').trigger('');
+        $('#txt_keyword').keydownEnterEvent(function () {
+            $('#btn_search').trigger('click');
         })
     }
 

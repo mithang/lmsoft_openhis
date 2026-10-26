@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
 <form id="form1">
@@ -8,20 +8,20 @@
         <table class="form">
             <tr>
                 <td class="formTitle">
-                    <span class="required">*</span>Nhóm lớn thu phí：
+                    <span class="required">*</span>收费大类：
                 </td>
                 <td class="formValue formDdlSelectorTd">
                     <select class="form-control required" id="dlCode" name="dlCode">
-                        <option value="">==Vui lòng chọn==</option>
+                        <option value="">==请选择==</option>
                     </select>
                 </td>
-                <td class="formTitle" style="width:120px;">Nhà trị liệu：</td>
+                <td class="formTitle" style="width:120px;">治疗师：</td>
                 <td class="formValue">
                     <input id="gh" name="gh" type="text" class="form-control" placeholder="" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">Tỷ lệ：</td>
+                <td class="formTitle">比例：</td>
                 <td class="formValue">
                     <input id="bl" name="bl" type="text" class="form-control" placeholder="" />
                 </td>
@@ -73,17 +73,17 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Ghi chú：</th>
+                <th class="formTitle">备注：</th>
                 <td class="formValue" colspan="3">
                     <textarea id="bz" name="bz" class="form-control" style="height: 60px;"></textarea>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle" style="height: 35px;">Trạng thái：</th>
+                <th class="formTitle" style="height: 35px;">状态：</th>
                 <td class="formValue" style="padding-top: 1px;">
                     <div class="ckbox">
                         <input id="zt" name="zt" type="checkbox" checked="checked">
-                        <label for="zt">Hiệu lực</label>
+                        <label for="zt">有效</label>
                     </div>
                 </td>
             </tr>
@@ -92,30 +92,30 @@
 </form>
 
 <script>
-    var keyValue = $.request("");
+    var keyValue = $.request("keyValue");
     $(function () {
         initControl();
         if (!!keyValue) {
             $.najax({
-                url: "",
+                url: "/KPI/Therapeutist/GetConfigFormJson",
                 data: { keyValue: keyValue },
-                dataType: "",
+                dataType: "json",
                 success: function (data) {
-                    $("").formSerialize(data);
+                    $("#form1").formSerialize(data);
 
                     if (data.gh && data.zlsxm && data.zlsId) {
-                        $('').val(data.zlsxm);
+                        $('#gh').val(data.zlsxm);
                         selectedRehabDoctorStaffId = data.zlsId;
                         selectedRehabDoctorStaffGh = data.gh;
                     }
                     else {
-                        $('').val('');
+                        $('#gh').val('');
                     }
                 }
             });
         }
         else {
-            $('').click(function () {
+            $('#zt').click(function () {
                 return false;
             });
         }
@@ -125,20 +125,20 @@
     var selectedRehabDoctorStaffGh;
 
     function initControl() {
-        $("").bindSelect({
-            url: "",
+        $("#dlCode").bindSelect({
+            url: "/SystemManage/SysChargeCategory/GetListJson?dllbs=2",
         });
 
-        //Liên kết Chọn nhà trị liệu Cây
-        $('').focus(function () {
+        //绑定 治疗师选择 树
+        $('#gh').focus(function () {
             var initIdSelected = selectedRehabDoctorStaffId;
             $.modalOpen({
-                id: "",
-                title: "",
-                url: "" + initIdSelected,
+                id: "StaffCorrelation",
+                title: "选择治疗师",
+                url: "/SystemManage/SysStaff/Selector?single=true&isContansChildOrg=false&callbackType=json&dutyCode=RehabDoctor&initIdSelected=" + initIdSelected,
                 showleftlalbel: false,
-                width: "",
-                height: "",
+                width: "650px",
+                height: "570px",
                 callBack: function (iframeId) {
                     top.frames[iframeId].AcceptClick(function (data) {
                         staffTreeCallback(data);
@@ -149,28 +149,28 @@
 
     }
 
-    //Cây nhà trị liệu Chọn Callback
+    //治疗师树 选择 回调
     function staffTreeCallback(treeSeleData) {
         if (treeSeleData.length == 1) {
-            $('').val(treeSeleData[0].text);
+            $('#gh').val(treeSeleData[0].text);
             selectedRehabDoctorStaffId = treeSeleData[0].id;
             selectedRehabDoctorStaffGh = treeSeleData[0].value;
         }
         else {
-            $('').val('');
+            $('#gh').val('');
             selectedRehabDoctorStaffId = '';
             selectedRehabDoctorStaffGh = '';
         }
     }
 
     function AcceptClick(callBack) {
-        if (!$('').formValid()) {
+        if (!$('#form1').formValid()) {
             return false;
         }
-        var postData = $("").formSerialize();
-        postData[''] = selectedRehabDoctorStaffGh;
+        var postData = $("#form1").formSerialize();
+        postData['gh'] = selectedRehabDoctorStaffGh;
         $.submitForm({
-            url: "" + keyValue,
+            url: "/KPI/Therapeutist/SubmitTherapeutistPSConfig?keyValue=" + keyValue,
             param: postData,
             success: function () {
                 callBack();

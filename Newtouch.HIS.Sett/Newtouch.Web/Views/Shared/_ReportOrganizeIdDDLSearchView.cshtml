@@ -1,24 +1,24 @@
-﻿<script type="">
+﻿<script type="text/javascript">
     $(function () {
         $.najax({
-            url: "",
+            url: "/SystemManage/Organize/GetChildTreeSelectJson",
             success: function (ajaxResp) {
-                var $trFirst = $('');
+                var $trFirst = $('table tr:first');
                 if ($trFirst.length != 1) {
                     return;
                 }
-                var $firstFormTitle = $trFirst.find('');
+                var $firstFormTitle = $trFirst.find('.formTitle:first');
                 if (!($firstFormTitle.length && $firstFormTitle.length == 1)) {
                     return;
                 }
                 if (ajaxResp && ajaxResp.length) {
                     if (ajaxResp.length > 1) {
-                        var html = '';
-                        html += '';
-                        html += '';
-                        html += '';
+                        var html = '<th class="formTitle">医疗机构：</th>';
+                        html += '<td class="formValue formDdlSelectorTd" style="width:110px;">';
+                        html += '   <select id="OrganizeId" name="OrganizeId" class="form-control"><option value="">==请选择==</option></select>';
+                        html += '</td>';
                         $(html).insertBefore($firstFormTitle);
-                        $('').bindSelect({
+                        $('#OrganizeId').bindSelect({
                             data: ajaxResp,
                             dropdownAutoWidth : true,
                             change: function () {
@@ -29,7 +29,7 @@
                         });
                     }
                     else if (ajaxResp.length == 1) {
-                        $('' + ajaxResp[0].id + '').insertBefore($trFirst.closest(''));
+                        $('<input id="OrganizeId" name="OrganizeId" style="display:none;" value="' + ajaxResp[0].id + '" type="text" />').insertBefore($trFirst.closest('table'));
                         if (funcOrganizeIdChange) {
                             funcOrganizeIdChange();
                         }

@@ -1,29 +1,29 @@
 ﻿@using Newtouch.Common.Operator;
 
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
 <form id="form1">
     <div style="padding: 20px 35px 0 2px;">
         <table class="form">
             <tr>
-                <th class="formTitle">Tính chất bệnh nhân</th>
+                <th class="formTitle">病人性质</th>
                 <td class="formValue">
                     <select class="form-control" name="brxz" id="brxz" required>
-                        <option value="">Vui lòng chọn</option>
+                        <option value="">请选择</option>
                     </select>
                 </td>
-                <th class="formTitle">Nhóm lớn</th>
+                <th class="formTitle">大类</th>
                 <td class="formValue">
                     <select id="dl" name="dl" class="form-control" required>
-                        <option value="">Vui lòng chọn</option>
+                        <option value="">请选择</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Hạng mục thu phí</th>
+                <th class="formTitle">收费项目</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="sfxm" name="sfxm" required/>
                 </td>
@@ -37,7 +37,7 @@
                 <td class="formValue formDdlSelectorTd">
                     <input type="text" class="form-control" id="fjxsdl" name="fjxsdl" required/>
                 </td>
-                <th class="formTitle">Hiệu lực</th>
+                <th class="formTitle">有效</th>
                 <td class="formValue">
                     <div class="ckbox">
                         <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt"></label>
@@ -45,11 +45,11 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Người lập hồ sơ</th>
+                <th class="formTitle">建档人员</th>
                 <td class="formValue">
                     <input type="text" class="form-control newtouch_Readonly" id="CreatorCode" name="CreatorCode" value=@OperatorProvider.GetCurrent().UserCode />
                 </td>
-                <th class="formTitle">Ngày lập hồ sơ</th>
+                <th class="formTitle">建档日期</th>
                 <td class="formValue">
                     <input type="text" class="form-control newtouch_Readonly" id="CreateTime" name="CreateTime" value=@DateTime.Now.ToString("yyyy-MM-dd") />
                 </td>
@@ -59,20 +59,20 @@
 </form>
 
 <script>
-    var keyValue = $.request("");
+    var keyValue = $.request("keyValue");
     $(function () {
         InitControl();
         if (!!keyValue) {
             $.ajax({
-                url: "" + Math.random(),
+                url: "/SystemManage/SysPatiChargeAdd/GetFormJson?r=" + Math.random(),
                 data: { keyValue: keyValue },
-                dataType: "",
+                dataType: "json",
                 async: false,
                 success: function (data) {
-                    $("").formSerialize(data);
-                    $('').attr('', data.sfxm)
+                    $("#form1").formSerialize(data);
+                    $('#sfxm').attr('data-sfxm', data.sfxm)
                       .val(data.sfxmmc);
-                    $("").attr('', data.fjxsdl)
+                    $("#fjxsdl").attr('data-fjxsdl', data.fjxsdl)
                         .val(data.fjxsdlmc);
                 }
             });
@@ -84,12 +84,12 @@
     }
 
     function dlList() {
-        $("").bindSelect({
-            url: ""
+        $("#dl").bindSelect({
+            url: "/SystemManage/SysPatiChargeLogic/GetdlSelect"
         });
     }
-    //Tính chất bệnh nhân
-    $("").newtouchBindSelect({
+    //病人性质
+    $("#brxz").newtouchBindSelect({
         datasource: function () {
             var resultObjArr = new Array();
             $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
@@ -99,72 +99,72 @@
         }
     });
 
-    //Hạng mục thu phí
-    $('').newtouchFloatingSelector({
+    //收费项目
+    $('#sfxm').newtouchFloatingSelector({
         width: 600,
         height: 280,
-        caption: "",
-        url: '',
+        caption: "收费项目",
+        url: '/SystemManage/SysChargeItem/GetChargeItemSelectData',
         ajaxparameters: function () {
-            if ($.trim($('').val()).length == 0) {
+            if ($.trim($('#sfxm').val()).length == 0) {
                 return;
             }
-            return "" + $.trim($('').val());
+            return "keyword=" + $.trim($('#sfxm').val());
         },
         itemdbclickhandler: function ($thistr) {
-            $('').attr('', $thistr.attr(''))
-                .attr('', $thistr.attr(''))
-                .val($thistr.attr(''));
+            $('#sfxm').attr('data-sfxm', $thistr.attr('data-sfxm'))
+                .attr('data-dl', $thistr.attr('data-dl'))
+                .val($thistr.attr('data-sfxmmc'));
         },
-        colModel: [{ label: '', name: '', widthratio: 10 },
-            { label: '', name: '', widthratio: 15 },
-            { label: '', name: '', widthratio: 10 },
-            { label: '', name: '', widthratio: 7 },
-            { label: '', name: '', widthratio: 8 },
-            { label: '', name: '', widthratio: 10 },
-            { label: '', name: '', widthratio: 13 }
+        colModel: [{ label: '收费项目', name: 'sfxm', widthratio: 10 },
+            { label: '收费项目名称', name: 'sfxmmc', widthratio: 15 },
+            { label: '拼音', name: 'py', widthratio: 10 },
+            { label: '单位', name: 'dw', widthratio: 7 },
+            { label: '单价', name: 'dj', widthratio: 8 },
+            { label: '大类', name: 'dl', widthratio: 10 },
+            { label: '门诊住院标志', name: 'mzzybz', widthratio: 13 }
         ]
     });
 
     //附加显示大类
-    $("").newtouchFloatingSelector({
+    $("#fjxsdl").newtouchFloatingSelector({
         height: 200,
         width: 350,
-        id: '',
-        url: '',
-        ajaxmethod: '',
+        id: 'GetfjsfdlList',
+        url: '/SystemManage/SysPatiChargeAdd/GetfjsfdlList',
+        ajaxmethod: 'POST',
         ajaxreqdata: function () {
             var reqData = {};
-            reqData.keyword = $("").val();
+            reqData.keyword = $("#fjxsdl").val();
             return reqData;
         },
-        caption: "",
+        caption: "附加收费大类",
         colModel: [
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 }
+            { label: '大类', name: 'dl', widthratio: 25 },
+            { label: '大类名称', name: 'dlmc', widthratio: 25 },
+            { label: '拼音', name: 'py', widthratio: 25 },
+            { label: '门诊住院标志', name: 'mzzybz', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
-            $("").attr('', $thistr.attr(''))
-                .val($thistr.attr(''));
+            $("#fjxsdl").attr('data-fjxsdl', $thistr.attr('data-dl'))
+                .val($thistr.attr('data-dlmc'));
             return;
         }
 
     });
 
     function submitForm() {
-        if (!$('').formValid()) {
+        if (!$('#form1').formValid()) {
             return false;
         }
-        var params = $("").formSerialize();
-        params[''] = $('').attr('');
-        params[''] = $('').attr('');
+        var params = $("#form1").formSerialize();
+        params['sfxm'] = $('#sfxm').attr('data-sfxm');
+        params['fjxsdl'] = $('#fjxsdl').attr('data-fjxsdl');
         $.submitForm({
-            url: "" + keyValue,
+            url: "/SystemManage/SysPatiChargeAdd/SubmitForm?keyValue=" + keyValue,
             param: params,
             success: function () {
-                $.currentWindow().window.frames[''].$("").trigger("");
+                $.currentWindow().window.frames['iframeExpenseManage'].$("#gridList").trigger("reloadGrid");
             }
         })
     }

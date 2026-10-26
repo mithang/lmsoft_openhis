@@ -1,51 +1,51 @@
 ﻿
-var keyValue = $.request("");
+var keyValue = $.request("keyValue");
 $(function () {
     InitControl();
     //if (!!keyValue) {
     $.ajax({
-        url: "" + Math.random(),
+        url: "/SystemManage/SysChargeItem/GetFormJson?r=" + Math.random(),
         data: { keyValue: keyValue },
-        dataType: "",
+        dataType: "json",
         async: false,
         success: function (data) {
-            $("").formSerialize(data);
-            if (data[""]) {
-                $("").attr("", data[""]);
+            $("#form1").formSerialize(data);
+            if (data["dlmc"]) {
+                $("#dlmc").attr("data-label", data["dl"]);
             }
-            if (data[""]) {
-                $("").attr("", data[""]);
+            if (data["flmc"]) {
+                $("#flmc").attr("data-label", data["fl"]);
             }
-            if (data[""]) {
-                $("").attr("", data[""]);
+            if (data["nbdlmc"]) {
+                $("#nbdlmc").attr("data-label", data["nbdl"]);
             }
-            if (data[""]) {
-                $("").attr("", data[""]);
+            if (data["badlmc"]) {
+                $("#badlmc").attr("data-label", data["badl"]);
             }
         }
     });
     //}
-    $("").blur(function () {
-        //$("").val($(this).toPinyin());
-        $('').val($(this).toPinyin());
+    $("#sfxmmc").blur(function () {
+        //$("#py").val($(this).toPinyin());
+        $('#py').val($(this).toPinyin());
     });
 })
 function InitControl() {
-    dlList();//Nhóm lớn
-    flList();//Phân loại 
-    ybdmList(); //Mã bảo hiểm y tế
-    nbList();//Nhóm lớn bảo hiểm nông nghiệp
-    baList();//Nhóm lớn bệnh án
+    dlList();//大类
+    flList();//分类 
+    ybdmList(); //医保代码
+    nbList();//农保大类
+    baList();//病案大类
 }
 function dlList() {
-    $("").newtouchFloatingSelector({
+    $("#dlmc").newtouchFloatingSelector({
         height: 200,
         width: 300,
         filter: function (keyword) {
             if (!keyword) {
                 return null;
             }
-            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
+            //遍历数据源，用keyword来筛选出结果
             var resultObjArr = new Array();
             $.each(top.window.newtouchclients.sysMajorClassList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -55,30 +55,30 @@ function dlList() {
             return resultObjArr;
 
         },
-        caption: "",
+        caption: "大类",
         colModel: [
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 }
+            { label: '编号', name: 'dlbh', widthratio: 25 },
+            { label: '代码', name: 'dl', widthratio: 25 },
+            { label: '名称', name: 'dlmc', widthratio: 25 },
+            { label: '拼音', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
-            $("").attr("", $thistr.find("").html());
-            $("").val($thistr.find('').html());
+            $("#dlmc").attr("data-label", $thistr.find("td:eq(1)").html());
+            $("#dlmc").val($thistr.find('td:eq(2)').html());
             return;
         }
     });
 }
 
 function flList() {
-    $("").newtouchFloatingSelector({
+    $("#flmc").newtouchFloatingSelector({
         height: 200,
         width: 300,
         filter: function (keyword) {
             if (!keyword) {
                 return null;
             }
-            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
+            //遍历数据源，用keyword来筛选出结果
             var resultObjArr = new Array();
             $.each(top.window.newtouchclients.sysChargeClassifyList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -88,30 +88,30 @@ function flList() {
             return resultObjArr;
 
         },
-        caption: "",
+        caption: "分类",
         colModel: [
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 }
+            { label: '编号', name: 'flbh', widthratio: 25 },
+            { label: '代码', name: 'fl', widthratio: 25 },
+            { label: '名称', name: 'flmc', widthratio: 25 },
+            { label: '拼音', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
-            $("").attr("", $thistr.find("").html());
-            $("").val($thistr.find('').html());
+            $("#flmc").attr("data-label", $thistr.find("td:eq(1)").html());
+            $("#flmc").val($thistr.find('td:eq(2)').html());
             return;
         }
     });
 }
 
 function nbList() {
-    $("").newtouchFloatingSelector({
+    $("#nbdlmc").newtouchFloatingSelector({
         height: 200,
         width: 300,
         filter: function (keyword) {
             if (!keyword) {
                 return null;
             }
-            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
+            //遍历数据源，用keyword来筛选出结果
             var resultObjArr = new Array();
             $.each(top.window.newtouchclients.sysnbsfdlList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -121,30 +121,30 @@ function nbList() {
             return resultObjArr;
 
         },
-        caption: "",
+        caption: "大类",
         colModel: [
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 }
+            { label: '编号', name: 'dlbh', widthratio: 25 },
+            { label: '代码', name: 'dl', widthratio: 25 },
+            { label: '名称', name: 'dlmc', widthratio: 25 },
+            { label: '拼音', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
-            $("").attr("", $thistr.find("").html());
-            $("").val($thistr.find('').html());
+            $("#nbdlmc").attr("data-label", $thistr.find("td:eq(1)").html());
+            $("#nbdlmc").val($thistr.find('td:eq(2)').html());
             return;
         }
     });
 }
 
 function baList() {
-    $("").newtouchFloatingSelector({
+    $("#badlmc").newtouchFloatingSelector({
         height: 200,
         width: 300,
         filter: function (keyword) {
             if (!keyword) {
                 return null;
             }
-            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
+            //遍历数据源，用keyword来筛选出结果
             var resultObjArr = new Array();
             $.each(top.window.newtouchclients.sysbasfdlList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -154,30 +154,30 @@ function baList() {
             return resultObjArr;
 
         },
-        caption: "",
+        caption: "大类",
         colModel: [
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 }
+            { label: '编号', name: 'dlbh', widthratio: 25 },
+            { label: '代码', name: 'dl', widthratio: 25 },
+            { label: '名称', name: 'dlmc', widthratio: 25 },
+            { label: '拼音', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
-            $("").attr("", $thistr.find("").html());
-            $("").val($thistr.find('').html());
+            $("#badlmc").attr("data-label", $thistr.find("td:eq(1)").html());
+            $("#badlmc").val($thistr.find('td:eq(2)').html());
             return;
         }
     });
 }
 
 function ybdmList() {
-    $("").newtouchFloatingSelector({
+    $("#ybdm").newtouchFloatingSelector({
         height: 200,
         width: 400,
         filter: function (keyword) {
             if (!keyword) {
                 return null;
             }
-            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
+            //遍历数据源，用keyword来筛选出结果
             var resultObjArr = new Array();
             $.each(top.window.newtouchclients.syszlxmList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -187,17 +187,17 @@ function ybdmList() {
             return resultObjArr;
 
         },
-        caption: "",
+        caption: "分类",
         colModel: [
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 }
+            { label: '编号', name: 'py', widthratio: 25 },
+            { label: '医保代码', name: 'ybdm', widthratio: 25 },
+            { label: '物价代码', name: 'wjdm', widthratio: 25 },
+            { label: '名称', name: 'xmmc', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
-            $("").attr("", $thistr.find("").html());
-            $("").val($thistr.find('').html());
-            $("").val($thistr.find('').html());
+            $("#ybdm").attr("data-label", $thistr.find("td:eq(0)").html());
+            $("#ybdm").val($thistr.find('td:eq(1)').html());
+            $("#wjdm").val($thistr.find('td:eq(2)').html());
             return;
         }
     });
@@ -205,19 +205,19 @@ function ybdmList() {
 
 function submitForm() {
     if (checkNotNull()) {
-        var data = $("").formSerialize();
-        data[""] = $("").attr("");
-        data[""] = $("").attr("");
-        data[""] = $("").attr("");
-        data[""] = $("").attr("");
+        var data = $("#form1").formSerialize();
+        data["dl"] = $("#dlmc").attr("data-label");
+        data["fl"] = $("#flmc").attr("data-label");
+        data["badl"] = $("#badlmc").attr("data-label");
+        data["nbdl"] = $("#nbdlmc").attr("data-label");
         $.submitForm({
-            url: "" + keyValue,
+            url: "/SystemManage/SysChargeItem/SubmitForm?keyValue=" + keyValue,
             param: data,
             success: function () {
-                //$.currentWindow().$("").resetSelection();
-                //$.currentWindow().$("").trigger("");
-                $.currentWindow().window.frames[''].$("").resetSelection();
-                $.currentWindow().window.frames[''].$("").trigger("");
+                //$.currentWindow().$("#gridList").resetSelection();
+                //$.currentWindow().$("#gridList").trigger("reloadGrid");
+                $.currentWindow().window.frames['iframeExpenseManage'].$("#gridList").resetSelection();
+                $.currentWindow().window.frames['iframeExpenseManage'].$("#gridList").trigger("reloadGrid");
                 $.loading(false);
             }
         })
@@ -226,7 +226,7 @@ function submitForm() {
 
 
 function checkNotNull() {
-    var validator = $('').validate();
+    var validator = $('#form1').validate();
     validator.settings = {
         rules: {
             sfxmmc: { required: true },
@@ -244,40 +244,40 @@ function checkNotNull() {
             dl: { required: true },
         },
         messages: {
-            sfxmmc: { required: "" },
-            py: { required: "" },
-            dw: { required: "" },
-            dj: { required: "" },
-            zfbl: { required: "" },
-            zfxz: { required: "" },
-            mzzybz: { required: "" },
-            ssbz: { required: "" },
-            tsbz: { required: "" },
-            jsbz: { required: "" },
-            sfbz: { required: "" },
-            zt: { required: "" },
-            dl: { required: "" },
+            sfxmmc: { required: "收费项目名称必须填写" },
+            py: { required: "拼音必须填写" },
+            dw: { required: "单位必须填写" },
+            dj: { required: "单价必须填写" },
+            zfbl: { required: "自负比例必须填写" },
+            zfxz: { required: "自负性质必须选择" },
+            mzzybz: { required: "范围必须选择" },
+            ssbz: { required: "实施标志必须选择" },
+            tsbz: { required: "特殊标志必须选择" },
+            jsbz: { required: "警示标志必须选择" },
+            sfbz: { required: "收费标志必须选择" },
+            zt: { required: "状态必须选择" },
+            dl: { required: "大类必须选择" },
         },
         showErrors: function (errorMap, errorList) {
             if (!$.isEmptyObject(errorList)) {
-                $.modalAlert(errorList[0].message, '');
+                $.modalAlert(errorList[0].message, 'warning');
             }
         }
     }
     if (!validator.form()) {
         return false;
     }
-    //Trạng thái
+    //状态
     var zt = false;
-    $('').each(function () {
+    $('input[name="zt"]').each(function () {
         var $this = $(this);
-        if ($this.parent().hasClass("")) {
+        if ($this.parent().hasClass("active")) {
             zt = true;
-            $("").val()
+            $("#zt").val()
         }
     });
     if (!zt) {
-        $.modalAlert("", '');
+        $.modalAlert("请选择是否有效！", 'warning');
         return false;
     }
     return true;

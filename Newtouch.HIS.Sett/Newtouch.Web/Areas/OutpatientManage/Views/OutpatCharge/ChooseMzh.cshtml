@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Choose";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 
 <script>
@@ -13,7 +13,7 @@
 
     function selectGridAll()
     {
-        var jqGrid = $("");
+        var jqGrid = $("#chooseMzhGrid");
         // 拿到所有行id
         var jqGridIDs = jqGrid.getDataIDs();
         for (var i = 0; i < jqGridIDs.length; i++) {
@@ -23,29 +23,29 @@
 
     function GetMzhInfo()
     {
-        var PrescriptionInfo = sessionStorage.getItem("");
+        var PrescriptionInfo = sessionStorage.getItem("MzhInfo");
         if (PrescriptionInfo)
         {
-            sessionStorage.removeItem("")
+            sessionStorage.removeItem("MzhInfo")
             return $.parseJSON(PrescriptionInfo);
         }
     }
 
     function gridList()
     {
-        var $gridList = $("");
+        var $gridList = $("#chooseMzhGrid");
         $gridList.newtouchLocalDataGrid(
         {
             multiselect: false,
             unwritten: false,
             height: 150,
                 colModel: [
-                    { label: '', name: '', width: 120, align: '' },
-                    { label: '', name: '', width: 120, align: '' },
-                    { label: "", name: "", width: 130, align: '' },
-                    { label: '', name: '', width: 80, align: '' },
-                    { label: '', name: '', width: 50, align: '' },
-                    { label: '', name: '', width: 50, align: '' },
+                    { label: '挂号日期', name: 'ghrq', width: 120, align: 'left' },
+                    { label: '门诊号', name: 'mzh', width: 120, align: 'left' },
+                    { label: "姓名", name: "xm", width: 130, align: 'left' },
+                    { label: '科室名称', name: 'ksmc', width: 80, align: 'left' },
+                    { label: '医生名称', name: 'ysmc', width: 50, align: 'left' },
+                    { label: '病人性质', name: 'brxzmc', width: 50, align: 'left' },
             ]
         });
         $gridList.newtouchLocalDataGrid(null, GetMzhInfo());
@@ -53,10 +53,10 @@
 
     function submitForm(callback)
     {
-        var seleRow = $("").jqGridRowValue();
+        var seleRow = $("#chooseMzhGrid").jqGridRowValue();
         var mzh = seleRow.mzh;
         if (!!!mzh) {
-            $.modalAlert("", "");
+            $.modalAlert("尚未选择一条记录", "error");
             return;
         }
         callback(mzh);

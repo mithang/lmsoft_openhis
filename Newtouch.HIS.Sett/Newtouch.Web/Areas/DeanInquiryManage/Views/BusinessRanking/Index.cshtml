@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "药品跟踪";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
 <head>
@@ -24,21 +24,21 @@
     <input type="hidden" id="jssj" />
     <table class="form">
         <tr>
-            <th class="formTitle" id="xzsjtext">Loại：</th>
+            <th class="formTitle" id="xzsjtext">类型：</th>
             <td class="formValue" style="width:150px">
                 <select id="dateType" class="form-control" onchange="updateSjType()">
-                    <option value="1">Năm</option>
-                    <option value="2">Tháng</option>
-                    <option value="3">Ngày</option>
+                    <option value="1">年</option>
+                    <option value="2">月</option>
+                    <option value="3">日</option>
                 </select>
             </td>
-            <th class="formTitle" id="xzsjtext">Thời gian：</th>
+            <th class="formTitle" id="xzsjtext">时间：</th>
             <td class="formValue" style="width:150px">
                 <input id="rSJ" type="text" class="form-control input-wdatepicker" @*onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"*@>
             </td>
 
             <td class="formValue" style="padding-left:20px;">
-                <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
+                <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
             </td>
 
         </tr>
@@ -51,14 +51,14 @@
 
         <div class="bk" style="width:49.5%;height:100%">
             <div class="panel-heading down_border">
-                <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>Xếp hạng khối lượng công việc bác sĩ ngoại trú
+                <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>门诊医生工作量排名
             </div>
             <table id="gridJSListmzysgzl"></table>
         </div>
 
         <div class="bk" style="width:49.5%;height:100%">
             <div class="panel-heading down_border">
-                <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>Xếp hạng thu nhập khoa ngoại trú
+                <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>门诊科室收入排名
             </div>
             <table id="gridJSListmzkssr"></table>
         </div>
@@ -85,191 +85,191 @@
     var myDate = new Date();
     $(function () {
 
-        $('').height($(window).height() - 60);
+        $('#main_div').height($(window).height() - 60);
         init();
         gridJSListData();
     });
 
     function submit() {
         getSearchData();
-        var kssj = $("").val();
-        var jssj = $("").val();
-        var $gridJSListmzysgzl = $("");
-        $gridJSListmzysgzl.jqGrid('', {
+        var kssj = $("#kssj").val();
+        var jssj = $("#jssj").val();
+        var $gridJSListmzysgzl = $("#gridJSListmzysgzl");
+        $gridJSListmzysgzl.jqGrid('setGridParam', {
             postData: { kssj: kssj, jssj: jssj},
-            url: '',
+            url: '/DeanInquiryManage/BusinessRanking/GetMzysgzl',
             page: 1,
-        }).trigger('');
+        }).trigger('reloadGrid');
 
-        var $gridJSListmzkssr = $("");
-        $gridJSListmzkssr.jqGrid('', {
+        var $gridJSListmzkssr = $("#gridJSListmzkssr");
+        $gridJSListmzkssr.jqGrid('setGridParam', {
             postData: { kssj: kssj, jssj: jssj },
-            url: "",
+            url: "/DeanInquiryManage/BusinessRanking/GetMzkssr",
             page: 1,
-        }).trigger('');
+        }).trigger('reloadGrid');
 
 
-        var $gridJSListzyywks = $("");
-        $gridJSListzyywks.jqGrid('', {
+        var $gridJSListzyywks = $("#gridJSListzyywks");
+        $gridJSListzyywks.jqGrid('setGridParam', {
             postData: { kssj: kssj, jssj: jssj },
-            url: "",
+            url: "/DeanInquiryManage/BusinessRanking/GetZyywks",
             page: 1,
-        }).trigger('');
+        }).trigger('reloadGrid');
     }
     function init() {
-        $("").val("");
-        $('').attr('', "");
-        $('').val(myDate.getFullYear() + "" + (parseInt(myDate.getMonth()) + 1));
+        $("#dateType").val("2");
+        $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM' })");
+        $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1));
         getSearchData();
     }
     function gridJSListData() {
-        var kssj = $("").val();
-        var jssj = $("").val();
-        //var gridSort = '';
-        var $gridJsList = $("");
+        var kssj = $("#kssj").val();
+        var jssj = $("#jssj").val();
+        //var gridSort = 'mzl asc';
+        var $gridJsList = $("#gridJSListmzysgzl");
         $gridJsList.dataGrid({
             height: 230,
-            autowidth: true,//NếushrinkToFitChotruevà đã thiết lậpwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidththu phóng theo tỷ lệ；
-            shrinkToFit: true, //Nếu đặt làtrue，ThìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
-            url: "",
+            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
+            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            url: "/DeanInquiryManage/BusinessRanking/GetMzysgzl",
             postData: { kssj: kssj, jssj: jssj },
             colModel: [
-                { label: '', name: '',  align: '' },
-                { label: '', name: '',align: '' },
-                { label: '', name: '', align: '' }
+                { label: '医生', name: 'ys',  align: 'left' },
+                { label: '门诊科室', name: 'mzks',align: 'left' },
+                { label: '门诊量', name: 'mzl', align: 'left' }
             ],
             sortname: gridSort,
             viewrecords: true
         });
 
-        //var gridSort = '';
-        var $gridJsList = $("");
+        //var gridSort = 'ypzb desc,mzsr desc';
+        var $gridJsList = $("#gridJSListmzkssr");
         $gridJsList.dataGrid({
             height: 230,
-            autowidth: true,//NếushrinkToFitChotruevà đã thiết lậpwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidththu phóng theo tỷ lệ；
-            shrinkToFit: true, //Nếu đặt làtrue，ThìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
-            url: "",
+            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
+            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            url: "/DeanInquiryManage/BusinessRanking/GetMzkssr",
             postData: { kssj: kssj, jssj: jssj },
             colModel: [
-                { label: '', name: '',  align: '' },
-                { label: '', name: '', align: '' },
-                { label: '', name: '', align: '' },
-                { label: '', name: '',align: '' }
+                { label: '门诊科室', name: 'mzks',  align: 'center' },
+                { label: '门诊收入', name: 'mzsr', align: 'left' },
+                { label: '药品收入', name: 'ypsr', align: 'left' },
+                { label: '药品占比', name: 'ypzb',align: 'left' }
             ],
             sortname: gridSort,
             viewrecords: true
         });
 
-        var gridSort = '';
-        var $gridJsList = $("");
+        var gridSort = 'CreateTime asc';
+        var $gridJsList = $("#gridJSListzyywks");
         $gridJsList.dataGrid({
             height: 170,
-            autowidth: true,//NếushrinkToFitChotruevà đã thiết lậpwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidththu phóng theo tỷ lệ；
-            shrinkToFit: true, //Nếu đặt làtrue，ThìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
-            url: "",
+            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
+            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            url: "/DeanInquiryManage/BusinessRanking/GetZyywks",
             postData: { kssj: kssj, jssj: jssj },
             colModel: [
-                { label: '', name: '', align: '' },
-                { label: '', name: '', align: '',hidden: true },
-                { label: '', name: '', align: '' },
-                { label: '', name: '', align: '' },
-                { label: '', name: '', align: '' },
-                { label: '', name: '',align: '' },
-                { label: '', name: '', align: '' },
-                { label: '', name: '',align: '' }
+                { label: '住院科室', name: 'zyks', align: 'center' },
+                { label: 'bqCode', name: 'bqCode', align: 'center',hidden: true },
+                { label: '出院人数', name: 'cyrs', align: 'center' },
+                { label: '入院人数', name: 'ryrs', align: 'center' },
+                { label: '手术人数', name: 'ssrs', align: 'center' },
+                { label: '住院总费用（元）', name: 'zyzfy',align: 'center' },
+                { label: '次均费用', name: 'cjfy', align: 'center' },
+                { label: '平均住院天数', name: 'pjzyts',align: 'center' }
             ],
             sortname: gridSort,
             viewrecords: true,
             onCellSelect : function (row) {
-                var rowObj = $gridJsList.jqGrid('', row);
-                var $gridysListys = $("");
-                $gridysListys.jqGrid('', {
+                var rowObj = $gridJsList.jqGrid('getRowData', row);
+                var $gridysListys = $("#gridJSListysyw");
+                $gridysListys.jqGrid('setGridParam', {
                     postData: { kssj: kssj, jssj: jssj, bqCode: rowObj.bqCode },
                     page: 1,
-                    url: "",
-                }).trigger('');
+                    url: "/DeanInquiryManage/BusinessRanking/GetYsyw",
+                }).trigger('reloadGrid');
 
             },
             loadComplete: function (data) {
                 if (data.length > 0)
                 {
                     var firstRow = data[0];
-                    var $gridysListys = $("");
-                    $gridysListys.jqGrid('', {
+                    var $gridysListys = $("#gridJSListysyw");
+                    $gridysListys.jqGrid('setGridParam', {
                         postData: { kssj: kssj, jssj: jssj, bqCode: firstRow.bqCode },
                         page: 1,
-                        url: "",
-                    }).trigger('');
+                        url: "/DeanInquiryManage/BusinessRanking/GetYsyw",
+                    }).trigger('reloadGrid');
                 }
             }
         });
 
-        var gridSort = '';
-        var $gridysListys = $("");
+        var gridSort = 'CreateTime asc';
+        var $gridysListys = $("#gridJSListysyw");
         $gridysListys.dataGrid({
             height: 170,
-            autowidth: true,//NếushrinkToFitChotruevà đã thiết lậpwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidththu phóng theo tỷ lệ；
-            shrinkToFit: true, //Nếu đặt làtrue，ThìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
+            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
             url: "",
             colModel: [
-                { label: '', name: '', align: '' },
-                { label: '', name: '', align: '' },
-                { label: '', name: '', align: '' },
-                { label: '', name: '', align: '' },
-                { label: '', name: '',align: '' },
-                { label: '', name: '',align: '' },
-                { label: '', name: '', align: '' }
+                { label: '医生', name: 'ys', align: 'center' },
+                { label: '出院人数', name: 'cyrs', align: 'center' },
+                { label: '入院人数', name: 'ryrs', align: 'center' },
+                { label: '手术人数', name: 'ssrs', align: 'center' },
+                { label: '住院总费用（元）', name: 'zyzfy',align: 'center' },
+                { label: '次均费用', name: 'cjfy',align: 'center' },
+                { label: '平均住院天数', name: 'pjzyts', align: 'center' }
             ],
             sortname: gridSort,
             viewrecords: true
         });
 
     }
-    //Thay đổi loại thời gian
+    //改变时间类型
     function updateSjType() {
-        $('').val("");
-        let dateType = $("").val();
-        if (dateType == "") {//Năm
-            $('').attr('', "");
-            $('').val(myDate.getFullYear());
+        $('#rSJ').val("");
+        let dateType = $("#dateType").val();
+        if (dateType == "1") {//年
+            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy' })");
+            $('#rSJ').val(myDate.getFullYear());
         }
-        if (dateType == "") {//Tháng
-            $('').attr('', "");
-            $('').val(myDate.getFullYear() + "" + (parseInt(myDate.getMonth()) + 1));
+        if (dateType == "2") {//月
+            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM' })");
+            $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1));
         }
-        if (dateType == "") {//Ngày
-            $('').attr('', "");
-            $('').val(myDate.getFullYear() + "" + (parseInt(myDate.getMonth()) + 1) + "" + myDate.getDate());
+        if (dateType == "3") {//日
+            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM-dd' })");
+            $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1) + "-" + myDate.getDate());
         }
         getSearchData();
     }
 
-    //Lắp ráp tham số yêu cầu
+    //组装请求参数
     function getSearchData() {
         let ksrq = '';
         let jsrq = '';
-        let dateType = $("").val();
-        let nowDate = $("").val();
-        if (dateType == "") {//Năm
-            ksrq = nowDate + "" + "";
-            jsrq = nowDate + "" + "";
+        let dateType = $("#dateType").val();
+        let nowDate = $("#rSJ").val();
+        if (dateType == "1") {//年
+            ksrq = nowDate + "-" + "01-01 00:00:00";
+            jsrq = nowDate + "-" + "12-31 23:59:59";
         }
-        if (dateType == "") {//Tháng
-            let array = nowDate.split("");
-            ksrq = array[0] + "" + array[1] + "";
+        if (dateType == "2") {//月
+            let array = nowDate.split("-");
+            ksrq = array[0] + "-" + array[1] + "-01 00:00:00";
             let days = getDaysInMonth(array[0], array[1]);
-            jsrq = array[0] + "" + array[1] + "" + days + "";
+            jsrq = array[0] + "-" + array[1] + "-" + days + " 23:59:59";
         }
-        if (dateType == "") {//Ngày
-            ksrq = nowDate + "";
-            jsrq = nowDate + "";
+        if (dateType == "3") {//日
+            ksrq = nowDate + " 00:00:00";
+            jsrq = nowDate + " 23:59:59";
         }
 
-        $('').val(ksrq);
-        $('').val(jsrq);
+        $('#kssj').val(ksrq);
+        $('#jssj').val(jsrq);
     }
 
-    //Lấy số ngày trong tháng theo năm tháng
+    //根据年月获取月天数
     function getDaysInMonth(year, month) {
         return new Date(year, month, 0).getDate();
     }

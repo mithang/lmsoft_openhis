@@ -1,8 +1,8 @@
 ﻿@using System.Web.Mvc.Html
 @using Newtouch.Infrastructure
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "就诊记录选择";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
     .table-responsive {
@@ -16,22 +16,22 @@
 <div class="topPanel">
     <table class="form">
         <tr>
-            <th class="formTitle" style="width:50px;">Số thẻ：</th>
+            <th class="formTitle" style="width:50px;">卡号：</th>
             <td class="formValue" style="width: 80px;">
-                <input id="txt_kh" name="txt_blh" type="text" class="form-control newtouch_Readonly" placeholder="Số thẻ" />
+                <input id="txt_kh" name="txt_blh" type="text" class="form-control newtouch_Readonly" placeholder="卡号" />
             </td>
-            <th class="formTitle" style="width:55px;">Loại thẻ：</th>
+            <th class="formTitle" style="width:55px;">卡类型：</th>
             <td class="formValue" style="width: 100px;">
-                @Html.DropDownList("", EnumCardType.XNHJYK.ToDescSelectList(), "", new { @class = "" })
+                @Html.DropDownList("selCardType", EnumCardType.XNHJYK.ToDescSelectList(), "全部", new { @class = "form-control" })
             </td>
-            <th class="formTitle" style="width:75px;">Đăng ký khám thời gian：</th>
+            <th class="formTitle" style="width:75px;">挂号时间：</th>
             <td class="formValue">
                 <input id="gh_kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 88px; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 <span style="margin-left:2px; float: left; line-height: 25px;">—</span>
                 <input id="gh_jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 88px;float:left;margin-left:2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
             </td>
             <td class="formTitle" style="width: 50px;">
-                <button type="button" id="btn_search" class="btn btn-primary btn-md">Tra cứu</button>
+                <button type="button" id="btn_search" class="btn btn-primary btn-md">查询</button>
             </td>
         </tr>
     </table>
@@ -40,41 +40,41 @@
     <table id="opalGridList"></table>
 </div>
 <script>
-    var $gridList = $("");
-    var kh = $.request("");
-    var cardType = $.request("");
-    var zjh = $.request("");
+    var $gridList = $("#opalGridList");
+    var kh = $.request("kh");
+    var cardType = $.request("cardType");
+    var zjh = $.request("zjh");
     $(function () {
-        $("").val(kh);
-        $("").val(cardType);
+        $("#txt_kh").val(kh);
+        $("#selCardType").val(cardType);
         gridList();
-        $("").click(function () {
-            if ($("").val() === "") $("").val(""yyyy-MM-01"");
-            if ($("").val() === "") $("").val(""yyyy-MM-dd"");
-            $gridList.jqGrid("");
-            $gridList.jqGrid('', {
+        $("#btn_search").click(function () {
+            if ($("#gh_kssj").val() === "") $("#gh_kssj").val("@DateTime.Now.ToString("yyyy-MM-01")");
+            if ($("#gh_jssj").val() === "") $("#gh_kssj").val("@DateTime.Now.ToString("yyyy-MM-dd")");
+            $gridList.jqGrid("clearGridData");
+            $gridList.jqGrid('setGridParam', {
                 postData: param(),
-                url: ""
-            }).trigger('');
+                url: "/OutpatientManage/OutpatCharge/GetpatientAccountList"
+            }).trigger('reloadGrid');
         });
     });
 
-    //Khởi tạo
+    //初始化
     function gridList() {
         $gridList.dataGrid({
             height: $(window).height() - 130,
             postData: param(),
-            url: "",
+            url: "/OutpatientManage/OutpatCharge/GetpatientAccountList",
             colModel: [
-                { label: '', name: '', width: 100, align: '' },
-                { label: '', name: '', width: 100, align: '' },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', width: 100, align: '' },
-                { label: '', name: '', width: 100, align: '' },
-                { label: '', name: '', width: 100, align: '' },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true }
+                { label: '病历号', name: 'blh', width: 100, align: 'left' },
+                { label: '门诊号', name: 'mzh', width: 100, align: 'left' },
+                { label: '卡类型', name: 'CardTypeName', hidden: true },
+                { label: '姓名', name: 'xm', width: 100, align: 'left' },
+                { label: '病人性质名称', name: 'brxzmc', width: 100, align: 'left' },
+                { label: '挂号日期', name: 'ghrq', width: 100, align: 'left' },
+                { label: 'xb', name: 'xb', hidden: true },
+                { label: 'brxz', name: 'brxz', hidden: true },
+                { label: 'csny', name: 'csny', hidden: true }
             ],
             viewrecords: true,
             ondblClickRow: function (rowid, iRow, iCol, e) {
@@ -84,11 +84,11 @@
     }
 
     function param() {
-        return { kssj: $("").val(), jssj: $("").val(), kh: kh,zjh:zjh, cardType: cardType};
+        return { kssj: $("#gh_kssj").val(), jssj: $("#gh_jssj").val(), kh: kh,zjh:zjh, cardType: cardType};
     }
 
     function PatDbGrid(rowId) {
-        var rowData = $gridList.jqGrid('', rowId);
+        var rowData = $gridList.jqGrid('getRowData', rowId);
         var obj = new Object();
         obj.blh = rowData.blh;
         obj.mzh = rowData.mzh;

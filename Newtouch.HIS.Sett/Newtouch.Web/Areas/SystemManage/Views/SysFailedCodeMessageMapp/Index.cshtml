@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "错误提示配置列表页";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 
 <div class="topPanel">
@@ -9,13 +9,13 @@
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>删除</a>
         </div>
     </div>
     <div class="search">
@@ -23,7 +23,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="Mã/Nội dung" style="width: 180px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="编码/内容" style="width: 180px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -44,27 +44,27 @@
         gridList();
     });
     function gridList() {
-        var $gridList = $("");
+        var $gridList = $("#gridList");
         $gridList.dataGrid({
             postData: {},
-            url: "",
+            url: "/SystemManage/SysFailedCodeMessageMapp/GetPagintionGridJson",
             height: $(window).height() - 128,
             colModel: [
-                { label: "", name: "", width: 100, align: '', key: true, hidden: true },
-                { label: "", name: "", width: 450, align: '' },
-                { label: "", name: "", width: 350, align: '', sortable: false },
-                { label: "", name: "", width: 100, align: '' },
-                { label: "", name: "", width: 100, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
+                { label: "Id", name: "Id", width: 100, align: 'left', key: true, hidden: true },
+                { label: "编码", name: "code", width: 450, align: 'left' },
+                { label: "内容", name: "msg", width: 350, align: 'left', sortable: false },
+                { label: "排序", name: "px", width: 100, align: 'left' },
+                { label: "创建时间", name: "CreateTime", width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
             ],
             rowNum: 10,
-            pager: "",
-            sortname: '',
+            pager: "#gridPager",
+            sortname: 'isnull(px, 99999999), CreateTime desc',
             viewrecords: true,
         });
-        $("").click(function () {
-            $("").jqGrid('', {
-                postData: { keyword: $("").val() }, page: 1
-            }).trigger('');
+        $("#btn_search").click(function () {
+            $("#gridList").jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val() }, page: 1
+            }).trigger('reloadGrid');
         });
     }
 
@@ -74,53 +74,53 @@
 
     function btn_add() {
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "",
-            width: "",
-            height: "",
+            id: "Form",
+            title: "新增数据",
+            url: "/SystemManage/SysFailedCodeMessageMapp/Form",
+            width: "700px",
+            height: "440px",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function () {
-                    $("").resetSelection();
-                    $("").trigger("");
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
                 });
             }
         });
     }
 
     function btn_edit() {
-        var keyValue = $("").jqGridRowValue().Id;
+        var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("", '');
+            $.modalAlert("请选中一条信息", 'warning');
             return;
         }
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + keyValue,
-            width: "",
-            height: "",
+            id: "Form",
+            title: "修改数据",
+            url: "/SystemManage/SysFailedCodeMessageMapp/Form?keyValue=" + keyValue,
+            width: "700px",
+            height: "440px",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function () {
-                    $("").resetSelection();
-                    $("").trigger("");
+                    $("#gridList").resetSelection();
+                    $("#gridList").trigger("reloadGrid");
                 });
             }
         });
     }
 
     function btn_delete() {
-        var keyValue = $("").jqGridRowValue().Id;
+        var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
-            $.modalAlert("", '');
+            $.modalAlert("请选中一条信息", 'warning');
             return;
         }
         $.deleteForm({
-            url: "",
+            url: "/SystemManage/SysFailedCodeMessageMapp/DeleteForm",
             param: { keyValue: keyValue },
             success: function () {
-                $("").resetSelection();
-                $("").trigger("");
+                $("#gridList").resetSelection();
+                $("#gridList").trigger("reloadGrid");
             }
         });
     }

@@ -1,20 +1,20 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "分类清单-住院病人";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
 <div class="rows">
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">Số nhập viện：</th>
+                <th class="formTitle">住院号：</th>
                 <td class="formValue">
                     <input id="zyh" name="zyh" type="text" class="form-control" />
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
                 </td>
                 <th></th>
                 <td></td>
@@ -32,85 +32,85 @@
             scrolling="auto" allowtransparency="true" frameborder="0"></iframe>
 </div>
 
-<script type="">
-    var reportServerHOST = '';
-    var orgId = '';
-    var isHospAdministrator = '';
-    var curUserCode = '';
+<script type="text/javascript">
+    var reportServerHOST = '@(ViewBag.ReportServerHOST)';
+    var orgId = '@(ViewBag.OrgId)';
+    var isHospAdministrator = '@(ViewBag.IsHospAdministrator)';
+    var curUserCode = '@(ViewBag.CurUserCode)';
 
-    var uri = '';
+    var uri = 'ReportServer/Pages/ReportViewer.aspx?%2fHIS.Report.1%2f%E5%88%86%E7%B1%BB%E6%B8%85%E5%8D%95.%E4%BD%8F%E9%99%A2%E7%97%85%E4%BA%BA&rs:Command=Render';
 
     function submit() {
 
-        if ($('').val().length == 0) {
-            $.modalAlert("" , "");
+        if ($('#zyh').val().length == 0) {
+            $.modalAlert("缺少住院号" , "error");
             return;
         }
 
         var url = getUrl();
 
-        url += "" + $('').val();
+        url += "&zyh=" + $('#zyh').val();
 
-        setTimeout("", 10);
-        $("").attr('', url);
+        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        $("#iframerightiframerightiframerightttt").attr('src', url);
     }
 
-    $("").load(function () {
+    $("#iframerightiframerightiframerightttt").load(function () {
         $.loading(false);
     });
 
     $(function () {
         var h = $(window).height() - 55
-        $('').css('', h);
+        $('#layout iframe').css('height', h);
     });
 
     function getUrl() {
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
-        //Lấy kiểu tùy chỉnh
+        //获取自定义样式
         if (true) {
-            if (srcUrl.indexOf('') == -1) {
-                srcUrl += "";
+            if (srcUrl.indexOf('&rc:Stylesheet') == -1) {
+                srcUrl += "&rc:Stylesheet=MyStyleSheet";
             }
         } 
 
-        //Lấy kiểu tùy chỉnh
+        //获取自定义样式
         if (true) {
-            if (srcUrl.indexOf('') == -1) {
-                srcUrl += "";
+            if (srcUrl.indexOf('&rc:Stylesheet') == -1) {
+                srcUrl += "&rc:Stylesheet=MyStyleSheet";
             }
         } 
 
         if (true) {
-            if (srcUrl.indexOf('') == -1) {
-                srcUrl += "";
+            if (srcUrl.indexOf('&rs:') == -1) {
+                srcUrl += "&rs:";
             }
             else {
-                srcUrl += "";
+                srcUrl += "&";
             }
-            srcUrl += "";
+            srcUrl += "orgId=";
             srcUrl += orgId;
         }
 
         if (false) {
-            if (srcUrl.indexOf('') == -1) {
-                srcUrl += "";
+            if (srcUrl.indexOf('&rs:') == -1) {
+                srcUrl += "&rs:";
             }
             else {
-                srcUrl += "";
+                srcUrl += "&";
             }
-            srcUrl += "";
+            srcUrl += "curUserCode=";
             srcUrl += curUserCode;
         }
 
         if (false) {
-            if (srcUrl.indexOf('') == -1) {
-                srcUrl += "";
+            if (srcUrl.indexOf('&rs:') == -1) {
+                srcUrl += "&rs:";
             }
             else {
-                srcUrl += "";
+                srcUrl += "&";
             }
-            srcUrl += "";
+            srcUrl += "isHospAdministrator=";
             srcUrl += isHospAdministrator;
         }
 

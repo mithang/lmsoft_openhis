@@ -1,18 +1,18 @@
 ﻿@using Newtouch.Common.Operator;
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Info";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 <script>
     $(function () {
-        $('').height($(window).height() - 11);
+        $('.wrapper').height($(window).height() - 11);
     })
 </script>
 <div class="wrapper">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#a1111" data-toggle="tab">修改密码</a></li>
-        @*<li class="active"><a href="#a" data-toggle="tab">Thông tin cơ bản</a></li>
-            <li><a href="#b" data-toggle="tab">Đăng ký thông tin</a></li>
+        @*<li class="active"><a href="#a" data-toggle="tab">基本信息</a></li>
+            <li><a href="#b" data-toggle="tab">注册信息</a></li>
             <li><a href="#c" data-toggle="tab">安全验证</a></li>
             <li><a href="#c" data-toggle="tab">系统日志</a></li>
             <li><a href="#c" data-toggle="tab">个性化设置</a></li>*@
@@ -21,7 +21,7 @@
         <div id="a1111" class="tab-pane active" style="padding: 15px;">
             <ul class="pop-list">
                 <li>
-                    <label>Tài khoản</label>
+                    <label>账户</label>
                     <input type="text" class="form-control newtouch_Readonly" value="@(OperatorProvider.GetCurrent().UserCode)" />
                 </li>
                 <li>
@@ -34,12 +34,12 @@
                 </li>
                 <li>
                     <div style="padding-left: 115px;">
-                        <a class="btn btn-primary" onclick="btn_submitPwd()"><i class="fa" style="margin-right:5px;"></i>Xác nhận sửa</a>
+                        <a class="btn btn-primary" onclick="btn_submitPwd()"><i class="fa" style="margin-right:5px;"></i>确认修改</a>
                     </div>
                 </li>
                 <li>
                     &nbsp;&nbsp;
-                    <span style="color:#999;">6-16Vị，必须包含字母数字</span>
+                    <span style="color:#999;">6-16位，必须包含字母数字</span>
                 </li>
             </ul>
         </div>
@@ -51,10 +51,10 @@
             </div>*@
     </div>
 </div>
-<script type="">
-    $('').keyupEnterEvent(function () {
-        var newpwd = $.trim($('').val());
-        var renewpwd = $.trim($('').val());
+<script type="text/javascript">
+    $('#renewpwd').keyupEnterEvent(function () {
+        var newpwd = $.trim($('#newpwd').val());
+        var renewpwd = $.trim($('#renewpwd').val());
         if (!!!newpwd || !!!renewpwd) {
             return false;
         }
@@ -65,32 +65,32 @@
     });
 	
     function btn_submitPwd() {
-        var newpwd = $.trim($('').val());
-        var renewpwd = $.trim($('').val());
+        var newpwd = $.trim($('#newpwd').val());
+        var renewpwd = $.trim($('#renewpwd').val());
         if (!!!newpwd || !!!renewpwd) {
-            $.modalAlert("", "");
+            $.modalAlert("请填写密码", "error");
             return false;
         }
         if (newpwd != renewpwd) {
-            $.modalAlert("", "");//Độ phức tạp mật khẩu chưa đủ
+            $.modalAlert("两次输入的密码不一致", "error");//密码复杂度不够
             return false;
         }
         var ret = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
         if (newpwd && !ret.test(newpwd)) {
-            $.modalAlert("", "");//Độ phức tạp mật khẩu chưa đủ
+            $.modalAlert("密码复杂度不够<br/>6-16位，必须包含字母数据", "error");//密码复杂度不够
             return false;
         }
         $.ajax({
-            url: "",
+            url: "/SystemManage/User/SubmitPersonalPassword",
             data: { newpwd: newpwd, renewpwd: renewpwd },
-            type: "",
-            dataType: "",
+            type: "post",
+            dataType: "json",
             success: function (data) {
-                if (data.state == "") {
-                    $.modalAlert("", "");
+                if (data.state == "success") {
+                    $.modalAlert("重置密码成功。", "success");
                     location.href = location.href;
                 } else {
-                    $.modalAlert("", "");
+                    $.modalAlert("重置密码失败。", "error");
                     location.href = location.href;s
                 }
             }

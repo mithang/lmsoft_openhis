@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
         #region 页面初始化
         /// <summary>
-        /// Phân tích số người lần người khám bệnh ngoại trú
+        /// 门诊就诊人次人数分析
         /// </summary>
         /// <returns></returns>
         public ActionResult NumberofOutpatientVisits()
@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
             return View();
         }
         /// <summary>
-        /// Phân tích thu nhập ngoại trú
+        /// 门诊收入分析
         /// </summary>
         /// <returns></returns>
         public ActionResult NumberofOutpatientSalary()
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
         }
 
         /// <summary>
-        /// Lấy chi phí khám bệnh
+        /// 获取就诊费用
         /// </summary>
         public ActionResult GetVisitNum(string year, string datatype, string orgId)
         {
@@ -103,7 +103,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
 
         /// <summary>
-        ///Lấy số người khám ngoại trú
+        ///获取门诊就诊人数
         /// </summary>
         /// <returns></returns>
         public ActionResult GetOutpatientVisitNum()
@@ -113,7 +113,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
         }
 
         /// <summary>
-        /// Lấy lần người khám bệnh ngoại trú
+        /// 获取门诊就诊人次
         /// </summary>
         /// <returns></returns>
         public ActionResult GetOutpatientVisitPerNum()
@@ -124,7 +124,7 @@ namespace Newtouch.HIS.Web.Areas.HighchartsManage.Controllers
 
 
         /// <summary>
-        /// Lấy thống kê thu nhập ngoại trú
+        /// 获取门诊收入统计
         /// </summary>
         /// <returns></returns>
         public ActionResult GetOutpatientSalaryNum()

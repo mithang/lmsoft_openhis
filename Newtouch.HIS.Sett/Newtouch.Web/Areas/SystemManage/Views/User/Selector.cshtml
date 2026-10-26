@@ -1,35 +1,35 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 <script>
-    var from = $.request("");
-    var organizeId = $.request("");
-    var isContansChildOrg = $.request("");
-    var keyValue = $.request("");
-    var isExpand = $.request("");
-    var callbackType = $.request("");
-    var single = $.request("");
-    var isShowEmpty = $.request("");
+    var from = $.request("from");
+    var organizeId = $.request("organizeId");
+    var isContansChildOrg = $.request("isContansChildOrg");
+    var keyValue = $.request("keyValue");
+    var isExpand = $.request("isExpand");
+    var callbackType = $.request("callbackType");
+    var single = $.request("single");
+    var isShowEmpty = $.request("isShowEmpty");
     $(function () {
         initControl();
     })
 
     function initControl() {
-        $("").treeview({
+        $("#userStaffTree").treeview({
             height: 440,
             slimscroll: false,
             showcheck: true,
-            url: "",
+            url: "/SystemManage/User/GetSysUserSelectorTree",
             param: { from: from, organizeId: organizeId, isContansChildOrg: isContansChildOrg, keyValue: keyValue, isExpand: isExpand, isShowEmpty: isShowEmpty },
             oncheckboxclick: function (a, ck) {
                 window.treeaid = a.id;
-                if (single == '' && ck == 1 && !a.hasChildren) {
+                if (single == 'true' && ck == 1 && !a.hasChildren) {
                     //让其他的都不选中，但不包括其父级的
-                    $.each($(''), function () {
-                        if ($(this).attr('').indexOf(window.treeaid) == -1
-                            && $(this).attr('').indexOf('') != -1) {
-                            $(this).trigger('');
+                    $.each($('img.bbit-tree-node-cb'), function () {
+                        if ($(this).attr('id').indexOf(window.treeaid) == -1
+                            && $(this).attr('src').indexOf('checkbox_1') != -1) {
+                            $(this).trigger('click');
                         }
                     });
                 }
@@ -39,17 +39,17 @@
 
     function AcceptClick(callBack) {
         var treeSeleData;
-        if (callbackType == '') {
-            treeSeleData = $("").getCheckedNodeObjArray();
-            if (single == '' && treeSeleData.length != 1) {
-                $.modalAlert('', '');
+        if (callbackType == 'json') {
+            treeSeleData = $("#userStaffTree").getCheckedNodeObjArray();
+            if (single == 'true' && treeSeleData.length != 1) {
+                $.modalAlert('最多选中一条', 'warning');
                 return;
             }
         }
         else {
-            treeSeleData = $("").getCheckedValues();  //Values对应的是UserId
-            if (single == '' && treeSeleData.length != 1) {
-                $.modalAlert('', '');
+            treeSeleData = $("#userStaffTree").getCheckedValues();  //Values对应的是UserId
+            if (single == 'true' && treeSeleData.length != 1) {
+                $.modalAlert('最多选中一条', 'warning');
                 return;
             }
             treeSeleData = String(treeSeleData);

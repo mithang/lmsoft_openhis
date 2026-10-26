@@ -1,7 +1,7 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "病人性质";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
 <form id="form1">
@@ -10,9 +10,9 @@
             <div role="tabpanel" class="tab-pane fade in active" style="padding-top: 20px; margin-right: 30px;" id="basicInfo">
                 <table class="form">
                     <tr>
-                        <td class="formTitle"><span class="required">*</span>Tên tính chất：</td>
+                        <td class="formTitle"><span class="required">*</span>性质名称：</td>
                         <td class="formValue">
-                            <input id="brxzmc" name="brxzmc" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
+                            <input id="brxzmc" name="brxzmc" type="text" class="form-control required" placeholder="请输入名称" />
                         </td>
                         <td class="formTitle"><span class="required">*</span>首拼：</td>
                         <td class="formValue">
@@ -20,76 +20,76 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="formTitle"><span class="required">*</span>Mã tính chất：</td>
+                        <td class="formTitle"><span class="required">*</span>性质代码：</td>
                         <td class="formValue">
-                            <input id="brxz" name="brxz" type="text" class="form-control required" placeholder="Vui lòng nhập mã" />
+                            <input id="brxz" name="brxz" type="text" class="form-control required" placeholder="请输入编码" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Loại tính chất(Thẻ)：</th>
+                        <th class="formTitle"><span class="required">*</span>性质类别(卡)：</th>
                         <td class="formValue formDdlSelectorTd">
                             <select id="brxzlb"  name="brxzlb" class="form-control required" data-EnumType="EnumJykxzlx">
-                                <option value="">==Vui lòng chọn==</option>
+                                <option value="">==请选择==</option>
                             </select>
                         </td>
                         
                         
                     </tr>
                     <tr>
-                        <td class="formTitle">Loại loại hình bảo hiểm bảo hiểm y tế：</td>
+                        <td class="formTitle">医保险种类型：</td>
                         <td class="formValue">
-                            <input id="insutype" name="insutype" type="text" class="form-control" placeholder="Vui lòng nhập cờ loại hình bảo hiểm" />
+                            <input id="insutype" name="insutype" type="text" class="form-control" placeholder="请输入险种标志" />
                         </td>
-                        <th class="formTitle">Loại giao dịch bảo hiểm y tế：</th>
+                        <th class="formTitle">医保交易类型：</th>
                         <td class="formValue formDdlSelectorTd">
                             <select id="ybjylx" name="ybjylx" class="form-control" data-EnumType="EnumYBJYLX">
-                                <option value="">==Vui lòng chọn==</option>
+                                <option value="">==请选择==</option>
                             </select>
                         </td>
                         @*<th class="formTitle">医保特殊待遇：</th>
                         <td class="formValue formDdlSelectorTd">
                             <select id="ybtsdy" name="ybtsdy" class="form-control" data-EnumType="EnumYBTSDY">
-                                <option value="">==Vui lòng chọn==</option>
+                                <option value="">==请选择==</option>
                             </select>
                         </td>*@
                     </tr>
                     @*<tr>
-                        <th class="formTitle">Cấp trên：</th>
+                        <th class="formTitle">上级：</th>
                         <td class="formValue formDdlSelectorTd">
                             <select id="ParentId" name="ParentId" class="form-control">
-                                <option value="">==Vui lòng chọn==</option>
+                                <option value="">==请选择==</option>
                             </select>
                         </td>
                     </tr>*@
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Cờ ngoại trú/nhập viện：</th>
+                        <th class="formTitle"><span class="required">*</span>门诊住院标志：</th>
                         <td class="formValue formDdlSelectorTd">
                             <select id="mzzybz" name="mzzybz" class="form-control required" data-EnumType="Enummzzybz">
-                                <option value="">==Vui lòng chọn==</option>
+                                <option value="">==请选择==</option>
                             </select>
                         </td>
-                        @*<th class="formTitle">Cờ chứng từ：</th>
+                        @*<th class="formTitle">凭证标志：</th>
                         <td class="formValue">
                             <div class="ckbox">
-                                <input id="pzbz" name="pzbz" type="checkbox" checked="checked"><label for="pzbz">Hiệu lực</label>
+                                <input id="pzbz" name="pzbz" type="checkbox" checked="checked"><label for="pzbz">有效</label>
                             </div>
                         </td>*@
                         
                     </tr>
                     <tr>
-                        <th class="formTitle" style="height: 35px;"><span class="required">*</span>Trạng thái：</th>
+                        <th class="formTitle" style="height: 35px;"><span class="required">*</span>状态：</th>
                         <td class="formValue" style="padding-top: 1px;">
                             <div class="ckbox">
-                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
+                                <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">有效</label>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Sắp xếp：</th>
+                        <th class="formTitle">排序：</th>
                         <td class="formValue">
                             <input id="px" name="px" type="text" class="form-control" placeholder="" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Ghi chú：</th>
+                        <th class="formTitle">备注：</th>
                         <td class="formValue" colspan="3">
                             <input id="bz" name="bz" type="text" class="form-control" />
                         </td>
@@ -100,48 +100,48 @@
     </div>
 </form>
 <script>
-    var keyValue = $.request("");
+    var keyValue = $.request("keyValue");
     $(function () {
         initControl();
         if (!!keyValue) {
             $.ajax({
-                url: "",
+                url: "/SystemManage/PatientCharacteristics/GetFormJson",
                 data: { keyValue: keyValue },
-                dataType: "",
+                dataType: "json",
                 async: false,
                 success: function (data) {
-                    $("").formSerialize(data);
+                    $("#form1").formSerialize(data);
                 }
             });
         }
 
-        //Phiên âm lấy họ tên theo
-        $('').blur(function () {
-            $('').val($(this).toShouPin());
+        //根据姓名获得拼音
+        $('#brxzmc').blur(function () {
+            $('#py').val($(this).toShouPin());
 
         });
     });
 
     function initControl() {
-        $("").bindSelect({
-            url: ""
+        $("#ParentId").bindSelect({
+            url: "/SystemManage/PatientCharacteristics/GetTreeSelectJson"
         });
-        $('').bindSelect();
+        $('#brxzlb').bindSelect();
     }
 
     function submitForm(leftlabel) {
-        if (!$('').formValid()) {
+        if (!$('#form1').formValid()) {
             return false;
         }
-        var postData = $("").formSerialize();
+        var postData = $("#form1").formSerialize();
         $.submitForm({
-            url: "" + keyValue,
+            url: "/SystemManage/PatientCharacteristics/SubmitForm?keyValue=" + keyValue,
             param: postData,
             close: leftlabel,
             success: function () {
                 newtouch_globalevent_f4();
-                $.currentWindow().$("").resetSelection();
-                $.currentWindow().$("").trigger("");
+                $.currentWindow().$("#gridList").resetSelection();
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
             }
         });
     }

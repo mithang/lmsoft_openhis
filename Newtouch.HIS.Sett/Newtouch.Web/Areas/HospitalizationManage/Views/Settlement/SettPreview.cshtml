@@ -2,8 +2,8 @@
 @using Newtouch.Infrastructure;
 @model Newtouch.HIS.Domain.DTO.OutputDto.HosSettPatClassifyChargePreviewDto
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "SettPreview";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
 <style type="text/css">
@@ -22,37 +22,37 @@
 <div style="margin:2% 7% 0 7%;">
     <table class="table">
         <tr>
-            <th class="text-right">Số nhập viện：</th>
+            <th class="text-right">住院号：</th>
             <td class="text-left">
                 @Model.HospSettPatInfo.zyh
             </td>
-            <th class="text-right">Số thẻ：</th>
+            <th class="text-right">卡号：</th>
             <td class="text-left">
                 @Model.HospSettPatInfo.kh
             </td>
-            <th class="text-right">Họ tên：</th>
+            <th class="text-right">姓名：</th>
             <td class="text-left">
                 @Model.HospSettPatInfo.xm
             </td>
-            <th class="text-right">Giới tính：</th>
+            <th class="text-right">性别：</th>
             <td class="text-left">@(Model.HospSettPatInfo.xb == null ? "" : ((EnumSex)(Model.HospSettPatInfo.xb.ToInt(-1))).GetDescription(""))</td>
         </tr>
         <tr>
-            <th class="text-right">Tuổi：</th>
+            <th class="text-right">年龄：</th>
             <td class="text-left">
                 @Model.HospSettPatInfo.csny.ToAge()
             </td>
-            <th class="text-right">Ghi sổ：</th>
+            <th class="text-right">记账：</th>
             <td class="text-left">
-                @Model.jzfy.ToString("")
+                @Model.jzfy.ToString("0.00")
             </td>
-            <th class="text-right">Tự chi trả theo phân loại：</th>
+            <th class="text-right">分类自负：</th>
             <td class="text-left">
-                @Model.flzf.ToString("")
+                @Model.flzf.ToString("0.00")
             </td>
-            <th class="text-right">Tự chi trả：</th>
+            <th class="text-right">自负：</th>
             <td class="text-left">
-                @Model.zifu.ToString("")
+                @Model.zifu.ToString("0.00")
             </td>
         </tr>
         <tr>
@@ -60,13 +60,13 @@
             <td class="text-left"></td>
             <th class="text-right"></th>
             <td class="text-left"></td>
-            <th class="text-right">Tự chi trả：</th>
+            <th class="text-right">自费：</th>
             <td class="text-left">
-                @Model.zifei.ToString("")
+                @Model.zifei.ToString("0.00")
             </td>
-            <th class="text-right">Khác：</th>
+            <th class="text-right">其他：</th>
             <td class="text-left">
-                @Model.jmje.ToString("")
+                @Model.jmje.ToString("0.00")
             </td>
         </tr>
     </table>
@@ -75,7 +75,7 @@
 <div class="rows" style="margin:0 3%;margin-top: 0.5%;">
     <div class="panel panel-default" style="margin-bottom:0;">
         <div class="panel-heading">
-            Quyết toán chi phí
+            费用结算
         </div>
         <div class="panel-body" style="padding: 5px 15px;">
             <div>
@@ -108,23 +108,23 @@
                         <td class="text-left"></td>
                         <th class="text-right"></th>
                         <td class="text-left"></td>
-                        <th class="text-right" style="font-weight:700;">Khoản phải thu：</th>
+                        <th class="text-right" style="font-weight:700;">应收款：</th>
                         <td class="text-left" id="tdYsk">
-                            <span>@Model.yingshoukuan.ToString("")</span>
+                            <span>@Model.yingshoukuan.ToString("0.00")</span>
                         </td>
                     </tr>
                     <tr>
-                        <th class="text-right" style="font-weight:700;color:red;">Tiền thừa：</th>
+                        <th class="text-right" style="font-weight:700;color:red;">找零：</th>
                         <td class="text-left" id="tdZhaoling" style="color:red;">
-                            <span>@Model.zhaoling.ToString("")</span>
+                            <span>@Model.zhaoling.ToString("0.00")</span>
                         </td>
                         <th class="text-right">舍入差额：</th>
                         <td class="text-left">
-                            @Model.srce.ToString("")
+                            @Model.srce.ToString("0.00")
                         </td>
-                        <th class="text-right" style="font-weight:700;">Số tiền thực thu：</th>
+                        <th class="text-right" style="font-weight:700;">实收款：</th>
                         <td class="text-left" id="tdSsk">
-                            <span>@Model.ssk.ToString("")</span>
+                            <span>@Model.ssk.ToString("0.00")</span>
                         </td>
                     </tr>
                 </table>
@@ -133,10 +133,10 @@
                 <table>
                     <tr class="form">
                         <td class="formValue">
-                            <input type="text" class="form-control" id="txtfph" readonly="readonly" disabled value="@Model.fph" placeholder="Vui lòng chọn số hóa đơn" />
+                            <input type="text" class="form-control" id="txtfph" readonly="readonly" disabled value="@Model.fph" placeholder="请选择发票号" />
                         </td>
                         <td class="formValue">
-                            <input type="button" class="btn btn-default btn-md" value="Chọn số hóa đơn " onclick="ShowInvoicePanel()" />
+                            <input type="button" class="btn btn-default btn-md" value="选发票号 " onclick="ShowInvoicePanel()" />
                         </td>
                     </tr>
                 </table>
@@ -145,33 +145,33 @@
     </div>
 </div>
 
-<script type="">
-    //患者交款记录 jGridKhai báo
-    $('').newtouchLocalDataGrid({
+<script type="text/javascript">
+    //患者交款记录 jGrid声明
+    $('#tbZhszGridList').newtouchLocalDataGrid({
         height: 80,
         unwritten: false,
         sortable: false,
         colModel: [
-            { label: '', name: '', hidden: true },
-            { label: '', name: '', width: 100, align: '' },
-            { label: '', name: '', width: 100, align: '' },
-            { label: '', name: '', width: 200, align: '' }
+            { label: '支付方式代码', name: 'zffs', hidden: true },
+            { label: '支付方式', name: 'zffsmc', width: 100, align: 'left' },
+            { label: '支付金额', name: 'zfje', width: 100, align: 'left' },
+            { label: '支付账号', name: 'zfzh', width: 200, align: 'left' }
         ]
     });
 
-    var yjjzhzhxz = '';
+    var yjjzhzhxz = '@Model.HospSettPatInfo.zyyjjzhzhxz';
     var yjjzhzffs = "";//对应的xjzffs
     var yjjzhzffsmc = "";//对应的xjzffs
 
-    $("").newtouchBindSelect({
-        id: "",
-        text: "",
+    $("#ddlZYJSChargeType").newtouchBindSelect({
+        id: "xjzffs",
+        text: "xjzffsmc",
         datasource: function () {
-            //Duyệt nguồn dữ liệu
+            //遍历数据源
             var resultObjArr = new Array();
             if(top.clients && top.clients.SysForCashPayList){
                 $.each(top.clients.SysForCashPayList, function (idx, val) {
-                    if (val.zhxz == yjjzhzhxz || val.zhxz == '') {
+                    if (val.zhxz == yjjzhzhxz || val.zhxz == 'a') {
                         if (val.zhxz == yjjzhzhxz) {
                             yjjzhzffs = val.xjzffs;
                             yjjzhzffsmc = val.xjzffsmc;
@@ -185,21 +185,21 @@
     });
 
     $(function () {
-        if (!yjjzhzhxz || !yjjzhzffs || !yjjzhzffsmc || $('' + yjjzhzffs + '').length == 0) {
-            throw new Error('');
+        if (!yjjzhzhxz || !yjjzhzffs || !yjjzhzffsmc || $('#ddlZYJSChargeType option[value=' + yjjzhzffs + ']').length == 0) {
+            throw new Error('zhxz error');
         }
 
-        $("").val($('').attr(''));
-        $('' + yjjzhzffs + '').attr('', '').trigger("");
+        $("#ddlZYJSChargeType").val($('#ddlZYJSChargeType option:first').attr('value'));
+        $('#ddlZYJSChargeType option[value=' + yjjzhzffs + ']').attr('disabled', 'disabled').trigger("change");
 
-        $('').newtouchLocalDataGrid(null, [{ zffs: yjjzhzffs, zffsmc: yjjzhzffsmc, zfje: '', zfzh: """" }]);
+        $('#tbZhszGridList').newtouchLocalDataGrid(null, [{ zffs: yjjzhzffs, zffsmc: yjjzhzffsmc, zfje: '@(Model.zhye.ToString("0.00"))', zfzh: "@((Model.HospSettPatInfo.zyyjjzh ?? 0) > 0 ? Model.HospSettPatInfo.zyyjjzh.Value.ToString() : "")" }]);
     });
 
     function btn_add() {
-        var chargeType = $("").val();
-        var chargeTypeText = $("").text();
-        var szje = $("").val();
-        $("").val('');  //
+        var chargeType = $("#ddlZYJSChargeType").val();
+        var chargeTypeText = $("#ddlZYJSChargeType option:selected").text();
+        var szje = $("#txtszje").val();
+        $("#txtszje").val('');  //
         if (szje) {
             szje = parseFloat(szje).toFixed(2);
             if (szje == 0 || isNaN(szje) || szje > 200000) {
@@ -207,97 +207,97 @@
             }
         }
         if (chargeType && chargeTypeText && szje) {
-            //Phương thức thanh toán loại một Đánh giá thêm lặp lại
+            //一种支付方式 重复添加判断
             if (chargeType == yjjzhzffs) {
                 return;
             }
-            $('').newtouchLocalDataGrid(null, [{ zffs: chargeType, zffsmc: chargeTypeText, zfje: szje, zfzh: "" }]);
+            $('#tbZhszGridList').newtouchLocalDataGrid(null, [{ zffs: chargeType, zffsmc: chargeTypeText, zfje: szje, zfzh: "" }]);
         }
         reCalcZhaoling();
     };
 
     function btn_delete() {
-        var rowid = jQuery("").jqGrid("", "");
-        if ($("").jqGrid('', rowid)[""] == yjjzhzffs) {
-            return; //Tài khoản tiền tạm ứng 记录不能删
+        var rowid = jQuery("#tbZhszGridList").jqGrid("getGridParam", "selrow");
+        if ($("#tbZhszGridList").jqGrid('getRowData', rowid)["zffs"] == yjjzhzffs) {
+            return; //预交金账户 记录不能删
         }
         if (rowid) {
-            $('').jqGrid("", rowid);
+            $('#tbZhszGridList').jqGrid("delRowData", rowid);
         }
         reCalcZhaoling();
     };
 
-    //Lại tính tiền thừa
+    //重新计算找零
     function reCalcZhaoling() {
-        var ysk = $.trim($("").text());
+        var ysk = $.trim($("#tdYsk span").text());
         var ssk = 0;
-        var rowIds = $("").getDataIDs();
+        var rowIds = $("#tbZhszGridList").getDataIDs();
         $.each(rowIds, function (idx, val) {
-            var zfjestr = $("").jqGrid('', val)[""];
+            var zfjestr = $("#tbZhszGridList").jqGrid('getRowData', val)["zfje"];
             if (zfjestr) {
                 var zfje = parseFloat(parseFloat(zfjestr).toFixed(2));
                 ssk += zfje;
             }
         });
-        $('').html(ssk.toFixed(2));
-        $('').html((ssk - ysk).toFixed(2));
+        $('#tdSsk span').html(ssk.toFixed(2));
+        $('#tdZhaoling span').html((ssk - ysk).toFixed(2));
     }
 
-    $('').keydown(function (event) {
+    $('#txtszje').keydown(function (event) {
         event = event || window.event;
         if (event.keyCode == 13) {
-            if ($('').length == 1) {
+            if ($('#btn_Add:visible').length == 1) {
                 btn_add();
             }
         }
     });
 
-    //Cửa sổ bật lên số hóa đơn
+    //弹出发票号的窗口
     function ShowInvoicePanel() {
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "",
-            width: "",
-            height: "",
+            id: "InvoiceNoChoosePanel",
+            title: "选发票号",
+            url: "/OutpatientManage/OutpatientReg/ChooseInvoice?from=FormShowSett",
+            width: "300px",
+            height: "200px",
             callBack: function (iframeId) {
-                top.InvoiceNoChoosePanel.checkFPH();    //Hàm callback xác nhận khi nhấn cửa sổ
+                top.InvoiceNoChoosePanel.checkFPH();    //窗口点确定的回调函数
             }
         });
     }
 
-    //Gửi quyết toán
+    //提交结算
     function submitSett() {
         var postData = {};
-        postData[''] = '';
-        postData[''] = $('').val(); //'';
-        postData[''] = '';  //
-        postData[''] = '';  //
-        //期望的结算金额 Ngăn thay đổi trong quá trình
-        postData[''] = @(Model.expectedjsje);
-        //期望的找零 Ngăn thay đổi trong quá trình
-        postData[''] = $('').text();
-        if($('').text() && parseFloat($.trim($('').text())) < 0){
-            $.modalAlert("", '');
+        postData['zyh'] = '@(Model.zyh)';
+        postData['fph'] = $('#txtfph').val(); //'@(Model.fph)';
+        postData['expectedcyrq'] = '@(Model.expectedcyrq)';  //
+        postData['expectedyjjzhye'] = '@(Model.zhye)';  //
+        //期望的结算金额 防止过程中变更
+        postData['expectedjsje'] = @(Model.expectedjsje);
+        //期望的找零 防止过程中变更
+        postData['expectedzhaoling'] = $('#tdZhaoling span').text();
+        if($('#tdZhaoling span').text() && parseFloat($.trim($('#tdZhaoling span').text())) < 0){
+            $.modalAlert("找零不能为负", 'error');
             return;
         }
-        //期望的结算金额 Ngăn thay đổi trong quá trình
-        postData[''] = $('').text();
-        //Phương thức thanh toán jsonChuỗi
+        //期望的结算金额 防止过程中变更
+        postData['shishoukuan'] = $('#tdSsk span').text();
+        //支付方式 json串
         var xjzfArr = new Array();
-        var rowIds = $("").getDataIDs();
+        var rowIds = $("#tbZhszGridList").getDataIDs();
         $.each(rowIds, function (idx, val) {
-            var thisRowData = $("").jqGrid('', val);
-            xjzfArr.push({xjzffs : thisRowData[''], zfje : parseFloat(thisRowData['']), zfzh : parseInt(thisRowData[''])});
+            var thisRowData = $("#tbZhszGridList").jqGrid('getRowData', val);
+            xjzfArr.push({xjzffs : thisRowData['zffs'], zfje : parseFloat(thisRowData['zfje']), zfzh : parseInt(thisRowData['zfzh'])});
         });
-        postData[''] = JSON.stringify(xjzfArr);
+        postData['xjzfListStr'] = JSON.stringify(xjzfArr);
 
         $.submitForm({
-            url: "",
+            url: "/HospitalizationManage/Settlement/SubmitSett",
             param: postData,
             successwithtipmsg: false,
             success: function (data) {
-                //弹另外一个层 Quyết toán kết quả 方法定义在IndexTrong
+                //弹另外一个层 结算结果 方法定义在Index中
                 $.currentWindow().window.showSettSuccessDialog(data.data.yingshoukuan, data.data.ssk, data.data.srce, data.data.zhaoling);
                 $.currentWindow().window.newtouch_globalevent_f4();
             }

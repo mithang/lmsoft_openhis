@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Ủy quyền cơ quan tổ chức tất cả cho
+        /// 授权给所有组织机构
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -94,7 +94,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Hủy tất cả ủy quyền（Tổ chức）
+        /// 撤销全部授权（组织机构）
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

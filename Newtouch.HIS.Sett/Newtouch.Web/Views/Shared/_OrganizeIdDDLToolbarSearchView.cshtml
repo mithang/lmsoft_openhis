@@ -15,15 +15,15 @@
         </tr>
     </table>
 </div>
-<script type="">
-    $("").bindSelect({
-        url: "",
+<script type="text/javascript">
+    $("#OrganizeId").bindSelect({
+        url: "/SystemManage/Organize/GetChildTreeSelectJson",
     });
-    $("").change(function () {
-        if ($("").length > 0) {
-            //Xóa trống dòng đã chọn
-            $("").resetSelection();
+    $("#OrganizeId").change(function () {
+        if ($("table#gridList").length > 0) {
+            //清空选中行
+            $("#gridList").resetSelection();
         }
-        $("").trigger('');
+        $("#btn_search").trigger('click');
     });
 </script>

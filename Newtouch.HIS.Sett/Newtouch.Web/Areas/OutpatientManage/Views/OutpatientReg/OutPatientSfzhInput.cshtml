@@ -1,9 +1,9 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "输入患者身份证号";
+    Layout = "~/Views/Shared/_Form.cshtml";
     var from = (ViewBag.from as string) ?? "";
-    //Địa bàn bảo hiểm y tế
-    var medicalInsurance = SysConfigReader.String("");
+    //医保所属地
+    var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
 }
 <style>
     .formTitle span {
@@ -31,7 +31,7 @@
             </tr>
             <tr>
                 <td class="formTitle">
-                    <span>*</span>Số chứng minh nhân dân：
+                    <span>*</span>身份证号：
                 </td>
                 <td class="formValue" style="text-align:left">
                     <input type="text" id="sfzhId" class="form-control form-an" autocomplete="off" style="height:15px">
@@ -42,14 +42,14 @@
 </form>
 
 <script>
-    var topform = $.request('');
-    var medicalInsurance = '';//Cấu hình địa bàn bảo hiểm y tế:Phân biệt khu vực bảo hiểm y tế của bệnh viện
-    //var medicalInsurance = $.request("");
+    var topform = $.request('topform');
+    var medicalInsurance = '@medicalInsurance';//医保所属地配置:区分医院所属医保区域
+    //var medicalInsurance = $.request("medicalInsurance");
     $(function () {
-        $('').focus();
+        $('#sfzhId').focus();
     });
-    $("").bind("", function (e) {
-        // 兼容FFVàIEVàOpera
+    $("#formPatsbkh").bind("keydown", function (e) {
+        // 兼容FF和IE和Opera
         var theEvent = e || window.event;
         var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
         if (code == 13) {
@@ -57,55 +57,55 @@
         }
     });
     var prevWindow;
-   if ('' !== '') {
-        prevWindow = top.top.frames[''];
+   if ('@(from)' !== '') {
+        prevWindow = top.top.frames['@(from)'];
     }
     else {
         prevWindow = $.currentWindow();
     }
-    if (topform=="") {
-        prevWindow =top.frames[''];
+    if (topform=="1") {
+        prevWindow =top.frames['dqfsxz'];
     }
-    //jqGrid Nhấp đúp để chọn một dòng
+    //jqGrid 双击选中某行
     function btn_edit() {
         PatSearchConfirm();
     }
 
     function PatSfzhData()
     {
-         //Cái trướcwindowĐối tượng
-        var sfzhVal = $("").val();
+         //上一个window对象
+        var sfzhVal = $("#sfzhId").val();
         //alert(sfzhVal);
         //return;
         if (!(sfzhVal)) {
-            $.modalAlert("", '');
+            $.modalAlert("请填写社保卡号", 'warning');
             return;
         }
 
-        var nameVal = $("").val();
+        var nameVal = $("#nameId").val();
         if (!(sfzhVal)) {
-            $.modalAlert("", '');
+            $.modalAlert("请填写社保卡号", 'warning');
             return;
         }
         
         var sbkobj = new Object();
         sbkobj.name = nameVal;
         sbkobj.sfzh = sfzhVal;
-        if (medicalInsurance == "") {
+        if (medicalInsurance == "shanghai") {
             prevWindow.readCard(sbkobj);
         } else {
             prevWindow.GetReadCardInfo(sbkobj);
         }
-        //Đóng cửa sổ
+        //关闭窗口
         ReceiptCancle();
     }
 
-    //Xác nhận Gọi từ trang chính
+    //确定 主页面调用
     function PatSearchConfirm() {
         PatSfzhData();
     }
 
-    //Hủy
+    //取消
     function ReceiptCancle() {
             $.modalClose();
     }

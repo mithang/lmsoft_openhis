@@ -1,8 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "";
+    ViewBag.Title = "SettSuccessDialog";
     //Layout = null;
-    Layout = "";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
 <style type="text/css">
@@ -27,11 +27,11 @@
 <table>
     <tbody>
         <tr>
-            <th>Khoản phải thu：</th>
+            <th>应收款：</th>
             <td>@ViewBag.yingshoukuan</td>
         </tr>
         <tr>
-            <th>Số tiền thực thu：</th>
+            <th>实收款：</th>
             <td>@ViewBag.ssk</td>
         </tr>
         <tr>
@@ -39,7 +39,7 @@
             <td>@ViewBag.srce</td>
         </tr>
         <tr>
-            <th>Tiền thừa：</th>
+            <th>找零：</th>
             <td style="color:red;">@ViewBag.zhaoling</td>
         </tr>
     </tbody>

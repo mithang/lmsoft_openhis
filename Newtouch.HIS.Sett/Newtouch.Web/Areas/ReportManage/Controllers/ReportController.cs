@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// Báo cáo tháng
+        /// 月报表
         /// </summary>
         /// <returns></returns>
         public ActionResult MonthReportIndex()
@@ -97,7 +97,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         }
         public ActionResult GetStaffByDutyCode(string orgId)
         {
-            var data = _sysUserDmnService.GetStaffByDutyCode(orgId ?? OrganizeId, "RehabDoctor");//Lấy nhà trị liệu
+            var data = _sysUserDmnService.GetStaffByDutyCode(orgId ?? OrganizeId, "RehabDoctor");//获取治疗师
             return Content(data.ToJson());
         }
         /// <summary>
@@ -134,7 +134,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// Báo cáo tháng Yêu cầu tra cứu 实时 của Dữ liệu
+        /// 月报表 请求查询 实时 的 数据
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>
@@ -147,7 +147,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// Báo cáo tháng 固化 Điều chỉnh
+        /// 月报表 固化 调整
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>
@@ -165,7 +165,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// Báo cáo tháng 固化 Xác nhận
+        /// 月报表 固化 确认
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>
@@ -174,7 +174,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         /// <param name="details"></param>
         /// <param name="balance"></param>
         /// <param name="balanceReason"></param>
-        /// <param name="isregenerate">Lại tạo Cờ</param>
+        /// <param name="isregenerate">重新生成 标志</param>
         /// <returns></returns>
         [HandlerAjaxOnly]
         public ActionResult SubmitMonthReportData(int year, int month, decimal calcZje, decimal resultZje
@@ -227,7 +227,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         #region 分类清单 - 住院病人
 
         /// <summary>
-        /// 分类清单 - Nhập viện bệnh nhân
+        /// 分类清单 - 住院病人
         /// </summary>
         /// <returns></returns>
         public ActionResult InpatientClassification()
@@ -242,7 +242,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         #region 分类清单 - 门诊病人
 
         /// <summary>
-        /// 分类清单 - Bệnh nhân ngoại trú
+        /// 分类清单 - 门诊病人
         /// </summary>
         /// <returns></returns>
         public ActionResult OutpatientClassification()
@@ -257,7 +257,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         #region 结算单 - 住院病人
 
         /// <summary>
-        /// Quyết toán đơn - Nhập viện bệnh nhân
+        /// 结算单 - 住院病人
         /// </summary>
         /// <returns></returns>
         public ActionResult InpatientSett()
@@ -272,7 +272,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         #region 结算单 - 门诊病人
 
         /// <summary>
-        /// Quyết toán đơn - Bệnh nhân ngoại trú
+        /// 结算单 - 门诊病人
         /// </summary>
         /// <returns></returns>
         public ActionResult OutpatientSett()
@@ -283,7 +283,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// Quyết toán đơn - Bệnh nhân ngoại trú
+        /// 结算单 - 门诊病人
         /// </summary>
         /// <returns></returns>
         public ActionResult OutpatientSettFl()
@@ -310,7 +310,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
 
         public ActionResult GetdotorcByDutyCode(string orgId)
         {
-            var data = _sysUserDmnService.GetStaffByDutyCode(orgId ?? OrganizeId, "Doctor");//Lấy bác sĩ
+            var data = _sysUserDmnService.GetStaffByDutyCode(orgId ?? OrganizeId, "Doctor");//获取医生
             return Content(data.ToJson());
         }
 
@@ -325,8 +325,8 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         public ActionResult InpatientDayFee()
         {
             
-            //_hospFeeDmnService.SyncPatFee(OrganizeId, "", 0);//Đồng bộ chi phí hạng mục
-            //_hospFeeDmnService.SyncPatFee(OrganizeId, "", 1);//Đồng bộ chi phí thuốc
+            //_hospFeeDmnService.SyncPatFee(OrganizeId, "", 0);//同步项目费用
+            //_hospFeeDmnService.SyncPatFee(OrganizeId, "", 1);//同步药品费用
             ReportingServiceCom();
 
             return View();
@@ -343,15 +343,15 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         {
             if(!string.IsNullOrWhiteSpace(zyh))
             {
-                _hospFeeDmnService.SyncPatFee(OrganizeId, zyh, 0);//Đồng bộ chi phí hạng mục
-                _hospFeeDmnService.SyncPatFee(OrganizeId, zyh, 1);//Đồng bộ chi phí thuốc
+                _hospFeeDmnService.SyncPatFee(OrganizeId, zyh, 0);//同步项目费用
+                _hospFeeDmnService.SyncPatFee(OrganizeId, zyh, 1);//同步药品费用
             }
             return Success();
         }
        
 
         /// <summary>
-        /// 绩效指标（Chi phí Lần người）
+        /// 绩效指标（费用 人次）
         /// </summary>
         /// <returns></returns>
         public ActionResult PerformanceIndicatorFee()
@@ -414,7 +414,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
 
 		#region 病人就诊信息（就诊次数 等）
 		/// <summary>
-		/// Thông tin khám bệnh bệnh nhân（Khám bệnh số lần V.v.）
+		/// 病人就诊信息（就诊次数 等）
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult OutpatientTreatmentInfo()
@@ -527,7 +527,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
 		
 
 		/// <summary>
-		/// Báo cáo thực hiện thu phí bệnh nhân
+		/// 病人收费执行报表
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult PatientChargeExecution()
@@ -537,7 +537,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// 月度申报结算表（Bảo hiểm y tế）
+        /// 月度申报结算表（医保）
         /// </summary>
         /// <returns></returns>
         public ActionResult SettMonthForYB()
@@ -548,7 +548,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         }
         public ActionResult GetdoctorByDutyCode(string orgId)
         {
-            var data = _sysUserDmnService.GetStaffByDutyCode(orgId ?? OrganizeId, "Doctor");//Lấy bác sĩ
+            var data = _sysUserDmnService.GetStaffByDutyCode(orgId ?? OrganizeId, "Doctor");//获取医生
             return Content(data.ToJson());
         }
 
@@ -603,7 +603,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
             return View();
         }
 
-        //Nhập viện chế độ xem chi tiết chi phí
+        //住院费用明细视图
         public ActionResult Hospitalizationcost() {
             ReportingServiceCom();
 
@@ -658,7 +658,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
 
         #region
         /// <summary>
-        /// Bảng quyết toán ngày ngoại trú
+        /// 门诊日结算表
         /// </summary>
         /// <returns></returns>
         public ActionResult OutpatientDailyFee()
@@ -685,7 +685,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
 			return Content(rjList.ToJson());
 	    }
 		/// <summary>
-		/// Bảng thông tin chi tiết quyết toán ngoại trú
+		/// 门诊结算明细信息表
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult OutpatientSettDetailsInfo()
@@ -741,7 +741,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// Bảng thống kê khối lượng công việc bác sĩ ngoại trú
+        /// 门诊医生工作量统计表
         /// </summary>
         /// <returns></returns>
         public ActionResult OutpatientDoctorWorkloadSummary()
@@ -859,21 +859,21 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         }
         #endregion
 
-         //Chi tiết thu nhập khoa
+         //科室收入明细
         public ActionResult Department_income_statement() {
             ReportingServiceCom();
 
             return View();
         }
 
-        //Giá chi phí thuốc khoa
+        //科室药品成本价
         public ActionResult Drugcostprice() {
             ReportingServiceCom();
 
             return View();
         }
         /// <summary>
-        /// Chi tiết thu phí độ tháng
+        /// 月度收费明细
         /// </summary>
         /// <returns></returns>
         public ActionResult MonthlyFeeDetails()
@@ -884,7 +884,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         }
         
         /// <summary>
-        /// Lấy tên nhóm lớn
+        /// 获取大类名称
         /// </summary>
         /// <returns></returns>
         public ActionResult GetDlMc()
@@ -999,7 +999,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
 		}
 
 		/// <summary>
-		/// 医保申报导出文件dbfĐịnh dạng Và trả về địa chỉ tệp tải xuống Bật lên tải xuống tiến hành trang đầu trước ở
+		/// 医保申报导出文件dbf格式 并返回下载文件地址 在前端页面进行下载弹出
 		/// </summary>
 		/// <returns></returns>
 		public ActionResult DCQuery_dbf(string types, string ksrq, string jsrq)
@@ -1037,7 +1037,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
 			{
 				System.IO.File.Delete(Path.GetFullPath(filepath));
 			}
-			//Lấy dữ liệu Đánh giá có tải xuống xuất cần dữ liệu có không
+			//获取数据 判断是否有数据需要导出下载
 			var list = _reportCommonDmnService.yBSBMX_DCdbfs(types, ksrq, jsrq, OrganizeId);
 			IEnumerable<YBSBMX> data = null;
 			switch (types)
@@ -1204,7 +1204,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
 			//{
 			//	string msg = ex.Message;
 			//}
-			//return File(new FileStream(filepath, FileMode.OpenOrCreate), "application/octet-stream", pathname);//“text/plain”是文件MIMELoại
+			//return File(new FileStream(filepath, FileMode.OpenOrCreate), "application/octet-stream", pathname);//“text/plain”是文件MIME类型
 			//return File(filepath, "application/x-dbf", pathname);
 			#endregion
 
@@ -1219,7 +1219,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         #endregion
         #region 获取收费项目
         /// <summary>
-        /// Lấy tên nhóm lớn
+        /// 获取大类名称
         /// </summary>
         /// <returns></returns>
         public ActionResult Getsfxm(Pagination pagination, string xzstr,string py,string sfdl)
@@ -1236,7 +1236,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         #endregion 医保上报报表
         #region
         /// <summary>
-        /// Trang tổng
+        /// 总页面
         /// </summary>
         /// <returns></returns>
         public ActionResult YBXXQueryUpload()
@@ -1256,7 +1256,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// Kho đăng ký bệnh nặng ngoại trú cấp cứu
+        /// 门急诊大病挂号库
         /// </summary>
         /// <returns></returns>
         public ActionResult DBGHQueryUpload()
@@ -1276,7 +1276,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// Lấy thông tin bản ghi giao dịch
+        /// 获取交易记录信息
         /// </summary>
         /// <returns></returns>
         public ActionResult GetJyjlData(Pagination pagination, string ksrq, string jsrq)
@@ -1297,7 +1297,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
             return Content(rows.ToJson()); 
         }
         /// <summary>
-        /// Lấy kho đăng ký bệnh nặng ngoại trú cấp cứu
+        /// 获取门急诊大病挂号库
         /// </summary>
         /// <returns></returns>
         public ActionResult GetMjzdbghData(Pagination pagination, string ksrq, string jsrq)

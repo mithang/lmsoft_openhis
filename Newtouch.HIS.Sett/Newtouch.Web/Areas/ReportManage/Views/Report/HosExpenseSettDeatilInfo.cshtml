@@ -1,43 +1,43 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "";
-    Layout = "";
-    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("");
-    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("");
+    ViewBag.Title = "物资库存表";
+    Layout = "~/Views/Shared/_Form.cshtml";
+    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
+    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
     var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
 }
 <div class="rows">
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">Ngày bắt đầu：</th>
+                <th class="formTitle">开始日期：</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
                 </td>
-                <th class="formTitle">Ngày kết thúc：</th>
+                <th class="formTitle">结束日期：</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
                 </td>
-                @*<th class="formTitle">Khoa：</th>
+                @*<th class="formTitle">科室：</th>
                 <td class="formValue">
                     <select id="depa" class="form-control">
-                        <option value="">Tất cả</option>
+                        <option value="">全部</option>
                     </select>
                 </td>*@
-                <th class="formTitle">Nhà thuốc/药库：</th>
+                <th class="formTitle">药房/药库：</th>
                 <td class="formValue">
                     <select id="yfbm" class="form-control">
-                        <option value="">Tất cả</option>
+                        <option value="">全部</option>
                         <option value="00000020">西药库</option>
                         <option value="00000021">中药库</option>
                         <option value="00000019">西药房</option>
-                        <option value="00000018">Nhà thuốc trong</option>
+                        <option value="00000018">中药房</option>
                     </select>
                 </td>
                 <td class="formValue" style="padding-left:20px;">
-                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
+                    <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
                 </td>
                 <td class="formValue"></td>
             </tr>
@@ -49,90 +49,90 @@
     <iframe class="ui-layout-center" style="width:100%;" id="iframerightiframerightiframerightttt" name="iframerightiframerightiframerightttt"
             scrolling="auto" allowtransparency="true" frameborder="0"></iframe>
 </div>
-<script type="">
-    var reportServerHOST = '';
-    var orgId = '';
-    var isHospAdministrator = '';
-    var curUserCode = '';
+<script type="text/javascript">
+    var reportServerHOST = '@(ViewBag.ReportServerHOST)';
+    var orgId = '@(ViewBag.OrgId)';
+    var isHospAdministrator = '@(ViewBag.IsHospAdministrator)';
+    var curUserCode = '@(ViewBag.CurUserCode)';
 
-    var uri = '';
+    var uri = 'ReportServer/Pages/ReportViewer.aspx?%2fHIS.Report.1%2fChongqing%e8%87%aa%e8%b4%b9%e7%97%85%e4%ba%ba%e7%a7%91%e5%ae%a4%e7%bb%93%e7%ae%97%e6%98%8e%e7%bb%86&rs:Command=Render';
 
     function submit() {
 
-        if ($('').val().length == 0) {
-            $.modalAlert("", "");
+        if ($('#kssj').val().length == 0) {
+            $.modalAlert("缺少开始时间", "error");
             return;
         }
-        if ($('').val().length == 0) {
-            $.modalAlert("", "");
+        if ($('#jssj').val().length == 0) {
+            $.modalAlert("缺少结束时间", "error");
             return;
         }
-        if ($('').val() > $('').val()) {
-            $.modalAlert("", "");
+        if ($('#kssj').val() > $('#jssj').val()) {
+            $.modalAlert("开始时间不能大于结束时间", "error");
             return;
         }
-        var url = '' + "" + "" + '';
-        url += "" + $('').val() + '';
-        url += "" + $('').val() + '';
-        url += "" + $('').val();
-        url += "" + '';
+        var url = '@Html.Raw(reportUrl)' + "?tempCode=1324" + "&systemCode=" + '@Html.Raw(ReportSystemCode)';
+        url += "&ksrq=" + $('#kssj').val() + ' 00:00:00';
+        url += "&jsrq=" + $('#jssj').val() + ' 23:59:59';
+        url += "&yfbm=" + $('#yfbm').val();
+        url += "&orgId=" + '@Html.Raw(opr.OrganizeId)';
 
-        setTimeout("", 10);
+        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
 
-        $("").attr('', url);
+        $("#iframerightiframerightiframerightttt").attr('src', url);
 
 
     }
-    $("").load(function () {
+    $("#iframerightiframerightiframerightttt").load(function () {
         $.loading(false);
     });
 
     $(function () {
         var h = $(window).height() - 55
-        $('').css('', h);
+        $('#layout iframe').css('height', h);
         //init();
 
         setTimeout(function () { submit(); }, 100);
     });
 
     function getUrl() {
-        if (uri.StartWith('')) {
+        if (uri.StartWith('/')) {
             uri = uri.substr(1);
         }
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //Lấy kiểu tùy chỉnh
+        //获取自定义样式
         if (true) {
-            if (srcUrl.indexOf('') == -1) {
-                srcUrl += "";
+            if (srcUrl.indexOf('&rc:') == -1) {
+                srcUrl += "&rc:Stylesheet=MyStyleSheet";
             }
         }
         if (true) {
-            if (srcUrl.indexOf('') == -1) {
-                srcUrl += "";
+            if (srcUrl.indexOf('&rs:') == -1) {
+                srcUrl += "&rs:";
             }
             else {
-                srcUrl += "";
+                srcUrl += "&";
             }
-            srcUrl += "";
+            srcUrl += "orgId=";
             srcUrl += orgId;
         }
         return srcUrl;
     }
 
 </script>
-<script type="">
+<script type="text/javascript">
     function init() {
-        //Hộp thả xuống liên kết nhà trị liệu
-        $("").bindSelect({
-            id: "",
-            text: "",
-            url: "",
+        //治疗师绑定下拉框
+        $("#depa").bindSelect({
+            id: "Code",
+            text: "Name",
+            url: "/OutpatientManage/OutpatientRegSchedule/GetSysDepartmentList",
             dropdownAutoWidth: true
         });
 
-        $('').change(function () {
+        $('#depa').change(function () {
             submit();
         });
     }

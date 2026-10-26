@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "病人基本信息";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
     span {
@@ -12,12 +12,12 @@
     <table class="form" style="width: 98%; border: 0">
         <tr>
             <td class="formTitle">
-                <span>*</span>Số thẻ：
+                <span>*</span>卡号：
             </td>
             <td class="formValue">
                 <input type="text" id="kh" class="form-control form-an">
             </td>
-            <td class="formTitle"><span>*</span>Số bệnh án：</td>
+            <td class="formTitle"><span>*</span>病历号：</td>
             <td class="formValue">
                 <input type="text" id="blh" class="form-control form-an">
                 <input hidden id="py" />
@@ -28,12 +28,12 @@
             </td>
         </tr>
         <tr>
-            <td class="formTitle"><span>*</span>Họ tên bệnh nhân：</td>
+            <td class="formTitle"><span>*</span>患者姓名：</td>
             <td class="formValue">
                 <input type="text" id="xm" name="xm" class="form-control form-an">
             </td>
             <th class="formTitle">
-                <span class="required">*</span>Lịch trực đăng ký khám：
+                <span class="required">*</span>挂号排班：
             </th>
             <td class="formValue">
                 <input type="text" class="form-control" id="txtghpbchoose" />
@@ -41,20 +41,20 @@
             
         </tr>
         <tr>
-            <td class="formTitle"><span>*</span>Tính chất bệnh nhân：</td>
+            <td class="formTitle"><span>*</span>患者性质：</td>
             <td class="formValue">
                 <input type="text" id="brxzmc" name="brxzmc" class="form-control form-an">
             </td>
-            <td class="formTitle"><span>*</span>Giới tính：</td>
+            <td class="formTitle"><span>*</span>性别：</td>
             <td class="formValue">
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
                         <input type="radio" id="xb" value="1" name="xb" class="form-control form-an">
-                        Nam
+                        男
                     </label>
                     <label class="btn btn-default">
                         <input type="radio" id="xb" value="2" name="xb" class="form-control form-an">
-                        Nữ
+                        女
                     </label>
                 </div>
             </td>
@@ -65,23 +65,23 @@
 <script>
     $(function () {
         initControl();
-        //Phiên âm lấy họ tên theo
-        $('').keyup(function () {
-            $('').val($(this).toShouPin());
+        //根据姓名获得拼音
+        $('#xm').keyup(function () {
+            $('#py').val($(this).toShouPin());
         });
 
-        $("").attr("", "");
-        $("").val("");
+        $("#brxzmc").attr("data-label", "0");
+        $("#brxzmc").val("自费");
     });
 
     function initControl() {
-        ///Chính sách hoàn trả
-        $("").newtouchBatchFloatingSelector({
+        ///报销政策
+        $("#brxzmc").newtouchBatchFloatingSelector({
             height: 200,
             width: 400,
             clickautotrigger: true,
             filter: function (keyword) {
-                //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
+                //遍历数据源，用keyword来筛选出结果
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) ||
@@ -93,68 +93,68 @@
                 return resultObjArr;
 
             },
-            caption: "",
+            caption: "病人性质",
             colModel: [
-                { label: '', name: '', widthratio: 25 },
-                { label: '', name: '', widthratio: 25 },
-                { label: '', name: '', widthratio: 25 }
+                { label: '编码', name: 'brxz', widthratio: 25 },
+                { label: '名称', name: 'brxzmc', widthratio: 25 },
+                { label: '拼音', name: 'py', widthratio: 25 }
             ],
             itemdbclickhandler: function ($thistr) {
-                $("").attr("", $thistr.attr(''));
-                $("").val($thistr.attr(''));
+                $("#brxzmc").attr("data-label", $thistr.attr('data-brxz'));
+                $("#brxzmc").val($thistr.attr('data-brxzmc'));
                 return;
             }
         });
 
 
-        //Lớp nổi lịch trực đăng ký khám
-        $("").newtouchBatchFloatingSelector({
+        //挂号排班浮层
+        $("#txtghpbchoose").newtouchBatchFloatingSelector({
             height: 150,
             width: 400,
             clickautotrigger: true,
-            id: '',
-            url: '',
-            ajaxmethod: '',
+            id: 'regSchedule',
+            url: '/OutpatientManage/OutpatientReg/GetRegScheduleList',
+            ajaxmethod: 'POST',
             ajaxreqdata: function () {
                 var reqData = {};
-                reqData.keyword = $("").val();
-                reqData.mzlx = "";//Mặc định ngoại trú thông thường
+                reqData.keyword = $("#txtghpbchoose").val();
+                reqData.mzlx = "1";//默认普通门诊
                 return reqData;
             },
-            caption: "",
+            caption: "挂号排班",
             colModel: [
-                { label: '', name: '', widthratio: 25 },
-                { label: '', name: '', widthratio: 20 },
-                { label: '', name: '', widthratio: 25 },
-                { label: '', name: '', widthratio: 25 },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
+                { label: '挂号科室', name: 'ksmc', widthratio: 25 },
+                { label: '医生', name: 'rymc', widthratio: 20 },
+                { label: '挂号项目', name: 'sfxmmc', widthratio: 25 },
+                { label: '诊疗项目', name: 'zlxmmc', widthratio: 25 },
+                { label: 'ks', name: 'ks', hidden: true },
+                { label: 'gh', name: 'gh', hidden: true },
+                { label: 'ghlx', name: 'ghlx', hidden: true },
+                { label: 'zlxm', name: 'zlxm', hidden: true },
+                { label: 'ghpbId', name: 'ghpbId', hidden: true },
             ],
             itemdbclickhandler: function ($thistr) {
-                $("").val($thistr.attr(''));
-                $("").val('');
-                $("").val($thistr.attr(''));
-                $("").val($thistr.attr(''));
-                $("").html($thistr.attr(''));
-                $("").val($thistr.attr(''));
+                $("#txtghpbchoose").val($thistr.attr('data-ksmc'));
+                $("#txtghpbId").val('');
+                $("#txtghks").val($thistr.attr('data-ks'));
+                $("#txtghys").val($thistr.attr('data-gh'));
+                $("#txtghksmc").html($thistr.attr('data-ksmc'));
+                $("#txtghpbId").val($thistr.attr('data-ghpbId'));
                 return;
             }
         });
 
-        $("").attr("", "").css("", "");
-        $("").attr("", "").css("", "");
+        $("#kh").attr("disabled", "disabled").css("background-color", "#f1f4f6");
+        $("#blh").attr("disabled", "disabled").css("background-color", "#f1f4f6");
         $.ajax({
-            url: "",
+            url: "/PatientManage/HospiterRes/GetNewCardNoAndBLH",
             data: { khsc: true, blhsc: true },
-            dataType: "",
+            dataType: "json",
             async: false,
             cache: false,
             success: function (data) {
-                $('').val(data.kh);
-                $('').val(data.blh);
+                $('#kh').val(data.kh);
+                $('#blh').val(data.blh);
             }
         });
     }
@@ -162,20 +162,20 @@
     function submitForm(callBack) {
         var result = checkNotNull();
         if (result) {
-            var data = $("").formSerialize();
-            data.brxz = $("").attr("");
-            data.ks = $('').val();
-            data.ghpbId = $('').val();
-            data.ys = $('').val();
+            var data = $("#form1").formSerialize();
+            data.brxz = $("#brxzmc").attr("data-label");
+            data.ks = $('#txtghks').val();
+            data.ghpbId = $('#txtghpbId').val();
+            data.ys = $('#txtghys').val();
             $.submitForm({
-                url: ""SubmitPhysicalexamForm"",
+                url: "@Url.Action("SubmitPhysicalexamForm")",
                 param: { dto: data },
                 success: function (resp) {
-                    if (resp.state == "") {
+                    if (resp.state == "success") {
                         var respjson = JSON.parse(resp.data);
                         data.mzh = respjson.Item1;
                         data.patid = respjson.Item2;
-                        data.cardType = "";
+                        data.cardType = "1";
                     }
                     callBack(data);
                     $.modalClose();
@@ -186,63 +186,63 @@
 
 
     function checkNotNull() {
-        //Số thẻ
-        var kh = $("").val();
+        //卡号
+        var kh = $("#kh").val();
         if (!kh) {
-            $.modalAlert("", '');
+            $.modalAlert("请填写卡号！", 'warning');
             return false;
         }
-        //Số bệnh án
-        var blh = $("").val();
+        //病历号
+        var blh = $("#blh").val();
         if (!blh) {
-            $.modalAlert("", '');
+            $.modalAlert("请填写病历号！", 'warning');
             return false;
         }
-        //Họ tên
-        var xm = $("").val();
+        //姓名
+        var xm = $("#xm").val();
         if (!xm) {
-            $.modalAlert("", '');
+            $.modalAlert("请填写姓名！", 'warning');
             return false;
         }
 
-        //Tính chất bệnh nhân
-        var brxzmc = $("").val();
+        //病人性质
+        var brxzmc = $("#brxzmc").val();
         if (!brxzmc) {
-            $.modalAlert("", '');
+            $.modalAlert("请选择病人性质！", 'warning');
             return false;
         }
 
-        //Phiên âm
-        var py = $("").val();
+        //拼音
+        var py = $("#py").val();
         if (!py) {
-            if (!!$("").val()) {
-                py = $("").toShouPin();
+            if (!!$("#xm").val()) {
+                py = $("#xm").toShouPin();
             }
             if (!py) {
-                $.modalAlert("", '');
+                $.modalAlert("拼音为空！", 'warning');
                 return false;
             }
             else {
-                $("").val(py);
+                $("#py").val(py);
             }
         }
 
-        //Giới tính
+        //性别
         var xb = false;
-        $('').each(function () {
+        $('input[name="xb"]').each(function () {
             var $this = $(this);
-            if ($this.parent().hasClass("")) {
+            if ($this.parent().hasClass("active")) {
                 xb = true;
-                $("").val();
+                $("#xb").val();
             }
         });
         if (!xb) {
-            $.modalAlert("", '');
+            $.modalAlert("请选中性别！", 'warning');
             return false;
         }
 
-        if (!!!$('').val()) {
-            $.modalAlert("", '');
+        if (!!!$('#txtghpbId').val()) {
+            $.modalAlert("请选择排班!", 'warning');
             return false;
         }
 

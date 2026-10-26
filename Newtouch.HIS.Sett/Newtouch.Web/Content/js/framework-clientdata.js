@@ -9,19 +9,19 @@ $.clientsInit = function () {
         }
         for (dataitemName in data) {
             var itemdata = data[dataitemName];
-            if (typeof (itemdata) == typeof ('')) {
-                //Sử dụng cần thì chuỗievalPhương thức
+            if (typeof (itemdata) == typeof ('abc')) {
+                //字符串则要使用eval方法
                 itemdata = eval(itemdata);
             }
             window.clients[dataitemName] = itemdata;
         }
     }
-    //GửiajaxYêu cầu
+    //发ajax请求
     var funcClientsAjax = function (url, async) {
         $.ajax({
             url: url,
-            type: "",
-            dataType: "",
+            type: "get",
+            dataType: "json",
             async: async,
             cache: false,
             success: function (data) {
@@ -31,7 +31,7 @@ $.clientsInit = function () {
     };
 
     //同步请求  //如菜单内容必须用同步方式
-    funcClientsAjax("", false);
+    funcClientsAjax("/ClientsData/GetClientsDataJson", false);
     //异步请求
-    funcClientsAjax("", true);
+    funcClientsAjax("/NewtouchClientsData/GetClientsDataJson", true);
 }

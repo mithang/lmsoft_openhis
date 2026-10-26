@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
     {
         private readonly IAccountManageApp _accountApp;
         /// <summary>
-        /// Tra cứu thông tin cơ bản bệnh nhân và Thông tin tài khoản
+        /// 查询病人基本信息和账户信息
         /// </summary>
         /// <param name="patid"></param>
         /// <returns></returns>

@@ -1,7 +1,7 @@
 ﻿@using Newtouch.Infrastructure;
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "MedicalInsuranceApprovalIndex";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 
 <style>
@@ -12,20 +12,20 @@
 <div class="rows" style="margin-bottom: 1%;">
     <div class="panel panel-default" style="margin-bottom:0;">
         <div class="panel-heading navb-bg">
-            Thông tin bệnh nhân nhập viện
+            住院患者信息
         </div>
         <table class="form" style="width:96%;">
             <tbody>
                 <tr>
-                    <th class="formTitle">Số nhập viện：</th>
+                    <th class="formTitle">住院号：</th>
                     <td class="formValue">
                         <input class="form-control" type="text" id="zyh" value="" />
                     </td>
                     <td class="formValue">
-                        <input type="button" class="btn btn-default btn-md btn-default-color" title="Chọn bệnh nhân nhập viện" style="" id="zy_btnsyy" value="Tra cứu" onclick="GetPatSerarchView();">
+                        <input type="button" class="btn btn-default btn-md btn-default-color" title="选择住院患者" style="" id="zy_btnsyy" value="查询" onclick="GetPatSerarchView();">
                     </td>
                     <th class="formTitle">
-                        Ngày：
+                        日期：
                     </th>
                     <td class="formValue">
                         <input id="searchTime" style="min-width:100px" type="text" class="form-control input-wdatepicker form-an"
@@ -33,13 +33,13 @@
 
                     </td>
                     <th class="formTitle">
-                        Chẩn đoán xuất viện：
+                        出院诊断：
                     </th>
                     <td class="formValue">
                         <label id="cyzd"></label>
                     </td>
                     <td class="formValue">
-                        <input type="button" id="btn_search" class="btn btn-primary" style="float: right;margin-right: 10px;" value="Tra cứu" />
+                        <input type="button" id="btn_search" class="btn btn-primary" style="float: right;margin-right: 10px;" value="查询" />
                     </td>
 
                 </tr>
@@ -50,117 +50,117 @@
 <div class="gridPanel">
     <table id="gridList"></table>
 </div>
-@Html.Partial("", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
+@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 4, 6 },
-    F6Text = ""
+    F6Text = "审批"
 })
-<script type="">
+<script type="text/javascript">
     var zyh;
     $(function () {
         initgridList();
     });
 
-    $("").click(function () {
+    $("#btn_search").click(function () {
         if (!zyh) {
-            $.modalAlert("", '');
+            $.modalAlert("请选择病人", 'warning');
             return;
         }
-        $("").jqGrid('', {
-            url: ""GetCurrentpatientcharge"",
+        $("#gridList").jqGrid('setGridParam', {
+            url: "@Url.Action("GetCurrentpatientcharge")",
             postData: { zyh: zyh },
-        }).trigger('');
+        }).trigger('reloadGrid');
     })
 
     function initgridList() {
-        $('').dataGrid({
+        $('#gridList').dataGrid({
             unwritten: false,
             viewrecords: true,
             height: $(window).height() - 175,
             sortable: false,
             colModel: [
-                { label: "", name: "", hidden: true, key: true },
-                { label: "", name: "", width: 180 },
-                { label: "", name: "", width: 80 },
-                { label: "", name: "", width: 80 },
+                { label: "jfbbh", name: "jfbbh", hidden: true, key: true },
+                { label: "收费项目", name: "sfxmmc", width: 180 },
+                { label: "大类", name: "dlmc", width: 80 },
+                { label: "医保编码", name: "ybbm", width: 80 },
                 {
-                    label: "", name: "", width: 130,
-                    formatter: "", formatoptions: { srcformat: '', newformat: '' }
+                    label: "开具时间", name: "CreateTime", width: 130,
+                    formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: "", name: "", width: 50 },
-                { label: "", name: "", width: 60 },
+                { label: "单位", name: "dw", width: 50 },
+                { label: "单价", name: "dj", width: 60 },
                 {
-                    label: "", name: "", width: 60, align: "", formatter: ""
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '' }
+                    label: "数量", name: "sl", width: 60, align: "left", formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
                 {
-                    label: "", name: "", width: 60, align: "", formatter: ""
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '' }
+                    label: "总金额", name: "je", width: 60, align: "left", formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
             ]
         });
     }
 
     function newtouch_event_f4() {
-        $('').jqGrid("");//Xóa trống chi tiết trước
-        $('').val('');
-        $('').val('');
+        $('#gridList').jqGrid("clearGridData");//先清空明细
+        $('#zyh').val('');
+        $('#searchTime').val('');
     }
 
     function newtouch_event_f6() {
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + zyh + "" + $('').val(),
-            width: "",
-            height: "",
-            btn: ['', ''],
+            id: "ApprovalSearch",
+            title: "审批查询",
+            url: "/HospitalizationManage/DischargeSettle/MedicalInsuranceApproval?zyh=" + zyh + "&searchTime=" + $('#searchTime').val(),
+            width: "700px",
+            height: "500px",
+            btn: ['审批', '关闭'],
             callBack: function (iframeId) {
                 top.frames[iframeId].submitform();
-                //top.frames[iframeId].$.modalClose(); //Trong sự kiện cửa sổ bật lên
+                //top.frames[iframeId].$.modalClose(); //在弹出窗口事件
             }
         });
     }
 
     function GetPatSerarchView() {
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + '' + "" + Math.random() + "" + zyh,
-            width: "",
-            height: "",
+            id: "patSearch",
+            title: "患者查询",
+            url: "/PatientManage/AccountManage/PatSearchView?brzybzType=" + '@((int)EnumZYBZ.Bqz + "," + (int)EnumZYBZ.Djz)' + "&t=" + Math.random() + "&zyh=" + zyh,
+            width: "700px",
+            height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //Trong sự kiện cửa sổ bật lên
-                //Gọi tra cứu số thẻ và số nhập viện
-            }//Hàm callback xác nhận khi nhấn cửa sổ
+                top.frames[iframeId].PatDbGrid(); //在弹出窗口事件
+                //调用查询卡号和住院号
+            }//窗口点确定的回调函数
         })
     };
 
-    //Bệnh nhân đã chọn callback
+    //选择的病人 callback
     function getPatInfoAjax(selePatInfo) {
         if (selePatInfo && selePatInfo.zyh) {
             zyh = selePatInfo.zyh;
-            $('').val(selePatInfo.zyh);
+            $('#zyh').val(selePatInfo.zyh);
             $.najax({
-                type: "",
-                url: "",
+                type: "POST",
+                url: "/HospitalizationManage/DischargeSettle/GetCYZD",
                 data: { zyh: selePatInfo.zyh},
-                dataType: "",
+                dataType: "json",
                 success: function (ajaxresp) {
                     if (ajaxresp.data) {
                         var zdmc = ajaxresp.data;
-                        $('').html(zdmc);
-                        $("").trigger("");
+                        $('#cyzd').html(zdmc);
+                        $("#btn_search").trigger("click");
                     }
                 },
                 errorCallback: function () {
                     newtouch_globalevent_f4();
-                    $('').trigger('');
+                    $('#zyh').trigger('focus');
                 }
             });
         }
         else {
-            $('').val('');
+            $('#zyh').val('');
         }
     }
 

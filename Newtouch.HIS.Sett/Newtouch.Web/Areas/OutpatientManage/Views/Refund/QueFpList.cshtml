@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "QueFpList";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
    .table-responsive{
@@ -9,7 +9,7 @@
     }
 </style>
 
-<!--Danh sách hóa đơn-->
+<!--发票列表-->
 <form id="tabGrid" style="margin:2px;margin-top:10px;">
     <div class="gridPanel">
         <table id="gridListFPH" rel="tabGrid"></table>
@@ -19,58 +19,58 @@
 <script> 
      
     $(function () {
-        var fapiaodata = localStorage.getItem("");
+        var fapiaodata = localStorage.getItem("fapiaodata");
         gridListFPH(JSON.parse(fapiaodata));
     });
 
-    //Tải danh sách hóa đơn
+    //加载发票列表
     function gridListFPH(mydata) {
-        var $gridList = $("");
+        var $gridList = $("#gridListFPH");
         $gridList.dataNewGrid({
             height: 500, 
-            caption: "",
+            caption: "发票列表",
             colModel: [
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', width: 100, align: '' },
-                { label: '', name: '', width: 100, align: '' },
-                { label: '', name: '', width: 100, align: '' },
+                { label: 'jsnm', name: 'jsnm', hidden: true },
+                { label: 'flzffy', name: 'flzffy', hidden: true },
+                { label: 'zffy', name: 'zffy', hidden: true },
+                { label: 'jzfy', name: 'jzfy', hidden: true },
+                { label: 'zlfy', name: 'zlfy', hidden: true },
+                { label: 'xjzf', name: 'xjzf', hidden: true },
+                { label: '姓名', name: 'xm', width: 100, align: 'left' },
+                { label: '卡号', name: 'kh', width: 100, align: 'left' },
+                { label: '发票号', name: 'fph', width: 100, align: 'left' },
                 {
-                    label: '', name: '', width: 100, align: '', formatter: function (cellvalue) {
+                    label: '结算日期', name: 'CreateTime', width: 100, align: 'left', formatter: function (cellvalue) {
                         return cellvalue && cellvalue.length >= 10 ? cellvalue.substring(0, 10) : ""
                     }
                 },
-                { label: '', name: '', width: 100, align: '' }
+                { label: '总金额', name: 'zje', width: 100, align: 'left' }
             ]
         }, mydata);
         if (mydata.length > 0) {
-            $('').find("").remove();
+            $('.ui-jqgrid-bdiv').find(".unwritten").remove();
         }
     }
 
  
 
-    //Sự kiện nhấn chuột danh sách hóa đơn 
+    //发票列表单击事件 
     function btn_edit() {
-        var data = $("").jqGridRowValue();
+        var data = $("#gridListFPH").jqGridRowValue();
         if (data) {
-            //input控件取消了，Đặt ởtdTrong
+            //input控件取消了，放在td中
             $.currentWindow().loadFpData(data); //主页中的方法
             PatSearchConfirm();
           
         } else {
-            $.modalAlert("", "");
+            $.modalAlert("当前无选中的发票！", "warning");
         }
 
     }
 
-    //Xác nhận Gọi từ trang chính
+    //确定 主页面调用
     function PatSearchConfirm() {
-        var $gridList = $("");
+        var $gridList = $("#gridListFPH");
         var kh = $gridList.jqGridRowValue().kh;
         var zyh = $gridList.jqGridRowValue().zyh;
         var xm = $gridList.jqGridRowValue().xm;
@@ -78,11 +78,11 @@
         obj.kh = kh;
         obj.zyh = zyh;
         obj.xm = xm; 
-        //Đóng cửa sổ
+        //关闭窗口
         ReceiptCancle();
     }
 
-    //Hủy
+    //取消
     function ReceiptCancle() {
         $.modalClose();
     }

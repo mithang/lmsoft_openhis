@@ -1,12 +1,12 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "StopPlan";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 <form id="form1">
     <div style="padding-top: 20px; margin-right: 55px;">
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>Dừng thời gian：</th>
+                <th class="formTitle"><span class="required">*</span>停止时间：</th>
                 <td class="formValue">
                     <input class="form-control input-wdatepicker required" id="PreStopDate" name="PreStopDate"
                            value=@DateTime.Now.ToString("yyyy-MM-dd") type="text"
@@ -19,12 +19,12 @@
 
 <script>
     function submitForm() {
-        if (!$('').formValid()) {
+        if (!$('#form1').formValid()) {
             return false;
         }
-        var date = $('').val();
+        var date = $('#PreStopDate').val();
         if ($.getDate() > date) {
-            $.modalAlert('');
+            $.modalAlert('停止日期不能在今日之前');
         }
         return date;
     }

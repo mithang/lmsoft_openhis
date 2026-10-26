@@ -10,21 +10,21 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
 {
     /// <summary>
-    /// Quyết toán nhập viện
+    /// 住院结算
     /// </summary>
     public class SettlementController : ControllerBase
     {
-        //Quyết toán nhập viện
+        //住院结算
         private readonly IHospSettApp _outHospSettApp;
-        //Hủy quyết toán nhập viện
+        //取消住院结算
         private readonly IHospSettCancelApp _hospSettCancelApp;
-        //Nhập viện tra cứu quyết toán
+        //住院结算查询
         private readonly IHospSettDmnService _hospSettDmnService;
 
         #region 住院结算（有医保算法）
 
         /// <summary>
-        /// Lấy trạng thái quyết toán bệnh nhân nhập viện
+        /// 获取住院病人结算状态
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="kh"></param>
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         /// 结算分类计费预览
         /// </summary>
         /// <param name="zyh"></param>
-        /// <param name="expectedjsje">Số tiền quyết toán thay đổi chi phí của trong quá trình ngăn</param>
+        /// <param name="expectedjsje">结算金额 防止过程中的费用变更</param>
         /// <returns></returns>
         [HttpGet]
         public ActionResult SettPreview(string zyh, DateTime expectedcyrq, decimal expectedjsje)
@@ -51,12 +51,12 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Gửi quyết toán lưu
+        /// 提交保存结算
         /// </summary>
         /// <param name="zyh"></param>
-        /// <param name="expectedyjjzhye">Số dư hiện tại tài khoản tiền tạm ứng（Chưa quyết toán） thay đổi chi phí của trong quá trình ngăn</param>
-        /// <param name="expectedjsje">Số tiền quyết toán thay đổi chi phí của trong quá trình ngăn</param>
-        /// <param name="expectedzhaoling">Tiền thừa thay đổi chi phí của trong quá trình ngăn</param>
+        /// <param name="expectedyjjzhye">预交金账户当前余额（尚未结算） 防止过程中的费用变更</param>
+        /// <param name="expectedjsje">结算金额 防止过程中的费用变更</param>
+        /// <param name="expectedzhaoling">找零 防止过程中的费用变更</param>
         /// <param name="xjzfListStr"></param>
         /// <returns></returns>
         [HttpPost]
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// quyết toán thành côngDialog提示
+        /// 结算成功的Dialog提示
         /// </summary>
         /// <param name="yingshoukuan"></param>
         /// <param name="ssk"></param>
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         #region 取消住院结算（有医保算法）
 
         /// <summary>
-        /// Hủy quyết toán Chế độ xem
+        /// 取消结算 视图
         /// </summary>
         /// <returns></returns>
         public ActionResult CancelIndex()
@@ -98,7 +98,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Hủy quyết toán Lấy trạng thái quyết toán bệnh nhân nhập viện
+        /// 取消结算 获取住院病人结算状态
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="kh"></param>
@@ -112,7 +112,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Hủy quyết toán Gửi
+        /// 取消结算 提交
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="cancelReason"></param>
@@ -218,7 +218,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             return View();
         }
         /// <summary>
-        /// Xuất viện chi tiết chi phí tra cứu quyết toán
+        /// 出院结算查询费用明细
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
@@ -240,7 +240,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         #endregion
 
         /// <summary>
-        /// số hóa đơn cập nhật bản ghi quyết toán
+        /// 更新结算记录的发票号
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="fph"></param>

@@ -1,20 +1,20 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "MonthReportDataConfirmPreview";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
 <form id="form1">
     <div style="padding-top: 20px; margin-right: 55px;">
         <table class="form">
             <tr>
-                <th class="formTitle">Tháng：</th>
+                <th class="formTitle">月份：</th>
                 <td class="formValue">
                     <label id="lblYearMonth"></label>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Chi phí：</th>
+                <th class="formTitle">费用：</th>
                 <td class="formValue">
                     <label id="lblCalcZje"></label>
                 </td>
@@ -43,66 +43,66 @@
     </div>
 </form>
 
-<script type="">
-    var year = $.request("");
-    var month = $.request("");
-    var calcZje = $.request("");
-    var isregenerate = $.request(""); //Lại tạo Cờ
+<script type="text/javascript">
+    var year = $.request("year");
+    var month = $.request("month");
+    var calcZje = $.request("calcZje");
+    var isregenerate = $.request("isregenerate"); //重新生成 标志
 
-    $('').html(year + '' + $.zeroPrefixInteger(month, 2));
-    $('').html(parseFloat(calcZje).toFixed(2));
-    $('').html(parseFloat(calcZje).toFixed(2));
+    $('#lblYearMonth').html(year + '-' + $.zeroPrefixInteger(month, 2));
+    $('#lblCalcZje').html(parseFloat(calcZje).toFixed(2));
+    $('#lblResultZje').html(parseFloat(calcZje).toFixed(2));
 
-    $('').keyup(function () {
+    $('#balance').keyup(function () {
         //重新计算合计
-        var tzje = $('').val();
+        var tzje = $('#balance').val();
         if (tzje) {
             if (isNaN(parseFloat(tzje))) {
-                $('').html(parseFloat(calcZje).toFixed(2));
+                $('#lblResultZje').html(parseFloat(calcZje).toFixed(2));
             }
             else {
-                $('').html((parseFloat(calcZje) + parseFloat(tzje)).toFixed(2));
+                $('#lblResultZje').html((parseFloat(calcZje) + parseFloat(tzje)).toFixed(2));
             }
         }
         else {
-            $('').html(parseFloat(calcZje).toFixed(2));
+            $('#lblResultZje').html(parseFloat(calcZje).toFixed(2));
         }
     });
 
     //
     function submitMonthReport() {
-        var balance = $('').val();
-        var balanceReason = $('').val();
-        var resultZje = $('').html();
+        var balance = $('#balance').val();
+        var balanceReason = $('#balanceReason').val();
+        var resultZje = $('#lblResultZje').html();
         var details = $.currentWindow().details;
         if (!year || !month) {
-            $.modalAlert("", '');
+            $.modalAlert("日期错误，请重试", 'error');
             return;
         }
         if (!calcZje || !resultZje) {
-            $.modalAlert("", '');
+            $.modalAlert("费用错误，请重试", 'error');
             return;
         }
         if (!isNaN(parseFloat(resultZje)) && parseFloat(resultZje) <= 0) {
-            $.modalAlert("", '');
+            $.modalAlert("费用合计结果应为正数，请确认", 'error');
             return;
         }
         if (!balanceReason && balance) {
-            $.modalAlert("", '');
+            $.modalAlert("补差，请填写原因", 'error');
             return;
         }
         if (!details || !details.length || details.length == 0) {
-            $.modalAlert("", '');
+            $.modalAlert("未获取到费用", 'error');
             return;
         }
         $.submitForm({
-            url: '',
+            url: '/ReportManage/Report/SubmitMonthReportData',
             param: {
                 year: year, month: month, calcZje: calcZje, balance: balance, balanceReason: balanceReason
                 , resultZje: resultZje, details: details, isregenerate: isregenerate
             },
             success: function (ajaxresp) {
-                $.currentWindow().$('').trigger('');
+                $.currentWindow().$('#btn_search').trigger('click');
             }
         });
     }

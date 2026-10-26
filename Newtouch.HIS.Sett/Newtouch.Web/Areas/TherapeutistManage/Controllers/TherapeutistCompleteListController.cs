@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        /// Thêm mới giờ lịch trực，Cơ sở dữ liệu gửi tới
+        /// 新增排班时，提交到数据库
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="orgId"></param>
@@ -101,7 +101,7 @@ namespace Newtouch.HIS.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        ///Lấy lịch trực phần tháng cái đơn nhà trị liệu cái đơn
+        ///获取单个治疗师单个月份排班
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="orgId"></param>
@@ -112,7 +112,7 @@ namespace Newtouch.HIS.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        /// Chỉnh sửa lịch trực nhà trị liệu cái đơn
+        /// 编辑单个治疗师排班
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="orgId"></param>
@@ -123,7 +123,7 @@ namespace Newtouch.HIS.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        /// Xóa lịch trực
+        /// 删除排班
         /// </summary>
         /// <param name="keyvalue"></param>
         /// <returns></returns>
@@ -163,7 +163,7 @@ namespace Newtouch.HIS.Web.Areas.TherapeutistManage.Controllers
             if (string.IsNullOrWhiteSpace(time) || string.IsNullOrWhiteSpace(type))
             {
                 return Content("");
-                //throw FailedException("Loại hoặc Thời gian trống！");
+                //throw FailedException("类型或时间为空！");
             }
             time = (int.Parse(time) + 1).ToString();
             var data = _therapeutistCompleteDmnService.GetVisitDetailSC(pagination, OrganizeId, type, time);

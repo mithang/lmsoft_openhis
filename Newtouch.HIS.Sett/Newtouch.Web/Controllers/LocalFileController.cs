@@ -5,12 +5,12 @@ using System.Web.Mvc;
 namespace Newtouch.HIS.Web.Controllers
 {
     /// <summary>
-    /// Hệ thống tệp quyển
+    /// 本地文件系统
     /// </summary>
     public class LocalFileController : ControllerBase
     {
         /// <summary>
-        /// Tải xuống tệp quyển
+        /// 本地文件下载
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>

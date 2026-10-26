@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "AccountingExecution";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
     .editable {
@@ -32,11 +32,11 @@
 <div class="rows" style="float:left;width:25%;">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            Điều kiện lọc
+            筛选条件
         </div>
         <table class="form" style="width:95%">
             <tr>
-                <th class="formTitle">&nbsp;&nbsp; <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>&nbsp;&nbsp;Họ tên/Số bệnh án：</th>
+                <th class="formTitle">&nbsp;&nbsp; <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>&nbsp;&nbsp;姓名/病历号：</th>
                 <td class="formValue">
                     <input id="keyword" type="text" class="form-control" />
                 </td>
@@ -51,23 +51,23 @@
     <div class="gridPanel">
         <table id="gridList"></table>
     </div>
-    @Html.Partial("", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
+    @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
     {
         ShowKeyList = new[] { 8 },
-        F8Text = "",
-        WapperInlineStyle = ""
+        F8Text = "执行",
+        WapperInlineStyle = "float:right;width:100px;margin:10px 30px 12px;text-align:right;"
     })
     <ul class="ul-hj">
         <li><span class="sp-bottom-title">治疗项目合计：</span><span class="sp-bottom-value" id="sp_zlxmhj">___</span></li>
         <li><span class="sp-bottom-title">治疗金额合计：</span><span class="sp-bottom-value" id="sp_zljehj">___</span></li>
-        <li><span class="sp-bottom-title">Số người bệnh nhân：</span><span class="sp-bottom-value" id="sp_hzrs">___</span></li>
+        <li><span class="sp-bottom-title">患者人数：</span><span class="sp-bottom-value" id="sp_hzrs">___</span></li>
     </ul>
 </div>
-<script type="">
+<script type="text/javascript">
     var leftdata = [];//初始化的病人信息这不是可以吗小垃圾
-    var redata = [];//thông tin bệnh nhân lọc sau
-    var selectpat = [];//thông tin bệnh nhân của đã chọn
-    var from = $.request("");
+    var redata = [];//筛选后的病人信息
+    var selectpat = [];//选中的病人信息
+    var from = $.request("from");
     var item_selected = [];
     $(function () {
         gridList();
@@ -75,30 +75,30 @@
     });
 
     function gridList() {
-        var $gridList = $("");
+        var $gridList = $("#gridList");
         $gridList.dataGrid({
-            url: "",
+            url: "/HospitalizationManage/BookkeepInHos/WaitingAccountingPlanQuery",
             postData: getSearchPostData(),
             rownumbers: false,
             height: $(window).height() - 83,
             colModel: [
-                { label: "", name: "", hidden: true, key: true },
-                { label: "", name: "", hidden: true },
+                { label: "主键", name: "jzjhmxId", hidden: true, key: true },
+                { label: "jzjhId", name: "jzjhId", hidden: true },
                 {
-                    label: "", name: "", width: 30, align: "", formatter: function (cellvalue, a, b) {
-                        return cellvalue == "" ? "" : (cellvalue == "" ? "" : "");
-                    }, hidden: from == "" ? true : undefined
+                    label: "长临", name: "yzxz", width: 30, align: "left", formatter: function (cellvalue, a, b) {
+                        return cellvalue == "2" ? "长" : (cellvalue == "1" ? "临" : "");
+                    }, hidden: from == "mz" ? true : undefined
                 },
-                { label: "", name: "", width: 100, align: "", editable: true, edittype: '' },
-                { label: "", name: "", width: 115, align: "", editable: true, edittype: ''},
-                { label: "", name: "", width: 65, align: "" },
-                { label: "", name: "", width: 150, align: "" },
-                { label: (from == "" ? "" : ""), name: "", width: 45, align: "" },
-                { label: "", name: "", width: 40, align: "" },
-                { label: "", name: "", width: 65, align: "" },
+                { label: "康复类别", name: "kflb", width: 100, align: "center", editable: true, edittype: 'select' },
+                { label: "治疗师", name: "zlsgh", width: 115, align: "center", editable: true, edittype: 'select'},
+                { label: "患者姓名", name: "patientName", width: 65, align: "left" },
+                { label: "收费项目", name: "sfxmmc", width: 150, align: "left" },
+                { label: (from == "mz" ? "总次数" : "次数"), name: "zcs", width: 45, align: "left" },
+                { label: "已执行", name: "yzxcs", width: 40, align: "left" },
+                { label: "今天已执行", name: "dtzxcs", width: 65, align: "left" },
                 {
-                    label: "", name: "", width: 55, align: "", formatter: function (cellvalue, a, b) {
-                        if (!(from == "") && b.yzxz == "") {
+                    label: "剩余次数", name: "sycs", width: 55, align: "left", formatter: function (cellvalue, a, b) {
+                        if (!(from == "mz") && b.yzxz == "2") {
                             return "";  //长不显示剩余次数
                         }
                         else {
@@ -107,24 +107,24 @@
                     }
                 },
                 {
-                    label: "", name: "", width: 80, align: ""
-                    , formatter: "", formatoptions: { srcformat: '', newformat: '' }
+                    label: "录入时间", name: "entryTime", width: 80, align: "left"
+                    , formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                 },
                 {
-                    label: "", name: "", width: 40, align: "", formatter: ""
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '' }
+                    label: "单价", name: "dj", width: 40, align: "left", formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
-                { label: "", name: "", width: 65, align: "" },
-                { label: "", name: "", width: 80, align: "" },
+                { label: "单次治疗量", name: "zll", width: 65, align: "left" },
+                { label: "单次计费数量", name: "sl", width: 80, align: "left" },
                 {
-                    label: "", name: "", width: 70, align: "", formatter: ""
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '' }
+                    label: "单次金额", name: "zje", width: 70, align: "left", formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
                 {
-                    label: "", name: "", width: 120, align: ""
-                , formatter: "", formatoptions: { srcformat: '', newformat: '' }
+                    label: "最后执行时间", name: "LastEexcutionTime", width: 120, align: "left"
+                , formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
-                { label: "", name: "", width: 160, align: "" }
+                { label: "备注", name: "bz", width: 160, align: "left" }
             ],
             unwritten: false,
             viewrecords: true,
@@ -132,24 +132,24 @@
             onSelectRow: function (rowid, status) {
                 statisticalImplementFrequencyAndZje();
                 if (status) {
-                    $("").jqGrid('', rowid, true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+                    $("#gridList").jqGrid('editRow', rowid, true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
                     });
 
                 } else {
-                    $("").saveRow(rowid, null, null, null, function (callbackRowId) { }, null, null);
+                    $("#gridList").saveRow(rowid, null, null, null, function (callbackRowId) { }, null, null);
                 }
             },
             gridComplete: function () {
-                $gridList.setColProp('', {
-                    edittype: '', editoptions: {
+                $gridList.setColProp('zlsgh', {
+                    edittype: 'select', editoptions: {
                         value: getzlsList()
                     },
-                    formatter: ""
+                    formatter: "select"
                 });
-                $gridList.setColProp('', {
-                    edittype: '', editoptions: {
+                $gridList.setColProp('kflb', {
+                    edittype: 'select', editoptions: {
                         value: getkflbList(),
-                    }, formatter: "", formatter: ""
+                    }, formatter: "select", formatter: "select"
                 });
             },
             onSelectAll: function (aRowids, status) {
@@ -161,10 +161,10 @@
 
     function getzlsList() {
         var str = "";
-        orgId = '';
+        orgId = '@(ViewBag.OrgId)';
         $.najax({
-            type: "",
-            url: "" + orgId,
+            type: "GET",
+            url: "/ReportManage/Report/GetStaffByDutyCode?orgId=" + orgId,
             loading: true,
             async: false,
             success: function (data) {
@@ -173,9 +173,9 @@
                     var length = jsonobj.length;
                     for (var i = 0; i < length; i++) {
                         if (i != length - 1) {
-                            str += jsonobj[i].StaffGh + "" + jsonobj[i].StaffName + "";
+                            str += jsonobj[i].StaffGh + ":" + jsonobj[i].StaffName + ";";
                         } else {
-                            str += jsonobj[i].StaffGh + "" + jsonobj[i].StaffName;// 这里是option里面的 value:label
+                            str += jsonobj[i].StaffGh + ":" + jsonobj[i].StaffName;// 这里是option里面的 value:label
                         }
                     }
 
@@ -186,7 +186,7 @@
     }
 
     function getkflbList() {
-        var kflbs = top.$.itemDetails.getItems('');
+        var kflbs = top.$.itemDetails.getItems('RehabTreatmentMethod');
         var obj = {};
         $.each(kflbs, function () {
             if (true) {
@@ -196,12 +196,12 @@
         return obj;
     }
 
-    //Bật hộp chỉnh sửa trong dòng
+    //启用行内编辑框
     function EnableInlineEditBox() {
-        //GridTải xong bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Gọi duyệteditRowPhương thức
-        var rowIds = $("").jqGrid('');
+        //Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
-            $("").jqGrid('', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+            $("#gridList").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
             });
         }
     }
@@ -209,32 +209,32 @@
     function getSearchPostData() {
         var postData = {};
         var zyhStr = '';
-        var allData = $("").jqGrid('', true, true);
+        var allData = $("#gridListsearch").jqGrid('getRowData_AllLine', true, true);
         $.each(allData, function () {
             if (this.zyh) {
-                zyhStr += this.zyh + '';
+                zyhStr += this.zyh + ',';
             }
         });
 
-        if (from == '') {
-            postData.from = '';
+        if (from == 'mz') {
+            postData.from = 'mz';
         }
         postData.zyhStr = zyhStr;
         return postData;
     }
 
     function gridListSearch() {
-        var a = from == "" ? "" : "";
-        var $gridList = $("");
+        var a = from == "mz" ? "门诊号" : "住院号";
+        var $gridList = $("#gridListsearch");
         $gridList.newtouchLocalDataGrid({
             height: $(window).height() - 120,
             colModel: [
-                { label: '', name: '', width: 60, align: '' },
-                { label: '', name: '', width: 85, align: '' },
-                { label: a, name: '', width: 85, align: '', key: true },
-                { label: "", name: '', align: '', hidden: true }
+                { label: '姓名', name: 'xm', width: 60, align: 'left' },
+                { label: '病历号', name: 'blh', width: 85, align: 'left' },
+                { label: a, name: 'zyh', width: 85, align: 'left', key: true },
+                { label: "py", name: 'py', align: 'left', hidden: true }
             ],
-            rowNum: '',
+            rowNum: '10',
             viewrecords: true,
             multiselect: true,//复选框
             unwritten: false,
@@ -257,93 +257,93 @@
             }, afterInsertRow: function (rowid, rowdata, rowelem) {
                 $.each(selectpat, function (idx) {
                     if (rowdata.zyh.indexOfIgnoreCase(this.zyh) > -1) {
-                        $("").jqGrid('', rowid, false); //ĐặtjqGridĐã chọn
+                        $("#gridListsearch").jqGrid('setSelection', rowid, false); //设置jqGrid选中
                     }
                 });
             },
         });
         $.najax({
-            type: "",
-            url: "" + from,
+            type: "GET",
+            url: "/PatientManage/Inpatient/GetAccountingpatientInfo?from=" + from,
             loading: true,
             success: function (ajaxresp) {
-                $("").resetSelection();
-                $("").clearGridData();
-                $("").newtouchLocalDataGrid({
+                $("#gridListsearch").resetSelection();
+                $("#gridListsearch").clearGridData();
+                $("#gridListsearch").newtouchLocalDataGrid({
                     posttofirst: false
                 }, ajaxresp);
-                leftdata = $("").jqGrid('', null, true);
+                leftdata = $("#gridListsearch").jqGrid('getRowData_AllLine', null, true);
             }
         });
     }
 
-    $('').click(function () {
+    $('#btn_search').click(function () {
         research();
     });
 
     function research() {
         statisticalNumber();
-        $("").jqGrid('', {
+        $("#gridList").jqGrid('setGridParam', {
             postData: getSearchPostData()
-        }).trigger('');
+        }).trigger('reloadGrid');
     }
 
-    //Thống kê số người thực hiện
+    //统计执行人数
     function statisticalNumber() {
         var t = 0;
-        $("").each(function() {
+        $("#gridListsearch input:checkbox[role=checkbox]:checked").each(function() {
             ++t;
         });
-        $("").html(t);
+        $("#sp_hzrs").html(t);
     }
 
-    //Thống kê số lần thực hiện và Tổng số tiền
+    //统计执行次数和总金额
     function statisticalImplementFrequencyAndZje() {
         var tt = 0;
         var zje = 0.00;
-        $("").each(function (index, item) {
+        $("#gridList input:checkbox[role=checkbox]:checked").each(function (index, item) {
             ++tt;
             var trObj = $(item).parent().parent().parent();
-            var zll = parseFloat(trObj.find("").html());
-            var dj = parseFloat(trObj.find("").html());
+            var zll = parseFloat(trObj.find("td[aria-describedby=gridList_zll]").html());
+            var dj = parseFloat(trObj.find("td[aria-describedby=gridList_dj]").html());
             var c = zll * dj;
             zje += c;
         });
-        $("").html(tt);
-        $("").html(zje);
+        $("#sp_zlxmhj").html(tt);
+        $("#sp_zljehj").html(zje);
     }
 
     //F8提交至服务器
     function newtouch_event_f8() {
         var jzjhmxIdStr = "";
         var zxItem = [];
-        //Lấy tất cả các dòngId，Duyệt để hộp chỉnh sửa ở trạng thái đã lưu
-        var rowIds = $("").jqGrid('');
+        //获取所有行Id，遍历使编辑框处于保存状态
+        var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
-            $("").saveRow(rowIds[i], null, null, null, function (callbackRowId) {
+            $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) {
 
             }, null, null);
         }
 
-        var selRowIds = $("").jqGrid('', '');
-        //Đánh giá
+        var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
+        //判断
         for (var i = 0; i < selRowIds.length; i++) {
-            var rowData = $("").jqGrid('', selRowIds[i]);
+            var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
             if (!rowData) {
                 break;
             }
             if (!rowData.kflb) {
-                $.modalAlert("", '');
+                $.modalAlert("康复类别必选", 'warning');
                 break;
             }
             if (!rowData.zlsgh) {
-                $.modalAlert("", '');
+                $.modalAlert("治疗师必选", 'warning');
                 break;
             }
             zxItem.push({ jzjhmxId: rowData.jzjhmxId, kflb: rowData.kflb, zlsgh: rowData.zlsgh });
         }
         if (zxItem == [] || zxItem.length < 1) {
-            $.modalAlert("", '');
+            $.modalAlert("未选择记账计划项目", 'warning');
             return;
         }
         var paramData = {};
@@ -351,33 +351,33 @@
         paramData.from = from;
         paramData.zxItem = zxItem;
         $.modalOpen({
-            id: "",
-            title: "",
-            url: ""ExecutionDateComfirm"",
-            width: "",
-            height: "",
+            id: "ExecutionDateComfirm",
+            title: "确认执行",
+            url: "@Url.Action("ExecutionDateComfirm")",
+            width: "370px",
+            height: "290px",
             callBack: function (iframeId) {
-                //Ngày thu phí đã điền
+                //填写的收费日期
                 var obj = top.frames[iframeId].checkEditingRowData();
                 if (obj) {
-                    paramData.zxrq = obj.zxrq + "" + new Date().toLocaleTimeString('', { hour12: false });
+                    paramData.zxrq = obj.zxrq + " " + new Date().toLocaleTimeString('chinese', { hour12: false });
                     var sfxmmc = "";
-                    //Đánh giá
+                    //判断
                     for (var i = 0; i < selRowIds.length; i++) {
-                        var rowData = $("").jqGrid('', selRowIds[i]);
+                        var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
                         if (!rowData) {
                             break;
                         }
 
                         if (rowData.LastEexcutionTime.substring(0, 10) == obj.zxrq) {
-                            sfxmmc += rowData.sfxmmc + "";
+                            sfxmmc += rowData.sfxmmc + ",";
                             break;
                         }
                     }
                     if (sfxmmc == "") {
                         submitform(paramData);
                     } else {
-                        $.modalConfirm(sfxmmc + "", function (flag) {
+                        $.modalConfirm(sfxmmc + "  当天已执行,是否重复操作", function (flag) {
                             if (flag) {
                                 submitform(paramData);
                                 return;
@@ -391,24 +391,24 @@
 
     function submitform(paramData) {
         $.submitForm({
-            url: '',
+            url: '/HospitalizationManage/BookkeepInHos/ExecuteAccountingPlan',
             param: paramData,
             success: function (data) {
-                $.modalClose("");
+                $.modalClose("ExecutionDateComfirm");
                 gridListSearch();
-                $("").clearGridData();
+                $("#gridList").clearGridData();
             }
         });
     }
 
     //搜索待执行的病人信息
-    $('').keyup(function () {
+    $('#keyword').keyup(function () {
         if (leftdata != null && leftdata.length > 0) {
-            selectpat = $("").jqGrid('', true, true);
-            $("").resetSelection();
-            $("").clearGridData();
+            selectpat = $("#gridListsearch").jqGrid('getRowData_AllLine', true, true);
+            $("#gridListsearch").resetSelection();
+            $("#gridListsearch").clearGridData();
             redata = [];
-            redatazyh = [];//bệnh nhân tìm kiếm saurowid
+            redatazyh = [];//搜索后的病人rowid
             var $this = $(this).val();
             for (var i = 0; i < leftdata.length; i++) {
                 if (leftdata[i].blh.indexOfIgnoreCase($this) > -1 ||
@@ -420,13 +420,13 @@
                 }
             }
             if (selectpat != [] && selectpat.length > 0) {
-                    for (var j = 0; j < selectpat.length; j++) {//bệnh nhân của đã chọn
+                    for (var j = 0; j < selectpat.length; j++) {//选中的病人
                         if ($.inArray(selectpat[j].zyh, redatazyh) < 0) {
                             redata.unshift(selectpat[j]);
                         };
                     }
             }
-            $("").newtouchLocalDataGrid({
+            $("#gridListsearch").newtouchLocalDataGrid({
                 posttofirst: false
             }, redata);
         }

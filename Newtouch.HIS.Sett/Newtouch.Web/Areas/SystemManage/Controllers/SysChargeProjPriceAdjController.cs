@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         private readonly ISysChargeProjPriceAdjApp _sysChargeProjPriceAdjApp;
 
         /// <summary>
-        /// Chế độ xem
+        /// 视图
         /// </summary>
         /// <returns></returns>
         public ActionResult SysChargeProjPriceAdj()
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             return View();
         }
         /// <summary>
-        /// Lấy danh sách hiệu lực
+        /// 获取有效列表
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// Thêm mới 项目调价不允许修改
+        /// 新增 项目调价不允许修改
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -42,7 +42,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             return Content(entity.ToJson());
         }
         /// <summary>
-        /// Xóa
+        /// 删除
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             return Success("操作成功。");
         }
         /// <summary>
-        /// Lưu
+        /// 保存
         /// </summary>
         /// <param name="SysPatiChargeAddEntity"></param>
         /// <param name="keyValue"></param>

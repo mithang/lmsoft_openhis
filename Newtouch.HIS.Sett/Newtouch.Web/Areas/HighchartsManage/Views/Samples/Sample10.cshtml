@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width" />
     <title>仪表盘1</title>
     <link href="~/Content/css/framework-theme.css" rel="stylesheet" />
-    <script src=""></script>
-    <script src=""></script>
+    <script src="~/Content/js/jquery/jquery-2.1.1.min.js"></script>
+    <script src="~/Content/js/highcharts/highcharts.js"></script>
     <script>
         $(function () {
-            $('').highcharts({
+            $('#container').highcharts({
 
                 chart: {
-                    type: '',
+                    type: 'gauge',
                     plotBackgroundColor: null,
                     plotBackgroundImage: null,
                     plotBorderWidth: 0,
@@ -20,7 +20,7 @@
                 },
 
                 title: {
-                    text: ''
+                    text: '标题'
                 },
 
                 pane: {
@@ -30,29 +30,29 @@
                         backgroundColor: {
                             linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
                             stops: [
-                                [0, ''],
-                                [1, '']
+                                [0, '#FFF'],
+                                [1, '#333']
                             ]
                         },
                         borderWidth: 0,
-                        outerRadius: ''
+                        outerRadius: '109%'
                     }, {
                         backgroundColor: {
                             linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
                             stops: [
-                                [0, ''],
-                                [1, '']
+                                [0, '#333'],
+                                [1, '#FFF']
                             ]
                         },
                         borderWidth: 1,
-                        outerRadius: ''
+                        outerRadius: '107%'
                     }, {
                         // default background
                     }, {
-                        backgroundColor: '',
+                        backgroundColor: '#DDD',
                         borderWidth: 0,
-                        outerRadius: '',
-                        innerRadius: ''
+                        outerRadius: '105%',
+                        innerRadius: '103%'
                     }]
                 },
 
@@ -61,44 +61,44 @@
                     min: 0,
                     max: 200,
 
-                    minorTickInterval: '',
+                    minorTickInterval: 'auto',
                     minorTickWidth: 1,
                     minorTickLength: 10,
-                    minorTickPosition: '',
-                    minorTickColor: '',
+                    minorTickPosition: 'inside',
+                    minorTickColor: '#666',
 
                     tickPixelInterval: 30,
                     tickWidth: 2,
-                    tickPosition: '',
+                    tickPosition: 'inside',
                     tickLength: 10,
-                    tickColor: '',
+                    tickColor: '#666',
                     labels: {
                         step: 2,
-                        rotation: ''
+                        rotation: 'auto'
                     },
                     title: {
-                        text: ''
+                        text: 'km/h'
                     },
                     plotBands: [{
                         from: 0,
                         to: 120,
-                        color: '' // green
+                        color: '#55BF3B' // green
                     }, {
                         from: 120,
                         to: 160,
-                        color: '' // yellow
+                        color: '#DDDF0D' // yellow
                     }, {
                         from: 160,
                         to: 200,
-                        color: '' // red
+                        color: '#DF5353' // red
                     }]
                 },
 
                 series: [{
-                    name: '',
+                    name: '速度',
                     data: [80],
                     tooltip: {
-                        valueSuffix: ''
+                        valueSuffix: ' km/h'
                     }
                 }]
 

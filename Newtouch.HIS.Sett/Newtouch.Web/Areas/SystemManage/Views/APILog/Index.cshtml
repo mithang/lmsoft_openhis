@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "接口问题日志";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
     .toolbar {
@@ -18,19 +18,19 @@
 <form>
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            Điều kiện lọc
+            筛选条件
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">Số bệnh án：</th>
+                <th class="formTitle">病历号：</th>
                 <td class="formValue">
                     <input type="text" class="form-control form-an" id="blh" />
                 </td>
-                <th class="formTitle">Họ tên：</th>
+                <th class="formTitle">姓名：</th>
                 <td class="formValue">
                     <input type="text" class="form-control form-an" id="xm" />
                 </td>
-                <th class="formTitle">Tải lên thời gian：</th>
+                <th class="formTitle">上传时间：</th>
                 <td class="formValue" colspan="2">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left;">—</span>
@@ -39,39 +39,39 @@
                 <td></td>
             </tr>
             <tr>
-                <th class="formTitle">Loại bệnh nhân：</th>
+                <th class="formTitle">患者类型：</th>
                 <td class="formValue formDdlSelectorTd">
                     <select id="brlx" class="form-control form-an">
-                        <option value="-1">Tất cả</option>
-                        <option value="Outpatient">Ngoại trú</option>
-                        <option value="Inpatient">Nhập viện</option>
+                        <option value="-1">全部</option>
+                        <option value="Outpatient">门诊</option>
+                        <option value="Inpatient">住院</option>
                     </select>
                 </td>
-                <th class="formTitle">Loại dữ liệu：</th>
+                <th class="formTitle">数据类型：</th>
                 <td class="formValue formDdlSelectorTd">
                     <select id="wtjlbz" class="form-control form-an">
-                        <option value="-1">Tất cả</option>
-                        <option value=false>Bình thường</option>
+                        <option value="-1">全部</option>
+                        <option value=false>正常</option>
                         <option value=true selected>问题</option>
                     </select>
                 </td>
-                <th class="formTitle">Nhà trị liệu：</th>
+                <th class="formTitle">治疗师：</th>
                 <td class="formValue">
                     @*<input type="text" readonly="readonly" class="form-control formClearIgnore form-an" id="smryName" data-smry="@OperatorProvider.GetCurrent().rygh" data-staffId="@OperatorProvider.GetCurrent().StaffId" value=@OperatorProvider.GetCurrent().UserName />*@
                     <select id="smryName" class="form-control">
-                        <option>==Vui lòng chọn==</option>
+                        <option>==请选择==</option>
                     </select>
                 </td>
                 <th class="formTitle">是否已删除：</th>
                 <td class="formValue">
                     <select id="isDeleted" class="form-control">
-                        <option>Tất cả</option>
-                        <option value=false selected>Bình thường</option>
-                        <option value=true>Đã xóa</option>
+                        <option>全部</option>
+                        <option value=false selected>正常</option>
+                        <option value=true>已删除</option>
                     </select>
                 </td>
                 <td class="formValue">
-                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="Tra cứu" />
+                    <input type="button" id="btn_search" class="btn btn-md btn-primary form-an" style="width: 50px; margin-left: 40px;" value="查询" />
                 </td>
 
             </tr>
@@ -97,45 +97,45 @@
     </table>
 </form>
 <script>
-    //Mặc định
-    //var Editing_ysList = []; //Nhân viên trong vùng chỉnh sửa
+    //默认
+    //var Editing_ysList = []; //编辑域中的人员
 
     $(function () {
         gridList();
-        //Editing_ysList = [{ id: $('').attr(''), gh: $('').attr(''), Name: $('').val(), ks: $('').attr(''), ksmc: $('').val() }];
+        //Editing_ysList = [{ id: $('#smryName').attr('data-staffId'), gh: $('#smryName').attr('data-smry'), Name: $('#smryName').val(), ks: $('#smks').attr('data-smksCode'), ksmc: $('#smks').val() }];
 
     });
 
-    //Nhà trị liệu
-    $("").bindSelect({
-        url: "",
-        id: "",
-        text: ""
+    //治疗师
+    $("#smryName").bindSelect({
+        url: "/Report/GetRehabDoctorList",
+        id: "StaffGh",
+        text: "StaffName"
     });
 
     function gridList() {
-        var $gridList = $("");
+        var $gridList = $("#gridList");
         $gridList.dataGrid({
-            url: ""GetListJson"",
+            url: "@Url.Action("GetListJson")",
             postData: getSearchPostData(),
             height: $(window).height() - 200,
             colModel: [
-                { label: '', name: '', align: '', hidden: true },
-                { label: '', name: '', width: 100, align: '' },
-                { label: '', name: '', width: 120, align: '' },
-                { label: '', name: '', width: 100, align: '' },
-                { label: '', name: '', width: 100, align: '' },
-                { label: '', name: '', width: 60, align: '' },
-                { label: '', name: '', width: 120, align: '' },
-                { label: '', name: '', hidden: true, formatter: "", align: '' },
+                { label: 'Id', name: 'Id', align: 'left', hidden: true },
+                { label: '收费项目', name: 'serviceDescription', width: 100, align: 'left' },
+                { label: '姓名', name: 'patientName', width: 120, align: 'left' },
+                { label: '病历号', name: 'patientId', width: 100, align: 'left' },
+                { label: '住院/门诊号', name: 'admsNum', width: 100, align: 'left' },
+                { label: '治疗师', name: 'therapistName', width: 60, align: 'left' },
+                { label: '康复类别', name: 'disciplineTrack', width: 120, align: 'left' },
+                { label: 'wtjlbz', name: 'wtjlbz', hidden: true, formatter: "bool", align: 'left' },
                 {
-                    label: '', name: '', width: 60, align: '', formatter: function (val) {
+                    label: '患者类型', name: 'patientType', width: 60, align: 'left', formatter: function (val) {
                         switch (val) {
-                            case "":
-                                return ""
+                            case "outpatient":
+                                return "门诊"
                                 break;
-                            case "":
-                                return ""
+                            case "inpatient":
+                                return "住院"
                                 break;
                             default:
                                 return val;
@@ -143,76 +143,76 @@
                         }
                     }
                 },
-                { label: '', name: '', width: 120, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
-                { label: '', name: '', width: 267, align: '' }
+                { label: '创建时间', name: 'CreatedDate', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: '详细异常', name: 'remark', width: 267, align: 'left' }
 
             ],
-            pager: "",
-            sortname: '',
+            pager: "#gridPager",
+            sortname: 'CreatedDate desc',
             viewrecords: true,
             ondblClickRow: function (rowid) {
                 gridEditRow(rowid);
             }, gridComplete: function (data) {
-                var ids = $("").jqGrid('');
+                var ids = $("#gridList").jqGrid('getDataIDs');
                 for (var i = 0; i < ids.length; i++) {
 
-                    var rowData = $("").jqGrid('', ids[i]);
+                    var rowData = $("#gridList").jqGrid('getRowData', ids[i]);
                     if (rowData) {
-                        if (rowData.wtjlbz == '') {
-                            $('' + ids[i] + '').css("", "");//.addClass('');
+                        if (rowData.wtjlbz == 'true') {
+                            $('#gridList tr[id="' + ids[i] + '"]').css("background-color", "#f2dede");//.addClass('complete');
                         }
                     }
                 }
             }
         });
-        $("").click(function () {
-            $gridList.jqGrid('', {
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
                 postData: getSearchPostData(),
                 page: 1,
-            }).trigger('');
+            }).trigger('reloadGrid');
         });
     }
 
-    //Điều kiện tra cứu
+    //查询条件
     function getSearchPostData() {
-        var blh = $("").val();
-        var xm = $("").val();
-        var kssj = $("").val();
-        var jssj = $("").val();
-        var brlx = $("").val();
-        var wtjlbz = $("").val();
-        var isDeleted = $("").val();
-        var rygh = $("").val();
+        var blh = $("#blh").val();
+        var xm = $("#xm").val();
+        var kssj = $("#kssj").val();
+        var jssj = $("#jssj").val();
+        var brlx = $("#brlx").val();
+        var wtjlbz = $("#wtjlbz").val();
+        var isDeleted = $("#isDeleted").val();
+        var rygh = $("#smryName").val();
         return { blh: blh, xm: xm, kssj: kssj, jssj: jssj, brlx: brlx, wtjlbz: wtjlbz, isDeleted: isDeleted, rygh: rygh };
 
     }
-    //Hủy bỏ
+    //作废
     function newtouch_event_f8() {
-        var data = $("").jqGrid('', undefined, false);
-        if (data == "") {
+        var data = $("#gridList").jqGrid('getRowData_AllLine', undefined, false);
+        if (data == "[]") {
             return;
         }
-        var ids = $("").jqGrid("", "");
+        var ids = $("#gridList").jqGrid("getGridParam", "selarrrow");
         if (!ids || ids.length == 0) {
-            $.modalAlert("", '');
+            $.modalAlert("请先在列表勾选需要作废的治疗记录", 'warning');
             return false;
         }
         var arraryData = [];
         for (var i = 0; i < ids.length; i++) {
-            var rowData = $("").jqGrid('', ids[i]);
+            var rowData = $("#gridList").jqGrid('getRowData', ids[i]);
             arraryData.push(rowData.Id);
         }
         $.najax({
-            url: ""Involid"",
-            dataType: "",
+            url: "@Url.Action("Involid")",
+            dataType: "json",
             data: { list: arraryData },
-            type: "",
+            type: "POST",
             async: false,
             success: function (data) {
                 $.loading(false);
-                //Làm mới danh sách chưa xác nhận
-                $('').trigger('');
-                $.modalMsg("", '');
+                //刷新未确认列表
+                $('#btn_search').trigger('click');
+                $.modalMsg("操作成功", 'success');
             },
             errCallback: function (err) {
                 $.loading(false);

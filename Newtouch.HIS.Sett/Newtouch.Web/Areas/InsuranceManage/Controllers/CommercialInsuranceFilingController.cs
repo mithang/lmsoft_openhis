@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Web.Areas.InsuranceManage.Controllers
         private readonly ISysCommercialInsuranceFilingRepo _sysCommercialInsuranceFilingRepo;
 
         /// <summary>
-        /// Lấy danh sách đăng ký hồ sơ bảo hiểm thương mại
+        /// 获取商保备案列表
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Web.Areas.InsuranceManage.Controllers
         }
 
         /// <summary>
-        /// Lưu
+        /// 保存
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="sbbabId"></param>
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Web.Areas.InsuranceManage.Controllers
         }
 
         /// <summary>
-        /// Thêm mới hoặc sửaForm
+        /// 新增或修改Form
         /// </summary>
         /// <param name="sbbabId"></param>
         /// <returns></returns>
@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Web.Areas.InsuranceManage.Controllers
         }
 
         /// <summary>
-        /// Xóa
+        /// 删除
         /// </summary>
         /// <param name="sbbabId"></param>
         /// <returns></returns>

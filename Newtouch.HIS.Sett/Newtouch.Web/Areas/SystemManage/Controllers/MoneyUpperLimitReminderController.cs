@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Tra cứu
+        /// 查询
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -51,7 +51,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lưu
+        /// 保存
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="sxtxId"></param>
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Thêm mớiorSửa
+        /// 新增or修改
         /// </summary>
         /// <param name="sxtxId"></param>
         /// <returns></returns>
@@ -80,7 +80,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Xóa
+        /// 删除
         /// </summary>
         /// <param name="sxtxId"></param>
         /// <returns></returns>
@@ -91,7 +91,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lớp nổi khoa
+        /// 科室浮层
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -102,7 +102,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lớp nổi bác sĩ
+        /// 医生浮层
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

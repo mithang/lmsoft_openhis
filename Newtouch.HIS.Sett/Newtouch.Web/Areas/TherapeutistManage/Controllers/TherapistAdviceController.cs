@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Web.Areas.TherapeutistManage.Controllers
         //}
 
         /// <summary>
-        /// Lưu
+        /// 保存
         /// </summary>
         /// <returns></returns>
         public ActionResult SaveData( List<TherapistSuggestionEntity> mxList,string delRowIds, string blh,string brlx,string mzzyh)

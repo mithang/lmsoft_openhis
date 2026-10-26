@@ -5,53 +5,53 @@
     <meta name="viewport" content="width=device-width" />
     <title>饼图</title>
     <link href="~/Content/css/framework-theme.css" rel="stylesheet" />
-    <script src=""></script>
-    <script src=""></script>
+    <script src="~/Content/js/jquery/jquery-2.1.1.min.js"></script>
+    <script src="~/Content/js/highcharts/highcharts.js"></script>
     <script>
         var chart;
         $(document).ready(function () {
 
             // Build the chart
-            $('').highcharts({
+            $('#container').highcharts({
                 chart: {
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
                     plotShadow: false
                 },
                 title: {
-                    text: ''
+                    text: '2010年浏览器市场份额'
                 },
                 tooltip: {
-                    pointFormat: ''
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
                 },
                 plotOptions: {
                     pie: {
                         allowPointSelect: true,
-                        cursor: '',
+                        cursor: 'pointer',
                         dataLabels: {
                             enabled: true,
-                            color: '',
-                            connectorColor: '',
-                            format: ''
+                            color: '#000000',
+                            connectorColor: '#000000',
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
                         },
                         showInLegend: true
                     }
                 },
                 series: [{
-                    type: '',
-                    name: '',
+                    type: 'pie',
+                    name: '份额：',
                     data: [
-                        ['', 45.0],
-                        ['', 26.8],
+                        ['Firefox', 45.0],
+                        ['IE', 26.8],
                         {
-                            name: '',
+                            name: 'Chrome',
                             y: 12.8,
                             sliced: true,
                             selected: true
                         },
-                        ['', 8.5],
-                        ['', 6.2],
-                        ['', 0.7]
+                        ['Safari', 8.5],
+                        ['Opera', 6.2],
+                        ['Others', 0.7]
                     ]
                 }]
             });

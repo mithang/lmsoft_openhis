@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "TradeRefund";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
 <form id="formRefund">
@@ -14,13 +14,13 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span style="color:red">*</span>Nguyên nhân hoàn tiền：</th>
+                <th class="formTitle"><span style="color:red">*</span>退款原因：</th>
                 <td class="formValue">
                     <input type="text" class="form-control"  id="Reason"/>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span style="color:red">*</span>Số tiền hoàn lại：</th>
+                <th class="formTitle"><span style="color:red">*</span>退款金额：</th>
                 <td class="formValue">
                     <input type="text" class="form-control required"  id="Amt" />
                 </td>
@@ -30,38 +30,38 @@
 
 </form>
 <script>
-    var keyValue = $.request('');
-    var maxrfdAmt = $.request(''); //剩余可退
-    var totalAmt = $.request(''); //剩余可退
+    var keyValue = $.request('outtradeno');
+    var maxrfdAmt = $.request('maxrfd'); //剩余可退
+    var totalAmt = $.request('total'); //剩余可退
 
     $(function() {
-        $("").val(maxrfdAmt + "");
+        $("#maxrfd").val(maxrfdAmt + " (元)");
     });
 
     function submitForm(callback) {
-        var refundAmt = $("").val();
-        var reason = $("").val();
-        var reg = new RegExp("");
+        var refundAmt = $("#Amt").val();
+        var reason = $("#Reason").val();
+        var reg = new RegExp("^[0-9]+(.[0-9]{1,3})?$");
         if (!reg.test(refundAmt)) {
-            $.modalAlert('', '');
+            $.modalAlert('请输入正确金额', 'error');
             return;
         }
         else if (refundAmt > maxrfdAmt) {
-            $.modalAlert('', '');
+            $.modalAlert('退款金额不得大于剩余可退金额', 'error');
             return;
         }
         if (reason == null || reason == undefined) {
-            $.modalAlert('', '');
+            $.modalAlert('请输入退款原因', 'error');
             return;
         }
 
         $.submitForm({
-            url: "" + keyValue + "" + refundAmt + "" + reason,
-            loading: "",  
+            url: "/PayManage/MicroPay/Opr_TradeRefund?outTradeNo=" + keyValue + "&refundAmount=" + refundAmt + "&Reason=" + reason,
+            loading: "正在申请退款，请稍后...",  
             success: function (ajaxresp) {
                 
-                //$.currentWindow().$("").resetSelection();
-                //$.currentWindow().$("").trigger("");
+                //$.currentWindow().$("#gridListRefd").resetSelection();
+                //$.currentWindow().$("#gridListRefd").trigger("reloadGrid");
                 callback();
             }
         });

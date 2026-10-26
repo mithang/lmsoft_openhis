@@ -1,46 +1,46 @@
 ﻿@using Newtouch.Common.Operator;
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
 <form id="form1">
     <div style="padding: 20px 35px 0 2px;">
         <table class="form">
             <tr>
-                <th class="formTitle">Tính chất bệnh nhân</th>
+                <th class="formTitle">病人性质</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="brxz" name="brxz" required/>
                 </td>
-                <th class="formTitle">Nhóm lớn</th>
+                <th class="formTitle">大类</th>
                 <td class="formValue">
                     <select id="dl" name="dl" class="form-control" required>
-                        <option value="">Vui lòng chọn</option>
+                        <option value="">请选择</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Hạng mục thu phí</th>
+                <th class="formTitle">收费项目</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="sfxm" name="sfxm" required />
                 </td>
-                <th class="formTitle">Hạng mục thuốc</th>
+                <th class="formTitle">药品项目</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="yp" name="yp" required />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Người lập hồ sơ</th>
+                <th class="formTitle">建档人员</th>
                 <td class="formValue">
                     <input type="text" class="form-control newtouch_Readonly" id="CreatorCode" name="CreatorCode" value=@OperatorProvider.GetCurrent().UserCode />
                 </td>
-                <th class="formTitle">Ngày lập hồ sơ</th>
+                <th class="formTitle">建档日期</th>
                 <td class="formValue">
                     <input type="text" class="form-control newtouch_Readonly" id="CreateTime" name="CreateTime" value=@DateTime.Now.ToString("yyyy-MM-dd") />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Hiệu lực</th>
+                <th class="formTitle">有效</th>
                 <td class="formValue">
                     <div class="ckbox">
                         <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt"></label>
@@ -53,37 +53,37 @@
 
 
 <script>
-    var keyValue = $.request("");
+    var keyValue = $.request("keyValue");
     $(function () {
         InitControl();
         if (!!keyValue) {
             $.ajax({
-                url: "" + Math.random(),
+                url: "/SystemManage/SysPatiChargeRange/GetFormJson?r=" + Math.random(),
                 data: { keyValue: keyValue },
-                dataType: "",
+                dataType: "json",
                 async: false,
                 success: function (data) {
-                    $("").formSerialize(data);
-                    $('').attr("",data.brxz)
+                    $("#form1").formSerialize(data);
+                    $('#brxz').attr("data-brxz",data.brxz)
                         .val(data.brxzmc);
-                    $('').attr("",data.sfxm)
+                    $('#sfxm').attr("data-sfxm",data.sfxm)
                         .val(data.sfxmmc);
-                    $('').attr("", data.yp)
+                    $('#yp').attr("data-yp", data.yp)
                         .val(data.ypmc);
                 }
             });
         }
     })
 
-    //Lớp nổi tính chất bệnh nhân
-    $("").newtouchFloatingSelector({
+    //病人性质浮层
+    $("#brxz").newtouchFloatingSelector({
         height: 200,
         width: 300,
         filter: function (keyword) {
             if (!keyword) {
                 return null;
             }
-            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
+            //遍历数据源，用keyword来筛选出结果
             var resultObjArr = new Array();
             $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -93,71 +93,71 @@
             return resultObjArr;
 
         },
-        caption: "",
+        caption: "病人性质",
         colModel: [
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 },
-            { label: '', name: '', widthratio: 25 }
+            { label: '编号', name: 'brxzbh', widthratio: 25 },
+            { label: '代码', name: 'brxz', widthratio: 25 },
+            { label: '名称', name: 'brxzmc', widthratio: 25 },
+            { label: '拼音', name: 'py', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
-            $("").val($thistr.attr(''))
-                .attr('', $thistr.attr(''))
+            $("#brxz").val($thistr.attr('data-brxzmc'))
+                .attr('data-brxz', $thistr.attr('data-brxz'))
             return;
         }
     });
 
-    //Hạng mục thu phí
-    $('').newtouchFloatingSelector({
+    //收费项目
+    $('#sfxm').newtouchFloatingSelector({
         width: 600,
         height: 280,
-        caption: "",
-        url: '',
+        caption: "收费项目",
+        url: '/SystemManage/SysChargeItem/GetChargeItemSelectData',
         ajaxparameters: function () {
-            if ($.trim($('').val()).length == 0) {
+            if ($.trim($('#sfxm').val()).length == 0) {
                 return;
             }
-            return "" + $.trim($('').val());
+            return "keyword=" + $.trim($('#sfxm').val());
         },
         itemdbclickhandler: function ($thistr) {
-            $('').attr('', $thistr.attr(''))
-                .val($thistr.attr(''));
+            $('#sfxm').attr('data-sfxm', $thistr.attr('data-sfxm'))
+                .val($thistr.attr('data-sfxmmc'));
         },
-        colModel: [{ label: '', name: '', widthratio: 10 },
-            { label: '', name: '', widthratio: 15 },
-            { label: '', name: '', widthratio: 10 },
-            { label: '', name: '', widthratio: 7 },
-            { label: '', name: '', widthratio: 8 },
-            { label: '', name: '', widthratio: 10 },
-            { label: '', name: '', widthratio: 13 }
+        colModel: [{ label: '收费项目', name: 'sfxm', widthratio: 10 },
+            { label: '收费项目名称', name: 'sfxmmc', widthratio: 15 },
+            { label: '拼音', name: 'py', widthratio: 10 },
+            { label: '单位', name: 'dw', widthratio: 7 },
+            { label: '单价', name: 'dj', widthratio: 8 },
+            { label: '大类', name: 'dl', widthratio: 10 },
+            { label: '门诊住院标志', name: 'mzzybz', widthratio: 13 }
         ]
     });
 
-    //Hạng mục thuốc
-    $('').newtouchFloatingSelector({
+    //药品项目
+    $('#yp').newtouchFloatingSelector({
         width: 600,
         height: 280,
-        caption: "",
-        url: '',
+        caption: "药品项目",
+        url: '/SystemManage/SysPatiChargeRange/GetYpSelectJsonData',
         ajaxparameters: function () {
-            if ($.trim($('').val()).length == 0) {
+            if ($.trim($('#yp').val()).length == 0) {
                 return;
             }
-            return "" + $.trim($('').val());
+            return "keyword=" + $.trim($('#yp').val());
         },
         itemdbclickhandler: function ($thistr) {
-            $('').attr('', $thistr.attr(''))
-                .val($thistr.attr(''));
+            $('#yp').attr('data-yp', $thistr.attr('data-yp'))
+                .val($thistr.attr('data-ypmc'));
         },
-        colModel: [{ label: '', name: '', widthratio: 15 },
-            { label: '', name: '', widthratio: 15 },
-            { label: '', name: '', widthratio: 7 },
-            { label: '', name: '', widthratio: 8 },
-            { label: '', name: '', widthratio: 10 },
-            { label: '', name: '', widthratio: 13 },
-            { label: '', name: '', widthratio: 13 },
-            { label: '', name: '', widthratio: 13 },
-            { label: '', name: '', widthratio: 13 }
+        colModel: [{ label: '药品', name: 'yp', widthratio: 15 },
+            { label: '药品名称', name: 'ypmc', widthratio: 15 },
+            { label: '拼音', name: 'py', widthratio: 7 },
+            { label: '自负比例', name: 'zfbl', widthratio: 8 },
+            { label: '自负性质', name: 'zfxz', widthratio: 10 },
+            { label: '大类', name: 'dl', widthratio: 13 },
+            { label: '大类名称', name: 'dlmc', widthratio: 13 },
+            { label: '药品名称', name: 'ycmc', widthratio: 13 },
+            { label: '医保代码', name: 'ybdm', widthratio: 13 }
         ]
     });
 
@@ -166,24 +166,24 @@
     }
 
     function dlList() {
-        $("").bindSelect({
-            url: ""
+        $("#dl").bindSelect({
+            url: "/SystemManage/SysPatiChargeLogic/GetdlSelect"
         });
     }
 
     function submitForm() {
-        if (!$('').formValid()) {
+        if (!$('#form1').formValid()) {
             return false;
         }
-        var params = $("").formSerialize();
-        params[''] = $('').attr('');
-        params[''] = $('').attr('');
-        params[''] = $('').attr('');
+        var params = $("#form1").formSerialize();
+        params['brxz'] = $('#brxz').attr('data-brxz');
+        params['sfxm'] = $('#sfxm').attr('data-sfxm');
+        params['yp'] = $('#yp').attr('data-yp');
         $.submitForm({
-            url: "" + keyValue,
+            url: "/SystemManage/SysPatiChargeRange/SubmitForm?keyValue=" + keyValue,
             param: params,
             success: function () {
-                $.currentWindow().window.frames[''].$("").trigger("");
+                $.currentWindow().window.frames['iframeExpenseManage'].$("#gridList").trigger("reloadGrid");
             }
         })
     }

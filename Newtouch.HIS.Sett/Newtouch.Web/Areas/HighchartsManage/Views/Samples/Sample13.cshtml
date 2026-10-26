@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width" />
     <title>玫瑰图</title>
     <link href="~/Content/css/framework-theme.css" rel="stylesheet" />
-    <script src=""></script>
-    <script src=""></script>
+    <script src="~/Content/js/jquery/jquery-2.1.1.min.js"></script>
+    <script src="~/Content/js/highcharts/highcharts.js"></script>
     <script>
         $(function () {
-            $('').highcharts({
+            $('#container').highcharts({
                 data: {
-                    table: '',
+                    table: 'freq',
                     startRow: 1,
                     endRow: 17,
                     endColumn: 7
@@ -19,28 +19,28 @@
 
                 chart: {
                     polar: true,
-                    type: ''
+                    type: 'column'
                 },
 
                 title: {
-                    text: ''
+                    text: '玫瑰图'
                 },
 
 
                 pane: {
-                    size: ''
+                    size: '85%'
                 },
 
                 legend: {
                     reversed: true,
-                    align: '',
-                    verticalAlign: '',
+                    align: 'right',
+                    verticalAlign: 'top',
                     y: 100,
-                    layout: ''
+                    layout: 'vertical'
                 },
 
                 xAxis: {
-                    tickmarkPlacement: ''
+                    tickmarkPlacement: 'on'
                 },
 
                 yAxis: {
@@ -48,26 +48,26 @@
                     endOnTick: false,
                     showLastLabel: true,
                     title: {
-                        text: ''
+                        text: '频率 (%)'
                     },
                     labels: {
                         formatter: function () {
-                            return this.value + '';
+                            return this.value + '%';
                         }
                     }
                 },
 
                 tooltip: {
-                    valueSuffix: '',
+                    valueSuffix: '%',
                     followPointer: true
                 },
 
                 plotOptions: {
                     series: {
-                        stacking: '',
+                        stacking: 'normal',
                         shadow: false,
                         groupPadding: 0,
-                        pointPlacement: ''
+                        pointPlacement: 'on'
                     }
                 }
             });

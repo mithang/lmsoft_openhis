@@ -1,9 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
-    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("");
-    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("");
+    ViewBag.Title = "FYXMMXQuery";
+    Layout = "~/Views/Shared/_Form.cshtml";
+    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
+    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
 }
 <style>
     .dv-left {
@@ -19,22 +19,22 @@
 	<div class="panel panel-default">
 		<table class="form">
 			<tr>
-				<th class="formTitle">Tra cứu loại：</th>
+				<th class="formTitle">查询类别：</th>
 				<td class="formValue">
 					<select id="tjfw" class="form-control">
-						<option value="Ngoại trú">Ngoại trú</option>
-						<option value="Nhập viện">Nhập viện</option>
+						<option value="门诊">门诊</option>
+						<option value="住院">住院</option>
 					</select>
 				</td>
 
-				<th class="formTitle">Ngày bắt đầu：</th>
+				<th class="formTitle">开始日期：</th>
 				<td class="formValue">
 					<input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
 						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
 						   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
 						   value="@DateTime.Now.ToString("yyyy-MM-01")" />
 				</td>
-				<th class="formTitle">Ngày kết thúc：</th>
+				<th class="formTitle">结束日期：</th>
 				<td class="formValue">
 					<input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
 						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -43,35 +43,35 @@
 				</td>
 				<th class="formTitle"></th>
 				<td class="formValue" style="padding-left:20px;">
-					<input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
+					<input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
 				</td>
 			</tr>
             <tr>
                 <td class="formValue" colspan="2">
                     <label class="btn btn-default" style="z-index:100">
-                        <input id="gl" type="radio" value="gl" name="optionsRadios" class="optionsRadios" onclick="guolv()" />Lọc
+                        <input id="gl" type="radio" value="gl" name="optionsRadios" class="optionsRadios" onclick="guolv()" />过滤
                     </label>
                     <label class="btn btn-default" style="z-index:100">
-                        <input id="hf" type="radio" value="hf" name="optionsRadios" class="optionsRadios" onclick="huifu()" />Khôi phục
+                        <input id="hf" type="radio" value="hf" name="optionsRadios" class="optionsRadios" onclick="huifu()" />恢复
                     </label>
                     <label class="btn btn-default" style="z-index:100">
-                        <input type="radio" value="qc" name="optionsRadios" class="optionsRadios" onclick="qingchu()" />Xóa
+                        <input type="radio" value="qc" name="optionsRadios" class="optionsRadios" onclick="qingchu()" />清除
                     </label>
                 </td>
                 <th class="formTitle">项目检索：</th>
                 <td class="formValue"> <input type="text" id="sfxmmc"  onkeyup="sfxmsx()" class="form-control" /></td>
-                <th class="formTitle">Bác sĩ：</th>
+                <th class="formTitle">医生：</th>
                 <td class="formValue">
 
                     <select id="yscode" class="form-control">
-                        <option value="" selected>Tất cả</option>
+                        <option value="" selected>全部</option>
                     </select>
                 </td>
 
-                <th class="formTitle">Tên nhóm lớn：</th>
+                <th class="formTitle">大类名称：</th>
                 <td class="formValue">
                     <select id="dlmc" onchange="selsfdl()" class="form-control">
-                        <option value="" selected>Tất cả</option>
+                        <option value="" selected>全部</option>
                     </select>
                 </td>
             </tr>
@@ -93,119 +93,119 @@
 
 
     <script>
-	 var isHospAdministrator = '';
-    var curUserCode = '';
-    var OrgId = '';
-	var reportServerHOST = '';
-        var rightWidth = $("", parent.document).width() - $("").width() - 60;
-        $("").width(rightWidth);
+	 var isHospAdministrator = '@(ViewBag.IsHospAdministrator)';
+    var curUserCode = '@(ViewBag.CurUserCode)';
+    var OrgId = '@(ViewBag.OrgId)';
+	var reportServerHOST = '@(ViewBag.ReportServerHOST)';
+        var rightWidth = $(".Newtouch_iframe", parent.document).width() - $(".dv-left").width() - 60;
+        $(".dv-right").width(rightWidth);
         $(function () {
             submit();
             gridList("");
         });
         function qingchu() {
-            // Lấy dòng đã chọn tất cảid
-            var jqGridRowid = $("").jqGrid("", "");
+            // 获取所有选中行id
+            var jqGridRowid = $("#gridList").jqGrid("getGridParam", "selarrrow");
             for (var i = 0; i < jqGridRowid.length; i++) {
-                $("").setSelection(jqGridRowid[i], false);
+                $("#gridList").setSelection(jqGridRowid[i], false);
                 i--;
             }
             xzstr = "";
         }
         function sfxmsx() {
-            $("").jqGrid('', {
-                postData: { xzstr: "", py: $("").val() },
-            }).trigger('');
+            $("#gridList").jqGrid('setGridParam', {
+                postData: { xzstr: "", py: $("#sfxmmc").val() },
+            }).trigger('reloadGrid');
         }
         var xzstr = "";
         function guolv() {
-            $("").val("");
+            $("#sfxmmc").val("");
             if (xzstr == "") {
-                if ($("").val() != "") {
-                    $("").jqGrid('', {
-                        postData: { xzstr: "", py: $("").val(), sfdl: $("").val()  },
-                    }).trigger('');
+                if ($("#dlmc").val() != "") {
+                    $("#gridList").jqGrid('setGridParam', {
+                        postData: { xzstr: "", py: $("#sfxmmc").val(), sfdl: $("#dlmc").val()  },
+                    }).trigger('reloadGrid');
                 } else {
-                    $("").jqGrid('', {
-                        postData: { xzstr: "", py: $("").val() },
-                    }).trigger('');
+                    $("#gridList").jqGrid('setGridParam', {
+                        postData: { xzstr: "^", py: $("#sfxmmc").val() },
+                    }).trigger('reloadGrid');
                 }
             } else {
-                $("").jqGrid('', {
-                    postData: { xzstr: xzstr, py: $("").val(), sfdl: $("").val()  },
-                }).trigger('');
+                $("#gridList").jqGrid('setGridParam', {
+                    postData: { xzstr: xzstr, py: $("#sfxmmc").val(), sfdl: $("#dlmc").val()  },
+                }).trigger('reloadGrid');
             }
         }
         function huifu() {
-            $("").val("");
-            $("").jqGrid('', {
+            $("#sfxmmc").val("");
+            $("#gridList").jqGrid('setGridParam', {
                 postData: { xzstr: "", py: "", sfdl: ""},
-            }).trigger('');
+            }).trigger('reloadGrid');
         }
         function selsfdl() {
-            if ($("").val() == "") {
+            if ($("#dlmc").val() == "") {
                 xzstr = "";
-                $("").click();
+                $("#hf").click();
             } else {
-                $("").click();
+                $("#gl").click();
             }
-            //$("").jqGrid('', {
-            //    postData: { xzstr: xzstr, py: $("").val(), sfdl: $("").val()  },
-            //}).trigger('');
+            //$("#gridList").jqGrid('setGridParam', {
+            //    postData: { xzstr: xzstr, py: $("#sfxmmc").val(), sfdl: $("#dlmc").val()  },
+            //}).trigger('reloadGrid');
         }
         function gridList(strdata) {
-            var $gridList = $("");
+            var $gridList = $("#gridList");
             $gridList.dataGrid({
-                postData: { xzstr: strdata, sfdl: $("").val() },
-                url: "",
+                postData: { xzstr: strdata, sfdl: $("#dlmc").val() },
+                url: "/ReportManage/Report/Getsfxm",
                 height: $(window).height() - 210,
                 colModel: [
-                    { label: '', name: '', align: '', width: 30, hidden: true, key: true },
-                    { label: '', name: '', align: '', width: 100 },
-                    { label: '', name: '', align: '', width: 30 },
-                    { label: '', name: '', align: '', width: 30 },
+                    { label: 'sfxmcode', name: 'sfxmcode', align: 'center', width: 30, hidden: true, key: true },
+                    { label: '收费项目', name: 'sfxmmc', align: 'left', width: 100 },
+                    { label: '单位', name: 'dw', align: 'left', width: 30 },
+                    { label: '单价', name: 'dj', align: 'left', width: 30 },
                 ],
                 rowNum:50,
                 viewrecords: true,
                 multiselect: true,
-                pager: "",
-                sortname: '',
+                pager: "#gridPager",
+                sortname: 'sfxmcode desc',
                 viewrecords: true,
                 beforeSelectRow: function (rowIndex, s) {
                     if (xzstr.indexOf(rowIndex) != -1) {
-                        xzstr = xzstr.replace(rowIndex + "", "");
+                        xzstr = xzstr.replace(rowIndex + ",", "");
                     } else {
-                        xzstr += rowIndex + "";
+                        xzstr += rowIndex + ",";
                     }
                 },
-                //当表格所有数据都加载完成而且其他的处理也都完成时触发此事件，Sắp xếp，翻页同样也会触发此事件
+                //当表格所有数据都加载完成而且其他的处理也都完成时触发此事件，排序，翻页同样也会触发此事件
                 gridComplete: function () {
-                    //if ($("").val() != "") {
+                    //if ($("#dlmc").val() != "") {
                     //    var ids = new Array();
-                    //    //getDataIDs()Trả về hiện tạigriddữ liệu tất cả trongid
-                    //    ids = $("" + this.id).getDataIDs();
-                    //    //选择或反选指定行。NếuonselectrowChoture则会触发事件onSelectRow，onselectrowMặc định làture
+                    //    //getDataIDs()返回当前grid里所有数据的id
+                    //    ids = $("#" + this.id).getDataIDs();
+                    //    //选择或反选指定行。如果onselectrow为ture则会触发事件onSelectRow，onselectrow默认为ture
                     //    $.each(ids, function () {
-                    //        //$("").setSelection(this, true);
-                    //        xzstr += this + "";
+                    //        //$("#gridList").setSelection(this, true);
+                    //        xzstr += this + ",";
                     //    })
                         
                     //}
-                    if ($("").prop("")==true) {
+                    if ($("#gl").prop("checked")==true) {
                         var ids = new Array();
-                        //getDataIDs()Trả về hiện tạigriddữ liệu tất cả trongid
-                        ids = $("" + this.id).getDataIDs();
+                        //getDataIDs()返回当前grid里所有数据的id
+                        ids = $("#" + this.id).getDataIDs();
                         xzstr = "";
-                        //选择或反选指定行。NếuonselectrowChoture则会触发事件onSelectRow，onselectrowMặc định làture
+                        //选择或反选指定行。如果onselectrow为ture则会触发事件onSelectRow，onselectrow默认为ture
                         $.each(ids, function () {
-                            $("").setSelection(this, true);
-                            xzstr += this + "";
+                            $("#gridList").setSelection(this, true);
+                            xzstr += this + ",";
                         });
                     }
-                    if ($("").prop("") == true) {
-                        $.each(xzstr.split(''), function () {
+                    if ($("#hf").prop("checked") == true) {
+                        $.each(xzstr.split(','), function () {
                             if (this != null && this != "") {
-                                $("").setSelection(this, true);
+                                $("#gridList").setSelection(this, true);
                             }
                         });
                     }
@@ -214,57 +214,57 @@
             });
         }
 	//大类名称绑定下拉框
-	$("").bindSelect({
-		id: "",
-		text: "",
-		url: "",
+	$("#dlmc").bindSelect({
+		id: "dlcode",
+		text: "dlmc",
+		url: "/ReportManage/Report/GetDlMc",
 		dropdownAutoWidth: true
 	});
 
-	$("").bindSelect({
-		id: "",
-		text: "",
-		url: "" + OrgId,
+	$("#yscode").bindSelect({
+		id: "StaffGh",
+		text: "StaffName",
+		url: "/ReportManage/Report/GetdoctorByDutyCode?orgId=" + OrgId,
 		dropdownAutoWidth: true
 	});
-	//$('').sfxmFloatingSelector({
+	//$('#sfxmmc').sfxmFloatingSelector({
 	//	djDecimalPlaces: 4,
-	//	searchType: "",
-	//	leftshift: 150, //Lệch trái tổng thể
+	//	searchType: "sfxm",
+	//	leftshift: 150, //整体左偏移
 	//	ajaxparameters: function ($thisinput) {
-	//		return "" + $.trim($thisinput.val());
+	//		return "dllb=2&mzzybz=&keyword=" + $.trim($thisinput.val());
 	//	},
 	//	itemdbclickhandler: function ($thistr) {
-	//		$('').val($thistr.attr(''));
-	//		$("").attr("", $thistr.find("").html());
+	//		$('#sfxmmc').val($thistr.attr('data-sfxmmc'));
+	//		$("#sfxmmc").attr("data-sfxmmc", $thistr.find("td:eq(0)").html());
 	//	}
 	//});
 
 	function submit() {
-		if ($('').val().length == 0 || $('').val().length == 0) {
-			$.modalAlert("", "");
+		if ($('#ksrq').val().length == 0 || $('#jsrq').val().length == 0) {
+			$.modalAlert("请选择时间范围", "error");
 			return;
 		}
 		var url = getUrl();
-		$("").attr('', url);
+		$("#iframerightiframerightiframerightttt").attr('src', url);
 	}
 
-	$("").load(function () {
+	$("#iframerightiframerightiframerightttt").load(function () {
 		$.loading(false);
 	});
 
 	$(function () {
         var h = $(window).height() - 90
-		$('').css('', h);
+		$('#layout iframe').css('height', h);
 
 	});
-	 //Làm mới danh sách
+	 //刷新列表
     function refReport() {
-        $("").trigger('');
+        $("#btn_search").trigger('click');
     }
 
     function getUrl() {
-        var srcUrl2 = '' + "" + "" + '' + "" + OrgId + "" + $('').val() + "" + $('').val() + "" + $('').val() + "" + $('').val() + "" + $('').val() + "" + xzstr;
+        var srcUrl2 = '@Html.Raw(reportUrl)' + "?tempCode=1226" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&orgId=" + OrgId + "&ksrq=" + $('#ksrq').val() + "&jsrq=" + $('#jsrq').val() + "&tjfw=" + $('#tjfw').val() + "&yscode=" + $('#yscode').val() + "&dlcode=" + $('#dlmc').val() + "&keyword=" + xzstr;
             return srcUrl2;
     }
 

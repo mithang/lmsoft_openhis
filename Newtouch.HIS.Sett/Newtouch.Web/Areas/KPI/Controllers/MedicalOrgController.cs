@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Web.Areas.KPI.Controllers
         }
 
         /// <summary>
-        /// Cấu hình
+        /// 配置
         /// </summary>
         /// <returns></returns>
         public ActionResult ConfigIndex()
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Web.Areas.KPI.Controllers
         }
 
         /// <summary>
-        /// Lấy danh sách cấu hình list json
+        /// 获取配置列表 list json
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -137,7 +137,7 @@ namespace Newtouch.HIS.Web.Areas.KPI.Controllers
         }
 
         /// <summary>
-        /// Cấu hình đơn bảng
+        /// 配置表单
         /// </summary>
         /// <returns></returns>
         public ActionResult ConfigForm()
@@ -146,7 +146,7 @@ namespace Newtouch.HIS.Web.Areas.KPI.Controllers
         }
 
         /// <summary>
-        /// Khi sửa thông tin，Đưa thông tin sang trang mới
+        /// 修改信息时，把信息带到新页面
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -173,7 +173,7 @@ namespace Newtouch.HIS.Web.Areas.KPI.Controllers
         }
 
         /// <summary>
-        /// CheckBáo cáo có tạo đã không
+        /// Check报表是否已经生成过
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>
@@ -187,7 +187,7 @@ namespace Newtouch.HIS.Web.Areas.KPI.Controllers
         }
 
         /// <summary>
-        /// Tạo báo cáo
+        /// 生成报表
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>

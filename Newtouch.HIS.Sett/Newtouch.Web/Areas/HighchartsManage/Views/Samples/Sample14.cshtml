@@ -5,29 +5,29 @@
     <meta name="viewport" content="width=device-width" />
     <title>漏斗图</title>
     <link href="~/Content/css/framework-theme.css" rel="stylesheet" />
-    <script src=""></script>
-    <script src=""></script>
+    <script src="~/Content/js/jquery/jquery-2.1.1.min.js"></script>
+    <script src="~/Content/js/highcharts/highcharts.js"></script>
     <script>
         $(function () {
-            $('').highcharts({
+            $('#container').highcharts({
                 chart: {
-                    type: '',
+                    type: 'funnel',
                     marginRight: 100
                 },
                 title: {
-                    text: '',
+                    text: '漏斗图',
                     x: -50
                 },
                 plotOptions: {
                     series: {
                         dataLabels: {
                             enabled: true,
-                            format: '',
-                            color: '',
+                            format: '<b>{point.name}</b> ({point.y:,.0f})',
+                            color: 'black',
                             softConnector: true
                         },
-                        neckWidth: '',
-                        neckHeight: ''
+                        neckWidth: '30%',
+                        neckHeight: '25%'
 
                         //-- Other available options
                         // height: pixels or percent
@@ -38,13 +38,13 @@
                     enabled: false
                 },
                 series: [{
-                    name: '',
+                    name: '独立用户',
                     data: [
-                        ['', 15654],
-                        ['', 4064],
-                        ['', 1987],
-                        ['', 976],
-                        ['', 846]
+                        ['网站访问', 15654],
+                        ['下载', 4064],
+                        ['获取价格表', 1987],
+                        ['咨询', 976],
+                        ['收藏', 846]
                     ]
                 }]
             });

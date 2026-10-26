@@ -1,15 +1,15 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
-<script src=""></script>
+<script src="~/Content/js/jqprint/jquery.jqprint-0.3.js"></script>
 <link media="print" href="~/Content/js/jqprint/jquery.jqprint.css" rel="stylesheet" />
 <script>
     $(function () {
-        top.$("").css("", "");
+        top.$(".content-iframe").css("background-color", "#f9f9f9");
     })
     function btn_print() {
-        $("").jqprint();
+        $("#print").jqprint();
     }
 </script>
 <div style="position: absolute; top: 22px; right: 8px;">
@@ -21,11 +21,11 @@
             上海东鞋贸易有限公司	
         </div>
         <div class="price-subtitle">
-            <p>上海市浦东新区世纪大道100Số</p>
-            <p>Điện thoại：021-85154668&nbsp;&nbsp;传真：021-85154668</p>
+            <p>上海市浦东新区世纪大道100号</p>
+            <p>电话：021-85154668&nbsp;&nbsp;传真：021-85154668</p>
         </div>
         <div class="price-title">
-            报&nbsp;&nbsp;Giá&nbsp;&nbsp;Đơn
+            报&nbsp;&nbsp;价&nbsp;&nbsp;单
         </div>
         <div class="price-info">
             <table class="form">
@@ -34,17 +34,17 @@
                     <td class="formValue" style="padding-right: 20px;">
                         <input type="text" class="form-control" value="中国节能环保集团公司" />
                     </td>
-                    <th class="formTitle">Người liên hệ：</th>
+                    <th class="formTitle">联系人：</th>
                     <td class="formValue">
                         <input type="text" class="form-control" value="南天亮" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Điện&nbsp;&nbsp;&nbsp;&nbsp;Thoại：</th>
+                    <th class="formTitle">电&nbsp;&nbsp;&nbsp;&nbsp;话：</th>
                     <td class="formValue" style="padding-right: 20px;">
                         <input type="text" class="form-control " value="0592-88888888" />
                     </td>
-                    <th class="formTitle">Truyền&nbsp;&nbsp;&nbsp;&nbsp;真：</th>
+                    <th class="formTitle">传&nbsp;&nbsp;&nbsp;&nbsp;真：</th>
                     <td class="formValue">
                         <input type="text" class="form-control " value="0592-88888886" />
                     </td>
@@ -54,9 +54,9 @@
                     <td class="formValue" style="padding-right: 20px;">
                         <input type="text" class="form-control" />
                     </td>
-                    <th class="formTitle">&nbsp;&nbsp;&nbsp;&nbsp;址：</th>
+                    <th class="formTitle">地&nbsp;&nbsp;&nbsp;&nbsp;址：</th>
                     <td class="formValue">
-                        <input type="text" class="form-control " value="北京市海淀区西直门北大街42Số" />
+                        <input type="text" class="form-control " value="北京市海淀区西直门北大街42号" />
                     </td>
                 </tr>
                 <tr>
@@ -64,7 +64,7 @@
                     <td class="formValue" style="padding-right: 20px;">
                         <input type="text" class="form-control " value="李天福" />
                     </td>
-                    <th class="formTitle">Ngày&nbsp;&nbsp;&nbsp;&nbsp;Kỳ：</th>
+                    <th class="formTitle">日&nbsp;&nbsp;&nbsp;&nbsp;期：</th>
                     <td class="formValue">
                         <input type="text" class="form-control "  value="@Newtouch.Tools.Ext.ToDateString()"/>
                     </td>
@@ -75,14 +75,14 @@
             <table>
                 <thead>
                     <tr>
-                        <td style="width: 2%;">Số hiệu</td>
+                        <td style="width: 2%;">编号</td>
                         <td style="width: 25%;">品名</td>
-                        <td style="width: 10%;">Quy cách</td>
-                        <td style="width: 10%;">Số lượng</td>
-                        <td style="width: 10%;">Đơn vị</td>
-                        <td style="width: 10%;">Đơn giá</td>
-                        <td style="width: 10%;">Số tiền</td>
-                        <td>Ghi chú</td>
+                        <td style="width: 10%;">规格</td>
+                        <td style="width: 10%;">数量</td>
+                        <td style="width: 10%;">单位</td>
+                        <td style="width: 10%;">单价</td>
+                        <td style="width: 10%;">金额</td>
+                        <td>备注</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -101,7 +101,7 @@
                         <td>数据库正版</td>
                         <td>SQLServer</td>
                         <td>5</td>
-                        <td>Bộ</td>
+                        <td>套</td>
                         <td>9998.00</td>
                         <td>49990.00</td>
                         <td></td>
@@ -111,7 +111,7 @@
                         <td>OA内部管理系统</td>
                         <td>定制</td>
                         <td>1</td>
-                        <td>Bộ</td>
+                        <td>套</td>
                         <td>390000.00</td>
                         <td>390000.00</td>
                         <td></td>
@@ -121,17 +121,17 @@
                         <td>进销存管理系统</td>
                         <td>定制</td>
                         <td>1</td>
-                        <td>Bộ</td>
+                        <td>套</td>
                         <td>260000.00</td>
                         <td>260000.00</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td>Phí dịch vụ</td>
+                        <td>服务费</td>
                         <td>—</td>
                         <td>1</td>
-                        <td>Năm</td>
+                        <td>年</td>
                         <td>80000.00</td>
                         <td>80000.00</td>
                         <td></td>
@@ -157,12 +157,12 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td colspan="7" style="text-align: right; border-right: none;">币种：人民币&nbsp;&nbsp;&nbsp;&nbsp;Tổng cộng：879990.00
+                        <td colspan="7" style="text-align: right; border-right: none;">币种：人民币&nbsp;&nbsp;&nbsp;&nbsp;总计：879990.00
                         </td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td style="height: 60px;">Ghi chú</td>
+                        <td style="height: 60px;">备注</td>
                         <td colspan="7"></td>
                     </tr>
                 </tbody>
@@ -171,7 +171,7 @@
         <div class="price-info">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Ngày&nbsp;&nbsp;&nbsp;&nbsp;Kỳ：</th>
+                    <th class="formTitle">日&nbsp;&nbsp;&nbsp;&nbsp;期：</th>
                     <td class="formValue">
                         <input type="text" class="form-control" style="width: 150px" />
                     </td>

@@ -1,17 +1,17 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "站点收支统计图标";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
-<script src=""~/js/charts/Chart.js""></script>
-<script src=""></script>
-<script src=""></script>
+<script src="@SiteUrl.GetStaticResourceScriptUrl("~/js/charts/Chart.js")"></script>
+<script src="~/Content/js/highcharts/highcharts.js"></script>
+<script src="https://img.hcharts.cn/highcharts/highcharts-more.js"></script>
 <div class="panel-body" style="padding: 0 0 15px 0px !important">
     <div class="dashboard-stats">
         <div class="dashboard-stats-item">
             <div class="m-top-none">
-                <span>Số tổng cơ quan</span>
+                <span>机构总数</span>
             </div>
             <div class="m-bottom-none">
                 <span>8</span>
@@ -21,7 +21,7 @@
     <div class="dashboard-stats" style="width:230px">
         <div class="dashboard-stats-item">
             <div class="m-top-none">
-                <span>Thu nhập tổng độ năm（Đơn vị：Đồng vạn）</span>
+                <span>年度总收入（单位：万元）</span>
             </div>
             <div class="m-bottom-none">
                 <span style="left:45px !important">200</span>
@@ -31,7 +31,7 @@
     <div class="dashboard-stats" style="width:270px !important;margin-right:20px !important">
         <div class="dashboard-stats-item">
             <div class="m-top-none" style="width:270px">
-                <span>So với với thu nhập độ năm（Đơn vị：Đồng vạn）</span>
+                <span>年度收入对比（单位：万元）</span>
             </div>
             <div class="m-bottom-none" style="height:100px;">
                 <div id="ndsrdb" style="height:100px; width:270px"></div>
@@ -41,7 +41,7 @@
     <div class="dashboard-stats" style="width:270px !important">
         <div class="dashboard-stats-item">
             <div class="m-top-none" style="width:270px;">
-                <span>Thu phí/Đã thực hiện so với với chi phí</span>
+                <span>收费/已执行费用对比</span>
             </div>
             <div class="m-bottom-none" style="height:100px; width:270px;">
                 <div id="sfzxfydb" style="min-width: 110px; max-width: 270px; height: 100px; margin: 0 auto"></div>
@@ -57,7 +57,7 @@
             <div style="padding-right:10px;">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">Thống kê thời gian：</th>
+                        <th class="formTitle">统计时间：</th>
                         <td class="formValue formDdlSelectorTd" style="width:50px">
                             <select id="ddlRKFS" class="form-control required">
                                 <option value="1">2015</option>
@@ -89,14 +89,14 @@
 
         //随机组成4位数
         function sjs() {
-            var arr = ['', '', '', '', '', '', '', '', '', ''];
+            var arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
             var str = '';
             for (var j = 0; j < 5; j++) {
                 var singstr = '';
                 for (var i = 0; i < 5; i++) {
                     singstr += '' + arr[Math.floor(Math.random() * arr.length)];
                 }
-                str += singstr + '';
+                str += singstr + ',';
             }
             str = str.substr(0, str.length - 1);
             return str;
@@ -104,37 +104,37 @@
 
         //随机组成3位数
         function twsjs() {
-            var arr = ['', '', '', '', '', '', '', '', '', ''];
+            var arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
             var str = '';
             for (var j = 0; j < 5; j++) {
                 var singstr = '';
                 for (var i = 0; i < 3; i++) {
                     singstr += '' + arr[Math.floor(Math.random() * arr.length)];
                 }
-                str += singstr + '';
+                str += singstr + ',';
             }
             str = str.substr(0, str.length - 1);
             return str;
         }
 
-        //Tổng thu nhập
-        var d = { zsr: "" };
-        //So với với thu nhập độ năm
-        Highcharts.chart('', {
+        //总收入
+        var d = { zsr: "78000, 62000, 98000, 23000, 56000" };
+        //年度收入对比
+        Highcharts.chart('ndsrdb', {
             chart: {
-                type: ''
+                type: 'column'
             },
             credits: {
                 enabled: false
             },
             title: {
-                text: '',
+                text: ' ',
                 floating: true
             },
             legend: { enabled: false },
             xAxis: {
                 categories: [
-                    '', ''
+                    '门诊', '住院'
                 ],
                 crosshair: true
             },
@@ -146,11 +146,11 @@
                 }
             },
             tooltip: {
-                // head + Mỗi point + footer Ghép thành đầy đủ table
-                headerFormat: '',
-                pointFormat: '' +
-                    '',
-                footerFormat: '',
+                // head + 每个 point + footer 拼接成完整的 table
+                headerFormat: '<table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:10">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} 万元</b></td></tr>',
+                footerFormat: '</table>',
                 shared: true,
                 useHTML: true
             },
@@ -160,44 +160,44 @@
                 }
             },
             series: [{
-                name: '',
+                name: '收入',
                 data: [83.6, 78.8]
             }]
         });
-        //So với với thu nhập phần tháng
-        Highcharts.chart('', {
+        //月份收入对比
+        Highcharts.chart('yfsrdb', {
             chart: {
-                type: ''
+                type: 'column'
             },
             credits: {
                 enabled: false
             },
             title: {
-                text: '',
+                text: ' ',
                 floating: true
             },
             legend: { enabled: false },
             //subtitle: {
-            //    text: ''
+            //    text: '数据来源: newtouch.com'
             //},
             xAxis: {
                 categories: [
-                    '', '', '', '', '', '', '', '', ''
+                    '一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月'
                 ],
                 crosshair: true
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: ''
+                    text: '月份收入金额 (元)'
                 }
             },
             tooltip: {
-                // head + Mỗi point + footer Ghép thành đầy đủ table
-                headerFormat: '',
-                pointFormat: '' +
-                    '',
-                footerFormat: '',
+                // head + 每个 point + footer 拼接成完整的 table
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} 元</b></td></tr>',
+                footerFormat: '</table>',
                 shared: true,
                 useHTML: true
             },
@@ -206,44 +206,44 @@
                     borderWidth: 0
                 },
                 series: {
-                    cursor: '',
+                    cursor: 'pointer',
                     events: {
                         click: function (e) {
-                            $('').highcharts().series[0].setData(eval("" + sjs() + ""));
+                            $('#ndsrtj').highcharts().series[0].setData(eval("[" + sjs() + "]"));
                         }
                     }
                 },
             }, labels: {
                 items: [{
-                    html: '',
+                    html: '门诊/住院收入对比',
                     style: {
-                        left: '',
-                        top: '',
+                        left: '220px',
+                        top: '18px',
                         color: (Highcharts.theme && black)
                     }
                 }]
             },
             series: [{
-                name: '',
+                name: '门诊收入',
                 data: [10000, 12000, 12900, 14000, 17000, 19000, 20900, 21000, 28190]
             }, {
-                type: '',
-                name: '',
+                type: 'spline',
+                name: '住院收入',
                     data: [9000, 12080, 12000, 13200, 16900, 18900, 21000, 21600, 28100],
                 marker: {
                     lineWidth: 2,
                     lineColor: Highcharts.getOptions().colors[1],
-                    fillColor: ''
+                    fillColor: 'white'
                 }
             }, {
-                type: '',
-                name: '',
+                type: 'pie',
+                name: '总收入',
                 data: [{
-                    name: '',
+                    name: '门诊总收入',
                     y: 130000,
                     color: Highcharts.getOptions().colors[0] // Jane's color
                 }, {
-                    name: '',
+                    name: '住院总收入',
                     y: 230000,
                     color: Highcharts.getOptions().colors[1] // John's color
                 }],
@@ -255,37 +255,37 @@
                 }
             }]
         });
-        //So với với lần người phần tháng
-        Highcharts.chart('', {
+        //月份人次对比
+        Highcharts.chart('yfrcdb', {
             chart: {
-                type: ''
+                type: 'column'
             },
             credits: {
                 enabled: false
             },
             title: {
-                text: '',
+                text: ' ',
                 floating: true
             },
             legend: { enabled: false },
             xAxis: {
                 categories: [
-                    '', '', '', '', '', '', '', '', ''
+                    '一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月'
                 ],
                 crosshair: true
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: ''
+                    text: '月份门诊访问人次 (人/次)'
                 }
             },
             tooltip: {
-                // head + Mỗi point + footer Ghép thành đầy đủ table
-                headerFormat: '',
-                pointFormat: '' +
-                    '',
-                footerFormat: '',
+                // head + 每个 point + footer 拼接成完整的 table
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} 人/次</b></td></tr>',
+                footerFormat: '</table>',
                 shared: true,
                 useHTML: true
             },
@@ -295,46 +295,46 @@
                 }
             },
             series: [{
-                name: '',
+                name: '门诊',
                 data: [49, 71, 106, 129, 134, 145, 158, 216, 176],
-                cursor: '',
+                cursor: 'pointer',
                 events: {
                     click: function (e) {
-                        $('').highcharts().series[0].setData(eval("" + twsjs() + ""));
+                        $('#ndrctj').highcharts().series[0].setData(eval("[" + twsjs() + "]"));
                     }
                 }
             }, {
-                type: '',
-                name: '',
+                type: 'spline',
+                name: '平均值',
                 data: [49, 71, 106, 129, 134, 145, 158, 216, 176],
                 marker: {
                     lineWidth: 2,
                     lineColor: Highcharts.getOptions().colors[1],
-                    fillColor: ''
+                    fillColor: 'white'
                 }
             }]
         });
 
-        Highcharts.chart('', {
+        Highcharts.chart('ndsrtj', {
             chart: {
-                type: ''
+                type: 'bar'
             },
             credits: {
                 enabled: false
             },
             title: {
-                text: '',
+                text: ' ',
                 floating: true
             }, legend: { enabled: false },
             //subtitle: {
-            //    text: ''
+            //    text: '数据来源: newtouch.com'
             //},
             xAxis: {
                 categories: [
-                    '', '', '', '', ''
+                    '秦皇岛', '上海银康', '上海百诺', '北京国门', '广州松鹤'
                 ],
                 crosshair: true,
-                title: { text: "" }
+                title: { text: "本年度各机构收入对比（元）" }
             },
             yAxis: {
                 min: 0,
@@ -344,11 +344,11 @@
                 }
             },
             tooltip: {
-                // head + Mỗi point + footer Ghép thành đầy đủ table
-                headerFormat: '',
-                pointFormat: '' +
-                    '',
-                footerFormat: '',
+                // head + 每个 point + footer 拼接成完整的 table
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} 元</b></td></tr>',
+                footerFormat: '</table>',
                 shared: true,
                 useHTML: true
             },
@@ -358,44 +358,44 @@
                 }
             },
             series: [{
-                id: "",
-                name: '',
-                data: eval("" + d.zsr + "")
+                id: "szsr",
+                name: '总收入',
+                data: eval("[" + d.zsr + "]")
             }]
         });
-        Highcharts.chart('', {
+        Highcharts.chart('ndrctj', {
             chart: {
-                type: ''
+                type: 'bar'
             },
             credits: {
                 enabled: false
             },
             title: {
-                text: '',
+                text: ' ',
                 floating: true
             }, legend: { enabled: false },
             xAxis: {
                 categories: [
-                    '', '', '', '', ''
+                    '秦皇岛', '上海银康', '上海百诺', '北京国门', '广州松鹤'
                 ],
                 crosshair: true,
                 title: {
-                    text: ""
+                    text: "本年度各机构门诊对比（人/次）"
                 }
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: '',
+                    text: ' ',
                     floating: true
                 }
             },
             tooltip: {
-                // head + Mỗi point + footer Ghép thành đầy đủ table
-                headerFormat: '',
-                pointFormat: '' +
-                    '',
-                footerFormat: '',
+                // head + 每个 point + footer 拼接成完整的 table
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} 人/次</b></td></tr>',
+                footerFormat: '</table>',
                 shared: true,
                 useHTML: true
             },
@@ -405,13 +405,13 @@
                 }
             },
             series: [{
-                name: '',
+                name: '总人次',
                 data: [49.9, 71.5, 106.4, 129.2, 144.0]
             }]
         });
-        Highcharts.chart('', {
+        Highcharts.chart('sfzxfydb', {
             chart: {
-                type: '',
+                type: 'gauge',
                 plotBackgroundColor: null,
                 plotBackgroundImage: null,
                 plotBorderWidth: 0,
@@ -431,72 +431,72 @@
                     //backgroundColor: {
                     //    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
                     //    stops: [
-                    //        [0, ''],
-                    //        [1, '']
+                    //        [0, '#FFF'],
+                    //        [1, '#333']
                     //    ]
                     //},
                     //borderWidth: 0,
-                    //outerRadius: ''
+                    //outerRadius: '100%'
                 }, {
                     //backgroundColor: {
                     //    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
                     //    stops: [
-                    //        [0, ''],
-                    //        [1, '']
+                    //        [0, '#333'],
+                    //        [1, '#FFF']
                     //    ]
                     //},
                     //borderWidth: 1,
-                    //outerRadius: ''
+                    //outerRadius: '107%'
                 }, {
-                    //backgroundColor: '',
+                    //backgroundColor: '#DDD',
                     //borderWidth: 0,
-                    //outerRadius: '',
-                    //innerRadius: ''
+                    //outerRadius: '105%',
+                    //innerRadius: '103%'
                 }],
-                center: ['', ''],
+                center: ['50%', '90%'],
                 size: 120
             }],
             yAxis: [{
                 min: 0,
                 max: 1000,
-                minorTickInterval: '',
+                minorTickInterval: 'auto',
                 minorTickWidth: 1,
                 minorTickLength: 10,
-                minorTickPosition: '',
-                minorTickColor: '',
+                minorTickPosition: 'inside',
+                minorTickColor: '#666',
                 tickPixelInterval: 30,
                 tickWidth: 2,
-                tickPosition: '',
+                tickPosition: 'inside',
                 tickLength: 2,
-                tickColor: '',
+                tickColor: '#666',
                 labels: {
-                    rotation: '',
+                    rotation: 'auto',
                     distance: 10
                 },
                 plotBands: [{
                     from: 0,
                     to: 300,
-                    color: '' // green
+                    color: '#55BF3B' // green
                 }, {
                     from: 300,
                     to: 600,
-                    color: '' // yellow
+                    color: '#DDDF0D' // yellow
                 }, {
                     from: 600,
                     to: 900,
-                    color: '' // red
+                    color: '#DF5353' // red
                 }],
                 title: {
-                    text: '',
+                    text: '收费/执行费用',
                     y: 20
                 }
             }],
             series: [{
-                name: '',
+                name: '执行费用',
                 data: [600],
                 yAxis: 0,
                 tooltip: {
-                    valueSuffix: ''
+                    valueSuffix: ' 元'
                 }
             }]
         });

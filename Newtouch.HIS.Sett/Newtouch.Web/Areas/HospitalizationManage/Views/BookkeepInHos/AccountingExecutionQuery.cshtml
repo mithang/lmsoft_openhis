@@ -1,72 +1,72 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "AccountingExecutionQuery";
+    Layout = "~/Views/Shared/_Form.cshtml";
 
-    var reqFrom = HttpContext.Current.Request.QueryString[""];
+    var reqFrom = HttpContext.Current.Request.QueryString["from"];
 }
 
 <form name="form1">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            Điều kiện lọc
+            筛选条件
         </div>
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Hủy trạng thái：</th>
+                    <th class="formTitle">撤销状态：</th>
                     <td class="formValue">
                         <select id="cxzt" name="cxzt" class="form-control">
-                            <option value="">==Tất cả==</option>
-                            <option value="0">Đã hủy</option>
-                            <option value="1">Bình thường</option>
+                            <option value="">==全部==</option>
+                            <option value="0">已撤销</option>
+                            <option value="1">正常</option>
                         </select>
                     </td>
-                    @if (!(reqFrom == ""))
+                    @if (!(reqFrom == "mz"))
                     {
-                        <th class="formTitle">Trạng thái thu phí：</th>
+                        <th class="formTitle">收费状态：</th>
                         <td class="formValue">
                             <select id="sfzt" name="sfzt" class="form-control">
-                                <option value="">==Tất cả==</option>
-                                <option value="0">Chưa thu phí</option>
-                                <option value="1">Đã thu phí</option>
+                                <option value="">==全部==</option>
+                                <option value="0">未收费</option>
+                                <option value="1">已收费</option>
                             </select>
                         </td>
                     }
-                    <th class="formTitle">Nhà trị liệu：</th>
+                    <th class="formTitle">治疗师：</th>
                     <td class="formValue">
                         <select id="zls" name="zls" class="form-control">
-                            <option value="">==Tất cả==</option>
+                            <option value="">==全部==</option>
                         </select>
                     </td>
-                    <th class="formTitle">Từ khóa：</th>
+                    <th class="formTitle">关键字：</th>
                     <td class="formValue" style="width:145px;">
                         <input type="text" style="width:145px;" class="form-control" id="keyword" placeholder="" />
                     </td>
-                    @if (reqFrom == "")
+                    @if (reqFrom == "mz")
                     {
-                        <th class="formTitle">Thời gian thao tác：</th>
+                        <th class="formTitle">操作时间：</th>
                         <td class="formValue" colspan="2">
                             <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                             <span style="margin-left:1%;float:left">—</span>
                             <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         </td>
                         <td class="formValue">
-                            <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tra cứu" />
+                            <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="查询" />
                         </td>
                     }
                 </tr>
-                @if (!(reqFrom == ""))
+                @if (!(reqFrom == "mz"))
                 {
                     <tr>
-                        <th class="formTitle">Thời gian thao tác：</th>
+                        <th class="formTitle">操作时间：</th>
                         <td class="formValue" colspan="2">
                             <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                             <span style="margin-left:1%;float:left">—</span>
                             <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         </td>
                         <td class="formValue">
-                            <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tra cứu" />
+                            <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="查询" />
                         </td>
                     </tr>
                 }
@@ -78,160 +78,160 @@
         <div id="gridPager"></div>
     </div>
 </form>
-@Html.Partial("", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
+@Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
 {
     ShowKeyList = new int[] { 9 },
-    F9Text = "",
+    F9Text = "导出Excel",
 })
 <script>
-    var from = $.request("");
+    var from = $.request("from");
     if (!!!from) {
-        from = "";
+        from = "zy";
     }
-    if (from === '') {
-        $('').attr('', '');
+    if (from === 'mz') {
+        $('#keyword').attr('placeholder', '患者姓名/病历号/门诊号');
     }
     else {
-        $('').attr('', '');
+        $('#keyword').attr('placeholder', '患者姓名/病历号/住院号');
     }
 
     $(function () {
-        $("").bindSelect({
-            url: "" + "",
-            id: "",
-            text: ""
+        $("#zls").bindSelect({
+            url: "/SystemManage/Staff/GetStaffByDutyCode?dutyCode=" + "RehabDoctor",
+            id: "StaffGh",
+            text: "StaffName"
         });
 
-        //Hủy trạng thái Tự động kích hoạt tra cứu
-        $('').change(function () {
-            $('').trigger('');
+        //撤销状态 自动触发查询
+        $('#cxzt').change(function () {
+            $('#btn_search').trigger('click');
         });
 
-        //Trạng thái thu phí Tự động kích hoạt tra cứu
-        $('').change(function () {
-            $('').trigger('');
+        //收费状态 自动触发查询
+        $('#sfzt').change(function () {
+            $('#btn_search').trigger('click');
         });
 
-        //治疗师切换 Tự động kích hoạt tra cứu
-        $('').change(function () {
-            $('').trigger('');
+        //治疗师切换 自动触发查询
+        $('#zls').change(function () {
+            $('#btn_search').trigger('click');
         });
 
         gridList();
     });
 
-    //Chi tiết
+    //明细
     var gridOptins = {
-        url: "",
+        url: "/HospitalizationManage/BookkeepInHos/GetAccountingExecutionQuery",
         postData: getSearchPostData(),
-        height: $(window).height() - (from == "" ? 200 : 225),
+        height: $(window).height() - (from == "mz" ? 200 : 225),
         colModel: [
-        { label: "", name: "", width: 100, align: "", hidden: true },
-        { label: "", name: "", width: 80, align: "" },
+        { label: "zxjlId", name: "zxjlId", width: 100, align: "left", hidden: true },
+        { label: "治疗师", name: "zlsmc", width: 80, align: "left" },
         {
-            label: "", name: "", width: 40, align: "",
+            label: "状态", name: "zt", width: 40, align: "left",
             formatter: function (cellvalue, a, b) {
-                if (cellvalue == '') {
-                    return ""
+                if (cellvalue == '1') {
+                    return "正常"
                 }
                 else {
-                    return "";
+                    return "已撤销";
                 }
             }
         },
         {
-            label: "", name: "", width: 60, align: "",
-            hidden: (from == "" ? true : undefined),
+            label: "收费状态", name: "sfzt", width: 60, align: "left",
+            hidden: (from == "mz" ? true : undefined),
             formatter: function (cellvalue) {
-                if (cellvalue == '') {
-                    return ""
+                if (cellvalue == '1') {
+                    return "已收费"
                 }
-                else if (cellvalue == '') {
-                    return "";
+                else if (cellvalue == '0') {
+                    return "未收费";
                 }
                 return "";
             }
         },
-        { label: "", name: "", width: 70, align: "" },
-        { label: "", name: "", width: 70, align: "" },
-        { label: (from == "" ? "" : ""), name: "", width: (from == "" ? 100 : 70), align: "" },
+        { label: "患者姓名", name: "xm", width: 70, align: "left" },
+        { label: "病历号", name: "blh", width: 70, align: "left" },
+        { label: (from == "mz" ? "门诊号" : "住院号"), name: "mzzyh", width: (from == "mz" ? 100 : 70), align: "left" },
         {
-            label: "", name: "", width: 60, align: "",
+            label: "康复类别", name: "kflb", width: 60, align: "left",
             formatter: function (cellvalue) {
-                return $.itemDetails.getNameByCode("", cellvalue);
+                return $.itemDetails.getNameByCode("RehabTreatmentMethod", cellvalue);
             }
         },
-        { label: "", name: "", width: 180, align: "" },
-        { label: "", name: "", width: 40, align: "" },
-        { label: "", name: "", width: 40, align: "" },
-        { label: "", name: "", width: 50, align: "" },
+        { label: "收费项目", name: "sfxmmc", width: 180, align: "left" },
+        { label: "治疗量", name: "zll", width: 40, align: "left" },
+        { label: "单位", name: "dw", width: 40, align: "left" },
+        { label: "数量", name: "sl", width: 50, align: "left" },
         {
-            label: "", name: "", width: 55, align: "", formatter: ""
-                , formatoptions: { decimalPlaces: 2, defaultValue: '' }
+            label: "单价", name: "dj", width: 55, align: "left", formatter: "number"
+                , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
         },
         {
-            label: "", name: "", width: 60, align: "",
+            label: "报销政策", name: "zfxz", width: 60, align: "left",
             formatter: function (cellvalue) {
-                return $.enum.getDescByValue("", cellvalue);
+                return $.enum.getDescByValue("EnumZiFuXingZhi", cellvalue);
             }
         },
         {
-            label: "", name: "", width: 55, align: "", formatter: ""
-                , formatoptions: { decimalPlaces: 2, defaultValue: '' }
+            label: "金额", name: "je", width: 55, align: "left", formatter: "number"
+                , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
         },
         {
-            label: "", name: "", width: 80, align: "",
-            formatter: "", formatoptions: { srcformat: '', newformat: '' }
-            }, {label: "", name: "", width: 120, align: ""},
+            label: "治疗日期", name: "zlrq", width: 80, align: "left",
+            formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
+            }, {label: "操作人", name: "Creater", width: 120, align: "left"},
         {
-            label: "", name: "", width: 120, align: "",
-            formatter: "", formatoptions: { srcformat: '', newformat: '' }
+            label: "操作时间", name: "CreateTime", width: 120, align: "left",
+            formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
         },
         ],
         //multiselect: true,
-        pager: "",
-        sortname: '',
+        pager: "#gridPager",
+        sortname: 'CreateTime desc',
         viewrecords: true,
         gridComplete: function () {
-            var ids = $("").getDataIDs();
+            var ids = $("#gridList").getDataIDs();
             for (i = 0; i < ids.length; i++) {
-                var rowData = $("").getRowData(ids[i]);
+                var rowData = $("#gridList").getRowData(ids[i]);
                 if (rowData && rowData.zt) {
-                    if (rowData.zt == "") {
-                        $("" + ids[i]).find("").addClass('');
+                    if (rowData.zt == "已撤销") {
+                        $("#" + ids[i]).find("td").addClass('danger');
                     }
                 }
             }
         },
     };
     function gridList() {
-        var $gridList = $("");
+        var $gridList = $("#gridList");
         $gridList.dataGrid(gridOptins);
-        $("").click(function () {
-            if ($('').val() && $('').val() && ($('').val() > $('').val())) {
-                $.modalAlert("", '');
+        $("#btn_search").click(function () {
+            if ($('#kssj').val() && $('#jssj').val() && ($('#kssj').val() > $('#jssj').val())) {
+                $.modalAlert("开始日期不能大于结束日期", 'warning');
                 return;
             }
-            $gridList.jqGrid('',
+            $gridList.jqGrid('setGridParam',
                 {
                     postData: getSearchPostData(),
                     page: 1,
-                    url: ""
-                }).trigger('');
+                    url: "/HospitalizationManage/BookkeepInHos/GetAccountingExecutionQuery"
+                }).trigger('reloadGrid');
         });
     }
-    //Điều kiện tra cứu
+    //查询条件
     function getSearchPostData() {
-        var keyword = $("").val();
-        var kssj = $("").val();
-        var jssj = $("").val();
-        var zls = $("").val();
-        var cxzt = $("").val();
-        var sfzt = $("").val();
+        var keyword = $("#keyword").val();
+        var kssj = $("#kssj").val();
+        var jssj = $("#jssj").val();
+        var zls = $("#zls").val();
+        var cxzt = $("#cxzt").val();
+        var sfzt = $("#sfzt").val();
         return { keyword: keyword, kssj: kssj, jssj: jssj, zls: zls, cxzt: cxzt, sfzt: sfzt, from: from };
     };
 
-    //XuấtExcel Cột
+    //导出Excel 列
     var exportCols = null;
     function newtouch_event_f9() {
         exportCols = new Array();
@@ -242,26 +242,26 @@
                 colsChooseSourceArr.push({ Heading: this.label, Name: this.name });
             }
         });
-        var url = "";
+        var url = "/HospitalizationManage/BookkeepInHos/ExcelExportChooseColumns";
         var cols = JSON.stringify(colsChooseSourceArr);
         cols = encodeURIComponent(cols);
-        url += "" + cols;
+        url += "?cols=" + cols;
         $.modalOpen({
-            id: "",
-            title: "",
+            id: "ExcelExportChooseColumns",
+            title: "导出Excel",
             url: url,
-            width: "",
-            height: "",
+            width: "600px",
+            height: "350px",
             callBack: function (iframeId) {
-                //Kết quả
+                //结果
                 var restArr = top.frames[iframeId].GetChoosedCols();
                 if (!!!restArr || !!!restArr.length || restArr.length == 0) {
-                    $.modalAlert("", '');
+                    $.modalAlert("请选择导出列", 'error');
                     return false;
                 }
                 var isContainFilter = top.frames[iframeId].GetIsContainFilter();
-                //Đóng cửa sổ chọn
-                $.modalClose("");
+                //关闭选择窗口
+                $.modalClose("ExcelExportChooseColumns");
                 //
                 exportCols = $.jsonWhere(exportCols, function (v) {
                     var matched = false;
@@ -272,26 +272,26 @@
                     }
                     return matched;
                 });
-                //Xuất
+                //导出
                 Export(isContainFilter);
             }
         });
     }
 
     function Export(isContainFilter) {
-        var url = "" + Math.random();
-        url += "" + $('').val();
-        url += "" + $('').val();
-        url += "" + $('').val();
-        url += "" + $('').val();
-        url += "" + $('').val();
-        url += "" + $('').val();
-        url += "" + from;
-        url += "" + isContainFilter;
-        url += "" + "";  //列宽度标准列
+        var url = "/HospitalizationManage/BookkeepInHos/AccountingExecutionExportExcel?r=" + Math.random();
+        url += "&keyword=" + $('#keyword').val();
+        url += "&kssj=" + $('#kssj').val();
+        url += "&jssj=" + $('#jssj').val();
+        url += "&zls=" + $('#zls').val();
+        url += "&cxzt=" + $('#cxzt').val();
+        url += "&sfzt=" + $('#sfzt').val();
+        url += "&from=" + from;
+        url += "&isContainFilter=" + isContainFilter;
+        url += "&colStanWidth=" + "70";  //列宽度标准列
         var cols = JSON.stringify(exportCols);
-        top.$.cookie('', cols, { path: "" });
-        //url += "" + encodeURIComponent(cols);
+        top.$.cookie('ExportExcelCols', cols, { path: "/" });
+        //url += "&cols=" + encodeURIComponent(cols);
 
         window.open(url);
     }

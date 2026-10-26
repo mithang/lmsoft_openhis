@@ -117,7 +117,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// Gửi lưu
+        /// 提交保存
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -197,7 +197,7 @@ namespace Newtouch.HIS.Web.Areas.PatientManage.Controllers
                 {
                     willupdateDetailEntityList.Add(mEntity);
                 }
-                //Tệp đính kèm
+                //附件
                 if (sfile != null)
                 {
                     var fileName = sfile.FileName;

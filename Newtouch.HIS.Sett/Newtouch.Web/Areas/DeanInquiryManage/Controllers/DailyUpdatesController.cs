@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
             return Content(list.ToJson());
         }
         /// <summary>
-        /// Tra cứu viện trưởng-今日动态-banner 
+        /// 院长查询-今日动态-banner 
         /// </summary>
         /// <returns></returns>
         public ActionResult GetJRDTBanner()
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
          
         /// <summary>
-        /// Chi phí ngoại trú
+        /// 门诊费用
         /// </summary>
         public ActionResult GetMzfy()
         {
@@ -73,7 +73,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// Thống kê đăng ký khám ngoại trú
+        /// 门诊挂号统计
         /// </summary>
         public ActionResult GetMzghtj()
         {
@@ -82,7 +82,7 @@ namespace Newtouch.HIS.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// Nhập viện thống kê bệnh nhân
+        /// 住院患者统计
         /// </summary>
         public ActionResult GetZyhztj()
         {

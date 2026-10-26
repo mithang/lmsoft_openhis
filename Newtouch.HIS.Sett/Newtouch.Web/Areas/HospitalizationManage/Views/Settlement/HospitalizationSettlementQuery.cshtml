@@ -1,37 +1,37 @@
 ﻿@{
-    Layout = "";
+    Layout = "~/Views/Shared/_Index.cshtml";
 
-    //Liên kết báo cáo biên lai
-    var invoiceReportUrl = SysConfigReader.OrgReportLink("");
-    var invoiceReportUrls = SysConfigReader.OrgReportLink("");
-    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("");
-    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("");
+    //收据报表链接
+    var invoiceReportUrl = SysConfigReader.OrgReportLink("NewInpatientSett");
+    var invoiceReportUrls = SysConfigReader.OrgReportLink("NewInpatientSetts");
+    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
+    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
     var curOpr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
 }
 
 <form>
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
-            Điều kiện lọc
+            筛选条件
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">Từ khóa：</th>
+                <th class="formTitle">关键字：</th>
                 <td class="formValue">
-                    <input id="txt_keyword" type="text" class="form-control form-an" placeholder="Họ tên/Số bệnh án/Số nhập viện">
+                    <input id="txt_keyword" type="text" class="form-control form-an" placeholder="姓名/病历号/住院号">
                 </td>
-                <th class="formTitle">Số hóa đơn：</th>
+                <th class="formTitle">发票号：</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="searchFPH" name="searchFPH" />
                 </td>
-                <th class="formTitle">Ngày quyết toán：</th>
+                <th class="formTitle">结算日期：</th>
                 <td class="formValue" colspan="2">
                     <input id="jsksrq" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left">—</span>
                     <input id="jsjsrq" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
                 <td class="formValue">
-                    <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tra cứu" />
+                    <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="查询" />
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue"></td>
@@ -47,69 +47,69 @@
     </div>
     <div style="background-color: #fff; margin-top:5px; ">
         <input type="button" id="HZQD" class="btn btn-primary" style="width:60px;float:right;margin-right:10px;" value="汇总清单" />
-        <input type="button" id="btn_cyjsd_print" class="btn btn-primary" style="width:60px;float:right;margin-right:10px;" value="Đơn quyết toán bảo hiểm y tế" />
+        <input type="button" id="btn_cyjsd_print" class="btn btn-primary" style="width:60px;float:right;margin-right:10px;" value="医保结算单" />
     </div>
 </form>
 
 <script>
     var jsnms = "";
     var zyhs = "";
-    var reportServerHOST = '';
-    var orgId = '';
+    var reportServerHOST = '@(ViewBag.ReportServerHOST)';
+    var orgId = '@(ViewBag.OrgId)';
 
     $(function () {
         gridList();
 
-        //Sự kiện nhấn Enter
-        $('').keydownEnterEvent(function () {
-            $('').trigger('');
+        //回车事件
+        $('#txt_keyword').keydownEnterEvent(function () {
+            $('#btn_search').trigger('click');
         })
     })
 
     function gridList() {
-        var $gridList = $("");
+        var $gridList = $("#gridList");
         $gridList.dataGrid({
-            url: ""GetPaginationSettlementList"",
+            url: "@Url.Action("GetPaginationSettlementList")",
             height: 150,
             postData: getpostData(),
             colModel: [
-                { label: '', name: '', key: true, hidden: true },
+                { label: 'jsnm', name: 'jsnm', key: true, hidden: true },
                  {
-                     label: "", name: "", width: 100, align: '',
+                     label: "操作", name: "", width: 100, align: 'left',
                      formatter: function (cellvalue, options, rowobject) {
                          var str = "";
                          // if (!!rowobject.fph) {
-                         str += '' + rowobject.jsnm + '';
+                         str += '&nbsp;<a class="btn btn-default" title="打印发票" style="width: 80%;" onclick="printFp(\'' + rowobject.jsnm + '\')">打印发票</a>';
                          //}
-                         //str += '' + rowobject.jsnm + '';
+                         //str += '&nbsp;<a class="btn btn-default" title="发票补打" style="width: 26%;" onclick="supplementprintFp(\'' + rowobject.jsnm + '\')">发票补打</a>';
                          return str;
                      }
                  },
-                { label: '', name: '', width: 40, align: '' },
-                { label: '', name: '', width: 60, align: '' },
-                { label: '', name: '', width: 30, align: '' },
-                { label: '', name: '', width: 115, align: '' },
-                { label: '', name: '', width: 60, align: '' },
-                { label: '', name: '', width: 40, align: '' },
-                { label: '', name: '', width: 25, align: '' },
-                { label: '', name: '', width: 50, align: '' },
-                { label: '', name: '', width: 25, align: '' },
-                { label: '', name: '', width: 50, align: '' },
-                { label: '', name: '', width: 50, align: '' },
-                { label: '', name: '', width: 50, align: '' },
-                { label: '', name: '', width: 50, align: '' },
-                { label: '', name: '', width: 60, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
-                { label: '', name: '', width: 60, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' } },
-                { label: '', name: '', width: 60, align: '' },
-                { label: '', name: '', width: 80, align: '', formatter: '', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 } },
-                { label: '', name: '', width: 80, align: '', formatter: '', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 } },
-                { label: '', name: '', width: 60, align: '' },
-                { label: '', name: '', width: 120, align: '' },
-                { label: '', name: '', width: 120, align: '', formatter: "", formatoptions: { srcformat: '', newformat: '' }    },
+                { label: '住院号', name: 'zyh', width: 40, align: 'left' },
+                { label: '姓名', name: 'xm', width: 60, align: 'left' },
+                { label: '性别', name: 'xb', width: 30, align: 'left' },
+                { label: '身份证', name: 'zjh', width: 115, align: 'left' },
+                { label: '出生日期', name: 'csrq', width: 60, align: 'left' },
+                { label: '新生儿', name: 'isxsr', width: 40, align: 'left' },
+                { label: '民族', name: 'mz', width: 25, align: 'left' },
+                { label: '主治医生', name: 'zzys', width: 50, align: 'left' },
+                { label: '归转', name: 'gz', width: 25, align: 'left' },
+                { label: '离院方式', name: 'lyfs', width: 50, align: 'left' },
+                { label: '出院诊断', name: 'cyzd', width: 50, align: 'left' },
+                { label: '家庭地址', name: 'jtdz', width: 50, align: 'left' },
+                { label: '费用性质', name: 'brxzmc', width: 50, align: 'left' },
+                { label: '入院日期', name: 'ryrq', width: 60, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: '出院日期', name: 'cyrq', width: 60, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                { label: '发票号', name: 'fph', width: 60, align: 'left' },
+                { label: '总金额', name: 'zje', width: 80, align: 'left', formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 } },
+                { label: '现金支付', name: 'xjzf', width: 80, align: 'left', formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 } },
+                { label: '结算人员', name: 'CreatorCode', width: 60, align: 'left' },
+                { label: '医保结算号', name: 'zxlsh', width: 120, align: 'left' },
+                { label: '结算时间', name: 'CreateTime', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }    },
 
             ],
-            pager: "",
-            sortname: '',
+            pager: "#gridPager",
+            sortname: 'CreateTime desc',
             viewrecords: true,
             onSelectRow_page: function (rowid) {
                 btn_selectrow();
@@ -122,12 +122,12 @@
             }
         });
 
-        $("").click(function () {
-            $('').jqGrid("");//Xóa trống chi tiết trước
-            $gridList.jqGrid('', {
+        $("#btn_search").click(function () {
+            $('#gridJSMXList').jqGrid("clearGridData");//先清空明细
+            $gridList.jqGrid('setGridParam', {
                 postData: getpostData(),
                 page: 1,
-            }).trigger('');
+            }).trigger('reloadGrid');
         });
     }
 
@@ -135,41 +135,41 @@
 
     function getpostData() {
         return {
-            keyword: $("").val(), fph: $('').val(), jsksrq: $("").val(), jsjsrq: $("").val()
+            keyword: $("#txt_keyword").val(), fph: $('#searchFPH').val(), jsksrq: $("#jsksrq").val(), jsjsrq: $("#jsjsrq").val()
         };
     }
 
-    //Sự kiện nhấn chuột
+    //单击事件
     function btn_selectrow() {
-        jsnms = $("").jqGridRowValue().jsnm;
-        zyhs = $("").jqGridRowValue().zyh;
-        console.info("" + jsnms);
-        console.info("" + zyhs);
+        jsnms = $("#gridList").jqGridRowValue().jsnm;
+        zyhs = $("#gridList").jqGridRowValue().zyh;
+        console.info("jsnms:" + jsnms);
+        console.info("zyh:" + zyhs);
 
-        //Mỗi lần nhấn chuột，Xóa trống chi tiết trước đó trước và tổng cộng
-        $('').jqGrid("");
+        //每次单击，先清空上一条明细 和合计
+        $('#gridJSMXList').jqGrid("clearGridData");
         $.najax({
-            type: "",
-            url: "",
-            data: { jsnm: $("").jqGridRowValue().jsnm },
-            dataType: "",
+            type: "POST",
+            url: "/HospitalizationManage/Settlement/GetSettlementDetails",
+            data: { jsnm: $("#gridList").jqGridRowValue().jsnm },
+            dataType: "json",
             success: function (ajaxresp) {
-                $('').newtouchLocalDataGrid(null, ajaxresp);
+                $('#gridJSMXList').newtouchLocalDataGrid(null, ajaxresp);
             }
         });
     }
 
-    //Quyết toán chi tiết jGridKhai báo
-    $('').newtouchLocalDataGrid({
+    //结算明细 jGrid声明
+    $('#gridJSMXList').newtouchLocalDataGrid({
         height: $(window).height() - 400,
-        caption: "",
+        caption: "结算明细",
         unwritten: false,
         colModel: [
-            { label: '', name: '', hidden: true },
-            { label: '', name: '', width: 80, align: '' },
+            { label: '分类代码', name: 'dlcode', hidden: true },
+            { label: '费用大类', name: 'dlmc', width: 80, align: 'left' },
             {
-                label: '', name: '', width: 80, align: '', formatter: function (cellvalue) {
-                    return cellvalue ? cellvalue.toFixed(2) : "";
+                label: '金额', name: 'je', width: 80, align: 'left', formatter: function (cellvalue) {
+                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
                 }
             },
         ],
@@ -180,13 +180,13 @@
     });
     //双击弹出费用明细
     function btn_clickrow() {
-        var dlcode = $("").jqGridRowValue().dlcode;
+        var dlcode = $("#gridJSMXList").jqGridRowValue().dlcode;
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + dlcode + "" + zyhs + "" + jsnms,
-            width: "",
-            height: "",
+            id: "GetSettlementItems",
+            title: "明细项目查询",
+            url: "/HospitalizationManage/Settlement/GetSettlementItems?dlCode=" + dlcode + "&zyh=" + zyhs + "&jsnms=" + jsnms,
+            width: "900px",
+            height: "600px",
             btn: null,
             callBack: function (iframeId) {
             }
@@ -195,15 +195,15 @@
 
     //打印汇总清单
 
-    var curUserCode = '';
-    //In chi tiết
+    var curUserCode = '@(ViewBag.CurUserCode)';
+    //打印明细
     var srcUrl = "";
-    $("").click(function () {
+    $("#HZQD").click(function () {
 
-        var srcUrl = '' + "" + "" + '' + "" + orgId + "" + zyhs + "" + jsnms;
+        var srcUrl = '@reportUrl' + "?tempCode=96" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&hospitalCode=" + orgId + "&zyh=" + zyhs + "&jsnm=" + jsnms;
 
-        //var urldy = "" + orgId + "" + curUserCode + "" + zyhs + "" + jsnms;
-        //if (urldy.StartWith('')) {
+        //var urldy = "/ReportServer/Pages/ReportViewer.aspx?%2fHIS.Report.1%2f汇总清单统计表&rs:Command=Render&rc:Stylesheet=MyStyleSheet&orgId=" + orgId + "&CZY=" + curUserCode + "&zyh=" + zyhs + "&jsnm=" + jsnms;
+        //if (urldy.StartWith('/')) {
         //    urldy = urldy.substr(1);
         //}
         //srcUrl= urldy;
@@ -211,178 +211,178 @@
         window.open(srcUrl);
     })
 
-    //Đơn quyết toán xuất viện bảo hiểm y tế
-    $("").click(function () {
-        var zyh = $("").jqGridRowValue().zyh;
-        var brxzmc = $("").jqGridRowValue().brxzmc;
+    //医保出院结算单
+    $("#btn_cyjsd_print").click(function () {
+        var zyh = $("#gridList").jqGridRowValue().zyh;
+        var brxzmc = $("#gridList").jqGridRowValue().brxzmc;
 
         if (!!zyh) {
-            if (brxzmc != "") {
-                var srcUrl = '' + "" + "" + '' + "" + orgId + "" + jsnms;
+            if (brxzmc != "自费") {
+                var srcUrl = '@reportUrl' + "?tempCode=1268" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&hospitalCode=" + orgId + "&jsnm=" + jsnms;
                 window.open(srcUrl);
-                //var jsdurl = reportServerHOST + "" + orgId + "" + zyh;
+                //var jsdurl = reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fHIS.Report.1%2fChongqing医保出院结算单&rs:Command=Render&rc:Stylesheet=MyStyleSheet&orgId=" + orgId + "&zyh=" + zyh;
                 //window.open(jsdurl);
             } else {
-                $.modalAlert("", "");
+                $.modalAlert("请选择医保患者", "warning");
             }
         }
             else {
-                $.modalAlert("", "");
+                $.modalAlert("请选择一条结算记录", "warning");
             }
     });
 </script>
-<script type="">
+<script type="text/javascript">
     function printFp(jsnm, ver) {
-        var zyh = $("").jqGridRowValue().zyh;
-        var orgId = '';
-        var uri = '' + "" + "" + '' + "" + jsnm + "" + orgId + "" + zyh;
-        window.open(uri, "", "");
-        //In hóa đơn Quảng Tây
-        //var requestJson = { "": "", "": jsnm }
+        var zyh = $("#gridList").jqGridRowValue().zyh;
+        var orgId = '@curOpr.OrganizeId';
+        var uri = '@Html.Raw(reportUrl)' + "?tempCode=05" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&jsnm=" + jsnm + "&hospitalCode=" + orgId + "&zyh=" + zyh;
+        window.open(uri, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
+        //广西发票打印
+        //var requestJson = { "BusinessName": "查看发票", "paySettlementNo": jsnm }
         //$.ajax({
-        //    type: "",
-        //    url: "",
-        //    dataType: "",
+        //    type: "POST",
+        //    url: "http://127.0.0.1:33333/api/YiBao/InvoicePost",
+        //    dataType: "json",
         //    data: requestJson,
         //    async: false,
         //    success: function (data) {
-        //        if (data.code == "") {
+        //        if (data.code == "0") {
         //            window.open(data.data.pictureUrl,
-        //                "",
-        //                "");
+        //                "_blank",
+        //                "height=1000, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
         //        }
         //        else {
         //            $.loading(false);
         //            isuccer = false;
-        //            $.modalAlert("" +data.mes + "", '');
+        //            $.modalAlert("查询电子票失败[" +data.mes + "]", 'error');
         //            return;
         //        }
         //    },
         //    error: function (request, error, ex) {
         //        $.loading(false);
         //        isuccer = false;
-        //        $.modalAlert('' + ex + '', '');
+        //        $.modalAlert('查询电子票异常[' + ex + ']', 'error');
         //        return;
         //    }
         //});
     }
-    //Xuất hóa đơn
+    //开票
     function openInvoice(zyh, jsnm) {
-        var requestJson = { "": "", "": zyh, "": jsnm, "": "", "": "" };//Điểm xuất hóa đơn tạm viết cố định003
+        var requestJson = { "BusinessName": "开票", "paySerialNo": zyh, "paySettlementNo": jsnm, "type": "住院", "PlaceCode": "003" };//开票点先写死003
         $.ajax({
-            type: "",
-            url: "",
-            dataType: "",
+            type: "POST",
+            url: "http://127.0.0.1:33333/api/YiBao/InvoicePost",
+            dataType: "json",
             data: requestJson,
             async: false,
             success: function (data) {
-                if (data.code == "") {
-                    $.loading(true, '');
+                if (data.code == "0") {
+                    $.loading(true, '正在开据电子票据，请稍后...');
                     setTimeout(function () {
                         window.open(data.data.pictureUrl,
-                            "",
-                            "");
+                            "_blank",
+                            "height=1000, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
                         $.loading(false);
                     }, 3000);
                 }
                 else {
                     $.loading(false);
                     isuccer = false;
-                    $.modalAlert('' + data.mes + '', '');
+                    $.modalAlert('开具票据失败[' + data.mes + ']', 'error');
                     return;
                 }
             },
             error: function (request, error, ex) {
                 $.loading(false);
                 isuccer = false;
-                $.modalAlert('' + ex + '', '');
+                $.modalAlert('开具票据异常[' + ex + ']', 'error');
                 return;
             }
         });
     }
     //打印凭条
     function printReceipt(zyh, jsnm) {
-        $.loading(true, '');
-        var requestJson = { "": "", "": zyh, "": jsnm, "": "", "": "" };//Điểm xuất hóa đơn tạm viết cố định003
+        $.loading(true, '正在打印电子票据凭条，请稍后...');
+        var requestJson = { "BusinessName": "打印凭条", "paySerialNo": zyh, "paySettlementNo": jsnm, "type": "住院", "PlaceCode": "003" };//开票点先写死003
         $.ajax({
-            type: "",
-            url: "",
-            dataType: "",
+            type: "POST",
+            url: "http://127.0.0.1:33333/api/YiBao/InvoicePost",
+            dataType: "json",
             data: requestJson,
             async: false,
             success: function (data) {
-                if (data.code == "") $.loading(false);
+                if (data.code == "0") $.loading(false);
                 else {
                     $.loading(false);
                     isuccer = false;
-                    $.modalAlert('' + data.mes + '', '');
+                    $.modalAlert('打印票据凭条失败[' + data.mes + ']', 'error');
                     return;
                 }
             },
             error: function (request, error, ex) {
                 $.loading(false);
                 isuccer = false;
-                $.modalAlert('' + ex + '', '');
+                $.modalAlert('打印票据凭条失败[' + ex + ']', 'error');
                 return;
             }
         });
     }
-    //In bù hóa đơn
+    //发票补打
     function supplementprintFp(jsnm) {
         tempJSNM = jsnm;
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "",
-            width: "",
-            height: "",
+            id: "InvoiceNoPanel",
+            title: "选发票号",
+            url: "/OutpatientManage/OutpatientReg/ChooseInvoice",
+            width: "300px",
+            height: "200px",
             callBack: function (iframeId) {
-                top.frames[iframeId].checkFPH();//Hàm callback xác nhận khi nhấn cửa sổ
+                top.frames[iframeId].checkFPH();//窗口点确定的回调函数
             }
         });
 
     }
 
     var tempJSNM;
-    //In bù，số hóa đơn chọn mới
+    //补打，选择了新的发票号
     function chooseFPHSuccessCallback(fph) {
-        //số hóa đơn mới cho số hóa đơn cập nhật bản ghi quyết toán
+        //更新结算记录的发票号为新发票号
         $.najax({
-            type: "",
-            url: "",
+            type: "POST",
+            url: "/HospitalizationManage/Settlement/UpdateSettInvoiceNo",
             data: { jsnm: tempJSNM, fph: fph-1 },
-            dataType: "",
+            dataType: "json",
             success: function (data) {
-                //In
-                printFp(zyhs,tempJSNM,"");
+                //打印
+                printFp(zyhs,tempJSNM,"N");
             }
         });
     }
 
     function printybjsd(setlId) {
-    $.loading(true, '');
+    $.loading(true, '正在查询住院医保结算单据，请稍后...');
 
-    var inputp0001 = { "": "", "": setlId, "": '', "": ''  };
-   //  var inputp0001 = { "": "", "": setlId, "": "", "": "" };
+    var inputp0001 = { "mzzy_lx": "2", "setlId": setlId, "operatorId": '@curOpr.UserCode', "operatorName": '@curOpr.UserName'  };
+   //  var inputp0001 = { "mzzy_lx": "2", "setlId": setlId, "operatorId": "000000", "operatorName": "admin" };
     $.ajax({
-        type: "",
-        url: "",
-        dataType: "",
+        type: "POST",
+        url: "http://127.0.0.1:33333/api/YiBao/Print_P0001",
+        dataType: "json",
         data: inputp0001,
         async: false,
         success: function (data) {
-            if (data.code == "") $.loading(false);
+            if (data.code == "0") $.loading(false);
             else {
                 $.loading(false);
                 isuccer = false;
-                $.modalAlert('' + data.mes + '', '');
+                $.modalAlert('打开医保结算单失败[' + data.mes + ']', 'error');
                 return;
             }
         },
         error: function (request, error, ex) {
             $.loading(false);
             isuccer = false;
-            $.modalAlert('' + ex + '', '');
+            $.modalAlert('调用医保接口P0001失败！请检查医保接口程序是否已运行。[' + ex + ']', 'error');
             return;
         }
     });

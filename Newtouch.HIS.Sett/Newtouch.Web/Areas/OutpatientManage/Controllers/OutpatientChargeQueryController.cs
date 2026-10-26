@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         private readonly IOutPatientChargeQueryDmnService _outPatienChargeQueryDmnService;
 
         /// <summary>
-        /// Tra cứu thu phí ngoại trú
+        /// 门诊收费查询
         /// </summary>
         /// <returns></returns>
         public ActionResult OutpatientChargeQuery()
@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// Đăng ký khám tra cứu điều kiện thu phí
+        /// 挂号收费条件查询
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="fph"></param>
@@ -113,7 +113,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// Đăng ký khám chi tiết tra cứu thu phí
+        /// 挂号收费查询明细
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
@@ -124,7 +124,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// In lại/补打发票
+        /// 重打/补打发票
         /// </summary>
         /// <returns></returns>
         public ActionResult OutpatientReprintOrSupplementPrint()
@@ -133,7 +133,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// In lại/补打发票 mz_js List
+        /// 重打/补打发票 mz_js List
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="jsnm"></param>
@@ -155,7 +155,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             return Content(chargeQueryList.ToJson());
         }
         /// <summary>
-        /// In lại/补打发票 mz_jsmx List
+        /// 重打/补打发票 mz_jsmx List
         /// </summary>
         /// <param name="jsnmStr"></param>
         /// <returns></returns>
@@ -168,7 +168,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// In chi tiết
+        /// 打印明细
         /// </summary>
         /// <param name="jsnmStr"></param>
         /// <returns></returns>
@@ -180,7 +180,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// Kiểm tra có dữ liệu của in có thể có không
+        /// 检查是否有可打印的数据
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
@@ -192,7 +192,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// In hóa đơn
+        /// 打印发票
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="pageFph"></param>
@@ -205,7 +205,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// In bù
+        /// 补打
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>
@@ -217,7 +217,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// In lại
+        /// 重打
         /// </summary>
         /// <param name="jsnm"></param>
         /// <param name="pageFph"></param>

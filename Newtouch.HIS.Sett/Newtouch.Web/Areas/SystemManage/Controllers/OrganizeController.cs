@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- * Copyright © 2016 Newtouch Bản quyền thuộc về
+ * Copyright © 2016 Newtouch 版权所有
  * Author: Newtouch
  * Description: 
 
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             this._sysModuleDmnService = sysModuleDmnService;
         }
 
-        //下拉 Nguồn dữ liệu
+        //下拉 数据源
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetChildTreeSelectJson(string orgId)

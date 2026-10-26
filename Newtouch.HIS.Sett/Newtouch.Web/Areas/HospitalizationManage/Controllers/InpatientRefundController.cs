@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Tra cứu
+        /// 查询
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             }
             var dto = _inpatientRefundApp.InpatientRefundQuery(zyh, kssj, jssj, ks, xmlb, xmmc);
             var ztlist = dto.InpatientSettleItemBO.TreatmentItemList.Where(p => p.ztbh != null).ToList();
-            //Thu phí xử lý dữ liệu bộ nhóm
+            //收费组套数据处理
             if (ztlist.Count()>0)
             {
                 ztlist = ztlist.GroupBy(m => new { m.isYP, m.sfmbmc, m.tdrq, m.ztbh, m.ztsl,m.ztylsl, m.dcztbs }).Select(p =>
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
             return Success("", dto);
         }
         /// <summary>
-        ///Lưu hoàn phí
+        ///保存退费
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -120,7 +120,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                 {
                     throw new FailedCodeException("HOSP_BILLING ITEMS_BILLING DRUGS_DISTINGUISH_BETWEEN_FAILURE");
                 }
-                //是否是非治疗项目 0：Không 1：Có
+                //是否是非治疗项目 0：非 1：是
                 if (item.isYp == "1")
                 {
                     if (string.IsNullOrEmpty(item.jfbbh))
@@ -166,7 +166,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                     
                 }
             }
-            //Lưu
+            //保存
             string result =_inpatientRefundDmnService.SaveRefund(xmjfbEntitylist, ypjfbEntitylist, zyh, orgId);
             if (string.IsNullOrWhiteSpace(result))
             {
@@ -182,7 +182,7 @@ namespace Newtouch.HIS.Web.Areas.HospitalizationManage.Controllers
                     if (yszhclist.Count > 0)
                         _hospdrugbillingRepo.Updatezyyz_wzkcReturn(yszhclist, this.OrganizeId, this.UserIdentity.UserCode);
                 }
-                //Cập nhậtcis住院患者预览右侧费用卡片信息
+                //更新cis住院患者预览右侧费用卡片信息
                 _hospdrugbillingRepo.Updatezy_brxxexpand(this.OrganizeId, zyh);
             }else
                 throw new FailedException(result);

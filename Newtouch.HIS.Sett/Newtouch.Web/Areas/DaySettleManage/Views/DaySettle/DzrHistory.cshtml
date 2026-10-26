@@ -1,10 +1,10 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "DzrHistory";
+    Layout = "~/Views/Shared/_Form.cshtml";
     var opr = Newtouch.Common.Operator.OperatorProvider.GetCurrent();
-    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("");
-    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("");
+    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
+    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
 }
 <div class="rows">
     <div class="panel panel-default">
@@ -21,12 +21,12 @@
                 </td>
                 <td class="formValue">
                     <select id="isdzcg" class="form-control">
-                        <option value="" selected>Tất cả</option>
+                        <option value="" selected>全部</option>
                         <option value="0">不符</option>
                         <option value="1">符合</option>
                     </select>
                 </td>
-                <td class="formValue"> <input type="button" id="btn_search_tj" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;" onclick="search()" value="Tra cứu" /></td>
+                <td class="formValue"> <input type="button" id="btn_search_tj" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;" onclick="search()" value="查询" /></td>
             </tr>
         </table>
     </div>
@@ -38,39 +38,39 @@
 <script>
     $(function () {
         var h = $(window).height() - 55;
-        $('').css('', h);
+        $('#layout iframe').css('height', h);
         search();
     });
 
     function search() {
-        if ($('').val().length == 0) {
-            $.modalAlert("", "");
+        if ($('#txtCreateTimestart').val().length == 0) {
+            $.modalAlert("缺少开始时间", "error");
             return;
         }
-        if ($('').val().length == 0) {
-            $.modalAlert("", "");
+        if ($('#txtCreateTimeEnd').val().length == 0) {
+            $.modalAlert("缺少结束时间", "error");
             return;
         }
-        if ($('').val() > $('').val()) {
-            $.modalAlert("", "");
+        if ($('#txtCreateTimestart').val() > $('#txtCreateTimeEnd').val()) {
+            $.modalAlert("开始时间不能大于结束时间", "error");
             return;
         }
 
         var url = getUrl();
-        var orgId = '';
-        url += "" + orgId;
-        url += "" + $('').val();
-        url += "" + $('').val();
-        url += "" + $('').val();
-        setTimeout("", 10);
-        $("").attr('', url);
+        var orgId = '@opr.OrganizeId';
+        url += "&orgId=" + orgId;
+        url += "&kssj=" + $('#txtCreateTimestart').val();
+        url += "&jssj=" + $('#txtCreateTimeEnd').val();
+        url += "&isdzcg=" + $('#isdzcg').val();
+        setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        $("#iframerightiframerightiframerightttt").attr('src', url);
     }
      function getUrl() {
-        var srcUrl = '';
-         srcUrl += "" + "" + '';
+        var srcUrl = '@Html.Raw(reportUrl)';
+         srcUrl += "?tempCode=1261" + "&systemCode=" + '@Html.Raw(ReportSystemCode)';
         return srcUrl;
     }
-    $("").load(function () {
+    $("#iframerightiframerightiframerightttt").load(function () {
         $.loading(false);
     });
     function AcceptClick(callBack) {

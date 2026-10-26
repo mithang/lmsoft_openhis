@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "门诊退费确认";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 
 <style type="text/css">
@@ -29,34 +29,34 @@
     <div id="divTmx">
         <div class="panel panel-default" style="margin: 20px;">
             <div class="panel-heading navb-bg">
-                <span>Thời gian quyết toán：<span id="settTime"></span></span>
-                <span>Số tiền quyết toán：<span id="zje"></span></span>
-                <span>Số tiền thanh toán：<span id="xjzf"></span></span>
+                <span>结算时间：<span id="settTime"></span></span>
+                <span>结算金额：<span id="zje"></span></span>
+                <span>支付金额：<span id="xjzf"></span></span>
                 <br />
-                <span>Phương thức thanh toán：<span id="xjzffsmc"></span></span>
-                <span>Ngày thu phí：<span id="sfrq"></span></span>
+                <span>支付方式：<span id="xjzffsmc"></span></span>
+                <span>收费日期：<span id="sfrq"></span></span>
             </div>
             <div style="padding-right:20px;">
                 <table class="form">
                     <thead>
                         <tr>
                             <td class="formValue" style="padding-left:10px;">
-                                Hoàn phí chi tiết
+                                退费明细
                             </td>
                             <td class="formValue" style="width:160px;">
-                                Tên
+                                名称
                             </td>
                             <td class="formValue">
-                                Đơn giá
+                                单价
                             </td>
                             <td class="formValue">
-                                Số lượng
+                                数量
                             </td>
                             <td class="formValue">
-                                Số lượng trả lại
+                                退数量
                             </td>
                             <td class="formValue">
-                                Số tiền trả lại
+                                退金额
                             </td>
                         </tr>
                     </thead>
@@ -66,53 +66,53 @@
         </div>
         <div style="margin: 20px;">
             <ul class="nav nav-pills" style="position: fixed;right: 80px;bottom: 20px;">
-                <li>Hoàn phí nhân viên：<span>@(Newtouch.Common.Operator.OperatorProvider.GetCurrent().UserName)</span></li>
-                <li>Hoàn phí ngày：<span>@(DateTime.Now.ToString(""))</span></li>
-                <li>Hoàn phí thời gian：<span>@(DateTime.Now.ToString(""))</span></li>
-                <li>合计退费：<span id="tje"></span>&nbsp;&nbsp;&nbsp;<span id="mzyjj"  style="display:none;"><input type="checkbox" checked="checked" id="yjjth" name="yjjth" /> Tài khoản tạm ứng trả lại </span>
+                <li>退费人员：<span>@(Newtouch.Common.Operator.OperatorProvider.GetCurrent().UserName)</span></li>
+                <li>退费日期：<span>@(DateTime.Now.ToString("yyyy-MM-dd"))</span></li>
+                <li>退费时间：<span>@(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))</span></li>
+                <li>合计退费：<span id="tje"></span>&nbsp;&nbsp;&nbsp;<span id="mzyjj"  style="display:none;"><input type="checkbox" checked="checked" id="yjjth" name="yjjth" /> 退回预交账户 </span>
                 </li>
             </ul>
         </div>
     </div>
 </div>
-<script type="">
-    var thisJszb = sessionStorage.getItem("");
-    var data = sessionStorage.getItem("");
-    var mzh = $.request("");
+<script type="text/javascript">
+    var thisJszb = sessionStorage.getItem("needRefundJszb");
+    var data = sessionStorage.getItem("needRefundData");
+    var mzh = $.request("mzh");
     if (!!thisJszb || !!data) {
         var thisJszb = JSON.parse(thisJszb);
         var data = JSON.parse(data);
     }
-    //if (thisJszb.xjzffsmc.indexOf("")!==-1)
-    //    $("").show();
+    //if (thisJszb.xjzffsmc.indexOf("预交账户")!==-1)
+    //    $("#mzyjj").show();
     $(function () {
         if (!!!thisJszb || !!!data) {
             return;
         }
-        $('').html($.getTime({ date: thisJszb.CreateTime }));
+        $('#settTime').html($.getTime({ date: thisJszb.CreateTime }));
         var zje = thisJszb.jszje;
-        $('').html(thisJszb.jszje ? thisJszb.jszje.toFixed(2) : '');
-        $('').html(thisJszb.jsxjzf ? thisJszb.jsxjzf.toFixed(2) : '');
-        $('').html($.getDate({ date: thisJszb.sfrq }));
-        $('').html(thisJszb.xjzffsmc);
+        $('#zje').html(thisJszb.jszje ? thisJszb.jszje.toFixed(2) : '');
+        $('#xjzf').html(thisJszb.jsxjzf ? thisJszb.jsxjzf.toFixed(2) : '');
+        $('#sfrq').html($.getDate({ date: thisJszb.sfrq }));
+        $('#xjzffsmc').html(thisJszb.xjzffsmc);
 
         var tmxZje = 0;
         $.each(data, function () {
             var mxtje = this.dj * this.tsl;
             tmxZje += mxtje;
-            $('').append('' + this.mc + '' + this.dj + '' + this.sl + '' + this.tsl + '' + roundingBy4she6ru5chengshuang(mxtje, 2) + '');
+            $('#divTmx table tbody').append('<tr><td class="formValue"></td><td class="formValue">' + this.mc + '</td><td class="formValue">' + this.dj + '</td><td class="formValue">' + this.sl + '</td><td class="formValue">' + this.tsl + '</td><td class="formValue">' + roundingBy4she6ru5chengshuang(mxtje, 2) + '</td></tr>');
         });
         var strTje = roundingBy4she6ru5chengshuang(tmxZje, 2);
         if (thisJszb.jszje == tmxZje && thisJszb.jsxjzf != thisJszb.jszje) {
-            //Bản ghi quyết toán tự chi trả toàn bộ không
-            strTje += '' + thisJszb.jsxjzf.toFixed(2) + '';
+            //非全自费结算记录
+            strTje += '（实退' + thisJszb.jsxjzf.toFixed(2) + '）';
         }
-        if (thisJszb.xjzffsmc.split("").length - 1 == 1 && (thisJszb.xjzffsmc.indexOf("") !== -1 || thisJszb.xjzffsmc.indexOf("") !== -1 || (thisJszb.xjzffsmc.indexOf("") !== -1))) {
-            strTje += '';
+        if (thisJszb.xjzffsmc.split(":").length - 1 == 1 && (thisJszb.xjzffsmc.indexOf("支付宝") !== -1 || thisJszb.xjzffsmc.indexOf("微信") !== -1 || (thisJszb.xjzffsmc.indexOf("预交账户") !== -1))) {
+            strTje += '（原路退回）';
         } else {
-            strTje += '';
+            strTje += '（退现金）';
         }
-        $('').html(strTje);
+        $('#tje').html(strTje);
     });
 
     function AcceptClick(callBack) {
@@ -120,16 +120,16 @@
         postData.mzh = mzh;
         postData.jsnm = thisJszb.jsnm;
         var tjsxmDictObj = {};
-        var tjsxmDictZtObj = {};//Thu phí bộ nhóm
+        var tjsxmDictZtObj = {};//收费组套
         var expectedTmxZje = 0;
-        var expectedTmxZtZje = 0;//Thu phí số tiền bộ nhóm
+        var expectedTmxZtZje = 0;//收费组套金额
         var cfnmlist = ""; //组套所属处方
         debugger
         $.each(data, function () {
             if (this.ztId) {
                 tjsxmDictZtObj[this.ztId] = this.tsl;
                 expectedTmxZtZje += this.dj * this.tsl;
-                cfnmlist += this.cfnm + "";
+                cfnmlist += this.cfnm + ",";
             }
             else {
                 tjsxmDictObj[this.jsmxnm] = this.tsl;
@@ -150,7 +150,7 @@
         postData.expectedTmxZjeZt = ovpraseFloat(expectedTmxZtZje).toFixed(4);
         postData.cfnmArray = cfnmlist;
         $.submitForm({
-            url: "",
+            url: "/OutpatientManage/OutpatientRefund/RefundSettlement",
             param: postData,
             success: function(ajaxResp) {
                 callBack(ajaxResp);

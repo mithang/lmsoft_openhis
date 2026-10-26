@@ -1,23 +1,23 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 
 <div class="topPanel">
-    @Html.Partial("")
+    @Html.Partial("_OrganizeIdDDLToolbarSearchView")
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
+            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa thông tin</a>
+            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改信息</a>
         </div>
         @*<div class="btn-group">
-                <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa thông tin</a>
+                <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除信息</a>
             </div>
             <div class="btn-group">
-                <a id="NF-Details" class="btn btn-primary dropdown-text" onclick="btn_details()"><i class="fa fa-search-plus"></i>Xem thông tin</a>
+                <a id="NF-Details" class="btn btn-primary dropdown-text" onclick="btn_details()"><i class="fa fa-search-plus"></i>查看信息</a>
             </div>*@
     </div>
     <div class="search">
@@ -25,7 +25,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="Bác sĩ" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="医生" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -45,183 +45,183 @@
         gridList();
     });
     function gridList() {
-        var $gridList = $("");
+        var $gridList = $("#gridList");
         $gridList.dataGrid({
             treeGrid: true,
-            treeGridModel: "",
-            url: "",
+            treeGridModel: "adjacency",
+            url: "/OutpatientManage/OutpatientRegSchedule/GetOutpatientRegistScheduleList",
             postData: getSearchPostData(),
             height: 400,
             colModel: [
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
+                { label: 'orgId', name: 'orgId', hidden: true },
+                { label: 'ghpbId', name: 'ghpbId', hidden: true },
                 {
-                    label: '', name: '', width: 80, algin: '',
+                    label: '门诊类型', name: 'mjzbz', width: 80, algin: 'left',
                     formatter: function (cellvalue) {
-                        return $.enum.getDescByValue("", cellvalue);
+                        return $.enum.getDescByValue("EnumOutPatientType", cellvalue);
                     }
                 },
-                { label: '', name: '', width: 100, algin: '' },
-                { label: '', name: '', width: 100, algin: '' },
-                { label: '', name: '', width: 100, algin: '' },
-                { label: '', name: '', width: 100, algin: '' },
-                //{ label: '', name: '', width: 100, algin: '' },
+                { label: '挂号项目', name: 'sfxmmc', width: 100, algin: 'left' },
+                { label: '诊疗项目', name: 'zlxmmc', width: 100, algin: 'left' },
+                { label: '科室', name: 'departmentName', width: 100, algin: 'left' },
+                { label: '专家医生', name: 'staffName', width: 100, algin: 'left' },
+                //{ label: '专病', name: 'ghzbmc', width: 100, algin: 'left' },
                 {
-                    label: '', name: '', width: 60, algin: '',
+                    label: '周一', name: 'zyi', width: 60, algin: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue == 0) {
-                            return "";
+                            return "无";
                         }
                         if (cellvalue == 1) {
-                            return "";
+                            return "全天";
                         }
                         if (cellvalue == 2) {
-                            return "";
+                            return "上午";
                         }
                         if (cellvalue == 3) {
-                            return "";
+                            return "下午";
                         }
                         return "";
                     }
                 },
                 {
-                    label: '', name: '', width: 60, algin: '',
+                    label: '周二', name: 'zer', width: 60, algin: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue == 0) {
-                            return "";
+                            return "无";
                         }
                         if (cellvalue == 1) {
-                            return "";
+                            return "全天";
                         }
                         if (cellvalue == 2) {
-                            return "";
+                            return "上午";
                         }
                         if (cellvalue == 3) {
-                            return "";
+                            return "下午";
                         }
                         return "";
                     }
                 },
                 {
-                    label: '', name: '', width: 60, algin: '',
+                    label: '周三', name: 'zsan', width: 60, algin: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue == 0) {
-                            return "";
+                            return "无";
                         }
                         if (cellvalue == 1) {
-                            return "";
+                            return "全天";
                         }
                         if (cellvalue == 2) {
-                            return "";
+                            return "上午";
                         }
                         if (cellvalue == 3) {
-                            return "";
+                            return "下午";
                         }
                         return "";
                     }
                 },
                 {
-                    label: '', name: '', width: 60, algin: '',
+                    label: '周四', name: 'zsi', width: 60, algin: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue == 0) {
-                            return "";
+                            return "无";
                         }
                         if (cellvalue == 1) {
-                            return "";
+                            return "全天";
                         }
                         if (cellvalue == 2) {
-                            return "";
+                            return "上午";
                         }
                         if (cellvalue == 3) {
-                            return "";
+                            return "下午";
                         }
                         return "";
                     }
                 },
                 {
-                    label: '', name: '', width: 60, algin: '',
+                    label: '周五', name: 'zwu', width: 60, algin: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue == 0) {
-                            return "";
+                            return "无";
                         }
                         if (cellvalue == 1) {
-                            return "";
+                            return "全天";
                         }
                         if (cellvalue == 2) {
-                            return "";
+                            return "上午";
                         }
                         if (cellvalue == 3) {
-                            return "";
+                            return "下午";
                         }
                         return "";
                     }
                 },
                 {
-                    label: '', name: '', width: 60, algin: '',
+                    label: '周六', name: 'zlv', width: 60, algin: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue == 0) {
-                            return "";
+                            return "无";
                         }
                         if (cellvalue == 1) {
-                            return "";
+                            return "全天";
                         }
                         if (cellvalue == 2) {
-                            return "";
+                            return "上午";
                         }
                         if (cellvalue == 3) {
-                            return "";
+                            return "下午";
                         }
                         return "";
                     }
                 },
                 {
-                    label: '', name: '', width: 60, algin: '',
+                    label: '周日', name: 'zri', width: 60, algin: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue == 0) {
-                            return "";
+                            return "无";
                         }
                         if (cellvalue == 1) {
-                            return "";
+                            return "全天";
                         }
                         if (cellvalue == 2) {
-                            return "";
+                            return "上午";
                         }
                         if (cellvalue == 3) {
-                            return "";
+                            return "下午";
                         }
                         return "";
                     }
                 },
                 {
-                    label: '', name: '', width: 100, algin: '',
+                    label: '有效', name: 'zt', width: 100, algin: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue == 0) {
-                            return "";
+                            return "否";
                         } else {
-                            return "";
+                            return "是";
                         }
                     }
                 },
                 {
-                    label: '', name: '', width: 100, align: '',
-                    formatter: "", formatoptions: { srcformat: '', newformat: '' }
+                    label: '建档日期', name: 'CreateTime', width: 100, align: 'left',
+                    formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                 },
-               { label: '', name: '', width: 80, align: '' }
+               { label: '建档人员', name: 'CreatorCode', width: 80, align: 'left' }
             ]
 
         });
 
-        $("").click(function () {
-            $gridList.jqGrid('', {
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
                 postData: getSearchPostData()
-            }).trigger('');
+            }).trigger('reloadGrid');
         })
-        //$("").trigger('');
+        //$("#btn_search").trigger('click');
     }
 
     function getSearchPostData() {
-        var keyword = $("").val();
-        var organizeId = $("").val();
+        var keyword = $("#txt_keyword").val();
+        var organizeId = $("#OrganizeId").val();
         return { keyword: keyword, organizeId: organizeId };
     };
 
@@ -232,73 +232,73 @@
 
     function btn_add() {
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "",
-            width: "",
-            height: "",
+            id: "FormFIEdit",
+            title: "挂号排班维护",
+            url: "/OutpatientManage/OutpatientRegSchedule/Form",
+            width: "700px",
+            height: "500px",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
         });
     }
-    //Sửa
+    //修改
     function btn_edit() {
-        var seleRowid = jQuery("").jqGrid("", "");
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("", '');
+            $.modalAlert("请选中一条信息", 'warning');
             return;
         }
-        var ghpbId = $("").jqGridRowValue().ghpbId;
-        var OrganizeId = $("").jqGridRowValue().OrganizeId;
+        var ghpbId = $("#gridList").jqGridRowValue().ghpbId;
+        var OrganizeId = $("#gridList").jqGridRowValue().OrganizeId;
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + ghpbId + "" + OrganizeId,
-            width: "",
-            height: "",
+            id: "FormFIEdit",
+            title: "修改信息",
+            url: "/OutpatientManage/OutpatientRegSchedule/Form?ghpbId=" + ghpbId + "&orgId=" + OrganizeId,
+            width: "700px",
+            height: "500px",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
         });
     }
-    //Xóa
+    //删除
     function btn_delete() {
-        var seleRowid = jQuery("").jqGrid("", "");
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("", '');
+            $.modalAlert("请选中一条信息", 'warning');
             return;
         }
-        var ghpbId = $("").jqGridRowValue().ghpbId;
-        var OrganizeId = $("").jqGridRowValue().OrganizeId;
+        var ghpbId = $("#gridList").jqGridRowValue().ghpbId;
+        var OrganizeId = $("#gridList").jqGridRowValue().OrganizeId;
         $.deleteForm({
-            url: "",
+            url: "/OutpatientManage/OutpatientRegSchedule/DeleteForm",
             param: { ghpbId: ghpbId, OrganizeId: OrganizeId },
             success: function () {
-                $("").trigger("");
+                $("#gridList").trigger("reloadGrid");
             }
         })
     }
-    //Chi tiết
+    //详情
     function btn_details() {
-        var seleRowid = jQuery("").jqGrid("", "");
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("", '');
+            $.modalAlert("请选中一条信息", 'warning');
             return;
         }
-        var count = $("").getGridParam("");
+        var count = $("#gridList").getGridParam("reccount");
         if (count = 0) {
-            $.modalAlert("", '');
+            $.modalAlert("未选中行", 'warning');
             return;
         }
-        var ghpbId = $("").jqGridRowValue().ghpbId;
-        var OrganizeId = $("").jqGridRowValue().OrganizeId;
+        var ghpbId = $("#gridList").jqGridRowValue().ghpbId;
+        var OrganizeId = $("#gridList").jqGridRowValue().OrganizeId;
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + ghpbId + "" + OrganizeId,
-            width: "",
-            height: "",
+            id: "Details",
+            title: "查看机构",
+            url: "/OutpatientManage/OutpatientRegSchedule/Form?ghpbId=" + ghpbId + "&orgId=" + OrganizeId,
+            width: "700px",
+            height: "500px",
             btn: null,
         });
     }

@@ -1,5 +1,5 @@
 ﻿/*******************************************************************************
- * Copyright © 2016 Newtouch Bản quyền thuộc về
+ * Copyright © 2016 Newtouch 版权所有
  * Author: Newtouch
  * Description: 
 
@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// Tổng lượt người Lượt người bình quân
+        /// 总人次 平均人次
         /// </summary>
         /// <returns></returns>
         public ActionResult SelectPerformanceIndicator(string orgId, string year)
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// Tổng lượt người Lượt người bình quân
+        /// 总人次 平均人次
         /// </summary>
         /// <returns></returns>
         public ActionResult PerformanceMonthIndicator(string orgId, string year,int month)

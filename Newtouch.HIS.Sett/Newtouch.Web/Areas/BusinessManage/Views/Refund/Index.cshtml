@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 <style>
     thead tr th {
@@ -17,11 +17,11 @@
 
 <table class="form" style="width:96%;">
     <tr>
-        <td class="formTitle">Số thẻ：</td>
+        <td class="formTitle">卡号：</td>
         <td class="formValue">
             <input class="form-control" type="text" id="kh" value="" />
         </td>
-        <td class="formTitle"><button id="khBT" class="btn btn-primary dropdown-text">Tra cứu hóa đơn</button></td>
+        <td class="formTitle"><button id="khBT" class="btn btn-primary dropdown-text">查询发票</button></td>
         <td class="formTitle"></td>
         <td class="formValue"></td>
     </tr>
@@ -31,44 +31,44 @@
 </div>
 <table class="form" style="width:96%;">
     <tr>
-        <td class="formTitle">Số hóa đơn：</td>
+        <td class="formTitle">发票号：</td>
         <td class="formValue">
             <input class="form-control" type="text" id="fph" value="" />
         </td>
 
-        <td class="formTitle">Tự chi trả theo phân loại：</td>
+        <td class="formTitle">分类自负：</td>
         <td class="formValue">
             <input class="form-control" type="text" id="flzf" value="" />
         </td>
-        <td class="formTitle">Tự chi trả：</td>
+        <td class="formTitle">自负：</td>
         <td class="formValue">
             <input class="form-control" type="text" id="zf" value="" />
         </td>
     </tr>
     <tr>
 
-        <td class="formTitle">Từ：</td>
+        <td class="formTitle">从：</td>
         <td class="formValue">
 
             <input class="form-control form_datetime" type="text" id="ks" value="@DateTime.Now.AddMonths(-1).ToString("yyy-MM-dd")" />
         </td>
-        <td class="formTitle">Đến：</td>
+        <td class="formTitle">至：</td>
         <td class="formValue">
             <input class="form-control form_datetime" type="text" id="js" value="@DateTime.Now.ToString("yyy-MM-dd")" />
         </td>
     </tr>
     <tr>
-        <td class="formTitle">Ghi sổ：</td>
+        <td class="formTitle">记账：</td>
         <td class="formValue">
             <input class="form-control" type="text" id="jz" value="" />
         </td>
-        <td class="formTitle">Tự chi trả：</td>
+        <td class="formTitle">自费：</td>
         <td class="formValue">
             <input class="form-control" type="text" value="" id="zifei" />
         </td>
         <td class="formTitle"></td>
         <td class="formValue">
-            <button id="sub" class="btn btn-primary dropdown-text">Tra cứu</button>
+            <button id="sub" class="btn btn-primary dropdown-text">查询</button>
         </td>
     </tr>
 
@@ -77,11 +77,11 @@
 <table class="form" style="width:60%;border:solid 1px #ccc;" id="tableStyle">
     <thead>
         <tr>
-            <th>Loại bệnh nhân</th>
+            <th>病人类型</th>
 
-            <th>Khoa đăng ký khám</th>
+            <th>挂号科室</th>
 
-            <th>Bác sĩ</th>
+            <th>医生</th>
         </tr>
     </thead>
     <tbody>
@@ -105,13 +105,13 @@
 <table class="form" style="width:80%;">
     <tr>
         <td class="formTitle">
-            <a id="btnReturn" class="btn btn-primary"> F1：Hoàn phí</a>
+            <a id="btnReturn" class="btn btn-primary"> F1：退费</a>
 
         </td>
         <td class="formValue">
-            <a id="acc_reMoney" class="btn btn-primary">F5:Xóa</a>
+            <a id="acc_reMoney" class="btn btn-primary">F5:清除</a>
         </td>
-        <td class="formTitle">Tự chi trả：</td>
+        <td class="formTitle">自负：</td>
         <td class="formValue">
             <input class="form-control" type="text" id="zifu" value="" />
         </td>
@@ -125,41 +125,41 @@
 </table>
 <script>
     $(function () {
-        $("").datetimepicker({
-            format: '',
+        $(".form_datetime").datetimepicker({
+            format: 'yyyy-mm-dd',
             minView: 2,
             autoclose: true
         });
-        $("").click(function () {
+        $("#acc_reMoney").click(function () {
             newtouch_globalevent_f4();
             newtouch_event_f4();
         });
         function newtouch_event_f4() {
-            $('').jqGrid("");   //Xóa dòng tất cả
+            $('#gridListFPH').jqGrid("clearGridData");   //清除所有行
 
         }
 
-        $("").click(function () {
-            $.loading(true, "");
+        $("#khBT").click(function () {
+            $.loading(true, "正在请求数据...");
 
-            var kh = $("").val();
+            var kh = $("#kh").val();
             $.ajax({
-                type: "",
-                url: ""btnQueryFph"",
+                type: "POST",
+                url: "@Url.Action("btnQueryFph")",
                 data: { kh: kh },
-                dataType: "",
+                dataType: "json",
                 success: function (ajaxresp) {
                     debugger
-                    if (ajaxresp.state == '') {
+                    if (ajaxresp.state == 'success') {
                         $.loading(false);
                         if (ajaxresp.data.length > 0) {
-                            $('').jqGrid("");
+                            $('#gridListFPH').jqGrid("clearGridData");
                             gridListFPH(ajaxresp.data);
                         } else {
-                            $.modalAlert("", ajaxresp.state);
+                            $.modalAlert("找不到结算信息！", ajaxresp.state);
                         }
                     }
-                    if (ajaxresp.state == '') {
+                    if (ajaxresp.state == 'error') {
                         $.modalAlert(ajaxresp.message, ajaxresp.state);
                     }
                 },
@@ -173,58 +173,58 @@
         });
 
         function gridListFPH(mydata) {
-            var $gridList = $("");
+            var $gridList = $("#gridListFPH");
             $gridList.dataNewGrid({
                 height: 100,
                 colModel: [
-                          { label: '', name: '', hidden: true },
-                { label: '', name: '', hidden: true },
-          { label: '', name: '', hidden: true },
-          { label: '', name: '', hidden: true },
-                 { label: '', name: '', hidden: true },
-                 { label: '', name: '', hidden: true },
+                          { label: 'jsnm', name: 'jsnm', hidden: true },
+                { label: 'flzffy', name: 'flzffy', hidden: true },
+          { label: 'zffy', name: 'zffy', hidden: true },
+          { label: 'jzfy', name: 'jzfy', hidden: true },
+                 { label: 'zlfy', name: 'zlfy', hidden: true },
+                 { label: 'xjzf', name: 'xjzf', hidden: true },
 
-                      { label: '', name: '', width: 100, align: '' },
-                        { label: '', name: '', width: 100, align: '' },
-                          { label: '', name: '', width: 100, align: '' },
+                      { label: '姓名', name: 'xm', width: 100, align: 'left' },
+                        { label: '卡号', name: 'kh', width: 100, align: 'left' },
+                          { label: '发票号', name: 'fph', width: 100, align: 'left' },
 
                     {
-                        label: '', name: '', width: 100, align: '', formatter: function (cellvalue) {
+                        label: '结算日期', name: 'CreateTime', width: 100, align: 'left', formatter: function (cellvalue) {
                             return cellvalue && cellvalue.length >= 10 ? cellvalue.substring(0, 10) : ""
                         }
                     },
-                    { label: '', name: '', width: 300, align: '' }
+                    { label: '总金额', name: 'zje', width: 300, align: 'left' }
 
                 ]
             }, mydata);
             if (mydata.length > 0) {
-                $('').find("").remove();
+                $('.ui-jqgrid-bdiv').find(".unwritten").remove();
             }
 
         }
 
 
 
-        $("").click(function () {
-            $.loading(true, "");
+        $("#sub").click(function () {
+            $.loading(true, "正在请求数据...");
 
-            var jsnm = $("").jqGridRowValue().jsnm;
+            var jsnm = $("#gridListFPH").jqGridRowValue().jsnm;
             $.ajax({
-                type: "",
-                url: ""GetMZJSByJsnm"",
+                type: "POST",
+                url: "@Url.Action("GetMZJSByJsnm")",
                 data: { jsnm: jsnm },
-                dataType: "",
+                dataType: "json",
                 success: function (ajaxresp) {
                     debugger
-                    if (ajaxresp.state == '' && ajaxresp.data != null) {
+                    if (ajaxresp.state == 'success' && ajaxresp.data != null) {
                         if (ajaxresp.data.length > 0) {
                             var result = ajaxresp.data[0];
-                            $("").html(result.BRXZMC);
-                            $("").html(result.KSMC);
-                            $("").html(result.RYMC);
+                            $("#brlx").html(result.BRXZMC);
+                            $("#ghks").html(result.KSMC);
+                            $("#ys").html(result.RYMC);
                             getDetail(jsnm);
                         } else {
-                            $.modalAlert("", ajaxresp.state);
+                            $.modalAlert("暂无发票记录！", ajaxresp.state);
                         }
 
 
@@ -243,14 +243,14 @@
         //
         function getDetail(jsnm) {
             $.ajax({
-                type: "",
-                url: ""GetGridViewMxByJsnm"",
+                type: "POST",
+                url: "@Url.Action("GetGridViewMxByJsnm")",
                 data: { jsnm: jsnm },
-                dataType: "",
+                dataType: "json",
                 success: function (ajaxresp) {
                     debugger
-                    if (ajaxresp.state == '') {
-                        $('').jqGrid("");
+                    if (ajaxresp.state == 'success') {
+                        $('#gridListTuifei').jqGrid("clearGridData");
                         gridListTuifei(ajaxresp.data);
                     } else {
                         $.modalAlert(ajaxresp.message, ajaxresp.state);
@@ -261,55 +261,55 @@
             });
         }
         function gridListTuifei(mydata) {
-            var $gridList = $("");
+            var $gridList = $("#gridListTuifei");
             $gridList.dataNewGrid({
                 height: 100,
                 multiselect: true,
                 colModel: [
 
-                      { label: '', name: '', width: 100, align: '' },
-                        { label: '', name: '', width: 80, align: '' },
-                          { label: '', name: '', width: 100, align: '' },
-                            { label: '', name: '', width: 80, align: '' },
-                               { label: '', name: '', width: 80, align: '' },
-                            { label: '', name: '', width: 80, align: '' },
-                                      { label: '', name: '', width: 80, align: '' },
+                      { label: '处方号', name: 'CHUFANGHAO', width: 100, align: 'left' },
+                        { label: '类型', name: 'DLMC', width: 80, align: 'left' },
+                          { label: '项目名称', name: 'YPMC', width: 100, align: 'left' },
+                            { label: '单位', name: 'DANWEI', width: 80, align: 'left' },
+                               { label: '单价', name: 'DJ', width: 80, align: 'left' },
+                            { label: '自负比例', name: 'ZFBL', width: 80, align: 'left' },
+                                      { label: '数量', name: 'SL', width: 80, align: 'left' },
                             {
-                                label: '', name: '', width: 80, align: '', editable: true
+                                label: '退数量', name: 'RETURNS_SL', width: 80, align: 'left', editable: true
                             },
-                    { label: '', name: '', width: 80, align: '' },
+                    { label: '金额', name: 'JE', width: 80, align: 'left' },
                     {
-                        label: '', name: '', width: 80, align: '', formatter: function (cellvalue) {
-                            return cellvalue ? "" : ""
+                        label: '退', name: 'IS_RETURN', width: 80, align: 'left', formatter: function (cellvalue) {
+                            return cellvalue ? "<input name='IS_RETURN' type='checkbox' checked value='' />" : "<input name='IS_RETURN' type='checkbox'    value='' />"
                         }
                     }
                 ]
             }, mydata);
             if (mydata.length > 0) {
-                $('').find("").remove();
+                $('.ui-jqgrid-bdiv').find(".unwritten").remove();
             }
         }
 
         //双击就加载当前选择的收费详细数据
-        $("").click(function () {
+        $("#btnReturn").click(function () {
             debugger
 
-            var kh = $("").val();
-            var test = jQuery("").jqGrid('', '');
-            var checkbox = $("");
-            if (0 == 0&&!confirm("")) {
-                $.modalAlert("", "");
+            var kh = $("#kh").val();
+            var test = jQuery("#gridListTuifei").jqGrid('getGridParam', 'selarrrow');
+            var checkbox = $("IS_RETURN");
+            if (0 == 0&&!confirm("确定要退费吗？")) {
+                $.modalAlert("无退款记录选中,不能退费!", "error");
 
             } else {
-                $.loading(true, "");
-                var jsnm = $("").jqGridRowValue().jsnm;
-                var RefundVO = $("").jqGrid("");
+                $.loading(true, "正在请求数据...");
+                var jsnm = $("#gridListFPH").jqGridRowValue().jsnm;
+                var RefundVO = $("#gridListTuifei").jqGrid("getRowData_AllLine");
                 if (RefundVO && jsnm && kh) {
                     $.ajax({
-                        type: "",
-                        url: ""btnReturn"",
+                        type: "POST",
+                        url: "@Url.Action("btnReturn")",
                         data: { kh:kh,jsnm: jsnm, RefundVO: RefundVO },
-                        dataType: "",
+                        dataType: "json",
                         success: function (ajaxresp) {
                             debugger
                             $.modalAlert(ajaxresp.message, ajaxresp.state);
@@ -322,7 +322,7 @@
                         }
                     });
                 } else {
-                    $.modalAlert("", "");
+                    $.modalAlert("数据不全，请检查卡号或联系管理员！", "error");
                 }
 
             }
@@ -331,15 +331,15 @@
 
     function btn_edit() {
         debugger
-        var data = $("").jqGridRowValue();
+        var data = $("#gridListFPH").jqGridRowValue();
         if (data) {
-            $("").val(data.fph);
-            $("").val(data.flzffy);
-            $("").val(data.zffy);
-            $("").val(data.jzfy);
-            $("").val(data.zlfy);
-            $("").val(data.zffy);
-            $("").val(data.xjzf);
+            $("#fph").val(data.fph);
+            $("#flzf").val(data.flzffy);
+            $("#zf").val(data.zffy);
+            $("#jz").val(data.jzfy);
+            $("#zifei").val(data.zlfy);
+            $("#zifu").val(data.zffy);
+            $("#yingtui").val(data.xjzf);
         }
 
     }

@@ -1,21 +1,21 @@
 ﻿@using Newtouch.Common.Operator;
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 <form id="form1">
     <div class="container" style="margin-top: 10px; margin-left: -4%; ">
         <ul class="nav nav-tabs" role="tablist" id="myTab" style="margin-left: 4%;">
-            <li role="presentation"><a role="tab" data-toggle="tab">Thông tin cơ bản</a></li>
+            <li role="presentation"><a role="tab" data-toggle="tab">基本信息</a></li>
         </ul>
         <div class="tab-content">
             <div role="tabpanel" id="divPatInfo" class="tab-pane fade in active" style="padding-top: 20px; margin-right: 30px;">
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Số bệnh án：</th>
+                        <th class="formTitle"><span class="required">*</span>病历号：</th>
                         <td class="formValue">
                             <input type="text" class="form-control" style="width:56%; float:left" id="blh" required />
-                            &nbsp;&nbsp;<input type="button" class="btn btn-default btn-md btn-default-color" title="Chọn bệnh nhân nhập viện" style="width: 25px;" id="btnsyy" value="Tra cứu" onclick="GetPatSerarchView($('#blh').val());">
+                            &nbsp;&nbsp;<input type="button" class="btn btn-default btn-md btn-default-color" title="选择住院病人" style="width: 25px;" id="btnsyy" value="查询" onclick="GetPatSerarchView($('#blh').val());">
                         </td>
                         <th class="formTitle">保险公司：</th>
                         <td class="formValue">
@@ -24,22 +24,22 @@
 
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Mã nội bộ bệnh nhân：</th>
+                        <th class="formTitle"><span class="required">*</span>病人内码：</th>
                         <td class="formValue">
                             <input type="text" class="form-control newtouch_Readonly" id="patId" required />
                         </td>
-                        <th class="formTitle">Họ tên：</th>
+                        <th class="formTitle">姓名：</th>
                         <td class="formValue">
                             <input type="text" class="form-control newtouch_Readonly" id="xm" required />
                         </td>
 
                     </tr>
                     <tr>
-                        <th class="formTitle">Tuổi：</th>
+                        <th class="formTitle">年龄：</th>
                         <td class="formValue">
                             <input type="text" class="form-control newtouch_Readonly" id="nlshow" required />
                         </td>
-                        <th class="formTitle">Hiệu lực</th>
+                        <th class="formTitle">有效</th>
                         <td class="formValue">
                             <div class="ckbox">
                                 <input id="zt" type="checkbox" checked="checked"><label for="zt"></label>
@@ -48,31 +48,31 @@
                     </tr>
                     <tr>
                         >
-                        <th class="formTitle"><span class="required">*</span>Ngày bắt đầu：</th>
+                        <th class="formTitle"><span class="required">*</span>开始日期：</th>
                         <td class="formValue">
                             <input id="ksrq" type="text" class="form-control input-wdatepicker" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" required />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Ngày kết thúc：</th>
+                        <th class="formTitle"><span class="required">*</span>结束日期：</th>
                         <td class="formValue">
                             <input id="jsrq" type="text" class="form-control input-wdatepicker" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" required />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Tổng số lần：</th>
+                        <th class="formTitle"><span class="required">*</span>总次数：</th>
                         <td class="formValue">
                             <input type="text" class="form-control" id="zcs" required />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Số lần còn lại：</th>
+                        <th class="formTitle"><span class="required">*</span>剩余次数：</th>
                         <td class="formValue">
                             <input type="text" class="form-control newtouch_Readonly" id="sycs" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Người lập hồ sơ：</th>
+                        <th class="formTitle"><span class="required">*</span>建档人员：</th>
                         <td class="formValue">
                             <input class="form-control newtouch_Readonly" id="CreatorCode" value=@OperatorProvider.GetCurrent().UserCode type="text" required />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Ngày lập hồ sơ：</th>
+                        <th class="formTitle"><span class="required">*</span>建档日期：</th>
                         <td class="formValue">
                             <input class="form-control newtouch_Readonly" id="CreateTime" value=@DateTime.Now.ToString("yyyy-MM-dd") type="text" required />
                         </td>
@@ -83,63 +83,63 @@
     </div>
 </form>
 <script>
-    var sbbabId = $.request("");
+    var sbbabId = $.request("sbbabId");
     $(function () {
         if (!!sbbabId) {
             $.ajax({
-                url: "" + Math.random(),
+                url: "/InsuranceManage/CommercialInsuranceFiling/GetFormJson?r=" + Math.random(),
                 data: { sbbabId: sbbabId },
-                dataType: "",
+                dataType: "json",
                 async: false,
                 success: function (data) {
-                    $("").formSerialize(data);
-                    if (data[""]) {
-                        $("").attr("", data[""]);
+                    $("#form1").formSerialize(data);
+                    if (data["bxCode"]) {
+                        $("#bxName").attr("data-label", data["bxCode"]);
                     }
-                    $("").val((data.ksrq && data.ksrq.length >= 10 ? data.ksrq.substring(0, 10) : ""));
-                    $("").val((data.jsrq && data.jsrq.length >= 10 ? data.jsrq.substring(0, 10) : ""));
+                    $("#ksrq").val((data.ksrq && data.ksrq.length >= 10 ? data.ksrq.substring(0, 10) : ""));
+                    $("#jsrq").val((data.jsrq && data.jsrq.length >= 10 ? data.jsrq.substring(0, 10) : ""));
                 }
             });
-            $("").removeAttr("").css("", "");
+            $("#sycs").removeAttr("disabled").css("background-color", "white");
         }
 
     });
 
-    //Tra cứu bệnh nhân ngoại trú
+    //门诊病人查询
     function GetPatSerarchView(blh) {
         if (!!!blh) {
             blh = '';
         }
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + Math.random() + "" + blh,
-            width: "",
-            height: "",
+            id: "patSearch",
+            title: "患者查询",
+            url: " /OutpatientManage/OutpatientAccounting/SysPatEntitiesblhView?t=" + Math.random() + "&from=Form&blh=" + blh,
+            width: "700px",
+            height: "400px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //Trong sự kiện cửa sổ bật lên
-            }//Hàm callback xác nhận khi nhấn cửa sổ
+                top.frames[iframeId].PatDbGrid(); //在弹出窗口事件
+            }//窗口点确定的回调函数
         });
     }
 
-    //Bệnh nhân đã chọn
+    //选择的病人
     function GetQueryFphAjax(selePatInfo) {
-        $('').val(selePatInfo.blh);
-        $("").val(selePatInfo.patid);
-        $("").val(selePatInfo.xm);
-        $("").val(selePatInfo.nlshow);
+        $('#blh').val(selePatInfo.blh);
+        $("#patId").val(selePatInfo.patid);
+        $("#xm").val(selePatInfo.xm);
+        $("#nlshow").val(selePatInfo.nlshow);
         // ajaxLoadDataResult();
     }
 
-    ///Chính sách hoàn trả
-    $("").newtouchFloatingSelector({
+    ///报销政策
+    $("#bxName").newtouchFloatingSelector({
         height: 200,
         width: 300,
         filter: function (keyword) {
             if (!keyword) {
                 return null;
             }
-            //Duyệt nguồn dữ liệu，Dùngkeywordđể lọc ra kết quả
+            //遍历数据源，用keyword来筛选出结果
             var resultObjArr = new Array();
             $.each(top.window.clients.commercialInsuranceList, function (idx, val) {
                 if ((val.bxCode && val.bxCode.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() === "") {
@@ -149,40 +149,40 @@
             return resultObjArr;
 
         },
-        caption: "",
+        caption: "商保公司",
         colModel: [
             {
-                label: '', name: '', widthratio: 25
+                label: '代码', name: 'bxCode', widthratio: 25
             },
             {
-                label: '', name: '', widthratio: 25
+                label: '名称', name: 'Name', widthratio: 25
             },
-            { label: '', name: '', widthratio: 25 }
+            { label: '英文', name: 'EnglishName', widthratio: 25 }
         ],
         itemdbclickhandler: function ($thistr) {
-            $("").attr("", $thistr.find("").html());
-            $("").val($thistr.find('').html());
+            $("#bxName").attr("data-label", $thistr.find("td:eq(0)").html());
+            $("#bxName").val($thistr.find('td:eq(1)').html());
             return;
         }
     });
 
-    $("").bind("", function (e) {
-        if ((e.keyCode === 13 && e.type === "") || e.type === "" || e.type === "") {
-            $('').val($('').val());
+    $("#zcs").bind("keydown blur keyup", function (e) {
+        if ((e.keyCode === 13 && e.type === "keydown") || e.type === "blur" || e.type === "keyup") {
+            $('#sycs').val($('#zcs').val());
         }
     });
-    //Gửi
+    //提交
     function submitForm() {
-        if (!$('').formValid()) {
+        if (!$('#form1').formValid()) {
             return false;
         }
-        var params = $("").formSerialize();
-        params[""] = $("").attr("");
+        var params = $("#form1").formSerialize();
+        params["bxCode"] = $("#bxName").attr("data-label");
         $.submitForm({
-            url: "" + sbbabId,
+            url: "/InsuranceManage/CommercialInsuranceFiling/SubmitForm?sbbabId=" + sbbabId,
             param: params,
             success: function () {
-                $.currentWindow().$("").trigger("");
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
             }
         });
     }

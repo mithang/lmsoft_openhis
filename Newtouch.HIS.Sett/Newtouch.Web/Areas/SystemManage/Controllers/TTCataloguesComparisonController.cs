@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Thêm mới hoặc sửaForm
+        /// 新增或修改Form
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lưu
+        /// 保存
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -93,7 +93,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Xóa
+        /// 删除
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -112,7 +112,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         #region Main
 
         /// <summary>
-        /// 下拉 by Code Lấy mục từ điển
+        /// 下拉 by Code 获取字典项
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
@@ -159,7 +159,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Thêm mới hoặc sửaForm
+        /// 新增或修改Form
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -170,7 +170,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lưu
+        /// 保存
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -184,7 +184,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Xóa
+        /// 删除
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

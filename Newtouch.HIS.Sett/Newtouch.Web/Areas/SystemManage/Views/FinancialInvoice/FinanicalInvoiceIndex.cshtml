@@ -1,18 +1,18 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "FinanicalInvoiceIndex";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 <div class="topPanel">
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
+            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa thông tin</a>
+            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改信息</a>
         </div>
         <div class="btn-group">
-            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa thông tin</a>
+            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除信息</a>
         </div>
     </div>
     <div class="search">
@@ -20,7 +20,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="Người lĩnh dùng" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="领用人员" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -40,39 +40,39 @@
         gridList();
     });
     function gridList() {
-        var $gridList = $("");
+        var $gridList = $("#gridList");
         $gridList.dataGrid({
-            url: "",
+            url: "/SystemManage/FinancialInvoice/GetCwfpList",
             height: 400,
             colModel: [
-                { label: '', name: '', hidden: true },
-                { label: '', name: '', width: 80, algin: '' },
-                { label: '', name: '', width: 100, algin: '' },
-                { label: '', name: '', width: 50, algin: '' },
-                { label: '', name: '', width: 100, algin: '' },
-                { label: '', name: '', width: 100, algin: '' },
-                { label: '', name: '', width: 100, algin: '' },
+                { label: 'fpdm', name: 'fpdm', hidden: true },
+                { label: '领用人员', name: 'lyry', width: 80, algin: 'left' },
+                { label: '领用人姓名', name: 'ry', width: 100, algin: 'left' },
+                { label: '首字母', name: 'szm', width: 50, algin: 'left' },
+                { label: '当前发票号', name: 'dqfph', width: 100, algin: 'left' },
+                { label: '起始发票号', name: 'qsfph', width: 100, algin: 'left' },
+                { label: '结束发票号', name: 'jsfph', width: 100, algin: 'left' },
                 {
-                    label: '', name: '', width: 50, algin: '',
+                    label: '有效', name: 'zt', width: 50, algin: 'left',
                     formatter: function (cellvalue) {
                         if (cellvalue == 0) {
-                            return "";
+                            return "否";
                         } else {
-                            return "";
+                            return "是";
                         }
                     }
                 },
                 {
-                    label: '', name: '', width: 100, align: '',
-                    formatter: "", formatoptions: { srcformat: '', newformat: '' }
+                    label: '建档日期', name: 'CreateTime', width: 100, align: 'left',
+                    formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                 },
-               { label: '', name: '', width: 80, align: '' }
+               { label: '建档人员', name: 'CreatorCode', width: 80, align: 'left' }
             ]
         });
-        $("").click(function () {
-            $gridList.jqGrid('', {
-                postData: { keyword: $("").val() }, url: ""
-            }).trigger('');
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val() }, url: "/SystemManage/FinancialInvoice/GetCwfpList"
+            }).trigger('reloadGrid');
         })
     }
 
@@ -82,48 +82,48 @@
 
     function btn_add() {
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "",
-            width: "",
-            height: "",
+            id: "FormFIEdit",
+            title: "发票配置维护",
+            url: "/SystemManage/FinancialInvoice/Form",
+            width: "700px",
+            height: "500px",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
         });
     }
-    //Sửa
+    //修改
     function btn_edit() {
-        var seleRowid = jQuery("").jqGrid("", "");
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("", '');
+            $.modalAlert("请选中一条信息", 'warning');
             return;
         }
-        var fpdm = $("").jqGridRowValue().fpdm;
+        var fpdm = $("#gridList").jqGridRowValue().fpdm;
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + fpdm,
-            width: "",
-            height: "",
+            id: "FormFIEdit",
+            title: "修改信息",
+            url: "/SystemManage/FinancialInvoice/Form?fpdm=" + fpdm,
+            width: "700px",
+            height: "500px",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
         });
     }
-    //Xóa
+    //删除
     function btn_delete() {
-        var seleRowid = jQuery("").jqGrid("", "");
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("", '');
+            $.modalAlert("请选中一条信息", 'warning');
             return;
         }
-        var fpdm = $("").jqGridRowValue().fpdm;
+        var fpdm = $("#gridList").jqGridRowValue().fpdm;
         $.deleteForm({
-            url: "",
+            url: "/SystemManage/FinancialInvoice/DeleteForm",
             param: { fpdm: fpdm },
             success: function () {
-                $("").trigger("");
+                $("#gridList").trigger("reloadGrid");
             }
         })
     }

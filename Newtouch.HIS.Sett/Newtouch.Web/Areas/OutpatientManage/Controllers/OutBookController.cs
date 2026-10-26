@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             var oplist = _OutBookDmnService.GetPagintionList(pagination, orgId,keyword);
             //for (int i = 0; i < oplist.Count; i++)
             //{
-            //    var ghList = _OutBookRepo.getStaffByKs(oplist[i].ks);//Danh sách mã nhân viên bác sĩ lấy khoa theo
+            //    var ghList = _OutBookRepo.getStaffByKs(oplist[i].ks);//根据科室获取医生工号列表
             //    oplist[i].ys = getStaffGh(ghList);
             //    oplist[i].ysxm = getStaffName(ghList);//将医生工号列表转换成以逗号分割的医生姓名
             //}
@@ -105,11 +105,11 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             var orgId = OrganizeId;
             var CreateCode = UserIdentity.UserName;
             var CreateTime = DateTime.Now;
-            //Đặt cho trạng thái dưới khoa này0
+            //设置该科室下状态为0
             _OutBookRepo.updateZt(ks, CreateCode, CreateTime,OrganizeId);
             foreach (var gh in ghList)
             {
-                //Thêm mới Cập nhật
+                //新增 更新
                 _OutBookRepo.SubmitForm(orgId, ks, gh, CreateCode, CreateTime);
             }
             return Success("操作成功。");
@@ -118,13 +118,13 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         public ActionResult getArrangeInfo(int ghpbId) {
             if (ghpbId == 0)
             {
-                //Thêm mới
+                //新增
                 return Content(null);
             }
             else
             {
                 var result = _OutBookDmnService.getArrangeInfo(ghpbId,OrganizeId);
-                var ghList = _OutBookRepo.getStaffByKs(result.ks,OrganizeId);//Danh sách mã nhân viên bác sĩ lấy khoa theo
+                var ghList = _OutBookRepo.getStaffByKs(result.ks,OrganizeId);//根据科室获取医生工号列表
                 //if (result != null && result.mjzbz != ((int)EnumOutPatientType.expertOutpat).ToString())
                 //{
                 //    result.ys = getStaffGh(ghList);//拼接以逗号分割的医生工号
@@ -189,27 +189,27 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             var User = UserIdentity.UserName;
             var Time = DateTime.Now;
             if (ghpbId == 0)
-            {//Thêm mới
-                //Lấy số hiệu lịch trực
+            {//新增
+                //获取排班编号
                 var ghpbIdNew = _OutBookDmnService.getghpbId();
-                //Thêm mới thông tin lịch trực[mz_ghpb_config]
+                //新增排班信息[mz_ghpb_config]
                 _OutBookDmnService.InsertArrange(entity, orgId, User, Time, ghpbIdNew);
-                //Thêm mới quan hệ bác sĩ[mz_ghpb_rel_doc]
-                //Thêm mới thời gian lịch trực[mz_ghpb_date]
+                //新增医生关系[mz_ghpb_rel_doc]
+                //新增排班时间[mz_ghpb_date]
                 for (int i = 1; i <= 7; i++)
                 {
-                    //Thêm mới Cập nhật thời gian lịch trực [mz_ghpb_date]
+                    //新增 更新排班时间 [mz_ghpb_date]
                     _OutBookDateRepo.UpdateDate(entity, ghpbId, i.ToString(), orgId, User, Time, ghpbIdNew);
                 }
                 return Success("操作成功。");
             }
             else
             {
-                //Cập nhật thông tin[mz_ghpb_config]
+                //更新信息[mz_ghpb_config]
                 _OutBookDmnService.UpdateArrange(entity, ghpbId, orgId, User, Time);
                 for (int i = 1; i <= 7; i++)
                 {
-                    //Thêm mới Cập nhật thời gian lịch trực [mz_ghpb_date]
+                    //新增 更新排班时间 [mz_ghpb_date]
                     _OutBookDateRepo.UpdateDate(entity, ghpbId, i.ToString(), orgId, User, Time,0);
                 }
                 return Success("操作成功。");
@@ -225,7 +225,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
             return Success(ghpbIdNew.ToString());
         }
         /// <summary>
-        /// Lưu
+        /// 保存
         /// </summary>
         /// <returns></returns>
         public ActionResult SaveDataPbhy(List<OutBookScheduleEntity> pbList)
@@ -292,12 +292,12 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
                 _OutBookScheduleRepo.ExecSchedule();
             }
                 
-            //Lấy danh sách
+            //获取列表
             var list= _OutBookScheduleRepo.GetPagintionList(pagination,orgId, Time);
             var oplist = new List<OutBookScheduleVO>();
             for (int i = 0; i < list.Count; i++)
             {
-                var ghList = _OutBookRepo.getStaffByKs(list[i].czks,OrganizeId);//Danh sách mã nhân viên bác sĩ lấy khoa theo
+                var ghList = _OutBookRepo.getStaffByKs(list[i].czks,OrganizeId);//根据科室获取医生工号列表
                 list[i].ysgh = getStaffGh(ghList);
                 list[i].ysxm = getStaffName(ghList);//将医生工号列表转换成以逗号分割的医生姓名
             }
@@ -315,7 +315,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         {
 
             var orgId = OrganizeId;
-            //Lấy danh sách
+            //获取列表
             var list = _OutBookScheduleRepo.GetPagintionListTime(orgId, kssj, jssj, ys, czztcx, ScheduId, ks, lx);
             var oplist = new List<OutBookScheduleVO>();
             var data = new

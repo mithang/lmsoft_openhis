@@ -1,23 +1,23 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
-    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("");
-    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("");
+    ViewBag.Title = "YBSBSC_YDQuery";
+    Layout = "~/Views/Shared/_Form.cshtml";
+    var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
+    var ReportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
 }
 
 <div class="rows">
 	<div class="panel panel-default">
 		<table class="form">
 			<tr>
-				<th class="formTitle">Ngày bắt đầu：</th>
+				<th class="formTitle">开始日期：</th>
 				<td class="formValue">
 					<input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
 						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
 						   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
 						   value="@DateTime.Now.ToString("yyyy-MM-01")" />
 				</td>
-				<th class="formTitle">Ngày kết thúc：</th>
+				<th class="formTitle">结束日期：</th>
 				<td class="formValue">
 					<input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
 						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -26,7 +26,7 @@
 				</td>
 				<th class="formTitle"></th>
 				<td class="formValue" style="padding-left:20px;">
-					<input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
+					<input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
 				</td>
 			</tr>
 		</table>
@@ -49,14 +49,14 @@
 </div>
 
 <script>
-	var tabaction = "";//Chuyển thẻ Ngoại trú mặc định
-	 var isHospAdministrator = '';
-    var curUserCode = '';
-    var OrgId = '';
-	var reportServerHOST = '';
+	var tabaction = "W";//切换卡片 默认门诊
+	 var isHospAdministrator = '@(ViewBag.IsHospAdministrator)';
+    var curUserCode = '@(ViewBag.CurUserCode)';
+    var OrgId = '@(ViewBag.OrgId)';
+	var reportServerHOST = '@(ViewBag.ReportServerHOST)';
 	$(function () {
 		var h = $(window).height() - 100;
-		$('').css('', h);
+		$('#layout iframe').css('height', h);
 	});
 
 
@@ -65,23 +65,23 @@
 		submit();
 	}
 	function submit() {
-		if ($('').val().length == 0 || $('').val().length == 0) {
-			$.modalAlert("", "");
+		if ($('#ksrq').val().length == 0 || $('#jsrq').val().length == 0) {
+			$.modalAlert("请选择时间范围", "error");
 			return;
 		}
 
 		switch (tabaction) {
-			case "":
-				$("").show();
-				$("").hide();
-				var uri = '' + "" + "" + '' + "" + OrgId + "" + $('').val() + "" + $('').val();
-				$("").attr('', uri);
+			case "W":
+				$("#mjz").show();
+				$("#zy").hide();
+				var uri = '@Html.Raw(reportUrl)' + "?tempCode=1241" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&orgId=" + OrgId + "&ksrq=" + $('#ksrq').val() + "&jsrq=" + $('#jsrq').val();
+				$("#iframerightiframerightiframerightttt").attr('src', uri);
 				break;
-			case "":
-				$("").hide();
-				$("").show();
-				var uri = '' + "" + "" + '' + "" + OrgId + "" + $('').val() + "" + $('').val();
-				$("").attr('', uri);
+			case "E":
+				$("#mjz").hide();
+				$("#zy").show();
+				var uri = '@Html.Raw(reportUrl)' + "?tempCode=1242" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&orgId=" + OrgId + "&ksrq=" + $('#ksrq').val() + "&jsrq=" + $('#jsrq').val();
+				$("#iframerightiframerightiframerighttttsc").attr('src', uri);
 				break;
 			default:
 
@@ -91,27 +91,27 @@
 	}
 
 	function DCQuery(type) {
-		if ($('').val().length == 0 || $('').val().length == 0) {
-			$.modalAlert("", "");
+		if ($('#ksrq').val().length == 0 || $('#jsrq').val().length == 0) {
+			$.modalAlert("请选择时间范围", "error");
 			return;
 		}
 		var predata = {
 			types: type,
-			ksrq: $('').val(),
-			jsrq: $('').val(),
+			ksrq: $('#ksrq').val(),
+			jsrq: $('#jsrq').val(),
 		};
 		$.ajax({
-			type: "",
-			url: "",
+			type: "POST",
+			url: "/Report/DCQuery_dbf",
 			data: predata,
-			dataType: "",
+			dataType: "json",
 			async: false,
 			success: function (data) {
 				var refinfo = data;
 				console.log(data);
 
 				if (refinfo.path != "") {
-					window.location.target = "";
+					window.location.target = "_blank";
 					window.location.href = refinfo.path;
 					//window.open(refinfo.path);
 				}
@@ -122,10 +122,10 @@
 		});
 	}
 
-	$("").load(function () {
+	$("#iframerightiframerightiframerightttt").load(function () {
 		$.loading(false);
 	});
-	$("").load(function () {
+	$("#iframerightiframerightiframerighttttsc").load(function () {
 		$.loading(false);
 	});
 

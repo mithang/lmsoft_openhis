@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "当日动态";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
 <head>
@@ -57,23 +57,23 @@
 <div id="main_div">
     <div class="drdt_top">
         <div style="background-color: #fc8675;">
-            <h4>Thu nhập tổng bệnh viện(đồng)</h4>
+            <h4>医院总收入(元)</h4>
             <h3 id="yyzsr">0</h3>
         </div>
         <div style="background-color: #65cea7;">
-            <h4>Thu nhập ngoại trú(đồng)</h4>
+            <h4>门诊收入(元)</h4>
             <h3 id="mzsr">0</h3>
         </div>
         <div style="background-color: #f3ce85;">
-            <h4>Lượt người ngoại trú(Lần)</h4>
+            <h4>门诊人次(次)</h4>
             <h3 id="mzrc">0</h3>
         </div>
         <div style="background-color: #00c0ef">
-            <h4>Thu nhập nhập viện(đồng)</h4>
+            <h4>住院收入(元)</h4>
             <h3 id="zysr">0</h3>
         </div>
         <div style="background-color: #fc8675;">
-            <h4>Số người xuất viện(Người)</h4>
+            <h4>出院人数(人)</h4>
             <h3 id="cyrs">0</h3>
         </div>
     </div>
@@ -93,13 +93,13 @@
         </div>
         <div class="drdt_center_child">
             <div class="panel-heading down_border">
-                <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>Chi phí ngoại trú
+                <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>门诊费用
             </div>
             <table id="gridJSListmzfy"></table>
         </div>
         <div class="drdt_center_child">
             <div class="panel-heading down_border">
-                <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>Thống kê đăng ký khám ngoại trú
+                <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>门诊挂号统计
             </div>
             <table id="gridJSListmzghtj"></table>
         </div>
@@ -113,7 +113,7 @@
         </div>
         <div class="drdt_down_child">
             <div class="panel-heading down_border">
-                <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>Nhập viện thống kê bệnh nhân
+                <i class="fa fa-table fa-lg" style="margin-right:5px;"></i>住院患者统计
             </div>
             <table id="gridJSListzyhztj"></table>
         </div>
@@ -124,7 +124,7 @@
     var interval = 5 * 60 * 1000; // 5分钟的毫秒数
     $(function () {
 
-        $('').height($(window).height());
+        $('#main_div').height($(window).height());
         gridJSListData();
         setInterval(function () {
             // 每隔五分钟执行一次
@@ -134,53 +134,53 @@
 
     function gridJSListData() {
        
-        //bannerThống kê dữ liệu
+        //banner统计数据
         $.ajax({
-            type: "",
-            url: "",
-            dataType: "",
+            type: "GET",
+            url: "/DeanInquiryManage/DailyUpdates/GetJRDTBanner",
+            dataType: "json",
             async: false,
             success: function (data) {
                 if (data != null) {
-                    $("").text(data.yyzsr);
-                    $("").text(data.mzsr);
-                    $("").text(data.mzrc);
-                    $("").text(data.zysr);
-                    $("").text(data.cyrs);
+                    $("#yyzsr").text(data.yyzsr);
+                    $("#mzsr").text(data.mzsr);
+                    $("#mzrc").text(data.mzrc);
+                    $("#zysr").text(data.zysr);
+                    $("#cyrs").text(data.cyrs);
                 }
             },
             error: function (request, error, ex) {
-                $.modalAlert("");
+                $.modalAlert("查询失败");
             }
         });
 
-        var gridSort = '';
-        var $gridJsList = $("");
+        var gridSort = 'CreateTime asc';
+        var $gridJsList = $("#gridJSListjrdtmz");
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 130,
-            autowidth: true,//NếushrinkToFitChotruevà đã thiết lậpwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidththu phóng theo tỷ lệ；
-            shrinkToFit: true, //Nếu đặt làtrue，ThìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
-            url: "",
+            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
+            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            url: "/DeanInquiryManage/DailyUpdates/GetJrdt",
             colModel: [
-                { label: '', name: '',  align: '' },
-                { label: '', name: '',  align: '' },
-                { label: '', name: '', align: '' },
-                { label: '', name: '',  align: '' }
+                { label: '门诊科室', name: 'mzks',  align: 'left' },
+                { label: '已就诊', name: 'yjz',  align: 'left' },
+                { label: '就诊中', name: 'jzz', align: 'left' },
+                { label: '待就诊', name: 'djz',  align: 'left' }
             ],
             sortname: gridSort,
             viewrecords: true
         });
 
-        var gridSort = '';
-        var $gridJsList = $("");
+        var gridSort = 'CreateTime asc';
+        var $gridJsList = $("#gridJSListmzcf");
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 130,
-            autowidth: true,//NếushrinkToFitChotruevà đã thiết lậpwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidththu phóng theo tỷ lệ；
-            shrinkToFit: true, //Nếu đặt làtrue，ThìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
-            url: "",
+            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
+            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            url: "/DeanInquiryManage/DailyUpdates/GetMzcf",
             colModel: [
-                { label: '', name: '',align: '' },
-                { label: '', name: '',align: '' }
+                { label: '项目', name: 'xm',align: 'left' },
+                { label: '数量', name: 'sl',align: 'left' }
             ],
             sortname: gridSort,
             viewrecords: true,
@@ -193,62 +193,62 @@
             }
         });
 
-        var gridSort = '';
-        var $gridJsList = $("");
+        var gridSort = 'CreateTime asc';
+        var $gridJsList = $("#gridJSListmzfy");
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 130,
-            autowidth: true,//NếushrinkToFitChotruevà đã thiết lậpwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidththu phóng theo tỷ lệ；
-            shrinkToFit: true, //Nếu đặt làtrue，ThìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
-            url: "",
+            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
+            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            url: "/DeanInquiryManage/DailyUpdates/GetMzfy",
             colModel: [
-                { label: '', name: '',align: '' },
-                { label: '', name: '', align: '' },
-                { label: '', name: '', align: '' }
+                { label: '费用分类', name: 'fyfl',align: 'left' },
+                { label: '金额', name: 'je', align: 'left' },
+                { label: '占比(%)', name: 'zb', align: 'left' }
             ],
             sortname: gridSort,
             viewrecords: true
         });
 
-        var gridSort = '';
-        var $gridJsList = $("");
+        var gridSort = 'CreateTime asc';
+        var $gridJsList = $("#gridJSListzyzcl");
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 130,
-            autowidth: true,//NếushrinkToFitChotruevà đã thiết lậpwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidththu phóng theo tỷ lệ；
-            shrinkToFit: true, //Nếu đặt làtrue，ThìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
-            url: "",
+            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
+            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            url: "/DeanInquiryManage/DailyUpdates/GetZyzcl",
             colModel: [
-                { label: '', name: '', align: '' },
-                { label: '', name: '',align: '' }
+                { label: '项目', name: 'xm', align: 'left' },
+                { label: '数量', name: 'sl',align: 'left' }
             ],
             sortname: gridSort,
             viewrecords: true
         });
 
-        var gridSort = '';
-        var $gridJsList = $("");
+        var gridSort = 'CreateTime asc';
+        var $gridJsList = $("#gridJSListmzghtj");
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 130,
-            autowidth: true,//NếushrinkToFitChotruevà đã thiết lậpwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidththu phóng theo tỷ lệ；
-            shrinkToFit: true, //Nếu đặt làtrue，ThìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
-            url: "",
+            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
+            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            url: "/DeanInquiryManage/DailyUpdates/GetMzghtj",
             colModel: [
-                { label: '', name: '', align: '' },
-                { label: '', name: '', align: '' }
+                { label: '挂号类型', name: 'ghlx', align: 'left' },
+                { label: '数量', name: 'sl', align: 'left' }
             ],
             sortname: gridSort,
             viewrecords: true
         });
 
-        var gridSort = '';
-        var $gridJsList = $("");
+        var gridSort = 'CreateTime asc';
+        var $gridJsList = $("#gridJSListzyhztj");
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 130,
-            autowidth: true,//NếushrinkToFitChotruevà đã thiết lậpwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidththu phóng theo tỷ lệ；
-            shrinkToFit: true, //Nếu đặt làtrue，ThìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
-            url: "",
+            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
+            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            url: "/DeanInquiryManage/DailyUpdates/GetZyhztj",
             colModel: [
-                { label: '', name: '', align: '' },
-                { label: '', name: '', align: '' }
+                { label: '项目', name: 'xm', align: 'left' },
+                { label: '数量', name: 'sl', align: 'left' }
             ],
             sortname: gridSort,
             viewrecords: true

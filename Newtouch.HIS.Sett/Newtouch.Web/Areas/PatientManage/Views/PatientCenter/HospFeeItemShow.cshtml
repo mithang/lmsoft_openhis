@@ -1,6 +1,6 @@
 ﻿@{
 
-    Layout = "";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 <form>
     <div class="topPanel" style="border-bottom:1px solid rgb(221, 221, 221);margin-bottom: -1%;">
@@ -13,13 +13,13 @@
                         </div>
                     </div>
                 </td>
-                <th class="formTitle">Tìm kiếm hạng mục：</th>
+                <th class="formTitle">项目搜索：</th>
                 <td class="formValue">
                     <input id="dlCode" name="dlCode" type="text" class="form-control" placeholder="按照项目编码项目名称或简拼" />
                 </td>
 
                 <td style="padding-left:20px;" class="formValue">
-                    <input type="button" id="btn_search" style="margin-left:3%; width:35%; margin-top:-2%;" class="btn btn-primary" value="Tra cứu" />
+                    <input type="button" id="btn_search" style="margin-left:3%; width:35%; margin-top:-2%;" class="btn btn-primary" value="查询" />
                 </td>
             </tr>
         </table>
@@ -32,46 +32,46 @@
 
 
 <script>
-    var zyh = $.request("");
-    var dlCode = $.request("");
+    var zyh = $.request("zyh");
+    var dlCode = $.request("dlCode");
     $(function () {
         gridInit();
-        $("").click(function () {
-            $("").jqGrid('', {
-                postData: { keyword: $("").val() },
-            }).trigger('');
+        $("#btn_search").click(function () {
+            $("#gridList").jqGrid('setGridParam', {
+                postData: { keyword: $("#dlCode").val() },
+            }).trigger('reloadGrid');
         });
     });
 
     function gridInit() {
-        var $gridList = $("");
+        var $gridList = $("#gridList");
         $gridList.dataGrid({
-            postData: { zyh: zyh, group: "", sfdl: dlCode },
-            url: "",
+            postData: { zyh: zyh, group: "2", sfdl: dlCode },
+            url: "/PatientManage/PatientCenter/GetFeeInfobySfdl",
             height: $(window).height() - 120,
             colModel: [
-                { label: '', name: '', align: '', width: 100 },
-                { label: '', name: '', align: '', width: 40 },
-                { label: '', name: '', align: '', width: 150 },
-                { label: '', name: '', align: '', width: 60 },
-                { label: '', name: '', align: '', width: 60 },
+                { label: '收费大类', name: 'dlmc', align: 'center', width: 100 },
+                { label: '属性', name: 'zfxz', align: 'center', width: 40 },
+                { label: '项目名称', name: 'sfxmmc', align: 'left', width: 150 },
+                { label: '规格', name: 'gg', align: 'center', width: 60 },
+                { label: '单位', name: 'jfdw', align: 'center', width: 60 },
                 {
-                    label: '', name: '', align: '', width: 60, formatter: ""
-                    , formatoptions: { decimalPlaces: 4, defaultValue: '' }
+                    label: '单价', name: 'dj', align: 'center', width: 60, formatter: "number"
+                    , formatoptions: { decimalPlaces: 4, defaultValue: '0.0000' }
                 },
-                { label: '', name: '', align: '', width: 30 },
-                { label: '', name: '', align: '', hidden: true, },
+                { label: '数量', name: 'sl', align: 'center', width: 30 },
+                { label: 'zyh', name: 'zyh', align: 'center', hidden: true, },
                 {
-                    label: '', name: '', align: '', width: 60, formatter: ""
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '' }
+                    label: '费用', name: 'je', align: 'center', width: 60, formatter: "number"
+                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.0000' }
                 },
-                { label: '', name: '', align: '', width: 80 },
-                { label: '', name: '', align: '', hidden: true, },
-                //{ label: '', name: '', align: '', width: 100 },
+                { label: '是否自费', name: 'zzfbz', align: 'center', width: 80 },
+                { label: 'sfxm', name: 'sfxm', align: 'center', hidden: true, },
+                //{ label: '计价日期', name: 'tdrq', align: 'center', width: 100 },
 
             ],
-            //pager: "",
-            //sortname: '',
+            //pager: "#gridPager",
+            //sortname: 'sfxmmc',
             viewrecords: true,
             //rowNum:100,
             ondblClickRow: function (rowIndex, s) {
@@ -81,15 +81,15 @@
     }
 
     function getItemsbySfxm(id) {
-        var rowData = $("").jqGrid('', id);
-        var smxm = rowData.sfxm + "" + rowData.dj;
+        var rowData = $("#gridList").jqGrid('getRowData', id);
+        var smxm = rowData.sfxm + "|" + rowData.dj;
         if (!!rowData) {
             $.modalOpen({
-                id: "",
-                title: "",
-                url: "" + smxm + "" + zyh,
-                width: "",
-                height: "",
+                id: "mxcx",
+                title: "项目明细",
+                url: "/PatientManage/PatientCenter/HospFeeItemDetailShow?sfxm=" + smxm + "&zyh=" + zyh,
+                width: "800px",
+                height: "600px",
                 btn: null,
                 callBack: function (iframeId) {
                 }

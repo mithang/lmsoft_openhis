@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// Lấy khoa
+        /// 获取科室
         /// </summary>
         /// <returns></returns>
         public ActionResult GetSysDepartmentList()
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// Lấy bác sĩ
+        /// 获取医生
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="dutyCode"></param>
@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// Lưu
+        /// 保存
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="ghpbId"></param>
@@ -83,7 +83,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// Lấy danh sách hiệu lực
+        /// 获取有效列表
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
@@ -94,7 +94,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// Thêm mới hoặc sửaForm
+        /// 新增或修改Form
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
@@ -105,7 +105,7 @@ namespace Newtouch.HIS.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// Xóa
+        /// 删除
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>

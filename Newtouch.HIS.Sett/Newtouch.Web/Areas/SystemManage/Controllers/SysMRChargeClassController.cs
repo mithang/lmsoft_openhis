@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             this._sysMRChargeClassApp = sysMRChargeClassApp;
         }
         /// <summary>
-        /// Chế độ xem
+        /// 视图
         /// </summary>
         /// <returns></returns>
         public ActionResult SysMRChargeClass()
@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             return View();
         }
         /// <summary>
-        /// Danh sách hiệu lực lấy
+        /// 获得有效列表
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// Thêm mới hoặc sửaForm
+        /// 新增或修改Form
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             return Content(entity.ToJson());
         }
         /// <summary>
-        /// Xóa
+        /// 删除
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Web.Areas.SystemManage.Controllers
             return Success("操作成功。");
         }
         /// <summary>
-        /// Lưu
+        /// 保存
         /// </summary>
         /// <param name="sysMRChargeClassEntity"></param>
         /// <param name="keyValue"></param>

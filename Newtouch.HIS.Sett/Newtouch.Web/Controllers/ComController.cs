@@ -50,7 +50,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 查询所有药品分类（Nhóm lớn thu phí không）
+        /// 查询所有药品分类（非收费大类）
         /// </summary>
         /// <returns></returns>
         public ActionResult GetMedicineClassificationList()
@@ -73,7 +73,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 
         /// <summary>
-        /// Giao diện trang chế độ xem cửa sổ gọi
+        /// 接口调用窗口视图页
         /// </summary>
         /// <returns></returns>
         public ActionResult XnhInterfaceRequest()
@@ -82,9 +82,9 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// Giao diện yêu cầu
+        /// 接口请求
         /// </summary>
-        /// <param name="itn">Giao diện tên  例：S02</param>
+        /// <param name="itn">接口名称  例：S02</param>
         /// <param name="body"></param>
         /// <returns></returns>
         [HttpPost]
@@ -100,7 +100,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 		#region 重庆医保接口调用
 	    /// <summary>
-	    /// Giao diện trang chế độ xem cửa sổ gọi
+	    /// 接口调用窗口视图页
 	    /// </summary>
 	    /// <returns></returns>
 	    public ActionResult CqYbInterfaceRequest()

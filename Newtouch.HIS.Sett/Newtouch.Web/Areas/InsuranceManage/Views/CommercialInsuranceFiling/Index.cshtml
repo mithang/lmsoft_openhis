@@ -1,21 +1,21 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 <div class="topPanel">
     <div class="toolbar">
         <div class="btn-group">
-            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
+            <a id="NF-add" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+            <a id="NF-edit" class="btn btn-primary dropdown-text" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
         </div>
         <div class="btn-group">
-            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
+            <a id="NF-delete" class="btn btn-primary dropdown-text" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
         </div>
         <div class="btn-group">
-            <a id="NF-Details" class="btn btn-primary dropdown-text" onclick="btn_details()"><i class="fa fa-search-plus"></i>Xem</a>
+            <a id="NF-Details" class="btn btn-primary dropdown-text" onclick="btn_details()"><i class="fa fa-search-plus"></i>查看</a>
         </div>
     </div>
     <div class="search">
@@ -23,7 +23,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="Số bệnh án" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="病历号" style="width: 200px;">
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>
@@ -39,146 +39,146 @@
 </div>
 <script>
     $(function () {
-        //Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGridchiều rộng của
+        //浏览器窗口调整大小时重新加载jqGrid的宽
         $(window).resize(function () {
-            initLayout("");
+            initLayout("MyTabGrid");
         });
         gridList();
 
-        $("").keyupEnterEvent(function () {
-            $("").trigger("");
+        $("#txt_keyword").keyupEnterEvent(function () {
+            $("#btn_search").trigger("click");
         });
     });
 
-    //Chi tiết
+    //明细
     function gridList() {
-        var $gridList = $("");
+        var $gridList = $("#gridList");
         $gridList.dataGrid({
-            url: "",
+            url: "/InsuranceManage/CommercialInsuranceFiling/SelectCommercialInsuranceFilingList",
             postData: getSearchPostData(),
             height: $(window).height() - 130,
             colModel: [
-                { label: "", name: "", width: 100, align: "", hidden: true },
-                { label: "", name: "", width: 90, align: "" },
-                { label: "", name: "", width: 80, align: "" },
+                { label: "sbbabId", name: "sbbabId", width: 100, align: "center", hidden: true },
+                { label: "病历号", name: "blh", width: 90, align: "center" },
+                { label: "姓名", name: "xm", width: 80, align: "center" },
                 {
-                    label: "", name: "", width: 80, align: "", formatter: function (cellvalue, a, b) {
+                    label: "年龄", name: "nlshow", width: 80, align: "center", formatter: function (cellvalue, a, b) {
                         return getAgeFromBirthTime({ begin: b.csny }).text;
                     }
                 },
-                { label: "", name: "", width: 130, align: "" },
-                { label: "", name: "", width: 130, align: "" },
-                { label: "", name: "", width: 130, align: "", hidden: true },
-                { label: "", name: "", width: 100, align: "", hidden: true },
+                { label: "证件号", name: "zjh", width: 130, align: "center" },
+                { label: "保险公司", name: "bxName", width: 130, align: "center" },
+                { label: "保险公司", name: "bxCode", width: 130, align: "center", hidden: true },
+                { label: "病人内码", name: "patId", width: 100, align: "center", hidden: true },
                 {
-                    label: "",
-                    name: "",
+                    label: "开始日期",
+                    name: "ksrq",
                     width: 100,
-                    align: "",
-                    formatter: "",
-                    formatoptions: { srcformat: '', newformat: '' }
+                    align: "center",
+                    formatter: "date",
+                    formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                 },
                 {
-                    label: "",
-                    name: "",
+                    label: "结束日期",
+                    name: "jsrq",
                     width: 100,
-                    align: "",
-                    formatter: "",
-                    formatoptions: { srcformat: '', newformat: '' }
+                    align: "center",
+                    formatter: "date",
+                    formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                 },
-                { label: "", name: "", width: 100, align: "" },
-                { label: "", name: "", width: 100, align: "" }
+                { label: "次数", name: "zcs", width: 100, align: "center" },
+                { label: "剩余次数", name: "sycs", width: 100, align: "center" }
             ],
-            pager: "",
-            sortname: '',
+            pager: "#gridPager",
+            sortname: 'CreateTime desc',
             viewrecords: true
         });
-        $("").click(function () {
-            $gridList.jqGrid('',
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam',
                 {
                     postData: getSearchPostData(),
                     page: 1,
-                    url: ""
-                }).trigger('');
+                    url: "/InsuranceManage/CommercialInsuranceFiling/SelectCommercialInsuranceFilingList"
+                }).trigger('reloadGrid');
         });
     }
 
-    //Điều kiện tra cứu
+    //查询条件
     function getSearchPostData() {
-        var keyword = $("").val();
+        var keyword = $("#txt_keyword").val();
         return { keyword: keyword };
     };
 
-    //Tạo mới
+    //新建
     function btn_add() {
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "",
-            width: "",
-            height: "",
+            id: "Form",
+            title: "新增商保备案",
+            url: "/InsuranceManage/CommercialInsuranceFiling/Form",
+            width: "550px",
+            height: "470px",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
         });
     }
 
-    //Sửa
+    //修改
     function btn_edit() {
-        var seleRowid = jQuery("").jqGrid("", "");
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("", '');
+            $.modalAlert("请选中一条信息", 'warning');
             return;
         }
-        var sbbabId = $("").jqGridRowValue().sbbabId;
+        var sbbabId = $("#gridList").jqGridRowValue().sbbabId;
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + sbbabId,
-            width: "",
-            height: "",
+            id: "Form",
+            title: "修改信息",
+            url: "/InsuranceManage/CommercialInsuranceFiling/Form?sbbabId=" + sbbabId,
+            width: "550px",
+            height: "470px",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm();
             }
         });
     }
 
-    //Xóa
+    //删除
     function btn_delete() {
-        var seleRowid = jQuery("").jqGrid("", "");
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("", '');
+            $.modalAlert("请选中一条信息", 'warning');
             return;
         }
-        var sbbabId = $("").jqGridRowValue().sbbabId;
+        var sbbabId = $("#gridList").jqGridRowValue().sbbabId;
         $.deleteForm({
-            url: "",
+            url: "/InsuranceManage/CommercialInsuranceFiling/DeleteForm",
             param: { sbbabId: sbbabId },
             success: function () {
-                $("").trigger("");
+                $("#gridList").trigger("reloadGrid");
             }
         });
     }
 
-    //Chi tiết
+    //详情
     function btn_details() {
-        var seleRowid = jQuery("").jqGrid("", "");
+        var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
-            $.modalAlert("", '');
+            $.modalAlert("请选中一条信息", 'warning');
             return;
         }
-        var count = $("").getGridParam("");
+        var count = $("#gridList").getGridParam("reccount");
         if (count === 0) {
-            $.modalAlert("", '');
+            $.modalAlert("未选中行", 'warning');
             return;
         }
-        var sbbabId = $("").jqGridRowValue().sbbabId;
+        var sbbabId = $("#gridList").jqGridRowValue().sbbabId;
         $.modalOpen({
-            id: "",
-            title: "",
-            url: "" + sbbabId,
-            width: "",
-            height: "",
+            id: "Details",
+            title: "查看机构",
+            url: "/InsuranceManage/CommercialInsuranceFiling/Form?sbbabId=" + sbbabId,
+            width: "550px",
+            height: "570px",
             btn: null
         });
     }

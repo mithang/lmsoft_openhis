@@ -2,65 +2,65 @@
     gridList();
 });
 function gridList() {
-    var $gridList = $("");
+    var $gridList = $("#gridList");
     $gridList.dataGrid({
         treeGrid: true,
-        treeGridModel: "",
-        url: "",
+        treeGridModel: "adjacency",
+        url: "/SystemManage/SysAgInsurChargeCateg/GetsfGridJson",
         height: $(window).height - 96,
         colModel: [
-            { label: '', name: '', hidden: true, key: true },
-            { label: '', name: '', width: 100, algin: '' },
-            { label: '', name: '', width: 100, algin: '' },
-            { label: '', name: '', width: 100, algin: '' },
+            { label: '主键', name: 'dlbh', hidden: true, key: true },
+            { label: '代码', name: 'dl', width: 100, algin: 'left' },
+            { label: '大类', name: 'dlmc', width: 100, algin: 'left' },
+            { label: '拼音', name: 'py', width: 100, algin: 'left' },
             {
-                label: '', name: '', width: 80, align: '',
+                label: '范围', name: 'mzzybz', width: 80, align: 'left',
                 formatter: function (cellvalue) {
-                    if (cellvalue == "") {
-                        return "";
-                    } else if (cellvalue == "") {
-                        return "";
-                    } else if (cellvalue == "") {
-                        return "";
-                    } else if (cellvalue == "") {
-                        return "";
+                    if (cellvalue == "0") {
+                        return "通用";
+                    } else if (cellvalue == "1") {
+                        return "门诊";
+                    } else if (cellvalue == "2") {
+                        return "部门";
+                    } else if (cellvalue == "3") {
+                        return "住院";
                     } else {
                         return "";
                     }
                 }
             },
             {
-                label: '', name: '', width: 100, algin: '',
+                label: '有效', name: 'zt', width: 100, algin: 'left',
                 formatter: function (cellvalue) {
                     if (cellvalue == 0) {
-                        return "";
+                        return "否";
                     } else {
-                        return "";
+                        return "是";
                     }
                 }
             },
-            { label: '', name: '', width: 100, algin: ''},
+            { label: '排序', name: 'px', width: 100, algin: 'left'},
             {
-                label: '', name: '', width: 100, align: '',
-                formatter: "", formatoptions: { srcformat: '', newformat: '' }
+                label: '建档日期', name: 'jdrq', width: 100, align: 'left',
+                formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
             },
-           { label: '', name: '', width: 80, align: '' }
+           { label: '建档人员', name: 'jdry', width: 80, align: 'left' }
         ]
     });
 }
 
-$("").click(function () {
-    $gridList.jqGrid('', {
-        postData: { keyword: $("").val() }
-    }).trigger('');
+$("#btn_search").click(function () {
+    $gridList.jqGrid('setGridParam', {
+        postData: { keyword: $("#txt_keyword").val() }
+    }).trigger('reloadGrid');
 })
 function btn_add() {
     $.modalOpen({
-        id: "",
-        title: "",
-        url: "",
-        width: "",
-        height: "",
+        id: "Form",
+        title: "系统农保收费大类维护",
+        url: "/SystemManage/SysAgInsurChargeCateg/Form",
+        width: "700px",
+        height: "520px",
         callBack: function (iframeId) {
             top.frames[iframeId].submitForm();
         }
@@ -68,13 +68,13 @@ function btn_add() {
 }
 
 function btn_edit() {
-    var keyValue = $("").jqGridRowValue().brsfjmbh;
+    var keyValue = $("#gridList").jqGridRowValue().brsfjmbh;
     $.modalOpen({
-        id: "",
-        title: "",
-        url: "" + keyValue,
-        width: "",
-        height: "",
+        id: "Form",
+        title: "修改信息",
+        url: "/SystemManage/AgInsurChargeCateg/Form?keyValue=" + keyValue,
+        width: "700px",
+        height: "520px",
         callBack: function (iframeId) {
             top.frames[iframeId].submitForm();
         }
@@ -82,22 +82,22 @@ function btn_edit() {
 }
 function btn_delete() {
     $.deleteForm({
-        url: "",
-        param: { keyValue: $("").jqGridRowValue().brsfjmbh },
+        url: "/SystemManage/AgInsurChargeCateg/DeleteForm",
+        param: { keyValue: $("#gridList").jqGridRowValue().brsfjmbh },
         success: function () {
-            $.currentWindow().$("").resetSelection();
-            $.currentWindow().$("").trigger("");
+            $.currentWindow().$("#gridList").resetSelection();
+            $.currentWindow().$("#gridList").trigger("reloadGrid");
         }
     })
 }
 function btn_details() {
-    var keyValue = $("").jqGridRowValue().brsfjmbh;
+    var keyValue = $("#gridList").jqGridRowValue().brsfjmbh;
     $.modalOpen({
-        id: "",
-        title: "",
-        url: "" + keyValue,
-        width: "",
-        height: "",
+        id: "Details",
+        title: "查看机构",
+        url: "/SystemManage/AgInsurChargeCateg/Form?keyValue=" + keyValue,
+        width: "700px",
+        height: "520px",
         btn: null,
     });
 }

@@ -1,7 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "";
-    Layout = "";
+    ViewBag.Title = "患者切换";
+    Layout = "~/Views/Shared/_Form.cshtml";
     var from = (ViewBag.from as string) ?? "";
 }
 <style>
@@ -18,24 +18,24 @@
     <div class="search">
         <table class="form">
             <tr>
-                <th class="formTitle">Số bệnh án/Họ tên：</th>
+                <th class="formTitle">病历号/姓名：</th>
                 <td class="formValue" colspan="2">
-                    <input id="txt_keyword" name="txt_keyword" type="text" class="form-control form-an" placeholder="Vui lòng nhập số bệnh án/Họ tên/首拼" />
+                    <input id="txt_keyword" name="txt_keyword" type="text" class="form-control form-an" placeholder="请输入病历号/姓名/首拼" />
                 </td>
-                <th class="formTitle">Số ngoại trú：</th>
+                <th class="formTitle">门诊号：</th>
                 <td class="formValue">
-                    <input id="txt_mzh" name="txt_mzh" type="text" class="form-control form-an" placeholder="Vui lòng nhập số ngoại trú" />
+                    <input id="txt_mzh" name="txt_mzh" type="text" class="form-control form-an" placeholder="请输入门诊号" />
                 </td>
-                <th class="formTitle">Số nhập viện：</th>
+                <th class="formTitle">住院号：</th>
                 <td class="formValue">
-                    <input id="txt_zyh" name="txt_zyh" type="text" class="form-control form-an" placeholder="Vui lòng nhập số nhập viện" />
+                    <input id="txt_zyh" name="txt_zyh" type="text" class="form-control form-an" placeholder="请输入住院号" />
                 </td>
-                @*<th class="formTitle">Họ tên：</th>
+                @*<th class="formTitle">姓名：</th>
                 <td class="formValue">
-                    <input id="txt_xm" name="txt_xm" type="text" class="form-control form-an form-an-end" placeholder="Vui lòng nhập họ tên hoặc phiên âm đầu" />
+                    <input id="txt_xm" name="txt_xm" type="text" class="form-control form-an form-an-end" placeholder="请输入姓名或首拼" />
                 </td>*@
                 <td style="padding-left: 20px;">
-                    <button type="button" id="btn_search" class="btn btn-primary btn-md">&nbsp;Tra cứu&nbsp;</button>
+                    <button type="button" id="btn_search" class="btn btn-primary btn-md">&nbsp;查询&nbsp;</button>
                 </td>
             </tr>
             <tr>
@@ -44,7 +44,7 @@
         </table>
     </div>
 </div>
-<!--Thông tin bệnh nhân Bao gồm số bệnh án  Họ tên -->
+<!--患者信息 包括病历号  姓名 -->
 <form id="formPatSer" style="margin:2px;margin-top:10px;">
     <div class="gridPanel">
         <table id="patGridList" rel="formPatSer"></table>
@@ -53,14 +53,14 @@
 </form>
 
 <script>
-    var ywlx = $.request("");
+    var ywlx = $.request("ywlx");
     var zyh = "";
     var mzh = "";
-    //Cái trướcwindowĐối tượng
+    //上一个window对象
     var prevWindow;
     var patcenter;
-    if ('' !== '') {
-        prevWindow = top.top.frames[''];
+    if ('@(from)' !== '') {
+        prevWindow = top.top.frames['@(from)'];
     }
     else {
         prevWindow = $.currentWindow();
@@ -69,67 +69,67 @@
     $(function () {
 
         var obj = new Object;
-        obj.blh = $.request("");
+        obj.blh = $.request("blh");
         obj.ywlx = ywlx;
         var searInfo = new PatSearchInfo();
-        //Tải dữ liệu
+        //加载数据
         searInfo.init(obj);
 
-        //$('').keyupEnterEvent(function () {
-        //    $('').trigger('');
+        //$('#txt_xm').keyupEnterEvent(function () {
+        //    $('#btn_search').trigger('click');
         //});
-        if (ywlx == "") {
-            zyh = $("").val();
+        if (ywlx == "zy") {
+            zyh = $("#txt_zyh").val();
         }
         getPatientlist();
-        //Tra cứu
-        $("").click(function () {
+        //查询
+        $("#btn_search").click(function () {
             getPatientlist();
-            //$("").jqGrid('', {
+            //$("#patGridList").jqGrid('setGridParam', {
             //    postData: getPostdata(),
             //    page: 1,
-            //    url: ""
-            //}).trigger('');
+            //    url: "/PatientManage/PatientCenter/PatSearchInfo"
+            //}).trigger('reloadGrid');
         });
     });
     var PatSearchInfo = (function () {
-        //Tải danh sách
+        //加载列表
         var loadGrid = function (data) {
-            var $gridList = $("");
+            var $gridList = $("#patGridList");
             $gridList.dataGrid({
-                datatype: '',
+                datatype: 'local',
                 altRows: true,
                 height: $(window).height() - 200,
                 autowidth: false,
-                width: $("").width() - 10,
-                //url: "",
+                width: $("#formPatSer").width() - 10,
+                //url: "/PatientManage/PatientCenter/PatSearchInfo",
                 postData: getPostdata(),
-                caption: '',
+                caption: '患者信息列表',
                 colModel: [
-                    { label: '', name: '', hidden: true, key: true },
-                    { label: '', name: '', width: 60, align: '' },
-                    { label: '', name: '', width: 60, align: '' },
-                    { label: '', name: '', width: 60, align: '' },
+                    { label: '主键', name: 'patid', hidden: true, key: true },
+                    { label: '病历号', name: 'blh', width: 60, align: 'center' },
+                    { label: '住院号', name: 'zyh', width: 60, align: 'center' },
+                    { label: '病人性质', name: 'brxzmc', width: 60, align: 'center' },
                     {
-                        label: '', name: '', width: 60, align: '', formatter: function (cellvalue) {
-                            return $.enum.getDescByValue("", cellvalue);
+                        label: '状态', name: 'zybz', width: 60, align: 'center', formatter: function (cellvalue) {
+                            return $.enum.getDescByValue("EnumZYBZ", cellvalue);
                         }
                     },
-                    { label: '', name: '', width: 120, align: '' },
-                    { label: '', name: '', hidden: true, width: 120, align: '' },
+                    { label: '姓名', name: 'xm', width: 120, align: 'left' },
+                    { label: '出生年月', name: 'csny', hidden: true, width: 120, align: 'center' },
                     {
-                        label: '', name: '', width: 70, align: '', formatter: function (cellvalue) {
+                        label: '性别', name: 'xb', width: 70, align: 'left', formatter: function (cellvalue) {
                             return $.getGender(cellvalue);
                         }
                     },
                     {
-                        label: '', name: '', width: 50, align: ''
+                        label: '年龄', name: 'nlshow', width: 50, align: 'center'
                     },
-                    { label: '', name: '', width: 100, align: '' },
-                     { label: '', name: '', hidden: true }
+                    { label: '证件号', name: 'zjh', width: 100, align: 'left' },
+                     { label: '', name: 'CreateTime', hidden: true }
                 ],
-                pager: "",
-                sortname: '',
+                pager: "#gridPagerpat",
+                sortname: 'CreateTime desc',
                 viewrecords: true,
                 rowNum: 1000,
                 rowList: [1000]
@@ -142,25 +142,25 @@
 
         }
 
-        //Sự kiện tải
+        //加载事件
         myPatSearchInfo.prototype.init = function (data) {
-            if (data.blh === "") {
-                $("").val("");
+            if (data.blh === "null") {
+                $("#txt_blh").val("");
             } else {
-                $("").val(data.blh);
+                $("#txt_blh").val(data.blh);
             }
             loadGrid(data);
         };
         return myPatSearchInfo;
     }());
 
-    //jqGrid Nhấp đúp để chọn một dòng
+    //jqGrid 双击选中某行
     function btn_edit() {
         PatSearchConfirm();
     }
 
     function PatDbGrid() {
-        var $gridList = $("");
+        var $gridList = $("#patGridList");
         var blh = $gridList.jqGridRowValue().blh;
         var obj = new Object();
         obj.blh = blh;
@@ -168,19 +168,19 @@
         obj.nlshow = $gridList.jqGridRowValue().nlshow;
         obj.xm = $gridList.jqGridRowValue().xm;
         obj.patid = $gridList.jqGridRowValue().patid;
-        obj.startTime = $.currentWindow().$("").val();
-        obj.endTime = $.currentWindow().$("").val();
+        obj.startTime = $.currentWindow().$("#ks").val();
+        obj.endTime = $.currentWindow().$("#js").val();
         var pat = patcenter.find(p => p.zyh == obj.zyh);
         prevWindow.GetPatQueryAjax(pat);
-        //Đóng cửa sổ
+        //关闭窗口
         ReceiptCancle();
     }
-    //Xác nhận Gọi từ trang chính
+    //确定 主页面调用
     function PatSearchConfirm() {
         PatDbGrid();
     }
 
-    //Hủy
+    //取消
     function ReceiptCancle() {
         $.modalClose();
     }
@@ -188,21 +188,21 @@
     function getPostdata() {
         var zyh = "";
         var mzh = "";
-        if (ywlx == "") {
-            zyh = $("").val();
+        if (ywlx == "zy") {
+            zyh = $("#txt_zyh").val();
         }
-        else if (ywlx == "") {
-            mzh = $("").val();
+        else if (ywlx == "mz") {
+            mzh = $("#txt_mzh").val();
         }
-        return { blh: $("").val(), keyword: $("").val(), mzh: mzh, zyh: zyh, ywlx: ywlx };
+        return { blh: $("#txt_blh").val(), keyword: $("#txt_keyword").val(), mzh: mzh, zyh: zyh, ywlx: ywlx };
     }
 
     function getPatientlist()
     {
         $.najax({
-            url: "",
+            url: "/PatientManage/PatientCenter/PatSearchInfo",
             data: getPostdata(),
-            dataType: "",
+            dataType: "json",
             async: false,
             success: function (data) {
                 patcenter = data.rows;
@@ -212,7 +212,7 @@
                     total: function (obj) { return data.total; },
                     records: function (obj) { return data.records; }
                 }
-                $("").setGridParam({ data: data.zyinfolist, localReader: reader }).trigger('');
+                $("#patGridList").setGridParam({ data: data.zyinfolist, localReader: reader }).trigger('reloadGrid');
             }
         });
     }

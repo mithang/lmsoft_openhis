@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Web.Areas.NonTreatmentItemManage.Controllers
 
         #region 项目记账
         /// <summary>
-        /// Lấy số bệnh án theopatId和姓名
+        /// 根据病历号获取patId和姓名
         /// </summary>
         /// <param name="cardNo"></param>
         /// <returns></returns>
@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Web.Areas.NonTreatmentItemManage.Controllers
         }
 
         /// <summary>
-        /// Lưu ghi sổ
+        /// 保存记账
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -133,7 +133,7 @@ namespace Newtouch.HIS.Web.Areas.NonTreatmentItemManage.Controllers
         }
 
         /// <summary>
-        /// Tra cứu
+        /// 查询
         /// </summary>
         /// <returns></returns>
         public ActionResult SelectNonTreatmentItemList(Pagination pagination, string sfdl, string keyword, string smry, string smks, DateTime? kssj, DateTime? jssj,string kehu, string zyh, string blh)
@@ -161,7 +161,7 @@ namespace Newtouch.HIS.Web.Areas.NonTreatmentItemManage.Controllers
 
         #region 记账退费
         /// <summary>
-        /// Tra cứu
+        /// 查询
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="smry"></param>
@@ -186,7 +186,7 @@ namespace Newtouch.HIS.Web.Areas.NonTreatmentItemManage.Controllers
         }
 
         /// <summary>
-        /// Lưu hoàn phí
+        /// 保存退费
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -207,11 +207,11 @@ namespace Newtouch.HIS.Web.Areas.NonTreatmentItemManage.Controllers
                 entity.zyh = item.zyh;
                 entity.sfxmCode = item.sfxmCode;
                 entity.dlCode = item.dlCode;
-                entity.sl = 0-item.tsl.Value;    //số lượng của trả lại
-                entity.dj = item.dj.Value;    //số lượng của trả lại
-                entity.je = 0-item.tje.Value;    //số tiền của trả lại
-                entity.cxry = OperatorProvider.GetCurrent().UserCode;   //Hủy nhân viên
-                entity.cxrq = DateTime.Now;    //Hủy ngày
+                entity.sl = 0-item.tsl.Value;    //退的数量
+                entity.dj = item.dj.Value;    //退的数量
+                entity.je = 0-item.tje.Value;    //退的金额
+                entity.cxry = OperatorProvider.GetCurrent().UserCode;   //撤销人员
+                entity.cxrq = DateTime.Now;    //撤销日期
                 entity.cxjfbId = item.jfbId;    //撤销对应的jfbId
                 entity.blh = item.blh;
                 entity.patId = item.patId;
