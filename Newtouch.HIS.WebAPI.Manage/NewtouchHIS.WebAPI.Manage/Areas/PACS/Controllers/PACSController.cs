@@ -93,7 +93,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PACS.Controllers
 
 
         /// <summary>
-        /// lấypacskết quả báo cáo（金风易通版）
+        /// lấypacskết quả báo cáo(bản 金风易通)
         /// </summary>
         /// <param name="post"></param>
         /// <returns></returns>

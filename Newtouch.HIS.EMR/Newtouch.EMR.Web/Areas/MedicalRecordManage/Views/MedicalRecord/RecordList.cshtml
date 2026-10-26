@@ -157,10 +157,10 @@
 
 	function GetQueryValue(queryName) {
 		var query = decodeURI(window.location.search.substring(1));//Giải mã url, nếu không phải liên kết địa chỉ hiện tại thì có thể điền liên kết cần thiết tại đây
-		var vars = query.split("&");//分割字符串，将url切割成数组形式的对象
+		var vars = query.split("&");//Tách chuỗi, chuyểnurlthành đối tượng dạng mảng
 		for (var i = 0; i < vars.length; i++) {
-			var pair = vars[i].split("=");//再次分割成数组
-			if (pair[0] == queryName) { return pair[1]; }//如果匹配输出结果
+			var pair = vars[i].split("=");//Tách lại thành mảng
+			if (pair[0] == queryName) { return pair[1]; }//Nếu khớp thì xuất kết quả
 
 		}
 		return null;

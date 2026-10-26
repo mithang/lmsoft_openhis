@@ -98,10 +98,10 @@
 
 	function GetQueryValue(queryName) {
 		var query = decodeURI(window.location.search.substring(1));//Giải mã url, nếu không phải liên kết địa chỉ hiện tại thì có thể điền liên kết cần thiết tại đây
-		var vars = query.split("&");//分割字符串，将url切割成数组形式的对象
+		var vars = query.split("&");//Tách chuỗi, chuyểnurlthành đối tượng dạng mảng
 		for (var i = 0; i < vars.length; i++) {
-			var pair = vars[i].split("=");//再次分割成数组
-			if (pair[0] == queryName) { return pair[1]; }//如果匹配输出结果
+			var pair = vars[i].split("=");//Tách lại thành mảng
+			if (pair[0] == queryName) { return pair[1]; }//Nếu khớp thì xuất kết quả
 
 		}
 		return null;
@@ -150,7 +150,7 @@
 				debugger;
 				console.log("打印字体处理");
 				var styleDom = document.createElement("style");
-				// 解决宋体In问题
+				// Giải quyết 宋体Invấn đề
 				var cssStr = "@@font-face {font-family: 宋体;src: local('宋体');}";
 				styleDom.innerHTML = cssStr;
 				var page = PrintPreviewDoc.querySelector("div[pageindex]");
@@ -163,7 +163,7 @@
 				console.log("DocumentLoad")
 				var doc = ctl.GetContentDocument();
 				var styleDom = document.createElement("style");
-				// 解决宋体In问题
+				// Giải quyết 宋体Invấn đề
 				var cssStr = "@@font-face {font-family: 宋体;src: local('宋体');}";
 				styleDom.innerHTML = cssStr;
 				var page = doc.querySelector("div[pageindex]");

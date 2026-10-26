@@ -73,7 +73,7 @@
         //var ctl = document.getElementById("myWriterControl");
         //ctl.style.height = "800px";
         //ctl.Options.workspacebackcolorstring = "#66CCCC"
-        //打开文档
+        //Mở tài liệu
         function FileOpen() {
             debugger;
             if (yzlx.split("|")[0] == "hljld" || yzlx.includes("长期医嘱") == true || yzlx.includes("临时医嘱") == true)
@@ -122,7 +122,7 @@
             setTimeout(function () { dcdatabinding(); }, 200)
         }
 
-        //初始加载
+        //Tải ban đầu
         function dcdatabinding() {
             var ctl = document.getElementById("myWriterControl");
             if (ctl != null) {
@@ -170,7 +170,7 @@
             //    //BindingDCWriterClientControl(ctl);
             //    ctl.EventAfterPrintPreview = function (PrintPreviewDoc) {
             //        var styleDom = document.createElement("style");
-            //        // 解决宋体In问题
+            //        // Giải quyết 宋体Invấn đề
             //        var cssStr = "@@font-face {font-family: 宋体;src: local('宋体');}";
             //        styleDom.innerHTML = cssStr;
             //        var page = PrintPreviewDoc.querySelector("div[pageindex]");

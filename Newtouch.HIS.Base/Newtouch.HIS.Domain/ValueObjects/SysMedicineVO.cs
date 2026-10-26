@@ -491,7 +491,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public string ybgg { get; set; }
         
-        //Tạm thời là 国药准字
+        //Tạm thời là Số phê duyệt thuốc quốc gia
         public string ypzsm { get; set; }
         public int? kcyjz { get; set; }
     }

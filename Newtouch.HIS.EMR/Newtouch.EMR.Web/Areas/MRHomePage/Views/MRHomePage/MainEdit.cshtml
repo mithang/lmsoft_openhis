@@ -2,7 +2,7 @@
 @{
     Layout = null;
     var justshow = ViewBag.justshow;
-    //报表链接
+    //Liên kết báo cáo
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
     var reportSystemCode = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportSystemCode");
 }
@@ -292,12 +292,12 @@
     }
 
     function amountcheck(str) {
-        //金额 只允许正数
+        //Số tiền chỉ cho phép số dương
         //var exp = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/; 
-        //金额 允许正（+）负数
+        //Số tiền cho phép dương(+)số âm
         //var exp = /(^([+-]?)[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^([+-]?)(0){1}$)|(^([+-]?)[0-9]\.[0-9]([0-9])?$)/; 
 
-        //金额 允许正负数
+        //Số tiền cho phép số dương và âm
         var exp = /(^([-]?)[1-9]([0-9]+)?(\.[0-9]{1,4})?$)|(^([-]?)(0){1}$)|(^([-]?)[0-9]\.[0-9]([0-9])?$)/;
         if (exp.test(str)) {
             return true;
@@ -305,7 +305,7 @@
             return false;
         }
     }
-    //费用格式校验
+    //Kiểm tra định dạng chi phí
     function amtCheck() {
         var jecheck = "";
         $("#dv_fee input[attr-desc]").each(
@@ -580,9 +580,9 @@
         if (para.CYSJ != "") {
             // Tính hiệu mili giây giữa hai ngày
             var differenceInMilliseconds = Date.parse(para.CYSJ) - Date.parse(para.RYSJ);
-            // 将毫秒差转换为天数（不包含不满一天的部分）
+            // Chuyển đổi chênh lệch mili giây thành số ngày(không bao gồm phần chưa đủ một ngày)
             var days = Math.floor(differenceInMilliseconds / 1000 / 86400);
-            // 如果有剩余的毫秒（即不满一天的部分），加一天
+            // Nếu còn dư mili giây(tức là phần chưa đủ một ngày), cộng thêm một ngày
             if (differenceInMilliseconds % (1000 * 86400) !== 0) {
                 days += 1;
             }
@@ -1050,7 +1050,7 @@
         window.open(url + "&orgId=" + orgId + "&zyh=" + zyh);
 
     }
-    /*In副页*/
+    /*Intrang phụ*/
     function newtouch_event_f9() {
         var zyh = $("#ZYH").val();
         var url = '@reportUrl' + "?tempCode=1296" + "&hospitalCode=" + orgId + "&systemCode=" + '@reportSystemCode';

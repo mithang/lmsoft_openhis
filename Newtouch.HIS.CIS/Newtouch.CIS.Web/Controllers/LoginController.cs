@@ -117,7 +117,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 return RedirectToAction("Index", "Login");  //chưa cấu hình đổi danh tínhAPIĐịa chỉ
             }
-            //向APIYêu cầu đổi danh tính
+            //TớiAPIYêu cầu đổi danh tính
             var sw = new Stopwatch();
             sw.Start();
             var reqObj = new

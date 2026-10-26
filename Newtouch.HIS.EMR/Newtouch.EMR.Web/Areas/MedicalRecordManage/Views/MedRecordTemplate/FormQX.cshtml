@@ -369,7 +369,7 @@
     //Giá trị mục đích setval
     function setCheckRead(rowId) {
         var checked = $("#gridList").find("input[name='ck_read_" + rowId + "']").is(':checked');
-        if (checked)//选中当前
+        if (checked)//Chọn hiện tại
         {
             $("#gridList").find("input[name='ck_edit_" + rowId + "']").attr("checked", false);
             $("#gridList").jqGrid('setCell', rowId, "ctrlLevel", '@((int)EnummbqxFp.read)');
@@ -378,7 +378,7 @@
 
     function setCheckEdit(rowId) {
         var checked = $("#gridList").find("input[name='ck_edit_" + rowId + "']").is(':checked');
-        if (checked) //选中当前
+        if (checked) //Chọn hiện tại
         {
             $("#gridList").find("input[name='ck_read_" + rowId + "']").attr("checked", false);
             $("#gridList").jqGrid('setCell', rowId, "ctrlLevel", '@((int)EnummbqxFp.edit)');

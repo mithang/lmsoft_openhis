@@ -214,9 +214,9 @@
                         checkBox.push(values);
                         
                         var rowArr = $("#gridListxz").jqGrid('getRowData');// Lấy tất cả dữ liệu dòng sẽ có mộtbug thiếu dòng cuối cùng
-                        //处理少一行bug
+                        //Xử lý thiếu một hàngbug
                         var allCountID = $("#gridListxz").jqGrid('getDataIDs'); //Tại đây lấy tất cả dòng, id khóa chính là đầy đủ
-                        rowArr.push($("#gridListxz").jqGrid('getRowData', allCountID[allCountID.length - 1]));  //单独用最后一个 ID 获取行数据 并 追加到 集合里
+                        rowArr.push($("#gridListxz").jqGrid('getRowData', allCountID[allCountID.length - 1]));  //Dùng riêng hàng cuối cùng ID Lấy dữ liệu hàng và thêm vào trong tập hợp
                         
                         if (rowArr == null || rowArr == "") {
                             addRowData(values.Id, values.yznr);
@@ -252,9 +252,9 @@
                        
 
                         var rowArr = $("#gridListxz").jqGrid('getRowData');// Lấy tất cả dữ liệu dòng sẽ có mộtbug thiếu dòng cuối cùng
-                        //处理少一行bug
+                        //Xử lý thiếu một hàngbug
                         var allCountID = $("#gridListxz").jqGrid('getDataIDs'); //Tại đây lấy tất cả dòng, id khóa chính là đầy đủ
-                        rowArr.push($("#gridListxz").jqGrid('getRowData', allCountID[allCountID.length - 1]));  //单独用最后一个 ID 获取行数据 并 追加到 集合里
+                        rowArr.push($("#gridListxz").jqGrid('getRowData', allCountID[allCountID.length - 1]));  //Dùng riêng hàng cuối cùng ID Lấy dữ liệu hàng và thêm vào trong tập hợp
                         
                     }
                 }
@@ -292,7 +292,7 @@
     }
 
 
-    //选中内容展示
+    //Hiển thị nội dung đã chọn
         jQuery("#gridListxz").jqGrid(
             {
                 colModel: [
@@ -323,9 +323,9 @@
 
 
         var rowArr = $("#gridListxz").jqGrid('getRowData');// Lấy tất cả dữ liệu dòng sẽ có mộtbug thiếu dòng cuối cùng
-        //处理少一行bug
+        //Xử lý thiếu một hàngbug
         var allCountID = $("#gridListxz").jqGrid('getDataIDs'); //Tại đây lấy tất cả dòng, id khóa chính là đầy đủ
-        rowArr.push($("#gridListxz").jqGrid('getRowData', allCountID[allCountID.length - 1]));  //单独用最后一个 ID 获取行数据 并 追加到 集合里
+        rowArr.push($("#gridListxz").jqGrid('getRowData', allCountID[allCountID.length - 1]));  //Dùng riêng hàng cuối cùng ID Lấy dữ liệu hàng và thêm vào trong tập hợp
 
 
 
@@ -394,7 +394,7 @@
 
     //Xóa dòng đã chọn
     function DeleteSelectRow() {
-        //获取选中行rowId
+        //Lấy hàng đã chọnrowId
         var ids = jQuery("#gridListxz").jqGrid("getGridParam", "selarrrow");
         //Xóa dòng
         for (var i = ids.length - 1; i >= 0; i--) {

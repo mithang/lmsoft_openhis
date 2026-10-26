@@ -71,7 +71,7 @@
         .catch(function(error) {
             console.error("编辑器初始化失败:", error);
         });
-        // 获取测试用数据
+        // Lấy dữ liệu thử nghiệm
         function mockDemoContent() {
             return fetch('http://127.0.0.1:3071/hmEditor/demo/file/admission_record.html')
                .then(function (response) { return response.text(); });

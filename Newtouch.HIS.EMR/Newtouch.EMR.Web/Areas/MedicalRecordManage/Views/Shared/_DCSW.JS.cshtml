@@ -615,7 +615,7 @@
             document.querySelectorAll('#list dl>div')[i].append(dd3);
         }
         //contentHtml.querySelectorAll('span[innerid]')
-        //获取当前点击的节点
+        //Lấy nút được nhấp hiện tại
         $(contentHtml).on('click', function () {
             debugger;
             var target = ctl.CurrnetElement(function (element) {
@@ -646,7 +646,7 @@
             }
         })
 
-        //点击列表项时回调
+        //Gọi lại khi nhấp vào mục danh sách
         $('#list dl>div').on('click', function (e) {
             debugger;
             //let res = ctl.SelectSubDocument(modifyRecord[0].NativeHandle);
@@ -984,7 +984,7 @@
     //WebWriterControl_51_Init();
 
     //if (typeof (Sys) != 'undefined' && Sys.WebForms && Sys.WebForms.PageRequestManager && Sys.WebForms.PageRequestManager.getInstance) {
-    //    // 遇到ASP.NET AJAX框架
+    //    // Gặp phảiASP.NET AJAXkhung
     //    Sys.WebForms.PageRequestManager.getInstance().add_endRequest(WebWriterControl_51_Init);
     //}
 
@@ -1025,7 +1025,7 @@
         debugger;
          // Lấy phần tử chứa điều khiển
         var ctl = document.getElementById("myWriterControl");
-        // 绑定控件
+        // Liên kết điều khiển
         //BindingDCWriterClientControl(ctl);
         // Tạo khung trình soạn thảo
         //ctl.BuildFrame(function () {
@@ -1056,7 +1056,7 @@
                 console.log("粘贴时找到编辑器的剪切板");
             }
             var pastedText = clipboardData.getData("Text");//Lấy dữ liệu bảng tạm       
-            pastedText = pastedText.replace(/[\[\]]/g, "")//去除输入域的前后边框      
+            pastedText = pastedText.replace(/[\[\]]/g, "")//Loại bỏ viền trước và sau của trường nhập      
             ctl.DCExecuteCommand('Spechars', false, pastedText);//Chèn văn bản thuần     
             return false;//Chặn dán   
         }
@@ -1130,15 +1130,15 @@
         if (!btn) { return; }
         this.btn = btn;
         opt = opt || {};
-        this.box = null;//弹框
+        this.box = null;//Hộp thoại
         this.inBox = null;
         this.pickUnLight = null;
         this.pickLight = null;
         this.status = null;
-        this.minSize = opt.min || [5, 5];//最小列数和行数
-        this.maxSize = opt.max || [15, 15];//最大列数和行数
-        this.insert = opt.insert;//回调
-        this.nowSize = [];//当前选择尺寸
+        this.minSize = opt.min || [5, 5];//Số cột và số hàng tối thiểu
+        this.maxSize = opt.max || [15, 15];//Số cột và số hàng tối đa
+        this.insert = opt.insert;//Hàm gọi lại
+        this.nowSize = [];//Kích thước lựa chọn hiện tại
         this.isInit = { create: false, bind: false };
         this.bind();
     }
@@ -1167,12 +1167,12 @@
         },
         bind: function () {
             var T = this,
-                pos,//弹框显示位置
+                pos,//Vị trí hiển thị hộp thoại
                 m,
-                bPos,//弹框可选区域位置
-                mPos;//鼠标位置
+                bPos,//Vị trí vùng có thể chọn của hộp thoại
+                mPos;//Vị trí chuột
             this.btn.click(function () {
-                if (!T.isInit.create) { T.init(); }//初始化弹框
+                if (!T.isInit.create) { T.init(); }//Khởi tạo hộp thoại
                 if (!T.isInit.bind) { B(); }//Khởi tạo sự kiện
                 m = $(this);
                 if (T.box.is(":hidden")) {
@@ -1202,8 +1202,8 @@
                         y: e.clientY
                     }
                     if (mPos.x < bPos.left || mPos.y < bPos.top) { return; }
-                    T.nowSize[0] = Math.ceil((mPos.x - bPos.left) / 18);//列数
-                    T.nowSize[1] = Math.ceil((mPos.y - bPos.top) / 18);//行数
+                    T.nowSize[0] = Math.ceil((mPos.x - bPos.left) / 18);//Số cột
+                    T.nowSize[1] = Math.ceil((mPos.y - bPos.top) / 18);//Số hàng
                     if (T.nowSize[0] >= T.minSize[0] && T.nowSize[0] < T.maxSize[0]) {
                         T.setBg(T.nowSize[0] + 1, 0);
                     } else if (T.nowSize[0] < T.minSize[0]) {
@@ -1244,7 +1244,7 @@
                 this.pickUnLight.height(size + 'em');
             }
         },
-        //隐藏弹框
+        //Ẩn hộp thoại
         hide: function () {
             var T = this;
             this.box.fadeOut(100, function () {
@@ -1287,15 +1287,15 @@
         var div = document.getElementById('myWriterControl_Dialog');
         var disX = 0;
         var disY = 0;
-        document.onmousedown = function (ev) {  //鼠标按下
+        document.onmousedown = function (ev) {  //Nhấn chuột
             var oEvent = ev || event;       //Kiểm tra tính tương thích của trình duyệt
-            disX = oEvent.clientX - myWriterControl_Dialog.offsetLeft;    //鼠标横坐标点到div的offsetLeft距离
-            disY = oEvent.clientY - myWriterControl_Dialog.offsetTop;     //鼠标纵坐标点到div的offsetTop距离
-            document.onmousemove = function (ev) {      //鼠标移动
+            disX = oEvent.clientX - myWriterControl_Dialog.offsetLeft;    //Điểm tọa độ ngang của chuột tớidivcủaoffsetLeftkhoảng cách
+            disY = oEvent.clientY - myWriterControl_Dialog.offsetTop;     //Điểm tọa độ dọc của chuột tớidivcủaoffsetTopkhoảng cách
+            document.onmousemove = function (ev) {      //Di chuyển chuột
                 var oEvent = ev || event;
-                var l = oEvent.clientX - disX;          //获取div左边的距离
-                var t = oEvent.clientY - disY;          //获取div上边的距离
-                if (l < 0) {        //判断div的可视区，为避免DIV失去鼠标点
+                var l = oEvent.clientX - disX;          //Lấydivkhoảng cách phía bên trái
+                var t = oEvent.clientY - disY;          //Lấydivkhoảng cách phía bên trên
+                if (l < 0) {        //Kiểm tradivvùng hiển thị, Để tránhDIVmất điểm chuột
                     l = 0;
                 }
                 else if (l > document.documentElement.clientWidth - div.offsetWidth) {

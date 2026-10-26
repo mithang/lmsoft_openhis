@@ -1384,7 +1384,7 @@
         options["ListItems"] = $.parseJSON(tiemlist);
         var field = ctl.DCExecuteCommand("InsertInputField", true, options);
         if (field != null) {
-            ctl.FocusAdjacent("afterEnd", field); //这里的第一个参数可以是beforeBegin,afterBegin,beforeEnd,afterEnd
+            ctl.FocusAdjacent("afterEnd", field); //Tham số đầu tiên ở đây có thể làbeforeBegin,afterBegin,beforeEnd,afterEnd
         }
     }
     //Ràng buộc danh sách thả xuống
@@ -1419,7 +1419,7 @@
         options["ListItems"] = $.parseJSON(tiemlist);
         var field = ctl.DCExecuteCommand("InsertInputField", true, options);
         if (field != null) {
-            ctl.FocusAdjacent("afterEnd", field); //这里的第一个参数可以是beforeBegin,afterBegin,beforeEnd,afterEnd
+            ctl.FocusAdjacent("afterEnd", field); //Tham số đầu tiên ở đây có thể làbeforeBegin,afterBegin,beforeEnd,afterEnd
         }
     }
     function InsertInputField(data) {
@@ -1733,7 +1733,7 @@
         //        BindingDCWriterClientControl(ctl);
         //        ctl.EventAfterPrintPreview = function (PrintPreviewDoc) {
         //            var styleDom = document.createElement("style");
-        //             解决宋体In问题
+        //             Giải quyết 宋体Invấn đề
         //            var cssStr = "@@font-face {font-family: 宋体;src: local('宋体');}";
         //            styleDom.innerHTML = cssStr;
         //            var page = PrintPreviewDoc.querySelector("div[pageindex]");
@@ -1746,7 +1746,7 @@
         //}
         //Build();
         //var ctl = document.getElementById("myWriterControl");
-        //// 绑定控件
+        //// Liên kết điều khiển
         //BindingDCWriterClientControl(ctl);
         //var data = "";
         // Tạo khung trình soạn thảo
@@ -1774,15 +1774,15 @@
         if (!btn) { return; }
         this.btn = btn;
         opt = opt || {};
-        this.box = null; //弹框
+        this.box = null; //Hộp thoại
         this.inBox = null;
         this.pickUnLight = null;
         this.pickLight = null;
         this.status = null;
-        this.minSize = opt.min || [5, 5]; //最小列数和行数
-        this.maxSize = opt.max || [15, 15]; //最大列数和行数
-        this.insert = opt.insert; //回调
-        this.nowSize = []; //当前选择尺寸
+        this.minSize = opt.min || [5, 5]; //Số cột và số hàng tối thiểu
+        this.maxSize = opt.max || [15, 15]; //Số cột và số hàng tối đa
+        this.insert = opt.insert; //Hàm gọi lại
+        this.nowSize = []; //Kích thước lựa chọn hiện tại
         this.isInit = { create: false, bind: false };
         this.bind();
     }
@@ -1811,12 +1811,12 @@
         },
         bind: function () {
             var T = this,
-                pos, //弹框显示位置
+                pos, //Vị trí hiển thị hộp thoại
                 m,
-                bPos, //弹框可选区域位置
-                mPos; //鼠标位置
+                bPos, //Vị trí vùng có thể chọn của hộp thoại
+                mPos; //Vị trí chuột
             this.btn.click(function () {
-                if (!T.isInit.create) { T.init(); } //初始化弹框
+                if (!T.isInit.create) { T.init(); } //Khởi tạo hộp thoại
                 if (!T.isInit.bind) { B(); } //Khởi tạo sự kiện
                 m = $(this);
                 if (T.box.is(":hidden")) {
@@ -1847,8 +1847,8 @@
                         y: e.clientY
                     }
                     if (mPos.x < bPos.left || mPos.y < bPos.top) { return; }
-                    T.nowSize[0] = Math.ceil((mPos.x - bPos.left) / 18); //列数
-                    T.nowSize[1] = Math.ceil((mPos.y - bPos.top) / 18); //行数
+                    T.nowSize[0] = Math.ceil((mPos.x - bPos.left) / 18); //Số cột
+                    T.nowSize[1] = Math.ceil((mPos.y - bPos.top) / 18); //Số hàng
                     if (T.nowSize[0] >= T.minSize[0] && T.nowSize[0] < T.maxSize[0]) {
                         T.setBg(T.nowSize[0] + 1, 0);
                     } else if (T.nowSize[0] < T.minSize[0]) {
@@ -1889,7 +1889,7 @@
                 this.pickUnLight.height(size + 'em');
             }
         },
-        //隐藏弹框
+        //Ẩn hộp thoại
         hide: function () {
             var T = this;
             this.box.fadeOut(100, function () {
@@ -1927,7 +1927,7 @@
             //this.btn.after(html);
         }
     });
-    // 关闭按钮
+    // Nút đóng
     $("#closeimg").click(function () {
         $("#tszfa").hide();
         $("#mask").hide();
@@ -2032,7 +2032,7 @@
                     btn.style.width = "200px";
                     btn.onclick = function () {
                         args.setValue(
-                            this.value, // 输入域文本值
+                            this.value, // Giá trị văn bản của trường nhập
                             this.value + "_value");// Trường nhậpGiá trị số
                         args.close();// Đóng danh sách thả xuống
                     };
@@ -2064,8 +2064,8 @@
         var Rightdirection = $(".RightdirectionNumber").val();
         var opts = {
             "PaperKind": "Custom",//Tùy chỉnh
-            "PaperWidth": direction,//宽度
-            "PaperHeight": broadWise,//高度
+            "PaperWidth": direction,//Chiều rộng
+            "PaperHeight": broadWise,//Chiều cao
             "TopMargin": Topdirection,//Lề trên
             "BottomMargin": Bottomdirection,//Lề dưới
             "LeftMargin": Leftdirection,//Lề trái
@@ -2731,14 +2731,14 @@
                         dcHead.appendChild(ContextMenuCss);
                         ContextMenuCss.innerHTML = newCssString;
 
-                        //页面滚动
+                        //Cuộn trang
                         pageContainer.addEventListener('scroll', function () {
                             var hasContextMenu = rootElement.querySelector('#dcContextMenu');
                             if (hasContextMenu) {
                                 hasContextMenu.remove();
                             }
                         })
-                        //丢失焦点
+                        //Mất tiêu điểm
                         window.addEventListener('blur', function () {
                             var hasContextMenu = rootElement.querySelector('#dcContextMenu');
                             if (hasContextMenu) {
@@ -2805,7 +2805,7 @@
                         }
                     }
                     var pageElement = menuObj.PageElement;
-                    //计算展示的高度
+                    //Tính chiều cao hiển thị
                     var minHeight = pageContainer.scrollTop;
                     var maxHeight = minHeight + pageContainer.clientHeight;
                     containerHeight = containerHeight ? containerHeight + 6 : 0
@@ -2815,24 +2815,24 @@
                     var menuLastHeight = cursorTop + containerHeight;
                     //Tính khoảng cách phía dưới cùng có đủ hiển thị đầy đủ hay không
                     if (menuLastHeight > maxHeight) {
-                        //显示不全
+                        //Hiển thị không đầy đủ
                         var topHasSpacing = -minHeight;
                         //Kiểm tra phía trên có tồn tại khoảng cách đủ hay không
                         if (topHasSpacing > containerHeight) {
-                            //距离足够
+                            //Khoảng cách đủ
                             hasContextMenu.style.top = cursorTop - containerHeight + 'px'
                         } else {
-                            //距离不够
+                            //Khoảng cách không đủ
                             if ((maxHeight - cursorTop) > (cursorTop - minHeight)) {
-                                //下方的距离大于上方
+                                //Khoảng cách phía dưới lớn hơn phía trên
                                 hasContextMenu.style.top = cursorTop + 'px';
                             } else {
-                                //上方的距离大于下方
+                                //Khoảng cách phía trên lớn hơn phía dưới
                                 hasContextMenu.style.top = cursorTop - containerHeight + 'px'
                             }
                         }
                     } else {
-                        //显示全
+                        //Hiển thị đầy đủ
                         hasContextMenu.style.top = cursorTop + 'px';
                     }
                     hasContextMenu.style.display = 'block';

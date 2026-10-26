@@ -337,7 +337,7 @@
     function getQueryString(name) {
         // Khớp tham số mục tiêu
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-        var result = window.location.search.substr(1).match(reg); // 对querystringKhớp tham số mục tiêu
+        var result = window.location.search.substr(1).match(reg); // Đối vớiquerystringKhớp tham số mục tiêu
         if (result != null) {
             return decodeURIComponent(result[2]);
         } else {

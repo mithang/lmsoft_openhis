@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 
 // sẽ ComVisible Đặt thành false sẽ làm cho loại trong assembly này
-// 对 COM Thành phần không hiển thị. Nếu cần
+// Đối với COM Thành phần không hiển thị. Nếu cần
 // từ COM Truy cập một loại trong assembly này, vui lòng đối với loại đó đặt ComVisible Đặc tính đặt thành true。
 [assembly: ComVisible(false)]
 

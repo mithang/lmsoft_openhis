@@ -44,7 +44,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string ypmc { get; set; }
 
         /// <summary>
-        /// Desc:ví dụ phía trước nhất：(甲) (乙10%)……
+        /// Desc:ví dụ phía trước nhất:(Giáp) (Ất10%)...
         /// Default:
         /// Nullable:True
         /// </summary>           

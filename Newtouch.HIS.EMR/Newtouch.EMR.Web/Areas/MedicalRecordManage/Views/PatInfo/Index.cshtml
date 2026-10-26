@@ -456,14 +456,14 @@
             $('.ul-zbq').append(li);
         });
     }
-    /****选项卡****/
-    //当前选中病人对象
+    /****Thẻ tab****/
+    //Đối tượng bệnh nhân đang được chọn
 
     var currentPatient = {};
     var zbqPatientList;
     $(function () {
         init();
-        //搜索统计选项卡切换
+        //Chuyển đổi thẻ tab thống kê tìm kiếm
         $(".nav-tabs li").click(function () {
             clearSelectpatient();
             if ($(this)[0].id === "linkzbq") {
@@ -559,7 +559,7 @@
 
     function initzbq() {
         $(".ul-zbq").children("li").remove();
-        //初始化jqgrid
+        //Khởi tạojqgrid
         div_zbqList();
         $('#gbox_div_zbqList').hide();//Mặc định ẩn jqgrid
         //Yêu cầu thông tin bệnh nhân trong khu bệnh
@@ -606,7 +606,7 @@
         });
     }
 
-    /****已出区******/
+    /****Khu vực đã xuất viện******/
     function initycq() {
         div_ycqList();
 
@@ -681,7 +681,7 @@
         pager: "#div_ycqgridPager",
         sortname: 'cqrq desc',
         gridComplete: function () {
-            //隐藏grid底部滚动条
+            //Ẩngridthanh cuộn dưới cùng
             $("#div_ycqList").closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
         },
         onSelectRow: function (rowid) {
@@ -702,7 +702,7 @@
     }
     }
 
-    /*****获取My************/
+    /*****LấyMy************/
     function ajaxrequestmy() {
         if (validateSearch()) {
 
@@ -803,7 +803,7 @@
         pager: "#div_mygridPager",
         sortname: 'cqrq desc',
         gridComplete: function () {
-            //隐藏grid底部滚动条
+            //Ẩngridthanh cuộn dưới cùng
             $("#div_myList").closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
         },
         onSelectRow: function (rowid) {

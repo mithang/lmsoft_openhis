@@ -329,7 +329,7 @@
                 //Đánh giá có thể bắt đầu khám không (đang chờ khám)
             }
             //2.checkCó thể bắt đầu lần khám mới không
-            //Tra cứu bệnh nhân này Cùng một khoa Khám ngoại trú cấp cứu Chuyên gia 等 Lần khám cuối cùng  Trạng thái khám
+            //Tra cứu bệnh nhân này Cùng một khoa Khám ngoại trú cấp cứu Chuyên gia v.v. Lần khám cuối cùng  Trạng thái khám
             var historyLastTreat = null;
             $.ajax({
                 type: "POST",
@@ -446,7 +446,7 @@
         syncPresChargeStatus(selRowData.blh, false);
 
         //2.checkCó thể khôi phục khám không
-        //Tra cứu bệnh nhân này Cùng một khoa Khám ngoại trú cấp cứu Chuyên gia 等 Lần khám cuối cùng  Trạng thái khám
+        //Tra cứu bệnh nhân này Cùng một khoa Khám ngoại trú cấp cứu Chuyên gia v.v. Lần khám cuối cùng  Trạng thái khám
         var historyLastTreat = null;
         $.ajax({
             type: "POST",

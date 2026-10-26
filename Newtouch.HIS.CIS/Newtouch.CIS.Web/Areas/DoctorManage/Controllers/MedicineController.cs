@@ -392,7 +392,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                 });
                 prescriptions.Add(pres);
             } 
-            // 把 prescriptions Thêm vào request
+            // Đưa prescriptions Thêm vào request
             request.Prescriptions = prescriptions;
             var hlyyProxy = new HlyyProxy();
             var engineRes = hlyyProxy.engine(request);

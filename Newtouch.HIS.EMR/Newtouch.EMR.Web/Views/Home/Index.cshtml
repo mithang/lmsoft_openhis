@@ -1,7 +1,7 @@
 ﻿@using Newtouch.Core.Common.Utils;
 @{
     Layout = null;
-    //是否页面加载时就必须选择Org
+    //Có phải khi trang tải thì bắt buộc phải chọnOrg
     var mediOrgList = ViewBag.MediOrgList as IList<FrameworkBase.MultiOrg.Domain.Entity.SysOrganizeVEntity>;
     //Có phải khi trang tải thì bắt buộc phải chọn Org hay không
     var needChooseOrg = (ViewBag.NeedChooseOrg as bool?) ?? false;
@@ -311,7 +311,7 @@
         }
 
         $(function () {
-            //Home/Index加载时强制选择医疗机构
+            //Home/IndexKhi tải bắt buộc chọn cơ sở y tế
             @Html.Raw(needChooseOrg ? "setTimeout('showSwitchOrgPrompt(true);', 1200)" : "")
         });
     </script>

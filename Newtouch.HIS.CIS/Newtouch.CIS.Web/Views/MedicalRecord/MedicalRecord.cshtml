@@ -266,7 +266,7 @@
 
                 <div class="dv-right" style="width:92%;margin-left:27%">
                     <span id="toolbar_ctgl">
-                        @*<a class="btn  " id="biaoqian">词<br /><br />mục</a>*@
+                        @*<a class="btn  " id="biaoqian">Từ<br /><br />mục</a>*@
 
                         <a class="btn  " onclick="ct_btn_add()" style="width:25px;height:30px;" title="Thêm">
                             <i class="fa fa-plus"></i>
@@ -1507,7 +1507,7 @@
             }
             //3.Điền chẩn đoán
             if (ajaxresp.xyzdList && ajaxresp.xyzdList.length && ajaxresp.xyzdList.length > 0) {
-                for (var i = 1; i < ajaxresp.xyzdList.length; i++) {    //từ1Bắt đầu 有个主
+                for (var i = 1; i < ajaxresp.xyzdList.length; i++) {    //từ1Bắt đầu có một chẩn đoán chính
                     //trướcappend
                     var number = $('#tablexyzd .zdText').length + 1;
                     var $newTr = $('<tr><th class="formTitle">副</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td class="formValue"><input type="text" id="ywxs' + number + '" name="ywxs' + number + '" class="form-control activeValue focusInput ywxsText" style="width:100%;" placeholder="Vui lòng chọn vị trí răng" /></td><td class="formValue"><input type="text" id="icd10' + number + '" name="icd10' + number + '" class="form-control activeValue focusInput gjybxsText" style="width:100%;" placeholder="Mã bảo hiểm y tế quốc gia" /></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><td> <span onclick="DiagsList(' + number + ',1)" style="background-image:url(' + "'" + '../../Content/img/诊断记录.png' + "'" + ');width:20px;height:20px;display:block;background-size:20px;background-repeat:no-repeat;padding-bottom:2px;" title="Hồ sơ chẩn đoán"></span></td ><td ><span  onclick="AddDiags(' + number + ',1)" class="glyphicon glyphicon-share" style="color: rgb(255, 140, 60);font-size:15px;padding-left: 4px;padding-right: 2px;" title="Thêm chẩn đoán thường dùng"></span></td><th class="formTitle">Chẩn đoán thường dùng</th><td class="formValue"><input type="text"  id="xycyzdoption' + number + '" name="xycyzdoption' + number + '" class="form-control activeValue focusInput xycyzdoptionText" /></td><th class="formTitle">Ghi chú</th><td class="formValue"><input type="text" id="bz' + number + '" name="bz' + number + '" class="form-control activeValue focusInput xyzdbzText" style="width:70%;" /></td><td class="formValue"><input id="rpt_ywtxs" type="button" class="btn btn-primary" value="Sơ đồ vị trí răng" onclick="ywtxs(' + number + ')"></td><td class="formValue"><input type="text" id="ywstr' + number + '" name="ywstr' + number + '"  hidden="hidden"  class="form-control activeValue focusInput xyywtstrText  hidden" /></td><td class="formValue"><input type="text" id="ywlx' + number + '" name="ywlx' + number + '"  hidden="hidden" class="form-control activeValue focusInput xyywtlxText  hidden" /></td></tr>');
@@ -1535,7 +1535,7 @@
                 $('#tablexyzd .chkValue').prop('checked', false);
             }
             if (ajaxresp.zyzdList && ajaxresp.zyzdList.length && ajaxresp.zyzdList.length > 0) {
-                for (var i = 1; i < ajaxresp.zyzdList.length; i++) {    //từ1Bắt đầu 有个主
+                for (var i = 1; i < ajaxresp.zyzdList.length; i++) {    //từ1Bắt đầu có một chẩn đoán chính
                     //trướcappend
                     var number = $('#tablezyzd .zdText').length + 1;
                     var $newTr = $('<tr><th class="formTitle">副</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><th class="formTitle">Hội chứng</th><td class="formValue"><input type="text" id="zh' + number + '" class="form-control activeValue focusInput nc_zhText"   placeholder="Nhập mã, tên, phiên âm để tra cứu" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><td> <span onclick="DiagsList(' + number + ',1)" style="background-image:url(' + "'" + '../../Content/img/诊断记录.png' + "'" + ');width:20px;height:20px;display:block;background-size:20px;background-repeat:no-repeat;padding-bottom:2px;" title="Hồ sơ chẩn đoán"></span></td ><td ><span  onclick="AddDiags(' + number + ',1)" class="glyphicon glyphicon-share" style="color: rgb(255, 140, 60);font-size:15px;padding-left: 4px;padding-right: 2px;" title="Thêm chẩn đoán thường dùng"></span></td><th class="formTitle">Chẩn đoán thường dùng</th><td class="formValue"><input type="text"  id="zycyzdoption' + number + '" name="zycyzdoption' + number + '" class="form-control activeValue focusInput zycyzdoptionText" /></td><th class="formTitle">Ghi chú</th><td class="formValue"><input type="text" id="bz' + number + '" name="bz' + number + '" class="form-control activeValue focusInput zyzdbzText" style="width:70%;" /></td></tr>');
@@ -3694,7 +3694,7 @@
     //Chẩn đoán Tây y Thêm mớiicon
     $('#tablexyzd .plusToggleCircle').click(function () {
         var number = $('#tablexyzd .zdText').length + 1;
-        //var $newTr = $('<tr><th class="formTitle">副7</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
+        //var $newTr = $('<tr><th class="formTitle">Phụ7</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
         var $newTr = $('<tr><th class="formTitle">副</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td class="formValue"><input type="text" id="ywxs' + number + '" name="ywxs' + number + '" class="form-control activeValue focusInput ywxsText" style="width:100%;" placeholder="Vui lòng chọn vị trí răng" /></td><td class="formValue"><input type="text" id="icd10' + number + '" name="icd10' + number + '" class="form-control activeValue focusInput gjybxsText" style="width:100%;" placeholder="Mã bảo hiểm y tế quốc gia" /></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><td> <span onclick="DiagsList(' + number + ',1)" style="background-image:url(' + "'" + '../../Content/img/诊断记录.png' + "'" + ');width:20px;height:20px;display:block;background-size:20px;background-repeat:no-repeat;padding-bottom:2px;" title="Hồ sơ chẩn đoán"></span></td ><td ><span  onclick="AddDiags(' + number + ',1)" class="glyphicon glyphicon-share" style="color: rgb(255, 140, 60);font-size:15px;padding-left: 4px;padding-right: 2px;" title="Thêm chẩn đoán thường dùng"></span></td><th class="formTitle">Chẩn đoán thường dùng</th><td class="formValue"><input type="text"  id="xycyzdoption' + number + '" name="xycyzdoption' + number + '" class="form-control activeValue focusInput xycyzdoptionText" /></td><th class="formTitle">Ghi chú</th><td class="formValue"><input type="text" id="bz' + number + '" name="bz' + number + '" class="form-control activeValue focusInput xyzdbzText" style="width:70%;" /></td><td class="formValue"><input id="rpt_ywtxs" type="button" class="btn btn-primary" value="Sơ đồ vị trí răng" onclick="ywtxs(' + number + ')"></td><td class="formValue"><input type="text" id="ywstr' + number + '" name="ywstr' + number + '"  hidden="hidden"  class="form-control activeValue focusInput xyywtstrText  hidden" /></td><td class="formValue"><input type="text" id="ywlx' + number + '" name="ywlx' + number + '"  hidden="hidden" class="form-control activeValue focusInput xyywtlxText  hidden" /></td></tr > ');
         $newTr.appendTo($(this).closest('table'));
         //Lớp nổi chẩn đoán Tây y
@@ -3707,7 +3707,7 @@
     //Chẩn đoán Đông y Thêm mớiicon
     $('#tablezyzd .plusToggleCircle').click(function () {
         var number = $('#tablezyzd .zdText').length + 1;
-        //var $newTr = $('<tr><th class="formTitle">副8</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><th class="formTitle">Hội chứng</th><td class="formValue"><input type="text" id="zh' + number + '" class="form-control activeValue focusInput zhText" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
+        //var $newTr = $('<tr><th class="formTitle">Phụ8</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><th class="formTitle">Hội chứng</th><td class="formValue"><input type="text" id="zh' + number + '" class="form-control activeValue focusInput zhText" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
         var $newTr = $('<tr><th class="formTitle">副</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><th class="formTitle">Hội chứng</th><td class="formValue"><input type="text" id="zh' + number + '" class="form-control activeValue focusInput zhText" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><td> <span onclick="DiagsList(' + number + ',2)" style="background-image:url(' + "'" + '../../Content/img/诊断记录.png' + "'" + ');width:20px;height:20px;display:block;background-size:20px;background-repeat:no-repeat;padding-bottom:2px;" title="Hồ sơ chẩn đoán"></span></td ><td ><span  onclick="AddDiags(' + number + ',2)" class="glyphicon glyphicon-share" style="color: rgb(255, 140, 60);font-size:15px;padding-left: 4px;padding-right: 2px;" title="Thêm chẩn đoán thường dùng"></span></td><th class="formTitle">Chẩn đoán thường dùng</th><td class="formValue"><input type="text"  id="zycyzdoption' + number + '" name="zycyzdoption' + number + '" class="form-control activeValue focusInput zycyzdoptionText" /></td><th class="formTitle">Ghi chú</th><td class="formValue"><input type="text" id="bz' + number + '" name="bz' + number +'" class="form-control activeValue focusInput zyzdbzText" style="width:70%;" /></td></tr>');
          $newTr.appendTo($(this).closest('table'));
         //Lớp nổi chẩn đoán Đông y
@@ -4564,7 +4564,7 @@
         }
     }
 
-    //向HISGửi một đơn thuốc
+    //TớiHISGửi một đơn thuốc
     $(document).on('click', '.iconSendSingleCf', function(e){
         var type = $(this).closest('tr').attr('data-cflx');
 		var cfId = $(this).closest('tr').attr('data-cfId');
@@ -5143,11 +5143,11 @@
             if(type=="zycf" && '@ViewBag.ISOpenZycfnew' == 'True' && '@ViewBag.ISOpenZycf'== 'False')
                 type="zycfnew";
             sessionStorage.setItem("triggereditcfh", cfh);
-            //type kfcf cgxmcf zycf 等
+            //type kfcf cgxmcf zycf v.v.
             $('#myTab [href="#link' + type + '"]').trigger('click');
         }
         else if(!!type){
-            //type kfcf cgxmcf zycf 等
+            //type kfcf cgxmcf zycf v.v.
             $('#myTab [href="#link' + type + '"]').trigger('click');
         }
     });
@@ -5903,7 +5903,7 @@
         //Dữ liệu đơn thuốc đã thay đổi
         triggleActive();
     }
-    @********************** 远程医疗 *************************@
+    @********************** Y tế từ xa *************************@
     $('#btn_sjsc').click(function () {
         var hzmzh=$('#mzh').text();
         var dtxdmc = "";
@@ -6094,7 +6094,7 @@
         window.open(str, "_blank");
     });
 
-    @********************** 远程医疗会诊 *************************@
+    @********************** Hội chẩn y tế từ xa *************************@
     $('#btn_ychzrpt').click(function () {
 
         var hzmzh = $('#mzh').text();

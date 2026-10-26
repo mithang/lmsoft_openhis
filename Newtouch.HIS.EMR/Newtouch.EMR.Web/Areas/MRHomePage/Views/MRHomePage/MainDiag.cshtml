@@ -120,7 +120,7 @@
 				var $grid = $("#gridzdList");
 				var gridids = $grid.jqGrid('getDataIDs');
 				var maxRowId = 0;
-				//在行号序列中获取最大的编号
+				//Lấy số lớn nhất trong dãy số thứ tự hàng
                 if (gridids.length > 0) {
                     maxRowId = Math.max.apply(Math, $grid.jqGrid('getDataIDs'));
                 } else {
